@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -144,7 +145,7 @@ namespace ROMS
 
                             grdItemList.Columns["Group Id"].Visible = false; 
                             grdItemList.Columns["Group Name"].Visible = false; 
-                            grdItemList.Columns[" Subgroup Id"].Visible = false; 
+                            grdItemList.Columns["Subgroup Id"].Visible = false; 
                             grdItemList.Columns["Subgroup Name"].Visible = false; 
                             grdItemList.Columns["Brand Id"].Visible = false;
                             grdItemList.Columns["Brand Name"].Visible = false;
@@ -1974,7 +1975,7 @@ namespace ROMS
                 }
                 else
                 {
-                    udfnConsolidatedExcel();
+                    udfnDetailedExcel();
                 }
             }
             catch (Exception ex)
@@ -1988,7 +1989,6 @@ namespace ROMS
         {
             try
             {
-
                 btnExport.Enabled = false;
                 label1.Focus();
                 if ((grdItemList.Rows.Count > 0))
@@ -2003,7 +2003,8 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "PO List";
+                    string varDate = MainForm.pbCurrentDate.ToString("dd/MM/yyyy");
+                    ExcelSheet.Name = "Rate Change" + "_" + varDate;
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdItemList.Columns)
@@ -2013,10 +2014,8 @@ namespace ROMS
                             count += 1;
                         }
                     }
-                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
-                    //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "PO List";
+                    ExcelSheet.Cells[1, 1].Value = "Rate Change" + "-" + varDate;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -2030,111 +2029,53 @@ namespace ROMS
                         if (col.Visible)
                         {
                             cIndex += 1;
-                            if (cIndex != 1)
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No.")
                             {
-                                if (cIndex == 1 || cIndex == 2) // Skip the first two columns (image columns)
-                                {
-                                    continue;
-                                }
-                                ExcelSheet.Cells[2, cIndex - 2] = col.HeaderText;
-                                ExcelSheet.Columns[cIndex - 2].NumberFormat = "@";
-
-
-                                if (col.Name == "S.No." || col.Name == "Total Qty")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
-                                }
-                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"
-                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
-                                }
-                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status" || col.Name == "Created By")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 25;
-                                }
-
-
-                                //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
-                                //{
-                                //    ExcelSheet.Columns[cIndex].ColumnWidth = 20;
-                                //}
-                                //else
-                                //{
-                                //    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
-                                //}
-                                if (col.Name == "S.No.")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
-                                }
-
-                                if (col.Name == "Issue Date")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
-                                }
-
-                                if (col.Name == "PO Date")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
-                                }
-                                if (col.Name == "T.Pro")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
-                                }
-                                if (col.Name == "T.Units")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
-                                }
-                                if (col.Name == "TAT")
-                                {
-                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
-                                }
-
-                                //if (col.Name == "Total Products" || col.Name == "GST%")
-                                //{
-                                //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                                //}
-                                int varSLno = 1;
-                                foreach (DataGridViewRow rowa in grdItemList.Rows)
-                                {
-                                    if (cIndex != 2)
-                                    {
-                                        //if (cIndex == 4)
-                                        //{
-                                        //    ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = varSLno;
-                                        //    varSLno++;
-                                        //}
-                                        //else
-                                        //{
-                                        //ExcelSheet.Row(i + 2).Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                        //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
-                                        //rowa.Interior.Color = System.Drawing.Color.Red;
-                                        ExcelSheet.Cells[rowa.Index + 3, cIndex - 2] = rowa.Cells[col.Index].Value;
-                                        if (cIndex == 2)
-                                        {
-                                            //-----GET BACK COLOR OF GRID
-                                            Color cellBackColor = rowa.Cells[col.Index].Style.BackColor;
-                                            //------SET THE BACK COLOR FOR GRID TO EXCEL
-                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 2].Interior.Color = System.Drawing.ColorTranslator.ToOle(cellBackColor);
-                                        }
-                                        //}
-                                    }
-                                }
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            //foreach (DataGridViewRow rowa in grdPurchaseorderlist.Rows)
-                            //{
-                            //    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
-                            //}
+                            if (col.Name == "P.I Code" || col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                            }
+                            if (col.Name == "Teller" || col.Name == "Last Updated By")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 35;
+                            }
+                            if (col.Name == "Product")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                                Excel.Range productRange = ExcelSheet.Range[
+                                    ExcelSheet.Cells[3, cIndex],
+                                    ExcelSheet.Cells[grdItemList.Rows.Count + 2, cIndex]
+                                ];
+                                productRange.Font.Name = "Uni Ila.Sundaram-03";
+                                productRange.Font.Size = 11.75;
+                            }
+
+                            if (col.Name == "S.No." || col.Name == "Unit")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+
+                            foreach (DataGridViewRow rowa in grdItemList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
                         }
                     }
-                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
                     ExcelObj.Visible = true;
                 }
                 else
                 {
                     MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (Exception ex)
             {
@@ -2147,6 +2088,143 @@ namespace ROMS
                 btnExport.Focus();
             }
         }
+
+        public void udfnDetailedExcel()
+        {
+            try
+            {
+                btnExport.Enabled = false;
+                label1.Focus();
+
+                if (grdItemList.Rows.Count > 0)
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    Excel._Worksheet ExcelSheet = ExcelBook.ActiveSheet;
+                    ExcelObj.Visible = true;
+
+                    string varDate = MainForm.pbCurrentDate.ToString("dd/MM/yyyy");
+                    ExcelSheet.Name = "Rate Change_" + varDate;
+
+                    int colCount = grdItemList.Columns.Cast<DataGridViewColumn>().Count(c => c.Visible);
+
+                    // Title Row
+                    ExcelSheet.Cells[1, 1].Value = "Rate Change - " + varDate;
+                    Excel.Range titleRange = ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, colCount]];
+                    titleRange.Merge();
+                    titleRange.HorizontalAlignment = Excel.Constants.xlCenter;
+                    titleRange.Interior.Color = Color.LightGray;
+                    titleRange.Font.Size = 12;
+                    titleRange.Font.Bold = true;
+
+                    int excelRow = 3; // start from row 3 for grouped data
+
+                    var groupedData = grdItemList.Rows
+                        .Cast<DataGridViewRow>()
+                        .Where(r => !r.IsNewRow)
+                        .GroupBy(r => new
+                        {
+                            GroupId = r.Cells["Group Id"].Value,
+                            SubGroupId = r.Cells["Subgroup Id"].Value,
+                            BrandId = r.Cells["Brand Id"].Value,
+                            GroupName = r.Cells["Group Name"].Value?.ToString(),
+                            SubGroupName = r.Cells["Subgroup Name"].Value?.ToString(),
+                            BrandName = r.Cells["Brand Name"].Value?.ToString()
+                        });
+
+                    foreach (var grp in groupedData)
+                    {
+                        // Insert Group Header
+                        ExcelSheet.Cells[excelRow, 1].Value = $"Group : {grp.Key.GroupName}";
+                        ExcelSheet.Cells[excelRow, 3].Value = $"SubGroup : {grp.Key.SubGroupName}";
+                        ExcelSheet.Cells[excelRow, 6].Value = $"Brand : {grp.Key.BrandName}";
+
+                        Excel.Range headerRange = ExcelSheet.Range[ExcelSheet.Cells[excelRow, 1], ExcelSheet.Cells[excelRow, colCount]];
+                        headerRange.Font.Bold = true;
+                        headerRange.Interior.Color = Color.LightGray;
+
+                        excelRow++;
+
+                        // Column Headers
+                        int cIndexHeader = 0;
+                        foreach (DataGridViewColumn col in grdItemList.Columns)
+                        {
+                            if (col.Visible)
+                            {
+                                cIndexHeader++;
+                                ExcelSheet.Cells[excelRow, cIndexHeader].Value = col.HeaderText;
+                                //ExcelSheet.Cells[excelRow, cIndexHeader].Font.Bold = true;
+                                //ExcelSheet.Cells[excelRow, cIndexHeader].Interior.Color = Color.LightSlateGray;
+                                ExcelSheet.Cells[excelRow, cIndexHeader].Font.Color = Color.White;
+                            }
+                        }
+                        excelRow++;
+
+                        // Products under this group
+                        foreach (var row in grp)
+                        {
+                            int cIndex = 0;
+                            foreach (DataGridViewColumn col in grdItemList.Columns)
+                            {
+                                if (col.Visible)
+                                {
+                                    cIndex++;
+                                    ExcelSheet.Cells[excelRow, cIndex].Value = row.Cells[col.Index].Value;
+
+                                    if (col.Name == "S.No.")
+                                    {
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                        ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    }
+                                    else if (col.Name == "P.I Code" || col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                                    {
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+                                        ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                    }
+                                    else if (col.Name == "Teller" || col.Name == "Last Updated By")
+                                    {
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 35;
+                                    }
+                                    else if (col.Name == "Product")
+                                    {
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                                        Excel.Range productRange = ExcelSheet.Range[
+                                            ExcelSheet.Cells[3, cIndex],
+                                            ExcelSheet.Cells[grdItemList.Rows.Count + 2, cIndex]
+                                        ];
+                                        productRange.Font.Name = "Uni Ila.Sundaram-03";
+                                        productRange.Font.Size = 11.75;
+                                    }
+                                    else if (col.Name == "Unit")
+                                    {
+                                        ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    }
+                                }
+                            }
+                            excelRow++;
+                        }
+
+                        excelRow++; 
+                    }
+                    ExcelSheet.Columns.AutoFit();
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
 
         private void BtnExport_Enter(object sender, EventArgs e)
         {
