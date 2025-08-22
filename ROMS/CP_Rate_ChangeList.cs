@@ -1952,6 +1952,252 @@ namespace ROMS
             }
         }
 
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnExport();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnExport()
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbPrintType.SelectedValue) == 354)
+                {
+                    udfnConsolidatedExcel();
+                }
+                else
+                {
+                    udfnConsolidatedExcel();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+        public void udfnConsolidatedExcel()
+        {
+            try
+            {
+
+                btnExport.Enabled = false;
+                label1.Focus();
+                if ((grdItemList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    ExcelSheet.Name = "PO List";
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
+                    //er.EntireColumn.ColumnWidth = 35;
+
+                    ExcelSheet.Cells[1, 1].Value = "PO List";
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            if (cIndex != 1)
+                            {
+                                if (cIndex == 1 || cIndex == 2) // Skip the first two columns (image columns)
+                                {
+                                    continue;
+                                }
+                                ExcelSheet.Cells[2, cIndex - 2] = col.HeaderText;
+                                ExcelSheet.Columns[cIndex - 2].NumberFormat = "@";
+
+
+                                if (col.Name == "S.No." || col.Name == "Total Qty")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 10;
+                                }
+                                if (col.Name == "Concern" || col.Name == "PO.No." || col.Name == "PO Date"
+                                    || col.Name == "Mode of issue" || col.Name == "Issue Date" || col.Name == "Created By" || col.Name == "TAT" || col.Name == "Total Products")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 15;
+                                }
+                                if (col.Name == "Supplier" || col.Name == "City" || col.Name == "Overall Status" || col.Name == "Created By")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].ColumnWidth = 25;
+                                }
+
+
+                                //else if (col.Name == "HSN Name" || col.Name == "HSN Code")
+                                //{
+                                //    ExcelSheet.Columns[cIndex].ColumnWidth = 20;
+                                //}
+                                //else
+                                //{
+                                //    ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                //}
+                                if (col.Name == "S.No.")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
+                                }
+
+                                if (col.Name == "Issue Date")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
+                                }
+
+                                if (col.Name == "PO Date")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlCenter;
+                                }
+                                if (col.Name == "T.Pro")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
+                                }
+                                if (col.Name == "T.Units")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
+                                }
+                                if (col.Name == "TAT")
+                                {
+                                    ExcelSheet.Columns[cIndex - 2].HorizontalAlignment = Excel.Constants.xlRight;
+                                }
+
+                                //if (col.Name == "Total Products" || col.Name == "GST%")
+                                //{
+                                //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                                //}
+                                int varSLno = 1;
+                                foreach (DataGridViewRow rowa in grdItemList.Rows)
+                                {
+                                    if (cIndex != 2)
+                                    {
+                                        //if (cIndex == 4)
+                                        //{
+                                        //    ExcelSheet.Cells[rowa.Index + 3, cIndex - 1] = varSLno;
+                                        //    varSLno++;
+                                        //}
+                                        //else
+                                        //{
+                                        //ExcelSheet.Row(i + 2).Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                        //ExcelSheet.Row(i + 2).Style.Fill.BackgroundColor.SetColor(Color.Red);
+                                        //rowa.Interior.Color = System.Drawing.Color.Red;
+                                        ExcelSheet.Cells[rowa.Index + 3, cIndex - 2] = rowa.Cells[col.Index].Value;
+                                        if (cIndex == 2)
+                                        {
+                                            //-----GET BACK COLOR OF GRID
+                                            Color cellBackColor = rowa.Cells[col.Index].Style.BackColor;
+                                            //------SET THE BACK COLOR FOR GRID TO EXCEL
+                                            ExcelSheet.Cells[rowa.Index + 3, cIndex - 2].Interior.Color = System.Drawing.ColorTranslator.ToOle(cellBackColor);
+                                        }
+                                        //}
+                                    }
+                                }
+                            }
+                            //foreach (DataGridViewRow rowa in grdPurchaseorderlist.Rows)
+                            //{
+                            //    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            //}
+                        }
+                    }
+                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.LemonChiffon;
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+            }
+        }
+
+        private void BtnPrint_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.Transparent;
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+            }
+        }
+
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
