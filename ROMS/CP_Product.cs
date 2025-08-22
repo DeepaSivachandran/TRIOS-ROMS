@@ -62,7 +62,7 @@ namespace ROMS
         private ToolTip tpSalesHSN = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
-        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "";
+        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
         
         public CP_Product()
@@ -157,6 +157,8 @@ namespace ROMS
                     string varMessage = objDataService.udfnGetMessages(149);
                     objDataService.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbProduct.TabPages[1].Enabled = true;
+                    tbProduct.SelectedIndex = 1;
                     return;
                 }
                 /*
@@ -2774,7 +2776,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbProductType.Focus();
+                    if(cmbProductType.Enabled==true)
+                    {
+                        cmbProductType.Focus();
+                    }
+                    else
+                    {
+                        txtPICode.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2861,10 +2870,13 @@ namespace ROMS
                 {
                     cmbProductType.SelectedValue = 341;
                     cmbProductType.Enabled = false;
+                    txtUpp.Enabled = true;
+                    txtUpp.ReadOnly = false;
                 }
                 else
                 { 
                     cmbProductType.Enabled = true;
+                    txtUpp.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -3693,7 +3705,7 @@ namespace ROMS
                 //}
 
                 cmbUnit.Enabled = true;
-                txtUpp.Enabled = true;
+                //txtUpp.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -4098,6 +4110,7 @@ namespace ROMS
                     txtPurRack.Text = selectedItem.SubItems[9].Text;
                     string varbatchenable = selectedItem.SubItems[3].Text;
                     txtRackDescription.Text = selectedItem.SubItems[10].Text;
+                    txtSubgroupType.Text = selectedItem.SubItems[11].Text;
                     txtBrand.Text = "";
                     lblBrand.Text = "0";
                     txtGroup.Focus();
@@ -4460,7 +4473,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), objDs.Tables[0].Rows[i]["Description"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), objDs.Tables[0].Rows[i]["Description"].ToString(), objDs.Tables[0].Rows[i]["SubgroupType"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -5021,7 +5034,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSaleRack.Focus();
+                    if (txtSaleRack.Enabled == true)
+                    {
+                        txtSaleRack.Focus();
+                    }
+                    else
+                    {
+                        cmbBatchNoEntry.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -6976,7 +6996,8 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbProductType.Text) == "Parent") {
+                if (Convert.ToInt32(cmbProductType.SelectedValue) == 341)
+                {
                     cmbChildUnit.Enabled = true;  
                     txtProductName.Enabled = false;
                     txtGroup.Enabled = true;
@@ -6992,7 +7013,7 @@ namespace ROMS
                     txtUpp.ReadOnly = true;
                     txtProductName.ReadOnly = true;
                 }
-                else if (Convert.ToString(cmbProductType.Text) == "Child")
+                else if (Convert.ToInt32(cmbProductType.SelectedValue) == 342)
                 {
                     cmbChildUnit.Enabled = false;
                     txtGroup.Enabled = false;
@@ -7534,6 +7555,7 @@ namespace ROMS
                             varSubGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["SUBGROUP"].ToString());
                             lblSubGroupCode.Text = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
                             txtSubGroup.Text = objDS.Tables[0].Rows[0]["SubGroup Name"].ToString();
+                            txtSubgroupType.Text = objDS.Tables[0].Rows[0]["SubgroupType"].ToString();
                             //CmbSubGroup_SelectedIndexChanged(cmbSubGroup, EventArgs.Empty);
                             varGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["GROUP"].ToString());
                             lblGroupCode.Text = objDS.Tables[0].Rows[0]["GROUP"].ToString();
@@ -7803,6 +7825,8 @@ namespace ROMS
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
             groupBox3.Enabled = false;
+            grbPurchaseHSN.Enabled = false;
+            grbSalesHSN.Enabled = false;
             this.ActiveControl = rbInActive;
         }
         private void BtnSubgroup_Click(object sender, EventArgs e)
@@ -7816,6 +7840,7 @@ namespace ROMS
                 //udfnDropDownload();
                 lblSubGroupCode.Text = Convert.ToString(varSubgroupCode);
                 txtSubGroup.Text = varSubGroupName;
+                txtSubgroupType.Text = varSubgroupType;
                 txtGroup.Text = varGroupName;
                 lblGroupCode.Text = Convert.ToString(varGroupCode);
                 lblPurLocationCode.Text = Convert.ToString(varPURSLID);
