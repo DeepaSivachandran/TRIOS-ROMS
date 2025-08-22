@@ -811,6 +811,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_Rate_Changes_Consolidated.cs">
+      <DependentUpon>RPT_Rate_Changes_Consolidated.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Rate_Changes.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3710,6 +3717,11 @@
     <EmbeddedResource Include="Reports\RPT_Product_Portrait_Print_A7.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Product_Portrait_Print_A7.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Rate_Changes_Consolidated.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Rate_Changes_Consolidated.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Rate_Changes.rpt">

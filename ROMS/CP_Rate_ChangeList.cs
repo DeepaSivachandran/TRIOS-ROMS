@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -144,7 +145,7 @@ namespace ROMS
 
                             grdItemList.Columns["Group Id"].Visible = false; 
                             grdItemList.Columns["Group Name"].Visible = false; 
-                            grdItemList.Columns[" Subgroup Id"].Visible = false; 
+                            grdItemList.Columns["Subgroup Id"].Visible = false; 
                             grdItemList.Columns["Subgroup Name"].Visible = false; 
                             grdItemList.Columns["Brand Id"].Visible = false;
                             grdItemList.Columns["Brand Name"].Visible = false;
@@ -281,7 +282,14 @@ namespace ROMS
                 {
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Rate_Changes.rpt"); 
+                    if (Convert.ToInt32(cmbPrintType.SelectedValue) == 354)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Rate_Changes_Consolidated.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Rate_Changes.rpt");
+                    }
                     objBillreport.SetParameterValue("paraGroupID", varGroupId);
                     objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);
                     objBillreport.SetParameterValue("paraBrandID", varBrandId);
@@ -637,6 +645,9 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=106", "MST_DisplayText,MSTID,MST_ShortName", cmbPrintType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 udfnList();
                 // * BeginInvoke is used to open render the list form first, render complete for the list screen then dialog shown* 
                 // * By venkat on 13-08-2025 *
@@ -1884,6 +1895,390 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnExport();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnExport()
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbPrintType.SelectedValue) == 354)
+                {
+                    udfnConsolidatedExcel();
+                }
+                else
+                {
+                    udfnDetailedExcel();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+        }
+        public void udfnConsolidatedExcel()
+        {
+            try
+            {
+                btnExport.Enabled = false;
+                label1.Focus();
+                if ((grdItemList.Rows.Count > 0))
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Excel._Worksheet ExcelSheet = null;
+                    // see the excel sheet behind the program  
+                    ExcelObj.Visible = true;
+                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
+                    ExcelSheet = ExcelBook.ActiveSheet;
+                    // changing the name of active sheet  
+                    string varDate = MainForm.pbCurrentDate.ToString("dd/MM/yyyy");
+                    ExcelSheet.Name = "Rate Change" + "_" + varDate;
+                    int cIndex = 0;
+                    int count = 0;
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            count += 1;
+                        }
+                    }
+
+                    ExcelSheet.Cells[1, 1].Value = "Rate Change" + "-" + varDate;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
+                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
+                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
+
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndex += 1;
+                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
+                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
+
+                            if (col.Name == "S.No.")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                            }
+                            if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 15;
+
+                                Excel.Range rateRange = ExcelSheet.Range[
+                                    ExcelSheet.Cells[3, cIndex],
+                                    ExcelSheet.Cells[grdItemList.Rows.Count + 2, cIndex]
+                                ];
+                                rateRange.NumberFormat = "0.00"; 
+                                rateRange.HorizontalAlignment = Excel.Constants.xlRight;
+                            }
+                            if (col.Name == "Teller" || col.Name == "Last Updated By")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 35;
+                            }
+                            if (col.Name == "Product")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                                Excel.Range productRange = ExcelSheet.Range[
+                                    ExcelSheet.Cells[3, cIndex],
+                                    ExcelSheet.Cells[grdItemList.Rows.Count + 2, cIndex]
+                                ];
+                                productRange.Font.Name = "Uni Ila.Sundaram-03";
+                                productRange.Font.Size = 11.75;
+                            }
+
+                            if (col.Name == "S.No." || col.Name == "Unit")
+                            {
+                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                            }
+                            //if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                            //{
+                            //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            //}
+
+                            foreach (DataGridViewRow rowa in grdItemList.Rows)
+                            {
+                                ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
+                            }
+                        }
+                    }
+                    ExcelObj.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
+        public void udfnDetailedExcel()
+        {
+            try
+            {
+                btnExport.Enabled = false;
+                label1.Focus();
+
+                if (grdItemList.Rows.Count > 0)
+                {
+                    Excel._Application ExcelObj = new Excel.Application();
+                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                    Excel._Worksheet ExcelSheet = ExcelBook.ActiveSheet;
+                    ExcelObj.Visible = true;
+
+                    string varDate = MainForm.pbCurrentDate.ToString("dd/MM/yyyy");
+                    ExcelSheet.Name = "Rate Change_" + varDate;
+
+                    int colCount = grdItemList.Columns.Cast<DataGridViewColumn>().Count(c => c.Visible);
+
+                    // Title Row
+                    ExcelSheet.Cells[1, 1].Value = "Rate Change - " + varDate;
+                    Excel.Range titleRange = ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, colCount]];
+                    titleRange.Merge();
+                    titleRange.HorizontalAlignment = Excel.Constants.xlCenter;
+                    titleRange.Interior.Color = Color.LightGray;
+                    titleRange.Font.Size = 12;
+                    titleRange.Font.Bold = true;
+
+                    int excelRow = 3;
+
+                    int cIndexHeader = 0;
+                    foreach (DataGridViewColumn col in grdItemList.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            cIndexHeader++;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Value = col.HeaderText;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Font.Bold = true;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Interior.Color = Color.LightSlateGray;
+                            ExcelSheet.Cells[excelRow, cIndexHeader].Font.Color = Color.White;
+                        }
+                    }
+                    excelRow++;
+
+                    var groupedData = grdItemList.Rows
+                        .Cast<DataGridViewRow>()
+                        .Where(r => !r.IsNewRow)
+                        .GroupBy(r => new
+                        {
+                            GroupName = r.Cells["Group Name"].Value?.ToString(),
+                            SubGroupName = r.Cells["Subgroup Name"].Value?.ToString(),
+                            BrandName = r.Cells["Brand Name"].Value?.ToString()
+                        });
+                    int serialNo = 1;
+                    foreach (var grp in groupedData)
+                    {
+                        ExcelSheet.Cells[excelRow, 1].Value = $"Group : {grp.Key.GroupName}";
+                        ExcelSheet.Cells[excelRow, 3].Value = $"SubGroup : {grp.Key.SubGroupName}";
+                        ExcelSheet.Cells[excelRow, 6].Value = $"Brand : {grp.Key.BrandName}";
+
+                        Excel.Range groupHeaderRange = ExcelSheet.Range[ExcelSheet.Cells[excelRow, 1], ExcelSheet.Cells[excelRow, colCount]];
+                        groupHeaderRange.Font.Bold = true;
+                        groupHeaderRange.Font.Size = 11; 
+                        groupHeaderRange.Font.Name = "Calibri";
+                        excelRow++;
+
+                        foreach (var row in grp)
+                        {
+                            ExcelSheet.Cells[excelRow, 1].Value = serialNo; 
+                            serialNo++;
+                            int cIndex = 1;
+                            foreach (DataGridViewColumn col in grdItemList.Columns)
+                            {
+                                if (col.Visible)
+                                {
+                                    cIndex++;
+                                    ExcelSheet.Cells[excelRow, cIndex].Value = row.Cells[col.Index].Value;
+
+                                    if (col.Name == "S.No.")
+                                    {
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 10;
+                                        ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    }
+                                    object cellValue = row.Cells[col.Index].Value;
+                                    if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                                    {
+                                        ExcelSheet.Cells[excelRow, cIndex].Value = cellValue != null && double.TryParse(cellValue.ToString(), out double num) ? num : 0;
+                                        ExcelSheet.Cells[excelRow, cIndex].NumberFormat = "0.00";
+                                    }
+                                    else
+                                    {
+                                        ExcelSheet.Cells[excelRow, cIndex].Value = cellValue;
+                                    }
+                                    if (col.Name == "Teller" || col.Name == "Last Updated By")
+                                    {
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 35;
+                                    }
+                                    else if (col.Name == "Product")
+                                    {
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 40;
+                                        Excel.Range productCell = ExcelSheet.Cells[excelRow, cIndex];
+                                        productCell.Font.Name = "Uni Ila.Sundaram-03";
+                                        productCell.Font.Size = 11.75;
+                                    }
+                                    else if (col.Name == "Unit")
+                                    {
+                                        ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                    }
+                                }
+                            }
+                            excelRow++;
+                        }
+
+                        excelRow++; 
+                    }
+
+                    //ExcelSheet.Columns.AutoFit();
+                }
+                else
+                {
+                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+                btnExport.Focus();
+            }
+        }
+
+
+        private void BtnExport_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnExport_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnExport.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.LemonChiffon;
+            }
+            finally
+            {
+                btnExport.Enabled = true;
+            }
+        }
+
+        private void BtnPrint_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.BackColor = Color.Transparent;
+            }
+            finally
+            {
+                btnExport.Enabled = true;
             }
         }
 
