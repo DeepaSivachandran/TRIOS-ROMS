@@ -83,7 +83,7 @@ namespace ROMS
                         string result = "";
                         result = objspdservice.udfnSupplierMaster(12, Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", txtGstin.Text.Trim(), 0,
                         0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
-                        "", "", "", 0, "", 0, 0, "", "", "", "", "", "",  "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","",0);
+                        "", "", "", 0, "", 0, 0, "", "", "", "", "", "",  "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","",0,null,0);
 
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")

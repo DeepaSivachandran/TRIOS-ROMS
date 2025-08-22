@@ -64,6 +64,7 @@ namespace ROMS
             this.advanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbCreditNote = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmChequeTransaction = new System.Windows.Forms.ToolStripMenuItem();
             this.gSTRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDb = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDLogo = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,6 +183,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmChequePrintSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNonMoving = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
@@ -423,6 +425,7 @@ namespace ROMS
             this.advanceToolStripMenuItem,
             this.tsbCreditNote,
             this.supplierPaymentToolStripMenuItem,
+            this.tsmChequeTransaction,
             this.gSTRToolStripMenuItem});
             this.paymentToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
@@ -472,6 +475,13 @@ namespace ROMS
             this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.supplierPaymentToolStripMenuItem.Text = "Supplier Payment";
             this.supplierPaymentToolStripMenuItem.Click += new System.EventHandler(this.SupplierPaymentToolStripMenuItem_Click);
+            // 
+            // tsmChequeTransaction
+            // 
+            this.tsmChequeTransaction.Name = "tsmChequeTransaction";
+            this.tsmChequeTransaction.Size = new System.Drawing.Size(183, 22);
+            this.tsmChequeTransaction.Text = "Cheque Transaction";
+            this.tsmChequeTransaction.Click += new System.EventHandler(this.TsmChequeTransaction_Click);
             // 
             // gSTRToolStripMenuItem
             // 
@@ -802,7 +812,8 @@ namespace ROMS
             this.tsmBatchNoConfig,
             this.tsmVoucherSettings,
             this.tsmGeneralSettings,
-            this.printerSettingsToolStripMenuItem});
+            this.printerSettingsToolStripMenuItem,
+            this.tsmChequePrintSettings});
             this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmControlPanel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmControlPanel.Name = "tsmControlPanel";
@@ -1449,8 +1460,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmChequePrintSettings
             // tsmNonMoving
             // 
+            this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmChequePrintSettings.Text = "Cheque Print Settings";
+            this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
             this.tsmNonMoving.Name = "tsmNonMoving";
             this.tsmNonMoving.Size = new System.Drawing.Size(204, 22);
             this.tsmNonMoving.Text = "Non-Moving Product Stock";
@@ -1637,6 +1653,8 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem directLabelPrintToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printerSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmBank;
+        private System.Windows.Forms.ToolStripMenuItem tsmChequeTransaction;
+        private System.Windows.Forms.ToolStripMenuItem tsmChequePrintSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmNonMoving;
     }
 }

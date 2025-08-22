@@ -3579,7 +3579,7 @@ namespace ROMS
                 varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1");
                 grdContactManager.Rows.Clear();
                 grdBankDetails.Rows.Clear();
-                udfnBankDropDownLLoad();
+                udfnBankDropDownLoad();
                 udfnEdit();
                 this.ActiveControl = txtCompanyName;
                 objdservice.CloseConnection();
@@ -3608,7 +3608,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnBankDropDownLLoad()
+        public void udfnBankDropDownLoad()
         {
             try
             {

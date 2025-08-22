@@ -39,6 +39,8 @@
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
+            this.txtRTGSMinLimit = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtLPRate = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -138,6 +140,8 @@
             // 
             // grpGeneralsettings
             // 
+            this.grpGeneralsettings.Controls.Add(this.txtRTGSMinLimit);
+            this.grpGeneralsettings.Controls.Add(this.label18);
             this.grpGeneralsettings.Controls.Add(this.chkRCStockShow);
             this.grpGeneralsettings.Controls.Add(this.label17);
             this.grpGeneralsettings.Controls.Add(this.txtLPRate);
@@ -181,6 +185,30 @@
             this.grpGeneralsettings.Size = new System.Drawing.Size(1339, 633);
             this.grpGeneralsettings.TabIndex = 958794;
             this.grpGeneralsettings.TabStop = false;
+            // 
+            // txtRTGSMinLimit
+            // 
+            this.txtRTGSMinLimit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRTGSMinLimit.Location = new System.Drawing.Point(280, 583);
+            this.txtRTGSMinLimit.MaxLength = 10;
+            this.txtRTGSMinLimit.Name = "txtRTGSMinLimit";
+            this.txtRTGSMinLimit.Size = new System.Drawing.Size(94, 27);
+            this.txtRTGSMinLimit.TabIndex = 18;
+            this.txtRTGSMinLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRTGSMinLimit.Enter += new System.EventHandler(this.TxtRTGSMinLimit_Enter);
+            this.txtRTGSMinLimit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRTGSMinLimit_KeyDown);
+            this.txtRTGSMinLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRTGSMinLimit_KeyPress);
+            this.txtRTGSMinLimit.Leave += new System.EventHandler(this.TxtRTGSMinLimit_Leave);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(15, 586);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(165, 20);
+            this.label18.TabIndex = 1111221;
+            this.label18.Text = "Min Transaction Limit (RTGS)";
             // 
             // label17
             // 
@@ -540,7 +568,7 @@
             this.txtReportText.Multiline = true;
             this.txtReportText.Name = "txtReportText";
             this.txtReportText.Size = new System.Drawing.Size(315, 47);
-            this.txtReportText.TabIndex = 8;
+            this.txtReportText.TabIndex = 20;
             this.txtReportText.Enter += new System.EventHandler(this.TxtReportText_Enter);
             this.txtReportText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReportText_KeyDown);
             this.txtReportText.Leave += new System.EventHandler(this.TxtReportText_Leave);
@@ -561,7 +589,7 @@
             this.cmbTransactionType.Location = new System.Drawing.Point(723, 20);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(131, 27);
-            this.cmbTransactionType.TabIndex = 7;
+            this.cmbTransactionType.TabIndex = 19;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.CmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.CmbTransactionType_Enter);
             this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
@@ -778,7 +806,7 @@
             this.btnClose.Location = new System.Drawing.Point(1247, 586);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 19;
+            this.btnClose.TabIndex = 22;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -795,7 +823,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(1160, 586);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(84, 29);
-            this.btnUpdate.TabIndex = 18;
+            this.btnUpdate.TabIndex = 21;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -926,6 +954,8 @@
         private System.Windows.Forms.TextBox txtLPRate;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtRTGSMinLimit;
+        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox chkRCStockShow;
     }
 }

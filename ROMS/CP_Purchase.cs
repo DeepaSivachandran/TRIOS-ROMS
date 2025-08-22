@@ -1214,6 +1214,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             } 
         }
+        public void udfnCompanyDropDown()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                int varconcerntype = 3;
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnCompanyList(varconcerntype, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnGeneralSettingsList()
         {
             try

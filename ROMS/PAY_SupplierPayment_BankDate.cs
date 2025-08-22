@@ -27,7 +27,7 @@ namespace ROMS
             {
                 errBrand.Clear();
                 SPDataService objSPdataservice = new SPDataService();
-               string result = objSPdataservice.udfnSupplierMaster(14, varSupplierId,"", "", "",0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, 0,0, 0, "", "", "", "", 0, "", 0, 0, "", "",   "", "", "", "", "", 0, "", 0, 0, 0,0, 0, varScheduleId, 0, "", dpTransactionDate.Text,0);
+               string result = objSPdataservice.udfnSupplierMaster(14, varSupplierId,"", "", "",0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", "", "", "", 0, "", 0, 0, 0,0, 0, "", "", "", "", 0, "", 0, 0, "", "",   "", "", "", "", "", 0, "", 0, 0, 0,0, 0, varScheduleId, 0, "", dpTransactionDate.Text,0,null,0);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")

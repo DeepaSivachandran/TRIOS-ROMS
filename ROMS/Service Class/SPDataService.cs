@@ -209,7 +209,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2,int paraVerificationDays,int paraAgingMonths,decimal paraLPRatePer,int paraRCStockShow)
+        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2,int paraVerificationDays,int paraAgingMonths,decimal paraLPRatePer,decimal paraRTGSMinLimit, int paraRCStockShow)
         {
             string varResult = "";
             try
@@ -239,6 +239,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraVerificationDays", paraVerificationDays);
                 varSqlCommand.Parameters.AddWithValue("@paraAgingMonths", paraAgingMonths);
                 varSqlCommand.Parameters.AddWithValue("@paraLPRatePer", paraLPRatePer);
+                varSqlCommand.Parameters.AddWithValue("@paraRTGSMinLimit", paraRTGSMinLimit);
                 varSqlCommand.Parameters.AddWithValue("@paraRCStockShow", paraRCStockShow);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -1937,7 +1938,8 @@ namespace ROMS
             , int paraDesignation, string paraDesignationName, double paraCreditLimit, int paraDayid, int paramonthid, int paraweekid, int paradaymonthid,
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
               int ParaSupplierOrderid, int paraordertype, string ParaProductId,  string paraBranchName,
-              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName, string paraBankDate,int paraBankID)
+              string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName, string paraBankDate,int paraBankID,
+              DataTable ParaMR_Supplier_OpeningBalance,int paraCrConcernID)
         {
             string result = "";
             try
@@ -2006,6 +2008,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraTallyName", paraTallyName);
                 varSqlCommand.Parameters.AddWithValue("@paraBankTransactionDate", paraBankDate);
                 varSqlCommand.Parameters.AddWithValue("@paraBankID", paraBankID);
+                varSqlCommand.Parameters.AddWithValue("@ParaMR_Supplier_OpeningBalance", ParaMR_Supplier_OpeningBalance);
+                varSqlCommand.Parameters.AddWithValue("@paraCrConcernID", paraCrConcernID);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -4170,6 +4174,128 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
+        }
+        public DataSet udfnPayment_ChequeTransactionlist(TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNG_Payment_ChequeTransactionList", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure; 
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_Payment_ChequeTransaction.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID); 
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierId", objTRN_Payment_ChequeTransaction.paraSupplierId); 
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleId", objTRN_Payment_ChequeTransaction.paraScheduleId); 
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyId", objTRN_Payment_ChequeTransaction.paraCompanyId); 
+                varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_Payment_ChequeTransaction.paraID); 
+                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objTRN_Payment_ChequeTransaction.ParaFromDate); 
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", objTRN_Payment_ChequeTransaction.ParaToDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraPYID", objTRN_Payment_ChequeTransaction.paraPYID); 
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public string udfnPayment_ChequeTransaction(TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Payment_ChequeTransaction]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_Payment_ChequeTransaction.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraID", objTRN_Payment_ChequeTransaction.paraID); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Payment_ChequeTransaction.paraOriginator); 
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID); 
+                varSqlCommand.Parameters.AddWithValue("@paraPAYID", objTRN_Payment_ChequeTransaction.paraPAYID);
+                varSqlCommand.Parameters.AddWithValue("@paraChequeDate", objTRN_Payment_ChequeTransaction.paraChequeDate);
+                varSqlCommand.Parameters.AddWithValue("@paraChequeNo", objTRN_Payment_ChequeTransaction.paraChequeNo);
+                varSqlCommand.Parameters.AddWithValue("@paraAmount", objTRN_Payment_ChequeTransaction.paraAmount);
+                varSqlCommand.Parameters.AddWithValue("@paraPAYNo", objTRN_Payment_ChequeTransaction.paraPAYNo);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_Payment_ChequeTransaction.paraSupplierID); 
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        public DataSet udfnChequePrintSettingsList(MR_ChequeTransactionSettings objMR_ChequeTransactionSettings)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_ChequePrintSettings", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_ChequeTransactionSettings.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public string udfnChequePrintSettings(MR_ChequeTransactionSettings MR_ChequeTransactionSettings)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_ChequePrintSettings]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", MR_ChequeTransactionSettings.paraViewType); 
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", MR_ChequeTransactionSettings.paraOriginator); 
+                varSqlCommand.Parameters.AddWithValue("@paraChequePrintSettingsID", MR_ChequeTransactionSettings.paraChequePrintSettingsID); 
+                varSqlCommand.Parameters.AddWithValue("@paraMR_ChequePrintSettings", MR_ChequeTransactionSettings.paraMR_ChequePrintSettings); 
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
         }
     }
 

@@ -16,7 +16,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpSuppliername = new ToolTip();
-
+        DataTable dtChequeTemplateDetails = new DataTable();
         public PAY_ChequePrint()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace ROMS
                 if (txtsuppliername.Text.Length > 0)
                 {
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 39;
+                    objMR_Supplier.ViewType = 43;
                     objMR_Supplier.paraSupplierName = txtsuppliername.Text;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
@@ -302,9 +302,10 @@ namespace ROMS
             {
                 dpDate.MinDate = MainForm.pbCurrentDate;
                 //dpDate.MaxDate = MainForm.pbCurrentDate;
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,72) AND MSTID IN (-1,224,225)", "MST_DisplayText,MSTID", cmbBank, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
+                //DataBind objDataBind = new DataBind();
+                //objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,72) AND MSTID IN (-1,224,225)", "MST_DisplayText,MSTID", cmbBank, "", "MST_DisplayText", "MSTID");
+                //objDataBind = null;
+                udfnBankDropDown();
             }
             catch (Exception ex)
             {
@@ -312,7 +313,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnBankDropDown()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                SPDataService objspdservice = new SPDataService();
+                Model.TRN_Supplier_Payment objTRN_Supplier_Payment = new Model.TRN_Supplier_Payment();
+                objTRN_Supplier_Payment.ViewType = 3;
+                objDs = objspdservice.udfnGetSupplierPayment(objTRN_Supplier_Payment);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count > 0)
+                    {
+                        cmbBank.ValueMember = "BankID";
+                        cmbBank.DisplayMember = "Bank";
+                        cmbBank.DataSource = objDs.Tables[0];
+                        dtChequeTemplateDetails = objDs.Tables[0];
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CmbBank_Enter(object sender, EventArgs e)
         {
             try
@@ -517,46 +545,69 @@ namespace ROMS
                 string chequeDate = ChequeDateTime.ToString("ddMMyyyy");
                 int totalAmt = Convert.ToInt32(txtAmount.Text);
                 string FinalAmnt = totalAmt.ToString("#,##,##,##,##0");
-                if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TMB.rpt");
-                    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
-                    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                    MainForm.objReportLoad = new ReportLoad();
-                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                    //MainForm.objReportLoad.Text = varHeader;
-                    //MainForm.objReportLoad.ShowDialog();
-                }
-                else if(Convert.ToInt32(cmbBank.SelectedValue) == 225)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
-                    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
-                    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                    MainForm.objReportLoad = new ReportLoad();
-                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                }
+                string varRPTName = "";
+                var RPTName = dtChequeTemplateDetails.AsEnumerable()
+                               .Where(b => b.Field<int>("BankID") == Convert.ToInt32(cmbBank.SelectedValue))
+                                .Select(b => b.Field<string>("RPTName"))
+                                .Where(rpt => !string.IsNullOrEmpty(rpt))
+                                .ToList();
+                varRPTName = RPTName[0];
+                RPTViewer.Visible = true;
+                RPTViewer.BringToFront();
+                RPTViewer.ReuseParameterValuesOnRefresh = true;
+                RPTViewer.RefreshReport();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
+                objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                objBillreport.SetParameterValue("paraAmount", FinalAmnt);
+                objBillreport.SetParameterValue("paraChequeDate", chequeDate);
+                objValidation.CrySqlConnection(objBillreport);
+                RPTViewer.ReportSource = objBillreport;
+                RPTViewer.Refresh();
+                MainForm.objReportLoad = new ReportLoad();
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                //if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
+                //{
+                //    RPTViewer.Visible = true;
+                //    RPTViewer.BringToFront();
+                //    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                //    RPTViewer.RefreshReport();
+                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TMB.rpt");
+                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                //    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
+                //    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
+                //    objValidation.CrySqlConnection(objBillreport);
+                //    RPTViewer.ReportSource = objBillreport;
+                //    RPTViewer.Refresh();
+                //    MainForm.objReportLoad = new ReportLoad();
+                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                //    //MainForm.objReportLoad.Text = varHeader;
+                //    //MainForm.objReportLoad.ShowDialog();
+                //}
+                //else if(Convert.ToInt32(cmbBank.SelectedValue) == 225)
+                //{
+                //    RPTViewer.Visible = true;
+                //    RPTViewer.BringToFront();
+                //    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                //    RPTViewer.RefreshReport();
+                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
+                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                //    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
+                //    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
+                //    objValidation.CrySqlConnection(objBillreport);
+                //    RPTViewer.ReportSource = objBillreport;
+                //    RPTViewer.Refresh();
+                //    MainForm.objReportLoad = new ReportLoad();
+                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                //}
             }
             catch (Exception ex)
             {
