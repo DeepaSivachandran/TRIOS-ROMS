@@ -1029,19 +1029,20 @@ namespace ROMS
                                 this.ActiveControl = txtInvoiceamt;
                                 if (varSTSID == 103 || varSource == 1) // Source 1 - From mismatch approval, 2 - Direct discount voucher
                                 {
-                                    foreach (Control ctrl in grbDiscount.Controls)
-                                    {
-                                        if (ctrl != textBox1)
-                                        {
-                                            ctrl.Enabled = false;
-                                        }
-                                    }
-                                    if (varSource == 1)
-                                    {
-                                        btnSave.Enabled = true;
-                                        txtInvoiceamt.Enabled = true;
-                                        txtInvoiceamt.ReadOnly = false;
-                                    }
+                                    grbDiscount.Enabled = false;
+                                    //foreach (Control ctrl in grbDiscount.Controls)
+                                    //{
+                                    //    if (ctrl != textBox1)
+                                    //    {
+                                    //        ctrl.Enabled = false;
+                                    //    }
+                                    //}
+                                    //if (varSource == 1)
+                                    //{
+                                    //    btnSave.Enabled = true;
+                                    //    txtInvoiceamt.Enabled = true;
+                                    //    txtInvoiceamt.ReadOnly = false;
+                                    //}
                                     this.ActiveControl = btnClose;
                                 }
                             }

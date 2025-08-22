@@ -945,6 +945,7 @@ namespace ROMS
                 objTRN_Advance.paraAdvanceId = pbADID;
                 objDs = objdserv.udfnAdvanceList(objTRN_Advance);
                 objdserv.CloseConnection();
+                int varSource = 0;
                 //objDs = objdserv.udfnAdvanceList(1, pbADID, 0,"","",0, 0, 0);
                 //objdserv.CloseConnection();
                 if (objDs != null)
@@ -965,6 +966,7 @@ namespace ROMS
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
                             txtCurrentBalance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Current Balance"]);
+                            varSource = Convert.ToInt32(objDs.Tables[0].Rows[0]["Source"]);
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]) == "88")
                             {
                                 cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
@@ -994,22 +996,40 @@ namespace ROMS
                         }
                     }
                 }
-                if (PbStatus == 74 )
+                /* 1- From GRN, 2 - Manual, 3 - From Supplier*/
+                if (varSource == 2)
                 {
-                    txtSupplier.Enabled = false;
-                    cmbConcern.Enabled = false;
-                    cmbIssueMode.Focus();
-                }
-                if(PbStatus == 80)
-                {
-                    txtSupplier.Enabled = false;
-                    cmbConcern.Enabled = false;
-                    cmbIssueMode.Focus();
-                    grbIssuedDetails.Enabled = false;
-                }
+                    if (PbStatus == 74)
+                    {
+                        txtSupplier.Enabled = false;
+                        cmbConcern.Enabled = false;
+                        cmbIssueMode.Focus();
+                    }
+                    if (PbStatus == 80)
+                    {
+                        txtSupplier.Enabled = false;
+                        cmbConcern.Enabled = false;
+                        cmbIssueMode.Focus();
+                        grbIssuedDetails.Enabled = false;
+                    }
 
-                if (PbStatus == 75)
-                {
+                    if (PbStatus == 75)
+                    {
+                        cmbConcern.Enabled = false;
+                        dpAdvanceDate.Enabled = false;
+                        txtSupplier.Enabled = false;
+                        txtAmount.Enabled = false;
+                        btnSave.Enabled = false;
+                        grbPayment.Enabled = false;
+                        txtRemark.Enabled = false;
+                        grbSupplierDetails.Enabled = false;
+                        grbBankDetails.Enabled = false;
+                        grbIssuedDetails.Enabled = false;
+                        this.ActiveControl = btnClose;
+                        btnClose.Focus();
+                    }
+                }
+                else {
                     cmbConcern.Enabled = false;
                     dpAdvanceDate.Enabled = false;
                     txtSupplier.Enabled = false;

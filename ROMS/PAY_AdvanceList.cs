@@ -199,6 +199,7 @@ namespace ROMS
                             grdAdvanceList.Columns["AD_SPID"].Visible = false;
                             grdAdvanceList.Columns["AD_SPSCID"].Visible = false;
                             grdAdvanceList.Columns["AD_STSID"].Visible = false;
+                            grdAdvanceList.Columns["Source"].Visible = false;
                             grdAdvanceList.Columns["S.No."].Width = 50;
                             grdAdvanceList.Columns["Status"].Width = 80;
                             grdAdvanceList.Columns["Transaction Date"].Width = 120;
@@ -1446,9 +1447,15 @@ namespace ROMS
         {
             try
             {
+                int varSource = Convert.ToInt32(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["Source"].Value);
                 if (Convert.ToString(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["AD_STSID"].Value) == "74")
                 {
                     tsbDelete.Visible = true;
+                }
+                /* 1- From GRN, 2 - Manual, 3 - From Supplier*/
+                else if (varSource !=2)
+                {
+                    tsbDelete.Visible = false;
                 }
                 else
                 {
