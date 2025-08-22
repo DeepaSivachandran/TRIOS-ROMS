@@ -6996,7 +6996,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbProductType.SelectedValue) == 341)
+                if (Convert.ToInt32(cmbProductType.SelectedValue) == 341)//Parent
                 {
                     cmbChildUnit.Enabled = true;  
                     txtProductName.Enabled = false;
@@ -7013,7 +7013,7 @@ namespace ROMS
                     txtUpp.ReadOnly = true;
                     txtProductName.ReadOnly = true;
                 }
-                else if (Convert.ToInt32(cmbProductType.SelectedValue) == 342)
+                else if (Convert.ToInt32(cmbProductType.SelectedValue) == 342)//Child
                 {
                     cmbChildUnit.Enabled = false;
                     txtGroup.Enabled = false;
