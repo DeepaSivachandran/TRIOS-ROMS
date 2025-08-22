@@ -235,6 +235,7 @@ namespace ROMS
         public static REPORT_Godown_Valuation objREPORT_Godown_Valuation;
         public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
+        public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
 
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
@@ -2986,9 +2987,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
+                MainForm.objREPORT_Stock_Non_Moving_Products = new REPORT_Stock_Non_Moving_Products();
+                MainForm.objREPORT_Stock_Non_Moving_Products.MdiParent = this;
+                MainForm.objREPORT_Stock_Non_Moving_Products.Show();
                 PbCurrentForm = "7.7.9";
             }
             catch (Exception ex)
@@ -3205,6 +3206,24 @@ namespace ROMS
                 MainForm.objCP_BankList = new CP_BankList();
                 MainForm.objCP_BankList.MdiParent = this;
                 MainForm.objCP_BankList.Show();
+                PbCurrentForm = "7.2.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmNonMoving_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Stock_Non_Moving_Products = new REPORT_Stock_Non_Moving_Products();
+                MainForm.objREPORT_Stock_Non_Moving_Products.MdiParent = this;
+                MainForm.objREPORT_Stock_Non_Moving_Products.Show();
                 PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)

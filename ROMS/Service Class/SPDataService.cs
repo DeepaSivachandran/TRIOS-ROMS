@@ -816,6 +816,11 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_Stock.paraSLID);
                 varSqlCommand.Parameters.AddWithValue("@paraMonth", objTRNG_Stock.paraMonth);
                 varSqlCommand.Parameters.AddWithValue("@paraPICode", objTRNG_Stock.paraPICode);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupID", objTRNG_Stock.paraGroupID);
+                varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", objTRNG_Stock.paraSubGroupID);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRNG_Stock.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraStockType", objTRNG_Stock.paraStockType);
+                varSqlCommand.Parameters.AddWithValue("@paraDays", objTRNG_Stock.paraDays);
                 varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

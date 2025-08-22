@@ -14,5 +14,10 @@ namespace ROMS.Model
         public int paraSLID { get; set; } = 0;
         public int paraMonth { get; set; } = 0;
         public string paraPICode { get; set; } = "";
+        public int paraGroupID { get; set; } = 0;
+        public int paraSubGroupID { get; set; } = 0;
+        public int paraBrandID { get; set; } = 0;
+        public int paraStockType { get; set; } = 0;
+        public int paraDays { get; set; } = 0;
     }
 }

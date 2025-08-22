@@ -566,6 +566,13 @@
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Product_GST.cs">
+      <DependentUpon>RPT_CP_Product_GST.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_DET_Cost_Details.cs">
       <DependentUpon>RPT_PUR_DET_Cost_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1397,12 +1404,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_CP_Product_GST.cs">
-      <DependentUpon>RPT_CP_Product_GST.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_Stock_Non_Moving_Products.cs">
+      <DependentUpon>RPT_Stock_Non_Moving_Products.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Supplier_List.cs">
       <AutoGen>True</AutoGen>
@@ -1845,6 +1852,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="REPORT_Stock_Non_Moving_Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Non_Moving_Products.designer.cs">
+      <DependentUpon>REPORT_Stock_Non_Moving_Products.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_PUR_TCSValue.cs">
       <SubType>Form</SubType>
@@ -3544,6 +3557,11 @@
       <LastGenOutput>RPT_PUR_DET_CostPrice_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_CP_Product_GST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_GST.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Cost_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_DET_Cost_Details.cs</LastGenOutput>
@@ -4244,9 +4262,9 @@
       <LastGenOutput>RPT_CP_Supplier_Contact.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_CP_Product_GST.rpt">
+    <Content Include="Reports\RPT_Stock_Non_Moving_Products.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_CP_Product_GST.cs</LastGenOutput>
+      <LastGenOutput>RPT_Stock_Non_Moving_Products.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Supplier_Products.rpt">
@@ -4303,6 +4321,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Non_Moving_Products.resx">
+      <DependentUpon>REPORT_Stock_Non_Moving_Products.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PUR_TCSValue.resx">
       <DependentUpon>REPORT_PUR_TCSValue.cs</DependentUpon>
