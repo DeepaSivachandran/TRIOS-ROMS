@@ -281,7 +281,14 @@ namespace ROMS
                 {
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Rate_Changes.rpt"); 
+                    if (Convert.ToInt32(cmbPrintType.SelectedValue) == 354)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Rate_Changes_Consolidated.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Rate_Changes.rpt");
+                    }
                     objBillreport.SetParameterValue("paraGroupID", varGroupId);
                     objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);
                     objBillreport.SetParameterValue("paraBrandID", varBrandId);
@@ -637,6 +644,9 @@ namespace ROMS
         {
             try
             {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=106", "MST_DisplayText,MSTID,MST_ShortName", cmbPrintType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 udfnList();
                 // * BeginInvoke is used to open render the list form first, render complete for the list screen then dialog shown* 
                 // * By venkat on 13-08-2025 *
@@ -1879,6 +1889,61 @@ namespace ROMS
             try
             {
                 udfnPrint();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

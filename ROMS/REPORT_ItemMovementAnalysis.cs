@@ -462,6 +462,8 @@ namespace ROMS
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Visible = false;
+                                    DGV_FilterProduct.Columns["R.Rate"].Visible = false;
+                                    DGV_FilterProduct.Columns["W.Rate"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;

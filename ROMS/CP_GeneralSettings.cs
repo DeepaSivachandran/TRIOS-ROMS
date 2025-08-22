@@ -146,6 +146,14 @@ namespace ROMS
                             {
                                 chkDCPrint.Checked = false;
                             }
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_RCStockShow"]) == "1")
+                            {
+                                chkRCStockShow.Checked = true;
+                            }
+                            else
+                            {
+                                chkRCStockShow.Checked = false;
+                            }
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
@@ -209,7 +217,7 @@ namespace ROMS
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                int varGRNCheck = 0, varDCCheck = 0;
+                int varGRNCheck = 0, varDCCheck = 0, varRCCheck = 0;
                 if(chkGRNPrint.Checked==true)
                 {
                     varGRNCheck = 1;
@@ -218,7 +226,11 @@ namespace ROMS
                 {
                     varDCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text));
+                if(chkRCStockShow.Checked==true)
+                {
+                    varRCCheck = 1;
+                }
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text), Convert.ToInt32(txtMonths.Text), Convert.ToDecimal(txtLPRate.Text), varRCCheck);
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")

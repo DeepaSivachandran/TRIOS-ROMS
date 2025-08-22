@@ -101,6 +101,8 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
+            this.lblCurrentStock = new System.Windows.Forms.Label();
+            this.lblStockQty = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -337,12 +339,12 @@
             // txtLastChanged
             // 
             this.txtLastChanged.Enabled = false;
-            this.txtLastChanged.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.txtLastChanged.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtLastChanged.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.txtLastChanged.Location = new System.Drawing.Point(80, 104);
+            this.txtLastChanged.Location = new System.Drawing.Point(80, 105);
             this.txtLastChanged.MaxLength = 20;
             this.txtLastChanged.Name = "txtLastChanged";
-            this.txtLastChanged.Size = new System.Drawing.Size(219, 27);
+            this.txtLastChanged.Size = new System.Drawing.Size(219, 25);
             this.txtLastChanged.TabIndex = 46;
             this.txtLastChanged.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -852,7 +854,7 @@
             this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvVerified1.HideSelection = false;
-            this.lvVerified1.Location = new System.Drawing.Point(557, 259);
+            this.lvVerified1.Location = new System.Drawing.Point(557, 314);
             this.lvVerified1.Name = "lvVerified1";
             this.lvVerified1.Size = new System.Drawing.Size(222, 164);
             this.lvVerified1.TabIndex = 111111135;
@@ -898,7 +900,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(139, 40);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(139, 337);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -908,11 +910,36 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(551, 197);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(645, 220);
             this.DGV_FilterProduct.TabIndex = 111111150;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
             this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
+            // 
+            // lblCurrentStock
+            // 
+            this.lblCurrentStock.AutoSize = true;
+            this.lblCurrentStock.Font = new System.Drawing.Font("Oswald Regular", 12.75F);
+            this.lblCurrentStock.Location = new System.Drawing.Point(479, 15);
+            this.lblCurrentStock.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblCurrentStock.Name = "lblCurrentStock";
+            this.lblCurrentStock.Size = new System.Drawing.Size(55, 24);
+            this.lblCurrentStock.TabIndex = 111111151;
+            this.lblCurrentStock.Text = "Stock : ";
+            this.lblCurrentStock.Visible = false;
+            // 
+            // lblStockQty
+            // 
+            this.lblStockQty.AutoSize = true;
+            this.lblStockQty.Font = new System.Drawing.Font("Oswald Regular", 12.75F);
+            this.lblStockQty.ForeColor = System.Drawing.Color.Green;
+            this.lblStockQty.Location = new System.Drawing.Point(530, 15);
+            this.lblStockQty.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblStockQty.Name = "lblStockQty";
+            this.lblStockQty.Size = new System.Drawing.Size(42, 24);
+            this.lblStockQty.TabIndex = 111111152;
+            this.lblStockQty.Text = "0000";
+            this.lblStockQty.Visible = false;
             // 
             // CP_Rate_Change
             // 
@@ -920,6 +947,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(809, 438);
+            this.Controls.Add(this.lblStockQty);
+            this.Controls.Add(this.lblCurrentStock);
             this.Controls.Add(this.DGV_FilterProduct);
             this.Controls.Add(this.lvVerified1);
             this.Controls.Add(this.lblProductcode);
@@ -1020,5 +1049,7 @@
         private System.Windows.Forms.TextBox txtsystem;
         private System.Windows.Forms.TextBox txtLastTeller;
         private System.Windows.Forms.TextBox txtLastChanged;
+        private System.Windows.Forms.Label lblCurrentStock;
+        private System.Windows.Forms.Label lblStockQty;
     }
 }

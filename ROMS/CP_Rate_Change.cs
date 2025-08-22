@@ -74,6 +74,18 @@ namespace ROMS
                     tpProduct.Show("Please enter valid product", txtProductName, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(txtRRateLive.Text).Trim() != "" && Convert.ToString(txtWRateLive.Text).Trim() != "")
+                {
+                    if (Convert.ToDecimal(txtRRateLive.Text) == 0 && Convert.ToDecimal(txtWRateLive.Text) > 0)
+                    {
+                        txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        SPDataService objDataService = new SPDataService();
+                        string varMessage = objDataService.udfnGetMessages(157);
+                        objDataService.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     udfnSave();
@@ -449,13 +461,11 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
                     {
-
                         MR_Product objMR_Product = new MR_Product();
-                        objMR_Product.paraViewType = 49;
-                        objMR_Product.paraGroup = 0;
-                        objMR_Product.paraSubgroup = 0;
+                        objMR_Product.paraViewType = 48;
                         objMR_Product.paraProductName = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                        objspdservice.CloseConnection();
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)
@@ -468,12 +478,16 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_EName"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
-                                    DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 350;
                                     DGV_FilterProduct.Columns["UNIT"].Width = 50;
+                                    DGV_FilterProduct.Columns["R.Rate"].Width = 50;
+                                    DGV_FilterProduct.Columns["W.Rate"].Width = 50;
+                                    DGV_FilterProduct.Columns["UNIT"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 0;
                                     DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 1;
+                                    DGV_FilterProduct.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGV_FilterProduct.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.BringToFront();
                                 }
@@ -807,7 +821,7 @@ namespace ROMS
         {
             try
             {
-                if (txtTeller.Text == "")
+                if (txtTeller.Text.Trim() == "")
                 {
                     errItems.SetError(txtTeller, "Please enter valid name");
                     txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1002,7 +1016,6 @@ namespace ROMS
                 { 
                     if (lblProductcode.Text != "" && lblProductcode.Text != "0")
                     {
-
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 1;
                         objMR_Product.paraGroup = 0;
@@ -1037,8 +1050,18 @@ namespace ROMS
 
                                     txtLastChanged.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Last Changed"]);
                                     txtLastTeller.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Last Teller"]);
-                                    txtsystem.Text = Convert.ToString(objDs.Tables[0].Rows[0]["System"]); 
-
+                                    txtsystem.Text = Convert.ToString(objDs.Tables[0].Rows[0]["System"]);
+                                    if (Convert.ToString(objDs.Tables[0].Rows[0]["CurrentStock"]).Trim() == "")
+                                    {
+                                        lblCurrentStock.Visible = false;
+                                        lblStockQty.Visible = false;
+                                    }
+                                    else
+                                    {
+                                        lblCurrentStock.Visible = true;
+                                        lblStockQty.Visible = true;
+                                        lblStockQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CurrentStock"]) + " " + Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]);
+                                    }
                                 }
                                 else { udfnclear(); }
                             }
