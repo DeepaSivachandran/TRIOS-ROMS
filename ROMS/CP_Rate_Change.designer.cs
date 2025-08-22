@@ -854,7 +854,7 @@
             this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvVerified1.HideSelection = false;
-            this.lvVerified1.Location = new System.Drawing.Point(557, 314);
+            this.lvVerified1.Location = new System.Drawing.Point(557, 259);
             this.lvVerified1.Name = "lvVerified1";
             this.lvVerified1.Size = new System.Drawing.Size(222, 164);
             this.lvVerified1.TabIndex = 111111135;
@@ -900,7 +900,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(139, 337);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(139, 39);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;

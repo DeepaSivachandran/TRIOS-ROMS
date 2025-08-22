@@ -2036,6 +2036,10 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
+                            if (col.Name == "P.I Code")
+                            {
+                                ExcelSheet.Columns[cIndex].ColumnWidth = 12;
+                            }
                             if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
@@ -2066,11 +2070,6 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            //if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
-                            //{
-                            //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            //}
-
                             foreach (DataGridViewRow rowa in grdItemList.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
@@ -2157,33 +2156,35 @@ namespace ROMS
                         ExcelSheet.Cells[excelRow, 6].Value = $"Brand : {grp.Key.BrandName}";
 
                         Excel.Range groupHeaderRange = ExcelSheet.Range[ExcelSheet.Cells[excelRow, 1], ExcelSheet.Cells[excelRow, colCount]];
-                        groupHeaderRange.Font.Bold = true;
-                        groupHeaderRange.Font.Size = 11; 
-                        groupHeaderRange.Font.Name = "Calibri";
+                        //groupHeaderRange.Font.Bold = true;
+                        groupHeaderRange.Font.Name = "Uni Ila.Sundaram-03";
+                        groupHeaderRange.Font.Size = 11.75;
                         excelRow++;
 
                         foreach (var row in grp)
                         {
-                            ExcelSheet.Cells[excelRow, 1].Value = serialNo; 
+                            ExcelSheet.Cells[excelRow, 1].Value = serialNo;
+                            ExcelSheet.Cells[excelRow, 1].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                             serialNo++;
+
                             int cIndex = 1;
                             foreach (DataGridViewColumn col in grdItemList.Columns)
                             {
-                                if (col.Visible)
+                                if (col.Visible && col.Name != "S.No.")
                                 {
                                     cIndex++;
                                     ExcelSheet.Cells[excelRow, cIndex].Value = row.Cells[col.Index].Value;
 
-                                    if (col.Name == "S.No.")
+                                    if (col.Name == "P.I Code")
                                     {
-                                        ExcelSheet.Columns[cIndex].ColumnWidth = 10;
-                                        ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 12;
                                     }
                                     object cellValue = row.Cells[col.Index].Value;
                                     if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
                                     {
                                         ExcelSheet.Cells[excelRow, cIndex].Value = cellValue != null && double.TryParse(cellValue.ToString(), out double num) ? num : 0;
                                         ExcelSheet.Cells[excelRow, cIndex].NumberFormat = "0.00";
+                                        ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                                     }
                                     else
                                     {
@@ -2206,6 +2207,11 @@ namespace ROMS
                                     }
                                 }
                             }
+                            // Apply border to the entire row (all columns for the product row)
+                            Excel.Range dataRowRange = ExcelSheet.Range[ExcelSheet.Cells[excelRow, 1], ExcelSheet.Cells[excelRow, colCount]];
+                            dataRowRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                            dataRowRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
+
                             excelRow++;
                         }
 
