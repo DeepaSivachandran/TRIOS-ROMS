@@ -109,7 +109,7 @@ namespace ROMS
                 string result = "";
                 result = objspdservice.udfnSupplierMaster(13, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
                 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
-                "", "", "", 0, "", 0, 0, "", "", "",  "", "", "", "", 0, "", 0, 0, 0, 0, 0, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbReason.SelectedValue), "","",0);
+                "", "", "", 0, "", 0, 0, "", "", "",  "", "", "", "", 0, "", 0, 0, 0, 0, 0, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbReason.SelectedValue), "","",0,null,0);
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -735,7 +735,7 @@ namespace ROMS
                 string result = "";
                 result = objspdservice.udfnSupplierMaster(13, Convert.ToInt32(grdBlockedSupplier.SelectedRows[0].Cells["SPID"].Value), "", "", "", 0, "", "", "", "", "", "", 0,
                 0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
-                "", "", "", 0, "", 0, 0, "", "", "", "",   "", "", "", 0, "", 0, 1, 0, 0, 0, Convert.ToInt32(grdBlockedSupplier.SelectedRows[0].Cells["SPSCID"].Value), 0, "","",0);
+                "", "", "", 0, "", 0, 0, "", "", "", "",   "", "", "", 0, "", 0, 1, 0, 0, 0, Convert.ToInt32(grdBlockedSupplier.SelectedRows[0].Cells["SPSCID"].Value), 0, "","",0,null,0);
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
                 {
