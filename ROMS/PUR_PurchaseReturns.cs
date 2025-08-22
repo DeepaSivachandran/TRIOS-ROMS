@@ -29,7 +29,7 @@ namespace ROMS
         public int varUpDownKey = 0;
         public int vareditflag = 0;
         public int varReturnDCID = 0, varCloseFlag = 0;
-        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varModifiedFlag = 0, varCreditDCID=0, varEditFlag=0,varClose = 0, varDateChange = 0;
+        public int pbScheduleid = 0, pbSupplierId = 0, varStatusId = 0, varSource= 0, varModifiedFlag = 0, varCreditDCID=0, varEditFlag=0,varClose = 0, varDateChange = 0;
         public string varSuppliervalue = "";
         DataTable dtPurchaseReturnDC = new DataTable();
         DataTable dtStock = new DataTable();
@@ -583,8 +583,16 @@ namespace ROMS
                         if(varStatusId==68)
                         {
                             grbProDetails.Enabled = true;
-                            chkCompleted.Checked = false;
-                            chkCompleted.Enabled = true;
+                            if (varSource == 1)
+                            {
+                                chkCompleted.Checked = false;
+                                chkCompleted.Enabled = false;
+                            }
+                            else
+                            {
+                                chkCompleted.Checked = false;
+                                chkCompleted.Enabled = true;
+                            }
                         }
                         else
                         {
@@ -817,7 +825,10 @@ namespace ROMS
                                 tsbStatus.Visible = true;
                                 VerifiedBy = Convert.ToInt32(objDs.Tables[0].Rows[0]["PURREDC_VerifiedBy"]);
                                 varBlockedSupplier = Convert.ToString(objDs.Tables[0].Rows[0]["SP_STSId"]);
-                                varBlockedReason = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);                      
+                                varBlockedReason = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
+                                varSource = Convert.ToInt32(objDs.Tables[0].Rows[0]["Source"]);
+                                /* Disable completed option for auto generated DCs*/
+                                if (varSource == 1) { chkCompleted.Enabled = false; }
                                 udfnClosingDropdown();
                                 //btnSave.Text = "Update";
                                 udfnsupplierLoad();
