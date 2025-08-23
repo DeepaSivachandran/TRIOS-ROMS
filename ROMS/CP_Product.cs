@@ -1092,15 +1092,35 @@ namespace ROMS
                         shelflife = Convert.ToInt32(txtSelfLife.Text);
                     }
                     int varviewtype = 0, varupdateproductcode = 0;
-                    string varorignator = "", varbrandid = "0";
+                    string varorignator = "", varbrandid = "0", varGroupId = "0", varSubgroupId = "0", varPurLocationId = "0", varSalesLocationId = "0", varPurRackId = "0", varSalesRackId = "0";
 
-                    if (txtBrand.Text == "")
-                    {
-                        varbrandid = "0";
-                    }
-                    else
+                    if (txtBrand.Text.Trim() != "")
                     {
                         varbrandid = lblBrand.Text;
+                    }
+                    if (txtGroup.Text.Trim() != "")
+                    {
+                        varGroupId = lblGroupCode.Text;
+                    }
+                    if (txtSubGroup.Text.Trim() != "")
+                    {
+                        varSubgroupId = lblSubGroupCode.Text;
+                    }
+                    if (txtPurLocation.Text.Trim() != "")
+                    {
+                        varPurLocationId = lblPurLocationCode.Text;
+                    }
+                    if (txtPurRack.Text.Trim() != "")
+                    {
+                        varPurRackId = lblPurRackCode.Text;
+                    }
+                    if (txtSaleLocation.Text.Trim() != "")
+                    {
+                        varSalesLocationId = lblSaleLocationCode.Text;
+                    }
+                    if (txtSaleRack.Text.Trim() != "")
+                    {
+                        varSalesRackId = lblSaleRackCode.Text;
                     }
                     if ((varproductcode == 0 || pbCloneFlag == 1) )
                     {
@@ -1137,9 +1157,9 @@ namespace ROMS
                     }
 
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
-                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(varbrandid),
-                    Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
-                    , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
+                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
+                    Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
+                    , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text);
@@ -7262,6 +7282,10 @@ namespace ROMS
                 errItems.Clear();
                 if (varSalesEffectiveFromErr == 0)
                 {
+                    foreach (DataGridViewRow row in grdSalesHSN.Rows)
+                    {
+                        row.Cells["clmSalesAddFlag"].Value = 1;
+                    }
                     grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID, 0, 0);
                     dtSalesHSN.Rows.Add(2, varSalesHSNID, dpSalesEffectiveFrom.Text, "");
                     grdSalesHSN.Columns["clmSalesGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
