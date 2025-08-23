@@ -1131,7 +1131,7 @@ namespace ROMS
                     {
                         varMRPflag = 0;
                     }
-                    if (varproductcode!=0)
+                    if (varproductcode != 0 && pbCloneFlag != 1)
                     {
                         varviewtype = 1;
                     }
@@ -1165,7 +1165,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varproductcode != 0 )
+                            if (varproductcode != 0 && pbCloneFlag != 1)
                             {
                                 MainForm.objCP_Itemlist.udfnDropdownbind();
                                 MainForm.objCP_Itemlist.udfnList();
@@ -1173,9 +1173,20 @@ namespace ROMS
                             }
                             else
                             {
-                                varproductcode = Convert.ToInt32(varvalue[2]);
-                                tbProduct.TabPages[1].Enabled = true;
-                                tbProduct.SelectedIndex = 1;
+                                //Second tab save after form close, no clear data - added by sathish on 23-08-2025
+                                if (tbProduct.SelectedIndex == 1 || pbCloneFlag == 1)
+                                {
+                                    MainForm.objCP_Itemlist.udfnDropdownbind();
+                                    MainForm.objCP_Itemlist.udfnList();
+                                    varupdate = "1";
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    varproductcode = Convert.ToInt32(varvalue[2]);
+                                    tbProduct.TabPages[1].Enabled = true;
+                                    tbProduct.SelectedIndex = 1;
+                                }
                             }
                             //udfnclear();
                             //if (btnSave.Text != "Update")
@@ -7030,7 +7041,7 @@ namespace ROMS
                     txtUpp.ReadOnly = false;
 
                 }
-                if (btnSave.Text != "Update")
+                if (btnSave.Text != "Update" && pbCloneFlag != 1)// clone product no need to clear details added by Sathish on 23-08-2025
                 {
                     txtProductName.Text = "";
                     lblParentcode.Text = "0";
