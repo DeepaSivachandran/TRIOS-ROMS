@@ -70,10 +70,24 @@
             this.tbSupplier = new System.Windows.Forms.TabPage();
             this.grpSupplierDetails = new System.Windows.Forms.GroupBox();
             this.grpOpeningBalance = new System.Windows.Forms.GroupBox();
+            this.cmbDrCompany = new System.Windows.Forms.ComboBox();
+            this.txtDDrCompany = new System.Windows.Forms.TextBox();
+            this.cmbCrCompany = new System.Windows.Forms.ComboBox();
+            this.txtDCrCompany = new System.Windows.Forms.TextBox();
             this.txtInvRupee = new System.Windows.Forms.TextBox();
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.grdOpeningCrDetails = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOpeningBalanceStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOBStsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnOpeningAdd = new System.Windows.Forms.Button();
             this.txtDInvoiceAmt = new System.Windows.Forms.TextBox();
             this.txtInvoiceAmt = new System.Windows.Forms.TextBox();
@@ -301,20 +315,6 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cmbCrCompany = new System.Windows.Forms.ComboBox();
-            this.txtDCrCompany = new System.Windows.Forms.TextBox();
-            this.cmbDrCompany = new System.Windows.Forms.ComboBox();
-            this.txtDDrCompany = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOpeningBalanceStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOBStsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -486,6 +486,64 @@
             this.grpOpeningBalance.TabStop = false;
             this.grpOpeningBalance.Text = "Opening Balance";
             // 
+            // cmbDrCompany
+            // 
+            this.cmbDrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDrCompany.FormattingEnabled = true;
+            this.cmbDrCompany.ItemHeight = 19;
+            this.cmbDrCompany.Items.AddRange(new object[] {
+            "CR",
+            "DR"});
+            this.cmbDrCompany.Location = new System.Drawing.Point(458, 26);
+            this.cmbDrCompany.Name = "cmbDrCompany";
+            this.cmbDrCompany.Size = new System.Drawing.Size(90, 27);
+            this.cmbDrCompany.TabIndex = 2;
+            this.cmbDrCompany.Enter += new System.EventHandler(this.CmbDrCompany_Enter);
+            this.cmbDrCompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDrCompany_KeyDown);
+            this.cmbDrCompany.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDrCompany_KeyPress);
+            this.cmbDrCompany.Leave += new System.EventHandler(this.CmbDrCompany_Leave);
+            // 
+            // txtDDrCompany
+            // 
+            this.txtDDrCompany.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDDrCompany.Enabled = false;
+            this.txtDDrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDDrCompany.Location = new System.Drawing.Point(395, 26);
+            this.txtDDrCompany.Name = "txtDDrCompany";
+            this.txtDDrCompany.ReadOnly = true;
+            this.txtDDrCompany.Size = new System.Drawing.Size(63, 27);
+            this.txtDDrCompany.TabIndex = 83;
+            this.txtDDrCompany.Text = "Concern";
+            // 
+            // cmbCrCompany
+            // 
+            this.cmbCrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCrCompany.FormattingEnabled = true;
+            this.cmbCrCompany.ItemHeight = 19;
+            this.cmbCrCompany.Items.AddRange(new object[] {
+            "CR",
+            "DR"});
+            this.cmbCrCompany.Location = new System.Drawing.Point(69, 61);
+            this.cmbCrCompany.Name = "cmbCrCompany";
+            this.cmbCrCompany.Size = new System.Drawing.Size(80, 27);
+            this.cmbCrCompany.TabIndex = 3;
+            this.cmbCrCompany.Enter += new System.EventHandler(this.CmbCrCompany_Enter);
+            this.cmbCrCompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCrCompany_KeyDown);
+            this.cmbCrCompany.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCrCompany_KeyPress);
+            this.cmbCrCompany.Leave += new System.EventHandler(this.CmbCrCompany_Leave);
+            // 
+            // txtDCrCompany
+            // 
+            this.txtDCrCompany.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDCrCompany.Enabled = false;
+            this.txtDCrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDCrCompany.Location = new System.Drawing.Point(6, 61);
+            this.txtDCrCompany.Name = "txtDCrCompany";
+            this.txtDCrCompany.ReadOnly = true;
+            this.txtDCrCompany.Size = new System.Drawing.Size(63, 27);
+            this.txtDCrCompany.TabIndex = 81;
+            this.txtDCrCompany.Text = "Concern";
+            // 
             // txtInvRupee
             // 
             this.txtInvRupee.BackColor = System.Drawing.SystemColors.Control;
@@ -571,6 +629,78 @@
             this.grdOpeningCrDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdOpeningCrDetails.Size = new System.Drawing.Size(700, 186);
             this.grdOpeningCrDetails.TabIndex = 76;
+            this.grdOpeningCrDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOpeningCrDetails_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // clmConcern
+            // 
+            this.clmConcern.HeaderText = "Concern";
+            this.clmConcern.Name = "clmConcern";
+            this.clmConcern.ReadOnly = true;
+            this.clmConcern.Width = 80;
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "Invoice No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            this.clmInvoiceNo.Width = 120;
+            // 
+            // clmInvoiceDate
+            // 
+            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            this.clmInvoiceDate.Width = 90;
+            // 
+            // clmInvoiceAmount
+            // 
+            this.clmInvoiceAmount.HeaderText = "Amount";
+            this.clmInvoiceAmount.Name = "clmInvoiceAmount";
+            this.clmInvoiceAmount.ReadOnly = true;
+            this.clmInvoiceAmount.Width = 110;
+            // 
+            // clmOpeningBalanceStatus
+            // 
+            this.clmOpeningBalanceStatus.HeaderText = "Status";
+            this.clmOpeningBalanceStatus.Name = "clmOpeningBalanceStatus";
+            this.clmOpeningBalanceStatus.ReadOnly = true;
+            this.clmOpeningBalanceStatus.Width = 160;
+            // 
+            // clmOBStsID
+            // 
+            this.clmOBStsID.HeaderText = "Status ID";
+            this.clmOBStsID.Name = "clmOBStsID";
+            this.clmOBStsID.ReadOnly = true;
+            this.clmOBStsID.Visible = false;
+            // 
+            // clmConcernId
+            // 
+            this.clmConcernId.HeaderText = "Concern ID";
+            this.clmConcernId.Name = "clmConcernId";
+            this.clmConcernId.ReadOnly = true;
+            this.clmConcernId.Visible = false;
+            // 
+            // clmID
+            // 
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
+            this.clmID.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Width = 60;
             // 
             // btnOpeningAdd
             // 
@@ -1667,7 +1797,7 @@
             this.txtArea.MaxLength = 50;
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(397, 27);
-            this.txtArea.TabIndex = 3;
+            this.txtArea.TabIndex = 3; 
             this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter);
             this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
             this.txtArea.Leave += new System.EventHandler(this.txtArea_Leave);
@@ -3718,135 +3848,6 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
-            // 
-            // cmbCrCompany
-            // 
-            this.cmbCrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCrCompany.FormattingEnabled = true;
-            this.cmbCrCompany.ItemHeight = 19;
-            this.cmbCrCompany.Items.AddRange(new object[] {
-            "CR",
-            "DR"});
-            this.cmbCrCompany.Location = new System.Drawing.Point(69, 61);
-            this.cmbCrCompany.Name = "cmbCrCompany";
-            this.cmbCrCompany.Size = new System.Drawing.Size(80, 27);
-            this.cmbCrCompany.TabIndex = 3;
-            this.cmbCrCompany.Enter += new System.EventHandler(this.CmbCrCompany_Enter);
-            this.cmbCrCompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbCrCompany_KeyDown);
-            this.cmbCrCompany.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCrCompany_KeyPress);
-            this.cmbCrCompany.Leave += new System.EventHandler(this.CmbCrCompany_Leave);
-            // 
-            // txtDCrCompany
-            // 
-            this.txtDCrCompany.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDCrCompany.Enabled = false;
-            this.txtDCrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDCrCompany.Location = new System.Drawing.Point(6, 61);
-            this.txtDCrCompany.Name = "txtDCrCompany";
-            this.txtDCrCompany.ReadOnly = true;
-            this.txtDCrCompany.Size = new System.Drawing.Size(63, 27);
-            this.txtDCrCompany.TabIndex = 81;
-            this.txtDCrCompany.Text = "Concern";
-            // 
-            // cmbDrCompany
-            // 
-            this.cmbDrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbDrCompany.FormattingEnabled = true;
-            this.cmbDrCompany.ItemHeight = 19;
-            this.cmbDrCompany.Items.AddRange(new object[] {
-            "CR",
-            "DR"});
-            this.cmbDrCompany.Location = new System.Drawing.Point(458, 26);
-            this.cmbDrCompany.Name = "cmbDrCompany";
-            this.cmbDrCompany.Size = new System.Drawing.Size(90, 27);
-            this.cmbDrCompany.TabIndex = 2;
-            this.cmbDrCompany.Enter += new System.EventHandler(this.CmbDrCompany_Enter);
-            this.cmbDrCompany.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbDrCompany_KeyDown);
-            this.cmbDrCompany.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbDrCompany_KeyPress);
-            this.cmbDrCompany.Leave += new System.EventHandler(this.CmbDrCompany_Leave);
-            // 
-            // txtDDrCompany
-            // 
-            this.txtDDrCompany.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDDrCompany.Enabled = false;
-            this.txtDDrCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDDrCompany.Location = new System.Drawing.Point(395, 26);
-            this.txtDDrCompany.Name = "txtDDrCompany";
-            this.txtDDrCompany.ReadOnly = true;
-            this.txtDDrCompany.Size = new System.Drawing.Size(63, 27);
-            this.txtDDrCompany.TabIndex = 83;
-            this.txtDDrCompany.Text = "Concern";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            this.clmConcern.Width = 80;
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "Invoice No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            this.clmInvoiceNo.Width = 120;
-            // 
-            // clmInvoiceDate
-            // 
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            this.clmInvoiceDate.Width = 90;
-            // 
-            // clmInvoiceAmount
-            // 
-            this.clmInvoiceAmount.HeaderText = "Amount";
-            this.clmInvoiceAmount.Name = "clmInvoiceAmount";
-            this.clmInvoiceAmount.ReadOnly = true;
-            this.clmInvoiceAmount.Width = 110;
-            // 
-            // clmOpeningBalanceStatus
-            // 
-            this.clmOpeningBalanceStatus.HeaderText = "Status";
-            this.clmOpeningBalanceStatus.Name = "clmOpeningBalanceStatus";
-            this.clmOpeningBalanceStatus.ReadOnly = true;
-            this.clmOpeningBalanceStatus.Width = 160;
-            // 
-            // clmOBStsID
-            // 
-            this.clmOBStsID.HeaderText = "Status ID";
-            this.clmOBStsID.Name = "clmOBStsID";
-            this.clmOBStsID.ReadOnly = true;
-            this.clmOBStsID.Visible = false;
-            // 
-            // clmConcernId
-            // 
-            this.clmConcernId.HeaderText = "Concern ID";
-            this.clmConcernId.Name = "clmConcernId";
-            this.clmConcernId.ReadOnly = true;
-            this.clmConcernId.Visible = false;
-            // 
-            // clmID
-            // 
-            this.clmID.HeaderText = "ID";
-            this.clmID.Name = "clmID";
-            this.clmID.ReadOnly = true;
-            this.clmID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Width = 60;
             // 
             // CP_Supplier
             // 

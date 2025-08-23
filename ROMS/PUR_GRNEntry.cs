@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
-        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0, varClose = 0, varDateChange = 0, ParaSupplierAMT = 0, varReturnDcPending = 0;
+        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0, varClose = 0, varDateChange = 0, ParaSupplierAMT = 0, varReturnDcPending = 0,varAdvanceID=0,pbAdvanceID=0;
         public string varBlockedSupplier = "0", varBlockedReason = "";
         public PUR_GRNEntry()
         {
@@ -1201,7 +1201,17 @@ namespace ROMS
                     tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                     VarErrorFlag = true;
                 }
-                if(Convert.ToInt32(grdUnitList.Rows[3].Cells["clmQty"].Value)!=0)
+                if (Convert.ToInt16(cmbPayment.SelectedValue) != 199)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(158);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    VarErrorFlag = true;
+                    btnAdvance.Focus();
+                    return;
+                }
+                if (Convert.ToInt32(grdUnitList.Rows[3].Cells["clmQty"].Value)!=0)
                 { 
                     if (btnSave.Text != "Update && Print")
                     {
@@ -1267,6 +1277,7 @@ namespace ROMS
                             VarErrorFlag = true;
                         }
                     }
+                   
                     if (Convert.ToString(txtgrnno.Text) == "")
                     {
                         udfnvoucheradd(sender, e);
@@ -1419,6 +1430,7 @@ namespace ROMS
                                     objTRNS_GRN.paraID = ParaSupplierAMT;
                                     objTRNS_GRN.paraPayment = Convert.ToInt32(cmbPayment.SelectedValue);
                                     objTRNS_GRN.paraSaveFlag = 0;
+                                    objTRNS_GRN.paraADID = pbAdvanceID;
                                     result = objspdservice.udfnGRNEntry(objTRNS_GRN);
                                     objspdservice.CloseConnection();
                                     string[] varvalue = result.Split('~');
@@ -1882,7 +1894,74 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnAdvanceEnable()
+        {
+            try
+            {
+                if (Convert.ToInt16(cmbPayment.SelectedValue) == 199)
+                {
+                    btnAdvance.Enabled = false;
+                }
+                else { btnAdvance.Enabled = true; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void CmbPayment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAdvanceEnable();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void BtnAdvance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAdvance();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnAdvance()
+        {
+            try
+            {
+                varAdvanceID = 0; 
+                MainForm.objGRN_ADV = new GRN_ADV();
+                MainForm.objGRN_ADV.pbSupplierID = Convert.ToInt16(lblSupplierCode.Text);
+                MainForm.objGRN_ADV.pbADID = pbAdvanceID;
+                MainForm.objGRN_ADV.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);  
+            }
+            finally
+            {
+                if (grdReurnDC.Rows.Count > 0)
+                {
+                    lblDCFinishedNoRecord.Visible = false;
+                }
+                else
+                {
+                    lblDCFinishedNoRecord.Visible = true;
+                }
+            }
+        }
         private void CmbPayment_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -2305,6 +2384,7 @@ namespace ROMS
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
                                 cmbConcern.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_COMID"]);
+                                pbAdvanceID = Convert.ToInt16(objDs.Tables[0].Rows[0]["ADID"]);
                                 dpGRNDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Date"]);
                                 txtgrnno.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_No"]);
                                 txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SUPPLIER"]);
@@ -2317,6 +2397,7 @@ namespace ROMS
                                 txtUnLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
                                 txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_FrieghtCharges"]);
                                 cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
+                                udfnAdvanceEnable();
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;

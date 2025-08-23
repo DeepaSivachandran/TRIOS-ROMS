@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class PAY_ADV : Form
+    public partial class GRN_ADV : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -19,8 +19,8 @@ namespace ROMS
         DataTable dtCheckAdv = new DataTable();
         public string AdvID = ""; public string varEditAdv = "";
         public string varAdvancePayAmnt = "";
-        public int VARFLAG = 0;
-        public PAY_ADV()
+        public int VARFLAG = 0,pbSupplierID=0 , pbADID=0;
+        public GRN_ADV()
         {
             InitializeComponent();
         }
@@ -77,34 +77,13 @@ namespace ROMS
                 //********** To display a data in a grid  ****************** 
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                SPDataService objdserv = new SPDataService();
-                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0;
-                bool varCheck = false;
-                varSupplierid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblSupplierCode.Text);
-                varScheduleid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.lblschedule.Text);
-                varcompanyid = Convert.ToInt32(MainForm.objPAY_SupplierPayment.cmbConcern.SelectedValue);
-
-                dtAdvance = new DataTable();
-                dtAdvance.Columns.Add("", typeof(Boolean));
-                dtAdvance.Columns.Add("S.No.", typeof(string));
-                dtAdvance.Columns.Add("Advance Date", typeof(string));
-                dtAdvance.Columns.Add("Current Balance", typeof(decimal));
-                dtAdvance.Columns.Add("ADID", typeof(string));
-                dtAdvance.Columns.Add("PAYID", typeof(int));
-                dtAdvance.Columns.Add("Advance Amount", typeof(decimal));
-
-                //dtCheckAdv = new DataTable();
-                //dtCheckAdv.Columns.Add("Advance Amount", typeof(decimal));
-                //dtCheckAdv.Columns.Add("ADID", typeof(string));
-                //dtCheckAdv.Columns.Add("PURID", typeof(int));
+                SPDataService objdserv = new SPDataService(); 
+                bool varCheck = false;  
                 TRN_Advance objTRN_Advance = new TRN_Advance();
-                objTRN_Advance.ViewType = 2;
-                objTRN_Advance.paraPAYID = MainForm.objPAY_SupplierPayment.varSupplierPaymentID;
+                objTRN_Advance.ViewType = 4; 
                 objTRN_Advance.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_Advance.paraIPAddress = MainForm.pbIpAddress;
-                objTRN_Advance.paraSupplierId = Convert.ToInt32(varSupplierid);
-                objTRN_Advance.paraScheduleId = Convert.ToInt32(varScheduleid);
-                objTRN_Advance.ParaCompanycode = Convert.ToInt32(varcompanyid);
+                objTRN_Advance.paraSupplierId = pbSupplierID; 
                 objDs = objdserv.udfnAdvanceList(objTRN_Advance);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -117,39 +96,27 @@ namespace ROMS
                             grdAdvance.DataSource = null;
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            grdAdvance.DataSource = objDs.Tables[0];
+                            for (int i = 0; i < grdAdvance.Rows.Count; i++)
                             {
-                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["PAYID"]) != 0)
+                                if (Convert.ToInt32(grdAdvance.Rows[i].Cells["ID"].Value) ==pbADID)
                                 {
-                                    varCheck = true;
+                                    grdAdvance.Rows[i].Cells[0].Value = true;
                                 }
                                 else
                                 {
-                                    varCheck = false;
-                                }
-                                dtAdvance.Rows.Add(varCheck, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Advance Date"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Current Balance"]), objDs.Tables[0].Rows[i]["ADID"], objDs.Tables[0].Rows[i]["PAYID"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Advance Amount"]));
-                                MainForm.objPAY_SupplierPayment.dtCheckAdv.Rows.Add(Convert.ToDecimal(objDs.Tables[0].Rows[i]["Advance Amount"]), objDs.Tables[0].Rows[i]["ADID"], Convert.ToDecimal(objDs.Tables[0].Rows[i]["Current Balance"]));
-                                //if(Convert.ToString(AdvID)== Convert.ToString(objDs.Tables[0].Rows[i]["ADID"]))
-                                //{
-                                //    objDs.Tables[0].Rows[i][0] = true;
-                                //}
-                            }
-                            grdAdvance.DataSource = dtAdvance;
-                            grdAdvance.Columns[0].HeaderText = "";
-                            grdAdvance.Columns[0].Width = 30;
-                            grdAdvance.Columns["S.No."].Width = 50;
-                            grdAdvance.Columns["Advance Date"].Width = 120;
-                            grdAdvance.Columns["Current Balance"].Width = 120;
+                                    grdAdvance.Rows[i].Cells[0].Value = false;
+                                } 
+                            }   
+                            grdAdvance.Columns["SNO"].Width = 50;
+                            grdAdvance.Columns["Advance Date"].Width = 120; 
                             grdAdvance.Columns["Advance Amount"].Width = 120;
-                            grdAdvance.Columns["S.No."].ReadOnly = true;
-                            grdAdvance.Columns["Advance Date"].ReadOnly = true;
-                            grdAdvance.Columns["Current Balance"].ReadOnly = true;
-                            grdAdvance.Columns["ADID"].ReadOnly = true;
-                            grdAdvance.Columns["PAYID"].ReadOnly = true;
-                            grdAdvance.Columns["ADID"].Visible = false;
-                            grdAdvance.Columns["PAYID"].Visible = false;
-                            grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdAdvance.Columns["Current Balance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdAdvance.Columns["Receipt No"].Width = 100;
+                            grdAdvance.Columns["Receipt No"].ReadOnly = true;
+                            grdAdvance.Columns["Advance Date"].ReadOnly = true; 
+                            //grdAdvance.Columns["PAYID"].ReadOnly = true;
+                            grdAdvance.Columns["ID"].Visible = false; 
+                            //grdAdvance.Columns["Current Balance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -268,8 +235,7 @@ namespace ROMS
         {
             try
             {
-                udfnAdvanceAdd();
-                MainForm.objPAY_SupplierPayment.varApplyFlag = 0;
+                udfnAdvanceAdd(); 
             }
             catch (Exception ex)
             {
@@ -283,44 +249,17 @@ namespace ROMS
             try
             {
                 VARFLAG = 0;
-                AdvID = "0";
-                decimal varGrandTotal = 0;
-                decimal varAdvanceAmnt = 0;
-                MainForm.objPAY_SupplierPayment.varAdvanceID = "0";
-                MainForm.objPAY_SupplierPayment.lblAdvance.Text = "0.00";
-                MainForm.objPAY_SupplierPayment.dtCheckAdv.Clear();
-                for (int i = 0; i < grdAdvance.Rows.Count; i++)
+                AdvID = "0";  
+                var ADID = grdAdvance.Rows.Cast<DataGridViewRow>()
+                .Where(r => (r.Cells[0].Value as bool?) == true
+                         && r.Cells["ID"].Value != null
+                         && r.Cells["ID"].Value != DBNull.Value)
+                .Select(r => Convert.ToInt32(r.Cells["ID"].Value))
+                .ToList();
+                pbADID = ADID[0];
+                if (pbADID != 0)
                 {
-                    if (Convert.ToBoolean(grdAdvance.Rows[i].Cells[0].Value) == true)
-                    {
-                        VARFLAG = 1;
-                        if (AdvID == "0")
-                        {
-                            AdvID = Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
-                            varAdvanceAmnt = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                            varAdvancePayAmnt = Convert.ToString(grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                            //dtCheckAdv.Rows.Add(Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value), Convert.ToInt32(grdAdvance.Rows[i].Cells["ADID"].Value),0);
-                        }
-                        else
-                        {
-                            AdvID = AdvID + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value);
-                            varAdvanceAmnt = varAdvanceAmnt + Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                            varAdvancePayAmnt = varAdvancePayAmnt + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                        }
-                        MainForm.objPAY_SupplierPayment.dtCheckAdv.Rows.Add(Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value), Convert.ToInt32(grdAdvance.Rows[i].Cells["ADID"].Value), grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                    }
-
-                }
-                if (VARFLAG != 0)
-                {
-                    MainForm.objPAY_SupplierPayment.varAdvanceID = AdvID;
-                    //MainForm.objPAY_SupplierPayment.lblAdvance.Text = Convert.ToString(varAdvanceAmnt);
-                    varGrandTotal = Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblSubtotal.Text) - Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblAdvance.Text);
-                    MainForm.objPAY_SupplierPayment.lblGrandTotal.Text =varGrandTotal.ToString("#,##0.00");
-                    MainForm.objPAY_SupplierPayment.varAdvance = varAdvancePayAmnt;
-                    MainForm.objPAY_SupplierPayment.btnApply.Enabled = true;
-                    MainForm.objPAY_SupplierPayment.btnClear.Enabled = true;
-                    //MainForm.objPAY_SupplierPayment.clearClick = 0;
+                    MainForm.objPUR_GRNEntry.pbAdvanceID = pbADID;
                     this.Close();
                 }
                 else
@@ -416,12 +355,20 @@ namespace ROMS
             }
         }
 
-        private void PAY_ADV_Load(object sender, EventArgs e)
+        private void GrdAdvance_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
-            {
-                udfnList();
-                              
+            {   //for check box as radio button function
+                if (grdAdvance.CurrentCell.ColumnIndex == 0)
+                {
+                    for (int i = 0; i < grdAdvance.Rows.Count; i++)
+                    {
+                        //if (i != dataGridView1.CurrentCell.RowIndex)
+                        grdAdvance.Rows[i].Cells[0].Value = false;
+
+                    }
+                    grdAdvance.Rows[grdAdvance.CurrentCell.RowIndex].Cells[0].Value = true;
+                }
             }
             catch (Exception ex)
             {
@@ -430,6 +377,19 @@ namespace ROMS
             }
         }
 
+        private void PAY_ADV_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();            
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
         private void GrdAdvance_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try

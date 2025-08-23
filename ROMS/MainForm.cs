@@ -121,6 +121,7 @@ namespace ROMS
         public static PAY_ChequeTransactionList objPAY_ChequeTransactionList;
         public static PAY_ChequeTransaction objPAY_ChequeTransaction;
         public static CP_ChequePrint_Setting objCP_ChequePrint_Setting;
+        public static GRN_ADV objGRN_ADV;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;

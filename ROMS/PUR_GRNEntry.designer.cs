@@ -45,6 +45,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errGRN = new System.Windows.Forms.ErrorProvider(this.components);
             this.gpGRNEntry = new System.Windows.Forms.GroupBox();
+            this.btnAdvance = new System.Windows.Forms.Button();
             this.lblBlockedReason = new System.Windows.Forms.Label();
             this.lblReason = new System.Windows.Forms.Label();
             this.lblschedule = new System.Windows.Forms.Label();
@@ -138,6 +139,7 @@
             // 
             // gpGRNEntry
             // 
+            this.gpGRNEntry.Controls.Add(this.btnAdvance);
             this.gpGRNEntry.Controls.Add(this.lblBlockedReason);
             this.gpGRNEntry.Controls.Add(this.lblReason);
             this.gpGRNEntry.Controls.Add(this.lblschedule);
@@ -178,9 +180,22 @@
             this.gpGRNEntry.Controls.Add(this.label10);
             this.gpGRNEntry.Location = new System.Drawing.Point(10, -1);
             this.gpGRNEntry.Name = "gpGRNEntry";
-            this.gpGRNEntry.Size = new System.Drawing.Size(1164, 341);
+            this.gpGRNEntry.Size = new System.Drawing.Size(1201, 341);
             this.gpGRNEntry.TabIndex = 1111181;
             this.gpGRNEntry.TabStop = false;
+            // 
+            // btnAdvance
+            // 
+            this.btnAdvance.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnAdvance.Image = global::ROMS.Properties.Resources.Advance;
+            this.btnAdvance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdvance.Location = new System.Drawing.Point(1159, 87);
+            this.btnAdvance.Name = "btnAdvance";
+            this.btnAdvance.Size = new System.Drawing.Size(34, 29);
+            this.btnAdvance.TabIndex = 9587919;
+            this.btnAdvance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdvance.UseVisualStyleBackColor = true;
+            this.btnAdvance.Click += new System.EventHandler(this.BtnAdvance_Click);
             // 
             // lblBlockedReason
             // 
@@ -229,6 +244,7 @@
             this.cmbPayment.Name = "cmbPayment";
             this.cmbPayment.Size = new System.Drawing.Size(94, 27);
             this.cmbPayment.TabIndex = 11;
+            this.cmbPayment.SelectedIndexChanged += new System.EventHandler(this.CmbPayment_SelectedIndexChanged);
             this.cmbPayment.Enter += new System.EventHandler(this.CmbPayment_Enter);
             this.cmbPayment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPayment_KeyDown);
             this.cmbPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPayment_KeyPress);
@@ -1093,7 +1109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1186, 382);
+            this.ClientSize = new System.Drawing.Size(1217, 382);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDamage);
             this.Controls.Add(this.btnDC);
@@ -1207,5 +1223,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDCID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemoveDC;
+        public System.Windows.Forms.Button btnAdvance;
     }
 }
