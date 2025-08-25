@@ -1904,6 +1904,7 @@ namespace ROMS
                 if (Convert.ToInt16(cmbPayment.SelectedValue) == 199)
                 {
                     btnAdvance.Enabled = false;
+                    pbAdvanceID = 0;
                 }
                 else { btnAdvance.Enabled = true; }
             }
