@@ -34,7 +34,7 @@ namespace ROMS
         public string advanceid = "";
         public string PurchaseID = "0";
         public string varAdvance = "", varPayAmnt = "", varCompanyID = "0";
-        public decimal varSubtotal = 0;
+        public decimal varSubtotal = 0, varTaxableAmnt = 0, varAdditions = 0, varDeductions = 0;
         public int clearClick = 0, varApplyFlag = 0, varPaymentStatus = 0, varCreatemodeFlag = 0, varUncheckFlag = 0 , varSPBankID=-1,varDefaultBank=0;
         public decimal varRTGSMinLimit = 0; 
         DataTable dtBankDetails = new DataTable();
@@ -1377,7 +1377,7 @@ namespace ROMS
         {
             try
             { 
-                varGrandTot = 0; varTotal = 0; varamt = 0; varReturnAmnt = 0; varDiscAmnt = 0; varSubtotal = 0;
+                varGrandTot = 0; varTotal = 0; varamt = 0; varReturnAmnt = 0; varDiscAmnt = 0; varSubtotal = 0; varTaxableAmnt = 0; varAdditions = 0; varDeductions = 0;
                 bool varCheck = false;
                 decimal varResult = 0, CellAdvanceAmnt = 0;
                 lblAdvance.Text = varAdvanceAmnt.ToString("#,##0.00");
@@ -1387,8 +1387,20 @@ namespace ROMS
                     {
                         varamt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value);
                         varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmReturnAmt"].Value);
-                        varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDiscAmount"].Value); 
-                        varResult = varamt - (varReturnAmnt + varDiscAmnt + CellAdvanceAmnt);
+                        varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDiscAmount"].Value);
+                        varTaxableAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmTaxableAmnt"].Value);
+                        varAdditions = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmAdditions"].Value);
+                        varDeductions = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDeductions"].Value);
+                        if (varSupplierType == 34)
+                        {
+                            varTotal = (Convert.ToDecimal(varTaxableAmnt) + 
+                                Convert.ToDecimal(varAdditions) - 
+                                Convert.ToDecimal(varDeductions)) - (varReturnAmnt + varDiscAmnt + CellAdvanceAmnt);
+                        }
+                        else
+                        {
+                            varResult = varamt - (varReturnAmnt + varDiscAmnt + CellAdvanceAmnt);
+                        }
                     }                    
                     if (Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmcheck"].Value)=="")
                     {
