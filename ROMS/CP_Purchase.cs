@@ -5279,9 +5279,7 @@ namespace ROMS
                                 }
                                 dtPurchaseAutoComplete.Rows.Add(maxSno + 1, productCode, mrp1, varExpiryDateAdd, (txtBatchno.Text).Trim(), varunitid, lblLocationcode.Text, (varRackId), expirydateFlag, Convert.ToInt16(cmbPONo.SelectedValue), varId);
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text));
-                                udfnrowclear();
-                                
-
+                                udfnrowclear(); 
                                 udfnConditionClear();
                                 udfnProductCount();
                                 txtProductName.Text = "";

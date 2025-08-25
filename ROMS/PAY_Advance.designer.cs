@@ -728,8 +728,7 @@
             this.txtChequeNo.TabIndex = 3;
             this.txtChequeNo.Visible = false;
             this.txtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
-            this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown);
-            this.txtChequeNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtChequeNo_KeyPress);
+            this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown); 
             this.txtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // txtDBank

@@ -90,7 +90,7 @@
             this.dpChequeDate = new System.Windows.Forms.DateTimePicker();
             this.txtChequeDate = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
-            this.grdSupplierPayment = new System.Windows.Forms.DataGridView();  
+            this.grdSupplierPayment = new System.Windows.Forms.DataGridView();
             this.grbSupplierDetails = new System.Windows.Forms.GroupBox();
             this.lblReturn = new System.Windows.Forms.Label();
             this.lblSuppliername = new System.Windows.Forms.Label();
@@ -125,7 +125,7 @@
             this.clmTaxableAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAdditions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDeductions = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.clmDeductions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmInvoiceAmnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDiscAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmReturnAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1130,6 +1130,8 @@
             this.clmDeductions.HeaderText = "Deductions";
             this.clmDeductions.Name = "clmDeductions";
             this.clmDeductions.ReadOnly = true;
+            this.clmDeductions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmDeductions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmDeductions.Width = 120;
             // 
             // clmInvoiceAmnt
@@ -1363,7 +1365,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTaxableAmnt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTaxAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAdditions;
-        private System.Windows.Forms.DataGridViewButtonColumn clmDeductions;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDeductions;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmInvoiceAmnt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDiscAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmReturnAmt;

@@ -134,7 +134,7 @@
             this.grdSupllierPaymentList.TabIndex = 1;
             this.grdSupllierPaymentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupllierPaymentList_CellContentClick);
             this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
-            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll); 
+            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
             // 
             // lblNoRecordsFound
             // 
@@ -391,7 +391,7 @@
             // clmCancel
             // 
             this.clmCancel.HeaderText = "";
-            this.clmCancel.Image = global::ROMS.Properties.Resources.newcancelBill;
+            this.clmCancel.Image = global::ROMS.Properties.Resources.Delete1;
             this.clmCancel.Name = "clmCancel";
             this.clmCancel.ReadOnly = true;
             this.clmCancel.Resizable = System.Windows.Forms.DataGridViewTriState.True;

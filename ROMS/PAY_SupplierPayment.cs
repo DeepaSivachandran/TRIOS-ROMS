@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace ROMS
 {
@@ -552,7 +553,7 @@ namespace ROMS
                 ClearSupplier();
                 dpDate.MinDate = MainForm.pbFYStartDate;
                 dpDate.MaxDate = MainForm.pbCurrentDate;
-                dpChequeDate.MinDate = MainForm.pbFYStartDate; 
+                //dpChequeDate.MinDate = MainForm.pbFYStartDate; 
                
                 udfnGeneralSettingsList();
                 udfnEditLoad(); 
@@ -2238,7 +2239,7 @@ namespace ROMS
                             cmbPaymentmode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Payment Mode"]);
                             if (Convert.ToInt16(cmbPaymentmode.SelectedValue) != 346)
                             {
-                                dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeDate"]);
+                                dpChequeDate.Text =Convert.ToString( DateTime.ParseExact(objDs.Tables[0].Rows[0]["PAY_ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture));
                             }
                             txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeNo"]);
                             lblSubtotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Subtotal"]);
