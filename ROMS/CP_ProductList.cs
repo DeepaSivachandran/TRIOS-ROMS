@@ -1492,7 +1492,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    dtCreatedOn.Focus();
                 }
             }
             catch (Exception ex)
@@ -1617,6 +1617,22 @@ namespace ROMS
                 dtCreatedOn.CustomFormat = " ";
                 dtCreatedOn.Checked = false;
                 udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtCreatedOn_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {

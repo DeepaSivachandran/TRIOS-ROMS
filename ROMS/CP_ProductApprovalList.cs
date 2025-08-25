@@ -249,6 +249,7 @@ namespace ROMS
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraStatusId = varStatusId;
+                objMR_Product.paraCreatedON = dtCreatedOn.Text;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -807,7 +808,6 @@ namespace ROMS
                 udfnList();
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1179,7 +1179,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    dtCreatedOn.Focus();
                 }
             }
             catch (Exception ex)
@@ -1504,7 +1504,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSubGroupevent();
-                    btnView.Focus();
+                    dtCreatedOn.Focus();
                 }
             }
             catch (Exception ex)
@@ -1519,7 +1519,40 @@ namespace ROMS
             try
             {
                 udfnSubGroupevent();
-                btnView.Focus();
+                dtCreatedOn.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LlClear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                //dtCreatedOn.Format = DateTimePickerFormat.Custom;
+                //dtCreatedOn.CustomFormat = " ";
+                //dtCreatedOn.Checked = false;
+                dtCreatedOn.Value = MainForm.pbCurrentDate;
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DtCreatedOn_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {

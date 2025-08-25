@@ -62,7 +62,7 @@ namespace ROMS
         private ToolTip tpSalesHSN = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
-        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "";
+        public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
         
         public CP_Product()
@@ -157,6 +157,8 @@ namespace ROMS
                     string varMessage = objDataService.udfnGetMessages(149);
                     objDataService.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbProduct.TabPages[1].Enabled = true;
+                    tbProduct.SelectedIndex = 1;
                     return;
                 }
                 /*
@@ -1090,15 +1092,35 @@ namespace ROMS
                         shelflife = Convert.ToInt32(txtSelfLife.Text);
                     }
                     int varviewtype = 0, varupdateproductcode = 0;
-                    string varorignator = "", varbrandid = "0";
+                    string varorignator = "", varbrandid = "0", varGroupId = "0", varSubgroupId = "0", varPurLocationId = "0", varSalesLocationId = "0", varPurRackId = "0", varSalesRackId = "0";
 
-                    if (txtBrand.Text == "")
-                    {
-                        varbrandid = "0";
-                    }
-                    else
+                    if (txtBrand.Text.Trim() != "")
                     {
                         varbrandid = lblBrand.Text;
+                    }
+                    if (txtGroup.Text.Trim() != "")
+                    {
+                        varGroupId = lblGroupCode.Text;
+                    }
+                    if (txtSubGroup.Text.Trim() != "")
+                    {
+                        varSubgroupId = lblSubGroupCode.Text;
+                    }
+                    if (txtPurLocation.Text.Trim() != "")
+                    {
+                        varPurLocationId = lblPurLocationCode.Text;
+                    }
+                    if (txtPurRack.Text.Trim() != "")
+                    {
+                        varPurRackId = lblPurRackCode.Text;
+                    }
+                    if (txtSaleLocation.Text.Trim() != "")
+                    {
+                        varSalesLocationId = lblSaleLocationCode.Text;
+                    }
+                    if (txtSaleRack.Text.Trim() != "")
+                    {
+                        varSalesRackId = lblSaleRackCode.Text;
                     }
                     if ((varproductcode == 0 || pbCloneFlag == 1) )
                     {
@@ -1129,15 +1151,15 @@ namespace ROMS
                     {
                         varMRPflag = 0;
                     }
-                    if (varproductcode!=0)
+                    if (varproductcode != 0 && pbCloneFlag != 1)
                     {
                         varviewtype = 1;
                     }
 
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
-                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), Convert.ToInt32(varbrandid),
-                    Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(lblPurLocationCode.Text), Convert.ToInt32(lblSaleLocationCode.Text)
-                    , Convert.ToInt32(lblPurRackCode.Text), Convert.ToInt32(lblSaleRackCode.Text), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
+                    Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
+                    Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
+                    , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text);
@@ -1163,7 +1185,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varproductcode != 0 )
+                            if (varproductcode != 0 && pbCloneFlag != 1)
                             {
                                 MainForm.objCP_Itemlist.udfnDropdownbind();
                                 MainForm.objCP_Itemlist.udfnList();
@@ -1171,9 +1193,20 @@ namespace ROMS
                             }
                             else
                             {
-                                varproductcode = Convert.ToInt32(varvalue[2]);
-                                tbProduct.TabPages[1].Enabled = true;
-                                tbProduct.SelectedIndex = 1;
+                                //Second tab save after form close, no clear data - added by sathish on 23-08-2025
+                                if (tbProduct.SelectedIndex == 1 || pbCloneFlag == 1)
+                                {
+                                    MainForm.objCP_Itemlist.udfnDropdownbind();
+                                    MainForm.objCP_Itemlist.udfnList();
+                                    varupdate = "1";
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    varproductcode = Convert.ToInt32(varvalue[2]);
+                                    tbProduct.TabPages[1].Enabled = true;
+                                    tbProduct.SelectedIndex = 1;
+                                }
                             }
                             //udfnclear();
                             //if (btnSave.Text != "Update")
@@ -2774,7 +2807,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbProductType.Focus();
+                    if(cmbProductType.Enabled==true)
+                    {
+                        cmbProductType.Focus();
+                    }
+                    else
+                    {
+                        txtPICode.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2861,10 +2901,13 @@ namespace ROMS
                 {
                     cmbProductType.SelectedValue = 341;
                     cmbProductType.Enabled = false;
+                    txtUpp.Enabled = true;
+                    txtUpp.ReadOnly = false;
                 }
                 else
                 { 
                     cmbProductType.Enabled = true;
+                    txtUpp.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -3693,7 +3736,7 @@ namespace ROMS
                 //}
 
                 cmbUnit.Enabled = true;
-                txtUpp.Enabled = true;
+                //txtUpp.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -4098,6 +4141,7 @@ namespace ROMS
                     txtPurRack.Text = selectedItem.SubItems[9].Text;
                     string varbatchenable = selectedItem.SubItems[3].Text;
                     txtRackDescription.Text = selectedItem.SubItems[10].Text;
+                    txtSubgroupType.Text = selectedItem.SubItems[11].Text;
                     txtBrand.Text = "";
                     lblBrand.Text = "0";
                     txtGroup.Focus();
@@ -4460,7 +4504,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), objDs.Tables[0].Rows[i]["Description"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["PRSG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRSG_TName"].ToString(), objDs.Tables[0].Rows[i]["PRSGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_BatchNo"].ToString(), objDs.Tables[0].Rows[i]["PRG_EName"].ToString(), objDs.Tables[0].Rows[i]["PRGID"].ToString(), objDs.Tables[0].Rows[i]["PRSG_SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["RKID"].ToString(), objDs.Tables[0].Rows[i]["RackName"].ToString(), objDs.Tables[0].Rows[i]["Description"].ToString(), objDs.Tables[0].Rows[i]["SubgroupType"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
                                     objList.SubItems[1].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
@@ -5021,7 +5065,14 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSaleRack.Focus();
+                    if (txtSaleRack.Enabled == true)
+                    {
+                        txtSaleRack.Focus();
+                    }
+                    else
+                    {
+                        cmbBatchNoEntry.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -6976,7 +7027,8 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToString(cmbProductType.Text) == "Parent") {
+                if (Convert.ToInt32(cmbProductType.SelectedValue) == 341) //Parent
+                {
                     cmbChildUnit.Enabled = true;  
                     txtProductName.Enabled = false;
                     txtGroup.Enabled = true;
@@ -6992,7 +7044,7 @@ namespace ROMS
                     txtUpp.ReadOnly = true;
                     txtProductName.ReadOnly = true;
                 }
-                else if (Convert.ToString(cmbProductType.Text) == "Child")
+                else if (Convert.ToInt32(cmbProductType.SelectedValue) == 342) //Child
                 {
                     cmbChildUnit.Enabled = false;
                     txtGroup.Enabled = false;
@@ -7009,7 +7061,7 @@ namespace ROMS
                     txtUpp.ReadOnly = false;
 
                 }
-                if (btnSave.Text != "Update")
+                if (btnSave.Text != "Update" && pbCloneFlag != 1)// clone product no need to clear details added by Sathish on 23-08-2025
                 {
                     txtProductName.Text = "";
                     lblParentcode.Text = "0";
@@ -7230,6 +7282,10 @@ namespace ROMS
                 errItems.Clear();
                 if (varSalesEffectiveFromErr == 0)
                 {
+                    foreach (DataGridViewRow row in grdSalesHSN.Rows)
+                    {
+                        row.Cells["clmSalesAddFlag"].Value = 1;
+                    }
                     grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID, 0, 0);
                     dtSalesHSN.Rows.Add(2, varSalesHSNID, dpSalesEffectiveFrom.Text, "");
                     grdSalesHSN.Columns["clmSalesGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -7534,6 +7590,7 @@ namespace ROMS
                             varSubGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["SUBGROUP"].ToString());
                             lblSubGroupCode.Text = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
                             txtSubGroup.Text = objDS.Tables[0].Rows[0]["SubGroup Name"].ToString();
+                            txtSubgroupType.Text = objDS.Tables[0].Rows[0]["SubgroupType"].ToString();
                             //CmbSubGroup_SelectedIndexChanged(cmbSubGroup, EventArgs.Empty);
                             varGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["GROUP"].ToString());
                             lblGroupCode.Text = objDS.Tables[0].Rows[0]["GROUP"].ToString();
@@ -7803,6 +7860,8 @@ namespace ROMS
             groupBox1.Enabled = false;
             groupBox2.Enabled = false;
             groupBox3.Enabled = false;
+            grbPurchaseHSN.Enabled = false;
+            grbSalesHSN.Enabled = false;
             this.ActiveControl = rbInActive;
         }
         private void BtnSubgroup_Click(object sender, EventArgs e)
@@ -7816,6 +7875,7 @@ namespace ROMS
                 //udfnDropDownload();
                 lblSubGroupCode.Text = Convert.ToString(varSubgroupCode);
                 txtSubGroup.Text = varSubGroupName;
+                txtSubgroupType.Text = varSubgroupType;
                 txtGroup.Text = varGroupName;
                 lblGroupCode.Text = Convert.ToString(varGroupCode);
                 lblPurLocationCode.Text = Convert.ToString(varPURSLID);

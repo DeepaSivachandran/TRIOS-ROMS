@@ -3381,6 +3381,46 @@ namespace ROMS
             }
         }
 
+        private void GrdPurHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                udfnPurHideRemove();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnPurHideRemove()
+        {
+            try
+            {
+                for (int i = 0; i < grdPurHSN.Rows.Count; i++)
+                {
+                    var addFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurAddFlag"].Value);
+                    var editFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurEditFlag"].Value);
+                    var removeCell = grdPurHSN.Rows[i].Cells["clmPurRemove"];
+
+                    if (addFlag == "0" && editFlag == "0")
+                    {
+                        removeCell.Value = global::ROMS.Properties.Resources.remove;
+                        removeCell.ReadOnly = false;
+                    }
+                    else
+                    {
+                        removeCell.Value = new Bitmap(1, 1);
+                        removeCell.ReadOnly = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdPurHSN_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -3402,6 +3442,8 @@ namespace ROMS
                                     dtPurHSN.Rows.Remove(row);
                                 }
                                 grdPurHSN.Rows.RemoveAt(this.grdPurHSN.CurrentRow.Index);
+                                udfnUpdateRemovableFlags();
+                                udfnPurHideRemove();
                             }
                             break;
                     }
@@ -3414,6 +3456,67 @@ namespace ROMS
             }
         }
 
+        private void GrdSalesHSN_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                udfnSalesHideRemove();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnSalesHideRemove()
+        {
+            try
+            {
+                for (int i = 0; i < grdSalesHSN.Rows.Count; i++)
+                {
+                    var addFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesAddFlag"].Value);
+                    var editFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesEditFlag"].Value);
+                    var removeCell = grdSalesHSN.Rows[i].Cells["clmSalesRemove"];
+
+                    if (addFlag == "0" && editFlag == "0")
+                    {
+                        removeCell.Value = global::ROMS.Properties.Resources.remove;
+                        removeCell.ReadOnly = false;
+                    }
+                    else
+                    {
+                        removeCell.Value = new Bitmap(1, 1);
+                        removeCell.ReadOnly = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void udfnUpdateRemovableFlags()
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grdPurHSN.Rows)
+                {
+                    row.Cells["clmPurAddFlag"].Value = "1";
+                }
+                if (grdPurHSN.Rows.Count > 0)
+                {
+                    var lastRow = grdPurHSN.Rows[grdPurHSN.Rows.Count - 1];
+                    lastRow.Cells["clmPurAddFlag"].Value = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdSalesHSN_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -3435,6 +3538,8 @@ namespace ROMS
                                     dtSalesHSN.Rows.Remove(row);
                                 }
                                 grdSalesHSN.Rows.RemoveAt(this.grdSalesHSN.CurrentRow.Index);
+                                udfnUpdateSalesRemovableFlags();
+                                udfnSalesHideRemove();
                             }
                             break;
                     }
@@ -3446,7 +3551,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void udfnUpdateSalesRemovableFlags()
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grdSalesHSN.Rows)
+                {
+                    row.Cells["clmSalesAddFlag"].Value = "1";
+                }
+                if (grdSalesHSN.Rows.Count > 0)
+                {
+                    var lastRow = grdSalesHSN.Rows[grdSalesHSN.Rows.Count - 1];
+                    lastRow.Cells["clmSalesAddFlag"].Value = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DpPurEffectiveFrom_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -3507,9 +3631,15 @@ namespace ROMS
                 epProductApproval.Clear();
                 if (varPurEffectiveFromErr == 0)
                 {
-                    grdPurHSN.Rows.Add(txtPURHSNName.Text.Trim(), varPurHSNCode, varPurGST, dpPurEffectiveFrom.Text, "", varPurHSNID);
+                    foreach (DataGridViewRow row in grdPurHSN.Rows)
+                    {
+                        row.Cells["clmPurAddFlag"].Value = 1;
+                    }
+                    grdPurHSN.Rows.Add(txtPURHSNName.Text.Trim(), varPurHSNCode, varPurGST, dpPurEffectiveFrom.Text, "", varPurHSNID, 0, 0);
                     dtPurHSN.Rows.Add(1, varPurHSNID, dpPurEffectiveFrom.Text, "");
+                    grdPurHSN.Columns["clmPurGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdPurHSN.ClearSelection();
+                    udfnPurHideRemove();
                     txtPURHSNName.Text = "";
                     varPurHSNCode = "";
                     varPurGST = "";
@@ -3587,9 +3717,15 @@ namespace ROMS
                 epProductApproval.Clear();
                 if (varSalesEffectiveFromErr == 0)
                 {
-                    grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID);
+                    foreach (DataGridViewRow row in grdSalesHSN.Rows)
+                    {
+                        row.Cells["clmSalesAddFlag"].Value = 1;
+                    }
+                    grdSalesHSN.Rows.Add(txtSalesHSNName.Text.Trim(), varSalesHSNCode, varSalesGST, dpSalesEffectiveFrom.Text, "", varSalesHSNID, 0, 0);
                     dtSalesHSN.Rows.Add(2, varSalesHSNID, dpSalesEffectiveFrom.Text, "");
+                    grdSalesHSN.Columns["clmSalesGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdSalesHSN.ClearSelection();
+                    udfnSalesHideRemove();
                     txtSalesHSNName.Text = "";
                     varSalesHSNCode = "";
                     varSalesGST = "";
@@ -4230,22 +4366,33 @@ namespace ROMS
                                     string varEffectiveFrom = dr["PRHSN_EffectiveFrom"]?.ToString().Trim();
                                     string varEffectiveTo = dr["PRHSN_EffectiveTo"]?.ToString().Trim();
                                     int varHSNID = Convert.ToInt32(dr["PRHSN_HSNID"]);
+                                    int varAddFlag = Convert.ToInt32(dr["AddFlag"]);
+                                    int varEditFlag = Convert.ToInt32(dr["EditFlag"]);
 
                                     // Add row to Purchase Grid (Type = 1)
                                     if (varHsnType == 1)
                                     {
-                                        grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID);
+                                        grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag);
                                         dtPurHSN.Rows.Add(1, varHSNID, varEffectiveFrom, varEffectiveTo);
                                     }
                                     // Add row to Sales Grid (Type = 2)
                                     else if (varHsnType == 2)
                                     {
-                                        grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID);
+                                        grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag);
                                         dtSalesHSN.Rows.Add(2, varHSNID, varEffectiveFrom, varEffectiveTo);
                                     }
                                 }
                                 grdPurHSN.ClearSelection();
                                 grdSalesHSN.ClearSelection();
+
+                                grdPurHSN.Columns["clmPurGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSalesHSN.Columns["clmSalesGST"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                //Reset flag and Hide Remove Icon For Purchase HSN
+                                udfnUpdateRemovableFlags();
+                                udfnPurHideRemove();
+                                //Reset flag and Hide Remove Icon For Sales HSN
+                                udfnUpdateSalesRemovableFlags();
+                                udfnSalesHideRemove();
                             }
                         }
                     }

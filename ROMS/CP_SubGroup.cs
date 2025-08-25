@@ -358,6 +358,7 @@ namespace ROMS
                                 varmastertype = 0;
                                 MainForm.objCP_Items.varSubgroupCode = varSubgroupCode;
                                 MainForm.objCP_Items.varSubGroupName = txtESubGroupNameEnglish.Text;
+                                MainForm.objCP_Items.varSubgroupType = cmbSubgroupType.Text;
                                 MainForm.objCP_Items.varGroupCode = Convert.ToInt32(lblGroupCode.Text);
                                 MainForm.objCP_Items.varGroupName = txtProductGroupName.Text.Trim();
                                 MainForm.objCP_Items.varBatchCode = Convert.ToInt32(cmbBatchNo.SelectedValue);
