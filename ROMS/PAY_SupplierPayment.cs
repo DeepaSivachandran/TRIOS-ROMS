@@ -30,7 +30,7 @@ namespace ROMS
         public string varAdvanceID = "";
         public int id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0,varCellclickFlag=0, varSource = 0;
         decimal varGrandTot = 0, varTotal = 0, varamt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAdvanceAmnt = 0;
-        public int varCloseFlag = 0, varClose = 0;
+        public int varCloseFlag = 0, varClose = 0, varSupplierType = 0;
         public string advanceid = "";
         public string PurchaseID = "0";
         public string varAdvance = "", varPayAmnt = "", varCompanyID = "0";
@@ -942,10 +942,10 @@ namespace ROMS
                 {
                     int varReturnApplicable = 0, varReturnType = 0;
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 16;
+                    objMR_Supplier.ViewType = 44;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
-                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Supplier.paraPayID = varSupplierPaymentID;
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
                     objspdservice.CloseConnection();
                     if (objDs != null)
@@ -961,24 +961,16 @@ namespace ROMS
                             varReturnApplicable = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURN"].ToString());
                             varReturnType = Convert.ToInt16(objDs.Tables[0].Rows[0]["RETURNCYCLEID"].ToString());
                             lblReturn.Text = objDs.Tables[0].Rows[0]["RETURNAPPLICABLE"].ToString();
+                            varSupplierType = Convert.ToInt32(objDs.Tables[0].Rows[0]["PaymentTerm"]);
                         }
-                        //if (objDs.Tables[1].Rows.Count > 0)
-                        //{
-                        //    if (objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString() != "")
-                        //    { lblSalesmanName.Text = "Salesman Name - " + objDs.Tables[1].Rows[0]["SPSC_SMName"].ToString(); }
-                        //    if (objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString() != "")
-                        //    { lblMobileNo.Text = "Mobile No. - " + objDs.Tables[1].Rows[0]["SPSC_SMMobileNo"].ToString(); }
-                        //    if (objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString() != "")
-                        //    { lblWhatsAppNo.Text = "WhatsApp No. - " + objDs.Tables[1].Rows[0]["SPSC_SMWhatsAppNo"].ToString(); }
-                        //}
-                        if (objDs.Tables[8].Rows.Count > 0)
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            lblBankName.Text = objDs.Tables[8].Rows[0]["SP_BankName"].ToString();
-                            lblBranchName.Text = objDs.Tables[8].Rows[0]["SP_BranchName"].ToString();
-                            lblBAccName.Text = objDs.Tables[8].Rows[0]["SP_AccountName"].ToString();
-                            lblBAccNo.Text = objDs.Tables[8].Rows[0]["SP_AccNo"].ToString();
-                            lblBIFSCode.Text = objDs.Tables[8].Rows[0]["SP_IFSC"].ToString();
-                            varSPBankID =Convert.ToInt16(objDs.Tables[8].Rows[0]["SP_BNKID"]) ;
+                            lblBankName.Text = objDs.Tables[1].Rows[0]["SP_BankName"].ToString();
+                            lblBranchName.Text = objDs.Tables[1].Rows[0]["SP_BranchName"].ToString();
+                            lblBAccName.Text = objDs.Tables[1].Rows[0]["SP_AccountName"].ToString();
+                            lblBAccNo.Text = objDs.Tables[1].Rows[0]["SP_AccNo"].ToString();
+                            lblBIFSCode.Text = objDs.Tables[1].Rows[0]["SP_IFSC"].ToString();
+                            varSPBankID =Convert.ToInt16(objDs.Tables[1].Rows[0]["SP_BNKID"]) ;
                         }
                     }
                 }
@@ -1018,7 +1010,7 @@ namespace ROMS
                             grdSupplierPayment.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID1"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[0].Rows[i]["CNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Flag"]));
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Additions"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Deductions"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Discount Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Purchase Return Adjustment"]),0.00, Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["ID1"]), 0,Convert.ToString(objDs.Tables[0].Rows[i]["Status"]),Convert.ToString(objDs.Tables[0].Rows[i]["RetStatus"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["paymentAmount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[0].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[0].Rows[i]["CNID"]), Convert.ToString(objDs.Tables[0].Rows[i]["Flag"]));
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 decimal varAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value);
@@ -1829,7 +1821,15 @@ namespace ROMS
 
                                 }
                                 varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value);
-                                varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+                                /* 33 - Nett Amount, 34 - Taxable Amount*/
+                                if (varSupplierType == 34)
+                                {
+                                    varTotal = (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmTaxableAmnt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdditions"].Value) - Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDeductions"].Value)) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+                                }
+                                else
+                                {
+                                    varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+                                }
                                 grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = varTotal;
                                 varGrandTotal = varGrandTotal + varTotal;
                                 //lblSubtotal.Text = Convert.ToString(varGrandTotal);
@@ -1845,15 +1845,37 @@ namespace ROMS
                                 varApplyFlag = 0;
                                 for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
                                 {
-                                    decimal varInvoiceAmnt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAmnt = 0;
+                                    decimal varInvoiceAmnt = 0, varTaxableAmnt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAmnt = 0, varAdditions=0, varDeductions =0;
+                                    varTaxableAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmTaxableAmnt"].Value);
                                     varInvoiceAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value);
                                     varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmReturnAmt"].Value);
                                     varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDiscAmount"].Value);
-                                    varAmnt = varInvoiceAmnt - (varReturnAmnt + varDiscAmnt);
+                                    varAdditions = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmAdditions"].Value);
+                                    varDeductions = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDeductions"].Value);
+                                    /* 33 - Nett Amount, 34 - Taxable Amount*/
+                                    if (varSupplierType == 34)
+                                    {
+                                        varAmnt = (varTaxableAmnt + varAdditions - varDeductions) - (varReturnAmnt + varDiscAmnt);
+                                    }
+                                    else
+                                    {
+                                        varAmnt = varInvoiceAmnt - (varReturnAmnt + varDiscAmnt);
+                                    }
                                     grdSupplierPayment.Rows[i].Cells["clmPaymentAmount"].Value = varAmnt;
                                 }
-                                grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
-                                grdSupplierPayment.Rows[e.RowIndex].Cells["clmPaymentAmount"].Value = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+                                /* 33 - Nett Amount, 34 - Taxable Amount*/
+                                if (varSupplierType == 34)
+                                {
+                                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmTaxableAmnt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdditions"].Value) - Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDeductions"].Value)) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+                                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmPaymentAmount"].Value = (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmTaxableAmnt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdditions"].Value) - Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDeductions"].Value)) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+
+                                }
+                                else
+                                {
+                                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+                                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmPaymentAmount"].Value = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmInvoiceAmnt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
+
+                                }
                                 int varPurchaseID = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
                                 varGrandTotal = Convert.ToDecimal(lblSubtotal.Text);
                                 varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value);

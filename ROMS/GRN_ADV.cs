@@ -19,7 +19,7 @@ namespace ROMS
         DataTable dtCheckAdv = new DataTable();
         public string AdvID = ""; public string varEditAdv = "";
         public string varAdvancePayAmnt = "";
-        public int VARFLAG = 0,pbSupplierID=0 , pbADID=0;
+        public int VARFLAG = 0,pbSupplierID=0 , pbADID=0, pbPayType=0;
         public GRN_ADV()
         {
             InitializeComponent();
@@ -83,7 +83,8 @@ namespace ROMS
                 objTRN_Advance.ViewType = 4; 
                 objTRN_Advance.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_Advance.paraIPAddress = MainForm.pbIpAddress;
-                objTRN_Advance.paraSupplierId = pbSupplierID; 
+                objTRN_Advance.paraSupplierId = pbSupplierID;
+                objTRN_Advance.paraAmountType = pbPayType;
                 objDs = objdserv.udfnAdvanceList(objTRN_Advance);
                 objdserv.CloseConnection();
                 if (objDs != null)

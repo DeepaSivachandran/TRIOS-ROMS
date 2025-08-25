@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         public string varbrandcode, varpendingPOID = "0", pbSupplierpend = "0", varReturnDC = "0", varDamage = "0", pbPONO = "0", varSupplierName = "", pbSupplierId = "0", pbScheduleid = "0", pbGRNId = "0", pbGRNSTS = "0";
         public string pbFormStatus, dcid = "0", varflag = "0", varUserID = "0", varcomid = "0", GrnUpdatevalue ="0";
-        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0, varClose = 0, varDateChange = 0, ParaSupplierAMT = 0, varReturnDcPending = 0,varAdvanceID=0,pbAdvanceID=0;
+        public int varCloseFlag = 0, varGrnId = 0, VarPrevSupplierid = 0, varClose = 0, varDateChange = 0, ParaSupplierAMT = 0, varReturnDcPending = 0, varAdvanceID=0,pbAdvanceID=0;
         public string varBlockedSupplier = "0", varBlockedReason = "";
         public PUR_GRNEntry()
         {
@@ -1201,7 +1201,7 @@ namespace ROMS
                     tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                     VarErrorFlag = true;
                 }
-                if (Convert.ToInt16(cmbPayment.SelectedValue) != 199)
+                if (Convert.ToInt16(cmbPayment.SelectedValue) != 199 && pbAdvanceID == 0)
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(158);
@@ -1939,11 +1939,17 @@ namespace ROMS
         {
             try
             {
-                varAdvanceID = 0; 
-                MainForm.objGRN_ADV = new GRN_ADV();
-                MainForm.objGRN_ADV.pbSupplierID = Convert.ToInt16(lblSupplierCode.Text);
-                MainForm.objGRN_ADV.pbADID = pbAdvanceID;
-                MainForm.objGRN_ADV.ShowDialog();
+                int varPayType = Convert.ToInt32(cmbPayment.SelectedValue);
+                if (varPayType != 0)
+                {
+                    /* 200 - Cash, 201 - Cheque*/
+                    varAdvanceID = 0;
+                    MainForm.objGRN_ADV = new GRN_ADV();
+                    MainForm.objGRN_ADV.pbSupplierID = Convert.ToInt16(lblSupplierCode.Text);
+                    MainForm.objGRN_ADV.pbPayType = varPayType;
+                    MainForm.objGRN_ADV.pbADID = pbAdvanceID;
+                    MainForm.objGRN_ADV.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
