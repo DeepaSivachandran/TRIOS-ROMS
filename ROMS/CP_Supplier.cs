@@ -71,6 +71,7 @@ namespace ROMS
         string varfirstValue = "", varsecValue = "";
         DataSet objDTBank = new DataSet();
         DataTable dtOpeningCRDetails = new DataTable();
+        DataTable dtStatus = new DataTable();
         public CP_Supplier()
         {
             InitializeComponent();
@@ -1048,6 +1049,12 @@ namespace ROMS
                 {
                     grdPaymentMode.Rows[i].Cells[0].Value = false;
                 }
+                txtInvoiceNo.Text = "";
+                txtInvoiceAmt.Text = "";
+                dpInvoiceDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                udfnSumOpeningAmt();
+                grdOpeningCrDetails.Rows.Clear();
+                dtOpeningCRDetails.Rows.Clear();
             }
             catch (Exception ex)
             {
@@ -1844,9 +1851,11 @@ namespace ROMS
                 //if (varstatecode != "") { cmbState.SelectedValue = varstatecode; }
 
                 DataSet objDs = new DataSet();
+                DataSet objDsStatus = new DataSet();
                 DataService objdserv = new DataService();
                 objDs = null;
                 objDs = objdserv.GetDataset("SELECT MSTID,MST_DisplayText FROM DEF_Master WHERE MST_TransactionID=31");
+                objDsStatus = objdserv.GetDataset("SELECT STSID,STS_Name FROM DEF_Status WHERE STS_ModuleID=14");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -1865,6 +1874,16 @@ namespace ROMS
                             grdPaymentMode.Columns["DisplayText"].Width = 100;
                             grdPaymentMode.Columns["DisplayText"].ReadOnly = true;
                             grdPaymentMode.ClearSelection();
+                        }
+                    }
+                }
+                if (objDsStatus != null)
+                {
+                    if (objDsStatus.Tables.Count != 0)
+                    {
+                        if (objDsStatus.Tables[0].Rows.Count != 0)
+                        {
+                            dtStatus = objDsStatus.Tables[0];
                         }
                     }
                 }
@@ -2048,7 +2067,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtopening.Focus();
+                    cmbPaymentTerm.Focus();
                 }
             }
             catch (Exception ex)
@@ -9671,7 +9690,7 @@ namespace ROMS
             try
             {
                 errCompany.Clear();
-                bool varFlag = false;
+                bool varFlag = false; string stsName = "";
                 if (txtInvoiceNo.Text.Trim() == "")
                 {
                     errCompany.SetError(txtInvoiceNo, "Please enter the Invoice No.");
@@ -9697,8 +9716,14 @@ namespace ROMS
                     varFlag = true;
                 }
                 if (varFlag==false)
-                { 
-                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtInvoiceAmt.Text.Trim()), "Purchase Entry Approved",63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
+                {
+                    var varStatus = dtStatus.AsEnumerable()
+                                    .Where(r => r.Field<int>("STSID") == 63 
+                                    )
+                                    .Select(r=>r.Field<string>("STS_Name"))
+                                    .ToList();
+                    stsName = varStatus[0]; 
+                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtInvoiceAmt.Text.Trim()), stsName, 63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
                     dtOpeningCRDetails.Rows.Add(0, Convert.ToString(dpInvoiceDate.Text), Convert.ToString(txtInvoiceNo.Text), Convert.ToDecimal(txtInvoiceAmt.Text),63,Convert.ToInt16(cmbCrCompany.SelectedValue));
                     txtInvoiceNo.Text = "";
                     txtInvoiceAmt.Text = "";
@@ -9921,7 +9946,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             } 
-        } 
+        }
+         
         private void TxtDiscountPer_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
