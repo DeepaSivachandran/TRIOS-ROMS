@@ -109,15 +109,13 @@ namespace ROMS
                                     grdAdvance.Rows[i].Cells[0].Value = false;
                                 } 
                             }   
-                            grdAdvance.Columns["SNO"].Width = 50;
+                            grdAdvance.Columns["S.No."].Width = 50;
                             grdAdvance.Columns["Advance Date"].Width = 120; 
                             grdAdvance.Columns["Advance Amount"].Width = 120;
                             grdAdvance.Columns["Receipt No"].Width = 100;
                             grdAdvance.Columns["Receipt No"].ReadOnly = true;
-                            grdAdvance.Columns["Advance Date"].ReadOnly = true; 
-                            //grdAdvance.Columns["PAYID"].ReadOnly = true;
-                            grdAdvance.Columns["ID"].Visible = false; 
-                            //grdAdvance.Columns["Current Balance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdAdvance.Columns["Advance Date"].ReadOnly = true;  
+                            grdAdvance.Columns["ID"].Visible = false;  
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -137,101 +135,15 @@ namespace ROMS
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
-                }
-                udfnEditAdvance();                            
-                string[] tokens = MainForm.objPAY_SupplierPayment.varAdvanceID.Split(',');
-                for (int i = 0; i < tokens.Count(); i++)
-                {
-                    for (int j = 0; j < grdAdvance.Rows.Count; j++)
-                    {
-                        if (Convert.ToString(tokens[i]) == Convert.ToString(grdAdvance.Rows[j].Cells["ADID"].Value))
-                        {
-                            dtAdvance.Rows[j][0] = true;
-                        }
-                    }
-                }
-                
+                }   
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                if(MainForm.objPAY_SupplierPayment.varPaymentStatus==77)
-                {
-                    btnOk.Enabled = false;
-                    grdAdvance.Enabled = false;
-                    grdAdvance.ReadOnly = true;
-                }
-            }
+            } 
         }
-        public void udfnEditAdvance()
-        {
-            try
-            {
-                decimal CurrentBalance = 0, AdvanceAmount = 0;
-                for (int i = 0; i < grdAdvance.Rows.Count; i++)
-                {
-                   
-                    if (MainForm.objPAY_SupplierPayment.clearClick == 1 && MainForm.objPAY_SupplierPayment.varCreatemodeFlag == 1)
-                    {
-                        //grdAdvance.Rows[i].Cells["Current Balance"].Value = grdAdvance.Rows[i].Cells["Advance Amount"].Value;
-                        dtAdvance.Rows[i]["Current Balance"] = dtAdvance.Rows[i]["Advance Amount"];
-                        grdAdvance.Rows[i].Cells[0].Value = false;
-                    }
-                    if (MainForm.objPAY_SupplierPayment.clearClick == 2)
-                    {
-                        //dtAdvance.Rows[i]["Current Balance"] = MainForm.objPAY_SupplierPayment.dtAdvance.Rows[i]["Current Balance"];
-                        //decimal varCurrentBalance = Convert.ToDecimal(dtAdvance.Rows[i]["Current Balance"]);
-                        //decimal varAdvance = Convert.ToDecimal(dtAdvance.Rows[i]["Advance Amount"]);
-                        //if (varCurrentBalance == varAdvance)
-                        //{
-                        //    dtAdvance.Rows[i][0] = false;
-                        //}
-                    }
-                }
-                //if (MainForm.objPAY_SupplierPayment.clearClick == 2 && MainForm.objPAY_SupplierPayment.varCreatemodeFlag == 1)
-                //{
-                //    var sumOfAdvance = (from r in MainForm.objPAY_SupplierPayment.dtAdvance.AsEnumerable()
-                //                        group r by r["ADID"] into g
-                //                        select new
-                //                        {
-                //                            ADID = g.Key,
-                //                            TotalAdvanceAmnt = g.Sum(x => x.Field<decimal>("Current Balance"))
-                //                        }).ToList();
-                //    for (int j = 0; j < sumOfAdvance.Count(); j++)
-                //    {
-                //        for (int i = 0; i < grdAdvance.Rows.Count; i++)
-                //        {
-                //            CurrentBalance = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                //            AdvanceAmount = Convert.ToDecimal(grdAdvance.Rows[i].Cells["Advance Amount"].Value);
-                //            var key = sumOfAdvance[j];
-                //            var ID = key.ADID;
-                //            if (Convert.ToString(ID) == Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value))
-                //            {
-                //                dtAdvance.Rows[i]["Current Balance"] = key.TotalAdvanceAmnt;
-                //                if (CurrentBalance == AdvanceAmount)
-                //                {
-                //                    dtAdvance.Rows[i][0] = false;
-                //                    grdAdvance.ReadOnly = false;
-                //                }
-                //                else
-                //                {
-                //                    grdAdvance.ReadOnly = true;
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         private void BtnOk_Click(object sender, EventArgs e)
         {
             try
@@ -286,26 +198,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfndvidSplit()
-        {
-            try
-            {
-                //string[] tokens = AdvID.Split(',');
-                //for (int i=0;i<grdAdvance.Rows.Count;i++)
-                //{
-                //    if (tokens[i]==Convert.ToString(grdAdvance.Rows[i].Cells["ADID"].Value))
-                //    {
-                //        this.grdAdvance.Rows[i].Cells[]
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void INV_GRNPODamaged_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -325,13 +218,11 @@ namespace ROMS
         private void Btnselectall_Click(object sender, EventArgs e)
         {
             try
-            {
-
+            { 
                 foreach (DataGridViewRow row in grdAdvance.Rows)
                 {
                     row.Cells[0].Value = true;
-                }
-
+                } 
             }
             catch (Exception ex)
             {
@@ -365,8 +256,7 @@ namespace ROMS
                     for (int i = 0; i < grdAdvance.Rows.Count; i++)
                     {
                         //if (i != dataGridView1.CurrentCell.RowIndex)
-                        grdAdvance.Rows[i].Cells[0].Value = false;
-
+                        grdAdvance.Rows[i].Cells[0].Value = false; 
                     }
                     grdAdvance.Rows[grdAdvance.CurrentCell.RowIndex].Cells[0].Value = true;
                 }
@@ -383,30 +273,6 @@ namespace ROMS
             try
             {
                 udfnList();            
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-         
-        private void GrdAdvance_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            try
-            {
-                int varCount = 0;
-                for(int i=0;i<grdAdvance.Rows.Count;i++)
-                {
-                    if(Convert.ToBoolean(grdAdvance.Rows[i].Cells[0].Value)==true)
-                    {
-                        varCount++;
-                    }
-                }
-                if(MainForm.objPAY_SupplierPayment.varPaymentStatus==76 && MainForm.objPAY_SupplierPayment.clearClick!=1 && varCount != 0)
-                {
-                    grdAdvance.ReadOnly = true;
-                }
             }
             catch (Exception ex)
             {

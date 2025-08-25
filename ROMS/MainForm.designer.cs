@@ -183,8 +183,7 @@ namespace ROMS
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
-            this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmChequePrintSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem(); 
             this.tsmNonMoving = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();

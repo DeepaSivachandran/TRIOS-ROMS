@@ -89,8 +89,7 @@
             this.grdAdvance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdAdvance.Size = new System.Drawing.Size(453, 275);
             this.grdAdvance.TabIndex = 1;
-            this.grdAdvance.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdAdvance_CurrentCellDirtyStateChanged);
-            this.grdAdvance.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdAdvance_DataBindingComplete);
+            this.grdAdvance.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdAdvance_CurrentCellDirtyStateChanged); 
             // 
             // clmCheck
             // 
