@@ -244,74 +244,60 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (Convert.ToUInt32(cmbPaymentmode.SelectedValue) !=346)
-                        {
-                            SPDataService objDServs = new SPDataService();
-                            string varMessage = objDServs.udfnGetMessages(87);
-                            objDServs.CloseConnection();
-                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (result1 == DialogResult.Yes)
-                            {
-                                string varRPTName = "",varChequeText= "";
-                                int varBankID =0; 
-                                 
-                                var BankID= dtBankDetails.AsEnumerable() 
-                                .Where(b => b.Field<int>("CMBNK_ID") == Convert.ToInt32(cmbBank.SelectedValue))
-                                 .Select(b => b.Field<int>("BNKID"))
-                                .ToList();
-                                varBankID = BankID[0];
+                        { 
+                            string varRPTName = "",varChequeText= "";  int varBankID =0; int varChectTextID = 0;
+                            varChectTextID = Convert.ToInt32(cmbPaymentmode.SelectedValue);
 
-                                var RPTName = dtChequeTemplateDetails.AsEnumerable()
-                                .Where(b => b.Field<int>("BankID") == varBankID)
-                                 .Select(b => b.Field<string>("RPTName"))
-                                 .Where(rpt => !string.IsNullOrEmpty(rpt))
-                                 .ToList(); 
-                                var chequeText = dtChequeText.AsEnumerable()
-                               .Where(b => b.Field<int>("MST_Eq_STSID") == Convert.ToInt32(cmbPaymentmode.SelectedValue))
-                                .Select(b => b.Field<string>("MST_DisplayText"))
+                            var BankID= dtBankDetails.AsEnumerable() 
+                            .Where(b => b.Field<int>("CMBNK_ID") == Convert.ToInt32(cmbBank.SelectedValue))
+                                .Select(b => b.Field<int>("BNKID"))
+                            .ToList();
+
+                            varBankID = BankID[0];
+
+                            var RPTName = dtChequeTemplateDetails.AsEnumerable()
+                            .Where(b => b.Field<int>("BankID") == varBankID)
+                                .Select(b => b.Field<string>("RPTName"))
                                 .Where(rpt => !string.IsNullOrEmpty(rpt))
                                 .ToList();
+                              
+                            if(varChectTextID == 347)
+                            {
+                                if (varRTGSMinLimit > Convert.ToDecimal(lblGrandTotal.Text))
+                                {   varChectTextID = 348;  }
+                                else { varChectTextID = 349; }
+                            }
 
-                                varRPTName = RPTName[0];
-                                varChequeText = chequeText[0];  
-                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
-                                objBillreport.SetParameterValue("paraSupplierName", (varChequeText + txtsuppliername.Text));
-                                objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                                objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
-                                objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
-                                objValidation.CrySqlConnection(objBillreport);
-                                MainForm.objReportLoad = new ReportLoad();
-                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                MainForm.objReportLoad.ShowDialog();
-                                //if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
-                                //{
-                                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                //    objBillreport.Load(Application.StartupPath + "\\Reports\\"+ varRPTName);
-                                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                                //    objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
-                                //    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
-                                //    objValidation.CrySqlConnection(objBillreport);
-                                //    MainForm.objReportLoad = new ReportLoad();
-                                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                //    MainForm.objReportLoad.ShowDialog();
-                                //}
-                                //else if (Convert.ToInt32(cmbBank.SelectedValue) == 225)
-                                //{
-                                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
-                                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                                //    objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
-                                //    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
-                                //    objValidation.CrySqlConnection(objBillreport);
-                                //    MainForm.objReportLoad = new ReportLoad();
-                                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                //    MainForm.objReportLoad.ShowDialog();
-                                //}
+                            var chequeText = dtChequeText.AsEnumerable()
+                            .Where(b => b.Field<int>("MST_Eq_STSID") == varChectTextID)
+                            .Select(b => b.Field<string>("MST_DisplayText"))
+                            .Where(rpt => !string.IsNullOrEmpty(rpt))
+                            .ToList();
+
+                            if (RPTName.Count != 0)
+                            { varRPTName = RPTName[0]; }
+                            if (chequeText.Count != 0)
+                            {    varChequeText = chequeText[0];  }
+                            if (RPTName.Count != 0 && chequeText.Count != 0)
+                            {
+                                SPDataService objDServs = new SPDataService();
+                                string varMessage = objDServs.udfnGetMessages(87);
+                                objDServs.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
+                                    objBillreport.SetParameterValue("paraSupplierName", (varChequeText + txtsuppliername.Text));
+                                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
+                                    objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
+                                    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
+                                    objValidation.CrySqlConnection(objBillreport);
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
                             }
                         }
                         this.ActiveControl = txtsuppliername;
@@ -2237,8 +2223,11 @@ namespace ROMS
                             txtTransactionNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_No"]);
                             txtsuppliername.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SP_Name"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Remarks"]);
-                            cmbPaymentmode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Payment Mode"]); 
-                            dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeDate"]);
+                            cmbPaymentmode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Payment Mode"]);
+                            if (Convert.ToInt16(cmbPaymentmode.SelectedValue) != 346)
+                            {
+                                dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeDate"]);
+                            }
                             txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_ChequeNo"]);
                             lblSubtotal.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Subtotal"]);
                             lblAdvance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_Advance"]);

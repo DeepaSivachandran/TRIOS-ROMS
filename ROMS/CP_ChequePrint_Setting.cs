@@ -29,7 +29,7 @@ namespace ROMS
         {
             try
             {
-                udfnToolTip();
+                tpBank.Active = false;
             }
             catch (Exception ex)
             {
