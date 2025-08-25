@@ -847,9 +847,18 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 if (Convert.ToInt32(cmbLabelsize.SelectedValue) != -1)
                 {
+                    string value = "-1";
+                    int varSelectedValue = Convert.ToInt32(cmbLabelsize.SelectedValue);
+
+                    if (varSelectedValue == 268 || varSelectedValue == 269 || varSelectedValue == 301 || varSelectedValue == 302)
+                    {
+                        value = "";
+                    }
                     cmbTemplate.Enabled = true;
-                    objDataBind.BindComboBoxListSelected("DEF_Templates", "TEMP_Labelcode IN ('"+ Convert.ToInt32(cmbLabelsize.SelectedValue) + "',-1) AND TEMP_Statuscode = 1  ", "TEMP_ShortCode,TEMP_RptName", cmbTemplate, "", "TEMP_ShortCode", "TEMP_RptName");
+                    objDataBind.BindComboBoxListSelected("DEF_Templates","TEMP_Labelcode IN ('" + varSelectedValue + "'" + (value == "" ? "" : "," + value) + ") AND TEMP_Statuscode = 1","TEMP_ShortCode,TEMP_RptName",
+                        cmbTemplate,"","TEMP_ShortCode","TEMP_RptName" );
                     objDataBind = null;
+                    
                 }
                 else
                 {
