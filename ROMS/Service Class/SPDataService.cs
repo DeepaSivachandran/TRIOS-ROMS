@@ -1939,7 +1939,7 @@ namespace ROMS
               string paraSalesmanName, string paraSchedulename, string paraSalesmanMobile, string paraSalesmanWhatsapp, int paraSaleOrderType, string ParaOrderDays,
               int ParaSupplierOrderid, int paraordertype, string ParaProductId,  string paraBranchName,
               string paraAccNo, string paraIFSC, string paraAccountName, string paraBrand, string ParaSupplierPayment, int paraDeleteFlag, string paraShortName, int paraTat, int paraFlag, int paraDiscApplicable, int paraDiscDays, int paraDiscPer, int paraScheduleId, int paraReason, string paraTallyName, string paraBankDate,int paraBankID,
-              DataTable ParaMR_Supplier_OpeningBalance,int paraCrConcernID)
+              DataTable ParaMR_Supplier_OpeningBalance,int paraDrConcernID)
         {
             string result = "";
             try
@@ -2009,7 +2009,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBankTransactionDate", paraBankDate);
                 varSqlCommand.Parameters.AddWithValue("@paraBankID", paraBankID);
                 varSqlCommand.Parameters.AddWithValue("@ParaMR_Supplier_OpeningBalance", ParaMR_Supplier_OpeningBalance);
-                varSqlCommand.Parameters.AddWithValue("@paraCrConcernID", paraCrConcernID);
+                varSqlCommand.Parameters.AddWithValue("@paraDrConcernID", paraDrConcernID);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2060,7 +2060,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupCode", objMR_Supplier.paraSubgroupCode);
                 varSqlCommand.Parameters.AddWithValue("@paraBrandCode", objMR_Supplier.paraBrandCode);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierIds", objMR_Supplier.paraSupplierIds);
-                varSqlCommand.Parameters.AddWithValue("@paraStickerCount", objMR_Supplier.paraStickerCount);
+                varSqlCommand.Parameters.AddWithValue("@paraStickerCount", objMR_Supplier.paraStickerCount); 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2581,6 +2581,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat2", objTRNS_GRN.paraVerifiedFormat2);
                 varSqlCommand.Parameters.AddWithValue("@paraPayment", objTRNS_GRN.paraPayment);
                 varSqlCommand.Parameters.AddWithValue("@paraCompletedIDs", objTRNS_GRN.paraCompletedIDs);
+                varSqlCommand.Parameters.AddWithValue("@paraADID", objTRNS_GRN.paraADID);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

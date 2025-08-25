@@ -209,6 +209,12 @@
       <DependentUpon>CP_ChequePrint_Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\MR_ChequeTransactionSettings.cs" />
+    <Compile Include="GRN_ADV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GRN_ADV.designer.cs">
+      <DependentUpon>GRN_ADV.cs</DependentUpon>
+    </Compile>
     <Compile Include="PAY_ChequeTransaction.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -2934,6 +2940,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ChequePrint_Setting.resx">
       <DependentUpon>CP_ChequePrint_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GRN_ADV.resx">
+      <DependentUpon>GRN_ADV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>

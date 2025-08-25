@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class PAY_ADV
+    partial class GRN_ADV
     {
         /// <summary>
         /// Required designer variable.
@@ -32,9 +32,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_ADV));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GRN_ADV));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdAdvance = new System.Windows.Forms.DataGridView();
+            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -66,6 +67,8 @@
             this.grdAdvance.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdAdvance.ColumnHeadersHeight = 30;
             this.grdAdvance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdAdvance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCheck});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -85,8 +88,17 @@
             this.grdAdvance.RowTemplate.Height = 25;
             this.grdAdvance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdAdvance.Size = new System.Drawing.Size(453, 275);
-            this.grdAdvance.TabIndex = 1; 
+            this.grdAdvance.TabIndex = 1;
+            this.grdAdvance.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdAdvance_CurrentCellDirtyStateChanged);
             this.grdAdvance.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdAdvance_DataBindingComplete);
+            // 
+            // clmCheck
+            // 
+            this.clmCheck.HeaderText = "";
+            this.clmCheck.Name = "clmCheck";
+            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmCheck.Width = 30;
             // 
             // btnClose
             // 
@@ -142,6 +154,7 @@
             this.btnselectall.Text = "Select All";
             this.btnselectall.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnselectall.UseVisualStyleBackColor = true;
+            this.btnselectall.Visible = false;
             this.btnselectall.Click += new System.EventHandler(this.Btnselectall_Click);
             // 
             // btnunselectall
@@ -156,9 +169,10 @@
             this.btnunselectall.Text = "Unselect All";
             this.btnunselectall.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnunselectall.UseVisualStyleBackColor = true;
+            this.btnunselectall.Visible = false;
             this.btnunselectall.Click += new System.EventHandler(this.Btnunselectall_Click);
             // 
-            // PAY_ADV
+            // GRN_ADV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -177,7 +191,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PAY_ADV";
+            this.Name = "GRN_ADV";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Advance";
             this.Load += new System.EventHandler(this.PAY_ADV_Load);
@@ -196,5 +210,6 @@
         public System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Button btnunselectall;
         private System.Windows.Forms.Button btnselectall;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
     }
 }

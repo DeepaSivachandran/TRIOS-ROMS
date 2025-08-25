@@ -108,7 +108,7 @@
             this.grdGRNDetails.RowTemplate.Height = 25;
             this.grdGRNDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGRNDetails.Size = new System.Drawing.Size(456, 261);
-            this.grdGRNDetails.TabIndex = 1111144;
+            this.grdGRNDetails.TabIndex = 1111144; 
             this.grdGRNDetails.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdGRNDetails_CurrentCellDirtyStateChanged);
             // 
             // lblNoRecordsFound

@@ -276,9 +276,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-       
+        } 
 
         private void BtnClose_Leave(object sender, EventArgs e)
         {

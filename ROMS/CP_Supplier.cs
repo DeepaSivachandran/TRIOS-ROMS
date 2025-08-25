@@ -839,7 +839,7 @@ namespace ROMS
                    Convert.ToInt32(cmbPaymentTerm.SelectedValue), varreturnapplicable, varretuencycle, Convert.ToInt32(cmbOpeningType.SelectedValue), openingvalue, Convert.ToInt32(cmbSupplierType.SelectedValue), Convert.ToInt32(cmbState.SelectedValue), varStatus,
                    MainForm.pbUserID, MainForm.pbIpAddress, varorginator, Convert.ToInt32(cmbDesignation.SelectedValue), txtcontactName.Text, creditlimit, -1, -1, -1, -1, "",
                    "", "", "", 0, "", 0, 0, "",  txtbranchname.Text, txtAccno.Text, txtIFScode.Text, txtAccName.Text, "", varpaymentmethod, 0, txtSPShortName.Text, 0, 0, 0, Convert.ToInt32(varDiscDays), Convert.ToInt32(varDiscPer), 0, 0, txtTalllyName.Text.Trim(),"",Convert.ToInt16(cmbBankName.SelectedValue),dtOpeningCRDetails,
-                   Convert.ToInt16(cmbCrCompany.SelectedValue));
+                   Convert.ToInt16(cmbDrCompany.SelectedValue));
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -1162,7 +1162,7 @@ namespace ROMS
                 dtOpeningCRDetails = new DataTable();
                 dtOpeningCRDetails.Columns.Add("SPOBID", typeof(int));
                 dtOpeningCRDetails.Columns.Add("SPOB_InvoiceDate", typeof(string));
-                dtOpeningCRDetails.Columns.Add("SPOB_IvoiceNo", typeof(string));
+                dtOpeningCRDetails.Columns.Add("SPOB_InvoiceNo", typeof(string));
                 dtOpeningCRDetails.Columns.Add("SPOB_InvoiceAmount", typeof(decimal));
                 dtOpeningCRDetails.Columns.Add("SPOB_STSID", typeof(int));
                 dtOpeningCRDetails.Columns.Add("SPOB_COMID", typeof(int));
@@ -1532,14 +1532,29 @@ namespace ROMS
                         {
                             if (objDS.Tables[4].Rows.Count > 0)
                             {
-                                if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "84") //Cr
-                                { 
-                                    grdOpeningCrDetails.Rows.Add(Convert.ToString(objDS.Tables[4].Rows[0]["S.No"]), Convert.ToString(objDS.Tables[4].Rows[0]["Concern"]), Convert.ToString(objDS.Tables[4].Rows[0]["InvoiceNo"]), Convert.ToString(objDS.Tables[4].Rows[0]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[0]["InvoiceAmount"]), Convert.ToString(objDS.Tables[4].Rows[0]["Status"]), Convert.ToString(objDS.Tables[4].Rows[0]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[0]["ConcernID"]), Convert.ToString(objDS.Tables[4].Rows[0]["ID"]));
-                                    dtOpeningCRDetails.Rows.Add(Convert.ToInt16(objDS.Tables[4].Rows[0]["ID"]), Convert.ToString(objDS.Tables[4].Rows[0]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[0]["InvoiceNo"]), Convert.ToDecimal(objDS.Tables[4].Rows[0]["InvoiceAmount"]), Convert.ToInt16(objDS.Tables[4].Rows[0]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[0]["ConcernID"]));
-                                }
-                                else if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "84") //Dr
+                                for (int i = 0; i < objDS.Tables[4].Rows.Count; i++)
                                 {
-                                    cmbCrCompany.SelectedValue = Convert.ToInt16(objDS.Tables[3].Rows[0]["ConcernID"]);
+                                    if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "84") //Cr
+                                    {
+                                        grdOpeningCrDetails.Rows.Add(Convert.ToString(objDS.Tables[4].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[4].Rows[i]["Concern"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["Status"]), Convert.ToString(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ID"]));
+                                        dtOpeningCRDetails.Rows.Add(Convert.ToInt16(objDS.Tables[4].Rows[i]["ID"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToInt16(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]));
+
+
+                                        if (Convert.ToString(Convert.ToString(objDS.Tables[4].Rows[i]["RemoveFlag"])) == "1")
+                                        {
+                                            ((DataGridViewImageCell)grdOpeningCrDetails.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
+                                            grdOpeningCrDetails.Rows[i].ReadOnly = true;
+                                            grdOpeningCrDetails.Rows[i].Cells["clmRemove"].ReadOnly = true;
+                                            grdOpeningCrDetails.Rows[i].Cells["clmRemove"].Value = null;
+                                            grdOpeningCrDetails.Rows[i].Cells["clmRemove"] = new DataGridViewTextBoxCell();
+                                            grdOpeningCrDetails.Rows[i].Cells["clmRemove"].Value = "";
+                                            grdOpeningCrDetails.Rows[i].Cells["clmRemove"].ReadOnly = true; 
+                                        }
+                                    }
+                                    else if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "85") //Dr
+                                    {
+                                        cmbDrCompany.SelectedValue = Convert.ToInt16(objDS.Tables[4].Rows[0]["ConcernID"]); 
+                                    }
                                 }
                                 udfnOpeningType();
                             }
@@ -9353,14 +9368,18 @@ namespace ROMS
                     txtDCrCompany.Visible = false;
                     cmbCrCompany.Visible = false;
                 }
+                if (Convert.ToDecimal(txtOpeningAmt.Text) == 0)
+                {
+                    cmbOpeningType.Enabled = true;
+                }
+                else { cmbOpeningType.Enabled = false; }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void TxtOpeningAmt_Enter(object sender, EventArgs e)
         {
             try
@@ -9699,7 +9718,12 @@ namespace ROMS
             {
                 decimal totalAmount = dtOpeningCRDetails.AsEnumerable()
                         .Sum(r => r.Field<decimal?>("SPOB_InvoiceAmount") ?? 0);
-                txtInvoiceAmt.Text = Convert.ToString(totalAmount.ToString("0.00"));
+                txtOpeningAmt.Text = Convert.ToString(totalAmount.ToString("0.00"));
+                if (totalAmount == 0)
+                {
+                    cmbOpeningType.Enabled = true; 
+                }
+                else { cmbOpeningType.Enabled = false;  }
             }
             catch (Exception ex)
             {
@@ -9856,6 +9880,48 @@ namespace ROMS
             }
         }
 
+        private void GrdOpeningCrDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdOpeningCrDetails.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmRemove":
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            { 
+                                var spoid = Convert.ToInt32(grdOpeningCrDetails.CurrentRow.Cells["clmID"].Value);
+                                var invNo = Convert.ToString(grdOpeningCrDetails.CurrentRow.Cells["clmInvoiceNo"].Value);
+                                var invDate = Convert.ToString(grdOpeningCrDetails.CurrentRow.Cells["clmInvoiceDate"].Value);
+                                var comid = Convert.ToInt16(grdOpeningCrDetails.CurrentRow.Cells["clmConcernId"].Value);
+
+                                var rowsToDelete = dtOpeningCRDetails.AsEnumerable()
+                                    .Where(r => r.Field<int>("SPOBID") == spoid
+                                        && r.Field<string>("SPOB_InvoiceNo") == invNo
+                                        && r.Field<string>("SPOB_InvoiceDate") == invDate
+                                        && r.Field<int>("SPOB_COMID") == comid
+                                    )
+                                    .ToList(); 
+                                foreach (var row in rowsToDelete)
+                                {
+                                    row.Delete();
+                                }
+                                dtOpeningCRDetails.AcceptChanges();
+                                grdOpeningCrDetails.Rows.RemoveAt(this.grdOpeningCrDetails.Rows[e.RowIndex].Index);
+                                udfnSumOpeningAmt();
+                            }
+                            break;
+                    }
+                }        
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        } 
         private void TxtDiscountPer_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
