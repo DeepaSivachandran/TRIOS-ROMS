@@ -78,10 +78,9 @@
             this.txtDPaymentMode = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
             this.txtChequeDate = new System.Windows.Forms.TextBox();
-            this.dtChequeDate = new System.Windows.Forms.DateTimePicker();
-            this.cmbPaymentType = new System.Windows.Forms.ComboBox();
+            this.dpChequeDate = new System.Windows.Forms.DateTimePicker();
             this.txtChequeNo = new System.Windows.Forms.TextBox();
-            this.txtDPaymentType = new System.Windows.Forms.TextBox();
+            this.txtDBank = new System.Windows.Forms.TextBox();
             this.cmbPaymentmode = new System.Windows.Forms.ComboBox();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -103,6 +102,7 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.grbIssuedDetails.SuspendLayout();
             this.grbBankDetails.SuspendLayout();
@@ -647,13 +647,13 @@
             // 
             // grbPayment
             // 
+            this.grbPayment.Controls.Add(this.cmbBank);
             this.grbPayment.Controls.Add(this.txtDPaymentMode);
             this.grbPayment.Controls.Add(this.txtDChequeNo);
             this.grbPayment.Controls.Add(this.txtChequeDate);
-            this.grbPayment.Controls.Add(this.dtChequeDate);
-            this.grbPayment.Controls.Add(this.cmbPaymentType);
+            this.grbPayment.Controls.Add(this.dpChequeDate);
             this.grbPayment.Controls.Add(this.txtChequeNo);
-            this.grbPayment.Controls.Add(this.txtDPaymentType);
+            this.grbPayment.Controls.Add(this.txtDBank);
             this.grbPayment.Controls.Add(this.cmbPaymentmode);
             this.grbPayment.Location = new System.Drawing.Point(7, 218);
             this.grbPayment.Name = "grbPayment";
@@ -688,7 +688,7 @@
             this.txtDChequeNo.Size = new System.Drawing.Size(122, 28);
             this.txtDChequeNo.TabIndex = 1111219;
             this.txtDChequeNo.TabStop = false;
-            this.txtDChequeNo.Text = "Cheque No";
+            this.txtDChequeNo.Text = "Cheque No.";
             this.txtDChequeNo.Visible = false;
             // 
             // txtChequeDate
@@ -706,68 +706,54 @@
             this.txtChequeDate.Text = "Cheque Date";
             this.txtChequeDate.Visible = false;
             // 
-            // dtChequeDate
+            // dpChequeDate
             // 
-            this.dtChequeDate.CustomFormat = "dd/MM/yyyy";
-            this.dtChequeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtChequeDate.Location = new System.Drawing.Point(132, 81);
-            this.dtChequeDate.Name = "dtChequeDate";
-            this.dtChequeDate.Size = new System.Drawing.Size(107, 28);
-            this.dtChequeDate.TabIndex = 6;
-            this.dtChequeDate.Visible = false;
-            this.dtChequeDate.Enter += new System.EventHandler(this.DtChequeDate_Enter);
-            this.dtChequeDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtChequeDate_KeyDown);
-            this.dtChequeDate.Leave += new System.EventHandler(this.DtChequeDate_Leave);
-            // 
-            // cmbPaymentType
-            // 
-            this.cmbPaymentType.FormattingEnabled = true;
-            this.cmbPaymentType.Location = new System.Drawing.Point(132, 54);
-            this.cmbPaymentType.Name = "cmbPaymentType";
-            this.cmbPaymentType.Size = new System.Drawing.Size(107, 28);
-            this.cmbPaymentType.TabIndex = 5;
-            this.cmbPaymentType.Visible = false;
-            this.cmbPaymentType.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentType_SelectedIndexChanged);
-            this.cmbPaymentType.Enter += new System.EventHandler(this.CmbPaymentType_Enter);
-            this.cmbPaymentType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentType_KeyDown);
-            this.cmbPaymentType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentType_KeyPress);
-            this.cmbPaymentType.Leave += new System.EventHandler(this.CmbPaymentType_Leave);
+            this.dpChequeDate.CustomFormat = "dd/MM/yyyy";
+            this.dpChequeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpChequeDate.Location = new System.Drawing.Point(132, 81);
+            this.dpChequeDate.Name = "dpChequeDate";
+            this.dpChequeDate.Size = new System.Drawing.Size(180, 28);
+            this.dpChequeDate.TabIndex = 2;
+            this.dpChequeDate.Visible = false;
+            this.dpChequeDate.Enter += new System.EventHandler(this.DtChequeDate_Enter);
+            this.dpChequeDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtChequeDate_KeyDown);
+            this.dpChequeDate.Leave += new System.EventHandler(this.DtChequeDate_Leave);
             // 
             // txtChequeNo
             // 
             this.txtChequeNo.Location = new System.Drawing.Point(132, 108);
-            this.txtChequeNo.MaxLength = 30;
+            this.txtChequeNo.MaxLength = 10;
             this.txtChequeNo.Name = "txtChequeNo";
-            this.txtChequeNo.Size = new System.Drawing.Size(107, 28);
-            this.txtChequeNo.TabIndex = 7;
+            this.txtChequeNo.Size = new System.Drawing.Size(180, 28);
+            this.txtChequeNo.TabIndex = 3;
             this.txtChequeNo.Visible = false;
             this.txtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
             this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown);
             this.txtChequeNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtChequeNo_KeyPress);
             this.txtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
-            // txtDPaymentType
+            // txtDBank
             // 
-            this.txtDPaymentType.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDPaymentType.Enabled = false;
-            this.txtDPaymentType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentType.Location = new System.Drawing.Point(10, 54);
-            this.txtDPaymentType.Multiline = true;
-            this.txtDPaymentType.Name = "txtDPaymentType";
-            this.txtDPaymentType.ReadOnly = true;
-            this.txtDPaymentType.Size = new System.Drawing.Size(122, 28);
-            this.txtDPaymentType.TabIndex = 1111222;
-            this.txtDPaymentType.TabStop = false;
-            this.txtDPaymentType.Text = "Payment Type";
-            this.txtDPaymentType.Visible = false;
+            this.txtDBank.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDBank.Enabled = false;
+            this.txtDBank.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDBank.Location = new System.Drawing.Point(10, 54);
+            this.txtDBank.Multiline = true;
+            this.txtDBank.Name = "txtDBank";
+            this.txtDBank.ReadOnly = true;
+            this.txtDBank.Size = new System.Drawing.Size(122, 28);
+            this.txtDBank.TabIndex = 1111222;
+            this.txtDBank.TabStop = false;
+            this.txtDBank.Text = "Bank";
+            this.txtDBank.Visible = false;
             // 
             // cmbPaymentmode
             // 
             this.cmbPaymentmode.FormattingEnabled = true;
             this.cmbPaymentmode.Location = new System.Drawing.Point(132, 27);
             this.cmbPaymentmode.Name = "cmbPaymentmode";
-            this.cmbPaymentmode.Size = new System.Drawing.Size(228, 28);
-            this.cmbPaymentmode.TabIndex = 4;
+            this.cmbPaymentmode.Size = new System.Drawing.Size(180, 28);
+            this.cmbPaymentmode.TabIndex = 0;
             this.cmbPaymentmode.SelectedIndexChanged += new System.EventHandler(this.CmbPaymentmode_SelectedIndexChanged);
             this.cmbPaymentmode.Enter += new System.EventHandler(this.CmbPaymentmode_Enter);
             this.cmbPaymentmode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentmode_KeyDown);
@@ -1001,6 +987,18 @@
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 37;
             // 
+            // cmbBank
+            // 
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(132, 54);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(180, 28);
+            this.cmbBank.TabIndex = 1;
+            this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
+            this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
+            this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
+            this.cmbBank.Leave += new System.EventHandler(this.CmbBank_Leave);
+            // 
             // PAY_Advance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1058,12 +1056,11 @@
         private System.Windows.Forms.TextBox txtConcern;
         private System.Windows.Forms.TextBox txtReceiptNo;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.ComboBox cmbPaymentType;
-        private System.Windows.Forms.TextBox txtDPaymentType;
+        private System.Windows.Forms.TextBox txtDBank;
         private System.Windows.Forms.ComboBox cmbPaymentmode;
         private System.Windows.Forms.TextBox txtDPaymentMode;
         private System.Windows.Forms.TextBox txtChequeNo;
-        private System.Windows.Forms.DateTimePicker dtChequeDate;
+        private System.Windows.Forms.DateTimePicker dpChequeDate;
         private System.Windows.Forms.TextBox txtChequeDate;
         private System.Windows.Forms.TextBox txtDChequeNo;
         private System.Windows.Forms.Label label1;
@@ -1113,5 +1110,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox txtCurrentBalance;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ComboBox cmbBank;
     }
 }

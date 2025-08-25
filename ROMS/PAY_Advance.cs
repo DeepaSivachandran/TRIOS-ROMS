@@ -29,8 +29,10 @@ namespace ROMS
         public int PbStatus=0;
         public int varUpdate = 0;
         public decimal varNeftAmount = 0;
-        public int pbADID = 0,varDateChange=0, varClose = 0, varCloseFlag=0;
+        public int pbADID = 0,varDateChange=0, varClose = 0, varCloseFlag=0, varSPBankID = -1, varDefaultBank = 0;
         bool varVoucherSkip = false;
+        DataTable dtBankDetails = new DataTable();
+        public decimal varRTGSMinLimit = 0;
         public PAY_Advance()
         {
             InitializeComponent();
@@ -74,34 +76,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPaymentMode()
-        {
-            try
-            {
-                SPDataService objdserv = new SPDataService();
-                DataSet objDT = new DataSet();
-                objDT = objdserv.udfnCompanyList(12, Convert.ToInt32(cmbConcern.SelectedValue), MainForm.pbUserID, MainForm.pbIpAddress, 0);
-                objdserv.CloseConnection();
-                cmbPaymentmode.DataSource = null;
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count > 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count > 0)
-                        {
-                            cmbPaymentmode.ValueMember = "ID";
-                            cmbPaymentmode.DisplayMember = "Payment Mode";
-                            cmbPaymentmode.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         public void udfnSave(object sender, EventArgs e)
         {
             try
@@ -125,22 +100,13 @@ namespace ROMS
                 objTRN_Advance.paraAdvanceDate = dpAdvanceDate.Text;
                 objTRN_Advance.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
-                objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text.Trim());
-                if (cmbPaymentType.Visible == true)
+                objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text.Trim()); 
+                objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 346)
                 {
-                    objTRN_Advance.paraPaymentType = Convert.ToInt32(cmbPaymentType.SelectedValue);
-                    objTRN_Advance.paraChequeDate = dtChequeDate.Text;
-                    objTRN_Advance.paraChequeNo = txtChequeNo.Text.Trim();
-                }
-                if(Convert.ToInt32(cmbPaymentmode.SelectedValue)!=88)
-                {
-                    objTRN_Advance.paraBankId =Convert.ToInt32(cmbPaymentmode.SelectedValue);
-                    objTRN_Advance.paraPaymentMode = 89;
-                }
-                else
-                {
-                    objTRN_Advance.paraBankId = 0;
-                    objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                    objTRN_Advance.paraBankId = Convert.ToInt32(cmbBank.SelectedValue); 
+                    objTRN_Advance.paraChequeNo = Convert.ToString(txtChequeNo.Text.Trim());
+                    objTRN_Advance.paraChequeDate = Convert.ToString(dpChequeDate.Text);
                 }
                 objTRN_Advance.paraModeOfIssue =Convert.ToInt32(cmbIssueMode.SelectedValue);
                 if(Convert.ToInt32(cmbIssueMode.SelectedValue)==-1)
@@ -539,7 +505,7 @@ namespace ROMS
             {
                 txtAmount.BackColor = Color.White;
                 txtAmount.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
-                udfnCheckAmt();
+                udfnPaymentDropDown();
                 if (txtAmount.Text.Trim() != "")
                 {
                     decimal varMRP = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
@@ -819,6 +785,7 @@ namespace ROMS
                             txtAccName.Text = objDs.Tables[8].Rows[0]["SP_AccountName"].ToString();
                             txtAccno.Text = objDs.Tables[8].Rows[0]["SP_AccNo"].ToString();
                             txtIFScode.Text = objDs.Tables[8].Rows[0]["SP_IFSC"].ToString();
+                            varSPBankID = Convert.ToInt16(objDs.Tables[8].Rows[0]["SP_BNKID"]);
                         }
                     }
                 }
@@ -871,7 +838,8 @@ namespace ROMS
                 MainForm objMainForm = new MainForm();
                 objMainForm.udfnGetDefaultCompany();
                 udfnCmbConcern();
-                udfnPaymentMode();
+                udfnPaymentDropDown();
+                udfnBankDropDown();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,71) AND MSTID NOT IN (0)", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -897,7 +865,7 @@ namespace ROMS
                     else
                     {
                         this.ActiveControl = txtSupplier;
-                        dtChequeDate.MinDate = MainForm.pbCurrentDate;
+                        dpChequeDate.MinDate = MainForm.pbCurrentDate;
                     }
                 }
             }
@@ -908,6 +876,29 @@ namespace ROMS
             }
             finally
             {
+            }
+        }
+        public void udfnPaymentDropDown()
+        {
+            try
+            {
+                if ((Convert.ToDecimal(txtAmount.Text)) > varRTGSMinLimit)
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND MSTID NOT IN (348)  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else
+                {
+                    DataBind objDataBind = new DataBind();
+                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND MSTID NOT IN (349)  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnGeneralSettingsList()
@@ -924,6 +915,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             varNeftAmount = Convert.ToDecimal(objDs.Tables[0].Rows[0]["GS_NEFT_Amount"]);
+                            varRTGSMinLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
                         }
                     }
                 }
@@ -964,23 +956,15 @@ namespace ROMS
                             lblSupplierCode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPID"]);
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPSCID"]);
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
-                            txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
-                            txtCurrentBalance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Current Balance"]);
                             varSource = Convert.ToInt32(objDs.Tables[0].Rows[0]["Source"]);
-                            if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]) == "88")
-                            {
-                                cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);
-                            }
-                            else
-                            {
-                                cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_CMBNK_ID"]);
-                            }
-                            if (Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]) != "0")
-                            {
-                                cmbPaymentType.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentType"]);
-                                dtChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
-                                txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]);
-                            }
+                        
+                            udfnPaymentDropDown();
+                            txtCurrentBalance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Current Balance"]); 
+                                cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);   
+                                cmbBank.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_CMBNK_ID"]); 
+                             
+                                dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
+                                txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]); 
                             cmbIssueMode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["AD_ModeOfIssue"]);
                             txtIssue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ModeOfIssue_Details"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Remarks"]);
@@ -1094,14 +1078,109 @@ namespace ROMS
 
         private void CmbPaymentmode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            udfnCheckAmt();
+            udfnPaymentMode();
+        }
+        public void udfnPaymentMode()
+        {
+            try
+            {
+                int paymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                txtDBank.Visible = true;
+                cmbBank.Visible = true;
+                txtChequeDate.Visible = true;
+                dpChequeDate.Visible = true;
+                txtDChequeNo.Visible = true;
+                txtChequeNo.Visible = true;
+                txtChequeDate.Visible = true;
+                txtChequeNo.Visible = true;
+                dpChequeDate.Visible = true;
+                txtDChequeNo.Visible = true;
+                cmbBank.Visible = true;
+                txtDBank.Visible = true;
+                cmbBank.Enabled = true;
+                txtChequeNo.Text = "";
+                if (paymentMode == 346)
+                {
+                    txtDBank.Visible = false;
+                    cmbBank.Visible = false;
+                    txtChequeDate.Visible = false;
+                    dpChequeDate.Visible = false;
+                    txtDChequeNo.Visible = false;
+                    txtChequeNo.Visible = false;
+                    txtChequeDate.Visible = false;
+                    txtChequeNo.Visible = false;
+                    dpChequeDate.Visible = false;
+                    txtDChequeNo.Visible = false;
+                    cmbBank.Visible = false;
+                    txtDBank.Visible = false;
+                }
+                else if (paymentMode == 350)
+                {
+                    var Count = dtBankDetails.AsEnumerable()
+                       .Where(b => b.Field<int>("BNKID") == varSPBankID)
+                       .GroupBy(b => b.Field<int>("CMBNK_ID")) // dummy group to aggregate
+                       .Select(g => g.Count())
+                       .ToList();
+                    var result = dtBankDetails.AsEnumerable()
+                    .Where(b => b.Field<int>("BNKID") == varSPBankID)
+                    .GroupBy(b => b.Field<int>("CMBNK_ID")) // dummy group to aggregate
+                    .Select(g => g.Count() > 1
+                        ? g.First().Field<int>("BNKID")
+                        : g.First().Field<int>("CMBNK_ID"))
+                    .FirstOrDefault();
+                    cmbBank.SelectedValue = result;
+                    if (Count[0] == 1)
+                    { cmbBank.Enabled = false; }
+                    else { cmbBank.Enabled = true; }
+                }
+                else { cmbBank.SelectedValue = varDefaultBank; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnBankDropDown()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnCompanyList(13, Convert.ToInt16(cmbConcern.SelectedValue), "", "", 0);
+                objdserv.CloseConnection();
+                cmbBank.DataSource = null;
+                dtBankDetails = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbBank.ValueMember = "CMBNK_ID";
+                            cmbBank.DisplayMember = "Bank";
+                            cmbBank.DataSource = objDT.Tables[0];
+                            dtBankDetails = objDT.Tables[0];
+                            if (Convert.ToString(objDT.Tables[0].Rows[0]["Default"]) != "0")
+                            {
+                                varDefaultBank = Convert.ToInt16(objDT.Tables[0].Rows[0]["Default"]);
+                            }
+                            else { varDefaultBank = Convert.ToInt16(objDT.Tables[0].Rows[0]["CMBNK_ID"]); }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnShowHideTextBoxes()
         {
             try
             {
-                txtDPaymentType.Visible = false;
-                cmbPaymentType.Visible = false;
+                txtDBank.Visible = false; 
                 udfnShowHideTextBoxes2ndlevel();
             }
             catch (Exception ex)
@@ -1116,12 +1195,12 @@ namespace ROMS
             {
                 txtChequeDate.Visible = false;
                 txtChequeNo.Visible = false;
-                dtChequeDate.Visible = false;
+                dpChequeDate.Visible = false;
                 txtDChequeNo.Visible = false;
                 txtDChequeNo.Text = "";
                 txtChequeDate.Text = "";
                 txtChequeNo.Text = "";
-                dtChequeDate.Value = MainForm.pbCurrentDate;
+                dpChequeDate.Value = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
             {
@@ -1129,34 +1208,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnCheckAmt()
-        {
-            try
-            {
-                udfnShowHideTextBoxes();
-                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 88 && (Convert.ToDecimal(txtAmount.Text) < varNeftAmount))
-                {
-                    txtDPaymentType.Visible = true;
-                    cmbPaymentType.Visible = true;
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 AND MSTID IN(91,94)", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
-                    objDataBind = null;
-                }
-                else if ((Convert.ToDecimal(txtAmount.Text) >= varNeftAmount) && Convert.ToInt32(cmbPaymentmode.SelectedValue) != 88)
-                {
-                    txtDPaymentType.Visible = true;
-                    cmbPaymentType.Visible = true;
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=32 AND MSTID IN(91,93)", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
-                    objDataBind = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         private void CmbPaymentmode_Enter(object sender, EventArgs e)
         {
             try
@@ -1177,14 +1229,12 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbPaymentType.Visible == true)
-                    {
-                        cmbPaymentType.Focus();
-                    }
+                    if (cmbBank.Visible == false)
+                    { cmbIssueMode.Focus(); }
+                    else if (cmbBank.Enabled == true)
+                    { cmbBank.Focus(); }
                     else
-                    {
-                        cmbIssueMode.Focus();
-                    }
+                    { txtRemark.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -1218,63 +1268,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void CmbPaymentType_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbPaymentType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbPaymentType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if(e.KeyCode==Keys.Enter)
-                {
-                    dtChequeDate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbPaymentType_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void CmbPaymentType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbPaymentType.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+        }    
         private void TxtRemark_Enter(object sender, EventArgs e)
         {
             try
@@ -1363,7 +1357,7 @@ namespace ROMS
         {
             try
             {
-                dtChequeDate.BackColor = Color.LemonChiffon;
+                dpChequeDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1392,7 +1386,7 @@ namespace ROMS
         {
             try
             {
-                dtChequeDate.BackColor = Color.White;
+                dpChequeDate.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1513,6 +1507,61 @@ namespace ROMS
             }
         }
 
+        private void CmbBank_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBank.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBank_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpChequeDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBank_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbBank_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBank.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtIssue_Leave(object sender, EventArgs e)
         {
             try
@@ -1537,86 +1586,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void CmbPaymentType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            try
-            {
-                udfnShowHideTextBoxes2ndlevel();
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 91)
-                {
-                    txtChequeDate.Visible = true;
-                    txtChequeNo.Visible = true;
-                    dtChequeDate.Visible = true;
-                    txtDChequeNo.Visible = true;
-                    txtDChequeNo.Text = "Cheque No.";
-                    txtChequeDate.Text = "Cheque Date";
-                }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 92)
-                {
-                    txtChequeDate.Visible = true;
-                    txtChequeNo.Visible = true;
-                    dtChequeDate.Visible = true;
-                    txtDChequeNo.Visible = true;
-                    txtDChequeNo.Text = "DD No.";
-                    txtChequeDate.Text = "DD Date";
-                }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 97 || Convert.ToInt32(cmbPaymentType.SelectedValue) == 98)
-                {
-                    txtChequeDate.Visible = true;
-                    txtChequeNo.Visible = true;
-                    dtChequeDate.Visible = true;
-                    txtDChequeNo.Visible = true;
-                    txtDChequeNo.Text = "UTR/Ref No.";
-                    txtChequeDate.Text = "Transaction Date";
-                }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 94 && Convert.ToInt32(cmbPaymentmode.SelectedValue) != 88)
-                {
-                    txtChequeDate.Visible = true;
-                    txtChequeNo.Visible = true;
-                    dtChequeDate.Visible = true;
-                    txtDChequeNo.Visible = true;
-                    txtDChequeNo.Text = "Cheque No.";
-                    txtChequeDate.Text = "Cheque Date";
-                }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 93 && Convert.ToInt32(cmbPaymentmode.SelectedValue) != 88)
-                {
-                    txtChequeDate.Visible = true;
-                    txtChequeNo.Visible = true;
-                    dtChequeDate.Visible = true;
-                    txtDChequeNo.Visible = true;
-                    txtDChequeNo.Text = "Cheque No.";
-                    txtChequeDate.Text = "Cheque Date";
-                }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 96 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 90)
-                {
-                    txtChequeDate.Visible = true;
-                    txtChequeNo.Visible = true;
-                    dtChequeDate.Visible = true;
-                    txtDChequeNo.Visible = true;
-                    txtDChequeNo.Text = "UTR/Ref No.";
-                    txtChequeDate.Text = "Transaction Date";
-                }
-                if (Convert.ToInt32(cmbPaymentType.SelectedValue) == 95 && Convert.ToInt32(cmbPaymentmode.SelectedValue) == 90)
-                {
-                    txtChequeDate.Visible = true;
-                    txtChequeNo.Visible = true;
-                    dtChequeDate.Visible = true;
-                    txtDChequeNo.Visible = true;
-                    txtDChequeNo.Text = "UTR/Ref No.";
-                    txtChequeDate.Text = "Transaction Date";
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            
-        }
-
+        } 
         private void TxtChequeNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1631,8 +1601,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         public void udfnvoucheradd(object sender, EventArgs e)
         {
             try
@@ -1676,7 +1645,7 @@ namespace ROMS
                 if (txtSupplier.Text.Length > 0)
                 {
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 39;
+                    objMR_Supplier.ViewType = 43;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();

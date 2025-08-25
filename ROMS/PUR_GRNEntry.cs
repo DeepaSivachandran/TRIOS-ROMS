@@ -1885,7 +1885,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    if (btnAdvance.Enabled == true)
+                    { btnAdvance.Focus(); }
+                    else
+                    { btnSave.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -1915,6 +1918,32 @@ namespace ROMS
             try
             {
                 udfnAdvanceEnable();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdvance_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdvance.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnAdvance_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdvance.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

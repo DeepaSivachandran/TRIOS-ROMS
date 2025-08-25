@@ -788,7 +788,6 @@
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.Size = new System.Drawing.Size(107, 27);
             this.txtInvoiceNo.TabIndex = 4;
-            this.txtInvoiceNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtInvoiceNo.Enter += new System.EventHandler(this.TxtInvoiceNo_Enter);
             this.txtInvoiceNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtInvoiceNo_KeyDown);
             this.txtInvoiceNo.Leave += new System.EventHandler(this.TxtInvoiceNo_Leave);
@@ -1306,7 +1305,7 @@
             this.cmbPaymentTerm.Items.AddRange(new object[] {
             "Nett Amount",
             "Taxable Amount"});
-            this.cmbPaymentTerm.Location = new System.Drawing.Point(123, 79);
+            this.cmbPaymentTerm.Location = new System.Drawing.Point(123, 52);
             this.cmbPaymentTerm.Name = "cmbPaymentTerm";
             this.cmbPaymentTerm.Size = new System.Drawing.Size(149, 27);
             this.cmbPaymentTerm.TabIndex = 18;
@@ -1351,7 +1350,7 @@
             this.txtDPaymentTerm.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPaymentTerm.Enabled = false;
             this.txtDPaymentTerm.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPaymentTerm.Location = new System.Drawing.Point(12, 79);
+            this.txtDPaymentTerm.Location = new System.Drawing.Point(12, 52);
             this.txtDPaymentTerm.Name = "txtDPaymentTerm";
             this.txtDPaymentTerm.ReadOnly = true;
             this.txtDPaymentTerm.Size = new System.Drawing.Size(111, 27);
@@ -1416,10 +1415,11 @@
             this.cmbfinance.Items.AddRange(new object[] {
             "CR",
             "DR"});
-            this.cmbfinance.Location = new System.Drawing.Point(230, 52);
+            this.cmbfinance.Location = new System.Drawing.Point(249, 132);
             this.cmbfinance.Name = "cmbfinance";
             this.cmbfinance.Size = new System.Drawing.Size(42, 27);
             this.cmbfinance.TabIndex = 17;
+            this.cmbfinance.Visible = false;
             this.cmbfinance.SelectedIndexChanged += new System.EventHandler(this.Cmbfinance_SelectedIndexChanged);
             this.cmbfinance.Enter += new System.EventHandler(this.Cmbfinance_Enter);
             this.cmbfinance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cmbfinance_KeyDown);
@@ -1429,12 +1429,13 @@
             // txtopening
             // 
             this.txtopening.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtopening.Location = new System.Drawing.Point(123, 52);
+            this.txtopening.Location = new System.Drawing.Point(142, 132);
             this.txtopening.MaxLength = 10;
             this.txtopening.Name = "txtopening";
             this.txtopening.Size = new System.Drawing.Size(107, 27);
             this.txtopening.TabIndex = 16;
             this.txtopening.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtopening.Visible = false;
             this.txtopening.Enter += new System.EventHandler(this.Txtopening_Enter);
             this.txtopening.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtopening_KeyDown);
             this.txtopening.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtopening_KeyPress);
@@ -1445,12 +1446,13 @@
             this.textBox22.BackColor = System.Drawing.SystemColors.Control;
             this.textBox22.Enabled = false;
             this.textBox22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox22.Location = new System.Drawing.Point(12, 52);
+            this.textBox22.Location = new System.Drawing.Point(31, 132);
             this.textBox22.Name = "textBox22";
             this.textBox22.ReadOnly = true;
             this.textBox22.Size = new System.Drawing.Size(111, 27);
             this.textBox22.TabIndex = 26;
             this.textBox22.Text = "Opening Balance";
+            this.textBox22.Visible = false;
             // 
             // txtcreditlimit
             // 
@@ -1797,7 +1799,7 @@
             this.txtArea.MaxLength = 50;
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(397, 27);
-            this.txtArea.TabIndex = 3; 
+            this.txtArea.TabIndex = 3;
             this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter);
             this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
             this.txtArea.Leave += new System.EventHandler(this.txtArea_Leave);
