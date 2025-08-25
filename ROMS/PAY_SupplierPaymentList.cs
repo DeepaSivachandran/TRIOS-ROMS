@@ -732,6 +732,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         public void udfnList()
         {
             try
@@ -855,9 +856,16 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PAY_PaymentMode"].Visible = false;
                 DGV_SearchGrid.Columns["PAYID"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 150;
+                DGV_SearchGrid.Columns["PAY_PaymentMode"].Visible = false;
+                DGV_SearchGrid.Columns["PAYID"].Visible = false;
                 DGV_SearchGrid.Columns["PAY_STSID"].Visible = false;
                 DGV_SearchGrid.Columns["PAY_BankID"].Visible = false;
                 DGV_SearchGrid.Columns["ChequeDate"].Visible = false;
+                DGV_SearchGrid.Columns["PAY_SPID"].Visible = false;
+                DGV_SearchGrid.Columns["PAY_SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["PAY_Bank_Tx_Date"].Visible = false;
+                DGV_SearchGrid.Columns["RPTName"].Visible = false;
+                DGV_SearchGrid.Columns["PrintFlag"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
