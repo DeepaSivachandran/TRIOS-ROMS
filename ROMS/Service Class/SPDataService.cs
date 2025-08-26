@@ -1760,7 +1760,7 @@ namespace ROMS
         }
 
         // Sivabharathi    Create date: 24/08/2023    Description:Rack Group SP
-        public string udfnRackGroup(int ViewType, int paraRKGID, int paraRKG_COMID, string paraRKG_Name, string paraRKGR_RKID, string paraRKGU_UID, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag)
+        public string udfnRackGroup(int ViewType, int paraRKGID, int paraRKG_COMID, string paraRKG_Name, string paraRKGR_RKID, string paraRKGU_UID, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag,int paraRKGOrderNo)
         {
             string varResult = "";
             try
@@ -1779,6 +1779,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraRKGOrderNo", paraRKGOrderNo);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -4296,6 +4297,36 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return varResult;
+        }
+        public DataSet udfnGetSlNo(string paraTableName, string paraProcess, string paraColumnName, string paraColumnValue)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[PROC_GETSLNO]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraTableName", paraTableName);
+                varSqlCommand.Parameters.AddWithValue("@paraProcess", paraProcess);
+                varSqlCommand.Parameters.AddWithValue("@paraColumnName", paraColumnName);
+                varSqlCommand.Parameters.AddWithValue("@paraColumnValue", paraColumnValue);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
     }
 

@@ -111,6 +111,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cmbRGOrderNo = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridLeft)).BeginInit();
@@ -127,6 +129,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.cmbRGOrderNo);
+            this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.btnSelectAll);
             this.grbform.Controls.Add(this.btnUnselectAll);
             this.grbform.Controls.Add(this.chkRack);
@@ -1053,6 +1057,33 @@
             // 
             this.columnHeader6.Width = 0;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(689, 18);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(116, 27);
+            this.textBox1.TabIndex = 1111144;
+            this.textBox1.Text = "Rack Group Order";
+            // 
+            // cmbRGOrderNo
+            // 
+            this.cmbRGOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRGOrderNo.FormattingEnabled = true;
+            this.cmbRGOrderNo.Location = new System.Drawing.Point(805, 18);
+            this.cmbRGOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbRGOrderNo.Name = "cmbRGOrderNo";
+            this.cmbRGOrderNo.Size = new System.Drawing.Size(67, 27);
+            this.cmbRGOrderNo.TabIndex = 2;
+            this.cmbRGOrderNo.Enter += new System.EventHandler(this.CmbRGOrderNo_Enter);
+            this.cmbRGOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbRGOrderNo_KeyDown);
+            this.cmbRGOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbRGOrderNo_KeyPress);
+            this.cmbRGOrderNo.Leave += new System.EventHandler(this.CmbRGOrderNo_Leave);
+            // 
             // CP_RackGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1158,5 +1189,7 @@
         public System.Windows.Forms.DataGridView DGV_SearchGridRight;
         public System.Windows.Forms.Button btnUnselectAll;
         public System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbRGOrderNo;
     }
 }
