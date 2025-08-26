@@ -87,7 +87,7 @@ namespace ROMS
             {
                 errPurchaseentry.Clear();
                 DGV_FilterProduct.Visible = false;
-                txtProductName.Text = "";
+                txtProductName.Text = ""; 
                 udfnrowclear();
                 if (pbPurchaseno == "0")
                 {
@@ -112,11 +112,12 @@ namespace ROMS
                     {
                         if (PbFlag == "0")
                         {
+                            pbDCNo = "0";pbPONO = "0";
                             if (varEntryTypeRefresh == 0)
                             { grdPODetails.Rows.Clear(); }
-                            grdReurnDC.Rows.Clear();
-                            udfnPODropdownload();
+                            grdReurnDC.Rows.Clear(); 
                             udfnPurchaseGrnLoad();
+                            udfnPODropdownload();
                             udfnProDetailsTolProCount();
                             udfnGRNProload();
                             grdSupplierList.Columns["clmPono"].Visible = true;
@@ -130,10 +131,11 @@ namespace ROMS
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "55") // PO
                     {
+                        pbDCNo = "0";pbGRNNo = "0";
                         grdReurnDC.Rows.Clear();
-                        grdPODetails.Visible = true;
-                        udfnPODropdownload();
+                        grdPODetails.Visible = true; 
                         udfnPendingPOLoad();
+                        udfnPODropdownload();
                         udfnProDetailsTolProCount();
                         txtQRCode.Text = "";
                         txtQRCode.ReadOnly = true;
@@ -155,6 +157,7 @@ namespace ROMS
                     }
                     if (cmbEntryType.SelectedValue.ToString() == "56") // Direct
                     {
+                        pbDCNo = "0";pbGRNNo = "0";pbPONO = "0";
                         grdPODetails.Rows.Clear();
                         grdReurnDC.Rows.Clear();
                         udfnPODropdownload();
@@ -180,9 +183,10 @@ namespace ROMS
                     {
                         if (PbFlag == "0")
                         {
-                            grdPODetails.Rows.Clear();
-                            udfnPODropdownload();
+                            pbPONO = "0";pbGRNNo = "0";
+                            grdPODetails.Rows.Clear(); 
                             udfnPurchaseDC();
+                            udfnPODropdownload();
                             udfnProDetailsTolProCount();
                             grdPODetails.Visible = false;
                             grdSupplierList.Columns["clmGrnMrp"].Visible = false;
@@ -606,6 +610,7 @@ namespace ROMS
                 MainForm.objPUR_GRNOrderType.varMasterType = 2;
                 MainForm.objPUR_GRNOrderType.ShowDialog();
                 varTypeErrId = pbPONO;
+                if (pbPONO == "0") { cmbEntryType.SelectedValue = -1; }
             }
             catch (Exception ex)
             {
@@ -631,6 +636,7 @@ namespace ROMS
                 MainForm.objPUR_DCDeatils = new PUR_DCDeatils();
                 MainForm.objPUR_DCDeatils.ShowDialog();
                 varTypeErrId = pbDCNo;
+               if(pbDCNo=="0") { cmbEntryType.SelectedValue = -1; }
             }
             catch (Exception ex)
             {
@@ -684,6 +690,8 @@ namespace ROMS
                         }
                     }
                 }
+                if(pbGRNNo=="0")
+                { cmbEntryType.SelectedValue = -1; }
             }
             catch (Exception ex)
             {
@@ -1506,7 +1514,7 @@ namespace ROMS
                         {
                             if (objDs.Tables[5].Rows.Count != 0) //GRN DETAILS LOAD
                             {
-                                lblFinishedNoRecord.Visible = false; 
+                                lblFinishedNoRecord.Visible = false; grdGRN.Rows.Clear();
                                 for (int i = 0; i < objDs.Tables[5].Rows.Count; i++)
                                 {
                                     grdGRN.Rows.Add(Convert.ToString(objDs.Tables[5].Rows[i]["GRN_Date"]), Convert.ToString(objDs.Tables[5].Rows[i]["GRN_No"]),
@@ -1848,6 +1856,7 @@ namespace ROMS
                             if (objDs.Tables[3].Rows.Count != 0) //PO DETAILS LOAD
                             {
                                 lblPOnorecord.Visible = false;
+                                grdPODetails.Rows.Clear();
                                 for (int i = 0; i < objDs.Tables[3].Rows.Count; i++)
                                 {
                                     grdPODetails.Rows.Add(Convert.ToString(objDs.Tables[3].Rows[i]["PO_No"]), Convert.ToString(objDs.Tables[3].Rows[i]["PO_Date"]),
@@ -2084,7 +2093,9 @@ namespace ROMS
                     tss1.Visible = false; tss2.Visible = false; tss3.Visible = false;
                 }
                 objDataBind = null;
-                cmbPONo.Enabled = true;
+                if (varEntryType == 56 || varEntryType == -1 || varEntryType == 0  )
+                { cmbPONo.Enabled = false; cmbPONo.Text = ""; }
+                else { cmbPONo.Enabled = true; }
             }
             catch (Exception ex)
             {
@@ -5282,6 +5293,7 @@ namespace ROMS
                                 udfnrowclear(); 
                                 udfnConditionClear();
                                 udfnProductCount();
+                                varId = "0";
                                 txtProductName.Text = "";
                                 lblProductcode.Text = "0";
                                 txtProductName.BackColor = Color.White;
@@ -5397,7 +5409,8 @@ namespace ROMS
                 pbConditionIDs = "";
                 pbCondition = "";
                 varExpiryDateAdd = ""; varunitid = ""; lblLocationcode.Text = "0"; expirydateFlag = 0; lblProductcode.Text = "0";
-                varPICode = ""; varTName = ""; var_Symbol = ""; pbCondition = ""; varexp = ""; varBatchNo = ""; varBatchNoGeneration = ""; varId = "0"; varPrInvFlag = "1"; varHSNid = 0; varPrMRPFlag = ""; varGRNProType = ""; varRMProductionFlag = 0; varGrnType = ""; pbConditionIDs = "";
+                varPICode = ""; varTName = ""; var_Symbol = ""; pbCondition = ""; varexp = ""; varBatchNo = ""; varBatchNoGeneration = "";   varPrInvFlag = "1"; varHSNid = 0; varPrMRPFlag = ""; varGRNProType = ""; varRMProductionFlag = 0; varGrnType = ""; pbConditionIDs = "";
+                varProductMRP = "";  varProductExpiry = "";    varProductBatch = ""; varPrRkid = "0";
                 udfnConditionClear();
             }
             catch (Exception ex)
@@ -8850,6 +8863,8 @@ namespace ROMS
                                 row.Cells["clmCheck"].Value = false;
                         }
                         pbConditionIDs = Convert.ToString(conditionId);
+                        if (conditionId == 275 || conditionId == 280 || conditionId == 281)
+                        { btnApply.Focus(); }
                     }
                     else
                     {

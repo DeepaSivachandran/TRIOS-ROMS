@@ -2881,6 +2881,8 @@ namespace ROMS
                                 row.Cells["clmCheck"].Value = false;
                         }
                         pbConditionIDs = Convert.ToString(conditionId);
+                        if (conditionId == 275 || conditionId == 280 || conditionId == 281)
+                        { btnApply.Focus(); }
                     } 
                     else
                     {
@@ -2969,12 +2971,13 @@ namespace ROMS
         {
             try
             {
+                 
                 // Check if we're at the last row 
                 bool isLastRow = e.RowIndex == grdConditions.Rows.Count - 1;
                 if (isLastRow)
                 { 
                     btnApply.Focus();
-                }
+                } 
             }
             catch (Exception ex)
             {
