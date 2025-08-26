@@ -414,21 +414,21 @@ namespace ROMS
                         tsbPrintFormat.Text = string.Empty;
                     }
                 }
-                //if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
-                //{
-                //    dpFromDate.Value = MainForm.pbCurrentDate;
-                //    dpToDate.Value = MainForm.pbCurrentDate;
-                //    dpFromDate.Enabled = false;
-                //    dpToDate.Enabled = false;
-                //    cmbMonths.Enabled = true;
-                //}
-                //else
-                //{
-                //    dpFromDate.Enabled = true;
-                //    dpToDate.Enabled = true;
-                //    cmbMonths.SelectedValue = 0;
-                //    cmbMonths.Enabled = false;
-                //}
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
+                {
+                    dpFromDate.Value = MainForm.pbCurrentDate;
+                    dpToDate.Value = MainForm.pbCurrentDate;
+                    dpFromDate.Enabled = false;
+                    dpToDate.Enabled = false;
+                    cmbMonths.Enabled = true;
+                }
+                else
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+                    cmbMonths.SelectedValue = 0;
+                    cmbMonths.Enabled = false;
+                }
             }
             catch (Exception ex)
             {

@@ -855,7 +855,7 @@ namespace ROMS
                         value = "";
                     }
                     cmbTemplate.Enabled = true;
-                    objDataBind.BindComboBoxListSelected("DEF_Templates","TEMP_Labelcode IN ('" + varSelectedValue + "'" + (value == "" ? "" : "," + value) + ") AND TEMP_Statuscode = 1","TEMP_ShortCode,TEMP_RptName",
+                    objDataBind.BindComboBoxListSelected("DEF_Templates","TEMP_Labelcode IN ('" + varSelectedValue + "') AND TEMP_Statuscode = 1","TEMP_ShortCode,TEMP_RptName",
                         cmbTemplate,"","TEMP_ShortCode","TEMP_RptName" );
                     objDataBind = null;
                     
