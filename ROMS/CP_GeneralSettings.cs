@@ -20,6 +20,7 @@ namespace ROMS
 
         private ToolTip tpcashpurchase = new ToolTip();
         private ToolTip tpLPRate = new ToolTip();
+        private ToolTip tpCashLimit = new ToolTip();
         private ToolTip tpBillAmount = new ToolTip();
         private ToolTip tpGRNQty = new ToolTip();
         private ToolTip tpReturnAlertDays = new ToolTip();
@@ -122,6 +123,7 @@ namespace ROMS
                             txtMonths.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_Aging_Months"]);
                             txtLPRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_LPRatePer"]);
                             txtRTGSMinLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
+                            txtCashLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CashPaymentLimit"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -189,7 +191,7 @@ namespace ROMS
                 epGeneralSettings.Clear();
                 string varResult = "";
                 int Varflagstock = 0;
-                decimal varRTGSMinLimit = 0;
+                decimal varRTGSMinLimit = 0, varCashLimit = 0;
                 btnUpdate.Enabled = false; lblReportname.Focus();
                  SPDataService objDser = new SPDataService();
                 string varOriginator = "GeneralSettings Updation";
@@ -232,11 +234,15 @@ namespace ROMS
                 {
                     varRTGSMinLimit =Convert.ToDecimal(txtRTGSMinLimit.Text);
                 }
+                if (txtCashLimit.Text.Trim() != "")
+                {
+                    varCashLimit = Convert.ToDecimal(txtCashLimit.Text);
+                }
                 if (chkRCStockShow.Checked == true)
                 {
                     varRCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck); 
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit); 
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -723,6 +729,14 @@ namespace ROMS
                     tpLPRate.Show("Please entry bill rate deviation purchase %.", txtLPRate, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(txtCashLimit.Text).Trim() == "")
+                {
+                    epGeneralSettings.SetError(txtCashLimit, "Please valid amount!");
+                    txtCashLimit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCashLimit.ShowAlways = true;
+                    tpCashLimit.Show("Please valid amount!", txtCashLimit, 5000);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     epGeneralSettings.Clear();
@@ -946,6 +960,7 @@ namespace ROMS
                 tpTransactionType.Active = false;
                 tpReportText.Active = false;
                 tpLPRate.Active = false;
+                tpCashLimit.Active = false;
             }
             catch (Exception ex)
             {
@@ -1657,7 +1672,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    txtCashLimit.Focus();
                 }
             }
             catch (Exception ex)
@@ -1692,6 +1707,69 @@ namespace ROMS
             try
             {
                 txtRTGSMinLimit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCashLimit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCashLimit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCashLimit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCashLimit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCashLimit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCashLimit.BackColor = Color.White;
             }
             catch (Exception ex)
             {

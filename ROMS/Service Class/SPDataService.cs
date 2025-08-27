@@ -209,7 +209,10 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 05/10/2023    Description: General Settings
-        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2,int paraVerificationDays,int paraAgingMonths,decimal paraLPRatePer,decimal paraRTGSMinLimit, int paraRCStockShow)
+        public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, 
+            int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, 
+            string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2,int paraVerificationDays,int paraAgingMonths,decimal paraLPRatePer,
+            decimal paraRTGSMinLimit, int paraRCStockShow, decimal paraCashPaymentLimit)
         {
             string varResult = "";
             try
@@ -241,6 +244,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraLPRatePer", paraLPRatePer);
                 varSqlCommand.Parameters.AddWithValue("@paraRTGSMinLimit", paraRTGSMinLimit);
                 varSqlCommand.Parameters.AddWithValue("@paraRCStockShow", paraRCStockShow);
+                varSqlCommand.Parameters.AddWithValue("@paraCashPaymentLimit", paraCashPaymentLimit);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

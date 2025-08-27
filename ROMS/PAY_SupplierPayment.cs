@@ -24,20 +24,10 @@ namespace ROMS
         private ToolTip tpcompanyname = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpbank = new ToolTip();
-        public int varSupplierPaymentID = 0, VarPrevSupplierid = 0;
-        public string varSupplierID = "", varSupplierScheduleID = "", varUserID = "0";
-        public string varSupplierName="";
-        public Decimal varNeftAmount = 0, varGrandTotal = 0;
-        public string varAdvanceID = "";
-        public int id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0,varCellclickFlag=0, varSource = 0;
-        decimal varGrandTot = 0, varTotal = 0, varamt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAdvanceAmnt = 0;
-        public int varCloseFlag = 0, varClose = 0, varSupplierType = 0;
-        public string advanceid = "";
-        public string PurchaseID = "0";
-        public string varAdvance = "", varPayAmnt = "", varCompanyID = "0";
-        public decimal varSubtotal = 0, varTaxableAmnt = 0, varAdditions = 0, varDeductions = 0;
-        public int clearClick = 0, varApplyFlag = 0, varPaymentStatus = 0, varCreatemodeFlag = 0, varUncheckFlag = 0 , varSPBankID=-1,varDefaultBank=0;
-        public decimal varRTGSMinLimit = 0; 
+        public Decimal varNeftAmount = 0, varGrandTotal = 0; 
+        public int varSupplierPaymentID = 0, VarPrevSupplierid = 0, id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0, varCellclickFlag = 0, varSource = 0, varCloseFlag = 0, varClose = 0, varSupplierType = 0, clearClick = 0, varApplyFlag = 0, varPaymentStatus = 0, varCreatemodeFlag = 0, varUncheckFlag = 0, varSPBankID = -1, varDefaultBank = 0;
+        public string varSupplierPaymentMode = "", varSupplierID = "", varSupplierScheduleID = "", varUserID = "0", varSupplierName = "", varAdvanceID = "", advanceid = "", PurchaseID = "0", varAdvance = "", varPayAmnt = "", varCompanyID = "0";
+        public decimal varGrandTot = 0, varTotal = 0, varamt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAdvanceAmnt = 0,varSubtotal = 0, varTaxableAmnt = 0, varAdditions = 0, varDeductions = 0, varRTGSMinLimit = 0, varCashPaymentLimit = 0; 
         DataTable dtBankDetails = new DataTable();
         DataTable dtChequeText = new DataTable(); 
         public PAY_SupplierPayment()
@@ -431,22 +421,67 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        /*Update by deepa on 27-08-2025*/
         public void udfnPaymentDropDown()
         {
             try
             {
-                if (Convert.ToDecimal(lblGrandTotal.Text) > varRTGSMinLimit)
+                /* 346 - Cash
+                   347 - Cheque
+                   348 - NEFT
+                   349 - RTGS
+                   350 - Trasfer
+                 */
+                /*
+                 Supplier Payment Mode
+                    88 - Cash
+                    89 - Cheque
+                    90 - Online
+
+                    Cash Payment should not be less than 10,000(from settings)
+                    If pay amount is more than 2,00,000, then payment should be made through RTGS/Cheque/Transfer
+                    If pay amount is less than 2,00,000, then payment should be made through NEFT/Cheque/Transfer
+                 */
+                string varNotCondition = "";
+                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 1;
+                /* Check cash mode*/
+                if (varSupplierPaymentMode.Contains("88"))
                 {
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND MSTID NOT IN (348)  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
-                    objDataBind = null;
+                    /* If supplier payment mode is cash and pay amount > 10000 */
+                    if (Convert.ToDecimal(lblGrandTotal.Text) > varCashPaymentLimit)
+                    {
+                        varCashEnabled = 0;
+                    }
+                    else { varCashEnabled = 1; }
                 }
-                else
+                /* Check Cheque mode*/
+                if (varSupplierPaymentMode.Contains("89")) {
+                    varChequeEnabled = 1;                 
+                }
+                /* Check Online mode*/
+                if (varSupplierPaymentMode.Contains("90"))
                 {
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND MSTID NOT IN (349)  ", "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
-                    objDataBind = null;
+                    /* If supplier payment mode is online and pay amount < 2,00,000 */
+                    if (Convert.ToDecimal(lblGrandTotal.Text) < varRTGSMinLimit)
+                    {
+                        varRTGSEnabled = 0;
+                        varNEFTEnabled = 1;
+                    }
+                    else { 
+                        varRTGSEnabled = 1;
+                        varNEFTEnabled = 0;
+                    }
                 }
+                if (varCashEnabled == 0) { if (varNotCondition == "") { varNotCondition = "346"; } else { varNotCondition = varNotCondition + ", 346"; } }
+                if (varChequeEnabled == 0) { if (varNotCondition == "") { varNotCondition = "347"; } else { varNotCondition = varNotCondition + ", 347"; } }
+                if (varNEFTEnabled == 0) { if (varNotCondition == "") { varNotCondition = "348"; } else { varNotCondition = varNotCondition + ", 348"; } }
+                if (varRTGSEnabled == 0) { if (varNotCondition == "") { varNotCondition = "349"; } else { varNotCondition = varNotCondition + ", 349"; } }
+                if (varTransferEnabled == 0) { if (varNotCondition == "") { varNotCondition = "350"; } else { varNotCondition = varNotCondition + ", 350"; } }
+                if (varNotCondition == "") { varNotCondition = " 1=1 "; }
+                else { varNotCondition = "MSTID NOT IN (" + varNotCondition +")"; }
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND "+ varNotCondition , "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
             }
             catch (Exception ex)
             {
@@ -961,6 +996,11 @@ namespace ROMS
                             lblBIFSCode.Text = objDs.Tables[1].Rows[0]["SP_IFSC"].ToString();
                             varSPBankID =Convert.ToInt16(objDs.Tables[1].Rows[0]["SP_BNKID"]) ;
                         }
+                        if (objDs.Tables[2].Rows.Count > 0)
+                        {
+                            varSupplierPaymentMode = Convert.ToString(objDs.Tables[2].Rows[0]["Payment_Mode"]);
+                        }
+                        
                     }
                 }
             }
@@ -2197,6 +2237,7 @@ namespace ROMS
                         {
                             varNeftAmount = Convert.ToDecimal(objDs.Tables[0].Rows[0]["GS_NEFT_Amount"]);
                             varRTGSMinLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
+                            varCashPaymentLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
                         }
                     }
                 }
