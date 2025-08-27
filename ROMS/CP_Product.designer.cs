@@ -49,6 +49,7 @@
             this.txtDSubGroup = new System.Windows.Forms.TextBox();
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.txtSubgroupType = new System.Windows.Forms.TextBox();
             this.cmbChildUnit = new System.Windows.Forms.ComboBox();
             this.lblParentcode = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -92,6 +93,7 @@
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader42 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvGroup = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -247,8 +249,6 @@
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.txtSubgroupType = new System.Windows.Forms.TextBox();
-            this.columnHeader42 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -439,6 +439,17 @@
             this.grbform.Size = new System.Drawing.Size(550, 358);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // txtSubgroupType
+            // 
+            this.txtSubgroupType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSubgroupType.Location = new System.Drawing.Point(468, 238);
+            this.txtSubgroupType.MaxLength = 100;
+            this.txtSubgroupType.Name = "txtSubgroupType";
+            this.txtSubgroupType.ReadOnly = true;
+            this.txtSubgroupType.Size = new System.Drawing.Size(55, 27);
+            this.txtSubgroupType.TabIndex = 111111163;
+            this.txtSubgroupType.Text = "Non Food";
             // 
             // cmbChildUnit
             // 
@@ -918,6 +929,10 @@
             // columnHeader9
             // 
             this.columnHeader9.Width = 0;
+            // 
+            // columnHeader42
+            // 
+            this.columnHeader42.Width = 10;
             // 
             // lvGroup
             // 
@@ -2638,7 +2653,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(584, 95);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(271, 95);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -2704,21 +2719,6 @@
             this.pnlProductDetails.Name = "pnlProductDetails";
             this.pnlProductDetails.Size = new System.Drawing.Size(897, 655);
             this.pnlProductDetails.TabIndex = 1111144;
-            // 
-            // txtSubgroupType
-            // 
-            this.txtSubgroupType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubgroupType.Location = new System.Drawing.Point(468, 238);
-            this.txtSubgroupType.MaxLength = 100;
-            this.txtSubgroupType.Name = "txtSubgroupType";
-            this.txtSubgroupType.ReadOnly = true;
-            this.txtSubgroupType.Size = new System.Drawing.Size(55, 27);
-            this.txtSubgroupType.TabIndex = 111111163;
-            this.txtSubgroupType.Text = "Non Food";
-            // 
-            // columnHeader42
-            // 
-            this.columnHeader42.Width = 10;
             // 
             // CP_Product
             // 
