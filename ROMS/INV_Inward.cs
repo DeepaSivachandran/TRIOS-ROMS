@@ -4147,10 +4147,12 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_ShelfLife"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_ShelfLifeValue"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_BatchNoGeneration"].Visible = false;
-                                    DGV_FilterProduct.Columns["PR_MRPflag"].Visible = false;
+                                  DGV_FilterProduct.Columns["PR_MRPflag"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_RetailRate"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 115;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
+                                    DGV_FilterProduct.Columns["Retail Rate"].Width = 80;
                                     DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
@@ -4158,6 +4160,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "PI Code";
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                                     if (VarSearchFlag == false)
                                     {
@@ -4321,6 +4324,8 @@ namespace ROMS
                             txtStockLocation.Text = objDs.Tables[0].Rows[0]["Stock Location"].ToString();
                             cmbTransactionType.Text = objDs.Tables[0].Rows[0]["Transaction Type"].ToString();
                             txtRemark.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
+                            if(Convert.ToString(objDs.Tables[0].Rows[0]["RackCount"])=="0")
+                            { txtRack.Enabled = false;txtRack.ReadOnly = true;txtRack.Text = "None"; }
                         }
 
                         if (objDs.Tables[1].Rows.Count > 0)

@@ -868,9 +868,9 @@
             this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClear.Image = global::ROMS.Properties.Resources.reset;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(1021, 102);
+            this.btnClear.Location = new System.Drawing.Point(1021, 98);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(80, 28);
+            this.btnClear.Size = new System.Drawing.Size(80, 32);
             this.btnClear.TabIndex = 200000;
             this.btnClear.Text = "Refresh";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -896,7 +896,7 @@
             this.gprate.Controls.Add(this.rbAfterBefore);
             this.gprate.Controls.Add(this.rbRateBefore);
             this.gprate.Font = new System.Drawing.Font("Oswald Regular", 10F);
-            this.gprate.Location = new System.Drawing.Point(936, 60);
+            this.gprate.Location = new System.Drawing.Point(936, 55);
             this.gprate.Name = "gprate";
             this.gprate.Size = new System.Drawing.Size(165, 45);
             this.gprate.TabIndex = 16;
