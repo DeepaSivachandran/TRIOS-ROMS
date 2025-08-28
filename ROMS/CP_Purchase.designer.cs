@@ -4169,6 +4169,7 @@
             this.gpPayment.TabIndex = 16;
             this.gpPayment.TabStop = false;
             this.gpPayment.Text = "Payment Type";
+            this.gpPayment.Visible = false;
             // 
             // rbPaymentCheque
             // 
@@ -4467,6 +4468,7 @@
             // 
             // crToolStripTextBox1
             // 
+            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 

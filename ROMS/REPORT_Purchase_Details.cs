@@ -400,7 +400,8 @@ namespace ROMS
                 row++;
 
                 // Filter Info
-                sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
+                //  sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
+                sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Condition Type : {conditionType}";
                 sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
                 row++;
 
@@ -598,8 +599,10 @@ namespace ROMS
 
                     var paymentTypeRange = sheet.Range[sheet.Cells[row + 1, 10], sheet.Cells[row + 1, 11]];
                     paymentTypeRange.Merge();
-                    string payTypeLabel = "Pay Type : ";
-                    string payTypeVal = header["PaymentType"]?.ToString() ?? "";
+                    //string payTypeLabel = "Pay Type : ";
+                    //string payTypeVal = header["PaymentType"]?.ToString() ?? "";
+                    string payTypeLabel = " ";
+                    string payTypeVal = "";
                     paymentTypeRange.Value = payTypeLabel + payTypeVal;
                     paymentTypeRange.WrapText = true;
                     paymentTypeRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
@@ -1075,7 +1078,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    cmbPayType.Focus();
+                    cmbConditionType.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1147,7 +1150,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbPayType.Focus();
+                        cmbConditionType.Focus();
                     }
                 }
             }
@@ -1280,7 +1283,7 @@ namespace ROMS
                     lblschedleCode.Text = DGV_FilterProduct.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterProduct.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
-                cmbPayType.Focus();
+                cmbConditionType.Focus();
             }
             catch (Exception ex)
             {
@@ -1289,7 +1292,7 @@ namespace ROMS
             }
             finally
             {
-                LV_Supplier.Visible = false;
+              //  LV_Supplier.Visible = false;
             }
         }
         private void DpFromDate_Enter(object sender, EventArgs e)
@@ -1482,7 +1485,7 @@ namespace ROMS
             {
                 varUpDownKey = 1;
                 udfnListViewData();
-                cmbPayType.Focus();
+                cmbConditionType.Focus();
             }
             catch (Exception ex)
             {
@@ -1558,7 +1561,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbPayType.Focus();
+                        cmbConditionType.Focus();
                     }
                 }
             }
