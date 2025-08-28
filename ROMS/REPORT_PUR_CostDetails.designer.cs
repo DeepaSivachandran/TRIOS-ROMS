@@ -305,6 +305,7 @@
             this.cmbPaymentType.Name = "cmbPaymentType";
             this.cmbPaymentType.Size = new System.Drawing.Size(84, 27);
             this.cmbPaymentType.TabIndex = 6;
+            this.cmbPaymentType.Visible = false;
             this.cmbPaymentType.Enter += new System.EventHandler(this.CmbPaymentType_Enter);
             this.cmbPaymentType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPaymentType_KeyDown);
             this.cmbPaymentType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPaymentType_KeyPress);
@@ -315,7 +316,7 @@
             this.cmbPurchaseType.FormattingEnabled = true;
             this.cmbPurchaseType.Location = new System.Drawing.Point(689, 46);
             this.cmbPurchaseType.Name = "cmbPurchaseType";
-            this.cmbPurchaseType.Size = new System.Drawing.Size(98, 27);
+            this.cmbPurchaseType.Size = new System.Drawing.Size(188, 27);
             this.cmbPurchaseType.TabIndex = 5;
             this.cmbPurchaseType.Enter += new System.EventHandler(this.CmbPurchaseType_Enter);
             this.cmbPurchaseType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPurchaseType_KeyDown);
@@ -341,6 +342,7 @@
             this.label5.Size = new System.Drawing.Size(84, 20);
             this.label5.TabIndex = 111111191;
             this.label5.Text = "Payment Type";
+            this.label5.Visible = false;
             // 
             // label4
             // 

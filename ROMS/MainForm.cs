@@ -2991,9 +2991,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objREPORT_Stock_Non_Moving_Products = new REPORT_Stock_Non_Moving_Products();
-                MainForm.objREPORT_Stock_Non_Moving_Products.MdiParent = this;
-                MainForm.objREPORT_Stock_Non_Moving_Products.Show();
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
                 PbCurrentForm = "7.7.9";
             }
             catch (Exception ex)

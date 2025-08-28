@@ -693,6 +693,7 @@ namespace ROMS
                             grdPurchaseEntryList.Columns["PUR_LastTransNo"].Visible = false;
                             grdPurchaseEntryList.Columns["PUR_Approval_STSID"].Visible = false;
                             grdPurchaseEntryList.Columns["GRN_Payment_StsID"].Visible = false;
+                            grdPurchaseEntryList.Columns["Payment Type"].Visible = false;
                             grdPurchaseEntryList.Columns["TallyExportFlag"].Visible = false;
                             grdPurchaseEntryList.Columns["Flag"].Visible = false;
                             grdPurchaseEntryList.Columns["DeleteFlag"].Visible = false;

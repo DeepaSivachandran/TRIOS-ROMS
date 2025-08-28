@@ -292,7 +292,8 @@ namespace ROMS
                 row++;
 
                 // Filter Info
-                sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
+                //  sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Pay Type : {payType}     Condition Type : {conditionType}";
+                sheet.Cells[row, 1] = $"Date : {fromDate}     Supplier Name : {supplierName}     Condition Type : {conditionType}";
                 sheet.Range[sheet.Cells[row, 1], sheet.Cells[row, 25]].Merge();
                 row++;
 
@@ -496,8 +497,10 @@ namespace ROMS
 
                     var paymentTypeRange = sheet.Range[sheet.Cells[row + 1, 10], sheet.Cells[row + 1, 11]];
                     paymentTypeRange.Merge();
-                    string payTypeLabel = "Pay Type : ";
-                    string payTypeVal = header["PaymentType"]?.ToString() ?? "";
+                    //string payTypeLabel = "Pay Type : ";
+                    //string payTypeVal = header["PaymentType"]?.ToString() ?? "";
+                    string payTypeLabel = " ";
+                    string payTypeVal = " ";
                     paymentTypeRange.Value = payTypeLabel + payTypeVal;
                     paymentTypeRange.WrapText = true;
                     paymentTypeRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;

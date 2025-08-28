@@ -491,7 +491,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(0,55) AND MSTID IN (0,174,175)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,20) AND STSID<>-1", "STS_Name,STSID", cmbConditionType, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(82,0) AND MSTID NOT IN (-1,275)", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID"); 
                 objDataBind = null;
 
                 RPTViewer.Visible = true;

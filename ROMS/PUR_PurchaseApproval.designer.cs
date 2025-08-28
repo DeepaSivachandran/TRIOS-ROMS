@@ -1896,6 +1896,7 @@
             this.groupBox7.TabIndex = 25;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Payment Type";
+            this.groupBox7.Visible = false;
             // 
             // groupBox6
             // 

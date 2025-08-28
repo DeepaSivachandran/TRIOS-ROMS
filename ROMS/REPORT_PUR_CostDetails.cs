@@ -730,7 +730,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPaymentType.Focus();
+                    cmbConditionType.Focus();
                 }
             }
             catch (Exception ex)
