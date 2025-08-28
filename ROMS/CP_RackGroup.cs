@@ -116,6 +116,7 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
+                    udfnLoadSlNo();
                 }
                 else
                 {
@@ -127,6 +128,38 @@ namespace ROMS
                 udfnTotalProducts();
                 grdStaffDetails.Columns["clmUserId"].Visible = false;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLoadSlNo()
+        {
+            try
+            {
+                DataSet objDS;
+                if (varId != 0)
+                {
+                    string varRGID = Convert.ToString(varId);
+                    SPDataService objspservice = new SPDataService();
+                    objDS = objspservice.udfnGetSlNo("MR_RackGroup", "Update", "RKGID", varRGID);
+                    objspservice.CloseConnection();
+
+                }
+                else
+                {
+                    SPDataService objspservice = new SPDataService();
+                    objDS = objspservice.udfnGetSlNo("MR_RackGroup ", "Create", "1=1", "");
+                    objspservice.CloseConnection();
+                }
+                if (objDS != null)
+                {
+                    cmbRGOrderNo.DataSource = objDS.Tables[0];
+                    cmbRGOrderNo.DisplayMember = "num";
+                    cmbRGOrderNo.ValueMember = "num";
+                }
             }
             catch (Exception ex)
             {
@@ -529,6 +562,8 @@ namespace ROMS
                     cmbStockLocation.SelectedValue = varStockId;
                     udfnList();
                     udfnemployeeload();
+                    udfnLoadSlNo();
+                    cmbRGOrderNo.SelectedValue = objDS.Tables[0].Rows[0]["RKG_SINO"].ToString().Replace("''", "'");
                     if (objDS.Tables[1].Rows.Count > 0)
                     {
                         for (int i = 0; i < objDS.Tables[1].Rows.Count; i++)
@@ -630,7 +665,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator,MainForm.pbUserID,0);
+                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbRGOrderNo.SelectedValue));
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -684,6 +719,7 @@ namespace ROMS
                     row.Cells[0].Value = false;
                 }
                 udfnemployeeload();
+                udfnLoadSlNo();
                 //grdRack.DataSource = null;
             }
             catch (Exception ex)
@@ -1048,7 +1084,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1159,7 +1194,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStockLocation.Focus();
+                    cmbRGOrderNo.Focus();
                 }
             }
             catch (Exception ex)
@@ -2693,6 +2728,61 @@ namespace ROMS
             try
             {
                 grdStaffDetails.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbRGOrderNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRGOrderNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbRGOrderNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStockLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbRGOrderNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbRGOrderNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRGOrderNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
