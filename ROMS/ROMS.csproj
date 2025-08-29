@@ -3710,8 +3710,8 @@
     </Content>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PAY_PayReceipt.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_PAY_PayReceipt1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -252,12 +252,12 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    DGV_SearchGrid.Columns[0].ReadOnly = true;
-                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true; 
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
-                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Columns[2].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -310,8 +310,10 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Columns[2].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1313,6 +1315,34 @@ namespace ROMS
                                     objBillreport.SetParameterValue("paraAmountInWords", lblAmount);
                                     objBillreport.SetParameterValue("paraAmount", varGrandTotal);
                                     objBillreport.SetParameterValue("paraChequeDate", varChequeDate);
+                                    objValidation.CrySqlConnection(objBillreport);
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            break;
+                        case "clmReceiptPrint":
+                            if (Convert.ToUInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value) != 0)
+                            {
+                                DialogResult result1 = DialogResult.Yes;
+                                SPDataService objDServs = new SPDataService();
+                                string varMessage = objDServs.udfnGetMessages(87);
+                                objDServs.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    int varPAYID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_PayReceipt.rpt");
+                                    objBillreport.SetParameterValue("paraPYID", varPAYID, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraPYID", varPAYID, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
+
                                     objValidation.CrySqlConnection(objBillreport);
                                     MainForm.objReportLoad = new ReportLoad();
                                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
