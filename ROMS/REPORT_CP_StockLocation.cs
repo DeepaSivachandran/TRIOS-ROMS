@@ -461,6 +461,18 @@ namespace ROMS
                     pnlLocation.Visible = true;
                     udfnClear();
                 }
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -560,7 +572,7 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,39) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,39) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,3) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,30) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbGodownType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
