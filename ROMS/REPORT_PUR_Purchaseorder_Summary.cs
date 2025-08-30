@@ -315,7 +315,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27,14) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID"); 
                 objDataBind.BindComboBoxListSelected("DEF_Status", " STS_ModuleID=7 OR STSID=0  ", "STS_Name,STSID", cmbGrnstatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrdertype, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,51) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReporttype, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,51) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReporttype, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -1238,6 +1238,30 @@ namespace ROMS
                     if (e.KeyCode == Keys.Enter)
                     {
                         txtDelaydays.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReporttype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbReporttype.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
                     }
                 }
             }
