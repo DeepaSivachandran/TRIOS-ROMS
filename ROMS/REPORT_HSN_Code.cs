@@ -239,7 +239,7 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,84) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,84) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_GST", "GSTID<>-1", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
                 objDataBind = null;
@@ -280,6 +280,18 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                     cmbSupplierType.SelectedValue = -1;
+                }
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
                 }
             }
             catch (Exception ex)
@@ -841,6 +853,26 @@ namespace ROMS
                     {
                         cmbGST.Focus();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSupplierType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 289 && Convert.ToInt32(cmbSupplierType.SelectedValue) == 151)
+                {
+                    tsbPrintFormat.Text = "A4-Portrait";
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 289 && Convert.ToInt32(cmbSupplierType.SelectedValue) != 151)
+                {
+                    tsbPrintFormat.Text = "A4-Landscape";
                 }
             }
             catch (Exception ex)
