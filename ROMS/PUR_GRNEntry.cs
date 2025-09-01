@@ -176,9 +176,8 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (16 ) OR MSTID  IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOrderType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                DataBind objDBind = new DataBind();
-                objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (64) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
-                objDBind = null;
+                string varMSTID = "199,200,201";
+                udfnPaymentDropDown(varMSTID);
                 SPDataService objdserv = new SPDataService();
                 int varconcerntype = 3;
                 DataSet objDT = new DataSet();
@@ -208,7 +207,20 @@ namespace ROMS
             }
         }
 
-
+        public void udfnPaymentDropDown(string varMSTID)
+        {
+            try
+            { 
+                DataBind objDBind = new DataBind();
+                objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (64) AND MSTID IN ("+ varMSTID + ") ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
+                objDBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
@@ -808,6 +820,7 @@ namespace ROMS
                     varBlockedSupplier = selectedItem.SubItems[4].Text;
                     varBlockedReason = selectedItem.SubItems[5].Text;
                     udfnsupplierLoad();
+                    udfnPaymentEnable();
                 }
                 if (Convert.ToInt32(cmbConcern.SelectedValue) == -1)
                 {
@@ -1897,10 +1910,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnAdvanceEnable()
+        public void udfnAdvanceButtonEnable()
         {
             try
-            {
+            { 
                 if (Convert.ToInt16(cmbPayment.SelectedValue) == 199)
                 {
                     btnAdvance.Enabled = false;
@@ -1914,11 +1927,62 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        public void udfnPaymentEnable()
+        {
+            try
+            {
+                int CashAdvCount = 0, ChequeAdvCount=0; pbAdvanceID = 0;
+                string varMSTID = "0";
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                TRN_Advance objTRN_Advance = new TRN_Advance();
+                objTRN_Advance.ViewType = 5;
+                objTRN_Advance.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_Advance.paraIPAddress = MainForm.pbIpAddress;
+                objTRN_Advance.paraSupplierId = Convert.ToInt16(lblSupplierCode.Text);
+                objDs = objdserv.udfnAdvanceList(objTRN_Advance);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        CashAdvCount = Convert.ToInt16(objDs.Tables[0].Rows[0]["CashAdvCount"]);
+                        ChequeAdvCount = Convert.ToInt16(objDs.Tables[1].Rows[0]["ChequeAdvCount"]);
+                    }
+                }
+                if(CashAdvCount==0 && ChequeAdvCount==0)
+                {   varMSTID = "199"; }
+                else if (CashAdvCount == 0 && CashAdvCount != 0)
+                {   varMSTID = "199,200"; }
+                else
+                {  varMSTID = "199,201"; }
+                udfnPaymentDropDown(varMSTID);
+                if (varMSTID=="199")
+                {
+                    btnAdvance.Enabled = false;
+                    cmbPayment.SelectedValue = 199;
+                    cmbPayment.Enabled = false;
+                }
+                else
+                {
+                    btnAdvance.Enabled = true;
+                    cmbPayment.SelectedValue = 199;
+                    cmbPayment.Enabled = true;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbPayment_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                udfnAdvanceEnable();
+                udfnAdvanceButtonEnable();
             }
             catch (Exception ex)
             {
@@ -1952,7 +2016,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         private void BtnAdvance_Click(object sender, EventArgs e)
         {
             try
@@ -2433,7 +2497,7 @@ namespace ROMS
                                 txtUnLoadingCharge.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_UnloadingCharges"]);
                                 txtFrieghtamount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_FrieghtCharges"]);
                                 cmbPayment.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["GRN_Payment_StsID"]);
-                                udfnAdvanceEnable();
+                                udfnAdvanceButtonEnable();
                                 udfnsupplierLoad();
                                 LV_Supplier.Visible = false;
                                 cmbConcern.Enabled = false;

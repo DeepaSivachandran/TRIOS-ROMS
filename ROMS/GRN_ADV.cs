@@ -84,6 +84,7 @@ namespace ROMS
                 objTRN_Advance.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_Advance.paraIPAddress = MainForm.pbIpAddress;
                 objTRN_Advance.paraSupplierId = pbSupplierID;
+                objTRN_Advance.paraAdvanceId = pbADID;
                 objTRN_Advance.paraAmountType = pbPayType;
                 objDs = objdserv.udfnAdvanceList(objTRN_Advance);
                 objdserv.CloseConnection();
