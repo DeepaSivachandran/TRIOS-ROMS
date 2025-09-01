@@ -75,10 +75,8 @@ namespace ROMS
                         string[] words = lines.Split(',');
                         txtServerName.Text = words[0];
                         txtDataBase.Text = words[1];
-                        txtDBUserName.Text = words[2];
-                        SPCall objSpCall = new SPCall();
-                        txtPassword.Text = _security.Decrypt(words[2], words[3]);
-                        objSpCall.CloseConnection();
+                        txtDBUserName.Text = words[2]; 
+                        txtPassword.Text = _security.Decrypt(words[2], words[3]); 
                         txtWebServiceName.Text = words[4];
                         btnSave.Text = "Update";
                     }

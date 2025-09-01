@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.VariantTypes;
 using ROMS.Model;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -297,30 +298,23 @@ namespace ROMS
         public void Authentication_Load(object sender, EventArgs e)
         {
             string VersionName = "";
-            // Check server settings file exists or not
-            //string paths = Application.StartupPath + "\\Server Settings\\serversettings.txt";
-            //if (File.Exists(paths))
+            //MR_Master objMR_Master = new MR_Master();
+            //objMR_Master.ViewType = 20;
+            //SPDataService objdserv = new SPDataService();
+            //DataSet objDT = new DataSet();
+            //objDT = objdserv.udfnMaster(objMR_Master);
+            //objdserv.CloseConnection();
+            //if (objDT != null)
             //{
-            //DataService objDserv = new DataService();
-            //string VersionName = objDserv.displaydata("SELECT TOP(1) RLS_VersionName FROM TRN_RELEASEDETAILS ORDER BY RLSID DESC");
-            //objDserv.CloseConnection();
-            //string VersionName = System.Configuration.ConfigurationManager.AppSettings["versionno"];
-            MR_Master objMR_Master = new MR_Master();
-            objMR_Master.ViewType = 20;
-            SPDataService objdserv = new SPDataService();
-            DataSet objDT = new DataSet();
-            objDT = objdserv.udfnMaster(objMR_Master);
-            objdserv.CloseConnection();
-            if (objDT != null)
-            {
-                if (objDT.Tables.Count > 0)
-                {
-                    if (objDT.Tables[0].Rows.Count > 0)
-                    {
-                        VersionName = objDT.Tables[0].Rows[0]["RLS_VersionNo"].ToString();
-                    }
-                }
-            }
+            //    if (objDT.Tables.Count > 0)
+            //    {
+            //        if (objDT.Tables[0].Rows.Count > 0)
+            //        {
+            //            VersionName = objDT.Tables[0].Rows[0]["RLS_VersionNo"].ToString();
+            //        }
+            //    }
+            //}
+            VersionName = ConfigurationManager.AppSettings["versionno"];
             lblDVersion.Text = VersionName;
             lblDVersion.BringToFront();
             Authentication objAuthetication = new Authentication();

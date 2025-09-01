@@ -953,6 +953,7 @@ namespace ROMS
                 lblWholesale.Text = "";
                 RPTViewer.ReportSource = null;
                 lblNoRecordsFound.Visible = true;
+                txtLabelProduct.Text = "";
                 lblNoRecordsFound.BringToFront();
 
             }
