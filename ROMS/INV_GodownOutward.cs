@@ -328,6 +328,7 @@ namespace ROMS
             {
                 txtProductName.BackColor = Color.LemonChiffon;
                 lvStockLocation.Visible = false;
+                lvTeller.Visible = false;
                 //udfnListviewProduct();
             }
             catch (Exception ex)
