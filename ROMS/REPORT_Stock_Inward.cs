@@ -214,7 +214,14 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 297)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Details.rpt");
+                        if (Convert.ToInt32(cmbFormat.SelectedValue) == 359)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Details_Portrait.rpt");
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Details.rpt");
+                        }
                         objBillreport.SetParameterValue("paraEntryTypeName", cmbEntryType.Text);
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     }
@@ -241,6 +248,12 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_SupplierWise.rpt");
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 358)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Consolidated.rpt");
+                        objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
                     }
                     objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
@@ -312,9 +325,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,88) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,55,90) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (108)", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbEntryType.SelectedValue = 0;
+                cmbFormat.SelectedValue = 359;
             }
             catch (Exception ex)
             {
@@ -1833,7 +1848,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbConcern.Focus();
+                    if (cmbFormat.Enabled == true)
+                    {
+                        cmbFormat.Focus();
+                    }
+                    else
+                    {
+                        cmbConcern.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2077,6 +2099,99 @@ namespace ROMS
                     {
                         tsbPrintFormat.Text = string.Empty;
                     }
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 297)
+                {
+                    cmbFormat.Enabled = true;
+                }
+                else
+                {
+                    cmbFormat.SelectedValue = 359;
+                    cmbFormat.Enabled = false;
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 297 && Convert.ToInt32(cmbFormat.SelectedValue) == 359)
+                {
+                    tsbPrintFormat.Text = "A4-Portrait";
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 297 && Convert.ToInt32(cmbFormat.SelectedValue) == 360)
+                {
+                    tsbPrintFormat.Text = "A4-Landscape";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat.BackColor = Color.LemonChiffon;
+                udfnGridNull((Control)sender);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbConcern.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 297 && Convert.ToInt32(cmbFormat.SelectedValue) == 359)
+                {
+                    tsbPrintFormat.Text = "A4-Portrait";
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 297 && Convert.ToInt32(cmbFormat.SelectedValue) == 360)
+                {
+                    tsbPrintFormat.Text = "A4-Landscape";
                 }
             }
             catch (Exception ex)
