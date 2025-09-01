@@ -37,6 +37,8 @@
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
             this.DGV_FilterLocation = new System.Windows.Forms.DataGridView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.cmbReportType = new System.Windows.Forms.ComboBox();
+            this.lblReportType = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -49,8 +51,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbReportType = new System.Windows.Forms.ComboBox();
-            this.lblReportType = new System.Windows.Forms.Label();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
@@ -66,10 +68,12 @@
             this.ReportSupplier.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportSupplier.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportSupplier.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbPrintFormat,
+            this.tsbFormat});
             this.ReportSupplier.Location = new System.Drawing.Point(0, 0);
             this.ReportSupplier.Name = "ReportSupplier";
-            this.ReportSupplier.Size = new System.Drawing.Size(1354, 25);
+            this.ReportSupplier.Size = new System.Drawing.Size(1354, 27);
             this.ReportSupplier.TabIndex = 35;
             this.ReportSupplier.Text = "GRN Summary Report";
             // 
@@ -80,7 +84,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(129, 22);
+            this.tspHeader.Size = new System.Drawing.Size(129, 24);
             this.tspHeader.Text = "Stock Aging Report";
             // 
             // pnlReportStockLocation
@@ -158,6 +162,29 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // cmbReportType
+            // 
+            this.cmbReportType.FormattingEnabled = true;
+            this.cmbReportType.Location = new System.Drawing.Point(6, 43);
+            this.cmbReportType.Name = "cmbReportType";
+            this.cmbReportType.Size = new System.Drawing.Size(209, 27);
+            this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
+            this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
+            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
+            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
+            this.cmbReportType.Leave += new System.EventHandler(this.CmbReportType_Leave);
+            // 
+            // lblReportType
+            // 
+            this.lblReportType.AutoSize = true;
+            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportType.Location = new System.Drawing.Point(6, 20);
+            this.lblReportType.Name = "lblReportType";
+            this.lblReportType.Size = new System.Drawing.Size(73, 20);
+            this.lblReportType.TabIndex = 111111171;
+            this.lblReportType.Text = "Report type";
             // 
             // label10
             // 
@@ -299,28 +326,31 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // cmbReportType
+            // tsbPrintFormat
             // 
-            this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(6, 43);
-            this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(209, 27);
-            this.cmbReportType.TabIndex = 0;
-            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
-            this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
-            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
-            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
-            this.cmbReportType.Leave += new System.EventHandler(this.CmbReportType_Leave);
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
             // 
-            // lblReportType
+            // tsbFormat
             // 
-            this.lblReportType.AutoSize = true;
-            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(6, 20);
-            this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(73, 20);
-            this.lblReportType.TabIndex = 111111171;
-            this.lblReportType.Text = "Report type";
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
             // 
             // REPORT_Stock_Aging
             // 
@@ -374,5 +404,7 @@
         public System.Windows.Forms.DataGridView DGV_FilterLocation;
         private System.Windows.Forms.ComboBox cmbReportType;
         private System.Windows.Forms.Label lblReportType;
+        public System.Windows.Forms.ToolStripButton tsbPrintFormat;
+        public System.Windows.Forms.ToolStripButton tsbFormat;
     }
 }

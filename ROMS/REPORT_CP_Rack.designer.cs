@@ -30,6 +30,8 @@
         {
             this.ReportRack = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportRack = new System.Windows.Forms.Panel();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.grpfilter = new System.Windows.Forms.GroupBox();
@@ -54,10 +56,12 @@
             this.ReportRack.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportRack.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportRack.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbPrintFormat,
+            this.tsbFormat});
             this.ReportRack.Location = new System.Drawing.Point(0, 0);
             this.ReportRack.Name = "ReportRack";
-            this.ReportRack.Size = new System.Drawing.Size(1354, 25);
+            this.ReportRack.Size = new System.Drawing.Size(1354, 27);
             this.ReportRack.TabIndex = 35;
             this.ReportRack.Text = "Rack Report";
             // 
@@ -68,8 +72,34 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(91, 22);
+            this.tspHeader.Size = new System.Drawing.Size(91, 24);
             this.tspHeader.Text = "Rack Report";
+            // 
+            // tsbPrintFormat
+            // 
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
             // 
             // pnlReportRack
             // 
@@ -168,6 +198,7 @@
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(270, 27);
             this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
             this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
             this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
@@ -254,5 +285,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblcityid;
+        public System.Windows.Forms.ToolStripButton tsbPrintFormat;
+        public System.Windows.Forms.ToolStripButton tsbFormat;
     }
 }

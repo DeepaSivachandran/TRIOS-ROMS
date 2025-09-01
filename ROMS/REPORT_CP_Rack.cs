@@ -151,8 +151,6 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rack.rpt");
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -205,8 +203,6 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rack_Rackgroup.rpt");
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -289,7 +285,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,40) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,40) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
@@ -317,6 +313,30 @@ namespace ROMS
                     MainForm.objStart.MdiParent = this.ParentForm;
                     MainForm.objStart.Show();
                     this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
                 }
             }
             catch (Exception ex)

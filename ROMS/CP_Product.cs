@@ -6490,21 +6490,24 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdPurHSN.Rows.Count; i++)
+                if (pbCloneFlag != 1)
                 {
-                    var addFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurAddFlag"].Value);
-                    var editFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurEditFlag"].Value);
-                    var removeCell = grdPurHSN.Rows[i].Cells["clmPurRemove"];
+                    for (int i = 0; i < grdPurHSN.Rows.Count; i++)
+                    {
+                        var addFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurAddFlag"].Value);
+                        var editFlag = Convert.ToString(grdPurHSN.Rows[i].Cells["clmPurEditFlag"].Value);
+                        var removeCell = grdPurHSN.Rows[i].Cells["clmPurRemove"];
 
-                    if (addFlag == "0" && editFlag == "0")
-                    {
-                        removeCell.Value = global::ROMS.Properties.Resources.remove;
-                        removeCell.ReadOnly = false;
-                    }
-                    else
-                    {
-                        removeCell.Value = new Bitmap(1, 1);
-                        removeCell.ReadOnly = true;
+                        if (addFlag == "0" && editFlag == "0")
+                        {
+                            removeCell.Value = global::ROMS.Properties.Resources.remove;
+                            removeCell.ReadOnly = false;
+                        }
+                        else
+                        {
+                            removeCell.Value = new Bitmap(1, 1);
+                            removeCell.ReadOnly = true;
+                        }
                     }
                 }
             }
@@ -6518,21 +6521,24 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdSalesHSN.Rows.Count; i++)
+                if (pbCloneFlag != 1)
                 {
-                    var addFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesAddFlag"].Value);
-                    var editFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesEditFlag"].Value);
-                    var removeCell = grdSalesHSN.Rows[i].Cells["clmSalesRemove"];
+                    for (int i = 0; i < grdSalesHSN.Rows.Count; i++)
+                    {
+                        var addFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesAddFlag"].Value);
+                        var editFlag = Convert.ToString(grdSalesHSN.Rows[i].Cells["clmSalesEditFlag"].Value);
+                        var removeCell = grdSalesHSN.Rows[i].Cells["clmSalesRemove"];
 
-                    if (addFlag == "0" && editFlag == "0")
-                    {
-                        removeCell.Value = global::ROMS.Properties.Resources.remove;
-                        removeCell.ReadOnly = false;
-                    }
-                    else
-                    {
-                        removeCell.Value = new Bitmap(1, 1);
-                        removeCell.ReadOnly = true;
+                        if (addFlag == "0" && editFlag == "0")
+                        {
+                            removeCell.Value = global::ROMS.Properties.Resources.remove;
+                            removeCell.ReadOnly = false;
+                        }
+                        else
+                        {
+                            removeCell.Value = new Bitmap(1, 1);
+                            removeCell.ReadOnly = true;
+                        }
                     }
                 }
             }

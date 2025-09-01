@@ -129,6 +129,18 @@ namespace ROMS
                     cmbFormat.Enabled = false;
                 }
                 udfnClear();
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -932,7 +944,7 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,41) AND MSTID NOT IN (0,-2) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,41) AND MSTID NOT IN (0,-2) ORDER BY MST_OrderID", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");

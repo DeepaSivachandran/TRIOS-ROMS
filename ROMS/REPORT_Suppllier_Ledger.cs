@@ -454,7 +454,7 @@ namespace ROMS
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,86) AND MSTID<>0", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,86) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
             }
@@ -663,7 +663,30 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);

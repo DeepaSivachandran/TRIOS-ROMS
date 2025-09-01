@@ -31,103 +31,6 @@ namespace ROMS
             InitializeComponent();
         }
 
-
-        public class PurchaseEntry
-        {
-            [JsonProperty("PURID")]
-            public int PURID { get; set; }
-
-            [JsonProperty("Header")]
-            public string Header { get; set; }
-
-            [JsonProperty("Products")]
-            public List<Product> Products { get; set; }
-
-            [JsonProperty("ProductSummary")]
-            public string ProductSummary { get; set; }
-
-            [JsonProperty("Charges")]
-            public string Charges { get; set; }
-        }
-
-        public class Product
-        {
-            [JsonProperty("PR_PICode")]
-            public string PR_PICode { get; set; }
-
-            [JsonProperty("PR_TName")]
-            public string PR_TName { get; set; }
-
-            [JsonProperty("UT_Symbol")]
-            public string UT_Symbol { get; set; }
-
-            [JsonProperty("Condition")]
-            public string Condition { get; set; }
-
-            [JsonProperty("HSN_Code")]
-            public string HSN_Code { get; set; }
-
-            [JsonProperty("GST_Text")]
-            public string GST_Text { get; set; }
-
-            [JsonProperty("PURPR_InvoiceMRP")]
-            public decimal PURPR_InvoiceMRP { get; set; }
-
-            [JsonProperty("PURPR_ProductMRP")]
-            public decimal PURPR_ProductMRP { get; set; }
-
-            [JsonProperty("PURPR_ExpiryDate")]
-            public string PURPR_ExpiryDate { get; set; }
-
-            // If JSON properties have spaces, use JsonProperty attribute with exact name:
-            [JsonProperty("Product Shelflife")]
-            public string ProductShelflife { get; set; }
-
-            [JsonProperty("Actual Shelflife")]
-            public string ActualShelflife { get; set; }
-
-            [JsonProperty("Shelflife Per")]
-            public string ShelflifePer { get; set; }
-
-            [JsonProperty("PURPR_Batch")]
-            public string PURPR_Batch { get; set; }
-
-            [JsonProperty("SL_ShortName")]
-            public string SL_ShortName { get; set; }
-
-            [JsonProperty("Rack")]
-            public string Rack { get; set; }
-
-            [JsonProperty("PURPR_InvoiceQty")]
-            public decimal PURPR_InvoiceQty { get; set; }
-
-            [JsonProperty("PURPR_ReceivedQty")]
-            public decimal PURPR_ReceivedQty { get; set; }
-
-            [JsonProperty("PURPR_DiffQty")]
-            public decimal PURPR_DiffQty { get; set; }
-
-            [JsonProperty("PURPR_FreeQty")]
-            public decimal PURPR_FreeQty { get; set; }
-
-            [JsonProperty("PURPR_PurchaseRate")]
-            public decimal PURPR_PurchaseRate { get; set; }
-
-            [JsonProperty("PURPR_DiscAmnt")]
-            public decimal PURPR_DiscAmnt { get; set; }
-
-            [JsonProperty("PURPR_TaxableValue")]
-            public decimal PURPR_TaxableValue { get; set; }
-
-            [JsonProperty("PURPR_GSTAmnt")]
-            public decimal PURPR_GSTAmnt { get; set; }
-
-            [JsonProperty("PURPR_NettAmnt")]
-            public decimal PURPR_NettAmnt { get; set; }
-        }
-
-
-
         private void cmbPayType_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -252,13 +155,13 @@ namespace ROMS
                 //    }
                 //}
                 //LV_Supplier.Visible = false;
-                //udfnPurchaseDetails();
+                udfnPurchaseDetails();
                 if (txtSupplier.Text.Trim() == "")
                 {
                     lblSupplierCode.Text = "0";
                     lblschedleCode.Text = "0";
                 }
-                udfnExcel();
+                //udfnExcel();
             }
             catch (Exception ex)
             {
@@ -997,7 +900,7 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                objTRN_PurchaseEntry.ViewType = 20;
+                objTRN_PurchaseEntry.ViewType = 24;
                 objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbConditionType.SelectedValue);
                 objTRN_PurchaseEntry.paraType = Convert.ToInt32(cmbPayType.SelectedValue);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
@@ -1027,10 +930,6 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraPayTypeName", Convert.ToString(cmbPayType.Text));
                     objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraFromDateName", Convert.ToString(dpFromDate.Text));
-                    objBillreport.SetParameterValue("paraToDateName", Convert.ToString(dpToDate.Text));
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);

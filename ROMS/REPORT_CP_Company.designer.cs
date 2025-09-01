@@ -32,14 +32,16 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCompany = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblCompany = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.ReportCompany.SuspendLayout();
             this.pnlReportCompany.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -53,10 +55,12 @@
             this.ReportCompany.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportCompany.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportCompany.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbPrintFormat,
+            this.tsbFormat});
             this.ReportCompany.Location = new System.Drawing.Point(0, 0);
             this.ReportCompany.Name = "ReportCompany";
-            this.ReportCompany.Size = new System.Drawing.Size(1354, 25);
+            this.ReportCompany.Size = new System.Drawing.Size(1354, 27);
             this.ReportCompany.TabIndex = 35;
             this.ReportCompany.Text = "State Report";
             // 
@@ -67,7 +71,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(115, 22);
+            this.tspHeader.Size = new System.Drawing.Size(115, 24);
             this.tspHeader.Text = "Company Report";
             // 
             // pnlReportCompany
@@ -96,6 +100,23 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(203, 18);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 1;
+            this.btnListPrint.Text = "View";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
+            // 
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
@@ -120,23 +141,6 @@
             this.lblStatus.TabIndex = 1111179;
             this.lblStatus.Text = "Status";
             this.lblStatus.Visible = false;
-            // 
-            // btnListPrint
-            // 
-            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
-            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(203, 18);
-            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 1;
-            this.btnListPrint.Text = "View";
-            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnListPrint.UseVisualStyleBackColor = true;
-            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
-            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
-            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
             // 
             // cmbConcern
             // 
@@ -201,6 +205,32 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // tsbPrintFormat
+            // 
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
+            // 
             // REPORT_CP_Company
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -244,5 +274,7 @@
         private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
+        public System.Windows.Forms.ToolStripButton tsbPrintFormat;
+        public System.Windows.Forms.ToolStripButton tsbFormat;
     }
 }

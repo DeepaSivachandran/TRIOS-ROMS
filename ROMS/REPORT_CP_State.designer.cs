@@ -38,6 +38,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.ReportState.SuspendLayout();
             this.pnlReportState.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -51,10 +53,12 @@
             this.ReportState.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportState.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportState.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbPrintFormat,
+            this.tsbFormat});
             this.ReportState.Location = new System.Drawing.Point(0, 0);
             this.ReportState.Name = "ReportState";
-            this.ReportState.Size = new System.Drawing.Size(1354, 25);
+            this.ReportState.Size = new System.Drawing.Size(1354, 27);
             this.ReportState.TabIndex = 35;
             this.ReportState.Text = "State Report";
             // 
@@ -65,7 +69,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(94, 22);
+            this.tspHeader.Size = new System.Drawing.Size(94, 24);
             this.tspHeader.Text = "State Report";
             // 
             // pnlReportState
@@ -172,6 +176,32 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // tsbPrintFormat
+            // 
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
+            // 
             // REPORT_CP_State
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -213,5 +243,7 @@
         public System.Windows.Forms.PictureBox picLoader;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;
+        public System.Windows.Forms.ToolStripButton tsbPrintFormat;
+        public System.Windows.Forms.ToolStripButton tsbFormat;
     }
 }

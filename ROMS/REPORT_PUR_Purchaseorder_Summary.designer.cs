@@ -37,6 +37,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportProduct = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportProduct = new System.Windows.Forms.Panel();
             this.DGV_FilterCity = new System.Windows.Forms.DataGridView();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
@@ -91,10 +93,12 @@
             this.ReportProduct.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportProduct.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportProduct.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbPrintFormat,
+            this.tsbFormat});
             this.ReportProduct.Location = new System.Drawing.Point(0, 0);
             this.ReportProduct.Name = "ReportProduct";
-            this.ReportProduct.Size = new System.Drawing.Size(1354, 25);
+            this.ReportProduct.Size = new System.Drawing.Size(1354, 27);
             this.ReportProduct.TabIndex = 35;
             this.ReportProduct.Text = "Product Report";
             // 
@@ -105,8 +109,34 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(205, 22);
+            this.tspHeader.Size = new System.Drawing.Size(205, 24);
             this.tspHeader.Text = "Purchase Order-Summary&&Detail";
+            // 
+            // tsbPrintFormat
+            // 
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
             // 
             // pnlReportProduct
             // 
@@ -411,6 +441,7 @@
             this.cmbReporttype.Name = "cmbReporttype";
             this.cmbReporttype.Size = new System.Drawing.Size(220, 27);
             this.cmbReporttype.TabIndex = 7;
+            this.cmbReporttype.SelectedIndexChanged += new System.EventHandler(this.CmbReporttype_SelectedIndexChanged);
             this.cmbReporttype.Enter += new System.EventHandler(this.CmbReporttype_Enter);
             this.cmbReporttype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReporttype_KeyDown);
             this.cmbReporttype.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReporttype_KeyPress);
@@ -666,5 +697,7 @@
         private System.Windows.Forms.ErrorProvider errGRNDetails;
         public System.Windows.Forms.DataGridView DGV_FilterSupplier;
         public System.Windows.Forms.DataGridView DGV_FilterCity;
+        public System.Windows.Forms.ToolStripButton tsbPrintFormat;
+        public System.Windows.Forms.ToolStripButton tsbFormat;
     }
 }
