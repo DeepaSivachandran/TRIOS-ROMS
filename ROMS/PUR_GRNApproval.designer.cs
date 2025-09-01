@@ -779,7 +779,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdGrnApproval.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdGrnApproval.ColumnHeadersHeight = 30;
+            this.grdGrnApproval.ColumnHeadersHeight = 50;
             this.grdGrnApproval.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGrnApproval.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Sno,
@@ -952,7 +952,7 @@
             this.clmproduct.HeaderText = "Product Name";
             this.clmproduct.Name = "clmproduct";
             this.clmproduct.ReadOnly = true;
-            this.clmproduct.Width = 350;
+            this.clmproduct.Width = 300;
             // 
             // Column6
             // 
@@ -962,7 +962,7 @@
             this.Column6.HeaderText = "Unit";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-            this.Column6.Width = 70;
+            this.Column6.Width = 50;
             // 
             // clmmrp
             // 
@@ -971,7 +971,7 @@
             this.clmmrp.HeaderText = "Inv MRP";
             this.clmmrp.Name = "clmmrp";
             this.clmmrp.ReadOnly = true;
-            this.clmmrp.Width = 80;
+            this.clmmrp.Width = 60;
             // 
             // clmProMrp
             // 
@@ -980,6 +980,7 @@
             this.clmProMrp.HeaderText = "Pro MRP";
             this.clmProMrp.Name = "clmProMrp";
             this.clmProMrp.ReadOnly = true;
+            this.clmProMrp.Width = 65;
             // 
             // clmexpirydate
             // 
@@ -988,6 +989,7 @@
             this.clmexpirydate.HeaderText = "Inv Expiry Date";
             this.clmexpirydate.Name = "clmexpirydate";
             this.clmexpirydate.ReadOnly = true;
+            this.clmexpirydate.Width = 80;
             // 
             // clmProExpiryDate
             // 
@@ -996,39 +998,42 @@
             this.clmProExpiryDate.HeaderText = "Pro Expiry Date";
             this.clmProExpiryDate.Name = "clmProExpiryDate";
             this.clmProExpiryDate.ReadOnly = true;
+            this.clmProExpiryDate.Width = 80;
             // 
             // Column10
             // 
             this.Column10.HeaderText = "Product Shelf Life";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
-            this.Column10.Width = 120;
+            this.Column10.Width = 90;
             // 
             // clmactualshelflife
             // 
             this.clmactualshelflife.HeaderText = "Actual Shelf Life";
             this.clmactualshelflife.Name = "clmactualshelflife";
             this.clmactualshelflife.ReadOnly = true;
-            this.clmactualshelflife.Width = 110;
+            this.clmactualshelflife.Width = 70;
             // 
             // clmShelflifeper
             // 
-            this.clmShelflifeper.HeaderText = "Shelf Life (%)";
+            this.clmShelflifeper.HeaderText = "Shelf Life(%)";
             this.clmShelflifeper.Name = "clmShelflifeper";
             this.clmShelflifeper.ReadOnly = true;
-            this.clmShelflifeper.Width = 90;
+            this.clmShelflifeper.Width = 50;
             // 
             // clmBatchno
             // 
             this.clmBatchno.HeaderText = "Inv Batch No.";
             this.clmBatchno.Name = "clmBatchno";
             this.clmBatchno.ReadOnly = true;
+            this.clmBatchno.Width = 90;
             // 
             // clmProBatchNo
             // 
             this.clmProBatchNo.HeaderText = "Pro Batch No.";
             this.clmProBatchNo.Name = "clmProBatchNo";
             this.clmProBatchNo.ReadOnly = true;
+            this.clmProBatchNo.Width = 90;
             // 
             // clmpoqty
             // 
@@ -1043,12 +1048,14 @@
             this.clminvoiceqty.HeaderText = "Invoice Qty";
             this.clminvoiceqty.Name = "clminvoiceqty";
             this.clminvoiceqty.ReadOnly = true;
+            this.clminvoiceqty.Width = 60;
             // 
             // clmreceivedqty
             // 
             this.clmreceivedqty.HeaderText = "Received Qty";
             this.clmreceivedqty.Name = "clmreceivedqty";
             this.clmreceivedqty.ReadOnly = true;
+            this.clmreceivedqty.Width = 60;
             // 
             // clmMismatchQty
             // 
@@ -1057,6 +1064,7 @@
             this.clmMismatchQty.HeaderText = "Mismatch Qty";
             this.clmMismatchQty.Name = "clmMismatchQty";
             this.clmMismatchQty.ReadOnly = true;
+            this.clmMismatchQty.Width = 60;
             // 
             // clmFreeQtyValue
             // 
@@ -1065,6 +1073,7 @@
             this.clmFreeQtyValue.HeaderText = "Free Qty";
             this.clmFreeQtyValue.Name = "clmFreeQtyValue";
             this.clmFreeQtyValue.ReadOnly = true;
+            this.clmFreeQtyValue.Width = 60;
             // 
             // clmStatus
             // 
@@ -1073,36 +1082,42 @@
             this.clmStatus.ReadOnly = true;
             this.clmStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmStatus.Width = 70;
             // 
             // clmReason
             // 
             this.clmReason.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.clmReason.HeaderText = "Reason";
             this.clmReason.Name = "clmReason";
-            this.clmReason.Width = 150;
+            this.clmReason.Width = 130;
             // 
             // clmreturnqty
             // 
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmreturnqty.DefaultCellStyle = dataGridViewCellStyle12;
             this.clmreturnqty.HeaderText = "Returned Qty";
+            this.clmreturnqty.MaxInputLength = 9;
             this.clmreturnqty.Name = "clmreturnqty";
+            this.clmreturnqty.Width = 60;
             // 
             // clmFreeQty
             // 
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmFreeQty.DefaultCellStyle = dataGridViewCellStyle13;
             this.clmFreeQty.HeaderText = "Return Free Qty";
+            this.clmFreeQty.MaxInputLength = 9;
             this.clmFreeQty.Name = "clmFreeQty";
-            this.clmFreeQty.Width = 120;
+            this.clmFreeQty.Width = 60;
             // 
             // clmCreditQty
             // 
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.clmCreditQty.DefaultCellStyle = dataGridViewCellStyle14;
             this.clmCreditQty.HeaderText = "Debit Qty";
+            this.clmCreditQty.MaxInputLength = 9;
             this.clmCreditQty.Name = "clmCreditQty";
             this.clmCreditQty.Visible = false;
+            this.clmCreditQty.Width = 60;
             // 
             // clmMARecivedQty
             // 
@@ -1110,8 +1125,9 @@
             dataGridViewCellStyle15.BackColor = System.Drawing.Color.PaleGreen;
             this.clmMARecivedQty.DefaultCellStyle = dataGridViewCellStyle15;
             this.clmMARecivedQty.HeaderText = "MA Received Qty";
+            this.clmMARecivedQty.MaxInputLength = 9;
             this.clmMARecivedQty.Name = "clmMARecivedQty";
-            this.clmMARecivedQty.Width = 120;
+            this.clmMARecivedQty.Width = 70;
             // 
             // clmPOID
             // 

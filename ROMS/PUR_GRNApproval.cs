@@ -341,12 +341,11 @@ namespace ROMS
         {
             try
             {
-                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmMARecivedQty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmFreeQty")
                 {
-                    e.Control.KeyPress -= udfnHandleKeyPress;
-                    e.Control.KeyPress += udfnHandleKeyPress;
+                    e.Control.KeyPress -= udfnHandleKeyPress; 
                 }
-                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmMARecivedQty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmFreeQty")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -362,7 +361,7 @@ namespace ROMS
         {
             try
             {
-                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
+                if ( grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmMARecivedQty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmFreeQty")
                 {
                     if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {
@@ -399,6 +398,16 @@ namespace ROMS
                     cellDebitQty.ReadOnly = false; cellDebitQty.Style.BackColor = Color.PaleGreen;
                     cellFreeQty.ReadOnly = false; cellFreeQty.Style.BackColor = Color.PaleGreen;
                     cellReturnQty.ReadOnly = false; cellReturnQty.Style.BackColor = Color.PaleGreen;
+                    cellMAReceivedQty.Value = "";
+                    cellDebitQty.Value = "";
+                    cellFreeQty.Value = "";
+                    cellReturnQty.Value = "";
+                    dtApproval.Rows[e.RowIndex]["GRNAPR_ReceivedQty"] = varMAReceivedQty;
+                    dtApproval.Rows[e.RowIndex]["GRNAPR_CreditQty"] = varCreditQty;  dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_FreeQty"] = varCreditQty;
+                    dtCreditProduct.Rows[e.RowIndex]["CNPR_Qty"] = varCreditQty;
+                    dtApproval.Rows[e.RowIndex]["GRNAPR_FreeQty"] = varFreeQty;   dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_FreeQty"] = varFreeQty;
+                    dtApproval.Rows[e.RowIndex]["GRNAPR_ReturnedQty"] = varReturnQty;  dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_Qty"] = varReturnQty;
+                     
                     //Update the same column value in the DataTable
                     dtApproval.Rows[e.RowIndex]["GRNAPR_Reason"] = Convert.ToInt32(Reason);
                     
@@ -407,7 +416,7 @@ namespace ROMS
                         //this column used to update entry approval status id in purchase 
                         dtApproval.Rows[e.RowIndex]["StatusUpdate"] = 0;
                     } 
-                    if (Convert.ToString(Reason) == "230") //Informed to supplier
+                    if (Convert.ToString(Reason) == "230" || Convert.ToString(Reason) == "234") //Informed to supplier
                     {
                         cellMAReceivedQty.ReadOnly = true; cellMAReceivedQty.Style.BackColor = Color.LightGray;
                         cellDebitQty.ReadOnly = true; cellDebitQty.Style.BackColor = Color.LightGray;
@@ -617,6 +626,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
+
         private void GrdGrnApproval_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -1310,6 +1320,17 @@ namespace ROMS
                                 grdGrnApproval.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                                 grdGrnApproval.Rows[i].ReadOnly = true;
                             }
+                            if(Convert.ToInt32(Reason) == 234)
+                            {
+                                DataGridViewCell cellMAReceivedQty = grdGrnApproval.Rows[i].Cells["clmMARecivedQty"];
+                                DataGridViewCell cellDebitQty = grdGrnApproval.Rows[i].Cells["clmCreditQty"];
+                                DataGridViewCell cellFreeQty = grdGrnApproval.Rows[i].Cells["clmFreeQty"];
+                                DataGridViewCell cellReturnQty = grdGrnApproval.Rows[i].Cells["clmreturnqty"];
+                                cellMAReceivedQty.ReadOnly = true; cellMAReceivedQty.Style.BackColor = Color.LightGray;
+                                cellDebitQty.ReadOnly = true; cellDebitQty.Style.BackColor = Color.LightGray;
+                                cellFreeQty.ReadOnly = true; cellFreeQty.Style.BackColor = Color.LightGray;
+                                cellReturnQty.ReadOnly = true; cellReturnQty.Style.BackColor = Color.LightGray;
+                            }
                             udfnQtyCheck();
                             if ((Convert.ToInt32(Reason) == 230 || Convert.ToInt32(Reason) == 340 || Convert.ToInt32(Reason) == 234) && Convert.ToInt32(objDs.Tables[0].Rows[i]["IssueProCount"]) == 1)
                             {
@@ -1397,7 +1418,7 @@ namespace ROMS
             try
             {
                 int varDecimal = Convert.ToInt32(grdGrnApproval.CurrentRow.Cells["clmUnitDecimal"].Value);
-                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty")
+                if (grdGrnApproval.CurrentCell.OwningColumn.Name == "clmreturnqty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmMARecivedQty" || grdGrnApproval.CurrentCell.OwningColumn.Name == "clmFreeQty")
                 {
                     //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     //{
