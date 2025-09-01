@@ -1410,6 +1410,7 @@ namespace ROMS
                         if (orderqty == 0)
                         {
                             string bulk = "0", unit = "0";
+                            int BulkUnitid = 0;
                             if (Convert.ToString(grdsupplieradd.Rows[i].Cells["clmOrderqty"].Value) == "-")
                             {
                                 bulk = "0";
@@ -1426,12 +1427,13 @@ namespace ROMS
                             {
                                 unit = Convert.ToString(grdsupplieradd.Rows[i].Cells["clmunitorderqty"].Value);
                             }
-
+                            if(Convert.ToString(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value)!="")
+                            { BulkUnitid = Convert.ToInt32(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value); }
                             objPurchaseOrder.Rows.Add(Convert.ToString(grdsupplieradd.Rows[i].Cells["ID"].Value), Convert.ToInt64(grdsupplieradd.Rows[i].Cells["clmMSQ"].Value)
                             , Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmreorderqty"].Value), bulk, Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmflag"].Value), Convert.ToInt32(lblschedule.Text),
                             Convert.ToInt32(grdsupplieradd.Rows[i].Cells["UTID"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["clmeditflag"].Value),
                             Convert.ToDouble(unit), Convert.ToDecimal(grdsupplieradd.Rows[i].Cells["clmordertotalqty"].Value),
-                            Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmtotalkg"].Value), Convert.ToInt32(grdsupplieradd.Rows[i].Cells["BulkUTID"].Value),
+                            Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmtotalkg"].Value), BulkUnitid,
                             Convert.ToInt32(grdsupplieradd.Rows[i].Cells["QTID"].Value), Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmUPP"].Value),
                             Convert.ToDouble(grdsupplieradd.Rows[i].Cells["clmNettWeight"].Value),
                             Convert.ToString(grdsupplieradd.Rows[i].Cells["clmremarks"].Value)
