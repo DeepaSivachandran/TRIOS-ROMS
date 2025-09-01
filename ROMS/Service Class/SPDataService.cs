@@ -2672,6 +2672,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRNS_GoodsOutward.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@ParaFlag", objTRNS_GoodsOutward.ParaFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraCompletedby", objTRNS_GoodsOutward.paraCompletedby);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objTRNS_GoodsOutward.paraTeller);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
