@@ -994,17 +994,18 @@ namespace ROMS
                 DGV_SearchGridPro.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from ;SP ***************
-                int varstatus = 0;
+                int varFlag = 0, varStatusID = 0;
                 if (rbComplete.Checked==true)
                 {
-                    varstatus = 14;
+                    varFlag = 1;
+                    varStatusID = Convert.ToInt32(cmbstatus.SelectedValue);
                 }
                 else
                 {
-                   varstatus= Convert.ToInt32(cmbstatus.SelectedValue);
+                    varStatusID = Convert.ToInt32(cmbstatus.SelectedValue);
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", 0, 0, 0, 0, 0, 0, 0);
+                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varStatusID, "0", 0, 0, 0, 0, 0, 0, varFlag);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
