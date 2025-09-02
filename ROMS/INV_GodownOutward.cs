@@ -25,6 +25,7 @@ namespace ROMS
         private ToolTip tpRemark = new ToolTip();
         private ToolTip tpTotalItem = new ToolTip();
         private ToolTip tpStockLocation = new ToolTip();
+        private ToolTip tpTeller = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
         public int varCompleteFlag = 0;
@@ -255,7 +256,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    txtTeller.Focus();
                 }
             }
             catch (Exception ex)
@@ -327,6 +328,7 @@ namespace ROMS
             {
                 txtProductName.BackColor = Color.LemonChiffon;
                 lvStockLocation.Visible = false;
+                lvTeller.Visible = false;
                 //udfnListviewProduct();
             }
             catch (Exception ex)
@@ -1001,7 +1003,7 @@ namespace ROMS
             try
             {
                 udfnLvStockLocation();
-                txtProductName.Focus();
+                txtTeller.Focus();
             }
             catch (Exception ex)
             {
@@ -1038,7 +1040,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLvStockLocation();
-                    txtProductName.Focus();
+                    txtTeller.Focus();
                 }
             }
             catch (Exception ex)
@@ -1777,6 +1779,169 @@ namespace ROMS
             }
         }
 
+        private void TxtTeller_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtTeller.Text.Length > 0)
+                {
+                    lvTeller.Items.Clear();
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnEmployeeList(15, txtTeller.Text.Trim(), 0, "", 1, 0, 0);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvTeller.Columns[1].Width = 0;
+                                    lvTeller.Items.Add(objList);
+                                }
+                                lvTeller.BringToFront();
+                                lvTeller.Visible = true;
+                            }
+                            else
+                            {
+                                lvTeller.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvTeller.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvTeller.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvTeller.Visible = false;
+                    lvTeller.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvTeller.Items.Count == 0 || txtTeller.Text == "")
+                    {
+                        lvTeller.Visible = false;
+                    }
+                    else
+                    {
+                        lvTeller.Focus();
+                    }
+                    if (lvTeller.Items.Count > 0)
+                    {
+                        lvTeller.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnTeller();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvTeller_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnTeller();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnTeller()
+        {
+            try
+            {
+                if (txtTeller.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvTeller.SelectedItems[0];
+                    txtTeller.Text = selectedItem.SubItems[0].Text;
+                    //lblVerified1.Text = selectedItem.SubItems[1].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvTeller.Visible = false;
+                txtProductName.Focus();
+            }
+        }
         private void BtnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -2065,6 +2230,14 @@ namespace ROMS
                 {
                     varCompleteFlag = 1;
                 }
+                if (txtTeller.Text.Trim() == "")
+                {
+                    epGoodsOutward.SetError(txtTeller, "Please enter teller");
+                    txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTeller.ShowAlways = true;
+                    tpTeller.Show("Please enter teller", txtTeller, 5000);
+                    blnErrorFlag = false;
+                }
                 if (blnErrorFlag == true)
                 {
                     udfntooltiphide();
@@ -2083,6 +2256,7 @@ namespace ROMS
                     objTRNS_GoodsOutward.paraOriginator = varoriginator;
                     objTRNS_GoodsOutward.ParaFlag = varCompleteFlag;
                     objTRNS_GoodsOutward.paraStatusId = varStatusId;
+                    objTRNS_GoodsOutward.paraTeller = txtTeller.Text.Trim();
                     result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -2652,6 +2826,7 @@ namespace ROMS
                             txtOutwardNo.Text = objDs.Tables[0].Rows[0]["GO_No"].ToString();
                             varStockLocationId = objDs.Tables[0].Rows[0]["GO_SLID"].ToString();
                             txtStockLocation.Text = objDs.Tables[0].Rows[0]["Stock Location"].ToString();
+                            txtTeller.Text = objDs.Tables[0].Rows[0]["Teller"].ToString();
                             varTransType = objDs.Tables[0].Rows[0]["GO_TransactionType"].ToString();
                             cmbTransactionType.Text = objDs.Tables[0].Rows[0]["Transaction Type"].ToString();
                             txtRemark.Text = objDs.Tables[0].Rows[0]["Remarks"].ToString();
@@ -2676,6 +2851,7 @@ namespace ROMS
                     }
                     
                     lvStockLocation.Visible = false;
+                    lvTeller.Visible = false;
                     cmbConcern.Enabled = false;
                     dtpOutwardDate.Enabled = false;
                     txtOutwardNo.Enabled = false;
@@ -2686,6 +2862,7 @@ namespace ROMS
                     txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
                     if (varSTSID == 26)
                     {
+                        txtTeller.Enabled = false;
                         txtProductName.Enabled = false;
                         txtOutwardQuantity.Enabled = false;
                         txtRemark.Enabled = false;

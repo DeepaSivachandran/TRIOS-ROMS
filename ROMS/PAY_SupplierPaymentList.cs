@@ -255,9 +255,11 @@ namespace ROMS
                     DGV_SearchGrid.Columns[0].ReadOnly = true; 
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Columns[2].ReadOnly = true;
+                    DGV_SearchGrid.Columns[3].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[3].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -311,9 +313,11 @@ namespace ROMS
                     DGV_SearchGrid.Columns[1].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Columns[2].ReadOnly = true;
+                    DGV_SearchGrid.Columns[3].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Rows[0].Cells[3].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -770,7 +774,8 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdSupllierPaymentList.DataSource = objDs.Tables[0];                           
+                            grdSupllierPaymentList.DataSource = objDs.Tables[0];
+                            grdSupllierPaymentList.Columns["clmEnvelopPrint"].Visible = true;
                             grdSupllierPaymentList.Columns["S.No."].Width = 50;
                             grdSupllierPaymentList.Columns["Transaction Date"].Width = 120;
                             grdSupllierPaymentList.Columns["Transaction No."].Width = 110;
@@ -1365,6 +1370,12 @@ namespace ROMS
                                     MainForm.objPAY_SupplierPayment_BankDate.ShowDialog();
                                 }
                             }
+                            break;
+                        case "clmEnvelopPrint":
+                            string varSupplierId = Convert.ToString((grdSupllierPaymentList.SelectedRows[0].Cells["PAY_SPID"].Value.ToString()));
+                            MainForm.objLabelCount = new LabelCount();
+                            MainForm.objLabelCount.varSupplierIds = varSupplierId;
+                            MainForm.objLabelCount.ShowDialog();
                             break;
                     }
                 }

@@ -65,6 +65,7 @@
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmReceiptPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmDate = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmEnvelopPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsSupplierPaymentList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -176,7 +177,8 @@
             this.grdSupllierPaymentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmPrint,
             this.clmReceiptPrint,
-            this.clmDate});
+            this.clmDate,
+            this.clmEnvelopPrint});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -499,6 +501,15 @@
             this.clmDate.ReadOnly = true;
             this.clmDate.Width = 50;
             // 
+            // clmEnvelopPrint
+            // 
+            this.clmEnvelopPrint.HeaderText = "Envelope Print";
+            this.clmEnvelopPrint.Image = global::ROMS.Properties.Resources.printing;
+            this.clmEnvelopPrint.Name = "clmEnvelopPrint";
+            this.clmEnvelopPrint.ReadOnly = true;
+            this.clmEnvelopPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmEnvelopPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // PAY_SupplierPaymentList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -563,5 +574,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmReceiptPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmDate;
+        private System.Windows.Forms.DataGridViewImageColumn clmEnvelopPrint;
     }
 }

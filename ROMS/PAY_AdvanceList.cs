@@ -194,6 +194,7 @@ namespace ROMS
                             grdAdvanceList.DataSource = objDs.Tables[0];
 
                             grdAdvanceList.Columns["clmPrint"].Visible = true;
+                            grdAdvanceList.Columns["clmEnvelopPrint"].Visible = true;
                             grdAdvanceList.Columns["ADID"].Visible = false;
                             grdAdvanceList.Columns["AD_COMID"].Visible = false;
                             grdAdvanceList.Columns["AD_SPID"].Visible = false;
@@ -349,6 +350,8 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -1436,6 +1439,12 @@ namespace ROMS
                                 objError = new DataError();
                                 objError.WriteFile(ex);
                             }
+                            break;
+                        case "clmEnvelopPrint":
+                            string varSPID = Convert.ToString((grdAdvanceList.SelectedRows[0].Cells["AD_SPID"].Value.ToString()));
+                            MainForm.objLabelCount = new LabelCount();
+                            MainForm.objLabelCount.varSupplierIds = varSPID;
+                            MainForm.objLabelCount.ShowDialog();
                             break;
                     }
                 }
