@@ -1004,7 +1004,7 @@ namespace ROMS
                    varstatus= Convert.ToInt32(cmbstatus.SelectedValue);
                 }
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0",0,0, 0, 0, 0, 0,0);
+                objDs = objdserv.udfnPOEntry(1, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", 0, 0, 0, 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -3244,7 +3244,7 @@ namespace ROMS
                 else
                 {
                     //cmbstatus.Enabled = false;
-                    objDataBind.BindComboBoxListSelected("DEF_Status", "  STS_ModuleID=5 OR STSID=0  ", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
+                    objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,9,14)", "STS_Name,STSID", cmbstatus, "", "STS_Name", "STSID");
                 }
                 objDataBind = null;
             }

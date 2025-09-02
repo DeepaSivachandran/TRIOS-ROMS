@@ -19,5 +19,6 @@ namespace ROMS.Model
         public int paraBrandID { get; set; } = 0;
         public int paraStockType { get; set; } = 0;
         public int paraDays { get; set; } = 0;
+        public int paraOrder { get; set; } = 0;
     }
 }

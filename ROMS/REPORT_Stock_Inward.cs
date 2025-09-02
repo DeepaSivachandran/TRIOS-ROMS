@@ -251,7 +251,7 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 358)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Consolidated.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Inward_Consolidated_Grouping.rpt");
                         objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                     }
@@ -323,7 +323,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,88) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,88) AND MSTID<>0 ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,55,90) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (108)", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
