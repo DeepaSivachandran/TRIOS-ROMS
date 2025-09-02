@@ -75,6 +75,7 @@
             this.lblSupplierCity = new System.Windows.Forms.Label();
             this.lblSuppliername = new System.Windows.Forms.Label();
             this.grbPayment = new System.Windows.Forms.GroupBox();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
             this.txtDPaymentMode = new System.Windows.Forms.TextBox();
             this.txtDChequeNo = new System.Windows.Forms.TextBox();
             this.txtChequeDate = new System.Windows.Forms.TextBox();
@@ -102,7 +103,6 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlinward = new System.Windows.Forms.Panel();
-            this.cmbBank = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.grbIssuedDetails.SuspendLayout();
             this.grbBankDetails.SuspendLayout();
@@ -278,7 +278,7 @@
             this.grbIssuedDetails.Size = new System.Drawing.Size(358, 91);
             this.grbIssuedDetails.TabIndex = 8;
             this.grbIssuedDetails.TabStop = false;
-            this.grbIssuedDetails.Text = "Issue Details";
+            this.grbIssuedDetails.Text = "Mode of Issue";
             // 
             // txtTypeName
             // 
@@ -662,6 +662,18 @@
             this.grbPayment.TabStop = false;
             this.grbPayment.Text = "Payment Details";
             // 
+            // cmbBank
+            // 
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(132, 54);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(180, 28);
+            this.cmbBank.TabIndex = 1;
+            this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
+            this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
+            this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
+            this.cmbBank.Leave += new System.EventHandler(this.CmbBank_Leave);
+            // 
             // txtDPaymentMode
             // 
             this.txtDPaymentMode.BackColor = System.Drawing.SystemColors.Control;
@@ -728,7 +740,7 @@
             this.txtChequeNo.TabIndex = 3;
             this.txtChequeNo.Visible = false;
             this.txtChequeNo.Enter += new System.EventHandler(this.TxtChequeNo_Enter);
-            this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown); 
+            this.txtChequeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeNo_KeyDown);
             this.txtChequeNo.Leave += new System.EventHandler(this.TxtChequeNo_Leave);
             // 
             // txtDBank
@@ -985,18 +997,6 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 645);
             this.pnlinward.TabIndex = 37;
-            // 
-            // cmbBank
-            // 
-            this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(132, 54);
-            this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(180, 28);
-            this.cmbBank.TabIndex = 1;
-            this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
-            this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
-            this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
-            this.cmbBank.Leave += new System.EventHandler(this.CmbBank_Leave);
             // 
             // PAY_Advance
             // 
