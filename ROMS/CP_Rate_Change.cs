@@ -175,6 +175,9 @@ namespace ROMS
                 txtLastChanged.Text = "";
                 txtLastTeller.Text = "";
                 txtsystem.Text = "";
+                lblStockQty.Text = ""; 
+                lblCurrentStock.Visible = false;
+                lblStockQty.Visible = false;
             }
             catch (Exception ex)
             {
