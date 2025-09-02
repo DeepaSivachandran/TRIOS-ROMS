@@ -113,11 +113,14 @@ namespace ROMS
                             grdAdvance.Columns["S.No."].Width = 50;
                             grdAdvance.Columns["Advance Date"].Width = 120; 
                             grdAdvance.Columns["Advance Amount"].Width = 120;
+                            grdAdvance.Columns["Created By"].Width = 180;
+                            grdAdvance.Columns["Updated By"].Width = 180;
                             grdAdvance.Columns["Receipt No"].Width = 100;
                             grdAdvance.Columns["Receipt No"].ReadOnly = true;
                             grdAdvance.Columns["Advance Date"].ReadOnly = true;  
                             grdAdvance.Columns["ID"].Visible = false;  
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else

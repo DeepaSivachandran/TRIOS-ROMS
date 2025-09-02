@@ -755,7 +755,7 @@ namespace ROMS
                 {
                     int varReturnApplicable = 0, varReturnType = 0;
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 16;
+                    objMR_Supplier.ViewType = 44;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
