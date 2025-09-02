@@ -39,5 +39,7 @@ namespace ROMS.Model
         public DataTable paradtparaAdvance { get; set; } = null;
         public string paraPurchaseID { get; set; } = "";
         public int paraSource { get; set; } = 0;
+        public int paraModeOfIssue { get; set; } = 0;
+        public string paraModeOfIssue_Details { get; set; } = "";
     }
 }
