@@ -24,6 +24,9 @@ namespace ROMS
         private ToolTip tpcompanyname = new ToolTip();
         private ToolTip tpSuppliername = new ToolTip();
         private ToolTip tpbank = new ToolTip();
+        private ToolTip tpIssue = new ToolTip();
+        private ToolTip tpIssueMode = new ToolTip();
+        private ToolTip tpChequeNo = new ToolTip();
         public Decimal varNeftAmount = 0, varGrandTotal = 0; 
         public int varSupplierPaymentID = 0, VarPrevSupplierid = 0, id = 0, varEditFlag = 0, varModifiedFlag = 0, VARFLAG = 0, varCellclickFlag = 0, varSource = 0, varCloseFlag = 0, varClose = 0, varSupplierType = 0, clearClick = 0, varApplyFlag = 0, varPaymentStatus = 0, varCreatemodeFlag = 0, varUncheckFlag = 0, varSPBankID = -1, varDefaultBank = 0;
         public string varSupplierPaymentMode = "", varSupplierID = "", varSupplierScheduleID = "", varUserID = "0", varSupplierName = "", varAdvanceID = "", advanceid = "", PurchaseID = "0", varAdvance = "", varPayAmnt = "", varCompanyID = "0";
@@ -99,6 +102,33 @@ namespace ROMS
                     tpSuppliername.ShowAlways = true;
                     tpSuppliername.Show("Please enter supplier name", txtsuppliername, 5000);
                     blnErrorFlag = true;
+                }
+                if (txtChequeNo.Visible==true && txtChequeNo.Text.Trim()=="")
+                {
+                    epSupplier.SetError(txtChequeNo, "Please enter Cheque name");
+                    txtChequeNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpChequeNo.ShowAlways = true;
+                    tpChequeNo.Show("Please enter Cheque name", txtChequeNo, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
+                {
+                    epSupplier.SetError(cmbIssueMode, "Please select mode of issue");
+                    cmbIssueMode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpIssueMode.ShowAlways = true;
+                    tpIssueMode.Show("Please select of issue", cmbIssueMode, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToInt32(cmbIssueMode.SelectedValue) != -1)
+                {
+                    if (Convert.ToString(txtIssue.Text).Trim() == "")
+                    {
+                        epSupplier.SetError(txtIssue, "Please enter mode of issue");
+                        txtIssue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIssue.ShowAlways = true;
+                        tpIssue.Show("Please enter mode of issue", txtIssue, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
                 SPDataService objDServ = new SPDataService();
                 if ((grdSupplierPayment.Rows.Count == 0 || VARFLAG== 0) && varEditFlag==0)
@@ -232,6 +262,8 @@ namespace ROMS
                     objTRN_Supplier_Payment.paraPurchaseID = PurchaseID;
                     objTRN_Supplier_Payment.paraRemarks = Convert.ToString(txtRemark.Text.Trim());
                     objTRN_Supplier_Payment.paraPaymode = Convert.ToInt32(cmbPaymentmode.SelectedValue); 
+                    objTRN_Supplier_Payment.paraModeOfIssue = Convert.ToInt32(cmbIssueMode.SelectedValue); 
+                    objTRN_Supplier_Payment.paraModeOfIssue_Details = Convert.ToString(txtIssue.Text.Trim()); 
                     if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 346)
                     { 
                         objTRN_Supplier_Payment.paraBankID = Convert.ToInt32(varSPBankID);
@@ -393,6 +425,7 @@ namespace ROMS
             try
             {
                 udfnPaymentMode();
+                udfnIssueDropDown();
             }
             catch (Exception ex)
             {
@@ -490,6 +523,31 @@ namespace ROMS
                 else { varNotCondition = "MSTID NOT IN (" + varNotCondition +")"; }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND "+ varNotCondition , "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnIssueDropDown()
+        {
+            try
+            { 
+                string varNotCondition = "0";int varPaymentMode = 0;
+                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 1;
+                varPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+
+                if(varPaymentMode==346) //346 - Cash //In Person
+                { varNotCondition = "0,222,223"; }
+                else if(varPaymentMode==347) //347 - Cheque //In Person, Courier
+                { varNotCondition = "0,223"; } 
+                else if(varPaymentMode==348 || varPaymentMode == 349 || varPaymentMode == 350) //--348- NEFT,349 -RTGS,350 - Transfer //Presented in bank,Courier
+                { varNotCondition = "0,221"; }
+                  
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,71) AND  MSTID NOT IN(" + varNotCondition + ")", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -608,6 +666,7 @@ namespace ROMS
                 //dpChequeDate.MinDate = MainForm.pbFYStartDate; 
                
                 udfnGeneralSettingsList();
+                udfnIssueDropDown();
                 udfnEditLoad(); 
                 if (varEditFlag==0)
                 {
@@ -1337,7 +1396,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRemark.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -1346,7 +1405,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         public void udfnTransferNo()
         {
             if (varSupplierPaymentID == 0)
@@ -2029,8 +2088,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         public void udfnCheckProcess(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -2058,8 +2116,7 @@ namespace ROMS
                                 {
                                     dtPayment.Rows[i].Delete();
                                     dtPayment.AcceptChanges();
-                                }
-                                
+                                } 
                             }
                         }
                         if (varPaymentStatus!=77)
@@ -2328,6 +2385,10 @@ namespace ROMS
             {
                 tpcompanyname.Active = false;
                 tpSuppliername.Active = false;
+                tpIssueMode.Active = false;
+                tpbank.Active = false;
+                tpIssueMode.Active = false;
+                tpChequeNo.Active = false;
             }
             catch (Exception ex)
             {
@@ -2453,6 +2514,8 @@ namespace ROMS
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_SPSCID"]);
                             udfnBankDropDown();
                             cmbBank.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["PAY_CMBNK_ID"]);
+                            cmbIssueMode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["ModeOfIssue"]);
+                            txtIssue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ModeOfIssue_Details"]);
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
@@ -2511,7 +2574,11 @@ namespace ROMS
                     txtTransactionNo.Enabled = false;
                     txtTransactionNo.ReadOnly = true;
                     txtsuppliername.ReadOnly = true;
-                    txtsuppliername.Enabled = false; 
+                    txtsuppliername.Enabled = false;
+                    cmbIssueMode.Enabled = false;
+                    txtIssue.ReadOnly = true;
+                    txtIssue.Enabled = false;
+                    udfnSubtotalCalc();
                 }
                 LV_Supplier.Visible = false;
                 udfnsupplierLoad();
