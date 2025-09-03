@@ -644,6 +644,7 @@
             // 
             // btnClear
             // 
+            this.btnClear.Enabled = false;
             this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClear.Location = new System.Drawing.Point(155, 93);
@@ -657,6 +658,7 @@
             // 
             // btnApply
             // 
+            this.btnApply.Enabled = false;
             this.btnApply.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnApply.Location = new System.Drawing.Point(103, 93);
             this.btnApply.Name = "btnApply";
@@ -713,6 +715,7 @@
             // 
             // btnAdvance
             // 
+            this.btnAdvance.Enabled = false;
             this.btnAdvance.Image = global::ROMS.Properties.Resources.Advance;
             this.btnAdvance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdvance.Location = new System.Drawing.Point(10, 93);

@@ -535,8 +535,7 @@ namespace ROMS
         {
             try
             { 
-                string varNotCondition = "0";int varPaymentMode = 0;
-                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 1;
+                string varNotCondition = "0";int varPaymentMode = 0; 
                 varPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
 
                 if(varPaymentMode==346) //346 - Cash //In Person
@@ -672,10 +671,10 @@ namespace ROMS
                 {
                     btnClear.Enabled = false;
                 }
-                if (varPaymentStatus!=77)
-                {
-                    btnApply.Enabled = true;
-                }
+                //if (varPaymentStatus!=77)
+                //{
+                //    btnApply.Enabled = true;
+                //}
                 udfnChequeTemplateDetails();
             }
             catch (Exception ex)
@@ -1328,7 +1327,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtIssue.Focus();
+                    if (txtIssue.Visible == true)
+                    {
+                        txtIssue.Focus();
+                    }
+                    else { txtRemark.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -1396,7 +1399,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtRemark.Focus();
                 }
             }
             catch (Exception ex)
@@ -1527,7 +1530,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPaymentmode.Focus();
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -1568,7 +1571,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    cmbIssueMode.Focus();
                 }
             }
             catch (Exception ex)
@@ -2207,11 +2210,13 @@ namespace ROMS
                     {
                         btnApply.Enabled = true;
                         btnAdvance.Enabled = true;
+                        btnClear.Enabled = true;
                     }
                     else
                     {
                         btnApply.Enabled = false;
                         btnAdvance.Enabled = false;
+                        btnClear.Enabled = false;
                     }
                 }
             }

@@ -843,6 +843,7 @@ namespace ROMS
                 objMainForm.udfnGetDefaultCompany();
                 udfnCmbConcern();
                 udfnPaymentDropDown();
+                udfnIssueDropDown();
                 udfnBankDropDown();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,71) AND MSTID NOT IN (0)", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
@@ -1130,6 +1131,31 @@ namespace ROMS
         private void CmbPaymentmode_SelectedIndexChanged(object sender, EventArgs e)
         {
             udfnPaymentMode();
+            udfnIssueDropDown();
+        }
+        public void udfnIssueDropDown()
+        {
+            try
+            {
+                string varNotCondition = "0"; int varPaymentMode = 0; 
+                varPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+
+                if (varPaymentMode == 346) //346 - Cash //In Person
+                { varNotCondition = "0,222,223"; }
+                else if (varPaymentMode == 347) //347 - Cheque //In Person, Courier
+                { varNotCondition = "0,223"; }
+                else if (varPaymentMode == 348 || varPaymentMode == 349 || varPaymentMode == 350) //--348- NEFT,349 -RTGS,350 - Transfer //Presented in bank,Courier
+                { varNotCondition = "0,221"; }
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,71) AND  MSTID NOT IN(" + varNotCondition + ")", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnPaymentMode()
         {
