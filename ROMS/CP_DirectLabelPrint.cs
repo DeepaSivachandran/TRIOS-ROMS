@@ -1250,7 +1250,7 @@ namespace ROMS
             // Letters A-Z
             if (key >= Keys.A && key <= Keys.Z) return true;
 
-            // Numbers 0-9 (top row and numpad)
+            // Numbers 0-9 
             if ((key >= Keys.D0 && key <= Keys.D9) ||
                 (key >= Keys.NumPad0 && key <= Keys.NumPad9))
                 return true;
@@ -1259,7 +1259,7 @@ namespace ROMS
             if (key == Keys.Back || key == Keys.Delete || key == Keys.Space)
                 return true;
 
-            // Symbols (you can extend if needed)
+            // Symbols
             if (key >= Keys.Oem1 && key <= Keys.OemBackslash) return true;
 
             return false;
