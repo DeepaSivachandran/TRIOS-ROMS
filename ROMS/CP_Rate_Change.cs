@@ -74,6 +74,17 @@ namespace ROMS
                     tpProduct.Show("Please enter valid product", txtProductName, 5000);
                     blnErrorFlag = true;
                 }
+                if (Convert.ToString(txtWRateLive.Text).Trim() != "" && Convert.ToString(txtRRateLive.Text).Trim() != "")
+                {
+                    if (Convert.ToDecimal(txtRRateLive.Text) < Convert.ToDecimal(txtWRateLive.Text))
+                    {
+                        errItems.SetError(txtWRateLive, "Whole sale rate should be lesser than retail rate!");
+                        txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpWRate.ShowAlways = true;
+                        tpWRate.Show("Whole sale rate should be lesser than retail rate!", txtWRateLive, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (Convert.ToString(txtRRateLive.Text).Trim() != "" && Convert.ToString(txtWRateLive.Text).Trim() != "")
                 {
                     if (Convert.ToDecimal(txtRRateLive.Text) == 0 && Convert.ToDecimal(txtWRateLive.Text) > 0)
