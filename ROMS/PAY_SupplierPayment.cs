@@ -1756,7 +1756,7 @@ namespace ROMS
                     { varPayAmt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value); }
 
                     varBalanceAmt = varTobePaid - varPayAmt;
-                     grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value =Convert.ToString(varBalanceAmt);
+                     grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value = (varBalanceAmt.ToString("##0.00"));
                     udfnPaymentDropDown();
                     udfnSubtotalCalc();
                 } 
@@ -2203,6 +2203,16 @@ namespace ROMS
                             udfnSubtotalCalc();
                         }
                     }
+                    if(VARFLAG!=0)
+                    {
+                        btnApply.Enabled = true;
+                        btnAdvance.Enabled = true;
+                    }
+                    else
+                    {
+                        btnApply.Enabled = false;
+                        btnAdvance.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2314,8 +2324,9 @@ namespace ROMS
                                     {
                                         varFinalAmount = Convert.ToDecimal(varValue) - Convert.ToDecimal(AdvanceAmount);
                                         //dtCheckAdv.Rows[i]["Current balance"] = 0;
-                                        grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value = varFinalAmount;
-                                        grdSupplierPayment.Rows[j].Cells["clmTobePaid"].Value = varFinalAmount;
+                                        grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value = varFinalAmount.ToString("##0.00");
+                                        grdSupplierPayment.Rows[j].Cells["clmTobePaid"].Value = varFinalAmount.ToString("##0.00");
+                                        grdSupplierPayment.Rows[j].Cells["clmPayAmount"].Value = varFinalAmount.ToString("##0.00");
                                         varTotAmount = AdvanceAmount;
                                         dtAdvance.Rows.Add(Convert.ToInt32(varAdvanceID), Convert.ToInt32(varID), 0, varFinalAmount, AdvanceAmount, varFixedAdvance, dtAdvance.Rows.Count + 1);
                                         AdvanceAmount = 0;
@@ -2327,8 +2338,9 @@ namespace ROMS
                                         RemainingAmnt = AdvanceAmount - CurrentAdvace;
                                         varAdvAmount = RemainingAmnt;
                                         varFinalAmount = 0;
-                                        grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value = varFinalAmount;
-                                        grdSupplierPayment.Rows[j].Cells["clmTobePaid"].Value = varFinalAmount;
+                                        grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value = varFinalAmount.ToString("##0.00");
+                                        grdSupplierPayment.Rows[j].Cells["clmTobePaid"].Value = varFinalAmount.ToString("##0.00");
+                                        grdSupplierPayment.Rows[j].Cells["clmPayAmount"].Value = varFinalAmount.ToString("##0.00");
                                         dtAdvance.Rows.Add(Convert.ToInt32(varAdvanceID), Convert.ToInt32(varID), CurrentAdvace, varFinalAmount, RemainingAmnt, varFixedAdvance, dtAdvance.Rows.Count + 1);
                                         AdvanceAmount = CurrentAdvace;
                                     }
