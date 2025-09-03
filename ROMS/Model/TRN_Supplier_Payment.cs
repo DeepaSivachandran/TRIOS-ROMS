@@ -40,6 +40,7 @@ namespace ROMS.Model
         public string paraPurchaseID { get; set; } = "";
         public int paraSource { get; set; } = 0;
         public int paraModeOfIssue { get; set; } = 0;
+        public int paraChequeLimitDays { get; set; } = 0;
         public string paraModeOfIssue_Details { get; set; } = "";
     }
 }

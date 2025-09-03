@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using ROMS.Model;
+using System.Globalization;
 
 namespace ROMS
 {
@@ -83,7 +85,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
-                varoriginator = "";int ViewType = 0;
+                varoriginator = "";int ViewType = 0,varChequeLimitDays=0;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "Advance Creation";
@@ -92,6 +94,10 @@ namespace ROMS
                 {
                     varoriginator = "Advance Updation";
                     ViewType = 1;
+                }
+                if(txtChequeLimitDays.Text.Trim()!="")
+                {
+                    varChequeLimitDays = Convert.ToInt32(txtChequeLimitDays.Text);
                 }
                 Model.TRN_Advance objTRN_Advance = new Model.TRN_Advance();
                 objTRN_Advance.ViewType = ViewType;
@@ -102,6 +108,7 @@ namespace ROMS
                 objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
                 objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text.Trim()); 
                 objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                objTRN_Advance.paraChequeLimitDays = Convert.ToInt32(varChequeLimitDays);
                 if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 346)
                 {
                     objTRN_Advance.paraBankId = Convert.ToInt32(cmbBank.SelectedValue); 
@@ -211,6 +218,47 @@ namespace ROMS
                 btnSave.Enabled = true;
             }
         }
+        public void udfnChequeDate()
+        {
+            try
+            {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 28;
+                objMR_Master.paraDate = dpChequeDate.Text;
+                objMR_Master.paraFlag = Convert.ToInt32(txtChequeLimitDays.Text);
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(objMR_Master);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 1)
+                    {
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        { 
+                            dpChequeDate.MinDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        }
+                    }
+                    if (txtChequeLimitDays.Text.Trim() != "")
+                    {
+                        if (objDs.Tables.Count > 1)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            { 
+                                dpChequeDate.Text =Convert.ToString(  DateTime.ParseExact(objDs.Tables[0].Rows[0]["Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture)) ;
+                                dpChequeDate.Enabled = false;
+                            }
+                        }
+                    }
+                    else
+                    { dpChequeDate.Enabled = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -279,6 +327,34 @@ namespace ROMS
                         tpIssue.ShowAlways = true;
                         tpIssue.Show("Please enter mode of issue", txtIssue, 5000);
                         blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToInt16(cmbPaymentmode.SelectedValue) != 346)
+                {
+                    //Check the cheque is sunday or not
+                    SPDataService objDServ = new SPDataService();
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 27;
+                    objMR_Master.paraDate = dpChequeDate.Text;
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnMaster(objMR_Master);
+                    if (objDs.Tables.Count != 0)
+                    {
+                        int flag = 0;
+                        flag = Convert.ToInt16(objDs.Tables[0].Rows[0]["DateFlag"]);
+                        if (flag == 1)
+                        {
+                            string varMessage = objDServ.udfnGetMessages(160);
+                            objDServ.CloseConnection();
+                            DialogResult result1 = DialogResult.Yes;
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.No)
+                            {
+                                blnErrorFlag = true;
+                                return;
+                            }
+                        }
                     }
                 }
                 if (blnErrorFlag == false)
@@ -777,15 +853,15 @@ namespace ROMS
                             lblContactNo.Text = objDs.Tables[0].Rows[0]["Mobile No"].ToString();
                             lblEmailId.Text = objDs.Tables[0].Rows[0]["Email"].ToString();
                         }
-                        if (objDs.Tables[8].Rows.Count > 0)
+                        if (objDs.Tables[1].Rows.Count > 0)
                         {
-                            txtBankname.Text = objDs.Tables[8].Rows[0]["SP_BankName"].ToString();
-                            txtBankShortName.Text = objDs.Tables[8].Rows[0]["SP_BankShortName"].ToString();
-                            txtbranchname.Text = objDs.Tables[8].Rows[0]["SP_BranchName"].ToString();
-                            txtAccName.Text = objDs.Tables[8].Rows[0]["SP_AccountName"].ToString();
-                            txtAccno.Text = objDs.Tables[8].Rows[0]["SP_AccNo"].ToString();
-                            txtIFScode.Text = objDs.Tables[8].Rows[0]["SP_IFSC"].ToString();
-                            varSPBankID = Convert.ToInt16(objDs.Tables[8].Rows[0]["SP_BNKID"]);
+                            txtBankname.Text = objDs.Tables[1].Rows[0]["SP_BankName"].ToString();
+                            txtBankShortName.Text = objDs.Tables[1].Rows[0]["SP_BankShortName"].ToString();
+                            txtbranchname.Text = objDs.Tables[1].Rows[0]["SP_BranchName"].ToString();
+                            txtAccName.Text = objDs.Tables[1].Rows[0]["SP_AccountName"].ToString();
+                            txtAccno.Text = objDs.Tables[1].Rows[0]["SP_AccNo"].ToString();
+                            txtIFScode.Text = objDs.Tables[1].Rows[0]["SP_IFSC"].ToString();
+                            varSPBankID = Convert.ToInt16(objDs.Tables[1].Rows[0]["SP_BNKID"]);
                         }
                         if (objDs.Tables[2].Rows.Count > 0)
                         {
@@ -909,7 +985,7 @@ namespace ROMS
                 if (varSupplierPaymentMode.Contains("88"))
                 {
                     /* If supplier payment mode is cash and pay amount > 10000 */
-                    if (Convert.ToDecimal(txtAdvanceAmt.Text) > varCashPaymentLimit)
+                    if (Convert.ToDecimal(txtAmount.Text) > varCashPaymentLimit)
                     {
                         varCashEnabled = 0;
                     }
@@ -924,7 +1000,7 @@ namespace ROMS
                 if (varSupplierPaymentMode.Contains("90"))
                 {
                     /* If supplier payment mode is online and pay amount < 2,00,000 */
-                    if (Convert.ToDecimal(txtAdvanceAmt.Text) < varRTGSMinLimit)
+                    if (Convert.ToDecimal(txtAmount.Text) < varRTGSMinLimit)
                     {
                         varRTGSEnabled = 0;
                         varNEFTEnabled = 1;
@@ -1012,11 +1088,11 @@ namespace ROMS
                         
                             udfnPaymentDropDown();
                             txtCurrentBalance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Current Balance"]); 
-                                cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);   
-                                cmbBank.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_CMBNK_ID"]); 
-                             
-                                dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
-                                txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]); 
+                            cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);   
+                            cmbBank.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_CMBNK_ID"]);
+                            txtChequeLimitDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ChequeLimitDays"]);
+                            dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
+                            txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]); 
                             cmbIssueMode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["AD_ModeOfIssue"]);
                             txtIssue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ModeOfIssue_Details"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Remarks"]);
@@ -1174,8 +1250,13 @@ namespace ROMS
                 txtDChequeNo.Visible = true;
                 cmbBank.Visible = true;
                 txtDBank.Visible = true;
-                cmbBank.Enabled = true;
+                cmbBank.Enabled = true; 
                 txtChequeNo.Text = "";
+                txtDChequeLimitDays.Visible = true;
+                txtChequeLimitDays.Visible = true;
+                txtChequeLimitDays.Text = "";
+                txtChequeLimitDays.Enabled = true;
+                txtChequeLimitDays.ReadOnly = false;
                 if (paymentMode == 346)
                 {
                     txtDBank.Visible = false;
@@ -1190,6 +1271,8 @@ namespace ROMS
                     txtDChequeNo.Visible = false;
                     cmbBank.Visible = false;
                     txtDBank.Visible = false;
+                    txtDChequeLimitDays.Visible = false;
+                    txtChequeLimitDays.Visible = false;
                 }
                 else if (paymentMode == 350)
                 {
@@ -1584,6 +1667,84 @@ namespace ROMS
             }
         }
 
+        private void TxtChequeLimitDays_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnChequeDate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeLimitDays.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (dpChequeDate.Enabled == true)
+                    {
+                        dpChequeDate.Focus();
+                    }
+                    else
+                    {
+                        txtChequeNo.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeLimitDays.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar)   && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbBank_Enter(object sender, EventArgs e)
         {
             try
@@ -1603,7 +1764,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpChequeDate.Focus();
+                    txtChequeLimitDays.Focus();
                 }
             }
             catch (Exception ex)

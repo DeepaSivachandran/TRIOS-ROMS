@@ -3655,6 +3655,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Advance.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraChequeLimitDays", objTRN_Advance.paraChequeLimitDays);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -3776,6 +3777,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paradtparaAdvance", objTRN_Supplier_Payment.paradtparaAdvance);
                 varSqlCommand.Parameters.AddWithValue("@paraComBank", objTRN_Supplier_Payment.paraComBank);
                 varSqlCommand.Parameters.AddWithValue("@paraModeOfIssue", objTRN_Supplier_Payment.paraModeOfIssue);
+                varSqlCommand.Parameters.AddWithValue("@paraChequeLimitDays", objTRN_Supplier_Payment.paraChequeLimitDays);
                 varSqlCommand.Parameters.AddWithValue("@paraModeOfIssue_Details", objTRN_Supplier_Payment.paraModeOfIssue_Details);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -4241,6 +4243,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraAmount", objTRN_Payment_ChequeTransaction.paraAmount);
                 varSqlCommand.Parameters.AddWithValue("@paraPAYNo", objTRN_Payment_ChequeTransaction.paraPAYNo);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_Payment_ChequeTransaction.paraSupplierID); 
+                varSqlCommand.Parameters.AddWithValue("@paraBankID", objTRN_Payment_ChequeTransaction.paraBankID); 
+                varSqlCommand.Parameters.AddWithValue("@paraChequeLimitDays", objTRN_Payment_ChequeTransaction.paraChequeLimitDays); 
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
