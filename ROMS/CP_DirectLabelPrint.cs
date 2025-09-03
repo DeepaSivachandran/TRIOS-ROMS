@@ -1231,6 +1231,13 @@ namespace ROMS
                 {
                     txtMrp.Focus();
                 }
+                else if(IsTypingKey(e.KeyCode))
+                {
+                    //Disable the Button when the user try to change the label name
+                    btnpreview.Enabled = false;
+                    btnPrint.Enabled = false;
+                    btnDirectPrint.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1238,7 +1245,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private bool IsTypingKey(Keys key)
+        {
+            // Letters A-Z
+            if (key >= Keys.A && key <= Keys.Z) return true;
 
+            // Numbers 0-9 (top row and numpad)
+            if ((key >= Keys.D0 && key <= Keys.D9) ||
+                (key >= Keys.NumPad0 && key <= Keys.NumPad9))
+                return true;
+
+            // Backspace, Delete, Space
+            if (key == Keys.Back || key == Keys.Delete || key == Keys.Space)
+                return true;
+
+            // Symbols (you can extend if needed)
+            if (key >= Keys.Oem1 && key <= Keys.OemBackslash) return true;
+
+            return false;
+        }
         private void txtLabelProduct_Enter(object sender, EventArgs e)
         {
             try
@@ -1285,6 +1310,9 @@ namespace ROMS
             {
                 if (lblProduct.Text != "" && lblProduct.Text != "0")
                 {
+                    //Enable the Button when the user update the label name
+                    btnpreview.Enabled = true;
+
                     SPDataService objspdservice = new SPDataService();
                     string result = "",itemTname="", itemEname="";
 
