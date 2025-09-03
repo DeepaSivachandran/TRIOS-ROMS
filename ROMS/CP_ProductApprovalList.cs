@@ -249,6 +249,7 @@ namespace ROMS
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraStatusId = varStatusId;
+                objMR_Product.paraFlag = 1;
                 objMR_Product.paraCreatedON = dtCreatedOn.Text;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
