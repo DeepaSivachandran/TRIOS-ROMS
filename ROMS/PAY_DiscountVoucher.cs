@@ -875,22 +875,33 @@ namespace ROMS
             }
         }
 
-        private void GrdInvoice_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        private void grdInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {   //for check box as radio button function
+            {
+                //for check box as radio button function
                 varInvoiceAmnt = 0;
                 if (grdInvoice.CurrentCell.ColumnIndex == 0)
                 {
+                    Boolean blnCurrentStatus = Convert.ToBoolean(grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value);
                     for (int i = 0; i < grdInvoice.Rows.Count; i++)
                     {
                         grdInvoice.Rows[i].Cells[0].Value = false;
                     }
-                    grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = true;
-                    varInvoiceAmnt=Convert.ToDecimal(grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells["clmAmount"].Value);
-                    if (txtInvoiceamt.Text!="")
+                    grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells[0].Value = blnCurrentStatus;
+                    varSaveDisable = 1;
+                    for (int i = 0; i < grdInvoice.Rows.Count; i++)
                     {
-                        if (Convert.ToDecimal(txtInvoiceamt.Text)> varInvoiceAmnt)
+                        if (Convert.ToBoolean(grdInvoice.Rows[i].Cells[0].Value) == true)
+                        {
+                            varSaveDisable = 0;
+                        }
+                    }
+                    if (varSaveDisable == 0) { btnSave.Enabled = true; } else { btnSave.Enabled = false; }
+                    varInvoiceAmnt = Convert.ToDecimal(grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells["clmAmount"].Value);
+                    if (txtInvoiceamt.Text != "")
+                    {
+                        if (Convert.ToDecimal(txtInvoiceamt.Text) > varInvoiceAmnt)
                         {
                             epDiscount.SetError(txtInvoiceamt, "Please enter valid discount amount");
                             txtInvoiceamt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -899,6 +910,19 @@ namespace ROMS
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdInvoice_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                grdInvoice.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
             catch (Exception ex)
             {
@@ -1049,6 +1073,7 @@ namespace ROMS
                         }
                     }
                 }
+                else { btnSave.Enabled = false; }
             }
             catch (Exception ex)
             {

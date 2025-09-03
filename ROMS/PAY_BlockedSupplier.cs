@@ -43,9 +43,8 @@ namespace ROMS
                     string varSupplierId = "0";
                     string[] values = new string[0];
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 31;
+                    objMR_Supplier.ViewType = 46;
                     objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
-                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
                     objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
@@ -108,7 +107,7 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 result = objspdservice.udfnSupplierMaster(13, Convert.ToInt32(lblSupplierCode.Text), "", "", "", 0, "", "", "", "", "", "", 0,
-                0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Salesman Details Update PO", 0, "", 0, 0, 0, 0, 0, "",
+                0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Blocked Supplier", 0, "", 0, 0, 0, 0, 0, "",
                 "", "", "", 0, "", 0, 0, "", "", "",  "", "", "", "", 0, "", 0, 0, 0, 0, 0, Convert.ToInt32(lblschedule.Text), Convert.ToInt32(cmbReason.SelectedValue), "","",0,null,0);
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")

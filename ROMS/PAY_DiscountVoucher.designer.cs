@@ -325,6 +325,7 @@
             this.grdInvoice.ShowRowErrors = false;
             this.grdInvoice.Size = new System.Drawing.Size(871, 198);
             this.grdInvoice.TabIndex = 1111214;
+            this.grdInvoice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdInvoice_CellContentClick);
             this.grdInvoice.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdInvoice_CurrentCellDirtyStateChanged);
             // 
             // clmcheck

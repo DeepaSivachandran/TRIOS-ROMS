@@ -615,7 +615,7 @@ namespace ROMS
                     string[] values = new string[0];
                     string varSupplierId = "0";
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 23;
+                    objMR_Supplier.ViewType = 46;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
@@ -921,7 +921,7 @@ namespace ROMS
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromdate.Text;
                     objMR_Supplier.ParaToDate = dpTodate.Text;
-                    objMR_Supplier.paraFlag = 10;
+                    objMR_Supplier.paraFlag = 11;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);

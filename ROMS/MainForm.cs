@@ -1466,7 +1466,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CityToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmCityReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1483,7 +1483,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void StateToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void tsmState_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1500,7 +1500,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CompanyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmCompanyReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1517,7 +1517,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void HSNToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmHSNReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1534,7 +1534,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void ProductGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmGroupReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1551,7 +1551,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BrokerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmBrokerReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1568,7 +1568,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BrandToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmBrandReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1585,7 +1585,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void ProductSubgroupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmProductSubgroupReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1602,7 +1602,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void StockLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmStockLocationReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1619,7 +1619,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void RackToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmRackReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1636,7 +1636,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void RackGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmRackGroupReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1653,7 +1653,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void SupplierToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmSupplierReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1670,7 +1670,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void ProductWiseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPOProductWiseReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1704,7 +1704,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void SummaryDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPOSummary_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2024,7 +2024,7 @@ namespace ROMS
             }
         }
 
-        private void ItemMovementAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmItemMovementReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2367,7 +2367,7 @@ namespace ROMS
             }
         }
 
-        private void GRNSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TSMGRNSummary_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2401,7 +2401,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void GRNBatchDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmGRNBatchDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2418,7 +2418,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void GRNSupplierDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmGRNSupplierDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2436,7 +2436,7 @@ namespace ROMS
             }
         }
 
-        private void GRNDefectProductToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmGRNDefectPRoduct_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2454,7 +2454,7 @@ namespace ROMS
             }
         }
 
-        private void SupplierWiseProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmSupplierWiseProducts_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2472,7 +2472,7 @@ namespace ROMS
             }
         }
 
-        private void UnassignedProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmUnassignedProducts_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2490,7 +2490,7 @@ namespace ROMS
             }
         }
 
-        private void AssignedProductsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmAssigned_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2561,7 +2561,7 @@ namespace ROMS
             }
         }
 
-        private void PurchaseSummaryReportToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPurchaseSummary_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2579,7 +2579,7 @@ namespace ROMS
             }
         }
 
-        private void PurchaseDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPurchaseDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2597,7 +2597,7 @@ namespace ROMS
             }
         }
 
-        private void UnapprovedPurchaseSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPurchasePendingSummary_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2615,7 +2615,7 @@ namespace ROMS
             }
         }
 
-        private void UnapprovedPurchaseDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPurchasePendingDetail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2633,7 +2633,7 @@ namespace ROMS
             }
         }
 
-        private void PurchaseDefectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPurchaseDefectProduct_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2667,7 +2667,7 @@ namespace ROMS
             }
         }
 
-        private void StatusWiseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmPOStatusWise_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2772,7 +2772,7 @@ namespace ROMS
             }
         }
 
-        private void SupplierLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmSupplierLEdgerReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2860,7 +2860,7 @@ namespace ROMS
             }
         }
 
-        private void StockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmStockReport_Click(object sender, EventArgs e)
         {
             try
             {
