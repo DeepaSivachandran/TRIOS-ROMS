@@ -426,7 +426,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=95 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintLanguage, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79,93) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=110 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -558,7 +558,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbLabelsize.Focus();
+                    cmbPrintType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1029,7 +1029,11 @@ namespace ROMS
                         {
                             RPTViewer.Zoom(2);
                         }
-                        btnPrint.Enabled = true;
+                        //Restrict test print for Sheet
+                        if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
+                        {
+                            btnPrint.Enabled = true;
+                        }
                         btnDirectPrint.Enabled = true;
                         RPTViewer.Refresh();
                         picLoader4.Visible = false;
@@ -1362,6 +1366,84 @@ namespace ROMS
                     txtLabelProduct.Text = lbltname.Text;
                 }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbLabelsize.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                }
+                else
+                {
+                    btnPrint.Enabled = false;
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,93) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                }
+                objDataBind = null;
             }
             catch (Exception ex)
             {
