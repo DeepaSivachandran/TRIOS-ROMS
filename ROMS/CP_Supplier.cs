@@ -47,6 +47,8 @@ namespace ROMS
         private ToolTip tpstate = new ToolTip();
         private ToolTip tpDrCompany = new ToolTip();
         private ToolTip tpCrCompany = new ToolTip();
+        private ToolTip tpTaxableAmt = new ToolTip();
+        private ToolTip tpTaxAmt = new ToolTip();
 
         private ToolTip tpcredit = new ToolTip();
         private ToolTip tpopening = new ToolTip();
@@ -1173,6 +1175,8 @@ namespace ROMS
                 dtOpeningCRDetails.Columns.Add("SPOB_InvoiceAmount", typeof(decimal));
                 dtOpeningCRDetails.Columns.Add("SPOB_STSID", typeof(int));
                 dtOpeningCRDetails.Columns.Add("SPOB_COMID", typeof(int));
+                dtOpeningCRDetails.Columns.Add("SPOB_TaxableAmount", typeof(decimal));
+                dtOpeningCRDetails.Columns.Add("SPOB_TaxAmount", typeof(decimal));
 
                 udfnLoadState();
                 udfnBankDropDownLoad();
@@ -1186,6 +1190,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbfinance, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (73,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPaymentDisc, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOpeningType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOBType, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (13,0) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbMappingordertype, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (0,-1)", "DY_Name,DYID", cmbMappingordeDay, "", "DY_Name", "DYID");
                 cmbState.SelectedValue = 27;
@@ -1427,9 +1432,11 @@ namespace ROMS
                             cmbPaymentTerm.SelectedValue = objDS.Tables[0].Rows[0]["PAYMENT"].ToString();
                             cmbfinance.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString();
                             cmbOpeningType.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString();
+                            cmbOBType.SelectedValue = objDS.Tables[0].Rows[0]["OPTYPE"].ToString();
                             varSupplierStatusID = Convert.ToInt32(objDS.Tables[0].Rows[0]["STS"]);
                             varPurchaseSPID = Convert.ToInt32(objDS.Tables[0].Rows[0]["PUR_SPID"]); 
                             txtOpeningAmt.Text = objDS.Tables[0].Rows[0]["OPBALANCE"].ToString().Replace("''", "'");
+                            txtOBAmt.Text = objDS.Tables[0].Rows[0]["OPBALANCE"].ToString().Replace("''", "'");
                             //RETURN
                             //    DAYID
                             //    WEEKID
@@ -1543,8 +1550,8 @@ namespace ROMS
                                 {
                                     if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "84") //Cr
                                     {
-                                        grdOpeningCrDetails.Rows.Add(Convert.ToString(objDS.Tables[4].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[4].Rows[i]["Concern"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["Status"]), Convert.ToString(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ID"]));
-                                        dtOpeningCRDetails.Rows.Add(Convert.ToInt16(objDS.Tables[4].Rows[i]["ID"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToInt16(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]));
+                                        grdOpeningCrDetails.Rows.Add(Convert.ToString(objDS.Tables[4].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[4].Rows[i]["Concern"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["TaxableAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["TaxAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["Status"]), Convert.ToString(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ID"]));
+                                        dtOpeningCRDetails.Rows.Add(Convert.ToInt16(objDS.Tables[4].Rows[i]["ID"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToInt16(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["TaxableAmount"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["TaxAmount"]));
 
 
                                         if (Convert.ToString(Convert.ToString(objDS.Tables[4].Rows[i]["RemoveFlag"])) == "1")
@@ -1563,6 +1570,7 @@ namespace ROMS
                                         cmbDrCompany.SelectedValue = Convert.ToInt16(objDS.Tables[4].Rows[0]["ConcernID"]); 
                                     }
                                 }
+                                grdOpeningCrDetails.ClearSelection();
                                 udfnOpeningType();
                             }
                             
@@ -1585,6 +1593,8 @@ namespace ROMS
                     groupBox4.Enabled = true;
                     groupBox5.Enabled = true;
                 }
+                txtTotInvoice.Text = Convert.ToString(grdOpeningCrDetails.Rows.Count);
+                txtOBTotInvoice.Text = Convert.ToString(grdOpeningCrDetails.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -9345,16 +9355,21 @@ namespace ROMS
             try
             {
                 int varOpeningType = Convert.ToInt32(cmbOpeningType.SelectedValue); 
-                if(varOpeningType==84) //Cr
+                cmbOBType.SelectedValue= Convert.ToInt32(cmbOpeningType.SelectedValue);
+                if (varOpeningType==84) //Cr
                 {
                     txtOpeningAmt.Visible = true;
                     txtInvoiceNo.Visible = true;
                     dpInvoiceDate.Visible = true;
+                    txtTaxableAmt.Visible = true;
+                    txtTaxAmt.Visible = true;
                     txtInvoiceAmt.Visible = true;
                     grdOpeningCrDetails.Visible = true;
                     btnOpeningAdd.Visible = true;
                     txtDInvoiceNo.Visible = true;
                     txtDInvoiceDate.Visible = true;
+                    txtDETaxableAmt.Visible = true;
+                    txtDETaxAmt.Visible = true;
                     txtDInvoiceAmt.Visible = true;
                     txtopening.Enabled = false;
                     txtopening.ReadOnly = true;
@@ -9371,11 +9386,15 @@ namespace ROMS
                     txtOpeningAmt.Visible = true;
                     txtInvoiceNo.Visible = false;
                     dpInvoiceDate.Visible = false;
+                    txtTaxableAmt.Visible = false;
+                    txtTaxAmt.Visible = false;
                     txtInvoiceAmt.Visible = false;
                     grdOpeningCrDetails.Visible = false;
                     btnOpeningAdd.Visible = false;
                     txtDInvoiceNo.Visible = false;
                     txtDInvoiceDate.Visible = false;
+                    txtDETaxableAmt.Visible = false;
+                    txtDETaxAmt.Visible = false;
                     txtDInvoiceAmt.Visible = false;
                     txtopening.Enabled = true;
                     txtopening.ReadOnly = false;
@@ -9565,7 +9584,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtInvoiceAmt.Focus();
+                    txtTaxableAmt.Focus();
                 }
             }
             catch (Exception ex)
@@ -9699,14 +9718,30 @@ namespace ROMS
                     tpInvoiceNo.Show("Please enter the Invoice No.", txtInvoiceNo, 5000);
                     varFlag = true;
                 }
-                if (txtInvoiceAmt.Text.Trim() == "" || Convert.ToDecimal(txtInvoiceAmt.Text) == 0)
+                if (txtTaxableAmt.Text.Trim() == "" || Convert.ToDecimal(txtTaxableAmt.Text) == 0)
                 {
-                    errCompany.SetError(txtInvoiceAmt, "Please enter the Invoice amt");
-                    txtInvoiceAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpInvoiceAmt.ShowAlways = true;
-                    tpInvoiceAmt.Show("Please enter the Invoice amt", txtInvoiceAmt, 5000);
+                    errCompany.SetError(txtTaxableAmt, "Please enter the taxable amount");
+                    txtTaxableAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTaxableAmt.ShowAlways = true;
+                    tpTaxableAmt.Show("Please enter the taxable amount", txtTaxableAmt, 5000);
                     varFlag = true;
                 }
+                if (txtTaxAmt.Text.Trim() == "" || Convert.ToDecimal(txtTaxAmt.Text) == 0)
+                {
+                    errCompany.SetError(txtTaxAmt, "Please enter the tax amount");
+                    txtTaxAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTaxAmt.ShowAlways = true;
+                    tpTaxAmt.Show("Please enter the tax amount", txtTaxAmt, 5000);
+                    varFlag = true;
+                }
+                //if (txtInvoiceAmt.Text.Trim() == "" || Convert.ToDecimal(txtInvoiceAmt.Text) == 0)
+                //{
+                //    errCompany.SetError(txtInvoiceAmt, "Please enter the Invoice amt");
+                //    txtInvoiceAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpInvoiceAmt.ShowAlways = true;
+                //    tpInvoiceAmt.Show("Please enter the Invoice amt", txtInvoiceAmt, 5000);
+                //    varFlag = true;
+                //}
                 if (Convert.ToString(cmbCrCompany.SelectedValue) == "" || Convert.ToString(cmbCrCompany.SelectedValue) == "-1")
                 {
                     errCompany.SetError(cmbCrCompany, "Please select concern.");
@@ -9723,11 +9758,19 @@ namespace ROMS
                                     .Select(r=>r.Field<string>("STS_Name"))
                                     .ToList();
                     stsName = varStatus[0]; 
-                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtInvoiceAmt.Text.Trim()), stsName, 63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
-                    dtOpeningCRDetails.Rows.Add(0, Convert.ToString(dpInvoiceDate.Text), Convert.ToString(txtInvoiceNo.Text), Convert.ToDecimal(txtInvoiceAmt.Text),63,Convert.ToInt16(cmbCrCompany.SelectedValue));
+                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtTaxableAmt.Text.Trim()), Convert.ToString(txtTaxAmt.Text.Trim()), Convert.ToString(txtInvoiceAmt.Text.Trim()), stsName, 63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
+                    dtOpeningCRDetails.Rows.Add(0, Convert.ToString(dpInvoiceDate.Text), Convert.ToString(txtInvoiceNo.Text), Convert.ToDecimal(txtInvoiceAmt.Text), 63, Convert.ToInt16(cmbCrCompany.SelectedValue), Convert.ToDecimal(txtTaxableAmt.Text), Convert.ToDecimal(txtTaxAmt.Text));
                     txtInvoiceNo.Text = "";
+                    txtTaxableAmt.Text = "";
+                    txtTaxAmt.Text = "";
                     txtInvoiceAmt.Text = "";
+                    grdOpeningCrDetails.ClearSelection();
                     dpInvoiceDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+
+                    grdOpeningCrDetails.Columns["clmTaxableAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdOpeningCrDetails.Columns["clmTaxAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdOpeningCrDetails.Columns["clmInvoiceAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    txtInvoiceNo.Focus();
                     udfnSumOpeningAmt();
                 }
             }
@@ -9744,11 +9787,14 @@ namespace ROMS
                 decimal totalAmount = dtOpeningCRDetails.AsEnumerable()
                         .Sum(r => r.Field<decimal?>("SPOB_InvoiceAmount") ?? 0);
                 txtOpeningAmt.Text = Convert.ToString(totalAmount.ToString("0.00"));
+                txtOBAmt.Text = Convert.ToString(totalAmount.ToString("0.00"));
                 if (totalAmount == 0)
                 {
                     cmbOpeningType.Enabled = true; 
                 }
                 else { cmbOpeningType.Enabled = false;  }
+                txtTotInvoice.Text = Convert.ToString(grdOpeningCrDetails.Rows.Count);
+                txtOBTotInvoice.Text = Convert.ToString(grdOpeningCrDetails.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -9947,7 +9993,250 @@ namespace ROMS
                 objError.WriteFile(ex);
             } 
         }
-         
+
+        private void BtnOBClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOBClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOBClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOBClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOBClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOBSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnSave();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BtnOBSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOBSave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnOBSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnOBSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxableAmt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTaxableAmt.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxableAmt_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtTaxAmt.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxableAmt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTaxableAmt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxAmt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTaxAmt.BackColor = Color.LemonChiffon;
+                if (txtTaxableAmt.Text.Trim() == "")
+                {
+                    txtTaxAmt.Text = "";
+                    errCompany.SetError(txtTaxableAmt, "Please enter the taxable amount.");
+                    txtTaxableAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTaxableAmt.ShowAlways = true;
+                    tpTaxableAmt.Show("Please enter the taxable amount.", txtTaxableAmt, 5000);
+                    txtTaxableAmt.Focus();
+                }
+                else
+                {
+                    if (Convert.ToDecimal(txtTaxableAmt.Text) < 1)
+                    {
+                        txtTaxAmt.Text = "";
+                        errCompany.SetError(txtTaxableAmt, "Please enter the valid taxable amount.");
+                        txtTaxableAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpTaxableAmt.ShowAlways = true;
+                        tpTaxableAmt.Show("Please enter the valid taxable amount.", txtTaxableAmt, 5000);
+                        txtTaxableAmt.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxAmt_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnOpeningAdd.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxAmt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTaxAmt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxableAmt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true; // Reject the key
+                }
+                else if (e.KeyChar == '.' && txtopening.Text.IndexOf('.') > -1)
+                {
+                    e.Handled = true; // Reject the key
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxAmt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true; // Reject the key
+                }
+                else if (e.KeyChar == '.' && txtopening.Text.IndexOf('.') > -1)
+                {
+                    e.Handled = true; // Reject the key
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxAmt_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtTaxableAmt.Text.Trim() != "")
+                {
+                    txtInvoiceAmt.Text = Convert.ToString(Convert.ToDecimal(txtTaxableAmt.Text) + Convert.ToDecimal(txtTaxAmt.Text));
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtDiscountPer_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
