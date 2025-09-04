@@ -613,7 +613,12 @@ namespace ROMS
                 cmbBank.Visible = true;
                 txtBank.Visible = true; 
                 cmbBank.Enabled = true;   
-                txtChequeNo.Text = "";  
+                txtChequeNo.Text = "";
+                txtDChequeLimitDays.Visible = true;
+                txtChequeLimitDays.Visible = true;
+                txtChequeLimitDays.Text = "";
+                txtChequeLimitDays.Enabled = true;
+                txtChequeLimitDays.ReadOnly = false;
                 if (paymentMode==346)
                 {
                     txtBank.Visible = false;
@@ -628,6 +633,8 @@ namespace ROMS
                     txtDChequeNo.Visible = false;
                     cmbBank.Visible = false;
                     txtBank.Visible = false;
+                    txtDChequeLimitDays.Visible = false;
+                    txtChequeLimitDays.Visible = false; 
                 }
                 else if(paymentMode==350)
                 {
@@ -702,7 +709,7 @@ namespace ROMS
                 ClearSupplier();
                 dpDate.MinDate = MainForm.pbFYStartDate;
                 dpDate.MaxDate = MainForm.pbCurrentDate;
-                //dpChequeDate.MinDate = MainForm.pbFYStartDate; 
+                dpChequeDate.MinDate = MainForm.pbFYStartDate; 
                 udfnChequeDate();
                 udfnGeneralSettingsList();
                 udfnIssueDropDown();
@@ -1474,7 +1481,7 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbIssueMode.Focus();
+                        txtChequeNo.Focus();
                     }
                 }
             }
@@ -1519,7 +1526,7 @@ namespace ROMS
             {
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 28;
-                objMR_Master.paraDate = dpChequeDate.Text;
+                objMR_Master.paraDate =Convert.ToString(dpChequeDate.Text);
                 objMR_Master.paraFlag = Convert.ToInt32(txtChequeLimitDays.Text);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -1993,7 +2000,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpChequeDate.Focus();
+                    txtChequeLimitDays.Focus();
                 }
             }
             catch (Exception ex)
