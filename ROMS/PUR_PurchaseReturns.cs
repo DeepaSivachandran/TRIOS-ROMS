@@ -548,6 +548,9 @@ namespace ROMS
                             txtRemarks.Enabled = false;
                             btnSave.Enabled = false;
                             //lblStatus.Text = "Closed";
+                            //Approximate Rate Readonly Color Set
+                            grdReturnDC.Columns["clmApprox"].DefaultCellStyle.BackColor = Color.LightGray;
+                            grdReturnDC.Columns["clmApprox"].ReadOnly = true;
                         }
                         else if (varStatusId == 39 && vareditflag == 1)
                         {
@@ -904,8 +907,10 @@ namespace ROMS
                                         }
                                         else
                                         {
-                                               grdReturnDC.Columns["clmApprox"].ReadOnly = true;
-                                               grdReturnDC.Columns["clmRemove"].Visible = false;
+                                            //Approximate Rate Readonly Color Set
+                                            grdReturnDC.Columns["clmApprox"].DefaultCellStyle.BackColor = Color.LightGray;
+                                            grdReturnDC.Columns["clmApprox"].ReadOnly = true;
+                                            grdReturnDC.Columns["clmRemove"].Visible = false;
                                         }
                                         grdReturnDC.Columns["clmLocation"].Visible = true;
                                         grdReturnDC.Columns["clmRack"].Visible = true;

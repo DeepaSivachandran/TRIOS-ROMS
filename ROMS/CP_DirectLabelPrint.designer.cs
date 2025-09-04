@@ -96,6 +96,8 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.cmbPrintType = new System.Windows.Forms.ComboBox();
             this.tsHeader.SuspendLayout();
             this.grbGrid.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -132,11 +134,11 @@
             // 
             this.cmbLabelsize.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLabelsize.FormattingEnabled = true;
-            this.cmbLabelsize.Location = new System.Drawing.Point(277, 343);
+            this.cmbLabelsize.Location = new System.Drawing.Point(280, 371);
             this.cmbLabelsize.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbLabelsize.Name = "cmbLabelsize";
-            this.cmbLabelsize.Size = new System.Drawing.Size(122, 28);
-            this.cmbLabelsize.TabIndex = 6;
+            this.cmbLabelsize.Size = new System.Drawing.Size(119, 28);
+            this.cmbLabelsize.TabIndex = 7;
             this.cmbLabelsize.SelectedIndexChanged += new System.EventHandler(this.cmbLabelsize_SelectedIndexChanged);
             this.cmbLabelsize.Enter += new System.EventHandler(this.cmbLabelsize_Enter);
             this.cmbLabelsize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbLabelsize_KeyDown);
@@ -166,6 +168,9 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.DGV_FilterProduct);
+            this.grbGrid.Controls.Add(this.cmbPrintType);
+            this.grbGrid.Controls.Add(this.textBox8);
             this.grbGrid.Controls.Add(this.lbltname);
             this.grbGrid.Controls.Add(this.textBox7);
             this.grbGrid.Controls.Add(this.textBox6);
@@ -177,7 +182,6 @@
             this.grbGrid.Controls.Add(this.btnUpdate);
             this.grbGrid.Controls.Add(this.txtLabelProduct);
             this.grbGrid.Controls.Add(this.groupBox1);
-            this.grbGrid.Controls.Add(this.DGV_FilterProduct);
             this.grbGrid.Controls.Add(this.lvProduct);
             this.grbGrid.Controls.Add(this.lbdname);
             this.grbGrid.Controls.Add(this.btnDirectPrint);
@@ -219,10 +223,10 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox7.Location = new System.Drawing.Point(217, 343);
+            this.textBox7.Location = new System.Drawing.Point(215, 371);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(60, 28);
+            this.textBox7.Size = new System.Drawing.Size(64, 28);
             this.textBox7.TabIndex = 111111171;
             this.textBox7.TabStop = false;
             this.textBox7.Text = "Size";
@@ -245,10 +249,10 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox5.Location = new System.Drawing.Point(215, 371);
+            this.textBox5.Location = new System.Drawing.Point(215, 399);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(60, 28);
+            this.textBox5.Size = new System.Drawing.Size(64, 28);
             this.textBox5.TabIndex = 111111169;
             this.textBox5.TabStop = false;
             this.textBox5.Text = "Template";
@@ -588,7 +592,7 @@
             this.btnDirectPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDirectPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnDirectPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDirectPrint.Location = new System.Drawing.Point(291, 466);
+            this.btnDirectPrint.Location = new System.Drawing.Point(292, 502);
             this.btnDirectPrint.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnDirectPrint.Name = "btnDirectPrint";
             this.btnDirectPrint.Size = new System.Drawing.Size(107, 33);
@@ -605,7 +609,7 @@
             this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::ROMS.Properties.Resources.print_label;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(149, 466);
+            this.btnPrint.Location = new System.Drawing.Point(149, 502);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(107, 33);
@@ -620,7 +624,7 @@
             this.btnReset.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Image = global::ROMS.Properties.Resources.refresh;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(7, 466);
+            this.btnReset.Location = new System.Drawing.Point(7, 502);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(107, 33);
             this.btnReset.TabIndex = 111111156;
@@ -634,7 +638,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
-            this.textBox1.Location = new System.Drawing.Point(115, 371);
+            this.textBox1.Location = new System.Drawing.Point(115, 372);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(21, 27);
@@ -657,11 +661,11 @@
             // 
             this.cmbTemplate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTemplate.FormattingEnabled = true;
-            this.cmbTemplate.Location = new System.Drawing.Point(277, 371);
+            this.cmbTemplate.Location = new System.Drawing.Point(280, 399);
             this.cmbTemplate.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbTemplate.Name = "cmbTemplate";
-            this.cmbTemplate.Size = new System.Drawing.Size(122, 28);
-            this.cmbTemplate.TabIndex = 7;
+            this.cmbTemplate.Size = new System.Drawing.Size(119, 28);
+            this.cmbTemplate.TabIndex = 8;
             this.cmbTemplate.Enter += new System.EventHandler(this.cmbTemplate_Enter);
             this.cmbTemplate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTemplate_KeyDown);
             this.cmbTemplate.Leave += new System.EventHandler(this.cmbTemplate_Leave);
@@ -669,7 +673,7 @@
             // txtSalesRate
             // 
             this.txtSalesRate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSalesRate.Location = new System.Drawing.Point(137, 371);
+            this.txtSalesRate.Location = new System.Drawing.Point(137, 372);
             this.txtSalesRate.MaxLength = 10;
             this.txtSalesRate.Name = "txtSalesRate";
             this.txtSalesRate.Size = new System.Drawing.Size(78, 27);
@@ -683,7 +687,7 @@
             // txtMrp
             // 
             this.txtMrp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMrp.Location = new System.Drawing.Point(137, 343);
+            this.txtMrp.Location = new System.Drawing.Point(137, 344);
             this.txtMrp.MaxLength = 10;
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(78, 27);
@@ -772,10 +776,10 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(277, 400);
+            this.btnpreview.Location = new System.Drawing.Point(277, 434);
             this.btnpreview.Name = "btnpreview";
             this.btnpreview.Size = new System.Drawing.Size(122, 33);
-            this.btnpreview.TabIndex = 8;
+            this.btnpreview.TabIndex = 9;
             this.btnpreview.Text = "Preview";
             this.btnpreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnpreview.UseVisualStyleBackColor = true;
@@ -871,6 +875,34 @@
             this.lblProduct.TabIndex = 111111161;
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox8.Location = new System.Drawing.Point(215, 343);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(64, 28);
+            this.textBox8.TabIndex = 111111172;
+            this.textBox8.TabStop = false;
+            this.textBox8.Text = "Print Type";
+            // 
+            // cmbPrintType
+            // 
+            this.cmbPrintType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPrintType.FormattingEnabled = true;
+            this.cmbPrintType.Location = new System.Drawing.Point(280, 343);
+            this.cmbPrintType.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.cmbPrintType.Name = "cmbPrintType";
+            this.cmbPrintType.Size = new System.Drawing.Size(119, 28);
+            this.cmbPrintType.TabIndex = 6;
+            this.cmbPrintType.SelectedIndexChanged += new System.EventHandler(this.CmbPrintType_SelectedIndexChanged);
+            this.cmbPrintType.Enter += new System.EventHandler(this.CmbPrintType_Enter);
+            this.cmbPrintType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPrintType_KeyDown);
+            this.cmbPrintType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPrintType_KeyPress);
+            this.cmbPrintType.Leave += new System.EventHandler(this.CmbPrintType_Leave);
             // 
             // CP_DirectLabelPrint
             // 
@@ -971,5 +1003,7 @@
         private System.Windows.Forms.TextBox textBox7;
         public System.Windows.Forms.Label lbdname;
         private System.Windows.Forms.Label lbltname;
+        private System.Windows.Forms.TextBox textBox8;
+        public System.Windows.Forms.ComboBox cmbPrintType;
     }
 }

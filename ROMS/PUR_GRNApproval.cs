@@ -398,10 +398,10 @@ namespace ROMS
                     cellDebitQty.ReadOnly = false; cellDebitQty.Style.BackColor = Color.PaleGreen;
                     cellFreeQty.ReadOnly = false; cellFreeQty.Style.BackColor = Color.PaleGreen;
                     cellReturnQty.ReadOnly = false; cellReturnQty.Style.BackColor = Color.PaleGreen;
-                    cellMAReceivedQty.Value = "";
-                    cellDebitQty.Value = "";
-                    cellFreeQty.Value = "";
-                    cellReturnQty.Value = "";
+                    cellMAReceivedQty.Value = "0";
+                    cellDebitQty.Value = "0";
+                    cellFreeQty.Value = "0";
+                    cellReturnQty.Value = "0";
                     dtApproval.Rows[e.RowIndex]["GRNAPR_ReceivedQty"] = varMAReceivedQty;
                     dtApproval.Rows[e.RowIndex]["GRNAPR_CreditQty"] = varCreditQty;  dtPurchaseReturnDC.Rows[e.RowIndex]["PURREDCPR_FreeQty"] = varCreditQty;
                     dtCreditProduct.Rows[e.RowIndex]["CNPR_Qty"] = varCreditQty;

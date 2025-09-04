@@ -426,7 +426,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=95 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintLanguage, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79,93) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=110 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -558,7 +558,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbLabelsize.Focus();
+                    cmbPrintType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1029,7 +1029,11 @@ namespace ROMS
                         {
                             RPTViewer.Zoom(2);
                         }
-                        btnPrint.Enabled = true;
+                        //Restrict test print for Sheet
+                        if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
+                        {
+                            btnPrint.Enabled = true;
+                        }
                         btnDirectPrint.Enabled = true;
                         RPTViewer.Refresh();
                         picLoader4.Visible = false;
@@ -1231,6 +1235,13 @@ namespace ROMS
                 {
                     txtMrp.Focus();
                 }
+                else if(IsTypingKey(e.KeyCode))
+                {
+                    //Disable the Button when the user try to change the label name
+                    btnpreview.Enabled = false;
+                    btnPrint.Enabled = false;
+                    btnDirectPrint.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1238,7 +1249,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private bool IsTypingKey(Keys key)
+        {
+            // Letters A-Z
+            if (key >= Keys.A && key <= Keys.Z) return true;
 
+            // Numbers 0-9 
+            if ((key >= Keys.D0 && key <= Keys.D9) ||
+                (key >= Keys.NumPad0 && key <= Keys.NumPad9))
+                return true;
+
+            // Backspace, Delete, Space
+            if (key == Keys.Back || key == Keys.Delete || key == Keys.Space)
+                return true;
+
+            // Symbols
+            if (key >= Keys.Oem1 && key <= Keys.OemBackslash) return true;
+
+            return false;
+        }
         private void txtLabelProduct_Enter(object sender, EventArgs e)
         {
             try
@@ -1285,6 +1314,9 @@ namespace ROMS
             {
                 if (lblProduct.Text != "" && lblProduct.Text != "0")
                 {
+                    //Enable the Button when the user update the label name
+                    btnpreview.Enabled = true;
+
                     SPDataService objspdservice = new SPDataService();
                     string result = "",itemTname="", itemEname="";
 
@@ -1334,6 +1366,84 @@ namespace ROMS
                     txtLabelProduct.Text = lbltname.Text;
                 }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbLabelsize.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPrintType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                }
+                else
+                {
+                    btnPrint.Enabled = false;
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,93) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                }
+                objDataBind = null;
             }
             catch (Exception ex)
             {

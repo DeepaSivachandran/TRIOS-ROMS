@@ -3263,14 +3263,13 @@ namespace ROMS
 
                 DataTable objBankTable = new DataTable();
                 objBankTable.TableName = "MR_Bank";
-                objBankTable.Columns.Add("CMBNK_Name", typeof(string));
-                objBankTable.Columns.Add("CMBNK_ShortName", typeof(string));
+                objBankTable.Columns.Add("CMBNK_BNKID", typeof(int));
                 objBankTable.Columns.Add("CMBNK_BranchName", typeof(string));
                 objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
                 objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
                 objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
                 objBankTable.Columns.Add("CMBNK_Default", typeof(string));
-                objBankTable.Columns.Add("CMBNK_ID", typeof(int));
+                objBankTable.Columns.Add("CMBNK_ID", typeof(string));
 
                 for (int i = 0; i < grdContactManager.Rows.Count; i++)
                 {
