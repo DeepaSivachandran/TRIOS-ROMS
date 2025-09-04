@@ -2956,6 +2956,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSHIds", objTRNS_StockHold.paraSHIds);
                 varSqlCommand.Parameters.AddWithValue("@paraParentSHID", objTRNS_StockHold.paraParentSHID);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_StockHold.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objTRNS_StockHold.paraTeller);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

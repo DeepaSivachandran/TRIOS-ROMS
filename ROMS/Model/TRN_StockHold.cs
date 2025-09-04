@@ -35,6 +35,7 @@ namespace ROMS.Model
         public int paraDeleteFlag { get; set; } = 0;
         public string paraSHIds { get; set; } = "";
         public string paraOriginator { get; set; } = "";
+        public string paraTeller { get; set; } = "";
 
     }
 }

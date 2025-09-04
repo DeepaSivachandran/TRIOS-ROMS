@@ -66,6 +66,11 @@
             this.epBank = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
+            this.lvTeller = new System.Windows.Forms.ListView();
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtTeller = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epBank)).BeginInit();
@@ -81,7 +86,7 @@
             this.txtProductDEName.Name = "txtProductDEName";
             this.txtProductDEName.ReadOnly = true;
             this.txtProductDEName.Size = new System.Drawing.Size(180, 28);
-            this.txtProductDEName.TabIndex = 6;
+            this.txtProductDEName.TabIndex = 645;
             this.txtProductDEName.Text = "Search by P.I Code (F11)";
             // 
             // txtDStateName
@@ -100,6 +105,9 @@
             // grbform
             // 
             this.grbform.Controls.Add(this.DGV_FilterProduct);
+            this.grbform.Controls.Add(this.textBox11);
+            this.grbform.Controls.Add(this.lvTeller);
+            this.grbform.Controls.Add(this.txtTeller);
             this.grbform.Controls.Add(this.lblschedule);
             this.grbform.Controls.Add(this.lblSupplierCode);
             this.grbform.Controls.Add(this.lblSupplierName);
@@ -135,14 +143,14 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(696, 327);
+            this.grbform.Size = new System.Drawing.Size(696, 355);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
             // lblSupplierName
             // 
             this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(433, 206);
+            this.lblSupplierName.Location = new System.Drawing.Point(433, 203);
             this.lblSupplierName.Name = "lblSupplierName";
             this.lblSupplierName.Size = new System.Drawing.Size(63, 20);
             this.lblSupplierName.TabIndex = 1110001032;
@@ -177,7 +185,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(-417, 87);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(186, 87);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -186,7 +194,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(432, 224);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(504, 224);
             this.DGV_FilterProduct.TabIndex = 1110001031;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -197,7 +205,7 @@
             this.textBox10.BackColor = System.Drawing.SystemColors.Control;
             this.textBox10.Enabled = false;
             this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(6, 199);
+            this.textBox10.Location = new System.Drawing.Point(6, 227);
             this.textBox10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
@@ -314,7 +322,7 @@
             this.btnEdit.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnEdit.Location = new System.Drawing.Point(667, 205);
+            this.btnEdit.Location = new System.Drawing.Point(667, 202);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(23, 23);
             this.btnEdit.TabIndex = 1110001021;
@@ -329,7 +337,7 @@
             this.cmbReason.Location = new System.Drawing.Point(427, 172);
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.Size = new System.Drawing.Size(263, 27);
-            this.cmbReason.TabIndex = 1110001003;
+            this.cmbReason.TabIndex = 3;
             this.cmbReason.SelectedIndexChanged += new System.EventHandler(this.CmbReason_SelectedIndexChanged);
             this.cmbReason.Enter += new System.EventHandler(this.CmbReason_Enter);
             this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReason_KeyDown);
@@ -339,12 +347,12 @@
             // txtRemark
             // 
             this.txtRemark.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemark.Location = new System.Drawing.Point(186, 199);
+            this.txtRemark.Location = new System.Drawing.Point(186, 227);
             this.txtRemark.MaxLength = 200;
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(241, 78);
-            this.txtRemark.TabIndex = 1110001005;
+            this.txtRemark.TabIndex = 5;
             this.txtRemark.Enter += new System.EventHandler(this.TxtRemark_Enter);
             this.txtRemark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRemark_KeyDown);
             this.txtRemark.Leave += new System.EventHandler(this.TxtRemark_Leave);
@@ -432,7 +440,7 @@
             this.txtQty.MaxLength = 50;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(88, 27);
-            this.txtQty.TabIndex = 1110001002;
+            this.txtQty.TabIndex = 2;
             this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtQty.Enter += new System.EventHandler(this.TxtQty_Enter);
             this.txtQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtQty_KeyDown);
@@ -470,11 +478,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(610, 285);
+            this.btnClose.Location = new System.Drawing.Point(610, 313);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 3;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -487,11 +495,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(524, 285);
+            this.btnSave.Location = new System.Drawing.Point(524, 313);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -523,12 +531,64 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
+            // lvTeller
+            // 
+            this.lvTeller.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader23,
+            this.columnHeader24});
+            this.lvTeller.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvTeller.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvTeller.HideSelection = false;
+            this.lvTeller.Location = new System.Drawing.Point(186, 227);
+            this.lvTeller.Name = "lvTeller";
+            this.lvTeller.Size = new System.Drawing.Size(241, 119);
+            this.lvTeller.TabIndex = 1110001037;
+            this.lvTeller.UseCompatibleStateImageBehavior = false;
+            this.lvTeller.View = System.Windows.Forms.View.Details;
+            this.lvTeller.Visible = false;
+            this.lvTeller.DoubleClick += new System.EventHandler(this.LvTeller_DoubleClick);
+            this.lvTeller.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvTeller_KeyDown);
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 120;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // txtTeller
+            // 
+            this.txtTeller.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTeller.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTeller.Location = new System.Drawing.Point(186, 200);
+            this.txtTeller.Name = "txtTeller";
+            this.txtTeller.Size = new System.Drawing.Size(241, 27);
+            this.txtTeller.TabIndex = 4;
+            this.txtTeller.TextChanged += new System.EventHandler(this.TxtTeller_TextChanged);
+            this.txtTeller.Enter += new System.EventHandler(this.TxtTeller_Enter);
+            this.txtTeller.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTeller_KeyDown);
+            this.txtTeller.Leave += new System.EventHandler(this.TxtTeller_Leave);
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox11.Enabled = false;
+            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox11.Location = new System.Drawing.Point(6, 199);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(180, 28);
+            this.textBox11.TabIndex = 1110001038;
+            this.textBox11.Text = "Teller";
+            // 
             // INV_StockHold_Entry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(720, 334);
+            this.ClientSize = new System.Drawing.Size(720, 361);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -587,5 +647,10 @@
         public System.Windows.Forms.Label lblSupplierName;
         public System.Windows.Forms.Label lblschedule;
         public System.Windows.Forms.Label lblSupplierCode;
+        public System.Windows.Forms.ListView lvTeller;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.TextBox txtTeller;
+        private System.Windows.Forms.TextBox textBox11;
     }
 }

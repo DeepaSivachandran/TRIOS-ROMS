@@ -20,6 +20,7 @@ namespace ROMS
         private ToolTip tpProductNamePICode = new ToolTip();
         private ToolTip tpQty = new ToolTip();
         private ToolTip tpReason = new ToolTip();
+        private ToolTip tpTeller = new ToolTip();
         private ToolTip tpProductName = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpStock = new ToolTip();
@@ -128,6 +129,7 @@ namespace ROMS
                             varPRID = Convert.ToInt32(objDs.Tables[0].Rows[0]["PRID"]);
                             varRKID = Convert.ToInt32(objDs.Tables[0].Rows[0]["RKID"]);
                             varUTID = Convert.ToInt32(objDs.Tables[0].Rows[0]["UTID"]);
+                            txtTeller.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Teller"]);
                             txtRemark.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Remarks"]);
                             lblSupplierName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
                             lblSupplierName.Visible = true;
@@ -142,8 +144,8 @@ namespace ROMS
                     DGV_FilterProduct.Visible = false;
                     txtProductNamePICode.Enabled = false;
                     txtProductNamePICode.BackColor = Color.White;
-                    tpProductNamePICode.Active = false;
                     txtQty.Focus();
+                    this.ActiveControl = txtQty;
                 }
             }
             catch (Exception ex)
@@ -327,6 +329,14 @@ namespace ROMS
                     varSPID = Convert.ToInt32(lblSupplierCode.Text);
                     varSPSCID = Convert.ToInt32(lblschedule.Text);
                 }
+                if (txtTeller.Text.Trim() == "")
+                {
+                    epBank.SetError(txtTeller, "Please enter teller");
+                    txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTeller.ShowAlways = true;
+                    tpTeller.Show("Please enter teller", txtTeller, 5000);
+                    blnErrorFlag = false;
+                }
                 if (blnErrorFlag == true)
                 {
                     //string varMrp = string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim())));
@@ -353,6 +363,7 @@ namespace ROMS
                     objTRNS_StockHold.paraFlag = 0;
                     objTRNS_StockHold.paraStatus = 96;
                     objTRNS_StockHold.paraParentSHID = varParentSHID;
+                    objTRNS_StockHold.paraTeller = txtTeller.Text.Trim();
                     objTRNS_StockHold.paraOriginator = varoriginator;
                     varResult = objspservice.udfnStockHold(objTRNS_StockHold);
                     objspservice.CloseConnection();
@@ -969,7 +980,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRemark.Focus();
+                    txtTeller.Focus();
                 }
             }
             catch (Exception ex)
@@ -1008,6 +1019,170 @@ namespace ROMS
             }
         }
 
+        private void TxtTeller_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtTeller.Text.Length > 0)
+                {
+                    lvTeller.Items.Clear();
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnEmployeeList(15, txtTeller.Text.Trim(), 0, "", 1, 0, 0);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvTeller.Columns[1].Width = 0;
+                                    lvTeller.Items.Add(objList);
+                                }
+                                lvTeller.BringToFront();
+                                lvTeller.Visible = true;
+                            }
+                            else
+                            {
+                                lvTeller.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvTeller.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvTeller.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvTeller.Visible = false;
+                    lvTeller.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnTeller();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvTeller_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnTeller();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnTeller()
+        {
+            try
+            {
+                if (txtTeller.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvTeller.SelectedItems[0];
+                    txtTeller.Text = selectedItem.SubItems[0].Text;
+                    //lblVerified1.Text = selectedItem.SubItems[1].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvTeller.Visible = false;
+                txtRemark.Focus();
+            }
+        }
+
+        private void TxtTeller_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvTeller.Items.Count == 0 || txtTeller.Text == "")
+                    {
+                        lvTeller.Visible = false;
+                    }
+                    else
+                    {
+                        lvTeller.Focus();
+                    }
+                    if (lvTeller.Items.Count > 0)
+                    {
+                        lvTeller.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtRemark.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtRemark_Enter(object sender, EventArgs e)
         {
             try
@@ -1036,9 +1211,14 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter && !e.Shift) // Enter without Shift
                 {
+                    e.SuppressKeyPress = true; // prevent newline
                     btnSave.Focus();
+                }
+                else if (e.KeyCode == Keys.Enter && e.Shift) // Shift+Enter for newline
+                {
+                    // allow newline
                 }
             }
             catch (Exception ex)
