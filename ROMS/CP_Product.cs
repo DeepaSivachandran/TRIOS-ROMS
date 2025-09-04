@@ -1155,7 +1155,10 @@ namespace ROMS
                     {
                         varviewtype = 1;
                     }
-
+                    if (varproductcode != 0 && pbCloneFlag == 2)
+                    {
+                        varviewtype = 1;
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
@@ -1185,16 +1188,25 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varproductcode != 0 && pbCloneFlag != 1)
+                            if (varproductcode != 0 && pbCloneFlag != 1)//Reqular Editmode
                             {
-                                MainForm.objCP_Itemlist.udfnDropdownbind();
-                                MainForm.objCP_Itemlist.udfnList();
-                                this.Close();
+                                if (tbProduct.SelectedIndex == 1)
+                                {
+                                    MainForm.objCP_Itemlist.udfnDropdownbind();
+                                    MainForm.objCP_Itemlist.udfnList();
+                                    varupdate = "1";
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    tbProduct.TabPages[1].Enabled = true;
+                                    tbProduct.SelectedIndex = 1;
+                                }
                             }
                             else
                             {
                                 //Second tab save after form close, no clear data - added by sathish on 23-08-2025
-                                if (tbProduct.SelectedIndex == 1 || pbCloneFlag == 1)
+                                if (tbProduct.SelectedIndex == 1/* && pbCloneFlag == 1*/)
                                 {
                                     MainForm.objCP_Itemlist.udfnDropdownbind();
                                     MainForm.objCP_Itemlist.udfnList();
@@ -1206,6 +1218,7 @@ namespace ROMS
                                     varproductcode = Convert.ToInt32(varvalue[2]);
                                     tbProduct.TabPages[1].Enabled = true;
                                     tbProduct.SelectedIndex = 1;
+                                    pbCloneFlag = 2;
                                 }
                             }
                             //udfnclear();
@@ -2901,13 +2914,12 @@ namespace ROMS
                 {
                     cmbProductType.SelectedValue = 341;
                     cmbProductType.Enabled = false;
-                    txtUpp.Enabled = true;
-                    txtUpp.ReadOnly = false;
+                    txtUpp.Enabled = false;
+                    txtUpp.ReadOnly = true;
                 }
                 else
                 { 
                     cmbProductType.Enabled = true;
-                    txtUpp.Enabled = false;
                 }
             }
             catch (Exception ex)
