@@ -1313,7 +1313,10 @@ namespace ROMS
                                     string varAmt = string.Format("{0:0}", varMRP);
                                     int varAmount = Convert.ToInt32(varAmt);
                                     string lblAmount = Currency.NumbersToWords(varAmount);                                     
-                                    string varChequeDate = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["ChequeDate"].Value);
+                                    //Added By Sathish ON 04-09-2025 For Check Date Without Space Format
+                                    DateTime ChequeDateTime = DateTime.ParseExact(Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["ChequeDate"].Value), "dd/MM/yyyy", null);
+                                    string chequeDate = ChequeDateTime.ToString("ddMMyyyy");
+
                                     string varSupplierName = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["ChequeSupplierName"].Value);
                                     varRPTName = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["RPTName"].Value);
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -1322,7 +1325,7 @@ namespace ROMS
                                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                                     objBillreport.SetParameterValue("paraAmountInWords", lblAmount);
                                     objBillreport.SetParameterValue("paraAmount", varGrandTotal);
-                                    objBillreport.SetParameterValue("paraChequeDate", varChequeDate);
+                                    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
                                     objValidation.CrySqlConnection(objBillreport);
                                     MainForm.objReportLoad = new ReportLoad();
                                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
