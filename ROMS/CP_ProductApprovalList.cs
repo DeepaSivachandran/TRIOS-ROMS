@@ -250,7 +250,7 @@ namespace ROMS
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraStatusId = varStatusId;
                 objMR_Product.paraFlag = 1;
-                objMR_Product.paraCreatedON = dtCreatedOn.Text;
+                objMR_Product.paraFilterDate = Convert.ToInt32(cmbDateFilter.SelectedValue);
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -732,7 +732,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -762,12 +761,10 @@ namespace ROMS
                 cmbCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void CmbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -980,9 +977,12 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                
-                udfnList();
 
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,112) AND MSTID<>-1", "MST_DisplayText,MSTID,MST_ShortName", cmbDateFilter, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbDateFilter.SelectedValue = 367;
+                udfnList();
             }
             catch (Exception ex)
 
@@ -1180,7 +1180,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dtCreatedOn.Focus();
+                    cmbDateFilter.Focus();
                 }
             }
             catch (Exception ex)
@@ -1505,7 +1505,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSubGroupevent();
-                    dtCreatedOn.Focus();
+                    cmbDateFilter.Focus();
                 }
             }
             catch (Exception ex)
@@ -1520,7 +1520,7 @@ namespace ROMS
             try
             {
                 udfnSubGroupevent();
-                dtCreatedOn.Focus();
+                cmbDateFilter.Focus();
             }
             catch (Exception ex)
             {
@@ -1529,15 +1529,11 @@ namespace ROMS
             }
         }
 
-        private void LlClear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void CmbDateFilter_Enter(object sender, EventArgs e)
         {
             try
             {
-                //dtCreatedOn.Format = DateTimePickerFormat.Custom;
-                //dtCreatedOn.CustomFormat = " ";
-                //dtCreatedOn.Checked = false;
-                dtCreatedOn.Value = MainForm.pbCurrentDate;
-                udfnList();
+                cmbDateFilter.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1546,7 +1542,7 @@ namespace ROMS
             }
         }
 
-        private void DtCreatedOn_KeyDown(object sender, KeyEventArgs e)
+        private void CmbDateFilter_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -1554,6 +1550,32 @@ namespace ROMS
                 {
                     btnView.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDateFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbDateFilter_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDateFilter.BackColor = Color.White;
             }
             catch (Exception ex)
             {
