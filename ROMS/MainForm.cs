@@ -235,6 +235,7 @@ namespace ROMS
 
         public static REPORT_Stock objREPORT_Stock;
         public static REPORT_Stock_Hold objREPORT_Stock_Hold;
+        public static INV_StockHold_Entry objINV_StockHold_Entry;
         public static REPORT_Stock_Aging objREPORT_Stock_Aging;
         public static REPORT_Godown_Valuation objREPORT_Godown_Valuation;
         public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
