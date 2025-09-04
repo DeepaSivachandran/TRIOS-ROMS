@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_ChequeTransaction));
             this.txtDSupplierName = new System.Windows.Forms.TextBox();
             this.txtSupplier = new System.Windows.Forms.TextBox();
@@ -46,8 +49,13 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.epHsn = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtReason = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.grdInvoiceDetails = new System.Windows.Forms.DataGridView();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epHsn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdInvoiceDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDSupplierName
@@ -115,6 +123,10 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.lblNoRecordsFound);
+            this.grbform.Controls.Add(this.grdInvoiceDetails);
+            this.grbform.Controls.Add(this.txtReason);
+            this.grbform.Controls.Add(this.textBox3);
             this.grbform.Controls.Add(this.txtChequeLimitDays);
             this.grbform.Controls.Add(this.textBox2);
             this.grbform.Controls.Add(this.dpChequeDate);
@@ -131,7 +143,7 @@
             this.grbform.Controls.Add(this.txtDAmount);
             this.grbform.Location = new System.Drawing.Point(12, 12);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(349, 236);
+            this.grbform.Size = new System.Drawing.Size(741, 272);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
@@ -143,6 +155,7 @@
             this.txtChequeLimitDays.Name = "txtChequeLimitDays";
             this.txtChequeLimitDays.Size = new System.Drawing.Size(200, 27);
             this.txtChequeLimitDays.TabIndex = 1;
+            this.txtChequeLimitDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtChequeLimitDays.TextChanged += new System.EventHandler(this.TxtChequeLimitDays_TextChanged);
             this.txtChequeLimitDays.Enter += new System.EventHandler(this.TxtChequeLimitDays_Enter);
             this.txtChequeLimitDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeLimitDays_KeyDown);
@@ -226,10 +239,10 @@
             this.btnUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnUpdate.Image = global::ROMS.Properties.Resources.save;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(171, 193);
+            this.btnUpdate.Location = new System.Drawing.Point(171, 235);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(84, 29);
-            this.btnUpdate.TabIndex = 3;
+            this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -243,10 +256,10 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(259, 193);
+            this.btnClose.Location = new System.Drawing.Point(259, 235);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 4;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -258,12 +271,89 @@
             // 
             this.epHsn.ContainerControl = this;
             // 
+            // txtReason
+            // 
+            this.txtReason.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtReason.Location = new System.Drawing.Point(134, 185);
+            this.txtReason.MaxLength = 100;
+            this.txtReason.Multiline = true;
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Size = new System.Drawing.Size(200, 45);
+            this.txtReason.TabIndex = 3;
+            this.txtReason.Enter += new System.EventHandler(this.TxtReason_Enter);
+            this.txtReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReason_KeyDown);
+            this.txtReason.Leave += new System.EventHandler(this.TxtReason_Leave);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox3.Location = new System.Drawing.Point(23, 185);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(111, 27);
+            this.textBox3.TabIndex = 63;
+            this.textBox3.Text = "Reason";
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(482, 116);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958764;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // grdInvoiceDetails
+            // 
+            this.grdInvoiceDetails.AllowUserToAddRows = false;
+            this.grdInvoiceDetails.AllowUserToDeleteRows = false;
+            this.grdInvoiceDetails.AllowUserToResizeColumns = false;
+            this.grdInvoiceDetails.AllowUserToResizeRows = false;
+            this.grdInvoiceDetails.BackgroundColor = System.Drawing.Color.White;
+            this.grdInvoiceDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdInvoiceDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdInvoiceDetails.ColumnHeadersHeight = 30;
+            this.grdInvoiceDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdInvoiceDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            this.grdInvoiceDetails.EnableHeadersVisualStyles = false;
+            this.grdInvoiceDetails.GridColor = System.Drawing.Color.White;
+            this.grdInvoiceDetails.Location = new System.Drawing.Point(344, 23);
+            this.grdInvoiceDetails.Name = "grdInvoiceDetails";
+            this.grdInvoiceDetails.ReadOnly = true;
+            this.grdInvoiceDetails.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdInvoiceDetails.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.grdInvoiceDetails.RowTemplate.Height = 25;
+            this.grdInvoiceDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdInvoiceDetails.Size = new System.Drawing.Size(383, 207);
+            this.grdInvoiceDetails.TabIndex = 958765;
+            // 
             // PAY_ChequeTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(375, 266);
+            this.ClientSize = new System.Drawing.Size(768, 297);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -282,6 +372,7 @@
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epHsn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdInvoiceDetails)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,5 +395,9 @@
         private System.Windows.Forms.DateTimePicker dpChequeDate;
         public System.Windows.Forms.TextBox txtChequeLimitDays;
         private System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox txtReason;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label lblNoRecordsFound;
+        public System.Windows.Forms.DataGridView grdInvoiceDetails;
     }
 }

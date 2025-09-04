@@ -26,7 +26,7 @@ namespace ROMS
         private ToolTip tpIssue = new ToolTip();
         private ToolTip tpAmount = new ToolTip();
         public string varcomid = "0";
-        public string varSupplierID = "", varSupplierScheduleID = "", varSupplierName = "", varSupplierPaymentMode="";
+        public string varSupplierID = "", varSupplierScheduleID = "", varSupplierName = "", varSupplierPaymentMode="", varUserID="0";
         public int varstatus; 
         public int PbStatus=0;
         public int varUpdate = 0;
@@ -85,7 +85,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
-                varoriginator = "";int ViewType = 0,varChequeLimitDays=0;
+                varoriginator = "";int ViewType = 0,varChequeLimitDays=0,varFlag=0;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "Advance Creation";
@@ -99,108 +99,125 @@ namespace ROMS
                 {
                     varChequeLimitDays = Convert.ToInt32(txtChequeLimitDays.Text);
                 }
-                Model.TRN_Advance objTRN_Advance = new Model.TRN_Advance();
-                objTRN_Advance.ViewType = ViewType;
-                objTRN_Advance.paraAdvanceId = pbADID;
-                objTRN_Advance.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRN_Advance.paraAdvanceDate = dpAdvanceDate.Text;
-                objTRN_Advance.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
-                objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text.Trim()); 
-                objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
-                objTRN_Advance.paraChequeLimitDays = Convert.ToInt32(varChequeLimitDays);
-                if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 346)
+                //In save mode no need to get passkey
+                if(pbADID!=0)
                 {
-                    objTRN_Advance.paraBankId = Convert.ToInt32(cmbBank.SelectedValue); 
-                    objTRN_Advance.paraChequeNo = Convert.ToString(txtChequeNo.Text.Trim());
-                    objTRN_Advance.paraChequeDate = Convert.ToString(dpChequeDate.Text);
-                }
-                objTRN_Advance.paraModeOfIssue =Convert.ToInt32(cmbIssueMode.SelectedValue);
-                if(Convert.ToInt32(cmbIssueMode.SelectedValue)==-1)
-                {
-                    objTRN_Advance.paraStatusID = 74;
-                }
+                    MainForm.objCP_Verify = new CP_Verify();
+                    MainForm.objCP_Verify.ShowDialog();
+                    varUserID = MainForm.objCP_Verify.varUserId;
+                    varFlag = MainForm.objCP_Verify.flag;
+                } 
                 else
                 {
-                    objTRN_Advance.paraIssueDetails = txtIssue.Text.Trim();
-                    objTRN_Advance.paraStatusID = 78;
+                    varFlag = 1;
+                    varUserID = MainForm.pbUserID;
                 }
-                objTRN_Advance.paraRemarks = txtRemark.Text.Trim();
-                objTRN_Advance.paraOriginator = varoriginator;
-                varResult = objspservice.udfnAdvance(objTRN_Advance);
-                objspservice.CloseConnection();
-                //varResult = objspservice.udfnAdvance(ViewType, pbADID,Convert.ToInt32(cmbConcern.SelectedValue),dpAdvanceDate.Text,Convert.ToInt32(lblSupplierCode.Text),Convert.ToInt32(lblschedule.Text), Convert.ToDecimal(txtAmount.Text),varoriginator,0);
-                //objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3")
+                if (varFlag == 1)
                 {
-                    string varAmountInWords = "";
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    try
+                    Model.TRN_Advance objTRN_Advance = new Model.TRN_Advance();
+                    objTRN_Advance.ViewType = ViewType;
+                    objTRN_Advance.paraAdvanceId = pbADID;
+                    objTRN_Advance.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objTRN_Advance.paraAdvanceDate = dpAdvanceDate.Text;
+                    objTRN_Advance.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    objTRN_Advance.paraScheduleId = Convert.ToInt32(lblschedule.Text);
+                    objTRN_Advance.ParaAmt = Convert.ToDecimal(txtAmount.Text.Trim());
+                    objTRN_Advance.paraPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
+                    objTRN_Advance.paraChequeLimitDays = Convert.ToInt32(varChequeLimitDays);
+                    objTRN_Advance.paraUserID =Convert.ToInt32(varUserID);
+                    if (Convert.ToInt32(cmbPaymentmode.SelectedValue) != 346)
                     {
-                        if(txtAmount.Text.Trim()!="")
-                        {
-                            decimal varMRP = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
-                            txtAmount.Text = string.Format("{0:0}", varMRP);
-                            int varAmount = Convert.ToInt32(txtAmount.Text);
-                            varAmountInWords = Currency.NumbersToWords(varAmount);
-                        }
-                        string ADID = "0";
-                        if (pbADID == 0)
-                        {
-                            ADID = varvalue[2];
-                        }
-                        else
-                        {
-                            ADID = Convert.ToString(pbADID);
-                        }
-                        DialogResult result1;
-                        SPDataService objDServ = new SPDataService();
-                        string varMessage = objDServ.udfnGetMessages(87);
-                        objDServ.CloseConnection();
-                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (result1 == DialogResult.Yes)
-                        {
-                            string varHeader = "";
-                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_Advance_Receipt.rpt");
-                            varHeader = "Advance Receipt";
-
-                            objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[0].Name.ToString());
-                            objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[0].Name.ToString());
-                            objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[1].Name.ToString());
-                            objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[1].Name.ToString());
-                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
-                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
-                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
-                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
-                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                            objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                            objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                            objValidation.CrySqlConnection(objBillreport);
-
-                            MainForm.objReportLoad = new ReportLoad();
-                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                            MainForm.objReportLoad.Text = varHeader;
-                            MainForm.objReportLoad.ShowDialog();
-                        }
+                        objTRN_Advance.paraBankId = Convert.ToInt32(cmbBank.SelectedValue);
+                        objTRN_Advance.paraChequeNo = Convert.ToString(txtChequeNo.Text.Trim());
+                        objTRN_Advance.paraChequeDate = Convert.ToString(dpChequeDate.Text);
                     }
-                    catch (Exception ex)
+                    objTRN_Advance.paraModeOfIssue = Convert.ToInt32(cmbIssueMode.SelectedValue);
+                    if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1)
                     {
-                        objError = new DataError();
-                        objError.WriteFile(ex);
+                        objTRN_Advance.paraStatusID = 74;
                     }
-                    MainForm.objPAY_AdvanceList.udfnList();
-                    varUpdate = 1;
-                    udfnclose();
-                }
-                else
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnSave.Enabled = true;
-                    btnSave.Focus();
+                    else
+                    {
+                        objTRN_Advance.paraIssueDetails = txtIssue.Text.Trim();
+                        objTRN_Advance.paraStatusID = 78;
+                    }
+                    objTRN_Advance.paraRemarks = txtRemark.Text.Trim();
+                    objTRN_Advance.paraOriginator = varoriginator;
+                    varResult = objspservice.udfnAdvance(objTRN_Advance);
+                    objspservice.CloseConnection();
+                    //varResult = objspservice.udfnAdvance(ViewType, pbADID,Convert.ToInt32(cmbConcern.SelectedValue),dpAdvanceDate.Text,Convert.ToInt32(lblSupplierCode.Text),Convert.ToInt32(lblschedule.Text), Convert.ToDecimal(txtAmount.Text),varoriginator,0);
+                    //objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        string varAmountInWords = "";
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            if (txtAmount.Text.Trim() != "")
+                            {
+                                decimal varMRP = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
+                                txtAmount.Text = string.Format("{0:0}", varMRP);
+                                int varAmount = Convert.ToInt32(txtAmount.Text);
+                                varAmountInWords = Currency.NumbersToWords(varAmount);
+                            }
+                            string ADID = "0";
+                            if (pbADID == 0)
+                            {
+                                ADID = varvalue[2];
+                            }
+                            else
+                            {
+                                ADID = Convert.ToString(pbADID);
+                            }
+                            DialogResult result1;
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(87);
+                            objDServ.CloseConnection();
+                            result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (result1 == DialogResult.Yes)
+                            {
+                                string varHeader = "";
+                                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_Advance_Receipt.rpt");
+                                varHeader = "Advance Receipt";
+
+                                objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[0].Name.ToString());
+                                objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[0].Name.ToString());
+                                objBillreport.SetParameterValue("paraAdvanceId", Convert.ToInt32(ADID), objBillreport.Subreports[1].Name.ToString());
+                                objBillreport.SetParameterValue("paraAmountName", Convert.ToString(varAmountInWords), objBillreport.Subreports[1].Name.ToString());
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
+                                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                                objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                objValidation.CrySqlConnection(objBillreport);
+
+                                MainForm.objReportLoad = new ReportLoad();
+                                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                MainForm.objReportLoad.Text = varHeader;
+                                MainForm.objReportLoad.ShowDialog();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                        MainForm.objPAY_AdvanceList.udfnList();
+                        varUpdate = 1;
+                        udfnclose();
+                    }
+                    else
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnSave.Enabled = true;
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -866,6 +883,52 @@ namespace ROMS
                         if (objDs.Tables[2].Rows.Count > 0)
                         {
                             varSupplierPaymentMode = Convert.ToString(objDs.Tables[2].Rows[0]["Payment_Mode"]);
+                        }
+                    }
+                }
+                udfnOutstandingAmount();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+        public void udfnOutstandingAmount()
+        {
+            try
+            { 
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet(); 
+                if (lblSupplierCode.Text.Length > 0)
+                {
+                    string outstandingAmt = "0",type=""; 
+                    Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                    objMR_Supplier.ViewType = 45;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text); 
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            outstandingAmt = Convert.ToString(objDs.Tables[0].Rows[0]["Outstanding"]);
+                            type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"]);
+                            tsbOutstandingAmount.Text = outstandingAmt + " " + type;
+
+                            if(type=="Cr")
+                            { tsbOutstandingAmount.ForeColor = Color.DarkGreen; }
+                            else if(type == "Dr")
+                            { tsbOutstandingAmount.ForeColor = Color.Red; }
+                        }
+                        else
+                        {
+                            tsbOutstandingAmount.Text = outstandingAmt + " " + type;
                         }
                     }
                 }
@@ -1728,7 +1791,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         private void TxtChequeLimitDays_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1743,8 +1806,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void CmbBank_Enter(object sender, EventArgs e)
         {
             try

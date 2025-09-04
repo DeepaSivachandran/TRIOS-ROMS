@@ -36,7 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierPaymentList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.grdSupllierPaymentList = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.pnlbrand = new System.Windows.Forms.Panel();
@@ -56,14 +55,15 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmCancel = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmCancel = new System.Windows.Forms.DataGridViewImageColumn();
+            this.grdSupllierPaymentList = new System.Windows.Forms.DataGridView();
             this.tsSupplierPaymentList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.pnlbrand.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
             this.SuspendLayout();
             // 
             // tsSupplierPaymentList
@@ -89,53 +89,6 @@
             this.tspHeader.Size = new System.Drawing.Size(132, 22);
             this.tspHeader.Text = "Cheque Transaction";
             // 
-            // grdSupllierPaymentList
-            // 
-            this.grdSupllierPaymentList.AllowUserToAddRows = false;
-            this.grdSupllierPaymentList.AllowUserToDeleteRows = false;
-            this.grdSupllierPaymentList.AllowUserToResizeColumns = false;
-            this.grdSupllierPaymentList.AllowUserToResizeRows = false;
-            this.grdSupllierPaymentList.BackgroundColor = System.Drawing.Color.White;
-            this.grdSupllierPaymentList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdSupllierPaymentList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdSupllierPaymentList.ColumnHeadersHeight = 30;
-            this.grdSupllierPaymentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdSupllierPaymentList.ColumnHeadersVisible = false;
-            this.grdSupllierPaymentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmCancel,
-            this.clmView});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdSupllierPaymentList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdSupllierPaymentList.EnableHeadersVisualStyles = false;
-            this.grdSupllierPaymentList.GridColor = System.Drawing.Color.White;
-            this.grdSupllierPaymentList.Location = new System.Drawing.Point(3, 130);
-            this.grdSupllierPaymentList.Name = "grdSupllierPaymentList";
-            this.grdSupllierPaymentList.ReadOnly = true;
-            this.grdSupllierPaymentList.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdSupllierPaymentList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdSupllierPaymentList.RowTemplate.Height = 25;
-            this.grdSupllierPaymentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdSupllierPaymentList.Size = new System.Drawing.Size(1348, 515);
-            this.grdSupllierPaymentList.TabIndex = 1;
-            this.grdSupllierPaymentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupllierPaymentList_CellContentClick);
-            this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
-            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
-            // 
             // lblNoRecordsFound
             // 
             this.lblNoRecordsFound.AutoSize = true;
@@ -155,32 +108,32 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
@@ -388,6 +341,14 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // clmView
+            // 
+            this.clmView.HeaderText = "";
+            this.clmView.Image = global::ROMS.Properties.Resources.view__1_;
+            this.clmView.Name = "clmView";
+            this.clmView.ReadOnly = true;
+            this.clmView.Width = 50;
+            // 
             // clmCancel
             // 
             this.clmCancel.HeaderText = "";
@@ -398,13 +359,52 @@
             this.clmCancel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmCancel.Width = 50;
             // 
-            // clmView
+            // grdSupllierPaymentList
             // 
-            this.clmView.HeaderText = "";
-            this.clmView.Image = global::ROMS.Properties.Resources.view__1_;
-            this.clmView.Name = "clmView";
-            this.clmView.ReadOnly = true;
-            this.clmView.Width = 50;
+            this.grdSupllierPaymentList.AllowUserToAddRows = false;
+            this.grdSupllierPaymentList.AllowUserToDeleteRows = false;
+            this.grdSupllierPaymentList.AllowUserToResizeColumns = false;
+            this.grdSupllierPaymentList.AllowUserToResizeRows = false;
+            this.grdSupllierPaymentList.BackgroundColor = System.Drawing.Color.White;
+            this.grdSupllierPaymentList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdSupllierPaymentList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdSupllierPaymentList.ColumnHeadersHeight = 30;
+            this.grdSupllierPaymentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdSupllierPaymentList.ColumnHeadersVisible = false;
+            this.grdSupllierPaymentList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCancel,
+            this.clmView});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdSupllierPaymentList.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdSupllierPaymentList.EnableHeadersVisualStyles = false;
+            this.grdSupllierPaymentList.GridColor = System.Drawing.Color.White;
+            this.grdSupllierPaymentList.Location = new System.Drawing.Point(3, 130);
+            this.grdSupllierPaymentList.Name = "grdSupllierPaymentList";
+            this.grdSupllierPaymentList.ReadOnly = true;
+            this.grdSupllierPaymentList.RowHeadersVisible = false;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdSupllierPaymentList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdSupllierPaymentList.RowTemplate.Height = 25;
+            this.grdSupllierPaymentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSupllierPaymentList.Size = new System.Drawing.Size(1348, 515);
+            this.grdSupllierPaymentList.TabIndex = 1;
+            this.grdSupllierPaymentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSupllierPaymentList_CellContentClick);
+            this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
+            this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
             // 
             // PAY_ChequeTransactionList
             // 
@@ -425,13 +425,13 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_SupplierPaymentList_KeyDown);
             this.tsSupplierPaymentList.ResumeLayout(false);
             this.tsSupplierPaymentList.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.pnlbrand.ResumeLayout(false);
             this.pnlbrand.PerformLayout();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,7 +441,6 @@
 
         private System.Windows.Forms.ToolStrip tsSupplierPaymentList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
-        public System.Windows.Forms.DataGridView grdSupllierPaymentList;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Panel pnlbrand;
@@ -461,6 +460,7 @@
         private System.Windows.Forms.Label lblSchedule;
         private System.Windows.Forms.Label lblSupplierCode;
         private System.Windows.Forms.PictureBox picLoader;
+        public System.Windows.Forms.DataGridView grdSupllierPaymentList;
         private System.Windows.Forms.DataGridViewImageColumn clmCancel;
         private System.Windows.Forms.DataGridViewImageColumn clmView;
     }

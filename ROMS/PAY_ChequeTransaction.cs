@@ -22,7 +22,7 @@ namespace ROMS
         public int pbId = 0,pbSPID=0,pbPayID=0, varCloseFlag=0,varBankID=0;
         public string varSupplierName = "";
         public string varPaymentNo = "";
-        public string varAmount = "";
+        public string varAmount = "", varUserID = "0";
          
         //tool tip
         private ToolTip tpchequeNo = new ToolTip(); 
@@ -48,6 +48,7 @@ namespace ROMS
         {
             try
             {
+                txtChequeLimitDays.Text = "0";
                 udfnChequeDate();
                 udfnEdit();
             }
@@ -217,8 +218,31 @@ namespace ROMS
                         txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAYCQ_ChequeNo"]);
                         dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAYCQ_ChequeDate"]);
                         pbSPID= Convert.ToInt16(objDs.Tables[0].Rows[0]["SupplierID"]);
-                        pbPayID= Convert.ToInt16(objDs.Tables[0].Rows[0]["PAYCQ_PAYID"]);
-                        varBankID = Convert.ToInt16(objDs.Tables[0].Rows[0]["BankId"]);  
+                        pbPayID= Convert.ToInt16(objDs.Tables[0].Rows[0]["PAYCQ_PAYID"]); 
+                    }
+                    if (objDs.Tables.Count >0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdInvoiceDetails.DataSource = objDs.Tables[1];
+                            grdInvoiceDetails.Columns["S.No."].Width = 50;
+                            grdInvoiceDetails.Columns["Invoice Date"].Width = 100;
+                            grdInvoiceDetails.Columns["Invoice No."].Width = 110;
+                            grdInvoiceDetails.Columns["Invoice Amount"].Width = 110;
+                            grdInvoiceDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdInvoiceDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdInvoiceDetails.Columns["Invoice Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdInvoiceDetails.Columns["Invoice Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdInvoiceDetails.ClearSelection();
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
                     }
                 } 
             }
@@ -235,34 +259,42 @@ namespace ROMS
                 string varResult = "";  int varChequeLimitDays = 0;
                 if(Convert.ToString(txtChequeLimitDays.Text.Trim())!="")
                 { varChequeLimitDays = Convert.ToInt16(txtChequeLimitDays.Text); }
-                SPDataService objspservice = new SPDataService();
-                Model.TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction = new Model.TRN_Payment_ChequeTransaction();
-                objTRN_Payment_ChequeTransaction.paraViewType = 1;
-                objTRN_Payment_ChequeTransaction.paraID = pbId;
-                objTRN_Payment_ChequeTransaction.paraPAYID = pbPayID;
-                objTRN_Payment_ChequeTransaction.paraPAYNo = txtPaymentNo.Text;
-                objTRN_Payment_ChequeTransaction.paraSupplierID = pbSPID;
-                objTRN_Payment_ChequeTransaction.paraAmount = Convert.ToDecimal(txtAmount.Text); 
-                objTRN_Payment_ChequeTransaction.paraChequeDate = dpChequeDate.Text;
-                objTRN_Payment_ChequeTransaction.paraChequeNo = txtChequeNo.Text;
-                objTRN_Payment_ChequeTransaction.paraOriginator = "Cheque Creation"; 
-                objTRN_Payment_ChequeTransaction.paraBankID = varBankID; 
-                objTRN_Payment_ChequeTransaction.paraChequeLimitDays = varChequeLimitDays; 
-                varResult = objspservice.udfnPayment_ChequeTransaction(objTRN_Payment_ChequeTransaction);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objPAY_ChequeTransactionList.udfnList();
-                    varCloseFlag = 1;
-                    udfnclose();
-                } 
-                else if (varResult.Split('~')[0] == "4")
-                {
-                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnUpdate.Focus();
-                } 
+                MainForm.objCP_Verify = new CP_Verify();
+                MainForm.objCP_Verify.ShowDialog();
+                varUserID = MainForm.objCP_Verify.varUserId;
+                if (MainForm.objCP_Verify.flag == 1)
+                { 
+                    SPDataService objspservice = new SPDataService();
+                    Model.TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction = new Model.TRN_Payment_ChequeTransaction();
+                    objTRN_Payment_ChequeTransaction.paraViewType = 1;
+                    objTRN_Payment_ChequeTransaction.paraID = pbId;
+                    objTRN_Payment_ChequeTransaction.paraPAYID = pbPayID;
+                    objTRN_Payment_ChequeTransaction.paraPAYNo = txtPaymentNo.Text;
+                    objTRN_Payment_ChequeTransaction.paraSupplierID = pbSPID;
+                    objTRN_Payment_ChequeTransaction.paraAmount = Convert.ToDecimal(txtAmount.Text);
+                    objTRN_Payment_ChequeTransaction.paraChequeDate = dpChequeDate.Text;
+                    objTRN_Payment_ChequeTransaction.paraChequeNo = txtChequeNo.Text;
+                    objTRN_Payment_ChequeTransaction.paraOriginator = "Cheque Creation";
+                    objTRN_Payment_ChequeTransaction.paraBankID = varBankID;
+                    objTRN_Payment_ChequeTransaction.paraChequeLimitDays = varChequeLimitDays;
+                    objTRN_Payment_ChequeTransaction.paraUserID = varUserID;
+                    objTRN_Payment_ChequeTransaction.paraReason = txtReason.Text.Trim();
+                    varResult = objspservice.udfnPayment_ChequeTransaction(objTRN_Payment_ChequeTransaction);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objPAY_ChequeTransactionList.udfnList();
+                        varCloseFlag = 1;
+                        udfnclose();
+                    }
+                    else if (varResult.Split('~')[0] == "4")
+                    {
+                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        btnUpdate.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -438,7 +470,7 @@ namespace ROMS
                     }
                     else
                     {
-                        btnUpdate.Focus();
+                        txtReason.Focus();
                     }
                 }
             }
@@ -490,6 +522,49 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void TxtReason_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReason.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtReason_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtReason_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReason.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnChequeDate()
         {
             try
@@ -537,7 +612,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    txtReason.Focus();
                 }
             }
             catch (Exception ex)

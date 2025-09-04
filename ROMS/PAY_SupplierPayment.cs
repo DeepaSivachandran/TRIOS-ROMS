@@ -708,8 +708,7 @@ namespace ROMS
                 udfnBankDropDown();
                 ClearSupplier();
                 dpDate.MinDate = MainForm.pbFYStartDate;
-                dpDate.MaxDate = MainForm.pbCurrentDate;
-                dpChequeDate.MinDate = MainForm.pbFYStartDate; 
+                dpDate.MaxDate = MainForm.pbCurrentDate; 
                 udfnChequeDate();
                 udfnGeneralSettingsList();
                 udfnIssueDropDown();
@@ -1077,6 +1076,47 @@ namespace ROMS
                 LV_Supplier.Visible = false;
             }
         }
+        public void udfnOutstandingAmount()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (lblSupplierCode.Text.Length > 0)
+                {
+                    string outstandingAmt = "0", type = "";
+                    Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
+                    objMR_Supplier.ViewType = 45;
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedule.Text);
+                    objDs = objspdservice.udfnSupplierList(objMR_Supplier);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            outstandingAmt = Convert.ToString(objDs.Tables[0].Rows[0]["Outstanding"]);
+                            type = Convert.ToString(objDs.Tables[0].Rows[0]["Type"]);
+                            tsbOutstandingAmount.Text = outstandingAmt + " " + type;
+
+                            if (type == "Cr")
+                            { tsbOutstandingAmount.ForeColor = Color.DarkGreen; }
+                            else if (type == "Dr")
+                            { tsbOutstandingAmount.ForeColor = Color.Red; }
+                        }
+                        else
+                        {
+                            tsbOutstandingAmount.Text = outstandingAmt + " " + type;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
         public void udfnsupplierLoad()
         {
             try
@@ -1125,6 +1165,7 @@ namespace ROMS
                         
                     }
                 }
+                udfnOutstandingAmount();
             }
             catch (Exception ex)
             {
@@ -1161,7 +1202,8 @@ namespace ROMS
                             grdSupplierPayment.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Additions"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Deductions"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]),
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]),Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Filing Status"]),
+                                    Convert.ToDecimal(objDs.Tables[0].Rows[i]["Taxable Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Additions"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Deductions"]), Convert.ToDecimal(objDs.Tables[0].Rows[i]["Invoice Amount"]),
                                     
                                     Convert.ToDecimal(objDs.Tables[0].Rows[i]["Outstading Amount"]),
                                     
@@ -2704,7 +2746,8 @@ namespace ROMS
                         {
                             for (int i = 0; i < objDs.Tables[1].Rows.Count; i++)
                             {
-                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]),
+                                grdSupplierPayment.Rows.Add(0, Convert.ToString(objDs.Tables[1].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_VoucherNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["PUR_InvoiceNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["Filing Status"]),
+                                    Convert.ToDecimal(objDs.Tables[1].Rows[i]["Taxable Amount"]),
                                     
                                     Convert.ToDecimal(objDs.Tables[1].Rows[i]["Tax Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Addition"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Dedution"]), 
                                     Convert.ToDecimal(objDs.Tables[1].Rows[i]["Invoice Amount"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Outstading Amount"]),
@@ -2761,6 +2804,7 @@ namespace ROMS
                     cmbIssueMode.Enabled = false;
                     txtIssue.ReadOnly = true;
                     txtIssue.Enabled = false;
+                    txtChequeLimitDays.Enabled = false; 
                     udfnSubtotalCalc();
                 }
                 LV_Supplier.Visible = false;

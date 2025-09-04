@@ -65,6 +65,7 @@ namespace ROMS
                 DGV_SearchGridMove.Columns.Add("clmRemove", "Remove");
                 //DGV_SearchGrid.Columns["clmInvDate"].Width = 250;
                 //DGV_SearchGridMove.Columns["clmProductName"].Width = 250;
+                DGV_SearchGridMove.Columns["clmError"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 DGV_SearchGridMove.ScrollBars = ScrollBars.Both;
             }
@@ -261,7 +262,8 @@ namespace ROMS
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                 objTRN_PurchaseEntry.ViewType = varViewType;
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSuppliercode.Text);
-                objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);                   
+                objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);
+                objTRN_PurchaseEntry.paraMonth = Convert.ToInt32(cmbMonths.SelectedValue);
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -273,27 +275,35 @@ namespace ROMS
                     {
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
-                            dtViewProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No"], objDs.Tables[0].Rows[i]["Inv.Date"], objDs.Tables[0].Rows[i]["Inv.No"], objDs.Tables[0].Rows[i]["Inv Amount"],
+                            dtViewProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Inv.Date"], objDs.Tables[0].Rows[i]["Inv.No"], objDs.Tables[0].Rows[i]["Inv Amount"],
                                objDs.Tables[0].Rows[i]["PURID"]);
                         }
                     }
                     grdViewProduct.DataSource = null;
-                    grdViewProduct.DataSource = dtViewProduct;
+                    grdViewProduct.DataSource = objDs.Tables[0];
                     grdViewProduct.Columns[0].HeaderText = "";
                     grdViewProduct.Columns[0].Width = 50;
                     grdViewProduct.Columns["S.No."].Width = 50;
+                    grdViewProduct.Columns["S.No."].Width = 50;
+                    grdViewProduct.Columns["Additions"].Width = 80;
+                    grdViewProduct.Columns["Deductions"].Width = 80;
+                    grdViewProduct.Columns["Tax Amount"].Width = 80;
                     grdViewProduct.Columns["S.No."].ReadOnly = true;
                     grdViewProduct.Columns["S.No."].Visible = false;
                     grdViewProduct.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    grdViewProduct.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    grdViewProduct.Columns["Inv Date"].ReadOnly = true;
-                    grdViewProduct.Columns["Inv No."].ReadOnly = true;
-                    grdViewProduct.Columns["Inv Amt"].ReadOnly = true;
-                    grdViewProduct.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdViewProduct.Columns["Inv.Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    grdViewProduct.Columns["Inv.Date"].ReadOnly = true;
+                    grdViewProduct.Columns["Inv.No"].ReadOnly = true;
+                    grdViewProduct.Columns["Inv Amount"].ReadOnly = true;
+                    grdViewProduct.Columns["Inv Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdViewProduct.Columns["Taxable Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdViewProduct.Columns["Tax Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdViewProduct.Columns["Additions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdViewProduct.Columns["Deductions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdViewProduct.Columns["PURID"].Visible = false;
                     udfnSearchGridHead();
+                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                 }
-                
             }
             catch (Exception ex)
             {
@@ -302,7 +312,7 @@ namespace ROMS
             }
             finally
             {
-                if(grdViewProduct.Rows.Count==0)
+                if (grdViewProduct.Rows.Count == 0)
                 {
                     lblNoRecordsFound.Visible = true;
                 }
@@ -315,8 +325,7 @@ namespace ROMS
         private void BtnProductView_Click(object sender, EventArgs e)
         {
             try
-            {
-                
+            { 
                 udfnMoveList();
             }
             catch (Exception ex)
@@ -452,8 +461,8 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdViewProduct.Rows[i].Cells[0].Value) == true)
                         {
-                            dtMoveProduct.Rows.Add(grdViewProduct.Rows[i].Cells["Inv Date"].Value,
-                            grdViewProduct.Rows[i].Cells["Inv No."].Value, grdViewProduct.Rows[i].Cells["Inv Amt"].Value, 0, grdViewProduct.Rows[i].Cells["PURID"].Value,1);
+                            dtMoveProduct.Rows.Add(grdViewProduct.Rows[i].Cells["Inv.Date"].Value,
+                            grdViewProduct.Rows[i].Cells["Inv.No"].Value, grdViewProduct.Rows[i].Cells["Inv Amount"].Value, 0, grdViewProduct.Rows[i].Cells["PURID"].Value,1);
                             varError++;
                         }
                     }
@@ -1252,7 +1261,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnProductView.Focus();
+                    cmbMonths.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -1401,7 +1410,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    btnProductView.Focus();
+                    cmbMonths.Focus();
                 }
             }
             catch (Exception ex)
@@ -1416,7 +1425,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
-                btnProductView.Focus();
+                cmbMonths.Focus();
             }
             catch (Exception ex)
             {
@@ -1528,7 +1537,9 @@ namespace ROMS
                 dtMoveProduct.Columns.Add("GSTR Amt", typeof(decimal));
                 dtMoveProduct.Columns.Add("PURID", typeof(int));
                 dtMoveProduct.Columns.Add("clmError", typeof(int));
-
+                DataBind objDataBind = new DataBind(); 
+                objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");
+                objDataBind = null;
                 udfnGridColumn();
             }
             catch (Exception ex)
@@ -1551,6 +1562,61 @@ namespace ROMS
                 {
                     udfnclose();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMonths_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMonths.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMonths_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnProductView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMonths_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMonths_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMonths.BackColor = Color.White;
             }
             catch (Exception ex)
             {

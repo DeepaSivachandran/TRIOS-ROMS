@@ -19,7 +19,7 @@ namespace ROMS
         DataError objError;
         DataTable Deftable = new DataTable();
         public Boolean BlnSearchImageYN = false;
-        public int varUserID = 0;
+        public string varUserID = "0";
 
         public PAY_ChequeTransactionList()
         {
@@ -620,6 +620,7 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["Transaction Date"].Width = 110;
                             grdSupllierPaymentList.Columns["Created By"].Width = 200;
                             grdSupllierPaymentList.Columns["Cancelled By"].Width = 200;
+                            grdSupllierPaymentList.Columns["Updated By"].Width = 200;
                             grdSupllierPaymentList.Columns["ID"].Visible = false; 
                             grdSupllierPaymentList.Columns["ViewFlag"].Visible = false; 
                             grdSupllierPaymentList.Columns["CancelFlag"].Visible = false; 
@@ -677,19 +678,12 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = Deftable;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Transaction Date"].Width = 120;
-                DGV_SearchGrid.Columns["Transaction No."].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 100;
-                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
-                DGV_SearchGrid.Columns["Advance"].Width = 100;
-                DGV_SearchGrid.Columns["Sub Total"].Width = 100;
-                DGV_SearchGrid.Columns["Grand Total"].Width = 100;
-                DGV_SearchGrid.Columns["Payment Mode"].Width = 150;
-                DGV_SearchGrid.Columns["PAY_PaymentMode"].Visible = false;
-                DGV_SearchGrid.Columns["PAYID"].Visible = false;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["BankId"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 150;
-                DGV_SearchGrid.Columns["PAY_STSID"].Visible = false;
-                DGV_SearchGrid.Columns["PAY_BankID"].Visible = false;
-                DGV_SearchGrid.Columns["ChequeDate"].Visible = false;
+                DGV_SearchGrid.Columns["ViewFlag"].Visible = false;
+                DGV_SearchGrid.Columns["CancelFlag"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -941,18 +935,25 @@ namespace ROMS
                                 result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (result1 == DialogResult.Yes)
                                 {
-                                    SPDataService objspservice = new SPDataService();
-                                    Model.TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction = new Model.TRN_Payment_ChequeTransaction();
-                                    objTRN_Payment_ChequeTransaction.paraViewType = 0;
-                                    objTRN_Payment_ChequeTransaction.paraID = varID;
-                                    objTRN_Payment_ChequeTransaction.paraOriginator = "Cheque Cancel";
-                                    varResult = objspservice.udfnPayment_ChequeTransaction(objTRN_Payment_ChequeTransaction);
-                                    objspservice.CloseConnection();
-                                    string[] varvalue = varResult.Split('~');
-                                    if (varvalue[0] == "3")
-                                    {
-                                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
+                                    { 
+                                        SPDataService objspservice = new SPDataService();
+                                        Model.TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction = new Model.TRN_Payment_ChequeTransaction();
+                                        objTRN_Payment_ChequeTransaction.paraViewType = 0;
+                                        objTRN_Payment_ChequeTransaction.paraID = varID;
+                                        objTRN_Payment_ChequeTransaction.paraUserID = varUserID;
+                                        objTRN_Payment_ChequeTransaction.paraOriginator = "Cheque Cancel";
+                                        varResult = objspservice.udfnPayment_ChequeTransaction(objTRN_Payment_ChequeTransaction);
+                                        objspservice.CloseConnection();
+                                        string[] varvalue = varResult.Split('~');
+                                        if (varvalue[0] == "3")
+                                        {
+                                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
                                     }
                                 }
                             }
@@ -963,6 +964,7 @@ namespace ROMS
                                 int varID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["ID"].Value);  
                                 MainForm.objPAY_ChequeTransaction = new PAY_ChequeTransaction(); 
                                 MainForm.objPAY_ChequeTransaction.pbId = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["ID"].Value);  
+                                MainForm.objPAY_ChequeTransaction.varBankID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["BankId"].Value);  
                                 MainForm.objPAY_ChequeTransaction.Show(); 
                             }
                             break;
