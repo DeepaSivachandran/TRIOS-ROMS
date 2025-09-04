@@ -245,13 +245,16 @@ namespace ROMS
                     }
                     if (Convert.ToInt32(cmbChildUnit.SelectedValue) != -1)
                     {
-                        if (Convert.ToString(txtUpp.Text) == "" || Convert.ToString(txtUpp.Text) == "0")
+                        if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 14 && Convert.ToInt32(cmbProductType.SelectedValue) == 342)
                         {
-                            errItems.SetError(txtUpp, "Please enter upp");
-                            txtUpp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpUPP.ShowAlways = true;
-                            tpUPP.Show("Please enter upp", txtUpp, 5000);
-                            blnErrorFlag = true;
+                            if (Convert.ToString(txtUpp.Text) == "" || Convert.ToString(txtUpp.Text) == "0")
+                            {
+                                errItems.SetError(txtUpp, "Please enter upp");
+                                txtUpp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpUPP.ShowAlways = true;
+                                tpUPP.Show("Please enter upp", txtUpp, 5000);
+                                blnErrorFlag = true;
+                            }
                         }
                     }
                     //    if (Convert.ToString(txtUpp.Text).Trim() == "")
@@ -1193,7 +1196,7 @@ namespace ROMS
                                 if (tbProduct.SelectedIndex == 1)
                                 {
                                     MainForm.objCP_Itemlist.udfnDropdownbind();
-                                    MainForm.objCP_Itemlist.udfnList();
+                                    //MainForm.objCP_Itemlist.udfnList();
                                     varupdate = "1";
                                     this.Close();
                                 }
@@ -1209,7 +1212,7 @@ namespace ROMS
                                 if (tbProduct.SelectedIndex == 1/* && pbCloneFlag == 1*/)
                                 {
                                     MainForm.objCP_Itemlist.udfnDropdownbind();
-                                    MainForm.objCP_Itemlist.udfnList();
+                                    //MainForm.objCP_Itemlist.udfnList();
                                     varupdate = "1";
                                     this.Close();
                                 }
@@ -1437,7 +1440,7 @@ namespace ROMS
                 tpPurHSN.ShowAlways = false;
                 tpSalesHSN.ShowAlways = false;
                 this.Close();
-                MainForm.objCP_Itemlist.udfnList();
+                //MainForm.objCP_Itemlist.udfnList();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
             }
             catch (Exception ex)
@@ -6440,7 +6443,7 @@ namespace ROMS
                     else
                     {
                         MainForm.objCP_Itemlist.udfnDropdownbind();
-                        MainForm.objCP_Itemlist.udfnList();
+                        //MainForm.objCP_Itemlist.udfnList();
                         //udfnclear();
                         varupdate = "1";
                         this.Close();

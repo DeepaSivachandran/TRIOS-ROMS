@@ -158,7 +158,7 @@ namespace ROMS
         {
             try
             {
-                epBank.Clear();
+                epStockHold.Clear();
                 tpConcern.Active = false;
                 tpProductName.Active = false;
                 tpProductNamePICode.Active = false;
@@ -239,7 +239,7 @@ namespace ROMS
                 bool blnErrorFlag = true;
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epBank.SetError(cmbConcern, "Please select concern");
+                    epStockHold.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
@@ -247,7 +247,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtProductNamePICode.Text).Trim() == "")
                 {
-                    epBank.SetError(txtProductNamePICode, "Please enter product name");
+                    epStockHold.SetError(txtProductNamePICode, "Please enter product name");
                     txtProductNamePICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpProductNamePICode.ShowAlways = true;
                     tpProductNamePICode.Show("Please enter Product name", txtProductNamePICode, 5000);
@@ -255,7 +255,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtStockLoc.Text).Trim() == "")
                 {
-                    epBank.SetError(txtStockLoc, "Please enter stock location");
+                    epStockHold.SetError(txtStockLoc, "Please enter stock location");
                     txtStockLoc.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStockLocation.ShowAlways = true;
                     tpStockLocation.Show("Please enter stock location", txtStockLoc, 5000);
@@ -263,7 +263,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtRack.Text).Trim() == "")
                 {
-                    epBank.SetError(txtRack, "Please enter rack name");
+                    epStockHold.SetError(txtRack, "Please enter rack name");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRack.ShowAlways = true;
                     tpRack.Show("Please enter rack name", txtRack, 5000);
@@ -271,7 +271,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtStockQty.Text).Trim() == "" && varParentSHID == 0)
                 {
-                    epBank.SetError(txtStockQty, "Please enter stock quantity");
+                    epStockHold.SetError(txtStockQty, "Please enter stock quantity");
                     txtRack.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpStock.ShowAlways = true;
                     tpStock.Show("Please enter stock quantity", txtStockQty, 5000);
@@ -279,7 +279,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtQty.Text).Trim() == "")
                 {
-                    epBank.SetError(txtQty, "Please enter quantity");
+                    epStockHold.SetError(txtQty, "Please enter quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQty.ShowAlways = true;
                     tpQty.Show("Please enter quantity", txtQty, 5000);
@@ -318,7 +318,7 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbReason.SelectedValue) == -1)
                 {
-                    epBank.SetError(cmbReason, "Please enter the reason");
+                    epStockHold.SetError(cmbReason, "Please enter the reason");
                     cmbReason.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpReason.ShowAlways = true;
                     tpReason.Show("Please enter the reason", txtQty, 5000);
@@ -331,7 +331,7 @@ namespace ROMS
                 }
                 if (txtTeller.Text.Trim() == "")
                 {
-                    epBank.SetError(txtTeller, "Please enter teller");
+                    epStockHold.SetError(txtTeller, "Please enter teller");
                     txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpTeller.ShowAlways = true;
                     tpTeller.Show("Please enter teller", txtTeller, 5000);
@@ -840,14 +840,14 @@ namespace ROMS
             {
                 if (Convert.ToString(txtQty.Text) == "")
                 {
-                    epBank.SetError(txtQty, "Please enter Quantity");
+                    epStockHold.SetError(txtQty, "Please enter Quantity");
                     txtQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpQty.ShowAlways = true;
                     tpQty.Show("Please enter Quantity", txtQty, 5000);
                 }
                 else
                 {
-                    epBank.Clear();
+                    epStockHold.Clear();
                     string Qty = objValidation.udfnDecimal((txtQty.Text).Trim(), varDecimal);
                     txtQty.Text = Qty;
                     txtQty.BackColor = Color.White;
@@ -1263,14 +1263,14 @@ namespace ROMS
             {
                 if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 {
-                    epBank.SetError(cmbConcern, "Please select concern");
+                    epStockHold.SetError(cmbConcern, "Please select concern");
                     cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpConcern.ShowAlways = true;
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
                 }
                 else
                 {
-                    epBank.Clear();
+                    epStockHold.Clear();
                     cmbConcern.BackColor = Color.White;
                 }
             }
@@ -1320,7 +1320,7 @@ namespace ROMS
         {
             try
             {
-                epBank.Clear();
+                epStockHold.Clear();
                 txtProductNamePICode.BackColor = Color.White;
                 tpProductNamePICode.Active = false;
                 /*
