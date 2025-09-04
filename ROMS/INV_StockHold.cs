@@ -187,7 +187,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdStockHold.Columns["clmCheck"].Visible = true;
                             grdStockHold.Columns["clmDelete"].Visible = true;
-                            //grdStockHold.Columns["clmEdit"].Visible = true;
+                            grdStockHold.Columns["clmPrint"].Visible = true;
                             grdStockHold.Columns["clmMove"].Visible = true;
                             grdStockHold.Columns["clmConvert"].Visible = true;
                             grdStockHold.DataSource = objDS.Tables[0];
@@ -208,7 +208,7 @@ namespace ROMS
                             grdStockHold.Columns["Created By"].Width = 80;
                             grdStockHold.Columns["clmCheck"].Width = 40;
                             grdStockHold.Columns["clmDelete"].Width = 40;
-                            grdStockHold.Columns["clmEdit"].Width = 30;
+                            grdStockHold.Columns["clmPrint"].Width = 40;
                             grdStockHold.Columns["clmMove"].Width = 40;
                             grdStockHold.Columns["clmConvert"].Width = 50;
                             grdStockHold.Columns["SH_SPID"].Visible = false;
@@ -258,7 +258,7 @@ namespace ROMS
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                             grdStockHold.Columns["clmDelete"].Visible = false;
-                            grdStockHold.Columns["clmEdit"].Visible = false;
+                            grdStockHold.Columns["clmPrint"].Visible = false;
                         }
                     }
                     else
@@ -369,8 +369,10 @@ namespace ROMS
                                 udfnDelete();
                             }
                             break;
-                        case "clmEdit":
-                            //udfnEdit();
+                        case "clmPrint":
+                            string varSHID = "0";
+                            varSHID = Convert.ToString(grdStockHold.SelectedRows[0].Cells["SHID"].Value.ToString());
+                            udfnStockHoldPrint(varSHID);
                             break;
                         case "clmMove":
                             udfnMove();
@@ -379,6 +381,40 @@ namespace ROMS
                             udfnConvert();
                             break;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnStockHoldPrint(string varSHID)
+        {
+            try
+            {
+                DialogResult result1;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(87);
+                objDServ.CloseConnection();
+                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result1 == DialogResult.Yes)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_StockHold_Print.rpt");
+                    varHeader = "Stock Hold Report";
+
+                    objBillreport.SetParameterValue("paraSHID", Convert.ToInt32(varSHID));
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -791,8 +827,8 @@ namespace ROMS
                 grdStockHold.Columns["clmCheck"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdStockHold.Columns["clmDelete"].Frozen = true;
                 grdStockHold.Columns["clmDelete"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                grdStockHold.Columns["clmEdit"].Frozen = true;
-                grdStockHold.Columns["clmEdit"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdStockHold.Columns["clmPrint"].Frozen = true;
+                grdStockHold.Columns["clmPrint"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdStockHold.Columns["clmMove"].Frozen = true;
                 grdStockHold.Columns["clmMove"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdStockHold.Columns["clmConvert"].Frozen = true;
@@ -807,7 +843,7 @@ namespace ROMS
                     if (Convert.ToString(grdStockHold.Rows[i].Cells["SH_STSID"].Value) == "97")
                     {
                         grdStockHold.Rows[i].Cells["clmDelete"].Value = new Bitmap(1, 1);
-                        grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
+                        //grdStockHold.Rows[i].Cells["clmEdit"].Value = new Bitmap(1, 1);
                         //grdStockHold.Rows[i].Cells["clmMove"].Value = new Bitmap(1, 1);
                         DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
                         print.Value = "";
@@ -1875,7 +1911,7 @@ namespace ROMS
                 cmbConcern.Focus();
                 SPDataService objdserv = new SPDataService();
                 DataSet objDT = new DataSet();
-                objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                objDT = objdserv.udfnCompanyList(2, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
                 objdserv.CloseConnection();
                 cmbConcern.DataSource = null;
                 if (objDT != null)
@@ -1902,9 +1938,9 @@ namespace ROMS
         {
             try
             {
-                if (!RPTViewer.Visible)
-                {
-                    btnPrint.Image = global::ROMS.Properties.Resources.view;
+                //if (!RPTViewer.Visible)
+                //{
+                    //btnPrint.Image = global::ROMS.Properties.Resources.view;
                     btnPrint.Enabled = false;
                     lblNoRecordsFound.Visible = false;
                     picLoader.Visible = true;
@@ -1968,17 +2004,17 @@ namespace ROMS
                     else
                     {
                         lblNoRecordsFound.Visible = true;
-                        btnPrint.Image = global::ROMS.Properties.Resources.view;
+                        //btnPrint.Image = global::ROMS.Properties.Resources.view;
                         RPTViewer.Visible = false;
                     }                  
-                }
-                else
-                {
-                    picLoader.Visible = true;
-                    RPTViewer.Visible = false;
-                    btnPrint.Image = global::ROMS.Properties.Resources.print;
-                    picLoader.SendToBack();
-                }
+                //}
+                //else
+                //{
+                //    picLoader.Visible = true;
+                //    RPTViewer.Visible = false;
+                //    btnPrint.Image = global::ROMS.Properties.Resources.print;
+                //    picLoader.SendToBack();
+                //}
             }
             catch (Exception ex)
             {
