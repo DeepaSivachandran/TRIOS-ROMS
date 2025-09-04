@@ -796,11 +796,13 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["PAY_Bank_Tx_Date"].Visible = false;
                             grdSupllierPaymentList.Columns["RPTName"].Visible = false;
                             grdSupllierPaymentList.Columns["PrintFlag"].Visible = false;
+                            grdSupllierPaymentList.Columns["ChequeSupplierName"].Visible = false;
                             grdSupllierPaymentList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["Advance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSupllierPaymentList.Columns["Sub Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSupllierPaymentList.Columns["Grand Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdSupllierPaymentList.Columns["Total Invoices"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSupllierPaymentList.BringToFront();
                             DGV_SearchGrid.BringToFront();
 
@@ -873,6 +875,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PAY_Bank_Tx_Date"].Visible = false;
                 DGV_SearchGrid.Columns["RPTName"].Visible = false;
                 DGV_SearchGrid.Columns["PrintFlag"].Visible = false;
+                DGV_SearchGrid.Columns["ChequeSupplierName"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -1305,14 +1308,14 @@ namespace ROMS
                                 if (result1 == DialogResult.Yes)
                                 {
                                     string varRPTName = "";
-                                    string varGrandTotal = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["Grand Total"].Value);
+                                    string varGrandTotal = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["Grand Total"].Value); 
                                     decimal varMRP = Math.Round(Convert.ToDecimal(varGrandTotal.Trim()), 2, MidpointRounding.AwayFromZero);
                                     string varAmt = string.Format("{0:0}", varMRP);
                                     int varAmount = Convert.ToInt32(varAmt);
-                                    string lblAmount = Currency.NumbersToWords(varAmount);                                    
-                                    string varSupplierName = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["Supplier"].Value);
+                                    string lblAmount = Currency.NumbersToWords(varAmount);                                     
                                     string varChequeDate = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["ChequeDate"].Value);
-                                    varRPTName= Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["RPTName"].Value);
+                                    string varSupplierName = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["ChequeSupplierName"].Value);
+                                    varRPTName = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["RPTName"].Value);
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);

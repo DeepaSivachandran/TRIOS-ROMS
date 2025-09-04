@@ -8,7 +8,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ROMS.Model;
+using System.Globalization;
 namespace ROMS
 {
     // Sivabharathi    Create date: 09/08/2023    
@@ -18,7 +19,7 @@ namespace ROMS
         DataError objError;
 
          
-        public int pbId = 0,pbSPID=0,pbPayID=0, varCloseFlag=0;
+        public int pbId = 0,pbSPID=0,pbPayID=0, varCloseFlag=0,varBankID=0;
         public string varSupplierName = "";
         public string varPaymentNo = "";
         public string varAmount = "";
@@ -42,10 +43,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void CP_ProductHSN_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                udfnChequeDate();
                 udfnEdit();
             }
             catch (Exception ex)
@@ -210,10 +213,12 @@ namespace ROMS
                         txtSupplier.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Supplier"]);
                         txtPaymentNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PaymentNo"]);
                         txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Amount"]);
+                        txtChequeLimitDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ChequeLimitDays"]);
                         txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAYCQ_ChequeNo"]);
                         dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PAYCQ_ChequeDate"]);
                         pbSPID= Convert.ToInt16(objDs.Tables[0].Rows[0]["SupplierID"]);
                         pbPayID= Convert.ToInt16(objDs.Tables[0].Rows[0]["PAYCQ_PAYID"]);
+                        varBankID = Convert.ToInt16(objDs.Tables[0].Rows[0]["BankId"]);  
                     }
                 } 
             }
@@ -227,7 +232,9 @@ namespace ROMS
         {
             try
             {
-                string varResult = "";  
+                string varResult = "";  int varChequeLimitDays = 0;
+                if(Convert.ToString(txtChequeLimitDays.Text.Trim())!="")
+                { varChequeLimitDays = Convert.ToInt16(txtChequeLimitDays.Text); }
                 SPDataService objspservice = new SPDataService();
                 Model.TRN_Payment_ChequeTransaction objTRN_Payment_ChequeTransaction = new Model.TRN_Payment_ChequeTransaction();
                 objTRN_Payment_ChequeTransaction.paraViewType = 1;
@@ -239,6 +246,8 @@ namespace ROMS
                 objTRN_Payment_ChequeTransaction.paraChequeDate = dpChequeDate.Text;
                 objTRN_Payment_ChequeTransaction.paraChequeNo = txtChequeNo.Text;
                 objTRN_Payment_ChequeTransaction.paraOriginator = "Cheque Creation"; 
+                objTRN_Payment_ChequeTransaction.paraBankID = varBankID; 
+                objTRN_Payment_ChequeTransaction.paraChequeLimitDays = varChequeLimitDays; 
                 varResult = objspservice.udfnPayment_ChequeTransaction(objTRN_Payment_ChequeTransaction);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
@@ -279,6 +288,31 @@ namespace ROMS
                     tpchequeNo.Show("Please enter cheque no.", txtChequeNo, 5000);
                     blnErrorFlag = true;
                 }
+                //Check the cheque is sunday or not
+                SPDataService objDServ = new SPDataService();
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 27;
+                objMR_Master.paraDate = dpChequeDate.Text;
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(objMR_Master);
+                if (objDs.Tables.Count != 0)
+                {
+                    int flag = 0;
+                    flag = Convert.ToInt16(objDs.Tables[0].Rows[0]["DateFlag"]);
+                    if (flag == 1)
+                    {
+                        string varMessage = objDServ.udfnGetMessages(160);
+                        objDServ.CloseConnection();
+                        DialogResult result1 = DialogResult.Yes;
+                        result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result1 == DialogResult.No)
+                        {
+                            blnErrorFlag = true;
+                            return;
+                        }
+                    }
+                } 
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -328,7 +362,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpChequeDate.Focus();
+                    txtChequeLimitDays.Focus();
                 }
             }
             catch (Exception ex)
@@ -379,6 +413,124 @@ namespace ROMS
             }
         }
 
+        private void TxtChequeLimitDays_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeLimitDays.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (dpChequeDate.Enabled == true)
+                    {
+                        dpChequeDate.Focus();
+                    }
+                    else
+                    {
+                        btnUpdate.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtChequeLimitDays.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtChequeLimitDays_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnChequeDate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnChequeDate()
+        {
+            try
+            {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 28;
+                objMR_Master.paraDate = dpChequeDate.Text;
+                objMR_Master.paraFlag = Convert.ToInt32(txtChequeLimitDays.Text);
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnMaster(objMR_Master);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 1)
+                    {
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            dpChequeDate.MinDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        }
+                    }
+                    if (txtChequeLimitDays.Text.Trim() != "")
+                    {
+                        if (objDs.Tables.Count > 1)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                dpChequeDate.Text = Convert.ToString(DateTime.ParseExact(objDs.Tables[0].Rows[0]["Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                                dpChequeDate.Enabled = false;
+                            }
+                        }
+                    }
+                    else
+                    { dpChequeDate.Enabled = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DpChequeDate_KeyDown(object sender, KeyEventArgs e)
         {
             try

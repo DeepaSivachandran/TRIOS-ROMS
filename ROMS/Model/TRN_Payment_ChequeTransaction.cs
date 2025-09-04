@@ -28,6 +28,8 @@ namespace ROMS.Model
         public decimal paraAmount { get; set; } = 0;
         public string paraPAYNo { get; set; } = "";
         public int paraSupplierID { get; set; } = 0;
+        public int paraBankID { get; set; } = 0;
+        public int paraChequeLimitDays { get; set; } = 0;
 
     }
 }

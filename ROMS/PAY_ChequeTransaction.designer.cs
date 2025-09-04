@@ -36,6 +36,8 @@
             this.txtPaymentNo = new System.Windows.Forms.TextBox();
             this.txtDAmount = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.txtChequeLimitDays = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.dpChequeDate = new System.Windows.Forms.DateTimePicker();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.txtChequeNo = new System.Windows.Forms.TextBox();
@@ -56,7 +58,7 @@
             this.txtDSupplierName.Location = new System.Drawing.Point(23, 23);
             this.txtDSupplierName.Name = "txtDSupplierName";
             this.txtDSupplierName.ReadOnly = true;
-            this.txtDSupplierName.Size = new System.Drawing.Size(101, 27);
+            this.txtDSupplierName.Size = new System.Drawing.Size(111, 27);
             this.txtDSupplierName.TabIndex = 14;
             this.txtDSupplierName.Text = "Supplier";
             // 
@@ -65,7 +67,7 @@
             this.txtSupplier.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSupplier.Enabled = false;
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(124, 23);
+            this.txtSupplier.Location = new System.Drawing.Point(134, 23);
             this.txtSupplier.MaxLength = 20;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.ReadOnly = true;
@@ -83,7 +85,7 @@
             this.txtDPaymentNo.Location = new System.Drawing.Point(23, 50);
             this.txtDPaymentNo.Name = "txtDPaymentNo";
             this.txtDPaymentNo.ReadOnly = true;
-            this.txtDPaymentNo.Size = new System.Drawing.Size(101, 27);
+            this.txtDPaymentNo.Size = new System.Drawing.Size(111, 27);
             this.txtDPaymentNo.TabIndex = 15;
             this.txtDPaymentNo.Text = "Payment No.";
             // 
@@ -91,7 +93,7 @@
             // 
             this.txtPaymentNo.Enabled = false;
             this.txtPaymentNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPaymentNo.Location = new System.Drawing.Point(124, 50);
+            this.txtPaymentNo.Location = new System.Drawing.Point(134, 50);
             this.txtPaymentNo.MaxLength = 8;
             this.txtPaymentNo.Name = "txtPaymentNo";
             this.txtPaymentNo.ReadOnly = true;
@@ -107,12 +109,14 @@
             this.txtDAmount.Location = new System.Drawing.Point(23, 77);
             this.txtDAmount.Name = "txtDAmount";
             this.txtDAmount.ReadOnly = true;
-            this.txtDAmount.Size = new System.Drawing.Size(101, 27);
+            this.txtDAmount.Size = new System.Drawing.Size(111, 27);
             this.txtDAmount.TabIndex = 16;
             this.txtDAmount.Text = "Amount";
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.txtChequeLimitDays);
+            this.grbform.Controls.Add(this.textBox2);
             this.grbform.Controls.Add(this.dpChequeDate);
             this.grbform.Controls.Add(this.textBox5);
             this.grbform.Controls.Add(this.txtChequeNo);
@@ -127,18 +131,44 @@
             this.grbform.Controls.Add(this.txtDAmount);
             this.grbform.Location = new System.Drawing.Point(12, 12);
             this.grbform.Name = "grbform";
-            this.grbform.Size = new System.Drawing.Size(349, 211);
+            this.grbform.Size = new System.Drawing.Size(349, 236);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // txtChequeLimitDays
+            // 
+            this.txtChequeLimitDays.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtChequeLimitDays.Location = new System.Drawing.Point(134, 131);
+            this.txtChequeLimitDays.MaxLength = 10;
+            this.txtChequeLimitDays.Name = "txtChequeLimitDays";
+            this.txtChequeLimitDays.Size = new System.Drawing.Size(200, 27);
+            this.txtChequeLimitDays.TabIndex = 1;
+            this.txtChequeLimitDays.TextChanged += new System.EventHandler(this.TxtChequeLimitDays_TextChanged);
+            this.txtChequeLimitDays.Enter += new System.EventHandler(this.TxtChequeLimitDays_Enter);
+            this.txtChequeLimitDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtChequeLimitDays_KeyDown);
+            this.txtChequeLimitDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtChequeLimitDays_KeyPress);
+            this.txtChequeLimitDays.Leave += new System.EventHandler(this.TxtChequeLimitDays_Leave);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox2.Location = new System.Drawing.Point(23, 131);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(111, 27);
+            this.textBox2.TabIndex = 61;
+            this.textBox2.Text = "Cheque Limit (Days)";
             // 
             // dpChequeDate
             // 
             this.dpChequeDate.CustomFormat = "dd/MM/yyyy";
             this.dpChequeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpChequeDate.Location = new System.Drawing.Point(124, 131);
+            this.dpChequeDate.Location = new System.Drawing.Point(134, 158);
             this.dpChequeDate.Name = "dpChequeDate";
             this.dpChequeDate.Size = new System.Drawing.Size(200, 27);
-            this.dpChequeDate.TabIndex = 1;
+            this.dpChequeDate.TabIndex = 2;
             this.dpChequeDate.Enter += new System.EventHandler(this.DpChequeDate_Enter);
             this.dpChequeDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpChequeDate_KeyDown);
             this.dpChequeDate.Leave += new System.EventHandler(this.DpChequeDate_Leave);
@@ -148,17 +178,17 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(23, 131);
+            this.textBox5.Location = new System.Drawing.Point(23, 158);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(101, 27);
+            this.textBox5.Size = new System.Drawing.Size(111, 27);
             this.textBox5.TabIndex = 59;
             this.textBox5.Text = "Cheque Date";
             // 
             // txtChequeNo
             // 
             this.txtChequeNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtChequeNo.Location = new System.Drawing.Point(124, 104);
+            this.txtChequeNo.Location = new System.Drawing.Point(134, 104);
             this.txtChequeNo.MaxLength = 10;
             this.txtChequeNo.Name = "txtChequeNo";
             this.txtChequeNo.Size = new System.Drawing.Size(200, 27);
@@ -171,7 +201,7 @@
             // 
             this.txtAmount.Enabled = false;
             this.txtAmount.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAmount.Location = new System.Drawing.Point(124, 77);
+            this.txtAmount.Location = new System.Drawing.Point(134, 77);
             this.txtAmount.MaxLength = 8;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.ReadOnly = true;
@@ -187,7 +217,7 @@
             this.textBox4.Location = new System.Drawing.Point(23, 104);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(101, 27);
+            this.textBox4.Size = new System.Drawing.Size(111, 27);
             this.textBox4.TabIndex = 56;
             this.textBox4.Text = "Cheque No.";
             // 
@@ -196,7 +226,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnUpdate.Image = global::ROMS.Properties.Resources.save;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(160, 170);
+            this.btnUpdate.Location = new System.Drawing.Point(171, 193);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(84, 29);
             this.btnUpdate.TabIndex = 3;
@@ -213,7 +243,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(249, 170);
+            this.btnClose.Location = new System.Drawing.Point(259, 193);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 4;
@@ -233,7 +263,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(375, 239);
+            this.ClientSize = new System.Drawing.Size(375, 266);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -272,5 +302,7 @@
         public System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.DateTimePicker dpChequeDate;
+        public System.Windows.Forms.TextBox txtChequeLimitDays;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
