@@ -109,6 +109,10 @@ namespace ROMS
                 }
                 else
                 {
+                    SPDataService objDataService = new SPDataService();
+                    string varMessage = objDataService.udfnGetMessages(161);
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    objDataService.CloseConnection();
                     udfnPurchaseBillWiseReport();
                 }
             }

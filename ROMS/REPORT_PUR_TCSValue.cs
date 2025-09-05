@@ -109,6 +109,13 @@ namespace ROMS
                 }
                 else
                 {
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 343)
+                    {
+                        SPDataService objDataService = new SPDataService();
+                        string varMessage = objDataService.udfnGetMessages(161);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
+                    }
                     udfnPurchaseDiscountValueReport();
                 }
             }
