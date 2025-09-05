@@ -14,6 +14,8 @@ namespace ROMS
         DataValidation objvalidation = new DataValidation();
         DataError objError;
         DataTable dtSubGroup = new DataTable();
+        DataTable dtPurProducts = new DataTable();
+        DataTable dtPurMappedProducts = new DataTable();
         DataTable dtSubGroupMapping = new DataTable();
         DataTable dtPaymentMode = new DataTable();
         Boolean BlnSearchImageYN = false;
@@ -862,6 +864,7 @@ namespace ROMS
                             txtsuppliername.Text = txtName.Text;
                             txtSupplier.Text = txtName.Text;
                             txtMappedSupplierName.Text = txtName.Text;
+                            txtPurSupplierName.Text = txtName.Text;
                             //MainForm.objCP_Supplierlist.udfnList();
                             //this.Close();
                             udfnclose();
@@ -884,6 +887,7 @@ namespace ROMS
                             txtSupplier.Text = txtName.Text;
                             txtsuppliername.Text = txtName.Text;
                             txtMappedSupplierName.Text = txtName.Text;
+                            txtPurSupplierName.Text = txtName.Text;
                         }
 
                     }
@@ -1163,6 +1167,23 @@ namespace ROMS
                 dtSubGroup.Columns.Add("PRODUCTID", typeof(int));
                 dtSubGroup.Columns.Add("Product Name in English", typeof(string));
                 dtSubGroup.Columns.Add("MappedCount", typeof(int));
+
+                dtPurMappedProducts = new DataTable();
+                dtPurMappedProducts.Columns.Add("", typeof(Boolean));
+                dtPurMappedProducts.Columns.Add("S.No.", typeof(string));
+                dtPurMappedProducts.Columns.Add("P.I Code", typeof(string));
+                dtPurMappedProducts.Columns.Add("Product Name in Tamil", typeof(string));
+                dtPurMappedProducts.Columns.Add("Unit", typeof(string));
+                dtPurMappedProducts.Columns.Add("Brand", typeof(string));
+                dtPurMappedProducts.Columns.Add("Product SubGroup", typeof(string));
+                dtPurMappedProducts.Columns.Add("Product Group", typeof(string));
+                dtPurMappedProducts.Columns.Add("GROUPID", typeof(int));
+                dtPurMappedProducts.Columns.Add("SUBGROUPID", typeof(int));
+                dtPurMappedProducts.Columns.Add("PRODUCTID", typeof(int));
+                dtPurMappedProducts.Columns.Add("Product Name in English", typeof(string));
+                dtPurMappedProducts.Columns.Add("MappedCount", typeof(int));
+
+
                 dtPaymentMode = new DataTable();
                 dtPaymentMode.Columns.Add("", typeof(Boolean));
                 dtPaymentMode.Columns.Add("DisplayText", typeof(string));
@@ -1393,6 +1414,7 @@ namespace ROMS
                             txtsuppliername.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
                             txtSupplier.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
                             txtMappedSupplierName.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
+                            txtPurSupplierName.Text = objDS.Tables[0].Rows[0]["NAME"].ToString().Replace("''", "'");
                             txtArea.Text = objDS.Tables[0].Rows[0]["ADDRESS1"].ToString().Replace("''", "'");
                             txtaddress2.Text = objDS.Tables[0].Rows[0]["ADDRESS2"].ToString().Replace("''", "'");
                             cmbState.SelectedValue = objDS.Tables[0].Rows[0]["STATEID"].ToString();
@@ -3803,6 +3825,10 @@ namespace ROMS
                         this.ActiveControl = cmbMappingorderschedule;
 
                     }
+                    if (tcSupplier.SelectedIndex == 4)
+                    {
+                        udfnLoadOrderSchedulePur();
+                    }
                 }
             }
             catch (Exception ex)
@@ -3840,7 +3866,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnLoadOrderSchedulePur()
+        {
+            try
+            {
+                if (Convert.ToInt32(varsupplierID) != 0)
+                {
+                    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                }
+                else
+                {
+                    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                }
+                cmbPurOrderSchedule.DataSource = null; cmbPurOrderSchedule.Text = "";
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Supplier_Schedule", " SPSC_SPID='" + SupplierUpdate + "'AND SPSC_STSID NOT IN (2) oR  SPSC_SPID= 0  order by SPSCID, SPSC_Name", "SPSC_Name,SPSCID", cmbPurOrderSchedule, "", "SPSC_Name", "SPSCID");
+                objDataBind = null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TcSupplier_Selected(object sender, TabControlEventArgs e)
         {
             if (pbSupplierid != "0")
@@ -4340,7 +4388,6 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -7782,7 +7829,6 @@ namespace ROMS
             {
                 SearchFlag = 1;
             }
-
         }
 
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -10234,6 +10280,624 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPurOrderSchedule_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnPurProductsGridLoad();
+                udfnPurMappingDropDownLoad();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPurProductsGridLoad()
+        {
+            try
+            {
+                lblNoRecordsFound.Visible = false;
+                BeginInvoke(new Action(() => cmbMappingordeDay.Select(int.MaxValue, 0)));
+                grdPurSupplierMappingLoad.DataSource = null;
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                SupplierUpdate = 0;
+                if (Convert.ToInt32(varsupplierID) != 0)
+                {
+                    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                }
+                else
+                {
+                    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                }
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 4;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbPurOrderSchedule.SelectedValue);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
+                dtPurProducts = new DataTable();
+                dtPurProducts.Columns.Add("", typeof(Boolean));
+                dtPurProducts.Columns.Add("S.No.", typeof(string));
+                dtPurProducts.Columns.Add("P.I Code", typeof(string));
+                dtPurProducts.Columns.Add("Product Name in Tamil", typeof(string));
+                dtPurProducts.Columns.Add("Unit", typeof(string));
+                dtPurProducts.Columns.Add("Brand", typeof(string));
+                dtPurProducts.Columns.Add("Product SubGroup", typeof(string));
+                dtPurProducts.Columns.Add("Product Group", typeof(string));
+                dtPurProducts.Columns.Add("GROUPID", typeof(int));
+                dtPurProducts.Columns.Add("SUBGROUPID", typeof(int));
+                dtPurProducts.Columns.Add("PRODUCTID", typeof(int));
+                dtPurProducts.Columns.Add("Product Name in English", typeof(string));
+                dtPurProducts.Columns.Add("MappedCount", typeof(int));
+
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
+                    int varcount = 1;
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        dtPurProducts.Rows.Add(false, Convert.ToInt32(dtPurProducts.Rows.Count) + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product Name in Tamil"].ToString().Replace("''", "'")
+                        , objDs.Tables[0].Rows[i]["Unit"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Brand"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product SubGroup"].ToString().Replace("''", "'"),
+                       objDs.Tables[0].Rows[i]["Product Group"].ToString().Replace("''", "'"),
+                        objDs.Tables[0].Rows[i]["GROUPID"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["SUBGROUPID"].ToString().Replace("''", "'"),
+                        objDs.Tables[0].Rows[i]["PRODUCTID"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product Name in English"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["MappedCount"].ToString());
+
+                    }
+                    grdPurSupplierMappingLoad.DataSource = dtPurProducts;
+                    //grdPurSupplierMappingLoad.Columns[0].Frozen = true;
+                    grdPurSupplierMappingLoad.Columns[0].HeaderText = "";
+                    grdPurSupplierMappingLoad.Columns[0].Width = 30;
+                    grdPurSupplierMappingLoad.Columns["S.No."].Width = 50;
+                    grdPurSupplierMappingLoad.Columns["P.I Code"].Width = 100;
+                    grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
+                    grdPurSupplierMappingLoad.Columns["Unit"].Width = 100;
+                    grdPurSupplierMappingLoad.Columns["Product SubGroup"].Width = 120;
+                    grdPurSupplierMappingLoad.Columns["GROUPID"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["MappedCount"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+
+                    grdPurSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
+                    grdPurSupplierMappingLoad.Columns["P.I Code"].ReadOnly = true;
+                    grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
+                    grdPurSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
+                    grdPurSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                    grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+
+                    udfnPurGridRemove();
+                    //for (int i = 0; i < grdSupplierMappingLoad.Rows.Count; i++)
+                    //{
+                    //    for (int j = 0; j < grdPurSupplierMappingLoad.Rows.Count; j++)
+                    //    {
+                    //        if (Convert.ToInt32(grdPurSupplierMappingLoad.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToInt32(grdSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value))
+                    //        {
+                    //            grdSupplierMappingLoad.Rows[i].Cells[0].Value = true;
+                    //        }
+                    //    }
+                    //}
+                    btnPurMappingsave.Text = "Update";
+                    //udfndataLoad();
+                }
+                else
+                {
+                    btnPurMappingsave.Text = "Save";
+                }
+
+                udfnPursearchgridHead();
+                objspservice.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblPurProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
+            }
+        }
+        private void udfnPursearchgridHead()
+        {
+            try
+            {
+                udfnGridSearchHeading(grdPurSupplierMappingLoad, DGV_PurSearchGrid);
+                DGV_PurSearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdPurSupplierMappingLoad.Columns)
+                {
+                    DGV_PurSearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
+                }
+                if (DGV_PurSearchGrid.ColumnCount > 1)
+                {
+                    int rowIndex = 0;
+                    DGV_PurSearchGrid.Rows.Clear();
+                    DGV_PurSearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        if (i == 0)
+                        { DGV_PurSearchGrid.Rows[0].Cells[i].ReadOnly = true; }
+                        else
+                        { DGV_PurSearchGrid.Rows[0].Cells[i].ReadOnly = false; }
+                    }
+                    DGV_PurSearchGrid.Columns[0].ReadOnly = true;
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        public void udfnPurGridRemove()
+        {
+            try
+            {
+                //string varRemoveGroup = "";
+                //for (int j = 0; j < dtSubGroupMapping.Rows.Count; j++)
+                //{
+                //    varRemoveGroup = Convert.ToString(grdFinalSupplierMapping.Rows[j].Cells["PRODUCTID"].Value);
+                //    for (int i = 0; i < dtSubGroup.Rows.Count; i++)
+                //    {
+                //        if (varRemoveGroup == Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]))
+                //        {
+                //            dtSubGroup.Rows[i].Delete();
+                //            dtSubGroup.AcceptChanges();
+                //        }
+                //    }
+                //}
+                //grdSupplierMappingLoad.DataSource = dtSubGroup; 
+                HashSet<string> productIdsToRemove = new HashSet<string>();
+                foreach (DataGridViewRow row in grdPurSupplierMappingLoad.Rows)
+                {
+                    if (row.IsNewRow) continue; // Skip the last row used for adding new entries 
+                    string productId = row.Cells["PRODUCTID"].Value?.ToString();
+                    if (!string.IsNullOrWhiteSpace(productId))
+                    {
+                        productIdsToRemove.Add(productId);
+                    }
+                }
+                for (int i = 0; i < dtPurMappedProducts.Rows.Count; i++)
+                {
+                    string productId = Convert.ToString(dtSubGroup.Rows[i]["PRODUCTID"]);
+                    if (productIdsToRemove.Contains(productId))
+                    {
+                        dtPurMappedProducts.Rows[i].Delete(); // Mark row for deletion
+                    }
+                }
+                dtPurMappedProducts.AcceptChanges();
+                grdPurMappedProducts.DataSource = dtPurMappedProducts;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPurMappingDropDownLoad()
+        {
+            try
+            {
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 0;
+                objMR_Supplier.paraSupplierid = SupplierUpdate;
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbPurOrderSchedule.SelectedValue);
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            txtPurordertype.Text = objDs.Tables[0].Rows[0]["MST_DisplayText"].ToString().Replace("''", "'");
+                            lblPurOrderTypeId.Text = objDs.Tables[0].Rows[0]["MSTID"].ToString().Replace("''", "'");
+                        }
+                        else
+                        {
+                            txtPurordertype.Text = "";
+                        }
+                    }
+                    objspservice.CloseConnection();
+                }
+                MR_Supplier objMR_Supplier1 = new MR_Supplier();
+                objMR_Supplier1.ViewType = 21;
+                objMR_Supplier1.paraSupplierid = SupplierUpdate;
+                objMR_Supplier1.paraSupplierScheduleid = Convert.ToInt32(cmbPurOrderSchedule.SelectedValue);
+                SPDataService objSPservice = new SPDataService();
+                DataSet objDS = new DataSet();
+                //cmborderday.DataSource = null;
+                objDS = objSPservice.udfnSupplierList(objMR_Supplier1);
+                objSPservice.CloseConnection();
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count != 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count != 0)
+                        {
+                            txtPurOrderDays.Text = objDS.Tables[0].Rows[0]["DayNames"].ToString().Replace("''", "'");
+                        }
+                        else
+                        {
+                            txtPurOrderDays.Text = "";
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+            }
+        }
+
+        private void DGV_PurSearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdPurSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_PurSearchGrid, grdPurSupplierMappingLoad);
+                objDser.CloseConnection();
+                grdPurSupplierMappingLoad.HorizontalScrollingOffset = DGV_PurSearchGrid.HorizontalScrollingOffset;
+                //DGV_PurSearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurSearchGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DGV_PurSearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                e.Value = null;
+            }
+        }
+
+        private void DGV_PurSearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
+
+                        e.Handled = true;
+                    }
+
+                DGV_PurSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_PurSearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurSearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex != 0)
+                {
+                    DataGridViewColumn newColumn = grdPurSupplierMappingLoad.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdPurSupplierMappingLoad.SortedColumn;
+                    ListSortDirection direction;
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdPurSupplierMappingLoad.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
+                    }
+                    else
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    grdPurSupplierMappingLoad.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_PurSearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_PurSearchGrid.HorizontalScrollingOffset = grdPurSupplierMappingLoad.HorizontalScrollingOffset;
+                    DGV_PurSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurSearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdPurSupplierMappingLoad.ColumnCount > 0)
+                {
+                    grdPurSupplierMappingLoad.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_PurSearchGrid.HorizontalScrollingOffset = grdPurSupplierMappingLoad.HorizontalScrollingOffset;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurSearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByProduct1.Text = "";
+                if (DGV_PurSearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_PurSearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdPurSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_PurSearchGrid, grdPurSupplierMappingLoad);
+                objDser.CloseConnection();
+                grdPurSupplierMappingLoad.HorizontalScrollingOffset = DGV_PurSearchGrid.HorizontalScrollingOffset;
+                lblTotalProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurSearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdPurSupplierMappingLoad.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_PurSearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdPurSupplierMappingLoad.Width > grdPurSupplierMappingLoad.HorizontalScrollingOffset && grdPurSupplierMappingLoad.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_PurSearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_PurSearchGrid.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurSupplierMappingLoad_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    int vscroll = grdPurSupplierMappingLoad.FirstDisplayedScrollingRowIndex;
+                    int hscroll = grdPurSupplierMappingLoad.FirstDisplayedScrollingColumnIndex;
+                    int varProId = Convert.ToInt16(grdPurSupplierMappingLoad.SelectedRows[0].Cells["PRODUCTID"].Value);
+                    udfnGetPurProductCount(varProId);
+                    grdPurSupplierMappingLoad.FirstDisplayedScrollingRowIndex = vscroll;
+                    grdPurSupplierMappingLoad.FirstDisplayedScrollingColumnIndex = hscroll;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGetPurProductCount(int varProId)
+        {
+            try
+            {
+                int varProductCount = 0; string varRemoveProduct = "";
+                for (int i = 0; i < grdPurSupplierMappingLoad.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdPurSupplierMappingLoad.Rows[i].Cells[0].Value) == true)
+                    {
+                        varProductCount++;
+                    }
+                }
+                if (Convert.ToBoolean(grdPurSupplierMappingLoad.SelectedRows[0].Cells[0].Value) == true)
+                {
+                    DataRow dr = dtPurProducts.Select("PRODUCTID=" + varProId).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr[0] = true;
+                        dtPurProducts.AcceptChanges();
+                    }
+                }
+                else
+                {
+                    DataRow dr = dtPurProducts.Select("PRODUCTID=" + varProId).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr[0] = false;
+                        dtPurProducts.AcceptChanges();
+                    }
+                }
+                if (varProductCount > 0)
+                {
+                    btnPurRemove.Enabled = false;
+                    BtnPuraddMove.Enabled = true;
+                    if (grdPurMappedProducts.RowCount > 0)
+                    {
+                        grdPurMappedProducts.Columns[0].ReadOnly = true;
+                    }
+                }
+                else
+                {
+                    btnPurRemove.Enabled = true;
+                    if (grdPurMappedProducts.RowCount > 0)
+                    {
+                        grdPurMappedProducts.Columns[0].ReadOnly = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurSupplierMappingLoad_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdPurSupplierMappingLoad.IsCurrentCellDirty)
+                {
+                    grdPurSupplierMappingLoad.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurSupplierMappingLoad_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurSupplierMappingLoad.RowCount; i++)
+                {
+                    if (Convert.ToString(grdPurSupplierMappingLoad.Rows[i].Cells["MappedCount"].Value) != "0")
+                    {
+                        grdPurSupplierMappingLoad.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                    }
+                }
+                grdPurSupplierMappingLoad.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurSupplierMappingLoad_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdPurSupplierMappingLoad.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_PurSearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdPurSupplierMappingLoad.Width > grdPurSupplierMappingLoad.HorizontalScrollingOffset && grdPurSupplierMappingLoad.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_PurSearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_PurSearchGrid.Invalidate();
+                udfnPurscrollVisible(DGV_PurSearchGrid, grdPurSupplierMappingLoad);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnPurscrollVisible(DataGridView DGV, DataGridView grdCityList)
+        {
+            try
+            {
+                var vScrollbar = grdPurSupplierMappingLoad.Controls.OfType<VScrollBar>().First();
+                if (vScrollbar.Visible == true)
+                {
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in DGV.Columns)
+                    {
+                        visibleColumns.Add(col.Index);
+                    }
+                    int I = DGV_PurSearchGrid.Rows.Count - 1;
+                    if (I == 0)
+                    {
+                        int rowIndex = 1;
+                        DGV_PurSearchGrid.Rows.Add();
+                        for (int i = 0; i < visibleColumns.Count; i++)
+                        {
+                            DGV_PurSearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPurOrderSchedule_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbPurOrderSchedule_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void CmbPurOrderSchedule_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbPurOrderSchedule_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtSearchByPurProducts_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (grdPurSupplierMappingLoad.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtSearchByPurProducts.Text + "%'";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblPurProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
             }
         }
 
