@@ -6712,9 +6712,8 @@ namespace ROMS
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 71;
                         objMR_Product.ParaCompanycode = Convert.ToInt32(0);
-                        objMR_Product.paraProductName = txtProductName.Text;
                         objMR_Product.paraProductName = "";
-                        objMR_Product.paraPicode = "";
+                        objMR_Product.paraPicode = txtProductName.Text;
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet(); 
                             objMR_Product.paraProductName = txtProductName.Text.Trim();

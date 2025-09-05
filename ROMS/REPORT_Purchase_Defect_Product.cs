@@ -114,6 +114,8 @@ namespace ROMS
                 {
                     varSupplierName = txtSupplier.Text;
                 }
+                int varFilterType = 0;
+                if (Convert.ToInt32(cmbFilter.SelectedValue) == 365) { varFilterType = 1; }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -129,6 +131,7 @@ namespace ROMS
                 objTRN_PurchaseEntry.paraEntryType = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
+                objTRN_PurchaseEntry.paraFilterType = varFilterType;
                 objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -150,6 +153,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    objBillreport.SetParameterValue("paraFilterType", varFilterType);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -491,7 +495,8 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(0,55) AND MSTID IN (0,174,175)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(82,0) AND MSTID NOT IN (-1,275)", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID"); 
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(82,0) AND MSTID NOT IN (-1,275)", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID = 111 AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbFilter, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
                 RPTViewer.Visible = true;
@@ -526,7 +531,7 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbFilter.Focus();
                 }
             }
             catch (Exception ex)
@@ -644,6 +649,64 @@ namespace ROMS
                     {
                         cmbStatus.Focus();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                varUpDownKey = 0;
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                cmbFilter.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFilter.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
