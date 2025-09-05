@@ -153,7 +153,7 @@ namespace ROMS
                 //LV_Supplier.Visible = false;
                 SPDataService objDataService = new SPDataService();
                 string varMessage = objDataService.udfnGetMessages(161);
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 objDataService.CloseConnection();
                 udfnUnapprovedPurchaseDetails();
                 if (txtSupplier.Text.Trim() == "")

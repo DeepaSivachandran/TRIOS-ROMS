@@ -113,7 +113,7 @@ namespace ROMS
                     {
                         SPDataService objDataService = new SPDataService();
                         string varMessage = objDataService.udfnGetMessages(161);
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         objDataService.CloseConnection();
                     }
                     udfnPurchaseAdditionalValueReport();
