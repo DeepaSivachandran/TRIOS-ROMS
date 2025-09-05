@@ -547,7 +547,6 @@
             // 
             this.tsbPO.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbPO.BackColor = System.Drawing.Color.White;
-            this.tsbPO.Enabled = false;
             this.tsbPO.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbPO.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPO.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
@@ -584,7 +583,6 @@
             // 
             this.tsbAdded.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbAdded.BackColor = System.Drawing.Color.White;
-            this.tsbAdded.Enabled = false;
             this.tsbAdded.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbAdded.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAdded.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
@@ -620,7 +618,6 @@
             // 
             this.tsbTotal.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbTotal.BackColor = System.Drawing.Color.White;
-            this.tsbTotal.Enabled = false;
             this.tsbTotal.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbTotal.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTotal.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
@@ -4468,7 +4465,6 @@
             // 
             // crToolStripTextBox1
             // 
-            this.crToolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.crToolStripTextBox1.Name = "crToolStripTextBox1";
             this.crToolStripTextBox1.Size = new System.Drawing.Size(100, 27);
             // 

@@ -104,6 +104,8 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbOutstandingAmount = new System.Windows.Forms.ToolStripButton();
+            this.tsbOutstanding = new System.Windows.Forms.ToolStripButton();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.grbform.SuspendLayout();
             this.grbIssuedDetails.SuspendLayout();
@@ -1003,10 +1005,12 @@
             this.tsInwardList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsInwardList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsInwardList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbOutstandingAmount,
+            this.tsbOutstanding});
             this.tsInwardList.Location = new System.Drawing.Point(0, 0);
             this.tsInwardList.Name = "tsInwardList";
-            this.tsInwardList.Size = new System.Drawing.Size(1354, 25);
+            this.tsInwardList.Size = new System.Drawing.Size(1354, 27);
             this.tsInwardList.TabIndex = 36;
             this.tsInwardList.Text = "Advance";
             // 
@@ -1017,8 +1021,34 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(70, 22);
+            this.tspHeader.Size = new System.Drawing.Size(70, 24);
             this.tspHeader.Text = "Advance";
+            // 
+            // tsbOutstandingAmount
+            // 
+            this.tsbOutstandingAmount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbOutstandingAmount.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbOutstandingAmount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbOutstandingAmount.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbOutstandingAmount.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOutstandingAmount.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbOutstandingAmount.Name = "tsbOutstandingAmount";
+            this.tsbOutstandingAmount.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbOutstandingAmount.Size = new System.Drawing.Size(23, 24);
+            this.tsbOutstandingAmount.Text = "&0";
+            // 
+            // tsbOutstanding
+            // 
+            this.tsbOutstanding.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbOutstanding.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbOutstanding.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbOutstanding.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbOutstanding.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOutstanding.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbOutstanding.Name = "tsbOutstanding";
+            this.tsbOutstanding.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbOutstanding.Size = new System.Drawing.Size(132, 24);
+            this.tsbOutstanding.Text = "&Outstanding Amount :";
             // 
             // pnlinward
             // 
@@ -1143,5 +1173,7 @@
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.TextBox txtDChequeLimitDays;
         private System.Windows.Forms.TextBox txtChequeLimitDays;
+        public System.Windows.Forms.ToolStripButton tsbOutstandingAmount;
+        public System.Windows.Forms.ToolStripButton tsbOutstanding;
     }
 }

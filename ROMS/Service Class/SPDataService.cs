@@ -3212,6 +3212,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraInwardId ", objTRN_PurchaseEntry.paraInwardId);
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierType ", objTRN_PurchaseEntry.paraSupplierType);
                 varSqlCommand.Parameters.AddWithValue("@paraConditionType ", objTRN_PurchaseEntry.paraConditionType);
+                varSqlCommand.Parameters.AddWithValue("@paraMonth ", objTRN_PurchaseEntry.paraMonth);
                 varSqlCommand.Parameters.AddWithValue("@paraFilterType ", objTRN_PurchaseEntry.paraFilterType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
@@ -3653,7 +3654,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraModeOfIssue", objTRN_Advance.paraModeOfIssue);
                 varSqlCommand.Parameters.AddWithValue("@paraIssueDetails", objTRN_Advance.paraIssueDetails);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusID", objTRN_Advance.paraStatusID);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Advance.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Advance.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraChequeLimitDays", objTRN_Advance.paraChequeLimitDays);
@@ -4237,7 +4238,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Payment_ChequeTransaction.paraOriginator); 
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Payment_ChequeTransaction.paraUserID); 
                 varSqlCommand.Parameters.AddWithValue("@paraPAYID", objTRN_Payment_ChequeTransaction.paraPAYID);
                 varSqlCommand.Parameters.AddWithValue("@paraChequeDate", objTRN_Payment_ChequeTransaction.paraChequeDate);
                 varSqlCommand.Parameters.AddWithValue("@paraChequeNo", objTRN_Payment_ChequeTransaction.paraChequeNo);
@@ -4246,6 +4247,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRN_Payment_ChequeTransaction.paraSupplierID); 
                 varSqlCommand.Parameters.AddWithValue("@paraBankID", objTRN_Payment_ChequeTransaction.paraBankID); 
                 varSqlCommand.Parameters.AddWithValue("@paraChequeLimitDays", objTRN_Payment_ChequeTransaction.paraChequeLimitDays); 
+                varSqlCommand.Parameters.AddWithValue("@paraReason", objTRN_Payment_ChequeTransaction.paraReason); 
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
