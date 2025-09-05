@@ -262,7 +262,10 @@ namespace ROMS
                             if (objDs.Tables[0].Rows.Count > 0)
                             { 
                                 dpChequeDate.Text =Convert.ToString(  DateTime.ParseExact(objDs.Tables[0].Rows[0]["Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture)) ;
-                                dpChequeDate.Enabled = false;
+                                if (txtChequeLimitDays.Text.Trim() != "0")
+                                {
+                                    dpChequeDate.Enabled = false;
+                                }
                             }
                         }
                     }
@@ -978,12 +981,14 @@ namespace ROMS
         {
             try
             {
+                txtChequeLimitDays.Text = "0";
                 MainForm objMainForm = new MainForm();
                 objMainForm.udfnGetDefaultCompany();
                 udfnCmbConcern();
                 udfnPaymentDropDown();
                 udfnIssueDropDown();
                 udfnBankDropDown();
+                udfnChequeDate();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,71) AND MSTID NOT IN (0)", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -1188,7 +1193,7 @@ namespace ROMS
                         grbIssuedDetails.Enabled = false;
                     }
 
-                    if (PbStatus == 75)
+                    if (PbStatus == 75 || PbStatus == 119)
                     {
                         cmbConcern.Enabled = false;
                         dpAdvanceDate.Enabled = false;

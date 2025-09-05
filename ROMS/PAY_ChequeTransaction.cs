@@ -592,7 +592,10 @@ namespace ROMS
                             if (objDs.Tables[0].Rows.Count > 0)
                             {
                                 dpChequeDate.Text = Convert.ToString(DateTime.ParseExact(objDs.Tables[0].Rows[0]["Date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture));
-                                dpChequeDate.Enabled = false;
+                                if (txtChequeLimitDays.Text.Trim() != "0")
+                                {
+                                    dpChequeDate.Enabled = false;
+                                }
                             }
                         }
                     }

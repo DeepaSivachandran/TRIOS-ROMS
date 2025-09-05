@@ -1236,6 +1236,11 @@ namespace ROMS
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdSupllierPaymentList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    else if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_STSID"].Value) == "117")
+                    {
+                        grdSupllierPaymentList.Rows[i].Cells["Status"].Style.BackColor = Color.DarkSeaGreen;
+                        grdSupllierPaymentList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                     if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PrintFlag"].Value) == "0")
                     {
                         grdSupllierPaymentList.Rows[i].Cells["clmPrint"].ReadOnly = true;
