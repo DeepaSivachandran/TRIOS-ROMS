@@ -442,6 +442,7 @@
             // 
             // txtSubgroupType
             // 
+            this.txtSubgroupType.Enabled = false;
             this.txtSubgroupType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSubgroupType.Location = new System.Drawing.Point(468, 238);
             this.txtSubgroupType.MaxLength = 100;
@@ -2653,7 +2654,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(271, 95);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(277, 94);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;

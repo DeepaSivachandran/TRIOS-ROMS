@@ -1679,8 +1679,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraType", objMR_Product.paraType);
                 varSqlCommand.Parameters.AddWithValue("@ParaMRP", objMR_Product.ParaMRP);
                 varSqlCommand.Parameters.AddWithValue("@ParaRetail", objMR_Product.ParaRetail);
-                
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", objMR_Product.paraSubgroupType);
+                varSqlCommand.Parameters.AddWithValue("@paraFilterDate", objMR_Product.paraFilterDate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2956,6 +2956,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSHIds", objTRNS_StockHold.paraSHIds);
                 varSqlCommand.Parameters.AddWithValue("@paraParentSHID", objTRNS_StockHold.paraParentSHID);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRNS_StockHold.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objTRNS_StockHold.paraTeller);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -2986,6 +2987,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_StockHold.paraPRID);
                 varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_StockHold.paraSLID);
                 varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRNG_StockHold.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraReason", objTRNG_StockHold.paraReason);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

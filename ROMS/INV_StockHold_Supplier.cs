@@ -331,10 +331,10 @@ namespace ROMS
             try
             {
                 MessageBox.Show("Submitted Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MainForm.objINV_StockHold.lblSupplierName.Text = txtSupplier.Text;
-                MainForm.objINV_StockHold.lblSupplierCode.Text = lblSupplierCode.Text;
-                MainForm.objINV_StockHold.lblschedule.Text = lblschedule.Text;
-                MainForm.objINV_StockHold.varFlag = 1;
+                MainForm.objINV_StockHold_Entry.lblSupplierName.Text = txtSupplier.Text;
+                MainForm.objINV_StockHold_Entry.lblSupplierCode.Text = lblSupplierCode.Text;
+                MainForm.objINV_StockHold_Entry.lblschedule.Text = lblschedule.Text;
+                MainForm.objINV_StockHold_Entry.varFlag = 1;
                 this.Close();
             }
             catch (Exception ex)

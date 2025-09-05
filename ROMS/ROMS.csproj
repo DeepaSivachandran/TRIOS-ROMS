@@ -166,6 +166,12 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_StockHold_Entry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockHold_Entry.designer.cs">
+      <DependentUpon>INV_StockHold_Entry.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_BatchNoConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -603,6 +609,13 @@
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_GST.cs">
       <DependentUpon>RPT_CP_Product_GST.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_INV_StockHold_Print.cs">
+      <DependentUpon>RPT_INV_StockHold_Print.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -3032,6 +3045,9 @@
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockHold_Entry.resx">
+      <DependentUpon>INV_StockHold_Entry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_BatchNoConfiguration.resx">
       <DependentUpon>CP_BatchNoConfiguration.cs</DependentUpon>
     </EmbeddedResource>
@@ -3722,6 +3738,11 @@
       <LastGenOutput>RPT_CP_Product_GST.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_INV_StockHold_Print.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_INV_StockHold_Print.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

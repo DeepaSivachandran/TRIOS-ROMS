@@ -245,13 +245,16 @@ namespace ROMS
                     }
                     if (Convert.ToInt32(cmbChildUnit.SelectedValue) != -1)
                     {
-                        if (Convert.ToString(txtUpp.Text) == "" || Convert.ToString(txtUpp.Text) == "0")
+                        if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 14 && Convert.ToInt32(cmbProductType.SelectedValue) == 342)
                         {
-                            errItems.SetError(txtUpp, "Please enter upp");
-                            txtUpp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpUPP.ShowAlways = true;
-                            tpUPP.Show("Please enter upp", txtUpp, 5000);
-                            blnErrorFlag = true;
+                            if (Convert.ToString(txtUpp.Text) == "" || Convert.ToString(txtUpp.Text) == "0")
+                            {
+                                errItems.SetError(txtUpp, "Please enter upp");
+                                txtUpp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                tpUPP.ShowAlways = true;
+                                tpUPP.Show("Please enter upp", txtUpp, 5000);
+                                blnErrorFlag = true;
+                            }
                         }
                     }
                     //    if (Convert.ToString(txtUpp.Text).Trim() == "")
@@ -1155,7 +1158,10 @@ namespace ROMS
                     {
                         varviewtype = 1;
                     }
-
+                    if (varproductcode != 0 && pbCloneFlag == 2)
+                    {
+                        varviewtype = 1;
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
@@ -1185,19 +1191,28 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varproductcode != 0 && pbCloneFlag != 1)
+                            if (varproductcode != 0 && pbCloneFlag != 1)//Reqular Editmode
                             {
-                                MainForm.objCP_Itemlist.udfnDropdownbind();
-                                MainForm.objCP_Itemlist.udfnList();
-                                this.Close();
+                                if (tbProduct.SelectedIndex == 1)
+                                {
+                                    MainForm.objCP_Itemlist.udfnDropdownbind();
+                                    //MainForm.objCP_Itemlist.udfnList();
+                                    varupdate = "1";
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    tbProduct.TabPages[1].Enabled = true;
+                                    tbProduct.SelectedIndex = 1;
+                                }
                             }
                             else
                             {
                                 //Second tab save after form close, no clear data - added by sathish on 23-08-2025
-                                if (tbProduct.SelectedIndex == 1 || pbCloneFlag == 1)
+                                if (tbProduct.SelectedIndex == 1/* && pbCloneFlag == 1*/)
                                 {
                                     MainForm.objCP_Itemlist.udfnDropdownbind();
-                                    MainForm.objCP_Itemlist.udfnList();
+                                    //MainForm.objCP_Itemlist.udfnList();
                                     varupdate = "1";
                                     this.Close();
                                 }
@@ -1206,6 +1221,7 @@ namespace ROMS
                                     varproductcode = Convert.ToInt32(varvalue[2]);
                                     tbProduct.TabPages[1].Enabled = true;
                                     tbProduct.SelectedIndex = 1;
+                                    pbCloneFlag = 2;
                                 }
                             }
                             //udfnclear();
@@ -1424,7 +1440,7 @@ namespace ROMS
                 tpPurHSN.ShowAlways = false;
                 tpSalesHSN.ShowAlways = false;
                 this.Close();
-                MainForm.objCP_Itemlist.udfnList();
+                //MainForm.objCP_Itemlist.udfnList();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
             }
             catch (Exception ex)
@@ -2901,13 +2917,12 @@ namespace ROMS
                 {
                     cmbProductType.SelectedValue = 341;
                     cmbProductType.Enabled = false;
-                    txtUpp.Enabled = true;
-                    txtUpp.ReadOnly = false;
+                    txtUpp.Enabled = false;
+                    txtUpp.ReadOnly = true;
                 }
                 else
                 { 
                     cmbProductType.Enabled = true;
-                    txtUpp.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -6428,7 +6443,7 @@ namespace ROMS
                     else
                     {
                         MainForm.objCP_Itemlist.udfnDropdownbind();
-                        MainForm.objCP_Itemlist.udfnList();
+                        //MainForm.objCP_Itemlist.udfnList();
                         //udfnclear();
                         varupdate = "1";
                         this.Close();

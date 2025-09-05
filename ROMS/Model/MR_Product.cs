@@ -50,7 +50,7 @@ namespace ROMS.Model
         public int paraType = 0;
         public double ParaMRP = 0;
         public double ParaRetail = 0;
-        
         public int paraSubgroupType = 0;
+        public int paraFilterDate = 0;
     }
 }
