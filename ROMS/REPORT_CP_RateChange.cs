@@ -115,19 +115,49 @@ namespace ROMS
                 RPTViewer.Visible = false;
                 picLoader.BringToFront();
                 Application.DoEvents();
+                string varBrand = "--All--", varGroup = "--All--", varSubgroup = "--All--", varProductName = "--All--";
+                int varBrandId = 0, varGroupId = 0, varSubgroupId = 0, varProductId = 0;
+                if (txtBrand.Text.Trim() != "")
+                {
+                    varBrand = txtBrand.Text; if (Convert.ToString(lblBrandCode.Text) != "") { varBrandId = Convert.ToInt32(lblBrandCode.Text); }
+                }
+                if (txtGroup.Text.Trim() != "")
+                {
+                    varGroup = txtGroup.Text; if (Convert.ToString(lblGroupCode.Text) != "") { varGroupId = Convert.ToInt32(lblGroupCode.Text); }
+                }
+                if (txtSubGroup.Text.Trim() != "")
+                {
+                    varSubgroup = txtSubGroup.Text; if (Convert.ToString(lblSubGroupCode.Text) != "") { varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text); }
+                }
+                if (txtProductName.Text.Trim() != "")
+                {
+                    varProductName = txtProductName.Text; if (Convert.ToString(lblProductcode.Text) != "") { varProductId = Convert.ToInt32(lblProductcode.Text); }
+                }
+
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnBrandList(10, "", 0, 0, 0, "", 0);
-                objspservice.CloseConnection();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                TRN_RateChange objRateChange = new TRN_RateChange();
+                if (varReportId == 294)
+                {
+                    objRateChange.paraViewType = 1;
+                }
+                else
+                {
+                    objRateChange.paraViewType = 0;
+                }
+                objRateChange.paraGroupID = varGroupId;
+                objRateChange.paraSubGroupID = varSubgroupId;
+                objRateChange.paraBrandID = varBrandId;
+                objRateChange.paraProductID = varProductId;
+                objRateChange.paraFromDate = dpFromDate.Text;
+                objRateChange.paraToDate = dpToDate.Text;
+                objDs = objdserv.udfnRateChangeList(objRateChange);
+                objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
-                    string varBrand = "--All--", varGroup = "--All--", varSubgroup = "--All--", varProductName = "--All--";
-                    if (Convert.ToString(lblBrandCode.Text) != "" && Convert.ToString(lblBrandCode.Text) != "0") { varBrand = txtBrand.Text.Trim(); }
-                    if (Convert.ToString(lblGroupCode.Text) != "" && Convert.ToString(lblGroupCode.Text) != "0") { varGroup = txtGroup.Text.Trim(); }
-                    if (Convert.ToString(lblSubGroupCode.Text) != "" && Convert.ToString(lblSubGroupCode.Text) != "0") { varSubgroup = txtSubGroup.Text.Trim(); }
-                    if (Convert.ToString(lblProductcode.Text) != "" && Convert.ToString(lblProductcode.Text) != "0") { varProductName = txtProductName.Text.Trim(); }
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
@@ -149,10 +179,10 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraFromDate", "");
                         objBillreport.SetParameterValue("paraToDate", "");
                     }
-                    objBillreport.SetParameterValue("paraGroupID", Convert.ToInt32(lblGroupCode.Text));
-                    objBillreport.SetParameterValue("paraSubGroupID", Convert.ToInt32(lblSubGroupCode.Text));
-                    objBillreport.SetParameterValue("paraBrandID", Convert.ToInt32(lblBrandCode.Text));
-                    objBillreport.SetParameterValue("paraProductID", Convert.ToInt32(lblProductcode.Text));
+                    objBillreport.SetParameterValue("paraGroupID", varGroupId);
+                    objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);
+                    objBillreport.SetParameterValue("paraBrandID",varBrandId);
+                    objBillreport.SetParameterValue("paraProductID",varProductId);
                     objBillreport.SetParameterValue("paraBrandName", varBrand);
                     objBillreport.SetParameterValue("paraGroupName", varGroup);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroup);
