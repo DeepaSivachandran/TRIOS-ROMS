@@ -731,7 +731,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    txtLocation.Focus();
                 }
             }
             catch (Exception ex)
