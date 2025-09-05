@@ -649,7 +649,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 320;
                                     DGV_FilterProduct.Columns["SL_EName"].Width = 70;
                                     DGV_FilterProduct.Columns["RK_ShortName"].Width = 70;
-                                    DGV_FilterProduct.Columns["STK_MRP"].Width = 60;
+                                    DGV_FilterProduct.Columns["STK_MRP"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].Width = 90;
                                     DGV_FilterProduct.Columns["STK_BatchNo"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_Qty"].Width = 70;

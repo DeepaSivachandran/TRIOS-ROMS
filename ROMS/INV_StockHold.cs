@@ -2006,7 +2006,7 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         //btnPrint.Image = global::ROMS.Properties.Resources.view;
                         RPTViewer.Visible = false;
-                    }                  
+                    }
                 //}
                 //else
                 //{
@@ -2015,6 +2015,11 @@ namespace ROMS
                 //    btnPrint.Image = global::ROMS.Properties.Resources.print;
                 //    picLoader.SendToBack();
                 //}
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDs.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
             }
             catch (Exception ex)
             {
