@@ -218,13 +218,13 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>0", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,82) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,81) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbPaymentType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,96) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbPurchaseType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
-                cmbSupplierType.SelectedValue = -1;
+                cmbSupplierType.SelectedValue = 0;
                 cmbConditionType.SelectedValue = 0;
                 cmbPaymentType.SelectedValue = 0;
                 cmbPurchaseType.SelectedValue = 0;

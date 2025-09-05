@@ -3920,8 +3920,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_PUR_DET_Batch_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_PUR_DET_Batch_Details1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_100x70.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
