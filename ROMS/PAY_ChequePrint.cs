@@ -556,10 +556,11 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 RPTViewer.ReuseParameterValuesOnRefresh = true;
                 RPTViewer.RefreshReport();
+                string[] supplierName = txtsuppliername.Text.Split('-');
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
-                objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
+                objBillreport.SetParameterValue("paraSupplierName", supplierName[0]);
                 objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
                 objBillreport.SetParameterValue("paraAmount", FinalAmnt);
                 objBillreport.SetParameterValue("paraChequeDate", chequeDate);

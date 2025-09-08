@@ -601,6 +601,10 @@ namespace ROMS
             {
                 txtAmount.BackColor = Color.White;
                 txtAmount.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
+                if(pbADID==0)
+                {
+                    txtCurrentBalance.Text = Convert.ToString(txtAmount.Text.Trim());
+                }
                 udfnPaymentDropDown();
                 if (txtAmount.Text.Trim() != "")
                 {
@@ -1440,8 +1444,7 @@ namespace ROMS
         private void CmbPaymentmode_Enter(object sender, EventArgs e)
         {
             try
-            {
-                txtAdvanceAmt.Text = txtAdvanceAmt.Text;
+            { 
                 cmbPaymentmode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1796,7 +1799,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void TxtAmount_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (pbADID == 0)
+                {
+                    txtCurrentBalance.Text =Convert.ToString(txtAmount.Text.Trim());
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtChequeLimitDays_KeyPress(object sender, KeyPressEventArgs e)
         {
             try

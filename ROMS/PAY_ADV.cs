@@ -268,8 +268,9 @@ namespace ROMS
         {
             try
             {
-                udfnAdvanceAdd();
-                MainForm.objPAY_SupplierPayment.varApplyFlag = 0;
+                udfnAdvanceAdd(); 
+                MainForm.objPAY_SupplierPayment.BtnApply_Click(sender,e);
+                //MainForm.objPAY_SupplierPayment.varApplyFlag = 0;
             }
             catch (Exception ex)
             {
@@ -313,14 +314,11 @@ namespace ROMS
                 }
                 if (VARFLAG != 0)
                 {
-                    MainForm.objPAY_SupplierPayment.varAdvanceID = AdvID;
-                    //MainForm.objPAY_SupplierPayment.lblAdvance.Text = Convert.ToString(varAdvanceAmnt);
-                    varGrandTotal = Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblSubtotal.Text) - Convert.ToDecimal(MainForm.objPAY_SupplierPayment.lblAdvance.Text);
-                    MainForm.objPAY_SupplierPayment.lblGrandTotal.Text =varGrandTotal.ToString("#,##0.00");
+                    MainForm.objPAY_SupplierPayment.varAdvanceID = AdvID; 
+                    MainForm.objPAY_SupplierPayment.udfnSubtotalCalc();
                     MainForm.objPAY_SupplierPayment.varAdvance = varAdvancePayAmnt;
                     MainForm.objPAY_SupplierPayment.btnApply.Enabled = true;
-                    MainForm.objPAY_SupplierPayment.btnClear.Enabled = true;
-                    //MainForm.objPAY_SupplierPayment.clearClick = 0;
+                    MainForm.objPAY_SupplierPayment.btnClear.Enabled = true; 
                     this.Close();
                 }
                 else
