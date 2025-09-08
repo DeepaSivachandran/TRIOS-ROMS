@@ -88,7 +88,6 @@
             this.textBox29 = new System.Windows.Forms.TextBox();
             this.cmbOBType = new System.Windows.Forms.ComboBox();
             this.txtOBAmt = new System.Windows.Forms.TextBox();
-            this.textBox40 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbPaymentDisc = new System.Windows.Forms.ComboBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
@@ -565,7 +564,6 @@
             this.grbOB.Controls.Add(this.textBox29);
             this.grbOB.Controls.Add(this.cmbOBType);
             this.grbOB.Controls.Add(this.txtOBAmt);
-            this.grbOB.Controls.Add(this.textBox40);
             this.grbOB.Location = new System.Drawing.Point(587, 227);
             this.grbOB.Name = "grbOB";
             this.grbOB.Size = new System.Drawing.Size(712, 129);
@@ -577,7 +575,7 @@
             // 
             this.txtOBTotInvoice.Enabled = false;
             this.txtOBTotInvoice.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtOBTotInvoice.Location = new System.Drawing.Point(106, 82);
+            this.txtOBTotInvoice.Location = new System.Drawing.Point(106, 54);
             this.txtOBTotInvoice.MaxLength = 10;
             this.txtOBTotInvoice.Name = "txtOBTotInvoice";
             this.txtOBTotInvoice.ReadOnly = true;
@@ -590,7 +588,7 @@
             this.textBox25.BackColor = System.Drawing.SystemColors.Control;
             this.textBox25.Enabled = false;
             this.textBox25.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox25.Location = new System.Drawing.Point(6, 82);
+            this.textBox25.Location = new System.Drawing.Point(6, 54);
             this.textBox25.Name = "textBox25";
             this.textBox25.ReadOnly = true;
             this.textBox25.Size = new System.Drawing.Size(100, 27);
@@ -602,7 +600,7 @@
             this.textBox27.BackColor = System.Drawing.SystemColors.Control;
             this.textBox27.Enabled = false;
             this.textBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
-            this.textBox27.Location = new System.Drawing.Point(106, 54);
+            this.textBox27.Location = new System.Drawing.Point(106, 26);
             this.textBox27.Name = "textBox27";
             this.textBox27.ReadOnly = true;
             this.textBox27.Size = new System.Drawing.Size(21, 27);
@@ -614,7 +612,7 @@
             this.textBox29.BackColor = System.Drawing.SystemColors.Control;
             this.textBox29.Enabled = false;
             this.textBox29.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox29.Location = new System.Drawing.Point(6, 54);
+            this.textBox29.Location = new System.Drawing.Point(6, 26);
             this.textBox29.Name = "textBox29";
             this.textBox29.ReadOnly = true;
             this.textBox29.Size = new System.Drawing.Size(100, 27);
@@ -630,7 +628,7 @@
             this.cmbOBType.Items.AddRange(new object[] {
             "CR",
             "DR"});
-            this.cmbOBType.Location = new System.Drawing.Point(106, 26);
+            this.cmbOBType.Location = new System.Drawing.Point(217, 26);
             this.cmbOBType.Name = "cmbOBType";
             this.cmbOBType.Size = new System.Drawing.Size(43, 27);
             this.cmbOBType.TabIndex = 0;
@@ -639,25 +637,13 @@
             // 
             this.txtOBAmt.Enabled = false;
             this.txtOBAmt.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtOBAmt.Location = new System.Drawing.Point(127, 54);
+            this.txtOBAmt.Location = new System.Drawing.Point(127, 26);
             this.txtOBAmt.MaxLength = 10;
             this.txtOBAmt.Name = "txtOBAmt";
             this.txtOBAmt.ReadOnly = true;
-            this.txtOBAmt.Size = new System.Drawing.Size(133, 27);
+            this.txtOBAmt.Size = new System.Drawing.Size(89, 27);
             this.txtOBAmt.TabIndex = 1;
             this.txtOBAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox40
-            // 
-            this.textBox40.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox40.Enabled = false;
-            this.textBox40.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox40.Location = new System.Drawing.Point(6, 26);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.ReadOnly = true;
-            this.textBox40.Size = new System.Drawing.Size(100, 27);
-            this.textBox40.TabIndex = 29;
-            this.textBox40.Text = "Opening Balance";
             // 
             // groupBox2
             // 
@@ -4425,7 +4411,7 @@
             this.btnOBSave.Name = "btnOBSave";
             this.btnOBSave.Size = new System.Drawing.Size(84, 29);
             this.btnOBSave.TabIndex = 35;
-            this.btnOBSave.Text = "Save";
+            this.btnOBSave.Text = "Update";
             this.btnOBSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOBSave.UseVisualStyleBackColor = true;
             this.btnOBSave.Click += new System.EventHandler(this.BtnOBSave_Click);
@@ -5311,7 +5297,6 @@
         private System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.ComboBox cmbOBType;
         private System.Windows.Forms.TextBox txtOBAmt;
-        private System.Windows.Forms.TextBox textBox40;
         private System.Windows.Forms.TextBox txtOBTotInvoice;
         private System.Windows.Forms.TextBox textBox25;
         public System.Windows.Forms.Button btnOBSave;
