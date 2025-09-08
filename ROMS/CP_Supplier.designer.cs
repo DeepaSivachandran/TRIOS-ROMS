@@ -280,6 +280,7 @@
             this.btnMappingsave = new System.Windows.Forms.Button();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.cmbOrderschedule = new System.Windows.Forms.ComboBox();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.txtMappedOrderDay = new System.Windows.Forms.TextBox();
@@ -290,7 +291,6 @@
             this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
             this.txtMappedSupplierName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cmbOrderschedule = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cmborderday = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -3284,6 +3284,21 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
+            // cmbOrderschedule
+            // 
+            this.cmbOrderschedule.FormattingEnabled = true;
+            this.cmbOrderschedule.Items.AddRange(new object[] {
+            "--All--"});
+            this.cmbOrderschedule.Location = new System.Drawing.Point(339, 37);
+            this.cmbOrderschedule.Name = "cmbOrderschedule";
+            this.cmbOrderschedule.Size = new System.Drawing.Size(121, 27);
+            this.cmbOrderschedule.TabIndex = 0;
+            this.cmbOrderschedule.SelectedIndexChanged += new System.EventHandler(this.CmbOrderschedule_SelectedIndexChanged);
+            this.cmbOrderschedule.Enter += new System.EventHandler(this.CmbOrderschedule_Enter);
+            this.cmbOrderschedule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderschedule_KeyDown);
+            this.cmbOrderschedule.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderschedule_KeyPress);
+            this.cmbOrderschedule.Leave += new System.EventHandler(this.CmbOrderschedule_Leave);
+            // 
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3447,21 +3462,6 @@
             this.label10.Size = new System.Drawing.Size(54, 20);
             this.label10.TabIndex = 958821;
             this.label10.Text = "Supplier";
-            // 
-            // cmbOrderschedule
-            // 
-            this.cmbOrderschedule.FormattingEnabled = true;
-            this.cmbOrderschedule.Items.AddRange(new object[] {
-            "--All--"});
-            this.cmbOrderschedule.Location = new System.Drawing.Point(339, 37);
-            this.cmbOrderschedule.Name = "cmbOrderschedule";
-            this.cmbOrderschedule.Size = new System.Drawing.Size(121, 27);
-            this.cmbOrderschedule.TabIndex = 0;
-            this.cmbOrderschedule.SelectedIndexChanged += new System.EventHandler(this.CmbOrderschedule_SelectedIndexChanged);
-            this.cmbOrderschedule.Enter += new System.EventHandler(this.CmbOrderschedule_Enter);
-            this.cmbOrderschedule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderschedule_KeyDown);
-            this.cmbOrderschedule.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderschedule_KeyPress);
-            this.cmbOrderschedule.Leave += new System.EventHandler(this.CmbOrderschedule_Leave);
             // 
             // label14
             // 
@@ -3641,7 +3641,7 @@
             this.tbPurchaseProducts.Padding = new System.Windows.Forms.Padding(3);
             this.tbPurchaseProducts.Size = new System.Drawing.Size(1329, 611);
             this.tbPurchaseProducts.TabIndex = 5;
-            this.tbPurchaseProducts.Text = "Purchase Products";
+            this.tbPurchaseProducts.Text = "Purchase - Variant Mapping";
             this.tbPurchaseProducts.UseVisualStyleBackColor = true;
             // 
             // groupBox6

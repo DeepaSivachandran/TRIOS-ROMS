@@ -1223,7 +1223,8 @@ namespace ROMS
                     tcSupplier.TabPages[1].Enabled = false; // Second tab
                     tcSupplier.TabPages[2].Enabled = false; // Third tab
                     tcSupplier.TabPages[3].Enabled = false; // Fourth tab
-                } 
+                }
+                tcSupplier.TabPages[4].Enabled = false;
             }
             catch (Exception ex)
             {
