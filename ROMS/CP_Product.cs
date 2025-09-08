@@ -2640,7 +2640,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbProductCategory.Focus();
+                    chkSalesProduct.Focus();
                 }
             }
             catch (Exception ex)
@@ -7118,6 +7118,48 @@ namespace ROMS
                     txtSubGroup.BackColor = Color.White;
                     txtBrand.BackColor = Color.White;
                     errItems.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkSalesProduct_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesProduct.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkSalesProduct_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesProduct.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkSalesProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbProductCategory.Focus();
                 }
             }
             catch (Exception ex)
