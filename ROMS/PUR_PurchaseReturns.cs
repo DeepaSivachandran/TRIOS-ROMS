@@ -572,6 +572,8 @@ namespace ROMS
                             txtRemarks.Enabled = false;
                             btnSave.Enabled = false;
                             cmbReasonForClosing.Enabled = false;
+                            grdReturnDC.Columns["clmApprox"].DefaultCellStyle.BackColor = Color.LightGray;
+                            grdReturnDC.Columns["clmApprox"].ReadOnly = true;
                         }
                         else if (varStatusId==110)
                         {
