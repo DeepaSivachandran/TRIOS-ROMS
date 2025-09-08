@@ -249,6 +249,7 @@
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.chkSalesProduct = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -2721,12 +2722,23 @@
             this.pnlProductDetails.Size = new System.Drawing.Size(897, 655);
             this.pnlProductDetails.TabIndex = 1111144;
             // 
+            // chkSalesProduct
+            // 
+            this.chkSalesProduct.AutoSize = true;
+            this.chkSalesProduct.Location = new System.Drawing.Point(504, 662);
+            this.chkSalesProduct.Name = "chkSalesProduct";
+            this.chkSalesProduct.Size = new System.Drawing.Size(115, 24);
+            this.chkSalesProduct.TabIndex = 1111145;
+            this.chkSalesProduct.Text = "Eligible for Sales";
+            this.chkSalesProduct.UseVisualStyleBackColor = true;
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(914, 691);
+            this.Controls.Add(this.chkSalesProduct);
             this.Controls.Add(this.pnlProductDetails);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -2994,5 +3006,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader25;
         private System.Windows.Forms.TextBox txtSubgroupType;
         private System.Windows.Forms.ColumnHeader columnHeader42;
+        private System.Windows.Forms.CheckBox chkSalesProduct;
     }
 }
