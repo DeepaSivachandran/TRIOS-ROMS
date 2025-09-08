@@ -154,7 +154,7 @@ namespace ROMS
                 this.ActiveControl = txtpicode;
                 //udfnDropDownload();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (0,369)", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchno, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchGen, "", "MST_DisplayText", "MSTID");

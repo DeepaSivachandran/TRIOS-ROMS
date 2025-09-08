@@ -3706,7 +3706,7 @@ namespace ROMS
                     udfnDropDownload();
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (0,369)", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (76,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbRM, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
