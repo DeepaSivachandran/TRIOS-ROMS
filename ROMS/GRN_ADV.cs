@@ -281,7 +281,7 @@ namespace ROMS
                 }
             }
 
-            lblCurrentBalance.Text = totalBalance.ToString("F2"); // format as needed
+            lblCurrentBalance.Text = totalBalance.ToString("N2"); // format as needed
         }
 
         private void GrdAdvance_CellContentClick(object sender, DataGridViewCellEventArgs e)
