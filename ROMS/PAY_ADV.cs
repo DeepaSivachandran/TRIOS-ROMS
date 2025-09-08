@@ -152,7 +152,7 @@ namespace ROMS
                             grdAdvance.Columns["Current Balance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdAdvance.Columns["Advance Amount"].DisplayIndex = 3;   // Moves checkbox column to first
+                            grdAdvance.Columns["Advance Amount"].DisplayIndex = 3;   // Moves Advance Amount column before current balance columnn
                             grdAdvance.Columns["Current Balance"].DefaultCellStyle.BackColor = Color.Green;
                             grdAdvance.Columns["Current Balance"].DefaultCellStyle.ForeColor = Color.White;
                         }
