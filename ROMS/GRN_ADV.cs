@@ -281,7 +281,7 @@ namespace ROMS
                 }
             }
 
-            lblCurrentBalance.Text = totalBalance.ToString("N2"); // format as needed
+            lblCurrentBalance.Text = totalBalance.ToString("N2"); // "N2" -> number format with commas and 2 decimals
         }
 
         private void GrdAdvance_CellContentClick(object sender, DataGridViewCellEventArgs e)
