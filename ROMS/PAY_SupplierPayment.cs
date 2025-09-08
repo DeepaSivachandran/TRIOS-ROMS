@@ -2654,6 +2654,7 @@ namespace ROMS
             {
                 varEditFlag = 1;
                 MainForm.objPAY_Advance_Popup = new PAY_ADV();
+                MainForm.objPAY_Advance_Popup.lblInvAmt.Text = lblGrandTotal.Text;
                 MainForm.objPAY_Advance_Popup.ShowDialog();
             }
             catch (Exception ex)

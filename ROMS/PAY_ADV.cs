@@ -152,6 +152,9 @@ namespace ROMS
                             grdAdvance.Columns["Current Balance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdAdvance.Columns["Advance Amount"].DisplayIndex = 3;   // Moves checkbox column to first
+                            grdAdvance.Columns["Current Balance"].DefaultCellStyle.BackColor = Color.Green;
+                            grdAdvance.Columns["Current Balance"].DefaultCellStyle.ForeColor = Color.White;
                         }
                         else
                         {
@@ -421,7 +424,6 @@ namespace ROMS
             try
             {
                 udfnList();
-                              
             }
             catch (Exception ex)
             {
@@ -452,6 +454,58 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void GrdAdvance_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // To commit checkbox change immediately
+                if (grdAdvance.Columns[e.ColumnIndex].Name == "Column1")
+                {
+                    grdAdvance.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdAdvance_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdAdvance.Columns[e.ColumnIndex].Name == "Column1")
+                {
+                    udfnCalcCurrentBalance();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnCalcCurrentBalance()
+        {
+            decimal totalBalance = 0;
+
+            foreach (DataGridViewRow row in grdAdvance.Rows)
+            {
+                bool isChecked = Convert.ToBoolean(row.Cells["Column1"].Value);
+
+                if (isChecked)
+                {
+                    decimal currentBalance = 0;
+                    decimal.TryParse(row.Cells["Current Balance"].Value?.ToString(), out currentBalance);
+
+                    totalBalance += currentBalance;
+                }
+            }
+
+            lblCurrentBalance.Text = totalBalance.ToString("F2"); // format as needed
+        }
     }
 }
