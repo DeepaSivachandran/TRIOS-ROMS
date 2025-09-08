@@ -2042,6 +2042,7 @@ namespace ROMS
                     MainForm.objGRN_ADV.pbSupplierID = Convert.ToInt16(lblSupplierCode.Text);
                     MainForm.objGRN_ADV.pbPayType = varPayType;
                     MainForm.objGRN_ADV.pbADID = pbAdvanceID;
+                    MainForm.objGRN_ADV.lblInvAmt.Text = txtInvoiceamt.Text.Trim();
                     MainForm.objGRN_ADV.ShowDialog();
                 }
             }

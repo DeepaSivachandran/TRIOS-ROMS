@@ -41,6 +41,12 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.btnselectall = new System.Windows.Forms.Button();
             this.btnunselectall = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblCurrentBalance = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblInvAmt = new System.Windows.Forms.Label();
+            this.lblRupee = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAdvance)).BeginInit();
             this.SuspendLayout();
@@ -89,6 +95,8 @@
             this.grdAdvance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdAdvance.Size = new System.Drawing.Size(968, 275);
             this.grdAdvance.TabIndex = 1;
+            this.grdAdvance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdAdvance_CellContentClick);
+            this.grdAdvance.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdAdvance_CellValueChanged);
             this.grdAdvance.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdAdvance_CurrentCellDirtyStateChanged);
             // 
             // clmCheck
@@ -134,7 +142,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(391, 134);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(445, 134);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 1111210;
@@ -171,12 +179,78 @@
             this.btnunselectall.Visible = false;
             this.btnunselectall.Click += new System.EventHandler(this.Btnunselectall_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(568, 296);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(146, 20);
+            this.label4.TabIndex = 1111213;
+            this.label4.Text = "Overall Current Balance : ";
+            // 
+            // lblCurrentBalance
+            // 
+            this.lblCurrentBalance.AutoSize = true;
+            this.lblCurrentBalance.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBalance.Location = new System.Drawing.Point(728, 293);
+            this.lblCurrentBalance.Name = "lblCurrentBalance";
+            this.lblCurrentBalance.Size = new System.Drawing.Size(22, 26);
+            this.lblCurrentBalance.TabIndex = 1111214;
+            this.lblCurrentBalance.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(361, 296);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 20);
+            this.label5.TabIndex = 1111216;
+            this.label5.Text = "Invoice Amount : ";
+            // 
+            // lblInvAmt
+            // 
+            this.lblInvAmt.AutoSize = true;
+            this.lblInvAmt.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvAmt.Location = new System.Drawing.Point(475, 293);
+            this.lblInvAmt.Name = "lblInvAmt";
+            this.lblInvAmt.Size = new System.Drawing.Size(22, 26);
+            this.lblInvAmt.TabIndex = 1111217;
+            this.lblInvAmt.Text = "0";
+            // 
+            // lblRupee
+            // 
+            this.lblRupee.AutoSize = true;
+            this.lblRupee.Font = new System.Drawing.Font("Oswald Regular", 15.25F);
+            this.lblRupee.Location = new System.Drawing.Point(455, 292);
+            this.lblRupee.Name = "lblRupee";
+            this.lblRupee.Size = new System.Drawing.Size(25, 29);
+            this.lblRupee.TabIndex = 1111233;
+            this.lblRupee.Text = "₹";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 15.25F);
+            this.label1.Location = new System.Drawing.Point(705, 292);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 29);
+            this.label1.TabIndex = 1111234;
+            this.label1.Text = "₹";
+            // 
             // GRN_ADV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(994, 327);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblRupee);
+            this.Controls.Add(this.lblInvAmt);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblCurrentBalance);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnunselectall);
             this.Controls.Add(this.btnselectall);
             this.Controls.Add(this.lblNoRecordsFound);
@@ -210,5 +284,11 @@
         private System.Windows.Forms.Button btnunselectall;
         private System.Windows.Forms.Button btnselectall;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblCurrentBalance;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblRupee;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lblInvAmt;
     }
 }

@@ -154,7 +154,7 @@ namespace ROMS
                 this.ActiveControl = txtpicode;
                 //udfnDropDownload();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (0,369)", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchno, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (26,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchGen, "", "MST_DisplayText", "MSTID");
@@ -4956,7 +4956,7 @@ namespace ROMS
                     Convert.ToInt32(cmbUnit.SelectedValue), 0, "", Convert.ToInt32(varPurLocationCode), Convert.ToInt32(varSalesLocationCode)
                     , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), Convert.ToInt32(cmbBatchGen.SelectedValue)
                     , varshelflife, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(varHsnCode), 0, shelflife,
-                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "", 0, 0, 0, 0, varMRPflag, dtProductHSN, "", "","");
+                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "", 0, 0, 0, 0, varMRPflag, dtProductHSN, "", "","",0);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');

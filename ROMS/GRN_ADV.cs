@@ -108,20 +108,34 @@ namespace ROMS
                                 else
                                 {
                                     grdAdvance.Rows[i].Cells[0].Value = false;
-                                } 
-                            }   
+                                }
+                            }
+                            foreach (DataGridViewColumn col in grdAdvance.Columns)
+                            {
+                                if (col.Name != "clmCheck")
+                                {
+                                    col.ReadOnly = true;
+                                }
+                                else
+                                {
+                                    col.ReadOnly = false;
+                                }
+                            }
+
                             grdAdvance.Columns["S.No."].Width = 50;
                             grdAdvance.Columns["Advance Date"].Width = 120; 
                             grdAdvance.Columns["Advance Amount"].Width = 120;
+                            grdAdvance.Columns["Current Balance"].Width = 120;
                             grdAdvance.Columns["Created By"].Width = 180;
                             grdAdvance.Columns["Updated By"].Width = 180;
                             grdAdvance.Columns["Receipt No"].Width = 100;
-                            grdAdvance.Columns["Receipt No"].ReadOnly = true;
-                            grdAdvance.Columns["Advance Date"].ReadOnly = true;  
                             grdAdvance.Columns["ID"].Visible = false;  
                             grdAdvance.Columns["Advance Amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdAdvance.Columns["Current Balance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdAdvance.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdAdvance.Columns["Advance Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdAdvance.Columns["Current Balance"].DefaultCellStyle.BackColor = Color.Green;
+                            grdAdvance.Columns["Current Balance"].DefaultCellStyle.ForeColor = Color.White;
                         }
                         else
                         {
@@ -235,6 +249,58 @@ namespace ROMS
             }
         }
 
+        private void GrdAdvance_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdAdvance.Columns[e.ColumnIndex].Name == "clmCheck")
+                {
+                    udfnCalcCurrentBalance();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnCalcCurrentBalance()
+        {
+            decimal totalBalance = 0;
+
+            foreach (DataGridViewRow row in grdAdvance.Rows)
+            {
+                bool isChecked = Convert.ToBoolean(row.Cells["clmCheck"].Value);
+
+                if (isChecked)
+                {
+                    decimal currentBalance = 0;
+                    decimal.TryParse(row.Cells["Current Balance"].Value?.ToString(), out currentBalance);
+
+                    totalBalance += currentBalance;
+                }
+            }
+
+            lblCurrentBalance.Text = totalBalance.ToString("N2"); // "N2" -> number format with commas and 2 decimals
+        }
+
+        private void GrdAdvance_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // To commit checkbox change immediately
+                if (grdAdvance.Columns[e.ColumnIndex].Name == "clmCheck")
+                {
+                    grdAdvance.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void Btnunselectall_Click(object sender, EventArgs e)
         {
             try
@@ -254,7 +320,8 @@ namespace ROMS
         private void GrdAdvance_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
-            {   //for check box as radio button function
+            {
+                //for check box as radio button function
                 if (grdAdvance.CurrentCell.ColumnIndex == 0)
                 {
                     for (int i = 0; i < grdAdvance.Rows.Count; i++)

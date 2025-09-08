@@ -1162,13 +1162,18 @@ namespace ROMS
                     {
                         varviewtype = 1;
                     }
+                    int varSalesProduct = 0;
+                    if (chkSalesProduct.Checked == true)
+                    {
+                        varSalesProduct = 1;
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
                     , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text);
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text, varSalesProduct);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -2635,7 +2640,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbProductCategory.Focus();
+                    chkSalesProduct.Focus();
                 }
             }
             catch (Exception ex)
@@ -3701,7 +3706,7 @@ namespace ROMS
                     udfnDropDownload();
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (0,369)", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (76,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbRM, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (6,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPeriod, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (25,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbBatchNoEntry, "", "MST_DisplayText", "MSTID");
@@ -6422,7 +6427,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),"");
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -7122,6 +7127,48 @@ namespace ROMS
             }
         }
 
+        private void ChkSalesProduct_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesProduct.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkSalesProduct_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesProduct.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChkSalesProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbProductCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void cmbProductType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -7711,6 +7758,9 @@ namespace ROMS
                             {
                                 chkSameasPurchase.Checked = false;
                             }
+
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["SalesProduct"]) == "1") { chkSalesProduct.Checked = true; } else { chkSalesProduct.Checked = false; }
+
                             udfnDropDownload();
 
                             //txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
