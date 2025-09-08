@@ -684,7 +684,7 @@
             // txtChequeLimitDays
             // 
             this.txtChequeLimitDays.Location = new System.Drawing.Point(132, 81);
-            this.txtChequeLimitDays.MaxLength = 10;
+            this.txtChequeLimitDays.MaxLength = 3;
             this.txtChequeLimitDays.Name = "txtChequeLimitDays";
             this.txtChequeLimitDays.Size = new System.Drawing.Size(180, 28);
             this.txtChequeLimitDays.TabIndex = 2;

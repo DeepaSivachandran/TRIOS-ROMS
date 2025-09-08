@@ -4787,6 +4787,7 @@
     <None Include="Resources\Blocked Supplier.jpg" />
     <None Include="Resources\Cleared.jpg" />
     <None Include="Resources\Delete.jpg" />
+    <None Include="Resources\Envelope Print.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">

@@ -666,7 +666,7 @@ namespace ROMS
         private void PAY_SupplierPayment_Load(object sender, EventArgs e)
         {
             try
-            {
+            {   
                 dtPayment.TableName = "TRN_Supplier_Payment";
                 dtPayment.Columns.Add("PY_PURID", typeof(int));
                 dtPayment.Columns.Add("PY_Amount", typeof(float));
