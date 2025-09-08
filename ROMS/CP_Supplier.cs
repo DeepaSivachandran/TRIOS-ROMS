@@ -3061,9 +3061,17 @@ namespace ROMS
                 {
                     txtgstin.Enabled = true;
                 }
+                if (Convert.ToInt32(cmbSupplierType.SelectedValue) != 30)
+                {
+                    cmbPaymentTerm.SelectedValue = 33;
+                    cmbPaymentTerm.Enabled = false;
+                }
+                else
+                {
+                    cmbPaymentTerm.Enabled = true;
+                }
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
