@@ -478,6 +478,7 @@ namespace ROMS
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 48;
                         objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.paraFlag = 1;                         //Load Only Eligible for Sales Products
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
                         if (objDs != null)
