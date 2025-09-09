@@ -430,7 +430,7 @@ namespace ROMS
             this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.paymentToolStripMenuItem.ShowShortcutKeys = false;
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
-            this.paymentToolStripMenuItem.Text = "&Finance";
+            this.paymentToolStripMenuItem.Text = "&Finance"; 
             // 
             // tsbDirectCheque
             // 
@@ -1049,56 +1049,56 @@ namespace ROMS
             // tsmPOProductWiseReport
             // 
             this.tsmPOProductWiseReport.Name = "tsmPOProductWiseReport";
-            this.tsmPOProductWiseReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmPOProductWiseReport.Size = new System.Drawing.Size(179, 22);
             this.tsmPOProductWiseReport.Text = "PO Product Wise";
             this.tsmPOProductWiseReport.Click += new System.EventHandler(this.tsmPOProductWiseReport_Click);
             // 
             // tsmPOStatusWise
             // 
             this.tsmPOStatusWise.Name = "tsmPOStatusWise";
-            this.tsmPOStatusWise.Size = new System.Drawing.Size(180, 22);
+            this.tsmPOStatusWise.Size = new System.Drawing.Size(179, 22);
             this.tsmPOStatusWise.Text = "PO Status Wise";
             this.tsmPOStatusWise.Click += new System.EventHandler(this.tsmPOStatusWise_Click);
             // 
             // tsmPOSummary
             // 
             this.tsmPOSummary.Name = "tsmPOSummary";
-            this.tsmPOSummary.Size = new System.Drawing.Size(180, 22);
+            this.tsmPOSummary.Size = new System.Drawing.Size(179, 22);
             this.tsmPOSummary.Text = "PO Summary && Detail";
             this.tsmPOSummary.Click += new System.EventHandler(this.tsmPOSummary_Click);
             // 
             // TSMGRNSummary
             // 
             this.TSMGRNSummary.Name = "TSMGRNSummary";
-            this.TSMGRNSummary.Size = new System.Drawing.Size(180, 22);
+            this.TSMGRNSummary.Size = new System.Drawing.Size(179, 22);
             this.TSMGRNSummary.Text = "GRN Summary";
             this.TSMGRNSummary.Click += new System.EventHandler(this.TSMGRNSummary_Click);
             // 
             // TSMGRNDetails
             // 
             this.TSMGRNDetails.Name = "TSMGRNDetails";
-            this.TSMGRNDetails.Size = new System.Drawing.Size(180, 22);
+            this.TSMGRNDetails.Size = new System.Drawing.Size(179, 22);
             this.TSMGRNDetails.Text = "GRN Detail";
             this.TSMGRNDetails.Click += new System.EventHandler(this.TSMGRNDetails_Click);
             // 
             // tsmGRNBatchDetail
             // 
             this.tsmGRNBatchDetail.Name = "tsmGRNBatchDetail";
-            this.tsmGRNBatchDetail.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNBatchDetail.Size = new System.Drawing.Size(179, 22);
             this.tsmGRNBatchDetail.Text = "GRN Batch Detail";
             this.tsmGRNBatchDetail.Click += new System.EventHandler(this.tsmGRNBatchDetail_Click);
             // 
             // tsmGRNSupplierDetail
             // 
             this.tsmGRNSupplierDetail.Name = "tsmGRNSupplierDetail";
-            this.tsmGRNSupplierDetail.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNSupplierDetail.Size = new System.Drawing.Size(179, 22);
             this.tsmGRNSupplierDetail.Text = "GRN Supplier Detail";
             this.tsmGRNSupplierDetail.Click += new System.EventHandler(this.tsmGRNSupplierDetail_Click);
             // 
             // tsmGRNDefectPRoduct
             // 
             this.tsmGRNDefectPRoduct.Name = "tsmGRNDefectPRoduct";
-            this.tsmGRNDefectPRoduct.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNDefectPRoduct.Size = new System.Drawing.Size(179, 22);
             this.tsmGRNDefectPRoduct.Text = "GRN Defect Product";
             this.tsmGRNDefectPRoduct.Click += new System.EventHandler(this.tsmGRNDefectPRoduct_Click);
             // 
@@ -1311,7 +1311,7 @@ namespace ROMS
             // tsmSupplierLEdgerReport
             // 
             this.tsmSupplierLEdgerReport.Name = "tsmSupplierLEdgerReport";
-            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(149, 22);
             this.tsmSupplierLEdgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLEdgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
             // 

@@ -239,10 +239,13 @@ namespace ROMS
         {
             try
             {
+                int varchecklimitdays = 0;
+                if(txtChequeLimitDays.Text.Trim()!="")
+                { varchecklimitdays = Convert.ToInt32(txtChequeLimitDays.Text); }
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 28;
                 objMR_Master.paraDate = dpChequeDate.Text;
-                objMR_Master.paraFlag = Convert.ToInt32(txtChequeLimitDays.Text);
+                objMR_Master.paraFlag = varchecklimitdays;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnMaster(objMR_Master);
@@ -255,7 +258,7 @@ namespace ROMS
                             dpChequeDate.MinDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                         }
                     }
-                    if (txtChequeLimitDays.Text.Trim() != "")
+                    if (txtChequeLimitDays.Text.Trim() != "" && txtChequeLimitDays.Text.Trim() != "0")
                     {
                         if (objDs.Tables.Count > 1)
                         {
@@ -1052,7 +1055,7 @@ namespace ROMS
                     If pay amount is less than 2,00,000, then payment should be made through NEFT/Cheque/Transfer
                  */
                 string varNotCondition = "";
-                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 1;
+                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 0;
                 /* Check cash mode*/
                 if (varSupplierPaymentMode.Contains("88"))
                 {
@@ -1081,6 +1084,7 @@ namespace ROMS
                     {
                         varRTGSEnabled = 1;
                         varNEFTEnabled = 0;
+                        varTransferEnabled = 1;
                     }
                 }
                 if (varCashEnabled == 0) { if (varNotCondition == "") { varNotCondition = "346"; } else { varNotCondition = varNotCondition + ", 346"; } }
@@ -1115,7 +1119,7 @@ namespace ROMS
                         {
                             varNeftAmount = Convert.ToDecimal(objDs.Tables[0].Rows[0]["GS_NEFT_Amount"]);
                             varRTGSMinLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
-                            varCashPaymentLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
+                            varCashPaymentLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["GS_CashPaymentLimit"]);
                         }
                     }
                 }
@@ -1157,7 +1161,7 @@ namespace ROMS
                             lblschedule.Text = Convert.ToString(objDs.Tables[0].Rows[0]["SPSCID"]);
                             txtAmount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_Amount"]);
                             varSource = Convert.ToInt32(objDs.Tables[0].Rows[0]["Source"]);
-                        
+                            udfnsupplierLoad();
                             udfnPaymentDropDown();
                             txtCurrentBalance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Current Balance"]); 
                             cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);   
@@ -1176,7 +1180,7 @@ namespace ROMS
                                 txtAmountInWords.Text = Currency.NumbersToWords(varAmount);
                             }
                             LV_Supplier.Visible = false;
-                            udfnsupplierLoad();
+                            
                         }
                     }
                 }
@@ -1197,7 +1201,7 @@ namespace ROMS
                         grbIssuedDetails.Enabled = false;
                     }
 
-                    if (PbStatus == 75 || PbStatus == 119)
+                    if (PbStatus == 75 || PbStatus == 119 || PbStatus== 118)
                     {
                         cmbConcern.Enabled = false;
                         dpAdvanceDate.Enabled = false;
@@ -1213,7 +1217,8 @@ namespace ROMS
                         btnClose.Focus();
                     }
                 }
-                else {
+                else
+                {
                     cmbConcern.Enabled = false;
                     dpAdvanceDate.Enabled = false;
                     txtSupplier.Enabled = false;
