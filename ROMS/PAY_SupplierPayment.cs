@@ -1277,12 +1277,12 @@ namespace ROMS
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"] = c;
                                     c.ReadOnly = true;
                                 }
-                                if (Convert.ToString(objDs.Tables[1].Rows[i]["Filing Status"]) == "F")
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["Filing Status"]) == "F")
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.BackColor = Color.LightGreen;
                                     grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.ForeColor = Color.Black;
                                 }
-                                else if (Convert.ToString(objDs.Tables[1].Rows[i]["Filing Status"]) == "NF")
+                                else if (Convert.ToString(objDs.Tables[0].Rows[i]["Filing Status"]) == "NF")
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.BackColor = Color.Red;
                                     grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.ForeColor = Color.White;
