@@ -572,6 +572,20 @@ namespace ROMS
                             txtRemarks.Enabled = false;
                             btnSave.Enabled = false;
                             cmbReasonForClosing.Enabled = false;
+                            grdReturnDC.Columns["clmApprox"].DefaultCellStyle.BackColor = Color.LightGray;
+                            grdReturnDC.Columns["clmApprox"].ReadOnly = true;
+                        }
+                        else if (varStatusId==110)
+                        {
+                            txtAmount.Enabled = false;
+                            txtCrNo.Enabled = false;
+                            dpCreditNoteDate.Enabled = false;
+                            cmbReasonForClosing.Enabled = false;
+                            txtRemarks.Enabled = false;
+                            btnSave.Enabled = false;
+                            //Approximate Rate Readonly Color Set
+                            grdReturnDC.Columns["clmApprox"].DefaultCellStyle.BackColor = Color.LightGray;
+                            grdReturnDC.Columns["clmApprox"].ReadOnly = true;
                         }
                         else
                         {

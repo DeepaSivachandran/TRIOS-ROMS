@@ -88,7 +88,6 @@
             this.textBox29 = new System.Windows.Forms.TextBox();
             this.cmbOBType = new System.Windows.Forms.ComboBox();
             this.txtOBAmt = new System.Windows.Forms.TextBox();
-            this.textBox40 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbPaymentDisc = new System.Windows.Forms.ComboBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
@@ -280,6 +279,7 @@
             this.btnMappingsave = new System.Windows.Forms.Button();
             this.tbSchedule = new System.Windows.Forms.TabPage();
             this.grpSchedule = new System.Windows.Forms.GroupBox();
+            this.cmbOrderschedule = new System.Windows.Forms.ComboBox();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.txtMappedOrderDay = new System.Windows.Forms.TextBox();
@@ -290,7 +290,6 @@
             this.lblMappedOrderTypeId = new System.Windows.Forms.Label();
             this.txtMappedSupplierName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cmbOrderschedule = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cmborderday = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -318,33 +317,33 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.lblPurMappedProducts = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.txtPurSupplierName = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmbPurStatus = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DGV_PurMappedSearchGrid = new System.Windows.Forms.DataGridView();
             this.btnPurRemove = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvPurBrand = new System.Windows.Forms.ListView();
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.txtPurBrand = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.lvPurSubgroup = new System.Windows.Forms.ListView();
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.lvPurGroup = new System.Windows.Forms.ListView();
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox36 = new System.Windows.Forms.TextBox();
-            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.txtPurSubgroup = new System.Windows.Forms.TextBox();
+            this.txtPurGroup = new System.Windows.Forms.TextBox();
             this.lblPurNoRecordsFound = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.txtSearchByPurMappedProducts = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.txtSearchByPurProducts = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
@@ -352,7 +351,7 @@
             this.BtnPuraddMove = new System.Windows.Forms.Button();
             this.grdPurMappedProducts = new System.Windows.Forms.DataGridView();
             this.grdPurSupplierMappingLoad = new System.Windows.Forms.DataGridView();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnPurView = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.DGV_PurSearchGrid = new System.Windows.Forms.DataGridView();
@@ -439,7 +438,7 @@
             this.tbPurchaseProducts.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurMappedProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurSupplierMappingLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_PurSearchGrid)).BeginInit();
@@ -565,7 +564,6 @@
             this.grbOB.Controls.Add(this.textBox29);
             this.grbOB.Controls.Add(this.cmbOBType);
             this.grbOB.Controls.Add(this.txtOBAmt);
-            this.grbOB.Controls.Add(this.textBox40);
             this.grbOB.Location = new System.Drawing.Point(587, 227);
             this.grbOB.Name = "grbOB";
             this.grbOB.Size = new System.Drawing.Size(712, 129);
@@ -577,7 +575,7 @@
             // 
             this.txtOBTotInvoice.Enabled = false;
             this.txtOBTotInvoice.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtOBTotInvoice.Location = new System.Drawing.Point(106, 82);
+            this.txtOBTotInvoice.Location = new System.Drawing.Point(106, 54);
             this.txtOBTotInvoice.MaxLength = 10;
             this.txtOBTotInvoice.Name = "txtOBTotInvoice";
             this.txtOBTotInvoice.ReadOnly = true;
@@ -590,7 +588,7 @@
             this.textBox25.BackColor = System.Drawing.SystemColors.Control;
             this.textBox25.Enabled = false;
             this.textBox25.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox25.Location = new System.Drawing.Point(6, 82);
+            this.textBox25.Location = new System.Drawing.Point(6, 54);
             this.textBox25.Name = "textBox25";
             this.textBox25.ReadOnly = true;
             this.textBox25.Size = new System.Drawing.Size(100, 27);
@@ -602,7 +600,7 @@
             this.textBox27.BackColor = System.Drawing.SystemColors.Control;
             this.textBox27.Enabled = false;
             this.textBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
-            this.textBox27.Location = new System.Drawing.Point(106, 54);
+            this.textBox27.Location = new System.Drawing.Point(106, 26);
             this.textBox27.Name = "textBox27";
             this.textBox27.ReadOnly = true;
             this.textBox27.Size = new System.Drawing.Size(21, 27);
@@ -614,7 +612,7 @@
             this.textBox29.BackColor = System.Drawing.SystemColors.Control;
             this.textBox29.Enabled = false;
             this.textBox29.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox29.Location = new System.Drawing.Point(6, 54);
+            this.textBox29.Location = new System.Drawing.Point(6, 26);
             this.textBox29.Name = "textBox29";
             this.textBox29.ReadOnly = true;
             this.textBox29.Size = new System.Drawing.Size(100, 27);
@@ -630,7 +628,7 @@
             this.cmbOBType.Items.AddRange(new object[] {
             "CR",
             "DR"});
-            this.cmbOBType.Location = new System.Drawing.Point(106, 26);
+            this.cmbOBType.Location = new System.Drawing.Point(217, 26);
             this.cmbOBType.Name = "cmbOBType";
             this.cmbOBType.Size = new System.Drawing.Size(43, 27);
             this.cmbOBType.TabIndex = 0;
@@ -639,25 +637,13 @@
             // 
             this.txtOBAmt.Enabled = false;
             this.txtOBAmt.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtOBAmt.Location = new System.Drawing.Point(127, 54);
+            this.txtOBAmt.Location = new System.Drawing.Point(127, 26);
             this.txtOBAmt.MaxLength = 10;
             this.txtOBAmt.Name = "txtOBAmt";
             this.txtOBAmt.ReadOnly = true;
-            this.txtOBAmt.Size = new System.Drawing.Size(133, 27);
+            this.txtOBAmt.Size = new System.Drawing.Size(89, 27);
             this.txtOBAmt.TabIndex = 1;
             this.txtOBAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox40
-            // 
-            this.textBox40.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox40.Enabled = false;
-            this.textBox40.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox40.Location = new System.Drawing.Point(6, 26);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.ReadOnly = true;
-            this.textBox40.Size = new System.Drawing.Size(100, 27);
-            this.textBox40.TabIndex = 29;
-            this.textBox40.Text = "Opening Balance";
             // 
             // groupBox2
             // 
@@ -3284,6 +3270,21 @@
             this.grpSchedule.TabIndex = 958809;
             this.grpSchedule.TabStop = false;
             // 
+            // cmbOrderschedule
+            // 
+            this.cmbOrderschedule.FormattingEnabled = true;
+            this.cmbOrderschedule.Items.AddRange(new object[] {
+            "--All--"});
+            this.cmbOrderschedule.Location = new System.Drawing.Point(339, 37);
+            this.cmbOrderschedule.Name = "cmbOrderschedule";
+            this.cmbOrderschedule.Size = new System.Drawing.Size(121, 27);
+            this.cmbOrderschedule.TabIndex = 0;
+            this.cmbOrderschedule.SelectedIndexChanged += new System.EventHandler(this.CmbOrderschedule_SelectedIndexChanged);
+            this.cmbOrderschedule.Enter += new System.EventHandler(this.CmbOrderschedule_Enter);
+            this.cmbOrderschedule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderschedule_KeyDown);
+            this.cmbOrderschedule.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderschedule_KeyPress);
+            this.cmbOrderschedule.Leave += new System.EventHandler(this.CmbOrderschedule_Leave);
+            // 
             // btnListPrint
             // 
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3447,21 +3448,6 @@
             this.label10.Size = new System.Drawing.Size(54, 20);
             this.label10.TabIndex = 958821;
             this.label10.Text = "Supplier";
-            // 
-            // cmbOrderschedule
-            // 
-            this.cmbOrderschedule.FormattingEnabled = true;
-            this.cmbOrderschedule.Items.AddRange(new object[] {
-            "--All--"});
-            this.cmbOrderschedule.Location = new System.Drawing.Point(339, 37);
-            this.cmbOrderschedule.Name = "cmbOrderschedule";
-            this.cmbOrderschedule.Size = new System.Drawing.Size(121, 27);
-            this.cmbOrderschedule.TabIndex = 0;
-            this.cmbOrderschedule.SelectedIndexChanged += new System.EventHandler(this.CmbOrderschedule_SelectedIndexChanged);
-            this.cmbOrderschedule.Enter += new System.EventHandler(this.CmbOrderschedule_Enter);
-            this.cmbOrderschedule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbOrderschedule_KeyDown);
-            this.cmbOrderschedule.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbOrderschedule_KeyPress);
-            this.cmbOrderschedule.Leave += new System.EventHandler(this.CmbOrderschedule_Leave);
             // 
             // label14
             // 
@@ -3641,7 +3627,7 @@
             this.tbPurchaseProducts.Padding = new System.Windows.Forms.Padding(3);
             this.tbPurchaseProducts.Size = new System.Drawing.Size(1329, 611);
             this.tbPurchaseProducts.TabIndex = 5;
-            this.tbPurchaseProducts.Text = "Purchase Products";
+            this.tbPurchaseProducts.Text = "Purchase - Variant Mapping";
             this.tbPurchaseProducts.UseVisualStyleBackColor = true;
             // 
             // groupBox6
@@ -3661,7 +3647,7 @@
             this.groupBox6.Controls.Add(this.comboBox2);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Controls.Add(this.label23);
+            this.groupBox6.Controls.Add(this.lblPurMappedProducts);
             this.groupBox6.Controls.Add(this.label24);
             this.groupBox6.Controls.Add(this.txtPurSupplierName);
             this.groupBox6.Controls.Add(this.label25);
@@ -3836,16 +3822,16 @@
             this.label22.TabIndex = 958800;
             this.label22.Text = "Order Type";
             // 
-            // label23
+            // lblPurMappedProducts
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.label23.ForeColor = System.Drawing.Color.Crimson;
-            this.label23.Location = new System.Drawing.Point(795, 571);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(17, 20);
-            this.label23.TabIndex = 958799;
-            this.label23.Text = "0";
+            this.lblPurMappedProducts.AutoSize = true;
+            this.lblPurMappedProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblPurMappedProducts.ForeColor = System.Drawing.Color.Crimson;
+            this.lblPurMappedProducts.Location = new System.Drawing.Point(795, 571);
+            this.lblPurMappedProducts.Name = "lblPurMappedProducts";
+            this.lblPurMappedProducts.Size = new System.Drawing.Size(17, 20);
+            this.lblPurMappedProducts.TabIndex = 958799;
+            this.lblPurMappedProducts.Text = "0";
             // 
             // label24
             // 
@@ -3881,19 +3867,19 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.comboBox3);
+            this.groupBox7.Controls.Add(this.cmbPurStatus);
             this.groupBox7.Controls.Add(this.label26);
-            this.groupBox7.Controls.Add(this.dataGridView1);
+            this.groupBox7.Controls.Add(this.DGV_PurMappedSearchGrid);
             this.groupBox7.Controls.Add(this.btnPurRemove);
-            this.groupBox7.Controls.Add(this.listView1);
-            this.groupBox7.Controls.Add(this.textBox35);
+            this.groupBox7.Controls.Add(this.lvPurBrand);
+            this.groupBox7.Controls.Add(this.txtPurBrand);
             this.groupBox7.Controls.Add(this.label27);
-            this.groupBox7.Controls.Add(this.listView2);
-            this.groupBox7.Controls.Add(this.listView3);
-            this.groupBox7.Controls.Add(this.textBox36);
-            this.groupBox7.Controls.Add(this.textBox38);
+            this.groupBox7.Controls.Add(this.lvPurSubgroup);
+            this.groupBox7.Controls.Add(this.lvPurGroup);
+            this.groupBox7.Controls.Add(this.txtPurSubgroup);
+            this.groupBox7.Controls.Add(this.txtPurGroup);
             this.groupBox7.Controls.Add(this.lblPurNoRecordsFound);
-            this.groupBox7.Controls.Add(this.textBox39);
+            this.groupBox7.Controls.Add(this.txtSearchByPurMappedProducts);
             this.groupBox7.Controls.Add(this.label29);
             this.groupBox7.Controls.Add(this.txtSearchByPurProducts);
             this.groupBox7.Controls.Add(this.button6);
@@ -3901,7 +3887,7 @@
             this.groupBox7.Controls.Add(this.BtnPuraddMove);
             this.groupBox7.Controls.Add(this.grdPurMappedProducts);
             this.groupBox7.Controls.Add(this.grdPurSupplierMappingLoad);
-            this.groupBox7.Controls.Add(this.button8);
+            this.groupBox7.Controls.Add(this.btnPurView);
             this.groupBox7.Controls.Add(this.label31);
             this.groupBox7.Controls.Add(this.label32);
             this.groupBox7.Controls.Add(this.DGV_PurSearchGrid);
@@ -3911,13 +3897,17 @@
             this.groupBox7.TabIndex = 5;
             this.groupBox7.TabStop = false;
             // 
-            // comboBox3
+            // cmbPurStatus
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(368, 43);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(128, 27);
-            this.comboBox3.TabIndex = 3;
+            this.cmbPurStatus.FormattingEnabled = true;
+            this.cmbPurStatus.Location = new System.Drawing.Point(368, 43);
+            this.cmbPurStatus.Name = "cmbPurStatus";
+            this.cmbPurStatus.Size = new System.Drawing.Size(128, 27);
+            this.cmbPurStatus.TabIndex = 3;
+            this.cmbPurStatus.Enter += new System.EventHandler(this.CmbPurStatus_Enter);
+            this.cmbPurStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPurStatus_KeyDown);
+            this.cmbPurStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPurStatus_KeyPress);
+            this.cmbPurStatus.Leave += new System.EventHandler(this.CmbPurStatus_Leave);
             // 
             // label26
             // 
@@ -3928,13 +3918,13 @@
             this.label26.TabIndex = 958811;
             this.label26.Text = "Status";
             // 
-            // dataGridView1
+            // DGV_PurMappedSearchGrid
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.DGV_PurMappedSearchGrid.AllowUserToAddRows = false;
+            this.DGV_PurMappedSearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_PurMappedSearchGrid.AllowUserToResizeRows = false;
+            this.DGV_PurMappedSearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_PurMappedSearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle28.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3942,9 +3932,9 @@
             dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
-            this.dataGridView1.ColumnHeadersHeight = 30;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DGV_PurMappedSearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            this.DGV_PurMappedSearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_PurMappedSearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle29.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3952,21 +3942,29 @@
             dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle29;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(686, 76);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
+            this.DGV_PurMappedSearchGrid.DefaultCellStyle = dataGridViewCellStyle29;
+            this.DGV_PurMappedSearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_PurMappedSearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_PurMappedSearchGrid.Location = new System.Drawing.Point(686, 76);
+            this.DGV_PurMappedSearchGrid.Name = "DGV_PurMappedSearchGrid";
+            this.DGV_PurMappedSearchGrid.RowHeadersVisible = false;
             dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.LemonChiffon;
             dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle30;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(613, 56);
-            this.dataGridView1.TabIndex = 958810;
+            this.DGV_PurMappedSearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            this.DGV_PurMappedSearchGrid.RowTemplate.Height = 25;
+            this.DGV_PurMappedSearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_PurMappedSearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_PurMappedSearchGrid.ShowRowErrors = false;
+            this.DGV_PurMappedSearchGrid.Size = new System.Drawing.Size(613, 56);
+            this.DGV_PurMappedSearchGrid.TabIndex = 958810;
+            this.DGV_PurMappedSearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_PurMappedSearchGrid_CellEndEdit);
+            this.DGV_PurMappedSearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_PurMappedSearchGrid_CellFormatting);
+            this.DGV_PurMappedSearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_PurMappedSearchGrid_CellPainting);
+            this.DGV_PurMappedSearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_PurMappedSearchGrid_ColumnHeaderMouseClick);
+            this.DGV_PurMappedSearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_PurMappedSearchGrid_ColumnWidthChanged);
+            this.DGV_PurMappedSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_PurMappedSearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_PurMappedSearchGrid_EditingControlShowing);
+            this.DGV_PurMappedSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_PurMappedSearchGrid_Scroll);
             // 
             // btnPurRemove
             // 
@@ -3979,22 +3977,25 @@
             this.btnPurRemove.TabIndex = 958807;
             this.btnPurRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPurRemove.UseVisualStyleBackColor = true;
+            this.btnPurRemove.Click += new System.EventHandler(this.BtnPurRemove_Click);
             // 
-            // listView1
+            // lvPurBrand
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvPurBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader13,
             this.columnHeader14,
             this.columnHeader15});
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(240, 69);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(352, 99);
-            this.listView1.TabIndex = 958806;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Visible = false;
+            this.lvPurBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvPurBrand.HideSelection = false;
+            this.lvPurBrand.Location = new System.Drawing.Point(240, 69);
+            this.lvPurBrand.Name = "lvPurBrand";
+            this.lvPurBrand.Size = new System.Drawing.Size(352, 99);
+            this.lvPurBrand.TabIndex = 958806;
+            this.lvPurBrand.UseCompatibleStateImageBehavior = false;
+            this.lvPurBrand.View = System.Windows.Forms.View.Details;
+            this.lvPurBrand.Visible = false;
+            this.lvPurBrand.DoubleClick += new System.EventHandler(this.LvPurBrand_DoubleClick);
+            this.lvPurBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvPurBrand_KeyDown);
             // 
             // columnHeader13
             // 
@@ -4008,14 +4009,18 @@
             // 
             this.columnHeader15.Width = 0;
             // 
-            // textBox35
+            // txtPurBrand
             // 
-            this.textBox35.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox35.Location = new System.Drawing.Point(240, 42);
-            this.textBox35.MaxLength = 50;
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(122, 27);
-            this.textBox35.TabIndex = 2;
+            this.txtPurBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurBrand.Location = new System.Drawing.Point(240, 42);
+            this.txtPurBrand.MaxLength = 50;
+            this.txtPurBrand.Name = "txtPurBrand";
+            this.txtPurBrand.Size = new System.Drawing.Size(122, 27);
+            this.txtPurBrand.TabIndex = 2;
+            this.txtPurBrand.TextChanged += new System.EventHandler(this.TxtPurBrand_TextChanged);
+            this.txtPurBrand.Enter += new System.EventHandler(this.TxtPurBrand_Enter);
+            this.txtPurBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurBrand_KeyDown);
+            this.txtPurBrand.Leave += new System.EventHandler(this.TxtPurBrand_Leave);
             // 
             // label27
             // 
@@ -4027,21 +4032,23 @@
             this.label27.TabIndex = 958804;
             this.label27.Text = "Brand";
             // 
-            // listView2
+            // lvPurSubgroup
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvPurSubgroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader16,
             this.columnHeader17,
             this.columnHeader18});
-            this.listView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(124, 69);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(352, 99);
-            this.listView2.TabIndex = 958803;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.Visible = false;
+            this.lvPurSubgroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvPurSubgroup.HideSelection = false;
+            this.lvPurSubgroup.Location = new System.Drawing.Point(124, 69);
+            this.lvPurSubgroup.Name = "lvPurSubgroup";
+            this.lvPurSubgroup.Size = new System.Drawing.Size(352, 99);
+            this.lvPurSubgroup.TabIndex = 958803;
+            this.lvPurSubgroup.UseCompatibleStateImageBehavior = false;
+            this.lvPurSubgroup.View = System.Windows.Forms.View.Details;
+            this.lvPurSubgroup.Visible = false;
+            this.lvPurSubgroup.DoubleClick += new System.EventHandler(this.LvPurSubgroup_DoubleClick);
+            this.lvPurSubgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvPurSubgroup_KeyDown);
             // 
             // columnHeader16
             // 
@@ -4055,21 +4062,23 @@
             // 
             this.columnHeader18.Width = 0;
             // 
-            // listView3
+            // lvPurGroup
             // 
-            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvPurGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader19,
             this.columnHeader20,
             this.columnHeader21});
-            this.listView3.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(10, 69);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(338, 99);
-            this.listView3.TabIndex = 958802;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
-            this.listView3.Visible = false;
+            this.lvPurGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvPurGroup.HideSelection = false;
+            this.lvPurGroup.Location = new System.Drawing.Point(10, 69);
+            this.lvPurGroup.Name = "lvPurGroup";
+            this.lvPurGroup.Size = new System.Drawing.Size(338, 99);
+            this.lvPurGroup.TabIndex = 958802;
+            this.lvPurGroup.UseCompatibleStateImageBehavior = false;
+            this.lvPurGroup.View = System.Windows.Forms.View.Details;
+            this.lvPurGroup.Visible = false;
+            this.lvPurGroup.DoubleClick += new System.EventHandler(this.LvPurGroup_DoubleClick);
+            this.lvPurGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvPurGroup_KeyDown);
             // 
             // columnHeader19
             // 
@@ -4083,23 +4092,31 @@
             // 
             this.columnHeader21.Width = 0;
             // 
-            // textBox36
+            // txtPurSubgroup
             // 
-            this.textBox36.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox36.Location = new System.Drawing.Point(124, 42);
-            this.textBox36.MaxLength = 50;
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(108, 27);
-            this.textBox36.TabIndex = 1;
+            this.txtPurSubgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurSubgroup.Location = new System.Drawing.Point(124, 42);
+            this.txtPurSubgroup.MaxLength = 50;
+            this.txtPurSubgroup.Name = "txtPurSubgroup";
+            this.txtPurSubgroup.Size = new System.Drawing.Size(108, 27);
+            this.txtPurSubgroup.TabIndex = 1;
+            this.txtPurSubgroup.TextChanged += new System.EventHandler(this.TxtPurSubgroup_TextChanged);
+            this.txtPurSubgroup.Enter += new System.EventHandler(this.TxtPurSubgroup_Enter);
+            this.txtPurSubgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurSubgroup_KeyDown);
+            this.txtPurSubgroup.Leave += new System.EventHandler(this.TxtPurSubgroup_Leave);
             // 
-            // textBox38
+            // txtPurGroup
             // 
-            this.textBox38.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox38.Location = new System.Drawing.Point(10, 42);
-            this.textBox38.MaxLength = 50;
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(108, 27);
-            this.textBox38.TabIndex = 0;
+            this.txtPurGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurGroup.Location = new System.Drawing.Point(10, 42);
+            this.txtPurGroup.MaxLength = 50;
+            this.txtPurGroup.Name = "txtPurGroup";
+            this.txtPurGroup.Size = new System.Drawing.Size(108, 27);
+            this.txtPurGroup.TabIndex = 0;
+            this.txtPurGroup.TextChanged += new System.EventHandler(this.TxtPurGroup_TextChanged);
+            this.txtPurGroup.Enter += new System.EventHandler(this.TxtPurGroup_Enter);
+            this.txtPurGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurGroup_KeyDown);
+            this.txtPurGroup.Leave += new System.EventHandler(this.TxtPurGroup_Leave);
             // 
             // lblPurNoRecordsFound
             // 
@@ -4114,14 +4131,15 @@
             this.lblPurNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblPurNoRecordsFound.Visible = false;
             // 
-            // textBox39
+            // txtSearchByPurMappedProducts
             // 
-            this.textBox39.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox39.Location = new System.Drawing.Point(896, 43);
-            this.textBox39.MaxLength = 50;
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(403, 27);
-            this.textBox39.TabIndex = 6;
+            this.txtSearchByPurMappedProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchByPurMappedProducts.Location = new System.Drawing.Point(896, 43);
+            this.txtSearchByPurMappedProducts.MaxLength = 50;
+            this.txtSearchByPurMappedProducts.Name = "txtSearchByPurMappedProducts";
+            this.txtSearchByPurMappedProducts.Size = new System.Drawing.Size(403, 27);
+            this.txtSearchByPurMappedProducts.TabIndex = 6;
+            this.txtSearchByPurMappedProducts.TextChanged += new System.EventHandler(this.TxtSearchByPurMappedProducts_TextChanged);
             // 
             // label29
             // 
@@ -4178,6 +4196,7 @@
             this.BtnPuraddMove.TabIndex = 33;
             this.BtnPuraddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnPuraddMove.UseVisualStyleBackColor = true;
+            this.BtnPuraddMove.Click += new System.EventHandler(this.BtnPuraddMove_Click);
             // 
             // grdPurMappedProducts
             // 
@@ -4218,6 +4237,7 @@
             this.grdPurMappedProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurMappedProducts.Size = new System.Drawing.Size(613, 351);
             this.grdPurMappedProducts.TabIndex = 7;
+            this.grdPurMappedProducts.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurMappedProducts_Scroll);
             // 
             // grdPurSupplierMappingLoad
             // 
@@ -4263,17 +4283,18 @@
             this.grdPurSupplierMappingLoad.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurSupplierMappingLoad_DataBindingComplete);
             this.grdPurSupplierMappingLoad.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurSupplierMappingLoad_Scroll);
             // 
-            // button8
+            // btnPurView
             // 
-            this.button8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Image = global::ROMS.Properties.Resources.view;
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(502, 41);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(33, 29);
-            this.button8.TabIndex = 4;
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnPurView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPurView.Image = global::ROMS.Properties.Resources.view;
+            this.btnPurView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurView.Location = new System.Drawing.Point(502, 41);
+            this.btnPurView.Name = "btnPurView";
+            this.btnPurView.Size = new System.Drawing.Size(33, 29);
+            this.btnPurView.TabIndex = 4;
+            this.btnPurView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPurView.UseVisualStyleBackColor = true;
+            this.btnPurView.Click += new System.EventHandler(this.BtnPurView_Click);
             // 
             // label31
             // 
@@ -4390,7 +4411,7 @@
             this.btnOBSave.Name = "btnOBSave";
             this.btnOBSave.Size = new System.Drawing.Size(84, 29);
             this.btnOBSave.TabIndex = 35;
-            this.btnOBSave.Text = "Save";
+            this.btnOBSave.Text = "Update";
             this.btnOBSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOBSave.UseVisualStyleBackColor = true;
             this.btnOBSave.Click += new System.EventHandler(this.BtnOBSave_Click);
@@ -5010,7 +5031,7 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurMappedProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurSupplierMappingLoad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_PurSearchGrid)).EndInit();
@@ -5276,7 +5297,6 @@
         private System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.ComboBox cmbOBType;
         private System.Windows.Forms.TextBox txtOBAmt;
-        private System.Windows.Forms.TextBox textBox40;
         private System.Windows.Forms.TextBox txtOBTotInvoice;
         private System.Windows.Forms.TextBox textBox25;
         public System.Windows.Forms.Button btnOBSave;
@@ -5315,33 +5335,33 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblPurMappedProducts;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox txtPurSupplierName;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbPurStatus;
         private System.Windows.Forms.Label label26;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView DGV_PurMappedSearchGrid;
         private System.Windows.Forms.Button btnPurRemove;
-        public System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.ListView lvPurBrand;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
-        private System.Windows.Forms.TextBox textBox35;
+        private System.Windows.Forms.TextBox txtPurBrand;
         private System.Windows.Forms.Label label27;
-        public System.Windows.Forms.ListView listView2;
+        public System.Windows.Forms.ListView lvPurSubgroup;
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.ColumnHeader columnHeader18;
-        public System.Windows.Forms.ListView listView3;
+        public System.Windows.Forms.ListView lvPurGroup;
         private System.Windows.Forms.ColumnHeader columnHeader19;
         private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.ColumnHeader columnHeader21;
-        private System.Windows.Forms.TextBox textBox36;
-        private System.Windows.Forms.TextBox textBox38;
+        private System.Windows.Forms.TextBox txtPurSubgroup;
+        private System.Windows.Forms.TextBox txtPurGroup;
         private System.Windows.Forms.Label lblPurNoRecordsFound;
-        private System.Windows.Forms.TextBox textBox39;
+        private System.Windows.Forms.TextBox txtSearchByPurMappedProducts;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox txtSearchByPurProducts;
         private System.Windows.Forms.Button button6;
@@ -5349,7 +5369,7 @@
         private System.Windows.Forms.Button BtnPuraddMove;
         public System.Windows.Forms.DataGridView grdPurMappedProducts;
         public System.Windows.Forms.DataGridView grdPurSupplierMappingLoad;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnPurView;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         public System.Windows.Forms.DataGridView DGV_PurSearchGrid;
