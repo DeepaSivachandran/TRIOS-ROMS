@@ -2042,7 +2042,15 @@ namespace ROMS
                     MainForm.objGRN_ADV.pbSupplierID = Convert.ToInt16(lblSupplierCode.Text);
                     MainForm.objGRN_ADV.pbPayType = varPayType;
                     MainForm.objGRN_ADV.pbADID = pbAdvanceID;
-                    MainForm.objGRN_ADV.lblInvAmt.Text = txtInvoiceamt.Text.Trim();
+                    decimal value;
+                    if (decimal.TryParse(txtInvoiceamt.Text, out value))
+                    {
+                        MainForm.objGRN_ADV.lblInvAmt.Text = value.ToString("N2");
+                    }
+                    else
+                    {
+                        MainForm.objGRN_ADV.lblInvAmt.Text = "0.00";
+                    }
                     MainForm.objGRN_ADV.ShowDialog();
                 }
             }
@@ -2105,7 +2113,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPayment.Focus();
+                    if(cmbPayment.Enabled==true)
+                    {
+                        cmbPayment.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

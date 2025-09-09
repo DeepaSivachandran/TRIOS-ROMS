@@ -2732,7 +2732,15 @@ namespace ROMS
             {
                 varEditFlag = 1;
                 MainForm.objPAY_Advance_Popup = new PAY_ADV();
-                MainForm.objPAY_Advance_Popup.lblInvAmt.Text = lblGrandTotal.Text;
+                decimal value;
+                if (decimal.TryParse(lblGrandTotal.Text, out value))
+                {
+                    MainForm.objPAY_Advance_Popup.lblInvAmt.Text = value.ToString("N2");
+                }
+                else
+                {
+                    MainForm.objPAY_Advance_Popup.lblInvAmt.Text = "0.00"; 
+                }
                 MainForm.objPAY_Advance_Popup.ShowDialog();
             }
             catch (Exception ex)

@@ -910,16 +910,16 @@ namespace ROMS
                     CrTable.Location = CrTable.Location.Substring(CrTable.Location.LastIndexOf(".") + 1);
                 }
                 // Apply to all tables in subreports
-                foreach (ReportDocument subreport in objBillReport.Subreports)
-                {
-                    foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in subreport.Database.Tables)
-                    {
-                        crtableLogoninfo = CrTable.LogOnInfo;
-                        crtableLogoninfo.ConnectionInfo = crConnectionInfo;
-                        CrTable.ApplyLogOnInfo(crtableLogoninfo);
-                        CrTable.Location = CrTable.Location.Substring(CrTable.Location.LastIndexOf(".") + 1);
-                    }
-                }
+                //foreach (ReportDocument subreport in objBillReport.Subreports)
+                //{
+                //    foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in subreport.Database.Tables)
+                //    {
+                //        crtableLogoninfo = CrTable.LogOnInfo;
+                //        crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                //        CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                //        CrTable.Location = CrTable.Location.Substring(CrTable.Location.LastIndexOf(".") + 1);
+                //    }
+                //}
 
                 //SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["ConnStr"]);
 
