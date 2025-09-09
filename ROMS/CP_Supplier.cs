@@ -10330,6 +10330,10 @@ namespace ROMS
                 objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
                 objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbPurOrderSchedule.SelectedValue);
                 objDs = objspservice.udfnSupplierList(objMR_Supplier);
+
+                dtPurProducts = null;
+                udfnInitPur();
+
                 dtPurMappedProducts = new DataTable();
                 dtPurMappedProducts.Columns.Add("", typeof(Boolean));
                 dtPurMappedProducts.Columns.Add("S.No.", typeof(string));
