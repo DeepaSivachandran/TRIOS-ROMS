@@ -11558,13 +11558,13 @@ namespace ROMS
                 //{
                 if (dtPurProducts == null)
                 {
-                    udfnInitSubgroup();
+                    udfnInitPur();
                 }
                 for (int k = 1; k < DGV_SearchGrid1.ColumnCount; k++)
                 {
                     DGV_SearchGrid1.Rows[0].Cells[k].Value = "";
                 }
-                DGV_SearchGrid1_CurrentCellDirtyStateChanged(sender, e);
+                DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged(sender, e);
             L: for (int i = 0; i < dtPurMappedProducts.Rows.Count; i++)
                 {
                     if (Convert.ToBoolean(dtPurMappedProducts.Rows[i][0]) == true)
@@ -11617,7 +11617,7 @@ namespace ROMS
                 grdPurSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
                 grdPurSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
                 grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                udfnSearchGridHead();
+                udfnPursearchgridHead();
 
 
                 grdPurMappedProducts.DataSource = dtPurMappedProducts;
@@ -11654,12 +11654,36 @@ namespace ROMS
             }
             finally
             {
-                lblTotalProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
+                lblPurProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
                 grdPurMappedProducts.Columns[0].ReadOnly = false;
                 grdPurSupplierMappingLoad.Columns[0].ReadOnly = false;
             }
         }
-
+        public void udfnInitPur()
+        {
+            try
+            {
+                dtPurProducts = new DataTable();
+                dtPurProducts.Columns.Add("", typeof(Boolean));
+                dtPurProducts.Columns.Add("S.No.", typeof(string));
+                dtPurProducts.Columns.Add("P.I Code", typeof(string));
+                dtPurProducts.Columns.Add("Product Name in Tamil", typeof(string));
+                dtPurProducts.Columns.Add("Unit", typeof(string));
+                dtPurProducts.Columns.Add("Brand", typeof(string));
+                dtPurProducts.Columns.Add("Product SubGroup", typeof(string));
+                dtPurProducts.Columns.Add("Product Group", typeof(string));
+                dtPurProducts.Columns.Add("GROUPID", typeof(int));
+                dtPurProducts.Columns.Add("SUBGROUPID", typeof(int));
+                dtPurProducts.Columns.Add("PRODUCTID", typeof(int));
+                dtPurProducts.Columns.Add("Product Name in English", typeof(string));
+                dtPurProducts.Columns.Add("MappedCount", typeof(int));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DGV_PurMappedSearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
