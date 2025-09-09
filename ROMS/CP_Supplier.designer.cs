@@ -4237,6 +4237,9 @@
             this.grdPurMappedProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurMappedProducts.Size = new System.Drawing.Size(613, 351);
             this.grdPurMappedProducts.TabIndex = 7;
+            this.grdPurMappedProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurMappedProducts_CellContentClick);
+            this.grdPurMappedProducts.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurMappedProducts_CurrentCellDirtyStateChanged);
+            this.grdPurMappedProducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurMappedProducts_DataBindingComplete);
             this.grdPurMappedProducts.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurMappedProducts_Scroll);
             // 
             // grdPurSupplierMappingLoad

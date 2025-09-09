@@ -1226,7 +1226,7 @@ namespace ROMS
                     tcSupplier.TabPages[2].Enabled = false; // Third tab
                     tcSupplier.TabPages[3].Enabled = false; // Fourth tab
                 }
-                tcSupplier.TabPages[4].Enabled = false;
+                //tcSupplier.TabPages[4].Enabled = false;
             }
             catch (Exception ex)
             {
@@ -11551,7 +11551,113 @@ namespace ROMS
 
         private void BtnPurRemove_Click(object sender, EventArgs e)
         {
+            try
+            {
+                //DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //if (dialogResult == DialogResult.Yes)
+                //{
+                if (dtPurProducts == null)
+                {
+                    udfnInitSubgroup();
+                }
+                for (int k = 1; k < DGV_SearchGrid1.ColumnCount; k++)
+                {
+                    DGV_SearchGrid1.Rows[0].Cells[k].Value = "";
+                }
+                DGV_SearchGrid1_CurrentCellDirtyStateChanged(sender, e);
+            L: for (int i = 0; i < dtPurMappedProducts.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(dtPurMappedProducts.Rows[i][0]) == true)
+                    {
+                        int varSlNo = 1;
+                        if (dtPurProducts != null)
+                        { varSlNo = dtPurProducts.Rows.Count + 1; }
+                        varModifiedFlag = 1;
+                        dtPurProducts.Rows.Add(false, varSlNo, dtPurMappedProducts.Rows[i]["P.I Code"],
+                        dtPurMappedProducts.Rows[i]["Product Name in Tamil"],
+                        dtPurMappedProducts.Rows[i]["Unit"],
+                        dtPurMappedProducts.Rows[i]["Brand"],
+                        dtPurMappedProducts.Rows[i]["Product SubGroup"],
+                        dtPurMappedProducts.Rows[i]["Product Group"],
+                        dtPurMappedProducts.Rows[i]["GROUPID"],
+                        dtPurMappedProducts.Rows[i]["SUBGROUPID"],
+                        dtPurMappedProducts.Rows[i]["PRODUCTID"], dtPurMappedProducts.Rows[i]["Product Name in English"],
+                        dtPurMappedProducts.Rows[i]["MappedCount"]);
+                        dtPurProducts.AcceptChanges();
+                        //for (int j = 0; j < dtPurMappedProducts.Rows.Count; j++)
+                        //{
+                        //    if (Convert.ToString(grdPurMappedProducts.Rows[i].Cells["PRODUCTID"].Value) == Convert.ToString(dtPurMappedProducts.Rows[j]["PRODUCTID"]))
+                        //    {
+                        dtPurMappedProducts.Rows.RemoveAt(i);
+                        dtPurMappedProducts.AcceptChanges();
+                        goto L;
+                        //  }
+                        //  }
+                    }
+                }
+                lblTotalMappingProduct.Text = grdPurMappedProducts.Rows.Count.ToString();
+                grdPurSupplierMappingLoad.DataSource = dtPurProducts;
+                // grdPurSupplierMappingLoad.Columns[0].Frozen = true;
+                grdPurSupplierMappingLoad.Columns[0].HeaderText = "";
+                grdPurSupplierMappingLoad.Columns[0].Width = 30;
+                grdPurSupplierMappingLoad.Columns["S.No."].Width = 50;
+                grdPurSupplierMappingLoad.Columns["P.I Code"].Width = 100;
+                grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
+                grdPurSupplierMappingLoad.Columns["Unit"].Width = 60;
+                grdPurSupplierMappingLoad.Columns["Product SubGroup"].Width = 170;
+                grdPurSupplierMappingLoad.Columns["GROUPID"].Visible = false;
+                grdPurSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
+                grdPurSupplierMappingLoad.Columns["MappedCount"].Visible = false;
+                grdPurSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
+                grdPurSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+                grdPurSupplierMappingLoad.Columns["S.No."].Visible = false;
+                grdPurSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
+                grdPurSupplierMappingLoad.Columns["P.I Code"].ReadOnly = true;
+                grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdPurSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
+                grdPurSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                udfnSearchGridHead();
 
+
+                grdPurMappedProducts.DataSource = dtPurMappedProducts;
+                // grdPurMappedProducts.Columns[0].Frozen = true;
+                grdPurMappedProducts.Columns[0].HeaderText = "";
+                grdPurMappedProducts.Columns[0].Width = 30;
+                grdPurMappedProducts.Columns["S.No."].Width = 50;
+                grdPurMappedProducts.Columns["P.I Code"].Width = 100;
+                grdPurMappedProducts.Columns["Product Name in Tamil"].Width = 220;
+                grdPurMappedProducts.Columns["Unit"].Width = 60;
+                grdPurMappedProducts.Columns["Product SubGroup"].Width = 120;
+                grdPurMappedProducts.Columns["GROUPID"].Visible = false;
+                grdPurMappedProducts.Columns["SUBGROUPID"].Visible = false;
+                grdPurMappedProducts.Columns["PRODUCTID"].Visible = false;
+                grdPurMappedProducts.Columns["MappedCount"].Visible = false;
+                grdPurMappedProducts.Columns["Product Name in English"].Visible = false;
+                grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                grdPurMappedProducts.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                grdPurMappedProducts.Columns["S.No."].ReadOnly = true;
+                grdPurMappedProducts.Columns["P.I Code"].ReadOnly = true;
+                grdPurMappedProducts.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdPurMappedProducts.Columns["Unit"].ReadOnly = true;
+                grdPurMappedProducts.Columns["Product SubGroup"].ReadOnly = true;
+
+                for (int j = 0; j < grdPurMappedProducts.RowCount; j++)
+                {
+                    grdPurMappedProducts.Rows[j].Cells["S.No."].Value = j + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblTotalProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
+                grdPurMappedProducts.Columns[0].ReadOnly = false;
+                grdPurSupplierMappingLoad.Columns[0].ReadOnly = false;
+            }
         }
 
         private void DGV_PurMappedSearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -11816,6 +11922,160 @@ namespace ROMS
                 }
                 grdPurMappedProducts.ClearSelection();
                 lblPurMappedProducts.Text = grdPurMappedProducts.Rows.Count.ToString();
+            }
+        }
+
+        private void GrdPurMappedProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdPurMappedProducts.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmMappingRemove":
+
+                            DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                dtPurProducts.Rows.Add(false, "0", grdPurMappedProducts.SelectedRows[0].Cells["P.I Code"].Value,
+                                grdPurMappedProducts.SelectedRows[0].Cells["Product Name in Tamil"].Value,
+                                grdPurMappedProducts.SelectedRows[0].Cells["Unit"].Value,
+                                grdPurMappedProducts.SelectedRows[0].Cells["Product SubGroup"].Value,
+                                grdPurMappedProducts.SelectedRows[0].Cells["GROUPID"].Value,
+                                grdPurMappedProducts.SelectedRows[0].Cells["SUBGROUPID"].Value,
+                                grdPurMappedProducts.SelectedRows[0].Cells["PRODUCTID"].Value, "0", grdPurMappedProducts.SelectedRows[0].Cells["MappedCount"].Value);
+                                grdPurMappedProducts.Rows.RemoveAt(this.grdPurMappedProducts.SelectedRows[0].Index);
+                                for (int i = 0; i < grdPurMappedProducts.RowCount; i++)
+                                {
+                                    grdPurMappedProducts.Rows[i].Cells["S.No."].Value = i + 1;
+                                }
+                                lblPurMappedProducts.Text = grdPurMappedProducts.Rows.Count.ToString();
+                                dtPurProducts.AcceptChanges();
+                                grdPurSupplierMappingLoad.DataSource = dtPurProducts;
+                                // grdPurSupplierMappingLoad.Columns[0].Frozen = true;
+                                grdPurSupplierMappingLoad.Columns[0].HeaderText = "";
+                                grdPurSupplierMappingLoad.Columns[0].Width = 30;
+                                grdPurSupplierMappingLoad.Columns["S.No."].Width = 50;
+                                grdPurSupplierMappingLoad.Columns["P.I Code"].Width = 100;
+                                grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
+                                grdPurSupplierMappingLoad.Columns["Unit"].Width = 100;
+                                grdPurSupplierMappingLoad.Columns["Product SubGroup"].Width = 170;
+                                grdPurSupplierMappingLoad.Columns["GROUPID"].Visible = false;
+                                grdPurSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
+                                grdPurSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
+                                grdPurSupplierMappingLoad.Columns["MappedCount"].Visible = false;
+                                grdPurSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+                                grdPurSupplierMappingLoad.Columns["S.No."].Visible = false;
+
+
+                                grdPurSupplierMappingLoad.Columns["S.No."].ReadOnly = true;
+                                grdPurSupplierMappingLoad.Columns["P.I Code"].ReadOnly = true;
+                                grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].ReadOnly = true;
+                                grdPurSupplierMappingLoad.Columns["Unit"].ReadOnly = true;
+                                grdPurSupplierMappingLoad.Columns["Product SubGroup"].ReadOnly = true;
+                                grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            }
+                            break;
+                    }
+                }
+                int vscroll = grdPurMappedProducts.FirstDisplayedScrollingRowIndex;
+                int hscroll = grdPurMappedProducts.FirstDisplayedScrollingColumnIndex;
+                int varPRID = Convert.ToInt16(grdPurMappedProducts.SelectedRows[0].Cells["PRODUCTID"].Value);
+                udfnGetPurMappedProductCount(varPRID);
+                grdPurMappedProducts.FirstDisplayedScrollingRowIndex = vscroll;
+                grdPurMappedProducts.FirstDisplayedScrollingColumnIndex = hscroll;
+                // udfnGetProductCount(0);       
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                if (grdPurSupplierMappingLoad.RowCount > 0)
+                {
+                    this.grdPurSupplierMappingLoad.Sort(this.grdPurSupplierMappingLoad.Columns[2], ListSortDirection.Ascending);
+                }
+                grdPurSupplierMappingLoad.ClearSelection();
+            }
+        }
+        public void udfnGetPurMappedProductCount(int varPRID)
+        {
+            try
+            {
+                int varMappedProductCount = 0;
+                for (int i = 0; i < grdPurMappedProducts.Rows.Count; i++)
+                {
+                    if (Convert.ToBoolean(grdPurMappedProducts.Rows[i].Cells[0].Value) == true)
+                    {
+                        varMappedProductCount++;
+                    }
+                }
+                if (Convert.ToBoolean(grdPurMappedProducts.SelectedRows[0].Cells[0].Value) == true)
+                {
+                    DataRow dr = dtPurMappedProducts.Select("PRODUCTID=" + varPRID).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr[0] = true;
+                        dtPurMappedProducts.AcceptChanges();
+                    }
+                }
+                else
+                {
+                    DataRow dr = dtPurMappedProducts.Select("PRODUCTID=" + varPRID).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr[0] = false;
+                        dtPurMappedProducts.AcceptChanges();
+                    }
+                }
+                if (varMappedProductCount > 0)
+                {
+                    BtnPuraddMove.Enabled = false;
+                    btnPurRemove.Enabled = true;
+                    grdPurSupplierMappingLoad.Columns[0].ReadOnly = true;
+                }
+                else
+                {
+                    btnPurRemove.Enabled = false;
+                    grdPurSupplierMappingLoad.Columns[0].ReadOnly = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurMappedProducts_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdPurMappedProducts.IsCurrentCellDirty)
+                {
+                    grdPurMappedProducts.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdPurMappedProducts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdPurMappedProducts.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
