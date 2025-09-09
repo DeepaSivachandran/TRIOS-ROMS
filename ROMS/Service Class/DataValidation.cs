@@ -868,6 +868,7 @@ namespace ROMS
 
         //Created by Venkat
         //created on 15/08/2023; reason crystal report connection
+        //Modified By Sathish ON 09-09-2025 For Subreport Open time ask password
         public void CrySqlConnection(ReportDocument objBillReport)
         {
             try
@@ -898,13 +899,28 @@ namespace ROMS
                     }
                 }
                 // crConnectionInfo.Password = System.Configuration.ConfigurationManager.AppSettings["SqlPassword"];
+
+                // Apply to tables in main report
                 CrTables = objBillReport.Database.Tables;
                 foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
                 {
                     crtableLogoninfo = CrTable.LogOnInfo;
                     crtableLogoninfo.ConnectionInfo = crConnectionInfo;
                     CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                    CrTable.Location = CrTable.Location.Substring(CrTable.Location.LastIndexOf(".") + 1);
                 }
+                // Apply to all tables in subreports
+                foreach (ReportDocument subreport in objBillReport.Subreports)
+                {
+                    foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in subreport.Database.Tables)
+                    {
+                        crtableLogoninfo = CrTable.LogOnInfo;
+                        crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                        CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                        CrTable.Location = CrTable.Location.Substring(CrTable.Location.LastIndexOf(".") + 1);
+                    }
+                }
+
                 //SqlConnection objConn = new SqlConnection(ConfigurationManager.AppSettings["ConnStr"]);
 
                 //TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
