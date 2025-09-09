@@ -85,15 +85,15 @@ namespace ROMS
         }
         private void tsbDelete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //try
+            //{
+            //    udfndelete();
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
         }
         public void udfndelete()
         {
@@ -439,10 +439,10 @@ namespace ROMS
                 {
                     tsbEdit_Click(sender, e);
                 }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
-                {
-                    tsbDelete_Click(sender, e);
-                }
+                //if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
+                //{
+                //    tsbDelete_Click(sender, e);
+                //}
                 if (e.KeyCode == Keys.Escape)
                 {
                     MainForm.objStart = new DEF_Start();
@@ -450,10 +450,10 @@ namespace ROMS
                     MainForm.objStart.Show();
                     this.Close();
                 }
-                if (e.KeyCode == Keys.Delete)
-                {
-                    udfndelete();
-                }
+                //if (e.KeyCode == Keys.Delete)
+                //{
+                //    udfndelete();
+                //}
             }
             catch (Exception ex)
             {
@@ -1424,5 +1424,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
     }
 }

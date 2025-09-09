@@ -171,6 +171,22 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrorFlag = true;
+                }
+                int count = grdSupplierPayment.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => !r.IsNewRow)
+                .Count(r =>
+                    r.Cells["clmTobePaid"].Value != null &&
+                    r.Cells["clmPayAmount"].Value != null &&
+                    Convert.ToDecimal(r.Cells["clmTobePaid"].Value) <
+                    Convert.ToDecimal(r.Cells["clmPayAmount"].Value)
+                ); 
+                if(count!=0)
+                { 
+                    string varMessage = objDServ.udfnGetMessages(162);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
                 } 
                 if (blnErrorFlag==false)
                 {
@@ -343,7 +359,8 @@ namespace ROMS
                             if (chequeText.Count != 0)
                             {    varChequeText = chequeText[0];  }
                             if (RPTName.Count != 0  )
-                            {
+                            { 
+                                string[] supplierName = txtsuppliername.Text.Split('-');
                                 SPDataService objDServs = new SPDataService();
                                 string varMessage = objDServs.udfnGetMessages(87);
                                 objDServs.CloseConnection();
@@ -353,7 +370,7 @@ namespace ROMS
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
-                                    objBillreport.SetParameterValue("paraSupplierName", (varChequeText + txtsuppliername.Text));
+                                    objBillreport.SetParameterValue("paraSupplierName", (varChequeText + supplierName[0]));
                                     objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
                                     objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
                                     objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
@@ -722,6 +739,21 @@ namespace ROMS
                 //    btnApply.Enabled = true;
                 //}
                 udfnChequeTemplateDetails();
+                if (varPaymentStatus == 77 || varPaymentStatus == 117)
+                {
+                    btnSave.Enabled = false;
+                    grdSupplierPayment.ReadOnly = true;
+                    btnClear.Enabled = false;
+                    btnApply.Enabled = false;
+                    cmbPaymentmode.Enabled = false;
+                    dpChequeDate.Enabled = false;
+                    txtChequeNo.Enabled = false;
+                    txtChequeNo.ReadOnly = true;
+                    cmbBank.Enabled = false;
+                    txtRemark.ReadOnly = true;
+                    txtRemark.Enabled = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -1054,6 +1086,8 @@ namespace ROMS
                     }
                     udfnsupplierLoad();
                     udfnGridLoad();
+                    udfnClearAdvance();
+                    VARFLAG = 0;
                     udfnSubtotalCalc();
                     udfnBankDropDown();
                 }
@@ -1243,7 +1277,17 @@ namespace ROMS
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"] = c;
                                     c.ReadOnly = true;
                                 }
-                                if(Convert.ToInt32(objDs.Tables[0].Rows[i]["GSTRFlag"]) == 1)
+                                if (Convert.ToString(objDs.Tables[1].Rows[i]["Filing Status"]) == "F")
+                                {
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.BackColor = Color.LightGreen;
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.ForeColor = Color.Black;
+                                }
+                                else if (Convert.ToString(objDs.Tables[1].Rows[i]["Filing Status"]) == "NF")
+                                {
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.BackColor = Color.Red;
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.ForeColor = Color.White;
+                                }
+                                if (Convert.ToInt32(objDs.Tables[0].Rows[i]["GSTRFlag"]) == 1)
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmTobePaid"].ReadOnly = true;
                                     grdSupplierPayment.Rows[i].Cells["clmTobePaid"].Style.BackColor = Color.LightGray;
@@ -1980,7 +2024,7 @@ namespace ROMS
         {
             try
             { 
-                varModifiedFlag = 1;  decimal varBalanceAmt = 0,varTobePaid=0,varPayAmt=0,varOutstandingAmt=0;
+                varModifiedFlag = 1;  decimal varBalanceAmt = 0,varTobePaid=0,varPayAmt=0,varOutstandingAmt=0,varReturnAdjAmt=0,varDiscount=0,varAdvance=0;
                 
                 if (grdSupplierPayment.CurrentCell.OwningColumn.Name == "clmPayAmount")
                 {
@@ -1994,8 +2038,25 @@ namespace ROMS
                     if (Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value) != "")
                     { varPayAmt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value); }
 
-                    varBalanceAmt = varOutstandingAmt-  varPayAmt;
-                     grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value = (varBalanceAmt.ToString("##0.00"));
+                    if (Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) != "")
+                    { varReturnAdjAmt = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value);}
+                    if (Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value) != "")
+                    { varDiscount = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value); }
+                    if (Convert.ToString(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value) != "")
+                    { varAdvance = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value); }
+
+                    DataGridViewCell cellPayAmt = grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"];
+                   
+                    if (varTobePaid < varPayAmt)
+                    {
+                        cellPayAmt.Style.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        cellPayAmt.Style.BackColor = Color.PaleGreen;
+                    }
+                    varBalanceAmt = varOutstandingAmt-  (varPayAmt+varDiscount+varReturnAdjAmt+varAdvance);
+                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value = (varBalanceAmt.ToString("##0.00")); 
                     udfnPaymentDropDown();
                     udfnSubtotalCalc();
                 } 
@@ -2265,8 +2326,11 @@ namespace ROMS
         {
             try
             {
-                udfnCheckProcess(sender, e);
-                udfnPaymentDropDown();
+                if (varEditFlag == 0)
+                {
+                    udfnCheckProcess(sender, e);
+                    udfnPaymentDropDown();
+                }
             }
             catch (Exception ex)
             {
@@ -2279,7 +2343,7 @@ namespace ROMS
             try
             {
                 varApplyFlag = 0;
-                dtAdvance.Clear();
+                dtAdvance.Clear(); varAdvanceID = "";
                 decimal varPayAmount = 0, varAdvanceAmount = 0, varTotalAmnt = 0;
                 if (clearClick==1)
                 {
@@ -2398,27 +2462,34 @@ namespace ROMS
                                 varApplyFlag = 0;
                                 for (int i = 0; i < grdSupplierPayment.Rows.Count; i++)
                                 {
-                                    decimal varInvoiceAmnt = 0, varTaxableAmnt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAmnt = 0, varAdditions=0, varDeductions =0;
+                                    decimal varInvoiceAmnt = 0, varTaxableAmnt = 0, varReturnAmnt = 0, varDiscAmnt = 0, varAmnt = 0,
+                                        varAdditions=0, varDeductions =0,varBalanceAmt=0,varOutstanding=0;
                                     varTaxableAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmTaxableAmnt"].Value);
                                     varInvoiceAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmInvoiceAmnt"].Value);
                                     varReturnAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmReturnAmt"].Value);
                                     varDiscAmnt = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDiscAmount"].Value);
                                     varAdditions = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmAdditions"].Value);
                                     varDeductions = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmDeductions"].Value);
+                                    varOutstanding = Convert.ToDecimal(grdSupplierPayment.Rows[i].Cells["clmOutstandingAmt"].Value);
                                     /* 33 - Nett Amount, 34 - Taxable Amount*/
                                     if (varSupplierType == 34)
                                     {
                                         varAmnt = (varTaxableAmnt + varAdditions - varDeductions) - (varReturnAmnt + varDiscAmnt);
+                                       
                                     }
                                     else
                                     {
                                         varAmnt = varInvoiceAmnt - (varReturnAmnt + varDiscAmnt);
                                     }
-                                    grdSupplierPayment.Rows[i].Cells["clmPaymentAmount"].Value = varAmnt;
+                                    grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value = varAmnt;
+                                    grdSupplierPayment.Rows[i].Cells["clmTobePaid"].Value = varAmnt;
+                                    varBalanceAmt = varOutstanding - (varAmnt+varReturnAmnt + varDiscAmnt);
+                                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value = varBalanceAmt.ToString("###0.00");
+                                   
                                 }  
                                 //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = grdSupplierPayment.Rows[e.RowIndex].Cells["clmOutstandingAmt"].Value; 
                                 grdSupplierPayment.Rows[e.RowIndex].Cells["clmAdvanceAmnt"].Value = "0.00";
-                                grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value = grdSupplierPayment.Rows[e.RowIndex].Cells["clmOutstandingAmt"].Value;
+                                
                                 int varPurchaseID = Convert.ToInt32(grdSupplierPayment.Rows[e.RowIndex].Cells["clmID"].Value);
                                 //lblGrandTotal.Text = varOverallGrand.ToString("#,##0.00"); 
                             }
@@ -2436,6 +2507,7 @@ namespace ROMS
                         btnApply.Enabled = false;
                         btnAdvance.Enabled = false;
                         btnClear.Enabled = false;
+                        udfnClearAdvance();
                     }
                 }
             }
@@ -2487,11 +2559,10 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-
+            } 
         }
 
-        private void BtnApply_Click(object sender, EventArgs e)
+        public void BtnApply_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2540,7 +2611,7 @@ namespace ROMS
                             }
                             if (varCheck == true)
                             {
-                                varValue = Convert.ToString(grdSupplierPayment.Rows[j].Cells["clmPaymentAmount"].Value);
+                                varValue = Convert.ToString(grdSupplierPayment.Rows[j].Cells["clmTobePaid"].Value);
                                 varID = Convert.ToString(grdSupplierPayment.Rows[j].Cells["clmID"].Value);
                                 if (varValue != "0" && AdvanceAmount != 0)
                                 {
@@ -2794,6 +2865,17 @@ namespace ROMS
                                 grdSupplierPayment.Columns["clmTobePaid"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmReturnAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = true;
+
+                                if (Convert.ToString(objDs.Tables[1].Rows[i]["Filing Status"]) == "F")
+                                {
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.BackColor = Color.LightGreen;
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.ForeColor = Color.Black;
+                                }
+                                else if (Convert.ToString(objDs.Tables[1].Rows[i]["Filing Status"]) == "NF")
+                                {
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.BackColor = Color.Red;
+                                    grdSupplierPayment.Rows[i].Cells["clmFilingStatus"].Style.ForeColor = Color.White;
+                                }
                             }
                         }
                         if(objDs.Tables[2].Rows.Count > 0)
@@ -2830,24 +2912,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
-                if(varPaymentStatus==77 || varPaymentStatus == 117)
-                {
-                    btnSave.Enabled = false;
-                    grdSupplierPayment.ReadOnly = true;
-                    btnClear.Enabled = false;
-                    btnApply.Enabled = false;
-                    cmbPaymentmode.Enabled = false; 
-                    dpChequeDate.Enabled = false;
-                    txtChequeNo.Enabled = false;
-                    txtChequeNo.ReadOnly = true;
-                    cmbBank.Enabled = false;
-                    txtRemark.ReadOnly = true;
-                    txtRemark.Enabled = false;
-                }
-            }
+            } 
         }
     }
 }

@@ -96,11 +96,13 @@
             this.lblAmount = new System.Windows.Forms.Label();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.txtBank = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.lblAdvance = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.btnAdvance = new System.Windows.Forms.Button();
             this.grdReurnDC = new System.Windows.Forms.DataGridView();
             this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DCDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -137,6 +139,8 @@
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.lblnarration = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.grbgodown = new System.Windows.Forms.GroupBox();
             this.lblschedule = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -180,10 +184,6 @@
             this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreditID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnAdvance = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -247,6 +247,7 @@
             // pnlinward
             // 
             this.pnlinward.BackColor = System.Drawing.Color.White;
+            this.pnlinward.Controls.Add(this.LV_Supplier);
             this.pnlinward.Controls.Add(this.label26);
             this.pnlinward.Controls.Add(this.lblOutstanding);
             this.pnlinward.Controls.Add(this.label28);
@@ -280,7 +281,6 @@
             this.pnlinward.Controls.Add(this.textBox1);
             this.pnlinward.Controls.Add(this.txtIssue);
             this.pnlinward.Controls.Add(this.cmbIssueMode);
-            this.pnlinward.Controls.Add(this.LV_Supplier);
             this.pnlinward.Controls.Add(this.label1);
             this.pnlinward.Controls.Add(this.txtSearch);
             this.pnlinward.Controls.Add(this.lblAmount);
@@ -791,6 +791,20 @@
             this.txtBank.Text = "Bank";
             this.txtBank.Visible = false;
             // 
+            // btnClear
+            // 
+            this.btnClear.Enabled = false;
+            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(155, 93);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(118, 29);
+            this.btnClear.TabIndex = 111111145;
+            this.btnClear.Text = "Clear Advance";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
             // btnApply
             // 
             this.btnApply.Enabled = false;
@@ -849,6 +863,20 @@
             this.label33.TabIndex = 111111140;
             this.label33.Text = "Sub Total  ";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnAdvance
+            // 
+            this.btnAdvance.Enabled = false;
+            this.btnAdvance.Image = global::ROMS.Properties.Resources.Advance;
+            this.btnAdvance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdvance.Location = new System.Drawing.Point(10, 93);
+            this.btnAdvance.Name = "btnAdvance";
+            this.btnAdvance.Size = new System.Drawing.Size(89, 29);
+            this.btnAdvance.TabIndex = 111111139;
+            this.btnAdvance.Text = "Advance";
+            this.btnAdvance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdvance.UseVisualStyleBackColor = true;
+            this.btnAdvance.Click += new System.EventHandler(this.BtnAdvance_Click);
             // 
             // grdReurnDC
             // 
@@ -1348,6 +1376,38 @@
             this.lblnarration.TabIndex = 958812;
             this.lblnarration.Text = "Remarks";
             // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1189, 609);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 29);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1270, 609);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
+            // 
             // grbgodown
             // 
             this.grbgodown.Controls.Add(this.lblschedule);
@@ -1544,6 +1604,7 @@
             this.clmFilingStatus.HeaderText = "Filing Status";
             this.clmFilingStatus.Name = "clmFilingStatus";
             this.clmFilingStatus.ReadOnly = true;
+            this.clmFilingStatus.Width = 60;
             // 
             // clmTaxableAmnt
             // 
@@ -1713,66 +1774,6 @@
             this.clmFlag.Name = "clmFlag";
             this.clmFlag.Visible = false;
             // 
-            // btnClear
-            // 
-            this.btnClear.Enabled = false;
-            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(155, 93);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(118, 29);
-            this.btnClear.TabIndex = 111111145;
-            this.btnClear.Text = "Clear Advance";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
-            // btnAdvance
-            // 
-            this.btnAdvance.Enabled = false;
-            this.btnAdvance.Image = global::ROMS.Properties.Resources.Advance;
-            this.btnAdvance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdvance.Location = new System.Drawing.Point(10, 93);
-            this.btnAdvance.Name = "btnAdvance";
-            this.btnAdvance.Size = new System.Drawing.Size(89, 29);
-            this.btnAdvance.TabIndex = 111111139;
-            this.btnAdvance.Text = "Advance";
-            this.btnAdvance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdvance.UseVisualStyleBackColor = true;
-            this.btnAdvance.Click += new System.EventHandler(this.BtnAdvance_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1189, 609);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 29);
-            this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.BtnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.BtnSave_Leave);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1270, 609);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.BtnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.BtnClose_Leave);
-            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1814,7 +1815,6 @@
         private System.Windows.Forms.ToolStrip tsSupplierPayment;
         private System.Windows.Forms.Panel pnlinward;
         private System.Windows.Forms.TextBox txtsuppliername;
-        private System.Windows.Forms.GroupBox grbSupplierDetails;
         private System.Windows.Forms.TextBox txtRemark;
         public System.Windows.Forms.DataGridView grdSupplierPayment;
         private System.Windows.Forms.GroupBox grbgodown;
@@ -1916,6 +1916,7 @@
         private System.Windows.Forms.Label label23;
         public System.Windows.Forms.Label lblTobepaid;
         private System.Windows.Forms.Label lblDTobepaid;
+        public System.Windows.Forms.GroupBox grbSupplierDetails;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmcheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmdsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmVoucherDate;
