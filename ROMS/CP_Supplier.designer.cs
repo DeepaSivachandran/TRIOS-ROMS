@@ -303,10 +303,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbPurchaseProducts = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPurMappedProUnSelectAll = new System.Windows.Forms.Button();
+            this.btnPurMappedProSelectAll = new System.Windows.Forms.Button();
+            this.btnPurProUnSelectAll = new System.Windows.Forms.Button();
+            this.btnPurProSelectAll = new System.Windows.Forms.Button();
             this.lblPurProducts = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.txtPurOrderDays = new System.Windows.Forms.TextBox();
@@ -355,7 +355,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.DGV_PurSearchGrid = new System.Windows.Forms.DataGridView();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnPurClose = new System.Windows.Forms.Button();
             this.btnPurMappingsave = new System.Windows.Forms.Button();
             this.tbOpeningBalance = new System.Windows.Forms.TabPage();
             this.btnOBSave = new System.Windows.Forms.Button();
@@ -3633,10 +3633,10 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.White;
-            this.groupBox6.Controls.Add(this.button1);
-            this.groupBox6.Controls.Add(this.button2);
-            this.groupBox6.Controls.Add(this.button3);
-            this.groupBox6.Controls.Add(this.button4);
+            this.groupBox6.Controls.Add(this.btnPurMappedProUnSelectAll);
+            this.groupBox6.Controls.Add(this.btnPurMappedProSelectAll);
+            this.groupBox6.Controls.Add(this.btnPurProUnSelectAll);
+            this.groupBox6.Controls.Add(this.btnPurProSelectAll);
             this.groupBox6.Controls.Add(this.lblPurProducts);
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.txtPurOrderDays);
@@ -3652,7 +3652,7 @@
             this.groupBox6.Controls.Add(this.txtPurSupplierName);
             this.groupBox6.Controls.Add(this.label25);
             this.groupBox6.Controls.Add(this.groupBox7);
-            this.groupBox6.Controls.Add(this.button9);
+            this.groupBox6.Controls.Add(this.btnPurClose);
             this.groupBox6.Controls.Add(this.btnPurMappingsave);
             this.groupBox6.Location = new System.Drawing.Point(4, 2);
             this.groupBox6.Name = "groupBox6";
@@ -3660,53 +3660,57 @@
             this.groupBox6.TabIndex = 958769;
             this.groupBox6.TabStop = false;
             // 
-            // button1
+            // btnPurMappedProUnSelectAll
             // 
-            this.button1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(974, 566);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 29);
-            this.button1.TabIndex = 958816;
-            this.button1.Text = "Unselect All";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPurMappedProUnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPurMappedProUnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurMappedProUnSelectAll.Location = new System.Drawing.Point(974, 566);
+            this.btnPurMappedProUnSelectAll.Name = "btnPurMappedProUnSelectAll";
+            this.btnPurMappedProUnSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnPurMappedProUnSelectAll.TabIndex = 958816;
+            this.btnPurMappedProUnSelectAll.Text = "Unselect All";
+            this.btnPurMappedProUnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnPurMappedProUnSelectAll.UseVisualStyleBackColor = true;
+            this.btnPurMappedProUnSelectAll.Click += new System.EventHandler(this.BtnPurMappedProUnSelectAll_Click);
             // 
-            // button2
+            // btnPurMappedProSelectAll
             // 
-            this.button2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1063, 566);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 29);
-            this.button2.TabIndex = 958815;
-            this.button2.Text = "Select All";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPurMappedProSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPurMappedProSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurMappedProSelectAll.Location = new System.Drawing.Point(1063, 566);
+            this.btnPurMappedProSelectAll.Name = "btnPurMappedProSelectAll";
+            this.btnPurMappedProSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnPurMappedProSelectAll.TabIndex = 958815;
+            this.btnPurMappedProSelectAll.Text = "Select All";
+            this.btnPurMappedProSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnPurMappedProSelectAll.UseVisualStyleBackColor = true;
+            this.btnPurMappedProSelectAll.Click += new System.EventHandler(this.BtnPurMappedProSelectAll_Click);
             // 
-            // button3
+            // btnPurProUnSelectAll
             // 
-            this.button3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(490, 567);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(83, 29);
-            this.button3.TabIndex = 958814;
-            this.button3.Text = "Unselect All";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnPurProUnSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPurProUnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurProUnSelectAll.Location = new System.Drawing.Point(490, 567);
+            this.btnPurProUnSelectAll.Name = "btnPurProUnSelectAll";
+            this.btnPurProUnSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnPurProUnSelectAll.TabIndex = 958814;
+            this.btnPurProUnSelectAll.Text = "Unselect All";
+            this.btnPurProUnSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnPurProUnSelectAll.UseVisualStyleBackColor = true;
+            this.btnPurProUnSelectAll.Click += new System.EventHandler(this.BtnPurProUnSelectAll_Click);
             // 
-            // button4
+            // btnPurProSelectAll
             // 
-            this.button4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(579, 567);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(83, 29);
-            this.button4.TabIndex = 958811;
-            this.button4.Text = "Select All";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnPurProSelectAll.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPurProSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurProSelectAll.Location = new System.Drawing.Point(579, 567);
+            this.btnPurProSelectAll.Name = "btnPurProSelectAll";
+            this.btnPurProSelectAll.Size = new System.Drawing.Size(83, 29);
+            this.btnPurProSelectAll.TabIndex = 958811;
+            this.btnPurProSelectAll.Text = "Select All";
+            this.btnPurProSelectAll.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnPurProSelectAll.UseVisualStyleBackColor = true;
+            this.btnPurProSelectAll.Click += new System.EventHandler(this.BtnPurProSelectAll_Click);
             // 
             // lblPurProducts
             // 
@@ -4366,18 +4370,18 @@
             this.DGV_PurSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_PurSearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_PurSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_PurSearchGrid_Scroll);
             // 
-            // button9
+            // btnPurClose
             // 
-            this.button9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.button9.Image = global::ROMS.Properties.Resources.close;
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(1245, 566);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 29);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Close";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnPurClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPurClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnPurClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurClose.Location = new System.Drawing.Point(1245, 566);
+            this.btnPurClose.Name = "btnPurClose";
+            this.btnPurClose.Size = new System.Drawing.Size(75, 29);
+            this.btnPurClose.TabIndex = 8;
+            this.btnPurClose.Text = "Close";
+            this.btnPurClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPurClose.UseVisualStyleBackColor = true;
             // 
             // btnPurMappingsave
             // 
@@ -4391,6 +4395,7 @@
             this.btnPurMappingsave.Text = "Save";
             this.btnPurMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPurMappingsave.UseVisualStyleBackColor = true;
+            this.btnPurMappingsave.Click += new System.EventHandler(this.BtnPurMappingsave_Click);
             // 
             // tbOpeningBalance
             // 
@@ -5324,10 +5329,10 @@
         private System.Windows.Forms.TextBox textBox37;
         private System.Windows.Forms.TabPage tbPurchaseProducts;
         private System.Windows.Forms.GroupBox groupBox6;
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.Button button2;
-        public System.Windows.Forms.Button button3;
-        public System.Windows.Forms.Button button4;
+        public System.Windows.Forms.Button btnPurMappedProUnSelectAll;
+        public System.Windows.Forms.Button btnPurMappedProSelectAll;
+        public System.Windows.Forms.Button btnPurProUnSelectAll;
+        public System.Windows.Forms.Button btnPurProSelectAll;
         private System.Windows.Forms.Label lblPurProducts;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtPurOrderDays;
@@ -5376,7 +5381,7 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         public System.Windows.Forms.DataGridView DGV_PurSearchGrid;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnPurClose;
         public System.Windows.Forms.Button btnPurMappingsave;
     }
 }

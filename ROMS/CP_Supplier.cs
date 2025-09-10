@@ -1226,7 +1226,7 @@ namespace ROMS
                     tcSupplier.TabPages[2].Enabled = false; // Third tab
                     tcSupplier.TabPages[3].Enabled = false; // Fourth tab
                 }
-                tcSupplier.TabPages[4].Enabled = false;
+                //tcSupplier.TabPages[4].Enabled = false;
             }
             catch (Exception ex)
             {
@@ -10300,6 +10300,7 @@ namespace ROMS
             {
                 udfnPurProductsGridLoad();
                 udfnPurMappingDropDownLoad();
+                udfnPurdataLoad();
             }
             catch (Exception ex)
             {
@@ -10307,15 +10308,18 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPurProductsGridLoad()
+        public void udfnPurdataLoad()
         {
             try
             {
-                lblNoRecordsFound.Visible = false;
-                BeginInvoke(new Action(() => cmbMappingordeDay.Select(int.MaxValue, 0)));
-                grdPurSupplierMappingLoad.DataSource = null;
+                lblPurNoRecordsFound.Visible = false;
+                grdPurMappedProducts.DataSource = null;
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
+                //foreach (DataGridViewRow row in grdPurSupplierMappingLoad.Rows)
+                //{
+                //    row.Cells[0].Value = false;
+                //}
                 SupplierUpdate = 0;
                 if (Convert.ToInt32(varsupplierID) != 0)
                 {
@@ -10326,13 +10330,10 @@ namespace ROMS
                     SupplierUpdate = Convert.ToInt32(pbSupplierid);
                 }
                 MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 4;
+                objMR_Supplier.ViewType = 48;
                 objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
                 objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbPurOrderSchedule.SelectedValue);
                 objDs = objspservice.udfnSupplierList(objMR_Supplier);
-
-                dtPurProducts = null;
-                udfnInitPur();
 
                 dtPurMappedProducts = new DataTable();
                 dtPurMappedProducts.Columns.Add("", typeof(Boolean));
@@ -10348,6 +10349,114 @@ namespace ROMS
                 dtPurMappedProducts.Columns.Add("PRODUCTID", typeof(int));
                 dtPurMappedProducts.Columns.Add("Product Name in English", typeof(string));
                 dtPurMappedProducts.Columns.Add("MappedCount", typeof(int));
+
+                if (objDs.Tables[0].Rows.Count > 0)
+                {
+                    int varcount = 1;
+                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                    {
+                        dtPurMappedProducts.Rows.Add(false, Convert.ToInt32(dtPurMappedProducts.Rows.Count) + 1, objDs.Tables[0].Rows[i]["P.I Code"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product Name in Tamil"].ToString().Replace("''", "'")
+                        , objDs.Tables[0].Rows[i]["Unit"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Brand"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product SubGroup"].ToString().Replace("''", "'"),
+                       objDs.Tables[0].Rows[i]["Product Group"].ToString().Replace("''", "'"),
+                        objDs.Tables[0].Rows[i]["GROUPID"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["SUBGROUPID"].ToString().Replace("''", "'"),
+                        objDs.Tables[0].Rows[i]["PRODUCTID"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["Product Name in English"].ToString().Replace("''", "'"), objDs.Tables[0].Rows[i]["MappedCount"].ToString());
+
+                    }
+                    grdPurMappedProducts.DataSource = dtPurMappedProducts;
+                    //grdPurMappedProducts.Columns[0].Frozen = true;
+                    grdPurMappedProducts.Columns[0].HeaderText = "";
+                    grdPurMappedProducts.Columns[0].Width = 30;
+                    grdPurMappedProducts.Columns["S.No."].Width = 50;
+                    grdPurMappedProducts.Columns["P.I Code"].Width = 100;
+                    grdPurMappedProducts.Columns["Product Name in Tamil"].Width = 220;
+                    grdPurMappedProducts.Columns["Unit"].Width = 100;
+                    grdPurMappedProducts.Columns["Product SubGroup"].Width = 120;
+                    grdPurMappedProducts.Columns["GROUPID"].Visible = false;
+                    grdPurMappedProducts.Columns["SUBGROUPID"].Visible = false;
+                    grdPurMappedProducts.Columns["PRODUCTID"].Visible = false;
+                    grdPurMappedProducts.Columns["MappedCount"].Visible = false;
+                    grdPurMappedProducts.Columns["Product Name in English"].Visible = false;
+
+                    grdPurMappedProducts.Columns["S.No."].ReadOnly = true;
+                    grdPurMappedProducts.Columns["P.I Code"].ReadOnly = true;
+                    grdPurMappedProducts.Columns["Product Name in Tamil"].ReadOnly = true;
+                    grdPurMappedProducts.Columns["Unit"].ReadOnly = true;
+                    grdPurMappedProducts.Columns["Product SubGroup"].ReadOnly = true;
+                    grdPurMappedProducts.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+
+                    udfnPurGridRemove();
+                    //for (int i = 0; i < grdPurSupplierMappingLoad.Rows.Count; i++)
+                    //{
+                    //    for (int j = 0; j < grdPurMappedProducts.Rows.Count; j++)
+                    //    {
+                    //        if (Convert.ToInt32(grdPurMappedProducts.Rows[j].Cells["PRODUCTID"].Value) == Convert.ToInt32(grdPurSupplierMappingLoad.Rows[i].Cells["PRODUCTID"].Value))
+                    //        {
+                    //            grdPurSupplierMappingLoad.Rows[i].Cells[0].Value = true;
+                    //        }
+                    //    }
+                    //}
+                    btnPurMappingsave.Text = "Update";
+                    //udfndataLoad();
+                }
+                else
+                {
+                    btnPurMappingsave.Text = "Save";
+                }
+
+                udfnPurMappedsearchgridHead();
+                objspservice.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lblPurMappedProducts.Text = grdPurMappedProducts.Rows.Count.ToString();
+            }
+        }
+        public void udfnPurProductsGridLoad()
+        {
+            try
+            {
+                dtPurProducts = null;
+                dtPurMappedProducts = null;
+                grdPurSupplierMappingLoad.DataSource = null;
+                grdPurMappedProducts.DataSource = null;
+                if (txtPurGroup.Text.Trim() == "")
+                { varPurGroupId = 0; }
+                if (txtPurSubgroup.Text.Trim() == "")
+                { varPurSubgroupId = 0; }
+                if (txtPurBrand.Text.Trim() == "")
+                { varPurBrandId = 0; }
+
+                lblNoRecordsFound.Visible = false;
+                BeginInvoke(new Action(() => cmbMappingordeDay.Select(int.MaxValue, 0)));
+                grdPurSupplierMappingLoad.DataSource = null;
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                SupplierUpdate = 0;
+                if (Convert.ToInt32(varsupplierID) != 0)
+                {
+                    SupplierUpdate = Convert.ToInt32(varsupplierID);
+                }
+                else
+                {
+                    SupplierUpdate = Convert.ToInt32(pbSupplierid);
+                }
+                MR_Supplier objMR_Supplier = new MR_Supplier();
+                objMR_Supplier.ViewType = 47;
+                objMR_Supplier.paraSupplierid = Convert.ToInt32(SupplierUpdate);
+                objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(cmbPurOrderSchedule.SelectedValue);
+                objMR_Supplier.paraGroupCode = varPurGroupId;
+                objMR_Supplier.paraSubgroupCode = varPurSubgroupId;
+                objMR_Supplier.paraBrandCode = varPurBrandId;
+                objMR_Supplier.paraStatusId = Convert.ToInt32(cmbPurStatus.SelectedValue);
+                objDs = objspservice.udfnSupplierList(objMR_Supplier);
+
+                dtPurProducts = null;
+                udfnInitPur();
 
                 if (objDs.Tables[0].Rows.Count > 0)
                 {
@@ -10874,12 +10983,31 @@ namespace ROMS
 
         private void CmbPurOrderSchedule_Enter(object sender, EventArgs e)
         {
-
+            try
+            {
+                cmbPurOrderSchedule.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CmbPurOrderSchedule_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPurGroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void CmbPurOrderSchedule_KeyPress(object sender, KeyPressEventArgs e)
@@ -10897,14 +11025,25 @@ namespace ROMS
 
         private void CmbPurOrderSchedule_Leave(object sender, EventArgs e)
         {
-
+            try
+            {
+                cmbPurOrderSchedule.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtSearchByPurProducts_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                (grdPurSupplierMappingLoad.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtSearchByPurProducts.Text + "%'";
+                BindingSource bsPurProducts = new BindingSource();
+                bsPurProducts.DataSource = dtPurProducts;
+                grdPurSupplierMappingLoad.DataSource = bsPurProducts;
+                bsPurProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurProducts.Text}%'";
             }
             catch (Exception ex)
             {
@@ -11050,7 +11189,7 @@ namespace ROMS
 
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtBrand.Focus();
+                    txtPurBrand.Focus();
                 }
             }
             catch (Exception ex)
@@ -11424,7 +11563,7 @@ namespace ROMS
                             {
                                 dtPurMappedProducts.Rows.Add(false, Convert.ToInt32(dtPurMappedProducts.Rows.Count) + 1, dtPurProducts.Rows[i]["P.I Code"], dtPurProducts.Rows[i]["Product Name in Tamil"], dtPurProducts.Rows[i]["Unit"], dtPurProducts.Rows[i]["Brand"], dtPurProducts.Rows[i]["Product SubGroup"], dtPurProducts.Rows[i]["Product Group"],
                                 dtPurProducts.Rows[i]["GROUPID"], dtPurProducts.Rows[i]["SUBGROUPID"], dtPurProducts.Rows[i]["PRODUCTID"], dtPurProducts.Rows[i]["Product Name in English"], dtPurProducts.Rows[i]["MappedCount"]);
-                                //varPurModifiedFlag = 1;
+                                varModifiedFlag = 1;
                             }
                         }
                         else
@@ -11931,7 +12070,10 @@ namespace ROMS
         {
             try
             {
-                (grdPurMappedProducts.DataSource as BindingSource).Filter = "([P.I Code]) LIKE '%" + txtSearchByPurMappedProducts.Text + "%'";
+                BindingSource bsPurMappedProducts = new BindingSource();
+                bsPurMappedProducts.DataSource = dtPurMappedProducts;
+                grdPurMappedProducts.DataSource = bsPurMappedProducts;
+                bsPurMappedProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurMappedProducts.Text}%'";
             }
             catch (Exception ex)
             {
@@ -12104,6 +12246,202 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPurProUnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurSupplierMappingLoad.Rows.Count; i++)
+                {
+                    grdPurSupplierMappingLoad.Rows[i].Cells[0].Value = false;
+                }
+                btnPurRemove.Enabled = true;
+                BtnPuraddMove.Enabled = false;
+                //BtnPuraddMove.Enabled = true;
+                //btnPurRemove.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPurProSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurSupplierMappingLoad.Rows.Count; i++)
+                {
+                    grdPurSupplierMappingLoad.Rows[i].Cells[0].Value = true;
+                }
+                btnPurRemove.Enabled = false;
+                BtnPuraddMove.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPurMappedProUnSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurMappedProducts.Rows.Count; i++)
+                {
+                    grdPurMappedProducts.Rows[i].Cells[0].Value = false;
+                }
+                btnPurRemove.Enabled = false;
+                BtnPuraddMove.Enabled = true;
+                //btnPurRemove.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPurMappedProSelectAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < grdPurMappedProducts.Rows.Count; i++)
+                {
+                    grdPurMappedProducts.Rows[i].Cells[0].Value = true;
+                }
+                BtnPuraddMove.Enabled = false;
+                btnPurRemove.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPurMappingsave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SupplierUpdate != 0 && SupplierUpdate != -1)
+                {
+                    if (cmbPurOrderSchedule.Text != "")
+                    {
+                        btnPurMappingsave.Enabled = false;
+                        txtSearchByPurMappedProducts.Text = "";
+                        for (int i = 1; i < DGV_PurMappedSearchGrid.ColumnCount; i++)
+                        {
+                            DGV_PurMappedSearchGrid.Rows[0].Cells[i].Value = "";
+                        }
+                        DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged(sender, e);
+                        if (Convert.ToInt32(grdPurMappedProducts.Rows.Count) > 0)
+                        {
+                            string VarproductId = "", result = "", varoriginator = "";
+                            int Vartype = 0;
+                            SPDataService objspdservice = new SPDataService();
+                            for (int i = 0; i < grdPurMappedProducts.Rows.Count; i++)
+                            {
+                                //if (Convert.ToBoolean(grdPurMappedProducts.Rows[i].Cells[0].Value) == true)
+                                //{
+                                if (VarproductId == "")
+                                {
+                                    VarproductId = Convert.ToString(grdPurMappedProducts.Rows[i].Cells["PRODUCTID"].Value);
+                                }
+                                else
+                                {
+                                    VarproductId = VarproductId + ',' + Convert.ToString(grdPurMappedProducts.Rows[i].Cells["PRODUCTID"].Value);
+                                }
+                                //  }
+                            }
+
+                            if (btnPurMappingsave.Text == "Save")
+                            {
+                                varoriginator = "Purchase Variant Mapping Create";
+                                Vartype = 15;
+
+                            }
+                            else
+                            {
+                                varoriginator = "Purchase Variant Mapping Update";
+                                Vartype = 16;
+                            }
+                            result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
+                                   0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbPurOrderSchedule.SelectedValue), Convert.ToInt32(lblPurOrderTypeId.Text), VarproductId, "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "", "", 0, null, 0);
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                varModifiedFlag = 0;
+                                if (MainForm.objCP_Supplierlist != null)
+                                {
+                                    MainForm.objCP_Supplierlist.udfnList();
+                                }
+                                cmbPurOrderSchedule.Focus();
+                                if (btnPurMappingsave.Text == "Update")
+                                {
+                                    varupdate = "1";
+                                    //udfnclose();
+                                }
+                                txtPurGroup.Text = "";
+                                varPurGroupId = 0;
+                                txtPurSubgroup.Text = "";
+                                varPurSubgroupId = 0;
+                                txtPurBrand.Text = "";
+                                varPurBrandId = 0;
+                                cmbPurStatus.SelectedValue = 0;
+                                txtSearchByPurProducts.Text = "";
+                                txtSearchByPurMappedProducts.Text = "";
+                                CmbPurOrderSchedule_SelectedIndexChanged(sender, e);
+                            }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            objspdservice.CloseConnection();
+                        }
+                        else
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(38);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        grdPurMappedProducts.DataSource = null;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(65);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(85);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(48);
+                objDServ.CloseConnection();
+                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                btnPurMappingsave.Enabled = true;
+                btnPurMappingsave.Focus();
             }
         }
 
