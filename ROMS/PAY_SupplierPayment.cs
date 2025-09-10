@@ -2491,7 +2491,7 @@ namespace ROMS
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value = varAmnt;
                                     grdSupplierPayment.Rows[i].Cells["clmTobePaid"].Value = varAmnt;
                                     varBalanceAmt = varOutstanding - (varAmnt+varReturnAmnt + varDiscAmnt);
-                                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value = varBalanceAmt.ToString("###0.00");
+                                    grdSupplierPayment.Rows[i].Cells["clmBalance"].Value = varBalanceAmt.ToString("###0.00");
                                    
                                 }  
                                 //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = grdSupplierPayment.Rows[e.RowIndex].Cells["clmOutstandingAmt"].Value; 
