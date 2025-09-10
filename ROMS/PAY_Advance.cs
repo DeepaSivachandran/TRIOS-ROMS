@@ -1167,7 +1167,10 @@ namespace ROMS
                             cmbPaymentmode.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_PaymentMode"]);   
                             cmbBank.SelectedValue = Convert.ToString(objDs.Tables[0].Rows[0]["AD_CMBNK_ID"]);
                             txtChequeLimitDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ChequeLimitDays"]);
-                            dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
+                            if (Convert.ToInt16(cmbPaymentmode.SelectedValue) != 346)
+                            {
+                                dpChequeDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeDate"]);
+                            }
                             txtChequeNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ChequeNo"]); 
                             cmbIssueMode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["AD_ModeOfIssue"]);
                             txtIssue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AD_ModeOfIssue_Details"]);
