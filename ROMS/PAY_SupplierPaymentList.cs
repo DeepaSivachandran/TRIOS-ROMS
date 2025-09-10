@@ -1354,10 +1354,10 @@ namespace ROMS
                                     objBillreport.Load(Application.StartupPath + "\\Reports\\PaymentReceipt.rpt");
                                     objBillreport.SetParameterValue("paraPYID", varPAYID, objBillreport.Subreports[0].Name.ToString());
                                     objBillreport.SetParameterValue("paraPYID", varPAYID, objBillreport.Subreports[1].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
 
                                     objValidation.CrySqlConnection(objBillreport);
                                     MainForm.objReportLoad = new ReportLoad();
