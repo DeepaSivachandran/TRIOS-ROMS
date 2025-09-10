@@ -1351,13 +1351,13 @@ namespace ROMS
                                     int varPAYID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\PaymentReceipt.rpt");
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_PayReceipt.rpt");
                                     objBillreport.SetParameterValue("paraPYID", varPAYID, objBillreport.Subreports[0].Name.ToString());
                                     objBillreport.SetParameterValue("paraPYID", varPAYID, objBillreport.Subreports[1].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
-                                    //objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
 
                                     objValidation.CrySqlConnection(objBillreport);
                                     MainForm.objReportLoad = new ReportLoad();
