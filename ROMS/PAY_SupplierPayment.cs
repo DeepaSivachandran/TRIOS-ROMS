@@ -2736,8 +2736,7 @@ namespace ROMS
         public void udfnAddAdvance()
         {
             try
-            {
-                varEditFlag = 1;
+            { 
                 MainForm.objPAY_Advance_Popup = new PAY_ADV();
                 decimal value;
                 if (decimal.TryParse(lblGrandTotal.Text, out value))
