@@ -2491,7 +2491,7 @@ namespace ROMS
                                     grdSupplierPayment.Rows[i].Cells["clmPayAmount"].Value = varAmnt;
                                     grdSupplierPayment.Rows[i].Cells["clmTobePaid"].Value = varAmnt;
                                     varBalanceAmt = varOutstanding - (varAmnt+varReturnAmnt + varDiscAmnt);
-                                    grdSupplierPayment.Rows[e.RowIndex].Cells["clmBalance"].Value = varBalanceAmt.ToString("###0.00");
+                                    grdSupplierPayment.Rows[i].Cells["clmBalance"].Value = varBalanceAmt.ToString("###0.00");
                                    
                                 }  
                                 //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = grdSupplierPayment.Rows[e.RowIndex].Cells["clmOutstandingAmt"].Value; 
@@ -2736,8 +2736,7 @@ namespace ROMS
         public void udfnAddAdvance()
         {
             try
-            {
-                varEditFlag = 1;
+            { 
                 MainForm.objPAY_Advance_Popup = new PAY_ADV();
                 MainForm.objPAY_Advance_Popup.lblInvAmt.Text = lblGrandTotal.Text;
                 MainForm.objPAY_Advance_Popup.ShowDialog();
