@@ -41,6 +41,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PAY_DiscountVoucher));
             this.epDiscount = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDiscount = new System.Windows.Forms.GroupBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -71,7 +72,6 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
             this.clmcheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmvoucherno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -120,11 +120,26 @@
             this.grbDiscount.Controls.Add(this.cmbConcern);
             this.grbDiscount.Controls.Add(this.label10);
             this.grbDiscount.Controls.Add(this.textBox1);
-            this.grbDiscount.Location = new System.Drawing.Point(10, -1);
+            this.grbDiscount.Location = new System.Drawing.Point(11, -1);
             this.grbDiscount.Name = "grbDiscount";
-            this.grbDiscount.Size = new System.Drawing.Size(960, 442);
+            this.grbDiscount.Size = new System.Drawing.Size(1031, 442);
             this.grbDiscount.TabIndex = 0;
             this.grbDiscount.TabStop = false;
+            this.grbDiscount.Enter += new System.EventHandler(this.GrbDiscount_Enter);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(950, 399);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 29);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // LV_Supplier
             // 
@@ -168,10 +183,11 @@
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(678, 13);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(273, 123);
+            this.groupBox2.Size = new System.Drawing.Size(345, 123);
             this.groupBox2.TabIndex = 1111241;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Supplier Details";
+            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // lblReturn
             // 
@@ -283,7 +299,7 @@
             this.grbInvoiceDetails.Controls.Add(this.grdInvoice);
             this.grbInvoiceDetails.Location = new System.Drawing.Point(10, 133);
             this.grbInvoiceDetails.Name = "grbInvoiceDetails";
-            this.grbInvoiceDetails.Size = new System.Drawing.Size(941, 231);
+            this.grbInvoiceDetails.Size = new System.Drawing.Size(1015, 231);
             this.grbInvoiceDetails.TabIndex = 1111215;
             this.grbInvoiceDetails.TabStop = false;
             this.grbInvoiceDetails.Text = "Outstanding Invoices";
@@ -341,7 +357,7 @@
             this.grdInvoice.RowTemplate.Height = 25;
             this.grdInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdInvoice.ShowRowErrors = false;
-            this.grdInvoice.Size = new System.Drawing.Size(927, 198);
+            this.grdInvoice.Size = new System.Drawing.Size(1004, 198);
             this.grdInvoice.TabIndex = 1111214;
             this.grdInvoice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdInvoice_CellContentClick);
             this.grdInvoice.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdInvoice_CurrentCellDirtyStateChanged);
@@ -351,7 +367,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(791, 399);
+            this.btnSave.Location = new System.Drawing.Point(865, 399);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
             this.btnSave.TabIndex = 6;
@@ -509,20 +525,6 @@
             this.textBox1.TabIndex = 1111233;
             this.textBox1.Text = "₹";
             // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(876, 399);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
-            // 
             // clmcheck
             // 
             this.clmcheck.HeaderText = "";
@@ -613,6 +615,8 @@
             // clmMaximumDiscount
             // 
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightGreen;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
             this.clmMaximumDiscount.DefaultCellStyle = dataGridViewCellStyle7;
             this.clmMaximumDiscount.HeaderText = "Maximum Discount";
             this.clmMaximumDiscount.Name = "clmMaximumDiscount";
@@ -624,6 +628,7 @@
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
             this.clmStatus.ReadOnly = true;
+            this.clmStatus.Width = 95;
             // 
             // clmPURID
             // 
@@ -645,7 +650,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(982, 456);
+            this.ClientSize = new System.Drawing.Size(1055, 456);
             this.Controls.Add(this.grbDiscount);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

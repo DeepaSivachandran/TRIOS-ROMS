@@ -930,6 +930,16 @@ namespace ROMS
 
         }
 
+        private void GrbDiscount_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void GrdInvoice_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try

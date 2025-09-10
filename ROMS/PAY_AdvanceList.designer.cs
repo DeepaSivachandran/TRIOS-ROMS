@@ -511,7 +511,7 @@
             // clmEnvelopPrint
             // 
             this.clmEnvelopPrint.HeaderText = "Envelope Print";
-            this.clmEnvelopPrint.Image = global::ROMS.Properties.Resources.printing;
+            this.clmEnvelopPrint.Image = global::ROMS.Properties.Resources.Envelope_Print;
             this.clmEnvelopPrint.Name = "clmEnvelopPrint";
             this.clmEnvelopPrint.ReadOnly = true;
             // 

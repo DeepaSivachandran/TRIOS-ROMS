@@ -809,10 +809,10 @@ namespace ROMS
                 {
                     if (Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "75")
                     {
-                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Green;
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else if(Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "80")
+                    else if(Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "74")
                     {
                         grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
@@ -822,7 +822,12 @@ namespace ROMS
                         grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else 
+                    else   if (Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "118")
+                    {
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Gold;
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.Black;
+                    }
+                    else if (Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "119")
                     {
                         grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.LightGreen;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.Black;
