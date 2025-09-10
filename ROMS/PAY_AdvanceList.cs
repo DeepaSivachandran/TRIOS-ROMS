@@ -817,10 +817,15 @@ namespace ROMS
                         grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else
+                    else if (Convert.ToString(grdAdvanceList.Rows[i].Cells["AD_STSID"].Value) == "78")
                     {
                         grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else 
+                    {
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.LightGreen;
+                        grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.Black;
                     }
                     grdAdvanceList.ClearSelection();
                 }

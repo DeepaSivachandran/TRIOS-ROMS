@@ -540,7 +540,14 @@ namespace ROMS
                             grdInvoice.Rows.Clear();
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdInvoice.Rows.Add(false, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Amount"]), Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["STSID"]));
+                                grdInvoice.Rows.Add(false, Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Voucher Date"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice No"]), Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Date"]),
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Taxable Amount"]),
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Tax Amount"]),
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Addtions"]),
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Deductions"]), 
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Invoice Amount"]),
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Maximum Discount Amount"]), 
+                                    Convert.ToString(objDs.Tables[0].Rows[i]["Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["ID"]), Convert.ToString(objDs.Tables[0].Rows[i]["STSID"]));
                                 grdInvoice.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInvoice.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -898,7 +905,7 @@ namespace ROMS
                         }
                     }
                     if (varSaveDisable == 0) { btnSave.Enabled = true; } else { btnSave.Enabled = false; }
-                    varInvoiceAmnt = Convert.ToDecimal(grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells["clmAmount"].Value);
+                    varInvoiceAmnt = Convert.ToDecimal(grdInvoice.Rows[grdInvoice.CurrentCell.RowIndex].Cells["clmMaximumDiscount"].Value);
                     if (txtInvoiceamt.Text != "")
                     {
                         if (Convert.ToDecimal(txtInvoiceamt.Text) > varInvoiceAmnt)
@@ -916,6 +923,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void GrbInvoiceDetails_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void GrdInvoice_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -1040,7 +1052,15 @@ namespace ROMS
                                 LV_Supplier.Visible = false;
                                 udfnsupplierLoad();
 
-                                grdInvoice.Rows.Add(true, Convert.ToString(objDs.Tables[1].Rows[0]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[0]["Voucher No"]), Convert.ToString(objDs.Tables[1].Rows[0]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[0]["Invoice No"]), Convert.ToString(objDs.Tables[1].Rows[0]["Invoice Date"]), Convert.ToString(objDs.Tables[1].Rows[0]["Invoice Amount"]), Convert.ToString(objDs.Tables[1].Rows[0]["Status"]), Convert.ToString(objDs.Tables[1].Rows[0]["ID"]), Convert.ToString(objDs.Tables[1].Rows[0]["STSID"]));
+                                grdInvoice.Rows.Add(true, Convert.ToString(objDs.Tables[1].Rows[0]["S.No."]), Convert.ToString(objDs.Tables[1].Rows[0]["Voucher No"]), Convert.ToString(objDs.Tables[1].Rows[0]["Voucher Date"]), Convert.ToString(objDs.Tables[1].Rows[0]["Invoice No"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Invoice Date"]), 
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Taxable Amount"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Tax Amount"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Addtions"]),
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Deductions"]), 
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Invoice Amount"]), 
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Maximum Discount Amount"]),  
+                                    Convert.ToString(objDs.Tables[1].Rows[0]["Status"]), Convert.ToString(objDs.Tables[1].Rows[0]["ID"]), Convert.ToString(objDs.Tables[1].Rows[0]["STSID"]));
                                 grdInvoice.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdInvoice.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

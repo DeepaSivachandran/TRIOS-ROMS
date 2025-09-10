@@ -367,13 +367,16 @@ namespace ROMS
                                 result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (result1 == DialogResult.Yes)
                                 {
+                                    //Added By Sathish ON 04-09-2025 For Check Date Without Space Format
+                                    DateTime ChequeDateTime = DateTime.ParseExact(Convert.ToString(dpChequeDate.Text), "dd/MM/yyyy", null);
+                                    string chequeDate = ChequeDateTime.ToString("ddMMyyyy");
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
                                     objBillreport.SetParameterValue("paraSupplierName", (varChequeText + supplierName[0]));
                                     objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
                                     objBillreport.SetParameterValue("paraAmount", lblGrandTotal.Text);
-                                    objBillreport.SetParameterValue("paraChequeDate", dpChequeDate.Text);
+                                    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
                                     objValidation.CrySqlConnection(objBillreport);
                                     MainForm.objReportLoad = new ReportLoad();
                                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
@@ -542,7 +545,7 @@ namespace ROMS
                     If pay amount is less than 2,00,000, then payment should be made through NEFT/Cheque/Transfer
                  */
                 string varNotCondition = "";
-                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 1;
+                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 0;
                 /* Check cash mode*/
                 if (varSupplierPaymentMode.Contains("88"))
                 {
@@ -569,6 +572,7 @@ namespace ROMS
                     else { 
                         varRTGSEnabled = 1;
                         varNEFTEnabled = 0;
+                        varTransferEnabled = 1;
                     }
                 }
                 if (varCashEnabled == 0) { if (varNotCondition == "") { varNotCondition = "346"; } else { varNotCondition = varNotCondition + ", 346"; } }
@@ -1619,10 +1623,13 @@ namespace ROMS
         {
             try
             {
+                int varchecklimitdays = 0;
+                if (txtChequeLimitDays.Text.Trim() != "")
+                { varchecklimitdays = Convert.ToInt32(txtChequeLimitDays.Text); }
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 28;
                 objMR_Master.paraDate =Convert.ToString(dpChequeDate.Text);
-                objMR_Master.paraFlag = Convert.ToInt32(txtChequeLimitDays.Text);
+                objMR_Master.paraFlag = varchecklimitdays;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnMaster(objMR_Master);
@@ -1635,7 +1642,7 @@ namespace ROMS
                             dpChequeDate.MinDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                         }
                     }
-                    if (txtChequeLimitDays.Text.Trim() != "")
+                    if (txtChequeLimitDays.Text.Trim() != "" && txtChequeLimitDays.Text.Trim() != "0")
                     {
                         if (objDs.Tables.Count > 1)
                         {
@@ -2777,7 +2784,7 @@ namespace ROMS
                         {
                             varNeftAmount = Convert.ToDecimal(objDs.Tables[0].Rows[0]["GS_NEFT_Amount"]);
                             varRTGSMinLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
-                            varCashPaymentLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
+                            varCashPaymentLimit = Convert.ToDecimal(objDs.Tables[0].Rows[0]["GS_CashPaymentLimit"]);
                         }
                     }
                 }
