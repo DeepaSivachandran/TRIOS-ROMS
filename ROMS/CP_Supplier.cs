@@ -10525,6 +10525,21 @@ namespace ROMS
                 else
                 {
                     btnPurMappingsave.Text = "Save";
+                    //Default Header Load
+                    grdPurSupplierMappingLoad.DataSource = dtPurProducts;
+                    grdPurSupplierMappingLoad.Columns[0].HeaderText = "";
+                    grdPurSupplierMappingLoad.Columns[0].Width = 30;
+                    grdPurSupplierMappingLoad.Columns["S.No."].Width = 50;
+                    grdPurSupplierMappingLoad.Columns["P.I Code"].Width = 100;
+                    grdPurSupplierMappingLoad.Columns["Product Name in Tamil"].Width = 220;
+                    grdPurSupplierMappingLoad.Columns["Unit"].Width = 100;
+                    grdPurSupplierMappingLoad.Columns["Product SubGroup"].Width = 120;
+                    grdPurSupplierMappingLoad.Columns["GROUPID"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["SUBGROUPID"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["PRODUCTID"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["MappedCount"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["Product Name in English"].Visible = false;
+                    grdPurSupplierMappingLoad.Columns["S.No."].Visible = false;
                 }
 
                 udfnPursearchgridHead();
@@ -11055,10 +11070,13 @@ namespace ROMS
         {
             try
             {
-                BindingSource bsPurProducts = new BindingSource();
-                bsPurProducts.DataSource = dtPurProducts;
-                grdPurSupplierMappingLoad.DataSource = bsPurProducts;
-                bsPurProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurProducts.Text}%'";
+                if (grdPurSupplierMappingLoad.Rows.Count > 0)
+                {
+                    BindingSource bsPurProducts = new BindingSource();
+                    bsPurProducts.DataSource = dtPurProducts;
+                    grdPurSupplierMappingLoad.DataSource = bsPurProducts;
+                    bsPurProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurProducts.Text}%'";
+                }
             }
             catch (Exception ex)
             {
@@ -12085,10 +12103,13 @@ namespace ROMS
         {
             try
             {
-                BindingSource bsPurMappedProducts = new BindingSource();
-                bsPurMappedProducts.DataSource = dtPurMappedProducts;
-                grdPurMappedProducts.DataSource = bsPurMappedProducts;
-                bsPurMappedProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurMappedProducts.Text}%'";
+                if (grdPurMappedProducts.Rows.Count > 0)
+                {
+                    BindingSource bsPurMappedProducts = new BindingSource();
+                    bsPurMappedProducts.DataSource = dtPurMappedProducts;
+                    grdPurMappedProducts.DataSource = bsPurMappedProducts;
+                    bsPurMappedProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurMappedProducts.Text}%'";
+                }
             }
             catch (Exception ex)
             {
@@ -12378,7 +12399,6 @@ namespace ROMS
                             {
                                 varoriginator = "Purchase Variant Mapping Create";
                                 Vartype = 15;
-
                             }
                             else
                             {
@@ -12457,6 +12477,19 @@ namespace ROMS
             {
                 btnPurMappingsave.Enabled = true;
                 btnPurMappingsave.Focus();
+            }
+        }
+
+        private void BtnPurClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

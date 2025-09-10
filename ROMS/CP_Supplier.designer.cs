@@ -4382,6 +4382,7 @@
             this.btnPurClose.Text = "Close";
             this.btnPurClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPurClose.UseVisualStyleBackColor = true;
+            this.btnPurClose.Click += new System.EventHandler(this.BtnPurClose_Click);
             // 
             // btnPurMappingsave
             // 
