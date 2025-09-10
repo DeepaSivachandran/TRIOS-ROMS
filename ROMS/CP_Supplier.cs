@@ -10401,6 +10401,21 @@ namespace ROMS
                 else
                 {
                     btnPurMappingsave.Text = "Save";
+                    //Default Header
+                    grdPurMappedProducts.DataSource = dtPurMappedProducts;
+                    //grdPurMappedProducts.Columns[0].Frozen = true;
+                    grdPurMappedProducts.Columns[0].HeaderText = "";
+                    grdPurMappedProducts.Columns[0].Width = 30;
+                    grdPurMappedProducts.Columns["S.No."].Width = 50;
+                    grdPurMappedProducts.Columns["P.I Code"].Width = 100;
+                    grdPurMappedProducts.Columns["Product Name in Tamil"].Width = 220;
+                    grdPurMappedProducts.Columns["Unit"].Width = 100;
+                    grdPurMappedProducts.Columns["Product SubGroup"].Width = 120;
+                    grdPurMappedProducts.Columns["GROUPID"].Visible = false;
+                    grdPurMappedProducts.Columns["SUBGROUPID"].Visible = false;
+                    grdPurMappedProducts.Columns["PRODUCTID"].Visible = false;
+                    grdPurMappedProducts.Columns["MappedCount"].Visible = false;
+                    grdPurMappedProducts.Columns["Product Name in English"].Visible = false;
                 }
 
                 udfnPurMappedsearchgridHead();
