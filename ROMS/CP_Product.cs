@@ -7169,6 +7169,21 @@ namespace ROMS
             }
         }
 
+        private void DGV_FilterProduct_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                varUpDownKey = 1;
+                udfnProductEvent();
+                txtPICode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void cmbProductType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -7786,14 +7801,16 @@ namespace ROMS
                                 DGV_FilterProduct.DataSource = null; 
                                 txtUpp.Text = "";
                                 cmbChildUnit.SelectedIndex=0;
+                                lblParentcode.Text = "0";
                             }
                             else
                             {
                                 cmbProductType.Text = "Child";
                                 txtProductName.Text = objDS.Tables[0].Rows[0]["ParentName"].ToString();
                                 DGV_FilterProduct.Visible = false;
-                                DGV_FilterProduct.DataSource = null;  
-                                 
+                                DGV_FilterProduct.DataSource = null;
+                                lblParentcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ParentId"]);
+
                             }
                             cmbUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
                             cmbChildUnit.SelectedValue = objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString();
@@ -7885,10 +7902,11 @@ namespace ROMS
                         }
                     }
                 }
-                if (pbFormStatus == 2 && pbCloneFlag == 0)
-                {
-                    udfnDisable();
-                }
+                //if (pbFormStatus == 2 && pbCloneFlag == 0)
+                //if (pbCloneFlag == 0)
+                //{
+                //    udfnDisable();
+                //}
                 if (varProductload == 0)
                 {
                     txtPurRack.Enabled = true;
@@ -8399,37 +8417,39 @@ namespace ROMS
                         MessageBox.Show("Invalid parent name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-
-                    MR_Product objMR_Product = new MR_Product();
-                    objMR_Product.paraViewType = 1;
-                    objMR_Product.ParaProductCode = Convert.ToInt32(lblParentcode.Text);
-                    SPDataService objdserv = new SPDataService();
-                    DataSet objDS; 
-                    objDS = objdserv.udfnproductmasterlist(objMR_Product);
-                    objdserv.CloseConnection();
-                    txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
-                    txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
-                    txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
-                    txtLabelNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"].ToString().Replace("''", "'"));
-                    txtLabelNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"].ToString().Replace("''", "'")); 
-                    varSubGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["SUBGROUP"].ToString());  
-                    lblSubGroupCode.Text = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
-                    txtSubGroup.Text = objDS.Tables[0].Rows[0]["SubGroup Name"].ToString(); 
-                    varGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["GROUP"].ToString());
-                    lblGroupCode.Text = objDS.Tables[0].Rows[0]["GROUP"].ToString();
-                    txtGroup.Text = objDS.Tables[0].Rows[0]["Group Name"].ToString();
-                    varBrandId = Convert.ToInt32(objDS.Tables[0].Rows[0]["BRAND"].ToString());
-                    lblBrand.Text = objDS.Tables[0].Rows[0]["BRAND"].ToString();
-                    txtBrand.Text = objDS.Tables[0].Rows[0]["BRAND Name"].ToString();
-                    varUnitid = Convert.ToInt32(objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString());//
-                    cmbChildUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
-                    varPURSLID = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
-                    lblPurLocationCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
-                    txtPurLocation.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE Name"]);
-                    varPURRKID = Convert.ToInt32(objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString());
-                    lblPurRackCode.Text = objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString();
-                    txtPurRack.Text = objDS.Tables[0].Rows[0]["RACK LOCATION Name"].ToString();
-                    txtRackDescription.Text = objDS.Tables[0].Rows[0]["Rack_Description"].ToString();
+                    if (btnSave.Text != "Update")
+                    {
+                        MR_Product objMR_Product = new MR_Product();
+                        objMR_Product.paraViewType = 1;
+                        objMR_Product.ParaProductCode = Convert.ToInt32(lblParentcode.Text);
+                        SPDataService objdserv = new SPDataService();
+                        DataSet objDS;
+                        objDS = objdserv.udfnproductmasterlist(objMR_Product);
+                        objdserv.CloseConnection();
+                        txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
+                        txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
+                        txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
+                        txtLabelNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"].ToString().Replace("''", "'"));
+                        txtLabelNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"].ToString().Replace("''", "'"));
+                        varSubGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["SUBGROUP"].ToString());
+                        lblSubGroupCode.Text = objDS.Tables[0].Rows[0]["SUBGROUP"].ToString();
+                        txtSubGroup.Text = objDS.Tables[0].Rows[0]["SubGroup Name"].ToString();
+                        varGroupId = Convert.ToInt32(objDS.Tables[0].Rows[0]["GROUP"].ToString());
+                        lblGroupCode.Text = objDS.Tables[0].Rows[0]["GROUP"].ToString();
+                        txtGroup.Text = objDS.Tables[0].Rows[0]["Group Name"].ToString();
+                        varBrandId = Convert.ToInt32(objDS.Tables[0].Rows[0]["BRAND"].ToString());
+                        lblBrand.Text = objDS.Tables[0].Rows[0]["BRAND"].ToString();
+                        txtBrand.Text = objDS.Tables[0].Rows[0]["BRAND Name"].ToString();
+                        varUnitid = Convert.ToInt32(objDS.Tables[0].Rows[0]["CHILD UNIT"].ToString());//
+                        cmbChildUnit.SelectedValue = objDS.Tables[0].Rows[0]["UNIT"].ToString();
+                        varPURSLID = Convert.ToInt32(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
+                        lblPurLocationCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE"]);
+                        txtPurLocation.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LOCATION PURCHASE Name"]);
+                        varPURRKID = Convert.ToInt32(objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString());
+                        lblPurRackCode.Text = objDS.Tables[0].Rows[0]["RACK LOCATION"].ToString();
+                        txtPurRack.Text = objDS.Tables[0].Rows[0]["RACK LOCATION Name"].ToString();
+                        txtRackDescription.Text = objDS.Tables[0].Rows[0]["Rack_Description"].ToString();
+                    }
                 }
             }
             catch (Exception ex)
