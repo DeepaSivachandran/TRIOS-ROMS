@@ -370,7 +370,7 @@ namespace ROMS
                 {
                     udfnClear();
                     MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 39;
+                    objMR_Supplier.ViewType = 49;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
@@ -926,6 +926,16 @@ namespace ROMS
         }
 
         private void GrbInvoiceDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GrbDiscount_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GroupBox2_Enter(object sender, EventArgs e)
         {
 
         }

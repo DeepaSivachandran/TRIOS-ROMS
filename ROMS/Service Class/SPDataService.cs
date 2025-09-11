@@ -4327,7 +4327,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[PROC_GETSLNO]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_GETSLNO]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraTableName", paraTableName);
                 varSqlCommand.Parameters.AddWithValue("@paraProcess", paraProcess);

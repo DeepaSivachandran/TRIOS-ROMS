@@ -1953,6 +1953,8 @@ namespace ROMS
                 }
                 if(CashAdvCount==0 && ChequeAdvCount==0)
                 {   varMSTID = "199"; }
+                else if(CashAdvCount != 0 && ChequeAdvCount != 0)
+                { varMSTID = "199,200,201"; }
                 else if (CashAdvCount == 0 && CashAdvCount != 0)
                 {   varMSTID = "199,200"; }
                 else

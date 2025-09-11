@@ -273,7 +273,14 @@ namespace ROMS
                         }
                     }
                     else
-                    { dpChequeDate.Enabled = true; }
+                    {
+                        dpChequeDate.Enabled = true;
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            dpChequeDate.MinDate = DateTime.ParseExact(objDs.Tables[1].Rows[0]["ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            dpChequeDate.Text = Convert.ToString(DateTime.ParseExact(objDs.Tables[1].Rows[0]["ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1297,7 +1304,7 @@ namespace ROMS
                 varPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
 
                 if (varPaymentMode == 346) //346 - Cash //In Person
-                { varNotCondition = "0,222,223"; }
+                { varNotCondition = "0,222,223,-1"; }
                 else if (varPaymentMode == 347) //347 - Cheque //In Person, Courier
                 { varNotCondition = "0,223"; }
                 else if (varPaymentMode == 348 || varPaymentMode == 349 || varPaymentMode == 350) //--348- NEFT,349 -RTGS,350 - Transfer //Presented in bank,Courier

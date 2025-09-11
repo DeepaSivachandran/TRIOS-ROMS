@@ -3861,6 +3861,10 @@ namespace ROMS
                                     chkDefaultBank.Checked = false;
                                     chkDefaultBank.Enabled = false;
                                 }
+                                if (Convert.ToInt32(objDS.Tables[2].Rows[i]["DeleteFlag"]) == 1)
+                                {
+                                    grdBankDetails.Rows[i].Cells["clmremovebank"].Value = new Bitmap(1, 1);
+                                } 
                             }
                             btnSave.Text = "Update";
                             btnSaveContact.Text = "Update"; 
