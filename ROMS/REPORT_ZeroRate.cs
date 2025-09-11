@@ -79,6 +79,12 @@ namespace ROMS
                     DGV_FilterSupplier.DataSource = null;
                     DGV_FilterSupplier.Visible = false;
                 }
+                if (skipControl != txtRackgroup)
+                {
+                    varUpDownKeyRackGroup = 0;
+                    DGV_FilterRackgroup.DataSource = null;
+                    DGV_FilterRackgroup.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -279,6 +285,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1,369)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,113) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
@@ -1676,6 +1683,19 @@ namespace ROMS
                     txtSupplier.Visible = false;
                     DGV_FilterSupplier.Visible = false;
                 }
+
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1704,14 +1724,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtProductName.Visible == true)
-                    {
-                        txtProductName.Focus();
-                    }
-                    else
-                    {
-                        txtSupplier.Focus();
-                    }
+                    cmbConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -1974,6 +1987,70 @@ namespace ROMS
                 cmbStatus.Focus();
             }
         }
+
+        private void CmbConcern_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.LemonChiffon;
+                udfnGridNull((Control)sender);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtProductName.Visible == true)
+                    {
+                        txtProductName.Focus();
+                    }
+                    else
+                    {
+                        txtSupplier.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbConcern_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtRackgroup_TextChanged(object sender, EventArgs e)
         {
             try

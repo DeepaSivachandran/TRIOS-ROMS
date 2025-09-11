@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,15 +44,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportSupplier = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
+            this.DGV_FilterRackgroup = new System.Windows.Forms.DataGridView();
             this.DGV_FilterBrand = new System.Windows.Forms.DataGridView();
+            this.lblRackgroup = new System.Windows.Forms.Label();
             this.DGV_FilterSubgroup = new System.Windows.Forms.DataGridView();
             this.DGV_FilterGroup = new System.Windows.Forms.DataGridView();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
@@ -76,7 +78,9 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblRackgroupCode = new System.Windows.Forms.Label();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
+            this.txtRackgroup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblReportType = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -96,12 +100,11 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.DGV_FilterRackgroup = new System.Windows.Forms.DataGridView();
-            this.txtRackgroup = new System.Windows.Forms.TextBox();
-            this.lblRackgroup = new System.Windows.Forms.Label();
-            this.lblRackgroupCode = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.ReportSupplier.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterGroup)).BeginInit();
@@ -109,7 +112,6 @@
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportSupplier
@@ -148,8 +150,8 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
-            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
+            this.tsbPrintFormat.Text = "A4-Landscape";
             this.tsbPrintFormat.ToolTipText = "Total GRN ";
             // 
             // tsbFormat
@@ -188,6 +190,50 @@
             this.pnlReportStockLocation.Name = "pnlReportStockLocation";
             this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportStockLocation.TabIndex = 0;
+            // 
+            // DGV_FilterRackgroup
+            // 
+            this.DGV_FilterRackgroup.AllowUserToAddRows = false;
+            this.DGV_FilterRackgroup.AllowUserToDeleteRows = false;
+            this.DGV_FilterRackgroup.AllowUserToResizeColumns = false;
+            this.DGV_FilterRackgroup.AllowUserToResizeRows = false;
+            this.DGV_FilterRackgroup.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_FilterRackgroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterRackgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
+            this.DGV_FilterRackgroup.ColumnHeadersHeight = 30;
+            this.DGV_FilterRackgroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterRackgroup.DefaultCellStyle = dataGridViewCellStyle47;
+            this.DGV_FilterRackgroup.EnableHeadersVisualStyles = false;
+            this.DGV_FilterRackgroup.GridColor = System.Drawing.Color.White;
+            this.DGV_FilterRackgroup.Location = new System.Drawing.Point(1005, 72);
+            this.DGV_FilterRackgroup.Name = "DGV_FilterRackgroup";
+            this.DGV_FilterRackgroup.ReadOnly = true;
+            this.DGV_FilterRackgroup.RowHeadersVisible = false;
+            this.DGV_FilterRackgroup.RowHeadersWidth = 51;
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterRackgroup.RowsDefaultCellStyle = dataGridViewCellStyle48;
+            this.DGV_FilterRackgroup.RowTemplate.Height = 25;
+            this.DGV_FilterRackgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_FilterRackgroup.Size = new System.Drawing.Size(256, 226);
+            this.DGV_FilterRackgroup.TabIndex = 111111177;
+            this.DGV_FilterRackgroup.Visible = false;
+            this.DGV_FilterRackgroup.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterRackgroup_CellDoubleClick);
+            this.DGV_FilterRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterRackgroup_KeyDown);
             // 
             // DGV_FilterBrand
             // 
@@ -232,6 +278,16 @@
             this.DGV_FilterBrand.Visible = false;
             this.DGV_FilterBrand.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterBrand_CellDoubleClick);
             this.DGV_FilterBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterBrand_KeyDown);
+            // 
+            // lblRackgroup
+            // 
+            this.lblRackgroup.AutoSize = true;
+            this.lblRackgroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRackgroup.Location = new System.Drawing.Point(1001, 20);
+            this.lblRackgroup.Name = "lblRackgroup";
+            this.lblRackgroup.Size = new System.Drawing.Size(71, 20);
+            this.lblRackgroup.TabIndex = 111111176;
+            this.lblRackgroup.Text = "Rack Group";
             // 
             // DGV_FilterSubgroup
             // 
@@ -349,7 +405,7 @@
             this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle59;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSupplier.Location = new System.Drawing.Point(257, 72);
+            this.DGV_FilterSupplier.Location = new System.Drawing.Point(294, 72);
             this.DGV_FilterSupplier.Name = "DGV_FilterSupplier";
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
@@ -369,7 +425,7 @@
             // 
             this.lblAlphaProduct.AutoSize = true;
             this.lblAlphaProduct.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlphaProduct.Location = new System.Drawing.Point(253, 20);
+            this.lblAlphaProduct.Location = new System.Drawing.Point(291, 20);
             this.lblAlphaProduct.Name = "lblAlphaProduct";
             this.lblAlphaProduct.Size = new System.Drawing.Size(87, 20);
             this.lblAlphaProduct.TabIndex = 111111160;
@@ -532,6 +588,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label10);
+            this.grpfilter.Controls.Add(this.cmbConcern);
             this.grpfilter.Controls.Add(this.lblRackgroupCode);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.txtRackgroup);
@@ -557,18 +615,41 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // lblRackgroupCode
+            // 
+            this.lblRackgroupCode.AutoSize = true;
+            this.lblRackgroupCode.Location = new System.Drawing.Point(1093, 20);
+            this.lblRackgroupCode.Name = "lblRackgroupCode";
+            this.lblRackgroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblRackgroupCode.TabIndex = 111111176;
+            this.lblRackgroupCode.Text = "0";
+            this.lblRackgroupCode.Visible = false;
+            // 
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
             this.cmbReportType.Location = new System.Drawing.Point(9, 43);
             this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(238, 27);
+            this.cmbReportType.Size = new System.Drawing.Size(206, 27);
             this.cmbReportType.TabIndex = 0;
             this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
             this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReportType_KeyDown);
             this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbReportType_KeyPress);
             this.cmbReportType.Leave += new System.EventHandler(this.CmbReportType_Leave);
+            // 
+            // txtRackgroup
+            // 
+            this.txtRackgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRackgroup.Location = new System.Drawing.Point(1001, 43);
+            this.txtRackgroup.MaxLength = 100;
+            this.txtRackgroup.Name = "txtRackgroup";
+            this.txtRackgroup.Size = new System.Drawing.Size(131, 27);
+            this.txtRackgroup.TabIndex = 6;
+            this.txtRackgroup.TextChanged += new System.EventHandler(this.TxtRackgroup_TextChanged);
+            this.txtRackgroup.Enter += new System.EventHandler(this.TxtRackgroup_Enter);
+            this.txtRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackgroup_KeyDown);
+            this.txtRackgroup.Leave += new System.EventHandler(this.TxtRackgroup_Leave);
             // 
             // label1
             // 
@@ -607,7 +688,7 @@
             this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(165, 27);
-            this.txtBrand.TabIndex = 4;
+            this.txtBrand.TabIndex = 5;
             this.txtBrand.TextChanged += new System.EventHandler(this.TxtBrand_TextChanged);
             this.txtBrand.Enter += new System.EventHandler(this.TxtBrand_Enter);
             this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBrand_KeyDown);
@@ -616,11 +697,11 @@
             // txtProductName
             // 
             this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductName.Location = new System.Drawing.Point(253, 43);
+            this.txtProductName.Location = new System.Drawing.Point(291, 43);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(249, 27);
-            this.txtProductName.TabIndex = 1;
+            this.txtProductName.Size = new System.Drawing.Size(211, 27);
+            this.txtProductName.TabIndex = 2;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
             this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductName_KeyDown);
@@ -660,10 +741,10 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(253, 43);
+            this.txtSupplier.Location = new System.Drawing.Point(291, 43);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(249, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(211, 27);
             this.txtSupplier.TabIndex = 1;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -687,7 +768,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(1138, 43);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(120, 27);
-            this.cmbStatus.TabIndex = 6;
+            this.cmbStatus.TabIndex = 7;
             this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
             this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
@@ -702,7 +783,7 @@
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 7;
+            this.btnView.TabIndex = 8;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -727,7 +808,7 @@
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(143, 27);
-            this.txtGroup.TabIndex = 2;
+            this.txtGroup.TabIndex = 3;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
             this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGroup_KeyDown);
@@ -740,7 +821,7 @@
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
             this.txtSubGroup.Size = new System.Drawing.Size(167, 27);
-            this.txtSubGroup.TabIndex = 3;
+            this.txtSubGroup.TabIndex = 4;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
             this.txtSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSubGroup_KeyDown);
@@ -790,82 +871,27 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // DGV_FilterRackgroup
+            // label10
             // 
-            this.DGV_FilterRackgroup.AllowUserToAddRows = false;
-            this.DGV_FilterRackgroup.AllowUserToDeleteRows = false;
-            this.DGV_FilterRackgroup.AllowUserToResizeColumns = false;
-            this.DGV_FilterRackgroup.AllowUserToResizeRows = false;
-            this.DGV_FilterRackgroup.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_FilterRackgroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle46.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterRackgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
-            this.DGV_FilterRackgroup.ColumnHeadersHeight = 30;
-            this.DGV_FilterRackgroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterRackgroup.DefaultCellStyle = dataGridViewCellStyle47;
-            this.DGV_FilterRackgroup.EnableHeadersVisualStyles = false;
-            this.DGV_FilterRackgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterRackgroup.Location = new System.Drawing.Point(1005, 72);
-            this.DGV_FilterRackgroup.Name = "DGV_FilterRackgroup";
-            this.DGV_FilterRackgroup.ReadOnly = true;
-            this.DGV_FilterRackgroup.RowHeadersVisible = false;
-            this.DGV_FilterRackgroup.RowHeadersWidth = 51;
-            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterRackgroup.RowsDefaultCellStyle = dataGridViewCellStyle48;
-            this.DGV_FilterRackgroup.RowTemplate.Height = 25;
-            this.DGV_FilterRackgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterRackgroup.Size = new System.Drawing.Size(256, 226);
-            this.DGV_FilterRackgroup.TabIndex = 111111177;
-            this.DGV_FilterRackgroup.Visible = false;
-            this.DGV_FilterRackgroup.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterRackgroup_CellDoubleClick);
-            this.DGV_FilterRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterRackgroup_KeyDown);
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(221, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 20);
+            this.label10.TabIndex = 111111184;
+            this.label10.Text = "Concern";
             // 
-            // txtRackgroup
+            // cmbConcern
             // 
-            this.txtRackgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRackgroup.Location = new System.Drawing.Point(1001, 43);
-            this.txtRackgroup.MaxLength = 100;
-            this.txtRackgroup.Name = "txtRackgroup";
-            this.txtRackgroup.Size = new System.Drawing.Size(131, 27);
-            this.txtRackgroup.TabIndex = 5;
-            this.txtRackgroup.TextChanged += new System.EventHandler(this.TxtRackgroup_TextChanged);
-            this.txtRackgroup.Enter += new System.EventHandler(this.TxtRackgroup_Enter);
-            this.txtRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackgroup_KeyDown);
-            this.txtRackgroup.Leave += new System.EventHandler(this.TxtRackgroup_Leave);
-            // 
-            // lblRackgroup
-            // 
-            this.lblRackgroup.AutoSize = true;
-            this.lblRackgroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRackgroup.Location = new System.Drawing.Point(1001, 20);
-            this.lblRackgroup.Name = "lblRackgroup";
-            this.lblRackgroup.Size = new System.Drawing.Size(71, 20);
-            this.lblRackgroup.TabIndex = 111111176;
-            this.lblRackgroup.Text = "Rack Group";
-            // 
-            // lblRackgroupCode
-            // 
-            this.lblRackgroupCode.AutoSize = true;
-            this.lblRackgroupCode.Location = new System.Drawing.Point(1093, 20);
-            this.lblRackgroupCode.Name = "lblRackgroupCode";
-            this.lblRackgroupCode.Size = new System.Drawing.Size(16, 20);
-            this.lblRackgroupCode.TabIndex = 111111176;
-            this.lblRackgroupCode.Text = "0";
-            this.lblRackgroupCode.Visible = false;
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(221, 43);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(64, 27);
+            this.cmbConcern.TabIndex = 1;
+            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
             // 
             // REPORT_ZeroRate
             // 
@@ -888,6 +914,7 @@
             this.ReportSupplier.PerformLayout();
             this.pnlReportStockLocation.ResumeLayout(false);
             this.pnlReportStockLocation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterGroup)).EndInit();
@@ -896,7 +923,6 @@
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -960,5 +986,7 @@
         private System.Windows.Forms.TextBox txtRackgroup;
         private System.Windows.Forms.Label lblRackgroup;
         private System.Windows.Forms.Label lblRackgroupCode;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cmbConcern;
     }
 }
