@@ -183,6 +183,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -430,7 +431,7 @@ namespace ROMS
             this.paymentToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.paymentToolStripMenuItem.ShowShortcutKeys = false;
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
-            this.paymentToolStripMenuItem.Text = "&Finance"; 
+            this.paymentToolStripMenuItem.Text = "&Finance";
             // 
             // tsbDirectCheque
             // 
@@ -914,7 +915,8 @@ namespace ROMS
             this.tsmProductsReport,
             this.tsmSupplierWiseProducts,
             this.tsmAssigned,
-            this.tsmUnassignedProducts});
+            this.tsmUnassignedProducts,
+            this.tsmZeroRate});
             this.tsmMastersReport.Name = "tsmMastersReport";
             this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
             this.tsmMastersReport.Text = "Masters";
@@ -1456,6 +1458,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmZeroRate
+            // 
+            this.tsmZeroRate.Name = "tsmZeroRate";
+            this.tsmZeroRate.Size = new System.Drawing.Size(184, 22);
+            this.tsmZeroRate.Text = "Zero Rate";
+            this.tsmZeroRate.Click += new System.EventHandler(this.TsmZeroRate_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1638,5 +1647,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseHSNReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseHSNWise;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseHSNNameWise;
+        private System.Windows.Forms.ToolStripMenuItem tsmZeroRate;
     }
 }

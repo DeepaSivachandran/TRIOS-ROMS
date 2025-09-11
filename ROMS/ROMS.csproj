@@ -2173,6 +2173,12 @@
     <Compile Include="REPORT_Stock_Inward.designer.cs">
       <DependentUpon>REPORT_Stock_Inward.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_ZeroRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_ZeroRate.designer.cs">
+      <DependentUpon>REPORT_ZeroRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_Suppllier_Ledger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4706,6 +4712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Inward.resx">
       <DependentUpon>REPORT_Stock_Inward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_ZeroRate.resx">
+      <DependentUpon>REPORT_ZeroRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Suppllier_Ledger.resx">
       <DependentUpon>REPORT_Suppllier_Ledger.cs</DependentUpon>
