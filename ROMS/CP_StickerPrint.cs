@@ -17,14 +17,14 @@ namespace ROMS
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        public DataTable dtPMGroup, dtSubgroup, dtProduct, dtGroup, dtRack;
+        public DataTable dtPMGroup, dtSubgroup, dtProduct, dtGroup, dtRack, dtRackgroup;
         public static string varFGCode;
         public int varStickerType;
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpType = new ToolTip();
         private ToolTip tpLabelSize = new ToolTip();
         private ToolTip tpLabelCount = new ToolTip();
-        public string varProductCodes, varSubgroupCodes, varGroupCodes, varRackCodes = "0";
+        public string varProductCodes, varSubgroupCodes, varGroupCodes, varRackCodes, varRackGroupCodes = "0";
         private int varsno;
         List<string> varListSubgroupCodes = new List<string>();
         List<string> varListGroupCodes = new List<string>();
@@ -89,6 +89,11 @@ namespace ROMS
                 {
                     viewType = 69;
                     varCodes = varRackCodes;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                {
+                    viewType = 72;
+                    varCodes = varRackGroupCodes;
                 }
                 picLoader4.Visible = true;
                 errRack.Clear();
@@ -166,7 +171,26 @@ namespace ROMS
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x35.rpt");
                         }
                     }
-                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_100x70.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x25.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x35.rpt");
+                        }
+                    }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                     {
                         objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
                     }
@@ -226,6 +250,11 @@ namespace ROMS
                 dtRack.Columns.Add("", typeof(Boolean));
                 dtRack.Columns.Add("Rack Name", typeof(string));
                 dtRack.Columns.Add("RackID", typeof(int));
+
+                dtRackgroup = new DataTable();
+                dtRackgroup.Columns.Add("", typeof(Boolean));
+                dtRackgroup.Columns.Add("RackGroup Name", typeof(string));
+                dtRackgroup.Columns.Add("RackGroupID", typeof(int));
 
                 udfnConcernLoad();
                 DataBind objDataBind = new DataBind();
@@ -287,6 +316,7 @@ namespace ROMS
                 dtGroup = null;
                 dtSubgroup = null;
                 dtRack = null;
+                dtRackgroup = null;
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -306,6 +336,10 @@ namespace ROMS
                         if (objDs.Tables[3].Rows.Count != 0)
                         {
                             dtRack = objDs.Tables[3];
+                        }
+                        if (objDs.Tables[4].Rows.Count != 0)
+                        {
+                            dtRackgroup = objDs.Tables[4];
                         }
                     }
                 }
@@ -346,18 +380,20 @@ namespace ROMS
                 grdSubgroup.DataSource = null;
                 grdProduct.DataSource = null;
                 grdRack.DataSource = null;
+                grdRackGroup.DataSource = null;
                 RPTViewer.ReportSource = null;
 
                 txtProduct.Text = "";
                 txtGroup.Text = "";
                 txtSubgroup.Text = "";
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 1 || Convert.ToInt32(cmbType.SelectedIndex) == 2 || Convert.ToInt32(cmbType.SelectedIndex) == 3)
                 {
                     if (dtGroup != null)
                     {
                         picLoader2.Visible = true;
                         grdGroup.DataSource = dtGroup.Copy();
                         grdRack.SendToBack();
+                        grdRackGroup.SendToBack();
                         grdGroup.BringToFront();
                         grdGroup.Columns[0].HeaderText = "";
                         grdGroup.Columns[0].Width = 50;
@@ -369,18 +405,39 @@ namespace ROMS
                 }
                 else
                 {
-                    if (dtRack != null)
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
                     {
-                        picLoader2.Visible = true;
-                        grdRack.DataSource = dtRack.Copy();
-                        grdGroup.SendToBack();
-                        grdRack.BringToFront();
-                        grdRack.Columns[0].HeaderText = "";
-                        grdRack.Columns[0].Width = 50;
-                        grdRack.Columns[1].Width = 180;
-                        grdRack.Columns[1].ReadOnly = true;
-                        grdRack.Columns[2].Visible = false;
-                        picLoader2.Visible = false;
+                        if (dtRack != null)
+                        {
+                            picLoader2.Visible = true;
+                            grdRack.DataSource = dtRack.Copy();
+                            grdGroup.SendToBack();
+                            grdRackGroup.SendToBack();
+                            grdRack.BringToFront();
+                            grdRack.Columns[0].HeaderText = "";
+                            grdRack.Columns[0].Width = 50;
+                            grdRack.Columns[1].Width = 180;
+                            grdRack.Columns[1].ReadOnly = true;
+                            grdRack.Columns[2].Visible = false;
+                            picLoader2.Visible = false;
+                        }
+                    }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                    {
+                        if (dtRackgroup != null)
+                        {
+                            picLoader2.Visible = true;
+                            grdRackGroup.DataSource = dtRackgroup.Copy();
+                            grdGroup.SendToBack();
+                            grdRack.SendToBack();
+                            grdRackGroup.BringToFront();
+                            grdRackGroup.Columns[0].HeaderText = "";
+                            grdRackGroup.Columns[0].Width = 50;
+                            grdRackGroup.Columns[1].Width = 180;
+                            grdRackGroup.Columns[1].ReadOnly = true;
+                            grdRackGroup.Columns[2].Visible = false;
+                            picLoader2.Visible = false;
+                        }
                     }
                 }
             }
@@ -748,6 +805,32 @@ namespace ROMS
                             }
                         }
                         varRackCodes = string.Join(",", varSelectedRackCodes);
+                    }
+                    if (varCount == 0)
+                    {
+                        string varMessage = objDataService.udfnGetMessages(60);
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        objDataService.CloseConnection();
+                        blnErrFlag = true;
+                    }
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                {
+                    List<string> varSelectedRackGroupCodes = new List<string>();
+                    int varCount = 0;
+                    varRackGroupCodes = "0";
+                    if (grdRackGroup.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < grdRackGroup.Rows.Count; i++)
+                        {
+                            if (Convert.ToBoolean(grdRackGroup.Rows[i].Cells[0].EditedFormattedValue) == true)
+                            {
+                                string varRackGroupCode = grdRackGroup.Rows[i].Cells["RackGroupID"].Value.ToString();
+                                varSelectedRackGroupCodes.Add(varRackGroupCode);
+                                varCount++;
+                            }
+                        }
+                        varRackGroupCodes = string.Join(",", varSelectedRackGroupCodes);
                     }
                     if (varCount == 0)
                     {
@@ -1552,21 +1635,45 @@ namespace ROMS
                     btnProductSelect.Visible = false;
                     btnProductUnSelect.Visible = false;
                 }
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                {
+                    lblProductName.Text = "";
+                    cmbProductName.Enabled = false;
+                    grdSubgroup.Visible = false;
+                    txtSubgroup.Visible = false;
+                    lblSubgroup.Visible = false;
+                    btnSubgroupSelect.Visible = false;
+                    btnSubgroupUnSelect.Visible = false;
+
+                    grdProduct.Visible = false;
+                    txtProduct.Visible = false;
+                    lblProduct.Visible = false;
+                    btnProductSelect.Visible = false;
+                    btnProductUnSelect.Visible = false;
+                }
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 1 || Convert.ToInt32(cmbType.SelectedIndex) == 2 || Convert.ToInt32(cmbType.SelectedIndex) == 3)
                 {
                     lblGroup.Text = "Group";
                 }
                 else
                 {
-                    lblGroup.Text = "Rack";
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                    {
+                        lblGroup.Text = "Rack";
+                    }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                    {
+                        lblGroup.Text = "RackGroup";
+                    }
                 }
                 grdGroup.DataSource = null;
                 grdSubgroup.DataSource = null;
                 grdProduct.DataSource = null;
                 grdRack.DataSource = null;
+                grdRackGroup.DataSource = null;
                 RPTViewer.ReportSource = null;
                 DataBind objDataBind = new DataBind();
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                 {
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
@@ -1629,6 +1736,43 @@ namespace ROMS
             }
         }
 
+        private void GrdRackGroup_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+                {
+                    //if (Convert.ToInt32(cmbType.SelectedIndex) != 1 && Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    //{
+                    //    picLoader3.Visible = true;
+                    //    udfnSubgroupBind();
+                    //    picLoader3.Visible = false;
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void GrdRackGroup_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdRackGroup.CurrentCell is DataGridViewCheckBoxCell)
+                {
+                    grdRackGroup.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdRack_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
@@ -1651,12 +1795,12 @@ namespace ROMS
             {
                 if (e.RowIndex >= 0 && e.ColumnIndex == 0)
                 {
-                    if (Convert.ToInt32(cmbType.SelectedIndex) != 1 && Convert.ToInt32(cmbType.SelectedIndex) != 4)
-                    {
-                        picLoader3.Visible = true;
-                        udfnSubgroupBind();
-                        picLoader3.Visible = false;
-                    }
+                    //if (Convert.ToInt32(cmbType.SelectedIndex) != 1 && Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    //{
+                    //    picLoader3.Visible = true;
+                    //    udfnSubgroupBind();
+                    //    picLoader3.Visible = false;
+                    //}
                 }
             }
             catch (Exception ex)
