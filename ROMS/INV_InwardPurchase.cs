@@ -422,15 +422,15 @@ namespace ROMS
                                     string varSno = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmSno"].Value);
                                     string varPICode = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmPICode"].Value);
                                     string varPTName = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmProductName"].Value);
-                                    string varMRP = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
-                                    string varInvMRP = "";
-                                    string varExpiryDate = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
-                                    string varInvExpiryDate = "";
-                                    string varBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
-                                    string varInvBatchNo = "";//  Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"].Value);
+                                    string varMRP = "";
+                                    string varInvMRP = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
+                                    string varExpiryDate ="";
+                                    string varInvExpiryDate = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
+                                    string varBatchNo = "";
+                                    string varInvBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value); 
                                     string varPendingQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmQty"].Value);
-                                    string varReceivedQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmReceivedQty"].Value);
-                                    string varShopQty = "";// Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShopQty"].Value);
+                                    string varReceivedQty = ""; 
+                                    string varShopQty = ""; 
                                     string varUnit = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmUnit"].Value);
                                     string varRack =  Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmRack"].Value);
                                     string varPRID = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmPRID"].Value);
@@ -480,9 +480,33 @@ namespace ROMS
                                      Convert.ToInt32(varShelflifeType));
 
                                     DataGridView dataGridView = grdInward;
-                                    DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmConvert"];
+                                    
                                     int rowIndex = Convert.ToInt16(dataGridView.RowCount-1);
-                                    cell.Value= new System.Drawing.Bitmap(1, 1);
+                                    
+                                    DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmConvert"];
+                                    cell.Value = new System.Drawing.Bitmap(1, 1);
+                                    DataGridViewCell cellInvoiceMRP = dataGridView.Rows[rowIndex].Cells["clmInvoiceMRP"];
+                                    DataGridViewCell cellInvoiceBatch = dataGridView.Rows[rowIndex].Cells["clmInvoiceBatchNo"];
+                                    DataGridViewCell cellInvoiceExpiryDate = dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"];
+                                     
+                                    if (Convert.ToString(grdInward.Rows[rowIndex].Cells["clmConvertType"].Value) == "0")
+                                    {
+                                        grdInward.Rows[rowIndex].Cells[0].Value = null;
+                                        grdInward.Rows[rowIndex].Cells[0] = new DataGridViewTextBoxCell();
+                                        grdInward.Rows[rowIndex].Cells[0].Value = "";
+                                        grdInward.Rows[rowIndex].Cells[0].ReadOnly = true;
+
+                                        grdInward.Rows[rowIndex].Cells["clmStatus"] = new DataGridViewTextBoxCell();
+                                        grdInward.Rows[rowIndex].Cells["clmStatus"].Value = "";
+                                        grdInward.Rows[rowIndex].Cells["clmStatus"].ReadOnly = true;
+                                    }
+                                    if (Convert.ToString(grdInward.Rows[rowIndex].Cells["clmRMFlag"].Value) == "1")
+                                    {
+                                        grdInward.Rows[rowIndex].Cells["clmExpiryDate"].ReadOnly = true;
+                                        grdInward.Rows[rowIndex].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                                    }
+
+
                                     //udfnConvertProductDetails(sender, e);
                                     if (varclmMRPFlag == "0")
                                     {
@@ -543,6 +567,12 @@ namespace ROMS
                                         dataGridView.Rows[rowIndex].Cells["clmExpiryDate"].ReadOnly = true;
                                         dataGridView.Rows[rowIndex].Cells["clmInvoiceExpiryDate"].ReadOnly = true;
                                     }
+
+                                   
+                                    cellInvoiceMRP.ReadOnly = true; cellInvoiceMRP.Style.BackColor = Color.LightGray;
+                                    cellInvoiceBatch.ReadOnly = true; cellInvoiceBatch.Style.BackColor = Color.LightGray;
+                                    cellInvoiceExpiryDate.ReadOnly = true; cellInvoiceExpiryDate.Style.BackColor = Color.LightGray;
+
                                     if (varEditFlag == 0)
                                     {
                                         DataGridView dataGridView1 = grdInward;
@@ -580,8 +610,9 @@ namespace ROMS
                                         Convert.ToDecimal(cellInvMrp));
 
                                     }
-                                    DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
-                                    GrdGrnlist_DataBindingComplete(grdInward, args2);
+
+                                    //DataGridViewBindingCompleteEventArgs args2 = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                                    //GrdGrnlist_DataBindingComplete(grdInward, args2);
 
                                     if (e.RowIndex >= 0)
                                     {
