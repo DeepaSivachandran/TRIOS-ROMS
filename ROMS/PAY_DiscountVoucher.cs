@@ -370,7 +370,7 @@ namespace ROMS
                 {
                     udfnClear();
                     MR_Supplier objMR_Supplier = new Model.MR_Supplier();
-                    objMR_Supplier.ViewType = 39;
+                    objMR_Supplier.ViewType = 49;
                     objMR_Supplier.paraSupplierName = txtSupplier.Text;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
