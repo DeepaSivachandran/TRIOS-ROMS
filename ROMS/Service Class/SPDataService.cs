@@ -1682,6 +1682,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaRetail", objMR_Product.ParaRetail);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", objMR_Product.paraSubgroupType);
                 varSqlCommand.Parameters.AddWithValue("@paraFilterDate", objMR_Product.paraFilterDate);
+                varSqlCommand.Parameters.AddWithValue("@paraTeller", objMR_Product.paraTeller);
+                varSqlCommand.Parameters.AddWithValue("@paraUserCode", objMR_Product.paraUserCode);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

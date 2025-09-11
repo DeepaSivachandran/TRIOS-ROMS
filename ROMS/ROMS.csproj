@@ -754,6 +754,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_CP_InactiveProduct.cs">
+      <DependentUpon>RPT_CP_InactiveProduct.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Details_Portrait.cs">
       <DependentUpon>RPT_Stock_Inward_Details_Portrait.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3888,6 +3895,11 @@
       <LastGenOutput>RPT_Sticker_Print_RackGroup_50x35.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_CP_InactiveProduct.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_InactiveProduct.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_Unapproved_Purchase_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Unapproved_Purchase_Details.cs</LastGenOutput>

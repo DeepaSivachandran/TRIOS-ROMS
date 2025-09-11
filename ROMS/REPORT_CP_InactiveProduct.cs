@@ -90,7 +90,7 @@ namespace ROMS
         {
             try
             {
-                udfnSupplierProducts();
+                udfnInactiveProducts();
             }
             catch (Exception ex)
             {
@@ -98,23 +98,37 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnSupplierProducts()
+        public void udfnInactiveProducts()
         {
             try
             {
-                string varSupplierName = "-All-", varProductName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-";
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+                string varGroupName = "-All-", varSubgroupName = "-All-", varRackGroupName = "-All-", varTellerName = "-All-", varChangedByName = "-All-";
+                int varGroupCode = 0, varSubgroupCode = 0, varRackGroupCode = 0, varUserCode = 0;
 
 
-                if(txtGroup.Text.Trim()!="")
+                if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text.Trim();
                     varGroupCode = Convert.ToInt32(lblGroupCode.Text);
                 }
-                if(txtSubGroup.Text.Trim()!="")
+                if (txtSubGroup.Text.Trim() != "")
                 {
                     varSubgroupName = txtSubGroup.Text.Trim();
                     varSubgroupCode = Convert.ToInt32(lblSubGroupCode.Text);
+                }
+                if (txtRackgroup.Text.Trim() != "")
+                {
+                    varRackGroupName = txtRackgroup.Text.Trim();
+                    varRackGroupCode = Convert.ToInt32(lblRackgroupCode.Text);
+                }
+                if (txtTeller.Text.Trim() != "")
+                {
+                    varTellerName = txtTeller.Text.Trim();
+                }
+                if (txtUser.Text.Trim() != "")
+                {
+                    varChangedByName = txtUser.Text.Trim();
+                    varUserCode = Convert.ToInt32(lblUserCode.Text);
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -125,17 +139,19 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 41;
-                objMR_Supplier.paraSupplierid = varSupplierCode;
-                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraProductCode = varProductCode;
-                objMR_Supplier.paraGroupCode = varGroupCode;
-                objMR_Supplier.paraSubgroupCode = varSubgroupCode;
-                objMR_Supplier.paraBrandCode = varBrandCode;
-                SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                objspdservice.CloseConnection();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 73;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraGroup = varGroupCode;
+                objMR_Product.paraSubgroup = varSubgroupCode;
+                objMR_Product.paraRKGId = varRackGroupCode;
+                objMR_Product.paraUserCode = varUserCode;
+                objMR_Product.ParaFromDate = dpFromDate.Text;
+                objMR_Product.ParaToDate = dpToDate.Text;
+                objMR_Product.paraTeller = txtTeller.Text.Trim();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
+                objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -146,20 +162,20 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Products.rpt");
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_InactiveProduct.rpt");
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroup", varGroupCode);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);
+                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraBrandCode", varBrandCode);
-                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraRKGID", varRackGroupCode);
+                    objBillreport.SetParameterValue("paraRackGroupName", varRackGroupName);
+                    objBillreport.SetParameterValue("paraUserCode", varUserCode);
+                    objBillreport.SetParameterValue("paraChangedByName", varChangedByName);
+                    objBillreport.SetParameterValue("paraTellerName", varTellerName);
+                    objBillreport.SetParameterValue("paraTeller", txtTeller.Text.Trim());
+                    objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -206,6 +222,9 @@ namespace ROMS
         {
             try
             {
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
