@@ -12377,8 +12377,7 @@ namespace ROMS
                         DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged(sender, e);
                         if (Convert.ToInt32(grdPurMappedProducts.Rows.Count) > 0)
                         {
-                            string VarproductId = "", result = "", varoriginator = "";
-                            int Vartype = 0;
+                            string VarproductId = "", result = "";
                             SPDataService objspdservice = new SPDataService();
                             for (int i = 0; i < grdPurMappedProducts.Rows.Count; i++)
                             {
@@ -12394,19 +12393,8 @@ namespace ROMS
                                 }
                                 //  }
                             }
-
-                            if (btnPurMappingsave.Text == "Save")
-                            {
-                                varoriginator = "Purchase Variant Mapping Create";
-                                Vartype = 15;
-                            }
-                            else
-                            {
-                                varoriginator = "Purchase Variant Mapping Update";
-                                Vartype = 16;
-                            }
-                            result = objspdservice.udfnSupplierMaster(Vartype, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
-                                   0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbPurOrderSchedule.SelectedValue), Convert.ToInt32(lblPurOrderTypeId.Text), VarproductId, "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "", "", 0, null, 0);
+                            result = objspdservice.udfnSupplierMaster(15, SupplierUpdate, "", "", "", 0, "", "", "", "", "", "", 0,
+                                   0, 0, 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "Purchase Variant Mapping Update", 0, "", 0, 0, 0, 0, 0, "", "", "", "", 0, "", Convert.ToInt32(cmbPurOrderSchedule.SelectedValue), Convert.ToInt32(lblPurOrderTypeId.Text), VarproductId, "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "", "", 0, null, 0);
                             string[] varvalue = result.Split('~');
                             if (varvalue[0] == "3")
                             {
