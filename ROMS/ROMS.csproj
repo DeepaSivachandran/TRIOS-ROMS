@@ -719,6 +719,34 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_Sticker_Print_RackGroup_50x60.cs">
+      <DependentUpon>RPT_Sticker_Print_RackGroup_50x60.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Sticker_Print_RackGroup_100x70.cs">
+      <DependentUpon>RPT_Sticker_Print_RackGroup_100x70.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Sticker_Print_RackGroup_50x25.cs">
+      <DependentUpon>RPT_Sticker_Print_RackGroup_50x25.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Sticker_Print_RackGroup_50x35.cs">
+      <DependentUpon>RPT_Sticker_Print_RackGroup_50x35.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Consolidated_Grouping.cs">
       <DependentUpon>RPT_Stock_Inward_Consolidated_Grouping.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2144,6 +2172,12 @@
     </Compile>
     <Compile Include="REPORT_Stock_Inward.designer.cs">
       <DependentUpon>REPORT_Stock_Inward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_ZeroRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_ZeroRate.designer.cs">
+      <DependentUpon>REPORT_ZeroRate.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Suppllier_Ledger.cs">
       <SubType>Form</SubType>
@@ -3828,6 +3862,26 @@
       <LastGenOutput>RPT_Stock_Inward_Details_Portrait.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_50x60.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Sticker_Print_RackGroup_50x60.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_100x70.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Sticker_Print_RackGroup_100x70.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_50x25.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Sticker_Print_RackGroup_50x25.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_50x35.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Sticker_Print_RackGroup_50x35.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Unapproved_Purchase_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Unapproved_Purchase_Details.cs</LastGenOutput>
@@ -4658,6 +4712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Inward.resx">
       <DependentUpon>REPORT_Stock_Inward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_ZeroRate.resx">
+      <DependentUpon>REPORT_ZeroRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Suppllier_Ledger.resx">
       <DependentUpon>REPORT_Suppllier_Ledger.cs</DependentUpon>

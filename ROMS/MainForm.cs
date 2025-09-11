@@ -253,6 +253,7 @@ namespace ROMS
         public static REPORT_SupplierWiseProduct objREPORT_SupplierWiseProduct;
         public static REPORT_Unassigned_Products objREPORT_Unassigned_Products;
         public static REPORT_Assigned_Products objREPORT_Assigned_Products;
+        public static REPORT_ZeroRate objREPORT_ZeroRate;
         public static REPORT_Suppllier_Ledger objREPORT_Suppllier_Ledger;
         public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
         public static REPORT_PurchaseOrder_Detail objREPORT_PurchaseOrder_Detail;
@@ -3272,7 +3273,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void TsmZeroRate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_ZeroRate = new REPORT_ZeroRate();
+                MainForm.objREPORT_ZeroRate.MdiParent = this;
+                MainForm.objREPORT_ZeroRate.Show();
+                PbCurrentForm = "7.5.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {

@@ -1034,7 +1034,7 @@ namespace ROMS
                             }
 
                             txtRackgroup.Focus();
-                            txtRackgroup.SelectionStart = btnListPrint.Text.Length;
+                            txtRackgroup.SelectionStart = txtRackgroup.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Enter:
