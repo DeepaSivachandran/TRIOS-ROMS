@@ -235,7 +235,7 @@
             this.tsbSupplier});
             this.tsPurchaseInvoiceList.Location = new System.Drawing.Point(0, 0);
             this.tsPurchaseInvoiceList.Name = "tsPurchaseInvoiceList";
-            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 29);
+            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 25);
             this.tsPurchaseInvoiceList.TabIndex = 36;
             this.tsPurchaseInvoiceList.Text = "Purchase Invoice";
             // 
@@ -246,7 +246,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(114, 26);
+            this.tspHeader.Size = new System.Drawing.Size(94, 22);
             this.tspHeader.Text = "Purchase DC";
             // 
             // tsbSupplier
@@ -258,7 +258,7 @@
             this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbSupplier.Name = "tsbSupplier";
             this.tsbSupplier.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbSupplier.Size = new System.Drawing.Size(29, 26);
+            this.tsbSupplier.Size = new System.Drawing.Size(24, 24);
             this.tsbSupplier.Visible = false;
             // 
             // pnldl
@@ -375,7 +375,7 @@
             this.lblRackCode.AutoSize = true;
             this.lblRackCode.Location = new System.Drawing.Point(960, 158);
             this.lblRackCode.Name = "lblRackCode";
-            this.lblRackCode.Size = new System.Drawing.Size(21, 25);
+            this.lblRackCode.Size = new System.Drawing.Size(16, 19);
             this.lblRackCode.TabIndex = 1111247;
             this.lblRackCode.Text = "0";
             this.lblRackCode.Visible = false;
@@ -385,7 +385,7 @@
             this.lblStockLocationCode.AutoSize = true;
             this.lblStockLocationCode.Location = new System.Drawing.Point(855, 158);
             this.lblStockLocationCode.Name = "lblStockLocationCode";
-            this.lblStockLocationCode.Size = new System.Drawing.Size(21, 25);
+            this.lblStockLocationCode.Size = new System.Drawing.Size(16, 19);
             this.lblStockLocationCode.TabIndex = 1111246;
             this.lblStockLocationCode.Text = "0";
             this.lblStockLocationCode.Visible = false;
@@ -395,7 +395,7 @@
             this.lblProductcode.AutoSize = true;
             this.lblProductcode.Location = new System.Drawing.Point(198, 155);
             this.lblProductcode.Name = "lblProductcode";
-            this.lblProductcode.Size = new System.Drawing.Size(21, 25);
+            this.lblProductcode.Size = new System.Drawing.Size(16, 19);
             this.lblProductcode.TabIndex = 1111209;
             this.lblProductcode.Text = "0";
             this.lblProductcode.Visible = false;
@@ -421,7 +421,7 @@
             this.txtRack.Location = new System.Drawing.Point(923, 155);
             this.txtRack.MaxLength = 50;
             this.txtRack.Name = "txtRack";
-            this.txtRack.Size = new System.Drawing.Size(98, 31);
+            this.txtRack.Size = new System.Drawing.Size(98, 26);
             this.txtRack.TabIndex = 12;
             this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
             this.txtRack.Enter += new System.EventHandler(this.TxtRack_Enter);
@@ -433,7 +433,7 @@
             this.txtStockLocation.Location = new System.Drawing.Point(819, 155);
             this.txtStockLocation.MaxLength = 50;
             this.txtStockLocation.Name = "txtStockLocation";
-            this.txtStockLocation.Size = new System.Drawing.Size(98, 31);
+            this.txtStockLocation.Size = new System.Drawing.Size(98, 26);
             this.txtStockLocation.TabIndex = 11;
             this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtStockLocation_TextChanged);
             this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
@@ -445,7 +445,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(923, 134);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 25);
+            this.label6.Size = new System.Drawing.Size(34, 19);
             this.label6.TabIndex = 1111244;
             this.label6.Text = "Rack";
             // 
@@ -454,7 +454,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(819, 134);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 25);
+            this.label2.Size = new System.Drawing.Size(84, 19);
             this.label2.TabIndex = 1111243;
             this.label2.Text = "Stock Location";
             // 
@@ -477,7 +477,7 @@
             this.lblWhatsAppNo.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWhatsAppNo.Location = new System.Drawing.Point(8, 71);
             this.lblWhatsAppNo.Name = "lblWhatsAppNo";
-            this.lblWhatsAppNo.Size = new System.Drawing.Size(90, 24);
+            this.lblWhatsAppNo.Size = new System.Drawing.Size(74, 19);
             this.lblWhatsAppNo.TabIndex = 1111211;
             this.lblWhatsAppNo.Text = "WhatsApp no";
             this.lblWhatsAppNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -489,7 +489,7 @@
             this.lblMobileNo.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMobileNo.Location = new System.Drawing.Point(8, 47);
             this.lblMobileNo.Name = "lblMobileNo";
-            this.lblMobileNo.Size = new System.Drawing.Size(71, 24);
+            this.lblMobileNo.Size = new System.Drawing.Size(58, 19);
             this.lblMobileNo.TabIndex = 1111210;
             this.lblMobileNo.Text = "Mobile No";
             this.lblMobileNo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -501,7 +501,7 @@
             this.lblSalesmanName.Font = new System.Drawing.Font("Oswald Regular", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSalesmanName.Location = new System.Drawing.Point(8, 24);
             this.lblSalesmanName.Name = "lblSalesmanName";
-            this.lblSalesmanName.Size = new System.Drawing.Size(68, 24);
+            this.lblSalesmanName.Size = new System.Drawing.Size(58, 19);
             this.lblSalesmanName.TabIndex = 1111209;
             this.lblSalesmanName.Text = "Salesman";
             this.lblSalesmanName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -511,7 +511,7 @@
             this.lblExpiryDate.AutoSize = true;
             this.lblExpiryDate.Location = new System.Drawing.Point(413, 160);
             this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(86, 25);
+            this.lblExpiryDate.Size = new System.Drawing.Size(64, 19);
             this.lblExpiryDate.TabIndex = 1111239;
             this.lblExpiryDate.Text = "Expiry Date";
             // 
@@ -521,7 +521,7 @@
             this.textBox13.Location = new System.Drawing.Point(318, 155);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(14, 31);
+            this.textBox13.Size = new System.Drawing.Size(14, 26);
             this.textBox13.TabIndex = 1111238;
             this.textBox13.Text = "₹";
             // 
@@ -574,7 +574,7 @@
             this.txtYear.Location = new System.Drawing.Point(552, 154);
             this.txtYear.MaxLength = 2;
             this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(34, 31);
+            this.txtYear.Size = new System.Drawing.Size(34, 26);
             this.txtYear.TabIndex = 8;
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtYear.TextChanged += new System.EventHandler(this.TxtYear_TextChanged);
@@ -588,7 +588,7 @@
             this.txtDay.Location = new System.Drawing.Point(485, 154);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
-            this.txtDay.Size = new System.Drawing.Size(33, 31);
+            this.txtDay.Size = new System.Drawing.Size(33, 26);
             this.txtDay.TabIndex = 6;
             this.txtDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDay.TextChanged += new System.EventHandler(this.TxtDay_TextChanged);
@@ -621,7 +621,7 @@
             this.lblReturn.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturn.Location = new System.Drawing.Point(166, 88);
             this.lblReturn.Name = "lblReturn";
-            this.lblReturn.Size = new System.Drawing.Size(47, 20);
+            this.lblReturn.Size = new System.Drawing.Size(37, 16);
             this.lblReturn.TabIndex = 1111207;
             this.lblReturn.Text = "Retrun";
             this.lblReturn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -634,7 +634,7 @@
             this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 98);
             this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
-            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(74, 20);
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(61, 16);
             this.lblSupplierOrderpolicy.TabIndex = 1111206;
             this.lblSupplierOrderpolicy.Text = "Order policy";
             this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -646,7 +646,7 @@
             this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblsupplierpayment.Location = new System.Drawing.Point(6, 81);
             this.lblsupplierpayment.Name = "lblsupplierpayment";
-            this.lblsupplierpayment.Size = new System.Drawing.Size(56, 20);
+            this.lblsupplierpayment.Size = new System.Drawing.Size(46, 16);
             this.lblsupplierpayment.TabIndex = 1111205;
             this.lblsupplierpayment.Text = "Payment";
             this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -658,7 +658,7 @@
             this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 65);
             this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
-            this.lblsupplierScheduletype.Size = new System.Drawing.Size(86, 20);
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(70, 16);
             this.lblsupplierScheduletype.TabIndex = 1111204;
             this.lblsupplierScheduletype.Text = "Schedule Type";
             this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -670,7 +670,7 @@
             this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblsupplierGST.Location = new System.Drawing.Point(6, 46);
             this.lblsupplierGST.Name = "lblsupplierGST";
-            this.lblsupplierGST.Size = new System.Drawing.Size(27, 20);
+            this.lblsupplierGST.Size = new System.Drawing.Size(21, 16);
             this.lblsupplierGST.TabIndex = 1111203;
             this.lblsupplierGST.Text = "gst";
             this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -682,7 +682,7 @@
             this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSupplierCity.Location = new System.Drawing.Point(6, 30);
             this.lblSupplierCity.Name = "lblSupplierCity";
-            this.lblSupplierCity.Size = new System.Drawing.Size(29, 20);
+            this.lblSupplierCity.Size = new System.Drawing.Size(25, 16);
             this.lblSupplierCity.TabIndex = 1111202;
             this.lblSupplierCity.Text = "city";
             this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -694,7 +694,7 @@
             this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuppliername.Location = new System.Drawing.Point(6, 13);
             this.lblSuppliername.Name = "lblSuppliername";
-            this.lblSuppliername.Size = new System.Drawing.Size(59, 24);
+            this.lblSuppliername.Size = new System.Drawing.Size(46, 17);
             this.lblSuppliername.TabIndex = 1111201;
             this.lblSuppliername.Text = "supplier";
             this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -704,7 +704,7 @@
             this.txtMonth.Location = new System.Drawing.Point(518, 154);
             this.txtMonth.MaxLength = 2;
             this.txtMonth.Name = "txtMonth";
-            this.txtMonth.Size = new System.Drawing.Size(34, 31);
+            this.txtMonth.Size = new System.Drawing.Size(34, 26);
             this.txtMonth.TabIndex = 7;
             this.txtMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMonth.TextChanged += new System.EventHandler(this.TxtMonth_TextChanged);
@@ -719,7 +719,7 @@
             this.lblYyyy.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
             this.lblYyyy.Location = new System.Drawing.Point(559, 134);
             this.lblYyyy.Name = "lblYyyy";
-            this.lblYyyy.Size = new System.Drawing.Size(23, 20);
+            this.lblYyyy.Size = new System.Drawing.Size(20, 16);
             this.lblYyyy.TabIndex = 1111237;
             this.lblYyyy.Text = "YY";
             // 
@@ -729,7 +729,7 @@
             this.lblMM.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
             this.lblMM.Location = new System.Drawing.Point(524, 134);
             this.lblMM.Name = "lblMM";
-            this.lblMM.Size = new System.Drawing.Size(29, 20);
+            this.lblMM.Size = new System.Drawing.Size(24, 16);
             this.lblMM.TabIndex = 1111236;
             this.lblMM.Text = "MM";
             // 
@@ -739,7 +739,7 @@
             this.lblDd.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
             this.lblDd.Location = new System.Drawing.Point(491, 134);
             this.lblDd.Name = "lblDd";
-            this.lblDd.Size = new System.Drawing.Size(25, 20);
+            this.lblDd.Size = new System.Drawing.Size(20, 16);
             this.lblDd.TabIndex = 1111235;
             this.lblDd.Text = "DD";
             // 
@@ -748,7 +748,7 @@
             this.lblUnit.AutoSize = true;
             this.lblUnit.Location = new System.Drawing.Point(780, 159);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(42, 25);
+            this.lblUnit.Size = new System.Drawing.Size(31, 19);
             this.lblUnit.TabIndex = 1111231;
             this.lblUnit.Text = "Pkts";
             // 
@@ -757,7 +757,7 @@
             this.txtBatchNo.Location = new System.Drawing.Point(596, 155);
             this.txtBatchNo.MaxLength = 10;
             this.txtBatchNo.Name = "txtBatchNo";
-            this.txtBatchNo.Size = new System.Drawing.Size(119, 31);
+            this.txtBatchNo.Size = new System.Drawing.Size(119, 26);
             this.txtBatchNo.TabIndex = 9;
             this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
             this.txtBatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBatchNo_KeyDown);
@@ -768,7 +768,7 @@
             this.lblbatchno.AutoSize = true;
             this.lblbatchno.Location = new System.Drawing.Point(596, 134);
             this.lblbatchno.Name = "lblbatchno";
-            this.lblbatchno.Size = new System.Drawing.Size(75, 25);
+            this.lblbatchno.Size = new System.Drawing.Size(57, 19);
             this.lblbatchno.TabIndex = 1111227;
             this.lblbatchno.Text = "Batch No.";
             // 
@@ -777,7 +777,7 @@
             this.txtActualQty.Location = new System.Drawing.Point(720, 155);
             this.txtActualQty.MaxLength = 8;
             this.txtActualQty.Name = "txtActualQty";
-            this.txtActualQty.Size = new System.Drawing.Size(57, 31);
+            this.txtActualQty.Size = new System.Drawing.Size(57, 26);
             this.txtActualQty.TabIndex = 10;
             this.txtActualQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtActualQty.Enter += new System.EventHandler(this.TxtActualQty_Enter);
@@ -790,7 +790,7 @@
             this.lblQty.AutoSize = true;
             this.lblQty.Location = new System.Drawing.Point(720, 134);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(69, 25);
+            this.lblQty.Size = new System.Drawing.Size(51, 19);
             this.lblQty.TabIndex = 1111224;
             this.lblQty.Text = "Quantity";
             // 
@@ -799,7 +799,7 @@
             this.txtMrp.Location = new System.Drawing.Point(332, 155);
             this.txtMrp.MaxLength = 8;
             this.txtMrp.Name = "txtMrp";
-            this.txtMrp.Size = new System.Drawing.Size(78, 31);
+            this.txtMrp.Size = new System.Drawing.Size(78, 26);
             this.txtMrp.TabIndex = 5;
             this.txtMrp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
@@ -812,7 +812,7 @@
             this.lblMrp.AutoSize = true;
             this.lblMrp.Location = new System.Drawing.Point(318, 134);
             this.lblMrp.Name = "lblMrp";
-            this.lblMrp.Size = new System.Drawing.Size(42, 25);
+            this.lblMrp.Size = new System.Drawing.Size(32, 19);
             this.lblMrp.TabIndex = 1111223;
             this.lblMrp.Text = "MRP";
             // 
@@ -821,7 +821,7 @@
             this.txtProductName.Location = new System.Drawing.Point(11, 155);
             this.txtProductName.MaxLength = 200;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(300, 31);
+            this.txtProductName.Size = new System.Drawing.Size(300, 26);
             this.txtProductName.TabIndex = 4;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -834,7 +834,7 @@
             this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProductName.Location = new System.Drawing.Point(11, 135);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(176, 26);
+            this.lblProductName.Size = new System.Drawing.Size(139, 20);
             this.lblProductName.TabIndex = 1111205;
             this.lblProductName.Text = "Search by P.I Code (F11)";
             // 
@@ -886,7 +886,7 @@
             this.lblVerifyDate.AutoSize = true;
             this.lblVerifyDate.Location = new System.Drawing.Point(84, 40);
             this.lblVerifyDate.Name = "lblVerifyDate";
-            this.lblVerifyDate.Size = new System.Drawing.Size(0, 24);
+            this.lblVerifyDate.Size = new System.Drawing.Size(0, 17);
             this.lblVerifyDate.TabIndex = 700000005;
             // 
             // lblVerify
@@ -894,7 +894,7 @@
             this.lblVerify.AutoSize = true;
             this.lblVerify.Location = new System.Drawing.Point(84, 19);
             this.lblVerify.Name = "lblVerify";
-            this.lblVerify.Size = new System.Drawing.Size(0, 24);
+            this.lblVerify.Size = new System.Drawing.Size(0, 17);
             this.lblVerify.TabIndex = 700000004;
             // 
             // lblVerify1
@@ -902,7 +902,7 @@
             this.lblVerify1.AutoSize = true;
             this.lblVerify1.Location = new System.Drawing.Point(6, 19);
             this.lblVerify1.Name = "lblVerify1";
-            this.lblVerify1.Size = new System.Drawing.Size(93, 24);
+            this.lblVerify1.Size = new System.Drawing.Size(71, 17);
             this.lblVerify1.TabIndex = 1111191;
             this.lblVerify1.Text = "Verified by   :";
             // 
@@ -911,7 +911,7 @@
             this.lblVerifiedBy2.AutoSize = true;
             this.lblVerifiedBy2.Location = new System.Drawing.Point(13, 84);
             this.lblVerifiedBy2.Name = "lblVerifiedBy2";
-            this.lblVerifiedBy2.Size = new System.Drawing.Size(0, 24);
+            this.lblVerifiedBy2.Size = new System.Drawing.Size(0, 17);
             this.lblVerifiedBy2.TabIndex = 1111191;
             this.lblVerifiedBy2.Visible = false;
             // 
@@ -921,7 +921,7 @@
             this.lblVerified2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVerified2.Location = new System.Drawing.Point(103, 62);
             this.lblVerified2.Name = "lblVerified2";
-            this.lblVerified2.Size = new System.Drawing.Size(0, 20);
+            this.lblVerified2.Size = new System.Drawing.Size(0, 16);
             this.lblVerified2.TabIndex = 1111189;
             // 
             // lblVerifiedDate1
@@ -929,7 +929,7 @@
             this.lblVerifiedDate1.AutoSize = true;
             this.lblVerifiedDate1.Location = new System.Drawing.Point(7, 40);
             this.lblVerifiedDate1.Name = "lblVerifiedDate1";
-            this.lblVerifiedDate1.Size = new System.Drawing.Size(90, 24);
+            this.lblVerifiedDate1.Size = new System.Drawing.Size(70, 17);
             this.lblVerifiedDate1.TabIndex = 1111192;
             this.lblVerifiedDate1.Text = "Verified On  :";
             // 
@@ -939,7 +939,7 @@
             this.lblVerified1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVerified1.Location = new System.Drawing.Point(103, 29);
             this.lblVerified1.Name = "lblVerified1";
-            this.lblVerified1.Size = new System.Drawing.Size(0, 20);
+            this.lblVerified1.Size = new System.Drawing.Size(0, 16);
             this.lblVerified1.TabIndex = 1111188;
             // 
             // lblVerifyDateTime2
@@ -948,7 +948,7 @@
             this.lblVerifyDateTime2.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVerifyDateTime2.Location = new System.Drawing.Point(103, 76);
             this.lblVerifyDateTime2.Name = "lblVerifyDateTime2";
-            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 20);
+            this.lblVerifyDateTime2.Size = new System.Drawing.Size(0, 16);
             this.lblVerifyDateTime2.TabIndex = 1111187;
             // 
             // lblVerifyDateTime
@@ -957,7 +957,7 @@
             this.lblVerifyDateTime.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVerifyDateTime.Location = new System.Drawing.Point(103, 43);
             this.lblVerifyDateTime.Name = "lblVerifyDateTime";
-            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 20);
+            this.lblVerifyDateTime.Size = new System.Drawing.Size(0, 16);
             this.lblVerifyDateTime.TabIndex = 1111186;
             // 
             // lblVerifiedBy1
@@ -965,7 +965,7 @@
             this.lblVerifiedBy1.AutoSize = true;
             this.lblVerifiedBy1.Location = new System.Drawing.Point(13, 41);
             this.lblVerifiedBy1.Name = "lblVerifiedBy1";
-            this.lblVerifiedBy1.Size = new System.Drawing.Size(0, 24);
+            this.lblVerifiedBy1.Size = new System.Drawing.Size(0, 17);
             this.lblVerifiedBy1.TabIndex = 1111190;
             this.lblVerifiedBy1.Visible = false;
             // 
@@ -1009,7 +1009,7 @@
             this.lblInvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInvoiceAmount.Location = new System.Drawing.Point(454, 14);
             this.lblInvoiceAmount.Name = "lblInvoiceAmount";
-            this.lblInvoiceAmount.Size = new System.Drawing.Size(22, 26);
+            this.lblInvoiceAmount.Size = new System.Drawing.Size(17, 20);
             this.lblInvoiceAmount.TabIndex = 111111156;
             this.lblInvoiceAmount.Text = "0";
             // 
@@ -1019,7 +1019,7 @@
             this.lblVoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVoucherDate.Location = new System.Drawing.Point(281, 37);
             this.lblVoucherDate.Name = "lblVoucherDate";
-            this.lblVoucherDate.Size = new System.Drawing.Size(19, 24);
+            this.lblVoucherDate.Size = new System.Drawing.Size(15, 17);
             this.lblVoucherDate.TabIndex = 111111155;
             this.lblVoucherDate.Text = "0";
             // 
@@ -1029,7 +1029,7 @@
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(441, 14);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(20, 24);
+            this.label7.Size = new System.Drawing.Size(16, 17);
             this.label7.TabIndex = 111111154;
             this.label7.Text = "₹";
             // 
@@ -1039,7 +1039,7 @@
             this.lblVoucherNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVoucherNo.Location = new System.Drawing.Point(81, 37);
             this.lblVoucherNo.Name = "lblVoucherNo";
-            this.lblVoucherNo.Size = new System.Drawing.Size(19, 24);
+            this.lblVoucherNo.Size = new System.Drawing.Size(15, 17);
             this.lblVoucherNo.TabIndex = 111111153;
             this.lblVoucherNo.Text = "0";
             // 
@@ -1049,7 +1049,7 @@
             this.lblInvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInvoiceDate.Location = new System.Drawing.Point(281, 14);
             this.lblInvoiceDate.Name = "lblInvoiceDate";
-            this.lblInvoiceDate.Size = new System.Drawing.Size(19, 24);
+            this.lblInvoiceDate.Size = new System.Drawing.Size(15, 17);
             this.lblInvoiceDate.TabIndex = 111111151;
             this.lblInvoiceDate.Text = "0";
             // 
@@ -1059,7 +1059,7 @@
             this.lblInvoiceNo.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInvoiceNo.Location = new System.Drawing.Point(81, 14);
             this.lblInvoiceNo.Name = "lblInvoiceNo";
-            this.lblInvoiceNo.Size = new System.Drawing.Size(19, 24);
+            this.lblInvoiceNo.Size = new System.Drawing.Size(15, 17);
             this.lblInvoiceNo.TabIndex = 111111150;
             this.lblInvoiceNo.Text = "0";
             // 
@@ -1069,7 +1069,7 @@
             this.lblInvoice.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInvoice.Location = new System.Drawing.Point(16, 14);
             this.lblInvoice.Name = "lblInvoice";
-            this.lblInvoice.Size = new System.Drawing.Size(76, 24);
+            this.lblInvoice.Size = new System.Drawing.Size(59, 17);
             this.lblInvoice.TabIndex = 111111149;
             this.lblInvoice.Text = "Invoice No.";
             // 
@@ -1079,7 +1079,7 @@
             this.lblVoucher.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVoucher.Location = new System.Drawing.Point(16, 37);
             this.lblVoucher.Name = "lblVoucher";
-            this.lblVoucher.Size = new System.Drawing.Size(83, 24);
+            this.lblVoucher.Size = new System.Drawing.Size(65, 17);
             this.lblVoucher.TabIndex = 111111148;
             this.lblVoucher.Text = "Voucher No.";
             // 
@@ -1089,7 +1089,7 @@
             this.VoucherDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VoucherDate.Location = new System.Drawing.Point(210, 37);
             this.VoucherDate.Name = "VoucherDate";
-            this.VoucherDate.Size = new System.Drawing.Size(92, 24);
+            this.VoucherDate.Size = new System.Drawing.Size(72, 17);
             this.VoucherDate.TabIndex = 111111147;
             this.VoucherDate.Text = "Voucher Date";
             // 
@@ -1099,7 +1099,7 @@
             this.InvoiceDate.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InvoiceDate.Location = new System.Drawing.Point(210, 14);
             this.InvoiceDate.Name = "InvoiceDate";
-            this.InvoiceDate.Size = new System.Drawing.Size(85, 24);
+            this.InvoiceDate.Size = new System.Drawing.Size(66, 17);
             this.InvoiceDate.TabIndex = 111111146;
             this.InvoiceDate.Text = "Invoice Date";
             // 
@@ -1109,7 +1109,7 @@
             this.InvoiceAmount.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InvoiceAmount.Location = new System.Drawing.Point(353, 14);
             this.InvoiceAmount.Name = "InvoiceAmount";
-            this.InvoiceAmount.Size = new System.Drawing.Size(103, 24);
+            this.InvoiceAmount.Size = new System.Drawing.Size(81, 17);
             this.InvoiceAmount.TabIndex = 111111145;
             this.InvoiceAmount.Text = "Invoice Amount";
             // 
@@ -1295,7 +1295,7 @@
             this.chkCompleted.AutoSize = true;
             this.chkCompleted.Location = new System.Drawing.Point(1081, 392);
             this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(105, 29);
+            this.chkCompleted.Size = new System.Drawing.Size(82, 23);
             this.chkCompleted.TabIndex = 14;
             this.chkCompleted.Text = "Completed";
             this.chkCompleted.UseVisualStyleBackColor = true;
@@ -1710,7 +1710,7 @@
             this.lblTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalProducts.Location = new System.Drawing.Point(1166, 392);
             this.lblTotalProducts.Name = "lblTotalProducts";
-            this.lblTotalProducts.Size = new System.Drawing.Size(110, 26);
+            this.lblTotalProducts.Size = new System.Drawing.Size(87, 20);
             this.lblTotalProducts.TabIndex = 1111212;
             this.lblTotalProducts.Text = "Total Products";
             // 
@@ -1751,7 +1751,7 @@
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(6, 399);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 26);
+            this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 1111173;
             this.label5.Text = "Remarks";
             // 
@@ -1831,7 +1831,7 @@
             this.txtSupplierDCNo.Location = new System.Drawing.Point(303, 88);
             this.txtSupplierDCNo.MaxLength = 30;
             this.txtSupplierDCNo.Name = "txtSupplierDCNo";
-            this.txtSupplierDCNo.Size = new System.Drawing.Size(98, 32);
+            this.txtSupplierDCNo.Size = new System.Drawing.Size(98, 27);
             this.txtSupplierDCNo.TabIndex = 3;
             this.txtSupplierDCNo.Enter += new System.EventHandler(this.TxtSupplierDCNo_Enter);
             this.txtSupplierDCNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplierDCNo_KeyDown);
@@ -1843,7 +1843,7 @@
             this.lblSuppllierDCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuppllierDCNo.Location = new System.Drawing.Point(299, 65);
             this.lblSuppllierDCNo.Name = "lblSuppllierDCNo";
-            this.lblSuppllierDCNo.Size = new System.Drawing.Size(117, 26);
+            this.lblSuppllierDCNo.Size = new System.Drawing.Size(93, 20);
             this.lblSuppllierDCNo.TabIndex = 1111174;
             this.lblSuppllierDCNo.Text = "Supplier DC No.";
             // 
@@ -1852,7 +1852,7 @@
             this.lblschedule.AutoSize = true;
             this.lblschedule.Location = new System.Drawing.Point(345, 92);
             this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(21, 25);
+            this.lblschedule.Size = new System.Drawing.Size(16, 19);
             this.lblschedule.TabIndex = 1111173;
             this.lblschedule.Text = "0";
             this.lblschedule.Visible = false;
@@ -1862,7 +1862,7 @@
             this.lblSupplierCode.AutoSize = true;
             this.lblSupplierCode.Location = new System.Drawing.Point(321, 92);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(21, 25);
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 19);
             this.lblSupplierCode.TabIndex = 1111172;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -1873,7 +1873,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(6, 35);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(98, 33);
+            this.cmbConcern.Size = new System.Drawing.Size(98, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
@@ -1889,7 +1889,7 @@
             this.txtDcNo.MaxLength = 50;
             this.txtDcNo.Name = "txtDcNo";
             this.txtDcNo.ReadOnly = true;
-            this.txtDcNo.Size = new System.Drawing.Size(121, 32);
+            this.txtDcNo.Size = new System.Drawing.Size(121, 27);
             this.txtDcNo.TabIndex = 1111166;
             // 
             // lblDEVisitDay
@@ -1898,7 +1898,7 @@
             this.lblDEVisitDay.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDEVisitDay.Location = new System.Drawing.Point(104, 11);
             this.lblDEVisitDay.Name = "lblDEVisitDay";
-            this.lblDEVisitDay.Size = new System.Drawing.Size(68, 26);
+            this.lblDEVisitDay.Size = new System.Drawing.Size(53, 20);
             this.lblDEVisitDay.TabIndex = 1111163;
             this.lblDEVisitDay.Text = "DC Date";
             // 
@@ -1908,7 +1908,7 @@
             this.dpDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpDCDate.Location = new System.Drawing.Point(108, 35);
             this.dpDCDate.Name = "dpDCDate";
-            this.dpDCDate.Size = new System.Drawing.Size(106, 31);
+            this.dpDCDate.Size = new System.Drawing.Size(106, 26);
             this.dpDCDate.TabIndex = 1;
             this.dpDCDate.ValueChanged += new System.EventHandler(this.DpDCDate_ValueChanged);
             this.dpDCDate.Enter += new System.EventHandler(this.DpDCDate_Enter);
@@ -1921,7 +1921,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(6, 88);
             this.txtSupplier.MaxLength = 150;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(293, 32);
+            this.txtSupplier.Size = new System.Drawing.Size(293, 27);
             this.txtSupplier.TabIndex = 2;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -1934,7 +1934,7 @@
             this.lblDESupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDESupplier.Location = new System.Drawing.Point(6, 65);
             this.lblDESupplier.Name = "lblDESupplier";
-            this.lblDESupplier.Size = new System.Drawing.Size(67, 26);
+            this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 1111162;
             this.lblDESupplier.Text = "Supplier";
             // 
@@ -1944,7 +1944,7 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(216, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 26);
+            this.label1.Size = new System.Drawing.Size(45, 20);
             this.label1.TabIndex = 1111165;
             this.label1.Text = "DC No.";
             // 
@@ -1954,7 +1954,7 @@
             this.label12.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(2, 11);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 26);
+            this.label12.Size = new System.Drawing.Size(54, 20);
             this.label12.TabIndex = 1111171;
             this.label12.Text = "Concern";
             // 
@@ -1965,7 +1965,7 @@
             this.lblStatus.ForeColor = System.Drawing.Color.Black;
             this.lblStatus.Location = new System.Drawing.Point(1056, 2);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(47, 26);
+            this.lblStatus.Size = new System.Drawing.Size(37, 20);
             this.lblStatus.TabIndex = 111111145;
             this.lblStatus.Text = "Draft";
             // 
@@ -1979,7 +1979,7 @@
             // 
             // PUR_PurchaseDC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 26F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);

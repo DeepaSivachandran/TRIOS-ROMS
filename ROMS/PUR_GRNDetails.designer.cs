@@ -589,6 +589,7 @@
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.Size = new System.Drawing.Size(79, 27);
             this.cmbReason.TabIndex = 11;
+            this.cmbReason.SelectedIndexChanged += new System.EventHandler(this.CmbReason_SelectedIndexChanged);
             this.cmbReason.Enter += new System.EventHandler(this.cmbReason_Enter);
             this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReason_KeyDown);
             this.cmbReason.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReason_KeyPress);
@@ -817,7 +818,7 @@
             this.txtmrprate.Name = "txtmrprate";
             this.txtmrprate.Size = new System.Drawing.Size(55, 27);
             this.txtmrprate.TabIndex = 12;
-            this.txtmrprate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right; 
+            this.txtmrprate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtmrprate.Enter += new System.EventHandler(this.Txtmrprate_Enter);
             this.txtmrprate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtmrprate_KeyDown);
             this.txtmrprate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txtmrprate_KeyPress);
