@@ -10395,12 +10395,12 @@ namespace ROMS
                     //        }
                     //    }
                     //}
-                    btnPurMappingsave.Text = "Update";
+                    //btnPurMappingsave.Text = "Update";
                     //udfndataLoad();
                 }
                 else
                 {
-                    btnPurMappingsave.Text = "Save";
+                    //btnPurMappingsave.Text = "Save";
                     //Default Header
                     grdPurMappedProducts.DataSource = dtPurMappedProducts;
                     //grdPurMappedProducts.Columns[0].Frozen = true;
@@ -10519,12 +10519,12 @@ namespace ROMS
                     //        }
                     //    }
                     //}
-                    btnPurMappingsave.Text = "Update";
+                    //btnPurMappingsave.Text = "Update";
                     //udfndataLoad();
                 }
                 else
                 {
-                    btnPurMappingsave.Text = "Save";
+                    //btnPurMappingsave.Text = "Save";
                     //Default Header Load
                     grdPurSupplierMappingLoad.DataSource = dtPurProducts;
                     grdPurSupplierMappingLoad.Columns[0].HeaderText = "";

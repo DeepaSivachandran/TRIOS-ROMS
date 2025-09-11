@@ -322,6 +322,7 @@
             this.txtPurSupplierName = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnPurView = new System.Windows.Forms.Button();
             this.cmbPurStatus = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.DGV_PurMappedSearchGrid = new System.Windows.Forms.DataGridView();
@@ -351,7 +352,6 @@
             this.BtnPuraddMove = new System.Windows.Forms.Button();
             this.grdPurMappedProducts = new System.Windows.Forms.DataGridView();
             this.grdPurSupplierMappingLoad = new System.Windows.Forms.DataGridView();
-            this.btnPurView = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.DGV_PurSearchGrid = new System.Windows.Forms.DataGridView();
@@ -3901,6 +3901,19 @@
             this.groupBox7.TabIndex = 5;
             this.groupBox7.TabStop = false;
             // 
+            // btnPurView
+            // 
+            this.btnPurView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPurView.Image = global::ROMS.Properties.Resources.view;
+            this.btnPurView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurView.Location = new System.Drawing.Point(368, 41);
+            this.btnPurView.Name = "btnPurView";
+            this.btnPurView.Size = new System.Drawing.Size(33, 29);
+            this.btnPurView.TabIndex = 4;
+            this.btnPurView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPurView.UseVisualStyleBackColor = true;
+            this.btnPurView.Click += new System.EventHandler(this.BtnPurView_Click);
+            // 
             // cmbPurStatus
             // 
             this.cmbPurStatus.FormattingEnabled = true;
@@ -4292,19 +4305,6 @@
             this.grdPurSupplierMappingLoad.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurSupplierMappingLoad_DataBindingComplete);
             this.grdPurSupplierMappingLoad.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurSupplierMappingLoad_Scroll);
             // 
-            // btnPurView
-            // 
-            this.btnPurView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPurView.Image = global::ROMS.Properties.Resources.view;
-            this.btnPurView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPurView.Location = new System.Drawing.Point(368, 41);
-            this.btnPurView.Name = "btnPurView";
-            this.btnPurView.Size = new System.Drawing.Size(33, 29);
-            this.btnPurView.TabIndex = 4;
-            this.btnPurView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPurView.UseVisualStyleBackColor = true;
-            this.btnPurView.Click += new System.EventHandler(this.BtnPurView_Click);
-            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -4395,7 +4395,7 @@
             this.btnPurMappingsave.Name = "btnPurMappingsave";
             this.btnPurMappingsave.Size = new System.Drawing.Size(84, 29);
             this.btnPurMappingsave.TabIndex = 7;
-            this.btnPurMappingsave.Text = "Save";
+            this.btnPurMappingsave.Text = "Update";
             this.btnPurMappingsave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPurMappingsave.UseVisualStyleBackColor = true;
             this.btnPurMappingsave.Click += new System.EventHandler(this.BtnPurMappingsave_Click);
