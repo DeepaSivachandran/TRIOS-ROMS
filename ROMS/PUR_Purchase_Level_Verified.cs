@@ -345,7 +345,10 @@ namespace ROMS
                 }
                 //dpVerified.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedOn);
                 mtbTime2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedTime2);
-                cmbFormat2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat2);
+                if (Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat2) != "")
+                {
+                    cmbFormat2.Text = Convert.ToString(MainForm.objCP_Purchase.pbVerifiedFormat2);
+                }
                 varEditFlag2 = Convert.ToString(MainForm.objCP_Purchase.varPurVerifyFlag2);
                 lvVerified2.Visible = false;
 
