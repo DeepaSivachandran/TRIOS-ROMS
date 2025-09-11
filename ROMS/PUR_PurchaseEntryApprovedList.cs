@@ -1109,7 +1109,8 @@ namespace ROMS
                         grdPurchaseEntryApproval.Rows[i].Cells["clmCheck"] = Check;
                         Check.ReadOnly = true;
                     }
-                    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["Payment Status"].Value) == "65")
+                    if (Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["Payment Status"].Value) == "65" ||
+                        Convert.ToString(grdPurchaseEntryApproval.Rows[i].Cells["Payment Status"].Value) == "77")
                     {
                         DataGridViewTextBoxCell UnApprove = new DataGridViewTextBoxCell();
                         UnApprove.Value = "";

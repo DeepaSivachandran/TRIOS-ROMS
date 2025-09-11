@@ -3062,6 +3062,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
+        private void CmbReason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnConditionDisable();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void btnConditionClose_KeyDown(object sender, KeyEventArgs e)
         {
@@ -3152,18 +3165,20 @@ namespace ROMS
             {
                 if (pbConditionIDs.Contains("281") || Convert.ToInt16(cmbReason.SelectedValue) == 284) //For return and LP item
                 {
-                    txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
+                    txtmrprate.Enabled = false; txtmrprate.ReadOnly = true;
                     txtDate.Enabled = false; txtDate.ReadOnly = true;
                     txtMonth.Enabled = false; txtMonth.ReadOnly = true;
                     txtYear.Enabled = false; txtYear.ReadOnly = true;
                     txtBatchno.Enabled = false; txtBatchno.ReadOnly = true; 
-                    txtBatchno.Text = "";
+                    txtBatchno.Text = ""; txtmrprate.Text = "";
+                    txtDate.Text = ""; txtMonth.Text = "";
+                    txtYear.Text = ""; 
                 }
                 else
                 {
                     if (varMRPFlag == 1)
                     {
-                        txtInvoiceamt.Enabled = true; txtInvoiceamt.ReadOnly = false;
+                        txtmrprate.Enabled = true; txtmrprate.ReadOnly = false;
                     }
                     if (varShelflife == 1)
                     {
