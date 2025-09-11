@@ -10942,13 +10942,13 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdPurSupplierMappingLoad.RowCount; i++)
-                {
-                    if (Convert.ToString(grdPurSupplierMappingLoad.Rows[i].Cells["MappedCount"].Value) != "0")
-                    {
-                        grdPurSupplierMappingLoad.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                    }
-                }
+                //for (int i = 0; i < grdPurSupplierMappingLoad.RowCount; i++)
+                //{
+                //    if (Convert.ToString(grdPurSupplierMappingLoad.Rows[i].Cells["MappedCount"].Value) != "0")
+                //    {
+                //        grdPurSupplierMappingLoad.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                //    }
+                //}
                 grdPurSupplierMappingLoad.ClearSelection();
             }
             catch (Exception ex)

@@ -3871,6 +3871,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.btnPurView);
             this.groupBox7.Controls.Add(this.cmbPurStatus);
             this.groupBox7.Controls.Add(this.label26);
             this.groupBox7.Controls.Add(this.DGV_PurMappedSearchGrid);
@@ -3891,7 +3892,6 @@
             this.groupBox7.Controls.Add(this.BtnPuraddMove);
             this.groupBox7.Controls.Add(this.grdPurMappedProducts);
             this.groupBox7.Controls.Add(this.grdPurSupplierMappingLoad);
-            this.groupBox7.Controls.Add(this.btnPurView);
             this.groupBox7.Controls.Add(this.label31);
             this.groupBox7.Controls.Add(this.label32);
             this.groupBox7.Controls.Add(this.DGV_PurSearchGrid);
@@ -3908,6 +3908,7 @@
             this.cmbPurStatus.Name = "cmbPurStatus";
             this.cmbPurStatus.Size = new System.Drawing.Size(128, 27);
             this.cmbPurStatus.TabIndex = 3;
+            this.cmbPurStatus.Visible = false;
             this.cmbPurStatus.Enter += new System.EventHandler(this.CmbPurStatus_Enter);
             this.cmbPurStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPurStatus_KeyDown);
             this.cmbPurStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPurStatus_KeyPress);
@@ -3921,6 +3922,7 @@
             this.label26.Size = new System.Drawing.Size(45, 20);
             this.label26.TabIndex = 958811;
             this.label26.Text = "Status";
+            this.label26.Visible = false;
             // 
             // DGV_PurMappedSearchGrid
             // 
@@ -4158,10 +4160,10 @@
             // txtSearchByPurProducts
             // 
             this.txtSearchByPurProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchByPurProducts.Location = new System.Drawing.Point(541, 43);
+            this.txtSearchByPurProducts.Location = new System.Drawing.Point(502, 43);
             this.txtSearchByPurProducts.MaxLength = 50;
             this.txtSearchByPurProducts.Name = "txtSearchByPurProducts";
-            this.txtSearchByPurProducts.Size = new System.Drawing.Size(108, 27);
+            this.txtSearchByPurProducts.Size = new System.Drawing.Size(147, 27);
             this.txtSearchByPurProducts.TabIndex = 5;
             this.txtSearchByPurProducts.TextChanged += new System.EventHandler(this.TxtSearchByPurProducts_TextChanged);
             // 
@@ -4183,7 +4185,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(541, 18);
+            this.label30.Location = new System.Drawing.Point(502, 18);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(108, 20);
             this.label30.TabIndex = 35;
@@ -4295,7 +4297,7 @@
             this.btnPurView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPurView.Image = global::ROMS.Properties.Resources.view;
             this.btnPurView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPurView.Location = new System.Drawing.Point(502, 41);
+            this.btnPurView.Location = new System.Drawing.Point(368, 41);
             this.btnPurView.Name = "btnPurView";
             this.btnPurView.Size = new System.Drawing.Size(33, 29);
             this.btnPurView.TabIndex = 4;
