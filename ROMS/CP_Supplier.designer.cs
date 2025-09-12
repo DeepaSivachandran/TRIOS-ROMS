@@ -792,7 +792,7 @@
             // 
             this.txtAccName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtAccName.Location = new System.Drawing.Point(106, 104);
-            this.txtAccName.MaxLength = 20;
+            this.txtAccName.MaxLength = 30;
             this.txtAccName.Name = "txtAccName";
             this.txtAccName.Size = new System.Drawing.Size(165, 27);
             this.txtAccName.TabIndex = 28;
