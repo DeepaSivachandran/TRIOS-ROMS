@@ -171,12 +171,12 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 375)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_BillWise_SupplierPaymentPending.rpt");
-                        objBillreport.SetParameterValue("paraPayTypeName", Convert.ToString(cmbPayType.Text));
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_SupplierPaymentGiven.rpt");
+                        objBillreport.SetParameterValue("paraPayModeName", Convert.ToString(cmbPayType.Text));
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 376)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_BillWise_SupplierPaymentPending.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_SupplierPaymentPending.rpt");
                     }
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraPayType", Convert.ToInt32(cmbPayType.SelectedValue));
