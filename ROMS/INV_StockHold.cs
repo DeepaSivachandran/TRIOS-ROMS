@@ -184,6 +184,7 @@ namespace ROMS
                 {
                     if (objDS.Tables.Count != 0)
                     {
+                        picLoader.BringToFront();
                         lblNoRecordsFound.Visible = false;
                         if (objDS.Tables[0].Rows.Count != 0)
                         {

@@ -406,15 +406,15 @@ namespace ROMS
                                     //udfnClear();
                                     MainForm.objINV_StockHold.udfnList();
                                     string varSHID = "0";
-                                    //if (SHID == 0)
-                                    //{
-                                    //    varSHID = varvalue[2];
-                                    //}
-                                    //else
-                                    //{
-                                    //    varSHID = Convert.ToString(SHID);
-                                    //}
-                                    //udfnStockHoldPrint(varSHID);
+                                    if (SHID == 0)
+                                    {
+                                        varSHID = varvalue1[2];
+                                    }
+                                    else
+                                    {
+                                        varSHID = Convert.ToString(SHID);
+                                    }
+                                    udfnStockHoldPrint(varSHID);
                                     varUpdate = 1;
                                     this.Close();
                                 }
