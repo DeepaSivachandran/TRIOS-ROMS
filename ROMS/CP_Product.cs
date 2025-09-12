@@ -60,10 +60,12 @@ namespace ROMS
         private ToolTip tpUPP = new ToolTip();
         private ToolTip tpPurHSN = new ToolTip();
         private ToolTip tpSalesHSN = new ToolTip();
+        private ToolTip tpVerifier = new ToolTip();
 
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
+        int  varStatusFlag=0;
         
         public CP_Product()
         {
@@ -225,6 +227,14 @@ namespace ROMS
                     txtItemNameTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tptamname.ShowAlways = true;
                     tptamname.Show("Please enter product name in tamil", txtItemNameTamil, 5000);
+                    blnErrorFlag = true;
+                }
+                if (varStatusFlag==1 &&  Convert.ToString(txtTeller.Text).Trim() == "")
+                {
+                    errItems.SetError(txtTeller, "Please enter name.");
+                    txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerifier.ShowAlways = true;
+                    tpVerifier.Show("Please enter name.", txtTeller, 5000);
                     blnErrorFlag = true;
                 }
                 if (cbCompleted.Checked == true)
@@ -1173,7 +1183,7 @@ namespace ROMS
                     , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text, varSalesProduct);
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text, varSalesProduct,txtTeller.Text.Trim());
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -1444,6 +1454,7 @@ namespace ROMS
                 tpsalesrack.ShowAlways = false;
                 tpPurHSN.ShowAlways = false;
                 tpSalesHSN.ShowAlways = false;
+                tpVerifier.ShowAlways = false;
                 this.Close();
                 //MainForm.objCP_Itemlist.udfnList();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
@@ -1825,7 +1836,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    if (txtTeller.Enabled == true)
+                    {
+                        txtTeller.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1840,8 +1858,15 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
+                { 
+                    if (txtTeller.Enabled == true)
+                    {
+                        txtTeller.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -6427,7 +6452,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0);
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0,"");
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -6738,8 +6763,7 @@ namespace ROMS
                         DataSet objDs = new DataSet(); 
                             objMR_Product.paraProductName = txtProductName.Text.Trim();
                             objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                         
-
+                          
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -7182,6 +7206,233 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnHideLists()
+        {
+            try
+            {
+                lvVerified1.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TxtTeller_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.LemonChiffon;
+                udfnHideLists();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvVerified1.Items.Count == 0 || txtTeller.Text == "")
+                    {
+                        lvVerified1.Visible = false;
+                    }
+                    else
+                    {
+                        lvVerified1.Focus();
+                    }
+                    if (lvVerified1.Items.Count > 0)
+                    {
+                        lvVerified1.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtTeller.Text.Trim() == "" && txtTeller.Enabled==true)
+                {
+                    errItems.SetError(txtTeller, "Please enter name");
+                    txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerifier.ShowAlways = true;
+                    tpVerifier.Show("Please enter name", txtTeller, 5000);
+                }
+                else
+                {
+                    txtTeller.BackColor = Color.White;
+                    errItems.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTeller_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtTeller.Text.Length > 0)
+                {
+                    lvVerified1.Items.Clear();
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnEmployeeList(14, txtTeller.Text.Trim(), 0, "", 1, 0, 0);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvVerified1.Columns[1].Width = 0;
+                                    lvVerified1.Items.Add(objList);
+                                }
+                                lvVerified1.BringToFront();
+                                lvVerified1.Visible = true;
+                            }
+                            else
+                            {
+                                lvVerified1.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvVerified1.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvVerified1.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvVerified1.Visible = false;
+                    lvVerified1.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LvVerified1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnVerified1();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerified1()
+        {
+            try
+            {
+                if (txtTeller.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvVerified1.SelectedItems[0];
+                    txtTeller.Text = selectedItem.SubItems[0].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvVerified1.Visible = false;
+                btnSave.Focus();
+            }
+        }
+        private void LvVerified1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnVerified1();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbActive_CheckedChanged(object sender, EventArgs e)
+        {
+            udfnStatusFlag();
+        }
+        public void udfnStatusFlag()
+        {
+            try
+            {
+                //varStatusFlag==1 when active to inactive varStatusFlag=0 active
+                if (rbInActive.Checked==true)
+                {
+                    if(varStatusFlag==0)
+                    {
+                        varStatusFlag = 1;
+                    }
+                }
+                else
+                {
+                    varStatusFlag = 0;
+                }
+                if(varStatusFlag==1)
+                {
+                    txtTeller.Enabled = true; 
+                    txtTeller.ReadOnly = false; 
+                }
+                else
+                {
+                    txtTeller.Enabled = false;
+                    txtTeller.ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RbInActive_CheckedChanged(object sender, EventArgs e)
+        {
+            udfnStatusFlag();
         }
 
         private void cmbProductType_KeyPress(object sender, KeyPressEventArgs e)
@@ -7697,6 +7948,8 @@ namespace ROMS
                             lblSaleRackCode.Text = objDS.Tables[0].Rows[0]["RACK SALES"].ToString();
                             txtSaleRack.Text = objDS.Tables[0].Rows[0]["RACK SALES Name"].ToString();
                             txtRackDescriptionSales.Text = objDS.Tables[0].Rows[0]["Sales_Rack_Description"].ToString();
+                            txtTeller.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PR_Inactive_Teller"]);
+                            lvVerified1.Visible = false;
                             if (pbCloneFlag == 0)
                             {
                                 txtUpp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UPP"].ToString().Replace("''", "'"));
@@ -7736,7 +7989,7 @@ namespace ROMS
                             txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
                             txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
                             cmbNetQty.SelectedValue = objDS.Tables[0].Rows[0]["PR_QUTID"].ToString();
-                            lvHsnCode.Visible = false;
+                            lvHsnCode.Visible = false; 
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["PR_MRPflag"]) == "1") { chkMRP.Checked = true; } else { chkMRP.Checked = false; }
@@ -7745,15 +7998,26 @@ namespace ROMS
                             {
                                 rbActive.Checked = true;
                                 pnlStatus.Enabled = true;
+                                varStatusFlag = 0;
                             }
                             else if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "71")
                             {
                                 pnlStatus.Enabled = false;
+                                varStatusFlag = 0;
                             }
                             else
                             {
                                 rbInActive.Checked = true;
                                 pnlStatus.Enabled = true;
+                                varStatusFlag = 1;
+                            }
+                            if(varStatusFlag==0)
+                            {
+                                txtTeller.Enabled = false; txtTeller.ReadOnly = true;
+                            }
+                            else
+                            {
+                                txtTeller.Enabled = true; txtTeller.ReadOnly = false;
                             }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1" || Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "2")
                             {
@@ -7772,8 +8036,7 @@ namespace ROMS
                             else
                             {
                                 chkSameasPurchase.Checked = false;
-                            }
-
+                            }  
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SalesProduct"]) == "1") { chkSalesProduct.Checked = true; } else { chkSalesProduct.Checked = false; }
 
                             udfnDropDownload();

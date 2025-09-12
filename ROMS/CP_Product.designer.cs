@@ -165,7 +165,16 @@
             this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
             this.txtSaleRack = new System.Windows.Forms.TextBox();
             this.txtSaleLocation = new System.Windows.Forms.TextBox();
+            this.lvSaleLocation = new System.Windows.Forms.ListView();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtRackDescriptionSales = new System.Windows.Forms.TextBox();
+            this.lvSaleRack = new System.Windows.Forms.ListView();
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
@@ -238,20 +247,14 @@
             this.txtSalesHSNName = new System.Windows.Forms.TextBox();
             this.tbProduct = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lvSaleLocation = new System.Windows.Forms.ListView();
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtTeller = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
-            this.lvSaleRack = new System.Windows.Forms.ListView();
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.lvVerified1 = new System.Windows.Forms.ListView();
+            this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1453,10 +1456,11 @@
             this.rbInActive.Location = new System.Drawing.Point(76, 0);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 38;
+            this.rbInActive.TabIndex = 1;
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.CheckedChanged += new System.EventHandler(this.RbInActive_CheckedChanged);
             this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
             this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbInActive_KeyDown);
             this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
@@ -1468,9 +1472,10 @@
             this.rbActive.Location = new System.Drawing.Point(4, 0);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 37;
+            this.rbActive.TabIndex = 0;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.CheckedChanged += new System.EventHandler(this.RbActive_CheckedChanged);
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
@@ -1480,10 +1485,10 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDStatus.Location = new System.Drawing.Point(589, 584);
+            this.txtDStatus.Location = new System.Drawing.Point(22, 588);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
-            this.txtDStatus.Size = new System.Drawing.Size(111, 27);
+            this.txtDStatus.Size = new System.Drawing.Size(145, 27);
             this.txtDStatus.TabIndex = 93;
             this.txtDStatus.TabStop = false;
             this.txtDStatus.Text = "Status";
@@ -1494,7 +1499,7 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Enabled = false;
-            this.pnlStatus.Location = new System.Drawing.Point(700, 584);
+            this.pnlStatus.Location = new System.Drawing.Point(167, 588);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(158, 27);
             this.pnlStatus.TabIndex = 37;
@@ -1834,6 +1839,41 @@
             this.txtSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSaleLocation_KeyDown);
             this.txtSaleLocation.Leave += new System.EventHandler(this.TxtSaleLocation_Leave);
             // 
+            // lvSaleLocation
+            // 
+            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader24,
+            this.columnHeader25});
+            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSaleLocation.HideSelection = false;
+            this.lvSaleLocation.Location = new System.Drawing.Point(6, 28);
+            this.lvSaleLocation.Name = "lvSaleLocation";
+            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleLocation.TabIndex = 111111147;
+            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
+            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
+            this.lvSaleLocation.Visible = false;
+            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
+            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 120;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 130;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Width = 0;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Width = 0;
+            // 
             // txtRackDescriptionSales
             // 
             this.txtRackDescriptionSales.BackColor = System.Drawing.SystemColors.Control;
@@ -1844,6 +1884,38 @@
             this.txtRackDescriptionSales.Size = new System.Drawing.Size(381, 27);
             this.txtRackDescriptionSales.TabIndex = 92;
             this.txtRackDescriptionSales.TabStop = false;
+            // 
+            // lvSaleRack
+            // 
+            this.lvSaleRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader20,
+            this.columnHeader27,
+            this.columnHeader21});
+            this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSaleRack.HideSelection = false;
+            this.lvSaleRack.Location = new System.Drawing.Point(208, 28);
+            this.lvSaleRack.Name = "lvSaleRack";
+            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleRack.TabIndex = 134;
+            this.lvSaleRack.UseCompatibleStateImageBehavior = false;
+            this.lvSaleRack.View = System.Windows.Forms.View.Details;
+            this.lvSaleRack.Visible = false;
+            this.lvSaleRack.DoubleClick += new System.EventHandler(this.LvSaleRack_DoubleClick);
+            this.lvSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleRack_KeyDown);
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Width = 120;
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.DisplayIndex = 2;
+            this.columnHeader27.Width = 120;
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.DisplayIndex = 1;
+            this.columnHeader21.Width = 0;
             // 
             // textBox7
             // 
@@ -2614,7 +2686,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox13);
+            this.tabPage1.Controls.Add(this.txtTeller);
             this.tabPage1.Controls.Add(this.textBox11);
             this.tabPage1.Controls.Add(this.lvPurRack);
             this.tabPage1.Controls.Add(this.DGV_FilterProduct);
@@ -2640,40 +2712,33 @@
             this.tabPage1.Text = "Product Details";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // lvSaleLocation
+            // txtTeller
             // 
-            this.lvSaleLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24,
-            this.columnHeader25});
-            this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSaleLocation.HideSelection = false;
-            this.lvSaleLocation.Location = new System.Drawing.Point(6, 28);
-            this.lvSaleLocation.Name = "lvSaleLocation";
-            this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleLocation.TabIndex = 111111147;
-            this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
-            this.lvSaleLocation.View = System.Windows.Forms.View.Details;
-            this.lvSaleLocation.Visible = false;
-            this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
-            this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
+            this.txtTeller.Enabled = false;
+            this.txtTeller.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtTeller.Location = new System.Drawing.Point(369, 588);
+            this.txtTeller.MaxLength = 100;
+            this.txtTeller.Name = "txtTeller";
+            this.txtTeller.ReadOnly = true;
+            this.txtTeller.Size = new System.Drawing.Size(176, 27);
+            this.txtTeller.TabIndex = 38;
+            this.txtTeller.TextChanged += new System.EventHandler(this.TxtTeller_TextChanged);
+            this.txtTeller.Enter += new System.EventHandler(this.TxtTeller_Enter);
+            this.txtTeller.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTeller_KeyDown);
+            this.txtTeller.Leave += new System.EventHandler(this.TxtTeller_Leave);
             // 
-            // columnHeader22
+            // textBox11
             // 
-            this.columnHeader22.Width = 120;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 130;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
-            // 
-            // columnHeader25
-            // 
-            this.columnHeader25.Width = 0;
+            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox11.Enabled = false;
+            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox11.Location = new System.Drawing.Point(325, 588);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(44, 27);
+            this.textBox11.TabIndex = 111111148;
+            this.textBox11.TabStop = false;
+            this.textBox11.Text = "Teller";
             // 
             // DGV_FilterProduct
             // 
@@ -2720,38 +2785,6 @@
             this.DGV_FilterProduct.DoubleClick += new System.EventHandler(this.DGV_FilterProduct_DoubleClick);
             this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
             // 
-            // lvSaleRack
-            // 
-            this.lvSaleRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader20,
-            this.columnHeader27,
-            this.columnHeader21});
-            this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSaleRack.HideSelection = false;
-            this.lvSaleRack.Location = new System.Drawing.Point(208, 28);
-            this.lvSaleRack.Name = "lvSaleRack";
-            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleRack.TabIndex = 134;
-            this.lvSaleRack.UseCompatibleStateImageBehavior = false;
-            this.lvSaleRack.View = System.Windows.Forms.View.Details;
-            this.lvSaleRack.Visible = false;
-            this.lvSaleRack.DoubleClick += new System.EventHandler(this.LvSaleRack_DoubleClick);
-            this.lvSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleRack_KeyDown);
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Width = 120;
-            // 
-            // columnHeader27
-            // 
-            this.columnHeader27.DisplayIndex = 2;
-            this.columnHeader27.Width = 120;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.DisplayIndex = 1;
-            this.columnHeader21.Width = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.grbPurchaseHSN);
@@ -2772,28 +2805,31 @@
             this.pnlProductDetails.Size = new System.Drawing.Size(897, 655);
             this.pnlProductDetails.TabIndex = 1111144;
             // 
-            // textBox11
+            // lvVerified1
             // 
-            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox11.Enabled = false;
-            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox11.Location = new System.Drawing.Point(253, 584);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(111, 27);
-            this.textBox11.TabIndex = 111111148;
-            this.textBox11.TabStop = false;
-            this.textBox11.Text = "Teller";
+            this.lvVerified1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader43,
+            this.columnHeader44});
+            this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvVerified1.HideSelection = false;
+            this.lvVerified1.Location = new System.Drawing.Point(386, 645);
+            this.lvVerified1.Name = "lvVerified1";
+            this.lvVerified1.Size = new System.Drawing.Size(222, 40);
+            this.lvVerified1.TabIndex = 111111149;
+            this.lvVerified1.UseCompatibleStateImageBehavior = false;
+            this.lvVerified1.View = System.Windows.Forms.View.Details;
+            this.lvVerified1.Visible = false;
+            this.lvVerified1.DoubleClick += new System.EventHandler(this.LvVerified1_DoubleClick);
+            this.lvVerified1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvVerified1_KeyDown);
             // 
-            // textBox13
+            // columnHeader43
             // 
-            this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox13.Location = new System.Drawing.Point(372, 584);
-            this.textBox13.MaxLength = 10;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(176, 27);
-            this.textBox13.TabIndex = 40;
-            this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader43.Width = 120;
+            // 
+            // columnHeader44
+            // 
+            this.columnHeader44.Width = 0;
             // 
             // CP_Product
             // 
@@ -2801,6 +2837,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(914, 691);
+            this.Controls.Add(this.lvVerified1);
             this.Controls.Add(this.pnlProductDetails);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -3069,7 +3106,10 @@
         private System.Windows.Forms.TextBox txtSubgroupType;
         private System.Windows.Forms.ColumnHeader columnHeader42;
         private System.Windows.Forms.CheckBox chkSalesProduct;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txtTeller;
         private System.Windows.Forms.TextBox textBox11;
+        public System.Windows.Forms.ListView lvVerified1;
+        private System.Windows.Forms.ColumnHeader columnHeader43;
+        private System.Windows.Forms.ColumnHeader columnHeader44;
     }
 }

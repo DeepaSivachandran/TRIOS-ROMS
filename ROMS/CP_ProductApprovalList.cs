@@ -93,7 +93,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objspdservice = new SPDataService();
-                        varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0);
+                        varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0,"");
                         string[] varvalue = varResult.Split('~');
                         if (varvalue[0] == "3")
                         {
@@ -105,7 +105,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspdservice = new SPDataService();
-                                    varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 1, "", 0, 0, 0, 0, 0, null, "", "", "", 0);
+                                    varResult = objspdservice.udfnProductMaster(2, Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, "", "Product Delete", 0, null, 1, "", 0, 0, 0, 0, 0, null, "", "", "", 0,"");
                                     objspdservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {
