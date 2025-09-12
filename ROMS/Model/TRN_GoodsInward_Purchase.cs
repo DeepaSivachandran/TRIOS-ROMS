@@ -50,5 +50,7 @@ namespace ROMS.Model
         public int paraGroupId { get; set; } = 0;
         public int paraSubgroupId { get; set; } = 0;
         public int paraEntryTypeID { get; set; } = 0;
+        public int paraRKGID { get; set; } = 0;
+        public int paraBrandID { get; set; } = 0;
     }
 }

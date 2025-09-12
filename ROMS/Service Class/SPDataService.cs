@@ -4352,6 +4352,44 @@ namespace ROMS
             }
             return ds;
         }
+        //Added BY Sathish ON 12-09-2025
+        public DataSet udfnZeroRateReport(TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_ZeroRateProducts_Report]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTRN_GoodsInward_Purchase.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyID", objTRN_GoodsInward_Purchase.paraCompanyId);
+                varSqlCommand.Parameters.AddWithValue("@paraSPID", objTRN_GoodsInward_Purchase.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraSPSCID", objTRN_GoodsInward_Purchase.ParaScheduleId);
+                varSqlCommand.Parameters.AddWithValue("@paraGroupID", objTRN_GoodsInward_Purchase.paraGroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraSubGroupID", objTRN_GoodsInward_Purchase.paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraRKGroupID", objTRN_GoodsInward_Purchase.paraRKGID);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRN_GoodsInward_Purchase.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraProCategoryID", objTRN_GoodsInward_Purchase.paraTypeID);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_GoodsInward_Purchase.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_GoodsInward_Purchase.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraPICode", objTRN_GoodsInward_Purchase.paraAlpha);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }

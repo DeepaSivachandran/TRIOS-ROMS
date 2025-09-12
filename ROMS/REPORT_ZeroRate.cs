@@ -96,47 +96,6 @@ namespace ROMS
         {
             try
             {
-                string varSupplierId = "0";
-                if (txtSupplier.Text.Trim() == "")
-                {
-                    lblSupplierCode.Text = "0";
-                    lblschedleCode.Text = "0";
-                }
-                else
-                {
-                    string[] values = new string[0];
-                    MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 31;
-                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
-                    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
-                    DataSet objDsSupplierId = new DataSet();
-                    SPDataService objDserv = new SPDataService();
-                    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                    objDserv.CloseConnection();
-                    if (objDsSupplierId != null)
-                    {
-                        if (objDsSupplierId.Tables.Count > 0)
-                        {
-                            if (objDsSupplierId.Tables[0].Rows.Count > 0)
-                            {
-                                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
-                                values = Convert.ToString(varSupplierId).Split(',');
-                            }
-                        }
-                    }
-                    if (values[0] == "-1")
-                    {
-                        lblSupplierCode.Text = "0";
-                        lblschedleCode.Text = "0";
-                    }
-                    else
-                    {
-                        lblSupplierCode.Text = values[0];
-                        lblschedleCode.Text = values[1];
-                        txtSupplier.BackColor = Color.White;
-                    }
-                }
-                LV_Supplier.Visible = false;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     epReport.SetError(cmbReportType, "Please select report type.");
@@ -147,7 +106,50 @@ namespace ROMS
                 }
                 else
                 {
-                    udfnSupplierProducts();
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 370)
+                    {
+                        string varSupplierId = "0";
+                        if (txtSupplier.Text.Trim() == "")
+                        {
+                            lblSupplierCode.Text = "0";
+                            lblschedleCode.Text = "0";
+                        }
+                        else
+                        {
+                            string[] values = new string[0];
+                            MR_Supplier objMR_Supplier = new MR_Supplier();
+                            objMR_Supplier.ViewType = 31;
+                            objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
+                            objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
+                            DataSet objDsSupplierId = new DataSet();
+                            SPDataService objDserv = new SPDataService();
+                            objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
+                            objDserv.CloseConnection();
+                            if (objDsSupplierId != null)
+                            {
+                                if (objDsSupplierId.Tables.Count > 0)
+                                {
+                                    if (objDsSupplierId.Tables[0].Rows.Count > 0)
+                                    {
+                                        varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
+                                        values = Convert.ToString(varSupplierId).Split(',');
+                                    }
+                                }
+                            }
+                            if (values[0] == "-1")
+                            {
+                                lblSupplierCode.Text = "0";
+                                lblschedleCode.Text = "0";
+                            }
+                            else
+                            {
+                                lblSupplierCode.Text = values[0];
+                                lblschedleCode.Text = values[1];
+                                txtSupplier.BackColor = Color.White;
+                            }
+                        }
+                    }
+                    udfnZeroRateReports();
                 }
             }
             catch (Exception ex)
@@ -156,12 +158,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnSupplierProducts()
+        public void udfnZeroRateReports()
         {
             try
             {
-                string varSupplierName = "-All-", varProductName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-";
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+                string varSupplierName = "-All-", varProductName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varRackGroupName = "-All-";
+                int varViewType = 0, varSupplierCode = 0, varScheduleCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0, varRackGroupCode = 0;
 
                 if(txtSupplier.Text.Trim()!="")
                 {
@@ -188,7 +190,16 @@ namespace ROMS
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
-
+                
+                if(txtRackgroup.Text.Trim()!="")
+                {
+                    varRackGroupName = txtRackgroup.Text.Trim();
+                    varRackGroupCode = Convert.ToInt32(lblRackgroupCode.Text);
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 371)
+                {
+                    varViewType = 1;
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -198,18 +209,21 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 41;
-                objMR_Supplier.paraSupplierid = varSupplierCode;
-                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraProductCode = varProductCode;
-                objMR_Supplier.paraGroupCode = varGroupCode;
-                objMR_Supplier.paraSubgroupCode = varSubgroupCode;
-                objMR_Supplier.paraBrandCode = varBrandCode;
-                objMR_Supplier.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
-                SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                objspdservice.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
+                objTRN_GoodsInward_Purchase.ViewType = varViewType;
+                objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_GoodsInward_Purchase.ParaSupplierId = varSupplierCode;
+                objTRN_GoodsInward_Purchase.ParaScheduleId = varScheduleCode;
+                objTRN_GoodsInward_Purchase.paraGroupId = varGroupCode;
+                objTRN_GoodsInward_Purchase.paraSubgroupId = varSubgroupCode;
+                objTRN_GoodsInward_Purchase.paraRKGID = varRackGroupCode;
+                objTRN_GoodsInward_Purchase.paraBrandID = varBrandCode;
+                objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_GoodsInward_Purchase.ParaFromDate = dpFromDate.Text;
+                objTRN_GoodsInward_Purchase.ParaToDate = dpToDate.Text;
+                objTRN_GoodsInward_Purchase.paraAlpha = txtProductName.Text;
+                objDs = objdserv.udfnZeroRateReport(objTRN_GoodsInward_Purchase);
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -220,22 +234,32 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Products.rpt");
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 370)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Zero_Rate_SupplierWise.rpt");
+                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 371)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Zero_Rate_AlphaWise.rpt");
+                        objBillreport.SetParameterValue("paraAlphaName", varProductName);
+                        objBillreport.SetParameterValue("paraPICode", txtProductName.Text.Trim());
+                    }
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroupID", varGroupCode);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);
+                    objBillreport.SetParameterValue("paraSubGroupID", varSubgroupCode);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraBrandCode", varBrandCode);
+                    objBillreport.SetParameterValue("paraRKGroupID", varRackGroupCode);
+                    objBillreport.SetParameterValue("paraRackGroupName", varRackGroupName);
+                    objBillreport.SetParameterValue("paraBrandID", varBrandCode);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraProCategoryID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraProTypeName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("paraSPID", varSupplierCode);
+                    objBillreport.SetParameterValue("paraSPSCID", varScheduleCode);
+                    objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -282,6 +306,9 @@ namespace ROMS
         {
             try
             {
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1,369)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,113) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");

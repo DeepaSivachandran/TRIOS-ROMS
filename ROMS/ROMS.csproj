@@ -600,6 +600,20 @@
     <Compile Include="PUR_ReturnDCApprovedList.designer.cs">
       <DependentUpon>PUR_ReturnDCApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_Zero_Rate_AlphaWise.cs">
+      <DependentUpon>RPT_Zero_Rate_AlphaWise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Zero_Rate_SupplierWise.cs">
+      <DependentUpon>RPT_Zero_Rate_SupplierWise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PAY_PayReceipt-SubReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3785,6 +3799,11 @@
       <LastGenOutput>RPT_CP_Product_GST.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_Zero_Rate_SupplierWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Zero_Rate_SupplierWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PAY_PayReceipt-SubReport.cs</LastGenOutput>
@@ -4665,6 +4684,11 @@
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_Zero_Rate_AlphaWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="REPORT_Stock_Non_Moving_Products.resx">
       <DependentUpon>REPORT_Stock_Non_Moving_Products.cs</DependentUpon>
     </EmbeddedResource>
