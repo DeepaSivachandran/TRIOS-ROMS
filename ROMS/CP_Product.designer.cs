@@ -1784,12 +1784,12 @@
             // 
             // grbSalesStockLocation
             // 
+            this.grbSalesStockLocation.Controls.Add(this.lvSaleRack);
             this.grbSalesStockLocation.Controls.Add(this.chkSameasPurchase);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleRack);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleLocation);
             this.grbSalesStockLocation.Controls.Add(this.lvSaleLocation);
             this.grbSalesStockLocation.Controls.Add(this.txtRackDescriptionSales);
-            this.grbSalesStockLocation.Controls.Add(this.lvSaleRack);
             this.grbSalesStockLocation.Controls.Add(this.textBox7);
             this.grbSalesStockLocation.Controls.Add(this.txtDSalesGodown);
             this.grbSalesStockLocation.Controls.Add(this.txtRackMOQQty);
@@ -1848,13 +1848,14 @@
             this.columnHeader25});
             this.lvSaleLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSaleLocation.HideSelection = false;
-            this.lvSaleLocation.Location = new System.Drawing.Point(6, 28);
+            this.lvSaleLocation.Location = new System.Drawing.Point(160, 80);
             this.lvSaleLocation.Name = "lvSaleLocation";
             this.lvSaleLocation.Size = new System.Drawing.Size(388, 78);
             this.lvSaleLocation.TabIndex = 111111147;
             this.lvSaleLocation.UseCompatibleStateImageBehavior = false;
             this.lvSaleLocation.View = System.Windows.Forms.View.Details;
             this.lvSaleLocation.Visible = false;
+            this.lvSaleLocation.SelectedIndexChanged += new System.EventHandler(this.LvSaleLocation_SelectedIndexChanged);
             this.lvSaleLocation.DoubleClick += new System.EventHandler(this.LvSaleLocation_DoubleClick);
             this.lvSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleLocation_KeyDown);
             // 
@@ -1893,13 +1894,14 @@
             this.columnHeader21});
             this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSaleRack.HideSelection = false;
-            this.lvSaleRack.Location = new System.Drawing.Point(208, 28);
+            this.lvSaleRack.Location = new System.Drawing.Point(362, 80);
             this.lvSaleRack.Name = "lvSaleRack";
             this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
             this.lvSaleRack.TabIndex = 134;
             this.lvSaleRack.UseCompatibleStateImageBehavior = false;
             this.lvSaleRack.View = System.Windows.Forms.View.Details;
             this.lvSaleRack.Visible = false;
+            this.lvSaleRack.SelectedIndexChanged += new System.EventHandler(this.LvSaleRack_SelectedIndexChanged);
             this.lvSaleRack.DoubleClick += new System.EventHandler(this.LvSaleRack_DoubleClick);
             this.lvSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleRack_KeyDown);
             // 

@@ -7435,6 +7435,16 @@ namespace ROMS
             udfnStatusFlag();
         }
 
+        private void LvSaleLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LvSaleRack_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void cmbProductType_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
