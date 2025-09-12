@@ -2992,6 +2992,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRNG_StockHold.paraAlpha);
                 varSqlCommand.Parameters.AddWithValue("@paraReason", objTRNG_StockHold.paraReason);
                 varSqlCommand.Parameters.AddWithValue("@paraType", objTRNG_StockHold.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNG_StockHold.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

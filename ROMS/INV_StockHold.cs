@@ -174,6 +174,7 @@ namespace ROMS
                 objTRNG_StockHold.paraToDate = dpToDate.Text;
                 objTRNG_StockHold.paraSLID = varLocationId;
                 objTRNG_StockHold.paraPRID = varProductId;
+                objTRNG_StockHold.paraFlag = 0;
                 objTRNG_StockHold.paraReason = Convert.ToInt32(cmbReason.SelectedValue);
                 objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
@@ -2021,15 +2022,14 @@ namespace ROMS
                     grdStockHold.DataSource = null;
                     DataSet objDs = new DataSet();
                     SPDataService objdserv = new SPDataService();
-                    //objDS = objdserv.udfnStockHoldList(0,0);
                     TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
                     objTRNG_StockHold.ViewType = 0;
-                    //objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
                     objTRNG_StockHold.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objTRNG_StockHold.paraFromDate = dpFromDate.Text;
                     objTRNG_StockHold.paraToDate = dpToDate.Text;
                     objTRNG_StockHold.paraSLID = varLocationId;
                     objTRNG_StockHold.paraPRID = varProductId;
+                    objTRNG_StockHold.paraFlag = 1;
                     objTRNG_StockHold.paraReason = Convert.ToInt32(cmbReason.SelectedValue);
                     objTRNG_StockHold.paraType = Convert.ToInt32(cmbType.SelectedValue);
                     objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);

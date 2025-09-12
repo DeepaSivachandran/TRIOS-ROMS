@@ -242,6 +242,7 @@ namespace ROMS
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
         public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
 
+        public static REPORT_Supplier_Payment objREPORT_Supplier_Payment;
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
         public static REPORT_PUR_PurchaseOrder objREPORT_PUR_PurchaseOrder;
         public static REPORT_PUR_Purchaseorder_Summary objREPORT_PUR_Purchaseorder_Summary;
@@ -3302,6 +3303,24 @@ namespace ROMS
                 MainForm.objREPORT_CP_InactiveProduct = new REPORT_CP_InactiveProduct();
                 MainForm.objREPORT_CP_InactiveProduct.MdiParent = this;
                 MainForm.objREPORT_CP_InactiveProduct.Show();
+                PbCurrentForm = "7.5.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPaymentReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Supplier_Payment = new REPORT_Supplier_Payment();
+                MainForm.objREPORT_Supplier_Payment.MdiParent = this;
+                MainForm.objREPORT_Supplier_Payment.Show();
                 PbCurrentForm = "7.5.3";
             }
             catch (Exception ex)
