@@ -46,8 +46,11 @@ namespace ROMS
                 udfnCmbConcern();
                 DataBind objDBind = new DataBind();
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,75) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
+                objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,114) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDBind = null;
                 VarSearchFlag = true;
+                cmbReason.SelectedValue = 0;
+                cmbType.SelectedValue = 0;
                 udfnList();
             }
             catch (Exception ex)
@@ -1632,6 +1635,61 @@ namespace ROMS
             }
         }
 
+        private void CmbType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1791,7 +1849,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {                   
-                    btnPrint.Focus();                
+                    btnView.Focus();                
                 }
             }
             catch (Exception ex)
@@ -1973,6 +2031,7 @@ namespace ROMS
                     objTRNG_StockHold.paraSLID = varLocationId;
                     objTRNG_StockHold.paraPRID = varProductId;
                     objTRNG_StockHold.paraReason = Convert.ToInt32(cmbReason.SelectedValue);
+                    objTRNG_StockHold.paraType = Convert.ToInt32(cmbType.SelectedValue);
                     objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
                     objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
@@ -1991,6 +2050,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
                         objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
                         objBillreport.SetParameterValue("paraReason", Convert.ToInt32(cmbReason.SelectedValue));
+                        objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
                         objBillreport.SetParameterValue("paraSLID", varLocationId);
                         objBillreport.SetParameterValue("paraPRID", varProductId);
                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
