@@ -50,7 +50,7 @@ namespace ROMS
                 objDBind = null;
                 VarSearchFlag = true;
                 cmbReason.SelectedValue = 0;
-                cmbType.SelectedValue = 0;
+                cmbType.SelectedValue = 372;
                 udfnList();
             }
             catch (Exception ex)
