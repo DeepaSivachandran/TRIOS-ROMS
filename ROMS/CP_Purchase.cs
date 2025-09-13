@@ -1196,7 +1196,7 @@ namespace ROMS
                 { btnConditions.Enabled = false; }
                 if (grdSupplierList.RowCount != 0)
                 { btnClear.Enabled = false; }
-                if (pbPaymentCompletedFlag == 65)
+                if (pbPaymentCompletedFlag == 65 || pbPaymentCompletedFlag == 77 || pbPaymentCompletedFlag == 117)
                 {
                     btnUnapprove.Enabled = false;
                 }
