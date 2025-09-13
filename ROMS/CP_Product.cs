@@ -65,7 +65,7 @@ namespace ROMS
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
-        int  varStatusFlag=0;
+        int  varStatusFlag=0,varStatusID=0;
         
         public CP_Product()
         {
@@ -143,7 +143,6 @@ namespace ROMS
                     errItems.SetError(txtProductName, "Please enter valid parent product");
                     return;
                 }
-
                 if (Convert.ToString(cmbUnit.SelectedValue) != "-1" && cmbUnit.Text != "" && Convert.ToString(cmbChildUnit.SelectedValue) != "-1" && cmbChildUnit.Text != "")
                 {
                     if (Convert.ToString(cmbUnit.SelectedValue) == Convert.ToString(cmbChildUnit.SelectedValue))
@@ -979,17 +978,24 @@ namespace ROMS
                     errItems.Clear();
                     udfncolorchange();
 
-                    if (rbActive.Checked == true && cbCompleted.Checked == true)
+                    if (rbInActive.Checked == true && cbCompleted.Checked == false)
                     {
-                        varStatus = "1";
+                        varStatus = "120";
                     }
-                    else if (rbInActive.Checked == true && cbCompleted.Checked == true)
-                    {
-                        varStatus = "2";
-                    }
-                    else
-                    {
-                        varStatus = "71";
+                    else if (cbCompleted.Checked == true)
+                    { 
+                        if (rbActive.Checked == true && cbCompleted.Checked == true)
+                        {
+                            varStatus = "1";
+                        }
+                        else if (rbInActive.Checked == true && cbCompleted.Checked == true && (varStatusID != 71 && varStatusID != 120))  
+                        {
+                            varStatus = "2"; //Should not be pending or draft
+                        }
+                        else
+                        {
+                            varStatus = "71";
+                        }
                     }
                     if (cbExpiry.Checked == true)
                     {
@@ -7999,6 +8005,7 @@ namespace ROMS
                             txtHsnName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
                             txtHSNCode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
                             cmbNetQty.SelectedValue = objDS.Tables[0].Rows[0]["PR_QUTID"].ToString();
+                            varStatusID =Convert.ToInt16(objDS.Tables[0].Rows[0]["STS"]); 
                             lvHsnCode.Visible = false; 
 
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbExpiry.Checked = true; } else { cbExpiry.Checked = false; }
@@ -8010,7 +8017,7 @@ namespace ROMS
                                 pnlStatus.Enabled = true;
                                 varStatusFlag = 0;
                             }
-                            else if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "71")
+                            else if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "71" || Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "120")
                             {
                                 pnlStatus.Enabled = false;
                                 varStatusFlag = 0;
@@ -8029,7 +8036,8 @@ namespace ROMS
                             {
                                 txtTeller.Enabled = true; txtTeller.ReadOnly = false;
                             }
-                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1" || Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "2")
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "1" 
+                                || Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "2" || Convert.ToString(objDS.Tables[0].Rows[0]["STS"]) == "71")
                             {
                                 cbCompleted.Checked = true;
                                 cbCompleted.Enabled = false;
@@ -8176,10 +8184,10 @@ namespace ROMS
                     }
                 }
                 //if (pbFormStatus == 2 && pbCloneFlag == 0)
-                //if (pbCloneFlag == 0)
-                //{
-                //    udfnDisable();
-                //}
+                if (varStatusID == 71)
+                {
+                    udfnDisable();
+                }
                 if (varProductload == 0)
                 {
                     txtPurRack.Enabled = true;

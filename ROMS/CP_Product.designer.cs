@@ -162,6 +162,10 @@
             this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
+            this.lvSaleRack = new System.Windows.Forms.ListView();
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
             this.txtSaleRack = new System.Windows.Forms.TextBox();
             this.txtSaleLocation = new System.Windows.Forms.TextBox();
@@ -171,10 +175,6 @@
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtRackDescriptionSales = new System.Windows.Forms.TextBox();
-            this.lvSaleRack = new System.Windows.Forms.ListView();
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
@@ -1784,7 +1784,6 @@
             // 
             // grbSalesStockLocation
             // 
-            this.grbSalesStockLocation.Controls.Add(this.lvSaleRack);
             this.grbSalesStockLocation.Controls.Add(this.chkSameasPurchase);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleRack);
             this.grbSalesStockLocation.Controls.Add(this.txtSaleLocation);
@@ -1801,6 +1800,39 @@
             this.grbSalesStockLocation.TabIndex = 17;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
+            // 
+            // lvSaleRack
+            // 
+            this.lvSaleRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader20,
+            this.columnHeader27,
+            this.columnHeader21});
+            this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSaleRack.HideSelection = false;
+            this.lvSaleRack.Location = new System.Drawing.Point(386, 555);
+            this.lvSaleRack.Name = "lvSaleRack";
+            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleRack.TabIndex = 134;
+            this.lvSaleRack.UseCompatibleStateImageBehavior = false;
+            this.lvSaleRack.View = System.Windows.Forms.View.Details;
+            this.lvSaleRack.Visible = false;
+            this.lvSaleRack.SelectedIndexChanged += new System.EventHandler(this.LvSaleRack_SelectedIndexChanged);
+            this.lvSaleRack.DoubleClick += new System.EventHandler(this.LvSaleRack_DoubleClick);
+            this.lvSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleRack_KeyDown);
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Width = 120;
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.DisplayIndex = 2;
+            this.columnHeader27.Width = 120;
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.DisplayIndex = 1;
+            this.columnHeader21.Width = 0;
             // 
             // chkSameasPurchase
             // 
@@ -1885,39 +1917,6 @@
             this.txtRackDescriptionSales.Size = new System.Drawing.Size(381, 27);
             this.txtRackDescriptionSales.TabIndex = 92;
             this.txtRackDescriptionSales.TabStop = false;
-            // 
-            // lvSaleRack
-            // 
-            this.lvSaleRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader20,
-            this.columnHeader27,
-            this.columnHeader21});
-            this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSaleRack.HideSelection = false;
-            this.lvSaleRack.Location = new System.Drawing.Point(362, 80);
-            this.lvSaleRack.Name = "lvSaleRack";
-            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleRack.TabIndex = 134;
-            this.lvSaleRack.UseCompatibleStateImageBehavior = false;
-            this.lvSaleRack.View = System.Windows.Forms.View.Details;
-            this.lvSaleRack.Visible = false;
-            this.lvSaleRack.SelectedIndexChanged += new System.EventHandler(this.LvSaleRack_SelectedIndexChanged);
-            this.lvSaleRack.DoubleClick += new System.EventHandler(this.LvSaleRack_DoubleClick);
-            this.lvSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleRack_KeyDown);
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Width = 120;
-            // 
-            // columnHeader27
-            // 
-            this.columnHeader27.DisplayIndex = 2;
-            this.columnHeader27.Width = 120;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.DisplayIndex = 1;
-            this.columnHeader21.Width = 0;
             // 
             // textBox7
             // 
@@ -2839,6 +2838,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(914, 691);
+            this.Controls.Add(this.lvSaleRack);
             this.Controls.Add(this.lvVerified1);
             this.Controls.Add(this.pnlProductDetails);
             this.Controls.Add(this.btnClose);

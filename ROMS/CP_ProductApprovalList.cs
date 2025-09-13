@@ -197,7 +197,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
 
-                int varGroupId = 0,varStatusId=2;
+                int varGroupId = 0,varStatusId=71; // Pending 
                 if (txtProductGroup.Text == "")
                 {
                     varGroupId = 0;
