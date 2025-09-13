@@ -184,6 +184,7 @@
             this.clmApprovedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCreditID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSPOB_InvoiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -1227,7 +1228,8 @@
             this.clmenteredBy,
             this.clmApprovedBy,
             this.clmCreditID,
-            this.clmFlag});
+            this.clmFlag,
+            this.clmSPOB_InvoiceID});
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle18.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1776,6 +1778,12 @@
             this.clmFlag.Name = "clmFlag";
             this.clmFlag.Visible = false;
             // 
+            // clmSPOB_InvoiceID
+            // 
+            this.clmSPOB_InvoiceID.HeaderText = "SPOB_InvoiceID";
+            this.clmSPOB_InvoiceID.Name = "clmSPOB_InvoiceID";
+            this.clmSPOB_InvoiceID.ReadOnly = true;
+            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1949,5 +1957,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmApprovedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCreditID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSPOB_InvoiceID;
     }
 }
