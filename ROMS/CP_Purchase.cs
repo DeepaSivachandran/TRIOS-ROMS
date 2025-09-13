@@ -8719,12 +8719,21 @@ namespace ROMS
                     txtYear.Enabled = false; txtYear.ReadOnly = true;   
                     txtBatchno.Enabled = false; txtBatchno.ReadOnly = true;
                     txtSourceLocation.Enabled = false; txtSourceLocation.ReadOnly = true;
-                    cmbrack.Enabled = false;  txtSourceLocation.Text = "";
+                    cmbrack.Enabled = false;
+                    txtSourceLocation.Text = "";
                     txtBatchno.Text = "";
+                    txtDate.Text = "";
+                    txtMonth.Text = "";
+                    txtYear.Text = "";
+                    txtMrp.Text = "";
                 }
                 else
                 {
                     txtSourceLocation.Enabled = true; txtSourceLocation.ReadOnly = false;
+                    if (txtSourceLocation.Text.Trim() == "")
+                    {
+                        udfnDefalutLocation();
+                    }
                     cmbrack.Enabled = true;  
                     if (varPrMRPFlag=="1")
                     {

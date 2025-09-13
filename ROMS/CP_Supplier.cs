@@ -1200,6 +1200,7 @@ namespace ROMS
                 dtOpeningCRDetails.Columns.Add("SPOB_COMID", typeof(int));
                 dtOpeningCRDetails.Columns.Add("SPOB_TaxableAmount", typeof(decimal));
                 dtOpeningCRDetails.Columns.Add("SPOB_TaxAmount", typeof(decimal));
+                dtOpeningCRDetails.Columns.Add("SPOB_Adjustments", typeof(decimal));
 
                 udfnLoadState();
                 udfnBankDropDownLoad();
@@ -1575,10 +1576,9 @@ namespace ROMS
                                 {
                                     if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "84") //Cr
                                     {
-                                        grdOpeningCrDetails.Rows.Add(Convert.ToString(objDS.Tables[4].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[4].Rows[i]["Concern"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["TaxableAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["TaxAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["Status"]), Convert.ToString(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ID"]));
-                                        dtOpeningCRDetails.Rows.Add(Convert.ToInt16(objDS.Tables[4].Rows[i]["ID"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToInt16(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["TaxableAmount"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["TaxAmount"]));
-
-
+                                        grdOpeningCrDetails.Rows.Add(Convert.ToString(objDS.Tables[4].Rows[i]["S.No"]), Convert.ToString(objDS.Tables[4].Rows[i]["Concern"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["TaxableAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["TaxAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["Adjustments"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToString(objDS.Tables[4].Rows[i]["Status"]), Convert.ToString(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ID"]));
+                                        dtOpeningCRDetails.Rows.Add(Convert.ToInt16(objDS.Tables[4].Rows[i]["ID"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceDate"]), Convert.ToString(objDS.Tables[4].Rows[i]["InvoiceNo"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["InvoiceAmount"]), Convert.ToInt16(objDS.Tables[4].Rows[i]["StatusID"]), Convert.ToString(objDS.Tables[4].Rows[i]["ConcernID"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["TaxableAmount"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["TaxAmount"]), Convert.ToDecimal(objDS.Tables[4].Rows[i]["Adjustments"]));
+                                         
                                         if (Convert.ToString(Convert.ToString(objDS.Tables[4].Rows[i]["RemoveFlag"])) == "1")
                                         {
                                             ((DataGridViewImageCell)grdOpeningCrDetails.Rows[i].Cells["clmRemove"]).Value = new System.Drawing.Bitmap(1, 1);
@@ -9437,6 +9437,14 @@ namespace ROMS
                     cmbDrCompany.Visible = false;
                     txtDCrCompany.Visible = true;
                     cmbCrCompany.Visible = true;
+                    txtDAdjustments.Visible = true;
+                    txtAdjustments.Visible = true;
+                    cmbCrCompany.SelectedValue = -1;
+                    txtInvoiceNo.Text = "";
+                    txtTaxableAmt.Text = "";
+                    txtTaxAmt.Text = "";
+                    txtInvoiceAmt.Text = "";
+                    txtAdjustments.Text = "";
                 }
                 else if(varOpeningType==85) //Dr
                 {
@@ -9462,6 +9470,8 @@ namespace ROMS
                     cmbDrCompany.Visible = true;
                     txtDCrCompany.Visible = false;
                     cmbCrCompany.Visible = false;
+                    txtDAdjustments.Visible = false;
+                    txtAdjustments.Visible = false;
                 }
                 if (Convert.ToDecimal(txtOpeningAmt.Text) == 0)
                 {
@@ -9474,7 +9484,29 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+        public void udfnAdjuctmentsCalc()
+        {
+            try
+            {
+                decimal varTaxAmt = 0, varTaxableAmt = 0, varAdjustments = 0, varInvoiceAmt = 0;
+                if (txtInvoiceAmt.Text.Trim() != "")
+                { varInvoiceAmt = Convert.ToDecimal(txtInvoiceAmt.Text.Trim()); }
+                if (txtTaxableAmt.Text.Trim() != "")
+                { varTaxableAmt = Convert.ToDecimal(txtTaxableAmt.Text.Trim()); }
+                if (txtTaxAmt.Text.Trim() != "")
+                { varTaxAmt = Convert.ToDecimal(txtTaxAmt.Text.Trim()); }
+
+                varAdjustments = varInvoiceAmt - (varTaxableAmt + varTaxAmt);
+                txtAdjustments.Text = varAdjustments.ToString("###.00");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtOpeningAmt_Enter(object sender, EventArgs e)
         {
             try
@@ -9815,8 +9847,8 @@ namespace ROMS
                                     .Select(r=>r.Field<string>("STS_Name"))
                                     .ToList();
                     stsName = varStatus[0]; 
-                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtTaxableAmt.Text.Trim()), Convert.ToString(txtTaxAmt.Text.Trim()), Convert.ToString(txtInvoiceAmt.Text.Trim()), stsName, 63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
-                    dtOpeningCRDetails.Rows.Add(0, Convert.ToString(dpInvoiceDate.Text), Convert.ToString(txtInvoiceNo.Text), Convert.ToDecimal(txtInvoiceAmt.Text), 63, Convert.ToInt16(cmbCrCompany.SelectedValue), Convert.ToDecimal(txtTaxableAmt.Text), Convert.ToDecimal(txtTaxAmt.Text));
+                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtTaxableAmt.Text.Trim()), Convert.ToString(txtTaxAmt.Text.Trim()), Convert.ToString(txtAdjustments.Text.Trim()), Convert.ToString(txtInvoiceAmt.Text.Trim()), stsName, 63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
+                    dtOpeningCRDetails.Rows.Add(0, Convert.ToString(dpInvoiceDate.Text), Convert.ToString(txtInvoiceNo.Text), Convert.ToDecimal(txtInvoiceAmt.Text), 63, Convert.ToInt16(cmbCrCompany.SelectedValue), Convert.ToDecimal(txtTaxableAmt.Text), Convert.ToDecimal(txtTaxAmt.Text), Convert.ToDecimal(txtAdjustments.Text.Trim()));
                     txtInvoiceNo.Text = "";
                     txtTaxableAmt.Text = "";
                     txtTaxAmt.Text = "";
@@ -10286,6 +10318,7 @@ namespace ROMS
                 {
                     txtInvoiceAmt.Text = Convert.ToString(Convert.ToDecimal(txtTaxableAmt.Text) + Convert.ToDecimal(txtTaxAmt.Text));
                 }
+                udfnAdjuctmentsCalc();
             }
             catch (Exception ex)
             {
@@ -12473,6 +12506,32 @@ namespace ROMS
             try
             {
                 udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtTaxableAmt_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAdjuctmentsCalc();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtInvoiceAmt_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAdjuctmentsCalc();
             }
             catch (Exception ex)
             {

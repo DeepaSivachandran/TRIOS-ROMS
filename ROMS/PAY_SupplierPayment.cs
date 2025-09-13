@@ -1204,6 +1204,7 @@ namespace ROMS
                         
                     }
                 }
+                udfnPaymentDropDown();
                 udfnOutstandingAmount();
             }
             catch (Exception ex)

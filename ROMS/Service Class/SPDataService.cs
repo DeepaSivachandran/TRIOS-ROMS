@@ -1549,7 +1549,7 @@ namespace ROMS
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
              , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
-              int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct)
+              int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller)
         {
             string result = "";
             try
@@ -1611,6 +1611,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameTam", paraProductLabelNameTam);
                 varSqlCommand.Parameters.AddWithValue("@paraParentId", paraParentId);
                 varSqlCommand.Parameters.AddWithValue("@paraSalesProduct", paraSalesProduct);
+                varSqlCommand.Parameters.AddWithValue("@paraInactiveTeller", paraInactiveTeller);
 
                 varSqlCommand.CommandTimeout = 0;
 
