@@ -57,6 +57,17 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.txtbranchname = new System.Windows.Forms.TextBox();
             this.grdBankDetails = new System.Windows.Forms.DataGridView();
+            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBNKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtIFScode = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -85,17 +96,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.epBroker = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbankname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBankShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmbranch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmaccno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmifscode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBNKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmsts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmremovebank = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbform.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnlBStatus.SuspendLayout();
@@ -140,6 +140,7 @@
             this.grbform.Size = new System.Drawing.Size(1142, 667);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            this.grbform.Enter += new System.EventHandler(this.Grbform_Enter);
             // 
             // cmbState
             // 
@@ -378,10 +379,12 @@
             // txtBankShortName
             // 
             this.txtBankShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBankShortName.Enabled = false;
             this.txtBankShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtBankShortName.Location = new System.Drawing.Point(113, 54);
             this.txtBankShortName.MaxLength = 20;
             this.txtBankShortName.Name = "txtBankShortName";
+            this.txtBankShortName.ReadOnly = true;
             this.txtBankShortName.Size = new System.Drawing.Size(300, 27);
             this.txtBankShortName.TabIndex = 13;
             this.txtBankShortName.Enter += new System.EventHandler(this.TxtBankShortName_Enter);
@@ -465,6 +468,85 @@
             this.grdBankDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdBankDetails_CellContentClick);
             this.grdBankDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdBankDetails_DataBindingComplete);
             this.grdBankDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdBankDetails_EditingControlShowing);
+            // 
+            // clmsno
+            // 
+            this.clmsno.HeaderText = "S.No.";
+            this.clmsno.Name = "clmsno";
+            this.clmsno.ReadOnly = true;
+            this.clmsno.Width = 50;
+            // 
+            // clmbankname
+            // 
+            this.clmbankname.HeaderText = "Bank Name";
+            this.clmbankname.Name = "clmbankname";
+            this.clmbankname.ReadOnly = true;
+            this.clmbankname.Width = 150;
+            // 
+            // clmBankShortName
+            // 
+            this.clmBankShortName.HeaderText = "Bank Short Name";
+            this.clmBankShortName.Name = "clmBankShortName";
+            this.clmBankShortName.ReadOnly = true;
+            this.clmBankShortName.Width = 150;
+            // 
+            // clmbranch
+            // 
+            this.clmbranch.HeaderText = "Branch Name";
+            this.clmbranch.Name = "clmbranch";
+            this.clmbranch.ReadOnly = true;
+            this.clmbranch.Width = 150;
+            // 
+            // clmaccno
+            // 
+            this.clmaccno.HeaderText = "Account No.";
+            this.clmaccno.Name = "clmaccno";
+            this.clmaccno.ReadOnly = true;
+            this.clmaccno.Width = 150;
+            // 
+            // clmifscode
+            // 
+            this.clmifscode.HeaderText = "IFS Code";
+            this.clmifscode.Name = "clmifscode";
+            this.clmifscode.ReadOnly = true;
+            this.clmifscode.Width = 175;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "Status";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.ReadOnly = true;
+            // 
+            // clmBNKID
+            // 
+            this.clmBNKID.HeaderText = "Bank ID";
+            this.clmBNKID.Name = "clmBNKID";
+            this.clmBNKID.ReadOnly = true;
+            this.clmBNKID.Visible = false;
+            // 
+            // clmsts
+            // 
+            this.clmsts.HeaderText = "sts";
+            this.clmsts.Name = "clmsts";
+            this.clmsts.ReadOnly = true;
+            this.clmsts.Visible = false;
+            // 
+            // clmEdit
+            // 
+            this.clmEdit.HeaderText = "Edit";
+            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.clmEdit.Name = "clmEdit";
+            this.clmEdit.ReadOnly = true;
+            this.clmEdit.Width = 80;
+            // 
+            // clmremovebank
+            // 
+            this.clmremovebank.HeaderText = "Remove";
+            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
+            this.clmremovebank.Name = "clmremovebank";
+            this.clmremovebank.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmremovebank.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmremovebank.Width = 80;
             // 
             // textBox15
             // 
@@ -814,85 +896,6 @@
             // epBroker
             // 
             this.epBroker.ContainerControl = this;
-            // 
-            // clmsno
-            // 
-            this.clmsno.HeaderText = "S.No.";
-            this.clmsno.Name = "clmsno";
-            this.clmsno.ReadOnly = true;
-            this.clmsno.Width = 50;
-            // 
-            // clmbankname
-            // 
-            this.clmbankname.HeaderText = "Bank Name";
-            this.clmbankname.Name = "clmbankname";
-            this.clmbankname.ReadOnly = true;
-            this.clmbankname.Width = 150;
-            // 
-            // clmBankShortName
-            // 
-            this.clmBankShortName.HeaderText = "Bank Short Name";
-            this.clmBankShortName.Name = "clmBankShortName";
-            this.clmBankShortName.ReadOnly = true;
-            this.clmBankShortName.Width = 150;
-            // 
-            // clmbranch
-            // 
-            this.clmbranch.HeaderText = "Branch Name";
-            this.clmbranch.Name = "clmbranch";
-            this.clmbranch.ReadOnly = true;
-            this.clmbranch.Width = 150;
-            // 
-            // clmaccno
-            // 
-            this.clmaccno.HeaderText = "Account No.";
-            this.clmaccno.Name = "clmaccno";
-            this.clmaccno.ReadOnly = true;
-            this.clmaccno.Width = 150;
-            // 
-            // clmifscode
-            // 
-            this.clmifscode.HeaderText = "IFS Code";
-            this.clmifscode.Name = "clmifscode";
-            this.clmifscode.ReadOnly = true;
-            this.clmifscode.Width = 175;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "Status";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.ReadOnly = true;
-            // 
-            // clmBNKID
-            // 
-            this.clmBNKID.HeaderText = "Bank ID";
-            this.clmBNKID.Name = "clmBNKID";
-            this.clmBNKID.ReadOnly = true;
-            this.clmBNKID.Visible = false;
-            // 
-            // clmsts
-            // 
-            this.clmsts.HeaderText = "sts";
-            this.clmsts.Name = "clmsts";
-            this.clmsts.ReadOnly = true;
-            this.clmsts.Visible = false;
-            // 
-            // clmEdit
-            // 
-            this.clmEdit.HeaderText = "Edit";
-            this.clmEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.clmEdit.Name = "clmEdit";
-            this.clmEdit.ReadOnly = true;
-            this.clmEdit.Width = 80;
-            // 
-            // clmremovebank
-            // 
-            this.clmremovebank.HeaderText = "Remove";
-            this.clmremovebank.Image = global::ROMS.Properties.Resources.remove;
-            this.clmremovebank.Name = "clmremovebank";
-            this.clmremovebank.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmremovebank.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmremovebank.Width = 80;
             // 
             // CP_Broker
             // 

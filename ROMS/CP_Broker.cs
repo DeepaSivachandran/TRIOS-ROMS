@@ -2404,6 +2404,11 @@ namespace ROMS
             }
         }
 
+        private void Grbform_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void GrdBankDetails_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
