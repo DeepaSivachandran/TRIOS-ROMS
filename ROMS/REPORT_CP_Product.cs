@@ -2322,7 +2322,7 @@ namespace ROMS
                         objMR_Product.paraViewType = 49;
                         objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
                         objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
-                        objMR_Product.paraProductName = txtSearchByPICode.Text;
+                        objMR_Product.paraPicode = txtSearchByPICode.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         if (objDs != null)
                         {

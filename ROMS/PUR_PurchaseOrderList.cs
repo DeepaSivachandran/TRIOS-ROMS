@@ -2978,34 +2978,47 @@ namespace ROMS
                     lblschedleCode.Text = "0";
                 }
                 int varsupplier = 0, varpono = 0, varFilter = 0;
-                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 160)
-                    {
-                        varpono = 1;
-                    }
-                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
-                    {
-                        varsupplier = 1;
-                    }
-                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
-                    {
-                        varsupplier = 1;
-                        varpono = 1;
-                    }
-                    if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
-                    {
-                        varsupplier = 1;
-                        varpono = 1;
-                        varFilter = 1;
-                    }
-                    int varprint = 0;
-                    DataSet objDs = new DataSet();
-                    //**** To call the function from SP ***************
-                    int varstatus = 0;
-
-                    SPDataService objdserv = new SPDataService();
-                    objDs = objdserv.udfnPOEntry(0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varstatus, "0", varFilter, 0, 0, 0, 0, 0,0);
+                if (Convert.ToInt32(cmbGroup.SelectedValue) == 160)
+                {
+                    varpono = 1;
+                }
+                if (Convert.ToInt32(cmbGroup.SelectedValue) == 159)
+                {
+                    varsupplier = 1;
+                }
+                if (Convert.ToInt32(cmbGroup.SelectedValue) == 158)
+                {
+                    varsupplier = 1;
+                    varpono = 1;
+                }
+                if (Convert.ToInt32(cmbGroup.SelectedValue) == 161)
+                {
+                    varsupplier = 1;
+                    varpono = 1;
+                    varFilter = 1;
+                }
+                int varprint = 0;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                int varstatus = 0;
+                int varFlag = 0, varStatusID = 0;
+                if (rbComplete.Checked == true)
+                {
+                    varFlag = 1;
+                    varStatusID = Convert.ToInt32(cmbstatus.SelectedValue);
+                }
+                else
+                {
+                    varStatusID = Convert.ToInt32(cmbstatus.SelectedValue);
+                }
+                int varViewType = 0;
+                if (Convert.ToInt32(cmbShow.SelectedValue) == 135)
+                {
+                    varViewType = 1;
+                }
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPOEntry(varViewType, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupId.Text), Convert.ToInt32(lblSubGroupId.Text), dpPlanDate.Text, dptoPlanDate.Text, 0, varStatusID, "0", varFilter, 0, 0, 0, 0, 0, varFlag);
                     objdserv.CloseConnection();
-
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count > 0)
@@ -3030,20 +3043,21 @@ namespace ROMS
                             RPTViewer.RefreshReport();
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        if (rbComplete.Checked == true)
-                            {
-                                varstatus = 14;
-                            }
-                            else
-                            {
-                                varstatus = Convert.ToInt32(cmbstatus.SelectedValue);
-                            }
+                            //if (rbComplete.Checked == true)
+                            //{
+                            //    varstatus = 14;
+                            //}
+                            //else
+                            //{
+                            //    varstatus = Convert.ToInt32(cmbstatus.SelectedValue);
+                            //}
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Order_List.rpt");
                             objBillreport.SetParameterValue("paraSupplierid ", Convert.ToInt32(lblSupplierCode.Text));
                             objBillreport.SetParameterValue("paraSupplierScheduleid ", Convert.ToInt32(lblschedleCode.Text));
                             objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
                             objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
-                            objBillreport.SetParameterValue("paraStatusId", Convert.ToString(varstatus));
+                            objBillreport.SetParameterValue("paraStatusId", varStatusID);
+                            objBillreport.SetParameterValue("paraFlag", varFlag);
                             objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbstatus.Text));
                             objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpPlanDate.Text));
                             objBillreport.SetParameterValue("paraToDate", Convert.ToString(dptoPlanDate.Text));

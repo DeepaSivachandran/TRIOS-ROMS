@@ -963,7 +963,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                 {
                     if (Convert.ToInt32(grdGroup.Rows.Count) > 0)
                     {
@@ -977,14 +977,29 @@ namespace ROMS
                 }
                 else
                 {
-                    if (Convert.ToInt32(grdRack.Rows.Count) > 0)
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
                     {
-                        for (int i = 0; i < grdRack.Rows.Count; i++)
+                        if (Convert.ToInt32(grdRack.Rows.Count) > 0)
                         {
-                            grdRack.Rows[i].Cells[0].Value = true;
+                            for (int i = 0; i < grdRack.Rows.Count; i++)
+                            {
+                                grdRack.Rows[i].Cells[0].Value = true;
+                            }
+                            txtSubgroup.Text = "";
+                            txtProduct.Text = "";
                         }
-                        txtSubgroup.Text = "";
-                        txtProduct.Text = "";
+                    }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                    {
+                        if (Convert.ToInt32(grdRackGroup.Rows.Count) > 0)
+                        {
+                            for (int i = 0; i < grdRackGroup.Rows.Count; i++)
+                            {
+                                grdRackGroup.Rows[i].Cells[0].Value = true;
+                            }
+                            txtSubgroup.Text = "";
+                            txtProduct.Text = "";
+                        }
                     }
                 }
             }
@@ -999,7 +1014,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                 {
                     if (Convert.ToInt32(grdGroup.Rows.Count) > 0)
                     {
@@ -1013,14 +1028,29 @@ namespace ROMS
                 }
                 else
                 {
-                    if (Convert.ToInt32(grdRack.Rows.Count) > 0)
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
                     {
-                        for (int i = 0; i < grdRack.Rows.Count; i++)
+                        if (Convert.ToInt32(grdRack.Rows.Count) > 0)
                         {
-                            grdRack.Rows[i].Cells[0].Value = false;
+                            for (int i = 0; i < grdRack.Rows.Count; i++)
+                            {
+                                grdRack.Rows[i].Cells[0].Value = false;
+                            }
+                            txtSubgroup.Text = "";
+                            txtProduct.Text = "";
                         }
-                        txtSubgroup.Text = "";
-                        txtProduct.Text = "";
+                    }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                    {
+                        if (Convert.ToInt32(grdRackGroup.Rows.Count) > 0)
+                        {
+                            for (int i = 0; i < grdRackGroup.Rows.Count; i++)
+                            {
+                                grdRackGroup.Rows[i].Cells[0].Value = false;
+                            }
+                            txtSubgroup.Text = "";
+                            txtProduct.Text = "";
+                        }
                     }
                 }
             }
@@ -1346,7 +1376,7 @@ namespace ROMS
             {
                 if (txtGroup.Text.Trim().Length > 0)
                 {
-                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                     {
                         if (grdGroup?.DataSource != null)
                         {
@@ -1355,9 +1385,19 @@ namespace ROMS
                     }
                     else
                     {
-                        if (grdRack?.DataSource != null)
+                        if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
                         {
-                            (grdRack?.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
+                            if (grdRack?.DataSource != null)
+                            {
+                                (grdRack?.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
+                            }
+                        }
+                        if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                        {
+                            if (grdRackGroup?.DataSource != null)
+                            {
+                                (grdRackGroup?.DataSource as DataTable).DefaultView.RowFilter = "([RackGroup Name]) LIKE '%" + txtGroup.Text + "%'";
+                            }
                         }
                     }
                 }
