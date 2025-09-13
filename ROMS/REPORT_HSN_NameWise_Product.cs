@@ -523,7 +523,8 @@ namespace ROMS
                                     DGV_FilterHSN.Columns["HSNID"].Visible = false;
                                     DGV_FilterHSN.Columns["HSN_GSTID"].Visible = false;
                                     DGV_FilterHSN.Columns["GST_Text"].Visible = false;
-                                    DGV_FilterHSN.Columns["HSN_Name"].HeaderText = "HSN Name";
+                                    DGV_FilterHSN.Columns["HSN_Name"].Visible = false;
+                                    //DGV_FilterHSN.Columns["HSN_Name"].HeaderText = "HSN Name";
                                     DGV_FilterHSN.Columns["HSN_Code"].HeaderText = "HSN Code";
                                     DGV_FilterHSN.Columns["HSN_Name"].Width = 160;
                                     DGV_FilterHSN.Columns["HSN_Code"].Width = 140;

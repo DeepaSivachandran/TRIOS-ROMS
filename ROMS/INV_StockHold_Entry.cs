@@ -405,6 +405,16 @@ namespace ROMS
                                     MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     //udfnClear();
                                     MainForm.objINV_StockHold.udfnList();
+                                    string varSHID = "0";
+                                    if (SHID == 0)
+                                    {
+                                        varSHID = varvalue1[2];
+                                    }
+                                    else
+                                    {
+                                        varSHID = Convert.ToString(SHID);
+                                    }
+                                    udfnStockHoldPrint(varSHID);
                                     varUpdate = 1;
                                     this.Close();
                                 }
@@ -429,6 +439,40 @@ namespace ROMS
             }
             finally
             {
+            }
+        }
+        public void udfnStockHoldPrint(string varSHID)
+        {
+            try
+            {
+                DialogResult result1;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(87);
+                objDServ.CloseConnection();
+                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result1 == DialogResult.Yes)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_StockHold_Print.rpt");
+                    varHeader = "Stock Hold Report";
+
+                    objBillreport.SetParameterValue("paraSHID", Convert.ToInt32(varSHID));
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void btnSave_Enter(object sender, EventArgs e)

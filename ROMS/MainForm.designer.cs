@@ -127,9 +127,11 @@ namespace ROMS
             this.tsmRackGroupReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductsReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmInactiveProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierWiseProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAssigned = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUnassignedProducts = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMGRNReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,7 +185,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -890,7 +892,8 @@ namespace ROMS
             this.stockReportToolStripMenuItem,
             this.financeReportToolStripMenuItem,
             this.tsmPurchaseTaxReports,
-            this.tsmItemMovementReport});
+            this.tsmItemMovementReport,
+            this.tsmPaymentReport});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -913,6 +916,7 @@ namespace ROMS
             this.tsmRackGroupReport,
             this.tsmSupplierReport,
             this.tsmProductsReport,
+            this.tsmInactiveProduct,
             this.tsmSupplierWiseProducts,
             this.tsmAssigned,
             this.tsmUnassignedProducts,
@@ -1012,6 +1016,13 @@ namespace ROMS
             this.tsmProductsReport.Text = "Product";
             this.tsmProductsReport.Click += new System.EventHandler(this.ProductToolStripMenuItem_Click);
             // 
+            // tsmInactiveProduct
+            // 
+            this.tsmInactiveProduct.Name = "tsmInactiveProduct";
+            this.tsmInactiveProduct.Size = new System.Drawing.Size(184, 22);
+            this.tsmInactiveProduct.Text = "Inactive Product";
+            this.tsmInactiveProduct.Click += new System.EventHandler(this.TsmInactiveProduct_Click);
+            // 
             // tsmSupplierWiseProducts
             // 
             this.tsmSupplierWiseProducts.Name = "tsmSupplierWiseProducts";
@@ -1032,6 +1043,13 @@ namespace ROMS
             this.tsmUnassignedProducts.Size = new System.Drawing.Size(184, 22);
             this.tsmUnassignedProducts.Text = "Unassigned Products";
             this.tsmUnassignedProducts.Click += new System.EventHandler(this.tsmUnassignedProducts_Click);
+            // 
+            // tsmZeroRate
+            // 
+            this.tsmZeroRate.Name = "tsmZeroRate";
+            this.tsmZeroRate.Size = new System.Drawing.Size(184, 22);
+            this.tsmZeroRate.Text = "Zero Rate";
+            this.tsmZeroRate.Click += new System.EventHandler(this.TsmZeroRate_Click);
             // 
             // TSMGRNReport
             // 
@@ -1313,7 +1331,7 @@ namespace ROMS
             // tsmSupplierLEdgerReport
             // 
             this.tsmSupplierLEdgerReport.Name = "tsmSupplierLEdgerReport";
-            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(149, 22);
+            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(180, 22);
             this.tsmSupplierLEdgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLEdgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
             // 
@@ -1458,12 +1476,12 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // tsmZeroRate
+            // tsmPaymentReport
             // 
-            this.tsmZeroRate.Name = "tsmZeroRate";
-            this.tsmZeroRate.Size = new System.Drawing.Size(184, 22);
-            this.tsmZeroRate.Text = "Zero Rate";
-            this.tsmZeroRate.Click += new System.EventHandler(this.TsmZeroRate_Click);
+            this.tsmPaymentReport.Name = "tsmPaymentReport";
+            this.tsmPaymentReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmPaymentReport.Text = "Payment";
+            this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
             // 
             // MainForm
             // 
@@ -1648,5 +1666,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseHSNWise;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseHSNNameWise;
         private System.Windows.Forms.ToolStripMenuItem tsmZeroRate;
+        private System.Windows.Forms.ToolStripMenuItem tsmInactiveProduct;
+        private System.Windows.Forms.ToolStripMenuItem tsmPaymentReport;
     }
 }
