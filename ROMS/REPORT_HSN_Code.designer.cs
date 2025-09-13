@@ -173,7 +173,7 @@
             this.DGV_FilterHSN.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterHSN.RowTemplate.Height = 25;
             this.DGV_FilterHSN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterHSN.Size = new System.Drawing.Size(237, 226);
+            this.DGV_FilterHSN.Size = new System.Drawing.Size(218, 226);
             this.DGV_FilterHSN.TabIndex = 1111231;
             this.DGV_FilterHSN.Visible = false;
             this.DGV_FilterHSN.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);

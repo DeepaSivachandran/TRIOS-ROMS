@@ -510,7 +510,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtHsnName.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtHsnName.Text.Trim(), "");
+                        objDs = objspdservice.udfnHsnList(6, 0, 1, 0, txtHsnName.Text.Trim(), "");
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -521,13 +521,12 @@ namespace ROMS
                                     DGV_FilterHSN.Visible = true;
                                     DGV_FilterHSN.DataSource = objDs.Tables[0];
                                     DGV_FilterHSN.Columns["HSNID"].Visible = false;
-                                    DGV_FilterHSN.Columns["HSN_GSTID"].Visible = false;
                                     DGV_FilterHSN.Columns["GST_Text"].Visible = false;
                                     DGV_FilterHSN.Columns["HSN_Name"].Visible = false;
                                     //DGV_FilterHSN.Columns["HSN_Name"].HeaderText = "HSN Name";
                                     DGV_FilterHSN.Columns["HSN_Code"].HeaderText = "HSN Code";
                                     DGV_FilterHSN.Columns["HSN_Name"].Width = 160;
-                                    DGV_FilterHSN.Columns["HSN_Code"].Width = 140;
+                                    DGV_FilterHSN.Columns["HSN_Code"].Width = 180;
                                     DGV_FilterHSN.Columns["HSN_Code"].DisplayIndex = 0;
                                     DGV_FilterHSN.Columns["HSN_Name"].DisplayIndex = 1;
                                     DGV_FilterHSN.BringToFront();
