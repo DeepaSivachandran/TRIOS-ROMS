@@ -308,7 +308,8 @@
             this.lblGC = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbPurchaseProducts = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnPurClose = new System.Windows.Forms.Button();
+            this.grbPurchaseVariant = new System.Windows.Forms.GroupBox();
             this.btnPurMappedProUnSelectAll = new System.Windows.Forms.Button();
             this.btnPurMappedProSelectAll = new System.Windows.Forms.Button();
             this.btnPurProUnSelectAll = new System.Windows.Forms.Button();
@@ -361,12 +362,13 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.DGV_PurSearchGrid = new System.Windows.Forms.DataGridView();
-            this.btnPurClose = new System.Windows.Forms.Button();
             this.btnPurMappingsave = new System.Windows.Forms.Button();
             this.tbOpeningBalance = new System.Windows.Forms.TabPage();
             this.btnOBSave = new System.Windows.Forms.Button();
             this.btnOBClose = new System.Windows.Forms.Button();
             this.grpOpeningBalance = new System.Windows.Forms.GroupBox();
+            this.txtDAdjustments = new System.Windows.Forms.TextBox();
+            this.txtAdjustments = new System.Windows.Forms.TextBox();
             this.txtTotInvoice = new System.Windows.Forms.TextBox();
             this.textBox37 = new System.Windows.Forms.TextBox();
             this.txtTaxAmt = new System.Windows.Forms.TextBox();
@@ -381,6 +383,19 @@
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.grdOpeningCrDetails = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTaxableAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTaxAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAdjustments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOpeningBalanceStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOBStsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnOpeningAdd = new System.Windows.Forms.Button();
             this.txtDInvoiceAmt = new System.Windows.Forms.TextBox();
             this.txtInvoiceAmt = new System.Windows.Forms.TextBox();
@@ -395,21 +410,6 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtDAdjustments = new System.Windows.Forms.TextBox();
-            this.txtAdjustments = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTaxableAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTaxAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAdjustments = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOpeningBalanceStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOBStsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -445,7 +445,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).BeginInit();
             this.tbPurchaseProducts.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.grbPurchaseVariant.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurMappedProducts)).BeginInit();
@@ -3630,7 +3630,8 @@
             // 
             // tbPurchaseProducts
             // 
-            this.tbPurchaseProducts.Controls.Add(this.groupBox6);
+            this.tbPurchaseProducts.Controls.Add(this.btnPurClose);
+            this.tbPurchaseProducts.Controls.Add(this.grbPurchaseVariant);
             this.tbPurchaseProducts.Location = new System.Drawing.Point(4, 28);
             this.tbPurchaseProducts.Name = "tbPurchaseProducts";
             this.tbPurchaseProducts.Padding = new System.Windows.Forms.Padding(3);
@@ -3639,35 +3640,48 @@
             this.tbPurchaseProducts.Text = "Purchase - Variant Mapping";
             this.tbPurchaseProducts.UseVisualStyleBackColor = true;
             // 
-            // groupBox6
+            // btnPurClose
             // 
-            this.groupBox6.BackColor = System.Drawing.Color.White;
-            this.groupBox6.Controls.Add(this.btnPurMappedProUnSelectAll);
-            this.groupBox6.Controls.Add(this.btnPurMappedProSelectAll);
-            this.groupBox6.Controls.Add(this.btnPurProUnSelectAll);
-            this.groupBox6.Controls.Add(this.btnPurProSelectAll);
-            this.groupBox6.Controls.Add(this.lblPurProducts);
-            this.groupBox6.Controls.Add(this.label18);
-            this.groupBox6.Controls.Add(this.txtPurOrderDays);
-            this.groupBox6.Controls.Add(this.lblPurOrderTypeId);
-            this.groupBox6.Controls.Add(this.txtPurordertype);
-            this.groupBox6.Controls.Add(this.cmbPurOrderSchedule);
-            this.groupBox6.Controls.Add(this.label20);
-            this.groupBox6.Controls.Add(this.comboBox2);
-            this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Controls.Add(this.lblPurMappedProducts);
-            this.groupBox6.Controls.Add(this.label24);
-            this.groupBox6.Controls.Add(this.txtPurSupplierName);
-            this.groupBox6.Controls.Add(this.label25);
-            this.groupBox6.Controls.Add(this.groupBox7);
-            this.groupBox6.Controls.Add(this.btnPurClose);
-            this.groupBox6.Controls.Add(this.btnPurMappingsave);
-            this.groupBox6.Location = new System.Drawing.Point(4, 2);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1322, 602);
-            this.groupBox6.TabIndex = 958769;
-            this.groupBox6.TabStop = false;
+            this.btnPurClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPurClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnPurClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurClose.Location = new System.Drawing.Point(1245, 567);
+            this.btnPurClose.Name = "btnPurClose";
+            this.btnPurClose.Size = new System.Drawing.Size(75, 29);
+            this.btnPurClose.TabIndex = 8;
+            this.btnPurClose.Text = "Close";
+            this.btnPurClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPurClose.UseVisualStyleBackColor = true;
+            this.btnPurClose.Click += new System.EventHandler(this.BtnPurClose_Click);
+            // 
+            // grbPurchaseVariant
+            // 
+            this.grbPurchaseVariant.BackColor = System.Drawing.Color.White;
+            this.grbPurchaseVariant.Controls.Add(this.btnPurMappedProUnSelectAll);
+            this.grbPurchaseVariant.Controls.Add(this.btnPurMappedProSelectAll);
+            this.grbPurchaseVariant.Controls.Add(this.btnPurProUnSelectAll);
+            this.grbPurchaseVariant.Controls.Add(this.btnPurProSelectAll);
+            this.grbPurchaseVariant.Controls.Add(this.lblPurProducts);
+            this.grbPurchaseVariant.Controls.Add(this.label18);
+            this.grbPurchaseVariant.Controls.Add(this.txtPurOrderDays);
+            this.grbPurchaseVariant.Controls.Add(this.lblPurOrderTypeId);
+            this.grbPurchaseVariant.Controls.Add(this.txtPurordertype);
+            this.grbPurchaseVariant.Controls.Add(this.cmbPurOrderSchedule);
+            this.grbPurchaseVariant.Controls.Add(this.label20);
+            this.grbPurchaseVariant.Controls.Add(this.comboBox2);
+            this.grbPurchaseVariant.Controls.Add(this.label21);
+            this.grbPurchaseVariant.Controls.Add(this.label22);
+            this.grbPurchaseVariant.Controls.Add(this.lblPurMappedProducts);
+            this.grbPurchaseVariant.Controls.Add(this.label24);
+            this.grbPurchaseVariant.Controls.Add(this.txtPurSupplierName);
+            this.grbPurchaseVariant.Controls.Add(this.label25);
+            this.grbPurchaseVariant.Controls.Add(this.groupBox7);
+            this.grbPurchaseVariant.Controls.Add(this.btnPurMappingsave);
+            this.grbPurchaseVariant.Location = new System.Drawing.Point(4, 2);
+            this.grbPurchaseVariant.Name = "grbPurchaseVariant";
+            this.grbPurchaseVariant.Size = new System.Drawing.Size(1322, 602);
+            this.grbPurchaseVariant.TabIndex = 958769;
+            this.grbPurchaseVariant.TabStop = false;
             // 
             // btnPurMappedProUnSelectAll
             // 
@@ -4168,6 +4182,9 @@
             this.txtSearchByPurMappedProducts.Size = new System.Drawing.Size(403, 27);
             this.txtSearchByPurMappedProducts.TabIndex = 6;
             this.txtSearchByPurMappedProducts.TextChanged += new System.EventHandler(this.TxtSearchByPurMappedProducts_TextChanged);
+            this.txtSearchByPurMappedProducts.Enter += new System.EventHandler(this.TxtSearchByPurMappedProducts_Enter);
+            this.txtSearchByPurMappedProducts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByPurMappedProducts_KeyDown);
+            this.txtSearchByPurMappedProducts.Leave += new System.EventHandler(this.TxtSearchByPurMappedProducts_Leave);
             // 
             // label29
             // 
@@ -4188,6 +4205,9 @@
             this.txtSearchByPurProducts.Size = new System.Drawing.Size(147, 27);
             this.txtSearchByPurProducts.TabIndex = 5;
             this.txtSearchByPurProducts.TextChanged += new System.EventHandler(this.TxtSearchByPurProducts_TextChanged);
+            this.txtSearchByPurProducts.Enter += new System.EventHandler(this.TxtSearchByPurProducts_Enter);
+            this.txtSearchByPurProducts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchByPurProducts_KeyDown);
+            this.txtSearchByPurProducts.Leave += new System.EventHandler(this.TxtSearchByPurProducts_Leave);
             // 
             // button6
             // 
@@ -4381,20 +4401,6 @@
             this.DGV_PurSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_PurSearchGrid_CurrentCellDirtyStateChanged);
             this.DGV_PurSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_PurSearchGrid_Scroll);
             // 
-            // btnPurClose
-            // 
-            this.btnPurClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnPurClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnPurClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPurClose.Location = new System.Drawing.Point(1245, 566);
-            this.btnPurClose.Name = "btnPurClose";
-            this.btnPurClose.Size = new System.Drawing.Size(75, 29);
-            this.btnPurClose.TabIndex = 8;
-            this.btnPurClose.Text = "Close";
-            this.btnPurClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPurClose.UseVisualStyleBackColor = true;
-            this.btnPurClose.Click += new System.EventHandler(this.BtnPurClose_Click);
-            // 
             // btnPurMappingsave
             // 
             this.btnPurMappingsave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -4488,6 +4494,30 @@
             this.grpOpeningBalance.TabIndex = 31;
             this.grpOpeningBalance.TabStop = false;
             this.grpOpeningBalance.Text = "Opening Balance";
+            // 
+            // txtDAdjustments
+            // 
+            this.txtDAdjustments.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDAdjustments.Enabled = false;
+            this.txtDAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDAdjustments.Location = new System.Drawing.Point(1058, 61);
+            this.txtDAdjustments.Name = "txtDAdjustments";
+            this.txtDAdjustments.ReadOnly = true;
+            this.txtDAdjustments.Size = new System.Drawing.Size(69, 27);
+            this.txtDAdjustments.TabIndex = 90;
+            this.txtDAdjustments.Text = "Adjustments";
+            // 
+            // txtAdjustments
+            // 
+            this.txtAdjustments.Enabled = false;
+            this.txtAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtAdjustments.Location = new System.Drawing.Point(1127, 61);
+            this.txtAdjustments.MaxLength = 10;
+            this.txtAdjustments.Name = "txtAdjustments";
+            this.txtAdjustments.ReadOnly = true;
+            this.txtAdjustments.Size = new System.Drawing.Size(98, 27);
+            this.txtAdjustments.TabIndex = 89;
+            this.txtAdjustments.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTotInvoice
             // 
@@ -4715,6 +4745,110 @@
             this.grdOpeningCrDetails.TabIndex = 76;
             this.grdOpeningCrDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOpeningCrDetails_CellContentClick);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle41;
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 70;
+            // 
+            // clmConcern
+            // 
+            this.clmConcern.HeaderText = "Concern";
+            this.clmConcern.Name = "clmConcern";
+            this.clmConcern.ReadOnly = true;
+            this.clmConcern.Width = 80;
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "Invoice No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            this.clmInvoiceNo.Width = 140;
+            // 
+            // clmInvoiceDate
+            // 
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle42;
+            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            this.clmInvoiceDate.Width = 120;
+            // 
+            // clmTaxableAmt
+            // 
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTaxableAmt.DefaultCellStyle = dataGridViewCellStyle43;
+            this.clmTaxableAmt.HeaderText = "Taxable Amount";
+            this.clmTaxableAmt.Name = "clmTaxableAmt";
+            this.clmTaxableAmt.ReadOnly = true;
+            this.clmTaxableAmt.Width = 140;
+            // 
+            // clmTaxAmt
+            // 
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTaxAmt.DefaultCellStyle = dataGridViewCellStyle44;
+            this.clmTaxAmt.HeaderText = "Tax Amount";
+            this.clmTaxAmt.Name = "clmTaxAmt";
+            this.clmTaxAmt.ReadOnly = true;
+            this.clmTaxAmt.Width = 140;
+            // 
+            // clmAdjustments
+            // 
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmAdjustments.DefaultCellStyle = dataGridViewCellStyle45;
+            this.clmAdjustments.HeaderText = "Adjustments";
+            this.clmAdjustments.Name = "clmAdjustments";
+            this.clmAdjustments.ReadOnly = true;
+            this.clmAdjustments.Width = 140;
+            // 
+            // clmInvoiceAmount
+            // 
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmInvoiceAmount.DefaultCellStyle = dataGridViewCellStyle46;
+            this.clmInvoiceAmount.HeaderText = "Amount";
+            this.clmInvoiceAmount.Name = "clmInvoiceAmount";
+            this.clmInvoiceAmount.ReadOnly = true;
+            this.clmInvoiceAmount.Width = 140;
+            // 
+            // clmOpeningBalanceStatus
+            // 
+            this.clmOpeningBalanceStatus.HeaderText = "Status";
+            this.clmOpeningBalanceStatus.Name = "clmOpeningBalanceStatus";
+            this.clmOpeningBalanceStatus.ReadOnly = true;
+            this.clmOpeningBalanceStatus.Width = 160;
+            // 
+            // clmOBStsID
+            // 
+            this.clmOBStsID.HeaderText = "Status ID";
+            this.clmOBStsID.Name = "clmOBStsID";
+            this.clmOBStsID.ReadOnly = true;
+            this.clmOBStsID.Visible = false;
+            // 
+            // clmConcernId
+            // 
+            this.clmConcernId.HeaderText = "Concern ID";
+            this.clmConcernId.Name = "clmConcernId";
+            this.clmConcernId.ReadOnly = true;
+            this.clmConcernId.Visible = false;
+            // 
+            // clmID
+            // 
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
+            this.clmID.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Width = 60;
+            // 
             // btnOpeningAdd
             // 
             this.btnOpeningAdd.BackColor = System.Drawing.Color.White;
@@ -4891,134 +5025,6 @@
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
             // 
-            // txtDAdjustments
-            // 
-            this.txtDAdjustments.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDAdjustments.Enabled = false;
-            this.txtDAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDAdjustments.Location = new System.Drawing.Point(1058, 61);
-            this.txtDAdjustments.Name = "txtDAdjustments";
-            this.txtDAdjustments.ReadOnly = true;
-            this.txtDAdjustments.Size = new System.Drawing.Size(69, 27);
-            this.txtDAdjustments.TabIndex = 90;
-            this.txtDAdjustments.Text = "Adjustments";
-            // 
-            // txtAdjustments
-            // 
-            this.txtAdjustments.Enabled = false;
-            this.txtAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAdjustments.Location = new System.Drawing.Point(1127, 61);
-            this.txtAdjustments.MaxLength = 10;
-            this.txtAdjustments.Name = "txtAdjustments";
-            this.txtAdjustments.ReadOnly = true;
-            this.txtAdjustments.Size = new System.Drawing.Size(98, 27);
-            this.txtAdjustments.TabIndex = 89;
-            this.txtAdjustments.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle41;
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 70;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            this.clmConcern.Width = 80;
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "Invoice No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            this.clmInvoiceNo.Width = 140;
-            // 
-            // clmInvoiceDate
-            // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle42;
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            this.clmInvoiceDate.Width = 120;
-            // 
-            // clmTaxableAmt
-            // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmTaxableAmt.DefaultCellStyle = dataGridViewCellStyle43;
-            this.clmTaxableAmt.HeaderText = "Taxable Amount";
-            this.clmTaxableAmt.Name = "clmTaxableAmt";
-            this.clmTaxableAmt.ReadOnly = true;
-            this.clmTaxableAmt.Width = 140;
-            // 
-            // clmTaxAmt
-            // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmTaxAmt.DefaultCellStyle = dataGridViewCellStyle44;
-            this.clmTaxAmt.HeaderText = "Tax Amount";
-            this.clmTaxAmt.Name = "clmTaxAmt";
-            this.clmTaxAmt.ReadOnly = true;
-            this.clmTaxAmt.Width = 140;
-            // 
-            // clmAdjustments
-            // 
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmAdjustments.DefaultCellStyle = dataGridViewCellStyle45;
-            this.clmAdjustments.HeaderText = "Adjustments";
-            this.clmAdjustments.Name = "clmAdjustments";
-            this.clmAdjustments.ReadOnly = true;
-            this.clmAdjustments.Width = 140;
-            // 
-            // clmInvoiceAmount
-            // 
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmInvoiceAmount.DefaultCellStyle = dataGridViewCellStyle46;
-            this.clmInvoiceAmount.HeaderText = "Amount";
-            this.clmInvoiceAmount.Name = "clmInvoiceAmount";
-            this.clmInvoiceAmount.ReadOnly = true;
-            this.clmInvoiceAmount.Width = 140;
-            // 
-            // clmOpeningBalanceStatus
-            // 
-            this.clmOpeningBalanceStatus.HeaderText = "Status";
-            this.clmOpeningBalanceStatus.Name = "clmOpeningBalanceStatus";
-            this.clmOpeningBalanceStatus.ReadOnly = true;
-            this.clmOpeningBalanceStatus.Width = 160;
-            // 
-            // clmOBStsID
-            // 
-            this.clmOBStsID.HeaderText = "Status ID";
-            this.clmOBStsID.Name = "clmOBStsID";
-            this.clmOBStsID.ReadOnly = true;
-            this.clmOBStsID.Visible = false;
-            // 
-            // clmConcernId
-            // 
-            this.clmConcernId.HeaderText = "Concern ID";
-            this.clmConcernId.Name = "clmConcernId";
-            this.clmConcernId.ReadOnly = true;
-            this.clmConcernId.Visible = false;
-            // 
-            // clmID
-            // 
-            this.clmID.HeaderText = "ID";
-            this.clmID.Name = "clmID";
-            this.clmID.ReadOnly = true;
-            this.clmID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Width = 60;
-            // 
             // CP_Supplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -5095,8 +5101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSupplierMapping)).EndInit();
             this.tbPurchaseProducts.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.grbPurchaseVariant.ResumeLayout(false);
+            this.grbPurchaseVariant.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).EndInit();
@@ -5376,7 +5382,7 @@
         private System.Windows.Forms.TextBox txtTotInvoice;
         private System.Windows.Forms.TextBox textBox37;
         private System.Windows.Forms.TabPage tbPurchaseProducts;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox grbPurchaseVariant;
         public System.Windows.Forms.Button btnPurMappedProUnSelectAll;
         public System.Windows.Forms.Button btnPurMappedProSelectAll;
         public System.Windows.Forms.Button btnPurProUnSelectAll;

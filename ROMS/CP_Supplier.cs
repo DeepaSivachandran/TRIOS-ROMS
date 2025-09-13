@@ -1566,7 +1566,7 @@ namespace ROMS
                         if (objDS.Tables[3].Rows.Count > 0)
                         {
                             varScheduleStsCount = Convert.ToInt32(objDS.Tables[3].Rows[0]["ScheduleCount"]);
-                            udfnThirdTabEnable();
+                            udfnThirdTabEnable(); udfnPurchaseVariantTabEnable();
                         }
                         if (objDS.Tables.Count > 3)
                         {
@@ -1688,6 +1688,27 @@ namespace ROMS
                 txtSearchByProduct2.Enabled = false;
                 btnListPrint.Enabled = false;
                 grdViewSupplierMapping.Enabled = false;
+            }
+        }
+        public void udfnPurchaseVariantTabEnable()
+        {
+            try
+            {
+                if (varScheduleStsCount == 1)
+                {
+                    this.ActiveControl = cmbPurOrderSchedule;
+                    grbPurchaseVariant.Enabled = true;
+                }
+                else
+                {
+                    this.ActiveControl = btnPurClose;
+                    grbPurchaseVariant.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void CP_Supplier_Leave(object sender, EventArgs e)
@@ -3818,7 +3839,6 @@ namespace ROMS
                     }
                     if (tcSupplier.SelectedIndex == 3)
                     {
-
                         cmbOrderschedule.Focus();
                         BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
                         cmborderday.SelectedIndex = 0;
@@ -3926,6 +3946,18 @@ namespace ROMS
                         this.ActiveControl = cmbOrderschedule;
                         udfnLoadOrderSchedule();
                         udfnThirdTabEnable();
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                }
+                if (e.TabPageIndex == 4)
+                {
+                    try
+                    {
+                        udfnPurchaseVariantTabEnable();
                     }
                     catch (Exception ex)
                     {
@@ -10331,6 +10363,8 @@ namespace ROMS
         {
             try
             {
+                txtSearchByPurProducts.Text = "";
+                txtSearchByPurMappedProducts.Text = "";
                 udfnPurProductsGridLoad();
                 udfnPurMappingDropDownLoad();
                 udfnPurdataLoad();
@@ -10469,9 +10503,7 @@ namespace ROMS
             try
             {
                 dtPurProducts = null;
-                dtPurMappedProducts = null;
                 grdPurSupplierMappingLoad.DataSource = null;
-                grdPurMappedProducts.DataSource = null;
                 if (txtPurGroup.Text.Trim() == "")
                 { varPurGroupId = 0; }
                 if (txtPurSubgroup.Text.Trim() == "")
@@ -10481,7 +10513,6 @@ namespace ROMS
 
                 lblNoRecordsFound.Visible = false;
                 BeginInvoke(new Action(() => cmbMappingordeDay.Select(int.MaxValue, 0)));
-                grdPurSupplierMappingLoad.DataSource = null;
                 SPDataService objspservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 SupplierUpdate = 0;
@@ -10712,8 +10743,6 @@ namespace ROMS
                         }
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -10843,7 +10872,7 @@ namespace ROMS
         {
             try
             {
-                txtSearchByProduct1.Text = "";
+                txtSearchByPurProducts.Text = "";
                 if (DGV_PurSearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
@@ -10853,7 +10882,7 @@ namespace ROMS
                 grdPurSupplierMappingLoad.DataSource = objDser.udfnGridSearchFilter(DGV_PurSearchGrid, grdPurSupplierMappingLoad);
                 objDser.CloseConnection();
                 grdPurSupplierMappingLoad.HorizontalScrollingOffset = DGV_PurSearchGrid.HorizontalScrollingOffset;
-                lblTotalProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
+                lblPurProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -11103,13 +11132,10 @@ namespace ROMS
         {
             try
             {
-                if (grdPurSupplierMappingLoad.Rows.Count > 0)
-                {
-                    BindingSource bsPurProducts = new BindingSource();
-                    bsPurProducts.DataSource = dtPurProducts;
-                    grdPurSupplierMappingLoad.DataSource = bsPurProducts;
-                    bsPurProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurProducts.Text}%'";
-                }
+                BindingSource bsPurProducts = new BindingSource();
+                bsPurProducts.DataSource = dtPurProducts;
+                grdPurSupplierMappingLoad.DataSource = bsPurProducts;
+                bsPurProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurProducts.Text}%'";
             }
             catch (Exception ex)
             {
@@ -11586,12 +11612,16 @@ namespace ROMS
         {
             try
             {
+                txtSearchByPurProducts.Text = "";
+                txtSearchByPurMappedProducts.Text = "";
                 lvPurGroup.Visible = false;
                 lvPurSubgroup.Visible = false;
                 lvPurBrand.Visible = false;
 
                 udfnPurProductsGridLoad();
-                udfnPurGridRemove();
+                //udfnPurGridRemove();
+                udfnPurMappingDropDownLoad();
+                udfnPurdataLoad();
             }
             catch (Exception ex)
             {
@@ -11600,7 +11630,7 @@ namespace ROMS
             }
             finally
             {
-                lblPurProducts.Text = grdPurMappedProducts.Rows.Count.ToString();
+                lblPurProducts.Text = grdPurSupplierMappingLoad.Rows.Count.ToString();
                 txtSearchByPurProducts.Text = "";
             }
         }
@@ -12136,13 +12166,10 @@ namespace ROMS
         {
             try
             {
-                if (grdPurMappedProducts.Rows.Count > 0)
-                {
-                    BindingSource bsPurMappedProducts = new BindingSource();
-                    bsPurMappedProducts.DataSource = dtPurMappedProducts;
-                    grdPurMappedProducts.DataSource = bsPurMappedProducts;
-                    bsPurMappedProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurMappedProducts.Text}%'";
-                }
+                BindingSource bsPurMappedProducts = new BindingSource();
+                bsPurMappedProducts.DataSource = dtPurMappedProducts;
+                grdPurMappedProducts.DataSource = bsPurMappedProducts;
+                bsPurMappedProducts.Filter = $"[P.I Code] LIKE '%{txtSearchByPurMappedProducts.Text}%'";
             }
             catch (Exception ex)
             {
@@ -12532,6 +12559,102 @@ namespace ROMS
             try
             {
                 udfnAdjuctmentsCalc();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPurProducts_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvHide();
+                txtSearchByPurProducts.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_PurSearchGrid.ColumnCount; i++)
+                {
+                    DGV_PurSearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                DGV_PurSearchGrid_CurrentCellDirtyStateChanged(sender, e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPurProducts_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSearchByPurMappedProducts.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPurProducts_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPurProducts.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPurMappedProducts_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLvHide();
+                txtSearchByPurMappedProducts.BackColor = Color.LemonChiffon;
+                for (int i = 1; i < DGV_PurMappedSearchGrid.ColumnCount; i++)
+                {
+                    DGV_PurMappedSearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged(sender, e);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPurMappedProducts_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnPurMappingsave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtSearchByPurMappedProducts_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSearchByPurMappedProducts.BackColor = Color.White;
             }
             catch (Exception ex)
             {
