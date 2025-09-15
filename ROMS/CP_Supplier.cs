@@ -10279,7 +10279,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnOpeningAdd.Focus();
+                    txtInvoiceAmt.Focus();
                 }
             }
             catch (Exception ex)

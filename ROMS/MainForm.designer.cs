@@ -177,6 +177,7 @@ namespace ROMS
             this.tsmPurchaseHSNWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseHSNNameWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmItemMovementReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -185,7 +186,6 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -253,7 +253,7 @@ namespace ROMS
             this.tsmpurchase.Name = "tsmpurchase";
             this.tsmpurchase.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
             this.tsmpurchase.Size = new System.Drawing.Size(63, 21);
-            this.tsmpurchase.Text = "&Purchase";
+            this.tsmpurchase.Text = "&Purchase"; 
             // 
             // tsmpurchaseSupplier
             // 
@@ -1331,7 +1331,7 @@ namespace ROMS
             // tsmSupplierLEdgerReport
             // 
             this.tsmSupplierLEdgerReport.Name = "tsmSupplierLEdgerReport";
-            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(149, 22);
             this.tsmSupplierLEdgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLEdgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
             // 
@@ -1405,6 +1405,13 @@ namespace ROMS
             this.tsmItemMovementReport.Text = "Item Movement Analysis";
             this.tsmItemMovementReport.Click += new System.EventHandler(this.tsmItemMovementReport_Click);
             // 
+            // tsmPaymentReport
+            // 
+            this.tsmPaymentReport.Name = "tsmPaymentReport";
+            this.tsmPaymentReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmPaymentReport.Text = "Payment";
+            this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
+            // 
             // tsmMyProfile
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1475,13 +1482,6 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
-            // 
-            // tsmPaymentReport
-            // 
-            this.tsmPaymentReport.Name = "tsmPaymentReport";
-            this.tsmPaymentReport.Size = new System.Drawing.Size(191, 22);
-            this.tsmPaymentReport.Text = "Payment";
-            this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
             // 
             // MainForm
             // 

@@ -4436,7 +4436,7 @@
             this.btnOBSave.Location = new System.Drawing.Point(1155, 576);
             this.btnOBSave.Name = "btnOBSave";
             this.btnOBSave.Size = new System.Drawing.Size(84, 29);
-            this.btnOBSave.TabIndex = 35;
+            this.btnOBSave.TabIndex = 11;
             this.btnOBSave.Text = "Update";
             this.btnOBSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOBSave.UseVisualStyleBackColor = true;
@@ -4452,7 +4452,7 @@
             this.btnOBClose.Location = new System.Drawing.Point(1245, 576);
             this.btnOBClose.Name = "btnOBClose";
             this.btnOBClose.Size = new System.Drawing.Size(75, 29);
-            this.btnOBClose.TabIndex = 36;
+            this.btnOBClose.TabIndex = 12;
             this.btnOBClose.Text = "Close";
             this.btnOBClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOBClose.UseVisualStyleBackColor = true;
@@ -4516,7 +4516,7 @@
             this.txtAdjustments.Name = "txtAdjustments";
             this.txtAdjustments.ReadOnly = true;
             this.txtAdjustments.Size = new System.Drawing.Size(98, 27);
-            this.txtAdjustments.TabIndex = 89;
+            this.txtAdjustments.TabIndex = 9;
             this.txtAdjustments.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTotInvoice
@@ -4858,7 +4858,7 @@
             this.btnOpeningAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnOpeningAdd.Name = "btnOpeningAdd";
             this.btnOpeningAdd.Size = new System.Drawing.Size(25, 25);
-            this.btnOpeningAdd.TabIndex = 9;
+            this.btnOpeningAdd.TabIndex = 10;
             this.btnOpeningAdd.UseVisualStyleBackColor = false;
             this.btnOpeningAdd.Click += new System.EventHandler(this.BtnOpeningAdd_Click);
             this.btnOpeningAdd.Enter += new System.EventHandler(this.BtnOpeningAdd_Enter);
