@@ -99,10 +99,10 @@ namespace ROMS
                 dtDamage.Rows.Add(Convert.ToInt32((lblProduct.Text).Trim()),Convert.ToInt32(varSLID),Convert.ToInt32(varRKID), string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), Convert.ToInt32(varTempDay), Convert.ToInt32(varTempMonth), Convert.ToInt32(varTempYear), txtExpiryDate.Text.Trim(),txtBatchNo.Text.Trim(),txtQuantity.Text.Trim(),varUTID,20,lblSupplierCode.Text.Trim(),lblScheduleCode.Text.Trim(),Convert.ToInt32(cmbReason.SelectedValue));
                 txttotalitem.Text = Convert.ToString(grdDamageEntry.Rows.Count);
                 varModifiedFlag = 1;
-                txtProductName.Focus();
                 epDamageEntry.Clear();
                 grdDamageEntry.ClearSelection();
                 udfnProductClear();
+                txtProductName.Focus();
                 lblUnit.Text = "";
                 int Rowcount = grdDamageEntry.Rows.Count - 1;
                 if(varBlockedSupplier=="98")

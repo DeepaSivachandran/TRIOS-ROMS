@@ -1809,11 +1809,11 @@ namespace ROMS
                     grdStockTransfer.Columns["clmquantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdStockTransfer.Columns["clmExpirydate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     varModifiedFlag = 1;
-                    txtProductNamePICode.Focus();
                     errStockTransfer.Clear();
                     grdStockTransfer.ClearSelection();
                     lblUnit.Text = "";
                     udfnProductClear();
+                    txtProductNamePICode.Focus();
                 }
             }
             catch (Exception ex)

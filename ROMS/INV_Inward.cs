@@ -1691,7 +1691,7 @@ namespace ROMS
                         }
                         udfnProductClear();
                         txtProductName.Focus();
-                        txtProductName.Text = "";
+                        //txtProductName.Text = "";
                         varPRID = "0";
                         udfnShelflifeCheck();
                     }
