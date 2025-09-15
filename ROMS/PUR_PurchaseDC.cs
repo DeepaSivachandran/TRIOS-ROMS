@@ -382,7 +382,7 @@ namespace ROMS
                 txtBatchNo.BackColor = Color.White;
                 txtActualQty.BackColor = Color.White;
                 txtRack.BackColor = Color.White;
-                this.ActiveControl = txtProductName;
+                //this.ActiveControl = txtProductName;
                 epPurchaseDC.Clear();
                 txtStockLocation.BackColor = Color.White;
                 txtRack.Enabled = true;
@@ -5320,6 +5320,7 @@ namespace ROMS
                             }
                             udfnAddClear();
                             txtProductName.Text = "";
+                            txtProductName.Focus();
                             lblProductcode.Text = "0";
                             //  txtProductName.BackColor = Color.White;
                             udfnProductCount();

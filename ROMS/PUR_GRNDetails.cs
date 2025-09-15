@@ -5432,7 +5432,7 @@ namespace ROMS
                                 }
                                 varProductsIDs.Add(Convert.ToInt32(lblProductcode.Text)); 
                                 varModifiedFlag = 1;  
-                                this.ActiveControl = txtProductName;
+                                //this.ActiveControl = txtProductName;
                                 string[] varShelflifeper = Convert.ToString(varShelflifevalue).Split(' '); 
                                 if (varShelflifeper[0] != "")
                                 {
@@ -5531,7 +5531,8 @@ namespace ROMS
                                     CellLocation.Style.BackColor = Color.LightGray; CellLocation.ReadOnly = true;
                                     CellRack.Style.BackColor = Color.LightGray; CellRack.ReadOnly = true;
                                 }
-                                udfnrowclear(); 
+                                udfnrowclear();
+                                txtProductName.Focus();
                             } 
                         }
                     }
