@@ -2866,7 +2866,8 @@ namespace ROMS
                                     Convert.ToDecimal(objDs.Tables[1].Rows[i]["ToBePaid"]), 
                                     Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]),
                                     Convert.ToDecimal(objDs.Tables[1].Rows[i]["Balance"]),  
-                                    Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["ID1"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), Convert.ToString(objDs.Tables[1].Rows[i]["status"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[1].Rows[i]["CNID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Flag"]));
+                                    Convert.ToInt32(objDs.Tables[1].Rows[i]["ID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["ID1"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), Convert.ToString(objDs.Tables[1].Rows[i]["status"]), Convert.ToString(objDs.Tables[1].Rows[i]["Return Status"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToString(objDs.Tables[1].Rows[i]["Entered By"]), Convert.ToString(objDs.Tables[1].Rows[i]["Approved By"]), Convert.ToString(objDs.Tables[1].Rows[i]["CNID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Flag"]), Convert.ToString(objDs.Tables[1].Rows[i]["SPOBID"]) 
+                                    );
                                  
                                 dtPayment.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["ID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["PAYI_PayAmount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYI_STSID"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["PAYIID"]), 0, 0, Convert.ToDecimal(objDs.Tables[1].Rows[i]["Disc Amount"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["Disc ID"]), Convert.ToString(objDs.Tables[1].Rows[i]["Invoice No"]),Convert.ToDecimal(objDs.Tables[1].Rows[i]["Addition"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["Dedution"]), 
                                      Convert.ToDecimal(objDs.Tables[1].Rows[i]["ToBePaid"]),
@@ -2876,7 +2877,8 @@ namespace ROMS
                                      Convert.ToDecimal(objDs.Tables[1].Rows[i]["RetAdjustAmnt"]),
                                      Convert.ToDecimal(objDs.Tables[1].Rows[i]["InvoiceAmount"]),
                                      Convert.ToString(objDs.Tables[1].Rows[i]["InvoiceDate"]) ,
-                                      Convert.ToDecimal(objDs.Tables[1].Rows[i]["Outstading Amount"])
+                                      Convert.ToDecimal(objDs.Tables[1].Rows[i]["Outstading Amount"]),
+                                      Convert.ToInt16(objDs.Tables[1].Rows[i]["SPOBID"])
                                     ); 
                                 grdSupplierPayment.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdSupplierPayment.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

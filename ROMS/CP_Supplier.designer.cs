@@ -367,6 +367,8 @@
             this.btnOBSave = new System.Windows.Forms.Button();
             this.btnOBClose = new System.Windows.Forms.Button();
             this.grpOpeningBalance = new System.Windows.Forms.GroupBox();
+            this.txtDAdjustments = new System.Windows.Forms.TextBox();
+            this.txtAdjustments = new System.Windows.Forms.TextBox();
             this.txtTotInvoice = new System.Windows.Forms.TextBox();
             this.textBox37 = new System.Windows.Forms.TextBox();
             this.txtTaxAmt = new System.Windows.Forms.TextBox();
@@ -381,6 +383,19 @@
             this.textBox33 = new System.Windows.Forms.TextBox();
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.grdOpeningCrDetails = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTaxableAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTaxAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAdjustments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmInvoiceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOpeningBalanceStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOBStsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnOpeningAdd = new System.Windows.Forms.Button();
             this.txtDInvoiceAmt = new System.Windows.Forms.TextBox();
             this.txtInvoiceAmt = new System.Windows.Forms.TextBox();
@@ -395,21 +410,6 @@
             this.lblOrderDay = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtDAdjustments = new System.Windows.Forms.TextBox();
-            this.txtAdjustments = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcern = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTaxableAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTaxAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAdjustments = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmInvoiceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOpeningBalanceStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOBStsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmConcernId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errCompany)).BeginInit();
             this.tsSupplierMapping.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -4430,7 +4430,7 @@
             this.btnOBSave.Location = new System.Drawing.Point(1155, 576);
             this.btnOBSave.Name = "btnOBSave";
             this.btnOBSave.Size = new System.Drawing.Size(84, 29);
-            this.btnOBSave.TabIndex = 35;
+            this.btnOBSave.TabIndex = 11;
             this.btnOBSave.Text = "Update";
             this.btnOBSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOBSave.UseVisualStyleBackColor = true;
@@ -4446,7 +4446,7 @@
             this.btnOBClose.Location = new System.Drawing.Point(1245, 576);
             this.btnOBClose.Name = "btnOBClose";
             this.btnOBClose.Size = new System.Drawing.Size(75, 29);
-            this.btnOBClose.TabIndex = 36;
+            this.btnOBClose.TabIndex = 12;
             this.btnOBClose.Text = "Close";
             this.btnOBClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOBClose.UseVisualStyleBackColor = true;
@@ -4488,6 +4488,30 @@
             this.grpOpeningBalance.TabIndex = 31;
             this.grpOpeningBalance.TabStop = false;
             this.grpOpeningBalance.Text = "Opening Balance";
+            // 
+            // txtDAdjustments
+            // 
+            this.txtDAdjustments.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDAdjustments.Enabled = false;
+            this.txtDAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDAdjustments.Location = new System.Drawing.Point(1058, 61);
+            this.txtDAdjustments.Name = "txtDAdjustments";
+            this.txtDAdjustments.ReadOnly = true;
+            this.txtDAdjustments.Size = new System.Drawing.Size(69, 27);
+            this.txtDAdjustments.TabIndex = 90;
+            this.txtDAdjustments.Text = "Adjustments";
+            // 
+            // txtAdjustments
+            // 
+            this.txtAdjustments.Enabled = false;
+            this.txtAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtAdjustments.Location = new System.Drawing.Point(1127, 61);
+            this.txtAdjustments.MaxLength = 10;
+            this.txtAdjustments.Name = "txtAdjustments";
+            this.txtAdjustments.ReadOnly = true;
+            this.txtAdjustments.Size = new System.Drawing.Size(98, 27);
+            this.txtAdjustments.TabIndex = 9;
+            this.txtAdjustments.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTotInvoice
             // 
@@ -4715,6 +4739,110 @@
             this.grdOpeningCrDetails.TabIndex = 76;
             this.grdOpeningCrDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOpeningCrDetails_CellContentClick);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle41;
+            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 70;
+            // 
+            // clmConcern
+            // 
+            this.clmConcern.HeaderText = "Concern";
+            this.clmConcern.Name = "clmConcern";
+            this.clmConcern.ReadOnly = true;
+            this.clmConcern.Width = 80;
+            // 
+            // clmInvoiceNo
+            // 
+            this.clmInvoiceNo.HeaderText = "Invoice No.";
+            this.clmInvoiceNo.Name = "clmInvoiceNo";
+            this.clmInvoiceNo.ReadOnly = true;
+            this.clmInvoiceNo.Width = 140;
+            // 
+            // clmInvoiceDate
+            // 
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle42;
+            this.clmInvoiceDate.HeaderText = "Invoice Date";
+            this.clmInvoiceDate.Name = "clmInvoiceDate";
+            this.clmInvoiceDate.ReadOnly = true;
+            this.clmInvoiceDate.Width = 120;
+            // 
+            // clmTaxableAmt
+            // 
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTaxableAmt.DefaultCellStyle = dataGridViewCellStyle43;
+            this.clmTaxableAmt.HeaderText = "Taxable Amount";
+            this.clmTaxableAmt.Name = "clmTaxableAmt";
+            this.clmTaxableAmt.ReadOnly = true;
+            this.clmTaxableAmt.Width = 140;
+            // 
+            // clmTaxAmt
+            // 
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTaxAmt.DefaultCellStyle = dataGridViewCellStyle44;
+            this.clmTaxAmt.HeaderText = "Tax Amount";
+            this.clmTaxAmt.Name = "clmTaxAmt";
+            this.clmTaxAmt.ReadOnly = true;
+            this.clmTaxAmt.Width = 140;
+            // 
+            // clmAdjustments
+            // 
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmAdjustments.DefaultCellStyle = dataGridViewCellStyle45;
+            this.clmAdjustments.HeaderText = "Adjustments";
+            this.clmAdjustments.Name = "clmAdjustments";
+            this.clmAdjustments.ReadOnly = true;
+            this.clmAdjustments.Width = 140;
+            // 
+            // clmInvoiceAmount
+            // 
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmInvoiceAmount.DefaultCellStyle = dataGridViewCellStyle46;
+            this.clmInvoiceAmount.HeaderText = "Amount";
+            this.clmInvoiceAmount.Name = "clmInvoiceAmount";
+            this.clmInvoiceAmount.ReadOnly = true;
+            this.clmInvoiceAmount.Width = 140;
+            // 
+            // clmOpeningBalanceStatus
+            // 
+            this.clmOpeningBalanceStatus.HeaderText = "Status";
+            this.clmOpeningBalanceStatus.Name = "clmOpeningBalanceStatus";
+            this.clmOpeningBalanceStatus.ReadOnly = true;
+            this.clmOpeningBalanceStatus.Width = 160;
+            // 
+            // clmOBStsID
+            // 
+            this.clmOBStsID.HeaderText = "Status ID";
+            this.clmOBStsID.Name = "clmOBStsID";
+            this.clmOBStsID.ReadOnly = true;
+            this.clmOBStsID.Visible = false;
+            // 
+            // clmConcernId
+            // 
+            this.clmConcernId.HeaderText = "Concern ID";
+            this.clmConcernId.Name = "clmConcernId";
+            this.clmConcernId.ReadOnly = true;
+            this.clmConcernId.Visible = false;
+            // 
+            // clmID
+            // 
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
+            this.clmID.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Width = 60;
+            // 
             // btnOpeningAdd
             // 
             this.btnOpeningAdd.BackColor = System.Drawing.Color.White;
@@ -4724,7 +4852,7 @@
             this.btnOpeningAdd.Margin = new System.Windows.Forms.Padding(0);
             this.btnOpeningAdd.Name = "btnOpeningAdd";
             this.btnOpeningAdd.Size = new System.Drawing.Size(25, 25);
-            this.btnOpeningAdd.TabIndex = 9;
+            this.btnOpeningAdd.TabIndex = 10;
             this.btnOpeningAdd.UseVisualStyleBackColor = false;
             this.btnOpeningAdd.Click += new System.EventHandler(this.BtnOpeningAdd_Click);
             this.btnOpeningAdd.Enter += new System.EventHandler(this.BtnOpeningAdd_Enter);
@@ -4890,134 +5018,6 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Width = 60;
-            // 
-            // txtDAdjustments
-            // 
-            this.txtDAdjustments.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDAdjustments.Enabled = false;
-            this.txtDAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDAdjustments.Location = new System.Drawing.Point(1058, 61);
-            this.txtDAdjustments.Name = "txtDAdjustments";
-            this.txtDAdjustments.ReadOnly = true;
-            this.txtDAdjustments.Size = new System.Drawing.Size(69, 27);
-            this.txtDAdjustments.TabIndex = 90;
-            this.txtDAdjustments.Text = "Adjustments";
-            // 
-            // txtAdjustments
-            // 
-            this.txtAdjustments.Enabled = false;
-            this.txtAdjustments.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAdjustments.Location = new System.Drawing.Point(1127, 61);
-            this.txtAdjustments.MaxLength = 10;
-            this.txtAdjustments.Name = "txtAdjustments";
-            this.txtAdjustments.ReadOnly = true;
-            this.txtAdjustments.Size = new System.Drawing.Size(98, 27);
-            this.txtAdjustments.TabIndex = 89;
-            this.txtAdjustments.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle41;
-            this.dataGridViewTextBoxColumn1.HeaderText = "S.No.";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 70;
-            // 
-            // clmConcern
-            // 
-            this.clmConcern.HeaderText = "Concern";
-            this.clmConcern.Name = "clmConcern";
-            this.clmConcern.ReadOnly = true;
-            this.clmConcern.Width = 80;
-            // 
-            // clmInvoiceNo
-            // 
-            this.clmInvoiceNo.HeaderText = "Invoice No.";
-            this.clmInvoiceNo.Name = "clmInvoiceNo";
-            this.clmInvoiceNo.ReadOnly = true;
-            this.clmInvoiceNo.Width = 140;
-            // 
-            // clmInvoiceDate
-            // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clmInvoiceDate.DefaultCellStyle = dataGridViewCellStyle42;
-            this.clmInvoiceDate.HeaderText = "Invoice Date";
-            this.clmInvoiceDate.Name = "clmInvoiceDate";
-            this.clmInvoiceDate.ReadOnly = true;
-            this.clmInvoiceDate.Width = 120;
-            // 
-            // clmTaxableAmt
-            // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmTaxableAmt.DefaultCellStyle = dataGridViewCellStyle43;
-            this.clmTaxableAmt.HeaderText = "Taxable Amount";
-            this.clmTaxableAmt.Name = "clmTaxableAmt";
-            this.clmTaxableAmt.ReadOnly = true;
-            this.clmTaxableAmt.Width = 140;
-            // 
-            // clmTaxAmt
-            // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmTaxAmt.DefaultCellStyle = dataGridViewCellStyle44;
-            this.clmTaxAmt.HeaderText = "Tax Amount";
-            this.clmTaxAmt.Name = "clmTaxAmt";
-            this.clmTaxAmt.ReadOnly = true;
-            this.clmTaxAmt.Width = 140;
-            // 
-            // clmAdjustments
-            // 
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmAdjustments.DefaultCellStyle = dataGridViewCellStyle45;
-            this.clmAdjustments.HeaderText = "Adjustments";
-            this.clmAdjustments.Name = "clmAdjustments";
-            this.clmAdjustments.ReadOnly = true;
-            this.clmAdjustments.Width = 140;
-            // 
-            // clmInvoiceAmount
-            // 
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmInvoiceAmount.DefaultCellStyle = dataGridViewCellStyle46;
-            this.clmInvoiceAmount.HeaderText = "Amount";
-            this.clmInvoiceAmount.Name = "clmInvoiceAmount";
-            this.clmInvoiceAmount.ReadOnly = true;
-            this.clmInvoiceAmount.Width = 140;
-            // 
-            // clmOpeningBalanceStatus
-            // 
-            this.clmOpeningBalanceStatus.HeaderText = "Status";
-            this.clmOpeningBalanceStatus.Name = "clmOpeningBalanceStatus";
-            this.clmOpeningBalanceStatus.ReadOnly = true;
-            this.clmOpeningBalanceStatus.Width = 160;
-            // 
-            // clmOBStsID
-            // 
-            this.clmOBStsID.HeaderText = "Status ID";
-            this.clmOBStsID.Name = "clmOBStsID";
-            this.clmOBStsID.ReadOnly = true;
-            this.clmOBStsID.Visible = false;
-            // 
-            // clmConcernId
-            // 
-            this.clmConcernId.HeaderText = "Concern ID";
-            this.clmConcernId.Name = "clmConcernId";
-            this.clmConcernId.ReadOnly = true;
-            this.clmConcernId.Visible = false;
-            // 
-            // clmID
-            // 
-            this.clmID.HeaderText = "ID";
-            this.clmID.Name = "clmID";
-            this.clmID.ReadOnly = true;
-            this.clmID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Width = 60;
             // 
             // CP_Supplier
             // 

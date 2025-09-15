@@ -1783,6 +1783,7 @@
             this.clmSPOB_InvoiceID.HeaderText = "SPOB_InvoiceID";
             this.clmSPOB_InvoiceID.Name = "clmSPOB_InvoiceID";
             this.clmSPOB_InvoiceID.ReadOnly = true;
+            this.clmSPOB_InvoiceID.Visible = false;
             // 
             // PAY_SupplierPayment
             // 
