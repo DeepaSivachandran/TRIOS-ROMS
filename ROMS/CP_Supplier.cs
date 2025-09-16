@@ -1592,7 +1592,12 @@ namespace ROMS
                                     }
                                     else if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "85") //Dr
                                     {
-                                        cmbDrCompany.SelectedValue = Convert.ToInt16(objDS.Tables[4].Rows[0]["ConcernID"]); 
+                                        cmbDrCompany.SelectedValue = Convert.ToInt16(objDS.Tables[4].Rows[0]["ConcernID"]);
+                                        if (Convert.ToString(Convert.ToString(objDS.Tables[4].Rows[i]["RemoveFlag"])) == "1")
+                                        {
+                                            txtOpeningAmt.Enabled = false; txtOpeningAmt.ReadOnly = true;
+                                            cmbDrCompany.Enabled = false;
+                                        }
                                     }
                                 }
                                 grdOpeningCrDetails.ClearSelection();
