@@ -893,7 +893,7 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
-                    btnMonths.Enabled = true;
+                    btnMonths.Enabled = false;
                     cmbMonths.Enabled = true;
                     cmbMonths.SelectedValue = 0;
                     cmbInvType.Enabled = true;
@@ -1060,13 +1060,19 @@ namespace ROMS
         {
             try
             {
-                if (chlbMonths.Visible == true)
+                if (chlbMonths.Visible)
                 {
                     chlbMonths.Visible = false;
                 }
                 else
                 {
                     chlbMonths.Visible = true;
+
+                    chlbMonths.Focus();
+                    if (chlbMonths.Items.Count > 0)
+                    {
+                        chlbMonths.SelectedIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1108,13 +1114,18 @@ namespace ROMS
         {
             try
             {
-                //int index = chlbMonths.IndexFromPoint(e.Location);
-                //if (index != ListBox.NoMatches)
-                //{
-                //    // Select the clicked item first
-                //    chlbMonths.SelectedIndex = index;
-
-                //}
+                int index = chlbMonths.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
+                {
+                    chlbMonths.SelectedIndex = index;
+                    Rectangle itemRect = chlbMonths.GetItemRectangle(index);
+                    int checkBoxWidth = 16;
+                    Rectangle checkBoxRect = new Rectangle(itemRect.X, itemRect.Y, checkBoxWidth, itemRect.Height);
+                    if (checkBoxRect.Contains(e.Location))
+                    {
+                        chlbMonths.SetItemChecked(index, !chlbMonths.GetItemChecked(index));
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1132,7 +1143,6 @@ namespace ROMS
                     int index = chlbMonths.SelectedIndex;
                     if (index != -1)
                     {
-                        // Toggle checked state
                         chlbMonths.SetItemChecked(index, !chlbMonths.GetItemChecked(index));
                         e.Handled = true;
                     }
@@ -1160,16 +1170,16 @@ namespace ROMS
 
         private void ChlbMonths_MouseUp(object sender, MouseEventArgs e)
         {
-            int index = chlbMonths.IndexFromPoint(e.Location);
-            if (index != ListBox.NoMatches)
-            {
-                // Toggle checkbox immediately
-                bool isChecked = chlbMonths.GetItemChecked(index);
-                chlbMonths.SetItemChecked(index, !isChecked);
+            //int index = chlbMonths.IndexFromPoint(e.Location);
+            //if (index != ListBox.NoMatches)
+            //{
+            //    // Toggle checkbox immediately
+            //    bool isChecked = chlbMonths.GetItemChecked(index);
+            //    chlbMonths.SetItemChecked(index, !isChecked);
 
-                // Make sure item stays selected (optional, keyboard friendly)
-                chlbMonths.SelectedIndex = index;
-            }
+            //    // Make sure item stays selected (optional, keyboard friendly)
+            //    chlbMonths.SelectedIndex = index;
+            //}
         }
     }
 }
