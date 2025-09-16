@@ -3780,6 +3780,7 @@ namespace ROMS
                     txtTeller.Enabled = false;
                     txtTeller.ReadOnly = true;
                     this.ActiveControl = txtPICode;
+                    varStatusID = 120;
                 }
                 //if (btnSave.Text != "Update")
                 //{
