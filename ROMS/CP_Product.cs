@@ -3775,6 +3775,10 @@ namespace ROMS
                     cbCompleted.Checked = false;
                     cbCompleted.Enabled = true;
                     pbFormStatus = 71;
+                    varStatusFlag = 0;
+                    txtTeller.Text = "";
+                    txtTeller.Enabled = false;
+                    txtTeller.ReadOnly = true;
                     this.ActiveControl = txtPICode;
                 }
                 //if (btnSave.Text != "Update")
