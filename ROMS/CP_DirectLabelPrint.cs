@@ -402,10 +402,17 @@ namespace ROMS
                 lblNoRecordsFound.BringToFront();
                 RPTViewer.ReportSource = null;
                 txtProductName.Focus();
+                lblPICode.Text = "";
+                lblProductName.Text = "";
+                lblUnit.Text = "";
+                lblRetail.Text = "";
+                lblWholesale.Text = "";
+                txtLabelProduct.Text = "";
                 txtMrp.Text = "";
                 txtSalesRate.Text = "";
                 txtNoofcopy.Text = "";
                 cmbPrintType.SelectedValue = 363;
+                cmbPrintLanguage.SelectedValue = 322;
                 cmbLabelsize.SelectedValue = -1;
                 cmbTemplate.Enabled = false;
             }
