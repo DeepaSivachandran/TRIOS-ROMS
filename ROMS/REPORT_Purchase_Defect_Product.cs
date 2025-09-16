@@ -132,6 +132,8 @@ namespace ROMS
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
                 objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
                 objTRN_PurchaseEntry.paraFilterType = varFilterType;
+                objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
+                objTRN_PurchaseEntry.paraToDate = dpToDate.Text;
                 objDs = objspdservice.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -152,10 +154,10 @@ namespace ROMS
 
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("paraFilterType", varFilterType);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -493,6 +495,9 @@ namespace ROMS
         {
             try
             {
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(0,55) AND MSTID IN (0,174,175)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN(82,0) AND MSTID NOT IN (-1,275)", "MST_DisplayText,MSTID", cmbConditionType, "", "MST_DisplayText", "MSTID");
@@ -706,8 +711,136 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    if (dpFromDate.Enabled == true)
+                    {
+                        dpFromDate.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbFilter.SelectedValue) == 366)
+                {
+                    dpFromDate.Enabled = true;
+                    dpToDate.Enabled = true;
+                }
+                else
+                {
+                    dpFromDate.Enabled = false;
+                    dpToDate.Enabled = false;
+                    dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                    dpToDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpFromDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                dpFromDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpFromDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpFromDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpToDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DpToDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                dpToDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
                     btnView.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpToDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpToDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void DpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {

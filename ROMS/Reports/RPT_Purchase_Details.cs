@@ -170,7 +170,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection3 {
             get {
                 return this.ReportDefinition.Sections[15];
             }
@@ -178,9 +178,41 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection2 {
             get {
                 return this.ReportDefinition.Sections[16];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection4 {
+            get {
+                return this.ReportDefinition.Sections[17];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection5 {
+            get {
+                return this.ReportDefinition.Sections[18];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+            get {
+                return this.ReportDefinition.Sections[19];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[20];
             }
         }
         

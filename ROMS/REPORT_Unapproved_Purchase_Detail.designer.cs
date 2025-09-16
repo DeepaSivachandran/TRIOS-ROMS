@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportSupplier = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
+            this.dpToDate = new System.Windows.Forms.DateTimePicker();
+            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.LV_Supplier = new System.Windows.Forms.ListView();
@@ -48,12 +52,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cmbConditionType = new System.Windows.Forms.ComboBox();
             this.lblSupplierCode = new System.Windows.Forms.Label();
-            this.dpToDate = new System.Windows.Forms.DateTimePicker();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.lblschedleCode = new System.Windows.Forms.Label();
-            this.dpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.cmbPayType = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
@@ -138,6 +138,55 @@
             this.pnlReportStockLocation.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportStockLocation.TabIndex = 0;
             // 
+            // dpToDate
+            // 
+            this.dpToDate.CustomFormat = "dd/MM/yyyy";
+            this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpToDate.Location = new System.Drawing.Point(125, 147);
+            this.dpToDate.Name = "dpToDate";
+            this.dpToDate.Size = new System.Drawing.Size(107, 27);
+            this.dpToDate.TabIndex = 2;
+            this.dpToDate.Visible = false;
+            this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
+            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
+            this.dpToDate.Leave += new System.EventHandler(this.DpToDate_Leave);
+            // 
+            // dpFromDate
+            // 
+            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpFromDate.Location = new System.Drawing.Point(12, 147);
+            this.dpFromDate.Name = "dpFromDate";
+            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
+            this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.Visible = false;
+            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
+            this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
+            this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
+            this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 20);
+            this.label1.TabIndex = 1111189;
+            this.label1.Text = "From Date";
+            this.label1.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(125, 126);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 20);
+            this.label3.TabIndex = 1111190;
+            this.label3.Text = "To Date";
+            this.label3.Visible = false;
+            // 
             // DGV_FilterProduct
             // 
             this.DGV_FilterProduct.AllowUserToAddRows = false;
@@ -146,24 +195,24 @@
             this.DGV_FilterProduct.AllowUserToResizeRows = false;
             this.DGV_FilterProduct.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGV_FilterProduct.ColumnHeadersHeight = 30;
             this.DGV_FilterProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
             this.DGV_FilterProduct.Location = new System.Drawing.Point(13, 72);
@@ -171,9 +220,9 @@
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
             this.DGV_FilterProduct.RowHeadersWidth = 51;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterProduct.Size = new System.Drawing.Size(273, 226);
@@ -256,7 +305,7 @@
             this.cmbBillType.FormattingEnabled = true;
             this.cmbBillType.Location = new System.Drawing.Point(577, 43);
             this.cmbBillType.Name = "cmbBillType";
-            this.cmbBillType.Size = new System.Drawing.Size(213, 27);
+            this.cmbBillType.Size = new System.Drawing.Size(283, 27);
             this.cmbBillType.TabIndex = 6;
             this.cmbBillType.Enter += new System.EventHandler(this.CmbBillType_Enter);
             this.cmbBillType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBillType_KeyDown);
@@ -296,19 +345,6 @@
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
             // 
-            // dpToDate
-            // 
-            this.dpToDate.CustomFormat = "dd/MM/yyyy";
-            this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(125, 147);
-            this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(107, 27);
-            this.dpToDate.TabIndex = 2;
-            this.dpToDate.Visible = false;
-            this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
-            this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
-            this.dpToDate.Leave += new System.EventHandler(this.DpToDate_Leave);
-            // 
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -332,42 +368,6 @@
             this.lblschedleCode.TabIndex = 1111191;
             this.lblschedleCode.Text = "0";
             this.lblschedleCode.Visible = false;
-            // 
-            // dpFromDate
-            // 
-            this.dpFromDate.CustomFormat = "dd/MM/yyyy";
-            this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(12, 147);
-            this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 1;
-            this.dpFromDate.Visible = false;
-            this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
-            this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
-            this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
-            this.dpFromDate.Leave += new System.EventHandler(this.DpFromDate_Leave);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(125, 126);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 20);
-            this.label3.TabIndex = 1111190;
-            this.label3.Text = "To Date";
-            this.label3.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 126);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 20);
-            this.label1.TabIndex = 1111189;
-            this.label1.Text = "From Date";
-            this.label1.Visible = false;
             // 
             // cmbPayType
             // 
@@ -396,7 +396,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(796, 41);
+            this.btnView.Location = new System.Drawing.Point(866, 42);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);

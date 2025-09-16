@@ -150,8 +150,8 @@ namespace ROMS
 
         private void txtProductName_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
-                
+            try
+            {
                 varUpDownKey = 0;
                 if (e.KeyCode == Keys.F11)
                 {
@@ -382,6 +382,7 @@ namespace ROMS
                             DGV_FilterProduct.Visible = false;
                             DGV_FilterProduct.DataSource = null;
                         }
+
                     }
                     else
                     {
@@ -397,7 +398,23 @@ namespace ROMS
             }
             finally
             {
-
+                lblNoRecordsFound.Visible = true;
+                lblNoRecordsFound.BringToFront();
+                RPTViewer.ReportSource = null;
+                txtProductName.Focus();
+                lblPICode.Text = "";
+                lblProductName.Text = "";
+                lblUnit.Text = "";
+                lblRetail.Text = "";
+                lblWholesale.Text = "";
+                txtLabelProduct.Text = "";
+                txtMrp.Text = "";
+                txtSalesRate.Text = "";
+                txtNoofcopy.Text = "";
+                cmbPrintType.SelectedValue = 363;
+                cmbPrintLanguage.SelectedValue = 322;
+                cmbLabelsize.SelectedValue = -1;
+                cmbTemplate.Enabled = false;
             }
         }
 
@@ -1013,9 +1030,9 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
                         objBillreport.SetParameterValue("paraFlag", flag);
-                        objBillreport.SetParameterValue("ParaMRP", Convert.ToDouble(txtMrp.Text));
+                        objBillreport.SetParameterValue("ParaMRP", Convert.ToDecimal(txtMrp.Text));
                         objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
-                        objBillreport.SetParameterValue("ParaRetail", Convert.ToDouble(txtSalesRate.Text));
+                        objBillreport.SetParameterValue("ParaRetail", Convert.ToDecimal(txtSalesRate.Text));
                         objBillreport.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
 
                         objValidation.CrySqlConnection(objBillreport);

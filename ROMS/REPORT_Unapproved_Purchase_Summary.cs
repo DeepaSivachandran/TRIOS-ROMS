@@ -615,7 +615,17 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,14,15,26) AND STSID IN (0,62,70,114)", "STS_ShortName,STSID", cmbStatus, "", "STS_ShortName", "STSID");
+                string fields = "CASE WHEN STSID=0 THEN STS_Name ELSE CONCAT(STS_Name,'','(',STS_ShortName,')') END AS StatusName, STSID";
+
+                objDataBind.BindComboBoxListSelected(
+                    "DEF_Status",
+                    "STS_ModuleID IN (0,14,15,26) AND STSID IN (0,62,70,114)",
+                    fields,
+                    cmbStatus,
+                    "",
+                    "StatusName",   // Display
+                    "STSID"         // Value
+                );
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
