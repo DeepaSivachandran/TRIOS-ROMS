@@ -1007,7 +1007,7 @@ namespace ROMS
                         objBillreport.Load(rptPath);
                         int templateType = Convert.ToInt32(cmbLabelsize.SelectedValue);
                         if (templateType == 316 || templateType == 317 || templateType == 318 || templateType == 319)
-                        {
+                        {    
 
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
