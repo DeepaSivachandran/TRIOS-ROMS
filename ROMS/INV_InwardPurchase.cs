@@ -7,7 +7,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
+using System.Globalization;
 
 namespace ROMS
 {
@@ -460,10 +461,14 @@ namespace ROMS
                                     else if(Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNoGeneration"].Value) == "74")
                                     {
                                         string final = "";
-                                        string today = Convert.ToString(MainForm.pbCurrentDate);   
-                                        DateTime dt = DateTime.ParseExact(today, "ddMMyyyy", null);
-                                          final = dt.ToString("yyMMdd");
-                                        varBatchNo = final;
+                                        string today = Convert.ToString(MainForm.pbCurrentDate);    
+                                        // Remove the curly braces
+                                        string clean = today.Trim('{', '}'); 
+                                        // Parse to DateTime
+                                        DateTime dt = DateTime.Parse(clean);
+                                        // Format as yyMMdd
+                                        final = dt.ToString("yyMMdd");
+                                        varBatchNo = final; 
                                     }
                                     //SNO Order Here
                                     var varChildRowCount = from r in dtInwardPurchase.AsEnumerable()
