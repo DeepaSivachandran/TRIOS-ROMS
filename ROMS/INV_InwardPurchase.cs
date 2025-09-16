@@ -426,8 +426,8 @@ namespace ROMS
                                     string varInvMRP = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmMRP"].Value);
                                     string varExpiryDate ="";
                                     string varInvExpiryDate = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmExpiryDate"].Value);
-                                    string varBatchNo = "";
-                                    string varInvBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value); 
+                                    string varBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmBatchNo"].Value);
+                                    string varInvBatchNo = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmInvoiceBatchNo"].Value); 
                                     string varPendingQty = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmQty"].Value);
                                     string varReceivedQty = ""; 
                                     string varShopQty = ""; 
@@ -455,7 +455,15 @@ namespace ROMS
                                     string varShelfStatus = Convert.ToString(dgv.Rows[e.RowIndex].Cells["clmShelfStatus"].Value);
                                     if (Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNoGeneration"].Value) == "75")
                                     {
-                                        varBatchNo = "";
+                                        varBatchNo = ""; varInvBatchNo = "";
+                                    }
+                                    else if(Convert.ToString(grdInward.CurrentRow.Cells["clmBatchNoGeneration"].Value) == "74")
+                                    {
+                                        string final = "";
+                                        string today = Convert.ToString(MainForm.pbCurrentDate);   
+                                        DateTime dt = DateTime.ParseExact(today, "ddMMyyyy", null);
+                                          final = dt.ToString("yyMMdd");
+                                        varBatchNo = final;
                                     }
                                     //SNO Order Here
                                     var varChildRowCount = from r in dtInwardPurchase.AsEnumerable()
