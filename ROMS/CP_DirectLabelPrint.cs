@@ -1478,6 +1478,19 @@ namespace ROMS
             }
         }
 
+        private void CmbTemplate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             try

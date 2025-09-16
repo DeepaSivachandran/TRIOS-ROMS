@@ -30,5 +30,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void BindCheckedListBox(string strTableName, string strCondition, string strFields,
+                               CheckedListBox ctlCheckedListBox, string strItem, string strValue)
+        {
+            try
+            {
+                objService = new DataService();
+                objService.FillDataSetSelectedField(strTableName, strCondition, strFields);
+
+                ctlCheckedListBox.DataSource = objService.ObjDT;
+                ctlCheckedListBox.DisplayMember = objService.ObjDT.Columns[strItem].Caption;
+                ctlCheckedListBox.ValueMember = objService.ObjDT.Columns[strValue].Caption;
+
+                objService.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
