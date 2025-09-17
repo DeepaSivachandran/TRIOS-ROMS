@@ -231,6 +231,7 @@ namespace ROMS
                 dtProduct = new DataTable();
                 dtProduct.Columns.Add("", typeof(Boolean));
                 dtProduct.Columns.Add("Product Name", typeof(string));
+                dtProduct.Columns.Add("PR_EName", typeof(string));
                 dtProduct.Columns.Add("PRID", typeof(int));
                 dtProduct.Columns.Add("GroupID", typeof(int));
                 dtProduct.Columns.Add("SubgroupID", typeof(int));
@@ -397,7 +398,7 @@ namespace ROMS
                         grdGroup.BringToFront();
                         grdGroup.Columns[0].HeaderText = "";
                         grdGroup.Columns[0].Width = 50;
-                        grdGroup.Columns[1].Width = 200;
+                        grdGroup.Columns[1].Width = 115;
                         grdGroup.Columns[1].ReadOnly = true;
                         grdGroup.Columns[2].Visible = false;
                         picLoader2.Visible = false;
@@ -416,7 +417,7 @@ namespace ROMS
                             grdRack.BringToFront();
                             grdRack.Columns[0].HeaderText = "";
                             grdRack.Columns[0].Width = 50;
-                            grdRack.Columns[1].Width = 180;
+                            grdRack.Columns[1].Width = 115;
                             grdRack.Columns[1].ReadOnly = true;
                             grdRack.Columns[2].Visible = false;
                             picLoader2.Visible = false;
@@ -433,7 +434,7 @@ namespace ROMS
                             grdRackGroup.BringToFront();
                             grdRackGroup.Columns[0].HeaderText = "";
                             grdRackGroup.Columns[0].Width = 50;
-                            grdRackGroup.Columns[1].Width = 180;
+                            grdRackGroup.Columns[1].Width = 115;
                             grdRackGroup.Columns[1].ReadOnly = true;
                             grdRackGroup.Columns[2].Visible = false;
                             picLoader2.Visible = false;
@@ -1336,10 +1337,12 @@ namespace ROMS
                 grdProduct.Columns[0].Width = 50;
                 grdProduct.Columns["PI Code"].Width = 100;
                 grdProduct.Columns["Product Name"].Width = 300;
+                grdProduct.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 grdProduct.Columns["Unit"].Width = 80;
                 grdProduct.Columns["PI Code"].ReadOnly = true;
                 grdProduct.Columns["Product Name"].ReadOnly = true;
                 grdProduct.Columns["Unit"].ReadOnly = true;
+                grdProduct.Columns["PR_EName"].Visible = false;
                 grdProduct.Columns["PRID"].Visible = false;
                 grdProduct.Columns["GroupID"].Visible = false;
                 grdProduct.Columns["SubgroupID"].Visible = false;
@@ -1355,12 +1358,9 @@ namespace ROMS
         {
             try
             {
-                if (txtProduct.Text.Trim().Length > 0)
+                if (grdProduct?.DataSource != null)
                 {
-                    if (grdProduct?.DataSource != null)
-                    {
-                        (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Product Name]) LIKE '%" + txtProduct.Text + "%'";
-                    }
+                    (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([PR_EName]) LIKE '%" + txtProduct.Text + "%'";
                 }
             }
             catch (Exception ex)
@@ -1374,30 +1374,27 @@ namespace ROMS
         {
             try
             {
-                if (txtGroup.Text.Trim().Length > 0)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                 {
-                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
+                    if (grdGroup?.DataSource != null)
                     {
-                        if (grdGroup?.DataSource != null)
+                        (grdGroup?.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
+                    }
+                }
+                else
+                {
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                    {
+                        if (grdRack?.DataSource != null)
                         {
-                            (grdGroup?.DataSource as DataTable).DefaultView.RowFilter = "([Group Name]) LIKE '%" + txtGroup.Text + "%'";
+                            (grdRack?.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
                         }
                     }
-                    else
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
                     {
-                        if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                        if (grdRackGroup?.DataSource != null)
                         {
-                            if (grdRack?.DataSource != null)
-                            {
-                                (grdRack?.DataSource as DataTable).DefaultView.RowFilter = "([Rack Name]) LIKE '%" + txtGroup.Text + "%'";
-                            }
-                        }
-                        if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
-                        {
-                            if (grdRackGroup?.DataSource != null)
-                            {
-                                (grdRackGroup?.DataSource as DataTable).DefaultView.RowFilter = "([RackGroup Name]) LIKE '%" + txtGroup.Text + "%'";
-                            }
+                            (grdRackGroup?.DataSource as DataTable).DefaultView.RowFilter = "([RackGroup Name]) LIKE '%" + txtGroup.Text + "%'";
                         }
                     }
                 }
@@ -1413,12 +1410,9 @@ namespace ROMS
         {
             try
             {
-                if (txtSubgroup.Text.Trim().Length > 0)
+                if (grdSubgroup?.DataSource != null)
                 {
-                    if (grdSubgroup?.DataSource != null)
-                    {
-                        (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
-                    }
+                    (grdSubgroup.DataSource as DataTable).DefaultView.RowFilter = "([Subgroup Name]) LIKE '%" + txtSubgroup.Text + "%'";
                 }
             }
             catch (Exception ex)
