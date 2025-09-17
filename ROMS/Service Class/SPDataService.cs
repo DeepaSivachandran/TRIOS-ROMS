@@ -3928,7 +3928,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag,int paraBrandID,int paraCompanyId,int paraSupplierID,int paraScheduleID,int paraInvioceType,int paraPaymentType,int paraPurchaseType,int paraConditionType,int paraProductNameType,string paraAlpha,int paraMonth)
+        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate,int paraProductId,int paraGroupId, int paraSubgroupId,int paraFlag,int paraBrandID,int paraCompanyId,int paraSupplierID,int paraScheduleID,int paraInvioceType,int paraPaymentType,int paraPurchaseType,int paraConditionType,int paraProductNameType,string paraAlpha,string paraMonth)
         {
             DataSet ds = new DataSet();
             try

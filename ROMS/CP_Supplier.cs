@@ -71,7 +71,7 @@ namespace ROMS
         private ToolTip tpAccountNo = new ToolTip();
         private ToolTip tpIfsCode = new ToolTip();
         public int SupplierUpdate = 0, vardayMonthID = 0, varWeekID = 0, vardayID = 0, varrecyclecode = 0, varMonthID = 0, varMasterid = 0, varProCount = 0,
-            varMappedCount = 0, varScheduleStsCount = 0;
+            varMappedCount = 0, varScheduleStsCount = 0,varVisibleFlag=0;
         public string pbSupplierid = "0", varstatusid = "0", varsupplierID = "0", varTINNo = "0";
         string varfirstValue = "", varsecValue = "";
         DataSet objDTBank = new DataSet();
@@ -1592,7 +1592,13 @@ namespace ROMS
                                     }
                                     else if (Convert.ToString(objDS.Tables[0].Rows[0]["OPTYPE"]) == "85") //Dr
                                     {
-                                        cmbDrCompany.SelectedValue = Convert.ToInt16(objDS.Tables[4].Rows[0]["ConcernID"]); 
+                                        cmbDrCompany.SelectedValue = Convert.ToInt16(objDS.Tables[4].Rows[0]["ConcernID"]);
+                                        if (Convert.ToString(Convert.ToString(objDS.Tables[4].Rows[i]["RemoveFlag"])) == "1")
+                                        {
+                                            txtOpeningAmt.Enabled = false; txtOpeningAmt.ReadOnly = true;
+                                            cmbDrCompany.Enabled = false;
+                                            varVisibleFlag= Convert.ToInt16(Convert.ToString(objDS.Tables[4].Rows[i]["RemoveFlag"]));
+                                        }
                                     }
                                 }
                                 grdOpeningCrDetails.ClearSelection();
@@ -9504,6 +9510,12 @@ namespace ROMS
                     cmbCrCompany.Visible = false;
                     txtDAdjustments.Visible = false;
                     txtAdjustments.Visible = false;
+                    if(varVisibleFlag==1)// if advance amount used
+                    {
+                        txtOpeningAmt.Enabled = false;
+                        txtOpeningAmt.ReadOnly = true;
+                        cmbDrCompany.Enabled = false;
+                    }
                 }
                 if (Convert.ToDecimal(txtOpeningAmt.Text) == 0)
                 {

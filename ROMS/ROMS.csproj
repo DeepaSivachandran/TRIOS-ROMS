@@ -245,6 +245,7 @@
     <Compile Include="GRN_ADV.designer.cs">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -652,6 +653,26 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x25.cs">
+      <DependentUpon>RPT_Product_Label_Print_Plain_50x25.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Product_Label_Print_50x25.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Product_Label_Print_50x25.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_DET_Batch_Details.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_DET_Batch_Details.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_Zero_Rate_AlphaWise.cs">
       <DependentUpon>RPT_Zero_Rate_AlphaWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -710,13 +731,6 @@
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x60.cs">
       <DependentUpon>RPT_Product_Label_Print_Plain_50x60.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x25.cs">
-      <DependentUpon>RPT_Product_Label_Print_Plain_50x25.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -967,13 +981,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_PUR_DET_Batch_Details.cs">
-      <DependentUpon>RPT_PUR_DET_Batch_Details.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Reports\RPT_PUR_DET_ProductWise_Details.cs">
       <DependentUpon>RPT_PUR_DET_ProductWise_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -999,13 +1006,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Label_Print_100x70.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Reports\RPT_Product_Label_Print_50x25.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_Product_Label_Print_50x25.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -3914,6 +3914,16 @@
       <LastGenOutput>RPT_PAY_SupplierPaymentGiven_Total.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x25.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Product_Label_Print_Plain_50x25.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Product_Label_Print_50x25.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Product_Label_Print_50x25.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_100x70.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Product_Label_Print_Plain_100x70.cs</LastGenOutput>
@@ -3922,11 +3932,6 @@
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Product_Label_Print_Plain_50x60.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x25.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Product_Label_Print_Plain_50x25.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x35.rpt">
@@ -3984,6 +3989,10 @@
       <LastGenOutput>RPT_Stock_Inward_Details_Portrait.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_DET_Batch_Details.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_50x60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Sticker_Print_RackGroup_50x60.cs</LastGenOutput>
@@ -4099,19 +4108,9 @@
       <LastGenOutput>RPT_PUR_Tax_TaxDetails_DayWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>RPT_PUR_DET_Batch_Details1.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_100x70.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Product_Label_Print_100x70.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_Product_Label_Print_50x25.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Product_Label_Print_50x25.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_50x35.rpt">

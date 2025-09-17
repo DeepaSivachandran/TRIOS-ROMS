@@ -696,6 +696,7 @@
             this.cmbTemplate.TabIndex = 8;
             this.cmbTemplate.Enter += new System.EventHandler(this.cmbTemplate_Enter);
             this.cmbTemplate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTemplate_KeyDown);
+            this.cmbTemplate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTemplate_KeyPress);
             this.cmbTemplate.Leave += new System.EventHandler(this.cmbTemplate_Leave);
             // 
             // txtSalesRate
