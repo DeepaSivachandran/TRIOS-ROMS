@@ -192,6 +192,11 @@ namespace ROMS
                 lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
                 varMonthName = lblMonths.Text;
                 varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
+                if(varMonthIds.Trim()=="")
+                {
+                    varMonthIds = "0";
+                    varMonthName = "-All-";
+                }
                 epReport.Clear();
                 string varSupplierName = "-All-";
                 int varSupplierId = 0, varViewType = 20, varScheduleId = 0;
