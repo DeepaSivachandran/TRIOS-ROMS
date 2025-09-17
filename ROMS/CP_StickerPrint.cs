@@ -1351,6 +1351,7 @@ namespace ROMS
                 grdProduct.Columns["PI Code"].Width = 100;
                 grdProduct.Columns["Product Name"].Width = 300;
                 grdProduct.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                //grdProduct.Columns[2].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 grdProduct.Columns["Unit"].Width = 80;
                 grdProduct.Columns["PI Code"].ReadOnly = true;
                 grdProduct.Columns["Product Name"].ReadOnly = true;
