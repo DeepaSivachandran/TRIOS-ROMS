@@ -106,10 +106,11 @@ namespace ROMS
         {
             try
             {
-                string varMonthIds = "";
+                string varMonthIds = "", varMonthName = "";
                 var selIds = cmbMultiMonths.CheckedIds;
                 var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
                 lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                varMonthName = lblMonths.Text;
                 varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
                 epReport.Clear();
                 int varViewType = 18;
@@ -148,7 +149,7 @@ namespace ROMS
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 331)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_MonthWise.rpt");
-                        objBillreport.SetParameterValue("paraMonthName", cmbMonths.Text);
+                        objBillreport.SetParameterValue("paraMonthName", varMonthName);
                         objBillreport.SetParameterValue("paraMonth", varMonthIds);
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 351)
