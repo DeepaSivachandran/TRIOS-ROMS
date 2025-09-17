@@ -276,7 +276,8 @@ namespace ROMS
                         for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                         {
                             dtViewProduct.Rows.Add(false, objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["Inv.Date"], objDs.Tables[0].Rows[i]["Inv.No"], objDs.Tables[0].Rows[i]["Inv Amount"],
-                               objDs.Tables[0].Rows[i]["PURID"]);
+                               objDs.Tables[0].Rows[i]["PURID"],
+                               Convert.ToInt16(objDs.Tables[0].Rows[i]["SPOBID"]));
                         }
                     }
                     grdViewProduct.DataSource = null;
@@ -301,6 +302,7 @@ namespace ROMS
                     grdViewProduct.Columns["Additions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdViewProduct.Columns["Deductions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdViewProduct.Columns["PURID"].Visible = false;
+                    grdViewProduct.Columns["SPOBID"].Visible = false;
                     udfnSearchGridHead();
                     DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                 }
@@ -462,13 +464,14 @@ namespace ROMS
                         if (Convert.ToBoolean(grdViewProduct.Rows[i].Cells[0].Value) == true)
                         {
                             dtMoveProduct.Rows.Add(grdViewProduct.Rows[i].Cells["Inv.Date"].Value,
-                            grdViewProduct.Rows[i].Cells["Inv.No"].Value, grdViewProduct.Rows[i].Cells["Inv Amount"].Value, 0, grdViewProduct.Rows[i].Cells["PURID"].Value,1);
+                            grdViewProduct.Rows[i].Cells["Inv.No"].Value, grdViewProduct.Rows[i].Cells["Inv Amount"].Value, 0, grdViewProduct.Rows[i].Cells["PURID"].Value, grdViewProduct.Rows[i].Cells["SPOBID"].Value, 1);
                             varError++;
                         }
                     }
                     grdMoveProduct.DataSource = null;
                     grdMoveProduct.DataSource = dtMoveProduct;
                     grdMoveProduct.Columns["PURID"].Visible = false;
+                    grdMoveProduct.Columns["SPOBID"].Visible = false;
                     grdMoveProduct.Columns["clmError"].Visible = false;
                     grdMoveProduct.Columns["PURID"].ReadOnly = true;
                     RemoveProduct();
@@ -549,8 +552,8 @@ namespace ROMS
                 varPurchaseID = "";
                 for (int i = 0; i < grdMoveProduct.RowCount; i++)
                 {
-                       
-                    dtGSTR.Rows.Add(grdMoveProduct.Rows[i].Cells["PURID"].Value, grdMoveProduct.Rows[i].Cells["GSTR Amt"].Value);
+                    dtGSTR.Rows.Add(grdMoveProduct.Rows[i].Cells["PURID"].Value, grdMoveProduct.Rows[i].Cells["SPOBID"].Value,
+                        grdMoveProduct.Rows[i].Cells["GSTR Amt"].Value);
                 }
                 SPDataService objspdservice = new SPDataService();
                 DataTable objGrnPO = new DataTable();
@@ -639,11 +642,12 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
                                 dtViewProduct.Rows.Add(false,grdViewProduct.Rows.Count+1,grdMoveProduct.CurrentRow.Cells["Inv Date"].Value, grdMoveProduct.CurrentRow.Cells["Inv No."].Value,
-                                   grdMoveProduct.CurrentRow.Cells["Inv Amt"].Value, grdMoveProduct.CurrentRow.Cells["PURID"].Value);
+                                   grdMoveProduct.CurrentRow.Cells["Inv Amt"].Value, grdMoveProduct.CurrentRow.Cells["PURID"].Value, grdMoveProduct.CurrentRow.Cells["SPOBID"].Value);
                                 dtViewProduct.AcceptChanges();         
                                 //grdMoveProduct.DataSource = null;
                                 //grdMoveProduct.DataSource = dtMoveProduct;
                                 grdMoveProduct.Columns["PURID"].Visible = false;                    
+                                grdMoveProduct.Columns["SPOBID"].Visible = false;                    
                                 grdMoveProduct.Columns[0].ReadOnly = false;
                                 grdMoveProduct.Rows.RemoveAt(this.grdMoveProduct.CurrentRow.Index);
                                 
@@ -1520,6 +1524,7 @@ namespace ROMS
             {
                 dtGSTR.TableName = "TRN_GSTR";
                 dtGSTR.Columns.Add("PURID", typeof(int));
+                dtGSTR.Columns.Add("SPOBID", typeof(int));
                 dtGSTR.Columns.Add("PUR_GSTRAmnt", typeof(decimal));
 
                 dtViewProduct = new DataTable();
@@ -1529,6 +1534,7 @@ namespace ROMS
                 dtViewProduct.Columns.Add("Inv No.", typeof(string));
                 dtViewProduct.Columns.Add("Inv Amt", typeof(decimal));
                 dtViewProduct.Columns.Add("PURID", typeof(int));
+                dtViewProduct.Columns.Add("SPOBID", typeof(int));
 
                 dtMoveProduct = new DataTable();
                 dtMoveProduct.Columns.Add("Inv Date", typeof(string));
@@ -1536,6 +1542,7 @@ namespace ROMS
                 dtMoveProduct.Columns.Add("Inv Amt", typeof(decimal));
                 dtMoveProduct.Columns.Add("GSTR Amt", typeof(decimal));
                 dtMoveProduct.Columns.Add("PURID", typeof(int));
+                dtMoveProduct.Columns.Add("SPOBID", typeof(int));
                 dtMoveProduct.Columns.Add("clmError", typeof(int));
                 DataBind objDataBind = new DataBind(); 
                 objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");

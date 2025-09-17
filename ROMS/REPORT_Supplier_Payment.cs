@@ -341,11 +341,11 @@ namespace ROMS
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
-                        objMR_Supplier.ViewType = 26;
+                        objMR_Supplier.ViewType = 43;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
                         objMR_Supplier.ParaFromDate = dpFromDate.Text;
                         objMR_Supplier.ParaToDate = dpToDate.Text;
-                        objMR_Supplier.paraFlag = 5;
+                        objMR_Supplier.paraFlag = 1;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -362,6 +362,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["SPSCID"].Visible = false;
                                     DGV_FilterProduct.Columns["SupplierName"].Visible = false;
                                     DGV_FilterProduct.Columns["ScheduleName"].Visible = false;
+                                    DGV_FilterProduct.Columns["GSTIN"].Visible = false;
+                                    DGV_FilterProduct.Columns["ST_TIN"].Visible = false;
+                                    DGV_FilterProduct.Columns["STSID"].Visible = false;
+                                    DGV_FilterProduct.Columns["Reason"].Visible = false;
                                     DGV_FilterProduct.Columns["SP_NAME"].HeaderText = "Supplier";
                                     DGV_FilterProduct.Columns["SP_NAME"].Width = 260;
                                     DGV_FilterProduct.Columns["SP_NAME"].DisplayIndex = 0;
@@ -565,7 +569,7 @@ namespace ROMS
             try
             {
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,104) AND MSTID<>-1 ORDER BY MST_OrderID ASC", "MST_DisplayText,MST_OrderID", cmbPayType, "", "MST_DisplayText", "MST_OrderID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,104) AND MSTID<>-1 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbPayType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,115) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
