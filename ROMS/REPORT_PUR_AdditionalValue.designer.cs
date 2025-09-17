@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -58,8 +60,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
-            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.chlbMonths = new System.Windows.Forms.CheckedListBox();
+            this.btnMonths = new System.Windows.Forms.Button();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
@@ -94,9 +96,36 @@
             this.tspHeader.Size = new System.Drawing.Size(205, 24);
             this.tspHeader.Text = "Purchase Additional Value Report";
             // 
+            // tsbPrintFormat
+            // 
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
+            this.tsbPrintFormat.Text = "A4-Landscape";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
+            // 
             // pnlReportCity
             // 
             this.pnlReportCity.BackColor = System.Drawing.Color.White;
+            this.pnlReportCity.Controls.Add(this.chlbMonths);
             this.pnlReportCity.Controls.Add(this.DGV_FilterSupplier);
             this.pnlReportCity.Controls.Add(this.btnListPrint);
             this.pnlReportCity.Controls.Add(this.grpfilter);
@@ -118,24 +147,24 @@
             this.DGV_FilterSupplier.AllowUserToResizeRows = false;
             this.DGV_FilterSupplier.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterSupplier.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.DGV_FilterSupplier.ColumnHeadersHeight = 30;
             this.DGV_FilterSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle23;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
             this.DGV_FilterSupplier.Location = new System.Drawing.Point(641, 73);
@@ -143,9 +172,9 @@
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
             this.DGV_FilterSupplier.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterSupplier.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterSupplier.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.DGV_FilterSupplier.RowTemplate.Height = 25;
             this.DGV_FilterSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterSupplier.Size = new System.Drawing.Size(317, 226);
@@ -173,6 +202,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnMonths);
             this.grpfilter.Controls.Add(this.cmbMonths);
             this.grpfilter.Controls.Add(this.label7);
             this.grpfilter.Controls.Add(this.cmbReportType);
@@ -201,6 +231,7 @@
             this.cmbMonths.Name = "cmbMonths";
             this.cmbMonths.Size = new System.Drawing.Size(109, 27);
             this.cmbMonths.TabIndex = 111111198;
+            this.cmbMonths.Visible = false;
             this.cmbMonths.Enter += new System.EventHandler(this.CmbMonths_Enter);
             this.cmbMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMonths_KeyDown);
             this.cmbMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMonths_KeyPress);
@@ -417,31 +448,32 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // tsbPrintFormat
+            // chlbMonths
             // 
-            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
-            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
-            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbPrintFormat.Name = "tsbPrintFormat";
-            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
-            this.tsbPrintFormat.Text = "A4-Landscape";
-            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            this.chlbMonths.FormattingEnabled = true;
+            this.chlbMonths.Location = new System.Drawing.Point(1091, 73);
+            this.chlbMonths.Name = "chlbMonths";
+            this.chlbMonths.Size = new System.Drawing.Size(109, 158);
+            this.chlbMonths.TabIndex = 111111195;
+            this.chlbMonths.Visible = false;
+            this.chlbMonths.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ChlbMonths_ItemCheck);
+            this.chlbMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChlbMonths_KeyDown);
+            this.chlbMonths.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ChlbMonths_MouseDown);
+            this.chlbMonths.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ChlbMonths_MouseUp);
             // 
-            // tsbFormat
+            // btnMonths
             // 
-            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbFormat.Name = "tsbFormat";
-            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
-            this.tsbFormat.Text = "Print Format : ";
-            this.tsbFormat.ToolTipText = "Total GRN ";
+            this.btnMonths.BackColor = System.Drawing.Color.White;
+            this.btnMonths.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMonths.Image = global::ROMS.Properties.Resources.list;
+            this.btnMonths.Location = new System.Drawing.Point(1079, 46);
+            this.btnMonths.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMonths.Name = "btnMonths";
+            this.btnMonths.Size = new System.Drawing.Size(35, 27);
+            this.btnMonths.TabIndex = 111111196;
+            this.btnMonths.UseVisualStyleBackColor = false;
+            this.btnMonths.Click += new System.EventHandler(this.BtnMonths_Click);
+            this.btnMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnMonths_KeyDown);
             // 
             // REPORT_PUR_AdditionalValue
             // 
@@ -504,5 +536,7 @@
         private System.Windows.Forms.ComboBox cmbMonths;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
+        private System.Windows.Forms.CheckedListBox chlbMonths;
+        private System.Windows.Forms.Button btnMonths;
     }
 }

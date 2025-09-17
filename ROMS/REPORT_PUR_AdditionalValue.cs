@@ -20,6 +20,8 @@ namespace ROMS
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         private ToolTip tpReportType = new ToolTip();
         public int varUpDownKeySupplier = 0;
+        private DataService objService;
+
         public REPORT_PUR_AdditionalValue()
         {
             InitializeComponent();
@@ -125,6 +127,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private string GetCheckedIds(CheckedListBox clb, string valueMember)
+        {
+            List<string> ids = new List<string>();
+            try
+            {
+                foreach (DataRowView item in clb.CheckedItems)
+                {
+                    ids.Add(item[valueMember].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            return string.Join(",", ids);
+        }
+
         public void udfnPurchaseAdditionalValueReport()
         {
             try
@@ -155,6 +175,8 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
+                string selectedMonths = GetCheckedIds(chlbMonths, "MONID");
+                chlbMonths.Visible = false;
                 objDs = objdserv.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", Convert.ToInt32(cmbMonths.SelectedValue));
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -244,11 +266,13 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");
+                objDataBind.BindCheckedListBox("DEF_Months","MONID<>-1","MON_Name,MONID",chlbMonths,"MON_Name","MONID");
                 objDataBind = null;
                 cmbSupplierType.SelectedValue = 0;
                 cmbInvType.SelectedValue = 0;
                 cmbMonths.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
+                chlbMonths.BringToFront();
             }
             catch (Exception ex)
             {
@@ -256,7 +280,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void REPORT_CP_City_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -348,9 +371,9 @@ namespace ROMS
                     }
                     else
                     {
-                        if (cmbMonths.Enabled == true)
+                        if (btnMonths.Enabled == true)
                         {
-                            cmbMonths.Focus();
+                            btnMonths.Focus();
                         }
                         else
                         {
@@ -548,9 +571,9 @@ namespace ROMS
                 }
                 else
                 {
-                    if (cmbMonths.Enabled == true)
+                    if (btnMonths.Enabled == true)
                     {
-                        cmbMonths.Focus();
+                        btnMonths.Focus();
                     }
                     else
                     {
@@ -580,9 +603,9 @@ namespace ROMS
                 }
                 else
                 {
-                    if (cmbMonths.Enabled == true)
+                    if (btnMonths.Enabled == true)
                     {
-                        cmbMonths.Focus();
+                        btnMonths.Focus();
                     }
                     else
                     {
@@ -663,9 +686,9 @@ namespace ROMS
                         }
                         else
                         {
-                            if (cmbMonths.Enabled == true)
+                            if (btnMonths.Enabled == true)
                             {
-                                cmbMonths.Focus();
+                                btnMonths.Focus();
                             }
                             else
                             {
@@ -870,6 +893,7 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
+                    btnMonths.Enabled = false;
                     cmbMonths.Enabled = true;
                     cmbMonths.SelectedValue = 0;
                     cmbInvType.Enabled = true;
@@ -879,6 +903,7 @@ namespace ROMS
                 {
                     cmbMonths.SelectedValue = 0;
                     cmbMonths.Enabled = false;
+                    btnMonths.Enabled = false;
                     cmbInvType.Enabled = true;
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 333)//Day Wise Report
@@ -887,6 +912,7 @@ namespace ROMS
                     cmbInvType.Enabled = false;
                     cmbMonths.SelectedValue = 0;
                     cmbMonths.Enabled = false;
+                    btnMonths.Enabled = false;
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 334)//Month Wise Report
                 {
@@ -896,6 +922,7 @@ namespace ROMS
                     dpToDate.Value = MainForm.pbCurrentDate;
                     dpFromDate.Enabled = false;
                     dpToDate.Enabled = false;
+                    btnMonths.Enabled = true;
                     cmbMonths.Enabled = true;
                     cmbMonths.SelectedValue = 0;
                 }
@@ -931,9 +958,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbMonths.Enabled == true)
+                    if (btnMonths.Enabled == true)
                     {
-                        cmbMonths.Focus();
+                        btnMonths.Focus();
                     }
                     else
                     {
@@ -1027,6 +1054,132 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void BtnMonths_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chlbMonths.Visible)
+                {
+                    chlbMonths.Visible = false;
+                }
+                else
+                {
+                    chlbMonths.Visible = true;
+
+                    chlbMonths.Focus();
+                    if (chlbMonths.Items.Count > 0)
+                    {
+                        chlbMonths.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnMonths_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (chlbMonths.Visible)
+                    {
+                        chlbMonths.Focus();
+                        if (chlbMonths.Items.Count > 0)
+                        {
+                            chlbMonths.SelectedIndex = 0;
+                        }
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChlbMonths_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                int index = chlbMonths.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
+                {
+                    chlbMonths.SelectedIndex = index;
+                    Rectangle itemRect = chlbMonths.GetItemRectangle(index);
+                    int checkBoxWidth = 16;
+                    Rectangle checkBoxRect = new Rectangle(itemRect.X, itemRect.Y, checkBoxWidth, itemRect.Height);
+                    if (checkBoxRect.Contains(e.Location))
+                    {
+                        chlbMonths.SetItemChecked(index, !chlbMonths.GetItemChecked(index));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChlbMonths_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Space || e.KeyCode == Keys.Enter)
+                {
+                    int index = chlbMonths.SelectedIndex;
+                    if (index != -1)
+                    {
+                        chlbMonths.SetItemChecked(index, !chlbMonths.GetItemChecked(index));
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChlbMonths_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                chlbMonths.SelectedIndex = e.Index;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void ChlbMonths_MouseUp(object sender, MouseEventArgs e)
+        {
+            //int index = chlbMonths.IndexFromPoint(e.Location);
+            //if (index != ListBox.NoMatches)
+            //{
+            //    // Toggle checkbox immediately
+            //    bool isChecked = chlbMonths.GetItemChecked(index);
+            //    chlbMonths.SetItemChecked(index, !isChecked);
+
+            //    // Make sure item stays selected (optional, keyboard friendly)
+            //    chlbMonths.SelectedIndex = index;
+            //}
         }
     }
 }
