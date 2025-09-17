@@ -35,6 +35,8 @@
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblMonths = new System.Windows.Forms.Label();
+            this.cmbMultiMonths = new MultiSelectComboBox();
             this.cmbMonths = new System.Windows.Forms.ComboBox();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbMultiMonths = new MultiSelectComboBox();
-            this.lblMonths = new System.Windows.Forms.Label();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -140,10 +140,34 @@
             this.grpfilter.Controls.Add(this.dpFromDate);
             this.grpfilter.Location = new System.Drawing.Point(12, 0);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1330, 84);
+            this.grpfilter.Size = new System.Drawing.Size(1330, 101);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblMonths
+            // 
+            this.lblMonths.AutoSize = true;
+            this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.lblMonths.Location = new System.Drawing.Point(559, 76);
+            this.lblMonths.Name = "lblMonths";
+            this.lblMonths.Size = new System.Drawing.Size(265, 17);
+            this.lblMonths.TabIndex = 111111199;
+            this.lblMonths.Text = "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec";
+            // 
+            // cmbMultiMonths
+            // 
+            this.cmbMultiMonths.DropDownHeight = 1;
+            this.cmbMultiMonths.FormattingEnabled = true;
+            this.cmbMultiMonths.IntegralHeight = false;
+            this.cmbMultiMonths.Location = new System.Drawing.Point(559, 46);
+            this.cmbMultiMonths.Name = "cmbMultiMonths";
+            this.cmbMultiMonths.Size = new System.Drawing.Size(121, 27);
+            this.cmbMultiMonths.TabIndex = 4;
+            this.cmbMultiMonths.Enter += new System.EventHandler(this.CmbMultiMonths_Enter);
+            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMultiMonths_KeyDown);
+            this.cmbMultiMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMultiMonths_KeyPress);
+            this.cmbMultiMonths.Leave += new System.EventHandler(this.CmbMultiMonths_Leave);
             // 
             // cmbMonths
             // 
@@ -294,9 +318,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(12, 90);
+            this.picLoader.Location = new System.Drawing.Point(12, 107);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1330, 552);
+            this.picLoader.Size = new System.Drawing.Size(1330, 535);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -307,10 +331,10 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(12, 90);
+            this.RPTViewer.Location = new System.Drawing.Point(12, 107);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1330, 549);
+            this.RPTViewer.Size = new System.Drawing.Size(1330, 532);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
@@ -318,30 +342,6 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
-            // 
-            // cmbMultiMonths
-            // 
-            this.cmbMultiMonths.DropDownHeight = 1;
-            this.cmbMultiMonths.FormattingEnabled = true;
-            this.cmbMultiMonths.IntegralHeight = false;
-            this.cmbMultiMonths.Location = new System.Drawing.Point(559, 46);
-            this.cmbMultiMonths.Name = "cmbMultiMonths";
-            this.cmbMultiMonths.Size = new System.Drawing.Size(121, 27);
-            this.cmbMultiMonths.TabIndex = 4;
-            this.cmbMultiMonths.Enter += new System.EventHandler(this.CmbMultiMonths_Enter);
-            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMultiMonths_KeyDown);
-            this.cmbMultiMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMultiMonths_KeyPress);
-            this.cmbMultiMonths.Leave += new System.EventHandler(this.CmbMultiMonths_Leave);
-            // 
-            // lblMonths
-            // 
-            this.lblMonths.AutoSize = true;
-            this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.lblMonths.Location = new System.Drawing.Point(683, 26);
-            this.lblMonths.Name = "lblMonths";
-            this.lblMonths.Size = new System.Drawing.Size(265, 17);
-            this.lblMonths.TabIndex = 111111199;
-            this.lblMonths.Text = "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec";
             // 
             // REPORT_PUR_PeriodWiseTax
             // 

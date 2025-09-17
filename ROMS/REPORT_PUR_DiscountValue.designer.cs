@@ -166,7 +166,7 @@
             this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSupplier.Location = new System.Drawing.Point(641, 78);
+            this.DGV_FilterSupplier.Location = new System.Drawing.Point(641, 73);
             this.DGV_FilterSupplier.Name = "DGV_FilterSupplier";
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
@@ -187,7 +187,7 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1218, 50);
+            this.btnListPrint.Location = new System.Drawing.Point(1218, 45);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
@@ -219,7 +219,7 @@
             this.grpfilter.Controls.Add(this.dpFromDate);
             this.grpfilter.Location = new System.Drawing.Point(12, 0);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1330, 84);
+            this.grpfilter.Size = new System.Drawing.Size(1330, 109);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -229,7 +229,7 @@
             this.cmbMultiMonths.DropDownHeight = 1;
             this.cmbMultiMonths.FormattingEnabled = true;
             this.cmbMultiMonths.IntegralHeight = false;
-            this.cmbMultiMonths.Location = new System.Drawing.Point(1079, 51);
+            this.cmbMultiMonths.Location = new System.Drawing.Point(1079, 46);
             this.cmbMultiMonths.Name = "cmbMultiMonths";
             this.cmbMultiMonths.Size = new System.Drawing.Size(121, 27);
             this.cmbMultiMonths.TabIndex = 6;
@@ -242,7 +242,7 @@
             // 
             this.lblMonths.AutoSize = true;
             this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.lblMonths.Location = new System.Drawing.Point(1061, 11);
+            this.lblMonths.Location = new System.Drawing.Point(1059, 76);
             this.lblMonths.Name = "lblMonths";
             this.lblMonths.Size = new System.Drawing.Size(265, 17);
             this.lblMonths.TabIndex = 111111200;
@@ -251,7 +251,7 @@
             // cmbMonths
             // 
             this.cmbMonths.FormattingEnabled = true;
-            this.cmbMonths.Location = new System.Drawing.Point(1079, 51);
+            this.cmbMonths.Location = new System.Drawing.Point(1079, 46);
             this.cmbMonths.Name = "cmbMonths";
             this.cmbMonths.Size = new System.Drawing.Size(109, 27);
             this.cmbMonths.TabIndex = 111111199;
@@ -265,7 +265,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1079, 28);
+            this.label7.Location = new System.Drawing.Point(1079, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 20);
             this.label7.TabIndex = 111111197;
@@ -274,7 +274,7 @@
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(9, 51);
+            this.cmbReportType.Location = new System.Drawing.Point(9, 46);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(300, 27);
             this.cmbReportType.TabIndex = 0;
@@ -288,7 +288,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(629, 28);
+            this.label6.Location = new System.Drawing.Point(629, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(87, 20);
             this.label6.TabIndex = 111111190;
@@ -298,7 +298,7 @@
             // 
             this.lblReportType.AutoSize = true;
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(9, 28);
+            this.lblReportType.Location = new System.Drawing.Point(9, 23);
             this.lblReportType.Name = "lblReportType";
             this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 111111193;
@@ -307,7 +307,7 @@
             // cmbInvType
             // 
             this.cmbInvType.FormattingEnabled = true;
-            this.cmbInvType.Location = new System.Drawing.Point(952, 51);
+            this.cmbInvType.Location = new System.Drawing.Point(952, 46);
             this.cmbInvType.Name = "cmbInvType";
             this.cmbInvType.Size = new System.Drawing.Size(121, 27);
             this.cmbInvType.TabIndex = 5;
@@ -320,7 +320,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(952, 28);
+            this.label4.Location = new System.Drawing.Point(952, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 20);
             this.label4.TabIndex = 111111190;
@@ -330,7 +330,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(428, 51);
+            this.dpToDate.Location = new System.Drawing.Point(428, 46);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(103, 27);
             this.dpToDate.TabIndex = 2;
@@ -342,7 +342,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(428, 28);
+            this.label3.Location = new System.Drawing.Point(428, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 20);
             this.label3.TabIndex = 111111188;
@@ -351,7 +351,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(629, 51);
+            this.txtSupplier.Location = new System.Drawing.Point(629, 46);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(317, 27);
@@ -365,7 +365,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(537, 28);
+            this.label2.Location = new System.Drawing.Point(537, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 20);
             this.label2.TabIndex = 111111186;
@@ -374,7 +374,7 @@
             // cmbSupplierType
             // 
             this.cmbSupplierType.FormattingEnabled = true;
-            this.cmbSupplierType.Location = new System.Drawing.Point(537, 51);
+            this.cmbSupplierType.Location = new System.Drawing.Point(537, 46);
             this.cmbSupplierType.Name = "cmbSupplierType";
             this.cmbSupplierType.Size = new System.Drawing.Size(86, 27);
             this.cmbSupplierType.TabIndex = 3;
@@ -387,7 +387,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(315, 28);
+            this.label1.Location = new System.Drawing.Point(315, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 111111184;
@@ -397,7 +397,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(315, 51);
+            this.dpFromDate.Location = new System.Drawing.Point(315, 46);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 1;
@@ -447,9 +447,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(12, 90);
+            this.picLoader.Location = new System.Drawing.Point(12, 115);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1330, 552);
+            this.picLoader.Size = new System.Drawing.Size(1330, 527);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -460,10 +460,10 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(12, 90);
+            this.RPTViewer.Location = new System.Drawing.Point(12, 115);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1330, 549);
+            this.RPTViewer.Size = new System.Drawing.Size(1330, 524);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
