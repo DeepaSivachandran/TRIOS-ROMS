@@ -298,7 +298,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSupplierTypeName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraMonthName {
             get {
                 return this.DataDefinition.ParameterFields[21];
             }
@@ -306,17 +306,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraPayType {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraMonth {
             get {
                 return this.DataDefinition.ParameterFields[22];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraConType {
-            get {
-                return this.DataDefinition.ParameterFields[23];
             }
         }
     }
