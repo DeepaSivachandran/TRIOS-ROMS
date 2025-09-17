@@ -628,13 +628,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_Product_Label_Print_50x25.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_Product_Label_Print_50x25.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x25_Test.cs">
       <DependentUpon>RPT_Product_Label_Print_Plain_50x25_Test.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -713,13 +706,6 @@
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x60.cs">
       <DependentUpon>RPT_Product_Label_Print_Plain_50x60.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x25.cs">
-      <DependentUpon>RPT_Product_Label_Print_Plain_50x25.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -3891,11 +3877,6 @@
       <LastGenOutput>RPT_PAY_SupplierPaymentGiven_Total.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Reports\RPT_Product_Label_Print_50x25.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Product_Label_Print_50x25.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x25_Test.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Product_Label_Print_Plain_50x25_Test.cs</LastGenOutput>
@@ -3914,11 +3895,6 @@
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Product_Label_Print_Plain_50x60.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x25.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Product_Label_Print_Plain_50x25.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x35.rpt">
