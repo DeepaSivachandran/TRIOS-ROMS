@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
 
+[ToolboxItem(true)]
+[ToolboxBitmap(typeof(MultiSelectComboBox), "ComboBoxIcon.bmp")] // optional icon
+[DesignerCategory("Code")]
 public class ComboItem
 {
     public int Id { get; set; }
@@ -124,8 +128,7 @@ public class MultiSelectComboBox : ComboBox
         };
         _bottomBar.Items.Add(_btnSelectAll);
         _bottomBar.Items.Add(_btnClearAll);
-        _dropDown.RenderMode = ToolStripRenderMode.System; // lighter
-        _dropDown.AutoClose = true;
+
         // Dropdown container
         _dropDown = new ToolStripDropDown { Padding = Padding.Empty };
         _dropDown.Items.Add(_txtSearch);

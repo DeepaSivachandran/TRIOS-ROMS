@@ -35,6 +35,7 @@
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblMonths = new System.Windows.Forms.Label();
             this.cmbGST = new System.Windows.Forms.ComboBox();
             this.cmbMonths = new System.Windows.Forms.ComboBox();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -50,7 +51,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblMonths = new System.Windows.Forms.Label();
+            this.multiSelectComboBox1 = new MultiSelectComboBox();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -124,6 +125,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.multiSelectComboBox1);
             this.grpfilter.Controls.Add(this.lblMonths);
             this.grpfilter.Controls.Add(this.cmbGST);
             this.grpfilter.Controls.Add(this.cmbMonths);
@@ -142,6 +144,15 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // lblMonths
+            // 
+            this.lblMonths.AutoSize = true;
+            this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonths.Location = new System.Drawing.Point(733, 17);
+            this.lblMonths.Name = "lblMonths";
+            this.lblMonths.Size = new System.Drawing.Size(0, 26);
+            this.lblMonths.TabIndex = 111111196;
             // 
             // cmbGST
             // 
@@ -316,14 +327,18 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // lblMonths
+            // multiSelectComboBox1
             // 
-            this.lblMonths.AutoSize = true;
-            this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonths.Location = new System.Drawing.Point(733, 17);
-            this.lblMonths.Name = "lblMonths";
-            this.lblMonths.Size = new System.Drawing.Size(0, 26);
-            this.lblMonths.TabIndex = 111111196;
+            this.multiSelectComboBox1.BackColor = System.Drawing.Color.White;
+            this.multiSelectComboBox1.DropDownHeight = 1;
+            this.multiSelectComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.multiSelectComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.multiSelectComboBox1.FormattingEnabled = true;
+            this.multiSelectComboBox1.IntegralHeight = false;
+            this.multiSelectComboBox1.Location = new System.Drawing.Point(838, 48);
+            this.multiSelectComboBox1.Name = "multiSelectComboBox1";
+            this.multiSelectComboBox1.Size = new System.Drawing.Size(121, 33);
+            this.multiSelectComboBox1.TabIndex = 111111197;
             // 
             // REPORT_PUR_AllTax
             // 
@@ -379,5 +394,6 @@
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private System.Windows.Forms.Label lblMonths;
+        private MultiSelectComboBox multiSelectComboBox1;
     }
 }
