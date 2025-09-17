@@ -166,6 +166,30 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_StockJournalList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockJournalList.designer.cs">
+      <DependentUpon>INV_StockJournalList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockJournal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockJournal.designer.cs">
+      <DependentUpon>INV_StockJournal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockAdjustment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockAdjustment.designer.cs">
+      <DependentUpon>INV_StockAdjustment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV_StockAdjustmentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockAdjustmentList.designer.cs">
+      <DependentUpon>INV_StockAdjustmentList.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_StockHold_Entry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3139,6 +3163,18 @@
     <None Include="Resources\right arrow.gif" />
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockJournalList.resx">
+      <DependentUpon>INV_StockJournalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockJournal.resx">
+      <DependentUpon>INV_StockJournal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockAdjustment.resx">
+      <DependentUpon>INV_StockAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockAdjustmentList.resx">
+      <DependentUpon>INV_StockAdjustmentList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockHold_Entry.resx">
       <DependentUpon>INV_StockHold_Entry.cs</DependentUpon>

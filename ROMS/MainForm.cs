@@ -150,9 +150,14 @@ namespace ROMS
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;
         public static INV_InwardlistQueue objINV_InwardlistQueue;
-        public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
-        public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval;
+        public static INV_StockAdjustmentList objINV_StockAdjustmentList;
+        public static INV_StockAdjustment objINV_StockAdjustment; 
+        public static INV_StockJournalList objINV_StockJournalList;
+        public static INV_StockJournal objINV_StockJournal;
+        
 
+        public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
+        public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval; 
         public static PUR_PurchaseApproval objPUR_PurchaseApproval;
         public static PUR_PurchaseApprovalList objPUR_PurchaseApprovalList;  
         public static PUR_PurchaseEntryRejectedList objPUR_PurchaseEntryRejectedList;  
@@ -3329,7 +3334,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void tsmStockadjustment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockAdjustmentList = new INV_StockAdjustmentList();
+                MainForm.objINV_StockAdjustmentList.MdiParent = this;
+                MainForm.objINV_StockAdjustmentList.Show();
+                PbCurrentForm = "3.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tspStockConversion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockJournalList = new INV_StockJournalList();
+                MainForm.objINV_StockJournalList.MdiParent = this;
+                MainForm.objINV_StockJournalList.Show();
+                PbCurrentForm = "3.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            
+        }
+
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try
