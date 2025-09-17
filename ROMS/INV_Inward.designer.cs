@@ -1205,6 +1205,7 @@
             this.Name = "INV_Inward";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Brand";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.INV_Inward_FormClosing);
             this.Load += new System.EventHandler(this.INV_Inward_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_Inward_KeyDown);
             this.tsInwardList.ResumeLayout(false);
