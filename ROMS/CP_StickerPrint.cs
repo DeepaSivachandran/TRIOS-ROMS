@@ -385,6 +385,7 @@ namespace ROMS
                 RPTViewer.ReportSource = null;
 
                 txtProduct.Text = "";
+                txtUnit.Text = "";
                 txtGroup.Text = "";
                 txtSubgroup.Text = "";
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1 || Convert.ToInt32(cmbType.SelectedIndex) == 2 || Convert.ToInt32(cmbType.SelectedIndex) == 3)
@@ -641,6 +642,7 @@ namespace ROMS
                 grdSubgroup.DataSource = null;
                 RPTViewer.ReportSource = null;
                 txtProduct.Text = "";
+                txtUnit.Text = "";
                 txtGroup.Text = "";
                 txtSubgroup.Text = "";
                 cmbLabelsize.SelectedValue = 1;
@@ -974,6 +976,7 @@ namespace ROMS
                         }
                         txtSubgroup.Text = "";
                         txtProduct.Text = "";
+                        txtUnit.Text = "";
                     }
                 }
                 else
@@ -988,6 +991,7 @@ namespace ROMS
                             }
                             txtSubgroup.Text = "";
                             txtProduct.Text = "";
+                            txtUnit.Text = "";
                         }
                     }
                     if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
@@ -1000,6 +1004,7 @@ namespace ROMS
                             }
                             txtSubgroup.Text = "";
                             txtProduct.Text = "";
+                            txtUnit.Text = "";
                         }
                     }
                 }
@@ -1025,6 +1030,7 @@ namespace ROMS
                         }
                         txtSubgroup.Text = "";
                         txtProduct.Text = "";
+                        txtUnit.Text = "";
                     }
                 }
                 else
@@ -1039,6 +1045,7 @@ namespace ROMS
                             }
                             txtSubgroup.Text = "";
                             txtProduct.Text = "";
+                            txtUnit.Text = "";
                         }
                     }
                     if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
@@ -1051,6 +1058,7 @@ namespace ROMS
                             }
                             txtSubgroup.Text = "";
                             txtProduct.Text = "";
+                            txtUnit.Text = "";
                         }
                     }
                 }
@@ -1074,6 +1082,7 @@ namespace ROMS
                         grdSubgroup.Rows[i].Cells[0].Value = true;
                     }
                     txtProduct.Text = "";
+                    txtUnit.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1094,6 +1103,7 @@ namespace ROMS
                         grdSubgroup.Rows[i].Cells[0].Value = false;
                     }
                     txtProduct.Text = "";
+                    txtUnit.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1114,6 +1124,7 @@ namespace ROMS
                         grdProduct.Rows[i].Cells[0].Value = true;
                     }
                     txtProduct.Text = "";
+                    txtUnit.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1134,6 +1145,7 @@ namespace ROMS
                         grdProduct.Rows[i].Cells[0].Value = false;
                     }
                     txtProduct.Text = "";
+                    txtUnit.Text = "";
                 }
             }
             catch (Exception ex)
@@ -1181,7 +1193,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbLabelsize.Focus();
+                    txtUnit.Focus();
                 }
             }
             catch (Exception ex)
@@ -1311,6 +1323,7 @@ namespace ROMS
             {
                 grdProduct.DataSource = null;
                 txtProduct.Text = "";
+                txtUnit.Text = "";
                 List<string> varSelectedGroupCodes = new List<string>();
 
                 for (int i = 0; i < grdSubgroup.Rows.Count; i++)
@@ -1606,6 +1619,7 @@ namespace ROMS
                 txtGroup.Text = "";
                 txtSubgroup.Text = "";
                 txtProduct.Text = "";
+                txtUnit.Text = "";
                 cmbProductName.Enabled = true;
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
                 {
@@ -1619,7 +1633,9 @@ namespace ROMS
 
                     grdProduct.Visible = false;
                     txtProduct.Visible = false;
+                    txtUnit.Visible = false;
                     lblProduct.Visible = false;
+                    lblUnitName.Visible = false;
                     btnProductSelect.Visible = false;
                     btnProductUnSelect.Visible = false;
                 }
@@ -1634,7 +1650,9 @@ namespace ROMS
 
                     grdProduct.Visible = false;
                     txtProduct.Visible = false;
+                    txtUnit.Visible = false;
                     lblProduct.Visible = false;
+                    lblUnitName.Visible = false;
                     btnProductSelect.Visible = false;
                     btnProductUnSelect.Visible = false;
                 }
@@ -1649,13 +1667,16 @@ namespace ROMS
 
                     grdProduct.Visible = true;
                     txtProduct.Visible = true;
+                    txtUnit.Visible = true;
                     lblProduct.Visible = true;
+                    lblUnitName.Visible = true;
                     btnProductSelect.Visible = true;
                     btnProductUnSelect.Visible = true;
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
                 {
                     lblProductName.Text = "";
+                    cmbProductName.SelectedValue = 270;
                     cmbProductName.Enabled = false;
                     grdSubgroup.Visible = false;
                     txtSubgroup.Visible = false;
@@ -1665,13 +1686,16 @@ namespace ROMS
 
                     grdProduct.Visible = false;
                     txtProduct.Visible = false;
+                    txtUnit.Visible = false;
                     lblProduct.Visible = false;
+                    lblUnitName.Visible = false;
                     btnProductSelect.Visible = false;
                     btnProductUnSelect.Visible = false;
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
                 {
                     lblProductName.Text = "";
+                    cmbProductName.SelectedValue = 270;
                     cmbProductName.Enabled = false;
                     grdSubgroup.Visible = false;
                     txtSubgroup.Visible = false;
@@ -1681,7 +1705,9 @@ namespace ROMS
 
                     grdProduct.Visible = false;
                     txtProduct.Visible = false;
+                    txtUnit.Visible = false;
                     lblProduct.Visible = false;
+                    lblUnitName.Visible = false;
                     btnProductSelect.Visible = false;
                     btnProductUnSelect.Visible = false;
                 }
@@ -1732,6 +1758,7 @@ namespace ROMS
             {
                 txtSubgroup.Text = "";
                 txtProduct.Text = "";
+                txtUnit.Text = "";
                 grdProduct.DataSource = null;
                 grdSubgroup.DataSource = null;
                 List<string> varSelectedGroupCodes = new List<string>();
@@ -1782,6 +1809,64 @@ namespace ROMS
                     //    udfnSubgroupBind();
                     //    picLoader3.Visible = false;
                     //}
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbLabelsize.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtUnit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtUnit_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdProduct?.DataSource != null)
+                {
+                    (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Unit]) LIKE '%" + txtUnit.Text + "%'";
                 }
             }
             catch (Exception ex)

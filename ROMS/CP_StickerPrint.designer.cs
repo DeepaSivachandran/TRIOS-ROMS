@@ -96,6 +96,8 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtUnit = new System.Windows.Forms.TextBox();
+            this.lblUnitName = new System.Windows.Forms.Label();
             this.tsHeader.SuspendLayout();
             this.grdbFilter.SuspendLayout();
             this.grbGrid.SuspendLayout();
@@ -391,7 +393,7 @@
             this.txtProduct.Location = new System.Drawing.Point(473, 39);
             this.txtProduct.MaxLength = 100;
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(422, 27);
+            this.txtProduct.Size = new System.Drawing.Size(346, 27);
             this.txtProduct.TabIndex = 5;
             this.txtProduct.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProduct.Enter += new System.EventHandler(this.TxtProduct_Enter);
@@ -410,6 +412,8 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.lblUnitName);
+            this.grbGrid.Controls.Add(this.txtUnit);
             this.grbGrid.Controls.Add(this.grdRackGroup);
             this.grbGrid.Controls.Add(this.grdRack);
             this.grbGrid.Controls.Add(this.lblProductName);
@@ -933,6 +937,30 @@
             this.dataGridViewImageColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn4.Width = 150;
             // 
+            // txtUnit
+            // 
+            this.txtUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUnit.Location = new System.Drawing.Point(822, 39);
+            this.txtUnit.MaxLength = 100;
+            this.txtUnit.Name = "txtUnit";
+            this.txtUnit.Size = new System.Drawing.Size(73, 27);
+            this.txtUnit.TabIndex = 1111176;
+            this.txtUnit.TextChanged += new System.EventHandler(this.TxtUnit_TextChanged);
+            this.txtUnit.Enter += new System.EventHandler(this.TxtUnit_Enter);
+            this.txtUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUnit_KeyDown);
+            this.txtUnit.Leave += new System.EventHandler(this.TxtUnit_Leave);
+            // 
+            // lblUnitName
+            // 
+            this.lblUnitName.AutoSize = true;
+            this.lblUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnitName.Location = new System.Drawing.Point(822, 14);
+            this.lblUnitName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUnitName.Name = "lblUnitName";
+            this.lblUnitName.Size = new System.Drawing.Size(32, 20);
+            this.lblUnitName.TabIndex = 1111177;
+            this.lblUnitName.Text = "Unit";
+            // 
             // CP_StickerPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1027,5 +1055,7 @@
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.DataGridView grdRack;
         public System.Windows.Forms.DataGridView grdRackGroup;
+        private System.Windows.Forms.TextBox txtUnit;
+        public System.Windows.Forms.Label lblUnitName;
     }
 }
