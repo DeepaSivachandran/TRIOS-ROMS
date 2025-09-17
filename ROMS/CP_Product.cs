@@ -3698,6 +3698,7 @@ namespace ROMS
         {
             try
             {
+                varStatusID = 120;//Draft
                 dtProductHSN.Columns.Add("HSN_Type", typeof(int));
                 dtProductHSN.Columns.Add("HSNID", typeof(int));
                 dtProductHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));

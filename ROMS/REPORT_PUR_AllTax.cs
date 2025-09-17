@@ -21,27 +21,28 @@ namespace ROMS
         private ToolTip tpReportType = new ToolTip();
         private ToolTip tpGST = new ToolTip();
         public int varUpDownKeySupplier = 0;
+        private List<ComboItem> months;
         public REPORT_PUR_AllTax()
         {
             InitializeComponent();
 
-            var months = new List<ComboItem>
-            {
-                new ComboItem { Id = 1, Text = "January" },
-                new ComboItem { Id = 2, Text = "February" },
-                new ComboItem { Id = 3, Text = "March" },
-                new ComboItem { Id = 4, Text = "April" },
-                new ComboItem { Id = 5, Text = "May" },
-                new ComboItem { Id = 6, Text = "June" },
-                new ComboItem { Id = 7, Text = "July" },
-                new ComboItem { Id = 8, Text = "August" },
-                new ComboItem { Id = 9, Text = "September" },
-                new ComboItem { Id = 10, Text = "October" },
-                new ComboItem { Id = 11, Text = "November" },
-                new ComboItem { Id = 12, Text = "December" }
-            };
+            //var months = new List<ComboItem>
+            //{
+            //    new ComboItem { Id = 1, Text = "January" },
+            //    new ComboItem { Id = 2, Text = "February" },
+            //    new ComboItem { Id = 3, Text = "March" },
+            //    new ComboItem { Id = 4, Text = "April" },
+            //    new ComboItem { Id = 5, Text = "May" },
+            //    new ComboItem { Id = 6, Text = "June" },
+            //    new ComboItem { Id = 7, Text = "July" },
+            //    new ComboItem { Id = 8, Text = "August" },
+            //    new ComboItem { Id = 9, Text = "September" },
+            //    new ComboItem { Id = 10, Text = "October" },
+            //    new ComboItem { Id = 11, Text = "November" },
+            //    new ComboItem { Id = 12, Text = "December" }
+            //};
 
-            multiSelectComboBox1.LoadItems(months, "Select Month");
+            //cmbMultiMonths.LoadItems(months, "Select Month");
             //var btn = new Button { Text = "Show Selected", Location = new Point(1050, 45) };
             //btn.Click += (s, e) =>
             //{
@@ -143,6 +144,11 @@ namespace ROMS
         {
             try
             {
+                string varMonthIds = "";
+                var selIds = cmbMultiMonths.CheckedIds;
+                var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
+                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
                 epReport.Clear();
                 int varViewType = 29;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
@@ -221,10 +227,44 @@ namespace ROMS
                 GC.Collect();
             }
         }
+        public void udfnLoadMonths()
+        {
+            try
+            {
+                lblMonths.Text = "";
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 29;
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnMaster(objMR_Master);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs != null && objDs.Tables.Count > 0 && objDs.Tables[0].Rows.Count > 0)
+                    {
+                        months = objDs.Tables[0].AsEnumerable()
+                            .Select(r => new ComboItem
+                            {
+                                Id = r.Field<int>("MONID"),
+                                Text = r.Field<string>("MonthName")
+                            })
+                            .ToList();
+                        cmbMultiMonths.LoadItems(months, "Select Month");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void REPORT_CP_City_Load(object sender, EventArgs e)
         {
             try
             {
+                udfnLoadMonths();
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -428,6 +468,7 @@ namespace ROMS
         {
             try
             {
+                lblMonths.Text = "";
                 if (cmbReportType.SelectedItem is DataRowView drv)
                 {
                     if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
@@ -447,6 +488,7 @@ namespace ROMS
                     dpFromDate.Enabled = false;
                     dpToDate.Enabled = false;
                     cmbMonths.Enabled = true;
+                    cmbMultiMonths.Enabled = true;
                 }
                 else
                 {
@@ -454,6 +496,7 @@ namespace ROMS
                     dpToDate.Enabled = true;
                     cmbMonths.SelectedValue = 0;
                     cmbMonths.Enabled = false;
+                    cmbMultiMonths.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -536,9 +579,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbMonths.Enabled == true)
+                    if (cmbMultiMonths.Enabled == true)
                     {
-                        cmbMonths.Focus();
+                        cmbMultiMonths.Focus();
                     }
                     else
                     {
@@ -569,6 +612,61 @@ namespace ROMS
             try
             {
                 cmbGST.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMultiMonths_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMultiMonths.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMultiMonths_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMultiMonths_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMultiMonths_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMultiMonths.BackColor = Color.White;
             }
             catch (Exception ex)
             {

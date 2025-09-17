@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.cmbMonths = new System.Windows.Forms.ComboBox();
@@ -48,8 +50,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
-            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.cmbMultiMonths = new MultiSelectComboBox();
+            this.lblMonths = new System.Windows.Forms.Label();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -83,6 +85,32 @@
             this.tspHeader.Size = new System.Drawing.Size(202, 24);
             this.tspHeader.Text = "Purchase Period Wise Tax Report";
             // 
+            // tsbPrintFormat
+            // 
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
+            this.tsbPrintFormat.Text = "A4-Landscape";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
+            // 
             // pnlReportCity
             // 
             this.pnlReportCity.BackColor = System.Drawing.Color.White;
@@ -97,6 +125,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.lblMonths);
+            this.grpfilter.Controls.Add(this.cmbMultiMonths);
             this.grpfilter.Controls.Add(this.cmbMonths);
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.label7);
@@ -122,6 +152,7 @@
             this.cmbMonths.Name = "cmbMonths";
             this.cmbMonths.Size = new System.Drawing.Size(109, 27);
             this.cmbMonths.TabIndex = 4;
+            this.cmbMonths.Visible = false;
             this.cmbMonths.Enter += new System.EventHandler(this.CmbMonths_Enter);
             this.cmbMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMonths_KeyDown);
             this.cmbMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMonths_KeyPress);
@@ -132,7 +163,7 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(674, 45);
+            this.btnListPrint.Location = new System.Drawing.Point(686, 45);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
@@ -288,31 +319,29 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // tsbPrintFormat
+            // cmbMultiMonths
             // 
-            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
-            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
-            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbPrintFormat.Name = "tsbPrintFormat";
-            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
-            this.tsbPrintFormat.Text = "A4-Landscape";
-            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            this.cmbMultiMonths.DropDownHeight = 1;
+            this.cmbMultiMonths.FormattingEnabled = true;
+            this.cmbMultiMonths.IntegralHeight = false;
+            this.cmbMultiMonths.Location = new System.Drawing.Point(559, 46);
+            this.cmbMultiMonths.Name = "cmbMultiMonths";
+            this.cmbMultiMonths.Size = new System.Drawing.Size(121, 27);
+            this.cmbMultiMonths.TabIndex = 4;
+            this.cmbMultiMonths.Enter += new System.EventHandler(this.CmbMultiMonths_Enter);
+            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMultiMonths_KeyDown);
+            this.cmbMultiMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMultiMonths_KeyPress);
+            this.cmbMultiMonths.Leave += new System.EventHandler(this.CmbMultiMonths_Leave);
             // 
-            // tsbFormat
+            // lblMonths
             // 
-            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbFormat.Name = "tsbFormat";
-            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
-            this.tsbFormat.Text = "Print Format : ";
-            this.tsbFormat.ToolTipText = "Total GRN ";
+            this.lblMonths.AutoSize = true;
+            this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.lblMonths.Location = new System.Drawing.Point(683, 26);
+            this.lblMonths.Name = "lblMonths";
+            this.lblMonths.Size = new System.Drawing.Size(265, 17);
+            this.lblMonths.TabIndex = 111111199;
+            this.lblMonths.Text = "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec";
             // 
             // REPORT_PUR_PeriodWiseTax
             // 
@@ -367,5 +396,7 @@
         private System.Windows.Forms.ComboBox cmbMonths;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
+        private MultiSelectComboBox cmbMultiMonths;
+        private System.Windows.Forms.Label lblMonths;
     }
 }

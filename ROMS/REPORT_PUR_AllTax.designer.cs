@@ -35,7 +35,7 @@
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.lblMonths = new System.Windows.Forms.Label();
+            this.cmbMultiMonths = new MultiSelectComboBox();
             this.cmbGST = new System.Windows.Forms.ComboBox();
             this.cmbMonths = new System.Windows.Forms.ComboBox();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.multiSelectComboBox1 = new MultiSelectComboBox();
+            this.lblMonths = new System.Windows.Forms.Label();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -71,7 +71,7 @@
             this.tsbFormat});
             this.ReportCity.Location = new System.Drawing.Point(0, 0);
             this.ReportCity.Name = "ReportCity";
-            this.ReportCity.Size = new System.Drawing.Size(1354, 32);
+            this.ReportCity.Size = new System.Drawing.Size(1354, 27);
             this.ReportCity.TabIndex = 35;
             this.ReportCity.Text = "City Report";
             // 
@@ -82,7 +82,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(185, 29);
+            this.tspHeader.Size = new System.Drawing.Size(152, 24);
             this.tspHeader.Text = "All Purchase Tax Report";
             // 
             // tsbPrintFormat
@@ -95,7 +95,7 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(109, 29);
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
             this.tsbPrintFormat.Text = "A4-Landscape";
             this.tsbPrintFormat.ToolTipText = "Total GRN ";
             // 
@@ -107,7 +107,7 @@
             this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(112, 29);
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Total GRN ";
             // 
@@ -125,8 +125,8 @@
             // 
             // grpfilter
             // 
-            this.grpfilter.Controls.Add(this.multiSelectComboBox1);
             this.grpfilter.Controls.Add(this.lblMonths);
+            this.grpfilter.Controls.Add(this.cmbMultiMonths);
             this.grpfilter.Controls.Add(this.cmbGST);
             this.grpfilter.Controls.Add(this.cmbMonths);
             this.grpfilter.Controls.Add(this.btnListPrint);
@@ -145,21 +145,29 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
-            // lblMonths
+            // cmbMultiMonths
             // 
-            this.lblMonths.AutoSize = true;
-            this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonths.Location = new System.Drawing.Point(733, 17);
-            this.lblMonths.Name = "lblMonths";
-            this.lblMonths.Size = new System.Drawing.Size(0, 26);
-            this.lblMonths.TabIndex = 111111196;
+            this.cmbMultiMonths.BackColor = System.Drawing.Color.White;
+            this.cmbMultiMonths.DropDownHeight = 1;
+            this.cmbMultiMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMultiMonths.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbMultiMonths.FormattingEnabled = true;
+            this.cmbMultiMonths.IntegralHeight = false;
+            this.cmbMultiMonths.Location = new System.Drawing.Point(623, 46);
+            this.cmbMultiMonths.Name = "cmbMultiMonths";
+            this.cmbMultiMonths.Size = new System.Drawing.Size(121, 27);
+            this.cmbMultiMonths.TabIndex = 4;
+            this.cmbMultiMonths.Enter += new System.EventHandler(this.CmbMultiMonths_Enter);
+            this.cmbMultiMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMultiMonths_KeyDown);
+            this.cmbMultiMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMultiMonths_KeyPress);
+            this.cmbMultiMonths.Leave += new System.EventHandler(this.CmbMultiMonths_Leave);
             // 
             // cmbGST
             // 
             this.cmbGST.FormattingEnabled = true;
             this.cmbGST.Location = new System.Drawing.Point(508, 46);
             this.cmbGST.Name = "cmbGST";
-            this.cmbGST.Size = new System.Drawing.Size(109, 33);
+            this.cmbGST.Size = new System.Drawing.Size(109, 27);
             this.cmbGST.TabIndex = 3;
             this.cmbGST.Enter += new System.EventHandler(this.CmbGST_Enter);
             this.cmbGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGST_KeyDown);
@@ -171,8 +179,9 @@
             this.cmbMonths.FormattingEnabled = true;
             this.cmbMonths.Location = new System.Drawing.Point(623, 46);
             this.cmbMonths.Name = "cmbMonths";
-            this.cmbMonths.Size = new System.Drawing.Size(109, 33);
+            this.cmbMonths.Size = new System.Drawing.Size(109, 27);
             this.cmbMonths.TabIndex = 4;
+            this.cmbMonths.Visible = false;
             this.cmbMonths.Enter += new System.EventHandler(this.CmbMonths_Enter);
             this.cmbMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbMonths_KeyDown);
             this.cmbMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbMonths_KeyPress);
@@ -183,7 +192,7 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(738, 45);
+            this.btnListPrint.Location = new System.Drawing.Point(750, 45);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
@@ -201,7 +210,7 @@
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(623, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 26);
+            this.label7.Size = new System.Drawing.Size(50, 20);
             this.label7.TabIndex = 111111195;
             this.label7.Text = "Months";
             // 
@@ -210,7 +219,7 @@
             this.cmbReportType.FormattingEnabled = true;
             this.cmbReportType.Location = new System.Drawing.Point(9, 46);
             this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(271, 33);
+            this.cmbReportType.Size = new System.Drawing.Size(271, 27);
             this.cmbReportType.TabIndex = 0;
             this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
@@ -224,7 +233,7 @@
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportType.Location = new System.Drawing.Point(9, 23);
             this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(91, 26);
+            this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 111111193;
             this.lblReportType.Text = "Report type";
             // 
@@ -234,7 +243,7 @@
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpToDate.Location = new System.Drawing.Point(399, 46);
             this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(103, 32);
+            this.dpToDate.Size = new System.Drawing.Size(103, 27);
             this.dpToDate.TabIndex = 2;
             this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
@@ -246,7 +255,7 @@
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(399, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 26);
+            this.label3.Size = new System.Drawing.Size(49, 20);
             this.label3.TabIndex = 111111188;
             this.label3.Text = "To Date";
             // 
@@ -256,7 +265,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(508, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 26);
+            this.label2.Size = new System.Drawing.Size(46, 20);
             this.label2.TabIndex = 111111186;
             this.label2.Text = "GST %";
             // 
@@ -266,7 +275,7 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(286, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 26);
+            this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 111111184;
             this.label1.Text = "From Date";
             // 
@@ -276,7 +285,7 @@
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpFromDate.Location = new System.Drawing.Point(286, 46);
             this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(107, 32);
+            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 1;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
@@ -290,7 +299,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 354);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -327,22 +336,19 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // multiSelectComboBox1
+            // lblMonths
             // 
-            this.multiSelectComboBox1.BackColor = System.Drawing.Color.White;
-            this.multiSelectComboBox1.DropDownHeight = 1;
-            this.multiSelectComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.multiSelectComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.multiSelectComboBox1.FormattingEnabled = true;
-            this.multiSelectComboBox1.IntegralHeight = false;
-            this.multiSelectComboBox1.Location = new System.Drawing.Point(838, 48);
-            this.multiSelectComboBox1.Name = "multiSelectComboBox1";
-            this.multiSelectComboBox1.Size = new System.Drawing.Size(121, 33);
-            this.multiSelectComboBox1.TabIndex = 111111197;
+            this.lblMonths.AutoSize = true;
+            this.lblMonths.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.lblMonths.Location = new System.Drawing.Point(747, 25);
+            this.lblMonths.Name = "lblMonths";
+            this.lblMonths.Size = new System.Drawing.Size(265, 17);
+            this.lblMonths.TabIndex = 111111199;
+            this.lblMonths.Text = "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec";
             // 
             // REPORT_PUR_AllTax
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
@@ -393,7 +399,7 @@
         private System.Windows.Forms.ComboBox cmbGST;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
+        private MultiSelectComboBox cmbMultiMonths;
         private System.Windows.Forms.Label lblMonths;
-        private MultiSelectComboBox multiSelectComboBox1;
     }
 }
