@@ -24,6 +24,38 @@ namespace ROMS
         public REPORT_PUR_AllTax()
         {
             InitializeComponent();
+            var multi = new MultiSelectComboBox
+            {
+                Location = new Point(830, 45),
+                Width = 150
+            };
+            grpfilter.Controls.Add(multi);
+
+            var months = new List<ComboItem>
+            {
+                new ComboItem { Id = 1, Text = "January" },
+                new ComboItem { Id = 2, Text = "February" },
+                new ComboItem { Id = 3, Text = "March" },
+                new ComboItem { Id = 4, Text = "April" },
+                new ComboItem { Id = 5, Text = "May" },
+                new ComboItem { Id = 6, Text = "June" },
+                new ComboItem { Id = 7, Text = "July" },
+                new ComboItem { Id = 8, Text = "August" },
+                new ComboItem { Id = 9, Text = "September" },
+                new ComboItem { Id = 10, Text = "October" },
+                new ComboItem { Id = 11, Text = "November" },
+                new ComboItem { Id = 12, Text = "December" }
+            };
+
+            multi.LoadItems(months, "Select Month");
+            var btn = new Button { Text = "Show Selected", Location = new Point(1050, 45) };
+            btn.Click += (s, e) =>
+            {
+                var selIds = multi.CheckedIds;
+                var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
+                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Id));
+            };
+            grpfilter.Controls.Add(btn);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
