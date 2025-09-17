@@ -120,18 +120,18 @@ namespace ROMS
                 }
                 else
                 {
-                    if (Convert.ToInt32(cmbGST.SelectedValue) == -1)
-                    {
-                        epReport.SetError(cmbGST, "Please select gst.");
-                        cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpGST.ShowAlways = true;
-                        tpGST.Show("Please select gst.", cmbGST, 5000);
-                        cmbGST.Focus();
-                    }
-                    else
-                    {
+                    //if (Convert.ToInt32(cmbGST.SelectedValue) == -1)
+                    //{
+                    //    epReport.SetError(cmbGST, "Please select gst.");
+                    //    cmbGST.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpGST.ShowAlways = true;
+                    //    tpGST.Show("Please select gst.", cmbGST, 5000);
+                    //    cmbGST.Focus();
+                    //}
+                    //else
+                    //{
                         udfnAllPurchaseTaxReport();
-                    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -282,10 +282,10 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,101) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_GST", "GSTID<>0", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
+                objDataBind.BindComboBoxListSelected("DEF_GST", "GSTID<>-1", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");
                 objDataBind = null;
-                cmbGST.SelectedValue = -1;
+                cmbGST.SelectedValue = 0;
                 cmbMonths.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
             }
