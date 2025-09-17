@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_Product_Label_Print_Plain_50x25_Test : ReportClass {
+    public class RPT_Product_Label_Print_50x25 : ReportClass {
         
-        public RPT_Product_Label_Print_Plain_50x25_Test() {
+        public RPT_Product_Label_Print_50x25() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_Product_Label_Print_Plain_50x25_Test.rpt";
+                return "RPT_Product_Label_Print_50x25.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_Product_Label_Print_Plain_50x25_Test.rpt";
+                return "ROMS.Reports.RPT_Product_Label_Print_50x25.rpt";
             }
             set {
                 // Do nothing
@@ -130,9 +130,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_Product_Label_Print_Plain_50x25_Test : Component, ICachedReport {
+    public class CachedRPT_Product_Label_Print_50x25 : Component, ICachedReport {
         
-        public CachedRPT_Product_Label_Print_Plain_50x25_Test() {
+        public CachedRPT_Product_Label_Print_50x25() {
         }
         
         [Browsable(false)]
@@ -169,7 +169,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_Product_Label_Print_Plain_50x25_Test rpt = new RPT_Product_Label_Print_Plain_50x25_Test();
+            RPT_Product_Label_Print_50x25 rpt = new RPT_Product_Label_Print_50x25();
             rpt.Site = this.Site;
             return rpt;
         }
