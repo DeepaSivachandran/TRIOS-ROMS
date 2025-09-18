@@ -201,8 +201,15 @@ namespace ROMS
                             grdAdvanceList.Columns["AD_SPSCID"].Visible = false;
                             grdAdvanceList.Columns["AD_STSID"].Visible = false;
                             grdAdvanceList.Columns["Source"].Visible = false;
+
+                            grdAdvanceList.Columns["ChequeDate"].Visible = false;
+                            grdAdvanceList.Columns["PrintFlag"].Visible = false;
+                            grdAdvanceList.Columns["RPTName"].Visible = false;
+                            grdAdvanceList.Columns["ChequeSupplierName"].Visible = false;
+                            grdAdvanceList.Columns["BankID"].Visible = false; 
+
                             grdAdvanceList.Columns["S.No."].Width = 50;
-                            grdAdvanceList.Columns["Status"].Width = 80;
+                            grdAdvanceList.Columns["Status"].Width = 150;
                             grdAdvanceList.Columns["Transaction Date"].Width = 110;
                             grdAdvanceList.Columns["Created By"].Width = 170;
                             grdAdvanceList.Columns["Updated By"].Width = 170;
@@ -1403,6 +1410,42 @@ namespace ROMS
                 {
                     switch (grdAdvanceList.Columns[e.ColumnIndex].Name)
                     {
+                        case "clmChequePrint":
+                            if (Convert.ToUInt32(grdAdvanceList.SelectedRows[0].Cells["BankID"].Value) != 0)
+                            {
+                                DialogResult result1 = DialogResult.Yes;
+                                SPDataService objDServs = new SPDataService();
+                                string varMessage = objDServs.udfnGetMessages(87);
+                                objDServs.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varRPTName = "";
+                                    string varGrandTotal = Convert.ToString(grdAdvanceList.SelectedRows[0].Cells["Amount"].Value);
+                                    decimal varMRP = Math.Round(Convert.ToDecimal(varGrandTotal.Trim()), 2, MidpointRounding.AwayFromZero);
+                                    string varAmt = string.Format("{0:0}", varMRP);
+                                    int varAmount = Convert.ToInt32(varAmt);
+                                    string lblAmount = Currency.NumbersToWords(varAmount);
+                                    //Added By Sathish ON 04-09-2025 For Check Date Without Space Format
+                                    DateTime ChequeDateTime = DateTime.ParseExact(Convert.ToString(grdAdvanceList.SelectedRows[0].Cells["ChequeDate"].Value), "dd/MM/yyyy", null);
+                                    string chequeDate = ChequeDateTime.ToString("ddMMyyyy");
+
+                                    string varSupplierName = Convert.ToString(grdAdvanceList.SelectedRows[0].Cells["ChequeSupplierName"].Value);
+                                    varRPTName = Convert.ToString(grdAdvanceList.SelectedRows[0].Cells["RPTName"].Value);
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
+                                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                                    objBillreport.SetParameterValue("paraAmountInWords", lblAmount);
+                                    objBillreport.SetParameterValue("paraAmount", varGrandTotal);
+                                    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
+                                    objValidation.CrySqlConnection(objBillreport);
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            break;
                         case "clmPrint":
                             try
                             {
