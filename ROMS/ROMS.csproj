@@ -648,6 +648,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_DET_Batch_Details.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_Zero_Rate_AlphaWise.cs">
       <DependentUpon>RPT_Zero_Rate_AlphaWise.rpt</DependentUpon>
@@ -3956,6 +3957,7 @@
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_DET_Batch_Details.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_50x60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

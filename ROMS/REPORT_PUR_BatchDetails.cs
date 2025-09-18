@@ -57,6 +57,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -244,6 +245,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpFromDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -647,6 +649,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -702,6 +705,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbPurchaseType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -757,6 +761,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbPaymentType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -812,6 +817,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbConditionType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -867,6 +873,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpToDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -909,6 +916,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
