@@ -69,6 +69,8 @@
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.grbGrid = new System.Windows.Forms.GroupBox();
+            this.lblUnitName = new System.Windows.Forms.Label();
+            this.txtUnit = new System.Windows.Forms.TextBox();
             this.grdRackGroup = new System.Windows.Forms.DataGridView();
             this.grdRack = new System.Windows.Forms.DataGridView();
             this.lblProductName = new System.Windows.Forms.Label();
@@ -96,8 +98,8 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtUnit = new System.Windows.Forms.TextBox();
-            this.lblUnitName = new System.Windows.Forms.Label();
+            this.cmbRKTemplates = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tsHeader.SuspendLayout();
             this.grdbFilter.SuspendLayout();
             this.grbGrid.SuspendLayout();
@@ -412,6 +414,8 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.label2);
+            this.grbGrid.Controls.Add(this.cmbRKTemplates);
             this.grbGrid.Controls.Add(this.lblUnitName);
             this.grbGrid.Controls.Add(this.txtUnit);
             this.grbGrid.Controls.Add(this.grdRackGroup);
@@ -449,6 +453,30 @@
             this.grbGrid.Size = new System.Drawing.Size(1341, 551);
             this.grbGrid.TabIndex = 3;
             this.grbGrid.TabStop = false;
+            // 
+            // lblUnitName
+            // 
+            this.lblUnitName.AutoSize = true;
+            this.lblUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnitName.Location = new System.Drawing.Point(822, 14);
+            this.lblUnitName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUnitName.Name = "lblUnitName";
+            this.lblUnitName.Size = new System.Drawing.Size(32, 20);
+            this.lblUnitName.TabIndex = 1111177;
+            this.lblUnitName.Text = "Unit";
+            // 
+            // txtUnit
+            // 
+            this.txtUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUnit.Location = new System.Drawing.Point(822, 39);
+            this.txtUnit.MaxLength = 100;
+            this.txtUnit.Name = "txtUnit";
+            this.txtUnit.Size = new System.Drawing.Size(73, 27);
+            this.txtUnit.TabIndex = 1111176;
+            this.txtUnit.TextChanged += new System.EventHandler(this.TxtUnit_TextChanged);
+            this.txtUnit.Enter += new System.EventHandler(this.TxtUnit_Enter);
+            this.txtUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUnit_KeyDown);
+            this.txtUnit.Leave += new System.EventHandler(this.TxtUnit_Leave);
             // 
             // grdRackGroup
             // 
@@ -538,7 +566,7 @@
             // 
             this.lblProductName.AutoSize = true;
             this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(1055, 15);
+            this.lblProductName.Location = new System.Drawing.Point(1179, 15);
             this.lblProductName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(85, 20);
@@ -550,7 +578,7 @@
             this.cmbProductName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductName.FormattingEnabled = true;
-            this.cmbProductName.Location = new System.Drawing.Point(1055, 39);
+            this.cmbProductName.Location = new System.Drawing.Point(1179, 39);
             this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbProductName.Name = "cmbProductName";
             this.cmbProductName.Size = new System.Drawing.Size(118, 28);
@@ -709,7 +737,7 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(1178, 36);
+            this.btnpreview.Location = new System.Drawing.Point(1302, 36);
             this.btnpreview.Name = "btnpreview";
             this.btnpreview.Size = new System.Drawing.Size(33, 33);
             this.btnpreview.TabIndex = 9;
@@ -742,7 +770,7 @@
             // txtLabelCount
             // 
             this.txtLabelCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLabelCount.Location = new System.Drawing.Point(977, 40);
+            this.txtLabelCount.Location = new System.Drawing.Point(1101, 40);
             this.txtLabelCount.MaxLength = 100;
             this.txtLabelCount.Name = "txtLabelCount";
             this.txtLabelCount.Size = new System.Drawing.Size(73, 27);
@@ -757,7 +785,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(977, 15);
+            this.label5.Location = new System.Drawing.Point(1101, 15);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 20);
@@ -937,29 +965,31 @@
             this.dataGridViewImageColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn4.Width = 150;
             // 
-            // txtUnit
+            // cmbRKTemplates
             // 
-            this.txtUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUnit.Location = new System.Drawing.Point(822, 39);
-            this.txtUnit.MaxLength = 100;
-            this.txtUnit.Name = "txtUnit";
-            this.txtUnit.Size = new System.Drawing.Size(73, 27);
-            this.txtUnit.TabIndex = 1111176;
-            this.txtUnit.TextChanged += new System.EventHandler(this.TxtUnit_TextChanged);
-            this.txtUnit.Enter += new System.EventHandler(this.TxtUnit_Enter);
-            this.txtUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUnit_KeyDown);
-            this.txtUnit.Leave += new System.EventHandler(this.TxtUnit_Leave);
+            this.cmbRKTemplates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRKTemplates.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRKTemplates.FormattingEnabled = true;
+            this.cmbRKTemplates.Location = new System.Drawing.Point(976, 39);
+            this.cmbRKTemplates.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.cmbRKTemplates.Name = "cmbRKTemplates";
+            this.cmbRKTemplates.Size = new System.Drawing.Size(120, 28);
+            this.cmbRKTemplates.TabIndex = 1111178;
+            this.cmbRKTemplates.Enter += new System.EventHandler(this.cmbRKTemplates_Enter);
+            this.cmbRKTemplates.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRKTemplates_KeyDown);
+            this.cmbRKTemplates.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRKTemplates_KeyPress);
+            this.cmbRKTemplates.Leave += new System.EventHandler(this.cmbRKTemplates_Leave);
             // 
-            // lblUnitName
+            // label2
             // 
-            this.lblUnitName.AutoSize = true;
-            this.lblUnitName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitName.Location = new System.Drawing.Point(822, 14);
-            this.lblUnitName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblUnitName.Name = "lblUnitName";
-            this.lblUnitName.Size = new System.Drawing.Size(32, 20);
-            this.lblUnitName.TabIndex = 1111177;
-            this.lblUnitName.Text = "Unit";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(976, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 20);
+            this.label2.TabIndex = 1111179;
+            this.label2.Text = "Templates";
             // 
             // CP_StickerPrint
             // 
@@ -1057,5 +1087,7 @@
         public System.Windows.Forms.DataGridView grdRackGroup;
         private System.Windows.Forms.TextBox txtUnit;
         public System.Windows.Forms.Label lblUnitName;
+        public System.Windows.Forms.ComboBox cmbRKTemplates;
+        public System.Windows.Forms.Label label2;
     }
 }
