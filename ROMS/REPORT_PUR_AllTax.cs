@@ -147,7 +147,14 @@ namespace ROMS
                 string varMonthIds = "", varMonthName = "";
                 var selIds = cmbMultiMonths.CheckedIds;
                 var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
-                lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
+                {
+                    lblMonths.Text = string.Join(", ", selItems.Select(x => x.Text));
+                }
+                else
+                {
+                    lblMonths.Text = "";
+                }
                 varMonthName = lblMonths.Text;
                 varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
                 if (varMonthIds.Trim() == "")
