@@ -2489,6 +2489,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void INV_Inward_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                udfntooltiphide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdInward_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try

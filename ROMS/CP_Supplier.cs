@@ -9859,14 +9859,14 @@ namespace ROMS
                     tpTaxableAmt.Show("Please enter the taxable amount", txtTaxableAmt, 5000);
                     varFlag = true;
                 }
-                if (txtTaxAmt.Text.Trim() == "" || Convert.ToDecimal(txtTaxAmt.Text) == 0)
-                {
-                    errCompany.SetError(txtTaxAmt, "Please enter the tax amount");
-                    txtTaxAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpTaxAmt.ShowAlways = true;
-                    tpTaxAmt.Show("Please enter the tax amount", txtTaxAmt, 5000);
-                    varFlag = true;
-                }
+                //if (txtTaxAmt.Text.Trim() == "" || Convert.ToDecimal(txtTaxAmt.Text) == 0)
+                //{
+                //    errCompany.SetError(txtTaxAmt, "Please enter the tax amount");
+                //    txtTaxAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpTaxAmt.ShowAlways = true;
+                //    tpTaxAmt.Show("Please enter the tax amount", txtTaxAmt, 5000);
+                //    varFlag = true;
+                //}
                 //if (txtInvoiceAmt.Text.Trim() == "" || Convert.ToDecimal(txtInvoiceAmt.Text) == 0)
                 //{
                 //    errCompany.SetError(txtInvoiceAmt, "Please enter the Invoice amt");
@@ -9885,14 +9885,19 @@ namespace ROMS
                 }
                 if (varFlag==false)
                 {
+                    decimal varTaxAmount = 0;
                     var varStatus = dtStatus.AsEnumerable()
                                     .Where(r => r.Field<int>("STSID") == 63 
                                     )
                                     .Select(r=>r.Field<string>("STS_Name"))
                                     .ToList();
                     stsName = varStatus[0]; 
-                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtTaxableAmt.Text.Trim()), Convert.ToString(txtTaxAmt.Text.Trim()), Convert.ToString(txtAdjustments.Text.Trim()), Convert.ToString(txtInvoiceAmt.Text.Trim()), stsName, 63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
-                    dtOpeningCRDetails.Rows.Add(0, Convert.ToString(dpInvoiceDate.Text), Convert.ToString(txtInvoiceNo.Text), Convert.ToDecimal(txtInvoiceAmt.Text), 63, Convert.ToInt16(cmbCrCompany.SelectedValue), Convert.ToDecimal(txtTaxableAmt.Text), Convert.ToDecimal(txtTaxAmt.Text), Convert.ToDecimal(txtAdjustments.Text.Trim()));
+                    if(Convert.ToString(txtTaxAmt.Text.Trim())!="")
+                    {
+                        varTaxAmount = Convert.ToInt16(txtTaxAmt.Text.Trim());
+                    }
+                    grdOpeningCrDetails.Rows.Add(grdOpeningCrDetails.RowCount+1, cmbCrCompany.Text,txtInvoiceNo.Text.Trim(), dpInvoiceDate.Text, Convert.ToString(txtTaxableAmt.Text.Trim()), varTaxAmount, Convert.ToString(txtAdjustments.Text.Trim()), Convert.ToString(txtInvoiceAmt.Text.Trim()), stsName, 63,Convert.ToString(cmbCrCompany.SelectedValue), "0");
+                    dtOpeningCRDetails.Rows.Add(0, Convert.ToString(dpInvoiceDate.Text), Convert.ToString(txtInvoiceNo.Text), Convert.ToDecimal(txtInvoiceAmt.Text), 63, Convert.ToInt16(cmbCrCompany.SelectedValue), Convert.ToDecimal(txtTaxableAmt.Text), varTaxAmount, Convert.ToDecimal(txtAdjustments.Text.Trim()));
                     txtInvoiceNo.Text = "";
                     txtTaxableAmt.Text = "";
                     txtTaxAmt.Text = "";
