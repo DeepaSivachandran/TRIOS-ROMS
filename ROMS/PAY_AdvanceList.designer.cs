@@ -66,6 +66,7 @@
             this.grdAdvanceList = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmChequePrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmEnvelopPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsAdvanceList.SuspendLayout();
@@ -450,6 +451,7 @@
             this.grdAdvanceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdAdvanceList.ColumnHeadersVisible = false;
             this.grdAdvanceList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmChequePrint,
             this.clmPrint,
             this.clmEnvelopPrint});
             this.grdAdvanceList.EnableHeadersVisualStyles = false;
@@ -499,6 +501,15 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // clmChequePrint
+            // 
+            this.clmChequePrint.HeaderText = "Cheque Print";
+            this.clmChequePrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmChequePrint.Name = "clmChequePrint";
+            this.clmChequePrint.ReadOnly = true;
+            this.clmChequePrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmChequePrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // clmPrint
             // 
@@ -582,6 +593,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.DataGridViewImageColumn clmChequePrint;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmEnvelopPrint;
     }

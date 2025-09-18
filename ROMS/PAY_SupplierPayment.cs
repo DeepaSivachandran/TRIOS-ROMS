@@ -324,7 +324,7 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (Convert.ToUInt32(cmbPaymentmode.SelectedValue) !=346)
+                        if (Convert.ToUInt32(cmbPaymentmode.SelectedValue) != 346 && Convert.ToDecimal(lblGrandTotal.Text) != 0)
                         { 
                             string varRPTName = "",varChequeText= "";  int varBankID =0; int varChectTextID = 0;
                             varChectTextID = Convert.ToInt32(cmbPaymentmode.SelectedValue);
