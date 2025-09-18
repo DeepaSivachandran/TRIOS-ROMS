@@ -150,6 +150,14 @@ namespace ROMS
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
                         }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x25.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x35.rpt");
+                        }
                         objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     }
                     else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
@@ -1734,7 +1742,7 @@ namespace ROMS
                 grdRackGroup.DataSource = null;
                 RPTViewer.ReportSource = null;
                 DataBind objDataBind = new DataBind();
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 3 && Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                 {
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY ISNULL(MST_OrderID,0) ASC", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
