@@ -98,6 +98,8 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.cmbTitle = new System.Windows.Forms.ComboBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.tsHeader.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -168,6 +170,8 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.textBox9);
+            this.grbGrid.Controls.Add(this.cmbTitle);
             this.grbGrid.Controls.Add(this.DGV_FilterProduct);
             this.grbGrid.Controls.Add(this.cmbPrintType);
             this.grbGrid.Controls.Add(this.textBox8);
@@ -694,6 +698,7 @@
             this.cmbTemplate.Name = "cmbTemplate";
             this.cmbTemplate.Size = new System.Drawing.Size(119, 28);
             this.cmbTemplate.TabIndex = 8;
+            this.cmbTemplate.SelectedIndexChanged += new System.EventHandler(this.cmbTemplate_SelectedIndexChanged);
             this.cmbTemplate.Enter += new System.EventHandler(this.cmbTemplate_Enter);
             this.cmbTemplate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTemplate_KeyDown);
             this.cmbTemplate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbTemplate_KeyPress);
@@ -806,10 +811,10 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(277, 434);
+            this.btnpreview.Location = new System.Drawing.Point(277, 462);
             this.btnpreview.Name = "btnpreview";
             this.btnpreview.Size = new System.Drawing.Size(122, 33);
-            this.btnpreview.TabIndex = 9;
+            this.btnpreview.TabIndex = 10;
             this.btnpreview.Text = "Preview";
             this.btnpreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnpreview.UseVisualStyleBackColor = true;
@@ -905,6 +910,33 @@
             this.lblProduct.TabIndex = 111111161;
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
+            // 
+            // cmbTitle
+            // 
+            this.cmbTitle.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTitle.FormattingEnabled = true;
+            this.cmbTitle.Location = new System.Drawing.Point(280, 427);
+            this.cmbTitle.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.cmbTitle.Name = "cmbTitle";
+            this.cmbTitle.Size = new System.Drawing.Size(119, 28);
+            this.cmbTitle.TabIndex = 9;
+            this.cmbTitle.Enter += new System.EventHandler(this.cmbTitle_Enter);
+            this.cmbTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTitle_KeyDown);
+            this.cmbTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbTitle_KeyPress);
+            this.cmbTitle.Leave += new System.EventHandler(this.cmbTitle_Leave);
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox9.Location = new System.Drawing.Point(215, 427);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(64, 28);
+            this.textBox9.TabIndex = 111111174;
+            this.textBox9.TabStop = false;
+            this.textBox9.Text = "Title";
             // 
             // CP_DirectLabelPrint
             // 
@@ -1007,5 +1039,7 @@
         private System.Windows.Forms.Label lbltname;
         private System.Windows.Forms.TextBox textBox8;
         public System.Windows.Forms.ComboBox cmbPrintType;
+        public System.Windows.Forms.ComboBox cmbTitle;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }
