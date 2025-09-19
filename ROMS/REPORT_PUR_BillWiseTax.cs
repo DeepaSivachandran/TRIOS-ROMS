@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
@@ -841,6 +842,221 @@ namespace ROMS
             try
             {
                 cmbInvType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                epReport.Clear();
+                string varSupplierName = "-All-";
+                int varSupplierId = 0,varScheduleId = 0;
+                if (txtSupplier.Text.Trim() != "")
+                {
+                    varSupplierName = txtSupplier.Text;
+                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleId = Convert.ToInt32(lblScheduleCode.Text);
+                }
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPurHsnReport(17, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 1, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", "");
+                objdserv.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    btnExport.Enabled = false;
+                    udfnExcel(objDs.Tables[0], "BillWise Purchase Tax Details Report", varSupplierName, cmbSupplierType.Text, cmbInvType.Text, dpFromDate.Text, dpToDate.Text);
+                    btnExport.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnExcel(DataTable dt, string sheetTitle,string supplier, string supplierType, string invType,string fromDate, string toDate)
+        {
+            try
+            {
+                Excel._Application ExcelObj = new Excel.Application();
+                Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
+                Excel._Worksheet ExcelSheet = (Excel._Worksheet)ExcelBook.ActiveSheet;
+                ExcelObj.Visible = true;
+
+                int currentRow = 1;
+
+                // 1. Title Row
+                ExcelSheet.Cells[currentRow, 1] = sheetTitle;
+                Excel.Range titleRange = ExcelSheet.Range[
+                    ExcelSheet.Cells[currentRow, 1],
+                    ExcelSheet.Cells[currentRow, dt.Columns.Count - 1] // exclude Supplier Type column
+                ];
+                titleRange.Merge();
+                titleRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                titleRange.Font.Size = 14;
+                titleRange.Font.Bold = true;
+                titleRange.Interior.Color = Color.LightSlateGray;   // background
+                titleRange.Font.Color = Color.White;
+                currentRow++;
+
+                // 2. Filter Row
+                ExcelSheet.Cells[currentRow, 1] = $"Supplier :- {supplier}   Supplier Type :- {supplierType}   Inv Type :- {invType}   From :- {fromDate} - {toDate}";
+                Excel.Range filterRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, dt.Columns.Count]];
+                filterRange.Merge();
+                filterRange.Font.Bold = true;
+                currentRow += 2;
+
+                // Group by Supplier Type
+                var supplierTypes = dt.AsEnumerable()
+                                      .Select(r => r.Field<string>("Supplier Type"))
+                                      .Distinct()
+                                      .ToList();
+
+                foreach (var supType in supplierTypes)
+                {
+                    // 3. Supplier Type Row
+                    ExcelSheet.Cells[currentRow, 1] = $"Supplier Type : {supType}";
+                    Excel.Range supTypeRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow, dt.Columns.Count]];
+                    supTypeRange.Merge();
+                    supTypeRange.Font.Bold = true;
+                    //supTypeRange.Interior.Color = Color.LightGray;
+                    currentRow++;
+
+                    // 4. Complex Header (Row 1 of header)
+                    ExcelSheet.Cells[currentRow, 1] = "Approval Date";
+                    ExcelSheet.Cells[currentRow, 2] = "Supplier";
+                    ExcelSheet.Cells[currentRow, 3] = "Invoice No.";
+                    ExcelSheet.Cells[currentRow, 4] = "Invoice Date";
+
+                    var gstSlabs = dt.Columns.Cast<DataColumn>()
+                         .Select(c => c.ColumnName)
+                         .Where(c => c.Contains("% Taxable Value"))
+                         .Select(c => c.Replace(" Taxable Value", ""))
+                         .Distinct()
+                         .ToList();
+
+                    int col = 5;
+                    foreach (string gst in gstSlabs)
+                    {
+                        ExcelSheet.Cells[currentRow, col] = gst;
+                        Excel.Range gstRange = ExcelSheet.Range[
+                            ExcelSheet.Cells[currentRow, col],
+                            ExcelSheet.Cells[currentRow, col + 1]
+                        ];
+                        gstRange.Merge();
+                        gstRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                        col += 2;
+                    }
+
+                    ExcelSheet.Cells[currentRow, col++] = "TCS Value";
+                    ExcelSheet.Cells[currentRow, col++] = "Addl. Value";
+                    ExcelSheet.Cells[currentRow, col++] = "Disc Value";
+                    ExcelSheet.Cells[currentRow, col++] = "Round Off";
+                    ExcelSheet.Cells[currentRow, col++] = "Total";
+
+                    // Merge vertically Approval Date, Supplier, Invoice No, Invoice Date
+                    Excel.Range mergeRange;
+                    mergeRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 1], ExcelSheet.Cells[currentRow + 1, 1]]; mergeRange.Merge();
+                    mergeRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 2], ExcelSheet.Cells[currentRow + 1, 2]]; mergeRange.Merge();
+                    mergeRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 3], ExcelSheet.Cells[currentRow + 1, 3]]; mergeRange.Merge();
+                    mergeRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, 4], ExcelSheet.Cells[currentRow + 1, 4]]; mergeRange.Merge();
+
+                    // Merge TCS, Addl, Disc, Round Off, Total vertically
+                    for (int c = col - 5; c <= col - 1; c++)
+                    {
+                        mergeRange = ExcelSheet.Range[ExcelSheet.Cells[currentRow, c], ExcelSheet.Cells[currentRow + 1, c]];
+                        mergeRange.Merge();
+                    }
+
+                    // 5. Header Row 2
+                    currentRow++;
+                    col = 5;
+                    foreach (string gst in gstSlabs)
+                    {
+                        ExcelSheet.Cells[currentRow, col++] = "Taxable Value";
+                        ExcelSheet.Cells[currentRow, col++] = "Tax Value";
+                    }
+
+                    currentRow++;
+                    // Apply border for header block (2 rows of headers)
+                    Excel.Range headerBorder = ExcelSheet.Range[
+           ExcelSheet.Cells[currentRow - 2, 1],
+           ExcelSheet.Cells[currentRow - 1, dt.Columns.Count - 1] // exclude Supplier Type column
+       ];
+                    headerBorder.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    headerBorder.Borders.Weight = Excel.XlBorderWeight.xlThin;
+                    headerBorder.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    headerBorder.Font.Bold = true;
+
+                    // 6. Bind Data
+                    // 6. Bind Data (skip Supplier Type column, calculate total)
+                    var rows = dt.AsEnumerable()
+                                 .Where(r => r.Field<string>("Supplier Type") == supType)
+                                 .ToList();
+
+                    int dataStartRow = currentRow;
+                    foreach (var dr in rows)
+                    {
+                        int c = 1;
+                        decimal rowTotal = 0;
+
+                        for (int i = 0; i < dt.Columns.Count; i++)
+                        {
+                            string colName = dt.Columns[i].ColumnName;
+
+                            if (colName == "Supplier Type") continue; // skip Supplier Type
+
+                            // bind normally
+                            var cell = ExcelSheet.Cells[currentRow, c];
+                            cell.Value = dr[i];
+
+                            // if numeric column, add to total
+                            if (!(dr[i] is DBNull))
+                            {
+                                decimal num;
+                                if (decimal.TryParse(dr[i].ToString(), out num) &&
+                                    !new[] { "Approval Date", "Supplier", "Invoice No.", "Invoice Date" }.Contains(colName))
+                                {
+                                    rowTotal += num;
+                                    cell.NumberFormat = "0.00";
+                                }
+                            }
+                            c++;
+                        }
+                        // Write total in the last column
+                        ExcelSheet.Cells[currentRow, c - 1] = rowTotal;
+                        ExcelSheet.Cells[currentRow, c - 1].NumberFormat = "0.00";
+                        currentRow++;
+                    }
+
+                    // Apply border for data rows of this Supplier Type
+                    if (rows.Count > 0)
+                    {
+                        Excel.Range dataBorder = ExcelSheet.Range[
+                            ExcelSheet.Cells[dataStartRow, 1],
+                            ExcelSheet.Cells[currentRow - 1, dt.Columns.Count - 1]
+                        ];
+                        dataBorder.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                        dataBorder.Borders.Weight = Excel.XlBorderWeight.xlThin;
+                    }
+
+                    currentRow += 2; // Space before next group
+                }
+
+                ExcelSheet.Columns.AutoFit();
             }
             catch (Exception ex)
             {
