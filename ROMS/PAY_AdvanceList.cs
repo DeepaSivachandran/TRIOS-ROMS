@@ -841,6 +841,14 @@ namespace ROMS
                         grdAdvanceList.Rows[i].Cells["Status"].Style.BackColor = Color.LightGreen;
                         grdAdvanceList.Rows[i].Cells["Status"].Style.ForeColor = Color.Black;
                     }
+                    if (Convert.ToString(grdAdvanceList.Rows[i].Cells["PrintFlag"].Value) == "0")
+                    {
+                        grdAdvanceList.Rows[i].Cells["clmChequePrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdAdvanceList.Rows[i].Cells["clmChequePrint"] = print;
+                        print.ReadOnly = true;
+                    }
                     grdAdvanceList.ClearSelection();
                 }
             }

@@ -3582,7 +3582,7 @@ namespace ROMS
                                 objPurchaseentryApprovalError.Rows.Add(pbPurchaseno, varPRID,varutid, varGrnMrp, varInvoiceMrp, varExpiryDate, varBatch, varSlid, varRkid, varHsnId, varPurchaseRate,  varPoqty,
                                     varInvoiceqty, varReceivedqty, varDiffQty, varFreeqty,varDisPer, varDisAmt, varTaxValue, varGSTper, varGSTAmt, varNetAmt, 
                                 varCosting, varShelfLife, varShelfLifeValue, varShelfLifePer, varError, varPoid, varBatchNoStatus, varBatchNoGeneration, varShelfLifeFlag, varShelfLifeStatus, 
-                                varPURPR_ID,varTotqty, varGRNqty, varDCqty, varPURPRID, varID, varDiscountValue, varCGSTPer, varCGSTAmnt, varSGSTPer, varSGSTAmnt, varISGSTPer, varIGSTAmnt, varMRPerr, varPurchaseRateErr,
+                                varPURPR_ID,varTotqty, varGRNqty, varDCqty, varPURPRID, varID, varDiscountValue, varCGSTPer, varSGSTPer,varCGSTAmnt, varSGSTAmnt, varISGSTPer, varIGSTAmnt, varMRPerr, varPurchaseRateErr,
                                 varExpiryErr,  varBatchErr, varInvoiceQtyErr, varReceivedQtyErr, varFreeQtyErr, varDisAmtErr, varDisPerErr, varcheck,varProMRPErr,varProBatchErr,varProExpiryErr);
                             } 
                         }
@@ -5522,6 +5522,8 @@ namespace ROMS
         {
             try
             {
+                string varGrandtotal = "";
+                decimal varInvoiceAmt = 0;
                 DataTable objPurchaseentryApprovalError = new DataTable();
                 objPurchaseentryApprovalError.TableName = "TRN_Purchase_Products";
                 objPurchaseentryApprovalError.Columns.Add("PURPR_PURID", typeof(int));
@@ -5584,6 +5586,20 @@ namespace ROMS
                 if (varcount == 0 && Convert.ToInt32(VarGridError) == 0 && shelfLifeError == 0 && varQuantityErr == 0 && varDiscountErr == 0 && InvoiceAmountErr == 0)
                 {
                     flagSave = 0;
+                    varInvoiceAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                    varGrandtotal = lblGrandTotal.Text;
+                    if (lblTotal.Text == "")
+                    {
+                        varGrandtotal = "0";
+                    }
+                    if (((Convert.ToDecimal(txtInvoiceamt.Text)) != (Convert.ToDecimal(varGrandtotal))) && Convert.ToDecimal(varGrandtotal) != 0)
+                    {
+                        SPDataService objDServe1 = new SPDataService();
+                        string varMessage = objDServe1.udfnGetMessages(115);
+                        objDServe1.CloseConnection();
+                        DialogResult dialogResult1 = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        varInvoiceAmt = Convert.ToDecimal(varGrandtotal);
+                    }
                 }
                 else
                 {
@@ -5680,7 +5696,7 @@ namespace ROMS
                         objTRN_PurchaseEntryApproval.paraPurchaseDate = dpVoucherDate.Text.Trim();
                         objTRN_PurchaseEntryApproval.paraINVNo = txtInvoiceNo.Text.Trim();
                         objTRN_PurchaseEntryApproval.paraRemarks = txtRemarks.Text.Trim();
-                        objTRN_PurchaseEntryApproval.ParaInvAmt = Convert.ToDecimal(txtInvoiceamt.Text);
+                        objTRN_PurchaseEntryApproval.ParaInvAmt = varInvoiceAmt;
                         objTRN_PurchaseEntryApproval.paraBrokerID = varBrokerid;
                         if (chkInvoice.Checked == true)
                         { objTRN_PurchaseEntryApproval.paraEinvoice = "1"; }
@@ -5904,9 +5920,10 @@ namespace ROMS
                         grdPurchaseList.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                         grdPurchaseList.Rows[i].ReadOnly = true;
                     }
-                    if(Convert.ToInt32(grdPurchaseList.Rows[i].Cells["clmApprovalStatus"].Value) == 63)
+                    if(varApprovalStatus == 63)
                     {
                         grdPurchaseList.Rows[i].ReadOnly = true;
+                        grdPurchaseList.Rows[i].Cells["clmPurchaseRate"].Style.BackColor = Color.LightGray;
                     }
                     //(varError > 0 && varReason > 0) || (varError > 0 && varReason == 0 && varApprovalStatus != 61)
                 }

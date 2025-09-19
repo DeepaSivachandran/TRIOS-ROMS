@@ -547,52 +547,55 @@ namespace ROMS
                  */
                 string varNotCondition = "386";
                 int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 0;
-               
-                /* Check cash mode*/
-                if (varSupplierPaymentMode.Contains("88"))
+                if (varSupplierPaymentID == 0)
                 {
-                    /* If supplier payment mode is cash and pay amount > 10000 */
-                    if (Convert.ToDecimal(lblGrandTotal.Text) > varCashPaymentLimit)
+                    /* Check cash mode*/
+                    if (varSupplierPaymentMode.Contains("88"))
                     {
-                        varCashEnabled = 0;
+                        /* If supplier payment mode is cash and pay amount > 10000 */
+                        if (Convert.ToDecimal(lblGrandTotal.Text) > varCashPaymentLimit)
+                        {
+                            varCashEnabled = 0;
+                        }
+                        else { varCashEnabled = 1; }
                     }
-                    else { varCashEnabled = 1; }
-                }
-                /* Check Cheque mode*/
-                if (varSupplierPaymentMode.Contains("89"))
-                {
-                    varChequeEnabled = 1;
-                }
-                /* Check Online mode*/
-                if (varSupplierPaymentMode.Contains("90"))
-                {
-                    /* If supplier payment mode is online and pay amount < 2,00,000 */
-                    if (Convert.ToDecimal(lblGrandTotal.Text) < varRTGSMinLimit)
+                    /* Check Cheque mode*/
+                    if (varSupplierPaymentMode.Contains("89"))
                     {
-                        varRTGSEnabled = 0;
-                        varNEFTEnabled = 1;
+                        varChequeEnabled = 1;
+                    }
+                    /* Check Online mode*/
+                    if (varSupplierPaymentMode.Contains("90"))
+                    {
+                        /* If supplier payment mode is online and pay amount < 2,00,000 */
+                        if (Convert.ToDecimal(lblGrandTotal.Text) < varRTGSMinLimit)
+                        {
+                            varRTGSEnabled = 0;
+                            varNEFTEnabled = 1;
+                        }
+                        else
+                        {
+                            varRTGSEnabled = 1;
+                            varNEFTEnabled = 0;
+                            varTransferEnabled = 1;
+                        }
+                    }
+                    if (Convert.ToDecimal(lblGrandTotal.Text) == 0)
+                    {
+                        varNotCondition = "MSTID   IN (386 )";
                     }
                     else
                     {
-                        varRTGSEnabled = 1;
-                        varNEFTEnabled = 0;
-                        varTransferEnabled = 1;
+                        if (varCashEnabled == 0) { if (varNotCondition == "") { varNotCondition = "346"; } else { varNotCondition = varNotCondition + ", 346"; } }
+                        if (varChequeEnabled == 0) { if (varNotCondition == "") { varNotCondition = "347"; } else { varNotCondition = varNotCondition + ", 347"; } }
+                        if (varNEFTEnabled == 0) { if (varNotCondition == "") { varNotCondition = "348"; } else { varNotCondition = varNotCondition + ", 348"; } }
+                        if (varRTGSEnabled == 0) { if (varNotCondition == "") { varNotCondition = "349"; } else { varNotCondition = varNotCondition + ", 349"; } }
+                        if (varTransferEnabled == 0) { if (varNotCondition == "") { varNotCondition = "350"; } else { varNotCondition = varNotCondition + ", 350"; } }
+                        if (varNotCondition == "") { varNotCondition = " 1=1 "; }
+                        else { varNotCondition = "MSTID NOT IN (" + varNotCondition + ")"; }
                     }
                 }
-                if (Convert.ToDecimal(lblGrandTotal.Text) == 0)
-                { 
-                     varNotCondition = "MSTID   IN (386 )";
-                }
-                else
-                {
-                    if (varCashEnabled == 0) { if (varNotCondition == "") { varNotCondition = "346"; } else { varNotCondition = varNotCondition + ", 346"; } }
-                    if (varChequeEnabled == 0) { if (varNotCondition == "") { varNotCondition = "347"; } else { varNotCondition = varNotCondition + ", 347"; } }
-                    if (varNEFTEnabled == 0) { if (varNotCondition == "") { varNotCondition = "348"; } else { varNotCondition = varNotCondition + ", 348"; } }
-                    if (varRTGSEnabled == 0) { if (varNotCondition == "") { varNotCondition = "349"; } else { varNotCondition = varNotCondition + ", 349"; } }
-                    if (varTransferEnabled == 0) { if (varNotCondition == "") { varNotCondition = "350"; } else { varNotCondition = varNotCondition + ", 350"; } }
-                    if (varNotCondition == "") { varNotCondition = " 1=1 "; }
-                    else { varNotCondition = "MSTID NOT IN (" + varNotCondition + ")"; }
-                }
+                else { varNotCondition = " 1=1 "; }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND "+ varNotCondition , "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -2853,7 +2856,7 @@ namespace ROMS
                             udfnPaymentDropDown();
                             cmbPaymentmode.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Payment Mode"]);
                             txtChequeLimitDays.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ChequeLimitDays"]);
-                            if (Convert.ToInt16(cmbPaymentmode.SelectedValue) != 346)
+                            if (Convert.ToInt16(cmbPaymentmode.SelectedValue) != 346 && Convert.ToInt16(cmbPaymentmode.SelectedValue) != 386) 
                             {
                                 dpChequeDate.Text =Convert.ToString( DateTime.ParseExact(objDs.Tables[0].Rows[0]["PAY_ChequeDate"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture));
                             }

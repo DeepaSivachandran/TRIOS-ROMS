@@ -348,7 +348,7 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
-                if(Convert.ToInt32(cmbIssueMode.SelectedValue)!=-1)
+                if(Convert.ToInt32(cmbIssueMode.SelectedValue)!=-1 && Convert.ToInt32(cmbIssueMode.SelectedValue) != 222)
                 {
                     if (Convert.ToString(txtIssue.Text).Trim() == "")
                     {
@@ -1045,62 +1045,66 @@ namespace ROMS
         {
             try
             {
-                /* 346 - Cash
-                   347 - Cheque
-                   348 - NEFT
-                   349 - RTGS
-                   350 - Trasfer
-                 */
-                /*
-                 Supplier Payment Mode
-                    88 - Cash
-                    89 - Cheque
-                    90 - Online
+                  /* 346 - Cash
+                       347 - Cheque
+                       348 - NEFT
+                       349 - RTGS
+                       350 - Trasfer
+                     */
+                    /*
+                     Supplier Payment Mode
+                        88 - Cash
+                        89 - Cheque
+                        90 - Online
 
-                    Cash Payment should not be less than 10,000(from settings)
-                    If pay amount is more than 2,00,000, then payment should be made through RTGS/Cheque/Transfer
-                    If pay amount is less than 2,00,000, then payment should be made through NEFT/Cheque/Transfer
-                 */
-                string varNotCondition = "";
-                int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 0;
-                /* Check cash mode*/
-                if (varSupplierPaymentMode.Contains("88"))
-                {
-                    /* If supplier payment mode is cash and pay amount > 10000 */
-                    if (Convert.ToDecimal(txtAmount.Text) > varCashPaymentLimit)
+                        Cash Payment should not be less than 10,000(from settings)
+                        If pay amount is more than 2,00,000, then payment should be made through RTGS/Cheque/Transfer
+                        If pay amount is less than 2,00,000, then payment should be made through NEFT/Cheque/Transfer
+                     */
+                    string varNotCondition = "386";
+                    int varCashEnabled = 0, varChequeEnabled = 0, varNEFTEnabled = 0, varRTGSEnabled = 0, varTransferEnabled = 0;
+                if (PbStatus == 74 || PbStatus == 78 || PbStatus==0)
+                { 
+                    /* Check cash mode*/
+                    if (varSupplierPaymentMode.Contains("88"))
                     {
-                        varCashEnabled = 0;
+                        /* If supplier payment mode is cash and pay amount > 10000 */
+                        if (Convert.ToDecimal(txtAmount.Text) > varCashPaymentLimit)
+                        {
+                            varCashEnabled = 0;
+                        }
+                        else { varCashEnabled = 1; }
                     }
-                    else { varCashEnabled = 1; }
-                }
-                /* Check Cheque mode*/
-                if (varSupplierPaymentMode.Contains("89"))
-                {
-                    varChequeEnabled = 1;
-                }
-                /* Check Online mode*/
-                if (varSupplierPaymentMode.Contains("90"))
-                {
-                    /* If supplier payment mode is online and pay amount < 2,00,000 */
-                    if (Convert.ToDecimal(txtAmount.Text) < varRTGSMinLimit)
+                    /* Check Cheque mode*/
+                    if (varSupplierPaymentMode.Contains("89"))
                     {
-                        varRTGSEnabled = 0;
-                        varNEFTEnabled = 1;
+                        varChequeEnabled = 1;
                     }
-                    else
+                    /* Check Online mode*/
+                    if (varSupplierPaymentMode.Contains("90"))
                     {
-                        varRTGSEnabled = 1;
-                        varNEFTEnabled = 0;
-                        varTransferEnabled = 1;
+                        /* If supplier payment mode is online and pay amount < 2,00,000 */
+                        if (Convert.ToDecimal(txtAmount.Text) < varRTGSMinLimit)
+                        {
+                            varRTGSEnabled = 0;
+                            varNEFTEnabled = 1;
+                        }
+                        else
+                        {
+                            varRTGSEnabled = 1;
+                            varNEFTEnabled = 0;
+                            varTransferEnabled = 1;
+                        }
                     }
+                    if (varCashEnabled == 0) { if (varNotCondition == "") { varNotCondition = "346"; } else { varNotCondition = varNotCondition + ", 346"; } }
+                    if (varChequeEnabled == 0) { if (varNotCondition == "") { varNotCondition = "347"; } else { varNotCondition = varNotCondition + ", 347"; } }
+                    if (varNEFTEnabled == 0) { if (varNotCondition == "") { varNotCondition = "348"; } else { varNotCondition = varNotCondition + ", 348"; } }
+                    if (varRTGSEnabled == 0) { if (varNotCondition == "") { varNotCondition = "349"; } else { varNotCondition = varNotCondition + ", 349"; } }
+                    if (varTransferEnabled == 0) { if (varNotCondition == "") { varNotCondition = "350"; } else { varNotCondition = varNotCondition + ", 350"; } }
+                    if (varNotCondition == "") { varNotCondition = " 1=1 "; }
+                    else { varNotCondition = "MSTID NOT IN (" + varNotCondition + ")"; }
                 }
-                if (varCashEnabled == 0) { if (varNotCondition == "") { varNotCondition = "346"; } else { varNotCondition = varNotCondition + ", 346"; } }
-                if (varChequeEnabled == 0) { if (varNotCondition == "") { varNotCondition = "347"; } else { varNotCondition = varNotCondition + ", 347"; } }
-                if (varNEFTEnabled == 0) { if (varNotCondition == "") { varNotCondition = "348"; } else { varNotCondition = varNotCondition + ", 348"; } }
-                if (varRTGSEnabled == 0) { if (varNotCondition == "") { varNotCondition = "349"; } else { varNotCondition = varNotCondition + ", 349"; } }
-                if (varTransferEnabled == 0) { if (varNotCondition == "") { varNotCondition = "350"; } else { varNotCondition = varNotCondition + ", 350"; } }
-                if (varNotCondition == "") { varNotCondition = " 1=1 "; }
-                else { varNotCondition = "MSTID NOT IN (" + varNotCondition + ")"; }
+                else { varNotCondition = " 1=1 "; }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID=104 AND " + varNotCondition, "MST_DisplayText,MSTID", cmbPaymentmode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -1304,11 +1308,11 @@ namespace ROMS
                 varPaymentMode = Convert.ToInt32(cmbPaymentmode.SelectedValue);
 
                 if (varPaymentMode == 346) //346 - Cash //In Person
-                { varNotCondition = "0,222,223,-1"; }
+                { varNotCondition = "0,222,223,-1,387"; }
                 else if (varPaymentMode == 347) //347 - Cheque //In Person, Courier
-                { varNotCondition = "0,223"; }
+                { varNotCondition = "0,223,387"; }
                 else if (varPaymentMode == 348 || varPaymentMode == 349 || varPaymentMode == 350) //--348- NEFT,349 -RTGS,350 - Transfer //Presented in bank,Courier
-                { varNotCondition = "0,221"; }
+                { varNotCondition = "0,221,387"; }
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,71) AND  MSTID NOT IN(" + varNotCondition + ")", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
@@ -1819,7 +1823,7 @@ namespace ROMS
         {
             try
             {
-                if (pbADID == 0)
+                if (PbStatus == 74 || PbStatus == 78 || PbStatus == 0)
                 {
                     txtCurrentBalance.Text =Convert.ToString(txtAmount.Text.Trim());
                 }
