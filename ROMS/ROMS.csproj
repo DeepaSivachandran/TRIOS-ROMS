@@ -178,17 +178,17 @@
     <Compile Include="INV_StockJournal.designer.cs">
       <DependentUpon>INV_StockJournal.cs</DependentUpon>
     </Compile>
-    <Compile Include="INV_StockAdjustment.cs">
+    <Compile Include="INV_Reconciliation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="INV_StockAdjustment.designer.cs">
-      <DependentUpon>INV_StockAdjustment.cs</DependentUpon>
+    <Compile Include="INV_Reconciliation.designer.cs">
+      <DependentUpon>INV_Reconciliation.cs</DependentUpon>
     </Compile>
-    <Compile Include="INV_StockAdjustmentList.cs">
+    <Compile Include="INV_ReconciliationList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="INV_StockAdjustmentList.designer.cs">
-      <DependentUpon>INV_StockAdjustmentList.cs</DependentUpon>
+    <Compile Include="INV_ReconciliationList.designer.cs">
+      <DependentUpon>INV_ReconciliationList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_StockHold_Entry.cs">
       <SubType>Form</SubType>
@@ -245,6 +245,7 @@
     <Compile Include="GRN_ADV.designer.cs">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
       <SubType>Form</SubType>
@@ -3170,11 +3171,11 @@
     <EmbeddedResource Include="INV_StockJournal.resx">
       <DependentUpon>INV_StockJournal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="INV_StockAdjustment.resx">
-      <DependentUpon>INV_StockAdjustment.cs</DependentUpon>
+    <EmbeddedResource Include="INV_Reconciliation.resx">
+      <DependentUpon>INV_Reconciliation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="INV_StockAdjustmentList.resx">
-      <DependentUpon>INV_StockAdjustmentList.cs</DependentUpon>
+    <EmbeddedResource Include="INV_ReconciliationList.resx">
+      <DependentUpon>INV_ReconciliationList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockHold_Entry.resx">
       <DependentUpon>INV_StockHold_Entry.cs</DependentUpon>

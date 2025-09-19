@@ -4395,6 +4395,83 @@ namespace ROMS
             }
             return ds;
         }
+
+
+        // added by venkat on 18/09/2025 for stock conciliation
+        public string udfnStockConciliation(TRN_Stock_Reconciliation_Products objTRN_Stock_Reconciliation_Products)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Stock_Reconciliation]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Reconciliation_Products.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Reconciliation_Products.ParaTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Reconciliation_Products.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferDate", objTRN_Stock_Reconciliation_Products.paraOutwardDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_Stock_Reconciliation_Products.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferType", objTRN_Stock_Reconciliation_Products.paraTransferType);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_Stock_Reconciliation_Products.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Reconciliation_Products.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraStockReconciliation", objTRN_Stock_Reconciliation_Products.paraStockReconciliation);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", objTRN_Stock_Reconciliation_Products.paraStockTransfer); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Stock_Reconciliation_Products.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@ParaFlag", objTRN_Stock_Reconciliation_Products.ParaFlag); 
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Stock_Reconciliation_Products.paraDeleteflag);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);  
+
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
+        public DataSet udfnStockConciliationList(TRN_Stock_Reconciliation_Products objTRNG_Stock_Reconciliation_Products)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Stock_Reconciliation]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRNG_Stock_Reconciliation_Products.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRNG_Stock_Reconciliation_Products.ParaTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_Stock_Reconciliation_Products.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_Stock_Reconciliation_Products.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRNG_Stock_Reconciliation_Products.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRNG_Stock_Reconciliation_Products.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRNG_Stock_Reconciliation_Products.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRNG_Stock_Reconciliation_Products.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRNG_Stock_Reconciliation_Products.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_Stock_Reconciliation_Products.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRNG_Stock_Reconciliation_Products.paraTransType);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }

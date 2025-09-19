@@ -150,8 +150,8 @@ namespace ROMS
         public static INV_StockConversion objINV_StockConversion;
         public static INV_InwardQueueList objINV_InwardQueueList;
         public static INV_InwardlistQueue objINV_InwardlistQueue;
-        public static INV_StockAdjustmentList objINV_StockAdjustmentList;
-        public static INV_StockAdjustment objINV_StockAdjustment; 
+        public static INV_ReconciliationList objINV_StockAdjustmentList;
+        public static INV_Reconciliation objINV_StockAdjustment; 
         public static INV_StockJournalList objINV_StockJournalList;
         public static INV_StockJournal objINV_StockJournal;
         
@@ -3342,7 +3342,7 @@ namespace ROMS
                 udfnCloseChildForms();
                 udfnGetDefaultCompany();
                 if (isClose == false) { return; }
-                MainForm.objINV_StockAdjustmentList = new INV_StockAdjustmentList();
+                MainForm.objINV_StockAdjustmentList = new INV_ReconciliationList();
                 MainForm.objINV_StockAdjustmentList.MdiParent = this;
                 MainForm.objINV_StockAdjustmentList.Show();
                 PbCurrentForm = "3.5";

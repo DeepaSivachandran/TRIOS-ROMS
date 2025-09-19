@@ -53,10 +53,12 @@ namespace ROMS
             this.tsmOutward = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockTransfer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbStockConversion = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockReconciliation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockHold = new System.Windows.Forms.ToolStripMenuItem();
             this.damageEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockReq = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmrackSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tspStockConversion = new System.Windows.Forms.ToolStripMenuItem();
             this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbDirectCheque = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBlockedSupplier = new System.Windows.Forms.ToolStripMenuItem();
@@ -186,8 +188,6 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmStockadjustment = new System.Windows.Forms.ToolStripMenuItem();
-            this.tspStockConversion = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -335,7 +335,7 @@ namespace ROMS
             this.tsmOutward,
             this.tsmStockTransfer,
             this.tsbStockConversion,
-            this.tsmStockadjustment,
+            this.tsmStockReconciliation,
             this.tsmStockHold,
             this.damageEntryToolStripMenuItem,
             this.tsmStockReq,
@@ -393,6 +393,13 @@ namespace ROMS
             this.tsbStockConversion.Text = "Batch Conversion";
             this.tsbStockConversion.Click += new System.EventHandler(this.TsbStockConversion_Click);
             // 
+            // tsmStockReconciliation
+            // 
+            this.tsmStockReconciliation.Name = "tsmStockReconciliation";
+            this.tsmStockReconciliation.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockReconciliation.Text = "Stock Reconciliation";
+            this.tsmStockReconciliation.Click += new System.EventHandler(this.tsmStockadjustment_Click);
+            // 
             // tsmStockHold
             // 
             this.tsmStockHold.Name = "tsmStockHold";
@@ -420,6 +427,13 @@ namespace ROMS
             this.tsmrackSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmrackSettings.Text = "Rack Transfer";
             this.tsmrackSettings.Click += new System.EventHandler(this.TsmrackSettings_Click);
+            // 
+            // tspStockConversion
+            // 
+            this.tspStockConversion.Name = "tspStockConversion";
+            this.tspStockConversion.Size = new System.Drawing.Size(180, 22);
+            this.tspStockConversion.Text = "Stock Conversion";
+            this.tspStockConversion.Click += new System.EventHandler(this.tspStockConversion_Click);
             // 
             // paymentToolStripMenuItem
             // 
@@ -1487,20 +1501,6 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // tsmStockadjustment
-            // 
-            this.tsmStockadjustment.Name = "tsmStockadjustment";
-            this.tsmStockadjustment.Size = new System.Drawing.Size(180, 22);
-            this.tsmStockadjustment.Text = "Stock Adjustment";
-            this.tsmStockadjustment.Click += new System.EventHandler(this.tsmStockadjustment_Click);
-            // 
-            // tspStockConversion
-            // 
-            this.tspStockConversion.Name = "tspStockConversion";
-            this.tspStockConversion.Size = new System.Drawing.Size(180, 22);
-            this.tspStockConversion.Text = "Stock Conversion";
-            this.tspStockConversion.Click += new System.EventHandler(this.tspStockConversion_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1686,7 +1686,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmZeroRate;
         private System.Windows.Forms.ToolStripMenuItem tsmInactiveProduct;
         private System.Windows.Forms.ToolStripMenuItem tsmPaymentReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmStockadjustment;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockReconciliation;
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
     }
 }
