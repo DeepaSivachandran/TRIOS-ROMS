@@ -14,14 +14,14 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ROMS
 {
-    public partial class PUR_GRNApprovalList : Form
+    public partial class PUR_MismatchApprovedList : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public DataTable Deftable = new DataTable();
         public int varviewtype = 0, Varflag=0,varUpDownKey = 0;
         public int ApprovalFlag = 0;
-        public PUR_GRNApprovalList()
+        public PUR_MismatchApprovedList()
         {
             InitializeComponent();
         } 
@@ -50,7 +50,8 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
                     MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
                     MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
-                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value); 
+                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value);
+                    MainForm.objPUR_GRNApproval.pbEditFlag = 1; 
                     MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNApproval.Show();
                 } 
@@ -70,15 +71,6 @@ namespace ROMS
         {
             try
             {
-                if (ApprovalFlag == 1)
-                {
-                    tsbApproval.Visible = true;
-                }
-                else
-                {
-                    tsbApproval.Visible = false;
-                    tsbEdit.Visible = true;
-                }
                 cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -1497,9 +1489,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-                MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseApprovalList.Show();
+                MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
+                MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
+                MainForm.objPUR_GRNApprovalList.Show();
             }
             catch (Exception ex)
             {
@@ -1585,21 +1577,6 @@ namespace ROMS
             }
         }
 
-        private void tsbMismatch_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objPUR_MismatchApprovedList = new PUR_MismatchApprovedList();
-                MainForm.objPUR_MismatchApprovedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_MismatchApprovedList.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         public void udfnList()
         {
             try
@@ -1635,6 +1612,7 @@ namespace ROMS
                     objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);
                     objTRN_PurchaseEntry.paraProductID = Convert.ToInt32(lblProduct.Text);
                     objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbReason.SelectedValue);
+                    objTRN_PurchaseEntry.paraFlag = 1;
                     objDs = objdserv.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -1680,6 +1658,10 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Full Status"].Visible = false;
                                 grdGrnApprovalList.Columns["FLAG"].Visible = false;
                                 grdGrnApprovalList.Columns["PUR_GRNALastSeenBy"].Visible = false;
+                                grdGrnApprovalList.Columns["Status"].Visible = false;
+                                grdGrnApprovalList.Columns["Last Seen"].Visible = false;
+                                //grdGrnApprovalList.Columns["Last Update"].Visible = false;
+                                grdGrnApprovalList.Columns["Last Update"].HeaderText = "Approved BY";
                                 grdGrnApprovalList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else

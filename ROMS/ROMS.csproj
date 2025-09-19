@@ -221,6 +221,12 @@
     <Compile Include="GRN_ADV.designer.cs">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
     </Compile>
+    <Compile Include="PUR_MismatchApprovedList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PUR_MismatchApprovedList.designer.cs">
+      <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_50x35.cs">
       <DependentUpon>RPT_Sticker_Print_Product_50x35.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3259,6 +3265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_StickerPrint.resx">
       <DependentUpon>CP_StickerPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PUR_MismatchApprovedList.resx">
+      <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GSTINVerify.resx">
       <DependentUpon>PUR_GSTINVerify.cs</DependentUpon>
