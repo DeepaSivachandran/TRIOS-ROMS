@@ -920,7 +920,6 @@
             this.grdProduct.Size = new System.Drawing.Size(423, 436);
             this.grdProduct.TabIndex = 70;
             this.grdProduct.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdProduct_CurrentCellDirtyStateChanged);
-            this.grdProduct.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdProduct_DataBindingComplete);
             // 
             // errRack
             // 
