@@ -786,6 +786,7 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["Paid Amount"].Width = 100;
                             grdSupllierPaymentList.Columns["Payment Mode"].Width = 100;
                             grdSupllierPaymentList.Columns["Status"].Width = 150;
+                            grdSupllierPaymentList.Columns["Created By"].Width = 200;
                             grdSupllierPaymentList.Columns["PAY_PaymentMode"].Visible = false;
                             grdSupllierPaymentList.Columns["PAYID"].Visible = false;
                             grdSupllierPaymentList.Columns["PAY_STSID"].Visible = false;

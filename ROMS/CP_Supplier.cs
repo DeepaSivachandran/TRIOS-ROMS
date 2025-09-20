@@ -1202,6 +1202,7 @@ namespace ROMS
                 dtOpeningCRDetails.Columns.Add("SPOB_TaxAmount", typeof(decimal));
                 dtOpeningCRDetails.Columns.Add("SPOB_Adjustments", typeof(decimal));
 
+                dpInvoiceDate.MaxDate = MainForm.pbCurrentDate;
                 udfnLoadState();
                 udfnBankDropDownLoad();
                 udfnCompanyDropDown();
@@ -9883,6 +9884,20 @@ namespace ROMS
                     tpCrCompany.Show("Please select concern.", cmbCrCompany, 5000);
                     varFlag = true;
                 }
+                if (txtInvoiceNo.Text.Trim() != "" && dtOpeningCRDetails.Rows.Count!=0)
+                {
+                    int count = dtOpeningCRDetails.AsEnumerable()
+                     .Count(row =>Convert.ToString( row.Field<string>("SPOB_InvoiceNo").ToLower()) == txtInvoiceNo.Text.Trim().ToLower()); 
+                    if(count!=0)
+                    { 
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(163);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varFlag = true;
+                    }
+
+                } 
                 if (varFlag==false)
                 {
                     decimal varTaxAmount = 0;
