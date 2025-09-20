@@ -61,7 +61,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                int varSupplierid = 0, varScheduleid = 0,varcompanyid=0;
+                int varSupplierid = 0, varScheduleid = 0, varcompanyid = 0, varId = 0;
                 if (varMasterType == "1")
                 {
                     varSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblSupplierCode.Text);
@@ -73,6 +73,14 @@ namespace ROMS
                     varSupplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
                     varScheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
                     varcompanyid = Convert.ToInt32(MainForm.objCP_Purchase.cmbConcern.SelectedValue);
+                }
+                else if (varMasterType == "6")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objCP_Purchase.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objCP_Purchase.cmbConcern.SelectedValue);
+                    varId = Convert.ToInt32(MainForm.objCP_Purchase.pbGRNNo);
+                    this.Text = "Linked Return Delivery Challans";
                 }
                 else
                 {
@@ -89,6 +97,7 @@ namespace ROMS
                 objTRN_PurchaseReturnDC.paraCompanyId = varcompanyid;
                 objTRN_PurchaseReturnDC.ParaSupplierId = varSupplierid;
                 objTRN_PurchaseReturnDC.ParaScheduleID = varScheduleid;
+                objTRN_PurchaseReturnDC.paraPurchaseId = varId;
                  objDs = objdserv.udfnReturnDC(objTRN_PurchaseReturnDC);
                 objdserv.CloseConnection();
                 if (objDs != null)

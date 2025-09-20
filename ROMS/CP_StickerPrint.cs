@@ -65,160 +65,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnReportView(string varType)
-        {
-            try
-            {
-                int viewType = 0; string varCodes = "0";
-                if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
-                {
-                    viewType = 67;
-                    varCodes = varGroupCodes;
-                }
-                else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
-                {
-                    viewType = 66;
-                    varCodes = varSubgroupCodes;
-                }
-                else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
-                {
-                    viewType = 65;
-                    varCodes = varProductCodes;
-                }
-                else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
-                {
-                    viewType = 69;
-                    varCodes = varRackCodes;
-                }
-                else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
-                {
-                    viewType = 72;
-                    varCodes = varRackGroupCodes;
-                }
-                picLoader4.Visible = true;
-                errRack.Clear();
-                RPTViewer.ReportSource = null;
-                int varPrint = 0;
-                SPDataService objSPdataservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = viewType;
-                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objMR_Product.ParaProductsCode = varCodes;
-                objMR_Product.paraLabelCount = Convert.ToInt32(txtLabelCount.Text);
-                objMR_Product.paraType = Convert.ToInt32(cmbProductName.SelectedValue);
-                objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
-                objSPdataservice.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
-                    {
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_50x60.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_100x70.rpt");
-                        }
-                    }
-                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
-                    {
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Subgroup_50x60.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Subgroup_100x70.rpt");
-                        }
-                    }
-                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
-                    {
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
-                        }
-                        objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    }
-                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
-                    {
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x60.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_100x70.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x25.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x35.rpt");
-                        }
-                    }
-                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
-                    {
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x60.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_100x70.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x25.rpt");
-                        }
-                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
-                        {
-                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x35.rpt");
-                        }
-                    }
-                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
-                    {
-                        objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
-                    }
-                    objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
-                    objBillreport.SetParameterValue("ParaProductsCode", varCodes);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
-                    picLoader4.Visible = false;
-                    lblNoRecordsFound.Visible = false;
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
-                    lblNoRecordsFound.BringToFront();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader4.Visible = false;
-            }
-        }
-
+        
         private void PROD_Rack_StickerPrint_Load(object sender, EventArgs e)
         {
             try
@@ -261,9 +108,11 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY ISNULL(MST_OrderID,0) ASC", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=118 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRKTemplates, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbLabelsize.SelectedValue = -1;
                 cmbProductName.SelectedValue = 270;
+                cmbRKTemplates.SelectedValue = 382;
                 cmbType.SelectedIndex = 0;
             }
             catch (Exception ex)
@@ -471,7 +320,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtLabelCount.Focus();
+                    if(cmbRKTemplates.Enabled==true)
+                    {
+                        cmbRKTemplates.Focus();
+                    }
+                    else
+                    {
+                        txtLabelCount.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -855,6 +711,209 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnReportView(string varType)
+        {
+            try
+            {
+                int viewType = 0; string varCodes = "0";
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
+                {
+                    viewType = 67;
+                    varCodes = varGroupCodes;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
+                {
+                    viewType = 66;
+                    varCodes = varSubgroupCodes;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
+                {
+                    viewType = 65;
+                    varCodes = varProductCodes;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                {
+                    viewType = 69;
+                    varCodes = varRackCodes;
+                }
+                else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                {
+                    viewType = 72;
+                    varCodes = varRackGroupCodes;
+                }
+                picLoader4.Visible = true;
+                errRack.Clear();
+                RPTViewer.ReportSource = null;
+                int varPrint = 0;
+                SPDataService objSPdataservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = viewType;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.ParaProductsCode = varCodes;
+                objMR_Product.paraLabelCount = Convert.ToInt32(txtLabelCount.Text);
+                objMR_Product.paraType = Convert.ToInt32(cmbProductName.SelectedValue);
+                objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
+                objSPdataservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Group_100x70.rpt");
+                        }
+                    }
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 2)
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Subgroup_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Subgroup_100x70.rpt");
+                        }
+                    }
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 3)
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_100x70.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x25.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Product_50x35.rpt");
+                        }
+                        objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    }
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
+                    {
+                        if (Convert.ToInt32(cmbRKTemplates.SelectedValue) == 382)
+                        {
+                            if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x60.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_100x70.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x25.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_50x35.rpt");
+                            }
+                        }
+                        else if (Convert.ToInt32(cmbRKTemplates.SelectedValue) == 383)
+                        {
+                            if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_RackGroup_50x60.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_RackGroup_100x70.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_RackGroup_50x25.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_RackGroup_50x35.rpt");
+                            }
+                        }
+                        else if (Convert.ToInt32(cmbRKTemplates.SelectedValue) == 384)
+                        {
+                            if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Staff_50x60.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Staff_100x70.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Staff_50x25.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Staff_50x35.rpt");
+                            }
+                        }
+                    }
+                    else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x60.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_100x70.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x25.rpt");
+                        }
+                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_RackGroup_50x35.rpt");
+                        }
+                    }
+                    if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
+                    {
+                        objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbProductName.SelectedValue));
+                    }
+                    objBillreport.SetParameterValue("paraLabelCount", Convert.ToInt32(txtLabelCount.Text));
+                    objBillreport.SetParameterValue("ParaProductsCode", varCodes);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                    picLoader4.Visible = false;
+                    lblNoRecordsFound.Visible = false;
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader4.Visible = false;
+            }
+        }
+
         private void TxtSubgroup_Enter(object sender, EventArgs e)
         {
             try
@@ -1695,6 +1754,8 @@ namespace ROMS
                     lblUnitName.Visible = false;
                     btnProductSelect.Visible = false;
                     btnProductUnSelect.Visible = false;
+                    cmbRKTemplates.Enabled = true;
+                    cmbRKTemplates.SelectedValue = 382;
                 }
                 else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
                 {
@@ -1737,7 +1798,7 @@ namespace ROMS
                 grdRackGroup.DataSource = null;
                 RPTViewer.ReportSource = null;
                 DataBind objDataBind = new DataBind();
-                if (Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 3 && Convert.ToInt32(cmbType.SelectedIndex) != 4 && Convert.ToInt32(cmbType.SelectedIndex) != 5)
                 {
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY ISNULL(MST_OrderID,0) ASC", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
@@ -1748,6 +1809,11 @@ namespace ROMS
                     objDataBind = null;
                 }
                 cmbLabelsize.SelectedValue = -1;
+                if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
+                {
+                    cmbRKTemplates.SelectedValue = 382;
+                    cmbRKTemplates.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1880,11 +1946,53 @@ namespace ROMS
             }
         }
 
-        private void grdProduct_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void cmbRKTemplates_Enter(object sender, EventArgs e)
         {
             try
             {
-                grdProduct.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                cmbRKTemplates.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRKTemplates_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLabelCount.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRKTemplates_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRKTemplates_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRKTemplates.BackColor = Color.White;
             }
             catch (Exception ex)
             {

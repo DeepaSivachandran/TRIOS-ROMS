@@ -7,6 +7,7 @@ using System.IO;
 using CrystalDecisions.Shared;
 using ROMS.Model;
 using System.Management;
+using System.Linq;
 
 namespace ROMS
 {
@@ -28,6 +29,7 @@ namespace ROMS
         private ToolTip tpProdtctname = new ToolTip();
         private ToolTip tpMRP = new ToolTip();
         private ToolTip tpSalesRate = new ToolTip();
+        private ToolTip tpTitle = new ToolTip();
          
         public string varProductCodes, varSubgroupCodes, varGroupCodes, varRackCodes = "0";
         public int varUpDownKey = 0;
@@ -444,7 +446,9 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=95 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintLanguage, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=110 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,119) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTitle, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbTitle.SelectedValue = -1;
             }
             catch (Exception ex)
             {
@@ -604,7 +608,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnpreview.Focus();
+                    if (cmbTitle.Enabled == true)
+                    {
+                        cmbTitle.Focus();
+                    }
+                    else
+                    {
+                        btnpreview.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -625,7 +636,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void txtMrp_KeyPress(object sender, KeyPressEventArgs e)
@@ -872,19 +882,13 @@ namespace ROMS
                         value = "";
                     }
                     cmbTemplate.Enabled = true;
-                    objDataBind.BindComboBoxListSelected("DEF_Templates","TEMP_Labelcode IN ('" + varSelectedValue + "') AND TEMP_Statuscode = 1","TEMP_ShortCode,TEMP_RptName",
-                        cmbTemplate,"","TEMP_ShortCode","TEMP_RptName" );
+                    objDataBind.BindComboBoxListSelected("DEF_Templates","TEMP_Labelcode IN ('" + varSelectedValue + "') AND TEMP_Statuscode = 1", "TEMP_ShortCode,TEMP_RptName",
+                        cmbTemplate,"","TEMP_ShortCode", "TEMP_RptName");
                     objDataBind = null;
-                    
                 }
-                else
-                {
-                    cmbTemplate.SelectedIndex = 0;
-                    cmbTemplate.Enabled = false;
-                }
+                udfnTitleDisable();
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1009,6 +1013,11 @@ namespace ROMS
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
+                    //Title Name Pass only Used Reports
+                    int varLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
+                    int varTemplateIndex = cmbTemplate.SelectedIndex;
+                    var varSticker = new[] { 268, 269 };
+                    var varSheet = new[] { 316, 317, 318, 319 };
 
                     if (type == "Preview")
                     {
@@ -1034,6 +1043,13 @@ namespace ROMS
                         objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
                         objBillreport.SetParameterValue("ParaRetail", Convert.ToDecimal(txtSalesRate.Text));
                         objBillreport.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
+
+                        //Title Name Only pass used Reports
+                        if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
+                            (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                        {
+                            objBillreport.SetParameterValue("paraTitleName", cmbTitle.Text);
+                        }
 
                         objValidation.CrySqlConnection(objBillreport);
                         RPTViewer.ReportSource = objBillreport;
@@ -1117,6 +1133,13 @@ namespace ROMS
 
                         objBillreportTestPrint.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
 
+                        //Title Name Only pass used Reports
+                        if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
+                            (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                        {
+                            objBillreportTestPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                        }
+
                         objValidation.CrySqlConnection(objBillreportTestPrint);
                         System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                         printerSettings.PrinterName = varPrintName;
@@ -1166,6 +1189,13 @@ namespace ROMS
                         objBillreportDirectPrint.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
                         objBillreportDirectPrint.SetParameterValue("ParaRetail", Convert.ToDouble(txtSalesRate.Text));
                         objBillreportDirectPrint.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
+
+                        //Title Name Only pass used Reports
+                        if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
+                            (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                        {
+                            objBillreportDirectPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                        }
 
                         objValidation.CrySqlConnection(objBillreportDirectPrint);
                         System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
@@ -1354,8 +1384,9 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else { 
-                    
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -1449,7 +1480,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
                 {
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0) ORDER BY ISNULL(MST_OrderID,0) ASC", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                 }
                 else
                 {
@@ -1491,6 +1522,98 @@ namespace ROMS
             }
         }
 
+        private void cmbTitle_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTitle.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnpreview.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTitle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTitle_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbTitle.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnTitleDisable();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnTitleDisable()
+        {
+            try
+            {
+                int varLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
+                int varTemplateIndex = cmbTemplate.SelectedIndex;
+                var varSticker = new[] { 268, 269 };
+                var varSheet = new[] { 316, 317, 318, 319 };
+                if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
+                    (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                {
+                    cmbTitle.Enabled = true;
+                }
+                else
+                {
+                    cmbTitle.SelectedValue = -1;
+                    cmbTitle.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
@@ -1699,10 +1822,21 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtMrp.Text.Trim())   != "")
                 {
-                    if (Convert.ToInt32(txtMrp.Text) < Convert.ToInt32(txtSalesRate.Text))
+                    if (Convert.ToDecimal(txtMrp.Text) < Convert.ToDecimal(txtSalesRate.Text))
                     {
                         MessageBox.Show("MRP amount is less then retail sales amount...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
+                    }
+                }
+                if (cmbTitle.Enabled == true)
+                {
+                    if (Convert.ToInt32(cmbTitle.SelectedValue) == -1)
+                    {
+                        errRack.SetError(cmbTitle, "Please select title.");
+                        cmbTitle.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpTitle.ShowAlways = true;
+                        tpTitle.Show("Please select title", cmbTitle, 5000);
+                        blnErrFlag = true;
                     }
                 }
                 if (blnErrFlag == false)

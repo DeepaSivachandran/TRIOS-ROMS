@@ -27,6 +27,7 @@ namespace ROMS
         DataTable dtReceived = new DataTable();
         DataTable dtReturn = new DataTable();
         public int pbLastSeenFlag = 0;
+        public int pbEditFlag = 0;
         public PUR_GRNApproval()
         {
             InitializeComponent();
@@ -829,6 +830,13 @@ namespace ROMS
                     grdGrnApproval.ReadOnly = true;
                     grdGrnApproval.Columns["clmreturnqty"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
+                if (pbEditFlag == 1)
+                {
+                    btnSave.Enabled = false;
+                    txtRemark.Enabled = false;
+                    grdGrnApproval.ReadOnly = true;
+                    this.ActiveControl = btnClose;
+                }
             }
             catch (Exception ex)
             {
@@ -1182,6 +1190,7 @@ namespace ROMS
                     objTRNG_PurchaseEntry.paraFlag = varFlag;
                     objTRNG_PurchaseEntry.paraGRNID = varGRNID;
                     objTRNG_PurchaseEntry.paraInwardId = varInwardID;
+                    objTRNG_PurchaseEntry.ParaEditFlag = pbEditFlag;
                     objDs = objdserv.udfnGetPurchaseEntry(objTRNG_PurchaseEntry);
                     objdserv.CloseConnection();
                     if (objDs.Tables[0].Rows.Count > 0)
