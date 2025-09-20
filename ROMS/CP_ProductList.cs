@@ -1034,6 +1034,7 @@ namespace ROMS
                 dtCreatedOn.Format = DateTimePickerFormat.Custom;
                 dtCreatedOn.CustomFormat = " ";
                 dtCreatedOn.Checked = false;
+                dtCreatedOn.MaxDate = MainForm.pbCurrentDate;
                 udfnList();
             }
             catch (Exception ex)

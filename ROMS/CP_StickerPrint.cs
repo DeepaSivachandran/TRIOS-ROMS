@@ -1350,8 +1350,10 @@ namespace ROMS
                 grdProduct.Columns[0].Width = 50;
                 grdProduct.Columns["PI Code"].Width = 100;
                 grdProduct.Columns["Product Name"].Width = 300;
-                grdProduct.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                //grdProduct.Columns[2].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                foreach (DataGridViewRow row in grdProduct.Rows)
+                {
+                    row.Cells["Product Name"].Style.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                }
                 grdProduct.Columns["Unit"].Width = 80;
                 grdProduct.Columns["PI Code"].ReadOnly = true;
                 grdProduct.Columns["Product Name"].ReadOnly = true;
@@ -1366,6 +1368,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+          //  finally{ grdProduct.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F); }
         }
 
         private void TxtProduct_TextChanged(object sender, EventArgs e)
@@ -1869,6 +1872,19 @@ namespace ROMS
                 {
                     (grdProduct.DataSource as DataTable).DefaultView.RowFilter = "([Unit]) LIKE '%" + txtUnit.Text + "%'";
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdProduct_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdProduct.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
             }
             catch (Exception ex)
             {
