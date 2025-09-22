@@ -156,7 +156,7 @@ namespace ROMS.Reports {
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_RPT_INV_StockHold_SubReportrpt___01_paraUserName {
             get {
-                return this.DataDefinition.ParameterFields[6];
+                return this.DataDefinition.ParameterFields[7];
             }
         }
         
@@ -164,7 +164,7 @@ namespace ROMS.Reports {
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_RPT_INV_StockHold_SubReportrpt___01_paraHostName {
             get {
-                return this.DataDefinition.ParameterFields[7];
+                return this.DataDefinition.ParameterFields[8];
             }
         }
         
@@ -172,7 +172,7 @@ namespace ROMS.Reports {
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_RPT_INV_StockHold_SubReportrpt___01_paraSHID {
             get {
-                return this.DataDefinition.ParameterFields[8];
+                return this.DataDefinition.ParameterFields[9];
             }
         }
     }
