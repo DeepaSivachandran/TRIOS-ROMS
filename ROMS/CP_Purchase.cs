@@ -8753,6 +8753,9 @@ namespace ROMS
                     txtMonth.Text = "";
                     txtYear.Text = "";
                     txtMrp.Text = "";
+                    cmbrack.SelectedValue = 0;
+                    cmbrack.Text = "None";
+                    cmbrack.Enabled = false; 
                 }
                 else
                 {
