@@ -446,7 +446,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=95 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintLanguage, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=110 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,119) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTitle, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,119) AND MSTID<>0 ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbTitle, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbTitle.SelectedValue = -1;
             }
@@ -1048,7 +1048,14 @@ namespace ROMS
                         if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
                             (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
                         {
-                            objBillreport.SetParameterValue("paraTitleName", cmbTitle.Text);
+                            if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
+                            {
+                                objBillreport.SetParameterValue("paraTitleName", "");
+                            }
+                            else
+                            {
+                                objBillreport.SetParameterValue("paraTitleName", cmbTitle.Text);
+                            }
                         }
 
                         objValidation.CrySqlConnection(objBillreport);
@@ -1137,7 +1144,14 @@ namespace ROMS
                         if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
                             (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
                         {
-                            objBillreportTestPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                            if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
+                            {
+                                objBillreportTestPrint.SetParameterValue("paraTitleName", "");
+                            }
+                            else
+                            {
+                                objBillreportTestPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                            }
                         }
 
                         objValidation.CrySqlConnection(objBillreportTestPrint);
@@ -1194,7 +1208,14 @@ namespace ROMS
                         if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
                             (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
                         {
-                            objBillreportDirectPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                            if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
+                            {
+                                objBillreportDirectPrint.SetParameterValue("paraTitleName", "");
+                            }
+                            else
+                            {
+                                objBillreportDirectPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                            }
                         }
 
                         objValidation.CrySqlConnection(objBillreportDirectPrint);
@@ -1488,6 +1509,8 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,93) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                 }
                 objDataBind = null;
+                cmbTemplate.Text = "-Select-";
+                cmbTemplate.Enabled = false;
             }
             catch (Exception ex)
             {

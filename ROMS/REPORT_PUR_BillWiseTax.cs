@@ -879,6 +879,7 @@ namespace ROMS
                     btnExport.Enabled = false;
                     udfnExcel(objDs.Tables[0], "BillWise Purchase Tax Details Report", varSupplierName, cmbSupplierType.Text, cmbInvType.Text, dpFromDate.Text, dpToDate.Text);
                     btnExport.Enabled = true;
+                    picLoader.Visible = false;
                 }
             }
             catch (Exception ex)

@@ -23,6 +23,7 @@ namespace ROMS
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpType = new ToolTip();
         private ToolTip tpLabelSize = new ToolTip();
+        private ToolTip tpTemplate = new ToolTip();
         private ToolTip tpLabelCount = new ToolTip();
         public string varProductCodes, varSubgroupCodes, varGroupCodes, varRackCodes, varRackGroupCodes = "0";
         private int varsno;
@@ -108,11 +109,11 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301,302) ORDER BY ISNULL(MST_OrderID,0) ASC", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=118 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRKTemplates, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (118,0) AND MSTID<>0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRKTemplates, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbLabelsize.SelectedValue = -1;
                 cmbProductName.SelectedValue = 270;
-                cmbRKTemplates.SelectedValue = 382;
+                cmbRKTemplates.SelectedValue = -1;
                 cmbType.SelectedIndex = 0;
             }
             catch (Exception ex)
@@ -559,6 +560,14 @@ namespace ROMS
                     tpLabelSize.Show("Please select label size", cmbLabelsize, 5000);
                     blnErrFlag = true;
                 }
+                if (Convert.ToInt32(cmbRKTemplates.SelectedValue) == -1)
+                {
+                    errRack.SetError(cmbRKTemplates, "Please select template.");
+                    cmbRKTemplates.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTemplate.ShowAlways = true;
+                    tpTemplate.Show("Please select template", cmbRKTemplates, 5000);
+                    blnErrFlag = true;
+                }
                 if (Convert.ToString(txtLabelCount.Text.Trim()) == "")
                 {
                     errRack.SetError(txtLabelCount, "Please enter label count.");
@@ -985,7 +994,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbProductName.Focus();
+                    if (cmbProductName.Enabled == true)
+                    {
+                        cmbProductName.Focus();
+                    }
+                    else
+                    {
+                        btnpreview.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1811,7 +1827,7 @@ namespace ROMS
                 cmbLabelsize.SelectedValue = -1;
                 if (Convert.ToInt32(cmbType.SelectedIndex) != 4)
                 {
-                    cmbRKTemplates.SelectedValue = 382;
+                    cmbRKTemplates.SelectedValue = -1;
                     cmbRKTemplates.Enabled = false;
                 }
             }
