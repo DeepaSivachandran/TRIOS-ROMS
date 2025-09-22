@@ -214,6 +214,7 @@ namespace ROMS
                 DataBind objDBind = new DataBind();
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (64) AND MSTID IN ("+ varMSTID + ") ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPayment, "", "MST_DisplayText", "MSTID");
                 objDBind = null;
+                udfnAdvanceButtonEnable();
             }
             catch (Exception ex)
             {
@@ -1961,14 +1962,12 @@ namespace ROMS
                 {  varMSTID = "199,201"; }
                 udfnPaymentDropDown(varMSTID);
                 if (varMSTID=="199")
-                {
-                    btnAdvance.Enabled = false;
+                { 
                     cmbPayment.SelectedValue = 199;
                     cmbPayment.Enabled = false;
                 }
                 else
-                {
-                    btnAdvance.Enabled = true;
+                { 
                     cmbPayment.SelectedValue = 199;
                     cmbPayment.Enabled = true;
                 } 
