@@ -1598,7 +1598,7 @@ namespace ROMS
                         lblProduct.Text = "0";
                     }
                     btnView.Enabled = false;
-                    varviewtype = 5;
+                    varviewtype = 26;
                     SPDataService objdserv = new SPDataService();
                     TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                     objTRN_PurchaseEntry.ViewType = varviewtype;
