@@ -479,6 +479,9 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.DataSource = null;
+                DGV_FilterProduct.Visible = false;
+                lvTeller.Visible = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -531,6 +534,9 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.DataSource = null;
+                DGV_FilterProduct.Visible = false;
+                lvTeller.Visible = false;
                 btnClose.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -600,7 +606,9 @@ namespace ROMS
             try
             {
                 cmbConcern.BackColor = Color.LemonChiffon;
+                DGV_FilterProduct.DataSource = null;
                 DGV_FilterProduct.Visible = false;
+                lvTeller.Visible = false;
             }
             catch (Exception ex)
             {
@@ -870,6 +878,7 @@ namespace ROMS
                 txtQty.BackColor = Color.LemonChiffon;
                 DGV_FilterProduct.Visible = false;
                 DGV_FilterProduct.DataSource = null;
+                lvTeller.Visible = false;
                 varUpDownKey = 0;
             }
             catch (Exception ex)
@@ -985,6 +994,9 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.DataSource = null;
+                DGV_FilterProduct.Visible = false;
+                lvTeller.Visible = false;
                 cmbReason.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1174,6 +1186,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.DataSource = null;
+                DGV_FilterProduct.Visible = false;
                 txtTeller.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1231,6 +1245,9 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterProduct.DataSource = null;
+                DGV_FilterProduct.Visible = false;
+                lvTeller.Visible = false;
                 txtRemark.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1352,6 +1369,7 @@ namespace ROMS
         {
             try
             {
+                lvTeller.Visible = false;
                 txtProductNamePICode.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

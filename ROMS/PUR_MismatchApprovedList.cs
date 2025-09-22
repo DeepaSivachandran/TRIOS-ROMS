@@ -1638,7 +1638,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["Overall Status"].Width = 100;
                                 grdGrnApprovalList.Columns["GRN No."].Width = 70;
                                 grdGrnApprovalList.Columns["Supplier"].Width = 250;
-                                grdGrnApprovalList.Columns["Tot Issue Pro in Inv"].Width = 150;
+                                //grdGrnApprovalList.Columns["Tot Issue Pro in Inv"].Width = 150;
                                 grdGrnApprovalList.Columns["Created By"].Width = 200;
                                 grdGrnApprovalList.Columns["Last Seen"].Width = 180;
                                 grdGrnApprovalList.Columns["Last Update"].Width = 180; 
@@ -1659,9 +1659,10 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["FLAG"].Visible = false;
                                 grdGrnApprovalList.Columns["PUR_GRNALastSeenBy"].Visible = false;
                                 grdGrnApprovalList.Columns["Status"].Visible = false;
+                                grdGrnApprovalList.Columns["Tot Issue Pro in Inv"].Visible = false;
                                 grdGrnApprovalList.Columns["Last Seen"].Visible = false;
                                 //grdGrnApprovalList.Columns["Last Update"].Visible = false;
-                                grdGrnApprovalList.Columns["Last Update"].HeaderText = "Approved BY";
+                                grdGrnApprovalList.Columns["Last Update"].HeaderText = "Approved By";
                                 grdGrnApprovalList.Columns["Inv Amt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
                             else
