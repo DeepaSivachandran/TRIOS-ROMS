@@ -184,7 +184,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnRackGroupList(0,varCompanyId, varLocationId, varId,0,"");
+                objDs = objdserv.udfnRackGroupList(0, varCompanyId, varLocationId, varId, Convert.ToInt32(cmbStatus.SelectedValue), "");
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -214,7 +214,7 @@ namespace ROMS
                             grdRackGroupList.Columns["Status ID"].Visible = false;
                             grdRackGroupList.Columns["SL_ShortName"].Visible = false;
                             grdRackGroupList.Columns["StockLocation ID"].Visible = false;
-                            grdRackGroupList.Columns["Status"].Visible = false;
+                            //grdRackGroupList.Columns["Status"].Visible = false;
                         }
                         else
                         {
@@ -349,6 +349,10 @@ namespace ROMS
             {
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+                cmbStatus.SelectedValue = 0;
                 udfnList();
                 this.ActiveControl = cmbConcern;
             }
@@ -891,7 +895,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -974,7 +978,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnLvStockLocation();
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -988,7 +992,7 @@ namespace ROMS
             try
             {
                 udfnLvStockLocation();
-                btnView.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
@@ -1133,6 +1137,62 @@ namespace ROMS
             {
                 var distinctRackGroupCount = grdRackGroupList.Rows.Cast<DataGridViewRow>().Where(row => row.Cells["ID"].Value != null).Select(row => row.Cells["ID"].Value.ToString()).Distinct().Count();
                 lblTotalCount.Text = distinctRackGroupCount.ToString();
+            }
+        }
+
+        private void cmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvStockLocation.Visible = false;
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

@@ -169,7 +169,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackGroupList(3,Convert.ToInt32(cmbConcern.SelectedValue),0,0,0,"");
+                objDs = objspservice.udfnRackGroupList(3, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -182,7 +182,7 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup.rpt");
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(0));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -267,6 +267,7 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -376,6 +377,7 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -485,6 +487,7 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -595,6 +598,7 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -705,6 +709,7 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -846,14 +851,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtRackgroup.Enabled == true)
-                    {
-                        txtRackgroup.Focus();
-                    }
-                    else
-                    {
-                        btnListPrint.Focus();
-                    }
+                    cmbConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -948,10 +946,12 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = 0;
                 cmbSubgroupType.SelectedValue = 0;
+                cmbStatus.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -984,7 +984,6 @@ namespace ROMS
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     DGV_FilterRackgroup.Focus();
-
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterRackgroup.Visible == false)
                 {
@@ -1559,7 +1558,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRackgroup.Focus();
+                    if (txtRackgroup.Enabled == true)
+                    {
+                        txtRackgroup.Focus();
+                    }
+                    else
+                    {
+                        cmbStatus.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1686,6 +1692,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterRackgroup.Visible = false;
+                DGV_FilterRackgroup.DataSource = null;
                 cmbSubgroupType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1741,6 +1749,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterRackgroup.Visible = false;
+                DGV_FilterRackgroup.DataSource = null;
                 cmbProductCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1762,7 +1772,7 @@ namespace ROMS
                     }
                     else
                     {
-                        btnListPrint.Focus();
+                        cmbStatus.Focus();
                     }
                 }
             }
@@ -1803,6 +1813,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterRackgroup.Visible = false;
+                DGV_FilterRackgroup.DataSource = null;
                 cmbFormat.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1818,7 +1830,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -1846,6 +1858,63 @@ namespace ROMS
             try
             {
                 cmbFormat.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterRackgroup.Visible = false;
+                DGV_FilterRackgroup.DataSource = null;
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
             }
             catch (Exception ex)
             {

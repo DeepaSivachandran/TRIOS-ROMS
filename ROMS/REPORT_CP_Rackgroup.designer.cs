@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ReportRackgroup = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportRackgroup = new System.Windows.Forms.Panel();
             this.DGV_FilterRackgroup = new System.Windows.Forms.DataGridView();
             this.lvRack = new System.Windows.Forms.ListView();
@@ -71,8 +73,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
-            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.ReportRackgroup.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).BeginInit();
@@ -106,6 +108,32 @@
             this.tspHeader.Size = new System.Drawing.Size(127, 24);
             this.tspHeader.Text = "Rack Group Report";
             // 
+            // tsbPrintFormat
+            // 
+            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
+            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
+            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbPrintFormat.Name = "tsbPrintFormat";
+            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Text = "A4-Portrait";
+            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Total GRN ";
+            // 
             // pnlReportRackgroup
             // 
             this.pnlReportRackgroup.BackColor = System.Drawing.Color.White;
@@ -130,24 +158,24 @@
             this.DGV_FilterRackgroup.AllowUserToResizeRows = false;
             this.DGV_FilterRackgroup.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterRackgroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterRackgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterRackgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.DGV_FilterRackgroup.ColumnHeadersHeight = 30;
             this.DGV_FilterRackgroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterRackgroup.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterRackgroup.DefaultCellStyle = dataGridViewCellStyle29;
             this.DGV_FilterRackgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterRackgroup.GridColor = System.Drawing.Color.White;
             this.DGV_FilterRackgroup.Location = new System.Drawing.Point(419, 74);
@@ -155,9 +183,9 @@
             this.DGV_FilterRackgroup.ReadOnly = true;
             this.DGV_FilterRackgroup.RowHeadersVisible = false;
             this.DGV_FilterRackgroup.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterRackgroup.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterRackgroup.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.DGV_FilterRackgroup.RowTemplate.Height = 25;
             this.DGV_FilterRackgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterRackgroup.Size = new System.Drawing.Size(386, 226);
@@ -258,6 +286,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label4);
+            this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.label3);
             this.grpfilter.Controls.Add(this.cmbFormat);
             this.grpfilter.Controls.Add(this.label2);
@@ -359,11 +389,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(990, 44);
+            this.btnListPrint.Location = new System.Drawing.Point(1100, 44);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 6;
+            this.btnListPrint.TabIndex = 7;
             this.btnListPrint.Text = "View";
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
@@ -426,10 +456,10 @@
             // txtRack
             // 
             this.txtRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRack.Location = new System.Drawing.Point(1078, 44);
+            this.txtRack.Location = new System.Drawing.Point(1200, 44);
             this.txtRack.MaxLength = 100;
             this.txtRack.Name = "txtRack";
-            this.txtRack.Size = new System.Drawing.Size(215, 27);
+            this.txtRack.Size = new System.Drawing.Size(93, 27);
             this.txtRack.TabIndex = 3;
             this.txtRack.Visible = false;
             this.txtRack.TextChanged += new System.EventHandler(this.TxtRack_TextChanged);
@@ -451,10 +481,10 @@
             // txtEmployeeName
             // 
             this.txtEmployeeName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtEmployeeName.Location = new System.Drawing.Point(1078, 12);
+            this.txtEmployeeName.Location = new System.Drawing.Point(1200, 12);
             this.txtEmployeeName.MaxLength = 100;
             this.txtEmployeeName.Name = "txtEmployeeName";
-            this.txtEmployeeName.Size = new System.Drawing.Size(215, 27);
+            this.txtEmployeeName.Size = new System.Drawing.Size(93, 27);
             this.txtEmployeeName.TabIndex = 2;
             this.txtEmployeeName.Visible = false;
             this.txtEmployeeName.TextChanged += new System.EventHandler(this.TxtEmployeeName_TextChanged);
@@ -559,31 +589,28 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // tsbPrintFormat
+            // cmbStatus
             // 
-            this.tsbPrintFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbPrintFormat.BackColor = System.Drawing.Color.Green;
-            this.tsbPrintFormat.ForeColor = System.Drawing.Color.White;
-            this.tsbPrintFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbPrintFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbPrintFormat.Name = "tsbPrintFormat";
-            this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
-            this.tsbPrintFormat.Text = "A4-Portrait";
-            this.tsbPrintFormat.ToolTipText = "Total GRN ";
+            this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(990, 45);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(104, 27);
+            this.cmbStatus.TabIndex = 6;
+            this.cmbStatus.Enter += new System.EventHandler(this.cmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.cmbStatus_Leave);
             // 
-            // tsbFormat
+            // label4
             // 
-            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbFormat.Name = "tsbFormat";
-            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
-            this.tsbFormat.Text = "Print Format : ";
-            this.tsbFormat.ToolTipText = "Total GRN ";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(990, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 20);
+            this.label4.TabIndex = 1111244;
+            this.label4.Text = "Status";
             // 
             // REPORT_CP_Rackgroup
             // 
@@ -659,5 +686,7 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Label label4;
     }
 }
