@@ -1031,6 +1031,7 @@ namespace ROMS
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dtCreatedOn.MaxDate = MainForm.pbCurrentDate;
                 dtCreatedOn.Format = DateTimePickerFormat.Custom;
                 dtCreatedOn.CustomFormat = " ";
                 dtCreatedOn.Checked = false;

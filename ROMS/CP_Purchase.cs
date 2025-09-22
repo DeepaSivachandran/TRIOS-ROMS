@@ -2227,6 +2227,7 @@ namespace ROMS
                 objspdservice.CloseConnection();
                 if (Convert.ToInt32(PbFlag) == 1)
                 {
+                    string varReturnDCCount = "0";
                     if (objDs.Tables[0].Rows.Count != 0) //  PO DETAILS LOAD
                     {
                         grdPODetails.Rows.Clear();
@@ -2247,6 +2248,19 @@ namespace ROMS
                             grdGRN.Rows.Add(Convert.ToString( objDs.Tables[2].Rows[i]["GRN_Date"]),Convert.ToString(objDs.Tables[2].Rows[i]["GRN_No"]), 
                                 Convert.ToString(objDs.Tables[2].Rows[i]["GRNPRID"]), Convert.ToString(objDs.Tables[2].Rows[i]["GRNID"]));
                         }
+                    }
+                    if (objDs.Tables[3].Rows.Count != 0)
+                    {
+                        varReturnDCCount = Convert.ToString(objDs.Tables[3].Rows[0]["ReturnDCCount"]);
+                    }
+
+                    if (varReturnDCCount == "0")
+                    {
+                        llblReturnDC.Enabled = false;
+                    }
+                    else
+                    {
+                        llblReturnDC.Enabled = true;
                     }
                 }
                 if (Convert.ToInt32(PbFlag) == 2)
