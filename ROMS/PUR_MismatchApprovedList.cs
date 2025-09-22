@@ -73,13 +73,7 @@ namespace ROMS
             {
                 cmbConcern.Focus();
                 udfnCmbConcern();
-                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-                udfnDate();
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) OR MSTID =0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (57) OR MSTID =0", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (82,0) AND  MSTID NOT IN (194,202,-1)  ORDER BY MST_OrderID", "MST_DisplayText,ISNULL(MST_Eq_STSID,0)MST_Eq_STSID", cmbReason, "", "MST_DisplayText", "MST_Eq_STSID");
-                objDataBind = null;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId; 
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -191,22 +185,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cmbDateType.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -230,58 +209,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void CmbDateType_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbDateType.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbDateType_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    dpFromDate.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbDateType_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbDateType_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbDateType.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void DpFromDate_Enter(object sender, EventArgs e)
         {
             try
@@ -360,251 +288,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TxtProductNamePICode_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtProductNamePICode.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtProductNamePICode_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {   /*
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
-                {
-                    if (lvProduct.Items.Count == 0 || txtProductNamePICode.Text == "")
-                    {
-                        btnView.Focus();
-                        lvProduct.Visible = false;
-                    }
-                    else
-                    {
-                        lvProduct.Focus();
-                    }
-                    if (lvProduct.Items.Count > 0)
-                    {
-                        lvProduct.Items[0].Selected = true;
-                    }
-                }
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-                */
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnView.Focus();
-                }
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    DGV_FilterProduct.Focus();
-                }
-                if (DGV_FilterProduct.CurrentCell == null)
-                {
-                    return;
-                }
-                else
-                {
-                    int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
-                    int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
-                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                    {
-                        varUpDownKey = 1;
-                    }
-                    else
-                    {
-                        varUpDownKey = 0;
-                    }
-                    switch (e.KeyCode)
-                    {
-                        case Keys.Up:
-                            RowIndex--;
-                            if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-                            if (RowIndex != (-1))
-                            {
-                                txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                            }
-                            txtProductNamePICode.Focus();
-                            txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Down:
-                            RowIndex++;
-                            if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
-                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
-                            {
-                                txtProductNamePICode.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
-                            }
-
-                            txtProductNamePICode.Focus();
-                            txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Enter:
-                            {
-                                if (DGV_FilterProduct.Rows.Count > 0)
-                                {
-                                    txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                                    lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                                    DGV_FilterProduct.Visible = false;
-                                }
-                                e.Handled = e.SuppressKeyPress = true;
-                                break;
-                            }
-                    }
-                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
-                    {
-                        //txtProductName.SelectedText = true;
-                        TextBox txtProductName = sender as TextBox;
-                        txtProductName.SelectAll();
-                        e.Handled = true;
-                    }
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        btnView.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtProductNamePICode_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtProductNamePICode.BackColor = Color.White;
-                if (txtProductNamePICode.Text == "")
-                {
-                    lblProduct.Text = "0";
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtProductNamePICode_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (varUpDownKey == 0)
-                {
-                    if (txtSupplier.Text == "")
-                    {
-                        lblSupplierCode.Text = "0";
-                        lblschedule.Text = "0";
-                    }
-                    //lvProduct.Items.Clear();
-                    DataSet objDs = new DataSet();
-                    if (txtProductNamePICode.Text.Length > 0)
-                    {
-                        Model.MR_Product objMR_Product = new Model.MR_Product();
-                        objMR_Product.paraViewType = 53;
-                        objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                        objMR_Product.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                        //objMR_Product.ParaScheduleid = lblschedule.Text;
-                        objMR_Product.paraProductName = txtProductNamePICode.Text;
-                        objMR_Product.ParaFromDate = dpFromDate.Text;
-                        objMR_Product.ParaToDate = dpToDate.Text;
-                        objMR_Product.paraId = 4;
-                        SPDataService objspdservice = new SPDataService();
-                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
-                        objspdservice.CloseConnection();
-                        if (objDs != null)
-                        {
-                            if (objDs.Tables.Count != 0)
-                            {
-                                if (objDs.Tables[0].Rows.Count != 0)
-                                {   /*
-                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                    {
-                                        string[] row = { objDs.Tables[0].Rows[i]["PR_PICode"].ToString(), objDs.Tables[0].Rows[i]["PR_EName"].ToString(), objDs.Tables[0].Rows[i]["PR_TName"].ToString(), objDs.Tables[0].Rows[i]["PRID"].ToString() };
-                                        ListViewItem objList = new ListViewItem(row);
-                                        objList.UseItemStyleForSubItems = false;
-                                        objList.SubItems[2].Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                                        lvProduct.Items.Add(objList);
-                                    }
-                                    lvProduct.Visible = true;
-                                    lvProduct.BringToFront();
-                                    lvProduct.Columns[0].Width = 150;
-                                    lvProduct.Columns[1].Width = 250;
-                                    lvProduct.Columns[2].Width = 250;
-                                    lvProduct.Columns[3].Width = 0;
-                                    */
-                                    DGV_FilterProduct.Visible = true;
-                                    DGV_FilterProduct.DataSource = objDs.Tables[0];
-                                    DGV_FilterProduct.Columns["PRID"].Visible = false;
-                                    DGV_FilterProduct.Columns["PR_EName"].Width = 330;
-                                    DGV_FilterProduct.Columns["PR_TName"].Width = 420;
-                                    DGV_FilterProduct.Columns["PR_PICode"].Width = 150;
-                                    DGV_FilterProduct.Columns["Unit"].Width = 50;
-                                    DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
-                                    DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 2;
-                                    DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 3;
-                                    DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                                    DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Tamil Name";
-                                    DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product English Name";
-                                    DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "P.I Code";
-                                    DGV_FilterProduct.Columns["PR_EName"].Visible = false;
-                                    DGV_FilterProduct.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                }
-                                else
-                                {
-                                    DGV_FilterProduct.DataSource = null;
-                                    DGV_FilterProduct.Visible = false;
-                                    //lvProduct.Visible = false;
-                                }
-                            }
-                            else
-                            {
-                                DGV_FilterProduct.DataSource = null;
-                                DGV_FilterProduct.Visible = false;
-                                //lvProduct.Visible = false;
-                            }
-                        }
-                        else
-                        {
-                            DGV_FilterProduct.DataSource = null;
-                            DGV_FilterProduct.Visible = false;
-                            //lvProduct.Visible = false;
-                        }
-                    }
-                    else
-                    {
-                        DGV_FilterProduct.DataSource = null;
-                        DGV_FilterProduct.Visible = false;
-                        //lvProduct.Visible = false;
-                        //lvProduct.Items.Clear();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
+         
         private void BtnView_Enter(object sender, EventArgs e)
         {
             try
             {
-                DGV_FilterProduct.Visible = false;
+                LV_Supplier.Visible = false;
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -624,94 +313,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void BtnExport_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                btnExport.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void BtnExport_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                btnExport.BackColor = Color.Transparent;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        
-       
-        private void LvProduct_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnProductEvent();
-                btnView.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void LvProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnProductEvent();
-                    btnView.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnProductEvent()
-        {
-            try
-            {
-                if (txtProductNamePICode.Text != "")
-                {
-                    ListViewItem selectedItem = lvProduct.SelectedItems[0];
-                    //varPICode = selectedItem.SubItems[0].Text;
-                    txtProductNamePICode.Text = selectedItem.SubItems[1].Text;
-                    //txtMRP.Text = selectedItem.SubItems[4].Text;
-                    //txtExpiryDate.Text = selectedItem.SubItems[5].Text;
-                    //txtBatchNo.Text = selectedItem.SubItems[6].Text;
-                    //txtStockQty.Text = selectedItem.SubItems[7].Text;
-                    lblProduct.Text = selectedItem.SubItems[3].Text;
-                    //varUTID = selectedItem.SubItems[9].Text;
-                    //varUnitSymbol = selectedItem.SubItems[10].Text;
-                    //varMRP = selectedItem.SubItems[4].Text;
-                    //varExpiryDate = selectedItem.SubItems[5].Text;
-                    //varBatchNo = selectedItem.SubItems[6].Text;
-                    //varProductCode = selectedItem.SubItems[8].Text;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                lvProduct.Visible = false;
-            }
-        }
+        } 
         private void BtnView_Click(object sender, EventArgs e)
         {
             try
@@ -1031,128 +633,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void BtnExport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnExport();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnExport()
-        {
-            try
-            {
-                btnExport.Enabled = false;
-                if ((grdGrnApprovalList.Rows.Count > 0))
-                {
-                    Excel._Application ExcelObj = new Excel.Application();
-                    // creating new WorkBook within Excel application  
-                    Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
-                    // creating new Excelsheet in workbook  
-                    Excel._Worksheet ExcelSheet = null;
-                    // see the excel sheet behind the program  
-                    ExcelObj.Visible = true;
-                    ExcelSheet = ExcelBook.Sheets["Sheet1"];
-                    ExcelSheet = ExcelBook.ActiveSheet;
-                    // changing the name of active sheet  
-                    ExcelSheet.Name = "Purchase Mismatch Approval";
-                    int cIndex = 0;
-                    int count = 0;
-                    foreach (DataGridViewColumn col in grdGrnApprovalList.Columns)
-                    {
-                        if (col.Visible)
-                        {
-                            count += 1;
-                        }
-                    }
-                    //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
-                    //er.EntireColumn.ColumnWidth = 35;
-
-                    ExcelSheet.Cells[1, 1].Value = "Purchase Mismatch Approval";
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
-                    ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Font.Size = 12;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.Bold = true;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Font.color = Color.White;
-                    ExcelSheet.Range[ExcelSheet.Cells[2, 1], ExcelSheet.Cells[2, count]].Interior.Color = Color.LightSlateGray;
-
-
-                    foreach (DataGridViewColumn col in grdGrnApprovalList.Columns)
-                    {
-                        if (col.Visible)
-                        {
-                            cIndex += 1;
-                            ExcelSheet.Cells[2, cIndex] = col.HeaderText;
-                            ExcelSheet.Columns[cIndex].NumberFormat = "@";
-
-                            if (col.Name == "S.No." )
-                            {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 10;
-                            }
-                            else if (col.Name == "Supplier")
-                            {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 25;
-                            }
-                            else
-                            {
-                                ExcelSheet.Columns[cIndex].ColumnWidth = 20;
-                            }
-                            if (col.Name == "S.No." || col.Name == "GRN Date" || col.Name == "Vouc Date" || col.Name == "Inv Date")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
-                            }
-                            if (col.Name == "Tot Pro in Inv" )
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
-                            int varSLno = 1;
-                            foreach (DataGridViewRow rowa in grdGrnApprovalList.Rows)
-                            {
-                                if (cIndex == 1)
-                                {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = varSLno;
-                                    varSLno++;
-                                }
-                                else
-                                {
-                                    ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;
-                                }
-                            }
-                        }
-                    }
-                    //   ExcelSheet.Protect(System.Configuration.ConfigurationManager.AppSettings["ExcelPassword"]);
-                    ExcelObj.Visible = true;
-                }
-                else
-                {
-                    MessageBox.Show("No Record Found", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                btnExport.Enabled = true;
-                btnExport.Focus();
-            }
-        }
-
+        } 
         private void TxtSupplier_Enter(object sender, EventArgs e)
         {
             try
-            {
-                lvProduct.Visible = false;
+            { 
                 txtSupplier.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1168,7 +653,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductNamePICode.Focus();
+                    btnView.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -1225,7 +710,7 @@ namespace ROMS
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromDate.Text;
                     objMR_Supplier.ParaToDate = dpToDate.Text;
-                    objMR_Supplier.paraFlag = 5;
+                    objMR_Supplier.paraFlag = 12;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -1297,7 +782,7 @@ namespace ROMS
                 }
                 else
                 {
-                    txtProductNamePICode.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -1325,86 +810,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                cmbReason.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
-                {
-                    int RowIndex = DGV_FilterProduct.CurrentCell.RowIndex;
-                    int ClmIndex = DGV_FilterProduct.CurrentCell.ColumnIndex;
-                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                    {
-                        varUpDownKey = 1;
-                    }
-                    else
-                    {
-                        varUpDownKey = 0;
-                    }
-                    switch (e.KeyCode)
-                    {
-                        case Keys.Up:
-                            RowIndex--;
-                            if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-                            if (RowIndex != (-1))
-                            {
-                                txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                            }
-                            txtProductNamePICode.Focus();
-                            txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Down:
-                            RowIndex++;
-                            if (RowIndex < DGV_FilterProduct.Rows.Count) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
-
-                            if (RowIndex != (DGV_FilterProduct.Rows.Count))
-                            {
-                                txtProductNamePICode.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
-                            }
-
-                            txtProductNamePICode.Focus();
-                            txtProductNamePICode.SelectionStart = txtProductNamePICode.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Enter:
-                            {
-                                if (DGV_FilterProduct.Rows.Count > 0)
-                                {
-                                    varUpDownKey = 1;
-                                    lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                                    txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-                                    DGV_FilterProduct.Visible = false;
-                                }
-                                e.Handled = e.SuppressKeyPress = true;
-                                break;
-                            }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
+         
         private void GrdGrnApprovalList_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             try
@@ -1452,17 +858,7 @@ namespace ROMS
                 grdGrnApprovalList.Columns["Overall Status"].Frozen = true;
                 grdGrnApprovalList.Columns["Overall Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdGrnApprovalList.Columns["Status"].Frozen = true;
-                grdGrnApprovalList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["GRN No."].Frozen = true;
-                //grdGrnApprovalList.Columns["GRN No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["Vouc No."].Frozen = true;
-                //grdGrnApprovalList.Columns["Vouc No."].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["GRN Date"].Frozen = true;
-                //grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["Vouc Date"].Frozen = true;
-                //grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                //grdGrnApprovalList.Columns["Supplier"].Frozen = true;
-                //grdGrnApprovalList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGrnApprovalList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue; 
                 grdGrnApprovalList.ClearSelection();
             }
             catch (Exception ex)
@@ -1522,26 +918,13 @@ namespace ROMS
             }
         }
 
-        private void cmbReason_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbReason.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbReason_KeyDown(object sender, KeyEventArgs e)
+        private void cmbConcern_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    dpFromDate.Focus();
                 }
             }
             catch (Exception ex)
@@ -1551,24 +934,12 @@ namespace ROMS
             }
         }
 
-        private void cmbReason_KeyPress(object sender, KeyPressEventArgs e)
+        private void dpFromDate_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbReason_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbReason.BackColor = Color.White;
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
             }
             catch (Exception ex)
             {
@@ -1592,11 +963,7 @@ namespace ROMS
                 grdGrnApprovalList.DataSource = null;
                 DataSet objDs = new DataSet();
                 if (Varflag == 0)
-                {
-                    if(lblProduct.Text=="")
-                    {
-                        lblProduct.Text = "0";
-                    }
+                { 
                     btnView.Enabled = false;
                     varviewtype = 26;
                     SPDataService objdserv = new SPDataService();
@@ -1604,14 +971,11 @@ namespace ROMS
                     objTRN_PurchaseEntry.ViewType = varviewtype;
                     objTRN_PurchaseEntry.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRN_PurchaseEntry.paraIPAddress = MainForm.pbIpAddress;
-                    objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
-                    objTRN_PurchaseEntry.paraDateFilter = Convert.ToInt32(cmbDateType.SelectedValue);
+                    objTRN_PurchaseEntry.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue); 
                     objTRN_PurchaseEntry.paraFromDate = Convert.ToString(dpFromDate.Text);
                     objTRN_PurchaseEntry.paraToDate = Convert.ToString(dpToDate.Text);
                     objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                    objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text);
-                    objTRN_PurchaseEntry.paraProductID = Convert.ToInt32(lblProduct.Text);
-                    objTRN_PurchaseEntry.paraConditionType = Convert.ToInt32(cmbReason.SelectedValue);
+                    objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedule.Text); 
                     objTRN_PurchaseEntry.paraFlag = 1;
                     objDs = objdserv.udfnGetPurchaseEntry(objTRN_PurchaseEntry);
                     objdserv.CloseConnection();
@@ -1629,6 +993,7 @@ namespace ROMS
                                 grdGrnApprovalList.Columns["GRN Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Vouc Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdGrnApprovalList.Columns["Inv Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                                grdGrnApprovalList.Columns["MA Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                                 grdGrnApprovalList.Columns["Concern"].Width = 70;
                                 grdGrnApprovalList.Columns["Vouc No."].Width = 70;
                                 grdGrnApprovalList.Columns["GRN Date"].Width = 80;
@@ -1711,24 +1076,15 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Inv No."].Width = 100;
                 DGV_SearchGrid.Columns["Inv Date"].Width = 100;
                 DGV_SearchGrid.Columns["Supplier"].Width = 300;
-                DGV_SearchGrid.Columns["GSTIN"].Width = 120;
-                DGV_SearchGrid.Columns["Tot Issue Pro in Inv"].Width = 150;
-                DGV_SearchGrid.Columns["Created By"].Width = 150;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 120;  
                 DGV_SearchGrid.Columns["ID"].Visible = false;
-                DGV_SearchGrid.Columns["SPID"].Visible = false;
-                DGV_SearchGrid.Columns["GRNAID"].Visible = false;
-               
-                DGV_SearchGrid.Columns["SPSCID"].Visible = false;
+                DGV_SearchGrid.Columns["Supplier ID"].Visible = false;
+                DGV_SearchGrid.Columns["Schedule ID"].Visible = false;
+                DGV_SearchGrid.Columns["GRNAID"].Visible = false; 
                 DGV_SearchGrid.Columns["Concern ID"].Visible = false; 
                 DGV_SearchGrid.Columns["Purchase Type"].Visible = false;
-                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false; 
-                DGV_SearchGrid.Columns["GRNFilterDate"].Visible = false;
-                DGV_SearchGrid.Columns["InvFilterDate"].Visible = false;   
-                DGV_SearchGrid.Columns["Pur_LastTransNo"].Visible = false;
-                DGV_SearchGrid.Columns["Transaction Date"].Visible = false;
-                DGV_SearchGrid.Columns["Full Status"].Visible = false;
-                DGV_SearchGrid.Columns["Flag"].Visible = false;
-                DGV_SearchGrid.Columns["PUR_GRNALastSeenBy"].Visible = false;
+                DGV_SearchGrid.Columns["Overall Full Status"].Visible = false;    
+                DGV_SearchGrid.Columns["Flag"].Visible = false; 
                 DGV_SearchGrid.Columns["Trans ID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
