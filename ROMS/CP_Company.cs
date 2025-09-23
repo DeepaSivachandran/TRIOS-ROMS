@@ -4658,14 +4658,23 @@ namespace ROMS
                         string varFileName = "Company Logo" + varExtension;
                         varNewfile = Path.Combine(varFolderPath, varFileName);
 
-                        File.Copy(objfilelogo.FileName, varNewfile, true);
+                        //File.Copy(objfilelogo.FileName, varNewfile, true);
+                        if (!string.Equals(objfilelogo.FileName, varNewfile, StringComparison.OrdinalIgnoreCase))
+                        {
+                            File.Copy(objfilelogo.FileName, varNewfile, true);
+                        }
 
                         lblCompanyLogoFilename.Text = varFileName;
                         lblCompanyLogoPath.Text = varNewfile;
 
                         picCompanyLogo.BackgroundImage = null;
                         picCompanyLogo.Image = null;
-                        picCompanyLogo.Image = new Bitmap(objfilelogo.FileName);
+
+                        //picCompanyLogo.Image = new Bitmap(objfilelogo.FileName);
+                        using (var tempImage = new Bitmap(objfilelogo.FileName))
+                        {
+                            picCompanyLogo.Image = new Bitmap(tempImage);
+                        }
                         picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
 
                         if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
