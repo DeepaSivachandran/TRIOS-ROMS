@@ -125,7 +125,7 @@
             this.tspHeader});
             this.tsHeader.Location = new System.Drawing.Point(0, 0);
             this.tsHeader.Name = "tsHeader";
-            this.tsHeader.Size = new System.Drawing.Size(1360, 25);
+            this.tsHeader.Size = new System.Drawing.Size(1360, 29);
             this.tsHeader.TabIndex = 35;
             this.tsHeader.Text = "toolStrip1";
             // 
@@ -136,7 +136,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(93, 22);
+            this.tspHeader.Size = new System.Drawing.Size(114, 26);
             this.tspHeader.Text = "Sticker Print";
             // 
             // cmbLabelsize
@@ -147,7 +147,7 @@
             this.cmbLabelsize.Location = new System.Drawing.Point(901, 39);
             this.cmbLabelsize.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbLabelsize.Name = "cmbLabelsize";
-            this.cmbLabelsize.Size = new System.Drawing.Size(71, 28);
+            this.cmbLabelsize.Size = new System.Drawing.Size(71, 34);
             this.cmbLabelsize.TabIndex = 6;
             this.cmbLabelsize.SelectedIndexChanged += new System.EventHandler(this.cmbLabelsize_SelectedIndexChanged);
             this.cmbLabelsize.Enter += new System.EventHandler(this.cmbLabelsize_Enter);
@@ -162,7 +162,7 @@
             this.lblDLabelSize.Location = new System.Drawing.Point(901, 15);
             this.lblDLabelSize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDLabelSize.Name = "lblDLabelSize";
-            this.lblDLabelSize.Size = new System.Drawing.Size(61, 20);
+            this.lblDLabelSize.Size = new System.Drawing.Size(80, 26);
             this.lblDLabelSize.TabIndex = 958791;
             this.lblDLabelSize.Text = "Label Size";
             // 
@@ -172,7 +172,7 @@
             this.lblRawCode.Location = new System.Drawing.Point(628, 6);
             this.lblRawCode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRawCode.Name = "lblRawCode";
-            this.lblRawCode.Size = new System.Drawing.Size(16, 20);
+            this.lblRawCode.Size = new System.Drawing.Size(21, 26);
             this.lblRawCode.TabIndex = 958798;
             this.lblRawCode.Text = "0";
             this.lblRawCode.Visible = false;
@@ -210,7 +210,7 @@
             "Rack Group"});
             this.cmbType.Location = new System.Drawing.Point(135, 42);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(124, 28);
+            this.cmbType.Size = new System.Drawing.Size(124, 34);
             this.cmbType.TabIndex = 1;
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
             this.cmbType.Enter += new System.EventHandler(this.CmbType_Enter);
@@ -225,7 +225,7 @@
             this.label3.Location = new System.Drawing.Point(135, 17);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 20);
+            this.label3.Size = new System.Drawing.Size(43, 26);
             this.label3.TabIndex = 958814;
             this.label3.Text = "Type";
             // 
@@ -235,7 +235,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(5, 42);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(124, 28);
+            this.cmbConcern.Size = new System.Drawing.Size(124, 34);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbCompany_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbCompany_Enter);
@@ -250,7 +250,7 @@
             this.label8.Location = new System.Drawing.Point(5, 17);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 20);
+            this.label8.Size = new System.Drawing.Size(68, 26);
             this.label8.TabIndex = 958812;
             this.label8.Text = "Concern";
             // 
@@ -313,7 +313,7 @@
             this.label6.Location = new System.Drawing.Point(1031, 19);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 20);
+            this.label6.Size = new System.Drawing.Size(59, 26);
             this.label6.TabIndex = 958793;
             this.label6.Text = "Printer";
             this.label6.Visible = false;
@@ -326,7 +326,7 @@
             this.txtPrinterName.MaxLength = 100;
             this.txtPrinterName.Name = "txtPrinterName";
             this.txtPrinterName.ReadOnly = true;
-            this.txtPrinterName.Size = new System.Drawing.Size(202, 27);
+            this.txtPrinterName.Size = new System.Drawing.Size(202, 32);
             this.txtPrinterName.TabIndex = 958808;
             this.txtPrinterName.Visible = false;
             // 
@@ -337,7 +337,7 @@
             this.lblSubgroup.Location = new System.Drawing.Point(205, 14);
             this.lblSubgroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSubgroup.Name = "lblSubgroup";
-            this.lblSubgroup.Size = new System.Drawing.Size(62, 20);
+            this.lblSubgroup.Size = new System.Drawing.Size(75, 26);
             this.lblSubgroup.TabIndex = 958809;
             this.lblSubgroup.Text = "Subgroup";
             // 
@@ -347,7 +347,7 @@
             this.txtSubgroup.Location = new System.Drawing.Point(205, 39);
             this.txtSubgroup.MaxLength = 100;
             this.txtSubgroup.Name = "txtSubgroup";
-            this.txtSubgroup.Size = new System.Drawing.Size(262, 27);
+            this.txtSubgroup.Size = new System.Drawing.Size(262, 32);
             this.txtSubgroup.TabIndex = 4;
             this.txtSubgroup.TextChanged += new System.EventHandler(this.TxtSubgroup_TextChanged);
             this.txtSubgroup.Enter += new System.EventHandler(this.TxtSubgroup_Enter);
@@ -361,7 +361,7 @@
             this.lblGroup.Location = new System.Drawing.Point(5, 14);
             this.lblGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(42, 20);
+            this.lblGroup.Size = new System.Drawing.Size(52, 26);
             this.lblGroup.TabIndex = 958807;
             this.lblGroup.Text = "Group";
             // 
@@ -371,7 +371,7 @@
             this.txtGroup.Location = new System.Drawing.Point(9, 39);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(190, 27);
+            this.txtGroup.Size = new System.Drawing.Size(190, 32);
             this.txtGroup.TabIndex = 3;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
@@ -385,7 +385,7 @@
             this.lblProduct.Location = new System.Drawing.Point(473, 14);
             this.lblProduct.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(52, 20);
+            this.lblProduct.Size = new System.Drawing.Size(65, 26);
             this.lblProduct.TabIndex = 958805;
             this.lblProduct.Text = "Product";
             // 
@@ -395,7 +395,7 @@
             this.txtProduct.Location = new System.Drawing.Point(473, 39);
             this.txtProduct.MaxLength = 100;
             this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(346, 27);
+            this.txtProduct.Size = new System.Drawing.Size(346, 32);
             this.txtProduct.TabIndex = 5;
             this.txtProduct.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProduct.Enter += new System.EventHandler(this.TxtProduct_Enter);
@@ -408,7 +408,7 @@
             this.label1.Location = new System.Drawing.Point(16, 820);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 20);
+            this.label1.Size = new System.Drawing.Size(219, 26);
             this.label1.TabIndex = 958803;
             this.label1.Text = "Completed - Pending - Planned";
             // 
@@ -569,7 +569,7 @@
             this.lblProductName.Location = new System.Drawing.Point(1179, 15);
             this.lblProductName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(85, 20);
+            this.lblProductName.Size = new System.Drawing.Size(108, 26);
             this.lblProductName.TabIndex = 1111173;
             this.lblProductName.Text = "Product Name";
             // 
@@ -581,7 +581,7 @@
             this.cmbProductName.Location = new System.Drawing.Point(1179, 39);
             this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbProductName.Name = "cmbProductName";
-            this.cmbProductName.Size = new System.Drawing.Size(118, 28);
+            this.cmbProductName.Size = new System.Drawing.Size(118, 34);
             this.cmbProductName.TabIndex = 8;
             this.cmbProductName.Enter += new System.EventHandler(this.CmbProductName_Enter);
             this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductName_KeyDown);
@@ -608,7 +608,7 @@
             this.picLoader1.ErrorImage = null;
             this.picLoader1.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader1.InitialImage = null;
-            this.picLoader1.Location = new System.Drawing.Point(473, 72);
+            this.picLoader1.Location = new System.Drawing.Point(473, 82);
             this.picLoader1.Name = "picLoader1";
             this.picLoader1.Size = new System.Drawing.Size(422, 436);
             this.picLoader1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -728,7 +728,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(1065, 280);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(132, 26);
             this.lblNoRecordsFound.TabIndex = 1111167;
             this.lblNoRecordsFound.Text = "No Records Found";
             // 
@@ -773,7 +773,7 @@
             this.txtLabelCount.Location = new System.Drawing.Point(1101, 40);
             this.txtLabelCount.MaxLength = 100;
             this.txtLabelCount.Name = "txtLabelCount";
-            this.txtLabelCount.Size = new System.Drawing.Size(73, 27);
+            this.txtLabelCount.Size = new System.Drawing.Size(73, 32);
             this.txtLabelCount.TabIndex = 7;
             this.txtLabelCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLabelCount.Enter += new System.EventHandler(this.TxtLabelCount_Enter);
@@ -788,7 +788,7 @@
             this.label5.Location = new System.Drawing.Point(1101, 15);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 20);
+            this.label5.Size = new System.Drawing.Size(92, 26);
             this.label5.TabIndex = 958792;
             this.label5.Text = "Label Count";
             // 
@@ -993,7 +993,7 @@
             // 
             // CP_StickerPrint
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1360, 665);

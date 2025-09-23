@@ -29,6 +29,7 @@ namespace ROMS
         public string vargroupId = "";
         public string varupdate = "0";
         public int varProductload = 0;
+        public int pbProHSNID = 0, pbSalesHSNID = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
         private ToolTip tpAltContactNo = new ToolTip();
@@ -5910,7 +5911,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtPURHSNName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtPURHSNName.Text.Trim(), "");
+                    objDs = objspdservice.udfnHsnList(6, pbProHSNID, 0, 0, txtPURHSNName.Text.Trim(), "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -6318,7 +6319,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtSalesHSNName.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnHsnList(6, 0, 0, 0, txtSalesHSNName.Text.Trim(), "");
+                    objDs = objspdservice.udfnHsnList(6, pbSalesHSNID, 0, 0, txtSalesHSNName.Text.Trim(), "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -7971,6 +7972,8 @@ namespace ROMS
                             txtSaleRack.Text = objDS.Tables[0].Rows[0]["RACK SALES Name"].ToString();
                             txtRackDescriptionSales.Text = objDS.Tables[0].Rows[0]["Sales_Rack_Description"].ToString();
                             txtTeller.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PR_Inactive_Teller"]);
+                            pbProHSNID = Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"]);
+                            pbSalesHSNID = Convert.ToInt32(objDS.Tables[0].Rows[0]["SalesHSN"]);
                             lvVerified1.Visible = false;
                             if (pbCloneFlag == 0)
                             {
@@ -7987,7 +7990,8 @@ namespace ROMS
                                 txtWSaleRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["WSALERATE"].ToString().Replace("''", "'"));
                                 txtBarcode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["BARCODE"].ToString().Replace("''", "'"));
                             }
-                            else {
+                            else
+                            {
                                 txtUpp.Text = "";
                                 txtRackMOQQty.Text = "";
                                 txtWeight.Text = "";

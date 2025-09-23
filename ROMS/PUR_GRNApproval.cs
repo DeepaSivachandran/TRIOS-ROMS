@@ -1257,7 +1257,7 @@ namespace ROMS
                             if (varShelflifeper[0] != "")
                             {
                                 //Shelflife Wise Color Set
-                                if (Convert.ToDecimal(varShelflifeper[0]) <= varShelflifeLevel1)
+                                if (Convert.ToDecimal(varShelflifeper[0]) <= varShelflifeLevel1 && Convert.ToDecimal(varShelflifeper[0]) !=0)
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];
@@ -1266,7 +1266,7 @@ namespace ROMS
                                     txtRDPercentageCheck.Enabled = true;
                                     lbltwentyfiveper.Enabled = true;
                                 }
-                                else if (Convert.ToDecimal(varShelflifeper[0]) > varShelflifeLevel1 && Convert.ToDecimal(varShelflifeper[0]) < varShelflifeLevel2)
+                                else if (Convert.ToDecimal(varShelflifeper[0]) > varShelflifeLevel1 && Convert.ToDecimal(varShelflifeper[0]) < varShelflifeLevel2 && Convert.ToDecimal(varShelflifeper[0]) != 0)
                                 {
                                     DataGridView dataGridView = grdGrnApproval;
                                     DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactualshelflife"];

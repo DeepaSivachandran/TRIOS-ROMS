@@ -624,6 +624,7 @@ namespace ROMS
                             grdSupllierPaymentList.Columns["ID"].Visible = false; 
                             grdSupllierPaymentList.Columns["ViewFlag"].Visible = false; 
                             grdSupllierPaymentList.Columns["CancelFlag"].Visible = false; 
+                            grdSupllierPaymentList.Columns["BankId"].Visible = false; 
                             grdSupllierPaymentList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSupllierPaymentList.Columns["Cheque Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                             grdSupllierPaymentList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
@@ -684,6 +685,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Status"].Width = 150;
                 DGV_SearchGrid.Columns["ViewFlag"].Visible = false;
                 DGV_SearchGrid.Columns["CancelFlag"].Visible = false;
+                DGV_SearchGrid.Columns["BankId"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)

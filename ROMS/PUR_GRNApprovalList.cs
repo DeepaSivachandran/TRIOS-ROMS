@@ -1233,7 +1233,7 @@ namespace ROMS
                     objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Supplier.ParaFromDate = dpFromDate.Text;
                     objMR_Supplier.ParaToDate = dpToDate.Text;
-                    objMR_Supplier.paraFlag = 5;
+                    objMR_Supplier.paraFlag = 12;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
