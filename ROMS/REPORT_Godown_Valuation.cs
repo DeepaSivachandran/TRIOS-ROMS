@@ -103,6 +103,7 @@ namespace ROMS
                 objTRNG_Stock.ViewType = 3;
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_Stock.paraSLID = varLocationId;
+                objTRNG_Stock.paraFilterType = Convert.ToInt32(cmbFilterType.SelectedValue);
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -118,6 +119,7 @@ namespace ROMS
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Godown_Valuation.rpt");
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraSLID", varLocationId);
+                    objBillreport.SetParameterValue("paraFilterType", Convert.ToInt32(cmbFilterType.SelectedValue));
                     objBillreport.SetParameterValue("paraMonth", 0);
                     objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraPICode", "");
@@ -175,7 +177,9 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,120) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbFilterType.SelectedValue = 0;
             }
             catch (Exception ex)
             {
@@ -263,7 +267,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterLocation.Visible == false)
                 {
-                    btnView.Focus();
+                    cmbFilterType.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -336,7 +340,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbFilterType.Focus();
                     }
                 }
             }
@@ -353,7 +357,7 @@ namespace ROMS
             {
                 varUpDownKeyLocation = 1;
                 udfnLvStockLocation();
-                btnView.Focus();
+                cmbFilterType.Focus();
             }
             catch (Exception ex)
             {
@@ -423,7 +427,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbFilterType.Focus();
                     }
                 }
             }
@@ -539,6 +543,62 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilterType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFilterType.BackColor = Color.LemonChiffon;
+                udfnGridNull((Control)sender);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilterType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilterType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFilterType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFilterType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

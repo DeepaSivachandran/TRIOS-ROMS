@@ -20,5 +20,6 @@ namespace ROMS.Model
         public int paraStockType { get; set; } = 0;
         public int paraDays { get; set; } = 0;
         public int paraOrder { get; set; } = 0;
+        public int paraFilterType { get; set; } = 0;
     }
 }
