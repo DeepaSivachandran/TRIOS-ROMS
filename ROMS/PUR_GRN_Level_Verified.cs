@@ -683,21 +683,19 @@ namespace ROMS
             try
             {
                 txtVerified2.BackColor = Color.White;
-                if(txtVerified2.Text!="")
+                if (txtVerified2.Text != "")
                 {
-                    //dpVerified2.Text = dpVerified1.Text;
-                    dpVerified2.Value = dpVerified1.Value;
-                    dpVerified2.Enabled=false;
+                    dpVerified2.Value = dpVerified1.Value; 
+                    dpVerified2.Enabled = false;
                     mtbTime2.Text = mtbTime1.Text;
                     mtbTime2.Enabled = false;
                     mtbTime2.ReadOnly = true;
-                    cmbFormat2.SelectedValue = cmbFormat1.SelectedValue;
+                    cmbFormat2.SelectedIndex = cmbFormat1.SelectedIndex;
                     cmbFormat2.Enabled = false;
                 }
                 else
                 {
-                    //dpVerified2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                    dpVerified2.Value = DateTime.Now.Date;
+                    dpVerified2.Value = DateTime.Now.Date; 
                     dpVerified2.Enabled = true;
                     mtbTime2.Text = "";
                     mtbTime2.Enabled = true;

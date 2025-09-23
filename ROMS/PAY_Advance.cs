@@ -35,6 +35,7 @@ namespace ROMS
         bool varVoucherSkip = false;
         DataTable dtBankDetails = new DataTable();
         public decimal varRTGSMinLimit = 0;
+        public int varEditFlag = 0;
         public PAY_Advance()
         {
             InitializeComponent();
@@ -1002,7 +1003,10 @@ namespace ROMS
                 udfnPaymentDropDown();
                 udfnIssueDropDown();
                 udfnBankDropDown();
-                udfnChequeDate();
+                if (varEditFlag == 0)
+                {
+                    udfnChequeDate();
+                }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,71) AND MSTID NOT IN (0)", "MST_DisplayText,MSTID", cmbIssueMode, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -1761,7 +1765,10 @@ namespace ROMS
         {
             try
             {
-                udfnChequeDate();
+                if (varEditFlag == 0)
+                {
+                    udfnChequeDate();
+                }
             }
             catch (Exception ex)
             {
