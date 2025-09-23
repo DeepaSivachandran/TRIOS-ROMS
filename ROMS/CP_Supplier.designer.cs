@@ -318,7 +318,6 @@
             this.btnPurProSelectAll = new System.Windows.Forms.Button();
             this.lblPurProducts = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.txtPurOrderDays = new System.Windows.Forms.TextBox();
             this.lblPurOrderTypeId = new System.Windows.Forms.Label();
             this.txtPurordertype = new System.Windows.Forms.TextBox();
@@ -336,6 +335,7 @@
             this.DGV_PurMappedSearchGrid = new System.Windows.Forms.DataGridView();
             this.txtSearchByPurMappedProducts = new System.Windows.Forms.TextBox();
             this.grdPurMappedProducts = new System.Windows.Forms.DataGridView();
+            this.label29 = new System.Windows.Forms.Label();
             this.grbPurMapped = new System.Windows.Forms.GroupBox();
             this.btnPurView = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
@@ -3665,7 +3665,7 @@
             this.tbPurchaseProducts.Padding = new System.Windows.Forms.Padding(3);
             this.tbPurchaseProducts.Size = new System.Drawing.Size(1329, 611);
             this.tbPurchaseProducts.TabIndex = 5;
-            this.tbPurchaseProducts.Text = "Purchase - Variant Mapping";
+            this.tbPurchaseProducts.Text = "Unmapped for PO/Purchase";
             this.tbPurchaseProducts.UseVisualStyleBackColor = true;
             // 
             // btnPurClose
@@ -3784,16 +3784,6 @@
             this.label18.Size = new System.Drawing.Size(110, 20);
             this.label18.TabIndex = 958809;
             this.label18.Text = "Mapped Products :";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(205, 20);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(108, 20);
-            this.label29.TabIndex = 37;
-            this.label29.Text = "Search by P.I Code";
             // 
             // txtPurOrderDays
             // 
@@ -4061,6 +4051,16 @@
             this.grdPurMappedProducts.CurrentCellDirtyStateChanged += new System.EventHandler(this.GrdPurMappedProducts_CurrentCellDirtyStateChanged);
             this.grdPurMappedProducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurMappedProducts_DataBindingComplete);
             this.grdPurMappedProducts.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurMappedProducts_Scroll);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(205, 20);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(108, 20);
+            this.label29.TabIndex = 37;
+            this.label29.Text = "Search by P.I Code";
             // 
             // grbPurMapped
             // 

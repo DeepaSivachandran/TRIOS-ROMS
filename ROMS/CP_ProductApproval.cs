@@ -4451,7 +4451,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varStatus = "2";
+                    varStatus = "71";// If the status is set to Inactive multiple times, it will be marked as Pending instead
 
                 }
                 if (Convert.ToString(txtpicode.Text).Trim() == "")
