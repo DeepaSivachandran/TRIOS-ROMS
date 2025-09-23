@@ -409,12 +409,19 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_StockHold_Print.rpt");
-                    varHeader = "Stock Hold Report";
+                    varHeader = "Stock Hold";
 
-                    objBillreport.SetParameterValue("paraSHID", Convert.ToInt32(varSHID));
+                    objBillreport.SetParameterValue("paraSHID", varSHID, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraSHID", varSHID, objBillreport.Subreports[1].Name.ToString());
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[1].Name.ToString());
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[1].Name.ToString());
+                    objBillreport.SetParameterValue("paraSHID", varSHID);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
+                    //objValidation.CrySqlConnection(objBillreport);
 
                     MainForm.objReportLoad = new ReportLoad();
                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;

@@ -52,6 +52,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_RackGroup));
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.cmbRGOrderNo = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnUnselectAll = new System.Windows.Forms.Button();
             this.chkRack = new System.Windows.Forms.CheckBox();
@@ -111,8 +113,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.cmbRGOrderNo = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridLeft)).BeginInit();
@@ -155,6 +156,33 @@
             this.grbform.Size = new System.Drawing.Size(1330, 391);
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
+            // 
+            // cmbRGOrderNo
+            // 
+            this.cmbRGOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRGOrderNo.FormattingEnabled = true;
+            this.cmbRGOrderNo.Location = new System.Drawing.Point(805, 18);
+            this.cmbRGOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbRGOrderNo.Name = "cmbRGOrderNo";
+            this.cmbRGOrderNo.Size = new System.Drawing.Size(67, 27);
+            this.cmbRGOrderNo.TabIndex = 2;
+            this.cmbRGOrderNo.Enter += new System.EventHandler(this.CmbRGOrderNo_Enter);
+            this.cmbRGOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbRGOrderNo_KeyDown);
+            this.cmbRGOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbRGOrderNo_KeyPress);
+            this.cmbRGOrderNo.Leave += new System.EventHandler(this.CmbRGOrderNo_Leave);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(689, 18);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(116, 27);
+            this.textBox1.TabIndex = 1111144;
+            this.textBox1.Text = "Rack Group Order";
             // 
             // btnSelectAll
             // 
@@ -591,19 +619,18 @@
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Enabled = false;
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(1131, 543);
+            this.pnlStatus.Location = new System.Drawing.Point(1009, 613);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(208, 27);
+            this.pnlStatus.Size = new System.Drawing.Size(146, 27);
             this.pnlStatus.TabIndex = 5;
-            this.pnlStatus.Visible = false;
             // 
             // rbActive
             // 
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbActive.Location = new System.Drawing.Point(21, 1);
+            this.rbActive.Location = new System.Drawing.Point(9, 1);
             this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
@@ -611,7 +638,6 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
-            this.rbActive.Visible = false;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
@@ -619,14 +645,13 @@
             // 
             this.rbInactive.AutoSize = true;
             this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(110, 1);
+            this.rbInactive.Location = new System.Drawing.Point(69, 1);
             this.rbInactive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
             this.rbInactive.TabIndex = 1;
             this.rbInactive.Text = "Inactive";
             this.rbInactive.UseVisualStyleBackColor = true;
-            this.rbInactive.Visible = false;
             this.rbInactive.Enter += new System.EventHandler(this.RbInactive_Enter);
             this.rbInactive.Leave += new System.EventHandler(this.RbInactive_Leave);
             // 
@@ -978,6 +1003,7 @@
             // pnlRackGroup
             // 
             this.pnlRackGroup.BackColor = System.Drawing.Color.White;
+            this.pnlRackGroup.Controls.Add(this.label4);
             this.pnlRackGroup.Controls.Add(this.label2);
             this.pnlRackGroup.Controls.Add(this.lblUserId);
             this.pnlRackGroup.Controls.Add(this.grbform);
@@ -1057,32 +1083,14 @@
             // 
             this.columnHeader6.Width = 0;
             // 
-            // textBox1
+            // label4
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(689, 18);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(116, 27);
-            this.textBox1.TabIndex = 1111144;
-            this.textBox1.Text = "Rack Group Order";
-            // 
-            // cmbRGOrderNo
-            // 
-            this.cmbRGOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRGOrderNo.FormattingEnabled = true;
-            this.cmbRGOrderNo.Location = new System.Drawing.Point(805, 18);
-            this.cmbRGOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbRGOrderNo.Name = "cmbRGOrderNo";
-            this.cmbRGOrderNo.Size = new System.Drawing.Size(67, 27);
-            this.cmbRGOrderNo.TabIndex = 2;
-            this.cmbRGOrderNo.Enter += new System.EventHandler(this.CmbRGOrderNo_Enter);
-            this.cmbRGOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbRGOrderNo_KeyDown);
-            this.cmbRGOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbRGOrderNo_KeyPress);
-            this.cmbRGOrderNo.Leave += new System.EventHandler(this.CmbRGOrderNo_Leave);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(958, 616);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 20);
+            this.label4.TabIndex = 1111143;
+            this.label4.Text = "Status";
             // 
             // CP_RackGroup
             // 
@@ -1191,5 +1199,6 @@
         public System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cmbRGOrderNo;
+        private System.Windows.Forms.Label label4;
     }
 }
