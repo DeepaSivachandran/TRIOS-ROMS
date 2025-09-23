@@ -64,6 +64,14 @@ namespace ROMS
                     tpReportType.ShowAlways = true;
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
                 }
+                if (Convert.ToString(lblSupplierCode.Text) == "0" || txtSupplier.Text == "")
+                {
+                    txtSupplier.Focus();
+                    epReport.SetError(txtSupplier, "Please select supplier.");
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSupplier.ShowAlways = true;
+                    tpSupplier.Show("Please select supplier.", txtSupplier, 5000);
+                }
                 string varSupplierId = "0";
                 if (txtSupplier.Text == "")
                 {
@@ -74,8 +82,9 @@ namespace ROMS
                 {
                     string[] values = new string[0];
                     MR_Supplier objMR_Supplier = new MR_Supplier();
-                    objMR_Supplier.ViewType = 31;
+                    objMR_Supplier.ViewType = 46;
                     objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblScheduleCode.Text);
+                    objMR_Supplier.paraSupplierid = Convert.ToInt32(lblSupplierCode.Text);
                     objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
@@ -99,13 +108,16 @@ namespace ROMS
                     }
                     else
                     {
+                        epReport.Clear();
+                        tpReportType.Active = false;
                         lblSupplierCode.Text = values[0];
                         lblScheduleCode.Text = values[1];
                         txtSupplier.BackColor = Color.White;
+
+                        LV_Supplier.Visible = false;
+                        udfnSupplierLedger();
                     }
                 }
-                LV_Supplier.Visible = false;
-                udfnSupplierLedger();
             }
             catch (Exception ex)
             {
@@ -320,7 +332,8 @@ namespace ROMS
                     {
                         //Load all active Supplier here//
                         MR_Supplier objMR_Supplier = new MR_Supplier();
-                        objMR_Supplier.ViewType = 15;
+                        objMR_Supplier.ViewType = 43;
+                        objMR_Supplier.paraFlag = 1;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
@@ -338,7 +351,10 @@ namespace ROMS
                                     DGV_FilterSupplier.Columns["SPSCID"].Visible = false;
                                     DGV_FilterSupplier.Columns["SupplierName"].Visible = false;
                                     DGV_FilterSupplier.Columns["ScheduleName"].Visible = false;
-                                    DGV_FilterSupplier.Columns["SP_Name1"].Visible = false;
+                                    DGV_FilterSupplier.Columns["GSTIN"].Visible = false;
+                                    DGV_FilterSupplier.Columns["ST_TIN"].Visible = false;
+                                    DGV_FilterSupplier.Columns["STSID"].Visible = false;
+                                    DGV_FilterSupplier.Columns["Reason"].Visible = false;
                                     DGV_FilterSupplier.Columns["SP_NAME"].HeaderText = "Supplier";
                                     DGV_FilterSupplier.Columns["SP_NAME"].Width = 330;
                                     DGV_FilterSupplier.Columns["SP_NAME"].DisplayIndex = 0;
