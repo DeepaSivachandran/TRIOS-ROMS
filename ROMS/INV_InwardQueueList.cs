@@ -1601,7 +1601,7 @@ namespace ROMS
                 //grdInwardQueueList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 grdInwardQueueList.Columns["Status"].Frozen = true;
                 grdInwardQueueList.Columns["Status"].DefaultCellStyle.BackColor = Color.AliceBlue;
-
+                grdInwardQueueList.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

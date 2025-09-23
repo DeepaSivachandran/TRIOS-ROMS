@@ -1743,7 +1743,8 @@ namespace ROMS
                 //grdGRNList.Columns["GRN Date"].Frozen = true;
                 //grdGRNList.Columns["GRN Date"].DefaultCellStyle.BackColor = Color.AliceBlue;
                 //grdGRNList.Columns["Supplier"].Frozen = true;
-                //grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;               
+                //grdGRNList.Columns["Supplier"].DefaultCellStyle.BackColor = Color.AliceBlue;
+                grdGRNList.Columns["clmLocPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

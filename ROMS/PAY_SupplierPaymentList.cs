@@ -1257,6 +1257,10 @@ namespace ROMS
                         print.ReadOnly = true;
                     }
                 }
+                grdSupllierPaymentList.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
+                grdSupllierPaymentList.Columns["clmReceiptPrint"].Resizable = DataGridViewTriState.False;
+                grdSupllierPaymentList.Columns["clmDate"].Resizable = DataGridViewTriState.False;
+                grdSupllierPaymentList.Columns["clmEnvelopPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {
