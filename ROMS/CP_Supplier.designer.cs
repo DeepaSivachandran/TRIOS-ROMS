@@ -2528,7 +2528,7 @@
             this.lblTotalProducts.AutoSize = true;
             this.lblTotalProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblTotalProducts.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalProducts.Location = new System.Drawing.Point(119, 571);
+            this.lblTotalProducts.Location = new System.Drawing.Point(133, 571);
             this.lblTotalProducts.Name = "lblTotalProducts";
             this.lblTotalProducts.Size = new System.Drawing.Size(17, 20);
             this.lblTotalProducts.TabIndex = 958810;
@@ -2541,9 +2541,9 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(19, 571);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(94, 20);
+            this.label15.Size = new System.Drawing.Size(110, 20);
             this.label15.TabIndex = 958809;
-            this.label15.Text = "No.of Products :";
+            this.label15.Text = "Mapped Products :";
             // 
             // txtSupplierOrderDays
             // 
@@ -2647,7 +2647,7 @@
             this.lblTotalMappingProduct.AutoSize = true;
             this.lblTotalMappingProduct.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblTotalMappingProduct.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalMappingProduct.Location = new System.Drawing.Point(795, 571);
+            this.lblTotalMappingProduct.Location = new System.Drawing.Point(826, 571);
             this.lblTotalMappingProduct.Name = "lblTotalMappingProduct";
             this.lblTotalMappingProduct.Size = new System.Drawing.Size(17, 20);
             this.lblTotalMappingProduct.TabIndex = 958799;
@@ -2660,9 +2660,9 @@
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(695, 571);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(94, 20);
+            this.label11.Size = new System.Drawing.Size(125, 20);
             this.label11.TabIndex = 958798;
-            this.label11.Text = "No.of Products :";
+            this.label11.Text = "Unmapped Products :";
             // 
             // txtsuppliername
             // 
@@ -3740,7 +3740,7 @@
             this.lblPurProducts.AutoSize = true;
             this.lblPurProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblPurProducts.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPurProducts.Location = new System.Drawing.Point(119, 571);
+            this.lblPurProducts.Location = new System.Drawing.Point(133, 571);
             this.lblPurProducts.Name = "lblPurProducts";
             this.lblPurProducts.Size = new System.Drawing.Size(17, 20);
             this.lblPurProducts.TabIndex = 958810;
@@ -3753,9 +3753,9 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(19, 571);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(94, 20);
+            this.label18.Size = new System.Drawing.Size(110, 20);
             this.label18.TabIndex = 958809;
-            this.label18.Text = "No.of Products :";
+            this.label18.Text = "Mapped Products :";
             // 
             // txtPurOrderDays
             // 
@@ -3854,7 +3854,7 @@
             this.lblPurMappedProducts.AutoSize = true;
             this.lblPurMappedProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblPurMappedProducts.ForeColor = System.Drawing.Color.Crimson;
-            this.lblPurMappedProducts.Location = new System.Drawing.Point(795, 571);
+            this.lblPurMappedProducts.Location = new System.Drawing.Point(810, 571);
             this.lblPurMappedProducts.Name = "lblPurMappedProducts";
             this.lblPurMappedProducts.Size = new System.Drawing.Size(17, 20);
             this.lblPurMappedProducts.TabIndex = 958799;
@@ -3867,9 +3867,9 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(695, 571);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(94, 20);
+            this.label24.Size = new System.Drawing.Size(109, 20);
             this.label24.TabIndex = 958798;
-            this.label24.Text = "No.of Products :";
+            this.label24.Text = "Blocked Products :";
             // 
             // txtPurSupplierName
             // 
