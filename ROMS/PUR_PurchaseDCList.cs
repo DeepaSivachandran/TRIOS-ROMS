@@ -1068,6 +1068,8 @@ namespace ROMS
                         grdPurchaseDCList.Rows[i].Cells["Pur Dc Status"].Style.ForeColor = Color.White;
                     }
                 }
+
+                grdPurchaseDCList.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

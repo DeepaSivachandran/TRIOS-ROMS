@@ -873,6 +873,8 @@ namespace ROMS
                         grdStockHold.Rows[i].Cells["clmMove"].Value = new Bitmap(1, 1);
                     }
                 }
+                grdStockHold.Columns["clmDelete"].Resizable = DataGridViewTriState.False;
+                grdStockHold.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

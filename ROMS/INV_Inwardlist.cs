@@ -1501,6 +1501,7 @@ namespace ROMS
                         print.ReadOnly = true;
                     }
                 }
+                grdInwardList.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

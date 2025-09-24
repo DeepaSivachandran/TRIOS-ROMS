@@ -1490,6 +1490,7 @@ namespace ROMS
                         grdReturnDCList.Rows[i].Cells["Pur Ret Dc Status"].Style.ForeColor = Color.Black;
                     }
                 }
+                grdReturnDCList.Columns["Print"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

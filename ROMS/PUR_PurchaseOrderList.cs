@@ -2523,6 +2523,7 @@ namespace ROMS
                         cell.Style.ForeColor = Color.White;// Set the background color to the default background color 
                     }
                 }
+                grdPurchaseorderlist.Columns["clmEnvelopPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

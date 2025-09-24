@@ -7432,6 +7432,7 @@ namespace ROMS
                 }
                 else
                 {
+                    txtTeller.Text = "";
                     txtTeller.Enabled = false;
                     txtTeller.ReadOnly = true;
                 }

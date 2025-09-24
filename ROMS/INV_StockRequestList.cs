@@ -1562,6 +1562,7 @@ namespace ROMS
                         grdStockRequestList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                 }
+                grdStockRequestList.Columns["clmprint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

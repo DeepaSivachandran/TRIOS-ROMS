@@ -694,6 +694,8 @@ namespace ROMS
                 objDBind = null;
 
                 udfnList();
+
+                grdBlockedSupplier.Columns["clmDelete"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

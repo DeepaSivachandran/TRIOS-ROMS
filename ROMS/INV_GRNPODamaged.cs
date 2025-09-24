@@ -218,7 +218,7 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdGRNPODamaged.Rows[i].Cells[0].Value) == true)
                         {
-                            MainForm.objPUR_GRNDetails.grdReurnDC.Rows.Add(grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["DC Date"].Value, grdGRNPODamaged.Rows[i].Cells["Total Products"].Value, grdGRNPODamaged.Rows[i].Cells["Total value"].Value, grdGRNPODamaged.Rows[i].Cells["id"].Value);
+                            MainForm.objPUR_GRNDetails.grdReurnDC.Rows.Add(grdGRNPODamaged.Rows[i].Cells["DC Date"].Value, grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["Total Products"].Value, grdGRNPODamaged.Rows[i].Cells["Total value"].Value, grdGRNPODamaged.Rows[i].Cells["id"].Value);
                             VARFLAG = 1;
                         }
                     }
@@ -251,7 +251,7 @@ namespace ROMS
                     {
                         if (Convert.ToBoolean(grdGRNPODamaged.Rows[i].Cells[0].Value) == true)
                         {
-                            MainForm.objPUR_GRNEntry.grdReurnDC.Rows.Add(grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["Total Products"].Value, grdGRNPODamaged.Rows[i].Cells["Total value"].Value, grdGRNPODamaged.Rows[i].Cells["id"].Value);
+                            MainForm.objPUR_GRNEntry.grdReurnDC.Rows.Add(grdGRNPODamaged.Rows[i].Cells["DC Date"].Value, grdGRNPODamaged.Rows[i].Cells["DC No."].Value, grdGRNPODamaged.Rows[i].Cells["Total Products"].Value, grdGRNPODamaged.Rows[i].Cells["Total value"].Value, grdGRNPODamaged.Rows[i].Cells["id"].Value);
                             VARFLAG = 1;
                         }
                     }
