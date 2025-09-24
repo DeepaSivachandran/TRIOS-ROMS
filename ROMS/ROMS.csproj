@@ -245,6 +245,7 @@
     <Compile Include="GRN_ADV.designer.cs">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\TRN_Stock_Converstion.cs" />
     <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">

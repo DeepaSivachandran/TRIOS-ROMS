@@ -4472,6 +4472,87 @@ namespace ROMS
             }
             return ds;
         }
+
+         
+
+
+        // added by venkat on 22/09/2025 for stock conciliation
+        public string udfnStockConvertion(TRN_Stock_Converstion objTRN_Stock_Converstion)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Stock_Conversion]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Converstion.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Converstion.ParaTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Converstion.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferDate", objTRN_Stock_Converstion.paraOutwardDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraTransferType", objTRN_Stock_Converstion.paraTransferType);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_Stock_Converstion.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Converstion.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraStock_Conversion", objTRN_Stock_Converstion.paraStockConversion);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", objTRN_Stock_Converstion.paraStockTransfer);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Stock_Converstion.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@ParaFlag", objTRN_Stock_Converstion.ParaFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaPRID", objTRN_Stock_Converstion.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Stock_Converstion.paraDeleteflag);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
+
+        public DataSet udfnStockConverstionList(TRN_Stock_Converstion objTRN_Stock_Converstion)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Stock_Conversion]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Converstion.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Converstion.ParaTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_Stock_Converstion.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_Stock_Converstion.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_Stock_Converstion.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_Stock_Converstion.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Converstion.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Converstion.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Stock_Converstion.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_Stock_Converstion.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRN_Stock_Converstion.paraTransType);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
     }
 
 }
