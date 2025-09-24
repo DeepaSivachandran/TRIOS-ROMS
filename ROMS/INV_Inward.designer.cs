@@ -222,7 +222,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(719, 226);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(660, 226);
             this.DGV_FilterProduct.TabIndex = 1111222;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -282,7 +282,7 @@
             this.lvStockLocation.HideSelection = false;
             this.lvStockLocation.Location = new System.Drawing.Point(700, 57);
             this.lvStockLocation.Name = "lvStockLocation";
-            this.lvStockLocation.Size = new System.Drawing.Size(322, 157);
+            this.lvStockLocation.Size = new System.Drawing.Size(322, 83);
             this.lvStockLocation.TabIndex = 1111213;
             this.lvStockLocation.UseCompatibleStateImageBehavior = false;
             this.lvStockLocation.View = System.Windows.Forms.View.Details;
