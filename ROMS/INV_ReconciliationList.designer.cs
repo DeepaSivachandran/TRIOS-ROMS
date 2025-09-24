@@ -52,6 +52,7 @@
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdStockReconciliationList = new System.Windows.Forms.DataGridView();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsRackGroupList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -345,6 +345,15 @@
             this.grdStockReconciliationList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
             this.grdStockReconciliationList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Visible = false;
+            this.clmPrint.Width = 50;
+            // 
             // grbFilterBy
             // 
             this.grbFilterBy.Controls.Add(this.cmbTransactionType);
@@ -379,7 +388,7 @@
             this.cmbTransactionType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(107, 27);
-            this.cmbTransactionType.TabIndex = 111111138;
+            this.cmbTransactionType.TabIndex = 5;
             // 
             // lblStatus
             // 
@@ -567,15 +576,6 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Visible = false;
-            this.clmPrint.Width = 50;
             // 
             // INV_ReconciliationList
             // 

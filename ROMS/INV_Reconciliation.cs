@@ -393,6 +393,7 @@ namespace ROMS
                 txtReconciliationQuantity.BackColor = Color.LemonChiffon;
                 DGV_FilterProduct.Visible = false;
                 DGV_FilterProduct.DataSource = null;
+                lvRack.Visible = false;
                 varUpDownKey = 0;
             }
             catch (Exception ex)
