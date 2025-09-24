@@ -700,7 +700,7 @@ namespace ROMS
                 }
                 if (Convert.ToString(txtInvoiceamt.Text.Trim()) != "")
                 {
-                    if (Convert.ToDecimal(txtInvoiceamt.Text) > varInvoiceAmnt)
+                    if (Convert.ToDecimal(txtInvoiceamt.Text) < varInvoiceAmnt)
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(145);
