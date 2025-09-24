@@ -12467,8 +12467,8 @@ namespace ROMS
                             DGV_PurMappedSearchGrid.Rows[0].Cells[i].Value = "";
                         }
                         DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged(sender, e);
-                        if (Convert.ToInt32(grdPurMappedProducts.Rows.Count) > 0)
-                        {
+                        //if (Convert.ToInt32(grdPurMappedProducts.Rows.Count) > 0)
+                        //{
                             string VarproductId = "", result = "";
                             SPDataService objspdservice = new SPDataService();
                             for (int i = 0; i < grdPurMappedProducts.Rows.Count; i++)
@@ -12518,14 +12518,14 @@ namespace ROMS
                                 MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             objspdservice.CloseConnection();
-                        }
-                        else
-                        {
-                            SPDataService objDServ = new SPDataService();
-                            string varMessage = objDServ.udfnGetMessages(38);
-                            objDServ.CloseConnection();
-                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        //}
+                        //else
+                        //{
+                        //    SPDataService objDServ = new SPDataService();
+                        //    string varMessage = objDServ.udfnGetMessages(38);
+                        //    objDServ.CloseConnection();
+                        //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //}
                     }
                     else
                     {
