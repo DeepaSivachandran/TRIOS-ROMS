@@ -68,6 +68,12 @@ namespace ROMS
                     varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.lblschedule.Text);
                     varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseOrder.cmbConcern.SelectedValue);
                 }
+                else if (varMasterType == "3")
+                {
+                    varSupplierid = Convert.ToInt32(MainForm.objPUR_PurchaseEntryApproval.lblSupplierCode.Text);
+                    varScheduleid = Convert.ToInt32(MainForm.objPUR_PurchaseEntryApproval.lblschedule.Text);
+                    varcompanyid = Convert.ToInt32(MainForm.objPUR_PurchaseEntryApproval.cmbConcern.SelectedValue);
+                }
                 else if (varMasterType == "5")
                 {
                     varSupplierid = Convert.ToInt32(MainForm.objCP_Purchase.lblSupplierCode.Text);
