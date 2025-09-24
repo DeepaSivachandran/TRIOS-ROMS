@@ -147,6 +147,7 @@ namespace ROMS
                     MainForm.objPAY_Advance.btnSave.Text = "Update";
                     MainForm.objPAY_Advance.pbADID = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
                     MainForm.objPAY_Advance.PbStatus = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["AD_STSID"].Value);
+                    MainForm.objPAY_Advance.varEditFlag = 1;
                     MainForm.objPAY_Advance.Show();
                 }
             }
