@@ -85,7 +85,7 @@
             this.txtProductDEName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtProductDEName.Name = "txtProductDEName";
             this.txtProductDEName.ReadOnly = true;
-            this.txtProductDEName.Size = new System.Drawing.Size(180, 28);
+            this.txtProductDEName.Size = new System.Drawing.Size(180, 33);
             this.txtProductDEName.TabIndex = 645;
             this.txtProductDEName.Text = "Search by P.I Code (F11)";
             // 
@@ -98,15 +98,15 @@
             this.txtDStateName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDStateName.Name = "txtDStateName";
             this.txtDStateName.ReadOnly = true;
-            this.txtDStateName.Size = new System.Drawing.Size(180, 28);
+            this.txtDStateName.Size = new System.Drawing.Size(180, 33);
             this.txtDStateName.TabIndex = 7;
             this.txtDStateName.Text = "Concern";
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.lvTeller);
             this.grbform.Controls.Add(this.DGV_FilterProduct);
             this.grbform.Controls.Add(this.textBox11);
-            this.grbform.Controls.Add(this.lvTeller);
             this.grbform.Controls.Add(this.txtTeller);
             this.grbform.Controls.Add(this.lblschedule);
             this.grbform.Controls.Add(this.lblSupplierCode);
@@ -179,6 +179,7 @@
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
+            this.DGV_FilterProduct.RowHeadersWidth = 51;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
@@ -199,7 +200,7 @@
             this.textBox11.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(180, 28);
+            this.textBox11.Size = new System.Drawing.Size(180, 33);
             this.textBox11.TabIndex = 1110001038;
             this.textBox11.Text = "Teller";
             // 
@@ -235,7 +236,7 @@
             this.txtTeller.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTeller.Location = new System.Drawing.Point(186, 200);
             this.txtTeller.Name = "txtTeller";
-            this.txtTeller.Size = new System.Drawing.Size(241, 27);
+            this.txtTeller.Size = new System.Drawing.Size(241, 32);
             this.txtTeller.TabIndex = 4;
             this.txtTeller.TextChanged += new System.EventHandler(this.TxtTeller_TextChanged);
             this.txtTeller.Enter += new System.EventHandler(this.TxtTeller_Enter);
@@ -247,7 +248,7 @@
             this.lblschedule.AutoSize = true;
             this.lblschedule.Location = new System.Drawing.Point(481, 37);
             this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(16, 20);
+            this.lblschedule.Size = new System.Drawing.Size(21, 25);
             this.lblschedule.TabIndex = 1110001034;
             this.lblschedule.Text = "0";
             this.lblschedule.Visible = false;
@@ -257,7 +258,7 @@
             this.lblSupplierCode.AutoSize = true;
             this.lblSupplierCode.Location = new System.Drawing.Point(433, 38);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSupplierCode.Size = new System.Drawing.Size(21, 25);
             this.lblSupplierCode.TabIndex = 1110001033;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -267,7 +268,7 @@
             this.lblSupplierName.AutoSize = true;
             this.lblSupplierName.Location = new System.Drawing.Point(433, 203);
             this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(63, 20);
+            this.lblSupplierName.Size = new System.Drawing.Size(79, 25);
             this.lblSupplierName.TabIndex = 1110001032;
             this.lblSupplierName.Text = "Supplier : ";
             this.lblSupplierName.Visible = false;
@@ -281,7 +282,7 @@
             this.textBox10.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(180, 28);
+            this.textBox10.Size = new System.Drawing.Size(180, 33);
             this.textBox10.TabIndex = 1110001030;
             this.textBox10.Text = "Remarks";
             // 
@@ -294,7 +295,7 @@
             this.textBox9.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(122, 28);
+            this.textBox9.Size = new System.Drawing.Size(122, 33);
             this.textBox9.TabIndex = 1110001029;
             this.textBox9.Text = "Reason";
             // 
@@ -307,7 +308,7 @@
             this.textBox8.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(180, 28);
+            this.textBox8.Size = new System.Drawing.Size(180, 33);
             this.textBox8.TabIndex = 1110001028;
             this.textBox8.Text = "Hold Qty";
             // 
@@ -320,7 +321,7 @@
             this.textBox7.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(122, 28);
+            this.textBox7.Size = new System.Drawing.Size(122, 33);
             this.textBox7.TabIndex = 1110001027;
             this.textBox7.Text = "Stock Quantity";
             // 
@@ -333,7 +334,7 @@
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(180, 28);
+            this.textBox6.Size = new System.Drawing.Size(180, 33);
             this.textBox6.TabIndex = 1110001026;
             this.textBox6.Text = "Batch No.";
             // 
@@ -346,7 +347,7 @@
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(122, 28);
+            this.textBox5.Size = new System.Drawing.Size(122, 33);
             this.textBox5.TabIndex = 1110001025;
             this.textBox5.Text = "Expiry Date";
             // 
@@ -359,7 +360,7 @@
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(180, 28);
+            this.textBox3.Size = new System.Drawing.Size(180, 33);
             this.textBox3.TabIndex = 1110001024;
             this.textBox3.Text = "MRP";
             // 
@@ -372,7 +373,7 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(122, 28);
+            this.textBox2.Size = new System.Drawing.Size(122, 33);
             this.textBox2.TabIndex = 1110001023;
             this.textBox2.Text = "Rack";
             // 
@@ -385,7 +386,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(180, 28);
+            this.textBox1.Size = new System.Drawing.Size(180, 33);
             this.textBox1.TabIndex = 1110001022;
             this.textBox1.Text = "Stock Location";
             // 
@@ -408,7 +409,7 @@
             this.cmbReason.FormattingEnabled = true;
             this.cmbReason.Location = new System.Drawing.Point(427, 172);
             this.cmbReason.Name = "cmbReason";
-            this.cmbReason.Size = new System.Drawing.Size(263, 27);
+            this.cmbReason.Size = new System.Drawing.Size(263, 33);
             this.cmbReason.TabIndex = 3;
             this.cmbReason.SelectedIndexChanged += new System.EventHandler(this.CmbReason_SelectedIndexChanged);
             this.cmbReason.Enter += new System.EventHandler(this.CmbReason_Enter);
@@ -435,7 +436,7 @@
             this.txtStockQty.Location = new System.Drawing.Point(427, 144);
             this.txtStockQty.Name = "txtStockQty";
             this.txtStockQty.ReadOnly = true;
-            this.txtStockQty.Size = new System.Drawing.Size(263, 27);
+            this.txtStockQty.Size = new System.Drawing.Size(263, 32);
             this.txtStockQty.TabIndex = 1110001015;
             this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -445,7 +446,7 @@
             this.txtRack.Location = new System.Drawing.Point(427, 88);
             this.txtRack.Name = "txtRack";
             this.txtRack.ReadOnly = true;
-            this.txtRack.Size = new System.Drawing.Size(263, 27);
+            this.txtRack.Size = new System.Drawing.Size(263, 32);
             this.txtRack.TabIndex = 1110001014;
             // 
             // txtStockLoc
@@ -454,7 +455,7 @@
             this.txtStockLoc.Location = new System.Drawing.Point(186, 88);
             this.txtStockLoc.Name = "txtStockLoc";
             this.txtStockLoc.ReadOnly = true;
-            this.txtStockLoc.Size = new System.Drawing.Size(119, 27);
+            this.txtStockLoc.Size = new System.Drawing.Size(119, 32);
             this.txtStockLoc.TabIndex = 1110001013;
             // 
             // lblUnit
@@ -463,7 +464,7 @@
             this.lblUnit.Location = new System.Drawing.Point(274, 172);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.ReadOnly = true;
-            this.lblUnit.Size = new System.Drawing.Size(31, 27);
+            this.lblUnit.Size = new System.Drawing.Size(31, 32);
             this.lblUnit.TabIndex = 1110001012;
             // 
             // txtExpiryDate
@@ -472,7 +473,7 @@
             this.txtExpiryDate.Location = new System.Drawing.Point(427, 116);
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.ReadOnly = true;
-            this.txtExpiryDate.Size = new System.Drawing.Size(263, 27);
+            this.txtExpiryDate.Size = new System.Drawing.Size(263, 32);
             this.txtExpiryDate.TabIndex = 1110001004;
             // 
             // txtBatchNo
@@ -482,7 +483,7 @@
             this.txtBatchNo.MaxLength = 10;
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.ReadOnly = true;
-            this.txtBatchNo.Size = new System.Drawing.Size(119, 27);
+            this.txtBatchNo.Size = new System.Drawing.Size(119, 32);
             this.txtBatchNo.TabIndex = 1110001006;
             // 
             // textBox4
@@ -492,7 +493,7 @@
             this.textBox4.Location = new System.Drawing.Point(186, 116);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(17, 27);
+            this.textBox4.Size = new System.Drawing.Size(17, 32);
             this.textBox4.TabIndex = 1110001008;
             this.textBox4.Text = "₹";
             // 
@@ -502,7 +503,7 @@
             this.txtMrp.Location = new System.Drawing.Point(205, 116);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.ReadOnly = true;
-            this.txtMrp.Size = new System.Drawing.Size(100, 27);
+            this.txtMrp.Size = new System.Drawing.Size(100, 32);
             this.txtMrp.TabIndex = 1110001001;
             // 
             // txtQty
@@ -511,7 +512,7 @@
             this.txtQty.Location = new System.Drawing.Point(186, 172);
             this.txtQty.MaxLength = 50;
             this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(88, 27);
+            this.txtQty.Size = new System.Drawing.Size(88, 32);
             this.txtQty.TabIndex = 2;
             this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtQty.Enter += new System.EventHandler(this.TxtQty_Enter);
@@ -525,7 +526,7 @@
             this.txtProductNamePICode.Location = new System.Drawing.Point(186, 60);
             this.txtProductNamePICode.MaxLength = 50;
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(504, 27);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(504, 32);
             this.txtProductNamePICode.TabIndex = 1;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
@@ -537,7 +538,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(186, 31);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(119, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(119, 33);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
@@ -585,7 +586,7 @@
             // 
             // INV_StockHold_Entry
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(720, 361);

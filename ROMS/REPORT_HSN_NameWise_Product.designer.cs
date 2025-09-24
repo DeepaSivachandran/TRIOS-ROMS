@@ -120,7 +120,7 @@
             this.tsbFormat});
             this.ReportHSN.Location = new System.Drawing.Point(0, 0);
             this.ReportHSN.Name = "ReportHSN";
-            this.ReportHSN.Size = new System.Drawing.Size(1354, 27);
+            this.ReportHSN.Size = new System.Drawing.Size(1354, 32);
             this.ReportHSN.TabIndex = 35;
             this.ReportHSN.Text = "HSN Report";
             // 
@@ -131,7 +131,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(196, 24);
+            this.tspHeader.Size = new System.Drawing.Size(240, 29);
             this.tspHeader.Text = "HSN Name Wise Product Report";
             // 
             // tsbPrintFormat
@@ -144,7 +144,7 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Size = new System.Drawing.Size(93, 29);
             this.tsbPrintFormat.Text = "A4-Portrait";
             this.tsbPrintFormat.ToolTipText = "Total GRN ";
             // 
@@ -156,7 +156,7 @@
             this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Size = new System.Drawing.Size(112, 29);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Total GRN ";
             // 
@@ -529,7 +529,7 @@
             this.lblSubGroupCode.AutoSize = true;
             this.lblSubGroupCode.Location = new System.Drawing.Point(877, 22);
             this.lblSubGroupCode.Name = "lblSubGroupCode";
-            this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblSubGroupCode.Size = new System.Drawing.Size(21, 25);
             this.lblSubGroupCode.TabIndex = 111111154;
             this.lblSubGroupCode.Text = "0";
             this.lblSubGroupCode.Visible = false;
@@ -540,7 +540,7 @@
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(783, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 20);
+            this.label6.Size = new System.Drawing.Size(75, 26);
             this.label6.TabIndex = 111111153;
             this.label6.Text = "Subgroup";
             // 
@@ -549,7 +549,7 @@
             this.lblGroupCode.AutoSize = true;
             this.lblGroupCode.Location = new System.Drawing.Point(720, 22);
             this.lblGroupCode.Name = "lblGroupCode";
-            this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
+            this.lblGroupCode.Size = new System.Drawing.Size(21, 25);
             this.lblGroupCode.TabIndex = 111111153;
             this.lblGroupCode.Text = "0";
             this.lblGroupCode.Visible = false;
@@ -560,7 +560,7 @@
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(981, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 20);
+            this.label5.Size = new System.Drawing.Size(167, 26);
             this.label5.TabIndex = 111111150;
             this.label5.Text = "Product Name/PI Code";
             // 
@@ -570,7 +570,7 @@
             this.txtSubGroup.Location = new System.Drawing.Point(783, 45);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
-            this.txtSubGroup.Size = new System.Drawing.Size(192, 27);
+            this.txtSubGroup.Size = new System.Drawing.Size(192, 32);
             this.txtSubGroup.TabIndex = 6;
             this.txtSubGroup.TextChanged += new System.EventHandler(this.TxtSubGroup_TextChanged);
             this.txtSubGroup.Enter += new System.EventHandler(this.TxtSubGroup_Enter);
@@ -583,7 +583,7 @@
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(658, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 20);
+            this.label4.Size = new System.Drawing.Size(52, 26);
             this.label4.TabIndex = 111111151;
             this.label4.Text = "Group";
             // 
@@ -593,7 +593,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(421, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 20);
+            this.label2.Size = new System.Drawing.Size(102, 26);
             this.label2.TabIndex = 1111229;
             this.label2.Text = "Supplier Type";
             // 
@@ -603,7 +603,7 @@
             this.txtProductName.Location = new System.Drawing.Point(981, 45);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(321, 27);
+            this.txtProductName.Size = new System.Drawing.Size(321, 32);
             this.txtProductName.TabIndex = 7;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -615,7 +615,7 @@
             this.cmbSupplierType.FormattingEnabled = true;
             this.cmbSupplierType.Location = new System.Drawing.Point(421, 44);
             this.cmbSupplierType.Name = "cmbSupplierType";
-            this.cmbSupplierType.Size = new System.Drawing.Size(86, 27);
+            this.cmbSupplierType.Size = new System.Drawing.Size(86, 33);
             this.cmbSupplierType.TabIndex = 3;
             this.cmbSupplierType.Enter += new System.EventHandler(this.CmbSupplierType_Enter);
             this.cmbSupplierType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplierType_KeyDown);
@@ -627,7 +627,7 @@
             this.lblProductcode.AutoSize = true;
             this.lblProductcode.Location = new System.Drawing.Point(1149, 22);
             this.lblProductcode.Name = "lblProductcode";
-            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
+            this.lblProductcode.Size = new System.Drawing.Size(21, 25);
             this.lblProductcode.TabIndex = 111111152;
             this.lblProductcode.Text = "0";
             this.lblProductcode.Visible = false;
@@ -638,7 +638,7 @@
             this.txtHsnName.Location = new System.Drawing.Point(513, 45);
             this.txtHsnName.MaxLength = 50;
             this.txtHsnName.Name = "txtHsnName";
-            this.txtHsnName.Size = new System.Drawing.Size(139, 27);
+            this.txtHsnName.Size = new System.Drawing.Size(139, 32);
             this.txtHsnName.TabIndex = 4;
             this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
             this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
@@ -651,7 +651,7 @@
             this.txtGroup.Location = new System.Drawing.Point(658, 45);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(119, 27);
+            this.txtGroup.Size = new System.Drawing.Size(119, 32);
             this.txtGroup.TabIndex = 5;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
@@ -664,7 +664,7 @@
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpToDate.Location = new System.Drawing.Point(312, 45);
             this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(103, 27);
+            this.dpToDate.Size = new System.Drawing.Size(103, 32);
             this.dpToDate.TabIndex = 2;
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
             // 
@@ -674,8 +674,9 @@
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpFromDate.Location = new System.Drawing.Point(203, 45);
             this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(103, 27);
+            this.dpFromDate.Size = new System.Drawing.Size(103, 32);
             this.dpFromDate.TabIndex = 1;
+            this.dpFromDate.ValueChanged += new System.EventHandler(this.dpFromDate_ValueChanged);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
             // 
             // label3
@@ -684,7 +685,7 @@
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(312, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 20);
+            this.label3.Size = new System.Drawing.Size(64, 26);
             this.label3.TabIndex = 1111194;
             this.label3.Text = "To Date";
             // 
@@ -694,7 +695,7 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(203, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 20);
+            this.label1.Size = new System.Drawing.Size(82, 26);
             this.label1.TabIndex = 1111193;
             this.label1.Text = "From Date";
             // 
@@ -703,7 +704,7 @@
             this.lblHsnName.AutoSize = true;
             this.lblHsnName.Location = new System.Drawing.Point(609, 23);
             this.lblHsnName.Name = "lblHsnName";
-            this.lblHsnName.Size = new System.Drawing.Size(16, 20);
+            this.lblHsnName.Size = new System.Drawing.Size(21, 25);
             this.lblHsnName.TabIndex = 958789;
             this.lblHsnName.Text = "0";
             this.lblHsnName.Visible = false;
@@ -714,7 +715,7 @@
             this.lblHSN.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHSN.Location = new System.Drawing.Point(513, 22);
             this.lblHSN.Name = "lblHSN";
-            this.lblHSN.Size = new System.Drawing.Size(62, 20);
+            this.lblHSN.Size = new System.Drawing.Size(80, 26);
             this.lblHSN.TabIndex = 1111178;
             this.lblHSN.Text = "HSN Code";
             // 
@@ -739,7 +740,7 @@
             this.cmbReportType.FormattingEnabled = true;
             this.cmbReportType.Location = new System.Drawing.Point(9, 45);
             this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(188, 27);
+            this.cmbReportType.Size = new System.Drawing.Size(188, 33);
             this.cmbReportType.TabIndex = 0;
             this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
@@ -753,7 +754,7 @@
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportType.Location = new System.Drawing.Point(9, 22);
             this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(73, 20);
+            this.lblReportType.Size = new System.Drawing.Size(91, 26);
             this.lblReportType.TabIndex = 1111176;
             this.lblReportType.Text = "Report type";
             // 
@@ -764,7 +765,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 357);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -803,7 +804,7 @@
             // 
             // REPORT_HSN_NameWise_Product
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
