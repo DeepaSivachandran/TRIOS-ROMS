@@ -560,13 +560,16 @@ namespace ROMS
                     tpLabelSize.Show("Please select label size", cmbLabelsize, 5000);
                     blnErrFlag = true;
                 }
-                if (Convert.ToInt32(cmbRKTemplates.SelectedValue) == -1)
+                if (Convert.ToInt32(cmbType.SelectedIndex) == 4)
                 {
-                    errRack.SetError(cmbRKTemplates, "Please select template.");
-                    cmbRKTemplates.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpTemplate.ShowAlways = true;
-                    tpTemplate.Show("Please select template", cmbRKTemplates, 5000);
-                    blnErrFlag = true;
+                    if (Convert.ToInt32(cmbRKTemplates.SelectedValue) == -1)
+                    {
+                        errRack.SetError(cmbRKTemplates, "Please select template.");
+                        cmbRKTemplates.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpTemplate.ShowAlways = true;
+                        tpTemplate.Show("Please select template", cmbRKTemplates, 5000);
+                        blnErrFlag = true;
+                    }
                 }
                 if (Convert.ToString(txtLabelCount.Text.Trim()) == "")
                 {
