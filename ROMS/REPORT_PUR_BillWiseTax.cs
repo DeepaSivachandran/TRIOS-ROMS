@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace ROMS
 {
@@ -220,6 +222,7 @@ namespace ROMS
         {
             try
             {
+                tsbExport.Enabled = false;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -783,10 +786,16 @@ namespace ROMS
                     cmbInvType.SelectedValue = 0;
                     cmbInvType.Enabled = false;
                 }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 329)
+                {
+                    tsbExport.Enabled = true;
+                }
                 else
                 {
+                    tsbExport.Enabled = false;
                     cmbInvType.Enabled = true;
                 }
+                tsbDownload.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -849,53 +858,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                epReport.Clear();
-                string varSupplierName = "-All-";
-                int varSupplierId = 0,varScheduleId = 0;
-                if (txtSupplier.Text.Trim() != "")
-                {
-                    varSupplierName = txtSupplier.Text;
-                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                    varScheduleId = Convert.ToInt32(lblScheduleCode.Text);
-                }
-                lblNoRecordsFound.Visible = false;
-                picLoader.Visible = true;
-                RPTViewer.Visible = false;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                int varPrint = 0;
-                DataSet objDs = new DataSet();
-                SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(17, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 1, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", "");
-                objdserv.CloseConnection();
-                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                if (varPrint == 1)
-                {
-                    btnExport.Enabled = false;
-                    udfnExcel(objDs.Tables[0], "BillWise Purchase Tax Details Report", varSupplierName, cmbSupplierType.Text, cmbInvType.Text, dpFromDate.Text, dpToDate.Text);
-                    btnExport.Enabled = true;
-                    picLoader.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void udfnExcel(DataTable dt, string sheetTitle,string supplier, string supplierType, string invType,string fromDate, string toDate)
         {
             try
             {
+                Application.DoEvents();
                 Excel._Application ExcelObj = new Excel.Application();
                 Excel._Workbook ExcelBook = ExcelObj.Workbooks.Add(Type.Missing);
-                Excel._Worksheet ExcelSheet = (Excel._Worksheet)ExcelBook.ActiveSheet;
-                ExcelObj.Visible = true;
+                Excel._Worksheet ExcelSheet = (Excel._Worksheet)ExcelBook.Sheets[1];
+                ExcelSheet = ExcelBook.ActiveSheet;
+                ExcelSheet.Name = "Purchase Tax Details";
 
                 int currentRow = 1;
 
@@ -1058,6 +1030,149 @@ namespace ROMS
                 }
 
                 ExcelSheet.Columns.AutoFit();
+                string folderPath = Path.Combine(Application.StartupPath, "Excel", "Purchase");
+                if (!Directory.Exists(folderPath))
+                    Directory.CreateDirectory(folderPath);
+                else
+                {
+                    string[] files = Directory.GetFiles(folderPath);
+                    foreach (string file in files)
+                    {
+                        try
+                        {
+                            using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                            {
+                                fs.Close();
+                                File.Delete(file);
+                            }
+                        }
+                        catch (IOException)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(new Exception("Skipped deleting '" + file + "' because it's in use."));
+                        }
+                        catch (Exception ex)
+                        {
+                            objError = new DataError();
+                            objError.WriteFile(ex);
+                        }
+                    }
+                }
+
+                string fileName = "Billwise Purchase Tax Details.xlsx";
+                string fullPath = Path.Combine(folderPath, fileName);
+                ExcelBook.SaveAs(fullPath);
+
+                ExcelBook.Close(false);
+                ExcelObj.Quit();
+
+                Marshal.ReleaseComObject(ExcelSheet);
+                Marshal.ReleaseComObject(ExcelBook);
+                Marshal.ReleaseComObject(ExcelObj);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private async void tsbExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                epReport.Clear();
+                string varSupplierName = "-All-";
+                int varSupplierId = 0, varScheduleId = 0;
+                if (txtSupplier.Text.Trim() != "")
+                {
+                    varSupplierName = txtSupplier.Text;
+                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleId = Convert.ToInt32(lblScheduleCode.Text);
+                }
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPurHsnReport(17, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 1, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", "");
+                objdserv.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    tsbDownload.Enabled = false;
+                    tsbExport.Enabled = false;
+                    tsbExport.Text = "Generating...";
+                    string varSupplierType = cmbSupplierType.Text;
+                    string varInvoiceType = cmbInvType.Text;
+                    string varFromDate = dpFromDate.Text;
+                    string varToDate = dpToDate.Text;
+                    try
+                    {
+                        await Task.Run(() =>
+                        {
+                            udfnExcel(objDs.Tables[0], "BillWise Purchase Tax Details Report", varSupplierName, varSupplierType, varInvoiceType, varFromDate, varToDate);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                    tsbExport.Text = "Generate";
+                    tsbExport.Enabled = true;
+                    tsbDownload.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsbDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sourceFolder = Path.Combine(Application.StartupPath, "Excel", "Purchase");
+                if (!Directory.Exists(sourceFolder))
+                {
+                    MessageBox.Show("Export folder does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string[] excelFiles = Directory.GetFiles(sourceFolder, "*.xlsx");
+                if (excelFiles.Length == 0)
+                {
+                    MessageBox.Show("No Excel file found to download.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string sourceFilePath = excelFiles[0];
+
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+                saveDialog.Title = "Save Exported Excel File";
+                saveDialog.FileName = Path.GetFileName(sourceFilePath);
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        File.Copy(sourceFilePath, saveDialog.FileName, true);
+                        MessageBox.Show("Excel file downloaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tsbDownload.Enabled = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                }
             }
             catch (Exception ex)
             {
