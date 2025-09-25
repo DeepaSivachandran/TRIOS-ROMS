@@ -3388,6 +3388,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraVerifiedFormat2", objTRN_PurchaseEntry.paraVerifiedFormat2);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNFrightCharges", objTRN_PurchaseEntry.paraGRNFrightCharges);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNUnloadingCharge", objTRN_PurchaseEntry.paraGRNUnloadingCharge);
+                varSqlCommand.Parameters.AddWithValue("@paraMonth", objTRN_PurchaseEntry.paraMonth);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }
