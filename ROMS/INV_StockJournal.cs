@@ -3522,7 +3522,7 @@ namespace ROMS
             {
                 varUpDownKey = 1;
                 udfnListviewBatch2();
-                txtChildQty.Focus();
+                txtChildQty2.Focus();
             }
             catch (Exception ex)
             {
@@ -3584,6 +3584,7 @@ namespace ROMS
                                     varUpDownKey = 1;
                                     udfnListviewBatch2();
                                     DGVBatch2.Visible = false;
+                                    txtChildQty2.Focus();
                                 }
                                 e.Handled = e.SuppressKeyPress = true;
                                 break;
@@ -5290,20 +5291,40 @@ namespace ROMS
                     tpConcern.Show("Please select transaction type", cmbTransactionType, 5000);
                     blnErrorFlag = false;
                 }
-                 
-                for (int i = 0; i < grdChild2.Rows.Count; i++)
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 379) // parent - child
                 {
-                    if (Convert.ToString(grdChild2.Rows[i].Cells["clmChild2Qty"].Value) == "" || Convert.ToDecimal(grdChild2.Rows[i].Cells["clmChild2Qty"].Value) == 0 || Convert.ToDecimal(grdChild2.Rows[i].Cells["clmChild2stkqty"].Value) < Convert.ToDecimal(grdChild2.Rows[i].Cells["clmChild2Qty"].Value))
+
+                    for (int i = 0; i < grdStockadjustment.Rows.Count; i++)
                     {
-                        varErrorFlag = false; varErrQty = 1;
-                        grdChild2.Rows[i].Cells["clmChild2Qty"].Style.BackColor = Color.LightPink;
-                    }
-                    else
-                    {
-                        grdChild2.CurrentRow.DefaultCellStyle.BackColor = Color.White;
-                        grdChild2.Rows[i].Cells["clmChild2Qty"].Style.BackColor = Color.PaleGreen;
+                        if (Convert.ToString(grdStockadjustment.Rows[i].Cells["clmOutward"].Value) == "" || Convert.ToDecimal(grdStockadjustment.Rows[i].Cells["clmOutward"].Value) == 0 || Convert.ToDecimal(grdStockadjustment.Rows[i].Cells["clmQty"].Value) < Convert.ToDecimal(grdStockadjustment.Rows[i].Cells["clmOutward"].Value))
+                        {
+                            varErrorFlag = false; varErrQty = 1;
+                            grdStockadjustment.Rows[i].Cells["clmOutward"].Style.BackColor = Color.LightPink;
+                        }
+                        else
+                        {
+                            grdStockadjustment.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                            grdStockadjustment.Rows[i].Cells["clmOutward"].Style.BackColor = Color.PaleGreen;
+                        }
                     }
                 }
+                else
+                {
+                    for (int i = 0; i < grdChild2.Rows.Count; i++) // child - parent
+                    {
+                        if (Convert.ToString(grdChild2.Rows[i].Cells["clmChild2Qty"].Value) == "" || Convert.ToDecimal(grdChild2.Rows[i].Cells["clmChild2Qty"].Value) == 0 || Convert.ToDecimal(grdChild2.Rows[i].Cells["clmChild2stkqty"].Value) < Convert.ToDecimal(grdChild2.Rows[i].Cells["clmChild2Qty"].Value))
+                        {
+                            varErrorFlag = false; varErrQty = 1;
+                            grdChild2.Rows[i].Cells["clmChild2Qty"].Style.BackColor = Color.LightPink;
+                        }
+                        else
+                        {
+                            grdChild2.CurrentRow.DefaultCellStyle.BackColor = Color.White;
+                            grdChild2.Rows[i].Cells["clmChild2Qty"].Style.BackColor = Color.PaleGreen;
+                        }
+                    }
+                }
+
                 if (varErrQty == 1)
                 {
                     SPDataService objDServ = new SPDataService();
@@ -5939,7 +5960,7 @@ namespace ROMS
                     varPRID = varParentId;
                     udfnChildLoad();
                 }
-
+                DGV_FilterProduct.Visible = false;
             }
         }
         private void UpdateComboBoxState()
