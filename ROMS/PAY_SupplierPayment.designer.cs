@@ -1792,6 +1792,7 @@
             this.clmGSTRFlag.HeaderText = "GSTRFlag";
             this.clmGSTRFlag.Name = "clmGSTRFlag";
             this.clmGSTRFlag.ReadOnly = true;
+            this.clmGSTRFlag.Visible = false;
             // 
             // PAY_SupplierPayment
             // 
