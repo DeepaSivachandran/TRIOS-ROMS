@@ -489,12 +489,15 @@ namespace ROMS
                             grdStockConversion.Columns["Total Products"].Width = 120;
                             grdStockConversion.Columns["Created By"].Width = 120;
                             grdStockConversion.Columns["Created On"].Width = 150;
+                            grdStockConversion.Columns["Updated By"].Width = 120;
+                            grdStockConversion.Columns["Updated On"].Width = 150;
                             grdStockConversion.Columns["STSID"].Visible = false;
                             grdStockConversion.Columns["Status"].Width = 120;
                             grdStockConversion.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockConversion.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockConversion.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+                            grdStockConversion.Columns["Total Products"].Visible = false;
                         }
                         else
                         {
@@ -552,10 +555,11 @@ namespace ROMS
                 DGV_SearchGrid.Columns["TransactionID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;
                 DGV_SearchGrid.Columns["Created By"].Width = 120;
+                DGV_SearchGrid.Columns["Updated By"].Width = 120;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
 
-
+                DGV_SearchGrid.Columns["Total Products"].Visible = false; 
             }
             catch (Exception ex)
             {
@@ -652,13 +656,13 @@ namespace ROMS
                     if (txtProductName.Text.Length > 0)
                     {
                         MR_Product objMR_Product = new MR_Product();
-                        objMR_Product.paraViewType = 46;
+                        objMR_Product.paraViewType = 53;
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraLocationId = Convert.ToInt32(varStockLocationId);
                         objMR_Product.paraProductName = txtProductName.Text;
                         objMR_Product.ParaFromDate = dtpstkconvdate.Text;
                         objMR_Product.ParaToDate = dtpstkconvtodate.Text;
-                        objMR_Product.paraId = 1;
+                        objMR_Product.paraId = 6;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
@@ -868,7 +872,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text, 0, 0, 0, dtpstkconvdate.Text, dtpstkconvtodate.Text,0);
+                    objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text, 0, 0, 0, dtpstkconvdate.Text, dtpstkconvtodate.Text,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1170,7 +1174,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "Goods Outward List";
+                    ExcelSheet.Name = "Stock Conversion List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdStockConversion.Columns)
@@ -1183,7 +1187,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "Goods Outward List";
+                    ExcelSheet.Cells[1, 1].Value = "Stock Conversion List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -1201,7 +1205,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "Concern" || col.Name == "Outward Date" || col.Name == "Outward No." || col.Name == "Stock Location" || col.Name == "Transaction Type" || col.Name == "Total Products" )
+                            if (col.Name == "Concern" || col.Name == "Transaction Date" || col.Name == "Transaction No." || col.Name == "Stock Location" || col.Name == "Transaction Type" )
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
@@ -1217,11 +1221,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
-
-                            if (col.Name == "Total Products")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
+                             
                             foreach (DataGridViewRow rowa in grdStockConversion.Rows)
                             {
                                 ExcelSheet.Cells[rowa.Index + 3, cIndex] = rowa.Cells[col.Index].Value;

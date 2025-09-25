@@ -393,6 +393,7 @@ namespace ROMS
                 txtReconciliationQuantity.BackColor = Color.LemonChiffon;
                 DGV_FilterProduct.Visible = false;
                 DGV_FilterProduct.DataSource = null;
+                lvRack.Visible = false;
                 varUpDownKey = 0;
             }
             catch (Exception ex)
@@ -2621,7 +2622,7 @@ namespace ROMS
                 udfnProductClear();
                 txtStockLocation.Text = "";
                 varStockLocationId = "0";
-                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 377)
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 377) //outward
                 {
                     txtExpiryDate.Visible = true;
                     txtMonth.Visible = false;
@@ -2639,6 +2640,7 @@ namespace ROMS
                     txtMrp.BackColor = SystemColors.Control;
                     txtBatchNo.BackColor = SystemColors.Control;
 
+                    grdStockadjustment.Columns["clmQty"].Visible = true ;
                 }
                 else
                 {
@@ -2658,6 +2660,7 @@ namespace ROMS
                     txtRack.BackColor = Color.White;
                     txtMrp.BackColor = Color.White;
                     txtBatchNo.BackColor = Color.White;
+                    grdStockadjustment.Columns["clmQty"].Visible = false;
                 }
             }
             catch (Exception ex)
