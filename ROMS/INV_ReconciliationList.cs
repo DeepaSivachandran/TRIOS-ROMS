@@ -306,7 +306,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        cmbTransactionType.Focus();
                     }
                 }
             }
@@ -473,6 +473,7 @@ namespace ROMS
                             grdStockReconciliationList.Columns["Created On"].Width = 150;
                             grdStockReconciliationList.Columns["STSID"].Visible = false;
                             grdStockReconciliationList.Columns["Status"].Width = 120;
+                            grdStockReconciliationList.Columns["Status"].Visible = false;
                             grdStockReconciliationList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockReconciliationList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockReconciliationList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -536,6 +537,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Created By"].Width = 120;
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGrid.Columns["Status"].Visible = false;
+
             }
             catch (Exception ex)
             {
@@ -1307,12 +1310,20 @@ namespace ROMS
                                 MainForm.objCP_Verify.ShowDialog();
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
+                                    
                                     varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
                                     objTRNS_Stock_Reconciliation_Products.ViewType = 2;
                                     objTRNS_Stock_Reconciliation_Products.paraUserID = varUserID;
                                     objTRNS_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
                                     objTRNS_Stock_Reconciliation_Products.paraOriginator = varoriginator;
                                     objTRNS_Stock_Reconciliation_Products.ParaTransactionId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
+                                    if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value) == "Addition")
+                                    { 
+                                        objTRNS_Stock_Reconciliation_Products.paraTransferType = 378;
+                                    }
+                                    else { 
+                                        objTRNS_Stock_Reconciliation_Products.paraTransferType = 377;
+                                    }
                                     objTRNS_Stock_Reconciliation_Products.paraDeleteflag = 1;
                                      result = objspdservice.udfnStockConciliation(objTRNS_Stock_Reconciliation_Products);
                                     objspdservice.CloseConnection();
@@ -1571,7 +1582,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
-                cmbStatus.Focus();
+                cmbTransactionType.Focus();
             }
             catch (Exception ex)
             {

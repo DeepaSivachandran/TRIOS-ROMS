@@ -2539,6 +2539,11 @@ namespace ROMS
                             this.Close();
                         }
                     }
+                    else if (result.Split('~')[0] == "5")
+                    {
+
+                        MessageBox.Show(result.Split('~')[1] + "( " + result.Split('~')[2] + " )", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     else { 
                             MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
                     }
@@ -2639,8 +2644,7 @@ namespace ROMS
                     txtRack.BackColor = SystemColors.Control;
                     txtMrp.BackColor = SystemColors.Control;
                     txtBatchNo.BackColor = SystemColors.Control;
-
-                    grdStockadjustment.Columns["clmQty"].Visible = true ;
+                     
                 }
                 else
                 {
@@ -2656,11 +2660,10 @@ namespace ROMS
                     txtMrp.Enabled = true;
                     txtBatchNo.Enabled = true;
 
-
+                     
                     txtRack.BackColor = Color.White;
                     txtMrp.BackColor = Color.White;
-                    txtBatchNo.BackColor = Color.White;
-                    grdStockadjustment.Columns["clmQty"].Visible = false;
+                    txtBatchNo.BackColor = Color.White; 
                 }
             }
             catch (Exception ex)

@@ -325,7 +325,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        cmbTransactionType.Focus();
                     }
                 }
             }
@@ -498,6 +498,9 @@ namespace ROMS
                             grdStockConversion.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                             grdStockConversion.Columns["Total Products"].Visible = false;
+
+                            grdStockConversion.Columns["Status"].Visible = false;
+
                         }
                         else
                         {
@@ -559,7 +562,9 @@ namespace ROMS
                 DGV_SearchGrid.Columns["STSID"].Visible = false;
                 DGV_SearchGrid.Columns["Status"].Width = 120; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
 
-                DGV_SearchGrid.Columns["Total Products"].Visible = false; 
+                DGV_SearchGrid.Columns["Total Products"].Visible = false;
+
+                DGV_SearchGrid.Columns["Status"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -748,23 +753,7 @@ namespace ROMS
         //        objError.WriteFile(ex);
         //    }
         //}
-
-        private void LvProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnProductEvent();
-                    cmbStatus.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         public void udfnProductEvent()
         {
             try
@@ -1644,7 +1633,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
-                cmbStatus.Focus();
+                cmbTransactionType.Focus();
             }
             catch (Exception ex)
             {

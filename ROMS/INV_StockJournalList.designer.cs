@@ -328,7 +328,7 @@
             this.grdStockConversion.DefaultCellStyle = dataGridViewCellStyle17;
             this.grdStockConversion.EnableHeadersVisualStyles = false;
             this.grdStockConversion.GridColor = System.Drawing.Color.White;
-            this.grdStockConversion.Location = new System.Drawing.Point(3, 147);
+            this.grdStockConversion.Location = new System.Drawing.Point(2, 147);
             this.grdStockConversion.Name = "grdStockConversion";
             this.grdStockConversion.ReadOnly = true;
             this.grdStockConversion.RowHeadersVisible = false;
@@ -358,7 +358,6 @@
             this.grbFilterBy.Controls.Add(this.cmbTransactionType);
             this.grbFilterBy.Controls.Add(this.lblStatus);
             this.grbFilterBy.Controls.Add(this.label1);
-            this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Controls.Add(this.txtStockLocation);
             this.grbFilterBy.Controls.Add(this.dtpstkconvtodate);
             this.grbFilterBy.Controls.Add(this.txtProductName);
@@ -370,6 +369,7 @@
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.btnView);
             this.grbFilterBy.Controls.Add(this.cmbConcern);
+            this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
@@ -512,7 +512,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1266, 46);
+            this.btnExport.Location = new System.Drawing.Point(1162, 46);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 7;
@@ -527,7 +527,7 @@
             // 
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1186, 46);
+            this.btnView.Location = new System.Drawing.Point(1080, 46);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
             this.btnView.TabIndex = 6;
@@ -570,7 +570,7 @@
             this.picLoader.InitialImage = null;
             this.picLoader.Location = new System.Drawing.Point(3, 92);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1328, 550);
+            this.picLoader.Size = new System.Drawing.Size(1348, 550);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
