@@ -172,10 +172,10 @@ namespace ROMS
             this.tsmSupplierLEdgerReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseTaxReports = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAllPurchaseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseBillWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPurchasePeriodWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseTCSValueReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAllPurchaseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchasePeriodWiseTaxReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseHSNReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseHSNWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseHSNNameWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -188,6 +188,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmHSNTaxDetailsSummary = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1349,14 +1350,14 @@ namespace ROMS
             // tsmSupplierLEdgerReport
             // 
             this.tsmSupplierLEdgerReport.Name = "tsmSupplierLEdgerReport";
-            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierLEdgerReport.Size = new System.Drawing.Size(149, 22);
             this.tsmSupplierLEdgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLEdgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
             // 
             // tsmPaymentReport
             // 
             this.tsmPaymentReport.Name = "tsmPaymentReport";
-            this.tsmPaymentReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmPaymentReport.Size = new System.Drawing.Size(149, 22);
             this.tsmPaymentReport.Text = "Payment";
             this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
             // 
@@ -1367,38 +1368,39 @@ namespace ROMS
             this.tsmPurchaseTCSValueReport,
             this.tsmAllPurchaseTaxReport,
             this.tsmPurchasePeriodWiseTaxReport,
+            this.tsmHSNTaxDetailsSummary,
             this.tsmPurchaseHSNReport});
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
             this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseTaxReports.Text = "Purchase Tax";
             // 
-            // tsmAllPurchaseTaxReport
-            // 
-            this.tsmAllPurchaseTaxReport.Name = "tsmAllPurchaseTaxReport";
-            this.tsmAllPurchaseTaxReport.Size = new System.Drawing.Size(196, 22);
-            this.tsmAllPurchaseTaxReport.Text = "All Purchase Tax";
-            this.tsmAllPurchaseTaxReport.Click += new System.EventHandler(this.TsmAllPurchaseTaxReport_Click);
-            // 
             // tsmPurchaseBillWiseTaxReport
             // 
             this.tsmPurchaseBillWiseTaxReport.Name = "tsmPurchaseBillWiseTaxReport";
-            this.tsmPurchaseBillWiseTaxReport.Size = new System.Drawing.Size(196, 22);
+            this.tsmPurchaseBillWiseTaxReport.Size = new System.Drawing.Size(219, 22);
             this.tsmPurchaseBillWiseTaxReport.Text = "Purchase Bill Wise Tax";
             this.tsmPurchaseBillWiseTaxReport.Click += new System.EventHandler(this.TsmPurchaseBillWiseTaxReport_Click);
-            // 
-            // tsmPurchasePeriodWiseTaxReport
-            // 
-            this.tsmPurchasePeriodWiseTaxReport.Name = "tsmPurchasePeriodWiseTaxReport";
-            this.tsmPurchasePeriodWiseTaxReport.Size = new System.Drawing.Size(196, 22);
-            this.tsmPurchasePeriodWiseTaxReport.Text = "Purchase Period Wise Tax";
-            this.tsmPurchasePeriodWiseTaxReport.Click += new System.EventHandler(this.TsmPurchasePeriodWiseTaxReport_Click);
             // 
             // tsmPurchaseTCSValueReport
             // 
             this.tsmPurchaseTCSValueReport.Name = "tsmPurchaseTCSValueReport";
-            this.tsmPurchaseTCSValueReport.Size = new System.Drawing.Size(196, 22);
+            this.tsmPurchaseTCSValueReport.Size = new System.Drawing.Size(219, 22);
             this.tsmPurchaseTCSValueReport.Text = "Purchase TCS Value";
             this.tsmPurchaseTCSValueReport.Click += new System.EventHandler(this.TsmPurchaseTCSValueReport_Click);
+            // 
+            // tsmAllPurchaseTaxReport
+            // 
+            this.tsmAllPurchaseTaxReport.Name = "tsmAllPurchaseTaxReport";
+            this.tsmAllPurchaseTaxReport.Size = new System.Drawing.Size(219, 22);
+            this.tsmAllPurchaseTaxReport.Text = "All Purchase Tax";
+            this.tsmAllPurchaseTaxReport.Click += new System.EventHandler(this.TsmAllPurchaseTaxReport_Click);
+            // 
+            // tsmPurchasePeriodWiseTaxReport
+            // 
+            this.tsmPurchasePeriodWiseTaxReport.Name = "tsmPurchasePeriodWiseTaxReport";
+            this.tsmPurchasePeriodWiseTaxReport.Size = new System.Drawing.Size(219, 22);
+            this.tsmPurchasePeriodWiseTaxReport.Text = "Purchase Period Wise Tax";
+            this.tsmPurchasePeriodWiseTaxReport.Click += new System.EventHandler(this.TsmPurchasePeriodWiseTaxReport_Click);
             // 
             // tsmPurchaseHSNReport
             // 
@@ -1406,7 +1408,7 @@ namespace ROMS
             this.tsmPurchaseHSNWise,
             this.tsmPurchaseHSNNameWise});
             this.tsmPurchaseHSNReport.Name = "tsmPurchaseHSNReport";
-            this.tsmPurchaseHSNReport.Size = new System.Drawing.Size(196, 22);
+            this.tsmPurchaseHSNReport.Size = new System.Drawing.Size(219, 22);
             this.tsmPurchaseHSNReport.Text = "HSN";
             // 
             // tsmPurchaseHSNWise
@@ -1500,6 +1502,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
+            // 
+            // tsmHSNTaxDetailsSummary
+            // 
+            this.tsmHSNTaxDetailsSummary.Name = "tsmHSNTaxDetailsSummary";
+            this.tsmHSNTaxDetailsSummary.Size = new System.Drawing.Size(219, 22);
+            this.tsmHSNTaxDetailsSummary.Text = "HSN Wise Tax Detail Summary";
+            this.tsmHSNTaxDetailsSummary.Click += new System.EventHandler(this.tsmHSNTaxDetailsSummary_Click);
             // 
             // MainForm
             // 
@@ -1688,5 +1697,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPaymentReport;
         private System.Windows.Forms.ToolStripMenuItem tsmStockReconciliation;
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
+        private System.Windows.Forms.ToolStripMenuItem tsmHSNTaxDetailsSummary;
     }
 }

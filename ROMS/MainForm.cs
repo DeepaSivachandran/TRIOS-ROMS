@@ -287,6 +287,7 @@ namespace ROMS
         public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
+        public static REPORT_HSN_Tax_Summary objREPORT_HSN_Tax_Summary;
         public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
         public static REPORT_CP_RateChange objREPORT_CP_RateChange;
 
@@ -3336,6 +3337,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             
+        }
+
+        private void tsmHSNTaxDetailsSummary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_Tax_Summary = new REPORT_HSN_Tax_Summary();
+                MainForm.objREPORT_HSN_Tax_Summary.MdiParent = this;
+                MainForm.objREPORT_HSN_Tax_Summary.Show();
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
