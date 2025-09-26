@@ -180,6 +180,7 @@ namespace ROMS
                     }
                     //grdInward.Columns["clmactualqty"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 }
+                grdInward.AutoSize = false;  // important!
                 grdInward.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 grdInward.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
                 grdInward.ScrollBars = ScrollBars.Both;
@@ -189,11 +190,12 @@ namespace ROMS
                     col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 }
 
-                // Step 2: Handle column width change
+                // Force scrollbar refresh when a column resizes
                 grdInward.ColumnWidthChanged += (s, args) =>
                 {
+                    grdInward.HorizontalScrollingOffset = 0; // force grid to check scrollbars
                     grdInward.PerformLayout();
-                    grdInward.Invalidate();
+                    grdInward.Refresh();
                 };
 
             }
