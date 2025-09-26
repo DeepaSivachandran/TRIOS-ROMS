@@ -287,9 +287,7 @@ namespace ROMS
         public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
-        public static REPORT_HSN_Name objREPORT_HSN_Name;
         public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
-        public static REPORT_HSN_NameWise_Product_Consolidated objREPORT_HSN_NameWise_Product_Consolidated;
         public static REPORT_CP_RateChange objREPORT_CP_RateChange;
 
         public static REPORT_Stock_Inward objREPORT_Stock_Inward;

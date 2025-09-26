@@ -2356,23 +2356,11 @@
     <Compile Include="REPORT_Suppllier_Ledger.designer.cs">
       <DependentUpon>REPORT_Suppllier_Ledger.cs</DependentUpon>
     </Compile>
-    <Compile Include="REPORT_HSN_NameWise_Product_Consolidated.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="REPORT_HSN_NameWise_Product_Consolidated.designer.cs">
-      <DependentUpon>REPORT_HSN_NameWise_Product_Consolidated.cs</DependentUpon>
-    </Compile>
     <Compile Include="REPORT_HSN_NameWise_Product.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="REPORT_HSN_NameWise_Product.designer.cs">
       <DependentUpon>REPORT_HSN_NameWise_Product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="REPORT_HSN_Name.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="REPORT_HSN_Name.designer.cs">
-      <DependentUpon>REPORT_HSN_Name.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_HSN_Code.cs">
       <SubType>Form</SubType>
@@ -5001,14 +4989,8 @@
     <EmbeddedResource Include="REPORT_Suppllier_Ledger.resx">
       <DependentUpon>REPORT_Suppllier_Ledger.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="REPORT_HSN_NameWise_Product_Consolidated.resx">
-      <DependentUpon>REPORT_HSN_NameWise_Product_Consolidated.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_HSN_NameWise_Product.resx">
       <DependentUpon>REPORT_HSN_NameWise_Product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="REPORT_HSN_Name.resx">
-      <DependentUpon>REPORT_HSN_Name.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_HSN_Code.resx">
       <DependentUpon>REPORT_HSN_Code.cs</DependentUpon>
