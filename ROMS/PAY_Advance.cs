@@ -1651,10 +1651,11 @@ namespace ROMS
 
         private void CmbIssueMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(Convert.ToInt32(cmbIssueMode.SelectedValue)==-1)
+            txtIssue.Text = "";
+            if (Convert.ToInt32(cmbIssueMode.SelectedValue)==-1)
             {
                 txtTypeName.Visible = false;
-                txtIssue.Visible = false;
+                txtIssue.Visible = false; 
             }
             if (Convert.ToInt32(cmbIssueMode.SelectedValue) == 221 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 223)
             {

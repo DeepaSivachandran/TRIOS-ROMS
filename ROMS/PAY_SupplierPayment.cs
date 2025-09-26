@@ -1449,6 +1449,7 @@ namespace ROMS
         {
             try
             {
+                txtIssue.Text = "";
                 if (Convert.ToInt32(cmbIssueMode.SelectedValue) == -1 || Convert.ToInt32(cmbIssueMode.SelectedValue) == 387)
                 {
                     txtTypeName.Visible = false;
@@ -2481,6 +2482,7 @@ namespace ROMS
                                 {
                                     varTotal = Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmOutstandingAmt"].Value) - (Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmReturnAmt"].Value) + Convert.ToDecimal(grdSupplierPayment.Rows[e.RowIndex].Cells["clmDiscAmount"].Value));
                                 }
+                                udfnApply();
                                 //grdSupplierPayment.Rows[e.RowIndex].Cells["clmPayAmount"].Value = varTotal;
                                 //varGrandTotal = varGrandTotal + varTotal;
                                 ////lblSubtotal.Text = Convert.ToString(varGrandTotal);
@@ -2748,7 +2750,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    LV_Supplier.Visible = false;
+                    LV_Supplier.Visible = false;    
                     udfntooltiphide();
                     udfnclose();
                 }

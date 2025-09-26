@@ -3791,6 +3791,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraModeOfIssue", objTRN_Supplier_Payment.paraModeOfIssue);
                 varSqlCommand.Parameters.AddWithValue("@paraChequeLimitDays", objTRN_Supplier_Payment.paraChequeLimitDays);
                 varSqlCommand.Parameters.AddWithValue("@paraModeOfIssue_Details", objTRN_Supplier_Payment.paraModeOfIssue_Details);
+                varSqlCommand.Parameters.AddWithValue("@paraBankTransactionDate", objTRN_Supplier_Payment.paraBankTransactionDate);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
