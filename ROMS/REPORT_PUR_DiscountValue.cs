@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         private ToolTip tpReportType = new ToolTip();
+        private ToolTip tpMonths = new ToolTip();
         public int varUpDownKeySupplier = 0;
         private List<ComboItem> months;
         public REPORT_PUR_DiscountValue()
@@ -117,7 +118,22 @@ namespace ROMS
                         MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         objDataService.CloseConnection();
                     }
-                    udfnPurchaseDiscountValueReport();
+                    string varMonthIds = "";
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 337)
+                    {
+                        var selIds = cmbMultiMonths.CheckedIds;
+                        var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
+                        varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
+                        epReport.SetError(cmbMultiMonths, "Please select months.");
+                        cmbMultiMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMonths.ShowAlways = true;
+                        tpMonths.Show("Please select months.", cmbMultiMonths, 5000);
+                        cmbMultiMonths.Focus();
+                    }
+                    if (varMonthIds.Trim() != "" || Convert.ToInt32(cmbReportType.SelectedValue) != 337)
+                    {
+                        udfnPurchaseDiscountValueReport();
+                    }
                 }
             }
             catch (Exception ex)
