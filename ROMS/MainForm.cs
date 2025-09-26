@@ -2729,24 +2729,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmHSNNameWiseReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_HSN_Name = new REPORT_HSN_Name();
-                MainForm.objREPORT_HSN_Name.MdiParent = this;
-                MainForm.objREPORT_HSN_Name.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmHSNNameWiseProductReport_Click(object sender, EventArgs e)
         {
             try
@@ -2757,23 +2739,6 @@ namespace ROMS
                 MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
                 MainForm.objREPORT_HSN_NameWise_Product.Show();
                 PbCurrentForm = "7.8.2";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsmHSNNameWiseProductConsolidatedReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_HSN_NameWise_Product_Consolidated = new REPORT_HSN_NameWise_Product_Consolidated();
-                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.MdiParent = this;
-                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.Show();
             }
             catch (Exception ex)
             {
