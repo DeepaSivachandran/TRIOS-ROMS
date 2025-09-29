@@ -4018,21 +4018,21 @@ namespace ROMS
                                         if (Convert.ToDecimal(varShelflifevalue[0]) <= (MainForm.pbShelflifeLevel1))
                                         {
                                             DataGridView dataGridView = grdPurchaseDC;
-                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Red;
                                             cell.Style.ForeColor = Color.White;
                                         }
                                         else if (Convert.ToDecimal(varShelflifevalue[0]) > (MainForm.pbShelflifeLevel1) && Convert.ToDecimal(varShelflifevalue[0]) < (MainForm.pbShelflifeLevel2))
                                         {
                                             DataGridView dataGridView = grdPurchaseDC;
-                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.Orange;
                                             cell.Style.ForeColor = Color.Black;
                                         }
                                         else
                                         {
                                             DataGridView dataGridView = grdPurchaseDC;
-                                            DataGridViewCell cell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells["clmactuallife"];
+                                            DataGridViewCell cell = dataGridView.Rows[rowIndex].Cells["clmactuallife"];
                                             cell.Style.BackColor = Color.White;
                                             cell.Style.ForeColor = Color.Black;
                                         }
@@ -4355,19 +4355,20 @@ namespace ROMS
         {
             try
             {
-                if (txtStockLocation.Text.Trim() == "")
-                {
-                    txtStockLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
-                    epPurchaseDC.SetError(txtStockLocation, "Please enter stock location.");
-                    tpStockLocation.ShowAlways = true;
-                    tpStockLocation.Show("Please enter stock location.", txtStockLocation, 5000);
-                    txtRack.Enabled = true;
-                }
-                else
-                {
-                    txtStockLocation.BackColor = Color.White;
-                    epPurchaseDC.Clear();
-                }
+                //if (txtStockLocation.Text.Trim() == "")
+                //{
+                //    txtStockLocation.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                //    epPurchaseDC.SetError(txtStockLocation, "Please enter stock location.");
+                //    tpStockLocation.ShowAlways = true;
+                //    tpStockLocation.Show("Please enter stock location.", txtStockLocation, 5000);
+                //    txtRack.Enabled = true;
+                //}
+                //else
+                //{
+                //    txtStockLocation.BackColor = Color.White;
+                //    epPurchaseDC.Clear();
+                //}
+                txtStockLocation.BackColor = Color.White;
             }
             catch (Exception ex)
             {
