@@ -1206,6 +1206,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
         private void SetupPurchaseTax()
         {
             try
@@ -1255,7 +1256,7 @@ namespace ROMS
                 contextMenu.Items.Add("HSN - Purchase Hsn Name Wise Product", null, (s, ev) =>
                 {
                     MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
-                    MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
+                    MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this.ParentForm;
                     MainForm.objREPORT_HSN_NameWise_Product.Show();
                 });
             }

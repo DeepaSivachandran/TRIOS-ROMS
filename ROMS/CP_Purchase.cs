@@ -7977,7 +7977,7 @@ namespace ROMS
                                     varInwardDate = cellValue.ToString();
                                 }
                             }
-                            if (varCondition != "286")
+                            if (varCondition != "275")
                             {
                                 if (varMismatchQty == 0)
                                 {

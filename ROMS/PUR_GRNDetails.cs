@@ -1259,7 +1259,7 @@ namespace ROMS
                         {
                             varReasonType = Convert.ToInt16(grdGrnlist.Rows[i].Cells["clmReasonID"].Value);
                         } 
-                        if(varProConditionType!="286")
+                        if(varProConditionType!= "275")
                         {
                             if(varMismatchqty==0)
                             { 
