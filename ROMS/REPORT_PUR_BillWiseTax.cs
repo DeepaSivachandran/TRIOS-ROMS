@@ -1124,6 +1124,7 @@ namespace ROMS
                         objError.WriteFile(ex);
                     }
                     tsbExport.Text = "Generate";
+                    picLoader.Visible = false;
                     tsbExport.Enabled = true;
                     tsbDownload.Enabled = true;
                 }
