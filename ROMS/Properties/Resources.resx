@@ -154,6 +154,9 @@
   <data name="deliverychallan24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deliverychallan24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Envelope Print" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Envelope Print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="print16x16 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\print16x16 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -226,9 +229,6 @@
   <data name="Settings Color" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Settings Color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Unchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Unchecked.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -243,6 +243,9 @@
   </data>
   <data name="add - left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add - left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="download (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="timetable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\timetable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -291,6 +294,9 @@
   </data>
   <data name="Clear Transaction" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Clear Transaction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="print16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\print16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="login (3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login (3).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -370,8 +376,8 @@
   <data name="login (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login (2).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="print16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mismatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mismatch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -388,10 +394,10 @@
   <data name="login (2)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login (2)1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Unchecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unchecked.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Envelope Print" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Envelope Print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="download (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

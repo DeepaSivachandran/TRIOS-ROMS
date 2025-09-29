@@ -607,7 +607,18 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToBoolean(grdModules.Rows[2].Cells[0].Value) == true)
+                if (Convert.ToBoolean(grdModules.Rows[3].Cells[0].Value) == true)
+                {
+                    grdModules.Rows[6].ReadOnly = true;
+                    grdModules.Rows[6].DefaultCellStyle.BackColor = Color.LightGray;
+                    grdModules.ClearSelection();
+                }
+                else
+                {
+                    grdModules.Rows[6].ReadOnly = false;
+                    grdModules.Rows[6].DefaultCellStyle.BackColor = Color.White;
+                }
+                if (Convert.ToBoolean(grdModules.Rows[6].Cells[0].Value) == true)
                 {
                     grdModules.Rows[3].ReadOnly = true;
                     grdModules.Rows[3].DefaultCellStyle.BackColor = Color.LightGray;
@@ -617,17 +628,6 @@ namespace ROMS
                 {
                     grdModules.Rows[3].ReadOnly = false;
                     grdModules.Rows[3].DefaultCellStyle.BackColor = Color.White;
-                }
-                if (Convert.ToBoolean(grdModules.Rows[3].Cells[0].Value) == true)
-                {
-                    grdModules.Rows[2].ReadOnly = true;
-                    grdModules.Rows[2].DefaultCellStyle.BackColor = Color.LightGray;
-                    grdModules.ClearSelection();
-                }
-                else
-                {
-                    grdModules.Rows[2].ReadOnly = false;
-                    grdModules.Rows[2].DefaultCellStyle.BackColor = Color.White;
                 }
             }
             catch (Exception ex)

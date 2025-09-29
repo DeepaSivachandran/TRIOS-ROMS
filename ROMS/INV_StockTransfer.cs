@@ -1373,6 +1373,13 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 320;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].Width = 50;
+                                    DGV_FilterProduct.Columns["STK_MRP"].Width = 80;
+                                    DGV_FilterProduct.Columns["STK_BatchNo"].Width = 80;
+                                    DGV_FilterProduct.Columns["QTY"].Width = 70;
+                                    DGV_FilterProduct.Columns["STK_ExpiryDate"].Width = 90;
+                                    DGV_FilterProduct.Columns["RK_ShortName"].Width = 70;
+
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 4;

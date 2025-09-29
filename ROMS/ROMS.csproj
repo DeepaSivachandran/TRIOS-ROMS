@@ -258,6 +258,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_Purchase_Details_SupplierType.cs">
+      <DependentUpon>RPT_Purchase_Details_SupplierType.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_50x35.cs">
       <DependentUpon>RPT_Sticker_Print_Product_50x35.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -330,6 +337,12 @@
     </Compile>
     <Compile Include="Model\TRN_Stock_Converstion.cs" />
     <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
+    <Compile Include="REPORT_HSN_Tax_Summary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_HSN_Tax_Summary.designer.cs">
+      <DependentUpon>REPORT_HSN_Tax_Summary.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
       <SubType>Form</SubType>
@@ -2356,23 +2369,11 @@
     <Compile Include="REPORT_Suppllier_Ledger.designer.cs">
       <DependentUpon>REPORT_Suppllier_Ledger.cs</DependentUpon>
     </Compile>
-    <Compile Include="REPORT_HSN_NameWise_Product_Consolidated.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="REPORT_HSN_NameWise_Product_Consolidated.designer.cs">
-      <DependentUpon>REPORT_HSN_NameWise_Product_Consolidated.cs</DependentUpon>
-    </Compile>
     <Compile Include="REPORT_HSN_NameWise_Product.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="REPORT_HSN_NameWise_Product.designer.cs">
       <DependentUpon>REPORT_HSN_NameWise_Product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="REPORT_HSN_Name.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="REPORT_HSN_Name.designer.cs">
-      <DependentUpon>REPORT_HSN_Name.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_HSN_Code.cs">
       <SubType>Form</SubType>
@@ -4078,6 +4079,11 @@
       <LastGenOutput>RPT_Stock_Inward_Details_Portrait.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_Purchase_Details_SupplierType.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Purchase_Details_SupplierType.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_DET_Batch_Details.cs</LastGenOutput>
@@ -4923,6 +4929,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_HSN_Tax_Summary.resx">
+      <DependentUpon>REPORT_HSN_Tax_Summary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Supplier_Payment.resx">
       <DependentUpon>REPORT_Supplier_Payment.cs</DependentUpon>
     </EmbeddedResource>
@@ -5001,14 +5010,8 @@
     <EmbeddedResource Include="REPORT_Suppllier_Ledger.resx">
       <DependentUpon>REPORT_Suppllier_Ledger.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="REPORT_HSN_NameWise_Product_Consolidated.resx">
-      <DependentUpon>REPORT_HSN_NameWise_Product_Consolidated.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_HSN_NameWise_Product.resx">
       <DependentUpon>REPORT_HSN_NameWise_Product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="REPORT_HSN_Name.resx">
-      <DependentUpon>REPORT_HSN_Name.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_HSN_Code.resx">
       <DependentUpon>REPORT_HSN_Code.cs</DependentUpon>
@@ -5127,6 +5130,8 @@
     <None Include="Resources\Cleared.jpg" />
     <None Include="Resources\Delete.jpg" />
     <None Include="Resources\Envelope Print.png" />
+    <None Include="Resources\download %281%29.png" />
+    <None Include="Resources\download %282%29.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
@@ -5330,162 +5335,162 @@
   <ItemGroup>
     <PublishFile Include="CrystalDecisions.CrystalReports.Engine">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.ClientDoc">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CommLayer">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CommonControls">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CommonObjectModel">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.Controllers">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.CubeDefModel">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.DataDefModel">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.DataSetConversion">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.ObjectFactory">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.Prompting">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.ReportDefModel">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportAppServer.XmlSerialize">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.ReportSource">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.Shared">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="CrystalDecisions.Windows.Forms">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

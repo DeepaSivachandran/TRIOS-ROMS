@@ -287,9 +287,8 @@ namespace ROMS
         public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
 
         public static REPORT_HSN_Code objREPORT_HSN_Code;
-        public static REPORT_HSN_Name objREPORT_HSN_Name;
+        public static REPORT_HSN_Tax_Summary objREPORT_HSN_Tax_Summary;
         public static REPORT_HSN_NameWise_Product objREPORT_HSN_NameWise_Product;
-        public static REPORT_HSN_NameWise_Product_Consolidated objREPORT_HSN_NameWise_Product_Consolidated;
         public static REPORT_CP_RateChange objREPORT_CP_RateChange;
 
         public static REPORT_Stock_Inward objREPORT_Stock_Inward;
@@ -2729,24 +2728,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmHSNNameWiseReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_HSN_Name = new REPORT_HSN_Name();
-                MainForm.objREPORT_HSN_Name.MdiParent = this;
-                MainForm.objREPORT_HSN_Name.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmHSNNameWiseProductReport_Click(object sender, EventArgs e)
         {
             try
@@ -2757,23 +2738,6 @@ namespace ROMS
                 MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
                 MainForm.objREPORT_HSN_NameWise_Product.Show();
                 PbCurrentForm = "7.8.2";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsmHSNNameWiseProductConsolidatedReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_HSN_NameWise_Product_Consolidated = new REPORT_HSN_NameWise_Product_Consolidated();
-                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.MdiParent = this;
-                MainForm.objREPORT_HSN_NameWise_Product_Consolidated.Show();
             }
             catch (Exception ex)
             {
@@ -3373,6 +3337,24 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             
+        }
+
+        private void tsmHSNTaxDetailsSummary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_HSN_Tax_Summary = new REPORT_HSN_Tax_Summary();
+                MainForm.objREPORT_HSN_Tax_Summary.MdiParent = this;
+                MainForm.objREPORT_HSN_Tax_Summary.Show();
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)

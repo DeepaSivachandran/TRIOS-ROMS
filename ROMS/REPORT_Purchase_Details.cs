@@ -160,12 +160,12 @@ namespace ROMS
                 string varMessage = objDataService.udfnGetMessages(161);
                 MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 objDataService.CloseConnection();
-                udfnPurchaseDetails();
                 if (txtSupplier.Text.Trim() == "")
                 {
                     lblSupplierCode.Text = "0";
                     lblschedleCode.Text = "0";
                 }
+                udfnPurchaseDetails();
                 //udfnExcel();
             }
             catch (Exception ex)
@@ -931,6 +931,14 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
+
+
+                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbPayType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraConditionType", Convert.ToInt32(cmbConditionType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraSupplierID", Convert.ToInt32(lblSupplierCode.Text), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text), objBillreport.Subreports[0].Name.ToString());
 
                     objBillreport.SetParameterValue("paraPayTypeName", Convert.ToString(cmbPayType.Text));
                     objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
