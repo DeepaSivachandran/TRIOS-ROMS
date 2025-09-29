@@ -155,7 +155,9 @@ namespace ROMS
         public static INV_Reconciliation objINV_StockAdjustment; 
         public static INV_StockJournalList objINV_StockJournalList;
         public static INV_StockJournal objINV_StockJournal;
-        
+
+        public static Form1 objForm1;
+
 
         public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
         public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval; 

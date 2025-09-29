@@ -14,6 +14,7 @@ namespace ROMS
 {
     public partial class REPORT_HSN_NameWise_Product : Form
     {
+        private ContextMenuStrip contextMenu;
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -1605,6 +1606,56 @@ namespace ROMS
             }
         }
 
+        private void tsmPurchaseTaxDetails_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left) // only left-click
+                {
+                    SetupPurchaseTax();
+                    var ts = tsmPurchaseTaxDetails.GetCurrentParent();
+                    if (ts != null)
+                    {
+                        // Show context menu just below the label
+                        var location = ts.PointToScreen(new Point(
+                            tsmPurchaseTaxDetails.Bounds.Left,
+                            tsmPurchaseTaxDetails.Bounds.Bottom));
+                        contextMenu.Show(location);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmHSNDetails_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left) // only left-click
+                {
+                    SetupHsnUI();
+                    var ts = tsmHSNDetails.GetCurrentParent();
+                    if (ts != null)
+                    {
+                        // Show context menu just below the label
+                        var location = ts.PointToScreen(new Point(
+                            tsmHSNDetails.Bounds.Left,
+                            tsmHSNDetails.Bounds.Bottom));
+                        contextMenu.Show(location);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void dpFromDate_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -1778,5 +1829,67 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void SetupPurchaseTax()
+        {
+            // Create ContextMenuStrip (does NOT hide your label)
+            contextMenu = new ContextMenuStrip();
+            contextMenu.Items.Add("All Purchase Tax", null, (s, ev) =>
+            {
+                MainForm.objREPORT_PUR_AllTax = new REPORT_PUR_AllTax();
+                MainForm.objREPORT_PUR_AllTax.MdiParent = this.ParentForm;
+                MainForm.objREPORT_PUR_AllTax.Show();
+            });
+            contextMenu.Items.Add("Purchase Bill Wise Tax", null, (s, ev) =>
+            {
+                MainForm.objREPORT_PUR_BillWiseTax = new REPORT_PUR_BillWiseTax();
+                MainForm.objREPORT_PUR_BillWiseTax.MdiParent = this.ParentForm;
+                MainForm.objREPORT_PUR_BillWiseTax.Show();
+            });
+            contextMenu.Items.Add("Purchase Period Wise Tax", null, (s, ev) =>
+            {
+                MainForm.objREPORT_PUR_PeriodWiseTax = new REPORT_PUR_PeriodWiseTax();
+                MainForm.objREPORT_PUR_PeriodWiseTax.MdiParent = this.ParentForm;
+                MainForm.objREPORT_PUR_PeriodWiseTax.Show();
+            });
+            contextMenu.Items.Add("Purchase TCS Value", null, (s, ev) =>
+            {
+                MainForm.objREPORT_PUR_TCSValue = new REPORT_PUR_TCSValue();
+                MainForm.objREPORT_PUR_TCSValue.MdiParent = this.ParentForm;
+                MainForm.objREPORT_PUR_TCSValue.Show();
+            });
+            contextMenu.Items.Add("HSN - Purchase Hsn Wise", null, (s, ev) =>
+            {
+                MainForm.objREPORT_HSN_Code = new REPORT_HSN_Code();
+                MainForm.objREPORT_HSN_Code.MdiParent = this.ParentForm;
+                MainForm.objREPORT_HSN_Code.Show();
+            });
+            contextMenu.Items.Add("HSN - Purchase Hsn Name Wise Product", null, (s, ev) =>
+            {
+                MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
+                MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this.ParentForm;
+                MainForm.objREPORT_HSN_NameWise_Product.Show();
+            });
+
+        }
+        private void SetupHsnUI()
+        {
+            // Create ContextMenuStrip (does NOT hide your label)
+            contextMenu = new ContextMenuStrip();
+            contextMenu.Items.Add("Purchase Hsn Wise", null, (s, ev) =>
+            {
+                MainForm.objREPORT_HSN_Code = new REPORT_HSN_Code();
+                MainForm.objREPORT_HSN_Code.MdiParent = this.ParentForm;
+                MainForm.objREPORT_HSN_Code.Show();
+            });
+            contextMenu.Items.Add("Purchase Hsn Name Wise Product", null, (s, ev) =>
+            {
+                MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
+                MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this.ParentForm;
+                MainForm.objREPORT_HSN_NameWise_Product.Show();
+            });
+        }
+
     }
+
 }

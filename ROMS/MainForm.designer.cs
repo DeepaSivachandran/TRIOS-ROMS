@@ -105,6 +105,7 @@ namespace ROMS
             this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
             this.stickerPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directLabelPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProMapping = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -584,7 +585,8 @@ namespace ROMS
             this.tsmRepresentative,
             this.tsmRateChange,
             this.stickerPrintToolStripMenuItem,
-            this.directLabelPrintToolStripMenuItem});
+            this.directLabelPrintToolStripMenuItem,
+            this.tsm});
             this.mastersToolStripMenuItem.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mastersToolStripMenuItem.Name = "mastersToolStripMenuItem";
             this.mastersToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
@@ -824,6 +826,14 @@ namespace ROMS
             this.directLabelPrintToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
             this.directLabelPrintToolStripMenuItem.Text = "Direct Label Print";
             this.directLabelPrintToolStripMenuItem.Click += new System.EventHandler(this.directLabelPrintToolStripMenuItem_Click);
+            // 
+            // tsm
+            // 
+            this.tsm.Name = "tsm";
+            this.tsm.Size = new System.Drawing.Size(225, 22);
+            this.tsm.Text = "User";
+            this.tsm.Visible = false;
+            this.tsm.Click += new System.EventHandler(this.tsm_Click);
             // 
             // tsmControlPanel
             // 
@@ -1410,6 +1420,7 @@ namespace ROMS
             this.tsmPurchaseHSNReport.Name = "tsmPurchaseHSNReport";
             this.tsmPurchaseHSNReport.Size = new System.Drawing.Size(219, 22);
             this.tsmPurchaseHSNReport.Text = "HSN";
+            this.tsmPurchaseHSNReport.Click += new System.EventHandler(this.tsmPurchaseHSNReport_Click);
             // 
             // tsmPurchaseHSNWise
             // 
