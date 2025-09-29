@@ -245,7 +245,6 @@ namespace ROMS
         public static REPORT_Stock_Hold objREPORT_Stock_Hold;
         public static INV_StockHold_Entry objINV_StockHold_Entry;
         public static REPORT_Stock_Aging objREPORT_Stock_Aging;
-        public static REPORT_Godown_Valuation objREPORT_Godown_Valuation;
         public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
         public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
@@ -2888,25 +2887,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmGodownValuation_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Godown_Valuation = new REPORT_Godown_Valuation();
-                MainForm.objREPORT_Godown_Valuation.MdiParent = this;
-                MainForm.objREPORT_Godown_Valuation.Show();
-                PbCurrentForm = "7.2.4";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmStockValuation_Click(object sender, EventArgs e)
         {
             try
