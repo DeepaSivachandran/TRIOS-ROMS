@@ -166,6 +166,18 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_UserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UserRole.designer.cs">
+      <DependentUpon>CP_UserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_StockJournalList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3166,6 +3178,12 @@
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_UserRole.resx">
+      <DependentUpon>CP_UserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="INV_StockJournalList.resx">
       <DependentUpon>INV_StockJournalList.cs</DependentUpon>
     </EmbeddedResource>
@@ -4984,6 +5002,7 @@
     <None Include="Resources\Cleared.jpg" />
     <None Include="Resources\Delete.jpg" />
     <None Include="Resources\Envelope Print.png" />
+    <None Include="Resources\double-chevron.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">

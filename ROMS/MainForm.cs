@@ -154,7 +154,9 @@ namespace ROMS
         public static INV_Reconciliation objINV_StockAdjustment; 
         public static INV_StockJournalList objINV_StockJournalList;
         public static INV_StockJournal objINV_StockJournal;
-        
+
+        public static Form1 objForm1;
+
 
         public static PUR_PurchaseEntryApproval_Copy objPUR_PurchaseEntryApproval_Copy;
         public static PUR_PurchaseEntryApproval objPUR_PurchaseEntryApproval; 
@@ -3372,6 +3374,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             
+        }
+
+        private void tsm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objForm1 = new Form1();
+                MainForm.objForm1.MdiParent = this;
+                MainForm.objForm1.Show();
+                PbCurrentForm = "3.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void tsmPurchaseHSNReport_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
