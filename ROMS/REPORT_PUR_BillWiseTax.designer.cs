@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_BillWiseTax));
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tsmPurchaseTaxDetails = new System.Windows.Forms.ToolStripLabel();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbDownload = new System.Windows.Forms.ToolStripButton();
+            this.tsbExport = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
+            this.btnListPrint = new System.Windows.Forms.Button();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.multi = new MultiSelectComboBox();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblReportType = new System.Windows.Forms.Label();
@@ -55,21 +57,16 @@
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.lblScheduleCode = new System.Windows.Forms.Label();
-            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tsmPurchaseTaxDetails = new System.Windows.Forms.ToolStripLabel();
-            this.btnListPrint = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbExport = new System.Windows.Forms.ToolStripButton();
-            this.tsbDownload = new System.Windows.Forms.ToolStripButton();
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.multi = new MultiSelectComboBox();
+            this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
             this.grpfilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportCity
@@ -80,7 +77,6 @@
             this.ReportCity.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
-            this.tsbFormat,
             this.toolStripLabel1,
             this.tsmPurchaseTaxDetails,
             this.tspHeader,
@@ -89,20 +85,9 @@
             this.tsbExport});
             this.ReportCity.Location = new System.Drawing.Point(0, 0);
             this.ReportCity.Name = "ReportCity";
-            this.ReportCity.Size = new System.Drawing.Size(1354, 27);
             this.ReportCity.Size = new System.Drawing.Size(1354, 31);
             this.ReportCity.TabIndex = 35;
             this.ReportCity.Text = "City Report";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.double_chevron;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(185, 24);
-            this.tspHeader.Text = "Purchase Bill Wise Tax Report";
             // 
             // tsbPrintFormat
             // 
@@ -114,7 +99,7 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 28);
             this.tsbPrintFormat.Text = "A4-Landscape";
             this.tsbPrintFormat.ToolTipText = "Total GRN ";
             // 
@@ -126,9 +111,68 @@
             this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Size = new System.Drawing.Size(90, 28);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Total GRN ";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel1.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.toolStripLabel1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(68, 28);
+            this.toolStripLabel1.Text = "Reports";
+            // 
+            // tsmPurchaseTaxDetails
+            // 
+            this.tsmPurchaseTaxDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmPurchaseTaxDetails.Image = ((System.Drawing.Image)(resources.GetObject("tsmPurchaseTaxDetails.Image")));
+            this.tsmPurchaseTaxDetails.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmPurchaseTaxDetails.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsmPurchaseTaxDetails.Name = "tsmPurchaseTaxDetails";
+            this.tsmPurchaseTaxDetails.Size = new System.Drawing.Size(96, 28);
+            this.tsmPurchaseTaxDetails.Text = "Purchase Tax";
+            this.tsmPurchaseTaxDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsmPurchaseTaxDetails_MouseDown);
+            // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.double_chevron;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(185, 28);
+            this.tspHeader.Text = "Purchase Bill Wise Tax Report";
+            // 
+            // tsbDownload
+            // 
+            this.tsbDownload.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDownload.Image = global::ROMS.Properties.Resources.download__2_;
+            this.tsbDownload.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDownload.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDownload.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbDownload.Name = "tsbDownload";
+            this.tsbDownload.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbDownload.Size = new System.Drawing.Size(89, 28);
+            this.tsbDownload.Text = "Download";
+            this.tsbDownload.ToolTipText = "Total GRN ";
+            this.tsbDownload.Click += new System.EventHandler(this.tsbDownload_Click);
+            // 
+            // tsbExport
+            // 
+            this.tsbExport.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbExport.Image = global::ROMS.Properties.Resources.excel;
+            this.tsbExport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbExport.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbExport.Name = "tsbExport";
+            this.tsbExport.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbExport.Size = new System.Drawing.Size(86, 28);
+            this.tsbExport.Text = "Generate";
+            this.tsbExport.ToolTipText = "Total GRN ";
+            this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
             // 
             // pnlReportCity
             // 
@@ -154,24 +198,6 @@
             this.DGV_FilterSupplier.AllowUserToResizeRows = false;
             this.DGV_FilterSupplier.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterSupplier.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            //dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            //dataGridViewCellStyle10.BackColor = System.Drawing.Color.Chocolate;
-            //dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            //dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            //dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Chocolate;
-            //dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            //dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            //this.DGV_FilterSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            //this.DGV_FilterSupplier.ColumnHeadersHeight = 30;
-            //this.DGV_FilterSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            //dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            //dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            //dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            //dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            //dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SlateGray;
-            //dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            //dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            //this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
             this.DGV_FilterSupplier.Location = new System.Drawing.Point(571, 73);
@@ -179,9 +205,6 @@
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
             this.DGV_FilterSupplier.RowHeadersWidth = 51;
-            //dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            //dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            //this.DGV_FilterSupplier.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_FilterSupplier.RowTemplate.Height = 25;
             this.DGV_FilterSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterSupplier.Size = new System.Drawing.Size(317, 226);
@@ -189,6 +212,23 @@
             this.DGV_FilterSupplier.Visible = false;
             this.DGV_FilterSupplier.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSupplier_CellDoubleClick);
             this.DGV_FilterSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterSupplier_KeyDown);
+            // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(1021, 44);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 6;
+            this.btnListPrint.Text = "View";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
             // 
             // grpfilter
             // 
@@ -210,19 +250,6 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
-            // 
-            // multi
-            // 
-            this.multi.BackColor = System.Drawing.Color.White;
-            this.multi.DropDownHeight = 1;
-            this.multi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.multi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.multi.FormattingEnabled = true;
-            this.multi.IntegralHeight = false;
-            this.multi.Location = new System.Drawing.Point(1091, 45);
-            this.multi.Name = "multi";
-            this.multi.Size = new System.Drawing.Size(121, 27);
-            this.multi.TabIndex = 111111194;
             // 
             // cmbReportType
             // 
@@ -393,40 +420,6 @@
             this.lblScheduleCode.Text = "0";
             this.lblScheduleCode.Visible = false;
             // 
-            // RPTViewer
-            // 
-            this.RPTViewer.ActiveViewIndex = -1;
-            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(12, 90);
-            this.RPTViewer.Name = "RPTViewer";
-            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1330, 549);
-            this.RPTViewer.TabIndex = 1111227;
-            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.RPTViewer.Visible = false;
-            // 
-            // epReport
-            // 
-            this.epReport.ContainerControl = this;
-            // 
-            // btnListPrint
-            // 
-            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
-            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1021, 44);
-            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 6;
-            this.btnListPrint.Text = "View";
-            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnListPrint.UseVisualStyleBackColor = true;
-            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
-            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
-            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -442,61 +435,35 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // tspHeader
+            // RPTViewer
             // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(185, 28);
-            this.tspHeader.Text = "Purchase Bill Wise Tax Report";
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(12, 90);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1330, 549);
+            this.RPTViewer.TabIndex = 1111227;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
             // 
-            // tsbExport
+            // multi
             // 
-            this.tsbExport.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbExport.Image = global::ROMS.Properties.Resources.excel;
-            this.tsbExport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbExport.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbExport.Name = "tsbExport";
-            this.tsbExport.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbExport.Size = new System.Drawing.Size(86, 28);
-            this.tsbExport.Text = "Generate";
-            this.tsbExport.ToolTipText = "Total GRN ";
-            this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
+            this.multi.BackColor = System.Drawing.Color.White;
+            this.multi.DropDownHeight = 1;
+            this.multi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.multi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.multi.FormattingEnabled = true;
+            this.multi.IntegralHeight = false;
+            this.multi.Location = new System.Drawing.Point(1091, 45);
+            this.multi.Name = "multi";
+            this.multi.Size = new System.Drawing.Size(121, 21);
+            this.multi.TabIndex = 111111194;
             // 
-            // toolStripLabel1
+            // epReport
             // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.toolStripLabel1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(68, 24);
-            this.toolStripLabel1.Text = "Reports";
-            // 
-            // tsmPurchaseTaxDetails
-            // 
-            this.tsmPurchaseTaxDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmPurchaseTaxDetails.Image = ((System.Drawing.Image)(resources.GetObject("tsmPurchaseTaxDetails.Image")));
-            this.tsmPurchaseTaxDetails.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmPurchaseTaxDetails.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsmPurchaseTaxDetails.Name = "tsmPurchaseTaxDetails";
-            this.tsmPurchaseTaxDetails.Size = new System.Drawing.Size(96, 24);
-            this.tsmPurchaseTaxDetails.Text = "Purchase Tax";
-            this.tsmPurchaseTaxDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsmPurchaseTaxDetails_MouseDown);
-            this.tsbDownload.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbDownload.Image = global::ROMS.Properties.Resources.download__2_;
-            this.tsbDownload.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbDownload.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDownload.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbDownload.Name = "tsbDownload";
-            this.tsbDownload.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDownload.Size = new System.Drawing.Size(89, 28);
-            this.tsbDownload.Text = "Download";
-            this.tsbDownload.ToolTipText = "Total GRN ";
-            this.tsbDownload.Click += new System.EventHandler(this.tsbDownload_Click);
+            this.epReport.ContainerControl = this;
             // 
             // REPORT_PUR_BillWiseTax
             // 
@@ -522,8 +489,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).EndInit();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
