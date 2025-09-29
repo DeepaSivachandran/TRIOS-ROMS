@@ -42,5 +42,6 @@ namespace ROMS.Model
         public int paraModeOfIssue { get; set; } = 0;
         public int paraChequeLimitDays { get; set; } = 0;
         public string paraModeOfIssue_Details { get; set; } = "";
+        public string paraBankTransactionDate { get; set; } = "";
     }
 }

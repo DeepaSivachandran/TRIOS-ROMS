@@ -71,7 +71,7 @@ namespace ROMS
         public double varDVA = 0, varCPA = 0; 
         public int pbGSTINCloseFlag = 0, pbPaymentCompletedFlag = 0;
         public string pbConditionIDs = "0", pbCondition = "";
-        public int varLPFlag = 0, varNoDiffFlag = 0, varExpDateValidFlag = 0,MA_ReasonFlag=0, varProValidation = 0, varReasonFlag = 0;
+        public int varLPFlag = 0, varNoDiffFlag = 0, varExpDateValidFlag = 0,MA_ReasonFlag=0, varProValidation = 0, varReasonFlag = 0, MismatchQtyError=0;
         public CP_Purchase()
         {
             InitializeComponent();
@@ -4988,7 +4988,7 @@ namespace ROMS
                 if (conditionSet.Contains("281") == true || conditionSet.Contains("280") == true || conditionSet.Contains("275") == true)
                 { varReasonFlag = 1; }
                 if (conditionSet.Contains("281") == true || conditionSet.Contains("280") == true || Convert.ToInt16(cmbReason.SelectedValue) == 284)
-                { varProValidation = 1; } //No need to validte product details
+                { varProValidation = 1; } //No need to validate product details
                 udfnEntryTypeDate(); 
                 if (varReasonFlag == 0)
                 {
@@ -5001,12 +5001,12 @@ namespace ROMS
                         varErrorFlag = true;
                     }
                 }
-                if (varNoDiffFlag == 0 && txtMismatchQty.Text.Trim() == "")
+                if (varNoDiffFlag == 0 &&( txtMismatchQty.Text.Trim() == "" || Convert.ToDecimal(txtMismatchQty.Text.Trim()) == 0))
                 {
-                    errPurchaseentry.SetError(txtMismatchQty, "Please enter quantity");
+                    errPurchaseentry.SetError(txtMismatchQty, "Please enter valid quantity");
                     txtMismatchQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpInvoiceQty.ShowAlways = true;
-                    tpInvoiceQty.Show("Please enter quantity", txtMismatchQty, 5000);
+                    tpInvoiceQty.Show("Please enter valid quantity", txtMismatchQty, 5000);
                     varErrorFlag = true;
                 }
                 /* Check  source location is valid or not*/
@@ -6469,7 +6469,7 @@ namespace ROMS
                 txtProductName.Text = "";
                 lblProductcode.Text = "0";
                 txtProductName.BackColor = Color.White;
-                bool varErrorFlag = false; varCount2 = 0; varTabFlag = 0; InvoiceAmountErr = 0;
+                bool varErrorFlag = false; varCount2 = 0; varTabFlag = 0; InvoiceAmountErr = 0;MismatchQtyError = 0;
                 string varGrandtotal = "";
                 int varTotalIssue = 0;
                 if (grdSupplierList.RowCount > 0)
@@ -6598,7 +6598,11 @@ namespace ROMS
                                     shelfLifeError = 0;
                                 }
                             }
-                            if(shelfLifeError==0)
+                            if (MismatchQtyError != 0)
+                            {
+                                MessageBox.Show("Please enter valid quantity!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            if (shelfLifeError==0 && MismatchQtyError==0)
                             { 
                                 DataSet Result = new DataSet();
                                 TRN_Validate_Products_By_Condition objTRN_Validate_Products_By_Condition = new TRN_Validate_Products_By_Condition();
@@ -6684,7 +6688,7 @@ namespace ROMS
                                 }
                             }
                         }
-                        if (pbPurchaseno != "0" && varTotalIssue==0)
+                        if (pbPurchaseno != "0" && varTotalIssue==0 && MismatchQtyError==0)
                         { 
                             if (grdSupplierList.Rows.Count == grdPurchaseList.Rows.Count)
                             {
@@ -6824,7 +6828,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (varcount == 0 && shelfLifeError == 0 && InvoiceAmountErr == 0 && varPrCountFlag == 0 && VarGridError == "0" && varTotalIssue==0)
+                            if (varcount == 0 && shelfLifeError == 0 && InvoiceAmountErr == 0 && varPrCountFlag == 0 && VarGridError == "0" && varTotalIssue==0 && MismatchQtyError == 0)
                             { flagSave = 0; }
                             else { flagSave = 1; }
                         }
@@ -7973,7 +7977,18 @@ namespace ROMS
                                     varInwardDate = cellValue.ToString();
                                 }
                             }
-
+                            if (varCondition != "286")
+                            {
+                                if (varMismatchQty == 0)
+                                {
+                                    MismatchQtyError++;
+                                    grdSupplierList.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.LightPink;
+                                }
+                                else
+                                {
+                                    grdSupplierList.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.White;
+                                }
+                            }
                             if (varcount == 0 && Convert.ToInt32(VarGridError) == 0)
                             {
                                 int varPURPRID = 0,varReasonID=0,slid=0,rkid=0, HSNid=0,BatchEnable=0,batchGeneration=0,shelflifeFlag=0,MRPFlag=0,RMFlag=0,sno=0;
@@ -8026,6 +8041,7 @@ namespace ROMS
                                 if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmsno"].Value) != "")
                                 { sno = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmsno"].Value); }
 
+                                
                                 objPurchaseentry.Rows.Add(0, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value),
                                 Convert.ToInt32(grdSupplierList.Rows[i].Cells["UTID"].Value), varGrnMRP, varMRP, Convert.ToString(varTempExpiryDate)
                                 , InvBatchno,slid,rkid, HSNid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ProShelflife, varShelfPer , 0, POno, BatchEnable, batchGeneration , Shelflifevalue,shelflifeFlag, Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmTransId"].Value)

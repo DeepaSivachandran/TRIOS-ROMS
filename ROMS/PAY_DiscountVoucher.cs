@@ -975,7 +975,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    udfnSave(sender, e);
+                    BtnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -1075,7 +1075,7 @@ namespace ROMS
                                 grdInvoice.Columns["clmVoucherDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmInvoiceDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                 grdInvoice.Columns["clmAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                varInvoiceAmnt = Convert.ToDecimal(objDs.Tables[1].Rows[0]["Invoice Amount"]);
+                                varInvoiceAmnt = Convert.ToDecimal(objDs.Tables[1].Rows[0]["Maximum Discount Amount"]);
 
                                 cmbConcern.Enabled = false;
                                 txtSupplier.Enabled = false;

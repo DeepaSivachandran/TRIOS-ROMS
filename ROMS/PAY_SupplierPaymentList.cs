@@ -1249,7 +1249,11 @@ namespace ROMS
                         DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
                         print.Value = "";
                         grdSupllierPaymentList.Rows[i].Cells["clmPrint"] = print;
-                        print.ReadOnly = true;
+                        print.ReadOnly = true; 
+                        DataGridViewTextBoxCell BankDate = new DataGridViewTextBoxCell();
+                        BankDate.Value = "";
+                        grdSupllierPaymentList.Rows[i].Cells["clmDate"] = BankDate;
+                        BankDate.ReadOnly = true;
                     }
                     if (Convert.ToString(grdSupllierPaymentList.Rows[i].Cells["PAY_Bank_Tx_Date"].Value) != "")
                     {
@@ -1379,11 +1383,13 @@ namespace ROMS
                                 int varSPID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_SPID"].Value);
                                 int varSPSCID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_SPSCID"].Value);
                                 string varBankDate = Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_Bank_Tx_Date"].Value);
+                                string chequeDate= Convert.ToString(grdSupllierPaymentList.SelectedRows[0].Cells["ChequeDate"].Value);
                                 if (varBankDate == "")
                                 {
                                     MainForm.objPAY_SupplierPayment_BankDate = new PAY_SupplierPayment_BankDate();
-                                    MainForm.objPAY_SupplierPayment_BankDate.varSupplierId = varSPID;
-                                    MainForm.objPAY_SupplierPayment_BankDate.varScheduleId = varSPSCID;
+                                    MainForm.objPAY_SupplierPayment_BankDate.pbChequeDate = DateTime.ParseExact(chequeDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                    MainForm.objPAY_SupplierPayment_BankDate.varSupplierId = varSPID; 
+                                    MainForm.objPAY_SupplierPayment_BankDate.varPaymentID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
                                     MainForm.objPAY_SupplierPayment_BankDate.ShowDialog();
                                 }
                             }

@@ -31,6 +31,7 @@ namespace ROMS
         ToolTip tpInvoiceNo = new ToolTip();
         ToolTip tpInvoiceAMT = new ToolTip();
         ToolTip tpReason = new ToolTip();
+        ToolTip tpMismatchQty = new ToolTip();
         DataSet objDs = new DataSet();
         public string GRNUpdateID = "";
         public DataTable dtPurchaseAutoComplete = new DataTable();
@@ -40,7 +41,7 @@ namespace ROMS
             varenablefalg = "0", varUserID = "0", varflag = "0", varExpiryDate = "", varTName = "", varexp = "", pbScheduleId = "0", pbPOIdS = "0",
             varBatchNoGeneration = "0", varPrcategory = "0", varRMProduction = "0", varBatchNo = "0", varNewFlag = "0", varErrQty = "0", varTempExpiryDate = "0", varExpiryDateAdd = "", varInvoiceExpiryDate = "0", varInvExpiryDate="0";
         int grid_flag = 0;
-        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, varMRPFlag = 0, varMRPEditflag = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, varpono = 0, varModifiedFlag = 0, varUpDownKey = 0, varDecimal = 0, shelfLifeError = 0;
+        public int varGrnId = 0, varCloseflag = 0, pbDateflag = 0, varShelflife = 0, varMRPFlag = 0, varMRPEditflag = 0, expirydateFlag = 0, varErrorFormat = 0, varcount = 0, varErroronGrid = 0, varpono = 0, varModifiedFlag = 0, varUpDownKey = 0, varDecimal = 0, shelfLifeError = 0,MismatchQtyError=0;
         public bool VarSearchFlag = true;
         public int PbVerified = 0, ParaSupplierAMT = 0, varSupplierType = 0, varGRNPrintFlag = 0;
         public string varGSTIN = "1";
@@ -728,7 +729,7 @@ namespace ROMS
                         DataTable objGRNProd = new DataTable();
                         DataTable objGRNProdValidation = new DataTable();
                         (objGRNProd, objGRNProdValidation) = udfnobjGRNProd();
-                        if (shelfLifeError != 0)
+                        if (shelfLifeError != 0 )
                         {
                             string varShelflifeMessage = "", varShelflifeLevel = "";
                             varShelflifeLevel = Convert.ToString(MainForm.pbShelflifeLevel2) + '%';
@@ -742,7 +743,11 @@ namespace ROMS
                                 shelfLifeError = 0;
                             }
                         }
-                        if (shelfLifeError == 0)
+                        if(MismatchQtyError!=0)
+                        {  
+                            MessageBox.Show("Please enter valid quantity!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        if (shelfLifeError == 0 && MismatchQtyError == 0)
                         {
                             SPDataService objspdservice = new SPDataService();
                             DataSet Result = new DataSet();
@@ -1088,7 +1093,7 @@ namespace ROMS
         }
         public (DataTable objGRNProd,DataTable objGRNProdValidation) udfnobjGRNProd()
         {
-            varcount = 0; shelfLifeError = 0;
+            varcount = 0; shelfLifeError = 0; MismatchQtyError = 0;
             DataTable objGRNProd = new DataTable();
             DataTable objGRNProdValidation = new DataTable();
             try
@@ -1188,7 +1193,8 @@ namespace ROMS
                         if(Convert.ToString(varShelflifeper[0])!="" && Convert.ToDecimal(varShelflifeper[0]) < Convert.ToDecimal(MainForm.pbShelflifeLevel2))
                         {
                             shelfLifeError++;
-                        }
+                        } 
+
                         if (Convert.ToString(varProShelfLife[0]) != "")
                         {
                             ProShelflife = Convert.ToInt32(varProShelfLife[0]);
@@ -1252,6 +1258,18 @@ namespace ROMS
                         if (Convert.ToString(grdGrnlist.Rows[i].Cells["clmReasonID"].Value) != "")
                         {
                             varReasonType = Convert.ToInt16(grdGrnlist.Rows[i].Cells["clmReasonID"].Value);
+                        } 
+                        if(varProConditionType!="286")
+                        {
+                            if(varMismatchqty==0)
+                            { 
+                                MismatchQtyError++;
+                                grdGrnlist.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.LightPink;
+                            }
+                            else
+                            {
+                                grdGrnlist.Rows[i].Cells["clmMismatchQty"].Style.BackColor = Color.White;
+                            }
                         } 
                         DataService objDser = new DataService();
 
@@ -5209,16 +5227,16 @@ namespace ROMS
                         errGRNDetails.SetError(cmbReason, "Please select valid reason.");
                         cmbReason.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpReason.ShowAlways = true;
-                        tpReason.Show("Please select valid reason.", txtProductName, 5000);
+                        tpReason.Show("Please select valid reason.", cmbReason, 5000);
                         varErrorFlag = true;
                     }
-                }
-                if (varNoDiffFlag == 0 && txtMismatchQty.Text.Trim()=="")
+                } 
+                if (varNoDiffFlag == 0 &&( txtMismatchQty.Text.Trim()=="" || txtMismatchQty.Text.Trim() == "0"))
                 {
-                    errGRNDetails.SetError(txtMismatchQty, "Please enter quantity");
+                    errGRNDetails.SetError(txtMismatchQty, "Please enter valid quantity");
                     txtMismatchQty.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpInvoiceQty.ShowAlways = true;
-                    tpInvoiceQty.Show("Please enter quantity", txtMismatchQty, 5000);
+                    tpInvoiceQty.Show("Please enter valid quantity", txtMismatchQty, 5000);
                     varErrorFlag = true;
                 }
                 if (varMRPFlag == 1 && (txtmrprate.Text == "" || Convert.ToDecimal(txtmrprate.Text) == 0) && varProValidation==0)

@@ -31,7 +31,7 @@ namespace ROMS
         public string varPurchaseID = "";
         public string varSuppliervalue = "";
         public int varUpdate = 0;
-
+        private ToolTip tpMonth = new ToolTip();
 
         public PAY_GSTRDetails()
         {
@@ -114,6 +114,8 @@ namespace ROMS
             dtViewProduct.Rows.Clear();
             dtViewProduct.AcceptChanges();
             dtGSTR.Rows.Clear();
+            cmbMonths.SelectedValue = -1;
+            lblSuppliercode.Text="0";
         } 
         
         private void udfnSearchGridHead()
@@ -520,7 +522,19 @@ namespace ROMS
             {
                 if (varError == 0)
                 {
-                    udfnMoveSave(sender, e);
+                    bool varFlag = false;
+                    if (Convert.ToString(cmbMonths.SelectedValue) == "" || Convert.ToString(cmbMonths.SelectedValue) == "-1")
+                    {
+                        epRackSettings.SetError(cmbMonths, "Please select month.");
+                        cmbMonths.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMonth.ShowAlways = true;
+                        tpMonth.Show("Please select month.", cmbMonths, 5000);
+                        varFlag = true;
+                    }
+                    if (varFlag == false)
+                    {
+                        udfnMoveSave(sender, e);
+                    }
                 }
                 else
                 {
@@ -543,8 +557,7 @@ namespace ROMS
         public void udfnMoveSave(object sender, EventArgs e)
         {
             try
-            {
-                
+            { 
                 txtSupplier.Text = "";
                 string varResult = "",
                 result = ""; int varType = 7;
@@ -560,6 +573,7 @@ namespace ROMS
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
                 objTRN_PurchaseEntry.ViewType = varType;
                 objTRN_PurchaseEntry.paraPUR_GSTREnteredBy = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_PurchaseEntry.paraMonth = Convert.ToInt32(cmbMonths.SelectedValue);
                 objTRN_PurchaseEntry.ParaTRN_GSTR = dtGSTR;
                 result = objspdservice.udfnSetPurchaseEntry(objTRN_PurchaseEntry);
                 objspdservice.CloseConnection();
@@ -1265,7 +1279,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMonths.Focus();
+                    btnProductView.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -1414,7 +1428,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnListViewData();
-                    cmbMonths.Focus();
+                    btnProductView.Focus();
                 }
             }
             catch (Exception ex)
@@ -1429,7 +1443,7 @@ namespace ROMS
             try
             {
                 udfnListViewData();
-                cmbMonths.Focus();
+                btnProductView.Focus();
             }
             catch (Exception ex)
             {
@@ -1544,9 +1558,7 @@ namespace ROMS
                 dtMoveProduct.Columns.Add("PURID", typeof(int));
                 dtMoveProduct.Columns.Add("SPOBID", typeof(int));
                 dtMoveProduct.Columns.Add("clmError", typeof(int));
-                DataBind objDataBind = new DataBind(); 
-                objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");
-                objDataBind = null;
+                udfnMonDropdown();
                 udfnGridColumn();
             }
             catch (Exception ex)
@@ -1554,6 +1566,36 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnMonDropdown()
+        {  
+            try
+            {
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 30; 
+                DataSet objDT = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDT = objspservice.udfnMaster(objMR_Master);
+                 
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbMonths.ValueMember = "MONID";
+                            cmbMonths.DisplayMember = "MON_Name";
+                            cmbMonths.DataSource = objDT.Tables[0];  
+                        }
+                    }
+                }
+                objspservice.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
         }
 
         private void PAY_GSTRDetails_Leave(object sender, EventArgs e)
@@ -1596,7 +1638,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnProductView.Focus();
+                    btnMoveSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -1630,6 +1672,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void cmbMonths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
