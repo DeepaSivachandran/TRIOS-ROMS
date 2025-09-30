@@ -908,8 +908,9 @@ namespace ROMS
             this.tsmSupplierWiseProducts,
             this.tsmAssigned,
             this.tsmUnassignedProducts,
-            this.tsmZeroRate,
-            this.tsmProductCategory});
+            this.tsmZeroRate//,
+            //this.tsmProductCategory
+            });
             this.tsmMastersReport.Name = "tsmMastersReport";
             this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
             this.tsmMastersReport.Text = "Masters";
@@ -1501,10 +1502,10 @@ namespace ROMS
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
-            this.tsmProductCategory.Name = "tsmProductCategory";
-            this.tsmProductCategory.Size = new System.Drawing.Size(184, 22);
-            this.tsmProductCategory.Text = "Product Category";
-            this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
+            //this.tsmProductCategory.Name = "tsmProductCategory";
+            //this.tsmProductCategory.Size = new System.Drawing.Size(184, 22);
+            //this.tsmProductCategory.Text = "Product Category";
+            //this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
             // 
             // MainForm
             // 
@@ -1694,6 +1695,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmFinancialYearProcess;
         private System.Windows.Forms.MenuStrip ms;
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
-        private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
+        //private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
     }
 }
