@@ -39,6 +39,7 @@
             this.tbFirst = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tvSubmenu = new System.Windows.Forms.TreeView();
             this.grpMainmenu = new System.Windows.Forms.GroupBox();
             this.tvMainmenu = new System.Windows.Forms.TreeView();
             this.grpform2 = new System.Windows.Forms.TabPage();
@@ -47,7 +48,6 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tvSubmenu = new System.Windows.Forms.TreeView();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tbFirst.SuspendLayout();
@@ -105,6 +105,7 @@
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -169,7 +170,19 @@
             this.groupBox1.Size = new System.Drawing.Size(942, 503);
             this.groupBox1.TabIndex = 1111183;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Menu Details";
+            this.groupBox1.Text = "Sub-Menu";
+            // 
+            // tvSubmenu
+            // 
+            this.tvSubmenu.CheckBoxes = true;
+            this.tvSubmenu.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvSubmenu.Location = new System.Drawing.Point(6, 26);
+            this.tvSubmenu.Name = "tvSubmenu";
+            this.tvSubmenu.Size = new System.Drawing.Size(930, 471);
+            this.tvSubmenu.TabIndex = 1;
+            this.tvSubmenu.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvSubmenu_BeforeCheck);
+            this.tvSubmenu.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvSubmenu_AfterCheck);
+            this.tvSubmenu.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvSubmenu_NodeMouseClick);
             // 
             // grpMainmenu
             // 
@@ -233,15 +246,6 @@
             this.dataGridViewImageColumn4.Image = global::ROMS.Properties.Resources.exclude;
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // tvSubmenu
-            // 
-            this.tvSubmenu.CheckBoxes = true;
-            this.tvSubmenu.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tvSubmenu.Location = new System.Drawing.Point(6, 26);
-            this.tvSubmenu.Name = "tvSubmenu";
-            this.tvSubmenu.Size = new System.Drawing.Size(930, 471);
-            this.tvSubmenu.TabIndex = 1;
             // 
             // CP_UserRole
             // 
