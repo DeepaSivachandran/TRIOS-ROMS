@@ -142,26 +142,22 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DET_ProductWise_Summary.rpt");
-                    objBillreport.SetParameterValue("paraSupplierType", 0);
-                    objBillreport.SetParameterValue("paraHSNCode", 0);
-                    objBillreport.SetParameterValue("paraGST", 0);
-                    objBillreport.SetParameterValue("paraFlag", 0);
-                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraSupplierID", 0);
-                    objBillreport.SetParameterValue("paraScheduleID", 0);
-                    objBillreport.SetParameterValue("paraInvioceType", 0);
-                    objBillreport.SetParameterValue("paraPaymentType", 0);
-                    objBillreport.SetParameterValue("paraPurchaseType", 0);
-                    objBillreport.SetParameterValue("paraConditionType", 0);
-                    objBillreport.SetParameterValue("paraAlpha", "");
-                    objBillreport.SetParameterValue("paraProductNameType", Convert.ToInt32(cmbProductName.SelectedValue));
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Category.rpt");
                     objBillreport.SetParameterValue("paraGroupId", varGroupId);
-                    objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
-                    objBillreport.SetParameterValue("paraBrandID", varBrandId);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    objBillreport.SetParameterValue("paraBrandID", varBrandId);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                    objBillreport.SetParameterValue("paraFlag", Convert.ToInt32(cmbProductName.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
+                    objBillreport.SetParameterValue("paraTypeName", Convert.ToString(cmbType.Text));
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbCategory.Text));
+                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);

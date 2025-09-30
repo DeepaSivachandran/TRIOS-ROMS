@@ -263,6 +263,13 @@
     <Compile Include="PUR_MismatchApprovedList.designer.cs">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Product_Category.cs">
+      <DependentUpon>RPT_CP_Product_Category.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_INV_StockHold_SubReport.cs">
       <DependentUpon>RPT_INV_StockHold_SubReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3995,6 +4002,11 @@
     <Content Include="Reports\RPT_PAY_SupplierPaymentPending.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PAY_SupplierPaymentPending.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Product_Category.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_Category.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt-SubReport.rpt">
