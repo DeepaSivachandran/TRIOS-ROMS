@@ -162,10 +162,6 @@
             this.txtDPurchaseLocation = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.grbSalesStockLocation = new System.Windows.Forms.GroupBox();
-            this.lvSaleRack = new System.Windows.Forms.ListView();
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chkSameasPurchase = new System.Windows.Forms.CheckBox();
             this.txtSaleRack = new System.Windows.Forms.TextBox();
             this.txtSaleLocation = new System.Windows.Forms.TextBox();
@@ -178,6 +174,10 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.txtDSalesGodown = new System.Windows.Forms.TextBox();
             this.txtDSalesShop = new System.Windows.Forms.TextBox();
+            this.lvSaleRack = new System.Windows.Forms.ListView();
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbBatchNoDetails = new System.Windows.Forms.GroupBox();
             this.cmbBatchNoGeneration = new System.Windows.Forms.ComboBox();
             this.txtBatchNoGeneration = new System.Windows.Forms.TextBox();
@@ -209,15 +209,6 @@
             this.columnHeader38 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader41 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdPurHSN = new System.Windows.Forms.DataGridView();
-            this.clmPurHSNName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurHSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurEffectiveFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurEffectiveTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPurRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnPURHSN = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -231,15 +222,6 @@
             this.columnHeader39 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader40 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdSalesHSN = new System.Windows.Forms.DataGridView();
-            this.clmSalesHSNName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesHSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesEffectiveFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesEffectiveTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnSalesHSN = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -255,6 +237,26 @@
             this.lvVerified1 = new System.Windows.Forms.ListView();
             this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmPurHSNName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurHSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurEffectiveFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurEffectiveTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChangedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmSalesHSNName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesHSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesEffectiveFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesEffectiveTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesChangedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -1801,39 +1803,6 @@
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
             // 
-            // lvSaleRack
-            // 
-            this.lvSaleRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader20,
-            this.columnHeader27,
-            this.columnHeader21});
-            this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSaleRack.HideSelection = false;
-            this.lvSaleRack.Location = new System.Drawing.Point(386, 555);
-            this.lvSaleRack.Name = "lvSaleRack";
-            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
-            this.lvSaleRack.TabIndex = 134;
-            this.lvSaleRack.UseCompatibleStateImageBehavior = false;
-            this.lvSaleRack.View = System.Windows.Forms.View.Details;
-            this.lvSaleRack.Visible = false;
-            this.lvSaleRack.SelectedIndexChanged += new System.EventHandler(this.LvSaleRack_SelectedIndexChanged);
-            this.lvSaleRack.DoubleClick += new System.EventHandler(this.LvSaleRack_DoubleClick);
-            this.lvSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleRack_KeyDown);
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Width = 120;
-            // 
-            // columnHeader27
-            // 
-            this.columnHeader27.DisplayIndex = 2;
-            this.columnHeader27.Width = 120;
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.DisplayIndex = 1;
-            this.columnHeader21.Width = 0;
-            // 
             // chkSameasPurchase
             // 
             this.chkSameasPurchase.AutoSize = true;
@@ -1956,6 +1925,39 @@
             this.txtDSalesShop.TabIndex = 24;
             this.txtDSalesShop.TabStop = false;
             this.txtDSalesShop.Text = "Rack";
+            // 
+            // lvSaleRack
+            // 
+            this.lvSaleRack.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader20,
+            this.columnHeader27,
+            this.columnHeader21});
+            this.lvSaleRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSaleRack.HideSelection = false;
+            this.lvSaleRack.Location = new System.Drawing.Point(386, 555);
+            this.lvSaleRack.Name = "lvSaleRack";
+            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleRack.TabIndex = 134;
+            this.lvSaleRack.UseCompatibleStateImageBehavior = false;
+            this.lvSaleRack.View = System.Windows.Forms.View.Details;
+            this.lvSaleRack.Visible = false;
+            this.lvSaleRack.SelectedIndexChanged += new System.EventHandler(this.LvSaleRack_SelectedIndexChanged);
+            this.lvSaleRack.DoubleClick += new System.EventHandler(this.LvSaleRack_DoubleClick);
+            this.lvSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSaleRack_KeyDown);
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Width = 120;
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.DisplayIndex = 2;
+            this.columnHeader27.Width = 120;
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.DisplayIndex = 1;
+            this.columnHeader21.Width = 0;
             // 
             // grbBatchNoDetails
             // 
@@ -2277,6 +2279,7 @@
             this.clmPurHSNID,
             this.clmPurAddFlag,
             this.clmPurEditFlag,
+            this.clmChangedDate,
             this.clmPurRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -2302,85 +2305,6 @@
             this.grdPurHSN.TabIndex = 1111142;
             this.grdPurHSN.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurHSN_CellContentClick);
             this.grdPurHSN.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurHSN_DataBindingComplete);
-            // 
-            // clmPurHSNName
-            // 
-            this.clmPurHSNName.HeaderText = "HSN Name";
-            this.clmPurHSNName.MinimumWidth = 6;
-            this.clmPurHSNName.Name = "clmPurHSNName";
-            this.clmPurHSNName.ReadOnly = true;
-            this.clmPurHSNName.Width = 230;
-            // 
-            // clmPurHSNCode
-            // 
-            this.clmPurHSNCode.HeaderText = "HSN Code";
-            this.clmPurHSNCode.MinimumWidth = 6;
-            this.clmPurHSNCode.Name = "clmPurHSNCode";
-            this.clmPurHSNCode.ReadOnly = true;
-            this.clmPurHSNCode.Width = 160;
-            // 
-            // clmPurGST
-            // 
-            this.clmPurGST.HeaderText = "GST %";
-            this.clmPurGST.MinimumWidth = 6;
-            this.clmPurGST.Name = "clmPurGST";
-            this.clmPurGST.ReadOnly = true;
-            this.clmPurGST.Width = 55;
-            // 
-            // clmPurEffectiveFrom
-            // 
-            this.clmPurEffectiveFrom.HeaderText = "Effective From";
-            this.clmPurEffectiveFrom.MinimumWidth = 6;
-            this.clmPurEffectiveFrom.Name = "clmPurEffectiveFrom";
-            this.clmPurEffectiveFrom.ReadOnly = true;
-            this.clmPurEffectiveFrom.Width = 125;
-            // 
-            // clmPurEffectiveTo
-            // 
-            this.clmPurEffectiveTo.HeaderText = "Effective To";
-            this.clmPurEffectiveTo.MinimumWidth = 6;
-            this.clmPurEffectiveTo.Name = "clmPurEffectiveTo";
-            this.clmPurEffectiveTo.ReadOnly = true;
-            this.clmPurEffectiveTo.Visible = false;
-            this.clmPurEffectiveTo.Width = 125;
-            // 
-            // clmPurHSNID
-            // 
-            this.clmPurHSNID.HeaderText = "HSNID";
-            this.clmPurHSNID.MinimumWidth = 6;
-            this.clmPurHSNID.Name = "clmPurHSNID";
-            this.clmPurHSNID.ReadOnly = true;
-            this.clmPurHSNID.Visible = false;
-            this.clmPurHSNID.Width = 125;
-            // 
-            // clmPurAddFlag
-            // 
-            this.clmPurAddFlag.HeaderText = "Add Flag";
-            this.clmPurAddFlag.MinimumWidth = 6;
-            this.clmPurAddFlag.Name = "clmPurAddFlag";
-            this.clmPurAddFlag.ReadOnly = true;
-            this.clmPurAddFlag.Visible = false;
-            this.clmPurAddFlag.Width = 125;
-            // 
-            // clmPurEditFlag
-            // 
-            this.clmPurEditFlag.HeaderText = "Edit Flag";
-            this.clmPurEditFlag.MinimumWidth = 6;
-            this.clmPurEditFlag.Name = "clmPurEditFlag";
-            this.clmPurEditFlag.ReadOnly = true;
-            this.clmPurEditFlag.Visible = false;
-            this.clmPurEditFlag.Width = 125;
-            // 
-            // clmPurRemove
-            // 
-            this.clmPurRemove.HeaderText = "Remove";
-            this.clmPurRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmPurRemove.MinimumWidth = 6;
-            this.clmPurRemove.Name = "clmPurRemove";
-            this.clmPurRemove.ReadOnly = true;
-            this.clmPurRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmPurRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmPurRemove.Width = 50;
             // 
             // btnPURHSN
             // 
@@ -2515,6 +2439,7 @@
             this.clmSalesHSNID,
             this.clmSalesAddFlag,
             this.clmSalesEditFlag,
+            this.clmSalesChangedDate,
             this.clmSalesRemove});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -2540,85 +2465,6 @@
             this.grdSalesHSN.TabIndex = 1111142;
             this.grdSalesHSN.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdSalesHSN_CellContentClick);
             this.grdSalesHSN.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSalesHSN_DataBindingComplete);
-            // 
-            // clmSalesHSNName
-            // 
-            this.clmSalesHSNName.HeaderText = "HSN Name";
-            this.clmSalesHSNName.MinimumWidth = 6;
-            this.clmSalesHSNName.Name = "clmSalesHSNName";
-            this.clmSalesHSNName.ReadOnly = true;
-            this.clmSalesHSNName.Width = 230;
-            // 
-            // clmSalesHSNCode
-            // 
-            this.clmSalesHSNCode.HeaderText = "HSN Code";
-            this.clmSalesHSNCode.MinimumWidth = 6;
-            this.clmSalesHSNCode.Name = "clmSalesHSNCode";
-            this.clmSalesHSNCode.ReadOnly = true;
-            this.clmSalesHSNCode.Width = 160;
-            // 
-            // clmSalesGST
-            // 
-            this.clmSalesGST.HeaderText = "GST %";
-            this.clmSalesGST.MinimumWidth = 6;
-            this.clmSalesGST.Name = "clmSalesGST";
-            this.clmSalesGST.ReadOnly = true;
-            this.clmSalesGST.Width = 55;
-            // 
-            // clmSalesEffectiveFrom
-            // 
-            this.clmSalesEffectiveFrom.HeaderText = "Effective From";
-            this.clmSalesEffectiveFrom.MinimumWidth = 6;
-            this.clmSalesEffectiveFrom.Name = "clmSalesEffectiveFrom";
-            this.clmSalesEffectiveFrom.ReadOnly = true;
-            this.clmSalesEffectiveFrom.Width = 125;
-            // 
-            // clmSalesEffectiveTo
-            // 
-            this.clmSalesEffectiveTo.HeaderText = "Effective To";
-            this.clmSalesEffectiveTo.MinimumWidth = 6;
-            this.clmSalesEffectiveTo.Name = "clmSalesEffectiveTo";
-            this.clmSalesEffectiveTo.ReadOnly = true;
-            this.clmSalesEffectiveTo.Visible = false;
-            this.clmSalesEffectiveTo.Width = 125;
-            // 
-            // clmSalesHSNID
-            // 
-            this.clmSalesHSNID.HeaderText = "HSNID";
-            this.clmSalesHSNID.MinimumWidth = 6;
-            this.clmSalesHSNID.Name = "clmSalesHSNID";
-            this.clmSalesHSNID.ReadOnly = true;
-            this.clmSalesHSNID.Visible = false;
-            this.clmSalesHSNID.Width = 125;
-            // 
-            // clmSalesAddFlag
-            // 
-            this.clmSalesAddFlag.HeaderText = "Add Flag";
-            this.clmSalesAddFlag.MinimumWidth = 6;
-            this.clmSalesAddFlag.Name = "clmSalesAddFlag";
-            this.clmSalesAddFlag.ReadOnly = true;
-            this.clmSalesAddFlag.Visible = false;
-            this.clmSalesAddFlag.Width = 125;
-            // 
-            // clmSalesEditFlag
-            // 
-            this.clmSalesEditFlag.HeaderText = "Edit Flag";
-            this.clmSalesEditFlag.MinimumWidth = 6;
-            this.clmSalesEditFlag.Name = "clmSalesEditFlag";
-            this.clmSalesEditFlag.ReadOnly = true;
-            this.clmSalesEditFlag.Visible = false;
-            this.clmSalesEditFlag.Width = 125;
-            // 
-            // clmSalesRemove
-            // 
-            this.clmSalesRemove.HeaderText = "Remove";
-            this.clmSalesRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmSalesRemove.MinimumWidth = 6;
-            this.clmSalesRemove.Name = "clmSalesRemove";
-            this.clmSalesRemove.ReadOnly = true;
-            this.clmSalesRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmSalesRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmSalesRemove.Width = 50;
             // 
             // btnSalesHSN
             // 
@@ -2831,6 +2677,178 @@
             // columnHeader44
             // 
             this.columnHeader44.Width = 0;
+            // 
+            // clmPurHSNName
+            // 
+            this.clmPurHSNName.HeaderText = "HSN Name";
+            this.clmPurHSNName.MinimumWidth = 6;
+            this.clmPurHSNName.Name = "clmPurHSNName";
+            this.clmPurHSNName.ReadOnly = true;
+            this.clmPurHSNName.Width = 230;
+            // 
+            // clmPurHSNCode
+            // 
+            this.clmPurHSNCode.HeaderText = "HSN Code";
+            this.clmPurHSNCode.MinimumWidth = 6;
+            this.clmPurHSNCode.Name = "clmPurHSNCode";
+            this.clmPurHSNCode.ReadOnly = true;
+            this.clmPurHSNCode.Width = 160;
+            // 
+            // clmPurGST
+            // 
+            this.clmPurGST.HeaderText = "GST %";
+            this.clmPurGST.MinimumWidth = 6;
+            this.clmPurGST.Name = "clmPurGST";
+            this.clmPurGST.ReadOnly = true;
+            this.clmPurGST.Width = 55;
+            // 
+            // clmPurEffectiveFrom
+            // 
+            this.clmPurEffectiveFrom.HeaderText = "Effective From";
+            this.clmPurEffectiveFrom.MinimumWidth = 6;
+            this.clmPurEffectiveFrom.Name = "clmPurEffectiveFrom";
+            this.clmPurEffectiveFrom.ReadOnly = true;
+            this.clmPurEffectiveFrom.Width = 125;
+            // 
+            // clmPurEffectiveTo
+            // 
+            this.clmPurEffectiveTo.HeaderText = "Effective To";
+            this.clmPurEffectiveTo.MinimumWidth = 6;
+            this.clmPurEffectiveTo.Name = "clmPurEffectiveTo";
+            this.clmPurEffectiveTo.ReadOnly = true;
+            this.clmPurEffectiveTo.Visible = false;
+            this.clmPurEffectiveTo.Width = 125;
+            // 
+            // clmPurHSNID
+            // 
+            this.clmPurHSNID.HeaderText = "HSNID";
+            this.clmPurHSNID.MinimumWidth = 6;
+            this.clmPurHSNID.Name = "clmPurHSNID";
+            this.clmPurHSNID.ReadOnly = true;
+            this.clmPurHSNID.Visible = false;
+            this.clmPurHSNID.Width = 125;
+            // 
+            // clmPurAddFlag
+            // 
+            this.clmPurAddFlag.HeaderText = "Add Flag";
+            this.clmPurAddFlag.MinimumWidth = 6;
+            this.clmPurAddFlag.Name = "clmPurAddFlag";
+            this.clmPurAddFlag.ReadOnly = true;
+            this.clmPurAddFlag.Visible = false;
+            this.clmPurAddFlag.Width = 125;
+            // 
+            // clmPurEditFlag
+            // 
+            this.clmPurEditFlag.HeaderText = "Edit Flag";
+            this.clmPurEditFlag.MinimumWidth = 6;
+            this.clmPurEditFlag.Name = "clmPurEditFlag";
+            this.clmPurEditFlag.ReadOnly = true;
+            this.clmPurEditFlag.Visible = false;
+            this.clmPurEditFlag.Width = 125;
+            // 
+            // clmChangedDate
+            // 
+            this.clmChangedDate.HeaderText = "ChangedDate";
+            this.clmChangedDate.Name = "clmChangedDate";
+            this.clmChangedDate.ReadOnly = true;
+            this.clmChangedDate.Visible = false;
+            // 
+            // clmPurRemove
+            // 
+            this.clmPurRemove.HeaderText = "Remove";
+            this.clmPurRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmPurRemove.MinimumWidth = 6;
+            this.clmPurRemove.Name = "clmPurRemove";
+            this.clmPurRemove.ReadOnly = true;
+            this.clmPurRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPurRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmPurRemove.Width = 50;
+            // 
+            // clmSalesHSNName
+            // 
+            this.clmSalesHSNName.HeaderText = "HSN Name";
+            this.clmSalesHSNName.MinimumWidth = 6;
+            this.clmSalesHSNName.Name = "clmSalesHSNName";
+            this.clmSalesHSNName.ReadOnly = true;
+            this.clmSalesHSNName.Width = 230;
+            // 
+            // clmSalesHSNCode
+            // 
+            this.clmSalesHSNCode.HeaderText = "HSN Code";
+            this.clmSalesHSNCode.MinimumWidth = 6;
+            this.clmSalesHSNCode.Name = "clmSalesHSNCode";
+            this.clmSalesHSNCode.ReadOnly = true;
+            this.clmSalesHSNCode.Width = 160;
+            // 
+            // clmSalesGST
+            // 
+            this.clmSalesGST.HeaderText = "GST %";
+            this.clmSalesGST.MinimumWidth = 6;
+            this.clmSalesGST.Name = "clmSalesGST";
+            this.clmSalesGST.ReadOnly = true;
+            this.clmSalesGST.Width = 55;
+            // 
+            // clmSalesEffectiveFrom
+            // 
+            this.clmSalesEffectiveFrom.HeaderText = "Effective From";
+            this.clmSalesEffectiveFrom.MinimumWidth = 6;
+            this.clmSalesEffectiveFrom.Name = "clmSalesEffectiveFrom";
+            this.clmSalesEffectiveFrom.ReadOnly = true;
+            this.clmSalesEffectiveFrom.Width = 125;
+            // 
+            // clmSalesEffectiveTo
+            // 
+            this.clmSalesEffectiveTo.HeaderText = "Effective To";
+            this.clmSalesEffectiveTo.MinimumWidth = 6;
+            this.clmSalesEffectiveTo.Name = "clmSalesEffectiveTo";
+            this.clmSalesEffectiveTo.ReadOnly = true;
+            this.clmSalesEffectiveTo.Visible = false;
+            this.clmSalesEffectiveTo.Width = 125;
+            // 
+            // clmSalesHSNID
+            // 
+            this.clmSalesHSNID.HeaderText = "HSNID";
+            this.clmSalesHSNID.MinimumWidth = 6;
+            this.clmSalesHSNID.Name = "clmSalesHSNID";
+            this.clmSalesHSNID.ReadOnly = true;
+            this.clmSalesHSNID.Visible = false;
+            this.clmSalesHSNID.Width = 125;
+            // 
+            // clmSalesAddFlag
+            // 
+            this.clmSalesAddFlag.HeaderText = "Add Flag";
+            this.clmSalesAddFlag.MinimumWidth = 6;
+            this.clmSalesAddFlag.Name = "clmSalesAddFlag";
+            this.clmSalesAddFlag.ReadOnly = true;
+            this.clmSalesAddFlag.Visible = false;
+            this.clmSalesAddFlag.Width = 125;
+            // 
+            // clmSalesEditFlag
+            // 
+            this.clmSalesEditFlag.HeaderText = "Edit Flag";
+            this.clmSalesEditFlag.MinimumWidth = 6;
+            this.clmSalesEditFlag.Name = "clmSalesEditFlag";
+            this.clmSalesEditFlag.ReadOnly = true;
+            this.clmSalesEditFlag.Visible = false;
+            this.clmSalesEditFlag.Width = 125;
+            // 
+            // clmSalesChangedDate
+            // 
+            this.clmSalesChangedDate.HeaderText = "SalesChangedDate";
+            this.clmSalesChangedDate.Name = "clmSalesChangedDate";
+            this.clmSalesChangedDate.ReadOnly = true;
+            this.clmSalesChangedDate.Visible = false;
+            // 
+            // clmSalesRemove
+            // 
+            this.clmSalesRemove.HeaderText = "Remove";
+            this.clmSalesRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmSalesRemove.MinimumWidth = 6;
+            this.clmSalesRemove.Name = "clmSalesRemove";
+            this.clmSalesRemove.ReadOnly = true;
+            this.clmSalesRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSalesRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmSalesRemove.Width = 50;
             // 
             // CP_Product
             // 
@@ -3072,24 +3090,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader41;
         private System.Windows.Forms.ColumnHeader columnHeader40;
         private System.Windows.Forms.Label lblProductEName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurGST;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEffectiveFrom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEffectiveTo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurAddFlag;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEditFlag;
-        private System.Windows.Forms.DataGridViewImageColumn clmPurRemove;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesGST;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveFrom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveTo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesAddFlag;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEditFlag;
-        private System.Windows.Forms.DataGridViewImageColumn clmSalesRemove;
         private System.Windows.Forms.TextBox txtLabelNameEnglish;
         private System.Windows.Forms.TextBox txtLabelNameTamil;
         private System.Windows.Forms.TextBox textBox6;
@@ -3113,5 +3113,25 @@
         public System.Windows.Forms.ListView lvVerified1;
         private System.Windows.Forms.ColumnHeader columnHeader43;
         private System.Windows.Forms.ColumnHeader columnHeader44;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEffectiveFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEffectiveTo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurAddFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEditFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmChangedDate;
+        private System.Windows.Forms.DataGridViewImageColumn clmPurRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEffectiveTo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesAddFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEditFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesChangedDate;
+        private System.Windows.Forms.DataGridViewImageColumn clmSalesRemove;
     }
 }
