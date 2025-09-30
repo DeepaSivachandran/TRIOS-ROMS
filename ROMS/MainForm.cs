@@ -427,6 +427,7 @@ namespace ROMS
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
                 GetDate();
+                udfnGetMenuDetails();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
@@ -650,6 +651,34 @@ namespace ROMS
                 }
             }
             catch (Exception ex) {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGetMenuDetails()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                DataService objDser = new DataService();
+                objDs = objDser.GetDataset("SELECT  MU_Code,MU_Name,MU_Link,MU_ParentMenuCode,MU_Level,MU_Formname,MU_CloseFlag  FROM DEF_MENU  ");
+                objDser.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0] != null)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                objDtMenuDetails = objDs.Tables[0];
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
