@@ -29,36 +29,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.txtUserRole = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tbFirst = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpMainmenu = new System.Windows.Forms.GroupBox();
+            this.tvMainmenu = new System.Windows.Forms.TreeView();
             this.grpform2 = new System.Windows.Forms.TabPage();
             this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtUserRole = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.grpMainmenu = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.grdMainMenu = new System.Windows.Forms.DataGridView();
-            this.clmMenuname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMenuId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tvSubmenu = new System.Windows.Forms.TreeView();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.tbFirst.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.grpMainmenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdMainMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -97,6 +93,51 @@
             this.pnlCompany.Size = new System.Drawing.Size(1354, 643);
             this.pnlCompany.TabIndex = 958797;
             // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1175, 605);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(78, 29);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1260, 605);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(78, 29);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // txtUserRole
+            // 
+            this.txtUserRole.Location = new System.Drawing.Point(78, 19);
+            this.txtUserRole.Name = "txtUserRole";
+            this.txtUserRole.Size = new System.Drawing.Size(218, 27);
+            this.txtUserRole.TabIndex = 4;
+            this.txtUserRole.Enter += new System.EventHandler(this.txtUserRole_Enter);
+            this.txtUserRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserRole_KeyDown);
+            this.txtUserRole.Leave += new System.EventHandler(this.txtUserRole_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "User Role";
+            // 
             // tbFirst
             // 
             this.tbFirst.Controls.Add(this.tabPage1);
@@ -117,17 +158,46 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1322, 514);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "page 1";
+            this.tabPage1.Text = "Menu";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tvSubmenu);
+            this.groupBox1.Location = new System.Drawing.Point(372, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(942, 503);
+            this.groupBox1.TabIndex = 1111183;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Menu Details";
+            // 
+            // grpMainmenu
+            // 
+            this.grpMainmenu.Controls.Add(this.tvMainmenu);
+            this.grpMainmenu.Location = new System.Drawing.Point(3, 5);
+            this.grpMainmenu.Name = "grpMainmenu";
+            this.grpMainmenu.Size = new System.Drawing.Size(363, 503);
+            this.grpMainmenu.TabIndex = 1111182;
+            this.grpMainmenu.TabStop = false;
+            this.grpMainmenu.Text = "Main Menu";
+            // 
+            // tvMainmenu
+            // 
+            this.tvMainmenu.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvMainmenu.Location = new System.Drawing.Point(6, 26);
+            this.tvMainmenu.Name = "tvMainmenu";
+            this.tvMainmenu.Size = new System.Drawing.Size(351, 471);
+            this.tvMainmenu.TabIndex = 0;
+            this.tvMainmenu.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvMainmenu_AfterSelect);
             // 
             // grpform2
             // 
             this.grpform2.Location = new System.Drawing.Point(4, 28);
             this.grpform2.Name = "grpform2";
             this.grpform2.Padding = new System.Windows.Forms.Padding(3);
-            this.grpform2.Size = new System.Drawing.Size(1322, 535);
+            this.grpform2.Size = new System.Drawing.Size(1322, 514);
             this.grpform2.TabIndex = 1;
-            this.grpform2.Text = "page 2";
+            this.grpform2.Text = "User Role Access";
             this.grpform2.UseVisualStyleBackColor = true;
             this.grpform2.Leave += new System.EventHandler(this.Grpform2_Leave);
             // 
@@ -164,125 +234,14 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // label1
+            // tvSubmenu
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "User Role";
-            // 
-            // txtUserRole
-            // 
-            this.txtUserRole.Location = new System.Drawing.Point(78, 19);
-            this.txtUserRole.Name = "txtUserRole";
-            this.txtUserRole.Size = new System.Drawing.Size(218, 27);
-            this.txtUserRole.TabIndex = 4;
-            this.txtUserRole.Enter += new System.EventHandler(this.txtUserRole_Enter);
-            this.txtUserRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserRole_KeyDown);
-            this.txtUserRole.Leave += new System.EventHandler(this.txtUserRole_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1175, 605);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(78, 29);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1260, 605);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(78, 29);
-            this.btnClose.TabIndex = 8;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // grpMainmenu
-            // 
-            this.grpMainmenu.Controls.Add(this.grdMainMenu);
-            this.grpMainmenu.Location = new System.Drawing.Point(3, 5);
-            this.grpMainmenu.Name = "grpMainmenu";
-            this.grpMainmenu.Size = new System.Drawing.Size(363, 503);
-            this.grpMainmenu.TabIndex = 1111182;
-            this.grpMainmenu.TabStop = false;
-            this.grpMainmenu.Text = "Main Menu";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(372, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(942, 503);
-            this.groupBox1.TabIndex = 1111183;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Menu Details";
-            // 
-            // grdMainMenu
-            // 
-            this.grdMainMenu.AllowUserToAddRows = false;
-            this.grdMainMenu.AllowUserToDeleteRows = false;
-            this.grdMainMenu.AllowUserToResizeRows = false;
-            this.grdMainMenu.BackgroundColor = System.Drawing.Color.White;
-            this.grdMainMenu.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdMainMenu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdMainMenu.ColumnHeadersHeight = 30;
-            this.grdMainMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdMainMenu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmMenuname,
-            this.clmMenuId});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdMainMenu.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdMainMenu.EnableHeadersVisualStyles = false;
-            this.grdMainMenu.GridColor = System.Drawing.Color.White;
-            this.grdMainMenu.Location = new System.Drawing.Point(15, 26);
-            this.grdMainMenu.Name = "grdMainMenu";
-            this.grdMainMenu.ReadOnly = true;
-            this.grdMainMenu.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdMainMenu.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.grdMainMenu.RowTemplate.Height = 25;
-            this.grdMainMenu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdMainMenu.Size = new System.Drawing.Size(332, 471);
-            this.grdMainMenu.TabIndex = 20;
-            // 
-            // clmMenuname
-            // 
-            this.clmMenuname.HeaderText = "Menu Name";
-            this.clmMenuname.Name = "clmMenuname";
-            this.clmMenuname.ReadOnly = true;
-            this.clmMenuname.Width = 310;
-            // 
-            // clmMenuId
-            // 
-            this.clmMenuId.HeaderText = "MenuId";
-            this.clmMenuId.Name = "clmMenuId";
-            this.clmMenuId.ReadOnly = true;
-            this.clmMenuId.Visible = false;
+            this.tvSubmenu.CheckBoxes = true;
+            this.tvSubmenu.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvSubmenu.Location = new System.Drawing.Point(6, 26);
+            this.tvSubmenu.Name = "tvSubmenu";
+            this.tvSubmenu.Size = new System.Drawing.Size(930, 471);
+            this.tvSubmenu.TabIndex = 1;
             // 
             // CP_UserRole
             // 
@@ -299,15 +258,16 @@
             this.Name = "CP_UserRole";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company";
+            this.Load += new System.EventHandler(this.CP_UserRole_Load);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);
             this.pnlCompany.PerformLayout();
             this.tbFirst.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.grpMainmenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdMainMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,8 +292,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grpMainmenu;
         private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.DataGridView grdMainMenu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMenuname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMenuId;
+        private System.Windows.Forms.TreeView tvMainmenu;
+        private System.Windows.Forms.TreeView tvSubmenu;
     }
 }

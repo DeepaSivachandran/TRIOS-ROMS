@@ -123,6 +123,10 @@ namespace ROMS
         public static CP_ChequePrint_Setting objCP_ChequePrint_Setting;
         public static GRN_ADV objGRN_ADV;
 
+        // added by venkat on 30-09-2025
+        public static CP_UserRole objCP_UserRole;
+
+
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -661,7 +665,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 DataService objDser = new DataService();
-                objDs = objDser.GetDataset("SELECT  MU_Code,MU_Name,MU_Link,MU_ParentMenuCode,MU_Level,MU_Formname,MU_CloseFlag  FROM DEF_MENU  ");
+                objDs = objDser.GetDataset("SELECT  MU_Code,MU_Name,MU_Link,MU_ParentMenuCode,MU_Level,MU_Formname,MU_CloseFlag,0 AS Menuflag  FROM DEF_MENU  ");
                 objDser.CloseConnection();
                 if (objDs != null)
                 {
@@ -3379,6 +3383,24 @@ namespace ROMS
                 MainForm.objREPORT_HSN_Tax_Summary = new REPORT_HSN_Tax_Summary();
                 MainForm.objREPORT_HSN_Tax_Summary.MdiParent = this;
                 MainForm.objREPORT_HSN_Tax_Summary.Show();
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmUserRole_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_UserRole = new CP_UserRole();
+                MainForm.objCP_UserRole.MdiParent = this;
+                MainForm.objCP_UserRole.Show();
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)

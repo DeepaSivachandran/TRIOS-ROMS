@@ -58,38 +58,31 @@ namespace ROMS
 
         public int varDefaultBank = 0;
         public string varDefault = "";
-        DataSet objDTBank = new DataSet();
+        DataTable objDtMainMenu = new DataTable();
+        DataTable objDtSubMenu = new DataTable();
 
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void BtnSave_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnSave_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnClose_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnClose_Leave(object sender, EventArgs e)
-        {
-
-        }
 
         public CP_UserRole()
         {
             InitializeComponent();
         }
 
+        private void CP_UserRole_Load(object sender, EventArgs e)
+        {
+            try {
+
+                DataView dv = new DataView(MainForm.objDtMenuDetails);
+                dv.RowFilter = "MU_ParentMenuCode IS NULL";
+                objDtMainMenu = dv.ToTable(); 
+                LoadTreeViewFromDataTable(tvMainmenu,objDtMainMenu);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void txtUserRole_Enter(object sender, EventArgs e)
         {
@@ -111,6 +104,40 @@ namespace ROMS
             {
                 txtUserRole.BackColor = Color.White;
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tvMainmenu_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
+
+                string menuCode = e.Node.Tag.ToString();
+
+                if (menuCode == "")
+                {
+                    menuCode = "0";
+                }
+                // Find the row in main DataTable
+                DataRow[] rows = objDtMainMenu.Select("MU_Code = " + menuCode);
+                if (rows.Length > 0)
+                {
+                    if (e.Node.IsSelected)
+                        rows[0]["Menuflag"] = 1;
+                    else
+                        rows[0]["Menuflag"] = 0;
+                }
+
+                if (e.Node.IsSelected)
+                    LoadSubMenu(menuCode);
+                else
+                    RemoveSubMenu(Convert.ToInt32(menuCode));
             }
             catch (Exception ex)
             {
@@ -272,6 +299,82 @@ namespace ROMS
             finally
             {
             }
-        } 
+        }
+        private void LoadTreeViewFromDataTable(TreeView tv,  DataTable dt)
+        {
+            try
+            {
+                tv.Nodes.Clear(); 
+                foreach (DataRow row in dt.Rows)
+                {
+                    string nodeText = row["MU_Name"].ToString();   // Text to display
+                    string nodeValue = row["MU_Code"].ToString(); //  id for menus
+
+                    // Create TreeNode
+                    TreeNode node = new TreeNode(nodeText)
+                    {
+                        Tag = nodeValue   // Store value in Tag (can retrieve later)
+                    };
+
+                    tv.Nodes.Add(node);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void LoadSubMenu(string parentMenuCode)
+        {
+            try {
+
+                // Filter rows where this is the parent AND flag = 1
+                DataView dv = new DataView(MainForm.objDtMenuDetails);
+                dv.RowFilter = $"MU_ParentMenuCode = {parentMenuCode}  ";
+                 objDtSubMenu = dv.ToTable();
+
+                //if (objDtSubMenu.Rows.Count == 0)
+                //{
+                //    objDtSubMenu = dv.ToTable();
+                //}
+                //else { 
+                //    objDtSubMenu.Merge(dv.ToTable(), true, MissingSchemaAction.Ignore);
+                //}
+                LoadTreeViewFromDataTable(tvSubmenu, objDtSubMenu);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void RemoveSubMenu(int parentMenuCode)
+        {
+            try
+            {  
+                if (objDtSubMenu != null)
+                {
+                    for (int i = objDtSubMenu.Rows.Count - 1; i >= 0; i--)
+                    {
+                        if (Convert.ToInt32(objDtSubMenu.Rows[i]["MU_ParentMenuCode"]) == parentMenuCode)
+                        { 
+                            tvSubmenu.Nodes.RemoveAt(i);
+                            objDtSubMenu.Rows[i].Delete();
+                        }
+                    }
+                    objDtSubMenu.AcceptChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
     }
 }
