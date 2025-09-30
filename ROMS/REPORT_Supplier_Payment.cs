@@ -21,7 +21,7 @@ namespace ROMS
 {
     public partial class REPORT_Supplier_Payment : Form
     {
-        ToolTip tpSupplier = new ToolTip();
+        ToolTip tpReportType = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -113,7 +113,18 @@ namespace ROMS
         {
             try
             {
-                udfnSupplierPaymentReport();
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                    cmbReportType.Focus();
+                }
+                else
+                {
+                    udfnSupplierPaymentReport();
+                }
             }
             catch (Exception ex)
             {
@@ -160,7 +171,7 @@ namespace ROMS
                 {
                     varCityId = Convert.ToInt32(lblcityid.Text);
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 375)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 375 || Convert.ToInt32(cmbReportType.SelectedValue) == 400)
                 {
                     varViewType = 3;
                 }
@@ -209,6 +220,11 @@ namespace ROMS
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 376)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_SupplierPaymentPending.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 400)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_SupplierPaymentGiven_Summary.rpt");
+                        objBillreport.SetParameterValue("paraPayModeName", Convert.ToString(cmbPayType.Text));
                     }
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraPayType", Convert.ToInt32(cmbPayType.SelectedValue));
