@@ -25,7 +25,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-        public int varUpDownKey = 0;
+        public int varUpDownKey = 0, varUpDownKeyCity = 0;
         public REPORT_Supplier_Payment()
         {
             InitializeComponent();
@@ -74,9 +74,7 @@ namespace ROMS
         {
             try
             {
-                varUpDownKey = 0;
-                DGV_FilterProduct.Visible = false;
-                DGV_FilterProduct.DataSource = null;
+                udfnGridNull((Control)sender);
                 //LV_Supplier.Visible = false;
                 cmbPayType.BackColor = Color.LemonChiffon;
             }
@@ -90,6 +88,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -122,11 +121,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGridNull(Control skipControl)
+        {
+            try
+            {
+                if (skipControl != txtCity)
+                {
+                    varUpDownKeyCity = 0;
+                    DGV_FilterCity.DataSource = null;
+                    DGV_FilterCity.Visible = false;
+                }
+                if (skipControl != txtSupplier)
+                {
+                    varUpDownKey = 0;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnSupplierPaymentReport()
         {
             try
             {
-                int varViewType = 2,varSupplierId=0,varScheduleId=0;
+                int varViewType = 2, varSupplierId = 0, varScheduleId = 0, varCityId = 0;
                 string varSupplierName = "-All-";
                 if (txtSupplier.Text.Trim() != "")
                 {
@@ -134,7 +156,10 @@ namespace ROMS
                     varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     varScheduleId = Convert.ToInt32(lblschedleCode.Text);
                 }
-
+                if (txtCity.Text.Trim() != "")
+                {
+                    varCityId = Convert.ToInt32(lblcityid.Text);
+                }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 375)
                 {
                     varViewType = 3;
@@ -153,7 +178,7 @@ namespace ROMS
                 int varPrint = 0;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDs = new DataSet();
-                objDs = objdserv.udfnPaymentReport(varViewType, varSupplierId, varScheduleId, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbPayType.SelectedValue));
+                objDs = objdserv.udfnPaymentReport(varViewType, varSupplierId, varScheduleId, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbPayType.SelectedValue), varCityId);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -219,6 +244,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtSupplier.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -459,6 +485,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpFromDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -498,6 +525,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpToDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -686,6 +714,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbReportType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -764,6 +793,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -812,6 +842,296 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                txtCity.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TxtCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyCity = 0;
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    DGV_FilterCity.Focus();
+                }
+                if (e.KeyCode == Keys.Enter && DGV_FilterCity.Visible == false)
+                {
+                    cmbPayType.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_FilterCity.Focus();
+                }
+                if (DGV_FilterCity.CurrentCell == null && DGV_FilterCity.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_FilterCity.Focus();
+                    int RowIndex = DGV_FilterCity.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterCity.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyCity = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyCity = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterCity.CurrentCell = DGV_FilterCity.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtCity.Text = DGV_FilterCity.Rows[RowIndex].Cells["CTY_NAME"].Value.ToString();
+                            }
+                            txtCity.Focus();
+                            txtCity.SelectionStart = txtCity.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterCity.Rows.Count) DGV_FilterCity.CurrentCell = DGV_FilterCity.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterCity.Rows.Count))
+                            {
+                                txtCity.Text = DGV_FilterCity.Rows[RowIndex].Cells["CTY_NAME"].Value.ToString();
+                            }
+
+                            txtCity.Focus();
+                            txtCity.SelectionStart = txtCity.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterCity.Rows.Count > 0)
+                                {
+                                    varUpDownKeyCity = 1;
+                                    udfnGrdevent();
+                                    DGV_FilterCity.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtCity.Focus();
+                    //txtCity.SelectionStart = txtCity.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbPayType.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCity.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterCity_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyCity = 1;
+                udfnGrdevent();
+                cmbPayType.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_FilterCity.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterCity.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyCity = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyCity = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterCity.CurrentCell = DGV_FilterCity.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtCity.Text = DGV_FilterCity.SelectedRows[0].Cells["CTY_NAME"].Value.ToString();
+
+                            txtCity.Focus();
+                            txtCity.SelectionStart = txtCity.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterCity.Rows.Count) DGV_FilterCity.CurrentCell = DGV_FilterCity.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterCity.Rows.Count))
+                            {
+                                txtCity.Text = DGV_FilterCity.Rows[RowIndex].Cells["CTY_NAME"].Value.ToString();
+                            }
+
+                            txtCity.Focus();
+                            txtCity.SelectionStart = txtCity.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterCity.Rows.Count > 0)
+                                {
+                                    varUpDownKeyCity = 1;
+                                    udfnGrdevent();
+                                    DGV_FilterCity.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        cmbPayType.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGrdevent()
+        {
+            try
+            {
+                if (txtCity.Text.Trim() != "")
+                {
+                    txtCity.Text = DGV_FilterCity.SelectedRows[0].Cells["CTY_NAME"].Value.ToString();
+                    lblcityid.Text = DGV_FilterCity.SelectedRows[0].Cells["CTYID"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varUpDownKeyCity == 0)
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtCity.Text.Length > 0)
+                    {
+                        objDs = objspdservice.udfnCitylist(1, txtCity.Text, 0, 0);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterCity.Visible = true;
+                                    DGV_FilterCity.DataSource = objDs.Tables[0];
+                                    DGV_FilterCity.Columns["CTYID"].Visible = false;
+                                    DGV_FilterCity.Columns["STID"].Visible = false;
+                                    DGV_FilterCity.Columns["ST_Name"].Visible = false;
+                                    DGV_FilterCity.Columns["ST_TIN"].Visible = false;
+                                    DGV_FilterCity.Columns["CTY_NAME"].HeaderText = "City";
+                                    DGV_FilterCity.Columns["CTY_NAME"].Width = 180;
+                                    DGV_FilterCity.Columns["CTY_NAME"].DisplayIndex = 0;
+                                    DGV_FilterCity.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterCity.Visible = false;
+                                    DGV_FilterCity.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_FilterCity.Visible = false;
+                                DGV_FilterCity.DataSource = null;
+                            }
+                        }
+                        else
+                        {
+                            DGV_FilterCity.Visible = false;
+                            DGV_FilterCity.DataSource = null;
+                        }
+                    }
+                    else
+                    {
+                        DGV_FilterCity.Visible = false;
+                        DGV_FilterCity.DataSource = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
 

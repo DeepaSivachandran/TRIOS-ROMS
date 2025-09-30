@@ -882,9 +882,16 @@ namespace ROMS
                         value = "";
                     }
                     cmbTemplate.Enabled = true;
-                    objDataBind.BindComboBoxListSelected("DEF_Templates","TEMP_Labelcode IN ('" + varSelectedValue + "') AND TEMP_Statuscode = 1", "TEMP_ShortCode,TEMP_RptName",
-                        cmbTemplate,"","TEMP_ShortCode", "TEMP_RptName");
+                    objDataBind.BindComboBoxListSelected("DEF_Templates", "TEMP_Labelcode IN ('" + varSelectedValue + "') AND TEMP_Statuscode = 1", "TEMP_ShortCode,TEMP_RptName,TEMP_Description",
+                        cmbTemplate, "", "TEMP_ShortCode", "TEMP_RptName");
                     objDataBind = null;
+                }
+                else
+                {
+                    cmbTemplate.Text = "-Select";
+                    cmbTemplate.Enabled = false;
+                    lblDescription.Text = "";
+                    lblDesc.Text = "";
                 }
                 udfnTitleDisable();
             }
@@ -1306,6 +1313,7 @@ namespace ROMS
                 else if(IsTypingKey(e.KeyCode))
                 {
                     //Disable the Button when the user try to change the label name
+                    btnUpdate.Enabled = true;
                     btnpreview.Enabled = false;
                     btnPrint.Enabled = false;
                     btnDirectPrint.Enabled = false;
@@ -1404,6 +1412,8 @@ namespace ROMS
                     if (varvalue[0] == "3")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnUpdate.Enabled = false;
+                        btnpreview.Focus();
                     }
                     else
                     {
@@ -1511,6 +1521,8 @@ namespace ROMS
                 objDataBind = null;
                 cmbTemplate.Text = "-Select-";
                 cmbTemplate.Enabled = false;
+                lblDescription.Text = "";
+                lblDesc.Text = "";
             }
             catch (Exception ex)
             {
@@ -1604,6 +1616,13 @@ namespace ROMS
         {
             try
             {
+                if (cmbTemplate.SelectedItem is DataRowView row)
+                {
+                    string description = row["TEMP_Description"].ToString();
+
+                    lblDescription.Text = description;
+                    lblDesc.Text = "*";
+                }
                 udfnTitleDisable();
             }
             catch (Exception ex)

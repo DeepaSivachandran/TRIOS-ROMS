@@ -39,6 +39,8 @@
             this.lblRawCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbGrid = new System.Windows.Forms.GroupBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.cmbTitle = new System.Windows.Forms.ComboBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.cmbPrintType = new System.Windows.Forms.ComboBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -98,8 +100,8 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
-            this.cmbTitle = new System.Windows.Forms.ComboBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.lblDesc = new System.Windows.Forms.Label();
             this.tsHeader.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -170,6 +172,8 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.lblDesc);
+            this.grbGrid.Controls.Add(this.lblDescription);
             this.grbGrid.Controls.Add(this.textBox9);
             this.grbGrid.Controls.Add(this.cmbTitle);
             this.grbGrid.Controls.Add(this.DGV_FilterProduct);
@@ -211,6 +215,33 @@
             this.grbGrid.Size = new System.Drawing.Size(1341, 629);
             this.grbGrid.TabIndex = 3;
             this.grbGrid.TabStop = false;
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox9.Location = new System.Drawing.Point(215, 427);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(64, 28);
+            this.textBox9.TabIndex = 111111174;
+            this.textBox9.TabStop = false;
+            this.textBox9.Text = "Title";
+            // 
+            // cmbTitle
+            // 
+            this.cmbTitle.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTitle.FormattingEnabled = true;
+            this.cmbTitle.Location = new System.Drawing.Point(280, 427);
+            this.cmbTitle.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.cmbTitle.Name = "cmbTitle";
+            this.cmbTitle.Size = new System.Drawing.Size(119, 28);
+            this.cmbTitle.TabIndex = 9;
+            this.cmbTitle.Enter += new System.EventHandler(this.cmbTitle_Enter);
+            this.cmbTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTitle_KeyDown);
+            this.cmbTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbTitle_KeyPress);
+            this.cmbTitle.Leave += new System.EventHandler(this.cmbTitle_Leave);
             // 
             // DGV_FilterProduct
             // 
@@ -386,6 +417,7 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Enabled = false;
             this.btnUpdate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Image = global::ROMS.Properties.Resources.save;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -811,9 +843,9 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(277, 462);
+            this.btnpreview.Location = new System.Drawing.Point(280, 462);
             this.btnpreview.Name = "btnpreview";
-            this.btnpreview.Size = new System.Drawing.Size(122, 33);
+            this.btnpreview.Size = new System.Drawing.Size(119, 33);
             this.btnpreview.TabIndex = 10;
             this.btnpreview.Text = "Preview";
             this.btnpreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -911,32 +943,26 @@
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
             // 
-            // cmbTitle
+            // lblDescription
             // 
-            this.cmbTitle.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTitle.FormattingEnabled = true;
-            this.cmbTitle.Location = new System.Drawing.Point(280, 427);
-            this.cmbTitle.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.cmbTitle.Name = "cmbTitle";
-            this.cmbTitle.Size = new System.Drawing.Size(119, 28);
-            this.cmbTitle.TabIndex = 9;
-            this.cmbTitle.Enter += new System.EventHandler(this.cmbTitle_Enter);
-            this.cmbTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbTitle_KeyDown);
-            this.cmbTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbTitle_KeyPress);
-            this.cmbTitle.Leave += new System.EventHandler(this.cmbTitle_Leave);
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.ForeColor = System.Drawing.Color.Green;
+            this.lblDescription.Location = new System.Drawing.Point(22, 598);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(71, 20);
+            this.lblDescription.TabIndex = 111111176;
+            this.lblDescription.Text = "Description";
             // 
-            // textBox9
+            // lblDesc
             // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox9.Location = new System.Drawing.Point(215, 427);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(64, 28);
-            this.textBox9.TabIndex = 111111174;
-            this.textBox9.TabStop = false;
-            this.textBox9.Text = "Title";
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Font = new System.Drawing.Font("Oswald Regular", 13.25F);
+            this.lblDesc.ForeColor = System.Drawing.Color.Red;
+            this.lblDesc.Location = new System.Drawing.Point(6, 598);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(19, 25);
+            this.lblDesc.TabIndex = 111111177;
+            this.lblDesc.Text = "*";
             // 
             // CP_DirectLabelPrint
             // 
@@ -1041,5 +1067,7 @@
         public System.Windows.Forms.ComboBox cmbPrintType;
         public System.Windows.Forms.ComboBox cmbTitle;
         private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Label lblDesc;
     }
 }

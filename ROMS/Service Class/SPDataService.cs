@@ -4042,7 +4042,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnPaymentReport(int paraViewType, int paraSupplierId, int paraScheduleId, string paraFromDate, string paraToDate,int paraFlag,int ParaCompanycode,int paraPayType)
+        public DataSet udfnPaymentReport(int paraViewType, int paraSupplierId, int paraScheduleId, string paraFromDate, string paraToDate,int paraFlag,int ParaCompanycode,int paraPayType,int paraCityId)
         {
             DataSet ds = new DataSet();
             try
@@ -4058,6 +4058,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", ParaCompanycode);
                 varSqlCommand.Parameters.AddWithValue("@paraPayType", paraPayType);
+                varSqlCommand.Parameters.AddWithValue("@paraCityId", paraCityId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
