@@ -188,6 +188,7 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmProductCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -908,9 +909,8 @@ namespace ROMS
             this.tsmSupplierWiseProducts,
             this.tsmAssigned,
             this.tsmUnassignedProducts,
-            this.tsmZeroRate//,
-            //this.tsmProductCategory
-            });
+            this.tsmZeroRate,
+            this.tsmProductCategory});
             this.tsmMastersReport.Name = "tsmMastersReport";
             this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
             this.tsmMastersReport.Text = "Masters";
@@ -1474,7 +1474,7 @@ namespace ROMS
             this.tsmFinancialYearProcess.Text = "Financial Year Process";
             this.tsmFinancialYearProcess.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
-            // tsmProductCategory
+            // ms
             // 
             this.ms.BackColor = System.Drawing.SystemColors.Menu;
             this.ms.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1502,10 +1502,13 @@ namespace ROMS
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
-            //this.tsmProductCategory.Name = "tsmProductCategory";
-            //this.tsmProductCategory.Size = new System.Drawing.Size(184, 22);
-            //this.tsmProductCategory.Text = "Product Category";
-            //this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
+            // 
+            // tsmProductCategory
+            // 
+            this.tsmProductCategory.Name = "tsmProductCategory";
+            this.tsmProductCategory.Size = new System.Drawing.Size(184, 22);
+            this.tsmProductCategory.Text = "Product Category";
+            this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
             // 
             // MainForm
             // 
@@ -1695,6 +1698,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmFinancialYearProcess;
         private System.Windows.Forms.MenuStrip ms;
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
+        private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
         //private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
     }
 }

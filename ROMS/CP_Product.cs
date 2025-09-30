@@ -512,7 +512,7 @@ namespace ROMS
                             blnErrorFlag = true;
                         }
                     }
-                    if (cmbProductType.Text == "child") {
+                    if (cmbProductType.Text == "Child") {
                         if (Convert.ToString(cmbChildUnit.SelectedValue) == "" || Convert.ToString(cmbChildUnit.SelectedValue) == "-1")
                         {
                             errItems.SetError(cmbChildUnit, "Please select upp Unit");
@@ -7090,30 +7090,26 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(cmbProductType.SelectedValue) == 341) //Parent
-                {
-                    cmbChildUnit.Enabled = true;  
+                { 
                     txtProductName.Enabled = false;
                     txtGroup.Enabled = true;
                     txtSubGroup.Enabled = true;
                     txtBrand.Enabled = true;
-                    txtUpp.Enabled = false;
-                    cmbChildUnit.Enabled = false;
 
 
                     txtGroup.ReadOnly = false;
                     txtSubGroup.ReadOnly = false;
                     txtBrand.ReadOnly = false;
-                    txtUpp.ReadOnly = true;
                     txtProductName.ReadOnly = true;
                 }
                 else if (Convert.ToInt32(cmbProductType.SelectedValue) == 342) //Child
                 {
-                    cmbChildUnit.Enabled = false;
+                    cmbChildUnit.Enabled = true;
                     txtGroup.Enabled = false;
                     txtSubGroup.Enabled = false;
                     txtBrand.Enabled = false;
                     txtProductName.Enabled = true;
-                    txtUpp.Enabled = true; 
+                    txtUpp.Enabled = true;
 
                      
                     txtGroup.ReadOnly = true;
@@ -7122,6 +7118,14 @@ namespace ROMS
                     txtProductName.ReadOnly = false;
                     txtUpp.ReadOnly = false;
 
+                }
+
+                if (Convert.ToInt32(cmbProductType.SelectedValue) != 342)
+                {
+                    txtUpp.Text = "";
+                    txtUpp.Enabled = false;
+                    cmbChildUnit.SelectedValue = -1;
+                    cmbChildUnit.Enabled = false;
                 }
                 if (btnSave.Text != "Update" && pbCloneFlag != 1)// clone product no need to clear details added by Sathish on 23-08-2025
                 {
