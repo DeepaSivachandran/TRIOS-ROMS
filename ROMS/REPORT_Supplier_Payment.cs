@@ -213,6 +213,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraPayType", Convert.ToInt32(cmbPayType.SelectedValue));
                     objBillreport.SetParameterValue("paraSupplierId",varSupplierId);
                     objBillreport.SetParameterValue("paraScheduleId", varScheduleId);
+                    objBillreport.SetParameterValue("paraCityId", varCityId);
                     objBillreport.SetParameterValue("paraFromDate",dpFromDate.Text);
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
@@ -782,6 +783,11 @@ namespace ROMS
                         tsbPrintFormat.Text = string.Empty;
                     }
                 }
+                txtCity.Text = "";
+                txtSupplier.Text = "";
+                lblcityid.Text = "0";
+                lblSupplierCode.Text = "0";
+                lblschedleCode.Text = "0";
             }
             catch (Exception ex)
             {

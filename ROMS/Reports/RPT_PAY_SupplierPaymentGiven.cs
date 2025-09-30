@@ -218,7 +218,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_ParaCompanycode {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraCityId {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -226,7 +226,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_ParaFromDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_ParaCompanycode {
             get {
                 return this.DataDefinition.ParameterFields[11];
             }
@@ -234,7 +234,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_ParaToDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_ParaFromDate {
             get {
                 return this.DataDefinition.ParameterFields[12];
             }
@@ -242,7 +242,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraSupplierName {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_ParaToDate {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -250,7 +250,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraPayType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraSupplierName {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -258,7 +258,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraScheduleId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraPayType {
             get {
                 return this.DataDefinition.ParameterFields[15];
             }
@@ -266,9 +266,17 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraSupplierId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraScheduleId {
             get {
                 return this.DataDefinition.ParameterFields[16];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraSupplierId {
+            get {
+                return this.DataDefinition.ParameterFields[17];
             }
         }
     }
