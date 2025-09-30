@@ -1693,12 +1693,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmClearMasters;
         private System.Windows.Forms.ToolStripMenuItem tsmFinancialYearProcess;
         private System.Windows.Forms.MenuStrip ms;
-        private System.Windows.Forms.ToolStripMenuItem tsmZeroRate;
-        private System.Windows.Forms.ToolStripMenuItem tsmInactiveProduct;
-        private System.Windows.Forms.ToolStripMenuItem tsmPaymentReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmStockReconciliation;
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
-        private System.Windows.Forms.ToolStripMenuItem tsmHSNTaxDetailsSummary;
         private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
     }
 }
