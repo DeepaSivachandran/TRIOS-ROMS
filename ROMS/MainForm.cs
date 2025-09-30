@@ -811,24 +811,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void StateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Citylist = new CP_Citylist();
-                MainForm.objCP_Citylist.MdiParent = this;
-                MainForm.objCP_Citylist.Show();
-                PbCurrentForm = "5.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void TsmGroup_Click(object sender, EventArgs e)
         {
             try
@@ -914,58 +897,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void TsmPurchaseOrder_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
-                MainForm.objPUR_PurchaseOrderList.MdiParent = this;
-                MainForm.objPUR_PurchaseOrderList.Show();
-                PbCurrentForm = "1.2";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void TsmsupplierMapping_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_SupplierMappinglist = new CP_SupplierMappinglist();
-                MainForm.objCP_SupplierMappinglist.MdiParent = this;
-                MainForm.objCP_SupplierMappinglist.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmrackSettings_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_RackSettings = new CP_RackSettings();
-                MainForm.objCP_RackSettings.MdiParent = this;
-                MainForm.objCP_RackSettings.Show();
-                PbCurrentForm = "3.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+          
+        } 
         private void Tsmitem_Click(object sender, EventArgs e)
         {
             try
@@ -1007,21 +943,7 @@ namespace ROMS
         }
         private void TsmpurchaseSupplier_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
-                MainForm.objPUR_SupplierScheduleList.MdiParent = this;
-                MainForm.objPUR_SupplierScheduleList.Show();
-                PbCurrentForm ="1.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
         private void TsmGRN_Click(object sender, EventArgs e)
         {
@@ -1195,59 +1117,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void TsmpurchaseReturn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
-                MainForm.objINV_SalesInvoiceList.MdiParent = this;
-                MainForm.objINV_SalesInvoiceList.Show();
-                PbCurrentForm = "2.2";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            } 
-        }
-        private void SupplierPaymentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
-                MainForm.objPAY_SupplierPaymentList.MdiParent = this;
-                MainForm.objPAY_SupplierPaymentList.Show();
-                PbCurrentForm = "4.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmuserCategory_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_UserCategoryList = new CP_UserCategoryList();
-                MainForm.objCP_UserCategoryList.MdiParent = this;
-                MainForm.objCP_UserCategoryList.Show();
-                PbCurrentForm = "5.13";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
+          
         private void TsmSupplierOrder_Click(object sender, EventArgs e)
         {
             
@@ -1264,79 +1135,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void DamageEntryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
-                MainForm.objINV_DamageEntryList.MdiParent = this;
-                MainForm.objINV_DamageEntryList.Show();
-                PbCurrentForm = "3.7";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmfromOtherStockLocation_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_Inwardlist = new INV_Inwardlist();
-                MainForm.objINV_Inwardlist.MdiParent = this;
-                MainForm.objINV_Inwardlist.Show();
-                PbCurrentForm = "3.2.2";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmfromPurchase_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
-                MainForm.objINV_InwardPurchaseList.MdiParent = this;
-                MainForm.objINV_InwardPurchaseList.Show();
-                PbCurrentForm = "3.2.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmGRNApproval_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
-                MainForm.objPUR_GRNApprovalList.MdiParent = this;
-                MainForm.objPUR_GRNApprovalList.Show();
-                PbCurrentForm = "1.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        }    
         private void TsmPurchaseDC_Click(object sender, EventArgs e)
         {
             try
@@ -1355,40 +1154,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TsmgeneralSettings_Click(object sender, EventArgs e)
-        { 
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Settings = new CP_Settings();
-                MainForm.objCP_Settings.MdiParent = this;
-                MainForm.objCP_Settings.Show();
-                PbCurrentForm = "6.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnBulkAttribute()
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         private void TsmBulkAttr_Click(object sender, EventArgs e)
         {
             try
@@ -1405,24 +1171,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void TsbDirectCheque_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
-                MainForm.objPAY_ChequePrint.MdiParent = this;
-                MainForm.objPAY_ChequePrint.Show();
-                PbCurrentForm = "4.2";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void TsmStockHold_Click(object sender, EventArgs e)
         {
             try
@@ -1440,25 +1189,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void TsbStockConversion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockConversionList = new INV_StockConversionList();
-                MainForm.objINV_StockConversionList.MdiParent = this;
-                MainForm.objINV_StockConversionList.Show();
-                PbCurrentForm = "3.8";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void TsbCreditNote_Click(object sender, EventArgs e)
         {
             try
@@ -1730,24 +1461,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void ProductApprovalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_ProductApprovalList = new CP_ProductApprovalList();
-                MainForm.objCP_ProductApprovalList.MdiParent = this;
-                MainForm.objCP_ProductApprovalList.Show();
-                PbCurrentForm = "5.12";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         private void tsmPOSummary_Click(object sender, EventArgs e)
         {
             try
@@ -2008,65 +1722,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TspClearTransactions_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
-                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
-                PbDeleteFlag = 0;
-                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
-                if (PbDeleteFlag == 1)
-                {
-                    int Result = 0;
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = "", varoriginator = "";
-                    varoriginator = "Clear Transactions";
-                    varResult = objspservice.udfnDBClearTransaction(0, varoriginator);
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Result = 1;
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        Result = 0;
-                    }
-                    if (Result == 1)
-                    {
-                        udfnFormLoad();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void ExportTallyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Tally = new CP_Tally();
-                MainForm.objCP_Tally.MdiParent = this;
-                MainForm.objCP_Tally.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void tsmItemMovementReport_Click(object sender, EventArgs e)
         {
@@ -2086,81 +1742,7 @@ namespace ROMS
             }
         }
 
-
-        private void TspClearMasters_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
-                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
-                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
-                PbDeleteFlag = 0;
-                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
-                if (PbDeleteFlag == 1)
-                {
-                    int Result = 0;
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = "", varoriginator = "";
-                    varoriginator = "Clear Masters";
-                    varResult = objspservice.udfnDBClearMaster(0, varoriginator);
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Result = 1;
-                    }
-                    else
-                    {
-                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        Result = 0;
-                    }
-                    if (Result == 1)
-                    {
-                        udfnFormLoad();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void FinancialYearProcessToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objFinancial_Year_Process = new Financial_Year_Process();
-                MainForm.objFinancial_Year_Process.MdiParent = this;
-                MainForm.objFinancial_Year_Process.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void ProductToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_CP_Product = new REPORT_CP_Product();
-                MainForm.objREPORT_CP_Product.MdiParent = this;
-                MainForm.objREPORT_CP_Product.Show();
-                PbCurrentForm = "7.1.13";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         public void Ms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -2180,219 +1762,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void AdvanceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_AdvanceList = new PAY_AdvanceList();
-                MainForm.objPAY_AdvanceList.MdiParent = this;
-                MainForm.objPAY_AdvanceList.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GSTRToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_GSTRDetails = new PAY_GSTRDetails();
-                MainForm.objPAY_GSTRDetails.MdiParent = this;
-                MainForm.objPAY_GSTRDetails.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void StockLocationRackMSQToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                try
-                {
-                    udfnCloseChildForms();
-                    if (isClose == false) { return; }
-                    MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                    MainForm.objCP_BulkAttributes.MdiParent = this;
-                    MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
-                    MainForm.objCP_BulkAttributes.Show();
-                    PbCurrentForm = "5.18";
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void MinsalesQtyBarcodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void MinMaxStockReorderQtyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void BulkUnitUPPShelfLifeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void ProductCategoryRMFlagBatchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void NetGrossWeightToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GroupSubgroupBrandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void HSNNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void ProCodeNameUnitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
-                MainForm.objCP_BulkAttributes.Show();
-                PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
+          
+         
+         
         private void TsmBlockedSupplier_Click(object sender, EventArgs e)
         {
             try
@@ -2696,19 +2069,7 @@ namespace ROMS
         }
         private void DiscountVoucherToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_DiscountVoucherList = new PAY_DiscountVoucherList();
-                MainForm.objPAY_DiscountVoucherList.MdiParent = this;
-                MainForm.objPAY_DiscountVoucherList.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void tsmPOStatusWise_Click(object sender, EventArgs e)
@@ -2731,19 +2092,7 @@ namespace ROMS
 
         private void StickerPrintToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_StickerPrint = new CP_StickerPrint();
-                MainForm.objCP_StickerPrint.MdiParent = this;
-                MainForm.objCP_StickerPrint.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void TsmHSNCodeWiseReport_Click(object sender, EventArgs e)
@@ -2977,20 +2326,7 @@ namespace ROMS
 
         private void TsmProductWiseLastPurchase_Click(object sender, EventArgs e)
         {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
-                PbCurrentForm = "7.7.9";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void TsmPurchaseTallyReport_Click(object sender, EventArgs e)
@@ -3155,41 +2491,7 @@ namespace ROMS
             }
         }
 
-
-        private void directLabelPrintToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_DiectLabelPrint = new CP_DirectLabelPrint();
-                MainForm.objCP_DiectLabelPrint.MdiParent = this;
-                MainForm.objCP_DiectLabelPrint.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void printerSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                 
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_PrinterSetting = new CP_Printer_Setting();
-                MainForm.objCP_PrinterSetting.MdiParent = this;
-                MainForm.objCP_PrinterSetting.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void TsmBank_Click(object sender, EventArgs e)
         {
@@ -3314,47 +2616,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void tsmStockadjustment_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockAdjustmentList = new INV_ReconciliationList();
-                MainForm.objINV_StockAdjustmentList.MdiParent = this;
-                MainForm.objINV_StockAdjustmentList.Show();
-                PbCurrentForm = "3.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void tspStockConversion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockJournalList = new INV_StockJournalList();
-                MainForm.objINV_StockJournalList.MdiParent = this;
-                MainForm.objINV_StockJournalList.Show();
-                PbCurrentForm = "3.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            
-        }
-
+        } 
         private void tsmHSNTaxDetailsSummary_Click(object sender, EventArgs e)
         {
             try
@@ -3401,6 +2663,777 @@ namespace ROMS
                 MainForm.objCP_UserRole.MdiParent = this;
                 MainForm.objCP_UserRole.Show();
                 PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmpurchaseSchedule_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
+                MainForm.objPUR_SupplierScheduleList.MdiParent = this;
+                MainForm.objPUR_SupplierScheduleList.Show();
+                PbCurrentForm = "1.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmPurchaseOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
+                MainForm.objPUR_PurchaseOrderList.MdiParent = this;
+                MainForm.objPUR_PurchaseOrderList.Show();
+                PbCurrentForm = "1.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmPurchaseMismatchApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
+                MainForm.objPUR_GRNApprovalList.MdiParent = this;
+                MainForm.objPUR_GRNApprovalList.Show();
+                PbCurrentForm = "1.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmpurchaseReturnDC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
+                MainForm.objINV_SalesInvoiceList.MdiParent = this;
+                MainForm.objINV_SalesInvoiceList.Show();
+                PbCurrentForm = "2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmfromPurchase_Grn_DC_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                MainForm.objINV_InwardPurchaseList.MdiParent = this;
+                MainForm.objINV_InwardPurchaseList.Show();
+                PbCurrentForm = "3.2.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmInwardfromothers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                MainForm.objINV_Inwardlist.MdiParent = this;
+                MainForm.objINV_Inwardlist.Show();
+                PbCurrentForm = "3.2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmBatchConversion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockConversionList = new INV_StockConversionList();
+                MainForm.objINV_StockConversionList.MdiParent = this;
+                MainForm.objINV_StockConversionList.Show();
+                PbCurrentForm = "3.8";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockReconciliation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockAdjustmentList = new INV_ReconciliationList();
+                MainForm.objINV_StockAdjustmentList.MdiParent = this;
+                MainForm.objINV_StockAdjustmentList.Show();
+                PbCurrentForm = "3.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDamageEntry_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
+                MainForm.objINV_DamageEntryList.MdiParent = this;
+                MainForm.objINV_DamageEntryList.Show();
+                PbCurrentForm = "3.7";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRackTransfer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_RackSettings = new CP_RackSettings();
+                MainForm.objCP_RackSettings.MdiParent = this;
+                MainForm.objCP_RackSettings.Show();
+                PbCurrentForm = "3.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDirectChequePrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
+                MainForm.objPAY_ChequePrint.MdiParent = this;
+                MainForm.objPAY_ChequePrint.Show();
+                PbCurrentForm = "4.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDiscountVoucher_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_DiscountVoucherList = new PAY_DiscountVoucherList();
+                MainForm.objPAY_DiscountVoucherList.MdiParent = this;
+                MainForm.objPAY_DiscountVoucherList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmAdvance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_AdvanceList = new PAY_AdvanceList();
+                MainForm.objPAY_AdvanceList.MdiParent = this;
+                MainForm.objPAY_AdvanceList.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSupplierPayment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
+                MainForm.objPAY_SupplierPaymentList.MdiParent = this;
+                MainForm.objPAY_SupplierPaymentList.Show();
+                PbCurrentForm = "4.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmGSTRDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objPAY_GSTRDetails = new PAY_GSTRDetails();
+                MainForm.objPAY_GSTRDetails.MdiParent = this;
+                MainForm.objPAY_GSTRDetails.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCity_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Citylist = new CP_Citylist();
+                MainForm.objCP_Citylist.MdiParent = this;
+                MainForm.objCP_Citylist.Show();
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_ProductApprovalList = new CP_ProductApprovalList();
+                MainForm.objCP_ProductApprovalList.MdiParent = this;
+                MainForm.objCP_ProductApprovalList.Show();
+                PbCurrentForm = "5.12";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_UserCategoryList = new CP_UserCategoryList();
+                MainForm.objCP_UserCategoryList.MdiParent = this;
+                MainForm.objCP_UserCategoryList.Show();
+                PbCurrentForm = "5.13";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockLocationUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    udfnCloseChildForms();
+                    if (isClose == false) { return; }
+                    MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                    MainForm.objCP_BulkAttributes.MdiParent = this;
+                    MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
+                    MainForm.objCP_BulkAttributes.Show();
+                    PbCurrentForm = "5.18";
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMinsalesUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMinMaxUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmUnitUppUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmNetGrossUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSubgrupBrandUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmHSNUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProCodeUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.MdiParent = this;
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
+                MainForm.objCP_BulkAttributes.Show();
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStickerPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_StickerPrint = new CP_StickerPrint();
+                MainForm.objCP_StickerPrint.MdiParent = this;
+                MainForm.objCP_StickerPrint.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDirectLabelPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_DiectLabelPrint = new CP_DirectLabelPrint();
+                MainForm.objCP_DiectLabelPrint.MdiParent = this;
+                MainForm.objCP_DiectLabelPrint.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProMapping_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_SupplierMappinglist = new CP_SupplierMappinglist();
+                MainForm.objCP_SupplierMappinglist.MdiParent = this;
+                MainForm.objCP_SupplierMappinglist.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmVoucherSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Settings = new CP_Settings();
+                MainForm.objCP_Settings.MdiParent = this;
+                MainForm.objCP_Settings.Show();
+                PbCurrentForm = "6.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmPrinterSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_PrinterSetting = new CP_Printer_Setting();
+                MainForm.objCP_PrinterSetting.MdiParent = this;
+                MainForm.objCP_PrinterSetting.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmExportTally_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objCP_Tally = new CP_Tally();
+                MainForm.objCP_Tally.MdiParent = this;
+                MainForm.objCP_Tally.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductsReport_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Product = new REPORT_CP_Product();
+                MainForm.objREPORT_CP_Product.MdiParent = this;
+                MainForm.objREPORT_CP_Product.Show();
+                PbCurrentForm = "7.1.13";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TSMProductWiseLP_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
+                PbCurrentForm = "7.7.9";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmClearTransactions_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
+                PbDeleteFlag = 0;
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                if (PbDeleteFlag == 1)
+                {
+                    int Result = 0;
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varoriginator = "";
+                    varoriginator = "Clear Transactions";
+                    varResult = objspservice.udfnDBClearTransaction(0, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Result = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Result = 0;
+                    }
+                    if (Result == 1)
+                    {
+                        udfnFormLoad();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmClearMasters_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_ChangePasswordConfirmation = new CP_ChangePasswordConfirmation();
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.Text = "Passkey";
+                MainForm.objCP_ChangePasswordConfirmation.txtDPasskey.MaxLength = 50;
+                MainForm.objCP_ChangePasswordConfirmation.flag = 1;
+                PbDeleteFlag = 0;
+                MainForm.objCP_ChangePasswordConfirmation.ShowDialog();
+                if (PbDeleteFlag == 1)
+                {
+                    int Result = 0;
+                    SPDataService objspservice = new SPDataService();
+                    string varResult = "", varoriginator = "";
+                    varoriginator = "Clear Masters";
+                    varResult = objspservice.udfnDBClearMaster(0, varoriginator);
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "3")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Result = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Result = 0;
+                    }
+                    if (Result == 1)
+                    {
+                        udfnFormLoad();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmFinancialYearProcess_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objFinancial_Year_Process = new Financial_Year_Process();
+                MainForm.objFinancial_Year_Process.MdiParent = this;
+                MainForm.objFinancial_Year_Process.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockConversion_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockJournalList = new INV_StockJournalList();
+                MainForm.objINV_StockJournalList.MdiParent = this;
+                MainForm.objINV_StockJournalList.Show();
+                PbCurrentForm = "3.5";
             }
             catch (Exception ex)
             {
