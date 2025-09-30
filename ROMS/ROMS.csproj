@@ -355,6 +355,12 @@
     <Compile Include="REPORT_HSN_Tax_Summary.designer.cs">
       <DependentUpon>REPORT_HSN_Tax_Summary.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_CP_Product_Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Category.designer.cs">
+      <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
       <SubType>Form</SubType>
@@ -4943,6 +4949,9 @@
     </Content>
     <EmbeddedResource Include="REPORT_HSN_Tax_Summary.resx">
       <DependentUpon>REPORT_HSN_Tax_Summary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_Product_Category.resx">
+      <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Supplier_Payment.resx">
       <DependentUpon>REPORT_Supplier_Payment.cs</DependentUpon>

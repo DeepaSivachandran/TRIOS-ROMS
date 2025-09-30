@@ -188,6 +188,7 @@ namespace ROMS
             this.tspClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tspClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.financialYearProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProductCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -937,7 +938,8 @@ namespace ROMS
             this.tsmSupplierWiseProducts,
             this.tsmAssigned,
             this.tsmUnassignedProducts,
-            this.tsmZeroRate});
+            this.tsmZeroRate,
+            this.tsmProductCategory});
             this.tsmMastersReport.Name = "tsmMastersReport";
             this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
             this.tsmMastersReport.Text = "Masters";
@@ -1501,6 +1503,13 @@ namespace ROMS
             this.financialYearProcessToolStripMenuItem.Text = "Financial Year Process";
             this.financialYearProcessToolStripMenuItem.Click += new System.EventHandler(this.FinancialYearProcessToolStripMenuItem_Click);
             // 
+            // tsmProductCategory
+            // 
+            this.tsmProductCategory.Name = "tsmProductCategory";
+            this.tsmProductCategory.Size = new System.Drawing.Size(184, 22);
+            this.tsmProductCategory.Text = "Product Category";
+            this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1688,5 +1697,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockReconciliation;
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
         private System.Windows.Forms.ToolStripMenuItem tsmHSNTaxDetailsSummary;
+        private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
     }
 }
