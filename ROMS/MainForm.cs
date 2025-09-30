@@ -245,7 +245,6 @@ namespace ROMS
         public static REPORT_Stock_Hold objREPORT_Stock_Hold;
         public static INV_StockHold_Entry objINV_StockHold_Entry;
         public static REPORT_Stock_Aging objREPORT_Stock_Aging;
-        public static REPORT_Godown_Valuation objREPORT_Godown_Valuation;
         public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
         public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
@@ -263,6 +262,7 @@ namespace ROMS
         public static REPORT_Unassigned_Products objREPORT_Unassigned_Products;
         public static REPORT_Assigned_Products objREPORT_Assigned_Products;
         public static REPORT_ZeroRate objREPORT_ZeroRate;
+        public static REPORT_CP_Product_Category objREPORT_CP_Product_Category;
         public static REPORT_CP_InactiveProduct objREPORT_CP_InactiveProduct;
         public static REPORT_Suppllier_Ledger objREPORT_Suppllier_Ledger;
         public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
@@ -2917,25 +2917,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmGodownValuation_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Godown_Valuation = new REPORT_Godown_Valuation();
-                MainForm.objREPORT_Godown_Valuation.MdiParent = this;
-                MainForm.objREPORT_Godown_Valuation.Show();
-                PbCurrentForm = "7.2.4";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmStockValuation_Click(object sender, EventArgs e)
         {
             try
@@ -3379,6 +3360,24 @@ namespace ROMS
                 MainForm.objREPORT_HSN_Tax_Summary = new REPORT_HSN_Tax_Summary();
                 MainForm.objREPORT_HSN_Tax_Summary.MdiParent = this;
                 MainForm.objREPORT_HSN_Tax_Summary.Show();
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_Product_Category = new REPORT_CP_Product_Category();
+                MainForm.objREPORT_CP_Product_Category.MdiParent = this;
+                MainForm.objREPORT_CP_Product_Category.Show();
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)

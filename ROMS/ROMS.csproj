@@ -263,6 +263,13 @@
     <Compile Include="PUR_MismatchApprovedList.designer.cs">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Product_Category.cs">
+      <DependentUpon>RPT_CP_Product_Category.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_INV_StockHold_SubReport.cs">
       <DependentUpon>RPT_INV_StockHold_SubReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -354,6 +361,12 @@
     </Compile>
     <Compile Include="REPORT_HSN_Tax_Summary.designer.cs">
       <DependentUpon>REPORT_HSN_Tax_Summary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Category.designer.cs">
+      <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
     </Compile>
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
@@ -2321,12 +2334,6 @@
     <Compile Include="REPORT_StockVsZeroRate.designer.cs">
       <DependentUpon>REPORT_StockVsZeroRate.cs</DependentUpon>
     </Compile>
-    <Compile Include="REPORT_Godown_Valuation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="REPORT_Godown_Valuation.designer.cs">
-      <DependentUpon>REPORT_Godown_Valuation.cs</DependentUpon>
-    </Compile>
     <Compile Include="REPORT_Stock_Aging.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3997,6 +4004,11 @@
       <LastGenOutput>RPT_PAY_SupplierPaymentPending.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_CP_Product_Category.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_Category.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PAY_PayReceipt-SubReport.cs</LastGenOutput>
@@ -4950,6 +4962,9 @@
     <EmbeddedResource Include="REPORT_HSN_Tax_Summary.resx">
       <DependentUpon>REPORT_HSN_Tax_Summary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_CP_Product_Category.resx">
+      <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Supplier_Payment.resx">
       <DependentUpon>REPORT_Supplier_Payment.cs</DependentUpon>
     </EmbeddedResource>
@@ -4997,9 +5012,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_StockVsZeroRate.resx">
       <DependentUpon>REPORT_StockVsZeroRate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="REPORT_Godown_Valuation.resx">
-      <DependentUpon>REPORT_Godown_Valuation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Aging.resx">
       <DependentUpon>REPORT_Stock_Aging.cs</DependentUpon>
