@@ -202,6 +202,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraPayType", Convert.ToInt32(cmbPayType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                         objBillreport.SetParameterValue("paraSupplierId", varSupplierId, objBillreport.Subreports[0].Name.ToString());
                         objBillreport.SetParameterValue("paraScheduleId", varScheduleId, objBillreport.Subreports[0].Name.ToString());
+                        objBillreport.SetParameterValue("paraCityId", varCityId, objBillreport.Subreports[0].Name.ToString());
                         objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text, objBillreport.Subreports[0].Name.ToString());
                         objBillreport.SetParameterValue("paraToDate", dpToDate.Text, objBillreport.Subreports[0].Name.ToString());
                     }

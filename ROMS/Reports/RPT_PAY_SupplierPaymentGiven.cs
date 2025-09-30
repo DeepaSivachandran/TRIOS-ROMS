@@ -279,6 +279,14 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[17];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_PAY_SupplierPaymentGiven_Totalrpt_paraCityId {
+            get {
+                return this.DataDefinition.ParameterFields[18];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
