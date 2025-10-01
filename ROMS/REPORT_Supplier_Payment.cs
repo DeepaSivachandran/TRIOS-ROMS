@@ -282,7 +282,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    cmbPayType.Focus();
+                    txtCity.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -354,7 +354,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbPayType.Focus();
+                        txtCity.Focus();
                     }
                 }
             }
@@ -487,7 +487,7 @@ namespace ROMS
                     lblschedleCode.Text = DGV_FilterProduct.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterProduct.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
-                cmbPayType.Focus();
+                txtCity.Focus();
             }
             catch (Exception ex)
             {
@@ -641,7 +641,7 @@ namespace ROMS
             {
                 varUpDownKey = 1;
                 udfnListViewData();
-                cmbPayType.Focus();
+                txtCity.Focus();
             }
             catch (Exception ex)
             {
@@ -717,7 +717,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbPayType.Focus();
+                        txtCity.Focus();
                     }
                 }
             }
