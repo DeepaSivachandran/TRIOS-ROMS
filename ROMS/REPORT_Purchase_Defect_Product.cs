@@ -717,7 +717,7 @@ namespace ROMS
                     }
                     else
                     {
-                        txtDays.Focus();
+                        btnView.Focus();
                     }
                 }
             }
@@ -814,7 +814,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtDays.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
