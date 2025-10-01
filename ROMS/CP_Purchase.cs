@@ -1001,16 +1001,42 @@ namespace ROMS
                             int RefreshPRID = 0, Tab1PRID = 0, Tab2PRID=0;
                             Tab1PRID = Convert.ToInt32(grdSupplierList.Rows[i].Cells["clmProid"].Value);
                             Tab2PRID = Convert.ToInt32(grdPurchaseList.Rows[i].Cells["proid"].Value);
-                            RefreshPRID = Convert.ToInt32(objDs.Tables[0].Rows[i]["PURPR_PRID"]);
+                            RefreshPRID = Convert.ToInt32(objDs.Tables[0].Rows[i]["PRID"]);
+
+                            var result = objDs.Tables[0].AsEnumerable()
+                          .Where(r => r.Field<int>("PRID") == Tab1PRID)
+                          .Select(r => new
+                          {
+                              PRID = r.Field<int>("PRID"),
+                              PR_HSNID = r.Field<string>("PR_HSNID"),
+                              HSN_Name = r.Field<string>("HSN_Name"),
+                              HSN_Code = r.Field<string>("HSN_Code"),
+                              GST_Text = r.Field<string>("GST_Text"),
+                              CGST = r.Field<string>("CGST"),
+                              SGST = r.Field<string>("SGST"),
+                              IGST = r.Field<string>("IGST"),
+                              GST_Value = r.Field<string>("GST_Value")
+                          })
+                          .ToList();
+
+                        
+
                             if (Tab1PRID == RefreshPRID)
                             {
-                                grdSupplierList.Rows[i].Cells["clmHSNid"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_HSNID"]); 
+                                grdSupplierList.Rows[i].Cells["clmHSNid"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["PR_HSNID"]); 
                             }
-                            if (Tab2PRID == RefreshPRID)
+                            if (Tab2PRID == RefreshPRID && i<= grdPurchaseList.RowCount)
                             {
-                                grdPurchaseList.Rows[i].Cells["hsnid"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_HSNID"]);
-                            }
-
+                                grdPurchaseList.Rows[i].Cells["hsnid"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["PR_HSNID"]);
+                                grdPurchaseList.Rows[i].Cells["clmHSN"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Name"]);
+                                grdPurchaseList.Rows[i].Cells["clmHSNCode"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Code"]);
+                                grdPurchaseList.Rows[i].Cells["clmHSNGST"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["GST_Text"]);
+                                grdPurchaseList.Rows[i].Cells["clmGstper"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["GST_Text"]);
+                                grdPurchaseList.Rows[i].Cells["clmCGST"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["CGST"]);
+                                grdPurchaseList.Rows[i].Cells["clmSGST"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["SGST"]);
+                                grdPurchaseList.Rows[i].Cells["clmIGST"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["IGST"]);
+                                grdPurchaseList.Rows[i].Cells["GstValue"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["GST_Value"]);
+                            } 
                         }
                     }
                     //udfnPurchaseEntryTabLoad();
@@ -8965,8 +8991,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        }  
         private void llblReturnDC_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
