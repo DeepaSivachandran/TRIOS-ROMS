@@ -318,13 +318,15 @@ namespace ROMS
             {
                 if (varUpDownKey == 0)
                 {
+                    string varFromDate = MainForm.pbFYStartDate.ToString(@"dd'/'MM'/'yyyy");
+                    string varToDate = MainForm.pbCurrentDate.ToString(@"dd'/'MM'/'yyyy");
                     if (txtSupplier.Text.Length > 0)
                     {
                         MR_Supplier objMR_Supplier = new MR_Supplier();
                         objMR_Supplier.ViewType = 26;
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
-                        objMR_Supplier.ParaFromDate = dpFromDate.Text;
-                        objMR_Supplier.ParaToDate = dpToDate.Text;
+                        objMR_Supplier.ParaFromDate = varFromDate;
+                        objMR_Supplier.ParaToDate = varToDate;
                         objMR_Supplier.paraFlag = 5;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
