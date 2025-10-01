@@ -1428,10 +1428,10 @@ namespace ROMS
                 grdProduct.Columns[0].Width = 50;
                 grdProduct.Columns["PI Code"].Width = 100;
                 grdProduct.Columns["Product Name"].Width = 300;
-                foreach (DataGridViewRow row in grdProduct.Rows)
-                {
-                    row.Cells["Product Name"].Style.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                }
+                //foreach (DataGridViewRow row in grdProduct.Rows)
+                //{
+                //    row.Cells["Product Name"].Style.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                //}
                 grdProduct.Columns["Unit"].Width = 80;
                 grdProduct.Columns["PI Code"].ReadOnly = true;
                 grdProduct.Columns["Product Name"].ReadOnly = true;
@@ -2012,6 +2012,30 @@ namespace ROMS
             try
             {
                 cmbRKTemplates.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdProduct_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                // Check if the column exists before applying styles
+                if (grdProduct.Columns.Contains("Product Name"))
+                {
+                    foreach (DataGridViewRow row in grdProduct.Rows)
+                    {
+                        if (row.Cells["Product Name"] != null && row.Cells["Product Name"].Value != null)
+                        {
+                            row.Cells["Product Name"].Style.Font =
+                                new Font("Uni Ila.Sundaram-03", 11.75F, FontStyle.Regular);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
