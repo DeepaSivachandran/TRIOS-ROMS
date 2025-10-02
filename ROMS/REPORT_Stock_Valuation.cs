@@ -1016,6 +1016,21 @@ namespace ROMS
                     txtLocation.Enabled = true;
                     cmbFilterType.Enabled = true;
                 }
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                    {
+                        string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                        tsbPrintFormat.Text = varTooltipText;
+                        tsbPrintFormat.ToolTipText = varTooltipText;
+                    }
+                    else
+                    {
+                        tsbPrintFormat.Text = string.Empty;
+                        tsbPrintFormat.ToolTipText = string.Empty;
+                    }
+                }
             }
             catch (Exception ex)
             {

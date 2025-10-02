@@ -32,10 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_BillWiseTax));
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
-            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsmPurchaseTaxDetails = new System.Windows.Forms.ToolStripLabel();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbDownload = new System.Windows.Forms.ToolStripButton();
             this.tsbExport = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
@@ -101,19 +101,7 @@
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbPrintFormat.Size = new System.Drawing.Size(89, 28);
             this.tsbPrintFormat.Text = "A4-Landscape";
-            this.tsbPrintFormat.ToolTipText = "Total GRN ";
-            // 
-            // tsbFormat
-            // 
-            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
-            this.tsbFormat.Name = "tsbFormat";
-            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(90, 28);
-            this.tsbFormat.Text = "Print Format : ";
-            this.tsbFormat.ToolTipText = "Total GRN ";
+            this.tsbPrintFormat.ToolTipText = "A4-Landscape";
             // 
             // toolStripLabel1
             // 
@@ -146,6 +134,18 @@
             this.tspHeader.Size = new System.Drawing.Size(185, 28);
             this.tspHeader.Text = "Purchase Bill Wise Tax Report";
             // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFormat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbFormat.Size = new System.Drawing.Size(90, 28);
+            this.tsbFormat.Text = "Print Format : ";
+            this.tsbFormat.ToolTipText = "Print Format";
+            // 
             // tsbDownload
             // 
             this.tsbDownload.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -157,7 +157,7 @@
             this.tsbDownload.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDownload.Size = new System.Drawing.Size(89, 28);
             this.tsbDownload.Text = "Download";
-            this.tsbDownload.ToolTipText = "Total GRN ";
+            this.tsbDownload.ToolTipText = "Download";
             this.tsbDownload.Click += new System.EventHandler(this.tsbDownload_Click);
             // 
             // tsbExport
@@ -171,7 +171,7 @@
             this.tsbExport.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbExport.Size = new System.Drawing.Size(86, 28);
             this.tsbExport.Text = "Generate";
-            this.tsbExport.ToolTipText = "Total GRN ";
+            this.tsbExport.ToolTipText = "Generate";
             this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
             // 
             // pnlReportCity

@@ -22,6 +22,7 @@ namespace ROMS
     public partial class REPORT_Supplier_Payment : Form
     {
         ToolTip tpReportType = new ToolTip();
+        ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -113,15 +114,24 @@ namespace ROMS
         {
             try
             {
+                bool varErrFlag = false;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     epReport.SetError(cmbReportType, "Please select report type.");
                     cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpReportType.ShowAlways = true;
                     tpReportType.Show("Please select report type.", cmbReportType, 5000);
-                    cmbReportType.Focus();
+                    varErrFlag = true;
                 }
-                else
+                if (Convert.ToString(txtSupplier.Text.Trim()) == "")
+                {
+                    epReport.SetError(txtSupplier, "Please enter supplier name.");
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSupplier.ShowAlways = true;
+                    tpSupplier.Show("Please enter supplier name.", txtSupplier, 5000);
+                    varErrFlag = true;
+                }
+                if (varErrFlag == false)
                 {
                     udfnSupplierPaymentReport();
                 }
@@ -159,6 +169,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 int varViewType = 2, varSupplierId = 0, varScheduleId = 0, varCityId = 0;
                 string varSupplierName = "-All-";
                 if (txtSupplier.Text.Trim() != "")
@@ -793,11 +804,14 @@ namespace ROMS
                     if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
                         drv["MST_ShortName"] != DBNull.Value)
                     {
-                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                        string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                        tsbPrintFormat.Text = varTooltipText;
+                        tsbPrintFormat.ToolTipText = varTooltipText;
                     }
                     else
                     {
                         tsbPrintFormat.Text = string.Empty;
+                        tsbPrintFormat.ToolTipText = string.Empty;
                     }
                 }
                 txtCity.Text = "";

@@ -2093,11 +2093,14 @@ namespace ROMS
                     if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
                         drv["MST_ShortName"] != DBNull.Value)
                     {
-                        tsbPrintFormat.Text = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                        string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                        tsbPrintFormat.Text = varTooltipText;
+                        tsbPrintFormat.ToolTipText = varTooltipText;
                     }
                     else
                     {
                         tsbPrintFormat.Text = string.Empty;
+                        tsbPrintFormat.ToolTipText = string.Empty;
                     }
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 297)
@@ -2188,10 +2191,12 @@ namespace ROMS
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 297 && Convert.ToInt32(cmbFormat.SelectedValue) == 359)
                 {
                     tsbPrintFormat.Text = "A4-Portrait";
+                    tsbPrintFormat.ToolTipText = "A4-Portrait";
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 297 && Convert.ToInt32(cmbFormat.SelectedValue) == 360)
                 {
                     tsbPrintFormat.Text = "A4-Landscape";
+                    tsbPrintFormat.ToolTipText = "A4-Landscape";
                 }
             }
             catch (Exception ex)
