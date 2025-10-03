@@ -100,7 +100,7 @@ namespace ROMS
             try
             {
                 string varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varUserName = "-All-";
-                int varGroupId = 0, varSubgroupId = 0, varProductId = 0, varUserId = 0;
+                int varGroupId = 0, varSubgroupId = 0, varProductId = 0, varUserCode = 0;
                 if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text;
@@ -118,8 +118,8 @@ namespace ROMS
                 }
                 if (txtUser.Text.Trim() != "")
                 {
-                    varUserName = txtUser.Text;
-                    varUserId = Convert.ToInt32(lblUserCode.Text);
+                    varUserName = txtUser.Text.Trim();
+                    varUserCode = Convert.ToInt32(lblUserCode.Text);
                 }
 
                 btnView.Enabled = false;
@@ -149,16 +149,16 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Assigned_Products.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Tax_Changes.rpt");
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
-                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
-                    objBillreport.SetParameterValue("ParaProductCode", varProductId);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraUserCode", varUserCode);
+                    objBillreport.SetParameterValue("paraChangedByName", varUserName);
+                    objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
