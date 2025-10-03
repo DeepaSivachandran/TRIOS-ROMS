@@ -70,6 +70,12 @@ namespace ROMS
                     DGV_FilterProduct.DataSource = null;
                     DGV_FilterProduct.Visible = false;
                 }
+                if (skipControl != txtUser)
+                {
+                    varUpDownKeyUser = 0;
+                    DGV_FilterUser.DataSource = null;
+                    DGV_FilterUser.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -95,7 +101,7 @@ namespace ROMS
             {
                 string varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varUserName = "-All-";
                 int varGroupId = 0, varSubgroupId = 0, varProductId = 0, varUserId = 0;
-                if(txtGroup.Text.Trim()!="")
+                if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text;
                     varGroupId = Convert.ToInt32(lblGroupCode.Text);
@@ -1224,6 +1230,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtUser.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1505,6 +1512,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbDateType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1518,7 +1526,7 @@ namespace ROMS
         {
             try
             {
-                if(e.KeyCode==Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     dpFromDate.Focus();
                 }
@@ -1560,6 +1568,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbGST.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

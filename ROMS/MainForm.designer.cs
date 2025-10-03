@@ -190,6 +190,7 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.tsmTaxChanges = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurPOBlockedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -883,7 +884,8 @@ namespace ROMS
             this.tsmInwardStockReport,
             this.tsmFinanceReport,
             this.tsmPurchaseTaxReports,
-            this.tsmItemMovementReport});
+            this.tsmItemMovementReport,
+            this.tsmPurPOBlockedProducts});
             this.tsmReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmReports.Name = "tsmReports";
             this.tsmReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -913,7 +915,7 @@ namespace ROMS
             this.tsmZeroRate,
             this.tsmProductCategory});
             this.tsmMastersReport.Name = "tsmMastersReport";
-            this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmMastersReport.Size = new System.Drawing.Size(205, 22);
             this.tsmMastersReport.Text = "Masters";
             // 
             // tsmCityReport
@@ -1061,7 +1063,7 @@ namespace ROMS
             this.tsmGRNSupplierDetail,
             this.tsmGRNDefectPRoduct});
             this.tsmPO_GRNReport.Name = "tsmPO_GRNReport";
-            this.tsmPO_GRNReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmPO_GRNReport.Size = new System.Drawing.Size(205, 22);
             this.tsmPO_GRNReport.Text = "PO && GRN";
             // 
             // tsmPOProductWiseReport
@@ -1139,7 +1141,7 @@ namespace ROMS
             this.tsmPurchaseDiscountValue,
             this.tsmTaxChanges});
             this.tsmPurchaseReport.Name = "tsmPurchaseReport";
-            this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmPurchaseReport.Size = new System.Drawing.Size(205, 22);
             this.tsmPurchaseReport.Text = "Purchase";
             // 
             // tsmPurchaseSummary
@@ -1252,7 +1254,7 @@ namespace ROMS
             this.tsmStockVsZeroRate,
             this.tsmNonMoving});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
-            this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmInwardStockReport.Size = new System.Drawing.Size(205, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
             // 
             // tsmStockInwardReport
@@ -1317,7 +1319,7 @@ namespace ROMS
             this.tsmSupplierLedgerReport,
             this.tsmPaymentReport});
             this.tsmFinanceReport.Name = "tsmFinanceReport";
-            this.tsmFinanceReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmFinanceReport.Size = new System.Drawing.Size(205, 22);
             this.tsmFinanceReport.Text = "Finance";
             // 
             // tsmSupplierLedgerReport
@@ -1344,7 +1346,7 @@ namespace ROMS
             this.tsmHSNTaxDetailsSummary,
             this.tsmPurchaseHSNReport});
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
-            this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
+            this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(205, 22);
             this.tsmPurchaseTaxReports.Text = "Purchase Tax";
             // 
             // tsmPurchaseBillWiseTaxReport
@@ -1408,7 +1410,7 @@ namespace ROMS
             // tsmItemMovementReport
             // 
             this.tsmItemMovementReport.Name = "tsmItemMovementReport";
-            this.tsmItemMovementReport.Size = new System.Drawing.Size(191, 22);
+            this.tsmItemMovementReport.Size = new System.Drawing.Size(205, 22);
             this.tsmItemMovementReport.Text = "Item Movement Analysis";
             this.tsmItemMovementReport.Click += new System.EventHandler(this.tsmItemMovementReport_Click);
             // 
@@ -1518,6 +1520,13 @@ namespace ROMS
             this.tsmTaxChanges.Size = new System.Drawing.Size(280, 22);
             this.tsmTaxChanges.Text = "Tax Changes";
             this.tsmTaxChanges.Click += new System.EventHandler(this.tsmTaxChanges_Click);
+            // 
+            // tsmPurPOBlockedProducts
+            // 
+            this.tsmPurPOBlockedProducts.Name = "tsmPurPOBlockedProducts";
+            this.tsmPurPOBlockedProducts.Size = new System.Drawing.Size(205, 22);
+            this.tsmPurPOBlockedProducts.Text = "Pur && PO Blocked Products";
+            this.tsmPurPOBlockedProducts.Click += new System.EventHandler(this.tsmPurPOBlockedProducts_Click);
             // 
             // MainForm
             // 
@@ -1709,6 +1718,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
         private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmTaxChanges;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurPOBlockedProducts;
         //private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
     }
 }

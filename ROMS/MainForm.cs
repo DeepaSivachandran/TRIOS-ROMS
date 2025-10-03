@@ -286,6 +286,7 @@ namespace ROMS
         public static REPORT_PUR_AdditionalValue objREPORT_PUR_AdditionalValue;
         public static REPORT_PUR_DiscountValue objREPORT_PUR_DiscountValue;
         public static REPORT_Tax_Changes objREPORT_Tax_Changes;
+        public static REPORT_Pur_PO_Blocked_Products objREPORT_Pur_PO_Blocked_Products;
         public static REPORT_PUR_TCSValue objREPORT_PUR_TCSValue;
         public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
 
@@ -3397,6 +3398,24 @@ namespace ROMS
                 MainForm.objREPORT_Tax_Changes = new REPORT_Tax_Changes();
                 MainForm.objREPORT_Tax_Changes.MdiParent = this;
                 MainForm.objREPORT_Tax_Changes.Show();
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmPurPOBlockedProducts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Pur_PO_Blocked_Products = new REPORT_Pur_PO_Blocked_Products();
+                MainForm.objREPORT_Pur_PO_Blocked_Products.MdiParent = this;
+                MainForm.objREPORT_Pur_PO_Blocked_Products.Show();
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
