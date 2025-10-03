@@ -56,14 +56,14 @@ namespace ROMS
                 if (txtSupplier.Text == "")
                 {
                     lblSupplierCode.Text = "0";
-                    lblschedleCode.Text = "0";
+                    lblScheduleCode.Text = "0";
                 }
                 else
                 {
                     string[] values = new string[0];
                     MR_Supplier objMR_Supplier = new MR_Supplier();
                     objMR_Supplier.ViewType = 31;
-                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
+                    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblScheduleCode.Text);
                     objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
                     DataSet objDsSupplierId = new DataSet();
                     SPDataService objDserv = new SPDataService();
@@ -83,12 +83,12 @@ namespace ROMS
                     if (values[0] == "-1")
                     {
                         lblSupplierCode.Text = "0";
-                        lblschedleCode.Text = "0";
+                        lblScheduleCode.Text = "0";
                     }
                     else
                     {
                         lblSupplierCode.Text = values[0];
-                        lblschedleCode.Text = values[1];
+                        lblScheduleCode.Text = values[1];
                         txtSupplier.BackColor = Color.White;
                     }
                 }
@@ -105,16 +105,18 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "";
-                if(txtSupplier.Text.Trim()=="")
-                {
-                    varSupplierName = "-All-";
-                }
-                else
+                string varSupplierName = "-All-";
+                int varFilterType = 0, varDays = 0, varSupplierId = 0, varScheduleId = 0;
+                if (txtSupplier.Text.Trim()!="")
                 {
                     varSupplierName = txtSupplier.Text;
+                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleId = Convert.ToInt32(lblScheduleCode.Text);
                 }
-                int varFilterType = 0;
+                if(txtDays.Text.Trim()!="")
+                {
+                    varDays = Convert.ToInt32(txtDays.Text);
+                }
                 if (Convert.ToInt32(cmbFilter.SelectedValue) == 365) { varFilterType = 1; }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -129,8 +131,8 @@ namespace ROMS
                 objTRN_PurchaseEntry.ViewType = 23;
                 objTRN_PurchaseEntry.ParaIds = Convert.ToString(cmbConditionType.SelectedValue);
                 objTRN_PurchaseEntry.paraEntryType = Convert.ToInt32(cmbStatus.SelectedValue);
-                objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
-                objTRN_PurchaseEntry.paraScheduleID = Convert.ToInt32(lblschedleCode.Text);
+                objTRN_PurchaseEntry.paraSupplierID = varSupplierId;
+                objTRN_PurchaseEntry.paraScheduleID = varScheduleId;
                 objTRN_PurchaseEntry.paraFilterType = varFilterType;
                 objTRN_PurchaseEntry.paraFromDate = dpFromDate.Text;
                 objTRN_PurchaseEntry.paraToDate = dpToDate.Text;
@@ -149,8 +151,8 @@ namespace ROMS
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Defect_Product.rpt");
                     objBillreport.SetParameterValue("paraEntryType", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("ParaIds", Convert.ToInt32(cmbConditionType.SelectedValue));
-                    objBillreport.SetParameterValue("paraSupplierID", Convert.ToInt32(lblSupplierCode.Text));
-                    objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
+                    objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
+                    objBillreport.SetParameterValue("paraScheduleID", varScheduleId);
 
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraConditionName", Convert.ToString(cmbConditionType.Text));
@@ -158,6 +160,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("paraFilterType", varFilterType);
+                    objBillreport.SetParameterValue("paraFlag", varDays);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -407,7 +410,7 @@ namespace ROMS
                     //lblschedleCode.Text = selectedItem.SubItems[2].Text;
                     //txtSupplier.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = DGV_FilterProduct.SelectedRows[0].Cells["SPID"].Value.ToString();
-                    lblschedleCode.Text = DGV_FilterProduct.SelectedRows[0].Cells["SPSCID"].Value.ToString();
+                    lblScheduleCode.Text = DGV_FilterProduct.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterProduct.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
                 cmbStatus.Focus();
@@ -717,7 +720,7 @@ namespace ROMS
                     }
                     else
                     {
-                        btnView.Focus();
+                        txtDays.Focus();
                     }
                 }
             }
@@ -814,7 +817,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    txtDays.Focus();
                 }
             }
             catch (Exception ex)

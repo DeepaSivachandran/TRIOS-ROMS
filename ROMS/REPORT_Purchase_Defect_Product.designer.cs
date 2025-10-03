@@ -57,7 +57,7 @@
             this.cmbConditionType = new System.Windows.Forms.ComboBox();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.lblschedleCode = new System.Windows.Forms.Label();
+            this.lblScheduleCode = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
@@ -236,7 +236,7 @@
             this.grpfilter.Controls.Add(this.cmbConditionType);
             this.grpfilter.Controls.Add(this.lblSupplierCode);
             this.grpfilter.Controls.Add(this.txtSupplier);
-            this.grpfilter.Controls.Add(this.lblschedleCode);
+            this.grpfilter.Controls.Add(this.lblScheduleCode);
             this.grpfilter.Controls.Add(this.btnView);
             this.grpfilter.Location = new System.Drawing.Point(3, 2);
             this.grpfilter.Name = "grpfilter";
@@ -254,7 +254,6 @@
             this.txtDays.Size = new System.Drawing.Size(46, 27);
             this.txtDays.TabIndex = 6;
             this.txtDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDays.Visible = false;
             this.txtDays.Enter += new System.EventHandler(this.txtDays_Enter);
             this.txtDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDays_KeyDown);
             this.txtDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDays_KeyPress);
@@ -269,7 +268,6 @@
             this.label7.Size = new System.Drawing.Size(35, 20);
             this.label7.TabIndex = 1111205;
             this.label7.Text = "Days";
-            this.label7.Visible = false;
             // 
             // dpToDate
             // 
@@ -407,23 +405,23 @@
             this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
             this.txtSupplier.Leave += new System.EventHandler(this.TxtSupplier_Leave);
             // 
-            // lblschedleCode
+            // lblScheduleCode
             // 
-            this.lblschedleCode.AutoSize = true;
-            this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
-            this.lblschedleCode.Location = new System.Drawing.Point(262, 22);
-            this.lblschedleCode.Name = "lblschedleCode";
-            this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
-            this.lblschedleCode.TabIndex = 1111191;
-            this.lblschedleCode.Text = "0";
-            this.lblschedleCode.Visible = false;
+            this.lblScheduleCode.AutoSize = true;
+            this.lblScheduleCode.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblScheduleCode.Location = new System.Drawing.Point(262, 22);
+            this.lblScheduleCode.Name = "lblScheduleCode";
+            this.lblScheduleCode.Size = new System.Drawing.Size(16, 20);
+            this.lblScheduleCode.TabIndex = 1111191;
+            this.lblScheduleCode.Text = "0";
+            this.lblScheduleCode.Visible = false;
             // 
             // btnView
             // 
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1047, 42);
+            this.btnView.Location = new System.Drawing.Point(1099, 42);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
@@ -522,7 +520,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         public System.Windows.Forms.Label lblSupplierCode;
-        public System.Windows.Forms.Label lblschedleCode;
+        public System.Windows.Forms.Label lblScheduleCode;
         private System.Windows.Forms.ComboBox cmbConditionType;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
