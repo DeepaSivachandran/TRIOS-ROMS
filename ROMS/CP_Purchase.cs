@@ -1173,7 +1173,7 @@ namespace ROMS
                     if (PbSTS == "50")
                     {
                         btnSave.Text = "Update"; btnSave.Enabled = false; txtInvoiceamt.Enabled = false; txtInvoiceamt.ReadOnly = true;
-                        txtInvoiceNo.Enabled = false; txtInvoiceNo.ReadOnly = true;
+                        txtInvoiceNo.Enabled = false; txtInvoiceNo.ReadOnly = true;  btnClear.Enabled = false;
                     }
                     if (varConvertFlag == 1)
                     {
