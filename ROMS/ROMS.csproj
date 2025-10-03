@@ -363,6 +363,12 @@
     </Compile>
     <Compile Include="Model\TRN_Stock_Converstion.cs" />
     <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
+    <Compile Include="REPORT_Tax_Changes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Tax_Changes.designer.cs">
+      <DependentUpon>REPORT_Tax_Changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_HSN_Tax_Summary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4971,6 +4977,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_Tax_Changes.resx">
+      <DependentUpon>REPORT_Tax_Changes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_HSN_Tax_Summary.resx">
       <DependentUpon>REPORT_HSN_Tax_Summary.cs</DependentUpon>
     </EmbeddedResource>
