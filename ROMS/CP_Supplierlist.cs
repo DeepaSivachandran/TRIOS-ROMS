@@ -225,6 +225,7 @@ namespace ROMS
         {
             try
             {
+                varActiveCount = 0; varInactiveCount = 0; varTotalCount = 0; varNotDefinedCount = 0;
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 Varflag = 0;
@@ -396,6 +397,14 @@ namespace ROMS
                 //  grdreplist.ClearSelection();
                 picLoader.Visible = false;
                 picLoader.SendToBack();
+
+
+                grdSupplierList.ClearSelection();
+                lblActiveCount.Text = Convert.ToString(varActiveCount);
+                lblInactiveCount.Text = Convert.ToString(varInactiveCount);
+                lblTotal.Text = Convert.ToString(varTotalCount);
+                lblNotDefined.Text = Convert.ToString(varNotDefinedCount);
+
             }
         }
         public void udfnDefaultSearchGrid()
