@@ -128,7 +128,7 @@ namespace ROMS
                         txtSupplier.BackColor = Color.White;
                     }
                 }
-                udfnSupplierProducts();
+                udfnPurPOBlockedProducts();
             }
             catch (Exception ex)
             {
@@ -136,7 +136,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnSupplierProducts()
+        public void udfnPurPOBlockedProducts()
         {
             try
             {
@@ -173,17 +173,9 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 41;
-                objMR_Supplier.paraSupplierid = varSupplierCode;
-                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraProductCode = varProductCode;
-                objMR_Supplier.paraGroupCode = varGroupCode;
-                objMR_Supplier.paraSubgroupCode = varSubgroupCode;
-                SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                objspdservice.CloseConnection();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnPurHsnReport(33, 0, "", 0, "","", varProductCode, varGroupCode, varSubgroupCode, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0,0, "", "");
+                objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -194,18 +186,20 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Products.rpt");
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_PO_Blocked_Products.rpt");
+                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraSupplierID", varSupplierCode);
+                    objBillreport.SetParameterValue("paraScheduleID", varScheduleCode);
+                    objBillreport.SetParameterValue("paraGroupId", varGroupCode);
+                    objBillreport.SetParameterValue("paraSubgroupId", varSubgroupCode);
+                    objBillreport.SetParameterValue("paraProductId", varProductCode);
+
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraProductName", varProductName);
+                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
