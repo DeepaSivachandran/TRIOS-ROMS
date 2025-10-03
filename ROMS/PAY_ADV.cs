@@ -312,8 +312,7 @@ namespace ROMS
                             varAdvancePayAmnt = varAdvancePayAmnt + ',' + Convert.ToString(grdAdvance.Rows[i].Cells["Current Balance"].Value);
                         }
                         MainForm.objPAY_SupplierPayment.dtCheckAdv.Rows.Add(Convert.ToDecimal(grdAdvance.Rows[i].Cells["Current Balance"].Value), Convert.ToInt32(grdAdvance.Rows[i].Cells["ADID"].Value), grdAdvance.Rows[i].Cells["Current Balance"].Value);
-                    }
-
+                    } 
                 }
                 if (VARFLAG != 0)
                 {

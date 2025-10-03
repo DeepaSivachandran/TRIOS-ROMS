@@ -1286,11 +1286,12 @@ namespace ROMS
                                 grdSupplierPayment.Columns["clmReturnAmt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 varModifiedFlag = 1;
                                 int varFlag = Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"]);
-                                if( (varFlag == 3 || varFlag == 0) && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 79))
+                                if( (varFlag == 3 || varFlag == 0) && (Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 0 || Convert.ToInt32(objDs.Tables[0].Rows[i]["RetStatus"]) == 79) && Convert.ToInt32(objDs.Tables[0].Rows[i]["CheckBoxFlag"]) == 1)
                                 {
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"].Value = false;
                                     grdSupplierPayment.Rows[i].Cells["clmTobePaid"].ReadOnly = true;
                                     grdSupplierPayment.Rows[i].Cells["clmTobePaid"].Style.BackColor = Color.LightGray;
+                                    grdSupplierPayment.Rows[i].Cells["clmCheckBoxEnable"].Value = "1";
                                 }
                                 else
                                 {
@@ -1300,6 +1301,7 @@ namespace ROMS
                                     c.Value = "";
                                     grdSupplierPayment.Rows[i].Cells["clmcheck"] = c;
                                     c.ReadOnly = true;
+                                    grdSupplierPayment.Rows[i].Cells["clmCheckBoxEnable"].Value = "0";
                                 }
                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["Filing Status"]) == "F")
                                 {
@@ -2379,7 +2381,9 @@ namespace ROMS
             try
             {
                 varApplyFlag = 0;
-                dtAdvance.Clear(); varAdvanceID = "";
+                dtAdvance.Clear();
+                dtCheckAdv.Clear();
+                varAdvanceID = "";
                 decimal varPayAmount = 0, varAdvanceAmount = 0, varTotalAmnt = 0;
                 if (clearClick==1)
                 {
@@ -2676,20 +2680,22 @@ namespace ROMS
                                         dtAdvance.Rows.Add(Convert.ToInt32(varAdvanceID), Convert.ToInt32(varID), CurrentAdvace, varFinalAmount, RemainingAmnt, varFixedAdvance, dtAdvance.Rows.Count + 1);
                                         AdvanceAmount = CurrentAdvace;
                                     }
-                                    varAmountCalc = varTotAmount + varAdvAmount;
+                                    varAmountCalc = varTotAmount - varAdvAmount;
                                     varFinalTotAmnt = varFinalTotAmnt + varAmountCalc;
                                     varAdvAmount = 0;
                                     varTotAmount = 0;
                                 } 
                             }
                             else
-                            { 
-                                varadvanceAmt = Convert.ToDecimal(grdSupplierPayment.Rows[j].Cells["clmAdvanceAmnt"].Value);
-                                if(varadvanceAmt != 0)
+                            {
+                                if ( Convert.ToInt32(grdSupplierPayment.Rows[j].Cells["clmCheckBoxEnable"].Value) == 1)
                                 {
-                                    AdvanceAmount = AdvanceAmount + varadvanceAmt;
+                                    varadvanceAmt = Convert.ToDecimal(grdSupplierPayment.Rows[j].Cells["clmAdvanceAmnt"].Value);
+                                    if (varadvanceAmt != 0)
+                                    {
+                                        AdvanceAmount = AdvanceAmount + varadvanceAmt;
+                                    }
                                 }
-
                             }
                         }
                         dtCheckAdv.Rows[i]["Current balance"] = AdvanceAmount;
@@ -2717,7 +2723,7 @@ namespace ROMS
                         {
                             var key = sumOfAdvance[j];
                             var ID = key.PURID;
-                            if (Convert.ToString(ID) == Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value))
+                            if (Convert.ToString(ID) == Convert.ToString(grdSupplierPayment.Rows[i].Cells["clmID"].Value) && Convert.ToInt32(grdSupplierPayment.Rows[i].Cells["clmCheckBoxEnable"].Value) == 1)
                             {
                                 grdSupplierPayment.Rows[i].Cells["clmAdvanceAmnt"].Value = key.TotalAdvanceAmnt;
                             }
