@@ -81,7 +81,7 @@ namespace ROMS
         {
             try
             {
-                udfnAssignedProducts();
+                udfnTaxChangesReport();
             }
             catch (Exception ex)
             {
@@ -89,38 +89,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnAssignedProducts()
+        public void udfnTaxChangesReport()
         {
             try
             {
-                string varGroupName = "", varSubgroupName = "", varProductName = "", varBrandName = "";
-                int varGroupId = 0, varSubgroupId = 0, varProductId = 0, varBrandId = 0;
-                if(txtGroup.Text.Trim()=="")
-                {
-                    varGroupName = "-All-";
-                }
-                else
+                string varGroupName = "-All-", varSubgroupName = "-All-", varProductName = "-All-", varUserName = "-All-";
+                int varGroupId = 0, varSubgroupId = 0, varProductId = 0, varUserId = 0;
+                if(txtGroup.Text.Trim()!="")
                 {
                     varGroupName = txtGroup.Text;
                     varGroupId = Convert.ToInt32(lblGroupCode.Text);
                 }
-                if (txtSubGroup.Text.Trim() == "")
-                {
-                    varSubgroupName = "-All-";
-                }
-                else
+                if (txtSubGroup.Text.Trim() != "")
                 {
                     varSubgroupName = txtSubGroup.Text;
                     varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
                 }
-                if (txtProductName.Text.Trim() == "")
-                {
-                    varProductName = "-All-";
-                }
-                else
+                if (txtProductName.Text.Trim() != "")
                 {
                     varProductName = txtProductName.Text;
                     varProductId = Convert.ToInt32(lblProductcode.Text);
+                }
+                if (txtUser.Text.Trim() != "")
+                {
+                    varUserName = txtUser.Text;
+                    varUserId = Convert.ToInt32(lblUserCode.Text);
                 }
 
                 btnView.Enabled = false;
@@ -137,7 +130,6 @@ namespace ROMS
                 objMR_Product.paraViewType = 63;
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubgroupId;
-                objMR_Product.paraBrandID = varBrandId;
                 objMR_Product.ParaProductCode = varProductId;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
@@ -155,11 +147,9 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
                     objBillreport.SetParameterValue("ParaProductCode", varProductId);
-                    objBillreport.SetParameterValue("paraBrandID", varBrandId);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
                     objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
 
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
@@ -1126,7 +1116,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    cmbDateType.Focus();
                 }
             }
             catch (Exception ex)
