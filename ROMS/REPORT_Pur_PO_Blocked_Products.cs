@@ -595,16 +595,24 @@ namespace ROMS
             {
                 if (varUpDownKeyProduct == 0)
                 {
+                    int varGroupId = 0, varSubgroupId = 0;
+                    if (txtGroup.Text.Trim() != "")
+                    {
+                        varGroupId = Convert.ToInt32(lblGroupCode.Text);
+                    }
+                    if (txtGroup.Text.Trim() != "")
+                    {
+                        varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
+                    }
                     //lvproduct.Items.Clear();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
                     {
-
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 49;
-                        objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
-                        objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
+                        objMR_Product.paraGroup =varGroupId;
+                        objMR_Product.paraSubgroup = varSubgroupId;
                         objMR_Product.paraProductName = txtProductName.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         if (objDs != null)
