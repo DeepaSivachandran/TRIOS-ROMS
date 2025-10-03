@@ -166,6 +166,12 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_UserRoleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UserRoleList.designer.cs">
+      <DependentUpon>CP_UserRoleList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_UserRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3256,6 +3262,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\padlock.png" />
     <None Include="Resources\timetable.png" />
     <None Include="Resources\view %281%29.png" />
     <None Include="Resources\Unapproved.jpg" />
@@ -3269,6 +3276,9 @@
     <None Include="Resources\right arrow.gif" />
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_UserRoleList.resx">
+      <DependentUpon>CP_UserRoleList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UserRole.resx">
       <DependentUpon>CP_UserRole.cs</DependentUpon>

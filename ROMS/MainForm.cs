@@ -125,6 +125,8 @@ namespace ROMS
 
         // added by venkat on 30-09-2025
         public static CP_UserRole objCP_UserRole;
+        // added by venkat on 03-10-2025
+        public static CP_UserRoleList objCP_UserRoleList;
 
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
@@ -2659,9 +2661,9 @@ namespace ROMS
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objCP_UserRole = new CP_UserRole();
-                MainForm.objCP_UserRole.MdiParent = this;
-                MainForm.objCP_UserRole.Show();
+                MainForm.objCP_UserRoleList = new CP_UserRoleList();
+                MainForm.objCP_UserRoleList.MdiParent = this;
+                MainForm.objCP_UserRoleList.Show();
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
