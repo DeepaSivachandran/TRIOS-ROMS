@@ -908,13 +908,13 @@ namespace ROMS
             this.tsmRackGroupReport,
             this.tsmSupplierReport,
             this.tsmProductsReport,
+            this.tsmProductCategory,
             this.tsmInactiveProduct,
             this.tsmSupplierWiseProducts,
             this.tsmSupplierWiseBlockedProducts,
             this.tsmAssigned,
             this.tsmUnassignedProducts,
             this.tsmZeroRate,
-            this.tsmProductCategory,
             this.tsmPriceList});
             this.tsmMastersReport.Name = "tsmMastersReport";
             this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
