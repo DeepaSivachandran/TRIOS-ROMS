@@ -644,8 +644,8 @@ namespace ROMS
                         e.PaintBackground(e.CellBounds, true);
                         Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
-                        // Draw arrow (►)
-                        TextRenderer.DrawText(e.Graphics, "-►", e.CellStyle.Font,
+                        // Draw arrow (-►)
+                        TextRenderer.DrawText(e.Graphics, "├⮞", e.CellStyle.Font,
                             new Point(e.CellBounds.X + 3, e.CellBounds.Y + 2), textArrowColor);
 
                         // Draw actual text with padding
@@ -662,15 +662,34 @@ namespace ROMS
                         e.PaintBackground(e.CellBounds, true);
 
                         Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
-                        Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
-                        // Draw arrow (►)
-                        TextRenderer.DrawText(e.Graphics, "-►", e.CellStyle.Font,
+                        Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
+                        // Draw arrow (-►)
+                        TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
                             new Point(e.CellBounds.X + 30, e.CellBounds.Y + 2), textArrowColor);
 
                         // Draw actual text with padding
                         TextRenderer.DrawText(e.Graphics, row.Cells[e.ColumnIndex].Value?.ToString(),
                             e.CellStyle.Font,
                             new Rectangle(e.CellBounds.X + 50, e.CellBounds.Y + 2,
+                                          e.CellBounds.Width - 10, e.CellBounds.Height),
+                            textColor, TextFormatFlags.Left);
+
+                    }
+                    if (menuType == "5")
+                    {
+                        e.Handled = true;
+                        e.PaintBackground(e.CellBounds, true);
+
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
+                        // Draw arrow (-►)
+                        TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
+                            new Point(e.CellBounds.X + 60, e.CellBounds.Y + 2), textArrowColor);
+
+                        // Draw actual text with padding
+                        TextRenderer.DrawText(e.Graphics, row.Cells[e.ColumnIndex].Value?.ToString(),
+                            e.CellStyle.Font,
+                            new Rectangle(e.CellBounds.X + 80, e.CellBounds.Y + 2,
                                           e.CellBounds.Width - 10, e.CellBounds.Height),
                             textColor, TextFormatFlags.Left);
 
