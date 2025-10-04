@@ -134,6 +134,7 @@ namespace ROMS
             this.tsmUnassignedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPriceList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPO_GRNReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -181,7 +182,6 @@ namespace ROMS
             this.tsmPurchaseHSNWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseHSNNameWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmItemMovementReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPurPOBlockedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
@@ -191,7 +191,7 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
-            this.tsmPriceList = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSupplierWiseBlockedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -885,8 +885,7 @@ namespace ROMS
             this.tsmInwardStockReport,
             this.tsmFinanceReport,
             this.tsmPurchaseTaxReports,
-            this.tsmItemMovementReport,
-            this.tsmPurPOBlockedProducts});
+            this.tsmItemMovementReport});
             this.tsmReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmReports.Name = "tsmReports";
             this.tsmReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -911,147 +910,155 @@ namespace ROMS
             this.tsmProductsReport,
             this.tsmInactiveProduct,
             this.tsmSupplierWiseProducts,
+            this.tsmSupplierWiseBlockedProducts,
             this.tsmAssigned,
             this.tsmUnassignedProducts,
             this.tsmZeroRate,
             this.tsmProductCategory,
             this.tsmPriceList});
             this.tsmMastersReport.Name = "tsmMastersReport";
-            this.tsmMastersReport.Size = new System.Drawing.Size(205, 22);
+            this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
             this.tsmMastersReport.Text = "Masters";
             // 
             // tsmCityReport
             // 
             this.tsmCityReport.Name = "tsmCityReport";
-            this.tsmCityReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmCityReport.Size = new System.Drawing.Size(225, 22);
             this.tsmCityReport.Text = "City";
             this.tsmCityReport.Click += new System.EventHandler(this.tsmCityReport_Click);
             // 
             // tsmState
             // 
             this.tsmState.Name = "tsmState";
-            this.tsmState.Size = new System.Drawing.Size(184, 22);
+            this.tsmState.Size = new System.Drawing.Size(225, 22);
             this.tsmState.Text = "State";
             this.tsmState.Click += new System.EventHandler(this.tsmState_Click);
             // 
             // tsmCompanyReport
             // 
             this.tsmCompanyReport.Name = "tsmCompanyReport";
-            this.tsmCompanyReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmCompanyReport.Size = new System.Drawing.Size(225, 22);
             this.tsmCompanyReport.Text = "Company";
             this.tsmCompanyReport.Click += new System.EventHandler(this.tsmCompanyReport_Click);
             // 
             // tsmHSNReport
             // 
             this.tsmHSNReport.Name = "tsmHSNReport";
-            this.tsmHSNReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmHSNReport.Size = new System.Drawing.Size(225, 22);
             this.tsmHSNReport.Text = "HSN";
             this.tsmHSNReport.Click += new System.EventHandler(this.tsmHSNReport_Click);
             // 
             // tsmGroupReport
             // 
             this.tsmGroupReport.Name = "tsmGroupReport";
-            this.tsmGroupReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmGroupReport.Size = new System.Drawing.Size(225, 22);
             this.tsmGroupReport.Text = "Product Group";
             this.tsmGroupReport.Click += new System.EventHandler(this.tsmGroupReport_Click);
             // 
             // tsmBrokerReport
             // 
             this.tsmBrokerReport.Name = "tsmBrokerReport";
-            this.tsmBrokerReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmBrokerReport.Size = new System.Drawing.Size(225, 22);
             this.tsmBrokerReport.Text = "Broker";
             this.tsmBrokerReport.Click += new System.EventHandler(this.tsmBrokerReport_Click);
             // 
             // tsmBrandReport
             // 
             this.tsmBrandReport.Name = "tsmBrandReport";
-            this.tsmBrandReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmBrandReport.Size = new System.Drawing.Size(225, 22);
             this.tsmBrandReport.Text = "Brand";
             this.tsmBrandReport.Click += new System.EventHandler(this.tsmBrandReport_Click);
             // 
             // tsmProductSubgroupReport
             // 
             this.tsmProductSubgroupReport.Name = "tsmProductSubgroupReport";
-            this.tsmProductSubgroupReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmProductSubgroupReport.Size = new System.Drawing.Size(225, 22);
             this.tsmProductSubgroupReport.Text = "Product Subgroup";
             this.tsmProductSubgroupReport.Click += new System.EventHandler(this.tsmProductSubgroupReport_Click);
             // 
             // tsmStockLocationReport
             // 
             this.tsmStockLocationReport.Name = "tsmStockLocationReport";
-            this.tsmStockLocationReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmStockLocationReport.Size = new System.Drawing.Size(225, 22);
             this.tsmStockLocationReport.Text = "Stock Location";
             this.tsmStockLocationReport.Click += new System.EventHandler(this.tsmStockLocationReport_Click);
             // 
             // tsmRackReport
             // 
             this.tsmRackReport.Name = "tsmRackReport";
-            this.tsmRackReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmRackReport.Size = new System.Drawing.Size(225, 22);
             this.tsmRackReport.Text = "Rack";
             this.tsmRackReport.Click += new System.EventHandler(this.tsmRackReport_Click);
             // 
             // tsmRackGroupReport
             // 
             this.tsmRackGroupReport.Name = "tsmRackGroupReport";
-            this.tsmRackGroupReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmRackGroupReport.Size = new System.Drawing.Size(225, 22);
             this.tsmRackGroupReport.Text = "Rack Group";
             this.tsmRackGroupReport.Click += new System.EventHandler(this.tsmRackGroupReport_Click);
             // 
             // tsmSupplierReport
             // 
             this.tsmSupplierReport.Name = "tsmSupplierReport";
-            this.tsmSupplierReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmSupplierReport.Size = new System.Drawing.Size(225, 22);
             this.tsmSupplierReport.Text = "Supplier";
             this.tsmSupplierReport.Click += new System.EventHandler(this.tsmSupplierReport_Click);
             // 
             // tsmProductsReport
             // 
             this.tsmProductsReport.Name = "tsmProductsReport";
-            this.tsmProductsReport.Size = new System.Drawing.Size(184, 22);
+            this.tsmProductsReport.Size = new System.Drawing.Size(225, 22);
             this.tsmProductsReport.Text = "Product";
             this.tsmProductsReport.Click += new System.EventHandler(this.ProductToolStripMenuItem_Click);
             // 
             // tsmInactiveProduct
             // 
             this.tsmInactiveProduct.Name = "tsmInactiveProduct";
-            this.tsmInactiveProduct.Size = new System.Drawing.Size(184, 22);
+            this.tsmInactiveProduct.Size = new System.Drawing.Size(225, 22);
             this.tsmInactiveProduct.Text = "Inactive Product";
             this.tsmInactiveProduct.Click += new System.EventHandler(this.TsmInactiveProduct_Click);
             // 
             // tsmSupplierWiseProducts
             // 
             this.tsmSupplierWiseProducts.Name = "tsmSupplierWiseProducts";
-            this.tsmSupplierWiseProducts.Size = new System.Drawing.Size(184, 22);
+            this.tsmSupplierWiseProducts.Size = new System.Drawing.Size(225, 22);
             this.tsmSupplierWiseProducts.Text = "Supplier wise Products";
             this.tsmSupplierWiseProducts.Click += new System.EventHandler(this.tsmSupplierWiseProducts_Click);
             // 
             // tsmAssigned
             // 
             this.tsmAssigned.Name = "tsmAssigned";
-            this.tsmAssigned.Size = new System.Drawing.Size(184, 22);
+            this.tsmAssigned.Size = new System.Drawing.Size(225, 22);
             this.tsmAssigned.Text = "Assigned Products";
             this.tsmAssigned.Click += new System.EventHandler(this.tsmAssigned_Click);
             // 
             // tsmUnassignedProducts
             // 
             this.tsmUnassignedProducts.Name = "tsmUnassignedProducts";
-            this.tsmUnassignedProducts.Size = new System.Drawing.Size(184, 22);
+            this.tsmUnassignedProducts.Size = new System.Drawing.Size(225, 22);
             this.tsmUnassignedProducts.Text = "Unassigned Products";
             this.tsmUnassignedProducts.Click += new System.EventHandler(this.tsmUnassignedProducts_Click);
             // 
             // tsmZeroRate
             // 
             this.tsmZeroRate.Name = "tsmZeroRate";
-            this.tsmZeroRate.Size = new System.Drawing.Size(184, 22);
+            this.tsmZeroRate.Size = new System.Drawing.Size(225, 22);
             this.tsmZeroRate.Text = "Zero Rate";
             this.tsmZeroRate.Click += new System.EventHandler(this.TsmZeroRate_Click);
             // 
             // tsmProductCategory
             // 
             this.tsmProductCategory.Name = "tsmProductCategory";
-            this.tsmProductCategory.Size = new System.Drawing.Size(184, 22);
+            this.tsmProductCategory.Size = new System.Drawing.Size(225, 22);
             this.tsmProductCategory.Text = "Product Category";
             this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
+            // 
+            // tsmPriceList
+            // 
+            this.tsmPriceList.Name = "tsmPriceList";
+            this.tsmPriceList.Size = new System.Drawing.Size(225, 22);
+            this.tsmPriceList.Text = "Price List";
+            this.tsmPriceList.Click += new System.EventHandler(this.tsmPriceList_Click);
             // 
             // tsmPO_GRNReport
             // 
@@ -1065,7 +1072,7 @@ namespace ROMS
             this.tsmGRNSupplierDetail,
             this.tsmGRNDefectPRoduct});
             this.tsmPO_GRNReport.Name = "tsmPO_GRNReport";
-            this.tsmPO_GRNReport.Size = new System.Drawing.Size(205, 22);
+            this.tsmPO_GRNReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPO_GRNReport.Text = "PO && GRN";
             // 
             // tsmPOProductWiseReport
@@ -1143,7 +1150,7 @@ namespace ROMS
             this.tsmPurchaseDiscountValue,
             this.tsmTaxChanges});
             this.tsmPurchaseReport.Name = "tsmPurchaseReport";
-            this.tsmPurchaseReport.Size = new System.Drawing.Size(205, 22);
+            this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseReport.Text = "Purchase";
             // 
             // tsmPurchaseSummary
@@ -1263,7 +1270,7 @@ namespace ROMS
             this.tsmStockVsZeroRate,
             this.tsmNonMoving});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
-            this.tsmInwardStockReport.Size = new System.Drawing.Size(205, 22);
+            this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
             // 
             // tsmStockInwardReport
@@ -1328,7 +1335,7 @@ namespace ROMS
             this.tsmSupplierLedgerReport,
             this.tsmPaymentReport});
             this.tsmFinanceReport.Name = "tsmFinanceReport";
-            this.tsmFinanceReport.Size = new System.Drawing.Size(205, 22);
+            this.tsmFinanceReport.Size = new System.Drawing.Size(191, 22);
             this.tsmFinanceReport.Text = "Finance";
             // 
             // tsmSupplierLedgerReport
@@ -1355,7 +1362,7 @@ namespace ROMS
             this.tsmHSNTaxDetailsSummary,
             this.tsmPurchaseHSNReport});
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
-            this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(205, 22);
+            this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseTaxReports.Text = "Purchase Tax";
             // 
             // tsmPurchaseBillWiseTaxReport
@@ -1419,16 +1426,9 @@ namespace ROMS
             // tsmItemMovementReport
             // 
             this.tsmItemMovementReport.Name = "tsmItemMovementReport";
-            this.tsmItemMovementReport.Size = new System.Drawing.Size(205, 22);
+            this.tsmItemMovementReport.Size = new System.Drawing.Size(191, 22);
             this.tsmItemMovementReport.Text = "Item Movement Analysis";
             this.tsmItemMovementReport.Click += new System.EventHandler(this.tsmItemMovementReport_Click);
-            // 
-            // tsmPurPOBlockedProducts
-            // 
-            this.tsmPurPOBlockedProducts.Name = "tsmPurPOBlockedProducts";
-            this.tsmPurPOBlockedProducts.Size = new System.Drawing.Size(205, 22);
-            this.tsmPurPOBlockedProducts.Text = "Pur && PO Blocked Products";
-            this.tsmPurPOBlockedProducts.Click += new System.EventHandler(this.tsmPurPOBlockedProducts_Click);
             // 
             // tsmMyProfile
             // 
@@ -1530,12 +1530,12 @@ namespace ROMS
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
-            // tsmPriceList
+            // tsmSupplierWiseBlockedProducts
             // 
-            this.tsmPriceList.Name = "tsmPriceList";
-            this.tsmPriceList.Size = new System.Drawing.Size(184, 22);
-            this.tsmPriceList.Text = "Price List";
-            this.tsmPriceList.Click += new System.EventHandler(this.tsmPriceList_Click);
+            this.tsmSupplierWiseBlockedProducts.Name = "tsmSupplierWiseBlockedProducts";
+            this.tsmSupplierWiseBlockedProducts.Size = new System.Drawing.Size(225, 22);
+            this.tsmSupplierWiseBlockedProducts.Text = "Supplier wise Blocked Products";
+            this.tsmSupplierWiseBlockedProducts.Click += new System.EventHandler(this.tsmSupplierWiseBlockedProducts_Click);
             // 
             // MainForm
             // 
@@ -1727,8 +1727,8 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
         private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmTaxChanges;
-        private System.Windows.Forms.ToolStripMenuItem tsmPurPOBlockedProducts;
         private System.Windows.Forms.ToolStripMenuItem tsmPriceList;
+        private System.Windows.Forms.ToolStripMenuItem tsmSupplierWiseBlockedProducts;
         //private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
     }
 }

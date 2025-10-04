@@ -3444,6 +3444,24 @@ namespace ROMS
             }
         }
 
+        private void tsmSupplierWiseBlockedProducts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_Pur_PO_Blocked_Products = new REPORT_Pur_PO_Blocked_Products();
+                MainForm.objREPORT_Pur_PO_Blocked_Products.MdiParent = this;
+                MainForm.objREPORT_Pur_PO_Blocked_Products.Show();
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try
