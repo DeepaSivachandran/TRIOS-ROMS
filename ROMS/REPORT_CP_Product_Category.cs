@@ -111,6 +111,11 @@ namespace ROMS
                     varBrandName = txtBrand.Text;
                     varBrandId = Convert.ToInt32(lblBrandCode.Text);
                 }
+                int varTypeId = 0;
+                if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
+                {
+                    varTypeId = Convert.ToInt32(cmbType.SelectedValue);
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -125,7 +130,7 @@ namespace ROMS
                 objMR_Product.paraBrandID = varBrandId;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
-                objMR_Product.paraType = Convert.ToInt32(cmbType.SelectedValue);
+                objMR_Product.paraType = varTypeId;
                 objMR_Product.paraFlag = Convert.ToInt32(cmbProductName.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
@@ -151,7 +156,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
                     objBillreport.SetParameterValue("paraFlag", Convert.ToInt32(cmbProductName.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
-                    objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
+                    objBillreport.SetParameterValue("paraType", varTypeId);
                     objBillreport.SetParameterValue("paraTypeName", Convert.ToString(cmbType.Text));
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
@@ -1281,7 +1286,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbType.Focus();
+                    if (cmbType.Enabled == true)
+                    {
+                        cmbType.Focus();
+                    }
+                    else
+                    {
+                        txtGroup.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1426,6 +1438,48 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbCategory.SelectedValue) == 13)   //Trading
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID=13 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    cmbType.Enabled = false;
+                }
+                else if (Convert.ToInt32(cmbCategory.SelectedValue) == 14)  //Conversion
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbType.Enabled = true;
+                }
+                else if (Convert.ToInt32(cmbCategory.SelectedValue) == 15)  //Free
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID=15 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    cmbType.Enabled = false;
+                }
+                else if (Convert.ToInt32(cmbCategory.SelectedValue) == 16)  //Production
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,76) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbType.Enabled = true;
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbType.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void LvBrand_DoubleClick(object sender, EventArgs e)
         {
             udfnBrandAutocomplete();
