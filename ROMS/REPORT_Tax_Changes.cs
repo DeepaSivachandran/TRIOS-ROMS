@@ -151,12 +151,19 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Tax_Changes.rpt");
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraFilterDate", Convert.ToInt32(cmbDateType.SelectedValue));
+                    objBillreport.SetParameterValue("paraDateType", Convert.ToString(cmbDateType.Text));
+                    objBillreport.SetParameterValue("paraFlag", Convert.ToString(cmbGST.SelectedValue));
+                    objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                    objBillreport.SetParameterValue("ParaProductCode", varProductId);
+                    objBillreport.SetParameterValue("paraProductName", varProductName);
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
                     objBillreport.SetParameterValue("paraUserCode", varUserCode);
-                    objBillreport.SetParameterValue("paraChangedByName", varUserName);
+                    objBillreport.SetParameterValue("paraSystemUser", varUserName);
                     objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -205,6 +212,10 @@ namespace ROMS
         {
             try
             {
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -214,8 +225,11 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,122) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,123) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbGST, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_GST", "GSTID<>0", "GST_Text,GSTID", cmbGSTPer, "", "GST_Text", "GSTID");
+                objDataBind = null;
                 cmbDateType.SelectedValue = 0;
                 cmbGST.SelectedValue = 0;
+                cmbGSTPer.SelectedValue = -1;
             }
             catch (Exception ex)
             {
@@ -1584,7 +1598,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtUser.Focus();
+                    cmbGSTPer.Focus();
                 }
             }
             catch (Exception ex)
@@ -1612,6 +1626,62 @@ namespace ROMS
             try
             {
                 cmbGST.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGSTPer_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbGSTPer.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGSTPer_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtUser.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGSTPer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGSTPer_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGSTPer.BackColor = Color.White;
             }
             catch (Exception ex)
             {
