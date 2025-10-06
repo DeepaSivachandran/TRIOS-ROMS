@@ -137,6 +137,7 @@ namespace ROMS
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubgroupId;
                 objMR_Product.ParaProductCode = varProductId;
+                objMR_Product.paraGstId = Convert.ToInt32(cmbGSTPer.SelectedValue);
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -156,6 +157,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraDateType", Convert.ToString(cmbDateType.Text));
                     objBillreport.SetParameterValue("paraFlag", Convert.ToString(cmbGST.SelectedValue));
                     objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
+                    objBillreport.SetParameterValue("paraGstId", Convert.ToString(cmbGSTPer.SelectedValue));
                     objBillreport.SetParameterValue("ParaProductCode", varProductId);
                     objBillreport.SetParameterValue("paraProductName", varProductName);
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
