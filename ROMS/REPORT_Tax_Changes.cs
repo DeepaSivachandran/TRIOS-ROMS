@@ -133,7 +133,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 63;
+                objMR_Product.paraViewType = 79;
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubgroupId;
                 objMR_Product.ParaProductCode = varProductId;
