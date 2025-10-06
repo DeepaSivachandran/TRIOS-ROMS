@@ -4558,6 +4558,75 @@ namespace ROMS
             return ds;
         }
 
+        //Created By:- venkat Created On:-22/08/2023
+        public string udfnUserRole(int paraviewType, int paraUserRoleID, string paraNameoftheUser , int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag,DataTable paraUserRoleDetails, DataTable paraUserRole_Menu_Access)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_User_Role]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserRoleID", paraUserRoleID);
+                varSqlCommand.Parameters.AddWithValue("@paraNameoftheUser", paraNameoftheUser); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraUserRoleDetails", paraUserRoleDetails);
+                varSqlCommand.Parameters.AddWithValue("@paraUserRole_Menu_Access", paraUserRole_Menu_Access);
+                
+
+
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+
+        // Created by : Venkat
+        // Created on : 03/10/2025
+        public DataSet udfnUserRoleList(int paraviewType , int paraUserRoleId, int paraStatusId )
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_UserRole]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraviewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserRoleId", paraUserRoleId); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
     }
 
 }
