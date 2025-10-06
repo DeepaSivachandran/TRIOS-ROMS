@@ -98,7 +98,7 @@
             this.lblTotalBrands.AutoSize = true;
             this.lblTotalBrands.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblTotalBrands.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalBrands.Location = new System.Drawing.Point(746, 516);
+            this.lblTotalBrands.Location = new System.Drawing.Point(730, 516);
             this.lblTotalBrands.Name = "lblTotalBrands";
             this.lblTotalBrands.Size = new System.Drawing.Size(17, 20);
             this.lblTotalBrands.TabIndex = 958819;
@@ -109,7 +109,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(656, 516);
+            this.label11.Location = new System.Drawing.Point(649, 516);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(84, 20);
             this.label11.TabIndex = 958818;

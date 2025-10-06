@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_City));
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
@@ -40,6 +41,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.tsmPurchaseTaxDetails = new System.Windows.Forms.ToolStripLabel();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -55,7 +57,8 @@
             this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbPrintFormat,
-            this.tsbFormat});
+            this.tsbFormat,
+            this.tsmPurchaseTaxDetails});
             this.ReportCity.Location = new System.Drawing.Point(0, 0);
             this.ReportCity.Name = "ReportCity";
             this.ReportCity.Size = new System.Drawing.Size(1354, 27);
@@ -69,8 +72,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(87, 24);
-            this.tspHeader.Text = "City Report";
+            this.tspHeader.Size = new System.Drawing.Size(68, 24);
+            this.tspHeader.Text = "Reports";
             // 
             // tsbPrintFormat
             // 
@@ -206,6 +209,16 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // tsmPurchaseTaxDetails
+            // 
+            this.tsmPurchaseTaxDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmPurchaseTaxDetails.Image = ((System.Drawing.Image)(resources.GetObject("tsmPurchaseTaxDetails.Image")));
+            this.tsmPurchaseTaxDetails.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmPurchaseTaxDetails.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsmPurchaseTaxDetails.Name = "tsmPurchaseTaxDetails";
+            this.tsmPurchaseTaxDetails.Size = new System.Drawing.Size(69, 24);
+            this.tsmPurchaseTaxDetails.Text = "Masters";
+            // 
             // REPORT_CP_City
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -249,5 +262,6 @@
         private System.Windows.Forms.Button btnListPrint;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
+        private System.Windows.Forms.ToolStripLabel tsmPurchaseTaxDetails;
     }
 }
