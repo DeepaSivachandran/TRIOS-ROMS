@@ -120,6 +120,19 @@
   <metadata name="ReportProductSubgroup.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 3</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tsmMasters.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        dgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFOSURBVDhPrZPL
+        SsNQEIZTXIi3p/ABfIxC9y50rwt33tInKIKKC0FqGwo68YJ5ANFMpCixCxVUbIomXWVKEeumrkoXHjnR
+        2NxONvovz/zfzzkzcyTprwJ0s1r1bTx6HhTolNNqNBI99wRIbRVds2J2JqI1LsZYBpC6gC4mhuwjbQAS
+        A52uRSGAbpF7VIMu4fx1LFTcu3AnAekzLUQ9a015dVEIIFV9gygEkG6FIaruzvwGcENCTwBpLujhPSnd
+        tUe94vapMwxInaChcGRfSYxl/AA+KUD6CHkOXozEgE2t2c+XrIe0gPWTZk9WLNO/3uwAdvqy0niSK8+h
+        J6hGa34AOz25XL9fgcfvPvhNFME/Hq+JMdgfYxrsjzEGc/FFSoO5+CIlwlxrx/b7qmIJ4WmNDRUO7W6+
+        bN0sbtXiq7xcrGcXdqzUz7S028glwv+hLzRhY95zMpROAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>

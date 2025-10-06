@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Rack));
             this.ReportRack = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
@@ -43,6 +44,7 @@
             this.lblReportType = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsmMasters = new System.Windows.Forms.ToolStripLabel();
             this.ReportRack.SuspendLayout();
             this.pnlReportRack.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -58,7 +60,8 @@
             this.ReportRack.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbPrintFormat,
-            this.tsbFormat});
+            this.tsbFormat,
+            this.tsmMasters});
             this.ReportRack.Location = new System.Drawing.Point(0, 0);
             this.ReportRack.Name = "ReportRack";
             this.ReportRack.Size = new System.Drawing.Size(1354, 27);
@@ -72,8 +75,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(91, 24);
-            this.tspHeader.Text = "Rack Report";
+            this.tspHeader.Size = new System.Drawing.Size(68, 24);
+            this.tspHeader.Text = "Reports";
             // 
             // tsbPrintFormat
             // 
@@ -241,6 +244,17 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // tsmMasters
+            // 
+            this.tsmMasters.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmMasters.Image = ((System.Drawing.Image)(resources.GetObject("tsmMasters.Image")));
+            this.tsmMasters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsmMasters.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsmMasters.Name = "tsmMasters";
+            this.tsmMasters.Size = new System.Drawing.Size(69, 24);
+            this.tsmMasters.Text = "Masters";
+            this.tsmMasters.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsmMasters_MouseDown);
+            // 
             // REPORT_CP_Rack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -255,7 +269,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_CP_Rack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HSN Report";
+            this.Text = "Rack Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Rack_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Rack_KeyDown);
             this.ReportRack.ResumeLayout(false);
@@ -287,5 +301,6 @@
         private System.Windows.Forms.Label lblcityid;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
+        private System.Windows.Forms.ToolStripLabel tsmMasters;
     }
 }
