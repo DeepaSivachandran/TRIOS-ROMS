@@ -1025,6 +1025,11 @@ namespace ROMS
                     int varTemplateIndex = cmbTemplate.SelectedIndex;
                     var varSticker = new[] { 268, 269 };
                     var varSheet = new[] { 316, 317, 318, 319 };
+                    int varTypeId = 0;
+                    if (chkNone.Checked == true)
+                    {
+                        varTypeId = 1;
+                    }
 
                     if (type == "Preview")
                     {
@@ -1061,6 +1066,10 @@ namespace ROMS
                             }
                             else
                             {
+                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268)
+                                {
+                                    objBillreport.SetParameterValue("paraType", varTypeId);
+                                }
                                 objBillreport.SetParameterValue("paraTitleName", cmbTitle.Text);
                             }
                         }
@@ -1157,6 +1166,10 @@ namespace ROMS
                             }
                             else
                             {
+                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268)
+                                {
+                                    objBillreportTestPrint.SetParameterValue("paraType", varTypeId);
+                                }
                                 objBillreportTestPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
                             }
                         }
@@ -1221,6 +1234,10 @@ namespace ROMS
                             }
                             else
                             {
+                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268)
+                                {
+                                    objBillreportDirectPrint.SetParameterValue("paraType", varTypeId);
+                                }
                                 objBillreportDirectPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
                             }
                         }
@@ -1643,11 +1660,19 @@ namespace ROMS
                     (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
                 {
                     cmbTitle.Enabled = true;
+                    chkNone.Enabled = true;
                 }
                 else
                 {
                     cmbTitle.SelectedValue = -1;
                     cmbTitle.Enabled = false;
+                    chkNone.Checked = false;
+                    chkNone.Enabled = false;
+                }
+                if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
+                {
+                    chkNone.Checked = false;
+                    chkNone.Enabled = false;
                 }
             }
             catch (Exception ex)

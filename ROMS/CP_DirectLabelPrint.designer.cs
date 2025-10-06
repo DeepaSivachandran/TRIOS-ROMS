@@ -39,6 +39,7 @@
             this.lblRawCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbGrid = new System.Windows.Forms.GroupBox();
+            this.chkNone = new System.Windows.Forms.CheckBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -102,7 +103,6 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
-            this.chkNone = new System.Windows.Forms.CheckBox();
             this.tsHeader.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -217,6 +217,16 @@
             this.grbGrid.Size = new System.Drawing.Size(1341, 629);
             this.grbGrid.TabIndex = 3;
             this.grbGrid.TabStop = false;
+            // 
+            // chkNone
+            // 
+            this.chkNone.AutoSize = true;
+            this.chkNone.Location = new System.Drawing.Point(219, 466);
+            this.chkNone.Name = "chkNone";
+            this.chkNone.Size = new System.Drawing.Size(55, 24);
+            this.chkNone.TabIndex = 111111178;
+            this.chkNone.Text = "None";
+            this.chkNone.UseVisualStyleBackColor = true;
             // 
             // lblDesc
             // 
@@ -965,16 +975,6 @@
             this.lblProduct.TabIndex = 111111161;
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
-            // 
-            // chkNone
-            // 
-            this.chkNone.AutoSize = true;
-            this.chkNone.Location = new System.Drawing.Point(215, 466);
-            this.chkNone.Name = "chkNone";
-            this.chkNone.Size = new System.Drawing.Size(55, 24);
-            this.chkNone.TabIndex = 111111178;
-            this.chkNone.Text = "None";
-            this.chkNone.UseVisualStyleBackColor = true;
             // 
             // CP_DirectLabelPrint
             // 
