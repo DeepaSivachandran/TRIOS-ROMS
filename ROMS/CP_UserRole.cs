@@ -23,6 +23,7 @@ namespace ROMS
         public int varstatus = 0, varUserRoleID = 0;
 
 
+        public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
         DataTable objDtMainMenu = new DataTable();
         DataTable objDtSubMenu = new DataTable();
         DataTable objDtUserMenuDetails = new DataTable();
@@ -37,8 +38,15 @@ namespace ROMS
         {
             try
             {
-                objDtUserMenuDetails.Clear();
-                objDtUserMenuDetails = MainForm.objDtMenuDetails.Copy();
+
+                objdtMR_UserRole_Menu_SPL_Access.TableName = "MR_UserRole_Menu_SPL_Access";
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_Menuid", typeof(int));
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_ViewAccess", typeof(int));
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_EditAccess", typeof(int));
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_Fieldid", typeof(int));
+
+                objDtUserMenuDetails.Clear(); 
+                objDtUserMenuDetails = MainForm.objDtMenuDetails.DefaultView.ToTable(false, "MU_Code", "MU_Name", "MU_Link", "MU_ParentMenuCode", "MU_Level", "MU_Formname", "MU_CloseFlag", "Menuflag");
                 DataView dv = new DataView(objDtUserMenuDetails);
                 dv.RowFilter = "MU_ParentMenuCode IS NULL";
                 objDtMainMenu = dv.ToTable();
@@ -281,7 +289,7 @@ namespace ROMS
                         ); 
                     }
                 }
-                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), (txtUserRole.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access);
+                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), (txtUserRole.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access,objdtMR_UserRole_Menu_SPL_Access);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -508,7 +516,7 @@ namespace ROMS
                             //**** To call the function from SP ***************
                             SPDataService objspservice = new SPDataService();
                             grdUserPermission.Rows.Clear();
-                            objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0);
+                            objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0,0);
                             objspservice.CloseConnection();
                             if (objDs != null)
                             {
@@ -919,6 +927,7 @@ namespace ROMS
                 // Find the index of the 'View' column by name
                 int viewColumnIndex = grdUserPermission.Columns["clmViewchk"]?.Index ?? -1;
                 string PrivilegeCode = Convert.ToString(grdUserPermission.Rows[e.RowIndex].Cells["clmPrivilegeCode"].Value);
+                int MenuId = Convert.ToInt32(grdUserPermission.Rows[e.RowIndex].Cells["clmMenuId"].Value);
 
                 // Check if the change happened in the 'View' column
                 if (e.ColumnIndex == viewColumnIndex && e.RowIndex >= 0)
@@ -986,6 +995,15 @@ namespace ROMS
                                         }
                                     }
                                     cell.Style.BackColor = System.Drawing.Color.LightGray;
+                                    var rowsToDelete = objdtMR_UserRole_Menu_SPL_Access
+                                        .AsEnumerable()
+                                        .Where(r => Convert.ToInt32(r["UAS_Menuid"]) == MenuId)
+                                        .ToList();
+
+                                        rowsToDelete.ForEach(r => r.Delete());
+
+                                    objdtMR_UserRole_Menu_SPL_Access.AcceptChanges();
+
                                 }
                                 else
                                 {
@@ -1023,6 +1041,7 @@ namespace ROMS
             try {
                 if (e.RowIndex != -1)
                 {
+                    DataGridViewRow row = grdUserPermission.Rows[e.RowIndex];
                     switch (grdUserPermission.Columns[e.ColumnIndex].Name)
                     {
                         case "Action":
@@ -1030,6 +1049,9 @@ namespace ROMS
                             {
                                 MainForm.objCP_UserRole_SPL = new CP_UserRole_SPL();
                                 MainForm.objCP_UserRole_SPL.FormBorderStyle = FormBorderStyle.FixedSingle;
+                                MainForm.objCP_UserRole_SPL.varmenuid = Convert.ToInt32(row.Cells["clmMenuId"].Value);
+                                MainForm.objCP_UserRole_SPL.PbMenuName = Convert.ToString(row.Cells["clmMenuname"].Value);
+                                MainForm.objCP_UserRole_SPL.varUserRoleID = varUserRoleID;
                                 MainForm.objCP_UserRole_SPL.ShowDialog();
                             }
                             catch (Exception ex)
@@ -1259,7 +1281,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objspservice = new SPDataService();
 
-                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0);
+                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0,0);
                     objspservice.CloseConnection();
                     if (objDs != null)
                     {

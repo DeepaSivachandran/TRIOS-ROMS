@@ -92,7 +92,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
 
-                objDs = objspservice.udfnUserRoleList(0, 0, Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnUserRoleList(0, 0, Convert.ToInt32(cmbStatus.SelectedValue),0);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -183,7 +183,7 @@ namespace ROMS
                         SPDataService objspservice = new SPDataService();
                         DataService objDs = new DataService(); 
 
-                        varResult = objspservice.udfnUserRole(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value), "", 0, "User Role Delete", MainForm.pbUserID, 0, null,null); objspservice.CloseConnection();
+                        varResult = objspservice.udfnUserRole(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value), "", 0, "User Role Delete", MainForm.pbUserID, 0, null,null,null); objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
                             MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
