@@ -1,76 +1,136 @@
-﻿using System;
+﻿using ROMS;
+using System;
+using System.Collections.Concurrent;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-public class DynamicMenu
+public static class DynamicMenu
 {
-    public static ContextMenuStrip CreateContextMenu(
-        Form parentForm,
-        int parentMenuCode,
-        Func<int, DataTable> fetchMenuData // delegate to load data (DB or mock)
-    )
+    private static DataError objError;
+    // Cache built context menus by parentMenuCode
+    private static readonly ConcurrentDictionary<int, ContextMenuStrip> ContextMenuCache = new ConcurrentDictionary<int, ContextMenuStrip>();
+
+    // New method: creates menu and shows at ToolStripLabel position
+    public static void CreateContextMenuAndShow(ToolStripLabel tsLabel, int parentMenuCode)
     {
-        ContextMenuStrip contextMenu = new ContextMenuStrip();
-        contextMenu.Font = new Font("Oswald", 10, FontStyle.Regular);
+        try
+        {
+            if (tsLabel == null) return;
+
+            // Get the parent ToolStrip
+            var parentStrip = tsLabel.GetCurrentParent();
+            if (parentStrip == null) return;
+
+            Form parentForm = tsLabel.Owner?.FindForm();
+            if (parentForm == null) return;
+            ContextMenuStrip contextMenu = CreateContextMenu(parentForm, parentMenuCode);
+            var location = parentStrip.PointToScreen(new Point(
+                tsLabel.Bounds.Left,
+                tsLabel.Bounds.Bottom));
+            contextMenu.Show(location);
+        }
+        catch (Exception ex)
+        {
+            objError = new DataError();
+            objError.WriteFile(ex);
+        }
+    }
+
+
+    public static ContextMenuStrip CreateContextMenu(Form parentForm, int parentMenuCode)
+    {
+        // Return cached menu if already built
+        if (ContextMenuCache.TryGetValue(parentMenuCode, out var cachedMenu))
+            return cachedMenu;
+
+        // Create a new ContextMenuStrip instance
+        ContextMenuStrip contextMenu = new ContextMenuStrip
+        {
+            Font = new Font("Oswald", 10, FontStyle.Regular)
+        };
 
         try
         {
-            // Get data from DB
-            DataTable menuTable = fetchMenuData(parentMenuCode);
+            // Access the in-memory DataTable that contains all menu details
+            DataTable menuTable = MainForm.objDtMenuDetails;
             if (menuTable == null || menuTable.Rows.Count == 0)
                 return contextMenu;
 
-            foreach (DataRow row in menuTable.Rows)
-            {
-                string menuName = Convert.ToString(row["MU_Name"]);
-                string formClassName = Convert.ToString(row["MU_Link"]);
+            // Filter rows in the DataTable where MU_ParentMenuCode matches the selected parentMenuCode
+            var query = from row in menuTable.AsEnumerable()
+                        where row.Field<int?>("MU_ParentMenuCode") == parentMenuCode
+                        orderby row.Field<int?>("MU_OrderID") ?? 0
+                        select new
+                        {
+                            MenuName = row.Field<string>("MenuDisplayname"),
+                            FormClass = row.Field<string>("MU_Link")
+                        };
 
-                // Skip items with no link
-                if (string.IsNullOrWhiteSpace(menuName))
+            foreach (var item in query)
+            {
+                // Skip rows with empty or null menu names
+                if (string.IsNullOrWhiteSpace(item.MenuName))
                     continue;
 
-                // Add the item dynamically
-                contextMenu.Items.Add(menuName, null, (s, e) =>
+                // Create a new ToolStripMenuItem for this menu
+                ToolStripMenuItem menuItem = new ToolStripMenuItem(item.MenuName);
+
+                // Define what happens when this menu item is clicked
+                menuItem.Click += (s, e) =>
                 {
-                    if (string.IsNullOrWhiteSpace(formClassName))
+                    if (string.IsNullOrWhiteSpace(item.FormClass))
                         return;
 
                     try
                     {
-                        // Dynamically create form instance
-                        Type formType = Type.GetType(formClassName);
+                        // Find form type in all loaded assemblies
+                        Type formType = AppDomain.CurrentDomain.GetAssemblies()
+                            .SelectMany(a => a.GetTypes())
+                            .FirstOrDefault(t => t.Name.Equals(item.FormClass, StringComparison.OrdinalIgnoreCase));
+
                         if (formType == null)
                         {
-                            MessageBox.Show($"Form '{formClassName}' not found.", "Error");
+                            //MessageBox.Show($"Form '{item.FormClass}' not found.", "Error");
                             return;
                         }
 
                         Form formInstance = (Form)Activator.CreateInstance(formType);
 
-                        // Assign to MainForm property dynamically
-                        string objectName = "obj" + formClassName;
-                        var mainFormType = parentForm.GetType();
-                        var prop = mainFormType.GetField(objectName, BindingFlags.Public | BindingFlags.Static);
+                        // Assign the instance to MainForm static field if exists (type-safe)
+                        var staticFields = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static);
+                        var field = staticFields.FirstOrDefault(f =>
+                            f.FieldType == formType ||
+                            f.Name.IndexOf(item.FormClass, StringComparison.OrdinalIgnoreCase) >= 0);
+                        field?.SetValue(null, formInstance);
 
-                        if (prop != null)
-                            prop.SetValue(null, formInstance);
 
-                        formInstance.MdiParent = parentForm;
+                        // Show the form
+                        Form mdiParent = parentForm?.ParentForm ?? parentForm;
+                        formInstance.MdiParent = mdiParent;
                         formInstance.Show();
+                        formInstance.BringToFront();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Failed to open '{formClassName}'.\n{ex.Message}");
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                        //MessageBox.Show($"Error while opening '{item.FormClass}': {ex.Message}", "Exception");
                     }
-                });
+                };
+                contextMenu.Items.Add(menuItem);
             }
+
+            // Cache the menu for future clicks
+            ContextMenuCache[parentMenuCode] = contextMenu;
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error while creating context menu:\n{ex.Message}");
+            objError = new DataError();
+            objError.WriteFile(ex);
+            //MessageBox.Show($"Error creating context menu: {ex.Message}", "Exception");
         }
 
         return contextMenu;

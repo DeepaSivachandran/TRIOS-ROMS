@@ -210,5 +210,42 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void tsmMasters_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    int parentMenuCode = 801; // example: Masters - Reports
+
+            //    // Dynamically build the context menu using in-memory table
+            //    var menu = DynamicMenu.CreateContextMenu(this, parentMenuCode);
+
+            //    // Show at cursor position
+            //    menu.Show(Cursor.Position);
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
+        private void tsmMasters_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    int parentMenuCode = 801; // Masters - Reports
+                    // Let DynamicMenu handle both creation AND showing
+                    DynamicMenu.CreateContextMenuAndShow(sender as ToolStripLabel, parentMenuCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
