@@ -34,6 +34,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.pnlCompany = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pnlStatus = new System.Windows.Forms.Panel();
+            this.rbInactive = new System.Windows.Forms.RadioButton();
+            this.rbActive = new System.Windows.Forms.RadioButton();
             this.txtUserRole = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbFirst = new System.Windows.Forms.TabControl();
@@ -43,20 +47,9 @@
             this.grpMainmenu = new System.Windows.Forms.GroupBox();
             this.tvMainmenu = new System.Windows.Forms.TreeView();
             this.grpUserPermission = new System.Windows.Forms.TabPage();
-            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pnlStatus = new System.Windows.Forms.Panel();
-            this.rbInactive = new System.Windows.Forms.RadioButton();
-            this.rbActive = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdUserPermission = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmMenuname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmViewchk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmCreatechk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -64,22 +57,30 @@
             this.clmDeletechk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmPrintchk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmExcelchk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmNotificationchk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmMenuId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.URM_Access_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmParentFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrivilegeCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.Action = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
+            this.pnlStatus.SuspendLayout();
             this.tbFirst.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpMainmenu.SuspendLayout();
             this.grpUserPermission.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
-            this.pnlStatus.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserPermission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -109,6 +110,50 @@
             this.pnlCompany.Name = "pnlCompany";
             this.pnlCompany.Size = new System.Drawing.Size(1354, 643);
             this.pnlCompany.TabIndex = 958797;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(300, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 20);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Status";
+            // 
+            // pnlStatus
+            // 
+            this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlStatus.Controls.Add(this.rbInactive);
+            this.pnlStatus.Controls.Add(this.rbActive);
+            this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlStatus.Location = new System.Drawing.Point(350, 19);
+            this.pnlStatus.Name = "pnlStatus";
+            this.pnlStatus.Size = new System.Drawing.Size(158, 27);
+            this.pnlStatus.TabIndex = 18;
+            // 
+            // rbInactive
+            // 
+            this.rbInactive.AutoSize = true;
+            this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbInactive.Location = new System.Drawing.Point(91, 1);
+            this.rbInactive.Name = "rbInactive";
+            this.rbInactive.Size = new System.Drawing.Size(63, 21);
+            this.rbInactive.TabIndex = 8;
+            this.rbInactive.Text = "Inactive";
+            this.rbInactive.UseVisualStyleBackColor = true;
+            // 
+            // rbActive
+            // 
+            this.rbActive.AutoSize = true;
+            this.rbActive.Checked = true;
+            this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.rbActive.Location = new System.Drawing.Point(3, 1);
+            this.rbActive.Name = "rbActive";
+            this.rbActive.Size = new System.Drawing.Size(54, 21);
+            this.rbActive.TabIndex = 7;
+            this.rbActive.TabStop = true;
+            this.rbActive.Text = "Active";
+            this.rbActive.UseVisualStyleBackColor = true;
             // 
             // txtUserRole
             // 
@@ -206,54 +251,6 @@
             this.grpUserPermission.UseVisualStyleBackColor = true;
             this.grpUserPermission.Leave += new System.EventHandler(this.Grpform2_Leave);
             // 
-            // epCompany
-            // 
-            this.epCompany.ContainerControl = this;
-            // 
-            // pnlStatus
-            // 
-            this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlStatus.Controls.Add(this.rbInactive);
-            this.pnlStatus.Controls.Add(this.rbActive);
-            this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(350, 19);
-            this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(158, 27);
-            this.pnlStatus.TabIndex = 18;
-            // 
-            // rbInactive
-            // 
-            this.rbInactive.AutoSize = true;
-            this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(91, 1);
-            this.rbInactive.Name = "rbInactive";
-            this.rbInactive.Size = new System.Drawing.Size(63, 21);
-            this.rbInactive.TabIndex = 8;
-            this.rbInactive.Text = "Inactive";
-            this.rbInactive.UseVisualStyleBackColor = true;
-            // 
-            // rbActive
-            // 
-            this.rbActive.AutoSize = true;
-            this.rbActive.Checked = true;
-            this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbActive.Location = new System.Drawing.Point(3, 1);
-            this.rbActive.Name = "rbActive";
-            this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 7;
-            this.rbActive.TabStop = true;
-            this.rbActive.Text = "Active";
-            this.rbActive.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(300, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 20);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Status";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.grdUserPermission);
@@ -288,6 +285,7 @@
             this.clmDeletechk,
             this.clmPrintchk,
             this.clmExcelchk,
+            this.clmNotificationchk,
             this.clmMenuId,
             this.URM_Access_Level,
             this.clmParentFlag,
@@ -315,9 +313,82 @@
             this.grdUserPermission.ShowRowErrors = false;
             this.grdUserPermission.Size = new System.Drawing.Size(1298, 482);
             this.grdUserPermission.TabIndex = 3;
+            this.grdUserPermission.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUserPermission_CellContentClick);
             this.grdUserPermission.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdUserPermission_CellFormatting);
             this.grdUserPermission.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.grdUserPermission_CellPainting);
+            this.grdUserPermission.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUserPermission_CellValueChanged);
+            this.grdUserPermission.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdUserPermission_CurrentCellDirtyStateChanged);
             this.grdUserPermission.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdUserPermission_DataBindingComplete);
+            // 
+            // epCompany
+            // 
+            this.epCompany.ContainerControl = this;
+            // 
+            // clmMenuname
+            // 
+            this.clmMenuname.HeaderText = "Menu Name";
+            this.clmMenuname.Name = "clmMenuname";
+            this.clmMenuname.ReadOnly = true;
+            this.clmMenuname.Width = 350;
+            // 
+            // clmViewchk
+            // 
+            this.clmViewchk.HeaderText = "View";
+            this.clmViewchk.Name = "clmViewchk";
+            // 
+            // clmCreatechk
+            // 
+            this.clmCreatechk.HeaderText = "Create";
+            this.clmCreatechk.Name = "clmCreatechk";
+            // 
+            // clmEditchk
+            // 
+            this.clmEditchk.HeaderText = "Edit";
+            this.clmEditchk.Name = "clmEditchk";
+            // 
+            // clmDeletechk
+            // 
+            this.clmDeletechk.HeaderText = "Delete";
+            this.clmDeletechk.Name = "clmDeletechk";
+            // 
+            // clmPrintchk
+            // 
+            this.clmPrintchk.HeaderText = "Print";
+            this.clmPrintchk.Name = "clmPrintchk";
+            // 
+            // clmExcelchk
+            // 
+            this.clmExcelchk.HeaderText = "Excel";
+            this.clmExcelchk.Name = "clmExcelchk";
+            // 
+            // clmNotificationchk
+            // 
+            this.clmNotificationchk.HeaderText = "Notification";
+            this.clmNotificationchk.Name = "clmNotificationchk";
+            // 
+            // clmMenuId
+            // 
+            this.clmMenuId.HeaderText = "MenuId";
+            this.clmMenuId.Name = "clmMenuId";
+            this.clmMenuId.Visible = false;
+            // 
+            // URM_Access_Level
+            // 
+            this.URM_Access_Level.HeaderText = "URM_Access_Level";
+            this.URM_Access_Level.Name = "URM_Access_Level";
+            this.URM_Access_Level.Visible = false;
+            // 
+            // clmParentFlag
+            // 
+            this.clmParentFlag.HeaderText = "Parent Flag";
+            this.clmParentFlag.Name = "clmParentFlag";
+            this.clmParentFlag.Visible = false;
+            // 
+            // clmPrivilegeCode
+            // 
+            this.clmPrivilegeCode.HeaderText = "PrivilegeCode";
+            this.clmPrivilegeCode.Name = "clmPrivilegeCode";
+            this.clmPrivilegeCode.Visible = false;
             // 
             // dataGridViewImageColumn1
             // 
@@ -358,6 +429,16 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // Action
+            // 
+            this.Action.HeaderText = "Special Permission";
+            this.Action.Image = global::ROMS.Properties.Resources.padlock;
+            this.Action.MinimumWidth = 6;
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Action.Width = 120;
+            // 
             // tspHeader
             // 
             this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -388,77 +469,6 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // clmMenuname
-            // 
-            this.clmMenuname.HeaderText = "Menu Name";
-            this.clmMenuname.Name = "clmMenuname";
-            this.clmMenuname.ReadOnly = true;
-            this.clmMenuname.Width = 350;
-            // 
-            // clmViewchk
-            // 
-            this.clmViewchk.HeaderText = "View";
-            this.clmViewchk.Name = "clmViewchk";
-            // 
-            // clmCreatechk
-            // 
-            this.clmCreatechk.HeaderText = "Create";
-            this.clmCreatechk.Name = "clmCreatechk";
-            // 
-            // clmEditchk
-            // 
-            this.clmEditchk.HeaderText = "Edit";
-            this.clmEditchk.Name = "clmEditchk";
-            // 
-            // clmDeletechk
-            // 
-            this.clmDeletechk.HeaderText = "Delete";
-            this.clmDeletechk.Name = "clmDeletechk";
-            // 
-            // clmPrintchk
-            // 
-            this.clmPrintchk.HeaderText = "Print";
-            this.clmPrintchk.Name = "clmPrintchk";
-            // 
-            // clmExcelchk
-            // 
-            this.clmExcelchk.HeaderText = "Excel";
-            this.clmExcelchk.Name = "clmExcelchk";
-            // 
-            // clmMenuId
-            // 
-            this.clmMenuId.HeaderText = "MenuId";
-            this.clmMenuId.Name = "clmMenuId";
-            this.clmMenuId.Visible = false;
-            // 
-            // URM_Access_Level
-            // 
-            this.URM_Access_Level.HeaderText = "URM_Access_Level";
-            this.URM_Access_Level.Name = "URM_Access_Level";
-            this.URM_Access_Level.Visible = false;
-            // 
-            // clmParentFlag
-            // 
-            this.clmParentFlag.HeaderText = "Parent Flag";
-            this.clmParentFlag.Name = "clmParentFlag";
-            this.clmParentFlag.Visible = false;
-            // 
-            // clmPrivilegeCode
-            // 
-            this.clmPrivilegeCode.HeaderText = "PrivilegeCode";
-            this.clmPrivilegeCode.Name = "clmPrivilegeCode";
-            this.clmPrivilegeCode.Visible = false;
-            // 
-            // Action
-            // 
-            this.Action.HeaderText = "Special Permission";
-            this.Action.Image = global::ROMS.Properties.Resources.padlock;
-            this.Action.MinimumWidth = 6;
-            this.Action.Name = "Action";
-            this.Action.ReadOnly = true;
-            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Action.Width = 120;
-            // 
             // CP_UserRole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -480,16 +490,16 @@
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);
             this.pnlCompany.PerformLayout();
+            this.pnlStatus.ResumeLayout(false);
+            this.pnlStatus.PerformLayout();
             this.tbFirst.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.grpMainmenu.ResumeLayout(false);
             this.grpUserPermission.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
-            this.pnlStatus.ResumeLayout(false);
-            this.pnlStatus.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUserPermission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -529,6 +539,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmDeletechk;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmPrintchk;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmExcelchk;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmNotificationchk;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMenuId;
         private System.Windows.Forms.DataGridViewTextBoxColumn URM_Access_Level;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmParentFlag;

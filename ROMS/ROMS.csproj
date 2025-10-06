@@ -166,6 +166,12 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_UserRole_SPL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UserRole_SPL.designer.cs">
+      <DependentUpon>CP_UserRole_SPL.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_UserRoleList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3276,6 +3282,9 @@
     <None Include="Resources\right arrow.gif" />
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_UserRole_SPL.resx">
+      <DependentUpon>CP_UserRole_SPL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UserRoleList.resx">
       <DependentUpon>CP_UserRoleList.cs</DependentUpon>

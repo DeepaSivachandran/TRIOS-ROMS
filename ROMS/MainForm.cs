@@ -127,6 +127,7 @@ namespace ROMS
         public static CP_UserRole objCP_UserRole;
         // added by venkat on 03-10-2025
         public static CP_UserRoleList objCP_UserRoleList;
+        public static CP_UserRole_SPL objCP_UserRole_SPL;
 
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
@@ -667,7 +668,7 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 DataService objDser = new DataService();
-                objDs = objDser.GetDataset("SELECT  MU_Code,MU_Name,MU_Link,MU_ParentMenuCode,MU_Level,MU_Formname,MU_CloseFlag,0 AS Menuflag  FROM DEF_MENU  ");
+                objDs = objDser.GetDataset("SELECT  MU_Code,REPLACE(MU_Name, '&&', '&') MU_Name,MU_Name AS MenuDiaplayname,MU_Link,MU_ParentMenuCode,MU_Level,MU_Formname,MU_CloseFlag,0 AS Menuflag  FROM DEF_MENU  ");
                 objDser.CloseConnection();
                 if (objDs != null)
                 {

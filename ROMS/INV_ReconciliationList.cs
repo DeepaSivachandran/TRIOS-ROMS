@@ -1287,14 +1287,23 @@ namespace ROMS
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        SPDataService objspdservice = new SPDataService(); 
-                         
+                        SPDataService objspdservice = new SPDataService();
+                        int vartype = 0;
+                        if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["Transaction Type"].Value) == "Addition")
+                        {
+                            vartype = 378;
+                        }
+                        else
+                        {
+                            vartype = 377;
+                        }
 
                         String varoriginator = "Reconcilation Delete";
                         DataTable objGrnPO = new DataTable();
                         TRN_Stock_Reconciliation_Products objTRNS_Stock_Reconciliation_Products = new TRN_Stock_Reconciliation_Products();
                         objTRNS_Stock_Reconciliation_Products.ViewType = 2; 
                         objTRNS_Stock_Reconciliation_Products.ParaTransactionId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
+                        objTRNS_Stock_Reconciliation_Products.paraTransferType = vartype;
                         objTRNS_Stock_Reconciliation_Products.paraUserID = varUserID;
                         objTRNS_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
                         objTRNS_Stock_Reconciliation_Products.paraOriginator = varoriginator;
@@ -1314,16 +1323,17 @@ namespace ROMS
                                     varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
                                     objTRNS_Stock_Reconciliation_Products.ViewType = 2;
                                     objTRNS_Stock_Reconciliation_Products.paraUserID = varUserID;
+                                    objTRNS_Stock_Reconciliation_Products.paraTransferType = vartype;
                                     objTRNS_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
                                     objTRNS_Stock_Reconciliation_Products.paraOriginator = varoriginator;
                                     objTRNS_Stock_Reconciliation_Products.ParaTransactionId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
-                                    if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value) == "Addition")
-                                    { 
-                                        objTRNS_Stock_Reconciliation_Products.paraTransferType = 378;
-                                    }
-                                    else { 
-                                        objTRNS_Stock_Reconciliation_Products.paraTransferType = 377;
-                                    }
+                                    //if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value) == "Addition")
+                                    //{ 
+                                    //    objTRNS_Stock_Reconciliation_Products.paraTransferType = 378;
+                                    //}
+                                    //else { 
+                                    //    objTRNS_Stock_Reconciliation_Products.paraTransferType = 377;
+                                    //}
                                     objTRNS_Stock_Reconciliation_Products.paraDeleteflag = 1;
                                      result = objspdservice.udfnStockConciliation(objTRNS_Stock_Reconciliation_Products);
                                     objspdservice.CloseConnection();
