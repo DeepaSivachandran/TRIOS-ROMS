@@ -446,7 +446,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=95 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintLanguage, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=110 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,119) AND MSTID<>0 ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbTitle, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,119) AND MSTID NOT IN (0,388) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbTitle, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbTitle.SelectedValue = -1;
             }
@@ -999,10 +999,10 @@ namespace ROMS
             {
                 int flag = 1;
 
-                if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322) {
+                if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
+                {
                     flag = 2;
-                } 
-              
+                }
                 picLoader4.Visible = true;
                 errRack.Clear();
                 int varPrint = 0;

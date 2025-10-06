@@ -39,6 +39,8 @@
             this.lblRawCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbGrid = new System.Windows.Forms.GroupBox();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.cmbTitle = new System.Windows.Forms.ComboBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
@@ -100,8 +102,7 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.lblDesc = new System.Windows.Forms.Label();
+            this.chkNone = new System.Windows.Forms.CheckBox();
             this.tsHeader.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -172,6 +173,7 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.chkNone);
             this.grbGrid.Controls.Add(this.lblDesc);
             this.grbGrid.Controls.Add(this.lblDescription);
             this.grbGrid.Controls.Add(this.textBox9);
@@ -215,6 +217,27 @@
             this.grbGrid.Size = new System.Drawing.Size(1341, 629);
             this.grbGrid.TabIndex = 3;
             this.grbGrid.TabStop = false;
+            // 
+            // lblDesc
+            // 
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Font = new System.Drawing.Font("Oswald Regular", 13.25F);
+            this.lblDesc.ForeColor = System.Drawing.Color.Red;
+            this.lblDesc.Location = new System.Drawing.Point(6, 598);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(19, 25);
+            this.lblDesc.TabIndex = 111111177;
+            this.lblDesc.Text = "*";
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.ForeColor = System.Drawing.Color.Green;
+            this.lblDescription.Location = new System.Drawing.Point(22, 598);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(71, 20);
+            this.lblDescription.TabIndex = 111111176;
+            this.lblDescription.Text = "Description";
             // 
             // textBox9
             // 
@@ -943,26 +966,15 @@
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
             // 
-            // lblDescription
+            // chkNone
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.ForeColor = System.Drawing.Color.Green;
-            this.lblDescription.Location = new System.Drawing.Point(22, 598);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(71, 20);
-            this.lblDescription.TabIndex = 111111176;
-            this.lblDescription.Text = "Description";
-            // 
-            // lblDesc
-            // 
-            this.lblDesc.AutoSize = true;
-            this.lblDesc.Font = new System.Drawing.Font("Oswald Regular", 13.25F);
-            this.lblDesc.ForeColor = System.Drawing.Color.Red;
-            this.lblDesc.Location = new System.Drawing.Point(6, 598);
-            this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(19, 25);
-            this.lblDesc.TabIndex = 111111177;
-            this.lblDesc.Text = "*";
+            this.chkNone.AutoSize = true;
+            this.chkNone.Location = new System.Drawing.Point(215, 466);
+            this.chkNone.Name = "chkNone";
+            this.chkNone.Size = new System.Drawing.Size(55, 24);
+            this.chkNone.TabIndex = 111111178;
+            this.chkNone.Text = "None";
+            this.chkNone.UseVisualStyleBackColor = true;
             // 
             // CP_DirectLabelPrint
             // 
@@ -1069,5 +1081,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.CheckBox chkNone;
     }
 }
