@@ -137,7 +137,13 @@ namespace ROMS
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubgroupId;
                 objMR_Product.ParaProductCode = varProductId;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraGstId = Convert.ToInt32(cmbGSTPer.SelectedValue);
+                objMR_Product.paraFilterDate = Convert.ToInt32(cmbDateType.SelectedValue);
+                objMR_Product.paraFlag = Convert.ToInt32(cmbGST.SelectedValue);
+                objMR_Product.ParaFromDate = dpFromDate.Text;
+                objMR_Product.ParaToDate = dpToDate.Text;
+                objMR_Product.paraUserCode = varUserCode;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
