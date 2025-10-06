@@ -1008,11 +1008,11 @@ namespace ROMS
                 }
                 else
                 {
-                    txtProductName.Enabled = false;
-                    txtProductName.Text = "";
-                    lblProductcode.Text = "0";
-                    txtSearchByPICode.Enabled = false;
-                    txtSearchByPICode.Text = "";
+                    //txtProductName.Enabled = false;
+                    //txtProductName.Text = "";
+                    //lblProductcode.Text = "0";
+                    //txtSearchByPICode.Enabled = false;
+                    //txtSearchByPICode.Text = "";
                     txtLocation.Enabled = true;
                     cmbFilterType.Enabled = true;
                 }
