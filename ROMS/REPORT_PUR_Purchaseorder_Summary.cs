@@ -309,6 +309,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80203;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 cmbStatus.SelectedValue = 0;
                 //btnListPrint.Enabled = true; 
                 DataBind objDataBind = new DataBind();

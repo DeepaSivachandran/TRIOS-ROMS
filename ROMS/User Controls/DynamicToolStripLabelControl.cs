@@ -17,6 +17,7 @@ namespace ROMS
 
         private string[] LevelTexts = new string[4];
         private int[] LevelCodes = new int[4]; // MU_Code for each level
+        private DataError objError;
 
         private Bitmap[] LabelImages => new Bitmap[]
         {
@@ -70,20 +71,31 @@ namespace ROMS
                     Font = new Font("Oswald Regular", 11, FontStyle.Regular),
                     AutoSize = true,
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Tag = levelCode
+                    Tag = levelCode,
+                    Margin = new Padding(4, 0, 4, 0)
                 };
 
-                if (LabelImages != null && i < LabelImages.Length && LabelImages[i] != null)
-                {
-                    lbl.Image = LabelImages[i];
-                    lbl.ImageAlign = ContentAlignment.MiddleLeft;
-                    lbl.TextImageRelation = TextImageRelation.ImageBeforeText;
-                }
+                bool isFirstVisible = ts.Items.Cast<ToolStripItem>().OfType<ToolStripLabel>().Count() == 0;
+                lbl.Image = isFirstVisible
+                    ? Properties.Resources.bread_crumb     // first (root) label
+                    : Properties.Resources.double_chevron; // child levels
+
+                lbl.ImageAlign = ContentAlignment.MiddleLeft;
+                lbl.TextImageRelation = TextImageRelation.ImageBeforeText;
 
                 lbl.MouseDown += (s, e) =>
                 {
                     DynamicLabelClick?.Invoke(this, new ToolStripLabelEventArgs(lbl));
-                    ShowContextMenu(lbl, levelCode);
+                    var row = dt.AsEnumerable().FirstOrDefault(r => r.Field<int>("MU_Code") == levelCode);
+                    if (row != null)
+                    {
+                        int level = row.Field<int>("MU_Level");
+                        if (level != 0)
+                        {
+                            ShowContextMenu(lbl, levelCode);
+                        }
+                        // else — skip showing context menu for MU_Level = 0
+                    }
                 };
 
                 ts.Items.Insert(index++, lbl);
@@ -125,12 +137,14 @@ namespace ROMS
 
             var query = from row in menuTable.AsEnumerable()
                         where row.Field<int?>("MU_ParentMenuCode") == parentMenuCode
+                              && row.Field<int?>("MU_Level") != 0 // <-- skip level 0 for now
                         orderby row.Field<int?>("MU_OrderID") ?? 0
                         select new
                         {
                             MenuName = row.Field<string>("MenuDisplayname"),
                             FormClass = row.Field<string>("MU_Link")
                         };
+
 
             foreach (var item in query)
             {
@@ -152,18 +166,33 @@ namespace ROMS
 
                         Form formInstance = (Form)Activator.CreateInstance(formType);
 
-                        var staticFields = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static);
-                        var field = staticFields.FirstOrDefault(f =>
-                            f.FieldType == formType ||
-                            f.Name.IndexOf(item.FormClass, StringComparison.OrdinalIgnoreCase) >= 0);
-                        field?.SetValue(null, formInstance);
+                        //var staticFields = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static);
+                        //var field = staticFields.FirstOrDefault(f =>
+                        //    f.FieldType == formType ||
+                        //    f.Name.IndexOf(item.FormClass, StringComparison.OrdinalIgnoreCase) >= 0);
+                        //field?.SetValue(null, formInstance);
+                        var staticField = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(f => f.FieldType == formType);
 
-                        Form mdiParent = parentForm?.ParentForm ?? parentForm;
-                        formInstance.MdiParent = mdiParent;
+                        if (staticField != null)
+                        {
+                            staticField.SetValue(null, formInstance);
+                        }
+
+                        Form mdiParent = Application.OpenForms.OfType<MainForm>().FirstOrDefault(f => f.IsMdiContainer);
+
+                        if (mdiParent != null)
+                        {
+                            formInstance.MdiParent = mdiParent;
+                        }
                         formInstance.Show();
                         formInstance.BringToFront();
+
                     }
-                    catch { /* log error */ }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
                 };
 
                 contextMenu.Items.Add(menuItem);

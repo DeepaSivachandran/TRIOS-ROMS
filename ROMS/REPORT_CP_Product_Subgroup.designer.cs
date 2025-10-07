@@ -39,7 +39,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Product_Subgroup));
             this.ReportProductSubgroup = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportProductSubgroup = new System.Windows.Forms.Panel();
@@ -79,7 +78,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.tsmMasters = new System.Windows.Forms.ToolStripLabel();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.ReportProductSubgroup.SuspendLayout();
             this.pnlReportProductSubgroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).BeginInit();
@@ -96,25 +96,14 @@
             this.ReportProductSubgroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportProductSubgroup.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportProductSubgroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
             this.tsbPrintFormat,
             this.tsbFormat,
-            this.tsmMasters});
+            this.tsLabelPlaceholder});
             this.ReportProductSubgroup.Location = new System.Drawing.Point(0, 0);
             this.ReportProductSubgroup.Name = "ReportProductSubgroup";
             this.ReportProductSubgroup.Size = new System.Drawing.Size(1354, 27);
             this.ReportProductSubgroup.TabIndex = 35;
             this.ReportProductSubgroup.Text = "Product Subgroup Report";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(68, 24);
-            this.tspHeader.Text = "Reports";
             // 
             // tsbPrintFormat
             // 
@@ -621,16 +610,19 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // tsmMasters
+            // dynamicLabelControl
             // 
-            this.tsmMasters.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmMasters.Image = ((System.Drawing.Image)(resources.GetObject("tsmMasters.Image")));
-            this.tsmMasters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmMasters.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsmMasters.Name = "tsmMasters";
-            this.tsmMasters.Size = new System.Drawing.Size(69, 24);
-            this.tsmMasters.Text = "Masters";
-            this.tsmMasters.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsmMasters_MouseDown);
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // REPORT_CP_Product_Subgroup
             // 
@@ -667,7 +659,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip ReportProductSubgroup;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlReportProductSubgroup;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
@@ -707,6 +698,7 @@
         public System.Windows.Forms.DataGridView DGV_FilterSubgroup;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
-        private System.Windows.Forms.ToolStripLabel tsmMasters;
+        private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
     }
 }

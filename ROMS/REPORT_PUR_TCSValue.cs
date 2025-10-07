@@ -302,6 +302,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80602;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 udfnLoadMonths();
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -1160,32 +1163,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseTaxDetails_MouseDown(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                if (e.Button == MouseButtons.Left) // only left-click
-                {
-                    SetupPurchaseTax();
-                    var ts = tsmPurchaseTaxDetails.GetCurrentParent();
-                    if (ts != null)
-                    {
-                        // Show context menu just below the label
-                        var location = ts.PointToScreen(new Point(
-                            tsmPurchaseTaxDetails.Bounds.Left,
-                            tsmPurchaseTaxDetails.Bounds.Bottom));
-                        contextMenu.Show(location);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
 
         private void SetupPurchaseTax()
         {
