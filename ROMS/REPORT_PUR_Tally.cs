@@ -160,6 +160,7 @@ namespace ROMS
         {
             try
             {
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;

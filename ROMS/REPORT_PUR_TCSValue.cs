@@ -550,7 +550,7 @@ namespace ROMS
                         objMR_Supplier.paraSupplierName = txtSupplier.Text;
                         objMR_Supplier.ParaFromDate = dpFromDate.Text;
                         objMR_Supplier.ParaToDate = dpToDate.Text;
-                        objMR_Supplier.paraFlag = 8;
+                        objMR_Supplier.paraFlag = 5;
                         DataSet objDs = new DataSet();
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnSupplierList(objMR_Supplier);
