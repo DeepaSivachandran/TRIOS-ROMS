@@ -135,72 +135,96 @@ namespace ROMS
             if (menuTable == null || menuTable.Rows.Count == 0)
                 return contextMenu;
 
+            // Get all menu items for this parent
             var query = from row in menuTable.AsEnumerable()
                         where row.Field<int?>("MU_ParentMenuCode") == parentMenuCode
-                              && row.Field<int?>("MU_Level") != 0 // <-- skip level 0 for now
+                              && row.Field<int?>("MU_Level") != 0 // skip level 0
                         orderby row.Field<int?>("MU_OrderID") ?? 0
-                        select new
-                        {
-                            MenuName = row.Field<string>("MenuDisplayname"),
-                            FormClass = row.Field<string>("MU_Link")
-                        };
+                        select row;
 
-
-            foreach (var item in query)
+            foreach (var row in query)
             {
-                if (string.IsNullOrWhiteSpace(item.MenuName))
-                    continue;
+                string menuName = row.Field<string>("MenuDisplayname");
+                string formClass = row.Field<string>("MU_Link");
+                int muCode = row.Field<int>("MU_Code");
 
-                ToolStripMenuItem menuItem = new ToolStripMenuItem(item.MenuName);
-                menuItem.Click += (s, e) =>
+                // Check if this item has children
+                bool hasChildren = menuTable.AsEnumerable()
+                    .Any(r => r.Field<int?>("MU_ParentMenuCode") == muCode);
+
+                if (hasChildren)
                 {
-                    if (string.IsNullOrWhiteSpace(item.FormClass)) return;
+                    // Flatten: add children instead of the parent
+                    var childItems = menuTable.AsEnumerable()
+                        .Where(r => r.Field<int?>("MU_ParentMenuCode") == muCode)
+                        .OrderBy(r => r.Field<int?>("MU_OrderID") ?? 0);
 
-                    try
+                    foreach (var child in childItems)
                     {
-                        Type formType = AppDomain.CurrentDomain.GetAssemblies()
-                            .SelectMany(a => a.GetTypes())
-                            .FirstOrDefault(t => t.Name.Equals(item.FormClass, StringComparison.OrdinalIgnoreCase));
+                        string childName = child.Field<string>("MenuDisplayname");
+                        string childClass = child.Field<string>("MU_Link");
+                        int childCode = child.Field<int>("MU_Code");
 
-                        if (formType == null) return;
+                        if (string.IsNullOrWhiteSpace(childName)) continue;
 
-                        Form formInstance = (Form)Activator.CreateInstance(formType);
-
-                        //var staticFields = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static);
-                        //var field = staticFields.FirstOrDefault(f =>
-                        //    f.FieldType == formType ||
-                        //    f.Name.IndexOf(item.FormClass, StringComparison.OrdinalIgnoreCase) >= 0);
-                        //field?.SetValue(null, formInstance);
-                        var staticField = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault(f => f.FieldType == formType);
-
-                        if (staticField != null)
-                        {
-                            staticField.SetValue(null, formInstance);
-                        }
-
-                        Form mdiParent = Application.OpenForms.OfType<MainForm>().FirstOrDefault(f => f.IsMdiContainer);
-
-                        if (mdiParent != null)
-                        {
-                            formInstance.MdiParent = mdiParent;
-                        }
-                        formInstance.Show();
-                        formInstance.BringToFront();
-
+                        ToolStripMenuItem menuItemChild = new ToolStripMenuItem(childName);
+                        menuItemChild.Click += (s, e) => OpenForm(childClass, parentForm);
+                        contextMenu.Items.Add(menuItemChild);
                     }
-                    catch (Exception ex)
-                    {
-                        objError = new DataError();
-                        objError.WriteFile(ex);
-                    }
-                };
+                }
+                else
+                {
+                    // No children, add item normally
+                    if (string.IsNullOrWhiteSpace(menuName)) continue;
 
-                contextMenu.Items.Add(menuItem);
+                    ToolStripMenuItem menuItem = new ToolStripMenuItem(menuName);
+                    menuItem.Click += (s, e) => OpenForm(formClass, parentForm);
+                    contextMenu.Items.Add(menuItem);
+                }
             }
 
             ContextMenuCache[parentMenuCode] = contextMenu;
             return contextMenu;
         }
+
+        // Helper method to open form as MDI child
+        private void OpenForm(string formClass, Form parentForm)
+        {
+            if (string.IsNullOrWhiteSpace(formClass)) return;
+
+            try
+            {
+                Type formType = AppDomain.CurrentDomain.GetAssemblies()
+                    .SelectMany(a => a.GetTypes())
+                    .FirstOrDefault(t => t.Name.Equals(formClass, StringComparison.OrdinalIgnoreCase));
+
+                if (formType == null) return;
+
+                Form formInstance = (Form)Activator.CreateInstance(formType);
+
+                // Assign static field if exists
+                var staticField = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static)
+                    .FirstOrDefault(f => f.FieldType == formType);
+
+                staticField?.SetValue(null, formInstance);
+
+                Form mdiParent = Application.OpenForms.OfType<MainForm>().FirstOrDefault(f => f.IsMdiContainer);
+
+                if (mdiParent != null)
+                {
+                    formInstance.MdiParent = mdiParent;
+                }
+
+                formInstance.Show();
+                formInstance.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
     }
 
     public class ToolStripLabelEventArgs : EventArgs
