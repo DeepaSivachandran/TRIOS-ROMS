@@ -146,8 +146,8 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = ""; int varDelayMin = 0;
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+                string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = "",varCompany="--All--";  
+                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0,varReportType=0,varRateType=0;
 
                 if(txtSupplier.Text.Trim()!="")
                 {
@@ -175,7 +175,10 @@ namespace ROMS
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
-
+                if(Convert.ToInt32(cmbConcern.SelectedValue)!=0)
+                { varCompany = cmbConcern.Text; }
+                varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
+                varRateType = Convert.ToInt32(cmbRateType.SelectedValue);
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -184,18 +187,18 @@ namespace ROMS
                 Application.DoEvents();
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 41;
-                objMR_Supplier.paraSupplierid = varSupplierCode;
-                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraProductCode = varProductCode;
-                objMR_Supplier.paraGroupCode = varGroupCode;
-                objMR_Supplier.paraSubgroupCode = varSubgroupCode;
-                objMR_Supplier.paraBrandCode = varBrandCode;
-                SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                objspdservice.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                TRN_RateChange objRateChange = new TRN_RateChange(); 
+                objRateChange.paraViewType = 2;
+                objRateChange.paraGroupID = varGroupCode;
+                objRateChange.paraSubGroupID = varSubgroupCode;
+                objRateChange.paraBrandID = varBrandCode;
+                objRateChange.paraProductID = varProductCode;
+                objRateChange.paraFromDate = dpFromDate.Text; 
+                objRateChange.paraSupplierID = varSupplierCode; 
+                objRateChange.paraScheduleID = varScheduleCode; 
+                objDs = objdserv.udfnRateChangeList(objRateChange);
+                objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -203,21 +206,25 @@ namespace ROMS
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     RPTViewer.RefreshReport();
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument(); 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Products.rpt");
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
-                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);
-                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraBrandCode", varBrandCode);
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PriceList.rpt"); 
+                    objBillreport.SetParameterValue("paraGroupID", varGroupCode);
+                    objBillreport.SetParameterValue("paraSubGroupID", varSubgroupCode);
+                    objBillreport.SetParameterValue("paraBrandID", varBrandCode);
+                    objBillreport.SetParameterValue("paraProductID", varProductCode);
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text); 
+                    objBillreport.SetParameterValue("paraSupplierID", varSupplierCode);
+                    objBillreport.SetParameterValue("paraScheduleID", varScheduleCode);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    objBillreport.SetParameterValue("paraProductName", varProductName);
+                    objBillreport.SetParameterValue("paraReportType", varReportType);
+                    objBillreport.SetParameterValue("paraRateType", varRateType); 
+                    objBillreport.SetParameterValue("paraCompany", varCompany);
+                    objBillreport.SetParameterValue("paraDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraPICode", txtAlpha.Text.Trim());
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -268,8 +275,8 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,88) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (108,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,124) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
@@ -2033,7 +2040,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         public void udfnSubGroupAutocomplete()
         {
             try
