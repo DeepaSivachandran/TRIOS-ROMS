@@ -130,6 +130,7 @@ namespace ROMS
                 dtProductHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
                 dtProductHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtProductHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
+                dtProductHSN.Columns.Add("PRHSN_MakerID", typeof(int));
 
 
                 dtPurHSN.Columns.Add("HSN_Type", typeof(int));
@@ -137,6 +138,7 @@ namespace ROMS
                 dtPurHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
                 dtPurHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtPurHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
+                dtPurHSN.Columns.Add("PRHSN_MakerID", typeof(int));
 
 
                 dtSalesHSN.Columns.Add("HSN_Type", typeof(int));
@@ -144,6 +146,7 @@ namespace ROMS
                 dtSalesHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
                 dtSalesHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtSalesHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
+                dtSalesHSN.Columns.Add("PRHSN_MakerID", typeof(int));
 
                 //BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 //if (btnSave.Text == "Save")
@@ -4372,18 +4375,19 @@ namespace ROMS
                                     int varAddFlag = Convert.ToInt32(dr["AddFlag"]);
                                     int varEditFlag = Convert.ToInt32(dr["EditFlag"]);
                                     string changedDate = Convert.ToString(dr["PRHSN_ChangedDate"]);
+                                    int userID = Convert.ToInt32(dr["PRHSN_MakerID"]);
 
                                     // Add row to Purchase Grid (Type = 1)
                                     if (varHsnType == 1)
                                     {
-                                        grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag);
-                                        dtPurHSN.Rows.Add(1, varHSNID, varEffectiveFrom, varEffectiveTo, changedDate);
+                                        grdPurHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag, changedDate, userID);
+                                        dtPurHSN.Rows.Add(1, varHSNID, varEffectiveFrom, varEffectiveTo, changedDate, userID);
                                     }
                                     // Add row to Sales Grid (Type = 2)
                                     else if (varHsnType == 2)
                                     {
-                                        grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag);
-                                        dtSalesHSN.Rows.Add(2, varHSNID, varEffectiveFrom, varEffectiveTo, changedDate);
+                                        grdSalesHSN.Rows.Add(varHsnName, varHsnCode, varGstText, varEffectiveFrom, varEffectiveTo, varHSNID, varAddFlag, varEditFlag, changedDate, userID);
+                                        dtSalesHSN.Rows.Add(2, varHSNID, varEffectiveFrom, varEffectiveTo, changedDate, userID);
                                     }
                                 }
                                 grdPurHSN.ClearSelection();
