@@ -110,7 +110,6 @@
             this.tsmMasters.Name = "tsmMasters";
             this.tsmMasters.Size = new System.Drawing.Size(69, 24);
             this.tsmMasters.Text = "Masters";
-            this.tsmMasters.Click += new System.EventHandler(this.tsmMasters_Click);
             this.tsmMasters.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsmMasters_MouseDown);
             // 
             // pnlReportCity

@@ -61,6 +61,8 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.multi = new MultiSelectComboBox();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
@@ -82,7 +84,8 @@
             this.tspHeader,
             this.tsbFormat,
             this.tsbDownload,
-            this.tsbExport});
+            this.tsbExport,
+            this.tsLabelPlaceholder});
             this.ReportCity.Location = new System.Drawing.Point(0, 0);
             this.ReportCity.Name = "ReportCity";
             this.ReportCity.Size = new System.Drawing.Size(1354, 31);
@@ -465,6 +468,20 @@
             // 
             this.epReport.ContainerControl = this;
             // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 28);
+            this.tsLabelPlaceholder.Text = "Levels";
+            // 
             // REPORT_PUR_BillWiseTax
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -529,5 +546,7 @@
         private System.Windows.Forms.ToolStripLabel tsmPurchaseTaxDetails;
         public System.Windows.Forms.ToolStripButton tsbExport;
         public System.Windows.Forms.ToolStripButton tsbDownload;
+        private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
     }
 }

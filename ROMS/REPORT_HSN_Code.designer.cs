@@ -31,12 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_HSN_Code));
             this.ReportHSN = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
-            this.tsmPurchaseTaxDetails = new System.Windows.Forms.ToolStripLabel();
-            this.tsmHSNDetails = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportHSN = new System.Windows.Forms.Panel();
             this.DGV_FilterHSN = new System.Windows.Forms.DataGridView();
             this.lvHsnName = new System.Windows.Forms.ListView();
@@ -55,19 +51,21 @@
             this.cmbGST = new System.Windows.Forms.ComboBox();
             this.lblGST = new System.Windows.Forms.Label();
             this.lblHSN = new System.Windows.Forms.Label();
-            this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblReportType = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnListPrint = new System.Windows.Forms.Button();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.ReportHSN.SuspendLayout();
             this.pnlReportHSN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterHSN)).BeginInit();
             this.grpfilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportHSN
@@ -77,27 +75,14 @@
             this.ReportHSN.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportHSN.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportHSN.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
             this.tsbPrintFormat,
             this.tsbFormat,
-            this.tsmPurchaseTaxDetails,
-            this.tsmHSNDetails,
-            this.toolStripLabel2});
+            this.tsLabelPlaceholder});
             this.ReportHSN.Location = new System.Drawing.Point(0, 0);
             this.ReportHSN.Name = "ReportHSN";
             this.ReportHSN.Size = new System.Drawing.Size(1354, 27);
             this.ReportHSN.TabIndex = 35;
             this.ReportHSN.Text = "HSN Report";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(68, 24);
-            this.tspHeader.Text = "Reports";
             // 
             // tsbPrintFormat
             // 
@@ -124,38 +109,6 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
-            // 
-            // tsmPurchaseTaxDetails
-            // 
-            this.tsmPurchaseTaxDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmPurchaseTaxDetails.Image = ((System.Drawing.Image)(resources.GetObject("tsmPurchaseTaxDetails.Image")));
-            this.tsmPurchaseTaxDetails.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmPurchaseTaxDetails.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsmPurchaseTaxDetails.Name = "tsmPurchaseTaxDetails";
-            this.tsmPurchaseTaxDetails.Size = new System.Drawing.Size(96, 24);
-            this.tsmPurchaseTaxDetails.Text = "Purchase Tax";
-            this.tsmPurchaseTaxDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStripLabel4_MouseDown);
-            // 
-            // tsmHSNDetails
-            // 
-            this.tsmHSNDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmHSNDetails.Image = ((System.Drawing.Image)(resources.GetObject("tsmHSNDetails.Image")));
-            this.tsmHSNDetails.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmHSNDetails.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsmHSNDetails.Name = "tsmHSNDetails";
-            this.tsmHSNDetails.Size = new System.Drawing.Size(48, 24);
-            this.tsmHSNDetails.Text = "HSN";
-            this.tsmHSNDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStripLabel3_MouseDown);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel2.Image")));
-            this.toolStripLabel2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(168, 24);
-            this.toolStripLabel2.Text = "Purchase Hsn Wise Report";
             // 
             // pnlReportHSN
             // 
@@ -367,23 +320,6 @@
             this.lblHSN.TabIndex = 1111178;
             this.lblHSN.Text = "HSN Code";
             // 
-            // btnListPrint
-            // 
-            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
-            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(928, 43);
-            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 6;
-            this.btnListPrint.Text = "View";
-            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnListPrint.UseVisualStyleBackColor = true;
-            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
-            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
-            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
-            // 
             // cmbReportType
             // 
             this.cmbReportType.FormattingEnabled = true;
@@ -419,21 +355,6 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 100);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1351, 542);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958790;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
             // RPTViewer
             // 
             this.RPTViewer.ActiveViewIndex = -1;
@@ -450,6 +371,52 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
+            // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(928, 43);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 6;
+            this.btnListPrint.Text = "View";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 100);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1351, 542);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958790;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // REPORT_HSN_Code
             // 
@@ -475,8 +442,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterHSN)).EndInit();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -485,7 +452,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip ReportHSN;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlReportHSN;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
@@ -513,8 +479,7 @@
         public System.Windows.Forms.DataGridView DGV_FilterHSN;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
-        private System.Windows.Forms.ToolStripLabel tsmPurchaseTaxDetails;
-        private System.Windows.Forms.ToolStripLabel tsmHSNDetails;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
     }
 }
