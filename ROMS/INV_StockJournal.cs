@@ -310,7 +310,7 @@ namespace ROMS
                                 if (DGV_FilterProduct.Rows.Count > 0)
                                 {
                                     varUpDownKey = 1;
-                                    udfnListviewProduct();
+                                    udfnListviewProduct(sender, e);
                                     DGV_FilterProduct.Visible = false;
                                     if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 379) // parent - child
                                     {
@@ -662,7 +662,7 @@ namespace ROMS
                     else
                     {
                         this.ActiveControl = cmbChildProduct2;
-                        udfnEdit();
+                        udfnEdit(sender, e);
                     }
                 } 
                 UpdateComboBoxState(); 
@@ -823,8 +823,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_BatchNoGeneration"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_MRPflag"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
-                                    DGV_FilterProduct.Columns["Product Shelf Life"].Visible = false;
-                                    DGV_FilterProduct.Columns["Retail Rate"].Visible = false;
+                                    DGV_FilterProduct.Columns["Product Shelf Life"].Visible = false; 
                                     DGV_FilterProduct.Columns["PR_RetailRate"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 115;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
@@ -837,7 +836,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Visible = true;
-                                    DGV_FilterProduct.Width = 520;
+                                    DGV_FilterProduct.Width = 620;
                                     if (VarSearchFlag == false)
                                     {
                                         DGV_FilterProduct.Columns["PR_EName"].Visible = true;
@@ -956,7 +955,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnListviewProduct()
+        public void udfnListviewProduct(object sender, EventArgs e)
         {
             try
             {
@@ -1058,6 +1057,7 @@ namespace ROMS
             finally
             {
                 DGV_FilterProduct.Visible = false;
+                btnbatch2_Click(sender, e);
             }
         }
 
@@ -1602,7 +1602,7 @@ namespace ROMS
                                 if (DGV_FilterProduct.Rows.Count > 0)
                                 {
                                     varUpDownKey = 1;
-                                    udfnListviewProduct();
+                                    udfnListviewProduct(sender, e);
                                     DGV_FilterProduct.Visible = false;
                                     if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 379) // parent - child
                                     {
@@ -1631,7 +1631,7 @@ namespace ROMS
             try
             {
                 varUpDownKey = 1;
-                udfnListviewProduct();
+                udfnListviewProduct(sender, e);
                 if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 379) // parent - child
                 {
                     txtbatch1.Focus();
@@ -1772,32 +1772,34 @@ namespace ROMS
                                     DGVFilterBatch.Columns["STK_Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGVFilterBatch.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGVFilterBatch.Visible = true;
-
-                                     
-
+                                    btnbatch2.Enabled = true;
                                 }
                                 else
                                 {
                                     DGVFilterBatch.DataSource = null;
                                     DGVFilterBatch.Visible = false;
+                                    btnbatch2.Enabled = false;
                                 }
                             }
                             else
                             {
                                 DGVFilterBatch.DataSource = null;
                                 DGVFilterBatch.Visible = false;
+                                btnbatch2.Enabled = false;
                             }
                         }
                         else
                         {
                             DGVFilterBatch.DataSource = null;
                             DGVFilterBatch.Visible = false;
+                            btnbatch2.Enabled = false;
                         }
                     }
                     else
                     {
                         DGVFilterBatch.DataSource = null;
                         DGVFilterBatch.Visible = false;
+                        btnbatch2.Enabled = false;
                     }
                 }
             }
@@ -5755,6 +5757,7 @@ namespace ROMS
                                     }
                                 }
                                 UpdateComboBoxState();
+                                btnbatch2.Enabled = true;
                             }
                             break;
                     }
@@ -5904,7 +5907,7 @@ namespace ROMS
 
         }
 
-        public void udfnEdit()
+        public void udfnEdit(object sender, EventArgs e)
         {
             try
             {
@@ -6037,7 +6040,7 @@ namespace ROMS
                     udfntooltiphide();
                     txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
 
-                    udfnListviewProduct();
+                    udfnListviewProduct(sender, e);
                 }
             }
             catch (Exception ex)

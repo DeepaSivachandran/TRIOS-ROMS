@@ -366,7 +366,7 @@
             this.tspHeader});
             this.tsStockTransferList.Location = new System.Drawing.Point(0, 0);
             this.tsStockTransferList.Name = "tsStockTransferList";
-            this.tsStockTransferList.Size = new System.Drawing.Size(1354, 25);
+            this.tsStockTransferList.Size = new System.Drawing.Size(1354, 28);
             this.tsStockTransferList.TabIndex = 958817;
             this.tsStockTransferList.Text = "Goods Outward";
             // 
@@ -377,8 +377,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(118, 22);
-            this.tspHeader.Text = "Stock Conversion";
+            this.tspHeader.Size = new System.Drawing.Size(326, 25);
+            this.tspHeader.Text = "Stock Conversion (Conversion Products Only)";
             // 
             // pnlGoodsOutward
             // 
@@ -451,7 +451,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(499, 122);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(719, 122);
             this.DGV_FilterProduct.TabIndex = 1111223;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -463,7 +463,7 @@
             this.lbluppunitid.AutoSize = true;
             this.lbluppunitid.Location = new System.Drawing.Point(1204, 0);
             this.lbluppunitid.Name = "lbluppunitid";
-            this.lbluppunitid.Size = new System.Drawing.Size(16, 20);
+            this.lbluppunitid.Size = new System.Drawing.Size(21, 25);
             this.lbluppunitid.TabIndex = 1111253;
             this.lbluppunitid.Text = "0";
             this.lbluppunitid.Visible = false;
@@ -538,7 +538,7 @@
             this.lblchildunitid.AutoSize = true;
             this.lblchildunitid.Location = new System.Drawing.Point(1205, -11);
             this.lblchildunitid.Name = "lblchildunitid";
-            this.lblchildunitid.Size = new System.Drawing.Size(16, 20);
+            this.lblchildunitid.Size = new System.Drawing.Size(21, 25);
             this.lblchildunitid.TabIndex = 1111254;
             this.lblchildunitid.Text = "0";
             this.lblchildunitid.Visible = false;
@@ -552,7 +552,7 @@
             this.cmbConcern.Location = new System.Drawing.Point(7, 36);
             this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(94, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(94, 33);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.cmbConcern_Enter);
@@ -567,7 +567,7 @@
             this.cmbTransactionType.Location = new System.Drawing.Point(400, 36);
             this.cmbTransactionType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(135, 27);
+            this.cmbTransactionType.Size = new System.Drawing.Size(135, 33);
             this.cmbTransactionType.TabIndex = 3;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.cmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.cmbTransactionType_Enter);
@@ -580,7 +580,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(400, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 20);
+            this.label1.Size = new System.Drawing.Size(119, 25);
             this.label1.TabIndex = 90;
             this.label1.Text = "Conversion Type";
             // 
@@ -590,7 +590,7 @@
             this.txtStockConvertNo.Location = new System.Drawing.Point(236, 36);
             this.txtStockConvertNo.Name = "txtStockConvertNo";
             this.txtStockConvertNo.ReadOnly = true;
-            this.txtStockConvertNo.Size = new System.Drawing.Size(150, 27);
+            this.txtStockConvertNo.Size = new System.Drawing.Size(150, 32);
             this.txtStockConvertNo.TabIndex = 2;
             // 
             // dtpConvertDate
@@ -599,7 +599,7 @@
             this.dtpConvertDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpConvertDate.Location = new System.Drawing.Point(115, 36);
             this.dtpConvertDate.Name = "dtpConvertDate";
-            this.dtpConvertDate.Size = new System.Drawing.Size(107, 27);
+            this.dtpConvertDate.Size = new System.Drawing.Size(107, 32);
             this.dtpConvertDate.TabIndex = 1;
             this.dtpConvertDate.ValueChanged += new System.EventHandler(this.DtpOutwardDate_ValueChanged);
             this.dtpConvertDate.Enter += new System.EventHandler(this.DtpOutwardDate_Enter);
@@ -610,7 +610,7 @@
             this.lbloutwarddate.AutoSize = true;
             this.lbloutwarddate.Location = new System.Drawing.Point(115, 14);
             this.lbloutwarddate.Name = "lbloutwarddate";
-            this.lbloutwarddate.Size = new System.Drawing.Size(100, 20);
+            this.lbloutwarddate.Size = new System.Drawing.Size(124, 25);
             this.lbloutwarddate.TabIndex = 84;
             this.lbloutwarddate.Text = "Transaction Date";
             // 
@@ -619,7 +619,7 @@
             this.lblConcern.AutoSize = true;
             this.lblConcern.Location = new System.Drawing.Point(7, 14);
             this.lblConcern.Name = "lblConcern";
-            this.lblConcern.Size = new System.Drawing.Size(54, 20);
+            this.lblConcern.Size = new System.Drawing.Size(66, 25);
             this.lblConcern.TabIndex = 70;
             this.lblConcern.Text = "Concern";
             this.lblConcern.Click += new System.EventHandler(this.lblConcern_Click);
@@ -629,7 +629,7 @@
             this.lbloutwardno.AutoSize = true;
             this.lbloutwardno.Location = new System.Drawing.Point(236, 14);
             this.lbloutwardno.Name = "lbloutwardno";
-            this.lbloutwardno.Size = new System.Drawing.Size(92, 20);
+            this.lbloutwardno.Size = new System.Drawing.Size(114, 25);
             this.lbloutwardno.TabIndex = 68;
             this.lbloutwardno.Text = "Transaction No.";
             // 
@@ -638,7 +638,7 @@
             this.lblProductName1.AutoSize = true;
             this.lblProductName1.Location = new System.Drawing.Point(553, 14);
             this.lblProductName1.Name = "lblProductName1";
-            this.lblProductName1.Size = new System.Drawing.Size(73, 20);
+            this.lblProductName1.Size = new System.Drawing.Size(91, 25);
             this.lblProductName1.TabIndex = 28;
             this.lblProductName1.Text = "Parent Item";
             // 
@@ -647,7 +647,7 @@
             this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductName.Location = new System.Drawing.Point(553, 36);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(339, 27);
+            this.txtProductName.Size = new System.Drawing.Size(339, 32);
             this.txtProductName.TabIndex = 4;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProduct_Enter);
@@ -660,7 +660,7 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(825, 582);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(0, 20);
+            this.label18.Size = new System.Drawing.Size(0, 25);
             this.label18.TabIndex = 1111241;
             // 
             // lblRemark
@@ -668,7 +668,7 @@
             this.lblRemark.AutoSize = true;
             this.lblRemark.Location = new System.Drawing.Point(10, 598);
             this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(56, 20);
+            this.lblRemark.Size = new System.Drawing.Size(70, 25);
             this.lblRemark.TabIndex = 958824;
             this.lblRemark.Text = "Remarks";
             // 
@@ -725,7 +725,7 @@
             this.txtPStockLocation.Location = new System.Drawing.Point(5, 26);
             this.txtPStockLocation.Name = "txtPStockLocation";
             this.txtPStockLocation.ReadOnly = true;
-            this.txtPStockLocation.Size = new System.Drawing.Size(56, 27);
+            this.txtPStockLocation.Size = new System.Drawing.Size(56, 32);
             this.txtPStockLocation.TabIndex = 1111160;
             // 
             // label4
@@ -733,7 +733,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(1045, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 20);
+            this.label4.Size = new System.Drawing.Size(0, 25);
             this.label4.TabIndex = 1111158;
             // 
             // txtPRack
@@ -742,7 +742,7 @@
             this.txtPRack.Location = new System.Drawing.Point(95, 26);
             this.txtPRack.Name = "txtPRack";
             this.txtPRack.ReadOnly = true;
-            this.txtPRack.Size = new System.Drawing.Size(25, 27);
+            this.txtPRack.Size = new System.Drawing.Size(25, 32);
             this.txtPRack.TabIndex = 1111158;
             // 
             // txtPBatchNo
@@ -752,7 +752,7 @@
             this.txtPBatchNo.MaxLength = 10;
             this.txtPBatchNo.Name = "txtPBatchNo";
             this.txtPBatchNo.ReadOnly = true;
-            this.txtPBatchNo.Size = new System.Drawing.Size(79, 27);
+            this.txtPBatchNo.Size = new System.Drawing.Size(79, 32);
             this.txtPBatchNo.TabIndex = 4;
             // 
             // txtPMrp
@@ -762,7 +762,7 @@
             this.txtPMrp.Name = "txtPMrp";
             this.txtPMrp.ReadOnly = true;
             this.txtPMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPMrp.Size = new System.Drawing.Size(39, 27);
+            this.txtPMrp.Size = new System.Drawing.Size(39, 32);
             this.txtPMrp.TabIndex = 2;
             this.txtPMrp.TextChanged += new System.EventHandler(this.TxtMrp_TextChanged);
             // 
@@ -772,7 +772,7 @@
             this.txtPExpiryDate.Location = new System.Drawing.Point(190, 26);
             this.txtPExpiryDate.Name = "txtPExpiryDate";
             this.txtPExpiryDate.ReadOnly = true;
-            this.txtPExpiryDate.Size = new System.Drawing.Size(86, 27);
+            this.txtPExpiryDate.Size = new System.Drawing.Size(86, 32);
             this.txtPExpiryDate.TabIndex = 3;
             this.txtPExpiryDate.TextChanged += new System.EventHandler(this.TxtExpiryDate_TextChanged);
             // 
@@ -781,7 +781,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(1057, 609);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(0, 20);
+            this.label19.Size = new System.Drawing.Size(0, 25);
             this.label19.TabIndex = 1111239;
             // 
             // txtRemark
@@ -897,7 +897,7 @@
             this.lblparent2balunit.AutoSize = true;
             this.lblparent2balunit.Location = new System.Drawing.Point(170, 484);
             this.lblparent2balunit.Name = "lblparent2balunit";
-            this.lblparent2balunit.Size = new System.Drawing.Size(0, 20);
+            this.lblparent2balunit.Size = new System.Drawing.Size(0, 25);
             this.lblparent2balunit.TabIndex = 1111229;
             // 
             // label42
@@ -905,7 +905,7 @@
             this.label42.AutoSize = true;
             this.label42.Location = new System.Drawing.Point(8, 98);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(61, 20);
+            this.label42.Size = new System.Drawing.Size(75, 25);
             this.label42.TabIndex = 1111248;
             this.label42.Text = "Batch No.";
             // 
@@ -914,7 +914,7 @@
             this.txtBatchno2.Location = new System.Drawing.Point(70, 94);
             this.txtBatchno2.MaxLength = 10;
             this.txtBatchno2.Name = "txtBatchno2";
-            this.txtBatchno2.Size = new System.Drawing.Size(125, 27);
+            this.txtBatchno2.Size = new System.Drawing.Size(125, 32);
             this.txtBatchno2.TabIndex = 8;
             this.txtBatchno2.Enter += new System.EventHandler(this.txtBatchno2_Enter);
             this.txtBatchno2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBatchno2_KeyDown);
@@ -926,7 +926,7 @@
             this.txtParent2.Location = new System.Drawing.Point(70, 24);
             this.txtParent2.Name = "txtParent2";
             this.txtParent2.ReadOnly = true;
-            this.txtParent2.Size = new System.Drawing.Size(305, 27);
+            this.txtParent2.Size = new System.Drawing.Size(305, 32);
             this.txtParent2.TabIndex = 1111246;
             // 
             // textBox4
@@ -936,7 +936,7 @@
             this.textBox4.Location = new System.Drawing.Point(242, 60);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(17, 27);
+            this.textBox4.Size = new System.Drawing.Size(17, 32);
             this.textBox4.TabIndex = 1111227;
             this.textBox4.Text = "₹";
             // 
@@ -945,7 +945,7 @@
             this.lblparnetconvertunit.AutoSize = true;
             this.lblparnetconvertunit.Location = new System.Drawing.Point(377, 96);
             this.lblparnetconvertunit.Name = "lblparnetconvertunit";
-            this.lblparnetconvertunit.Size = new System.Drawing.Size(0, 20);
+            this.lblparnetconvertunit.Size = new System.Drawing.Size(0, 25);
             this.lblparnetconvertunit.TabIndex = 1111226;
             // 
             // lblparent2balqty
@@ -956,7 +956,7 @@
             this.lblparent2balqty.ForeColor = System.Drawing.Color.Green;
             this.lblparent2balqty.Location = new System.Drawing.Point(121, 481);
             this.lblparent2balqty.Name = "lblparent2balqty";
-            this.lblparent2balqty.Size = new System.Drawing.Size(0, 26);
+            this.lblparent2balqty.Size = new System.Drawing.Size(0, 32);
             this.lblparent2balqty.TabIndex = 1111226;
             // 
             // label32
@@ -964,7 +964,7 @@
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(3, 484);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(112, 20);
+            this.label32.Size = new System.Drawing.Size(140, 25);
             this.label32.TabIndex = 1111226;
             this.label32.Text = "Balance Parent Qty";
             // 
@@ -973,7 +973,7 @@
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(208, 98);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(56, 20);
+            this.label33.Size = new System.Drawing.Size(69, 25);
             this.label33.TabIndex = 1111245;
             this.label33.Text = "Quantity";
             // 
@@ -981,7 +981,7 @@
             // 
             this.txtChildStockLocation2.Location = new System.Drawing.Point(510, 24);
             this.txtChildStockLocation2.Name = "txtChildStockLocation2";
-            this.txtChildStockLocation2.Size = new System.Drawing.Size(131, 27);
+            this.txtChildStockLocation2.Size = new System.Drawing.Size(131, 32);
             this.txtChildStockLocation2.TabIndex = 5;
             this.txtChildStockLocation2.TextChanged += new System.EventHandler(this.txtStockLocationChild_TextChanged);
             this.txtChildStockLocation2.Enter += new System.EventHandler(this.txtStockLocationChild_Enter);
@@ -993,7 +993,7 @@
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(1045, 16);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(0, 20);
+            this.label34.Size = new System.Drawing.Size(0, 25);
             this.label34.TabIndex = 1111158;
             // 
             // label35
@@ -1001,7 +1001,7 @@
             this.label35.AutoSize = true;
             this.label35.Location = new System.Drawing.Point(8, 27);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(52, 20);
+            this.label35.Size = new System.Drawing.Size(64, 25);
             this.label35.TabIndex = 1111161;
             this.label35.Text = "Product";
             // 
@@ -1010,7 +1010,7 @@
             this.label36.AutoSize = true;
             this.label36.Location = new System.Drawing.Point(1262, 43);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(0, 20);
+            this.label36.Size = new System.Drawing.Size(0, 25);
             this.label36.TabIndex = 958834;
             // 
             // label37
@@ -1018,7 +1018,7 @@
             this.label37.AutoSize = true;
             this.label37.Location = new System.Drawing.Point(619, 52);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(0, 20);
+            this.label37.Size = new System.Drawing.Size(0, 25);
             this.label37.TabIndex = 958834;
             // 
             // label38
@@ -1026,7 +1026,7 @@
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(8, 64);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(35, 20);
+            this.label38.Size = new System.Drawing.Size(44, 25);
             this.label38.TabIndex = 1111243;
             this.label38.Text = "Rack";
             // 
@@ -1034,7 +1034,7 @@
             // 
             this.txtParentRack.Location = new System.Drawing.Point(70, 60);
             this.txtParentRack.Name = "txtParentRack";
-            this.txtParentRack.Size = new System.Drawing.Size(125, 27);
+            this.txtParentRack.Size = new System.Drawing.Size(125, 32);
             this.txtParentRack.TabIndex = 6;
             this.txtParentRack.TextChanged += new System.EventHandler(this.txtParentRack_TextChanged);
             this.txtParentRack.Enter += new System.EventHandler(this.txtParentRack_Enter);
@@ -1148,14 +1148,18 @@
             // clmlocationidparent2
             // 
             this.clmlocationidparent2.HeaderText = "locationid";
+            this.clmlocationidparent2.MinimumWidth = 6;
             this.clmlocationidparent2.Name = "clmlocationidparent2";
             this.clmlocationidparent2.Visible = false;
+            this.clmlocationidparent2.Width = 125;
             // 
             // dataGridViewTextBoxColumn40
             // 
             this.dataGridViewTextBoxColumn40.HeaderText = "Location";
+            this.dataGridViewTextBoxColumn40.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
             this.dataGridViewTextBoxColumn40.ReadOnly = true;
+            this.dataGridViewTextBoxColumn40.Width = 125;
             // 
             // clmRackIdparent2
             // 
@@ -1211,6 +1215,7 @@
             this.clmparent2stkqty.ReadOnly = true;
             this.clmparent2stkqty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmparent2stkqty.Visible = false;
+            this.clmparent2stkqty.Width = 125;
             // 
             // dataGridViewTextBoxColumn47
             // 
@@ -1228,6 +1233,7 @@
             this.clmparent2Qty.MinimumWidth = 6;
             this.clmparent2Qty.Name = "clmparent2Qty";
             this.clmparent2Qty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmparent2Qty.Width = 125;
             // 
             // dataGridViewTextBoxColumn49
             // 
@@ -1272,7 +1278,7 @@
             this.txtparentqty2.MaxLength = 5;
             this.txtparentqty2.Name = "txtparentqty2";
             this.txtparentqty2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtparentqty2.Size = new System.Drawing.Size(110, 27);
+            this.txtparentqty2.Size = new System.Drawing.Size(110, 32);
             this.txtparentqty2.TabIndex = 9;
             this.txtparentqty2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtparentqty2.Enter += new System.EventHandler(this.txtparentqty2_Enter);
@@ -1284,7 +1290,7 @@
             this.label39.AutoSize = true;
             this.label39.Location = new System.Drawing.Point(208, 64);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(34, 20);
+            this.label39.Size = new System.Drawing.Size(42, 25);
             this.label39.TabIndex = 1111235;
             this.label39.Text = "MRP";
             // 
@@ -1293,7 +1299,7 @@
             this.label40.AutoSize = true;
             this.label40.Location = new System.Drawing.Point(418, 27);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(87, 20);
+            this.label40.Size = new System.Drawing.Size(110, 25);
             this.label40.TabIndex = 1111233;
             this.label40.Text = "Stock Location";
             // 
@@ -1302,7 +1308,7 @@
             this.txtParentMRP.Location = new System.Drawing.Point(259, 60);
             this.txtParentMRP.Name = "txtParentMRP";
             this.txtParentMRP.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtParentMRP.Size = new System.Drawing.Size(116, 27);
+            this.txtParentMRP.Size = new System.Drawing.Size(116, 32);
             this.txtParentMRP.TabIndex = 7;
             this.txtParentMRP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtParentMRP.Enter += new System.EventHandler(this.txtParentMRP_Enter);
@@ -1316,7 +1322,7 @@
             this.txtExpiryDate2.Location = new System.Drawing.Point(510, 60);
             this.txtExpiryDate2.Name = "txtExpiryDate2";
             this.txtExpiryDate2.ReadOnly = true;
-            this.txtExpiryDate2.Size = new System.Drawing.Size(131, 27);
+            this.txtExpiryDate2.Size = new System.Drawing.Size(131, 32);
             this.txtExpiryDate2.TabIndex = 1111229;
             // 
             // label41
@@ -1324,7 +1330,7 @@
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(418, 64);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(70, 20);
+            this.label41.Size = new System.Drawing.Size(86, 25);
             this.label41.TabIndex = 1111238;
             this.label41.Text = "Expiry Date";
             // 
@@ -1433,7 +1439,7 @@
             this.lbluppunit.AutoSize = true;
             this.lbluppunit.Location = new System.Drawing.Point(340, 100);
             this.lbluppunit.Name = "lbluppunit";
-            this.lbluppunit.Size = new System.Drawing.Size(0, 20);
+            this.lbluppunit.Size = new System.Drawing.Size(0, 25);
             this.lbluppunit.TabIndex = 1111227;
             // 
             // txtupp
@@ -1443,7 +1449,7 @@
             this.txtupp.Name = "txtupp";
             this.txtupp.ReadOnly = true;
             this.txtupp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtupp.Size = new System.Drawing.Size(103, 27);
+            this.txtupp.Size = new System.Drawing.Size(103, 32);
             this.txtupp.TabIndex = 1111226;
             this.txtupp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1452,7 +1458,7 @@
             this.label48.AutoSize = true;
             this.label48.Location = new System.Drawing.Point(204, 100);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(31, 20);
+            this.label48.Size = new System.Drawing.Size(40, 25);
             this.label48.TabIndex = 1111236;
             this.label48.Text = "UPP";
             // 
@@ -1461,7 +1467,7 @@
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(8, 100);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(61, 20);
+            this.label47.Size = new System.Drawing.Size(75, 25);
             this.label47.TabIndex = 1111250;
             this.label47.Text = "Batch No.";
             // 
@@ -1470,7 +1476,7 @@
             this.lblParentBalUnit.AutoSize = true;
             this.lblParentBalUnit.Location = new System.Drawing.Point(170, 484);
             this.lblParentBalUnit.Name = "lblParentBalUnit";
-            this.lblParentBalUnit.Size = new System.Drawing.Size(0, 20);
+            this.lblParentBalUnit.Size = new System.Drawing.Size(0, 25);
             this.lblParentBalUnit.TabIndex = 1111247;
             // 
             // txtBatchno
@@ -1478,7 +1484,7 @@
             this.txtBatchno.Location = new System.Drawing.Point(70, 96);
             this.txtBatchno.MaxLength = 10;
             this.txtBatchno.Name = "txtBatchno";
-            this.txtBatchno.Size = new System.Drawing.Size(119, 27);
+            this.txtBatchno.Size = new System.Drawing.Size(119, 32);
             this.txtBatchno.TabIndex = 4;
             // 
             // textBox7
@@ -1488,7 +1494,7 @@
             this.textBox7.Location = new System.Drawing.Point(236, 60);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(17, 27);
+            this.textBox7.Size = new System.Drawing.Size(17, 32);
             this.textBox7.TabIndex = 1111227;
             this.textBox7.Text = "₹";
             // 
@@ -1497,7 +1503,7 @@
             this.lblchildunit.AutoSize = true;
             this.lblchildunit.Location = new System.Drawing.Point(584, 99);
             this.lblchildunit.Name = "lblchildunit";
-            this.lblchildunit.Size = new System.Drawing.Size(0, 20);
+            this.lblchildunit.Size = new System.Drawing.Size(0, 25);
             this.lblchildunit.TabIndex = 1111226;
             // 
             // lblParentbalqty
@@ -1508,7 +1514,7 @@
             this.lblParentbalqty.ForeColor = System.Drawing.Color.Green;
             this.lblParentbalqty.Location = new System.Drawing.Point(121, 481);
             this.lblParentbalqty.Name = "lblParentbalqty";
-            this.lblParentbalqty.Size = new System.Drawing.Size(0, 26);
+            this.lblParentbalqty.Size = new System.Drawing.Size(0, 32);
             this.lblParentbalqty.TabIndex = 1111226;
             this.lblParentbalqty.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -1517,7 +1523,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(3, 484);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(112, 20);
+            this.label9.Size = new System.Drawing.Size(140, 25);
             this.label9.TabIndex = 1111226;
             this.label9.Text = "Balance Parent Qty";
             // 
@@ -1526,7 +1532,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(393, 99);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 20);
+            this.label7.Size = new System.Drawing.Size(69, 25);
             this.label7.TabIndex = 1111245;
             this.label7.Text = "Quantity";
             // 
@@ -1534,7 +1540,7 @@
             // 
             this.txtChildStockLocation1.Location = new System.Drawing.Point(484, 24);
             this.txtChildStockLocation1.Name = "txtChildStockLocation1";
-            this.txtChildStockLocation1.Size = new System.Drawing.Size(157, 27);
+            this.txtChildStockLocation1.Size = new System.Drawing.Size(157, 32);
             this.txtChildStockLocation1.TabIndex = 1;
             this.txtChildStockLocation1.TextChanged += new System.EventHandler(this.txtChildStockLocation1_TextChanged);
             this.txtChildStockLocation1.Enter += new System.EventHandler(this.txtChildStockLocation1_Enter);
@@ -1548,7 +1554,7 @@
             this.cmbChildProduct1.Location = new System.Drawing.Point(70, 24);
             this.cmbChildProduct1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbChildProduct1.Name = "cmbChildProduct1";
-            this.cmbChildProduct1.Size = new System.Drawing.Size(299, 27);
+            this.cmbChildProduct1.Size = new System.Drawing.Size(299, 33);
             this.cmbChildProduct1.TabIndex = 0;
             this.cmbChildProduct1.SelectedIndexChanged += new System.EventHandler(this.cmbChildProduct1_SelectedIndexChanged);
             this.cmbChildProduct1.Enter += new System.EventHandler(this.cmbChildProduct1_Enter);
@@ -1561,7 +1567,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(1045, 16);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(0, 20);
+            this.label12.Size = new System.Drawing.Size(0, 25);
             this.label12.TabIndex = 1111158;
             // 
             // label13
@@ -1569,7 +1575,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(8, 27);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(52, 20);
+            this.label13.Size = new System.Drawing.Size(64, 25);
             this.label13.TabIndex = 1111161;
             this.label13.Text = "Product";
             // 
@@ -1578,7 +1584,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(1262, 43);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 20);
+            this.label14.Size = new System.Drawing.Size(0, 25);
             this.label14.TabIndex = 958834;
             // 
             // label15
@@ -1586,7 +1592,7 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(619, 52);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(0, 20);
+            this.label15.Size = new System.Drawing.Size(0, 25);
             this.label15.TabIndex = 958834;
             // 
             // lblRack
@@ -1594,7 +1600,7 @@
             this.lblRack.AutoSize = true;
             this.lblRack.Location = new System.Drawing.Point(8, 64);
             this.lblRack.Name = "lblRack";
-            this.lblRack.Size = new System.Drawing.Size(35, 20);
+            this.lblRack.Size = new System.Drawing.Size(44, 25);
             this.lblRack.TabIndex = 1111243;
             this.lblRack.Text = "Rack";
             // 
@@ -1602,7 +1608,7 @@
             // 
             this.txtRack.Location = new System.Drawing.Point(70, 60);
             this.txtRack.Name = "txtRack";
-            this.txtRack.Size = new System.Drawing.Size(119, 27);
+            this.txtRack.Size = new System.Drawing.Size(119, 32);
             this.txtRack.TabIndex = 2;
             this.txtRack.TextChanged += new System.EventHandler(this.txtRack_TextChanged);
             this.txtRack.Enter += new System.EventHandler(this.txtRack_Enter);
@@ -1717,14 +1723,18 @@
             // Convertedlocationid
             // 
             this.Convertedlocationid.HeaderText = "locationid";
+            this.Convertedlocationid.MinimumWidth = 6;
             this.Convertedlocationid.Name = "Convertedlocationid";
             this.Convertedlocationid.Visible = false;
+            this.Convertedlocationid.Width = 125;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.HeaderText = "Location";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 125;
             // 
             // ConvertedRackId
             // 
@@ -1780,6 +1790,7 @@
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn12.Visible = false;
+            this.dataGridViewTextBoxColumn12.Width = 125;
             // 
             // dataGridViewTextBoxColumn13
             // 
@@ -1797,6 +1808,7 @@
             this.clmConvertedQty.MinimumWidth = 6;
             this.clmConvertedQty.Name = "clmConvertedQty";
             this.clmConvertedQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmConvertedQty.Width = 125;
             // 
             // dataGridViewTextBoxColumn15
             // 
@@ -1828,8 +1840,10 @@
             // clmuppvalue
             // 
             this.clmuppvalue.HeaderText = "clmuppvalue";
+            this.clmuppvalue.MinimumWidth = 6;
             this.clmuppvalue.Name = "clmuppvalue";
             this.clmuppvalue.Visible = false;
+            this.clmuppvalue.Width = 125;
             // 
             // clmConvertedRemove
             // 
@@ -1847,7 +1861,7 @@
             this.txtChildQty.MaxLength = 5;
             this.txtChildQty.Name = "txtChildQty";
             this.txtChildQty.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtChildQty.Size = new System.Drawing.Size(97, 27);
+            this.txtChildQty.Size = new System.Drawing.Size(97, 32);
             this.txtChildQty.TabIndex = 5;
             this.txtChildQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtChildQty.Enter += new System.EventHandler(this.txtChildQty_Enter);
@@ -1860,7 +1874,7 @@
             this.lblMRP.AutoSize = true;
             this.lblMRP.Location = new System.Drawing.Point(204, 64);
             this.lblMRP.Name = "lblMRP";
-            this.lblMRP.Size = new System.Drawing.Size(34, 20);
+            this.lblMRP.Size = new System.Drawing.Size(42, 25);
             this.lblMRP.TabIndex = 1111235;
             this.lblMRP.Text = "MRP";
             // 
@@ -1869,7 +1883,7 @@
             this.lblGodown.AutoSize = true;
             this.lblGodown.Location = new System.Drawing.Point(393, 27);
             this.lblGodown.Name = "lblGodown";
-            this.lblGodown.Size = new System.Drawing.Size(87, 20);
+            this.lblGodown.Size = new System.Drawing.Size(110, 25);
             this.lblGodown.TabIndex = 1111233;
             this.lblGodown.Text = "Stock Location";
             // 
@@ -1878,7 +1892,7 @@
             this.txtMrp.Location = new System.Drawing.Point(253, 60);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtMrp.Size = new System.Drawing.Size(116, 27);
+            this.txtMrp.Size = new System.Drawing.Size(116, 32);
             this.txtMrp.TabIndex = 3;
             this.txtMrp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMrp.Enter += new System.EventHandler(this.txtMrp_Enter);
@@ -1892,7 +1906,7 @@
             this.txtExpiryDate.Location = new System.Drawing.Point(484, 60);
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.ReadOnly = true;
-            this.txtExpiryDate.Size = new System.Drawing.Size(157, 27);
+            this.txtExpiryDate.Size = new System.Drawing.Size(157, 32);
             this.txtExpiryDate.TabIndex = 1111229;
             // 
             // lblStock
@@ -1900,7 +1914,7 @@
             this.lblStock.AutoSize = true;
             this.lblStock.Location = new System.Drawing.Point(393, 64);
             this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(70, 20);
+            this.lblStock.Size = new System.Drawing.Size(86, 25);
             this.lblStock.TabIndex = 1111238;
             this.lblStock.Text = "Expiry Date";
             // 
@@ -1936,7 +1950,7 @@
             this.txtbatch1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtbatch1.Location = new System.Drawing.Point(65, 61);
             this.txtbatch1.Name = "txtbatch1";
-            this.txtbatch1.Size = new System.Drawing.Size(209, 27);
+            this.txtbatch1.Size = new System.Drawing.Size(209, 32);
             this.txtbatch1.TabIndex = 0;
             this.txtbatch1.TextChanged += new System.EventHandler(this.txtbatch1_TextChanged);
             this.txtbatch1.Enter += new System.EventHandler(this.txtbatch1_Enter);
@@ -1948,7 +1962,7 @@
             this.lblParentTotUnit.AutoSize = true;
             this.lblParentTotUnit.Location = new System.Drawing.Point(633, 484);
             this.lblParentTotUnit.Name = "lblParentTotUnit";
-            this.lblParentTotUnit.Size = new System.Drawing.Size(0, 20);
+            this.lblParentTotUnit.Size = new System.Drawing.Size(0, 25);
             this.lblParentTotUnit.TabIndex = 1111247;
             // 
             // lblParenttotqty
@@ -1959,7 +1973,7 @@
             this.lblParenttotqty.ForeColor = System.Drawing.Color.Blue;
             this.lblParenttotqty.Location = new System.Drawing.Point(585, 481);
             this.lblParenttotqty.Name = "lblParenttotqty";
-            this.lblParenttotqty.Size = new System.Drawing.Size(0, 26);
+            this.lblParenttotqty.Size = new System.Drawing.Size(0, 32);
             this.lblParenttotqty.TabIndex = 1111225;
             this.lblParenttotqty.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -1968,7 +1982,7 @@
             this.lblParentStockDetail.AutoSize = true;
             this.lblParentStockDetail.Location = new System.Drawing.Point(9, 103);
             this.lblParentStockDetail.Name = "lblParentStockDetail";
-            this.lblParentStockDetail.Size = new System.Drawing.Size(0, 20);
+            this.lblParentStockDetail.Size = new System.Drawing.Size(0, 25);
             this.lblParentStockDetail.TabIndex = 1111161;
             // 
             // label5
@@ -1976,7 +1990,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(312, 64);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 20);
+            this.label5.Size = new System.Drawing.Size(74, 25);
             this.label5.TabIndex = 1111158;
             this.label5.Text = "Avl Stock";
             // 
@@ -1985,7 +1999,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(9, 64);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 20);
+            this.label6.Size = new System.Drawing.Size(50, 25);
             this.label6.TabIndex = 1111224;
             this.label6.Text = "Batch";
             // 
@@ -1996,7 +2010,7 @@
             this.txtStockQuantity.Name = "txtStockQuantity";
             this.txtStockQuantity.ReadOnly = true;
             this.txtStockQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtStockQuantity.Size = new System.Drawing.Size(97, 27);
+            this.txtStockQuantity.Size = new System.Drawing.Size(97, 32);
             this.txtStockQuantity.TabIndex = 91;
             this.txtStockQuantity.TextChanged += new System.EventHandler(this.TxtStockQuantity_TextChanged);
             // 
@@ -2006,7 +2020,7 @@
             this.txtParentProduct1.Location = new System.Drawing.Point(65, 24);
             this.txtParentProduct1.Name = "txtParentProduct1";
             this.txtParentProduct1.ReadOnly = true;
-            this.txtParentProduct1.Size = new System.Drawing.Size(305, 27);
+            this.txtParentProduct1.Size = new System.Drawing.Size(305, 32);
             this.txtParentProduct1.TabIndex = 1111162;
             // 
             // label8
@@ -2014,7 +2028,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(1045, 16);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(0, 20);
+            this.label8.Size = new System.Drawing.Size(0, 25);
             this.label8.TabIndex = 1111158;
             // 
             // lbltotalproducts
@@ -2022,7 +2036,7 @@
             this.lbltotalproducts.AutoSize = true;
             this.lbltotalproducts.Location = new System.Drawing.Point(483, 484);
             this.lbltotalproducts.Name = "lbltotalproducts";
-            this.lbltotalproducts.Size = new System.Drawing.Size(99, 20);
+            this.lbltotalproducts.Size = new System.Drawing.Size(125, 25);
             this.lbltotalproducts.TabIndex = 958825;
             this.lbltotalproducts.Text = "Total Parent  Qty";
             // 
@@ -2031,7 +2045,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 27);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 20);
+            this.label3.Size = new System.Drawing.Size(64, 25);
             this.label3.TabIndex = 1111161;
             this.label3.Text = "Product";
             // 
@@ -2040,7 +2054,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(1262, 43);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(0, 20);
+            this.label11.Size = new System.Drawing.Size(0, 25);
             this.label11.TabIndex = 958834;
             // 
             // lblQuantity
@@ -2048,7 +2062,7 @@
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Location = new System.Drawing.Point(604, 64);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(0, 20);
+            this.lblQuantity.Size = new System.Drawing.Size(0, 25);
             this.lblQuantity.TabIndex = 958834;
             // 
             // grdStockadjustment
@@ -2161,14 +2175,18 @@
             // locationid
             // 
             this.locationid.HeaderText = "locationid";
+            this.locationid.MinimumWidth = 6;
             this.locationid.Name = "locationid";
             this.locationid.Visible = false;
+            this.locationid.Width = 125;
             // 
             // Location
             // 
             this.Location.HeaderText = "Location";
+            this.Location.MinimumWidth = 6;
             this.Location.Name = "Location";
             this.Location.ReadOnly = true;
+            this.Location.Width = 125;
             // 
             // clmRKID
             // 
@@ -2224,6 +2242,7 @@
             this.clmQty.ReadOnly = true;
             this.clmQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmQty.Visible = false;
+            this.clmQty.Width = 125;
             // 
             // clmrequestqty
             // 
@@ -2241,6 +2260,7 @@
             this.clmOutward.MinimumWidth = 6;
             this.clmOutward.Name = "clmOutward";
             this.clmOutward.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmOutward.Width = 125;
             // 
             // clmunit
             // 
@@ -2285,7 +2305,7 @@
             this.txtParentQuantity.MaxLength = 5;
             this.txtParentQuantity.Name = "txtParentQuantity";
             this.txtParentQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtParentQuantity.Size = new System.Drawing.Size(97, 27);
+            this.txtParentQuantity.Size = new System.Drawing.Size(97, 32);
             this.txtParentQuantity.TabIndex = 2;
             this.txtParentQuantity.TextChanged += new System.EventHandler(this.TxtOutwardQuantity_TextChanged);
             this.txtParentQuantity.Enter += new System.EventHandler(this.TxtOutwardQuantity_Enter);
@@ -2298,7 +2318,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(473, 64);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 20);
+            this.label2.Size = new System.Drawing.Size(35, 25);
             this.label2.TabIndex = 958829;
             this.label2.Text = "Qty";
             // 
@@ -2379,7 +2399,7 @@
             this.lblparent2unit.AutoSize = true;
             this.lblparent2unit.Location = new System.Drawing.Point(633, 484);
             this.lblparent2unit.Name = "lblparent2unit";
-            this.lblparent2unit.Size = new System.Drawing.Size(0, 20);
+            this.lblparent2unit.Size = new System.Drawing.Size(0, 25);
             this.lblparent2unit.TabIndex = 1111228;
             // 
             // cmbChildProduct2
@@ -2389,7 +2409,7 @@
             this.cmbChildProduct2.Location = new System.Drawing.Point(65, 24);
             this.cmbChildProduct2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbChildProduct2.Name = "cmbChildProduct2";
-            this.cmbChildProduct2.Size = new System.Drawing.Size(311, 27);
+            this.cmbChildProduct2.Size = new System.Drawing.Size(311, 33);
             this.cmbChildProduct2.TabIndex = 0;
             this.cmbChildProduct2.SelectedIndexChanged += new System.EventHandler(this.cmbChildProduct2_SelectedIndexChanged);
             this.cmbChildProduct2.Enter += new System.EventHandler(this.cmbChildProduct2_Enter);
@@ -2405,7 +2425,7 @@
             this.lblparent2totqty.ForeColor = System.Drawing.Color.Blue;
             this.lblparent2totqty.Location = new System.Drawing.Point(585, 481);
             this.lblparent2totqty.Name = "lblparent2totqty";
-            this.lblparent2totqty.Size = new System.Drawing.Size(0, 26);
+            this.lblparent2totqty.Size = new System.Drawing.Size(0, 32);
             this.lblparent2totqty.TabIndex = 1111225;
             this.lblparent2totqty.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -2414,7 +2434,7 @@
             this.lblChildStockDetail.AutoSize = true;
             this.lblChildStockDetail.Location = new System.Drawing.Point(9, 103);
             this.lblChildStockDetail.Name = "lblChildStockDetail";
-            this.lblChildStockDetail.Size = new System.Drawing.Size(0, 20);
+            this.lblChildStockDetail.Size = new System.Drawing.Size(0, 25);
             this.lblChildStockDetail.TabIndex = 1111161;
             // 
             // label22
@@ -2422,7 +2442,7 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(312, 64);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(58, 20);
+            this.label22.Size = new System.Drawing.Size(74, 25);
             this.label22.TabIndex = 1111158;
             this.label22.Text = "Avl Stock";
             // 
@@ -2431,7 +2451,7 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(9, 64);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(41, 20);
+            this.label23.Size = new System.Drawing.Size(50, 25);
             this.label23.TabIndex = 1111224;
             this.label23.Text = "Batch";
             // 
@@ -2442,7 +2462,7 @@
             this.txtChildStockqty.Name = "txtChildStockqty";
             this.txtChildStockqty.ReadOnly = true;
             this.txtChildStockqty.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtChildStockqty.Size = new System.Drawing.Size(97, 27);
+            this.txtChildStockqty.Size = new System.Drawing.Size(97, 32);
             this.txtChildStockqty.TabIndex = 1000;
             // 
             // label24
@@ -2450,7 +2470,7 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(1045, 16);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(0, 20);
+            this.label24.Size = new System.Drawing.Size(0, 25);
             this.label24.TabIndex = 1111158;
             // 
             // label25
@@ -2458,7 +2478,7 @@
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(483, 484);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(99, 20);
+            this.label25.Size = new System.Drawing.Size(125, 25);
             this.label25.TabIndex = 958825;
             this.label25.Text = "Total Parent  Qty";
             // 
@@ -2467,7 +2487,7 @@
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(9, 27);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(52, 20);
+            this.label26.Size = new System.Drawing.Size(64, 25);
             this.label26.TabIndex = 1111161;
             this.label26.Text = "Product";
             // 
@@ -2476,7 +2496,7 @@
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(1262, 43);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(0, 20);
+            this.label27.Size = new System.Drawing.Size(0, 25);
             this.label27.TabIndex = 958834;
             // 
             // lblQuantity2
@@ -2484,7 +2504,7 @@
             this.lblQuantity2.AutoSize = true;
             this.lblQuantity2.Location = new System.Drawing.Point(604, 64);
             this.lblQuantity2.Name = "lblQuantity2";
-            this.lblQuantity2.Size = new System.Drawing.Size(0, 20);
+            this.lblQuantity2.Size = new System.Drawing.Size(0, 25);
             this.lblQuantity2.TabIndex = 958834;
             // 
             // grdChild2
@@ -2597,14 +2617,18 @@
             // clmlocationidChild2
             // 
             this.clmlocationidChild2.HeaderText = "locationid";
+            this.clmlocationidChild2.MinimumWidth = 6;
             this.clmlocationidChild2.Name = "clmlocationidChild2";
             this.clmlocationidChild2.Visible = false;
+            this.clmlocationidChild2.Width = 125;
             // 
             // clmlocationChild2
             // 
             this.clmlocationChild2.HeaderText = "Location";
+            this.clmlocationChild2.MinimumWidth = 6;
             this.clmlocationChild2.Name = "clmlocationChild2";
             this.clmlocationChild2.ReadOnly = true;
+            this.clmlocationChild2.Width = 125;
             // 
             // clmRackIdChild2
             // 
@@ -2660,6 +2684,7 @@
             this.clmChild2stkqty.ReadOnly = true;
             this.clmChild2stkqty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmChild2stkqty.Visible = false;
+            this.clmChild2stkqty.Width = 125;
             // 
             // dataGridViewTextBoxColumn30
             // 
@@ -2677,6 +2702,7 @@
             this.clmChild2Qty.MinimumWidth = 6;
             this.clmChild2Qty.Name = "clmChild2Qty";
             this.clmChild2Qty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2Qty.Width = 125;
             // 
             // dataGridViewTextBoxColumn32
             // 
@@ -2708,8 +2734,10 @@
             // clmchild2uppvalue
             // 
             this.clmchild2uppvalue.HeaderText = "clmchild2uppvalue";
+            this.clmchild2uppvalue.MinimumWidth = 6;
             this.clmchild2uppvalue.Name = "clmchild2uppvalue";
             this.clmchild2uppvalue.Visible = false;
+            this.clmchild2uppvalue.Width = 125;
             // 
             // clmChild2Remove
             // 
@@ -2727,7 +2755,7 @@
             this.txtChildQty2.MaxLength = 5;
             this.txtChildQty2.Name = "txtChildQty2";
             this.txtChildQty2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtChildQty2.Size = new System.Drawing.Size(97, 27);
+            this.txtChildQty2.Size = new System.Drawing.Size(97, 32);
             this.txtChildQty2.TabIndex = 3;
             this.txtChildQty2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtChildQty2.Enter += new System.EventHandler(this.txtChildQty2_Enter);
@@ -2741,7 +2769,7 @@
             this.txtbatch2.Location = new System.Drawing.Point(65, 61);
             this.txtbatch2.MaxLength = 1000;
             this.txtbatch2.Name = "txtbatch2";
-            this.txtbatch2.Size = new System.Drawing.Size(215, 27);
+            this.txtbatch2.Size = new System.Drawing.Size(215, 32);
             this.txtbatch2.TabIndex = 1;
             this.txtbatch2.TextChanged += new System.EventHandler(this.txtbatch2_TextChanged);
             this.txtbatch2.Enter += new System.EventHandler(this.txtbatch2_Enter);
@@ -2753,7 +2781,7 @@
             this.aa.AutoSize = true;
             this.aa.Location = new System.Drawing.Point(473, 64);
             this.aa.Name = "aa";
-            this.aa.Size = new System.Drawing.Size(28, 20);
+            this.aa.Size = new System.Drawing.Size(35, 25);
             this.aa.TabIndex = 958829;
             this.aa.Text = "Qty";
             // 
@@ -2769,7 +2797,7 @@
             // 
             // INV_StockJournal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
