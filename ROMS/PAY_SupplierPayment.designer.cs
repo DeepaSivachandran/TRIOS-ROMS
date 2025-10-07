@@ -186,6 +186,7 @@
             this.clmFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSPOB_InvoiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmGSTRFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmCheckBoxEnable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsSupplierPayment.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReurnDC)).BeginInit();
@@ -1231,7 +1232,8 @@
             this.clmCreditID,
             this.clmFlag,
             this.clmSPOB_InvoiceID,
-            this.clmGSTRFlag});
+            this.clmGSTRFlag,
+            this.clmCheckBoxEnable});
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle18.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1794,6 +1796,12 @@
             this.clmGSTRFlag.ReadOnly = true;
             this.clmGSTRFlag.Visible = false;
             // 
+            // clmCheckBoxEnable
+            // 
+            this.clmCheckBoxEnable.HeaderText = "CheckBoxEnable";
+            this.clmCheckBoxEnable.Name = "clmCheckBoxEnable";
+            this.clmCheckBoxEnable.ReadOnly = true;
+            // 
             // PAY_SupplierPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1969,5 +1977,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSPOB_InvoiceID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmGSTRFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCheckBoxEnable;
     }
 }

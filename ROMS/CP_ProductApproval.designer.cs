@@ -176,6 +176,8 @@
             this.clmPurHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPurAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPurEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChangedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMakerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPurRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmSalesHSNName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesHSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -185,6 +187,8 @@
             this.clmSalesHSNID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesAddFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesChangedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesMakerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesRemove = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
@@ -1223,6 +1227,8 @@
             this.clmSalesHSNID,
             this.clmSalesAddFlag,
             this.clmSalesEditFlag,
+            this.clmSalesChangedDate,
+            this.clmSalesMakerID,
             this.clmSalesRemove});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -1381,6 +1387,8 @@
             this.clmPurHSNID,
             this.clmPurAddFlag,
             this.clmPurEditFlag,
+            this.clmChangedDate,
+            this.clmMakerID,
             this.clmPurRemove});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -1726,6 +1734,20 @@
             this.clmPurEditFlag.ReadOnly = true;
             this.clmPurEditFlag.Visible = false;
             // 
+            // clmChangedDate
+            // 
+            this.clmChangedDate.HeaderText = "ChangedDate";
+            this.clmChangedDate.Name = "clmChangedDate";
+            this.clmChangedDate.ReadOnly = true;
+            this.clmChangedDate.Visible = false;
+            // 
+            // clmMakerID
+            // 
+            this.clmMakerID.HeaderText = "MakerID";
+            this.clmMakerID.Name = "clmMakerID";
+            this.clmMakerID.ReadOnly = true;
+            this.clmMakerID.Visible = false;
+            // 
             // clmPurRemove
             // 
             this.clmPurRemove.HeaderText = "Remove";
@@ -1790,6 +1812,20 @@
             this.clmSalesEditFlag.Name = "clmSalesEditFlag";
             this.clmSalesEditFlag.ReadOnly = true;
             this.clmSalesEditFlag.Visible = false;
+            // 
+            // clmSalesChangedDate
+            // 
+            this.clmSalesChangedDate.HeaderText = "SalesChangedDate";
+            this.clmSalesChangedDate.Name = "clmSalesChangedDate";
+            this.clmSalesChangedDate.ReadOnly = true;
+            this.clmSalesChangedDate.Visible = false;
+            // 
+            // clmSalesMakerID
+            // 
+            this.clmSalesMakerID.HeaderText = "SalesMakerID";
+            this.clmSalesMakerID.Name = "clmSalesMakerID";
+            this.clmSalesMakerID.ReadOnly = true;
+            this.clmSalesMakerID.Visible = false;
             // 
             // clmSalesRemove
             // 
@@ -1981,6 +2017,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurHSNID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurAddFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurEditFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmChangedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMakerID;
         private System.Windows.Forms.DataGridViewImageColumn clmPurRemove;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNCode;
@@ -1990,6 +2028,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesHSNID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesAddFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesEditFlag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesChangedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesMakerID;
         private System.Windows.Forms.DataGridViewImageColumn clmSalesRemove;
     }
 }

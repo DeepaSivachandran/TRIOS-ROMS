@@ -158,7 +158,7 @@ namespace ROMS
 
         private void PAY_SupplierPayment_BankDate_Load(object sender, EventArgs e)
         {
-            dpTransactionDate.MinDate = pbChequeDate;
+            dpTransactionDate.MaxDate = pbChequeDate;
             //sdpTransactionDate.MaxDate = MainForm.pbCurrentDate;
         }
 
