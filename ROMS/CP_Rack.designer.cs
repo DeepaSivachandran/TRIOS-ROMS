@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Rack));
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.lblLocation = new System.Windows.Forms.Label();
-            this.lvLocation = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblLocationCode = new System.Windows.Forms.Label();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.txtDDescription = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
@@ -53,15 +52,17 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtRackName = new System.Windows.Forms.TextBox();
             this.epRack = new System.Windows.Forms.ErrorProvider(this.components);
+            this.DGV_FilterLocation = new System.Windows.Forms.DataGridView();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
             this.SuspendLayout();
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.lblLocation);
-            this.grbform.Controls.Add(this.lvLocation);
+            this.grbform.Controls.Add(this.DGV_FilterLocation);
+            this.grbform.Controls.Add(this.lblLocationCode);
             this.grbform.Controls.Add(this.txtLocation);
             this.grbform.Controls.Add(this.txtDDescription);
             this.grbform.Controls.Add(this.txtDescription);
@@ -82,45 +83,14 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
-            // lblLocation
+            // lblLocationCode
             // 
-            this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(18, 60);
-            this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(0, 20);
-            this.lblLocation.TabIndex = 1111147;
-            this.lblLocation.Visible = false;
-            // 
-            // lvLocation
-            // 
-            this.lvLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
-            this.lvLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvLocation.HideSelection = false;
-            this.lvLocation.Location = new System.Drawing.Point(221, 86);
-            this.lvLocation.Name = "lvLocation";
-            this.lvLocation.Size = new System.Drawing.Size(288, 72);
-            this.lvLocation.TabIndex = 1111146;
-            this.lvLocation.UseCompatibleStateImageBehavior = false;
-            this.lvLocation.View = System.Windows.Forms.View.Details;
-            this.lvLocation.Visible = false;
-            this.lvLocation.DoubleClick += new System.EventHandler(this.LvLocation_DoubleClick);
-            this.lvLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvLocation_KeyDown);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 180;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Width = 120;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Width = 0;
+            this.lblLocationCode.AutoSize = true;
+            this.lblLocationCode.Location = new System.Drawing.Point(18, 60);
+            this.lblLocationCode.Name = "lblLocationCode";
+            this.lblLocationCode.Size = new System.Drawing.Size(0, 20);
+            this.lblLocationCode.TabIndex = 1111147;
+            this.lblLocationCode.Visible = false;
             // 
             // txtLocation
             // 
@@ -333,6 +303,50 @@
             // 
             this.epRack.ContainerControl = this;
             // 
+            // DGV_FilterLocation
+            // 
+            this.DGV_FilterLocation.AllowUserToAddRows = false;
+            this.DGV_FilterLocation.AllowUserToDeleteRows = false;
+            this.DGV_FilterLocation.AllowUserToResizeColumns = false;
+            this.DGV_FilterLocation.AllowUserToResizeRows = false;
+            this.DGV_FilterLocation.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_FilterLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_FilterLocation.ColumnHeadersHeight = 30;
+            this.DGV_FilterLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterLocation.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_FilterLocation.EnableHeadersVisualStyles = false;
+            this.DGV_FilterLocation.GridColor = System.Drawing.Color.White;
+            this.DGV_FilterLocation.Location = new System.Drawing.Point(221, 85);
+            this.DGV_FilterLocation.Name = "DGV_FilterLocation";
+            this.DGV_FilterLocation.ReadOnly = true;
+            this.DGV_FilterLocation.RowHeadersVisible = false;
+            this.DGV_FilterLocation.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterLocation.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_FilterLocation.RowTemplate.Height = 25;
+            this.DGV_FilterLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_FilterLocation.Size = new System.Drawing.Size(304, 116);
+            this.DGV_FilterLocation.TabIndex = 111111172;
+            this.DGV_FilterLocation.Visible = false;
+            this.DGV_FilterLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterLocation_CellDoubleClick);
+            this.DGV_FilterLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterLocation_KeyDown);
+            // 
             // CP_Rack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -359,6 +373,7 @@
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -380,12 +395,9 @@
         private System.Windows.Forms.TextBox txtDDescription;
         private System.Windows.Forms.TextBox txtDescription;
         public System.Windows.Forms.Button btnSave;
-        public System.Windows.Forms.ListView lvLocation;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         public System.Windows.Forms.ComboBox cmbConcern;
         public System.Windows.Forms.TextBox txtLocation;
-        public System.Windows.Forms.Label lblLocation;
+        public System.Windows.Forms.Label lblLocationCode;
+        public System.Windows.Forms.DataGridView DGV_FilterLocation;
     }
 }

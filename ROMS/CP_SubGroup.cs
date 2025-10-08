@@ -1652,7 +1652,7 @@ namespace ROMS
                     MainForm.objCP_Rack.varFormFlag = 1;
                     MainForm.objCP_Rack.cmbConcern.Enabled = false;
                     MainForm.objCP_Rack.txtLocation.Text = txtLocation.Text;
-                    MainForm.objCP_Rack.lblLocation.Text = lblLocation.Text;
+                    MainForm.objCP_Rack.lblLocationCode.Text = lblLocation.Text;
                     MainForm.objCP_Rack.txtLocation.Enabled = false;
                     MainForm.objCP_Rack.ShowDialog();
                     if (MainForm.objCP_Rack.varSaveFlag == 1)
