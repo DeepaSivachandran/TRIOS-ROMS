@@ -26,7 +26,7 @@ namespace ROMS
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbLoginId = "";
-        public static string pbUserRoleId;
+        public static string pbUserRoleId ="0";
         public static string pbView;
         public static string pbSelectedMenu;
         public static string pbIpAddress = "";
@@ -314,6 +314,10 @@ namespace ROMS
 
         public static DataTable objDtMenuSplPermission;
 
+        public static DataTable objDtMenuDetailsUser;
+        public static DataTable objDtMenuSplPermissionUser;
+
+
         public MainForm()
         {
             try
@@ -441,6 +445,9 @@ namespace ROMS
                 GetDate();
                 udfnGetMenuDetails();
                 udfnGetMenuSplPermissionDetails();
+                udfnGetMenuDetailsForUser(); 
+                BindMenu(sender, e);
+                CountToolStripMenuItems(ms);
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
@@ -668,6 +675,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        //take all  menu for user role master
         public void udfnGetMenuDetails()
         {
             try
@@ -695,6 +703,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        //take all splfield  menu for user role master
         public void udfnGetMenuSplPermissionDetails()
         {
             try
@@ -722,7 +731,178 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
+        //take a particular user 
+        public void udfnGetMenuDetailsForUser()
+        {
+            try
+            {
+                MR_Menu objMR_Menu = new MR_Menu();
+                objMR_Menu.ViewType = 2;
+                objMR_Menu.paraUserRoleId = Convert.ToInt32(pbUserRoleId);
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnMenu(objMR_Menu);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            objDtMenuDetailsUser = objDs.Tables[0];
+                        }
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            objDtMenuSplPermissionUser = objDs.Tables[1];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        // --------- Bind Menus --------------
+        public void BindMenu(object sender, EventArgs e)
+        {
+            try
+            {
+                 
+                List<ToolStripItem> objAllItems = new List<ToolStripItem>();
+                List<ToolStripMenuItem> objMenuItems = new List<ToolStripMenuItem>();
+                foreach (ToolStripItem objToolItem in ms.Items)
+                {
+                    objAllItems.Add(objToolItem);
+                    if (objToolItem is ToolStripMenuItem)
+                    {
+                        objMenuItems.Add((ToolStripMenuItem)objToolItem);
+                    }
+                }
+                if (MainForm.pbUserRoleId != "1")
+                {
+                    for (int i = 0; i <= objDtMenuDetailsUser.Rows.Count - 1; i++)
+                    {
+                        if (MainForm.pbUserRoleId != "1")
+                        {
+                            foreach (ToolStripItem varItem in objAllItems)
+                            {
+                                if (varItem.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
+                                {
+                                    varItem.Visible = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            foreach (ToolStripItem varItem in objAllItems)
+                            {
+                                varItem.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (ToolStripItem varItem in objAllItems)
+                    {
+                        varItem.Visible = true;
+                    }
+                }
+                objAllItems.Clear();
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private int CountToolStripMenuItems(MenuStrip menustrip)
+        {
+            int Count = 0;
+            try
+            {
+                if (MainForm.pbUserRoleId == "1")
+                {
+                    foreach (ToolStripMenuItem item in menustrip.Items)
+                    {
+                        item.Visible = true;
+                        foreach (ToolStripMenuItem item1 in item.DropDownItems)
+                        {
+                            item1.Visible = true;
+                            foreach (ToolStripMenuItem item2 in item1.DropDownItems)
+                            {
+                                item2.Visible = true;
+                                foreach (ToolStripMenuItem item3 in item2.DropDownItems)
+                                {
+                                    item3.Visible = true;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                { 
+                    for (int i = 0; i <= objDtMenuDetailsUser.Rows.Count - 1; i++)
+                    {
+                        if (MainForm.pbUserRoleId != "0")
+                        {
+                            foreach (ToolStripMenuItem item in menustrip.Items)
+                            {
+                                if (item.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
+                                {
+                                    item.Visible = true;
+                                }
+
+                                foreach (ToolStripMenuItem item1 in item.DropDownItems)
+                                {
+                                    if (item1.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
+                                    {
+                                        item1.Visible = true;
+                                    }
+
+                                    foreach (ToolStripMenuItem item2 in item1.DropDownItems)
+                                    {
+                                        if (item2.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
+                                        {
+                                            item2.Visible = true;
+                                        }
+
+                                        foreach (ToolStripMenuItem item3 in item2.DropDownItems)
+                                        {
+                                            if (item3.Name == objDtMenuDetailsUser.Rows[i]["MU_Link"].ToString())
+                                            {
+                                                item3.Visible = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            foreach (ToolStripMenuItem item in menustrip.Items)
+                            {
+                                item.Visible = true;
+                                foreach (ToolStripMenuItem item1 in item.DropDownItems)
+                                {
+                                    item1.Visible = true;
+                                    foreach (ToolStripMenuItem item2 in item1.DropDownItems)
+                                    {
+                                        item2.Visible = true;
+                                        foreach (ToolStripMenuItem item3 in item2.DropDownItems)
+                                        {
+                                            item3.Visible = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+            return Count;
+        }
         private void tsmLogout_Click(object sender, EventArgs e)
         {
             try

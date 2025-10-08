@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -255,7 +255,7 @@
             // tvLevl2Submenu
             // 
             this.tvLevl2Submenu.CheckBoxes = true;
-            this.tvLevl2Submenu.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvLevl2Submenu.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvLevl2Submenu.Location = new System.Drawing.Point(6, 26);
             this.tvLevl2Submenu.Name = "tvLevl2Submenu";
             this.tvLevl2Submenu.Size = new System.Drawing.Size(465, 471);
@@ -275,13 +275,14 @@
             // tvSubmenu
             // 
             this.tvSubmenu.CheckBoxes = true;
-            this.tvSubmenu.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvSubmenu.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvSubmenu.Location = new System.Drawing.Point(6, 26);
             this.tvSubmenu.Name = "tvSubmenu";
             this.tvSubmenu.Size = new System.Drawing.Size(449, 471);
             this.tvSubmenu.TabIndex = 1;
             this.tvSubmenu.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvSubmenu_BeforeCheck);
             this.tvSubmenu.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvSubmenu_AfterCheck);
+            this.tvSubmenu.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvSubmenu_AfterSelect);
             // 
             // grpMainmenu
             // 
@@ -295,7 +296,7 @@
             // 
             // tvMainmenu
             // 
-            this.tvMainmenu.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tvMainmenu.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvMainmenu.Location = new System.Drawing.Point(6, 26);
             this.tvMainmenu.Name = "tvMainmenu";
             this.tvMainmenu.Size = new System.Drawing.Size(351, 471);
@@ -330,14 +331,14 @@
             this.grdUserPermission.AllowUserToResizeRows = false;
             this.grdUserPermission.BackgroundColor = System.Drawing.Color.White;
             this.grdUserPermission.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdUserPermission.ColumnHeadersHeight = 30;
             this.grdUserPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdUserPermission.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -355,23 +356,23 @@
             this.clmPrivilegeCode,
             this.clmsplflag,
             this.Action});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdUserPermission.EnableHeadersVisualStyles = false;
             this.grdUserPermission.GridColor = System.Drawing.Color.White;
             this.grdUserPermission.Location = new System.Drawing.Point(6, 20);
             this.grdUserPermission.Name = "grdUserPermission";
             this.grdUserPermission.RowHeadersVisible = false;
             this.grdUserPermission.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdUserPermission.RowTemplate.Height = 25;
             this.grdUserPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUserPermission.ShowRowErrors = false;
