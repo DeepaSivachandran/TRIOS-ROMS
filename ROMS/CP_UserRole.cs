@@ -20,13 +20,15 @@ namespace ROMS
         public string varupdate = "0";
         public string varstatusid = "0", varcontactcompanyid = "0", varSlNo = "0", varCMSlNo = "0", varUserRoleName = "";
         public static int varCloseFlag = 0, varflag = 0, varstatusidContact = 1;
-        public int varstatus = 0, varUserRoleID = 0;
+        public int varstatus = 0, varUserRoleID = 0, varChangesFlag = 0,varCLone=0;
 
 
         DataTable objDtMainMenu = new DataTable();
         DataTable objDtSubMenu = new DataTable();
         DataTable objDtUserMenuDetails = new DataTable();
 
+        public DataTable objDtSplPermission = new DataTable();
+        public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
 
         public CP_UserRole()
         {
@@ -37,17 +39,31 @@ namespace ROMS
         {
             try
             {
+
+                objdtMR_UserRole_Menu_SPL_Access.TableName = "MR_UserRole_Menu_SPL_Access";
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_Menuid", typeof(int));
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_ViewAccess", typeof(int));
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_EditAccess", typeof(int));
+                objdtMR_UserRole_Menu_SPL_Access.Columns.Add("UAS_Fieldid", typeof(int));
+
                 objDtUserMenuDetails.Clear();
-                objDtUserMenuDetails = MainForm.objDtMenuDetails.Copy();
+                objDtUserMenuDetails = MainForm.objDtMenuDetails.DefaultView.ToTable(false, "MU_Code", "MU_Name", "MU_Link", "MU_ParentMenuCode", "MU_Level", "MU_Formname", "MU_CloseFlag", "Menuflag");
                 DataView dv = new DataView(objDtUserMenuDetails);
                 dv.RowFilter = "MU_ParentMenuCode IS NULL";
                 objDtMainMenu = dv.ToTable();
+
+                objDtSplPermission.Clear();
+                objDtSplPermission = MainForm.objDtMenuSplPermission.Copy();
+
+                udfnSPLPermission_Load();
+
                 if (varUserRoleID != 0)
                 {
                     udfnEdit();
                 }
                 LoadTreeViewFromDataTable(tvMainmenu, objDtMainMenu);
                 txtUserRole.Focus();
+                this.ActiveControl = txtUserRole;
             }
             catch (Exception ex)
             {
@@ -103,23 +119,24 @@ namespace ROMS
                 if (menuCode == "")
                 {
                     menuCode = "0";
-                }
-                // Find the row in main DataTable
-                //DataRow[] rows = objDtUserMenuDetails.Select("MU_Code = " + menuCode);
-                //if (rows.Length > 0)
-                //{
-                //    if (e.Node.IsSelected)
-                //        rows[0]["Menuflag"] = 1;
-                //    else
-                //        rows[0]["Menuflag"] = 0;
-                //}
+                } 
 
                 objDtSubMenu.Clear();
                 if (e.Node.IsSelected)
-                    LoadSubMenuForParent(menuCode);
+                    LoadSubMenuForParent(tvSubmenu,menuCode);
                 else
-                    RemoveSubMenu(Convert.ToInt32(menuCode));
+                    RemoveSubMenu(tvSubmenu,Convert.ToInt32(menuCode));
 
+                if (btnSave.Text=="Update" || varCLone == 1 )
+                {
+                    TreeNode node = tvLevl2Submenu.Nodes[0]; // or any node you want
+
+                    // Create event arguments for the node
+                    TreeViewEventArgs args = new TreeViewEventArgs(node, TreeViewAction.ByMouse);
+
+                    tvLevl2Submenu_AfterCheck(tvLevl2Submenu, args);
+
+                }
                 e.Node.EnsureVisible();
                 tvMainmenu.SelectedNode = e.Node;
                 e.Node.BackColor = Color.LightBlue;
@@ -155,9 +172,12 @@ namespace ROMS
         {
             try
             {
-                if (varupdate == "0")
+                if (varChangesFlag == 1 && varupdate == "0")
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(164);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
@@ -166,8 +186,20 @@ namespace ROMS
                 }
                 else
                 {
-                    this.Close();
-                    MainForm.objCP_UserRoleList.udfnList();
+                    if (varupdate == "0")
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            this.Close();
+                            MainForm.objCP_UserRoleList.udfnList();
+                        }
+                    }
+                    else
+                    {
+                        this.Close();
+                        MainForm.objCP_UserRoleList.udfnList();
+                    }
                 }
             }
             catch (Exception ex)
@@ -222,6 +254,12 @@ namespace ROMS
                     tpUserRole.Show("Please enter user role", txtUserRole, 5000);
                     blnErrorFlag = true;
                 }
+                if (varChangesFlag == 0 && btnSave.Text == "Save" && varCLone == 0)
+                {
+
+                    MessageBox.Show("Please select atleast one menu", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
@@ -246,6 +284,7 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "UserRole Creation";
+                    varUserRoleID = 0;
                     varType = 0;
                 }
                 else
@@ -278,10 +317,14 @@ namespace ROMS
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmPrintchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmPrintchk"].Value),
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmExcelchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmExcelchk"].Value),
                     Convert.ToInt32(string.IsNullOrEmpty(grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value?.ToString()) ? "0" : grdUserPermission.Rows[i].Cells["clmNotificationchk"].Value)
-                        ); 
+                        );
                     }
                 }
-                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), (txtUserRole.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access);
+                
+
+                DataTable saveobjDtSplPermission = objDtSplPermission.DefaultView.ToTable(false, "MUP_MU_Code", "ViewAccess", "EditAccess", "MUP_CODE" );
+
+                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), (txtUserRole.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access, saveobjDtSplPermission);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -296,6 +339,7 @@ namespace ROMS
                     {
                         if (varvalue[2] != "")
                         {
+                            varChangesFlag = 0;
                             varUserRoleID = Convert.ToInt32(varvalue[2]);
                             btnSave.Text = "Update";
                             tbFirst.SelectedIndex = 1;
@@ -355,12 +399,12 @@ namespace ROMS
             }
         }
 
-        private void LoadSubMenuForParent(string parentMenuCode)
+        private void LoadSubMenuForParent(TreeView submenu, string parentMenuCode)
         {
             try
             {
 
-                tvSubmenu.Nodes.Clear(); // clear previous second tree
+                submenu.Nodes.Clear(); // clear previous second tree
                 // Create root node for this parent
                 DataRow parentRow = objDtUserMenuDetails.Select($"MU_Code = {parentMenuCode}").FirstOrDefault();
                 if (parentRow != null)
@@ -369,11 +413,16 @@ namespace ROMS
                     {
                         Tag = parentRow["MU_Code"],
                     };
-
-                    tvSubmenu.Nodes.Add(rootNode);
-
+                    int parenttype = 0;
+                    
+                    if (submenu.Name == "tvLevl2Submenu") 
+                    {
+                         parenttype = 1;
+                    }
+                    submenu.Nodes.Add(rootNode);
+                     
                     // Load all children recursively
-                    LoadSubMenu(rootNode, parentMenuCode);
+                    LoadSubMenu(rootNode, parentMenuCode, parenttype);
                 }
                 tvSubmenu.ExpandAll();
             }
@@ -384,7 +433,7 @@ namespace ROMS
             }
         }
 
-        private void LoadSubMenu(TreeNode parentNode, string parentMenuCode)
+        private void LoadSubMenu(TreeNode parentNode, string parentMenuCode,int parenttype)
         {
             try
             {
@@ -423,8 +472,12 @@ namespace ROMS
                     parentNode.TreeView?.Refresh();
 
 
-                    // Recursive call to add children of this child
-                    LoadSubMenu(childNode, nodeValue);
+                    //// Recursive call to add children of this child
+                    ///
+                    if (parenttype == 1)
+                    {
+                        LoadSubMenu(childNode, nodeValue,0);
+                    }
                 }
                 parentNode.Expand();
             }
@@ -436,7 +489,7 @@ namespace ROMS
         }
 
 
-        private void RemoveSubMenu(int parentMenuCode)
+        private void RemoveSubMenu(TreeView view, int parentMenuCode)
         {
             try
             {
@@ -446,7 +499,7 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(objDtSubMenu.Rows[i]["MU_ParentMenuCode"]) == parentMenuCode)
                         {
-                            tvSubmenu.Nodes.RemoveAt(i);
+                            view.Nodes.RemoveAt(i);
                             objDtSubMenu.Rows[i].Delete();
 
                         }
@@ -466,6 +519,7 @@ namespace ROMS
             try
             {
                 udfnclose();
+
             }
             catch (Exception ex)
             {
@@ -494,47 +548,81 @@ namespace ROMS
         {
             try
             {
+                int errorflag = 0;
+                if (varChangesFlag == 1 && btnSave.Text != "Save")
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(164);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.No)
+                    {
+                        errorflag = 1;
+
+                    }
+                }
+
                 if (tbFirst.SelectedIndex == 1)
                 {
                     if (e.TabPage == grpUserPermission)
                     {
-                        if (btnSave.Text != "Update")
+
+                        if (errorflag == 0)
                         {
-                            e.Cancel = true; // Prevent the user from switching to tabPage2 
+                            if (btnSave.Text != "Update" && varCLone == 0)
+                            {
+                                e.Cancel = true; // Prevent the user from switching to tabPage2 
+                            }
+                            else
+                            {
+                                DataSet objDs = new DataSet();
+                                //**** To call the function from SP ***************
+                                SPDataService objspservice = new SPDataService();
+                                grdUserPermission.Rows.Clear();
+                                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0,"");
+                                objspservice.CloseConnection();
+                                if (objDs != null)
+                                {
+                                    if (objDs.Tables.Count != 0)
+                                    {
+                                        if (objDs.Tables[0].Rows.Count != 0)
+                                        {
+                                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                            {
+                                                grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
+
+                                            }
+                                        }
+
+
+                                    }
+                                }
+
+                            }
+                            grdUserPermission_DataBindingComplete(grdUserPermission, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
                         }
                         else
                         {
-                            DataSet objDs = new DataSet();
-                            //**** To call the function from SP ***************
-                            SPDataService objspservice = new SPDataService();
-                            grdUserPermission.Rows.Clear();
-                            objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0);
-                            objspservice.CloseConnection();
-                            if (objDs != null)
-                            {
-                                if (objDs.Tables.Count != 0)
-                                {
-                                    if (objDs.Tables[0].Rows.Count != 0)
-                                    {
-                                        for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                                        {
-                                            grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 0, 0, 0, 0, 0,0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]));
-                                        }
-                                    }
-                                }
-                            }
-
+                            e.Cancel = true;
                         }
                     }
-                    grdUserPermission_DataBindingComplete(grdUserPermission, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
                 }
+                else
+                {
+                    if (errorflag != 0)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally {
+            finally
+            {
                 grdUserPermission.ClearSelection();
             }
         }
@@ -563,11 +651,11 @@ namespace ROMS
         {
             try
             {
-                
-                int viewColumnIndex = grdUserPermission.Columns["clmViewchk"]?.Index ?? -1;
-                string PrivilegeCode = Convert.ToString(grdUserPermission.Rows[e.RowIndex].Cells["clmPrivilegeCode"].Value); 
 
-                
+                int viewColumnIndex = grdUserPermission.Columns["clmViewchk"]?.Index ?? -1;
+                string PrivilegeCode = Convert.ToString(grdUserPermission.Rows[e.RowIndex].Cells["clmPrivilegeCode"].Value);
+
+
                 // Check if the change happened in the 'View' column (clmViewchk)
                 if (e.ColumnIndex == viewColumnIndex && e.RowIndex >= 0)
                 {
@@ -601,10 +689,10 @@ namespace ROMS
                     if (!string.IsNullOrEmpty(PrivilegeCode))
                     {
                         foreach (var colName in permissionColumns)
-                        { 
+                        {
                             // Find the index of the current permission column
                             int colIndex = grdUserPermission.Columns[colName]?.Index ?? -1;
-                             
+
                             if (colIndex != -1)
                             {
                                 var cell = grdUserPermission.Rows[e.RowIndex].Cells[colIndex];
@@ -636,7 +724,8 @@ namespace ROMS
                                             {
                                                 cell.Value = false;
                                             }
-                                            else { 
+                                            else
+                                            {
                                                 cell.ReadOnly = true;
                                             }
                                         }
@@ -647,7 +736,7 @@ namespace ROMS
                                         if (allowed.Contains(privilegeNo))
                                         {
                                             // Reset the background color when enabled
-                                            cell.Style.BackColor = grdUserPermission.DefaultCellStyle.BackColor; 
+                                            cell.Style.BackColor = grdUserPermission.DefaultCellStyle.BackColor;
                                         }
                                         else
                                         {
@@ -678,9 +767,7 @@ namespace ROMS
         {
             try
             {
-
-                if (tbFirst.SelectedIndex == 1)
-                {
+                 
                     foreach (DataGridViewRow row in grdUserPermission.Rows)
                     {
                         if (row.IsNewRow) continue;
@@ -688,8 +775,9 @@ namespace ROMS
                         int parentFlag = Convert.ToInt32(row.Cells["clmParentFlag"].Value);
                         string values = row.Cells["URM_Access_Level"].Value?.ToString() ?? "";
                         string PrivilegeCode = row.Cells["clmPrivilegeCode"].Value?.ToString() ?? "";
+                        string splFlag = row.Cells["clmsplflag"].Value?.ToString() ?? "";
                         int privilegeNo = 0;
-                        var chkCols = new[] { "clmViewchk", "clmCreatechk", "clmEditchk", "clmDeletechk", "clmPrintchk", "clmExcelchk","clmNotificationchk" };
+                        var chkCols = new[] { "clmViewchk", "clmCreatechk", "clmEditchk", "clmDeletechk", "clmPrintchk", "clmExcelchk", "clmNotificationchk" };
                         // Split allowed privileges like "1,2,5"
                         var allowed = PrivilegeCode.Split(',')
                                                    .Select(s => s.Trim())
@@ -700,7 +788,7 @@ namespace ROMS
                         // --- Flow 1: Hide/disable checkboxes + image ---
                         foreach (var colName in chkCols)
                         {
-                             privilegeNo = privilegeNo + 1; // map 1=View, 2=Create, etc.
+                            privilegeNo = privilegeNo + 1; // map 1=View, 2=Create, etc.
 
                             if (allowed.Contains(privilegeNo))
                             {
@@ -743,9 +831,16 @@ namespace ROMS
                             }
                         }
 
+                        string imgCol = "Action";
+                        if (splFlag == "0")
+                        {
+                            var imgCell = row.Cells[imgCol];
+                            imgCell.Value = new Bitmap(1, 1);
+                            imgCell.ReadOnly = true;
+                        }
+
                         if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
-                        { 
-                            string imgCol = "Action";
+                        {
                             if (grdUserPermission.Columns.Contains(imgCol))
                             {
                                 var imgCell = row.Cells[imgCol];
@@ -787,16 +882,15 @@ namespace ROMS
                                             case 4: row.Cells["clmDeletechk"].Value = true; break;
                                             case 5: row.Cells["clmPrintchk"].Value = true; break;
                                             case 6: row.Cells["clmExcelchk"].Value = true; break;
-                                            case 7: row.Cells["clmNotificationchk"].Value = true; break; 
+                                            case 7: row.Cells["clmNotificationchk"].Value = true; break;
                                         }
                                     }
                                 }
 
                             }
                         }
-                         
-                    }
-                }
+
+                    } 
             }
             catch (Exception ex)
             {
@@ -829,7 +923,7 @@ namespace ROMS
                             e.CellStyle.Font,
                             new Rectangle(e.CellBounds.X + 25, e.CellBounds.Y + 2,
                                           e.CellBounds.Width - 10, e.CellBounds.Height),
-                            textColor, TextFormatFlags.Left); 
+                            textColor, TextFormatFlags.Left);
                     }
                     if (menuType == "3" || menuType == "100")
                     {
@@ -919,13 +1013,14 @@ namespace ROMS
                 // Find the index of the 'View' column by name
                 int viewColumnIndex = grdUserPermission.Columns["clmViewchk"]?.Index ?? -1;
                 string PrivilegeCode = Convert.ToString(grdUserPermission.Rows[e.RowIndex].Cells["clmPrivilegeCode"].Value);
+                int MenuId = Convert.ToInt32(grdUserPermission.Rows[e.RowIndex].Cells["clmMenuId"].Value);
 
                 // Check if the change happened in the 'View' column
                 if (e.ColumnIndex == viewColumnIndex && e.RowIndex >= 0)
                 {
                     // Define the names of the columns to enable/disable
                     var permissionColumns = new[] {
-            "clmViewchk", 
+            "clmViewchk",
             "clmCreatechk",
             "clmEditchk",
             "clmDeletechk",
@@ -947,7 +1042,7 @@ namespace ROMS
                     // Iterate through the other permission columns
                     foreach (var colName in permissionColumns)
                     {
-                        int colIndex = grdUserPermission.Columns[colName]?.Index ?? -1; 
+                        int colIndex = grdUserPermission.Columns[colName]?.Index ?? -1;
 
 
                         if (colIndex != -1)
@@ -960,7 +1055,7 @@ namespace ROMS
                                                            .Where(s => int.TryParse(s, out _))
                                                            .Select(int.Parse)
                                                            .ToList();
-                                  privilegeNo = privilegeNo + 1;
+                                privilegeNo = privilegeNo + 1;
                                 // Set the ReadOnly property to enable/disable the cell
                                 if (colName != "clmViewchk")
                                 {
@@ -974,7 +1069,7 @@ namespace ROMS
                                 if (setReadOnly && colName != "clmViewchk")
                                 {
                                     // OPTIONAL: Uncheck the box and gray out the cell when disabled
-                                    if (colName != "Action" )
+                                    if (colName != "Action")
                                     {
                                         if (allowed.Contains(privilegeNo))
                                         {
@@ -986,6 +1081,15 @@ namespace ROMS
                                         }
                                     }
                                     cell.Style.BackColor = System.Drawing.Color.LightGray;
+                                    var rowsToDelete = objdtMR_UserRole_Menu_SPL_Access
+                                        .AsEnumerable()
+                                        .Where(r => Convert.ToInt32(r["UAS_Menuid"]) == MenuId)
+                                        .ToList();
+
+                                    rowsToDelete.ForEach(r => r.Delete());
+
+                                    objdtMR_UserRole_Menu_SPL_Access.AcceptChanges();
+
                                 }
                                 else
                                 {
@@ -1020,16 +1124,25 @@ namespace ROMS
 
         private void grdUserPermission_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try {
+            try
+            {
                 if (e.RowIndex != -1)
                 {
+                    DataGridViewRow row = grdUserPermission.Rows[e.RowIndex];
                     switch (grdUserPermission.Columns[e.ColumnIndex].Name)
                     {
                         case "Action":
                             try
                             {
+                                DataView dvspl = new DataView(objDtSplPermission);
+                                dvspl.RowFilter = "MUP_MU_CODE = " + Convert.ToInt32(row.Cells["clmMenuId"].Value) + " ";
+                                objDtSplPermission = dvspl.ToTable();
+
                                 MainForm.objCP_UserRole_SPL = new CP_UserRole_SPL();
                                 MainForm.objCP_UserRole_SPL.FormBorderStyle = FormBorderStyle.FixedSingle;
+                                MainForm.objCP_UserRole_SPL.varmenuid = Convert.ToInt32(row.Cells["clmMenuId"].Value);
+                                MainForm.objCP_UserRole_SPL.PbMenuName = Convert.ToString(row.Cells["clmMenuname"].Value);
+                                MainForm.objCP_UserRole_SPL.varUserRoleID = varUserRoleID;
                                 MainForm.objCP_UserRole_SPL.ShowDialog();
                             }
                             catch (Exception ex)
@@ -1046,7 +1159,55 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-          
+
+        }
+
+        private void tvLevl2Submenu_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+
+            try
+            {
+                if (e.Action != TreeViewAction.Unknown)
+                {
+                    varChangesFlag = 1;
+                    TreeNode clickedNode = e.Node;
+                    SetChildNodes(e.Node, e.Node.Checked); // Step 1 → check/uncheck children
+                    UpdateParentNodes(e.Node);  // Step 2 → update parent checkbox
+                    UpdateFlag(e.Node.Tag.ToString(), e.Node.Checked, clickedNode.Nodes.Count); // Step 3 → update DataTable  
+
+                    // The main menu node is the currently selected node in tvMainmenu
+                    TreeNode mainNode = tvSubmenu.SelectedNode;
+                    if (mainNode != null)
+                    {
+                        string mainMenuCode = mainNode.Tag?.ToString();
+
+                        if (!string.IsNullOrEmpty(mainMenuCode))
+                        {
+                            // Find the row for the selected main menu item
+                            DataRow[] mainRows = objDtUserMenuDetails.Select($"MU_Code = {mainMenuCode}");
+
+                            if (mainRows.Length > 0)
+                            {
+                                // Set the main menu flag based on the sub-menu's root node state
+                                mainRows[0]["Menuflag"] = e.Node.Checked ? 1 : 0;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+            }
+        }
+
+        private void grdUserPermission_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            
         }
 
         private void tvSubmenu_AfterCheck(object sender, TreeViewEventArgs e)
@@ -1056,8 +1217,24 @@ namespace ROMS
             {
                 if (e.Action != TreeViewAction.Unknown)
                 {
-
+                    varChangesFlag = 1;
                     TreeNode clickedNode = e.Node;
+
+                    if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
+
+                    string menuCode = e.Node.Tag.ToString();
+
+                    if (menuCode == "")
+                    {
+                        menuCode = "0";
+                    }
+
+                    //objDtSubMenu.Clear();
+                    if (e.Node.Checked)
+                        LoadSubMenuForParent(tvLevl2Submenu, menuCode);
+                    else
+                        RemoveSubMenu(tvLevl2Submenu, Convert.ToInt32(menuCode));
+
                     SetChildNodes(e.Node, e.Node.Checked); // Step 1 → check/uncheck children
                     UpdateParentNodes(e.Node);  // Step 2 → update parent checkbox
                     UpdateFlag(e.Node.Tag.ToString(), e.Node.Checked, clickedNode.Nodes.Count); // Step 3 → update DataTable  
@@ -1259,7 +1436,7 @@ namespace ROMS
                     //**** To call the function from SP ***************
                     SPDataService objspservice = new SPDataService();
 
-                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0);
+                    objDs = objspservice.udfnUserRoleList(1, Convert.ToInt32(varUserRoleID), 0, 0,"");
                     objspservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -1278,6 +1455,32 @@ namespace ROMS
                             }
                         }
                     }
+
+                    if (varCLone == 1) 
+                    {
+                        grdUserPermission.Rows.Clear();
+                        objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0, "");
+                        objspservice.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    {
+                                        grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
+
+                                    }
+                                }
+
+
+                            }
+                        }
+
+                        grdUserPermission_DataBindingComplete(grdUserPermission, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
+                    }
+                   
                 }
             }
             catch (Exception ex)
@@ -1286,6 +1489,44 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        public void udfnSPLPermission_Load()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnUserRoleList(3, varUserRoleID, 0, 0,"");
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            var varGetSameData = from dt1 in objDtSplPermission.AsEnumerable()
+                                                 join dt2 in objDs.Tables[0].AsEnumerable()
+                                                 on Convert.ToInt32(dt1["MUP_Code"] ?? 0)
+                                                 equals Convert.ToInt32(dt2["URSF_FieldID"] ?? 0)
+                                                 select new { dt1, dt2 };
+
+                            foreach (var item in varGetSameData)
+                            {
+                                item.dt1["AccessLevel"] = item.dt2["URSF_Access_Level"]?.ToString() ?? "";
+                                item.dt1["ViewAccess"] = item.dt2["ViewAccess"]?.ToString() ?? "";
+                                item.dt1["EditAccess"] = item.dt2["EditAccess"]?.ToString() ?? "";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

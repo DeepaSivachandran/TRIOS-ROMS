@@ -4559,7 +4559,7 @@ namespace ROMS
         }
 
         //Created By:- venkat Created On:-22/08/2023
-        public string udfnUserRole(int paraviewType, int paraUserRoleID, string paraNameoftheUser , int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag,DataTable paraUserRoleDetails, DataTable paraUserRole_Menu_Access)
+        public string udfnUserRole(int paraviewType, int paraUserRoleID, string paraNameoftheUser , int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag,DataTable paraUserRoleDetails, DataTable paraUserRole_Menu_Access,DataTable paraUserRole_Menu_SPL_Access)
         {
             string varResult = "";
             try
@@ -4578,7 +4578,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserRoleDetails", paraUserRoleDetails);
                 varSqlCommand.Parameters.AddWithValue("@paraUserRole_Menu_Access", paraUserRole_Menu_Access);
-                
+                varSqlCommand.Parameters.AddWithValue("@paraUserRole_Menu_SPL_Access", paraUserRole_Menu_SPL_Access);
+
 
 
                 varSqlCommand.CommandTimeout = 0;
@@ -4598,7 +4599,7 @@ namespace ROMS
 
         // Created by : Venkat
         // Created on : 03/10/2025
-        public DataSet udfnUserRoleList(int paraviewType , int paraUserRoleId, int paraStatusId )
+        public DataSet udfnUserRoleList(int paraviewType , int paraUserRoleId, int paraStatusId,int paraMenuId,string paraUserroleName)
         {
             DataSet ds = new DataSet();
             try
@@ -4611,6 +4612,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraMenuId", paraMenuId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserroleName", paraUserroleName);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
