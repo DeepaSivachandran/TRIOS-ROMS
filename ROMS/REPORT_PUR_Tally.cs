@@ -160,6 +160,10 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80311;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;

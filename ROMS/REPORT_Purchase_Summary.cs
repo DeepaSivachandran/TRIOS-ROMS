@@ -611,6 +611,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80301;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");

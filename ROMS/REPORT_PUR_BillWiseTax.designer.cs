@@ -32,9 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_BillWiseTax));
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tsmPurchaseTaxDetails = new System.Windows.Forms.ToolStripLabel();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbDownload = new System.Windows.Forms.ToolStripButton();
             this.tsbExport = new System.Windows.Forms.ToolStripButton();
@@ -59,8 +56,9 @@
             this.lblScheduleCode = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.multi = new MultiSelectComboBox();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
@@ -77,12 +75,10 @@
             this.ReportCity.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
-            this.toolStripLabel1,
-            this.tsmPurchaseTaxDetails,
-            this.tspHeader,
             this.tsbFormat,
             this.tsbDownload,
-            this.tsbExport});
+            this.tsbExport,
+            this.tsLabelPlaceholder});
             this.ReportCity.Location = new System.Drawing.Point(0, 0);
             this.ReportCity.Name = "ReportCity";
             this.ReportCity.Size = new System.Drawing.Size(1354, 31);
@@ -102,37 +98,6 @@
             this.tsbPrintFormat.Size = new System.Drawing.Size(89, 28);
             this.tsbPrintFormat.Text = "A4-Landscape";
             this.tsbPrintFormat.ToolTipText = "A4-Landscape";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.toolStripLabel1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(68, 28);
-            this.toolStripLabel1.Text = "Reports";
-            // 
-            // tsmPurchaseTaxDetails
-            // 
-            this.tsmPurchaseTaxDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmPurchaseTaxDetails.Image = ((System.Drawing.Image)(resources.GetObject("tsmPurchaseTaxDetails.Image")));
-            this.tsmPurchaseTaxDetails.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmPurchaseTaxDetails.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsmPurchaseTaxDetails.Name = "tsmPurchaseTaxDetails";
-            this.tsmPurchaseTaxDetails.Size = new System.Drawing.Size(96, 28);
-            this.tsmPurchaseTaxDetails.Text = "Purchase Tax";
-            this.tsmPurchaseTaxDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsmPurchaseTaxDetails_MouseDown);
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.double_chevron;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(185, 28);
-            this.tspHeader.Text = "Purchase Bill Wise Tax Report";
             // 
             // tsbFormat
             // 
@@ -448,22 +413,23 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // multi
-            // 
-            this.multi.BackColor = System.Drawing.Color.White;
-            this.multi.DropDownHeight = 1;
-            this.multi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.multi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.multi.FormattingEnabled = true;
-            this.multi.IntegralHeight = false;
-            this.multi.Location = new System.Drawing.Point(1091, 45);
-            this.multi.Name = "multi";
-            this.multi.Size = new System.Drawing.Size(121, 21);
-            this.multi.TabIndex = 111111194;
-            // 
             // epReport
             // 
             this.epReport.ContainerControl = this;
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 28);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // REPORT_PUR_BillWiseTax
             // 
@@ -499,7 +465,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip ReportCity;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlReportCity;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
@@ -524,10 +489,9 @@
         private System.Windows.Forms.Label lblReportType;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
-        private MultiSelectComboBox multi;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripLabel tsmPurchaseTaxDetails;
         public System.Windows.Forms.ToolStripButton tsbExport;
         public System.Windows.Forms.ToolStripButton tsbDownload;
+        private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
     }
 }

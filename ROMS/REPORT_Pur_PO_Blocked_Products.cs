@@ -254,6 +254,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80120;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
@@ -1395,6 +1398,23 @@ namespace ROMS
             }
         }
 
+        private void tsmMasters_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    int parentMenuCode = 801; // Masters - Reports
+                    // Let DynamicMenu handle both creation AND showing
+                    DynamicMenu.CreateContextMenuAndShow(sender as ToolStripLabel, parentMenuCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void DGV_FilterSubgroup_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

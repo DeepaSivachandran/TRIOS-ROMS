@@ -622,6 +622,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80107;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,37) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -1605,6 +1608,24 @@ namespace ROMS
                     {
                         txtSubGroup.Focus();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMasters_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    int parentMenuCode = 801; // Masters - Reports
+                    // Let DynamicMenu handle both creation AND showing
+                    DynamicMenu.CreateContextMenuAndShow(sender as ToolStripLabel, parentMenuCode);
                 }
             }
             catch (Exception ex)

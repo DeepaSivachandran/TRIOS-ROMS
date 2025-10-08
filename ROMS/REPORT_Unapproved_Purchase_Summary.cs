@@ -616,6 +616,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80305;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 string fields = "CASE WHEN STSID=0 THEN STS_Name ELSE CONCAT(STS_Name,'','(',STS_ShortName,')') END AS StatusName, STSID";
 

@@ -32,8 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_DiscountValue));
             this.ReportCity = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportCity = new System.Windows.Forms.Panel();
@@ -62,6 +62,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
@@ -77,24 +79,14 @@
             this.ReportCity.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportCity.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
             this.tsbPrintFormat,
-            this.tsbFormat});
+            this.tsbFormat,
+            this.tsLabelPlaceholder});
             this.ReportCity.Location = new System.Drawing.Point(0, 0);
             this.ReportCity.Name = "ReportCity";
             this.ReportCity.Size = new System.Drawing.Size(1354, 27);
             this.ReportCity.TabIndex = 35;
             this.ReportCity.Text = "City Report";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(199, 24);
-            this.tspHeader.Text = "Purchase Discount Value Report";
             // 
             // tsbPrintFormat
             // 
@@ -472,6 +464,20 @@
             // 
             this.epReport.ContainerControl = this;
             // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
+            // 
             // REPORT_PUR_DiscountValue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -506,7 +512,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip ReportCity;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlReportCity;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
@@ -535,5 +540,7 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private System.Windows.Forms.Label lblMonths;
         private MultiSelectComboBox cmbMultiMonths;
+        private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
     }
 }

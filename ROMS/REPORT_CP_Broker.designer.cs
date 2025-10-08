@@ -31,8 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Broker));
             this.ReportBroker = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportBroker = new System.Windows.Forms.Panel();
@@ -53,6 +53,8 @@
             this.lblReportType = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.ReportBroker.SuspendLayout();
             this.pnlReportBroker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -67,24 +69,14 @@
             this.ReportBroker.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ReportBroker.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ReportBroker.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
             this.tsbPrintFormat,
-            this.tsbFormat});
+            this.tsbFormat,
+            this.tsLabelPlaceholder});
             this.ReportBroker.Location = new System.Drawing.Point(0, 0);
             this.ReportBroker.Name = "ReportBroker";
             this.ReportBroker.Size = new System.Drawing.Size(1354, 27);
             this.ReportBroker.TabIndex = 35;
             this.ReportBroker.Text = "Broker Report";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(101, 24);
-            this.tspHeader.Text = "Broker Report";
             // 
             // tsbPrintFormat
             // 
@@ -352,6 +344,20 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
             // REPORT_CP_Broker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -366,7 +372,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_CP_Broker";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HSN Report";
+            this.Text = "Broker Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Broker_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Broker_KeyDown);
             this.ReportBroker.ResumeLayout(false);
@@ -385,7 +391,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip ReportBroker;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlReportBroker;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
@@ -406,5 +411,7 @@
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         public System.Windows.Forms.ToolStripButton tsbPrintFormat;
         public System.Windows.Forms.ToolStripButton tsbFormat;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
+        private DynamicToolStripLabelControl dynamicLabelControl;
     }
 }

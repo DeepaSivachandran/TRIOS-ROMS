@@ -28,11 +28,48 @@ namespace ROMS
         public int varUpdate = 0;
         public int varmastertype = 0;
         public int varflog = 0;
+        DataTable objDtSplPermission = new DataTable();
         public CP_UserRole_SPL()
         {
             InitializeComponent();
         }
 
-        
+        private void CP_UserRole_SPL_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                objDtSplPermission.Clear();
+                objDtSplPermission = MainForm.objDtMenuSplPermission.Copy();
+
+                udfnView();
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnView() 
+        {
+            try {
+                if (objDtSplPermission != null)
+                { 
+                    if (objDtSplPermission.Rows.Count != 0)
+                    {
+                        for (int i = 0; i < objDtSplPermission.Rows.Count; i++)
+                        {
+                            grdUserSPLPermission.Rows.Add(Convert.ToString(objDtSplPermission.Rows[i]["MU_NAME"]), 0, 0, Convert.ToString(objDtSplPermission.Rows[i]["MUP_MU_Code"]), Convert.ToString(objDtSplPermission.Rows[i]["MUP_Code"]));
+                        }
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

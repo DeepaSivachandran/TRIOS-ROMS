@@ -154,6 +154,10 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80605;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -711,32 +715,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseTaxDetails_MouseDown(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                if (e.Button == MouseButtons.Left) // only left-click
-                {
-                    SetupPurchaseTax();
-                    var ts = tsmPurchaseTaxDetails.GetCurrentParent();
-                    if (ts != null)
-                    {
-                        // Show context menu just below the label
-                        var location = ts.PointToScreen(new Point(
-                            tsmPurchaseTaxDetails.Bounds.Left,
-                            tsmPurchaseTaxDetails.Bounds.Bottom));
-                        contextMenu.Show(location);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void SetupPurchaseTax()
         {
             try

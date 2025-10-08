@@ -312,6 +312,8 @@ namespace ROMS
         public static DataTable objDtMenuDetails;
         public static DataTable objDtMenuCloseDet;
 
+        public static DataTable objDtMenuSplPermission;
+
         public MainForm()
         {
             try
@@ -438,6 +440,7 @@ namespace ROMS
                 udfnShelflifeLevel();
                 GetDate();
                 udfnGetMenuDetails();
+                udfnGetMenuSplPermissionDetails();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
@@ -669,20 +672,19 @@ namespace ROMS
         {
             try
             {
+                MR_Menu objMR_Menu = new MR_Menu();
+                objMR_Menu.ViewType = 0; 
                 DataSet objDs = new DataSet();
-                DataService objDser = new DataService();
-                objDs = objDser.GetDataset("SELECT  MU_Code,REPLACE(MU_Name, '&&', '&') MU_Name,MU_Name AS MenuDiaplayname,MU_Link,MU_ParentMenuCode,MU_Level,MU_Formname,MU_CloseFlag,0 AS Menuflag  FROM DEF_MENU  ");
-                objDser.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnMenu(objMR_Menu);
+                objdserv.CloseConnection();
                 if (objDs != null)
                 {
-                    if (objDs.Tables.Count > 0)
+                    if (objDs.Tables.Count != 0)
                     {
-                        if (objDs.Tables[0] != null)
+                        if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            if (objDs.Tables[0].Rows.Count > 0)
-                            {
-                                objDtMenuDetails = objDs.Tables[0];
-                            }
+                            objDtMenuDetails = objDs.Tables[0]; 
                         }
                     }
                 }
@@ -693,6 +695,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnGetMenuSplPermissionDetails()
+        {
+            try
+            {
+                MR_Menu objMR_Menu = new MR_Menu();
+                objMR_Menu.ViewType = 1;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnMenu(objMR_Menu);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            objDtMenuSplPermission = objDs.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsmLogout_Click(object sender, EventArgs e)
         {
             try

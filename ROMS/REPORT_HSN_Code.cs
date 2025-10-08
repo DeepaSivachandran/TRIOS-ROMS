@@ -236,6 +236,10 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 8060601;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -889,19 +893,19 @@ namespace ROMS
 
         private void toolStripLabel3_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) // only left-click
-            {
-                SetupHsnUI();
-                var ts = tsmHSNDetails.GetCurrentParent();
-                if (ts != null)
-                {
-                    // Show context menu just below the label
-                    var location = ts.PointToScreen(new Point(
-                        tsmHSNDetails.Bounds.Left,
-                        tsmHSNDetails.Bounds.Bottom));
-                    contextMenu.Show(location);
-                }
-            }
+            //if (e.Button == MouseButtons.Left) // only left-click
+            //{
+            //    SetupHsnUI();
+            //    var ts = tsmHSNDetails.GetCurrentParent();
+            //    if (ts != null)
+            //    {
+            //        // Show context menu just below the label
+            //        var location = ts.PointToScreen(new Point(
+            //            tsmHSNDetails.Bounds.Left,
+            //            tsmHSNDetails.Bounds.Bottom));
+            //        contextMenu.Show(location);
+            //    }
+            //}
         }
 
         private void SetupPurchaseTax()
@@ -985,19 +989,19 @@ namespace ROMS
 
         private void toolStripLabel4_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) // only left-click
-            {
-                SetupPurchaseTax();
-                var ts = tsmPurchaseTaxDetails.GetCurrentParent();
-                if (ts != null)
-                {
-                    // Show context menu just below the label
-                    var location = ts.PointToScreen(new Point(
-                        tsmPurchaseTaxDetails.Bounds.Left,
-                        tsmPurchaseTaxDetails.Bounds.Bottom));
-                    contextMenu.Show(location);
-                }
-            }
+            //if (e.Button == MouseButtons.Left) // only left-click
+            //{
+            //    SetupPurchaseTax();
+            //    var ts = tsmPurchaseTaxDetails.GetCurrentParent();
+            //    if (ts != null)
+            //    {
+            //        // Show context menu just below the label
+            //        var location = ts.PointToScreen(new Point(
+            //            tsmPurchaseTaxDetails.Bounds.Left,
+            //            tsmPurchaseTaxDetails.Bounds.Bottom));
+            //        contextMenu.Show(location);
+            //    }
+            //}
         }
 
         private void dpFromDate_ValueChanged(object sender, EventArgs e)

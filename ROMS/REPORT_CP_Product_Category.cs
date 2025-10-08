@@ -210,6 +210,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80119;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -1471,6 +1474,24 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                     cmbType.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMasters_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    int parentMenuCode = 801; // Masters - Reports
+                    // Let DynamicMenu handle both creation AND showing
+                    DynamicMenu.CreateContextMenuAndShow(sender as ToolStripLabel, parentMenuCode);
                 }
             }
             catch (Exception ex)

@@ -33,9 +33,6 @@
             this.ReportCity = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tsmPurchaseTaxDetails = new System.Windows.Forms.ToolStripLabel();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.lblMonths = new System.Windows.Forms.Label();
@@ -55,6 +52,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.ReportCity.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -71,9 +70,7 @@
             this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
-            this.toolStripLabel1,
-            this.tsmPurchaseTaxDetails,
-            this.tspHeader});
+            this.tsLabelPlaceholder});
             this.ReportCity.Location = new System.Drawing.Point(0, 0);
             this.ReportCity.Name = "ReportCity";
             this.ReportCity.Size = new System.Drawing.Size(1354, 27);
@@ -105,37 +102,6 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.toolStripLabel1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(68, 24);
-            this.toolStripLabel1.Text = "Reports";
-            // 
-            // tsmPurchaseTaxDetails
-            // 
-            this.tsmPurchaseTaxDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmPurchaseTaxDetails.Image = ((System.Drawing.Image)(resources.GetObject("tsmPurchaseTaxDetails.Image")));
-            this.tsmPurchaseTaxDetails.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsmPurchaseTaxDetails.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsmPurchaseTaxDetails.Name = "tsmPurchaseTaxDetails";
-            this.tsmPurchaseTaxDetails.Size = new System.Drawing.Size(96, 24);
-            this.tsmPurchaseTaxDetails.Text = "Purchase Tax";
-            this.tsmPurchaseTaxDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tsmPurchaseTaxDetails_MouseDown);
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.double_chevron;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(152, 24);
-            this.tspHeader.Text = "All Purchase Tax Report";
             // 
             // pnlReportCity
             // 
@@ -370,6 +336,20 @@
             // 
             this.epReport.ContainerControl = this;
             // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
             // REPORT_PUR_AllTax
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -403,7 +383,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip ReportCity;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlReportCity;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
@@ -425,7 +404,7 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private MultiSelectComboBox cmbMultiMonths;
         private System.Windows.Forms.Label lblMonths;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripLabel tsmPurchaseTaxDetails;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
+        private DynamicToolStripLabelControl dynamicLabelControl;
     }
 }

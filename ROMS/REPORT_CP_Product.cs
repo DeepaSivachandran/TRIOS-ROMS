@@ -1924,6 +1924,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80113;
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
@@ -2546,6 +2549,24 @@ namespace ROMS
             try
             {
                 cmbCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMasters_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    int parentMenuCode = 801; // Masters - Reports
+                    // Let DynamicMenu handle both creation AND showing
+                    DynamicMenu.CreateContextMenuAndShow(sender as ToolStripLabel, parentMenuCode);
+                }
             }
             catch (Exception ex)
             {
