@@ -53,7 +53,10 @@ namespace ROMS
                 objDtMainMenu = dv.ToTable();
 
                 objDtSplPermission.Clear();
-                objDtSplPermission = MainForm.objDtMenuSplPermission.Copy();
+                if (MainForm.objDtMenuSplPermission != null)
+                {
+                    objDtSplPermission = MainForm.objDtMenuSplPermission.Copy();
+                }
 
                 udfnSPLPermission_Load();
 

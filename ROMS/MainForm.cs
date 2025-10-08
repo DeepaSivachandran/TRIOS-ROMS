@@ -26,7 +26,7 @@ namespace ROMS
         public static string pbUserID = "";
         public static string pbUserName = "";
         public static string pbLoginId = "";
-        public static string pbUserRoleId;
+        public static string pbUserRoleId ="0";
         public static string pbView;
         public static string pbSelectedMenu;
         public static string pbIpAddress = "";
@@ -311,6 +311,10 @@ namespace ROMS
 
         public static DataTable objDtMenuSplPermission;
 
+        public static DataTable objDtMenuDetailsUser;
+        public static DataTable objDtMenuSplPermissionUser;
+
+
         public MainForm()
         {
             try
@@ -438,6 +442,7 @@ namespace ROMS
                 GetDate();
                 udfnGetMenuDetails();
                 udfnGetMenuSplPermissionDetails();
+                udfnGetMenuDetailsForUser();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
@@ -665,6 +670,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        //take all  menu for user role master
         public void udfnGetMenuDetails()
         {
             try
@@ -692,6 +698,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        //take all splfield  menu for user role master
         public void udfnGetMenuSplPermissionDetails()
         {
             try
@@ -709,6 +716,40 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             objDtMenuSplPermission = objDs.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+        //take a particular user 
+        public void udfnGetMenuDetailsForUser()
+        {
+            try
+            {
+                MR_Menu objMR_Menu = new MR_Menu();
+                objMR_Menu.ViewType = 2;
+                objMR_Menu.paraUserRoleId = Convert.ToInt32(pbUserRoleId);
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnMenu(objMR_Menu);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            objDtMenuDetailsUser = objDs.Tables[0];
+                        }
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            objDtMenuSplPermissionUser = objDs.Tables[1];
                         }
                     }
                 }
