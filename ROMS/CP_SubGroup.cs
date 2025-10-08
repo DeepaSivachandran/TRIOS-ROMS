@@ -27,7 +27,7 @@ namespace ROMS
         DataSet objRackList = new DataSet();
         DataTable dtRackList = new DataTable();
 
-        public int varStatusid = 1;
+        public int varStatusid = 1, varUpDownKeyLocation = 0;
         public int varCloseFlag = 0;
         public string varSubGroupNameinTamil = "";
         public string varSubGroupNameinEnglish = "";
@@ -55,7 +55,8 @@ namespace ROMS
             try
             {
                 lvGroupName.Visible = false;
-                lvLocation.Visible = false;
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
             }
             catch (Exception ex)
             {
@@ -100,6 +101,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterLocation.ColumnHeadersDefaultCellStyle.Font = new Font("Oswald Regular", 10.75f, FontStyle.Regular);
+
                 dtRackList = new DataTable();
                 dtRackList.Columns.Add("", typeof(Boolean));
                 dtRackList.Columns.Add("Rack Name", typeof(string));
@@ -256,7 +259,8 @@ namespace ROMS
             finally
             {
                 lvGroupName.Visible = false;
-                lvLocation.Visible = false;
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
                 // lvRack.Visible = false;
             }
         }
@@ -391,7 +395,8 @@ namespace ROMS
                             }
                             udfnClear();
                             lvGroupName.Visible = false;
-                            lvLocation.Visible = false;
+                            DGV_FilterLocation.DataSource = null;
+                            DGV_FilterLocation.Visible = false;
                             //   lvRack.Visible = false;
                         }
                         else
@@ -538,7 +543,8 @@ namespace ROMS
             try
             {
                 lvGroupName.Visible = false;
-                lvLocation.Visible = false;
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1085,7 +1091,8 @@ namespace ROMS
         {
             try
             {
-                lvLocation.Visible = false;
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
                 txtProductGroupName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1169,23 +1176,13 @@ namespace ROMS
         {
             try
             {
+                varUpDownKeyLocation = 0;
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
-                    if (lvLocation.Items.Count == 0 || txtLocation.Text == "")
-                    {
-                        txtRack.Focus();
-                        lvLocation.Visible = false;
-                    }
-                    else
-                    {
-                        lvLocation.Focus();
-                    }
-                    if (lvLocation.Items.Count > 0)
-                    {
-                        lvLocation.Items[0].Selected = true;
-                    }
+                    DGV_FilterLocation.Focus();
+
                 }
-                if (e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter && DGV_FilterLocation.Visible == false)
                 {
                     if (txtRack.Enabled == true)
                     {
@@ -1200,6 +1197,94 @@ namespace ROMS
                         else
                         {
                             btnSave.Focus();
+                        }
+                    }
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_FilterLocation.Focus();
+                }
+                if (DGV_FilterLocation.CurrentCell == null && DGV_FilterLocation.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_FilterLocation.Focus();
+                    int RowIndex = DGV_FilterLocation.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterLocation.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyLocation = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyLocation = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterLocation.CurrentCell = DGV_FilterLocation.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
+                            }
+                            txtLocation.Focus();
+                            txtLocation.SelectionStart = txtLocation.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterLocation.Rows.Count) DGV_FilterLocation.CurrentCell = DGV_FilterLocation.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterLocation.Rows.Count))
+                            {
+                                txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
+                            }
+
+                            txtLocation.Focus();
+                            txtLocation.SelectionStart = txtLocation.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterLocation.Rows.Count > 0)
+                                {
+                                    varUpDownKeyLocation = 1;
+                                    udfnLocationEvent();
+                                    DGV_FilterLocation.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtLocation.Focus();
+                    //txtLocation.SelectionStart = txtLocation.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        if (txtRack.Enabled == true)
+                        {
+                            txtRack.Focus();
+                        }
+                        else
+                        {
+                            if (pnlStatus.Enabled == true)
+                            {
+                                rbActive.Focus();
+                            }
+                            else
+                            {
+                                btnSave.Focus();
+                            }
                         }
                     }
                 }
@@ -1229,52 +1314,67 @@ namespace ROMS
         {
             try
             {
-                lvLocation.Items.Clear();
-                SPDataService objspdservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                if (txtLocation.Text == "")
+                if (varUpDownKeyLocation == 0)
                 {
-                    this.grdRackList.DataSource = null;
-                }
-                if (txtLocation.Text.Length > 0)
-                {
-
-                    objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
-                    objspdservice.CloseConnection();
-                    if (objDs != null)
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtLocation.Text == "")
                     {
-                        if (objDs.Tables.Count != 0)
+                        this.grdRackList.DataSource = null;
+                    }
+                    if (txtLocation.Text.Length > 0)
+                    {
+                        objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
                         {
-                            if (objDs.Tables[0].Rows.Count != 0)
+                            if (objDs.Tables.Count != 0)
                             {
-                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_RKCreation"].ToString() };
-                                    ListViewItem objList = new ListViewItem(row);
-                                    lvLocation.Columns[1].Width = 0;
-                                    lvLocation.Items.Add(objList);
+                                    //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                    //{
+                                    //    string[] row = { objDs.Tables[0].Rows[i]["SL_EName"].ToString(), objDs.Tables[0].Rows[i]["SLID"].ToString(), objDs.Tables[0].Rows[i]["SL_RKCreation"].ToString() };
+                                    //    ListViewItem objList = new ListViewItem(row);
+                                    //    lvLocation.Columns[1].Width = 0;
+                                    //    lvLocation.Items.Add(objList);
+                                    //}
+                                    //lvLocation.Visible = true;
+
+                                    DGV_FilterLocation.Visible = true;
+                                    DGV_FilterLocation.DataSource = objDs.Tables[0];
+                                    DGV_FilterLocation.Columns["SLID"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_ShortName"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_TName"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_RKCreation"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_EName"].HeaderText = "Location E Name";
+                                    DGV_FilterLocation.Columns["SL_EName"].Width = 160;
+                                    DGV_FilterLocation.Columns["SL_EName"].DisplayIndex = 0;
+                                    DGV_FilterLocation.BringToFront();
                                 }
-                                lvLocation.Visible = true;
+                                else
+                                {
+                                    DGV_FilterLocation.DataSource = null;
+                                    DGV_FilterLocation.Visible = false;
+                                }
                             }
                             else
                             {
-                                lvLocation.Visible = false;
+                                DGV_FilterLocation.DataSource = null;
+                                DGV_FilterLocation.Visible = false;
                             }
                         }
                         else
                         {
-                            lvLocation.Visible = false;
+                            DGV_FilterLocation.DataSource = null;
+                            DGV_FilterLocation.Visible = false;
                         }
                     }
                     else
                     {
-                        lvLocation.Visible = false;
+                        DGV_FilterLocation.DataSource = null;
+                        DGV_FilterLocation.Visible = false;
                     }
-                }
-                else
-                {
-                    lvLocation.Visible = false;
-                    lvLocation.Items.Clear();
                 }
             }
             catch (Exception ex)
@@ -1400,10 +1500,12 @@ namespace ROMS
             {
                 if (txtLocation.Text != "")
                 {
-                    ListViewItem selectedItem = lvLocation.SelectedItems[0];
-                    txtLocation.Text = selectedItem.SubItems[0].Text;
-                    lblLocation.Text = selectedItem.SubItems[1].Text;
-                    VarRackCreation = selectedItem.SubItems[2].Text;
+                    lblLocation.Text = Convert.ToString(DGV_FilterLocation.SelectedRows[0].Cells["SLID"].Value.ToString());
+                    txtLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
+                    VarRackCreation = Convert.ToString(DGV_FilterLocation.SelectedRows[0].Cells["SL_RKCreation"].Value.ToString());
+
+                    //ListViewItem selectedItem = lvLocation.SelectedItems[0];
+                    //VarRackCreation = selectedItem.SubItems[2].Text;
                     grdRackList.DataSource = null;
                     dtRackList.Rows.Clear();
                     udfnLoadRackList();
@@ -1426,7 +1528,8 @@ namespace ROMS
             }
             finally
             {
-                lvLocation.Visible = false;
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
             }
         }
 
@@ -1596,6 +1699,121 @@ namespace ROMS
             }
         }
 
+        private void DGV_FilterLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyLocation = 1;
+                udfnLocationEvent();
+                if (txtRack.Enabled == true)
+                {
+                    txtRack.Focus();
+                }
+                else
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        rbActive.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_FilterLocation.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterLocation.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyLocation = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyLocation = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterLocation.CurrentCell = DGV_FilterLocation.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
+
+                            txtLocation.Focus();
+                            txtLocation.SelectionStart = txtLocation.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterLocation.Rows.Count) DGV_FilterLocation.CurrentCell = DGV_FilterLocation.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterLocation.Rows.Count))
+                            {
+                                txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
+                            }
+
+                            txtLocation.Focus();
+                            txtLocation.SelectionStart = txtLocation.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterLocation.Rows.Count > 0)
+                                {
+                                    varUpDownKeyLocation = 1;
+                                    udfnLocationEvent();
+                                    DGV_FilterLocation.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        if (txtRack.Enabled == true)
+                        {
+                            txtRack.Focus();
+                        }
+                        else
+                        {
+                            if (pnlStatus.Enabled == true)
+                            {
+                                rbActive.Focus();
+                            }
+                            else
+                            {
+                                btnSave.Focus();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbSubgroupType_Leave(object sender, EventArgs e)
         {
             try
@@ -1620,7 +1838,8 @@ namespace ROMS
                 //udfnListView();
                 txtLocation.Text = varStockLocationName;
                 lblLocation.Text = Convert.ToString(varLocationCode);
-                lvLocation.Visible = false;
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
                 grdRackList.DataSource = null;
                 dtRackList.Rows.Clear();
                 udfnLoadRackList();
