@@ -130,16 +130,16 @@ namespace ROMS
                 else
                     RemoveSubMenu(tvSubmenu,Convert.ToInt32(menuCode));
 
-                if (btnSave.Text=="Update" || varCLone == 1 )
-                {
-                    TreeNode node = tvLevl2Submenu.Nodes[0]; // or any node you want
+                //if (btnSave.Text=="Update" || varCLone == 1 )
+                //{
+                //    TreeNode node = tvLevl2Submenu.Nodes[0]; // or any node you want
 
-                    // Create event arguments for the node
-                    TreeViewEventArgs args = new TreeViewEventArgs(node, TreeViewAction.ByMouse);
+                //    // Create event arguments for the node
+                //    TreeViewEventArgs args = new TreeViewEventArgs(node, TreeViewAction.ByMouse);
 
-                    tvLevl2Submenu_AfterCheck(tvLevl2Submenu, args);
+                //    tvLevl2Submenu_AfterCheck(tvLevl2Submenu, args);
 
-                }
+                //}
                 e.Node.EnsureVisible();
                 tvMainmenu.SelectedNode = e.Node;
                 e.Node.BackColor = Color.LightBlue;
@@ -279,6 +279,7 @@ namespace ROMS
         {
             try
             {
+                udfntooltiphide();
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
@@ -414,7 +415,7 @@ namespace ROMS
                 {
                     TreeNode rootNode = new TreeNode(parentRow["MU_Name"].ToString())
                     {
-                        Tag = parentRow["MU_Code"],
+                        Tag = parentRow["MU_Code"]
                     };
                     int parenttype = 0;
                     
@@ -423,10 +424,21 @@ namespace ROMS
                          parenttype = 1;
                     }
                     submenu.Nodes.Add(rootNode);
-                     
+
+                    if (submenu.Name == "tvSubmenu")
+                    { 
+                        rootNode.Tag = new { Code = parentRow["MU_Code"], IsCheckAllowed = false };
+                    }
+                    else
+                    {
+                        rootNode.Tag = new { Code = parentRow["MU_Code"], IsCheckAllowed = true };
+                    }
+
                     // Load all children recursively
                     LoadSubMenu(rootNode, parentMenuCode, parenttype);
                 }
+               
+
                 tvSubmenu.ExpandAll();
             }
             catch (Exception ex)
@@ -1175,10 +1187,10 @@ namespace ROMS
                     varChangesFlag = 1;
                     TreeNode clickedNode = e.Node;
                     SetChildNodes(e.Node, e.Node.Checked); // Step 1 → check/uncheck children
-                    UpdateParentNodes(e.Node);  // Step 2 → update parent checkbox
+                    UpdateParentNodes(e.Node);  // Step 2 → update parent checkbox 
                     UpdateFlag(e.Node.Tag.ToString(), e.Node.Checked, clickedNode.Nodes.Count); // Step 3 → update DataTable  
 
-                    // The main menu node is the currently selected node in tvMainmenu
+                    // The main menu node is the currently selected node in tvSubmenu
                     TreeNode mainNode = tvSubmenu.SelectedNode;
                     if (mainNode != null)
                     {
@@ -1196,6 +1208,16 @@ namespace ROMS
                             }
                         }
                     }
+
+                    string nodeText = e.Node.Text;
+
+                    // Find a matching node in tvSubmenu2 (recursive search)
+                    TreeNode matchingNode = FindNodeByText(tvSubmenu2.Nodes, nodeText);
+
+                    if (matchingNode != null)
+                    {
+                        matchingNode.Checked = e.Node.Checked;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1205,6 +1227,50 @@ namespace ROMS
             }
             finally
             {
+            }
+        }
+
+
+        private void tvSubmenu_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try {
+                tvSubmenu.Nodes.Cast<TreeNode>()
+                .SelectMany(n => new[] { n }.Concat(n.Nodes.Cast<TreeNode>()))
+                .ToList()
+                .ForEach(n =>
+                {
+                    n.BackColor = Color.White;
+                    n.ForeColor = Color.Black;
+                });
+                if (e.Action != TreeViewAction.Unknown)
+                {
+                    varChangesFlag = 1;
+                    TreeNode clickedNode = e.Node;
+
+                    if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
+
+                    string menuCode = e.Node.Tag.ToString();
+
+                    if (menuCode == "")
+                    {
+                        menuCode = "0";
+                    }
+
+                    //objDtSubMenu.Clear();
+                    if (e.Node.IsSelected)
+                        LoadSubMenuForParent(tvLevl2Submenu, menuCode);
+                    else
+                        RemoveSubMenu(tvLevl2Submenu, Convert.ToInt32(menuCode));
+
+                    e.Node.EnsureVisible();
+                    tvMainmenu.SelectedNode = e.Node;
+                    e.Node.BackColor = Color.LightBlue;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -1225,18 +1291,6 @@ namespace ROMS
 
                     if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
 
-                    string menuCode = e.Node.Tag.ToString();
-
-                    if (menuCode == "")
-                    {
-                        menuCode = "0";
-                    }
-
-                    //objDtSubMenu.Clear();
-                    if (e.Node.Checked)
-                        LoadSubMenuForParent(tvLevl2Submenu, menuCode);
-                    else
-                        RemoveSubMenu(tvLevl2Submenu, Convert.ToInt32(menuCode));
 
                     SetChildNodes(e.Node, e.Node.Checked); // Step 1 → check/uncheck children
                     UpdateParentNodes(e.Node);  // Step 2 → update parent checkbox
@@ -1260,7 +1314,9 @@ namespace ROMS
                             }
                         }
                     }
-                }
+                } 
+                
+
             }
             catch (Exception ex)
             {
@@ -1531,5 +1587,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public  TreeNode FindNodeByText(TreeNodeCollection nodes, string text)
+        {
+            try
+            {
+                foreach (TreeNode node in nodes)
+                {
+                    if (node.Text.Equals(text, StringComparison.OrdinalIgnoreCase))
+                        return node;
+
+                    TreeNode child = FindNodeByText(node.Nodes, text);
+                    if (child != null)
+                        return child;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
     }
 }
