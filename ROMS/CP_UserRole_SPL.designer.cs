@@ -36,6 +36,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_UserRole_SPL));
             this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserSPLPermission = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -47,7 +48,7 @@
             this.clmMenuId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFieldId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmURSF_Access_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.clmPrivilagecode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserSPLPermission)).BeginInit();
@@ -66,6 +67,18 @@
             this.groupBox2.Size = new System.Drawing.Size(654, 298);
             this.groupBox2.TabIndex = 1111184;
             this.groupBox2.TabStop = false;
+            // 
+            // lblNoRecordsFound
+            // 
+            this.lblNoRecordsFound.AutoSize = true;
+            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(273, 143);
+            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.TabIndex = 958799;
+            this.lblNoRecordsFound.Text = "No Records Found";
+            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grdUserSPLPermission
             // 
@@ -91,7 +104,8 @@
             this.clmEditchk,
             this.clmMenuId,
             this.clmFieldId,
-            this.clmURSF_Access_Level});
+            this.clmURSF_Access_Level,
+            this.clmPrivilagecode});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -199,17 +213,11 @@
             this.clmURSF_Access_Level.Name = "clmURSF_Access_Level";
             this.clmURSF_Access_Level.Visible = false;
             // 
-            // lblNoRecordsFound
+            // clmPrivilagecode
             // 
-            this.lblNoRecordsFound.AutoSize = true;
-            this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
-            this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(273, 143);
-            this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
-            this.lblNoRecordsFound.TabIndex = 958799;
-            this.lblNoRecordsFound.Text = "No Records Found";
-            this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.clmPrivilagecode.HeaderText = "clmPrivilagecode";
+            this.clmPrivilagecode.Name = "clmPrivilagecode";
+            this.clmPrivilagecode.Visible = false;
             // 
             // CP_UserRole_SPL
             // 
@@ -248,6 +256,7 @@
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblMenuLink;
+        private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFieldName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmViewchk;
@@ -255,6 +264,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMenuId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFieldId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmURSF_Access_Level;
-        private System.Windows.Forms.Label lblNoRecordsFound;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrivilagecode;
     }
 }

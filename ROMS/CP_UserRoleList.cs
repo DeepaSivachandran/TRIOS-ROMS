@@ -14,6 +14,7 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_UserRoleList : Form
     {
+        Boolean BlnSearchImageYN = false;
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -64,6 +65,8 @@ namespace ROMS
         {
             try
             {
+                grdUserList.AllowUserToResizeColumns = false;
+
                 txtDUserList.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -91,8 +94,12 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
+                int varUserList = 0;
 
-                objDs = objspservice.udfnUserRoleList(0, 0, Convert.ToInt32(cmbStatus.SelectedValue),0);
+                if (lblUserId.Text != "") {
+                    varUserList = Convert.ToInt32(lblUserId.Text);
+                }
+                objDs = objspservice.udfnUserRoleList(0, varUserList, Convert.ToInt32(cmbStatus.SelectedValue),0,"");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -216,6 +223,7 @@ namespace ROMS
                     MainForm.objCP_UserRole.btnSave.Text = "Update"; 
                     MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value); 
                     MainForm.objCP_UserRole.varUserRoleName = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
+                    MainForm.objCP_UserRole.varCLone = 0;
                     MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);  
                     MainForm.objCP_UserRole.MdiParent = this.ParentForm;
                     MainForm.objCP_UserRole.Show();
@@ -267,21 +275,35 @@ namespace ROMS
         {
             try
             {
-                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-                    return;
-                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                        return;
+                    if (!(e.ColumnIndex == 0)) /*If not our desired columns*/
+                        //return;
+
+                        if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                        {
+                            e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                                & ~(DataGridViewPaintParts.ContentForeground));
+
+                            //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                            e.Handled = true;
+                        }
+
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    if (DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn)
                     {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                            & ~(DataGridViewPaintParts.ContentForeground));
-
-                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
-                        e.Handled = true;
+                        if (e.Value == null || !(e.Value is Image))
+                        {
+                            e.Paint(e.CellBounds, DataGridViewPaintParts.Background | DataGridViewPaintParts.Border);
+                            e.Handled = true;
+                            return;
+                        }
                     }
-
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -315,11 +337,14 @@ namespace ROMS
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
                     DGV_SearchGrid.Rows.Add();
+                    DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -367,11 +392,31 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
+                    BlnSearchImageYN = false;
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                        {
+                            BlnSearchImageYN = true;
+                            dgv2.Rows[rowIndex].Cells[i].Value = false;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -409,16 +454,19 @@ namespace ROMS
                 DataGridViewColumn newColumn = grdUserList.Columns[e.ColumnIndex];
                 DataGridViewColumn oldColumn = grdUserList.SortedColumn;
                 ListSortDirection direction;
+
                 // If oldColumn is null, then the DataGridView is not sorted.
                 if (oldColumn != null)
-                {// Sort the same column again, reversing the SortOrder.
+                {
+                    // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
                         grdUserList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
                     else
-                    {// Sort a new column and remove the old SortGlyph.
+                    {
+                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
                         oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                     }
@@ -427,21 +475,23 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdUserList.Sort(newColumn, direction);
-                newColumn.HeaderCell.SortGlyphDirection =
-                    direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdUserList.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                {
+                    grdUserList.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdUserList.HorizontalScrollingOffset;
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
         }
         public void udfnscrollVisible(DataGridView DGV, DataGridView grdGroupList)
         {
             try
             {
-                var vScrollbar = grdGroupList.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdUserList.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -449,7 +499,6 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-
                     int I = DGV_SearchGrid.Rows.Count - 1;
                     if (I == 0)
                     {
@@ -457,7 +506,11 @@ namespace ROMS
                         DGV_SearchGrid.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            if (DGV_SearchGrid.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                            {
+                                DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            }
+                            else { DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = ""; }
                         }
                     }
                 }
@@ -536,6 +589,7 @@ namespace ROMS
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_SearchGrid, grdUserList);
                 }
             }
             catch (Exception ex)
@@ -602,7 +656,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "System User List";
+                    ExcelSheet.Name = "User Role List";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdUserList.Columns)
@@ -615,7 +669,7 @@ namespace ROMS
                     //Excel.Range er = ExcelSheet.get_Range("A:A", System.Type.Missing);
                     //er.EntireColumn.ColumnWidth = 35;
 
-                    ExcelSheet.Cells[1, 1].Value = "System User List";
+                    ExcelSheet.Cells[1, 1].Value = "User Roler List";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -637,7 +691,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Name of the System User" )
+                            else if (col.Name == "User Role" )
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -717,7 +771,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtDUserList.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserList(5, txtDUserList.Text, "","",0,0,"");
+                    objDs = objspdservice.udfnUserRoleList(4, 0, Convert.ToInt32(cmbStatus.SelectedValue), 0, txtDUserList.Text); 
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -727,7 +781,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["U_Name"].ToString(),objDs.Tables[0].Rows[i]["UID"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["UR_Name"].ToString(),objDs.Tables[0].Rows[i]["URID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     lvUserList.Items.Add(objList);
                                 }
@@ -982,6 +1036,41 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void grdUserList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdUserList.Columns[e.ColumnIndex].Name)
+                    {
+                        //Added by Sathish on 07/07/2025 for clone option for Product
+                        case "clmClone": 
+                            picLoader.Visible = true;
+                            picLoader.BringToFront();
+                            Application.DoEvents();
+                            MainForm.objCP_UserRole = new CP_UserRole();
+                            MainForm.objCP_UserRole.btnSave.Text = "Save";
+                            MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
+                            MainForm.objCP_UserRole.varCLone = 1; 
+                            MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
+                            MainForm.objCP_UserRole.MdiParent = this.ParentForm;
+                            MainForm.objCP_UserRole.Show();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
             }
         }
     }

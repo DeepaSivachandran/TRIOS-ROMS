@@ -28,7 +28,6 @@ namespace ROMS
         public int varmastertype = 0;
         public int varmenuid = 0, varUserRoleID= 0;
         public string PbMenuName = "";
-        public DataTable objDtSplPermission = new DataTable();
         DataTable objDtMainMenu = new DataTable(); 
         public CP_UserRole_SPL()
         {
@@ -39,15 +38,9 @@ namespace ROMS
         {
             try
             {
-                objDtSplPermission.Clear();
-                objDtSplPermission = MainForm.objDtMenuSplPermission.Copy();
+                 
                 objDtMainMenu = MainForm.objDtMenuDetails.Copy();
-
-                DataView dv = new DataView(objDtSplPermission);
-                dv.RowFilter = "MUP_MU_CODE = "+ varmenuid + " ";
-                objDtSplPermission = dv.ToTable();
-
-
+                  
                 DataRow[] rows = objDtMainMenu.Select("MU_Code = " + varmenuid);
                 var parts = new[] {
                     rows[0]["Level1Parent"]?.ToString(),
@@ -72,41 +65,37 @@ namespace ROMS
         {
             try
             {
-                DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
-                SPDataService objspservice = new SPDataService();
+                //DataSet objDs = new DataSet();
+                ////**** To call the function from SP ***************
+                //SPDataService objspservice = new SPDataService();
 
                 btnSave.Enabled = true;
                 lblNoRecordsFound.Visible = false;
-                objDs = objspservice.udfnUserRoleList(3, varUserRoleID, 0, varmenuid);
-                objspservice.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            var varGetSameData = from dt1 in objDtSplPermission.AsEnumerable()
-                                                 join dt2 in objDs.Tables[0].AsEnumerable()
-                                                 on Convert.ToInt32(dt1["MUP_Code"] ?? 0)
-                                                 equals Convert.ToInt32(dt2["URSF_FieldID"] ?? 0)
-                                                 select new { dt1, dt2 };
+                //objDs = objspservice.udfnUserRoleList(3, varUserRoleID, 0, varmenuid);
+                //objspservice.CloseConnection();
+                //if (objDs != null)
+                //{
+                //    if (objDs.Tables.Count != 0)
+                //    {
 
-                            foreach (var item in varGetSameData)
+                //    }
+                //}
+                grdUserSPLPermission.Rows.Clear();
+                if (MainForm.objCP_UserRole.objDtSplPermission != null)
+                {
+                    if (MainForm.objCP_UserRole.objDtSplPermission.Rows.Count != 0)
+                    {
+                        for (int i = 0; i < MainForm.objCP_UserRole.objDtSplPermission.Rows.Count; i++)
+                        {
+                            int varViewaccess = 0, varEditaccess = 0;
+                            if (Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["ViewAccess"]) == "9")
                             {
-                                item.dt1["AccessLevel"] = item.dt2["URSF_Access_Level"]?.ToString() ?? "";
+                                varViewaccess = 1;
                             }
-                        }
-                    }
-                }
-
-                if (objDtSplPermission != null)
-                {
-                    if (objDtSplPermission.Rows.Count != 0)
-                    {
-                        for (int i = 0; i < objDtSplPermission.Rows.Count; i++)
-                        {
-                            grdUserSPLPermission.Rows.Add(grdUserSPLPermission.Rows.Count + 1, Convert.ToString(objDtSplPermission.Rows[i]["MUP_FieldName"]), 0, 0, Convert.ToString(objDtSplPermission.Rows[i]["MUP_MU_Code"]), Convert.ToString(objDtSplPermission.Rows[i]["MUP_Code"]), Convert.ToString(objDtSplPermission.Rows[i]["AccessLevel"]));
+                            if (Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["EditAccess"]) == "10") {
+                                varEditaccess = 1;
+                            }
+                            grdUserSPLPermission.Rows.Add(grdUserSPLPermission.Rows.Count + 1, Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_FieldName"]), varViewaccess, varEditaccess, Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_MU_Code"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_Code"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["AccessLevel"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_PrivilegeCode"]));
                         }
                     }
                     else {
@@ -141,28 +130,43 @@ namespace ROMS
                 foreach (DataGridViewRow row in grdUserSPLPermission.Rows)
                 {
                     if (row.IsNewRow) continue;
+                    int privilegeNo = 8;
 
                     string values = row.Cells["clmURSF_Access_Level"].Value?.ToString() ?? "";
-                    var chkCols = new[] { "clmViewchk", "clmEditchk" }; 
-
-                    // --- Flow 2: Apply checked values ---
-                    if (!string.IsNullOrEmpty(values))
+                    var chkCols = new[] { "clmViewchk", "clmEditchk" };
+                    string PrivilegeCode = row.Cells["clmPrivilagecode"].Value?.ToString() ?? "";
+                    var allowed = PrivilegeCode.Split(',')
+                                                   .Select(s => s.Trim())
+                                                   .Where(s => int.TryParse(s, out _))
+                                                   .Select(int.Parse)
+                                                   .ToList();
+                    foreach (var colName in chkCols)
                     {
-                        string[] indexes = values.Split(',');
-
-                        foreach (string index in indexes)
+                        privilegeNo = privilegeNo + 1;
+                        if (allowed.Contains(privilegeNo))
                         {
-                            if (int.TryParse(index, out int colIndex))
+                            // keep checkbox cell (active)
+                            if (!(row.Cells[colName] is DataGridViewCheckBoxCell))
                             {
-                                switch (colIndex)
-                                {
-                                    case 9: row.Cells["clmViewchk"].Value = true; break; 
-                                    case 10: row.Cells["clmEditchk"].Value = true; break; 
-                                }
+                                row.Cells[colName] = new DataGridViewCheckBoxCell();
                             }
+                            row.Cells[colName].ReadOnly = false; 
                         }
-                             
-                    }
+                        else
+                        {
+                            // create a new text cell (blank)
+                            var blankCell = new DataGridViewTextBoxCell
+                            {
+                                Value = ""
+                            };
+
+                            int colIndex = grdUserSPLPermission.Columns[colName].Index;
+                            // replace the checkbox cell for this row
+                            row.Cells[colIndex] = blankCell;
+                            row.Cells[colIndex].ReadOnly = true;
+                            row.DefaultCellStyle.BackColor = Color.LightBlue;
+                        }
+                    } 
 
                 }
             }
@@ -356,7 +360,7 @@ namespace ROMS
                 varoriginator = "UserRole SPL Access Creation";
                 varType = 3;
 
-
+                MainForm.objCP_UserRole.objdtMR_UserRole_Menu_SPL_Access.Rows.Clear();
 
                 if (grdUserSPLPermission.RowCount > 0)
                 {
@@ -370,21 +374,31 @@ namespace ROMS
                         );
                     }
                 }
-                this.Close();
-                //varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), "", 0, varoriginator, MainForm.pbUserID, 0, null, null, objdtMR_UserRole_Menu_SPL_Access);
-                //objspservice.CloseConnection();
-                //string[] varvalue = varResult.Split('~');
-                //if (varvalue[0] == "3")
-                //{
-                //    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    btnSave.Enabled = true;
-                //    btnSave.Focus();
-                //}
+               
+
+                var varGetSameData = from dt1 in MainForm.objCP_UserRole.objDtSplPermission.AsEnumerable()
+                                     join dt2 in MainForm.objCP_UserRole.objdtMR_UserRole_Menu_SPL_Access.AsEnumerable()
+                                     on Convert.ToInt32(dt1["MUP_Code"] ?? 0)
+                                     equals Convert.ToInt32(dt2["UAS_Fieldid"] ?? 0)
+                                     select new { dt1, dt2 }; 
+
+                foreach (var item in varGetSameData)
+                {
+                    int varViewaccess = 0, varEditaccess = 0;
+                    if (item.dt2["UAS_ViewAccess"]?.ToString()  == "1")
+                    {
+                        varViewaccess = 9;
+                    }
+                    if (item.dt2["UAS_EditAccess"]?.ToString() == "1")
+                    {
+                        varEditaccess = 10;
+                    }
+
+                    item.dt1["ViewAccess"] = varViewaccess;
+                    item.dt1["EditAccess"] = varEditaccess;
+                }
+
+                this.Close(); 
             }
             catch (Exception ex)
             {
