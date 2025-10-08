@@ -188,8 +188,7 @@ namespace ROMS
             this.tsmClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms = new System.Windows.Forms.MenuStrip(); 
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1644,8 +1643,7 @@ namespace ROMS
             this.tsmTally,
             this.tsmReports,
             this.tsmMyProfile,
-            this.tsmFYSettings,
-            this.toolStripMenuItem1});
+            this.tsmFYSettings });
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -1655,9 +1653,7 @@ namespace ROMS
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
             // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 21);
+            //  
             // 
             // MainForm
             // 
@@ -1848,6 +1844,5 @@ namespace ROMS
         private System.Windows.Forms.MenuStrip ms;
         //private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmUserRole;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
