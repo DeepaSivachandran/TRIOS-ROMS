@@ -1212,12 +1212,12 @@ namespace ROMS
                     string nodeText = e.Node.Text;
 
                     // Find a matching node in tvSubmenu2 (recursive search)
-                    TreeNode matchingNode = FindNodeByText(tvSubmenu2.Nodes, nodeText);
+                    //TreeNode matchingNode = FindNodeByText(tvSubmenu2.Nodes, nodeText);
 
-                    if (matchingNode != null)
-                    {
-                        matchingNode.Checked = e.Node.Checked;
-                    }
+                    //if (matchingNode != null)
+                    //{
+                    //    matchingNode.Checked = e.Node.Checked;
+                    //}
                 }
             }
             catch (Exception ex)
@@ -1587,27 +1587,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public  TreeNode FindNodeByText(TreeNodeCollection nodes, string text)
-        {
-            try
-            {
-                foreach (TreeNode node in nodes)
-                {
-                    if (node.Text.Equals(text, StringComparison.OrdinalIgnoreCase))
-                        return node;
+        //public  TreeNode FindNodeByText(TreeNodeCollection nodes, string text)
+        //{
+        //    try
+        //    {
+        //        foreach (TreeNode node in nodes)
+        //        {
+        //            if (node.Text.Equals(text, StringComparison.OrdinalIgnoreCase))
+        //                return node;
 
-                    TreeNode child = FindNodeByText(node.Nodes, text);
-                    if (child != null)
-                        return child;
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        //            TreeNode child = FindNodeByText(node.Nodes, text);
+        //            if (child != null)
+        //                return child;
+        //        }
+        //        return null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //}
 
     }
 }
