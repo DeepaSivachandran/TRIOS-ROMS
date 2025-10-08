@@ -231,11 +231,11 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,122) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (122) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbDateType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,123) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbGST, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_GST", "GSTID<>0", "GST_Text,GSTID", cmbGSTPer, "", "GST_Text", "GSTID");
                 objDataBind = null;
-                cmbDateType.SelectedValue = 0;
+                cmbDateType.SelectedValue = 401;
                 cmbGST.SelectedValue = 0;
                 cmbGSTPer.SelectedValue = -1;
             }

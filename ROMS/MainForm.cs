@@ -3447,16 +3447,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmTaxChanges_Click(object sender, EventArgs e)
+         
+        private void tsmPurPOBlockedProducts_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objREPORT_Tax_Changes = new REPORT_Tax_Changes();
-                MainForm.objREPORT_Tax_Changes.MdiParent = this;
-                MainForm.objREPORT_Tax_Changes.Show();
+                MainForm.objREPORT_Pur_PO_Blocked_Products = new REPORT_Pur_PO_Blocked_Products();
+                MainForm.objREPORT_Pur_PO_Blocked_Products.MdiParent = this;
+                MainForm.objREPORT_Pur_PO_Blocked_Products.Show();
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
@@ -3464,9 +3464,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void tsmPurPOBlockedProducts_Click(object sender, EventArgs e)
+        } 
+        private void tsmSupplierWiseBlockedProducts_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3502,15 +3501,15 @@ namespace ROMS
             }
         }
 
-        private void tsmSupplierWiseBlockedProducts_Click(object sender, EventArgs e)
+        private void tsmTaxChanges_Click(object sender, EventArgs e)
         {
             try
             {
                 udfnCloseChildForms();
                 if (isClose == false) { return; }
-                MainForm.objREPORT_Pur_PO_Blocked_Products = new REPORT_Pur_PO_Blocked_Products();
-                MainForm.objREPORT_Pur_PO_Blocked_Products.MdiParent = this;
-                MainForm.objREPORT_Pur_PO_Blocked_Products.Show();
+                MainForm.objREPORT_Tax_Changes = new REPORT_Tax_Changes();
+                MainForm.objREPORT_Tax_Changes.MdiParent = this;
+                MainForm.objREPORT_Tax_Changes.Show();
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
@@ -3519,7 +3518,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+          
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try
