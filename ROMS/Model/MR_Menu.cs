@@ -11,7 +11,7 @@ namespace ROMS.Model
     {
         public int ViewType = 0;
         public int paraID = 0;
-        public int paraUserID = 0;
+        public int paraUserRoleId = 0;
         public string paraIPAddress = ""; 
     }
 }

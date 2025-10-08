@@ -4647,6 +4647,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraID", objMR_Menu.paraID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserRoleId", objMR_Menu.paraUserRoleId); 
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
