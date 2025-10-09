@@ -50,7 +50,7 @@ namespace ROMS
         int GOId = 0;
         string varLocation = "";
         string result = "";
-        public string varPICode = "", varPIChildCode = "", varPEname = "", varPTname = "", varPID = "", varUTID = "", varParentId = "", varPRID = "", varRKID = "", varTotalItem = "", varUnit = "", varTransType = "", varParentPIcode = "", varParentTname ="" , varParentUnit ="" ,varParentUnitID = "",varParentUnitDecimal="";
+        public string varPICode = "", varPIChildCode = "", varPEname = "", varPTname = "", varPID = "", varUTID = "", varParentId = "", varPRID = "", varRKID = "", varTotalItem = "", varUnit = "", varTransType = "", varParentPIcode = "", varParentTname = "", varParentUnit = "", varParentUnitID = "", varParentUnitDecimal = "";
         private int varviewtype = 0;
         bool varVoucherSkip = false;
         public int varClose = 0, varDateChange = 0;
@@ -79,14 +79,30 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+        public void udfnDiscard()
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to discard changes ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnClose_Click_1(object sender, EventArgs e)
         {
             try
             {
-                
-                    udfnclose();
-                    MainForm.objINV_StockJournalList.udfnList(); 
+
+                udfnclose();
+                MainForm.objINV_StockJournalList.udfnList();
             }
             catch (Exception ex)
             {
@@ -103,8 +119,8 @@ namespace ROMS
                 if (e.KeyCode == Keys.Escape)
                 {
                     DGV_FilterProduct.Visible = false;
-                    
-                        udfnclose(); 
+
+                    udfnclose();
                 }
                 if (e.KeyCode == Keys.F5)
                 {
@@ -664,8 +680,8 @@ namespace ROMS
                         this.ActiveControl = cmbChildProduct2;
                         udfnEdit();
                     }
-                } 
-                UpdateComboBoxState(); 
+                }
+                UpdateComboBoxState();
             }
             catch (Exception ex)
             {
@@ -783,14 +799,14 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0 || txtProductName.Text == " ")
                     {
-                        
+
                         var ViewType = 75;
                         int varEntry = 0;
                         if (btnSave.Text == "Update") { varEntry = varAJId; }
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = ViewType;
-                        objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue); 
-                            objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Product.paraProductName = txtProductName.Text;
                         if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 379) // parent - child
                         {
                             objMR_Product.paraId = 0;
@@ -800,7 +816,7 @@ namespace ROMS
                             objMR_Product.paraId = 1;
                         }
                         objMR_Product.paraPicode = txtProductName.Text;
-                        objDs = objspdservice.udfnproductmasterlist(objMR_Product); 
+                        objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -1032,7 +1048,7 @@ namespace ROMS
                         {
                             DataSet objDs = new DataSet();
                             SPDataService objspdservice = new SPDataService();
-                               MR_Master objMR_Master = new MR_Master();
+                            MR_Master objMR_Master = new MR_Master();
                             objMR_Master.ViewType = 14;
                             objDs = objspdservice.udfnMaster(objMR_Master);
                             objspdservice.CloseConnection();
@@ -1508,7 +1524,7 @@ namespace ROMS
             {
                 int varDecimal = Convert.ToInt32(grdParent2.CurrentRow.Cells["clmparent2UTDecimal"].Value);
                 if (grdParent2.CurrentCell.OwningColumn.Name == "clmparent2Qty")
-                { 
+                {
                     TextBox textBox = (TextBox)sender;
                     if (varDecimal == 0)
                     {
@@ -1742,7 +1758,7 @@ namespace ROMS
                                     DGVFilterBatch.Columns["UTID"].Visible = false;
                                     DGVFilterBatch.Columns["PRODUCTLIST"].Visible = false;
                                     DGVFilterBatch.Columns["UT_Name"].Visible = false;
-                                    DGVFilterBatch.Columns["PR_UPP"].Visible = false; 
+                                    DGVFilterBatch.Columns["PR_UPP"].Visible = false;
                                     DGVFilterBatch.Columns["STK_RKID"].Visible = false;
                                     DGVFilterBatch.Columns["STK_RKID"].Visible = false;
                                     DGVFilterBatch.Columns["UT_Decimal"].Visible = false;
@@ -1773,7 +1789,7 @@ namespace ROMS
                                     DGVFilterBatch.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGVFilterBatch.Visible = true;
 
-                                     
+
 
                                 }
                                 else
@@ -2802,6 +2818,7 @@ namespace ROMS
                 grdChild2.ClearSelection();
 
                 grdChild_DataBindingComplete(grdChild, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
+                cmbChildProduct1_SelectedIndexChanged(sender,e);
                 //DGV_inward.Sort(DGV_inward.Columns["clmpicode"], ListSortDirection.Ascending);
 
             }
@@ -2877,7 +2894,7 @@ namespace ROMS
 
             try
             {
-                 
+
 
                 int varDecimal = Convert.ToInt32(grdChild.CurrentRow.Cells["clmConvertedUTDecimal"].Value);
 
@@ -3000,7 +3017,7 @@ namespace ROMS
             }
         }
 
-       
+
 
         private void grdStockadjustment_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
@@ -3082,7 +3099,8 @@ namespace ROMS
         {
             try
             {
-                UpdateBalanceTotal(); }
+                UpdateBalanceTotal();
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -3213,7 +3231,7 @@ namespace ROMS
                     if (txtBatchno.Enabled == true)
                     {
                         txtBatchno.Focus();
-                    } 
+                    }
                     else
                     {
                         txtChildQty.Focus();
@@ -3311,7 +3329,7 @@ namespace ROMS
         }
 
         private void txtbatch2_KeyDown(object sender, KeyEventArgs e)
-        { 
+        {
 
             try
             {
@@ -3533,7 +3551,7 @@ namespace ROMS
                                     DGVBatch2.Visible = true;
 
 
-                                    
+
 
                                 }
                                 else
@@ -3683,7 +3701,7 @@ namespace ROMS
         }
 
         private void btnChild2_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 if (cmbChildProduct2.Text != "")
@@ -3769,7 +3787,8 @@ namespace ROMS
 
                     }
                 }
-                else {  
+                else
+                {
                     MessageBox.Show("No child items found for the selected parent. Define child items before converting.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtProductName.Focus();
                 }
@@ -3791,10 +3810,10 @@ namespace ROMS
                     txtPStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
                 }
                 else
-                { 
+                {
                     cmbConcern.Enabled = true;
                     txtPStockLocation.Enabled = true;
-                } 
+                }
 
             }
         }
@@ -3814,7 +3833,7 @@ namespace ROMS
             }
         }
 
-       
+
 
         private void txtStockLocationChild_TextChanged(object sender, EventArgs e)
         {
@@ -3896,7 +3915,7 @@ namespace ROMS
             try
             {
                 txtPStockLocation.BackColor = Color.White;
-                
+
             }
             catch (Exception ex)
             {
@@ -3910,7 +3929,7 @@ namespace ROMS
 
 
             try
-            { 
+            {
 
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -4132,7 +4151,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                      if (txtParentMRP.Enabled == true)
+                    if (txtParentMRP.Enabled == true)
                     {
                         txtParentMRP.Focus();
                     }
@@ -4217,7 +4236,7 @@ namespace ROMS
                     varRackId = selectedItem.SubItems[2].Text;
                     //txtRackDescription.Text = selectedItem.SubItems[1].Text;
                     lvParenetRack1.Visible = false;
-                    
+
                 }
             }
             catch (Exception ex)
@@ -4257,8 +4276,8 @@ namespace ROMS
         private void lvChildRack1_DoubleClick(object sender, EventArgs e)
         {
             try
-            { 
-                    udfnRackAutocomplete();
+            {
+                udfnRackAutocomplete();
                 if (txtMrp.Enabled == true)
                 {
                     txtMrp.Focus();
@@ -4336,7 +4355,7 @@ namespace ROMS
 
         private void txtParentMRP_KeyPress(object sender, KeyPressEventArgs e)
         {
-             
+
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
@@ -4394,7 +4413,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                      if (txtBatchno2.Enabled == true)
+                    if (txtBatchno2.Enabled == true)
                     {
                         txtBatchno2.Focus();
                     }
@@ -4413,11 +4432,12 @@ namespace ROMS
 
         private void txtBatchno2_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
+            try
+            {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    
-                        txtparentqty2.Focus(); 
+
+                    txtparentqty2.Focus();
                 }
             }
             catch (Exception ex)
@@ -4726,7 +4746,8 @@ namespace ROMS
                         txtChildStockLocation2.Focus();
                     }
                 }
-                else { 
+                else
+                {
                     MessageBox.Show("Please add a child item before conversion.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -4838,7 +4859,7 @@ namespace ROMS
 
             try
             {
-                UpdateTotalChild(); 
+                UpdateTotalChild();
             }
             catch (Exception ex)
             {
@@ -5105,9 +5126,10 @@ namespace ROMS
 
         private void grdParent2_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            try {
+            try
+            {
                 UpdateBalanceTotalChild();
-                    }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -5220,7 +5242,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
             finally
-            { 
+            {
 
                 grdParent2.ClearSelection();
                 grdChild2.ClearSelection();
@@ -5302,7 +5324,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-          
+
         private void DGV_inward_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -5329,8 +5351,8 @@ namespace ROMS
         {
             try
             {
-                if (varBalanceqty != 0) 
-                { 
+                if (varBalanceqty != 0)
+                {
                     MessageBox.Show("Unable to process the conversion! The required child qty is lesser than the available qty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -5473,7 +5495,7 @@ namespace ROMS
                     else if (result.Split('~')[0] == "5")
                     {
 
-                        MessageBox.Show(result.Split('~')[1] +"( " +result.Split('~')[2] + " )", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(result.Split('~')[1] + "( " + result.Split('~')[2] + " )", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
@@ -5685,7 +5707,7 @@ namespace ROMS
                 txtParentMRP.Text = "";
                 txtBatchno2.Text = "";
                 txtparentqty2.Text = "";
-                
+
 
             }
             catch (Exception ex)
@@ -6030,7 +6052,7 @@ namespace ROMS
 
                     cmbConcern.Enabled = false;
                     dtpConvertDate.Enabled = false;
-                    txtStockConvertNo.Enabled = false; 
+                    txtStockConvertNo.Enabled = false;
                     cmbTransactionType.Enabled = false;
                     txtProductName.Enabled = false;
                     epStockConvertion.Clear();
@@ -6298,7 +6320,7 @@ namespace ROMS
                     }
                 }
 
-                lblParenttotqty.Text =  Convert.ToString(sum)  ;
+                lblParenttotqty.Text = Convert.ToString(sum);
 
             }
             catch (Exception ex)
@@ -6311,7 +6333,7 @@ namespace ROMS
         private void UpdateBalanceTotal()
         {
             try
-            { 
+            {
                 decimal totalQtyUpp = 0;
 
                 foreach (DataGridViewRow row in grdChild.Rows) // your second grid
@@ -6333,11 +6355,12 @@ namespace ROMS
                 }
 
                 // Get total from first grid label
-                decimal total = Convert.ToDecimal(lblParenttotqty.Text); 
+                decimal total = Convert.ToDecimal(lblParenttotqty.Text);
 
                 // Calculate balance
-                decimal balance =  total - totalQtyUpp;
-                if (totalQtyUpp == 0) {
+                decimal balance = total - totalQtyUpp;
+                if (totalQtyUpp == 0)
+                {
                     balance = totalQtyUpp - total;
                 }
                 lblParentbalqty.Text = Convert.ToString(balance);
@@ -6353,7 +6376,7 @@ namespace ROMS
         private void UpdateTotalChild()
         {
             try
-            { 
+            {
                 decimal totalQtyUpp = 0;
 
                 foreach (DataGridViewRow row in grdChild2.Rows)
@@ -6389,13 +6412,13 @@ namespace ROMS
         private void UpdateBalanceTotalChild()
         {
             try
-            { 
+            {
                 decimal qty = 0;
 
                 foreach (DataGridViewRow row in grdParent2.Rows) // your second grid
                 {
                     if (row.IsNewRow) continue;
-                     
+
                     // Make sure value is not null or empty
                     if (row.Cells["clmparent2Qty"].Value != null &&
                         decimal.TryParse(row.Cells["clmparent2Qty"].Value.ToString(), out decimal value))
