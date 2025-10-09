@@ -3025,6 +3025,7 @@ namespace ROMS
             try
             {
                 UpdateTotal();
+                UpdateBalanceTotal();
             }
             catch (Exception ex)
             {
@@ -3038,6 +3039,7 @@ namespace ROMS
             try
             {
                 UpdateTotal();
+                UpdateBalanceTotal();
             }
             catch (Exception ex)
             {
@@ -4831,7 +4833,7 @@ namespace ROMS
 
             try
             {
-                UpdateTotalChild();
+                UpdateTotalChild(); UpdateBalanceTotalChild();
             }
             catch (Exception ex)
             {
@@ -4845,7 +4847,7 @@ namespace ROMS
 
             try
             {
-                UpdateTotalChild();
+                UpdateTotalChild(); UpdateBalanceTotalChild();
             }
             catch (Exception ex)
             {
@@ -4859,7 +4861,7 @@ namespace ROMS
 
             try
             {
-                UpdateTotalChild();
+                UpdateTotalChild(); UpdateBalanceTotalChild();
             }
             catch (Exception ex)
             {
@@ -5353,8 +5355,34 @@ namespace ROMS
             {
                 if (varBalanceqty != 0)
                 {
-                    MessageBox.Show("Unable to process the conversion! The required child qty is lesser than the available qty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(166);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 379) // parent - child
+                {
+                    if (grdChild.Rows.Count == 0) {
+
+
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(38);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                else if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 380) // child - parent
+                { 
+                    if (grdParent2.Rows.Count == 0)
+                    { 
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(38);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    } 
                 }
                 udfnSave();
             }
@@ -6322,6 +6350,11 @@ namespace ROMS
 
                 lblParenttotqty.Text = Convert.ToString(sum);
 
+                //if (lblParentbalqty.Text == "" || lblParentbalqty.Text == "0")
+                //{
+                //    lblParentbalqty.Text = lblParenttotqty.Text;
+                //}
+
             }
             catch (Exception ex)
             {
@@ -6359,10 +6392,10 @@ namespace ROMS
 
                 // Calculate balance
                 decimal balance = total - totalQtyUpp;
-                if (totalQtyUpp == 0)
-                {
-                    balance = totalQtyUpp - total;
-                }
+                //if (totalQtyUpp == 0)
+                //{
+                //    balance = totalQtyUpp - total;
+                //} 
                 lblParentbalqty.Text = Convert.ToString(balance);
                 varBalanceqty = balance;
             }
@@ -6400,6 +6433,11 @@ namespace ROMS
                 }
 
                 lblparent2totqty.Text = Convert.ToString(totalQtyUpp);
+
+                //if (lblparent2balqty.Text == "" || lblparent2balqty.Text == "0")
+                //{
+                //    lblparent2balqty.Text = lblparent2totqty.Text;
+                //}
             }
             catch (Exception ex)
             {
