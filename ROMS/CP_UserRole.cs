@@ -50,7 +50,7 @@ namespace ROMS
                 objDtUserMenuDetails.Clear();
                 objDtUserMenuDetails = MainForm.objDtMenuDetails.DefaultView.ToTable(false, "MU_Code", "MU_Name", "MU_Link", "MU_ParentMenuCode", "MU_Level", "MU_Formname", "MU_CloseFlag", "Menuflag");
                 DataView dv = new DataView(objDtUserMenuDetails);
-                dv.RowFilter = "MU_ParentMenuCode IS NULL";
+                dv.RowFilter = "MU_ParentMenuCode IS NULL AND MU_Code <> 9";
                 objDtMainMenu = dv.ToTable();
 
                 objDtSplPermission.Clear();
@@ -143,7 +143,8 @@ namespace ROMS
                 //}
                 e.Node.EnsureVisible();
                 tvMainmenu.SelectedNode = e.Node;
-                e.Node.BackColor = Color.LightBlue; 
+                e.Node.BackColor = Color.LightBlue;
+                tvLevl2Submenu.Nodes.Clear();
             }
             catch (Exception ex)
             {
@@ -480,8 +481,8 @@ namespace ROMS
                     //// Recursive call to add children of this child
                     ///
                     if (parenttype == 1)
-                    {
-                        LoadSubMenu(childNode, nodeValue,0);
+                    { 
+                        LoadSubMenu(childNode, nodeValue, 1); 
                     } 
                 }
 
@@ -830,22 +831,22 @@ namespace ROMS
                                 row.Cells[colIndex].ReadOnly = true;
                             }
 
-                            if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
-                            {
-                                if (!grdUserPermission.Columns.Contains(colName)) continue;
+                            //if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
+                            //{
+                            //    if (!grdUserPermission.Columns.Contains(colName)) continue;
 
-                                int colIndex = grdUserPermission.Columns[colName].Index;
+                            //    int colIndex = grdUserPermission.Columns[colName].Index;
 
-                                // create a new text cell (blank)
-                                var blankCell = new DataGridViewTextBoxCell
-                                {
-                                    Value = ""
-                                };
+                            //    // create a new text cell (blank)
+                            //    var blankCell = new DataGridViewTextBoxCell
+                            //    {
+                            //        Value = ""
+                            //    };
 
-                                // replace the checkbox cell for this row
-                                row.Cells[colIndex] = blankCell;
-                                row.Cells[colIndex].ReadOnly = true;
-                            }
+                            //    // replace the checkbox cell for this row
+                            //    row.Cells[colIndex] = blankCell;
+                            //    row.Cells[colIndex].ReadOnly = true;
+                            //}
                         }
 
                         string imgCol = "Action";
@@ -856,20 +857,15 @@ namespace ROMS
                             imgCell.ReadOnly = true;
                         }
 
-                        if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
-                        {
-                            if (grdUserPermission.Columns.Contains(imgCol))
-                            {
-                                var imgCell = row.Cells[imgCol];
-                                imgCell.Value = new Bitmap(1, 1);
-                                imgCell.ReadOnly = true;
-                            }
+                        //if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
+                        //{
+                           
                             if (parentFlag == 1)
                             {
 
                                 row.DefaultCellStyle.BackColor = Color.LightBlue; // highlight row
                             }
-                            else if (parentFlag == 10)
+                            else if (parentFlag == 10 || parentFlag == 1000)
                             {
                                 row.DefaultCellStyle.BackColor = Color.AliceBlue; // highlight row
                             }
@@ -878,9 +874,9 @@ namespace ROMS
 
                                 row.DefaultCellStyle.BackColor = Color.Honeydew; // highlight row 
                             }
-                        }
-                        else
-                        {
+                        //}
+                        //else
+                        //{
 
                             // --- Flow 2: Apply checked values ---
                             if (!string.IsNullOrEmpty(values))
@@ -905,7 +901,7 @@ namespace ROMS
                                 }
 
                             }
-                        }
+                        //}
 
                     } 
             }
@@ -960,7 +956,7 @@ namespace ROMS
                             textColor, TextFormatFlags.Left);
 
                     }
-                    if (menuType == "4")
+                    if (menuType == "4" || menuType == "1000")
                     {
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
@@ -1246,30 +1242,34 @@ namespace ROMS
                     n.ForeColor = Color.Black;
                 });
                 if (e.Action != TreeViewAction.Unknown)
-                {
-                    varChangesFlag = 1;
+                { 
                     TreeNode clickedNode = e.Node;
-
-                    if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
-
-                    string menuCode = e.Node.Tag.ToString();
-
-                    if (menuCode == "")
+                    if (e.Node.Level != 0)
                     {
-                        menuCode = "0";
+                        if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
+
+                        string menuCode = e.Node.Tag.ToString();
+
+                        if (menuCode == "")
+                        {
+                            menuCode = "0";
+                        }
+
+                        //objDtSubMenu.Clear(); 
+
+                        if (e.Node.IsSelected)
+                            LoadSubMenuForParent(tvLevl2Submenu, menuCode);
+                        else
+                            RemoveSubMenu(tvLevl2Submenu, Convert.ToInt32(menuCode));
+
+
+                        e.Node.EnsureVisible();
+                        tvMainmenu.SelectedNode = e.Node;
+                        e.Node.BackColor = Color.LightBlue;
                     }
-
-                    //objDtSubMenu.Clear(); 
-
-                    if (e.Node.IsSelected)
-                        LoadSubMenuForParent(tvLevl2Submenu, menuCode);
-                    else
-                        RemoveSubMenu(tvLevl2Submenu, Convert.ToInt32(menuCode));
-
-
-                    e.Node.EnsureVisible();
-                    tvMainmenu.SelectedNode = e.Node;
-                    e.Node.BackColor = Color.LightBlue;
+                    else {
+                        tvLevl2Submenu.Nodes.Clear();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1561,6 +1561,15 @@ namespace ROMS
                                 {
                                     row["Menuflag"] = 1;
                                 });
+
+                                if (objDs.Tables[0].Rows[0]["UR_STSID"].ToString() == "1")
+                                {
+                                    rbActive.Checked = true;
+                                }
+                                else
+                                {
+                                    rbInactive.Checked = true;
+                                }
                             }
                         }
                     }
