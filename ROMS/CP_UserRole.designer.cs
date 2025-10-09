@@ -282,6 +282,7 @@
             this.tvSubmenu.TabIndex = 1;
             this.tvSubmenu.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvSubmenu_BeforeCheck);
             this.tvSubmenu.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvSubmenu_AfterCheck);
+            this.tvSubmenu.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.tvSubmenu_DrawNode);
             this.tvSubmenu.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvSubmenu_AfterSelect);
             // 
             // grpMainmenu
