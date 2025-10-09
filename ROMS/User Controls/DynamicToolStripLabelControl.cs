@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -52,13 +53,15 @@ namespace ROMS
                     levelIndex--;
                 }
 
+                var visibleLabels = new List<ToolStripLabel>();
+
                 for (int i = 0; i < 4; i++)
                 {
                     if (string.IsNullOrWhiteSpace(LevelTexts[i])) continue;
 
                     try
                     {
-                        int levelCode = LevelCodes[i]; // safer copy
+                        int levelCode = LevelCodes[i];
 
                         ToolStripLabel lbl = new ToolStripLabel(LevelTexts[i])
                         {
@@ -77,11 +80,34 @@ namespace ROMS
                         lbl.ImageAlign = ContentAlignment.MiddleLeft;
                         lbl.TextImageRelation = TextImageRelation.ImageBeforeText;
 
+                        visibleLabels.Add(lbl);
+                        ts.Items.Insert(index++, lbl);
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
+                }
+
+                // after all labels added
+                if (visibleLabels.Count > 0)
+                {
+                    var lastLabel = visibleLabels.Last();
+
+                    foreach (var lbl in visibleLabels)
+                    {
+                        int levelCode = (int)lbl.Tag;
+
                         lbl.MouseDown += (s, e) =>
                         {
                             try
                             {
                                 DynamicLabelClick?.Invoke(this, new ToolStripLabelEventArgs(lbl));
+
+                                if (lbl == lastLabel)//check the level is final that time no need to show the sublevels
+                                    return;
+
                                 var row = dt.AsEnumerable().FirstOrDefault(r => r.Field<int>("MU_Code") == levelCode);
                                 if (row != null)
                                 {
@@ -98,15 +124,9 @@ namespace ROMS
                                 objError.WriteFile(ex);
                             }
                         };
-
-                        ts.Items.Insert(index++, lbl);
-                    }
-                    catch (Exception ex)
-                    {
-                        objError = new DataError();
-                        objError.WriteFile(ex);
                     }
                 }
+
             }
             catch (Exception ex)
             {
