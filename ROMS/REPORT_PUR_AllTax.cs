@@ -213,6 +213,7 @@ namespace ROMS
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AllPurchase_MonthWise.rpt");
                         objBillreport.SetParameterValue("paraMonthName", varMonthName);
                         objBillreport.SetParameterValue("paraMonth", varMonthIds);
+                        objBillreport.SetParameterValue("paraMonth", varMonthIds, objBillreport.Subreports[0].Name.ToString());
                     }
                     objBillreport.SetParameterValue("paraSupplierType",0);
                     objBillreport.SetParameterValue("paraHSNCode", 0);
