@@ -148,7 +148,10 @@ namespace ROMS
                 cmbConcernPrint.SelectedValue = 0;
                 udfncmbLoad();
                 udfnList();
-                udfnFieldAccess();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -171,12 +174,12 @@ namespace ROMS
                 (sp =>
                 sp.MUP_Code == 13 &&
                 sp.EditAccess.Split(',').Contains("9")); 
-                     
+                //for new supplier 
                 var supplierResult = UserAccessHelper.LoadUserAccess(517);
                 string SupPrivilege = supplierResult.PrivilegeCode;
                 List<(int MUP_Code, string EditAccess)> SupSpecial = supplierResult.SpecialPermissions;
-                tsbNew.Visible = privilege.Contains("2");
-                dgvSupplierScheduleList.Enabled = privilege.Contains("3"); 
+                tsbNew.Visible = SupPrivilege.Contains("2");
+                dgvSupplierScheduleList.Enabled = SupPrivilege.Contains("3"); 
             }
             catch (Exception ex)
             {

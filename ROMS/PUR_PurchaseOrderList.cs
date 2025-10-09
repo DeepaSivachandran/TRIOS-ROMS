@@ -22,6 +22,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public int Supplierpend = 0, Statuschange=0, SearchFlag=0;
         public string varUserID = "0";
+        public int MenuCode;
         DateTime varmaxdate;
         public PUR_PurchaseOrderList()
         {
@@ -226,6 +227,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 102;
                 this.ActiveControl = cmbConcern;
                 udfnDate();
                 udfnDropdownLoad();
@@ -233,6 +235,10 @@ namespace ROMS
                 udfngridchanges();
                 DpPlanDate_ValueChanged(sender, e);
                 cmbstatus.Enabled = true;
+                if(Convert.ToInt32(MainForm.pbUserRoleId)!=1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -242,6 +248,42 @@ namespace ROMS
             finally
             {
                 grdPurchaseorderlist.ClearSelection();
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                string privilege = result.PrivilegeCode;
+                List<(int MUP_Code, string EditAccess)> SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
+                btnPrint.Visible = privilege.Contains("5");
+                btnExport.Visible = privilege.Contains("6");
+
+                UserAccessHelper.SetToolStripAccess(tsbNew, TsbNew_Click, privilege.Contains("3"));
+
+                //if (privilege.Contains("3"))
+                //{
+                //    grdProDetails.DoubleClick += GrdPurchaseorderlist_DoubleClick;
+                //    TsbEdit_Click += TsbEdit_Click;
+                //}
+                //else
+                //{
+                //    grdProDetails.DoubleClick -= GrdPurchaseorderlist_DoubleClick;
+                //}
+
+                //tsbList.Visible = SpecialPermissions.Any
+                //(sp =>
+                //sp.MUP_Code == 13 &&
+                //sp.EditAccess.Split(',').Contains("9"));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnDate()
