@@ -180,6 +180,7 @@ namespace ROMS
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_MonthWise.rpt");
                         objBillreport.SetParameterValue("paraMonthName", varMonthName);
                         objBillreport.SetParameterValue("paraMonth", varMonthIds);
+                        objBillreport.SetParameterValue("paraMonth", varMonthIds, objBillreport.Subreports[0].Name.ToString());
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 351)
                     {
