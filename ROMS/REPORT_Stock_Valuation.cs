@@ -112,7 +112,7 @@ namespace ROMS
                 {
                     varAlphaName = txtSearchByPICode.Text;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 399)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 399 || Convert.ToInt32(cmbReportType.SelectedValue) == 409)
                 {
                     varViewType = 3;
                 }
@@ -150,9 +150,15 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraAlphaName", varAlphaName);
                         objBillreport.SetParameterValue("paraProductName", varProductName);
                     }
-                    else
+                    else if(Convert.ToInt32(cmbReportType.SelectedValue) == 399)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Godown_Valuation.rpt");
+                        objBillreport.SetParameterValue("paraFilterType", Convert.ToInt32(cmbFilterType.SelectedValue));
+                        objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    }
+                    else if(Convert.ToInt32(cmbReportType.SelectedValue) == 409)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Godown_Valuation_Summary.rpt");
                         objBillreport.SetParameterValue("paraFilterType", Convert.ToInt32(cmbFilterType.SelectedValue));
                         objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     }
@@ -999,7 +1005,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbReportType.SelectedValue) != 399)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) != 399 && Convert.ToInt32(cmbReportType.SelectedValue) != 409)
                 {
                     txtLocation.Text = "";
                     lblLocationCode.Text = "0";
