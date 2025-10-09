@@ -22,5 +22,6 @@ namespace ROMS.Model
         public int paraType { get; set; } = 0;
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
+        public int paraCompanyCode { get; set; } = 0;
     }
 }

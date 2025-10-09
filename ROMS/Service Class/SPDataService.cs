@@ -4024,6 +4024,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductID", objTrnRateChange.paraProductID);
                 varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTrnRateChange.paraFromDate);
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTrnRateChange.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTrnRateChange.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@paraScheduleID", objTrnRateChange.paraScheduleID);
+                varSqlCommand.Parameters.AddWithValue("@paraCompanyCode", objTrnRateChange.paraCompanyCode);
+
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraType", objTrnRateChange.paraType); 

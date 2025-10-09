@@ -146,8 +146,8 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = "",varCompany="--All--";  
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0,varReportType=0,varRateType=0;
+                string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = "",varCompany="--All--",varRateTypeName="--All--" ;  
+                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0,varReportType=0,varRateType=0,varCompanyCode=0;
 
                 if(txtSupplier.Text.Trim()!="")
                 {
@@ -175,10 +175,15 @@ namespace ROMS
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
-                if(Convert.ToInt32(cmbConcern.SelectedValue)!=0)
+                if (Convert.ToInt16(cmbRateType.SelectedValue)!=0)
+                {
+                    varRateTypeName = cmbRateType.Text; 
+                }
+                if (Convert.ToInt32(cmbConcern.SelectedValue)!=0)
                 { varCompany = cmbConcern.Text; }
                 varReportType = Convert.ToInt32(cmbReportType.SelectedValue);
                 varRateType = Convert.ToInt32(cmbRateType.SelectedValue);
+                varCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -197,6 +202,7 @@ namespace ROMS
                 objRateChange.paraFromDate = dpFromDate.Text; 
                 objRateChange.paraSupplierID = varSupplierCode; 
                 objRateChange.paraScheduleID = varScheduleCode; 
+                objRateChange.paraCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue); 
                 objDs = objdserv.udfnRateChangeList(objRateChange);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -223,8 +229,12 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraReportType", varReportType);
                     objBillreport.SetParameterValue("paraRateType", varRateType); 
                     objBillreport.SetParameterValue("paraCompany", varCompany);
+                    objBillreport.SetParameterValue("paraSupplier", varSupplierName);
+                    objBillreport.SetParameterValue("paraAlpha", txtAlpha.Text.Trim());
+                    objBillreport.SetParameterValue("RateType", varRateTypeName); 
                     objBillreport.SetParameterValue("paraDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("paraPICode", txtAlpha.Text.Trim());
+                    objBillreport.SetParameterValue("paraCompanyCode", varCompanyCode);
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -278,7 +288,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,124) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (124) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
 
@@ -1951,6 +1961,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtAlpha.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1993,6 +2004,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbRateType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

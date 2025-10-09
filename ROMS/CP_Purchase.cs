@@ -6327,11 +6327,61 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnDiscount(int flag)
+        { 
+            try
+            {
+                //1- from disc per // 2 from disc amt
+                if(flag==1)
+                {
+                    decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
+                    if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
+                    if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
+                    if (lblTotal.Text.Trim() != "") { GrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
+                    if (varDisper != 0)
+                    {
+                        varDisPercent = (GrandTot * varDisper) / 100;
+                    }
+                    varDiscountAmount = varDisPercent;
+                }
+                if(flag==2)
+                {
+                    decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
+                    if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
+                    if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
+                    if (lblGrandTotal.Text.Trim() != "")
+                    {
+                        GrandTot = Convert.ToDecimal(lblGrandTotal.Text.Trim());
+                    }
+                    if (vardisamt != 0)
+                    {
+                        varDisPercent = (vardisamt * 100) / GrandTot;
+                    }
+                    varDiscountPer = Convert.ToDecimal(varDisPercent);
+                }
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                if(Txtdiscount.Text.Trim()!="" || txtDiscountamt.Text.Trim()!="")
+                {
+                    if(Txtdiscount.Text.Trim()!="")
+                    {
+                        udfnDiscount(1);
+                    }
+                    if(txtDiscountamt.Text.Trim()!="")
+                    {
+                        udfnDiscount(2);
+                    }
+                }
+                udfnLoadingGrandTotCalculation();
                 if (varPaymentStatus == 65)
                 { udfnAfterPaymentSave(); }
                 else
@@ -7209,7 +7259,9 @@ namespace ROMS
                             grdPurchaseList.Rows.Add(grdPurchaseList.Rows.Count + 1, "None", Convert.ToString(objDs.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_InvoiceMRP"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_ExpiryDate"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_Batch"]), Convert.ToString(objDs.Tables[0].Rows[i]["SL_EName"]), Convert.ToString(objDs.Tables[0].Rows[i]["RK_ShortName"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Name"]), Convert.ToString(objDs.Tables[0].Rows[i]["HSN_Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["GST_Text"]),
-                            varQty, Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"]), Convert.ToString(objDs.Tables[0].Rows[i]["RecivedQty"]), Convert.ToString(objDs.Tables[0].Rows[i]["diffqty"]), Convert.ToString(objDs.Tables[0].Rows[i]["freeqty"])
+                            varQty,  Convert.ToString(objDs.Tables[0].Rows[i]["INVQTY"]), Convert.ToString(objDs.Tables[0].Rows[i]["RecivedQty"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["MAReceivedQty"]),
+                            Convert.ToString(objDs.Tables[0].Rows[i]["diffqty"]), Convert.ToString(objDs.Tables[0].Rows[i]["freeqty"])
                              , Convert.ToString(objDs.Tables[0].Rows[i]["Unit"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_PurchaseRate"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscAmnt"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_DiscPer"])
                             , Convert.ToString(objDs.Tables[0].Rows[i]["TAX"]), Convert.ToString(objDs.Tables[0].Rows[i]["Gstper"]), Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_GSTAmnt"]),
                             Convert.ToString(objDs.Tables[0].Rows[i]["PURPR_CGSTPer"]), Convert.ToString(objDs.Tables[0].Rows[i]["CGSTAmnt"]),
@@ -9029,7 +9081,9 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }  
+        }
+         
+
         private void llblReturnDC_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -10199,22 +10253,22 @@ namespace ROMS
                 if (rbDiscountAfter.Checked == true)
                 {
                     grdPurchaseList.Columns["clmDiscountValue"].Visible = true;
-                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 19;
-                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 20;
-                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 21;
-                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 22;
-                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 23;
-                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 24;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 22;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 23;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 24;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 25;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 26;
                 }
                 if (rbDiscountBefore.Checked == true)
                 {
                     grdPurchaseList.Columns["clmDiscountValue"].Visible = false;
-                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 19;
-                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 20;
-                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 21;
-                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 22;
-                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 23;
-                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 24;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 22;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 23;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 24;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 25;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 26;
                 }
             }
             catch (Exception ex)
@@ -10752,15 +10806,7 @@ namespace ROMS
         {
             try
             {
-                decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
-                if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
-                if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
-                if (lblTotal.Text.Trim() != "") { GrandTot = Convert.ToDecimal(lblTotal.Text.Trim()); }
-                if (varDisper != 0)
-                {
-                    varDisPercent = (GrandTot * varDisper) / 100;
-                }
-                varDiscountAmount = varDisPercent;
+                udfnDiscount(1);
             }
             catch (Exception ex)
             {
@@ -10772,18 +10818,7 @@ namespace ROMS
         {
             try
             {
-                decimal GrandTot = 0, vardisamt = 0, varDisper = 0, varDisPercent = 0;
-                if (txtDiscountamt.Text.Trim() != "") { vardisamt = Convert.ToDecimal(txtDiscountamt.Text.Trim()); };
-                if (Txtdiscount.Text.Trim() != "") { varDisper = Convert.ToDecimal(Txtdiscount.Text.Trim()); };
-                if (lblGrandTotal.Text.Trim() != "")
-                {
-                    GrandTot = Convert.ToDecimal(lblGrandTotal.Text.Trim());
-                }
-                if (vardisamt != 0)
-                {
-                    varDisPercent = (vardisamt * 100) / GrandTot;
-                }
-                varDiscountPer = Convert.ToDecimal(varDisPercent);
+                udfnDiscount(2);
             }
             catch (Exception ex)
             {
