@@ -153,7 +153,14 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Summary.rpt");
+                    if (Convert.ToInt32(cmbFormat.SelectedValue) == 359)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Summary_Portrait.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Summary.rpt");
+                    }
                     objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
@@ -617,6 +624,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (108)", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
@@ -650,7 +658,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbFormat.Focus();
                 }
             }
             catch (Exception ex)
@@ -768,6 +776,86 @@ namespace ROMS
                     {
                         cmbSupplierType.Focus();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        private void cmbFormat_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterProduct.DataSource = null;
+                DGV_FilterProduct.Visible = false;
+                cmbFormat.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbFormat.SelectedValue) == 359)
+                {
+                    tsbPrintFormat.Text = "A4-Portrait";
+                    tsbPrintFormat.ToolTipText = "A4-Portrait";
+                }
+                if (Convert.ToInt32(cmbFormat.SelectedValue) == 360)
+                {
+                    tsbPrintFormat.Text = "Legal-Landscape";
+                    tsbPrintFormat.ToolTipText = "Legal-Landscape";
                 }
             }
             catch (Exception ex)

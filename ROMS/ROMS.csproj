@@ -296,6 +296,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_Purchase_Summary_Portrait.cs">
+      <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Tax_Changes.cs">
       <DependentUpon>RPT_Tax_Changes.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4213,6 +4220,11 @@
     <EmbeddedResource Include="Reports\RPT_Purchase_Details_SupplierType.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Purchase_Details_SupplierType.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Purchase_Summary_Portrait.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Purchase_Summary_Portrait.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
