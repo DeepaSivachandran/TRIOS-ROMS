@@ -19,14 +19,6 @@ namespace ROMS
         private int[] LevelCodes = new int[4]; // MU_Code for each level
         private DataError objError;
 
-        private Bitmap[] LabelImages => new Bitmap[]
-        {
-            Properties.Resources.bread_crumb,
-            Properties.Resources.double_chevron,
-            Properties.Resources.double_chevron,
-            Properties.Resources.double_chevron
-        };
-
         private static readonly ConcurrentDictionary<int, ContextMenuStrip> ContextMenuCache = new ConcurrentDictionary<int, ContextMenuStrip>();
 
         public event EventHandler<ToolStripLabelEventArgs> DynamicLabelClick;
@@ -177,7 +169,7 @@ namespace ROMS
                     try
                     {
                         string menuName = row.Field<string>("MenuDisplayname");
-                        string formClass = row.Field<string>("MU_Link");
+                        string formClass = row.Field<string>("MU_Formname");
                         int muCode = row.Field<int>("MU_Code");
 
                         bool hasChildren = menuTable.AsEnumerable()
@@ -194,7 +186,7 @@ namespace ROMS
                                 try
                                 {
                                     string childName = child.Field<string>("MenuDisplayname");
-                                    string childClass = child.Field<string>("MU_Link");
+                                    string childClass = child.Field<string>("MU_Formname");
                                     if (string.IsNullOrWhiteSpace(childName)) continue;
 
                                     ToolStripMenuItem menuItemChild = new ToolStripMenuItem(childName);
