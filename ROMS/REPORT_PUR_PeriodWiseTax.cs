@@ -204,6 +204,27 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraProductId", 0);
                     objBillreport.SetParameterValue("paraSupplierID", 0);
                     objBillreport.SetParameterValue("paraScheduleID", 0);
+
+
+                    objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraHSNCode", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraGST", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraCompanyId", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraInvioceType", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraPaymentType", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraPurchaseType", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraConditionType", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraBrandID", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraAlpha", "", objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraProductNameType", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraGroupId", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraSubgroupId", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraProductId", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraSupplierID", 0, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraScheduleID", 0, objBillreport.Subreports[0].Name.ToString());
+
                     objBillreport.SetParameterValue("paraSupplierTypeName", cmbSupplierType.Text);
 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
