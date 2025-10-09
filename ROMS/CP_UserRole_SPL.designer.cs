@@ -64,7 +64,7 @@
             this.groupBox2.Controls.Add(this.grdUserSPLPermission);
             this.groupBox2.Location = new System.Drawing.Point(20, 25);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(654, 298);
+            this.groupBox2.Size = new System.Drawing.Size(761, 298);
             this.groupBox2.TabIndex = 1111184;
             this.groupBox2.TabStop = false;
             // 
@@ -73,7 +73,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(273, 143);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(327, 143);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958799;
@@ -126,7 +126,7 @@
             this.grdUserSPLPermission.RowTemplate.Height = 25;
             this.grdUserSPLPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUserSPLPermission.ShowRowErrors = false;
-            this.grdUserSPLPermission.Size = new System.Drawing.Size(641, 270);
+            this.grdUserSPLPermission.Size = new System.Drawing.Size(748, 270);
             this.grdUserSPLPermission.TabIndex = 3;
             this.grdUserSPLPermission.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdUserSPLPermission_CellFormatting);
             this.grdUserSPLPermission.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUserSPLPermission_CellValueChanged);
@@ -138,7 +138,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(511, 332);
+            this.btnSave.Location = new System.Drawing.Point(618, 329);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(78, 29);
             this.btnSave.TabIndex = 1111185;
@@ -152,7 +152,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(596, 332);
+            this.btnClose.Location = new System.Drawing.Point(703, 329);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(78, 29);
             this.btnClose.TabIndex = 1111186;
@@ -183,16 +183,17 @@
             this.clmFieldName.HeaderText = "Field Name";
             this.clmFieldName.Name = "clmFieldName";
             this.clmFieldName.ReadOnly = true;
-            this.clmFieldName.Width = 350;
+            this.clmFieldName.Width = 400;
             // 
             // clmViewchk
             // 
-            this.clmViewchk.HeaderText = "View";
+            this.clmViewchk.HeaderText = "View/Enable";
             this.clmViewchk.Name = "clmViewchk";
+            this.clmViewchk.Width = 150;
             // 
             // clmEditchk
             // 
-            this.clmEditchk.HeaderText = "Edit";
+            this.clmEditchk.HeaderText = "Modify";
             this.clmEditchk.Name = "clmEditchk";
             // 
             // clmMenuId
@@ -224,7 +225,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(693, 368);
+            this.ClientSize = new System.Drawing.Size(800, 368);
             this.Controls.Add(this.lblMenuLink);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);

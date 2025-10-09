@@ -389,7 +389,7 @@ namespace ROMS
             // 
             this.tsmStockReconciliation.Name = "tsmStockReconciliation";
             this.tsmStockReconciliation.Size = new System.Drawing.Size(180, 22);
-            this.tsmStockReconciliation.Text = "Stock Reconciliation";
+            this.tsmStockReconciliation.Text = "Stock Adjustment";
             this.tsmStockReconciliation.Visible = false;
             this.tsmStockReconciliation.Click += new System.EventHandler(this.tsmStockReconciliation_Click);
             // 
@@ -1667,8 +1667,8 @@ namespace ROMS
             this.ms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbLogo,
             this.tsmpurchase,
-            this.tsmInventory,
             this.tsmAccounts,
+            this.tsmInventory,
             this.tsmFinance,
             this.tsmMaster,
             this.lblDb,
