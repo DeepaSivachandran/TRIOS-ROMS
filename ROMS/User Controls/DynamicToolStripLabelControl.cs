@@ -39,6 +39,7 @@ namespace ROMS
                 DataTable dt = MainForm.objDtMenuDetails;
                 if (dt == null || dt.Rows.Count == 0) return;
 
+                // Traverse levels from current menu code up to root — critical for breadcrumb hierarchy
                 int levelIndex = 3;
                 int code = currentMenuCode;
 
@@ -55,6 +56,7 @@ namespace ROMS
 
                 var visibleLabels = new List<ToolStripLabel>();
 
+                // Add breadcrumb labels dynamically
                 for (int i = 0; i < 4; i++)
                 {
                     if (string.IsNullOrWhiteSpace(LevelTexts[i])) continue;
@@ -74,8 +76,8 @@ namespace ROMS
 
                         bool isFirstVisible = ts.Items.Cast<ToolStripItem>().OfType<ToolStripLabel>().Count() == 0;
                         lbl.Image = isFirstVisible
-                            ? Properties.Resources.bread_crumb
-                            : Properties.Resources.double_chevron;
+                            ? Properties.Resources.bread_crumb  // root label
+                            : Properties.Resources.double_chevron; // child levels
 
                         lbl.ImageAlign = ContentAlignment.MiddleLeft;
                         lbl.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -90,7 +92,7 @@ namespace ROMS
                     }
                 }
 
-                // after all labels added
+                // Set click events, skip context menu for last breadcrumb
                 if (visibleLabels.Count > 0)
                 {
                     var lastLabel = visibleLabels.Last();
@@ -114,7 +116,7 @@ namespace ROMS
                                     int level = row.Field<int>("MU_Level");
                                     if (level != 0)
                                     {
-                                        ShowContextMenu(lbl, levelCode);
+                                        ShowContextMenu(lbl, levelCode);//show child menu
                                     }
                                 }
                             }
@@ -135,6 +137,7 @@ namespace ROMS
             }
         }
 
+        // Show context menu relative to label — important for screen position
         private void ShowContextMenu(ToolStripLabel tsLabel, int parentMenuCode)
         {
             try
@@ -162,6 +165,7 @@ namespace ROMS
             }
         }
 
+        // Build dynamic context menu with child flattening
         private ContextMenuStrip CreateContextMenu(Form parentForm, int parentMenuCode)
         {
             try
@@ -192,6 +196,7 @@ namespace ROMS
                         string formClass = row.Field<string>("MU_Formname");
                         int muCode = row.Field<int>("MU_Code");
 
+                        // flatten child menus
                         bool hasChildren = menuTable.AsEnumerable()
                             .Any(r => r.Field<int?>("MU_ParentMenuCode") == muCode);
 
@@ -246,6 +251,7 @@ namespace ROMS
             }
         }
 
+        // Open form dynamically — for MDI handling
         private void OpenForm(string formClass, Form parentForm)
         {
             try
