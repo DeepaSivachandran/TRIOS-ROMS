@@ -81,21 +81,21 @@ namespace ROMS
                 //    }
                 //}
                 grdUserSPLPermission.Rows.Clear();
-                if (MainForm.objCP_UserRole.objDtSplPermission != null)
+                if (MainForm.objCP_UserRole.objDtSplPermissionFilterTable != null)
                 {
-                    if (MainForm.objCP_UserRole.objDtSplPermission.Rows.Count != 0)
+                    if (MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows.Count != 0)
                     {
-                        for (int i = 0; i < MainForm.objCP_UserRole.objDtSplPermission.Rows.Count; i++)
+                        for (int i = 0; i < MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows.Count; i++)
                         {
                             int varViewaccess = 0, varEditaccess = 0;
-                            if (Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["ViewAccess"]) == "9")
+                            if (Convert.ToString(MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows[i]["ViewAccess"]) == "9")
                             {
                                 varViewaccess = 1;
                             }
-                            if (Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["EditAccess"]) == "10") {
+                            if (Convert.ToString(MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows[i]["EditAccess"]) == "10") {
                                 varEditaccess = 1;
                             }
-                            grdUserSPLPermission.Rows.Add(grdUserSPLPermission.Rows.Count + 1, Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_FieldName"]), varViewaccess, varEditaccess, Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_MU_Code"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_Code"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["AccessLevel"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermission.Rows[i]["MUP_PrivilegeCode"]));
+                            grdUserSPLPermission.Rows.Add(grdUserSPLPermission.Rows.Count + 1, Convert.ToString(MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows[i]["MUP_FieldName"]), varViewaccess, varEditaccess, Convert.ToString(MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows[i]["MUP_MU_Code"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows[i]["MUP_Code"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows[i]["AccessLevel"]), Convert.ToString(MainForm.objCP_UserRole.objDtSplPermissionFilterTable.Rows[i]["MUP_PrivilegeCode"]));
                         }
                     }
                     else {

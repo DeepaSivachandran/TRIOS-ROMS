@@ -28,6 +28,7 @@ namespace ROMS
         DataTable objDtUserMenuDetails = new DataTable();
 
         public DataTable objDtSplPermission = new DataTable();
+        public DataTable objDtSplPermissionFilterTable = new DataTable();
         public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
 
         public CP_UserRole()
@@ -1153,7 +1154,7 @@ namespace ROMS
                                 DataTable objDtSplPermissionClone = objDtSplPermission.Copy();
                                 DataView dvspl = new DataView(objDtSplPermissionClone);
                                 dvspl.RowFilter = "MUP_MU_CODE = " + Convert.ToInt32(row.Cells["clmMenuId"].Value) + " ";
-                                objDtSplPermission = dvspl.ToTable();
+                                objDtSplPermissionFilterTable = dvspl.ToTable();
 
                                 MainForm.objCP_UserRole_SPL = new CP_UserRole_SPL();
                                 MainForm.objCP_UserRole_SPL.FormBorderStyle = FormBorderStyle.FixedSingle;
