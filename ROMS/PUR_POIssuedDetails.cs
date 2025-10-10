@@ -271,8 +271,11 @@ namespace ROMS
         {
             try
             {
-                if (EditAccess == false)
-                {  btnSave.Enabled = EditAccess;   }
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (EditAccess == false)
+                    { btnSave.Enabled = EditAccess; }
+                }
             }
             catch (Exception ex)
             {

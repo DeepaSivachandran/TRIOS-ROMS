@@ -53,8 +53,11 @@ namespace ROMS
         {
             try
             {
-                if(PreCloseAccess==false)
-                { chkStatus.Visible = PreCloseAccess; }
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (PreCloseAccess == false)
+                    { chkStatus.Visible = PreCloseAccess; }
+                }
             }
             catch (Exception ex)
             {
