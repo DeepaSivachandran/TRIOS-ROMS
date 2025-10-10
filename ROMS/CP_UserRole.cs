@@ -865,12 +865,20 @@ namespace ROMS
                         }
 
                         string imgCol = "Action";
-                        if (splFlag == "0")
+                    if (splFlag == "0")
+                    {
+                        var imgCell = row.Cells[imgCol];
+                        imgCell.Value = new Bitmap(1, 1);
+                        imgCell.ReadOnly = true;
+                    }
+                    else {
+                        if (!allowed.Contains(8))
                         {
                             var imgCell = row.Cells[imgCol];
                             imgCell.Value = new Bitmap(1, 1);
                             imgCell.ReadOnly = true;
                         }
+                    }
 
                         //if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
                         //{
