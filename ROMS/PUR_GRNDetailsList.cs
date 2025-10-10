@@ -26,23 +26,29 @@ namespace ROMS
         public int varCheckChange = 0;
         public ToolTip tpSupplier = new ToolTip();
         public string[] varGRNCheckedId;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
         }
 
         private void TsbNew_Click(object sender, EventArgs e)
-        {
-            try
+        { 
+            if (privilege.Contains("2"))
             {
-                MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
-                //MainForm.objPUR_GRNEntry.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNEntry.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objPUR_GRNEntry = new PUR_GRNEntry();
+                    //MainForm.objPUR_GRNEntry.MdiParent = this.ParentForm;
+                    MainForm.objPUR_GRNEntry.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         public void udfnDate()
@@ -132,6 +138,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 103;
                 udfnDate();
                 udfnConcernLoad();
                 //dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
@@ -145,7 +152,57 @@ namespace ROMS
                 {
                     lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
                 }
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
                 //grdGRNList.Columns["clmCheck"].ReadOnly = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");
+                btnPrint.Visible = privilege.Contains("5");
+                btnExport.Visible = privilege.Contains("6");
+                grpInvoicePendingDc.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 18 && sp.EditAccess.Split(',').Contains("9"));
+                btnComplete.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 19 && sp.EditAccess.Split(',').Contains("9")); 
+                udfnGridAccess();  
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    grdGRNList.Columns["ClmEdit"].Visible = privilege.Contains("3");
+                    grdGRNList.Columns["clmCheck"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 19 && sp.EditAccess.Split(',').Contains("9"));
+                    grdGRNList.Columns["clmPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 44 && sp.EditAccess.Split(',').Contains("9"));
+                    grdGRNList.Columns["clmLocPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 20 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 19 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[1].Visible = privilege.Contains("3");
+                    DGV_SearchGrid.Columns[2].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 44 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[3].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 20 && sp.EditAccess.Split(',').Contains("9"));
+                }
             }
             catch (Exception ex)
             {
@@ -372,13 +429,13 @@ namespace ROMS
                     grdGRNList.Columns["clmPrint"].Visible = false;
                     grdGRNList.Columns["ClmEdit"].Visible = false;
                     Deftable = objDs.Tables[0];
-                }
+                } 
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
                 {
                     udfnDefcolumns();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; udfnGridAccess(); }
             }
             catch (Exception ex)
             {
@@ -663,30 +720,33 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            try
+            if (privilege.Contains("3"))
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
-                MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
-                MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
-                MainForm.objPUR_GRNDetails.varSupplierType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["SP_SupplierType"].Value);
-                MainForm.objPUR_GRNDetails.varOrderType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_OrderType"].Value);
-                MainForm.objPUR_GRNDetails.pbStsID = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value);
-                MainForm.objPUR_GRNDetails.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
+                    MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
+                    MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
+                    MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
+                    MainForm.objPUR_GRNDetails.varSupplierType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["SP_SupplierType"].Value);
+                    MainForm.objPUR_GRNDetails.varOrderType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_OrderType"].Value);
+                    MainForm.objPUR_GRNDetails.pbStsID = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value);
+                    MainForm.objPUR_GRNDetails.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
 
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
 
@@ -1104,7 +1164,7 @@ namespace ROMS
                             e.Handled = true;
                         }
                     }
-                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
+                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean" )
                     {
                         if (e.ColumnIndex == 1)
                         {
@@ -1166,7 +1226,8 @@ namespace ROMS
                     //DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
-                    for (int i = 1; i < visibleColumns.Count; i++)
+                    DGV_SearchGrid.Columns[3].DefaultCellStyle.NullValue = null;
+                    for (int i = 4; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
@@ -1177,6 +1238,8 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[2].ReadOnly = false;
                     DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[3].ReadOnly = false;
+                    DGV_SearchGrid.Rows[0].Cells[3].Value = new Bitmap(1, 1);
                     //DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewCheckBoxCell();
                     //DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                 }
@@ -1214,7 +1277,7 @@ namespace ROMS
                             //dgv2.Rows[rowIndex].Visible = false;
                             BlnSearchImageYN = true;
                             ColIndex = i;
-                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            //dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
                             dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
                             ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
                         }
@@ -1234,6 +1297,8 @@ namespace ROMS
                     DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                     DGV_SearchGrid.Columns[2].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[2].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[3].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[3].Value = new Bitmap(1, 1);
                     //DGV_SearchGrid.Rows[0].Cells[2].Value = new DataGridViewTextBoxCell();
                     //DGV_SearchGrid.Rows[0].Cells[2].Value = "";
                     //DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
@@ -1504,64 +1569,66 @@ namespace ROMS
 
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4"))
             {
-                if (grdGRNList.SelectedRows.Count > 0)
+                try
                 {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdGRNList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                        int pbGRNId = 0;
-                        pbGRNId = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRNID"].Value);
-                        TRN_GRN objTRNS_GRN = new TRN_GRN();
-                        objTRNS_GRN.ViewType = 4;
-                        objTRNS_GRN.ParaGRNID = pbGRNId;
-                        objTRNS_GRN.paraOriginator = "GRN Delete";
-                        objTRNS_GRN.paraDeleteFlag = 0;
-                        result = objspdservice.udfnGRNEntry(objTRNS_GRN);
-                        objspdservice.CloseConnection(); string[] varvalue = result.Split('~');
-                        if (result.Split('~')[1] == "1")
+                        string result = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            MainForm.objCP_Verify = new CP_Verify();
-                            MainForm.objCP_Verify.ShowDialog();
-                            varUserID = MainForm.objCP_Verify.varUserId;
-                            if (MainForm.objCP_Verify.flag == 1)
+                            SPDataService objspdservice = new SPDataService();
+                            result = "";
+                            int pbGRNId = 0;
+                            pbGRNId = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRNID"].Value);
+                            TRN_GRN objTRNS_GRN = new TRN_GRN();
+                            objTRNS_GRN.ViewType = 4;
+                            objTRNS_GRN.ParaGRNID = pbGRNId;
+                            objTRNS_GRN.paraOriginator = "GRN Delete";
+                            objTRNS_GRN.paraDeleteFlag = 0;
+                            result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                            objspdservice.CloseConnection(); string[] varvalue = result.Split('~');
+                            if (result.Split('~')[1] == "1")
                             {
-                                result = "";
-                                objTRNS_GRN.ViewType = 4;
-                                objTRNS_GRN.ParaGRNID = pbGRNId;
-                                objTRNS_GRN.paraOriginator = "GRN Delete";
-                                objTRNS_GRN.paraDeleteFlag = 1;
-                                result = objspdservice.udfnGRNEntry(objTRNS_GRN);
-                                objspdservice.CloseConnection();
-                                string[] varvalue1 = result.Split('~');
-                                if (varvalue1[0] == "3")
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
                                 {
-                                    MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    udfnListLoad();
-                                }
-                                else
-                                {
-                                    MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    result = "";
+                                    objTRNS_GRN.ViewType = 4;
+                                    objTRNS_GRN.ParaGRNID = pbGRNId;
+                                    objTRNS_GRN.paraOriginator = "GRN Delete";
+                                    objTRNS_GRN.paraDeleteFlag = 1;
+                                    result = objspdservice.udfnGRNEntry(objTRNS_GRN);
+                                    objspdservice.CloseConnection();
+                                    string[] varvalue1 = result.Split('~');
+                                    if (varvalue1[0] == "3")
+                                    {
+                                        MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        udfnListLoad();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
         }
 
         private void Cmbstatus_KeyDown(object sender, KeyEventArgs e)
@@ -2290,32 +2357,33 @@ namespace ROMS
 
         public void udfnDeleteHide()
         {
-            try
+            if (privilege.Contains("4"))
             {
-                if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17 && Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["PURREDCID"].Value) == 0)
+                try
                 {
-                    tsbDelete.Visible = true;
-                    tssEdit.Visible = true;
-                }
-                //else if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["PURREDCID"].Value)!=0)
-                //{
-                //    tsbDelete.Visible = true;
-                //    tssEdit.Visible = true;
-                //}
-                else
-                {
-                    tsbDelete.Visible = false;
-                    tssEdit.Visible = false;
+                    if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value) == 17 && Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["PURREDCID"].Value) == 0)
+                    {
+                        tsbDelete.Visible = true;
+                        tssEdit.Visible = true;
+                    }
+                    //else if (Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["PURREDCID"].Value)!=0)
+                    //{
+                    //    tsbDelete.Visible = true;
+                    //    tssEdit.Visible = true;
+                    //}
+                    else
+                    {
+                        tsbDelete.Visible = false;
+                        tssEdit.Visible = false;
 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-    }
-
+        } 
+    } 
 }

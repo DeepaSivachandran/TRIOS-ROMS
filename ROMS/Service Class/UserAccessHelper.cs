@@ -10,10 +10,11 @@ namespace ROMS
     class UserAccessHelper
     {
         public static HashSet<string> _accessLevels;
-       // public static string PrivilegeCode, SpecialPermissionCode;
-
+         
         public static (string PrivilegeCode, List<(int MUP_Code, string EditAccess)> SpecialPermissions)  LoadUserAccess(int menuCode)
-        { 
+        {
+            MainForm objMainForm = new MainForm();
+            objMainForm.udfnGetMenuDetailsForUser(); 
             string PrivilegeCode = string.Join(",",
             MainForm.objDtMenuDetailsUser?.AsEnumerable()
             .Where(r => r != null
@@ -32,28 +33,13 @@ namespace ROMS
             && !r.IsNull("EditAccess")
             && !r.IsNull("MUP_Code"))
             .Select(r => (
-            MUP_Code: r.Field<int>("MUP_Code"),
-            EditAccess: r.Field<string>("EditAccess")
+            MUP_Code: r.Field<int?>("MUP_Code") ?? 0,
+            EditAccess: r.Field<string>("EditAccess") ?? string.Empty 
             ))
             .ToList() ?? new List<(int, string)>();
              
             return (PrivilegeCode, SpecialPermissions); 
-        } 
-        public static void SetToolStripAccess(ToolStripButton button,EventHandler clickHandler, bool hasAccess)
-        {
-            // Set visibility or enabled state
-            button.Enabled = hasAccess; 
-            if (hasAccess)  // Manage event attachment
-            {
-                // Attach only if not already attached
-                button.Click -= clickHandler;
-                button.Click += clickHandler;
-            }
-            else
-            { 
-                button.Click -= clickHandler; // Remove click handler to prevent action
-                button.Visible = false;
-            }
         }
+         
     }
 }

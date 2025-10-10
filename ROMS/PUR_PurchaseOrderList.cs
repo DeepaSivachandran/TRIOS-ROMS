@@ -16,14 +16,17 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        private static readonly Dictionary<ToolStripButton, EventHandler> _handlers = new Dictionary<ToolStripButton, EventHandler>();
 
         public DataTable Deftable = new DataTable();
         public DataTable Deftablepro = new DataTable();
         Boolean BlnSearchImageYN = false;
         public int Supplierpend = 0, Statuschange=0, SearchFlag=0;
         public string varUserID = "0";
-        public int MenuCode;
+        public int MenuCode=0;
         DateTime varmaxdate;
+        string privilege="";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
@@ -46,21 +49,24 @@ namespace ROMS
 
         private void TsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2"))
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
-                MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseOrder.Show();
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
+                    MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseOrder.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally { picLoader.Visible = false; }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex); 
-            }
-            finally { picLoader.Visible = false; }
         }
 
         private void TsbEdit_Click(object sender, EventArgs e)
@@ -125,6 +131,7 @@ namespace ROMS
                             MainForm.objPUR_POIssuedDetails.Varordertype = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["SPSC_TAT"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.varsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
                             MainForm.objPUR_POIssuedDetails.pbDelayedStatus = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS1"].Value.ToString());
+                            MainForm.objPUR_POIssuedDetails.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("10"));
                             MainForm.objPUR_POIssuedDetails.ShowDialog();
                             break;
                         case "clmPrint":
@@ -249,41 +256,65 @@ namespace ROMS
             {
                 grdPurchaseorderlist.ClearSelection();
             }
-        }
+        } 
         public void udfnFieldAccess()
         {
             try
             {
                 var result = UserAccessHelper.LoadUserAccess(MenuCode);
-                string privilege = result.PrivilegeCode;
-                List<(int MUP_Code, string EditAccess)> SpecialPermissions = result.SpecialPermissions;
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
                 tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
                 tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
                 tsbDelete.Visible = privilege.Contains("4"); 
                 btnPrint.Visible = privilege.Contains("5");
                 btnExport.Visible = privilege.Contains("6");
-
-                UserAccessHelper.SetToolStripAccess(tsbNew, TsbNew_Click, privilege.Contains("3"));
-
-                //if (privilege.Contains("3"))
-                //{
-                //    grdProDetails.DoubleClick += GrdPurchaseorderlist_DoubleClick;
-                //    TsbEdit_Click += TsbEdit_Click;
-                //}
-                //else
-                //{
-                //    grdProDetails.DoubleClick -= GrdPurchaseorderlist_DoubleClick;
-                //}
-
-                //tsbList.Visible = SpecialPermissions.Any
-                //(sp =>
-                //sp.MUP_Code == 13 &&
-                //sp.EditAccess.Split(',').Contains("9"));
+                udfnGridUserAcess(); 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridUserAcess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    grdPurchaseorderlist.Columns["clmView"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("9")); 
+                    grdPurchaseorderlist.Columns["clmPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 15 && sp.EditAccess.Split(',').Contains("9"));
+                    grdPurchaseorderlist.Columns["clmEnvelopPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 16 && sp.EditAccess.Split(',').Contains("9"));
+
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[1].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 15 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[2].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 16 && sp.EditAccess.Split(',').Contains("9"));
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public static void SetToolStripAccess(ToolStripButton button, EventHandler clickHandler, bool hasAccess)
+        {
+            if (!_handlers.ContainsKey(button))
+                _handlers[button] = clickHandler; 
+            button.Visible = hasAccess; 
+            if (hasAccess)
+            {
+                // Detach first to prevent duplicates, then attach
+                button.Click -= _handlers[button];
+                button.Click += _handlers[button];
+            }
+            else
+            {
+                // Properly remove
+                button.Click -= _handlers[button];
             }
         }
         public void udfnDate()
@@ -366,34 +397,38 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            try
+            if (privilege.Contains("3"))
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
-                MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By1"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On1"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.VarStatusId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.btnSave.Text = "Update";
-                MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.pbScheduleid = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_SPSCID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.pbSupplierId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_SPID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.txtRemark.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.Currentsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
-                MainForm.objPUR_PurchaseOrder.pbSupplierpend = Supplierpend;
-                MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseOrder.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
+                    MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.lblPOCreateby.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created By1"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.lblpocreatedon.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["Created On1"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.VarStatusId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["STS"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.btnSave.Text = "Update";
+                    MainForm.objPUR_PurchaseOrder.varPOID = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.pbScheduleid = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_SPSCID"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.pbSupplierId = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_SPID"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.txtRemark.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.Currentsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
+                    MainForm.objPUR_PurchaseOrder.pbSupplierpend = Supplierpend;
+                    MainForm.objPUR_PurchaseOrder.PreCloseAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 17 && sp.EditAccess.Split(',').Contains("9")); 
+                    MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseOrder.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                }
             }
         }
 
@@ -1190,7 +1225,7 @@ namespace ROMS
                 }
                 else
                 {
-                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
+                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; udfnGridUserAcess();
                 }
 
             }
@@ -1807,8 +1842,7 @@ namespace ROMS
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                     Deftablepro = objDs.Tables[0];
-                }
-
+                } 
                 udfnSearchGridHeadpro(); 
                 if (lblNoRecordsFound.Visible == true)
                 {
@@ -1816,7 +1850,7 @@ namespace ROMS
                 }
                 else
                 {
-                    DGV_SearchGridPro.ScrollBars = ScrollBars.Vertical;
+                    DGV_SearchGridPro.ScrollBars = ScrollBars.Vertical; 
                 }
             }
             catch (Exception ex)
@@ -2190,59 +2224,60 @@ namespace ROMS
 
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4"))
             {
-                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) == "12")
+                try
                 {
-                    if (grdPurchaseorderlist.SelectedRows.Count > 0)
+                    if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) == "12")
                     {
-                        string result = "";
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (grdPurchaseorderlist.SelectedRows.Count > 0)
                         {
-                            SPDataService objspdservice = new SPDataService();
-                            result = "";
-                            result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, 0);
-                            objspdservice.CloseConnection();
-                            string[] varvalue = result.Split('~');
-                            if (result.Split('~')[1] == "1")
+                            string result = "";
+                            DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                SPDataService objspdservice = new SPDataService();
+                                result = "";
+                                result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, 0);
+                                objspdservice.CloseConnection();
+                                string[] varvalue = result.Split('~');
+                                if (result.Split('~')[1] == "1")
                                 {
-                                    result = "";
-                                    result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, 1);
-                                    objspdservice.CloseConnection();
-                                    string[] varvalue1 = result.Split('~');
-                                    if (varvalue1[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnPOEntryLoad();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        result = "";
+                                        result = objspdservice.udfnPurchaseEntry(2, Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_ID"].Value.ToString()), 0, "", 0, 0, "", "", "", "", null, "", "", "", "", 0, "", 0, 0, 1);
+                                        objspdservice.CloseConnection();
+                                        string[] varvalue1 = result.Split('~');
+                                        if (varvalue1[0] == "3")
+                                        {
+                                            MessageBox.Show(varvalue1[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnPOEntryLoad();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue1[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
                                     }
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                else
+                                {
+                                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-
-        }
-
+        } 
         private void DGV_SearchGridPro_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -3483,16 +3518,18 @@ namespace ROMS
 
         private void GrdPurchaseorderlist_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("4"))
             {
-                if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) != "12" )
-                { tsbDelete.Visible = false; }
-                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) != "12")
+                    { tsbDelete.Visible = false; }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
 
