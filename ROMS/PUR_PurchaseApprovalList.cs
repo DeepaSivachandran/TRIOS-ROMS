@@ -21,8 +21,8 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         DataTable Deftable = new DataTable();
         public int MenuCode = 0;
-        string privilege = "";
-        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+        string privilege = "",MismatachApprovalPrivilege="";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>(); 
         public PUR_PurchaseApprovalList()
         {
             InitializeComponent();
@@ -66,8 +66,11 @@ namespace ROMS
                 tsbIncompleteList.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 25 && sp.EditAccess.Split(',').Contains("9"));
                 tsbRejectedProduct.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 25 && sp.EditAccess.Split(',').Contains("9")); 
                 tsbEntryApprovedList.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 26 && sp.EditAccess.Split(',').Contains("9"));
-                tsbPurchaseApproval.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 27 && sp.EditAccess.Split(',').Contains("9"));
-                tsbMismatchCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 27 && sp.EditAccess.Split(',').Contains("9")); 
+                  
+                var MismatchApprovalresult = UserAccessHelper.LoadUserAccess(105);
+                MismatachApprovalPrivilege = MismatchApprovalresult.PrivilegeCode;
+                tsbPurchaseApproval.Visible = MismatachApprovalPrivilege.Contains("1");
+                tsbMismatchCount.Visible = MismatachApprovalPrivilege.Contains("1");
             }
             catch (Exception ex)
             {
