@@ -49,7 +49,7 @@ namespace ROMS
 
         private void TsbNew_Click(object sender, EventArgs e)
         {
-            if (privilege.Contains("2"))
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
                 try
                 {
@@ -397,7 +397,7 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            if (privilege.Contains("3"))
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
                 try
                 {
@@ -2224,7 +2224,7 @@ namespace ROMS
 
         public void udfndelete()
         {
-            if (privilege.Contains("4"))
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
                 try
                 {
