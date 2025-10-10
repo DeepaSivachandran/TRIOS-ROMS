@@ -191,6 +191,7 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmStockJournal = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -324,7 +325,8 @@ namespace ROMS
             this.tsmDamageEntry,
             this.tsmStockReq,
             this.tsmRackTransfer,
-            this.tsmStockConversion});
+            this.tsmStockConversion,
+            this.tsmStockJournal});
             this.tsmInventory.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmInventory.Name = "tsmInventory";
             this.tsmInventory.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.I)));
@@ -1669,6 +1671,14 @@ namespace ROMS
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
+            // tsmStockJournal
+            // 
+            this.tsmStockJournal.Name = "tsmStockJournal";
+            this.tsmStockJournal.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockJournal.Text = "Stock Journal";
+            this.tsmStockJournal.Visible = false;
+            this.tsmStockJournal.Click += new System.EventHandler(this.tsmStockJournal_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1861,5 +1871,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmUserRole;
         private System.Windows.Forms.ToolStripMenuItem tsmPriceList;
         private System.Windows.Forms.ToolStripMenuItem tsmTaxChanges;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockJournal;
     }
 }
