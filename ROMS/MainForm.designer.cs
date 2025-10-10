@@ -106,8 +106,6 @@ namespace ROMS
             this.tsmDirectLabelPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmProMapping = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPrinterSettings = new System.Windows.Forms.ToolStripMenuItem();
@@ -875,8 +873,6 @@ namespace ROMS
             // tsmControlPanel
             // 
             this.tsmControlPanel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmProMapping,
-            this.tsmBatchNoConfig,
             this.tsmVoucherSettings,
             this.tsmGeneralSettings,
             this.tsmPrinterSettings,
@@ -890,25 +886,10 @@ namespace ROMS
             this.tsmControlPanel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmControlPanel.Visible = false;
             // 
-            // tsmProMapping
-            // 
-            this.tsmProMapping.Name = "tsmProMapping";
-            this.tsmProMapping.Size = new System.Drawing.Size(207, 22);
-            this.tsmProMapping.Text = "Supplier - Product Mapping";
-            this.tsmProMapping.Visible = false;
-            this.tsmProMapping.Click += new System.EventHandler(this.tsmProMapping_Click);
-            // 
-            // tsmBatchNoConfig
-            // 
-            this.tsmBatchNoConfig.Name = "tsmBatchNoConfig";
-            this.tsmBatchNoConfig.Size = new System.Drawing.Size(207, 22);
-            this.tsmBatchNoConfig.Text = "Batch No. Configuration";
-            this.tsmBatchNoConfig.Visible = false;
-            // 
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -916,7 +897,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -924,7 +905,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -932,7 +913,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
@@ -1186,7 +1167,7 @@ namespace ROMS
             // tsmPOProductWiseReport
             // 
             this.tsmPOProductWiseReport.Name = "tsmPOProductWiseReport";
-            this.tsmPOProductWiseReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmPOProductWiseReport.Size = new System.Drawing.Size(179, 22);
             this.tsmPOProductWiseReport.Text = "PO Product Wise";
             this.tsmPOProductWiseReport.Visible = false;
             this.tsmPOProductWiseReport.Click += new System.EventHandler(this.tsmPOProductWiseReport_Click);
@@ -1194,7 +1175,7 @@ namespace ROMS
             // tsmPOStatusWise
             // 
             this.tsmPOStatusWise.Name = "tsmPOStatusWise";
-            this.tsmPOStatusWise.Size = new System.Drawing.Size(180, 22);
+            this.tsmPOStatusWise.Size = new System.Drawing.Size(179, 22);
             this.tsmPOStatusWise.Text = "PO Status Wise";
             this.tsmPOStatusWise.Visible = false;
             this.tsmPOStatusWise.Click += new System.EventHandler(this.tsmPOStatusWise_Click);
@@ -1202,7 +1183,7 @@ namespace ROMS
             // tsmPOSummary
             // 
             this.tsmPOSummary.Name = "tsmPOSummary";
-            this.tsmPOSummary.Size = new System.Drawing.Size(180, 22);
+            this.tsmPOSummary.Size = new System.Drawing.Size(179, 22);
             this.tsmPOSummary.Text = "PO Summary && Detail";
             this.tsmPOSummary.Visible = false;
             this.tsmPOSummary.Click += new System.EventHandler(this.tsmPOSummary_Click);
@@ -1210,7 +1191,7 @@ namespace ROMS
             // TSMGRNSummary
             // 
             this.TSMGRNSummary.Name = "TSMGRNSummary";
-            this.TSMGRNSummary.Size = new System.Drawing.Size(180, 22);
+            this.TSMGRNSummary.Size = new System.Drawing.Size(179, 22);
             this.TSMGRNSummary.Text = "GRN Summary";
             this.TSMGRNSummary.Visible = false;
             this.TSMGRNSummary.Click += new System.EventHandler(this.TSMGRNSummary_Click);
@@ -1218,7 +1199,7 @@ namespace ROMS
             // TSMGRNDetails
             // 
             this.TSMGRNDetails.Name = "TSMGRNDetails";
-            this.TSMGRNDetails.Size = new System.Drawing.Size(180, 22);
+            this.TSMGRNDetails.Size = new System.Drawing.Size(179, 22);
             this.TSMGRNDetails.Text = "GRN Detail";
             this.TSMGRNDetails.Visible = false;
             this.TSMGRNDetails.Click += new System.EventHandler(this.TSMGRNDetails_Click);
@@ -1226,7 +1207,7 @@ namespace ROMS
             // tsmGRNBatchDetail
             // 
             this.tsmGRNBatchDetail.Name = "tsmGRNBatchDetail";
-            this.tsmGRNBatchDetail.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNBatchDetail.Size = new System.Drawing.Size(179, 22);
             this.tsmGRNBatchDetail.Text = "GRN Batch Detail";
             this.tsmGRNBatchDetail.Visible = false;
             this.tsmGRNBatchDetail.Click += new System.EventHandler(this.tsmGRNBatchDetail_Click);
@@ -1234,7 +1215,7 @@ namespace ROMS
             // tsmGRNSupplierDetail
             // 
             this.tsmGRNSupplierDetail.Name = "tsmGRNSupplierDetail";
-            this.tsmGRNSupplierDetail.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNSupplierDetail.Size = new System.Drawing.Size(179, 22);
             this.tsmGRNSupplierDetail.Text = "GRN Supplier Detail";
             this.tsmGRNSupplierDetail.Visible = false;
             this.tsmGRNSupplierDetail.Click += new System.EventHandler(this.tsmGRNSupplierDetail_Click);
@@ -1242,7 +1223,7 @@ namespace ROMS
             // tsmGRNDefectPRoduct
             // 
             this.tsmGRNDefectPRoduct.Name = "tsmGRNDefectPRoduct";
-            this.tsmGRNDefectPRoduct.Size = new System.Drawing.Size(180, 22);
+            this.tsmGRNDefectPRoduct.Size = new System.Drawing.Size(179, 22);
             this.tsmGRNDefectPRoduct.Text = "GRN Defect Product";
             this.tsmGRNDefectPRoduct.Visible = false;
             this.tsmGRNDefectPRoduct.Click += new System.EventHandler(this.tsmGRNDefectPRoduct_Click);
@@ -1482,7 +1463,7 @@ namespace ROMS
             // tsmSupplierLedgerReport
             // 
             this.tsmSupplierLedgerReport.Name = "tsmSupplierLedgerReport";
-            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(149, 22);
             this.tsmSupplierLedgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLedgerReport.Visible = false;
             this.tsmSupplierLedgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
@@ -1490,7 +1471,7 @@ namespace ROMS
             // tsmPaymentReport
             // 
             this.tsmPaymentReport.Name = "tsmPaymentReport";
-            this.tsmPaymentReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmPaymentReport.Size = new System.Drawing.Size(149, 22);
             this.tsmPaymentReport.Text = "Payment";
             this.tsmPaymentReport.Visible = false;
             this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
@@ -1507,7 +1488,7 @@ namespace ROMS
             this.tsmPurchaseTaxReports.Name = "tsmPurchaseTaxReports";
             this.tsmPurchaseTaxReports.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseTaxReports.Text = "Purchase Tax";
-            this.tsmPurchaseTaxReports.Visible = false; 
+            this.tsmPurchaseTaxReports.Visible = false;
             // 
             // tsmPurchaseBillWiseTaxReport
             // 
@@ -1600,14 +1581,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -1792,8 +1773,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStickerPrint;
         private System.Windows.Forms.ToolStripMenuItem tsmDirectLabelPrint;
         private System.Windows.Forms.ToolStripMenuItem tsmControlPanel;
-        private System.Windows.Forms.ToolStripMenuItem tsmProMapping;
-        private System.Windows.Forms.ToolStripMenuItem tsmBatchNoConfig;
         private System.Windows.Forms.ToolStripMenuItem tsmVoucherSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmGeneralSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmPrinterSettings;
