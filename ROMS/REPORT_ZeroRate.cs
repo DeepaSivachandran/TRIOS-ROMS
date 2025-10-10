@@ -2180,24 +2180,6 @@ namespace ROMS
             }
         }
 
-        private void tsmMasters_MouseDown(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    int parentMenuCode = 801; // Masters - Reports
-                    // Let DynamicMenu handle both creation AND showing
-                    DynamicMenu.CreateContextMenuAndShow(sender as ToolStripLabel, parentMenuCode);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TxtRackgroup_TextChanged(object sender, EventArgs e)
         {
             try
