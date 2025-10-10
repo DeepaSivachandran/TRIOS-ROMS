@@ -30,6 +30,7 @@ namespace ROMS
         public DataTable objDtSplPermission = new DataTable();
         public DataTable objDtSplPermissionFilterTable = new DataTable();
         public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
+        
 
         public CP_UserRole()
         {
@@ -145,6 +146,8 @@ namespace ROMS
                 tvMainmenu.SelectedNode = e.Node;
                 e.Node.BackColor = Color.LightBlue;
                 tvLevl2Submenu.Nodes.Clear();
+                 
+
             }
             catch (Exception ex)
             {
@@ -237,7 +240,14 @@ namespace ROMS
         {
             try
             {
-                tvSubmenu.SelectedNode = null; // Remove selection
+                if (e.Node.Level == 0)
+                {
+                    e.Cancel = true; // Initially cancel the event
+                    if (e.Node.Checked)
+                    {
+                        e.Cancel = false; // <--- PROBLEM: If it was already checked, you allowed it to be unchecked.
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -336,25 +346,30 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (btnSave.Text == "Update")
-                    {
-                        varupdate = "1";
-                        udfnclose();
-                    }
-                    else
+                    varChangesFlag = 0;
+                    if (btnSave.Text == "Save")
                     {
                         if (varvalue[2] != "")
                         {
                             varChangesFlag = 0;
                             varUserRoleID = Convert.ToInt32(varvalue[2]);
                             btnSave.Text = "Update";
-                            tbFirst.SelectedIndex = 1;
                         }
                         else
                         {
                             btnSave.Text = "Save";
+                        } 
+                    }
+                    else
+                    {
+                        if (btnSave.Text == "Update" && Convert.ToString(tbFirst.SelectedIndex) == "1")
+                        {
+                            varupdate = "1";
+                            udfnclose();
                         }
                     }
+
+                    tbFirst.SelectedIndex = 1;
                 }
                 else
                 {
@@ -409,7 +424,7 @@ namespace ROMS
         {
             try
             {
-
+                 
                 submenu.Nodes.Clear(); // clear previous second tree
 
                 // Create root node for this parent
@@ -925,7 +940,7 @@ namespace ROMS
                     {
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "├⮞", e.CellStyle.Font,
@@ -942,7 +957,7 @@ namespace ROMS
                     {
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "├⮞", e.CellStyle.Font,
@@ -961,7 +976,7 @@ namespace ROMS
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
 
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
@@ -980,7 +995,7 @@ namespace ROMS
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
 
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
@@ -1113,7 +1128,7 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        cell.ReadOnly = true;
+                                        cell.ReadOnly = true; 
                                         cell.Style.BackColor = System.Drawing.Color.LightGray;
                                     }
                                 }
@@ -1142,7 +1157,13 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
                     DataGridViewRow row = grdUserPermission.Rows[e.RowIndex];
-                    switch (grdUserPermission.Columns[e.ColumnIndex].Name)
+                    DataGridViewCell clickedCell = grdUserPermission.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    System.Drawing.Color cellColor = clickedCell.Style.BackColor;
+                    if (cellColor == System.Drawing.Color.LightGray)
+                    {
+                        return;
+                    }
+                        switch (grdUserPermission.Columns[e.ColumnIndex].Name)
                     {
                         case "Action":
                             try
@@ -1286,24 +1307,44 @@ namespace ROMS
 
         private void tvSubmenu_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
-            try
+            // The bounds of the node's text/content area
+            Rectangle nodeBounds = e.Bounds;
+
+            // Check if the node is a Level 0 node
+            if (e.Node.Level == 0)
             {
-                if (e.Node.Parent == null && e.Node.Index == 0)
+                // 1. Calculate the new text bounds (shifting left to hide the checkbox area).
+                // The constant 19-20 pixels is a rough estimate for the checkbox and padding.
+                int checkboxWidth = 20;
+
+                // Adjust the bounds to start where the checkbox normally ends
+                Rectangle textBounds = new Rectangle(
+                    nodeBounds.X - checkboxWidth, // Shift text area left
+                    nodeBounds.Y,
+                    nodeBounds.Width + checkboxWidth, // Make the text area wider
+                    nodeBounds.Height
+                );
+
+                // 2. Draw the node's background (optional)
+                if (e.State.HasFlag(TreeNodeStates.Selected))
                 {
-                    // Draw only text (no checkbox)
-                    TextRenderer.DrawText(e.Graphics, e.Node.Text,
-                        e.Node.NodeFont ?? e.Node.TreeView.Font,
-                        e.Bounds, e.Node.ForeColor, TextFormatFlags.GlyphOverhangPadding);
+                    e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Highlight, nodeBounds);
+                    e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.HighlightText, textBounds);
                 }
                 else
                 {
-                    e.DrawDefault = true; // Draw normally (with checkbox)
+                    e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Window, nodeBounds);
+                    e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.WindowText, textBounds);
                 }
+
+                // Crucial: Set DrawDefault to false since we drew manually
+                e.DrawDefault = false;
             }
-            catch (Exception ex)
+            else
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                // 3. For all other levels (Level 1, 2, etc.), draw the node normally
+                //    (This includes the visible checkbox)
+                e.DrawDefault = true;
             }
         }
 
@@ -1366,6 +1407,11 @@ namespace ROMS
             finally
             {
             }
+        }
+
+        private void tvSubmenu_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+
         }
 
         private void SetChildNodes(TreeNode node, bool isChecked)
@@ -1667,7 +1713,6 @@ namespace ROMS
             }
 
             return null;
-        }
-
+        } 
     }
 }
