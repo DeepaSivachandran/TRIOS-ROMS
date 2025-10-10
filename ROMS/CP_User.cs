@@ -13,6 +13,7 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_User : Form
     {
+        DataTable dtLocation = new DataTable();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         SecurityController _security = new SecurityController();
@@ -345,7 +346,21 @@ namespace ROMS
                 {
                     varUserID = "0";
                 }
-                varResult = objspservice.udfnUser(varType,Convert.ToInt32( varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus,"", varoriginator,MainForm.pbUserID,0);
+                DataTable dtCheckedLocations = new DataTable();
+                dtCheckedLocations.Columns.Add("LocationCode", typeof(int));
+                if (grdLocation.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dtLocation.Rows)
+                    {
+                        if ((bool)dr["IsChecked"])  // only checked rows
+                        {
+                            DataRow newRow = dtCheckedLocations.NewRow();
+                            newRow["LocationCode"] = dr["LocationCode"];
+                            dtCheckedLocations.Rows.Add(newRow);
+                        }
+                    }
+                }
+                varResult = objspservice.udfnUser(varType, Convert.ToInt32(varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, "", varoriginator, MainForm.pbUserID, 0, dtCheckedLocations);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -486,6 +501,7 @@ namespace ROMS
                     }
                 }
                 L: varpassword = _security.Encrypt(txtLoginID.Text.Trim().ToLower(), txtPassword.Text.Trim());
+
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -514,6 +530,7 @@ namespace ROMS
             btnSave.Text = "Save";
             txtUserName.Focus();
             this.ActiveControl = txtUserName;
+            udfnLocationBind();
         }
         private void btnSave_Enter(object sender, EventArgs e)
         {
@@ -617,6 +634,12 @@ namespace ROMS
         {
             try
             {
+                dtLocation = new DataTable();
+                dtLocation.Columns.Add("IsChecked", typeof(bool));
+                dtLocation.Columns.Add("LocationName", typeof(string));
+                dtLocation.Columns.Add("LocationCode", typeof(int));
+
+                udfnLocationBind();
                 txtUserName.Focus();
                 this.ActiveControl = txtUserName;
                 DataBind objDataBind = new DataBind();
@@ -645,9 +668,120 @@ namespace ROMS
             }
             finally
             {
-
                 MainForm.objCP_Userlist.picLoader.Visible = false;
                 MainForm.objCP_Userlist.picLoader.SendToBack();
+            }
+        }
+        public void udfnLocationBind()
+        {
+            try
+            {
+                DataSet objDS = new DataSet();
+                SPDataService objDServ = new SPDataService();
+                objDS = objDServ.udfnStockLocationList(32, 0, 0, 0, "", 0, 0, 0, "", "", 0);
+                objDServ.CloseConnection();
+                dtLocation = null;
+                if (objDS != null)
+                {
+                    if (objDS.Tables.Count > 0)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            dtLocation = objDS.Tables[0];
+                            // Bind the DataTable
+                            grdLocation.DataSource = dtLocation;
+                            grdLocation.ClearSelection();
+                            if (grdLocation.Columns["IsChecked"] != null)
+                            {
+                                grdLocation.Columns["IsChecked"].HeaderText = "";
+                                grdLocation.Columns["IsChecked"].Width = 50;
+                                grdLocation.Columns["IsChecked"].ReadOnly = false;
+                            }
+
+                            if (grdLocation.Columns["LocationName"] != null)
+                            {
+                                grdLocation.Columns["LocationName"].HeaderText = "Location Name";
+                                grdLocation.Columns["LocationName"].Width = 180;
+                                grdLocation.Columns["LocationName"].ReadOnly = true;
+                            }
+
+                            if (grdLocation.Columns["LocationCode"] != null)
+                            {
+                                grdLocation.Columns["LocationCode"].Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void udfnEdit()
+        {
+            try
+            {
+                if (varUserID != "")
+                {
+                    pnlStatus.Enabled = true;
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objspdservice.udfnUserList(3, "", "", "", Convert.ToInt32(varUserID), 0, "");
+                    objspdservice.CloseConnection();
+
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            txtUserName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
+                            oldUsername = objDs.Tables[0].Rows[0]["U_LoginID"].ToString().Replace("''", "'");
+                            txtLoginID.Text = objDs.Tables[0].Rows[0]["U_LoginID"].ToString();
+                            txtPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
+                            oldpassword = objDs.Tables[0].Rows[0]["U_Password"].ToString();
+                            txtCPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
+                            //  cmbUserRole.SelectedValue= objDS.Tables[0].Rows[0]["UserRoleCode"].ToString();
+                            if (objDs.Tables[0].Rows[0]["U_STSID"].ToString() == "1")
+                            {
+                                rbActive.Checked = true;
+                            }
+                            else
+                            {
+                                rbInactive.Checked = true;
+                            }
+                            btnSave.Text = "Update";
+                        }
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            HashSet<int> savedLocationCodes = new HashSet<int>(objDs.Tables[1].AsEnumerable().Select(r => r.Field<int>("LocationCode")) );
+
+                            foreach (DataRow dr in dtLocation.Rows)
+                            {
+                                int locationCode = (int)dr["LocationCode"];
+                                if (savedLocationCodes.Contains(locationCode))
+                                {
+                                    dr["IsChecked"] = true;  // check the checkbox
+                                }
+                                else
+                                {
+                                    dr["IsChecked"] = false; // optional, uncheck if not saved
+                                }
+                            }
+                        }
+                    }
+                }
+                else { pnlStatus.Enabled = false; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
         private void udfnLoad()
@@ -909,53 +1043,6 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-        private void udfnEdit()
-        {
-            try
-            {
-                if (varUserID != "")
-                {
-                    pnlStatus.Enabled = true;
-                    SPDataService objspdservice = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    objDs = objspdservice.udfnUserList(3,"", "", "",Convert.ToInt32(varUserID), 0, "");
-                    objspdservice.CloseConnection();
-
-                    if (objDs != null)
-                    {
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            txtUserName.Text = objDs.Tables[0].Rows[0]["U_Name"].ToString().Replace("''", "'");
-                            oldUsername = objDs.Tables[0].Rows[0]["U_LoginID"].ToString().Replace("''", "'");
-                            txtLoginID.Text = objDs.Tables[0].Rows[0]["U_LoginID"].ToString();
-                            txtPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
-                            oldpassword = objDs.Tables[0].Rows[0]["U_Password"].ToString();
-                            txtCPassword.Text = objDs.Tables[0].Rows[0]["U_Password"].ToString();
-                          //  cmbUserRole.SelectedValue= objDS.Tables[0].Rows[0]["UserRoleCode"].ToString();
-                            if (objDs.Tables[0].Rows[0]["U_STSID"].ToString() == "1")
-                            {
-                                rbActive.Checked = true;
-                            }
-                            else
-                            {
-                                rbInactive.Checked = true;
-                            }
-                            btnSave.Text = "Update";
-                        }
-                    }
-                }
-                else { pnlStatus.Enabled = false; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
             }
         }
     }
