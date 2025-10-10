@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -172,8 +173,14 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(),0,0,0,"","",0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Location.paraLocationName = txtLocation.Text.Trim();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(objMR_Location);
                     objDServ3.CloseConnection();
+
+                    //objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(),0,0,0,"","",0);
                     if (objDsPurLoc != null)
                     {
                         if (objDsPurLoc.Tables.Count > 0)
@@ -786,8 +793,14 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(20, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 20;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtLocation.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+
+                        //objDs = objspdservice.udfnStockLocationList(20, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

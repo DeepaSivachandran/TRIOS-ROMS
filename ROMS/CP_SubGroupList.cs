@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -166,8 +167,12 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0,"","",0);
-                    objDServ3.CloseConnection();
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                    objDs = objdserv.udfnStockLocationList(objMR_Location);
+                    objdserv.CloseConnection();
+                    //objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0,"","",0);
                     if (objDsPurLoc != null)
                     {
                         if (objDsPurLoc.Tables.Count > 0)
@@ -1565,8 +1570,12 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtStockLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 12;
+                        objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

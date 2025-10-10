@@ -182,8 +182,13 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(16,Convert.ToInt32(cmbConcern.SelectedValue),0,0,"",0,0, Convert.ToInt32(cmbStatus.SelectedValue),"","",0);
+                MR_Location objMR_Location = new MR_Location();
+                objMR_Location.paraViewType = 16;
+                objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Location.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objDs = objspservice.udfnStockLocationList(objMR_Location);
                 objspservice.CloseConnection();
+                //objDs = objspservice.udfnStockLocationList(16,Convert.ToInt32(cmbConcern.SelectedValue),0,0,"",0,0, Convert.ToInt32(cmbStatus.SelectedValue),"","",0);
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -244,8 +249,13 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(), 0, 0, 0,"","",0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Location.paraLocationName = txtLocation.Text.Trim();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(objMR_Location);
                     objDServ3.CloseConnection();
+                    //objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(), 0, 0, 0,"","",0);
                     if (objDsPurLoc != null)
                     {
                         if (objDsPurLoc.Tables.Count > 0)
@@ -629,8 +639,12 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 12;
+                        objMR_Location.paraLocationName = txtLocation.Text;
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(12, 0, 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

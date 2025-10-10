@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -444,8 +445,15 @@ namespace ROMS
                     }
                     else { varViewType = 5; varRackGroupID = varId; }
                 }
-                objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID,"",0,0,0,"","",0);
+                MR_Location objMR_Location = new MR_Location();
+                objMR_Location.paraViewType = varViewType;
+                objMR_Location.ParaCompanycode = varConcernId;
+                objMR_Location.paraLocationId = varStockId;
+                objMR_Location.paraId = varRackGroupID;
+                objDT = objdserv.udfnStockLocationList(objMR_Location);
                 objdserv.CloseConnection();
+
+                //objDT = objdserv.udfnStockLocationList(varViewType, varConcernId,varStockId, varRackGroupID,"",0,0,0,"","",0);
                 cmbStockLocation.DataSource = null;
                 if (objDT != null)
                 {

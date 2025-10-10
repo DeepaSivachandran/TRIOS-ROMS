@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using ROMS.Model;
+
 namespace ROMS
 {  //Created By:-Sathish
     //Created On:-22/08/2023
@@ -681,8 +683,11 @@ namespace ROMS
             {
                 DataSet objDS = new DataSet();
                 SPDataService objDServ = new SPDataService();
-                objDS = objDServ.udfnStockLocationList(32, 0, 0, 0, "", 0, 0, 0, "", "", 0);
+                MR_Location objMR_Location = new MR_Location();
+                objMR_Location.paraViewType = 32;
+                objDS = objDServ.udfnStockLocationList(objMR_Location);
                 objDServ.CloseConnection();
+                //objDS = objDServ.udfnStockLocationList(32, 0, 0, 0, "", 0, 0, 0, "", "", 0);
                 dtLocation = null;
                 if (objDS != null)
                 {

@@ -417,8 +417,14 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text.Trim(), 0, 0,0,"","",0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(objMR_Location);
                     objDServ5.CloseConnection();
+
+                    //objDsSalesLoc = objDServ5.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text.Trim(), 0, 0,0,"","",0);
                     if (objDsSalesLoc != null)
                     {
                         if (objDsSalesLoc.Tables.Count > 0)
@@ -875,8 +881,13 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtStockLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text, 0, 0, 0, dtpOutwardDate.Text, dtpOutwardToDate.Text, 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 27;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text, 0, 0, 0, dtpOutwardDate.Text, dtpOutwardToDate.Text, 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

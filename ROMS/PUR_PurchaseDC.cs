@@ -1558,8 +1558,12 @@ namespace ROMS
                     {
                         DataSet ObjsLocation = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 25;
+                        objMR_Location.paraId = Convert.ToInt32(lblProductcode.Text.Trim());
+                        ObjsLocation = objDserv.udfnStockLocationList(objMR_Location);
                         objDserv.CloseConnection();
+                        //ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "", 0);
                         if (ObjsLocation != null)
                         {
                             if (ObjsLocation.Tables.Count > 0)
@@ -1987,8 +1991,14 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtStockLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 26;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+
+                        //objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)
@@ -3110,8 +3120,14 @@ namespace ROMS
             //}
             SPDataService objspdservice = new SPDataService();
             DataSet objds = new DataSet();
-            objds = objspdservice.udfnStockLocationList(30, Convert.ToInt32(varCOMID), 0, 0, "", 0, 0, 0, "", "", 0);
+
+            MR_Location objMR_Location = new MR_Location();
+            objMR_Location.paraViewType = 30;
+            objMR_Location.ParaCompanycode = Convert.ToInt32(varCOMID);
+            objds = objspdservice.udfnStockLocationList(objMR_Location);
             objspdservice.CloseConnection();
+
+            //objds = objspdservice.udfnStockLocationList(30, Convert.ToInt32(varCOMID), 0, 0, "", 0, 0, 0, "", "", 0);
             if (objds != null)
             {
                 if (objds.Tables.Count > 0)
@@ -3403,8 +3419,15 @@ namespace ROMS
                         string varId_PurLocation = "0", varRkCount = "0";
                         DataSet objDsPurLoc = new DataSet();
                         SPDataService objDServ3 = new SPDataService();
-                        objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, SelectedLocationName, 0, 0, 0, "", "", 0);
+
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 14;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = SelectedLocationName;
+                        objDsPurLoc = objDServ3.udfnStockLocationList(objMR_Location);
                         objDServ3.CloseConnection();
+
+                        //objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, SelectedLocationName, 0, 0, 0, "", "", 0);
                         if (objDsPurLoc != null)
                         {
                             if (objDsPurLoc.Tables.Count > 0)
@@ -4896,8 +4919,13 @@ namespace ROMS
                     string varLocationId = "0";
                     DataSet objDsLocation = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsLocation = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                    objDsLocation = objDServ3.udfnStockLocationList(objMR_Location);
                     objDServ3.CloseConnection();
+                    //objDsLocation = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                     if (objDsLocation != null)
                     {
                         if (objDsLocation.Tables.Count > 0)

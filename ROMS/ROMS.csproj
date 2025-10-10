@@ -275,6 +275,7 @@
     <Compile Include="GRN_ADV.designer.cs">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_Location.cs" />
     <Compile Include="Model\MR_Menu.cs" />
     <Compile Include="PUR_MismatchApprovedList.cs">
       <SubType>Form</SubType>
@@ -740,12 +741,6 @@
     </Compile>
     <Compile Include="PUR_PurchaseEntryApproval_Copy.designer.cs">
       <DependentUpon>PUR_PurchaseEntryApproval_Copy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CP_RackSettings_Copy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_RackSettings_Copy.designer.cs">
-      <DependentUpon>CP_RackSettings_Copy.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TRN_GRNApproval.cs" />
     <Compile Include="PUR_GRN_Level_Verified.cs">
@@ -3569,9 +3564,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_PurchaseEntryApproval_Copy.resx">
       <DependentUpon>PUR_PurchaseEntryApproval_Copy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CP_RackSettings_Copy.resx">
-      <DependentUpon>CP_RackSettings_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRN_Level_Verified.resx">
       <DependentUpon>PUR_GRN_Level_Verified.cs</DependentUpon>

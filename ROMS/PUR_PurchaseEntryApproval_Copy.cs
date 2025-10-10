@@ -2115,8 +2115,13 @@ namespace ROMS
                             string varId_PurLocation = "0", varRkCount = "0";
                             DataSet objDsPurLoc = new DataSet();
                             SPDataService objDServ3 = new SPDataService();
-                            objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, SelectedLocationName, 0, 0, 0, "", "", 0);
+                            MR_Location objMR_Location = new MR_Location();
+                            objMR_Location.paraViewType = 14;
+                            objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                            objMR_Location.paraLocationName = SelectedLocationName;
+                            objDsPurLoc = objDServ3.udfnStockLocationList(objMR_Location);
                             objDServ3.CloseConnection();
+                            //objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, SelectedLocationName, 0, 0, 0, "", "", 0);
                             if (objDsPurLoc != null)
                             {
                                 if (objDsPurLoc.Tables.Count > 0)
