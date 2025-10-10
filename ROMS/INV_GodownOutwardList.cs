@@ -883,8 +883,12 @@ namespace ROMS
                     {
                         MR_Location objMR_Location = new MR_Location();
                         objMR_Location.paraViewType = 27;
+                        objMR_Location.paraId = 1;
                         objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                        objMR_Location.ParaFromDate = dtpOutwardDate.Text;
+                        objMR_Location.ParaToDate = dtpOutwardToDate.Text;
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
                         objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
                         //objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text, 0, 0, 0, dtpOutwardDate.Text, dtpOutwardToDate.Text, 0);

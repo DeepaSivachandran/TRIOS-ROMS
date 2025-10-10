@@ -1099,6 +1099,12 @@ namespace ROMS
                 tmpspcall = new SPCall();
                 SqlCommand varSqlCommand = new SqlCommand("[MRG_StockLocation]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
+
+                if (string.IsNullOrWhiteSpace(objMR_Location.paraUserLocations))
+                {
+                    objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                }
+
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Location.paraViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraConcern", objMR_Location.ParaCompanycode);
                 varSqlCommand.Parameters.AddWithValue("@paraStockLocation", objMR_Location.paraLocationId);

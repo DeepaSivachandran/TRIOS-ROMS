@@ -2897,6 +2897,7 @@ namespace ROMS
                         objMR_Location.paraViewType = 29;
                         objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Location.paraLocationName = txtDestinationLocation.Text.Trim();
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
                         objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
 
@@ -3370,6 +3371,7 @@ namespace ROMS
                         objMR_Location.paraViewType = 29;
                         objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Location.paraLocationName = txtSourceLocation.Text.Trim();
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
                         objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
 

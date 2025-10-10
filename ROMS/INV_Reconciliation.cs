@@ -1567,6 +1567,7 @@ namespace ROMS
                     objMR_Location.paraViewType = ViewType;
                     objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_Location.paraLocationName = txtStockLocation.Text;
+                    objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
                     objDs = objspdservice.udfnStockLocationList(objMR_Location);
                     objspdservice.CloseConnection();
                     //objDs = objspdservice.udfnStockLocationList(ViewType, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text, 0, 0, 0, "", "", 0);

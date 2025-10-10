@@ -557,6 +557,7 @@ namespace ROMS
                         objMR_Location.paraLocationName = txtStockLocation.Text;
                         objMR_Location.ParaFromDate = dpFromDate.Text;
                         objMR_Location.ParaToDate = dpToDate.Text;
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
                         objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
                         //objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 4, txtStockLocation.Text, 0, 0, 0, dpFromDate.Text, dpToDate.Text, 0);
