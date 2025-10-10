@@ -13,6 +13,8 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_User : Form
     {
+        MainForm objMainForm = new MainForm();
+
         DataTable dtLocation = new DataTable();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -373,6 +375,7 @@ namespace ROMS
                         udfnclose();
                     }
                     udfnClear();
+                    objMainForm.udfnUserMappedLocations();
                 }
                 else
                 {
@@ -639,7 +642,7 @@ namespace ROMS
                 dtLocation.Columns.Add("LocationName", typeof(string));
                 dtLocation.Columns.Add("LocationCode", typeof(int));
 
-                udfnLocationBind();
+                //udfnLocationBind();
                 txtUserName.Focus();
                 this.ActiveControl = txtUserName;
                 DataBind objDataBind = new DataBind();
@@ -647,7 +650,6 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                udfnEdit();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
@@ -659,6 +661,7 @@ namespace ROMS
                         pnlStatus.Enabled = true;
                     }
                     udfnLoad();
+                    udfnEdit();
                 }
             }
             catch (Exception ex)
@@ -901,6 +904,15 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbUserRole.Select(int.MaxValue, 0)));
+                if (Convert.ToInt32(cmbUserRole.SelectedValue) == 1)
+                {
+                    dtLocation = null;
+                    grdLocation.DataSource = dtLocation;
+                }
+                else
+                {
+                    udfnLocationBind();
+                }
             }
             catch (Exception ex)
             {
