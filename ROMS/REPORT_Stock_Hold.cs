@@ -124,6 +124,7 @@ namespace ROMS
                 objTRNG_StockHold.paraAlpha = txtSearchByPICode.Text;
                 objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_StockHold.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }

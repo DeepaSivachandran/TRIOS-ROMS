@@ -103,6 +103,7 @@ namespace ROMS
                 objTRNG_Stock.ViewType = 1;
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_Stock.paraSLID = varLocationId;
+                objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }

@@ -138,6 +138,7 @@ namespace ROMS
                 objTRNG_Stock.paraBrandID = varBrandId;
                 objTRNG_Stock.paraStockType = varReportType;
                 objTRNG_Stock.paraDays = varDays;
+                objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnStock(objTRNG_Stock);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }

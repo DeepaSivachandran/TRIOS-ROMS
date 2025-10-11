@@ -132,6 +132,7 @@ namespace ROMS
                 objTRNG_Stock.paraSLID = varLocationId;
                 objTRNG_Stock.paraPICode = txtSearchByPICode.Text.Trim();
                 objTRNG_Stock.paraFilterType = Convert.ToInt32(cmbFilterType.SelectedValue);
+                objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }

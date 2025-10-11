@@ -163,6 +163,7 @@ namespace ROMS
                 objTRNG_Stock.paraMonth = varMonths;
                 objTRNG_Stock.paraDays = varMonths;
                 objTRNG_Stock.paraOrder = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
