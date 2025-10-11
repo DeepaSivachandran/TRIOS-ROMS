@@ -163,6 +163,8 @@ namespace ROMS
         public static INV_Reconciliation objINV_StockAdjustment; 
         public static INV_StockJournalList objINV_StockJournalList;
         public static INV_StockJournal objINV_StockJournal;
+        public static INV_StockJournal_ConversionList objINV_StockJournalConversionList;
+        public static INV_StockJournal_Conversion objINV_StockJournalConversion;
 
         public static Form1 objForm1;
 
@@ -3759,7 +3761,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-          
+
+        private void tsmStockJournal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                udfnGetDefaultCompany();
+                if (isClose == false) { return; }
+                MainForm.objINV_StockJournalConversionList = new INV_StockJournal_ConversionList();
+                MainForm.objINV_StockJournalConversionList.MdiParent = this;
+                MainForm.objINV_StockJournalConversionList.Show();
+                PbCurrentForm = "3.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+            }
+        }
+
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try

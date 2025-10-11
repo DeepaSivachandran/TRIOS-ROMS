@@ -1926,6 +1926,13 @@ namespace ROMS
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 80113;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
@@ -1947,7 +1954,7 @@ namespace ROMS
                 }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,43) AND MSTID<>0", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;

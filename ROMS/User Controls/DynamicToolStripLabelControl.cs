@@ -36,7 +36,7 @@ namespace ROMS
 
                 ts.Items.RemoveAt(index);
 
-                DataTable dt = MainForm.objDtMenuDetails;
+                DataTable dt = MainForm.objDtMenuDetailsUser;
                 if (dt == null || dt.Rows.Count == 0) return;
 
                 // Traverse levels from current menu code up to root — critical for breadcrumb hierarchy
@@ -45,7 +45,7 @@ namespace ROMS
 
                 while (code != 0 && levelIndex >= 0)
                 {
-                    var row = dt.AsEnumerable().FirstOrDefault(r => r.Field<int>("MU_Code") == code);
+                    var row = dt.AsEnumerable().FirstOrDefault(r => r.Field<int>("MU_Code") == code && r.Field<int>("MU_EQID") == 0);
                     if (row == null) break;
 
                     LevelTexts[levelIndex] = row.Field<string>("MU_Name");
@@ -178,7 +178,12 @@ namespace ROMS
                     Font = new Font("Oswald", 10, FontStyle.Regular)
                 };
 
-                DataTable menuTable = MainForm.objDtMenuDetails;
+                DataTable menuTableDummy = MainForm.objDtMenuDetailsUser;
+                DataRow[] filteredRows = menuTableDummy.Select("MU_EQID = 0"); 
+                DataTable menuTable = filteredRows.Length > 0
+                    ? filteredRows.CopyToDataTable()
+                    : menuTableDummy.Clone();
+
                 if (menuTable == null || menuTable.Rows.Count == 0)
                     return contextMenu;
 

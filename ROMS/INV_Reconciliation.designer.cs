@@ -155,8 +155,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(117, 22);
-            this.tspHeader.Text = "Stock Reconciliation";
+            this.tspHeader.Size = new System.Drawing.Size(121, 22);
+            this.tspHeader.Text = "Stock Adjustment";
             // 
             // pnlGoodsOutward
             // 
@@ -580,6 +580,7 @@
             // clmRemove
             // 
             this.clmRemove.HeaderText = "";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
             this.clmRemove.MinimumWidth = 6;
             this.clmRemove.Name = "clmRemove";
             this.clmRemove.ReadOnly = true;

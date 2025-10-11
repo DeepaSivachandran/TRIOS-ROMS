@@ -359,9 +359,18 @@ namespace ROMS
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 80312;
+
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID  = 87", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                  objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;

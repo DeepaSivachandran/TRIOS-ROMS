@@ -308,13 +308,22 @@ namespace ROMS
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 80118;
+
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1,369)", "MST_DisplayText,MSTID", cmbStatus, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,113) AND MSTID<>0 ORDER BY MST_OrderID ASC ", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;

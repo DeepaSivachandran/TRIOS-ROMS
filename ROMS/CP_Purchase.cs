@@ -6447,15 +6447,40 @@ namespace ROMS
         {
             try
             {
-                if(Txtdiscount.Text.Trim()!="" || txtDiscountamt.Text.Trim()!="")
+                if( Txtdiscount.Text.Trim()!="" || txtDiscountamt.Text.Trim()!="")
                 {
-                    if(Txtdiscount.Text.Trim()!="")
+                    if(Convert.ToDecimal(Txtdiscount.Text.Trim())!=0)
                     {
                         udfnDiscount(1);
+                        Txtdiscount.BackColor = Color.White;
+                        decimal varDiscountAmt = 0, varDisPer = 0;
+                        if (Txtdiscount.Text.Trim() != "")
+                        { varDisPer = Convert.ToDecimal(Txtdiscount.Text); }
+                        if (txtDiscountamt.Text.Trim() != "")
+                        { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
+                        Txtdiscount.Text = varDisPer.ToString("0.00");
+                        txtDiscountamt.Text = varDiscountAmount.ToString("0.00");
+                        if (txtDiscountamt.Text.Trim() != "" && Convert.ToDecimal(Txtdiscount.Text) > 100)
+                        {
+                            errPurchaseentry.SetError(Txtdiscount, "Discount percentage should not be >100");
+                            Txtdiscount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        }
+                        else
+                        {
+                            errPurchaseentry.Clear();
+                            Txtdiscount.BackColor = Color.White;
+                        }
                     }
-                    if(txtDiscountamt.Text.Trim()!="")
+                    if(Convert.ToDecimal(txtDiscountamt.Text.Trim())!=0)
                     {
                         udfnDiscount(2);
+                        decimal varDiscountAmt = 0, varDisPer = 0;
+                        if (Txtdiscount.Text.Trim() != "")
+                        { varDisPer = Convert.ToDecimal(Txtdiscount.Text); }
+                        if (txtDiscountamt.Text.Trim() != "")
+                        { varDiscountAmt = Convert.ToDecimal(txtDiscountamt.Text); }
+                        Txtdiscount.Text = varDiscountPer.ToString("0.00");
+                        txtDiscountamt.Text = varDiscountAmt.ToString("0.00");
                     }
                 }
                 udfnLoadingGrandTotCalculation();
@@ -10425,23 +10450,23 @@ namespace ROMS
             {
                 if (rbDiscountAfter.Checked == true)
                 {
-                    grdPurchaseList.Columns["clmDiscountValue"].Visible = true;
-                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 21;
-                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 22;
-                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 23;
-                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 24;
-                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 25;
-                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 26;
+                    grdPurchaseList.Columns["clmDiscountValue"].Visible = true; 
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 20;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 22;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 23;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 24;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 25; 
                 }
                 if (rbDiscountBefore.Checked == true)
                 {
                     grdPurchaseList.Columns["clmDiscountValue"].Visible = false;
-                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 21;
-                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 22;
-                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 23;
-                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 24;
-                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 25;
-                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 26;
+                    grdPurchaseList.Columns["clmDiscAmt"].DisplayIndex = 20;
+                    grdPurchaseList.Columns["clmDiscPer"].DisplayIndex = 21;
+                    grdPurchaseList.Columns["clmTax"].DisplayIndex = 22;
+                    grdPurchaseList.Columns["clmGstper"].DisplayIndex = 23;
+                    grdPurchaseList.Columns["clmGstamt"].DisplayIndex = 24;
+                    grdPurchaseList.Columns["clmDiscountValue"].DisplayIndex = 25; 
                 }
             }
             catch (Exception ex)

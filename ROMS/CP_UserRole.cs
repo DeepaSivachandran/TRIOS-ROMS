@@ -30,6 +30,7 @@ namespace ROMS
         public DataTable objDtSplPermission = new DataTable();
         public DataTable objDtSplPermissionFilterTable = new DataTable();
         public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
+        
 
         public CP_UserRole()
         {
@@ -50,7 +51,7 @@ namespace ROMS
                 objDtUserMenuDetails.Clear();
                 objDtUserMenuDetails = MainForm.objDtMenuDetails.DefaultView.ToTable(false, "MU_Code", "MU_Name", "MU_Link", "MU_ParentMenuCode", "MU_Level", "MU_Formname", "MU_CloseFlag", "Menuflag");
                 DataView dv = new DataView(objDtUserMenuDetails);
-                dv.RowFilter = "MU_ParentMenuCode IS NULL";
+                dv.RowFilter = "MU_ParentMenuCode IS NULL AND MU_Code <> 9";
                 objDtMainMenu = dv.ToTable();
 
                 objDtSplPermission.Clear();
@@ -143,7 +144,10 @@ namespace ROMS
                 //}
                 e.Node.EnsureVisible();
                 tvMainmenu.SelectedNode = e.Node;
-                e.Node.BackColor = Color.LightBlue; 
+                e.Node.BackColor = Color.LightBlue;
+                tvLevl2Submenu.Nodes.Clear();
+                 
+
             }
             catch (Exception ex)
             {
@@ -236,7 +240,14 @@ namespace ROMS
         {
             try
             {
-                tvSubmenu.SelectedNode = null; // Remove selection
+                //if (e.Node.Level == 0)
+                //{
+                //    e.Cancel = true; // Initially cancel the event
+                //    if (e.Node.Checked)
+                //    {
+                //        e.Cancel = false; // <--- PROBLEM: If it was already checked, you allowed it to be unchecked.
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -335,25 +346,30 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (btnSave.Text == "Update")
-                    {
-                        varupdate = "1";
-                        udfnclose();
-                    }
-                    else
+                    varChangesFlag = 0;
+                    if (btnSave.Text == "Save")
                     {
                         if (varvalue[2] != "")
                         {
                             varChangesFlag = 0;
                             varUserRoleID = Convert.ToInt32(varvalue[2]);
                             btnSave.Text = "Update";
-                            tbFirst.SelectedIndex = 1;
                         }
                         else
                         {
                             btnSave.Text = "Save";
+                        } 
+                    }
+                    else
+                    {
+                        if (btnSave.Text == "Update" && Convert.ToString(tbFirst.SelectedIndex) == "1")
+                        {
+                            varupdate = "1";
+                            udfnclose();
                         }
                     }
+
+                    tbFirst.SelectedIndex = 1;
                 }
                 else
                 {
@@ -408,7 +424,7 @@ namespace ROMS
         {
             try
             {
-
+                 
                 submenu.Nodes.Clear(); // clear previous second tree
 
                 // Create root node for this parent
@@ -480,8 +496,8 @@ namespace ROMS
                     //// Recursive call to add children of this child
                     ///
                     if (parenttype == 1)
-                    {
-                        LoadSubMenu(childNode, nodeValue,0);
+                    { 
+                        LoadSubMenu(childNode, nodeValue, 1); 
                     } 
                 }
 
@@ -830,46 +846,49 @@ namespace ROMS
                                 row.Cells[colIndex].ReadOnly = true;
                             }
 
-                            if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
-                            {
-                                if (!grdUserPermission.Columns.Contains(colName)) continue;
+                            //if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
+                            //{
+                            //    if (!grdUserPermission.Columns.Contains(colName)) continue;
 
-                                int colIndex = grdUserPermission.Columns[colName].Index;
+                            //    int colIndex = grdUserPermission.Columns[colName].Index;
 
-                                // create a new text cell (blank)
-                                var blankCell = new DataGridViewTextBoxCell
-                                {
-                                    Value = ""
-                                };
+                            //    // create a new text cell (blank)
+                            //    var blankCell = new DataGridViewTextBoxCell
+                            //    {
+                            //        Value = ""
+                            //    };
 
-                                // replace the checkbox cell for this row
-                                row.Cells[colIndex] = blankCell;
-                                row.Cells[colIndex].ReadOnly = true;
-                            }
+                            //    // replace the checkbox cell for this row
+                            //    row.Cells[colIndex] = blankCell;
+                            //    row.Cells[colIndex].ReadOnly = true;
+                            //}
                         }
 
                         string imgCol = "Action";
-                        if (splFlag == "0")
+                    if (splFlag == "0")
+                    {
+                        var imgCell = row.Cells[imgCol];
+                        imgCell.Value = new Bitmap(1, 1);
+                        imgCell.ReadOnly = true;
+                    }
+                    else {
+                        if (!allowed.Contains(8))
                         {
                             var imgCell = row.Cells[imgCol];
                             imgCell.Value = new Bitmap(1, 1);
                             imgCell.ReadOnly = true;
                         }
+                    }
 
-                        if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
-                        {
-                            if (grdUserPermission.Columns.Contains(imgCol))
-                            {
-                                var imgCell = row.Cells[imgCol];
-                                imgCell.Value = new Bitmap(1, 1);
-                                imgCell.ReadOnly = true;
-                            }
+                        //if (parentFlag == 1 || parentFlag == 10 || parentFlag == 100 || parentFlag == 1000)
+                        //{
+                           
                             if (parentFlag == 1)
                             {
 
                                 row.DefaultCellStyle.BackColor = Color.LightBlue; // highlight row
                             }
-                            else if (parentFlag == 10)
+                            else if (parentFlag == 10 || parentFlag == 1000)
                             {
                                 row.DefaultCellStyle.BackColor = Color.AliceBlue; // highlight row
                             }
@@ -878,9 +897,9 @@ namespace ROMS
 
                                 row.DefaultCellStyle.BackColor = Color.Honeydew; // highlight row 
                             }
-                        }
-                        else
-                        {
+                        //}
+                        //else
+                        //{
 
                             // --- Flow 2: Apply checked values ---
                             if (!string.IsNullOrEmpty(values))
@@ -905,7 +924,7 @@ namespace ROMS
                                 }
 
                             }
-                        }
+                        //}
 
                     } 
             }
@@ -929,7 +948,7 @@ namespace ROMS
                     {
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "├⮞", e.CellStyle.Font,
@@ -946,7 +965,7 @@ namespace ROMS
                     {
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Blue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "├⮞", e.CellStyle.Font,
@@ -960,12 +979,12 @@ namespace ROMS
                             textColor, TextFormatFlags.Left);
 
                     }
-                    if (menuType == "4")
+                    if (menuType == "4" || menuType == "1000")
                     {
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
 
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
@@ -984,7 +1003,7 @@ namespace ROMS
                         e.Handled = true;
                         e.PaintBackground(e.CellBounds, true);
 
-                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.White : Color.Black;
+                        Color textColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.Black;
                         Color textArrowColor = e.State.HasFlag(DataGridViewElementStates.Selected) ? Color.Black : Color.DarkBlue;
                         // Draw arrow (-►)
                         TextRenderer.DrawText(e.Graphics, "└⮞", e.CellStyle.Font,
@@ -1117,7 +1136,7 @@ namespace ROMS
                                     }
                                     else
                                     {
-                                        cell.ReadOnly = true;
+                                        cell.ReadOnly = true; 
                                         cell.Style.BackColor = System.Drawing.Color.LightGray;
                                     }
                                 }
@@ -1146,7 +1165,13 @@ namespace ROMS
                 if (e.RowIndex != -1)
                 {
                     DataGridViewRow row = grdUserPermission.Rows[e.RowIndex];
-                    switch (grdUserPermission.Columns[e.ColumnIndex].Name)
+                    DataGridViewCell clickedCell = grdUserPermission.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    System.Drawing.Color cellColor = clickedCell.Style.BackColor;
+                    if (cellColor == System.Drawing.Color.LightGray)
+                    {
+                        return;
+                    }
+                        switch (grdUserPermission.Columns[e.ColumnIndex].Name)
                     {
                         case "Action":
                             try
@@ -1246,30 +1271,34 @@ namespace ROMS
                     n.ForeColor = Color.Black;
                 });
                 if (e.Action != TreeViewAction.Unknown)
-                {
-                    varChangesFlag = 1;
+                { 
                     TreeNode clickedNode = e.Node;
-
-                    if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
-
-                    string menuCode = e.Node.Tag.ToString();
-
-                    if (menuCode == "")
+                    if (e.Node.Level != 0)
                     {
-                        menuCode = "0";
+                        if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
+
+                        string menuCode = e.Node.Tag.ToString();
+
+                        if (menuCode == "")
+                        {
+                            menuCode = "0";
+                        }
+
+                        //objDtSubMenu.Clear(); 
+
+                        if (e.Node.IsSelected)
+                            LoadSubMenuForParent(tvLevl2Submenu, menuCode);
+                        else
+                            RemoveSubMenu(tvLevl2Submenu, Convert.ToInt32(menuCode));
+
+
+                        e.Node.EnsureVisible();
+                        tvMainmenu.SelectedNode = e.Node;
+                        e.Node.BackColor = Color.LightBlue;
                     }
-
-                    //objDtSubMenu.Clear(); 
-
-                    if (e.Node.IsSelected)
-                        LoadSubMenuForParent(tvLevl2Submenu, menuCode);
-                    else
-                        RemoveSubMenu(tvLevl2Submenu, Convert.ToInt32(menuCode));
-
-
-                    e.Node.EnsureVisible();
-                    tvMainmenu.SelectedNode = e.Node;
-                    e.Node.BackColor = Color.LightBlue;
+                    else {
+                        tvLevl2Submenu.Nodes.Clear();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1286,25 +1315,45 @@ namespace ROMS
 
         private void tvSubmenu_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
-            try
-            {
-                if (e.Node.Parent == null && e.Node.Index == 0)
-                {
-                    // Draw only text (no checkbox)
-                    TextRenderer.DrawText(e.Graphics, e.Node.Text,
-                        e.Node.NodeFont ?? e.Node.TreeView.Font,
-                        e.Bounds, e.Node.ForeColor, TextFormatFlags.GlyphOverhangPadding);
-                }
-                else
-                {
-                    e.DrawDefault = true; // Draw normally (with checkbox)
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            //// The bounds of the node's text/content area
+            //Rectangle nodeBounds = e.Bounds;
+
+            //// Check if the node is a Level 0 node
+            //if (e.Node.Level == 0)
+            //{
+            //    // 1. Calculate the new text bounds (shifting left to hide the checkbox area).
+            //    // The constant 19-20 pixels is a rough estimate for the checkbox and padding.
+            //    int checkboxWidth = 20;
+
+            //    // Adjust the bounds to start where the checkbox normally ends
+            //    Rectangle textBounds = new Rectangle(
+            //        nodeBounds.X - checkboxWidth, // Shift text area left
+            //        nodeBounds.Y,
+            //        nodeBounds.Width + checkboxWidth, // Make the text area wider
+            //        nodeBounds.Height
+            //    );
+
+            //    // 2. Draw the node's background (optional)
+            //    if (e.State.HasFlag(TreeNodeStates.Selected))
+            //    {
+            //        e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Highlight, nodeBounds);
+            //        e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.HighlightText, textBounds);
+            //    }
+            //    else
+            //    {
+            //        e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Window, nodeBounds);
+            //        e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.WindowText, textBounds);
+            //    }
+
+            //    // Crucial: Set DrawDefault to false since we drew manually
+            //    e.DrawDefault = false;
+            //}
+            //else
+            //{
+            //    // 3. For all other levels (Level 1, 2, etc.), draw the node normally
+            //    //    (This includes the visible checkbox)
+            //    e.DrawDefault = true;
+            //}
         }
 
         private void tvSubmenu_AfterCheck(object sender, TreeViewEventArgs e)
@@ -1368,6 +1417,11 @@ namespace ROMS
             }
         }
 
+        private void tvSubmenu_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
         private void SetChildNodes(TreeNode node, bool isChecked)
         {
             try
@@ -1416,6 +1470,9 @@ namespace ROMS
                     matchingNode.Checked = allChecked;
                      
                 }
+
+
+
             }
             catch (Exception ex)
             {
@@ -1561,6 +1618,15 @@ namespace ROMS
                                 {
                                     row["Menuflag"] = 1;
                                 });
+
+                                if (objDs.Tables[0].Rows[0]["UR_STSID"].ToString() == "1")
+                                {
+                                    rbActive.Checked = true;
+                                }
+                                else
+                                {
+                                    rbInactive.Checked = true;
+                                }
                             }
                         }
                     }
@@ -1658,7 +1724,6 @@ namespace ROMS
             }
 
             return null;
-        }
-
+        } 
     }
 }

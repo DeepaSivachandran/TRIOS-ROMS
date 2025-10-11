@@ -2820,6 +2820,7 @@ namespace ROMS
                 grdChild2.ClearSelection();
 
                 grdChild_DataBindingComplete(grdChild, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
+                cmbChildProduct1_SelectedIndexChanged(sender, e);
                 //DGV_inward.Sort(DGV_inward.Columns["clmpicode"], ListSortDirection.Ascending);
 
             }
@@ -3025,7 +3026,8 @@ namespace ROMS
 
             try
             {
-                UpdateTotal();
+                UpdateTotal(); 
+                UpdateBalanceTotal();
             }
             catch (Exception ex)
             {
@@ -3038,7 +3040,8 @@ namespace ROMS
         {
             try
             {
-                UpdateTotal();
+                UpdateTotal(); 
+                UpdateBalanceTotal();
             }
             catch (Exception ex)
             {
@@ -4840,7 +4843,7 @@ namespace ROMS
 
             try
             {
-                UpdateTotalChild();
+                UpdateTotalChild(); UpdateBalanceTotalChild();
             }
             catch (Exception ex)
             {
@@ -4854,7 +4857,7 @@ namespace ROMS
 
             try
             {
-                UpdateTotalChild();
+                UpdateTotalChild(); UpdateBalanceTotalChild();
             }
             catch (Exception ex)
             {
@@ -4868,7 +4871,7 @@ namespace ROMS
 
             try
             {
-                UpdateTotalChild(); 
+                UpdateTotalChild(); UpdateBalanceTotalChild();
             }
             catch (Exception ex)
             {
@@ -5361,8 +5364,57 @@ namespace ROMS
             {
                 if (varBalanceqty != 0) 
                 { 
-                    MessageBox.Show("Unable to process the conversion! The required child qty is lesser than the available qty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(166);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 379) // parent - child
+
+                {
+
+                    if (grdChild.Rows.Count == 0)
+                    {
+
+
+
+
+
+                        SPDataService objDServ = new SPDataService();
+
+                        string varMessage = objDServ.udfnGetMessages(38);
+
+                        objDServ.CloseConnection();
+
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        return;
+
+                    }
+
+                }
+
+                else if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 380) // child - parent
+
+                {
+
+                    if (grdParent2.Rows.Count == 0)
+
+                    {
+
+                        SPDataService objDServ = new SPDataService();
+
+                        string varMessage = objDServ.udfnGetMessages(38);
+
+                        objDServ.CloseConnection();
+
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        return;
+
+                    }
+
                 }
                 udfnSave();
             }
@@ -6368,9 +6420,9 @@ namespace ROMS
 
                 // Calculate balance
                 decimal balance =  total - totalQtyUpp;
-                if (totalQtyUpp == 0) {
-                    balance = totalQtyUpp - total;
-                }
+                //if (totalQtyUpp == 0) {
+                //    balance = totalQtyUpp - total;
+                //}
                 lblParentbalqty.Text = Convert.ToString(balance);
                 varBalanceqty = balance;
             }

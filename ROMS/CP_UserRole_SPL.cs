@@ -163,8 +163,7 @@ namespace ROMS
                             int colIndex = grdUserSPLPermission.Columns[colName].Index;
                             // replace the checkbox cell for this row
                             row.Cells[colIndex] = blankCell;
-                            row.Cells[colIndex].ReadOnly = true;
-                            row.DefaultCellStyle.BackColor = Color.LightBlue;
+                            row.Cells[colIndex].ReadOnly = true; 
                         }
                     } 
 
@@ -183,8 +182,9 @@ namespace ROMS
             try
             {
 
-                int viewColumnIndex = grdUserSPLPermission.Columns["clmViewchk"]?.Index ?? -1; 
+                int viewColumnIndex = grdUserSPLPermission.Columns["clmViewchk"]?.Index ?? -1;
 
+                string PrivilegeCode = Convert.ToString(grdUserSPLPermission.Rows[e.RowIndex].Cells["clmPrivilagecode"].Value);
 
                 // Check if the change happened in the 'View' column (clmViewchk)
                 if (e.ColumnIndex == viewColumnIndex && e.RowIndex >= 0)
@@ -203,22 +203,30 @@ namespace ROMS
                     // This handles DBNull, 0/1 integers, and boolean strings gracefully.
                     bool isViewChecked = Convert.ToBoolean(cellValue);
                     // ---------------------------------------------
-                     
+
+                    int privilegeNo = 8;
                     // If 'View' is checked (true), other columns should be ENABLED (ReadOnly = false)
                     // If 'View' is NOT checked (false), other columns should be DISABLED (ReadOnly = true)
                     bool setReadOnly = !isViewChecked;
 
                     // Iterate through the other permission columns
-                     
-                        foreach (var colName in permissionColumns)
-                        {
-                            // Find the index of the current permission column
-                            int colIndex = grdUserSPLPermission.Columns[colName]?.Index ?? -1;
 
+                    foreach (var colName in permissionColumns)
+                    {
+                        // Find the index of the current permission column
+                        int colIndex = grdUserSPLPermission.Columns[colName]?.Index ?? -1;
+                        if (!string.IsNullOrEmpty(PrivilegeCode))
+                        {
+                            var cell = grdUserSPLPermission.Rows[e.RowIndex].Cells[colIndex];
+                            var allowed = PrivilegeCode.Split(',')
+                                                                 .Select(s => s.Trim())
+                                                                 .Where(s => int.TryParse(s, out _))
+                                                                 .Select(int.Parse)
+                                                                 .ToList();
+                            privilegeNo = privilegeNo + 1;
                             if (colIndex != -1)
                             {
-                                var cell = grdUserSPLPermission.Rows[e.RowIndex].Cells[colIndex];
-                                  
+
                                 // Set the ReadOnly property to enable/disable the cell
 
                                 if (colName != "clmViewchk")
@@ -231,16 +239,39 @@ namespace ROMS
                                 }
 
                                 if (setReadOnly && colName != "clmViewchk")
-                                { 
-                                    cell.Value = false;
+                                {
+                                    if (allowed.Contains(privilegeNo))
+                                    {
+                                        cell.Value = false;
+                                    }
+                                    else
+                                    {
+                                        cell.ReadOnly = true;
+                                    }
                                     cell.Style.BackColor = System.Drawing.Color.LightGray;
                                 }
                                 else
-                                { 
+                                {
+                                    if (allowed.Contains(privilegeNo))
+                                    {
+                                        // Reset the background color when enabled
                                         cell.Style.BackColor = grdUserSPLPermission.DefaultCellStyle.BackColor;
-                                } 
+                                    }
+                                    else
+                                    {
+                                        cell.ReadOnly = true;
+                                        cell.Style.BackColor = System.Drawing.Color.LightGray;
+                                    }
+                                }
                             }
-                        } 
+                            else
+                            {
+                                cell.ReadOnly = true;
+                                // Reset the background color when enabled
+                                cell.Style.BackColor = System.Drawing.Color.LightGray;
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -269,11 +300,13 @@ namespace ROMS
         private void grdUserSPLPermission_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
+
             try
             {
 
                 int viewColumnIndex = grdUserSPLPermission.Columns["clmViewchk"]?.Index ?? -1;
 
+                string PrivilegeCode = Convert.ToString(grdUserSPLPermission.Rows[e.RowIndex].Cells["clmPrivilagecode"].Value);
 
                 // Check if the change happened in the 'View' column (clmViewchk)
                 if (e.ColumnIndex == viewColumnIndex && e.RowIndex >= 0)
@@ -293,6 +326,7 @@ namespace ROMS
                     bool isViewChecked = Convert.ToBoolean(cellValue);
                     // ---------------------------------------------
 
+                    int privilegeNo = 8;
                     // If 'View' is checked (true), other columns should be ENABLED (ReadOnly = false)
                     // If 'View' is NOT checked (false), other columns should be DISABLED (ReadOnly = true)
                     bool setReadOnly = !isViewChecked;
@@ -303,30 +337,60 @@ namespace ROMS
                     {
                         // Find the index of the current permission column
                         int colIndex = grdUserSPLPermission.Columns[colName]?.Index ?? -1;
-
-                        if (colIndex != -1)
+                        if (!string.IsNullOrEmpty(PrivilegeCode))
                         {
                             var cell = grdUserSPLPermission.Rows[e.RowIndex].Cells[colIndex];
-
-                            // Set the ReadOnly property to enable/disable the cell
-
-                            if (colName != "clmViewchk")
+                            var allowed = PrivilegeCode.Split(',')
+                                                                 .Select(s => s.Trim())
+                                                                 .Where(s => int.TryParse(s, out _))
+                                                                 .Select(int.Parse)
+                                                                 .ToList();
+                            privilegeNo = privilegeNo + 1;
+                            if (colIndex != -1)
                             {
-                                cell.ReadOnly = setReadOnly;
+
+                                // Set the ReadOnly property to enable/disable the cell
+
+                                if (colName != "clmViewchk")
+                                {
+                                    cell.ReadOnly = setReadOnly;
+                                }
+                                else
+                                {
+                                    cell.ReadOnly = false;
+                                }
+
+                                if (setReadOnly && colName != "clmViewchk")
+                                {
+                                    if (allowed.Contains(privilegeNo))
+                                    {
+                                        cell.Value = false;
+                                    }
+                                    else
+                                    {
+                                        cell.ReadOnly = true;
+                                    }
+                                    cell.Style.BackColor = System.Drawing.Color.LightGray;
+                                }
+                                else
+                                {
+                                    if (allowed.Contains(privilegeNo))
+                                    {
+                                        // Reset the background color when enabled
+                                        cell.Style.BackColor = grdUserSPLPermission.DefaultCellStyle.BackColor;
+                                    }
+                                    else
+                                    {
+                                        cell.ReadOnly = true;
+                                        cell.Style.BackColor = System.Drawing.Color.LightGray;
+                                    }
+                                }
                             }
                             else
                             {
-                                cell.ReadOnly = false;
-                            }
-
-                            if (setReadOnly && colName != "clmViewchk")
-                            {
-                                cell.Value = false;
+                                cell.ReadOnly = true;
+                                // Reset the background color when enabled
                                 cell.Style.BackColor = System.Drawing.Color.LightGray;
-                            }
-                            else
-                            {
-                                cell.Style.BackColor = grdUserSPLPermission.DefaultCellStyle.BackColor;
                             }
                         }
                     }

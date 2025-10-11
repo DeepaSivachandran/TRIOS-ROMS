@@ -106,8 +106,6 @@ namespace ROMS
             this.tsmDirectLabelPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmProMapping = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBatchNoConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPrinterSettings = new System.Windows.Forms.ToolStripMenuItem();
@@ -193,6 +191,7 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmStockJournal = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -326,7 +325,8 @@ namespace ROMS
             this.tsmDamageEntry,
             this.tsmStockReq,
             this.tsmRackTransfer,
-            this.tsmStockConversion});
+            this.tsmStockConversion,
+            this.tsmStockJournal});
             this.tsmInventory.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmInventory.Name = "tsmInventory";
             this.tsmInventory.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.I)));
@@ -341,7 +341,7 @@ namespace ROMS
             this.tsmInwardfromothers});
             this.tsminward.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsminward.Name = "tsminward";
-            this.tsminward.Size = new System.Drawing.Size(174, 22);
+            this.tsminward.Size = new System.Drawing.Size(180, 22);
             this.tsminward.Text = "Goods Inward";
             this.tsminward.Visible = false;
             // 
@@ -364,7 +364,7 @@ namespace ROMS
             // tsmOutward
             // 
             this.tsmOutward.Name = "tsmOutward";
-            this.tsmOutward.Size = new System.Drawing.Size(174, 22);
+            this.tsmOutward.Size = new System.Drawing.Size(180, 22);
             this.tsmOutward.Text = "Goods Outward";
             this.tsmOutward.Visible = false;
             this.tsmOutward.Click += new System.EventHandler(this.TsmOutward_Click);
@@ -372,7 +372,7 @@ namespace ROMS
             // tsmStockTransfer
             // 
             this.tsmStockTransfer.Name = "tsmStockTransfer";
-            this.tsmStockTransfer.Size = new System.Drawing.Size(174, 22);
+            this.tsmStockTransfer.Size = new System.Drawing.Size(180, 22);
             this.tsmStockTransfer.Text = "Stock Transfer";
             this.tsmStockTransfer.Visible = false;
             this.tsmStockTransfer.Click += new System.EventHandler(this.TsmStockTransfer_Click);
@@ -380,7 +380,7 @@ namespace ROMS
             // tsmBatchConversion
             // 
             this.tsmBatchConversion.Name = "tsmBatchConversion";
-            this.tsmBatchConversion.Size = new System.Drawing.Size(174, 22);
+            this.tsmBatchConversion.Size = new System.Drawing.Size(180, 22);
             this.tsmBatchConversion.Text = "Batch Conversion";
             this.tsmBatchConversion.Visible = false;
             this.tsmBatchConversion.Click += new System.EventHandler(this.tsmBatchConversion_Click);
@@ -388,15 +388,15 @@ namespace ROMS
             // tsmStockReconciliation
             // 
             this.tsmStockReconciliation.Name = "tsmStockReconciliation";
-            this.tsmStockReconciliation.Size = new System.Drawing.Size(174, 22);
-            this.tsmStockReconciliation.Text = "Stock Reconciliation";
+            this.tsmStockReconciliation.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockReconciliation.Text = "Stock Adjustment";
             this.tsmStockReconciliation.Visible = false;
             this.tsmStockReconciliation.Click += new System.EventHandler(this.tsmStockReconciliation_Click);
             // 
             // tsmStockHold
             // 
             this.tsmStockHold.Name = "tsmStockHold";
-            this.tsmStockHold.Size = new System.Drawing.Size(174, 22);
+            this.tsmStockHold.Size = new System.Drawing.Size(180, 22);
             this.tsmStockHold.Text = "Stock Hold";
             this.tsmStockHold.Visible = false;
             this.tsmStockHold.Click += new System.EventHandler(this.TsmStockHold_Click);
@@ -404,7 +404,7 @@ namespace ROMS
             // tsmDamageEntry
             // 
             this.tsmDamageEntry.Name = "tsmDamageEntry";
-            this.tsmDamageEntry.Size = new System.Drawing.Size(174, 22);
+            this.tsmDamageEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmDamageEntry.Text = "Damage Entry";
             this.tsmDamageEntry.Visible = false;
             this.tsmDamageEntry.Click += new System.EventHandler(this.tsmDamageEntry_Click);
@@ -412,7 +412,7 @@ namespace ROMS
             // tsmStockReq
             // 
             this.tsmStockReq.Name = "tsmStockReq";
-            this.tsmStockReq.Size = new System.Drawing.Size(174, 22);
+            this.tsmStockReq.Size = new System.Drawing.Size(180, 22);
             this.tsmStockReq.Text = "Shop Stock Request";
             this.tsmStockReq.Visible = false;
             this.tsmStockReq.Click += new System.EventHandler(this.TsmStockRequest_Click);
@@ -420,7 +420,7 @@ namespace ROMS
             // tsmRackTransfer
             // 
             this.tsmRackTransfer.Name = "tsmRackTransfer";
-            this.tsmRackTransfer.Size = new System.Drawing.Size(174, 22);
+            this.tsmRackTransfer.Size = new System.Drawing.Size(180, 22);
             this.tsmRackTransfer.Text = "Rack Transfer";
             this.tsmRackTransfer.Visible = false;
             this.tsmRackTransfer.Click += new System.EventHandler(this.tsmRackTransfer_Click);
@@ -428,7 +428,7 @@ namespace ROMS
             // tsmStockConversion
             // 
             this.tsmStockConversion.Name = "tsmStockConversion";
-            this.tsmStockConversion.Size = new System.Drawing.Size(174, 22);
+            this.tsmStockConversion.Size = new System.Drawing.Size(180, 22);
             this.tsmStockConversion.Text = "Stock Conversion";
             this.tsmStockConversion.Visible = false;
             this.tsmStockConversion.Click += new System.EventHandler(this.tsmStockConversion_Click);
@@ -875,8 +875,6 @@ namespace ROMS
             // tsmControlPanel
             // 
             this.tsmControlPanel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmProMapping,
-            this.tsmBatchNoConfig,
             this.tsmVoucherSettings,
             this.tsmGeneralSettings,
             this.tsmPrinterSettings,
@@ -890,25 +888,10 @@ namespace ROMS
             this.tsmControlPanel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmControlPanel.Visible = false;
             // 
-            // tsmProMapping
-            // 
-            this.tsmProMapping.Name = "tsmProMapping";
-            this.tsmProMapping.Size = new System.Drawing.Size(207, 22);
-            this.tsmProMapping.Text = "Supplier - Product Mapping";
-            this.tsmProMapping.Visible = false;
-            this.tsmProMapping.Click += new System.EventHandler(this.tsmProMapping_Click);
-            // 
-            // tsmBatchNoConfig
-            // 
-            this.tsmBatchNoConfig.Name = "tsmBatchNoConfig";
-            this.tsmBatchNoConfig.Size = new System.Drawing.Size(207, 22);
-            this.tsmBatchNoConfig.Text = "Batch No. Configuration";
-            this.tsmBatchNoConfig.Visible = false;
-            // 
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -916,7 +899,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -924,7 +907,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -932,7 +915,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(207, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
@@ -1482,7 +1465,7 @@ namespace ROMS
             // tsmSupplierLedgerReport
             // 
             this.tsmSupplierLedgerReport.Name = "tsmSupplierLedgerReport";
-            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(149, 22);
             this.tsmSupplierLedgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLedgerReport.Visible = false;
             this.tsmSupplierLedgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
@@ -1490,7 +1473,7 @@ namespace ROMS
             // tsmPaymentReport
             // 
             this.tsmPaymentReport.Name = "tsmPaymentReport";
-            this.tsmPaymentReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmPaymentReport.Size = new System.Drawing.Size(149, 22);
             this.tsmPaymentReport.Text = "Payment";
             this.tsmPaymentReport.Visible = false;
             this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
@@ -1667,8 +1650,8 @@ namespace ROMS
             this.ms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbLogo,
             this.tsmpurchase,
-            this.tsmInventory,
             this.tsmAccounts,
+            this.tsmInventory,
             this.tsmFinance,
             this.tsmMaster,
             this.lblDb,
@@ -1687,6 +1670,14 @@ namespace ROMS
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
+            // 
+            // tsmStockJournal
+            // 
+            this.tsmStockJournal.Name = "tsmStockJournal";
+            this.tsmStockJournal.Size = new System.Drawing.Size(180, 22);
+            this.tsmStockJournal.Text = "Stock Journal";
+            this.tsmStockJournal.Visible = false;
+            this.tsmStockJournal.Click += new System.EventHandler(this.tsmStockJournal_Click);
             // 
             // MainForm
             // 
@@ -1792,8 +1783,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStickerPrint;
         private System.Windows.Forms.ToolStripMenuItem tsmDirectLabelPrint;
         private System.Windows.Forms.ToolStripMenuItem tsmControlPanel;
-        private System.Windows.Forms.ToolStripMenuItem tsmProMapping;
-        private System.Windows.Forms.ToolStripMenuItem tsmBatchNoConfig;
         private System.Windows.Forms.ToolStripMenuItem tsmVoucherSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmGeneralSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmPrinterSettings;
@@ -1882,5 +1871,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmUserRole;
         private System.Windows.Forms.ToolStripMenuItem tsmPriceList;
         private System.Windows.Forms.ToolStripMenuItem tsmTaxChanges;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockJournal;
     }
 }
