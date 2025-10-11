@@ -455,19 +455,19 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
 
-                TRN_Stock_Converstion objTRN_Stock_Converstion = new TRN_Stock_Converstion();
-                objTRN_Stock_Converstion.ViewType = 0;
-                objTRN_Stock_Converstion.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                objTRN_Stock_Converstion.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRN_Stock_Converstion.paraFromDate = dtpstkconvdate.Text;
-                objTRN_Stock_Converstion.paraToDate = dtpstkconvtodate.Text;
-                objTRN_Stock_Converstion.paraSLID = Convert.ToInt32(varStockLocationId);
-                objTRN_Stock_Converstion.ParaTransactionId = Convert.ToInt32(0);
-                objTRN_Stock_Converstion.paraTransType = Convert.ToInt32(cmbTransactionType.SelectedValue);
-                objTRN_Stock_Converstion.paraPRID = Convert.ToInt32(varPRID);
-                objTRN_Stock_Converstion.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
-                objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
-                objDs = objdserv.udfnStockConverstionList(objTRN_Stock_Converstion);
+                TRN_Stock_Journal objTRN_Stock_Journal = new TRN_Stock_Journal();
+                objTRN_Stock_Journal.ViewType = 0;
+                objTRN_Stock_Journal.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                objTRN_Stock_Journal.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objTRN_Stock_Journal.paraFromDate = dtpstkconvdate.Text;
+                objTRN_Stock_Journal.paraToDate = dtpstkconvtodate.Text;
+                objTRN_Stock_Journal.paraSLID = Convert.ToInt32(varStockLocationId);
+                objTRN_Stock_Journal.ParaTransactionId = Convert.ToInt32(0);
+                objTRN_Stock_Journal.paraTransType = Convert.ToInt32(cmbTransactionType.SelectedValue);
+                objTRN_Stock_Journal.paraPRID = Convert.ToInt32(varPRID);
+                objTRN_Stock_Journal.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_Stock_Journal.paraIPAddress = MainForm.pbIpAddress;
+                objDs = objdserv.udfnStockJournalList(objTRN_Stock_Journal);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
@@ -483,8 +483,7 @@ namespace ROMS
                             grdStockConversion.Columns["S.No."].Width = 50;
                             grdStockConversion.Columns["Concern"].Width = 120;
                             grdStockConversion.Columns["Transaction Date"].Width = 120;
-                            grdStockConversion.Columns["Transaction No."].Width = 130;
-                            grdStockConversion.Columns["Transaction Type"].Width = 130; 
+                            grdStockConversion.Columns["Transaction No."].Width = 130;  
                             grdStockConversion.Columns["TransactionID"].Visible = false;
                             grdStockConversion.Columns["Total Products"].Width = 120;
                             grdStockConversion.Columns["Created By"].Width = 120;
@@ -553,8 +552,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Concern"].Width = 120;
                 DGV_SearchGrid.Columns["Transaction Date"].Width = 120;
-                DGV_SearchGrid.Columns["Transaction No."].Width = 130;
-                DGV_SearchGrid.Columns["Transaction Type"].Width = 130; 
+                DGV_SearchGrid.Columns["Transaction No."].Width = 130; 
                 DGV_SearchGrid.Columns["TransactionID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;
                 DGV_SearchGrid.Columns["Created By"].Width = 120;
@@ -1194,7 +1192,7 @@ namespace ROMS
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
 
-                            if (col.Name == "Concern" || col.Name == "Transaction Date" || col.Name == "Transaction No." || col.Name == "Stock Location" || col.Name == "Transaction Type" )
+                            if (col.Name == "Concern" || col.Name == "Transaction Date" || col.Name == "Transaction No." || col.Name == "Stock Location" )
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
                             }
@@ -1352,14 +1350,14 @@ namespace ROMS
 
                         String varoriginator = "Stock convertion Delete";
                         DataTable objGrnPO = new DataTable();
-                        TRN_Stock_Converstion objTRN_Stock_Converstion = new TRN_Stock_Converstion();
-                        objTRN_Stock_Converstion.ViewType = 2;
-                        objTRN_Stock_Converstion.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
-                        objTRN_Stock_Converstion.paraUserID = varUserID;
-                        objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
-                        objTRN_Stock_Converstion.paraOriginator = varoriginator;
-                        objTRN_Stock_Converstion.paraDeleteflag = 0;
-                        string result = objspdservice.udfnStockConvertion(objTRN_Stock_Converstion);
+                        TRN_Stock_Journal objTRN_Stock_Journal = new TRN_Stock_Journal();
+                        objTRN_Stock_Journal.ViewType = 2;
+                        objTRN_Stock_Journal.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
+                        objTRN_Stock_Journal.paraUserID = varUserID;
+                        objTRN_Stock_Journal.paraIPAddress = MainForm.pbIpAddress;
+                        objTRN_Stock_Journal.paraOriginator = varoriginator;
+                        objTRN_Stock_Journal.paraDeleteflag = 0;
+                        string result = objspdservice.udfnStockJournal(objTRN_Stock_Journal);
                         objspdservice.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (result.Split('~')[0] == "3")
@@ -1371,13 +1369,13 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                    objTRN_Stock_Converstion.ViewType = 2;
-                                    objTRN_Stock_Converstion.paraUserID = varUserID;
-                                    objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRN_Stock_Converstion.paraOriginator = varoriginator;
-                                    objTRN_Stock_Converstion.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
-                                    objTRN_Stock_Converstion.paraDeleteflag = 1;
-                                     result = objspdservice.udfnStockConvertion(objTRN_Stock_Converstion);
+                                    objTRN_Stock_Journal.ViewType = 2;
+                                    objTRN_Stock_Journal.paraUserID = varUserID;
+                                    objTRN_Stock_Journal.paraIPAddress = MainForm.pbIpAddress;
+                                    objTRN_Stock_Journal.paraOriginator = varoriginator;
+                                    objTRN_Stock_Journal.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
+                                    objTRN_Stock_Journal.paraDeleteflag = 1;
+                                     result = objspdservice.udfnStockJournal(objTRN_Stock_Journal);
                                     objspdservice.CloseConnection();
                                     if (result.Split('~')[0] == "3")
                                     {

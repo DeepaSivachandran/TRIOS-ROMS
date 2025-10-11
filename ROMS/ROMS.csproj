@@ -288,6 +288,7 @@
       <DependentUpon>GRN_ADV.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\MR_Menu.cs" />
+    <Compile Include="Model\TRN_Stock_Journal.cs" />
     <Compile Include="PUR_MismatchApprovedList.cs">
       <SubType>Form</SubType>
     </Compile>
