@@ -721,6 +721,7 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
                     objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                     objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
+                    objTRN_GoodsInward_Purchase.paraUserLocations = MainForm.pbUserMappedLocationIds;
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -848,6 +849,7 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.paraProductId = 0;
                 objTRN_GoodsInward_Purchase.ParaSupplierId = 0;
                 objTRN_GoodsInward_Purchase.paraTypeID = 0;
+                objTRN_GoodsInward_Purchase.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                 objdserv.CloseConnection();
                 if (objDs != null)

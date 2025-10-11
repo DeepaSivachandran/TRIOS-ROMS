@@ -355,6 +355,7 @@ namespace ROMS
                 objTRNG_StockRequest.ParaSTFromDate = Convert.ToString(dpTrannsferFromDate.Text);
                 objTRNG_StockRequest.ParaSTToDate = Convert.ToString(dpTransferToDate.Text);
                 objTRNG_StockRequest.paraSLID = Convert.ToInt32(lblSLocation.Text);
+                objTRNG_StockRequest.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objspservice.udfnStockRequestList(objTRNG_StockRequest);
                 objspservice.CloseConnection();
                 if (objDs != null)

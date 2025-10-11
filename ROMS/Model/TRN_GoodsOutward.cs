@@ -27,5 +27,6 @@ namespace ROMS.Model
         public int paraCompletedby { get; set; } = 0;
         public DataTable paraStockTransfer { get; set; } = null;
         public string paraTeller { get; set; } = "";
+        public string paraUserLocations { get; set; } = "";
     }
 }

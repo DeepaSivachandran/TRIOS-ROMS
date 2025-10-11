@@ -27,5 +27,6 @@ namespace ROMS.Model
         public int paraFlag { get; set; } = 0;
         public int paraSTRID { get; set; } = 0;
         public DataTable paraGoodsInward { get; set; } = null;
+        public string paraUserLocations { get; set; } = "";
     }
 }

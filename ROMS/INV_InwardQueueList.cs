@@ -869,6 +869,7 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.paraProductId = Convert.ToInt32(varPRID);
                     objTRN_GoodsInward_Purchase.ParaSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
+                    objTRN_GoodsInward_Purchase.paraUserLocations = MainForm.pbUserMappedLocationIds;
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
                     if (objDs != null)

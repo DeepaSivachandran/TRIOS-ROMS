@@ -168,7 +168,6 @@ namespace ROMS
                 grdStockHold.DataSource = null;
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                //objDS = objdserv.udfnStockHoldList(0,0);
                 TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
                 objTRNG_StockHold.ViewType = 0;
                 //objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
@@ -181,6 +180,7 @@ namespace ROMS
                 objTRNG_StockHold.paraReason = Convert.ToInt32(cmbReason.SelectedValue);
                 objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_StockHold.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDS = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDS != null)
@@ -2053,6 +2053,7 @@ namespace ROMS
                     objTRNG_StockHold.paraType = Convert.ToInt32(cmbType.SelectedValue);
                     objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                    objTRNG_StockHold.paraUserLocations = MainForm.pbUserMappedLocationIds;
                     objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                     objdserv.CloseConnection();
                     if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }

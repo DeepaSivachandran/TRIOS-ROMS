@@ -182,7 +182,7 @@ namespace ROMS
                 if (varEditflag == 1)
                 {
 
-                    objDs = objspdservice.udfnStockTransferList(4, 0, 0, 0, 0, 0, 0, "", "",varSRQID,varEditflag);
+                    objDs = objspdservice.udfnStockTransferList(4, 0, 0, 0, 0, 0, 0, "", "", varSRQID, varEditflag, "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -208,7 +208,7 @@ namespace ROMS
                 }
                 else
                 {
-                    objDs = objspdservice.udfnStockTransferList(4, varSTRID, 0, 0, 0, 0, 0, "", "", varSRQID, varEditflag);
+                    objDs = objspdservice.udfnStockTransferList(4, varSTRID, 0, 0, 0, 0, 0, "", "", varSRQID, varEditflag, "");
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {

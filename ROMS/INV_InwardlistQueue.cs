@@ -832,7 +832,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockTransferList(2, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(varStockLocaionId), 0,Convert.ToInt32(varPRID),0, dpFromDate.Text, dpToDate.Text,0,0);
+                objDs = objspservice.udfnStockTransferList(2, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(varStockLocaionId), 0, Convert.ToInt32(varPRID), 0, dpFromDate.Text, dpToDate.Text, 0, 0, MainForm.pbUserMappedLocationIds);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {

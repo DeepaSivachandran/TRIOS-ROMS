@@ -464,6 +464,7 @@ namespace ROMS
                 objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varPRID);
                 objTRNG_GoodsOutward.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_GoodsOutward.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_GoodsOutward.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
                 objdserv.CloseConnection();                 
                 //objDs = objspservice.udfnGOList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToString(dtpOutwardDate.Text), Convert.ToString(dtpOutwardDate2.Text), Convert.ToInt32(varStockLocationId), varPRID, Convert.ToInt32(cmbStatus.SelectedValue));

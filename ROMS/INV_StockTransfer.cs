@@ -355,7 +355,7 @@ namespace ROMS
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
-                    objDS = objspservice.udfnStockTransferList(1,varStockTransferID,0,0,0,0,0,"","",0,varStockRequestID);
+                    objDS = objspservice.udfnStockTransferList(1, varStockTransferID, 0, 0, 0, 0, 0, "", "", 0, varStockRequestID, "");
                     objspservice.CloseConnection();
                     if (objDS != null)
                     {

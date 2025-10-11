@@ -463,6 +463,7 @@ namespace ROMS
                 objTRNG_Stock_Reconciliation_Products.paraPRID = Convert.ToInt32(varPRID);
                 objTRNG_Stock_Reconciliation_Products.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_Stock_Reconciliation_Products.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnStockConciliationList(objTRNG_Stock_Reconciliation_Products);
                 objdserv.CloseConnection();                  
                 if (objDs != null)

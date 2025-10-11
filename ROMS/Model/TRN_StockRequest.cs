@@ -23,5 +23,6 @@ namespace ROMS.Model
         public string paraOriginator { get; set; } = "";
         public DataTable paraStockRequest { get; set; } = null;
         public byte[] paraQrimg { get; set; } = null;
+        public string paraUserLocations { get; set; } = "";
     }
 }

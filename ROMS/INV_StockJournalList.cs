@@ -474,6 +474,7 @@ namespace ROMS
                 objTRN_Stock_Converstion.paraPRID = Convert.ToInt32(varPRID);
                 objTRN_Stock_Converstion.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
+                objTRN_Stock_Converstion.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnStockConverstionList(objTRN_Stock_Converstion);
                 objdserv.CloseConnection();
                 if (objDs != null)

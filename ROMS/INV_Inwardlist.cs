@@ -1135,6 +1135,7 @@ namespace ROMS
                 objTRNG_GoodsInward.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_GoodsInward.paraPRID = Convert.ToInt32(varPRID);
                 objTRNG_GoodsInward.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_GoodsInward.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnInwardList(objTRNG_GoodsInward);
                 objdserv.CloseConnection(); 
                 if (objDs != null)
