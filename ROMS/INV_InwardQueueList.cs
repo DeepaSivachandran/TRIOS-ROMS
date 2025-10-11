@@ -20,6 +20,7 @@ namespace ROMS
         ToolTip tpSupplier = new ToolTip();
         public int varPRID = 0, varStockLocationId = 0, Varflag = 0, varviewtype = 0, varUpDownKey = 0, varUpDownKeyLocation = 0;
         DataTable dtDefaultGrid = new DataTable();
+        public bool EditAccess = false;
         Boolean BlnSearchImageYN = false;
 
         public INV_InwardQueueList()
@@ -74,49 +75,52 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            try
+            if (EditAccess == true || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdInwardQueueList.Rows.Count != 0 && grdInwardQueueList.SelectedRows.Count==1)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                    MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
-                    //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
-                    MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
-                    MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Location ID"].Value);
-                    MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
-                    MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPSCID"].Value);
-                    MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Type ID"].Value);
-                    MainForm.objINV_InwardPurchase.varRemarkFlag = 2;
-                    MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Con"].Value);
-                    MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
-                    MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
-                    MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
-                    //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
-                    //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
-                    MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Inv Date"].Value);
-                    MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Inv No."].Value);
-                    MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
-                    MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
-                    MainForm.objINV_InwardPurchase.varGIPTransDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
+                    if (grdInwardQueueList.Rows.Count != 0 && grdInwardQueueList.SelectedRows.Count == 1)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
+                        MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                        //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
+                        MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
+                        MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Location ID"].Value);
+                        MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPID"].Value);
+                        MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SPSCID"].Value);
+                        MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Type ID"].Value);
+                        MainForm.objINV_InwardPurchase.varRemarkFlag = 2;
+                        MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Con"].Value);
+                        MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Location"].Value);
+                        MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
+                        MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
+                        //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN Date"].Value);
+                        //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["GRN No."].Value);
+                        MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Inv Date"].Value);
+                        MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Inv No."].Value);
+                        MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
+                        MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans No."].Value);
+                        MainForm.objINV_InwardPurchase.varGIPTransDate = Convert.ToString(grdInwardQueueList.SelectedRows[0].Cells["Trans Date"].Value);
 
+                        picLoader.Visible = false;
+                        picLoader.SendToBack();
+                        MainForm.objINV_InwardPurchase.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
                     picLoader.Visible = false;
                     picLoader.SendToBack();
-                    MainForm.objINV_InwardPurchase.Show();
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
             }
         }
         private void INV_InwardQueueList_KeyDown(object sender, KeyEventArgs e)
@@ -170,6 +174,24 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=59 AND MSTID IN (188,189)", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=60 AND MSTID IN (190,191)", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (EditAccess == false)
+                    {
+                        tsbEdit.Enabled = EditAccess; 
+                    }
+                }
             }
             catch (Exception ex)
             {
