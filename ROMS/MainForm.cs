@@ -163,7 +163,7 @@ namespace ROMS
         public static INV_StockJournalList objINV_StockJournalList;
         public static INV_StockJournal objINV_StockJournal;
         public static INV_StockJournal_ConversionList objINV_StockJournalConversionList;
-        //public static INV_StockJournal_Conversion objINV_StockJournalConversion;
+        public static INV_StockJournal_Conversion objINV_StockJournalConversion;
 
         public static Form1 objForm1;
 

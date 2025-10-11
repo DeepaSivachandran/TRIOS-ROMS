@@ -240,14 +240,14 @@ namespace ROMS
         {
             try
             {
-                if (e.Node.Level == 0)
-                {
-                    e.Cancel = true; // Initially cancel the event
-                    if (e.Node.Checked)
-                    {
-                        e.Cancel = false; // <--- PROBLEM: If it was already checked, you allowed it to be unchecked.
-                    }
-                }
+                //if (e.Node.Level == 0)
+                //{
+                //    e.Cancel = true; // Initially cancel the event
+                //    if (e.Node.Checked)
+                //    {
+                //        e.Cancel = false; // <--- PROBLEM: If it was already checked, you allowed it to be unchecked.
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -1315,45 +1315,45 @@ namespace ROMS
 
         private void tvSubmenu_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
-            // The bounds of the node's text/content area
-            Rectangle nodeBounds = e.Bounds;
+            //// The bounds of the node's text/content area
+            //Rectangle nodeBounds = e.Bounds;
 
-            // Check if the node is a Level 0 node
-            if (e.Node.Level == 0)
-            {
-                // 1. Calculate the new text bounds (shifting left to hide the checkbox area).
-                // The constant 19-20 pixels is a rough estimate for the checkbox and padding.
-                int checkboxWidth = 20;
+            //// Check if the node is a Level 0 node
+            //if (e.Node.Level == 0)
+            //{
+            //    // 1. Calculate the new text bounds (shifting left to hide the checkbox area).
+            //    // The constant 19-20 pixels is a rough estimate for the checkbox and padding.
+            //    int checkboxWidth = 20;
 
-                // Adjust the bounds to start where the checkbox normally ends
-                Rectangle textBounds = new Rectangle(
-                    nodeBounds.X - checkboxWidth, // Shift text area left
-                    nodeBounds.Y,
-                    nodeBounds.Width + checkboxWidth, // Make the text area wider
-                    nodeBounds.Height
-                );
+            //    // Adjust the bounds to start where the checkbox normally ends
+            //    Rectangle textBounds = new Rectangle(
+            //        nodeBounds.X - checkboxWidth, // Shift text area left
+            //        nodeBounds.Y,
+            //        nodeBounds.Width + checkboxWidth, // Make the text area wider
+            //        nodeBounds.Height
+            //    );
 
-                // 2. Draw the node's background (optional)
-                if (e.State.HasFlag(TreeNodeStates.Selected))
-                {
-                    e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Highlight, nodeBounds);
-                    e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.HighlightText, textBounds);
-                }
-                else
-                {
-                    e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Window, nodeBounds);
-                    e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.WindowText, textBounds);
-                }
+            //    // 2. Draw the node's background (optional)
+            //    if (e.State.HasFlag(TreeNodeStates.Selected))
+            //    {
+            //        e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Highlight, nodeBounds);
+            //        e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.HighlightText, textBounds);
+            //    }
+            //    else
+            //    {
+            //        e.Graphics.FillRectangle(System.Drawing.SystemBrushes.Window, nodeBounds);
+            //        e.Graphics.DrawString(e.Node.Text, tvSubmenu.Font, System.Drawing.SystemBrushes.WindowText, textBounds);
+            //    }
 
-                // Crucial: Set DrawDefault to false since we drew manually
-                e.DrawDefault = false;
-            }
-            else
-            {
-                // 3. For all other levels (Level 1, 2, etc.), draw the node normally
-                //    (This includes the visible checkbox)
-                e.DrawDefault = true;
-            }
+            //    // Crucial: Set DrawDefault to false since we drew manually
+            //    e.DrawDefault = false;
+            //}
+            //else
+            //{
+            //    // 3. For all other levels (Level 1, 2, etc.), draw the node normally
+            //    //    (This includes the visible checkbox)
+            //    e.DrawDefault = true;
+            //}
         }
 
         private void tvSubmenu_AfterCheck(object sender, TreeViewEventArgs e)
@@ -1470,6 +1470,9 @@ namespace ROMS
                     matchingNode.Checked = allChecked;
                      
                 }
+
+
+
             }
             catch (Exception ex)
             {

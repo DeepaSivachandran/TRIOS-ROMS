@@ -33,9 +33,9 @@ namespace ROMS
             try
             {
 
-                //MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion(); 
-                //MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
-                //MainForm.objINV_StockJournalConversion.Show();
+                MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
+                MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                MainForm.objINV_StockJournalConversion.Show();
             }
             catch (Exception ex)
             {
@@ -64,12 +64,12 @@ namespace ROMS
                     picLoader.Visible = true;
                     picLoader.BringToFront();
                     Application.DoEvents();
-                    //MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
-                    //MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
-                    //MainForm.objINV_StockJournalConversion.btnSave.Text = "Update";
-                    //MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
-                    //MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["STSID"].Value);
-                    //MainForm.objINV_StockJournalConversion.Show();
+                    MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
+                    MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                    MainForm.objINV_StockJournalConversion.btnSave.Text = "Update";
+                    MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
+                    MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["STSID"].Value);
+                    MainForm.objINV_StockJournalConversion.Show();
                 }
             }
             catch (Exception ex)
