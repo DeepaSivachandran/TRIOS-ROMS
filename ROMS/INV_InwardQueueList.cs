@@ -174,6 +174,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=59 AND MSTID IN (188,189)", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=60 AND MSTID IN (190,191)", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
+                udfnUserAccess();
             }
             catch (Exception ex)
             {
@@ -189,7 +190,7 @@ namespace ROMS
                 {
                     if (EditAccess == false)
                     {
-                        tsbEdit.Enabled = EditAccess; 
+                        tsbEdit.Visible = EditAccess; 
                     }
                 }
             }

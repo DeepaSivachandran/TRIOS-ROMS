@@ -21,6 +21,9 @@ namespace ROMS
         public string varUserID = "";
         public int varUpDownKey = 0, varUpDownKeyLocation = 0;
         Boolean BlnSearchImageYN = false;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_StockTransferList()
         {
             InitializeComponent();
@@ -28,18 +31,21 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
-                MainForm.objINV_StockTransfer.EditFlag = 0;
-                MainForm.objINV_StockTransfer.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                    MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
+                    MainForm.objINV_StockTransfer.EditFlag = 0;
+                    MainForm.objINV_StockTransfer.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
 
+                }
             }
         } 
 
@@ -226,32 +232,56 @@ namespace ROMS
 
         private void INV_StockTransferList_Load(object sender, EventArgs e)
         {
-            udfnCmbConcern();
-            DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-            objDataBind = null;
-            cmbStatus.SelectedValue = 0;
-            /*
-            DataSet objDs = new DataSet();
-            SPDataService objspservice = new SPDataService();
-            objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "",2);
-            if (objDs.Tables[0].Rows.Count > 0)
+            try
             {
-                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpTransferToDate.MinDate = varDate;
-                dpTrannsferFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+                MenuCode = 303;
+                udfnCmbConcern();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (6) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+                cmbStatus.SelectedValue = 0; 
+                dpTrannsferFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
+                dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
+                cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                this.ActiveControl = txtSLocation;
+                //tsbDelete.Visible = true;
+                udfnList();
+                udfnQueueCount();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
-            objspservice.CloseConnection();
-            */
-            dpTrannsferFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
-            dpTrannsferFromDate.MinDate = MainForm.pbFYStartDate;
-            dpTrannsferFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpTransferToDate.MaxDate = MainForm.pbCurrentDate;
-            cmbConcern.SelectedValue = MainForm.pbDefaultComId;
-            this.ActiveControl = txtSLocation;
-            //tsbDelete.Visible = true;
-            udfnList();
-            udfnQueueCount();
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");
+                tssDelete.Visible = privilege.Contains("4"); 
+                btnExport.Visible = privilege.Contains("6");
+                tsbQue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("9"));
+                lblQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("9")); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnQueueCount()
         {
@@ -1125,99 +1155,105 @@ namespace ROMS
         }
         private void udfnEdit(int EditFlag)
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (EditFlag == 0)
+                try
                 {
-                    if (grdStockTransfer.SelectedRows.Count > 0)
+                    if (EditFlag == 0)
                     {
-                        picLoader.Visible = true;
-                        picLoader.BringToFront();
-                        Application.DoEvents();
-                        MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                        MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                        //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
-                        MainForm.objINV_StockTransfer.EditFlag = 0;
-                        MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
-                        MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
-                        MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objINV_StockTransfer.varTransactionType = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STR_TransactionType"].Value);
-                        MainForm.objINV_StockTransfer.Show();
+                        if (grdStockTransfer.SelectedRows.Count > 0)
+                        {
+                            picLoader.Visible = true;
+                            picLoader.BringToFront();
+                            Application.DoEvents();
+                            MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                            MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                            //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                            MainForm.objINV_StockTransfer.EditFlag = 0;
+                            MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
+                            MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
+                            MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
+                            MainForm.objINV_StockTransfer.varTransactionType = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STR_TransactionType"].Value);
+                            MainForm.objINV_StockTransfer.Show();
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(string));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-                dtStock.Columns.Add("STK_Source_RKID", typeof(string));
-                dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
-                dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
-                dtStock.Columns.Add("STK_ProType", typeof(int));
-                dtStock.Columns.Add("STK_STSID", typeof(int));
-                if (grdStockTransfer.SelectedRows.Count > 0)
+                try
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    DataTable dtStock = new DataTable();
+                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                    dtStock.Columns.Add("STK_PRID", typeof(int));
+                    dtStock.Columns.Add("STK_MRP", typeof(string));
+                    dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                    dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                    dtStock.Columns.Add("STK_UTID", typeof(string));
+                    dtStock.Columns.Add("STK_QTY", typeof(string));
+                    dtStock.Columns.Add("STK_Source_RKID", typeof(string));
+                    dtStock.Columns.Add("STK_Dest_SLID", typeof(string));
+                    dtStock.Columns.Add("STK_Dest_RKID", typeof(string));
+                    dtStock.Columns.Add("STK_ProType", typeof(int));
+                    dtStock.Columns.Add("STK_STSID", typeof(int));
+                    if (grdStockTransfer.SelectedRows.Count > 0)
                     {
-                        SPDataService objDser = new SPDataService();
-                        string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 0, 0, 0, 0);
-                        objDser.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (varResult.Split('~')[1] == "1")
+                            SPDataService objDser = new SPDataService();
+                            string varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 0, 0, 0, 0);
+                            objDser.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (varResult.Split('~')[1] == "1")
                                 {
-                                    objDser = new SPDataService();
-                                    varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 1, 0, 0, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString()));
-                                    objDser.CloseConnection();
-                                    if (varResult.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
+                                        objDser = new SPDataService();
+                                        varResult = objDser.udfnStockTransfer(2, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value.ToString()), 0, "", 0, 0, "", Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value.ToString()), "Stock Transfer Delete", dtStock, 1, 0, 0, Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value.ToString()));
+                                        objDser.CloseConnection();
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (varResult.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void GrdStockTransfer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -1737,6 +1773,7 @@ namespace ROMS
             {
                 MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
                 MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
                 MainForm.objINV_StockTransferQueue.Show();
             }
             catch (Exception ex)
@@ -1747,23 +1784,26 @@ namespace ROMS
         }
         public void udfnDeleteHide()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value)>0)
+                try
                 {
-                    tsbDelete.Visible = false;
-                    tssQueue.Visible = false;
+                    if (Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value) == 40 || Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["Product STSID"].Value) > 0)
+                    {
+                        tsbDelete.Visible = false;
+                        tssDelete.Visible = false;
+                    }
+                    else
+                    {
+                        tsbDelete.Visible = true;
+                        tssDelete.Visible = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    tsbDelete.Visible = true;
-                    tssQueue.Visible = true;
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
             }
         }
         private void GrdStockTransfer_RowEnter(object sender, DataGridViewCellEventArgs e)

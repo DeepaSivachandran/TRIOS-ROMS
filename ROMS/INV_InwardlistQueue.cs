@@ -20,6 +20,7 @@ namespace ROMS
         public string varStockLocaionId = "",varPRID="";
         public DataTable Deftable = new DataTable();
         public int varSTRID = 0, varSLID = 0, varUpDownKey = 0, varUpDownKeyLocation = 0;
+        public bool EditAccess =false;
         public INV_InwardlistQueue()
         {
             InitializeComponent();
@@ -56,31 +57,34 @@ namespace ROMS
         }
         public void udfnEdit(int varEditflag)
         {
-            try
+            if (EditAccess == true || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objINV_Inward = new INV_Inward();
-                MainForm.objINV_Inward.btnSave.Text = "Update";
-                MainForm.objINV_Inward.grdInward.Columns["clmremove"].Visible = false;
-                MainForm.objINV_Inward.varEditflag = 1;
-                MainForm.objINV_Inward.varUpdateflag = 1;
-                MainForm.objINV_Inward.varSTRID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["STRID"].Value);
-                MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
-                MainForm.objINV_Inward.varcomID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["COMID"].Value);
-                MainForm.objINV_Inward.MdiParent = this.ParentForm;
-                MainForm.objINV_Inward.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objINV_Inward = new INV_Inward();
+                    MainForm.objINV_Inward.btnSave.Text = "Update";
+                    MainForm.objINV_Inward.grdInward.Columns["clmremove"].Visible = false;
+                    MainForm.objINV_Inward.varEditflag = 1;
+                    MainForm.objINV_Inward.varUpdateflag = 1;
+                    MainForm.objINV_Inward.varSTRID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["STRID"].Value);
+                    MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
+                    MainForm.objINV_Inward.varcomID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["COMID"].Value);
+                    MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                    MainForm.objINV_Inward.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -292,6 +296,24 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;              
                 udfnList();
+                udfnUserAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (EditAccess == false)
+                    { tsbEdit.Visible = EditAccess; }
+                }
             }
             catch (Exception ex)
             {

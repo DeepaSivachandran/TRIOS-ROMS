@@ -1900,29 +1900,31 @@ namespace ROMS
         }
         public void udfnDeleteHide()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                //if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value)==46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value)==0)
-                //{
-                //    tsbDelete.Visible = false;
-                //    tssEdit.Visible = false;
-                //}
-                if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)!=49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
+                try
                 {
-                    tsbDelete.Visible = false;
-                    tssDelete.Visible = false;
+                    //if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value)==46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value)==0)
+                    //{
+                    //    tsbDelete.Visible = false;
+                    //    tssEdit.Visible = false;
+                    //}
+                    if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) != 49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
+                    {
+                        tsbDelete.Visible = false;
+                        tssDelete.Visible = false;
+                    }
+                    else
+                    {
+                        tsbDelete.Visible = true;
+                        tssDelete.Visible = true;
+                    } 
                 }
-                else
+                catch (Exception ex)
                 {
-                    tsbDelete.Visible = true;
-                    tssDelete.Visible = true;
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
             }
         }
         private void GrdInwardList_SelectionChanged(object sender, EventArgs e)

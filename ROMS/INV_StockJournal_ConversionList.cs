@@ -23,6 +23,9 @@ namespace ROMS
         public int varPRID = 0; 
         Boolean BlnSearchImageYN = false;
         int varUserID = 0;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_StockJournal_ConversionList()
         {
             InitializeComponent();
@@ -30,17 +33,20 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
+                try
+                {
 
-                MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
-                MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
-                MainForm.objINV_StockJournalConversion.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                    MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
+                    MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                    MainForm.objINV_StockJournalConversion.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -57,30 +63,33 @@ namespace ROMS
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdStockConversion.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
-                    MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
-                    MainForm.objINV_StockJournalConversion.btnSave.Text = "Update";
-                    MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
-                    MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["STSID"].Value);
-                    MainForm.objINV_StockJournalConversion.Show();
+                    if (grdStockConversion.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
+                        MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                        MainForm.objINV_StockJournalConversion.btnSave.Text = "Update";
+                        MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
+                        MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["STSID"].Value);
+                        MainForm.objINV_StockJournalConversion.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -576,6 +585,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 311;
                 udfnConcern();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -598,7 +608,10 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
                 udfnList();
-
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -606,6 +619,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnConcern()
         {
@@ -1327,82 +1360,85 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(decimal));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-                dtStock.Columns.Add("STK_Source_RKID", typeof(string));
-                dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
-                dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
-                dtStock.Columns.Add("STK_ProType", typeof(int));
-                dtStock.Columns.Add("STK_Status", typeof(int));
-                if (grdStockConversion.SelectedRows.Count > 0)
+                try
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    DataTable dtStock = new DataTable();
+                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                    dtStock.Columns.Add("STK_PRID", typeof(int));
+                    dtStock.Columns.Add("STK_MRP", typeof(decimal));
+                    dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                    dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                    dtStock.Columns.Add("STK_UTID", typeof(string));
+                    dtStock.Columns.Add("STK_QTY", typeof(string));
+                    dtStock.Columns.Add("STK_Source_RKID", typeof(string));
+                    dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
+                    dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
+                    dtStock.Columns.Add("STK_ProType", typeof(int));
+                    dtStock.Columns.Add("STK_Status", typeof(int));
+                    if (grdStockConversion.SelectedRows.Count > 0)
                     {
-                        SPDataService objspdservice = new SPDataService();
-
-
-                        String varoriginator = "Stock convertion Delete";
-                        DataTable objGrnPO = new DataTable();
-                        TRN_Stock_Converstion objTRN_Stock_Converstion = new TRN_Stock_Converstion();
-                        objTRN_Stock_Converstion.ViewType = 2;
-                        objTRN_Stock_Converstion.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
-                        objTRN_Stock_Converstion.paraUserID = varUserID;
-                        objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
-                        objTRN_Stock_Converstion.paraOriginator = varoriginator;
-                        objTRN_Stock_Converstion.paraDeleteflag = 0;
-                        string result = objspdservice.udfnStockConvertion(objTRN_Stock_Converstion);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (result.Split('~')[0] == "3")
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (result.Split('~')[1] == "1")
+                            SPDataService objspdservice = new SPDataService();
+
+
+                            String varoriginator = "Stock convertion Delete";
+                            DataTable objGrnPO = new DataTable();
+                            TRN_Stock_Converstion objTRN_Stock_Converstion = new TRN_Stock_Converstion();
+                            objTRN_Stock_Converstion.ViewType = 2;
+                            objTRN_Stock_Converstion.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
+                            objTRN_Stock_Converstion.paraUserID = varUserID;
+                            objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
+                            objTRN_Stock_Converstion.paraOriginator = varoriginator;
+                            objTRN_Stock_Converstion.paraDeleteflag = 0;
+                            string result = objspdservice.udfnStockConvertion(objTRN_Stock_Converstion);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (result.Split('~')[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (result.Split('~')[1] == "1")
                                 {
-                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                    objTRN_Stock_Converstion.ViewType = 2;
-                                    objTRN_Stock_Converstion.paraUserID = varUserID;
-                                    objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRN_Stock_Converstion.paraOriginator = varoriginator;
-                                    objTRN_Stock_Converstion.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
-                                    objTRN_Stock_Converstion.paraDeleteflag = 1;
-                                     result = objspdservice.udfnStockConvertion(objTRN_Stock_Converstion);
-                                    objspdservice.CloseConnection();
-                                    if (result.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                                        udfnList();
+                                        varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                        objTRN_Stock_Converstion.ViewType = 2;
+                                        objTRN_Stock_Converstion.paraUserID = varUserID;
+                                        objTRN_Stock_Converstion.paraIPAddress = MainForm.pbIpAddress;
+                                        objTRN_Stock_Converstion.paraOriginator = varoriginator;
+                                        objTRN_Stock_Converstion.ParaTransactionId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
+                                        objTRN_Stock_Converstion.paraDeleteflag = 1;
+                                        result = objspdservice.udfnStockConvertion(objTRN_Stock_Converstion);
+                                        objspdservice.CloseConnection();
+                                        if (result.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void GrdUserList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
