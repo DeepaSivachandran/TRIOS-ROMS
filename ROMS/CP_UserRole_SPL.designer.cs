@@ -38,9 +38,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserSPLPermission = new System.Windows.Forms.DataGridView();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblMenuLink = new System.Windows.Forms.Label();
             this.clmsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmViewchk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -49,6 +46,9 @@
             this.clmFieldId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmURSF_Access_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrivilagecode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblMenuLink = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserSPLPermission)).BeginInit();
@@ -120,8 +120,8 @@
             this.grdUserSPLPermission.Name = "grdUserSPLPermission";
             this.grdUserSPLPermission.RowHeadersVisible = false;
             this.grdUserSPLPermission.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             this.grdUserSPLPermission.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.grdUserSPLPermission.RowTemplate.Height = 25;
             this.grdUserSPLPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -132,43 +132,6 @@
             this.grdUserSPLPermission.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUserSPLPermission_CellValueChanged);
             this.grdUserSPLPermission.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdUserSPLPermission_CurrentCellDirtyStateChanged);
             this.grdUserSPLPermission.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdUserSPLPermission_DataBindingComplete);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(618, 329);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(78, 29);
-            this.btnSave.TabIndex = 1111185;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(703, 329);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(78, 29);
-            this.btnClose.TabIndex = 1111186;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // lblMenuLink
-            // 
-            this.lblMenuLink.AutoSize = true;
-            this.lblMenuLink.Location = new System.Drawing.Point(20, 9);
-            this.lblMenuLink.Name = "lblMenuLink";
-            this.lblMenuLink.Size = new System.Drawing.Size(101, 20);
-            this.lblMenuLink.TabIndex = 1111187;
-            this.lblMenuLink.Text = "Master - Product";
             // 
             // clmsno
             // 
@@ -219,6 +182,43 @@
             this.clmPrivilagecode.HeaderText = "clmPrivilagecode";
             this.clmPrivilagecode.Name = "clmPrivilagecode";
             this.clmPrivilagecode.Visible = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(618, 329);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(78, 29);
+            this.btnSave.TabIndex = 1111185;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(703, 329);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(78, 29);
+            this.btnClose.TabIndex = 1111186;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // lblMenuLink
+            // 
+            this.lblMenuLink.AutoSize = true;
+            this.lblMenuLink.Location = new System.Drawing.Point(20, 9);
+            this.lblMenuLink.Name = "lblMenuLink";
+            this.lblMenuLink.Size = new System.Drawing.Size(101, 20);
+            this.lblMenuLink.TabIndex = 1111187;
+            this.lblMenuLink.Text = "Master - Product";
             // 
             // CP_UserRole_SPL
             // 
