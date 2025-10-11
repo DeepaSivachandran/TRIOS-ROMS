@@ -23,6 +23,9 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public int varUpDownKeyLocation = 0;
         int varPRID = 0, varparaflag = 0, varviewtype = 0, varDeleteFlag = 0, Varflag = 0, varUpDownKey = 0;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_InwardPurchaseList()
         {
             InitializeComponent();
@@ -151,6 +154,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 30101; 
                 udfnCmbDropDown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
@@ -160,6 +164,31 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions; 
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");
+                tssDelete.Visible = privilege.Contains("4"); 
+                btnExport.Visible = privilege.Contains("6");
+                tsbQue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("9"));
+                lblQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("9"));  
             }
             catch (Exception ex)
             {
@@ -1874,12 +1903,12 @@ namespace ROMS
                 if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)!=49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
                 {
                     tsbDelete.Visible = false;
-                    tssEdit.Visible = false;
+                    tssDelete.Visible = false;
                 }
                 else
                 {
                     tsbDelete.Visible = true;
-                    tssEdit.Visible = true;
+                    tssDelete.Visible = true;
                 }
 
             }
@@ -2134,8 +2163,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try
