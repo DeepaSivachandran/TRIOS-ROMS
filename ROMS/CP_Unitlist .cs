@@ -17,22 +17,29 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_Unitlist()
         {
             InitializeComponent();
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objCP_Unit = new CP_Unit();
-                MainForm.objCP_Unit.FormBorderStyle = FormBorderStyle.FixedSingle;
-                MainForm.objCP_Unit.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objCP_Unit = new CP_Unit();
+                    MainForm.objCP_Unit.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    MainForm.objCP_Unit.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -61,81 +68,87 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdUnitList.SelectedRows.Count > 0)
+                try
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdUnitList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspservice = new SPDataService();
-                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0,0);
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (varResult.Split('~')[1] == "1")
+                            SPDataService objspservice = new SPDataService();
+                            varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 0);
+                            objspservice.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (varResult.Split('~')[1] == "1")
                                 {
-                                    objspservice = new SPDataService();
-                                    varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 1);
-                                    objspservice.CloseConnection();
-                                    if (varResult.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
+                                        objspservice = new SPDataService();
+                                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 1);
+                                        objspservice.CloseConnection();
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdUnitList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objCP_Unit = new CP_Unit();
-                    MainForm.objCP_Unit.btnSave.Text = "Update";
-                    MainForm.objCP_Unit.varUnitCode = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_Unit.pbDecimalId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["decimalID"].Value);
-                    MainForm.objCP_Unit.PbUnitName = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit Name"].Value);
-                    MainForm.objCP_Unit.PbSymbol = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit"].Value);
-                    MainForm.objCP_Unit.PbNoOfDecimals = Convert.ToString(grdUnitList.SelectedRows[0].Cells["No.of Decimals"].Value);
-                    MainForm.objCP_Unit.PbStatus = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objCP_Unit.pbInvoiceUnit = Convert.ToString(grdUnitList.SelectedRows[0].Cells["E-Invoice Unit"].Value);
-                    MainForm.objCP_Unit.varBulkUnitId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["BulkUnitId"].Value);
-                    MainForm.objCP_Unit.ShowDialog();
+                    if (grdUnitList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objCP_Unit = new CP_Unit();
+                        MainForm.objCP_Unit.btnSave.Text = "Update";
+                        MainForm.objCP_Unit.varUnitCode = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_Unit.pbDecimalId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["decimalID"].Value);
+                        MainForm.objCP_Unit.PbUnitName = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit Name"].Value);
+                        MainForm.objCP_Unit.PbSymbol = Convert.ToString(grdUnitList.SelectedRows[0].Cells["Unit"].Value);
+                        MainForm.objCP_Unit.PbNoOfDecimals = Convert.ToString(grdUnitList.SelectedRows[0].Cells["No.of Decimals"].Value);
+                        MainForm.objCP_Unit.PbStatus = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_Unit.pbInvoiceUnit = Convert.ToString(grdUnitList.SelectedRows[0].Cells["E-Invoice Unit"].Value);
+                        MainForm.objCP_Unit.varBulkUnitId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["BulkUnitId"].Value);
+                        MainForm.objCP_Unit.ShowDialog();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         public void udfnList()
@@ -500,7 +513,31 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 508;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
             }
             catch (Exception ex)
             {

@@ -19,24 +19,31 @@ namespace ROMS
         public int varStockApplicable = 0;
         public string varUserID = "";
         public int SearchFlag = 0;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+
         public CP_LocationList()
         {
             InitializeComponent();
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objCP_Location = new CP_Location();
-                MainForm.objCP_Location.FormBorderStyle = FormBorderStyle.FixedSingle;
-                //MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
-                varStockApplicable = 1;
-                MainForm.objCP_Location.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objCP_Location = new CP_Location();
+                    MainForm.objCP_Location.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    //MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
+                    varStockApplicable = 1;
+                    MainForm.objCP_Location.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -67,6 +74,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 509;
                 cmbConcern.Focus();
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
@@ -109,6 +117,30 @@ namespace ROMS
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
             }
             catch (Exception ex)
             {
@@ -294,119 +326,125 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "1" && Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "2")
+                try
                 {
-                    if (grdGodownList.SelectedRows.Count > 0)
+                    if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "1" && Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "2")
                     {
-                        string varResult = "";
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (grdGodownList.SelectedRows.Count > 0)
                         {
-                            SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0,0);
-                            objspservice.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            string varResult = "";
+                            DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                if (varResult.Split('~')[1] == "1")
+                                SPDataService objspservice = new SPDataService();
+                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0, 0);
+                                objspservice.CloseConnection();
+                                if (varResult.Split('~')[0] == "3")
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
+                                    if (varResult.Split('~')[1] == "1")
                                     {
-                                        objspservice = new SPDataService();
-                                        varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0, 1);
-                                        objspservice.CloseConnection();
-                                        if (varResult.Split('~')[0] == "3")
+                                        MainForm.objCP_Verify = new CP_Verify();
+                                        MainForm.objCP_Verify.ShowDialog();
+                                        varUserID = MainForm.objCP_Verify.varUserId;
+                                        if (MainForm.objCP_Verify.flag == 1)
                                         {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
+                                            objspservice = new SPDataService();
+                                            varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0, 1);
+                                            objspservice.CloseConnection();
+                                            if (varResult.Split('~')[0] == "3")
+                                            {
+                                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                udfnList();
+                                            }
+                                            else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                         }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                else
+                                {
+                                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                varStockApplicable = 0;
-                if (grdGodownList.SelectedRows.Count > 0)
+                try
                 {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                    varStockApplicable = 0;
+                    if (grdGodownList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                        {
+                            MainForm.objCP_Location = new CP_Location();
+                            MainForm.objCP_Location.btnSave.Visible = false;
+                            MainForm.objCP_Location.cmbConcern.Enabled = false;
+                            MainForm.objCP_Location.cmbLocationType.Enabled = false;
+                            MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = false;
+                            MainForm.objCP_Location.txtLocationNameInTamil.Enabled = false;
+                            MainForm.objCP_Location.txtShortName.Enabled = false;
+                            MainForm.objCP_Location.pnlGodownType.Enabled = false;
+                            MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
+                            MainForm.objCP_Location.pnlStatus.Enabled = false;
+                        }
+                        else
+                        {
+                            MainForm.objCP_Location = new CP_Location();
+                            MainForm.objCP_Location.btnSave.Visible = true;
+                            MainForm.objCP_Location.cmbConcern.Enabled = false;
+                            MainForm.objCP_Location.cmbLocationType.Enabled = true;
+                            MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = true;
+                            MainForm.objCP_Location.txtLocationNameInTamil.Enabled = true;
+                            MainForm.objCP_Location.txtShortName.Enabled = true;
+                            MainForm.objCP_Location.pnlGodownType.Enabled = true;
+                            MainForm.objCP_Location.cmbStockApplicable.Enabled = true;
+                            MainForm.objCP_Location.pnlStatus.Enabled = true;
+                        }
+                        MainForm.objCP_Location.btnSave.Text = "Update";
+                        MainForm.objCP_Location.varlocationcode = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_Location.PbConcernID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ConcernID"].Value);
+                        MainForm.objCP_Location.PbLocationTypeID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["LocationTypeID"].Value);
+                        MainForm.objCP_Location.PbStockApplicableID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StockApplicableID"].Value);
+                        MainForm.objCP_Location.PbDefault = Convert.ToString(grdGodownList.SelectedRows[0].Cells["DefaultID"].Value);
+                        MainForm.objCP_Location.PbRKCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKCreationID"].Value);
+                        MainForm.objCP_Location.PbRKGCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKGCreationID"].Value);
+                        MainForm.objCP_Location.PbLocationEName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in English"].Value);
+                        MainForm.objCP_Location.PbLocationTName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in Tamil"].Value);
+                        MainForm.objCP_Location.PbLocationSName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Short Name"].Value);
+                        MainForm.objCP_Location.PbConcern = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Concern"].Value);
+                        MainForm.objCP_Location.PbLocationType = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Type"].Value);
+                        MainForm.objCP_Location.PbStockApplicable = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Stock Applicable"].Value);
+                        MainForm.objCP_Location.PbStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_Location.PbGodownTypeStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["GodownTypeID"].Value);
+                        picLoader.SendToBack();
+                        picLoader.Visible = false;
+                        MainForm.objCP_Location.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
                 {
-                    MainForm.objCP_Location = new CP_Location();
-                    MainForm.objCP_Location.btnSave.Visible = false;
-                    MainForm.objCP_Location.cmbConcern.Enabled = false;
-                    MainForm.objCP_Location.cmbLocationType.Enabled = false;
-                    MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = false;
-                    MainForm.objCP_Location.txtLocationNameInTamil.Enabled = false;
-                    MainForm.objCP_Location.txtShortName.Enabled = false;
-                    MainForm.objCP_Location.pnlGodownType.Enabled = false;
-                    MainForm.objCP_Location.cmbStockApplicable.Enabled = false;
-                    MainForm.objCP_Location.pnlStatus.Enabled = false;
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
-                else
-                {
-                    MainForm.objCP_Location = new CP_Location();
-                    MainForm.objCP_Location.btnSave.Visible = true;
-                    MainForm.objCP_Location.cmbConcern.Enabled = false;
-                    MainForm.objCP_Location.cmbLocationType.Enabled = true;
-                    MainForm.objCP_Location.txtLocationNameInEnglish.Enabled = true;
-                    MainForm.objCP_Location.txtLocationNameInTamil.Enabled = true;
-                    MainForm.objCP_Location.txtShortName.Enabled = true;
-                    MainForm.objCP_Location.pnlGodownType.Enabled = true;
-                    MainForm.objCP_Location.cmbStockApplicable.Enabled = true;
-                    MainForm.objCP_Location.pnlStatus.Enabled = true;
-                }
-                MainForm.objCP_Location.btnSave.Text = "Update";
-                MainForm.objCP_Location.varlocationcode = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value);
-                MainForm.objCP_Location.PbConcernID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ConcernID"].Value);
-                MainForm.objCP_Location.PbLocationTypeID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["LocationTypeID"].Value);
-                MainForm.objCP_Location.PbStockApplicableID = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StockApplicableID"].Value);
-                MainForm.objCP_Location.PbDefault = Convert.ToString(grdGodownList.SelectedRows[0].Cells["DefaultID"].Value);
-                MainForm.objCP_Location.PbRKCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKCreationID"].Value);
-                MainForm.objCP_Location.PbRKGCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKGCreationID"].Value);
-                MainForm.objCP_Location.PbLocationEName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in English"].Value);
-                MainForm.objCP_Location.PbLocationTName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in Tamil"].Value);
-                MainForm.objCP_Location.PbLocationSName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Short Name"].Value);
-                MainForm.objCP_Location.PbConcern = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Concern"].Value);
-                MainForm.objCP_Location.PbLocationType = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Type"].Value);
-                MainForm.objCP_Location.PbStockApplicable = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Stock Applicable"].Value);
-                MainForm.objCP_Location.PbStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["StatusID"].Value);
-                MainForm.objCP_Location.PbGodownTypeStatus = Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["GodownTypeID"].Value);
-                picLoader.SendToBack();
-                picLoader.Visible = false;
-                MainForm.objCP_Location.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
             }
         }
         private void CP_LocationList_KeyDown(object sender, KeyEventArgs e)
@@ -447,14 +485,19 @@ namespace ROMS
         }     
         private void grdLocationList_SelectionChanged(object sender, EventArgs e)
         {
-            try {
-                if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1"||Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
-                { tsbDelete.Visible = false;}
-                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
-            }
-            catch (Exception ex) {
-                objError = new DataError();
-                objError.WriteFile(ex);
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
+            {
+                try
+                {
+                    if (Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdGodownList.Rows[grdGodownList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                    { tsbDelete.Visible = false; }
+                    else { tsbDelete.Visible = true; }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void GrdGodownList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
