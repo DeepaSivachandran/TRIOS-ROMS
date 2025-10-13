@@ -29,6 +29,9 @@ namespace ROMS
         private ToolTip tpStartingNo = new ToolTip();
         private ToolTip tpResetOn = new ToolTip();
         private ToolTip tpNoofdigits = new ToolTip();
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_Settings()
         {
             InitializeComponent();
@@ -274,6 +277,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 601;
                 udfnCmbLoad();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 if (btnUpdate.Text == "Save")
@@ -281,6 +285,44 @@ namespace ROMS
                     udfnCmbTransaction();
                 }
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                btnUpdate.Visible = privilege.Contains("2");
+                btnUpdate.Visible = privilege.Contains("3");   
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    grdSettings.Columns["clmEdit"].Visible = privilege.Contains("3");  
+                    DGV_SearchGrid.Columns[0].Visible = privilege.Contains("3"); 
+                }
             }
             catch (Exception ex)
             {

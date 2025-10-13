@@ -19,6 +19,9 @@ namespace ROMS
         public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0, varfiltertype = 0;
         public string varUserID = "";
         public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyProduct = 0, varUpDownKeyBrand = 0;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_Rate_ChangeList()
         {
             InitializeComponent();
@@ -26,18 +29,18 @@ namespace ROMS
         
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objCP_Rate_Change = new CP_Rate_Change();
-                MainForm.objCP_Rate_Change.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
+                try
+                {
+                    MainForm.objCP_Rate_Change = new CP_Rate_Change();
+                    MainForm.objCP_Rate_Change.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         public void udfnList()
@@ -645,16 +648,24 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 521;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=106", "MST_DisplayText,MSTID,MST_ShortName", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
                 // * BeginInvoke is used to open render the list form first, render complete for the list screen then dialog shown* 
                 // * By venkat on 13-08-2025 *
-                this.BeginInvoke((MethodInvoker)delegate
+                if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
                 {
-                    tsbNew_Click(sender, e);
-                });
+                    this.BeginInvoke((MethodInvoker)delegate
+                    {
+                        tsbNew_Click(sender, e);
+                    });
+                }
             }
             catch (Exception ex)
 
@@ -664,7 +675,23 @@ namespace ROMS
             }
 
         }
-
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");   
+                btnPrint.Visible = privilege.Contains("5");
+                btnExport.Visible = privilege.Contains("6"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tspTotal_Click(object sender, EventArgs e)
         {
             try {

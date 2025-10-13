@@ -30,7 +30,9 @@ namespace ROMS
         public string varSettingcode ="0";
         public string pbFormStatus;
         public int varsno=0;
-        
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
         #region "Form Event"
         public CP_Printer_Setting()
@@ -41,11 +43,32 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 603;
                 UdfnList();
                 CmbPaperSizeBind();
                 PrinterList();
                 udfnclear();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+
                 //udfnEdit();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions; 
+                Btn_Save.Visible = privilege.Contains("3"); 
             }
             catch (Exception ex)
             {

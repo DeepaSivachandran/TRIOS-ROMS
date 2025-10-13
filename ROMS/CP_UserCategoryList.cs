@@ -18,6 +18,9 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_UserCategoryList()
         {
             InitializeComponent();
@@ -25,16 +28,19 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MainForm.objCP_UserCategory = new CP_UserCategory();
-                MainForm.objCP_UserCategory.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
 
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
+            {
+                try
+                {
+                    MainForm.objCP_UserCategory = new CP_UserCategory();
+                    MainForm.objCP_UserCategory.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex); 
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -66,12 +72,37 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 514;
                 cmbStatus.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
             }
             catch (Exception ex)
             {
@@ -81,94 +112,100 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "1" && Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "2")
+                try
                 {
-                    if (grdUserCategoryList.SelectedRows.Count > 0)
+                    if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "1" && Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) != "2")
                     {
-                        string varResult = "";
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (grdUserCategoryList.SelectedRows.Count > 0)
                         {
-                            SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 0,"");
-                            objspservice.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            string varResult = "";
+                            DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                if (varResult.Split('~')[1] == "1")
+                                SPDataService objspservice = new SPDataService();
+                                varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 0, "");
+                                objspservice.CloseConnection();
+                                if (varResult.Split('~')[0] == "3")
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
+                                    if (varResult.Split('~')[1] == "1")
                                     {
-                                        objspservice = new SPDataService();
-                                        varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 1,"");
-                                        objspservice.CloseConnection();
-                                        if (varResult.Split('~')[0] == "3")
+                                        MainForm.objCP_Verify = new CP_Verify();
+                                        MainForm.objCP_Verify.ShowDialog();
+                                        varUserID = MainForm.objCP_Verify.varUserId;
+                                        if (MainForm.objCP_Verify.flag == 1)
                                         {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
+                                            objspservice = new SPDataService();
+                                            varResult = objspservice.udfnUserCategory(2, Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value), "", 0, 0, "UserCategory Delete", varUserID, 1, "");
+                                            objspservice.CloseConnection();
+                                            if (varResult.Split('~')[0] == "3")
+                                            {
+                                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                udfnList();
+                                            }
+                                            else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                         }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                else
+                                {
+                                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdUserCategoryList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                    if (grdUserCategoryList.SelectedRows.Count > 0)
                     {
-                        MainForm.objCP_UserCategory = new CP_UserCategory();
-                        MainForm.objCP_UserCategory.btnSave.Visible = false;
-                        MainForm.objCP_UserCategory.txtCategoryName.Enabled = false;
-                        MainForm.objCP_UserCategory.pnlStatus.Enabled = false;
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                        {
+                            MainForm.objCP_UserCategory = new CP_UserCategory();
+                            MainForm.objCP_UserCategory.btnSave.Visible = false;
+                            MainForm.objCP_UserCategory.txtCategoryName.Enabled = false;
+                            MainForm.objCP_UserCategory.pnlStatus.Enabled = false;
+                        }
+                        else
+                        {
+                            MainForm.objCP_UserCategory = new CP_UserCategory();
+                            MainForm.objCP_UserCategory.btnSave.Visible = true;
+                            MainForm.objCP_UserCategory.txtCategoryName.Enabled = true;
+                            MainForm.objCP_UserCategory.pnlStatus.Enabled = true;
+                        }
+                        MainForm.objCP_UserCategory.btnSave.Text = "Update";
+                        MainForm.objCP_UserCategory.varUserCategoryCode = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_UserCategory.PbUserCategoryName = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["Employee Category"].Value);
+                        MainForm.objCP_UserCategory.PbStatus = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_UserCategory.PbOrderNo = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["Order No."].Value);
+                        MainForm.objCP_UserCategory.varModules = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["ModuleID"].Value);
+                        MainForm.objCP_UserCategory.ShowDialog();
                     }
-                    else
-                    {
-                        MainForm.objCP_UserCategory = new CP_UserCategory();
-                        MainForm.objCP_UserCategory.btnSave.Visible = true;
-                        MainForm.objCP_UserCategory.txtCategoryName.Enabled = true;
-                        MainForm.objCP_UserCategory.pnlStatus.Enabled = true;
-                    }
-                    MainForm.objCP_UserCategory.btnSave.Text = "Update";
-                    MainForm.objCP_UserCategory.varUserCategoryCode = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_UserCategory.PbUserCategoryName = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["Employee Category"].Value);
-                    MainForm.objCP_UserCategory.PbStatus = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objCP_UserCategory.PbOrderNo = Convert.ToInt32(grdUserCategoryList.SelectedRows[0].Cells["Order No."].Value);
-                    MainForm.objCP_UserCategory.varModules = Convert.ToString(grdUserCategoryList.SelectedRows[0].Cells["ModuleID"].Value);
-                    MainForm.objCP_UserCategory.ShowDialog();
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
 
@@ -621,16 +658,19 @@ namespace ROMS
 
         private void GrdUserCategoryList_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
-                { tsbDelete.Visible = false;}
-                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    if (Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "1" || Convert.ToString(grdUserCategoryList.Rows[grdUserCategoryList.CurrentCell.RowIndex].Cells["DefaultID"].Value) == "2")
+                    { tsbDelete.Visible = false; }
+                    else { tsbDelete.Visible = true;   }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
 

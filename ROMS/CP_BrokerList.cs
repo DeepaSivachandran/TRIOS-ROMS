@@ -19,21 +19,27 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_BrokerList()
         {
             InitializeComponent();
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objCP_CP_Broker = new CP_Broker();
-                MainForm.objCP_CP_Broker.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objCP_CP_Broker = new CP_Broker();
+                    MainForm.objCP_CP_Broker.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -62,62 +68,65 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdBrokerList.SelectedRows.Count > 0)
+                try
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdBrokerList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspdservice = new SPDataService();
-                        DataTable objBankTable = new DataTable();
-                        objBankTable.TableName = "MR_Broker_Bank";
-                        objBankTable.Columns.Add("BRB_Name", typeof(string));
-                        objBankTable.Columns.Add("BRB_ShortName", typeof(string));
-                        objBankTable.Columns.Add("BRB_BranchName", typeof(string));
-                        objBankTable.Columns.Add("BRB_AccNo", typeof(string));
-                        objBankTable.Columns.Add("BRB_IFSC", typeof(string));
-                        objBankTable.Columns.Add("BRB_STSID", typeof(string));
-                        varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0,"", "", "", "", "",0, 0, "", "", "", 0, "Broker delete", objBankTable, varUserID,0);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = varResult.Split('~');
-                        if (varvalue[0] == "3")
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (varResult.Split('~')[1] == "1")
+                            SPDataService objspdservice = new SPDataService();
+                            DataTable objBankTable = new DataTable();
+                            objBankTable.TableName = "MR_Broker_Bank";
+                            objBankTable.Columns.Add("BRB_Name", typeof(string));
+                            objBankTable.Columns.Add("BRB_ShortName", typeof(string));
+                            objBankTable.Columns.Add("BRB_BranchName", typeof(string));
+                            objBankTable.Columns.Add("BRB_AccNo", typeof(string));
+                            objBankTable.Columns.Add("BRB_IFSC", typeof(string));
+                            objBankTable.Columns.Add("BRB_STSID", typeof(string));
+                            varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", "", 0, 0, "", "", "", 0, "Broker delete", objBankTable, varUserID, 0);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = varResult.Split('~');
+                            if (varvalue[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (varResult.Split('~')[1] == "1")
                                 {
-                                    objspdservice = new SPDataService();
-                                    varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0,"", "", "", "", "", 0,0, "", "", "", 0, "Broker delete", objBankTable, varUserID, 1);
-                                    objspdservice.CloseConnection();
-                                    if (varResult.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
+                                        objspdservice = new SPDataService();
+                                        varResult = objspdservice.udfnBroker(2, Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", "", "", 0, 0, "", "", "", 0, "Broker delete", objBankTable, varUserID, 1);
+                                        objspdservice.CloseConnection();
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         public void udfnList()
@@ -216,25 +225,28 @@ namespace ROMS
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdBrokerList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objCP_CP_Broker = new CP_Broker();
-                    MainForm.objCP_CP_Broker.btnSave.Text = "Update";
-                    MainForm.objCP_CP_Broker.varBrokerid = grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString();
-                    MainForm.objCP_CP_Broker.varstatus = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["STSID"].Value.ToString());
-                    //MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objCP_CP_Broker.ShowDialog();
+                    if (grdBrokerList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objCP_CP_Broker = new CP_Broker();
+                        MainForm.objCP_CP_Broker.btnSave.Text = "Update";
+                        MainForm.objCP_CP_Broker.varBrokerid = grdBrokerList.SelectedRows[0].Cells["ID"].Value.ToString();
+                        MainForm.objCP_CP_Broker.varstatus = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["STSID"].Value.ToString());
+                        //MainForm.objCP_CP_Broker.PbConcernID = Convert.ToInt32(grdBrokerList.SelectedRows[0].Cells["ConcernID"].Value);
+                        MainForm.objCP_CP_Broker.ShowDialog();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -461,13 +473,38 @@ namespace ROMS
         private void CP_BrokerList_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
+                MenuCode = 518;
                 cmbStatus.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
             }
             catch (Exception ex)
             {

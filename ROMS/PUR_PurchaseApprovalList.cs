@@ -22,7 +22,8 @@ namespace ROMS
         DataTable Deftable = new DataTable();
         public int MenuCode = 0;
         string privilege = "",MismatachApprovalPrivilege="";
-        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>(); 
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+       
         public PUR_PurchaseApprovalList()
         {
             InitializeComponent();
@@ -281,6 +282,9 @@ namespace ROMS
                     MainForm.objPUR_PurchaseEntryApproval.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value.ToString());
                     MainForm.objPUR_PurchaseEntryApproval.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
                     MainForm.objPUR_PurchaseEntryApproval.varApprovalStatus = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString());
+                    MainForm.objPUR_PurchaseEntryApproval.ApproveAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 23 && sp.EditAccess.Split(',').Contains("9")); 
+                    MainForm.objPUR_PurchaseEntryApproval.BillrateViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("9")); 
+                    MainForm.objPUR_PurchaseEntryApproval.BillrateEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("10")); 
                     MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
                     MainForm.objPUR_PurchaseEntryApproval.Show();
                 }

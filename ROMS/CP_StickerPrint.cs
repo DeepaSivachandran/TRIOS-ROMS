@@ -29,7 +29,7 @@ namespace ROMS
         private int varsno;
         List<string> varListSubgroupCodes = new List<string>();
         List<string> varListGroupCodes = new List<string>();
-
+         
         public CP_StickerPrint()
         {
             InitializeComponent();
@@ -70,7 +70,7 @@ namespace ROMS
         private void PROD_Rack_StickerPrint_Load(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 picLoader1.Visible = false;
                 picLoader2.Visible = false;
                 picLoader3.Visible = false;
@@ -114,15 +114,14 @@ namespace ROMS
                 cmbLabelsize.SelectedValue = -1;
                 cmbProductName.SelectedValue = 270;
                 cmbRKTemplates.SelectedValue = -1;
-                cmbType.SelectedIndex = 0;
+                cmbType.SelectedIndex = 0; 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         public void udfnConcernLoad()
         {
             try

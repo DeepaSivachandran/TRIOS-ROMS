@@ -529,10 +529,7 @@ namespace ROMS
             }
             finally
             {
-                grdGodownList.ClearSelection();
-                tsbNew.Visible = true;
-                tsbEdit.Visible = true;
-                tsbDelete.Visible = true;
+                grdGodownList.ClearSelection(); 
             }
         } 
         private void GrdGodownList_KeyDown(object sender, KeyEventArgs e)
