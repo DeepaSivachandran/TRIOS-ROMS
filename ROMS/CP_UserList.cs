@@ -128,9 +128,11 @@ namespace ROMS
                             grdUserList.Columns["UserRoleID"].Visible = false;
                             grdUserList.Columns["PassKeyID"].Visible = false;
                             grdUserList.Columns["StatusID"].Visible = false;
+                            grdUserList.Columns["LogType"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50;
                             grdUserList.Columns["Name of the System User"].Width = 200;
                             grdUserList.Columns["Status"].Width = 80;
+                            grdUserList.Columns["Login Time"].Width = 120;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -203,7 +205,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         SPDataService objspservice = new SPDataService();
-                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 0, null);
+                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 0, null, 0);
                         objspservice.CloseConnection();
                         if (varResult.Split('~')[0] == "3")
                         {
@@ -215,7 +217,7 @@ namespace ROMS
                                 if (MainForm.objCP_Verify.flag == 1)
                                 {
                                     objspservice = new SPDataService();
-                                    varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 1, null);
+                                    varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 1, null, 0);
                                     objspservice.CloseConnection();
                                     if (varResult.Split('~')[0] == "3")
                                     {

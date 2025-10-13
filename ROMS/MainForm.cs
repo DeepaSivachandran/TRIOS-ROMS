@@ -442,6 +442,7 @@ namespace ROMS
         {
             try
             {
+                udfnUserLoginProcess(411);  // Type 411 is Logged In
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
@@ -492,6 +493,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnUserLoginProcess(int varType)
+        {
+            try
+            {
+                SPDataService objspservice = new SPDataService();
+                string varResult = "";
+                varResult = objspservice.udfnUser(5, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, "", "", MainForm.pbUserID, 0, null, varType);
+                objspservice.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         //Close Application when click logout
         private void tsbLogout_Click(object sender, EventArgs e)
         {
@@ -534,6 +550,7 @@ namespace ROMS
                             {
                                 e.Cancel = false;
                                 varCloseFlag = 1;
+                                udfnUserLoginProcess(412);  // Type 411 is Logged In
                                 System.Windows.Forms.Application.Exit();
                             }
                             else
