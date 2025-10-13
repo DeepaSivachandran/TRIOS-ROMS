@@ -945,9 +945,10 @@ namespace ROMS
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
                         MR_Location objMR_Location = new MR_Location();
-                        objMR_Location.paraViewType = 11;
+                        objMR_Location.paraViewType = 26;
                         objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                        objMR_Location.paraLocationName = txtSLocation.Text;
+                        objMR_Location.paraLocationName = txtSLocation.Text.Trim();
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
                         objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
                         //objDs = objspdservice.udfnStockLocationList(11, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0, "", "", 0);
@@ -962,6 +963,8 @@ namespace ROMS
                                     DGV_FilterLocation.Columns["SLID"].Visible = false;
                                     DGV_FilterLocation.Columns["SL_TName"].Visible = false;
                                     DGV_FilterLocation.Columns["SL_ShortName"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_Default"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_StockApplicable"].Visible = false;
                                     DGV_FilterLocation.Columns["SL_EName"].HeaderText = "Location";
                                     DGV_FilterLocation.Columns["SL_EName"].Width = 180;
                                     DGV_FilterLocation.Columns["SL_EName"].DisplayIndex = 0;
