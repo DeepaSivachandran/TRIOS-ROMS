@@ -550,7 +550,7 @@ namespace ROMS
                             {
                                 e.Cancel = false;
                                 varCloseFlag = 1;
-                                udfnUserLoginProcess(412);  // Type 411 is Logged In
+                                //udfnUserLoginProcess(412);  // Type 412 is Logged Out
                                 System.Windows.Forms.Application.Exit();
                             }
                             else
@@ -689,7 +689,8 @@ namespace ROMS
             }
         }
         public void udfnClose() {
-            try {
+            try
+            {
                 if (pbCloseForm == 0)
                 {
                     DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -698,6 +699,7 @@ namespace ROMS
                         if ((System.Windows.Forms.Application.MessageLoop))
                         {
                             varCloseFlag = 1;
+                            udfnUserLoginProcess(412);  // Type 412 is Logged Out
                             System.Windows.Forms.Application.Exit();
                         }
                         else
@@ -707,7 +709,8 @@ namespace ROMS
                         Close();
                     }
                 }
-                else {
+                else
+                {
                     if ((System.Windows.Forms.Application.MessageLoop))
                     {
                         varCloseFlag = 1;
@@ -720,7 +723,8 @@ namespace ROMS
                     Close();
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }

@@ -18,6 +18,7 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID="";
+        Boolean BlnSearchImageYN = false;
         public CP_UserList()
         {
             InitializeComponent();
@@ -124,6 +125,7 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdUserList.DataSource = objDs.Tables[0];
+                            grdUserList.Columns["clmForceLogout"].Visible = true;
                             grdUserList.Columns["ID"].Visible = false;
                             grdUserList.Columns["UserRoleID"].Visible = false;
                             grdUserList.Columns["PassKeyID"].Visible = false;
@@ -138,22 +140,27 @@ namespace ROMS
                         }
                         else
                         {
+                            grdUserList.Columns["clmForceLogout"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
+                        grdUserList.Columns["clmForceLogout"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
                 }
                 else
                 {
+                    grdUserList.Columns["clmForceLogout"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                grdUserList.Columns["clmForceLogout"].DisplayIndex = grdUserList.Columns.Count - 1;
+                DGV_SearchGrid.Columns["clmForceLogout"].DisplayIndex = DGV_SearchGrid.Columns.Count - 1;
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -366,6 +373,8 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -413,11 +422,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -529,6 +551,24 @@ namespace ROMS
                     {
                         grdUserList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "412" || Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value).Trim() == "")
+                    {
+                        grdUserList.Rows[i].Cells["clmForceLogout"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdUserList.Rows[i].Cells["clmForceLogout"] = print;
+                        print.ReadOnly = true;
+                    }
+                    if(Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "411")   //Login
+                    {
+                        grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.MediumSeaGreen;
+                        grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "412")   //Logout
+                    {
+                        grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
+                        grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
                     }
                     grdUserList.ClearSelection();
                 }
@@ -1023,6 +1063,45 @@ namespace ROMS
             try
             {
                 e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdUserList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdUserList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmForceLogout":
+                            try
+                            {
+                                string UsedID = "0";
+                                UsedID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                DialogResult result;
+                                //SPDataService objDServ = new SPDataService();
+                                //string varMessage = objDServ.udfnGetMessages(87);
+                                //objDServ.CloseConnection();
+                                result = MessageBox.Show("Are you sure you want to forcefully log out this user?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result == DialogResult.Yes)
+                                {
+
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {

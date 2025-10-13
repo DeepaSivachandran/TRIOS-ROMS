@@ -3392,6 +3392,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\logout.png" />
     <None Include="Resources\padlock.png" />
     <None Include="Resources\timetable.png" />
     <None Include="Resources\view %281%29.png" />
