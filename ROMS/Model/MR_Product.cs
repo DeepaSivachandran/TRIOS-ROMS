@@ -54,5 +54,6 @@ namespace ROMS.Model
         public int paraFilterDate = 0;
         public int paraUserCode = 0;
         public string paraTeller = "";
+        public string paraUserLocations = "";
     }
 }

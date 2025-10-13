@@ -28,5 +28,6 @@ namespace ROMS.Model
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
         public DataTable paraBatchConversion { get; set; } = null;
+        public string paraUserLocations { get; set; } = "";
     }
 }
