@@ -51,12 +51,9 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
-            this.grdStockConversion = new System.Windows.Forms.DataGridView();
+            this.grdStockJournal = new System.Windows.Forms.DataGridView();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
-            this.cmbTransactionType = new System.Windows.Forms.ComboBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.dtpstkconvtodate = new System.Windows.Forms.DateTimePicker();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -66,16 +63,15 @@
             this.lbloutwarddate = new System.Windows.Forms.Label();
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.btnView = new System.Windows.Forms.Button();
             this.tsRackGroupList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdStockConversion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockJournal)).BeginInit();
             this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
@@ -167,7 +163,7 @@
             this.panel1.Controls.Add(this.DGV_FilterProduct);
             this.panel1.Controls.Add(this.lvSLocation);
             this.panel1.Controls.Add(this.DGV_SearchGrid);
-            this.panel1.Controls.Add(this.grdStockConversion);
+            this.panel1.Controls.Add(this.grdStockJournal);
             this.panel1.Controls.Add(this.grbFilterBy);
             this.panel1.Controls.Add(this.lblNoRecordsFound);
             this.panel1.Controls.Add(this.picLoader);
@@ -297,14 +293,14 @@
             this.DGV_SearchGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_SearchGrid_EditingControlShowing);
             this.DGV_SearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_SearchGrid_Scroll);
             // 
-            // grdStockConversion
+            // grdStockJournal
             // 
-            this.grdStockConversion.AllowUserToAddRows = false;
-            this.grdStockConversion.AllowUserToDeleteRows = false;
-            this.grdStockConversion.AllowUserToResizeColumns = false;
-            this.grdStockConversion.AllowUserToResizeRows = false;
-            this.grdStockConversion.BackgroundColor = System.Drawing.Color.White;
-            this.grdStockConversion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdStockJournal.AllowUserToAddRows = false;
+            this.grdStockJournal.AllowUserToDeleteRows = false;
+            this.grdStockJournal.AllowUserToResizeColumns = false;
+            this.grdStockJournal.AllowUserToResizeRows = false;
+            this.grdStockJournal.BackgroundColor = System.Drawing.Color.White;
+            this.grdStockJournal.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -312,11 +308,11 @@
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdStockConversion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.grdStockConversion.ColumnHeadersHeight = 30;
-            this.grdStockConversion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdStockConversion.ColumnHeadersVisible = false;
-            this.grdStockConversion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdStockJournal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.grdStockJournal.ColumnHeadersHeight = 30;
+            this.grdStockJournal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdStockJournal.ColumnHeadersVisible = false;
+            this.grdStockJournal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmPrint});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -325,25 +321,25 @@
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdStockConversion.DefaultCellStyle = dataGridViewCellStyle8;
-            this.grdStockConversion.EnableHeadersVisualStyles = false;
-            this.grdStockConversion.GridColor = System.Drawing.Color.White;
-            this.grdStockConversion.Location = new System.Drawing.Point(2, 147);
-            this.grdStockConversion.Name = "grdStockConversion";
-            this.grdStockConversion.ReadOnly = true;
-            this.grdStockConversion.RowHeadersVisible = false;
+            this.grdStockJournal.DefaultCellStyle = dataGridViewCellStyle8;
+            this.grdStockJournal.EnableHeadersVisualStyles = false;
+            this.grdStockJournal.GridColor = System.Drawing.Color.White;
+            this.grdStockJournal.Location = new System.Drawing.Point(2, 147);
+            this.grdStockJournal.Name = "grdStockJournal";
+            this.grdStockJournal.ReadOnly = true;
+            this.grdStockJournal.RowHeadersVisible = false;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.grdStockConversion.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.grdStockConversion.RowTemplate.Height = 25;
-            this.grdStockConversion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdStockConversion.Size = new System.Drawing.Size(1348, 493);
-            this.grdStockConversion.TabIndex = 111111133;
-            this.grdStockConversion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOutwardList_CellContentClick);
-            this.grdStockConversion.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
-            this.grdStockConversion.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserList_Scroll);
-            this.grdStockConversion.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
-            this.grdStockConversion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
+            this.grdStockJournal.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.grdStockJournal.RowTemplate.Height = 25;
+            this.grdStockJournal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdStockJournal.Size = new System.Drawing.Size(1348, 493);
+            this.grdStockJournal.TabIndex = 111111133;
+            this.grdStockJournal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdOutwardList_CellContentClick);
+            this.grdStockJournal.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdUserList_DataBindingComplete);
+            this.grdStockJournal.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdUserList_Scroll);
+            this.grdStockJournal.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
+            this.grdStockJournal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
             // clmPrint
             // 
@@ -355,9 +351,6 @@
             // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.cmbTransactionType);
-            this.grbFilterBy.Controls.Add(this.lblStatus);
-            this.grbFilterBy.Controls.Add(this.label1);
             this.grbFilterBy.Controls.Add(this.txtStockLocation);
             this.grbFilterBy.Controls.Add(this.dtpstkconvtodate);
             this.grbFilterBy.Controls.Add(this.txtProductName);
@@ -369,7 +362,6 @@
             this.grbFilterBy.Controls.Add(this.btnExport);
             this.grbFilterBy.Controls.Add(this.btnView);
             this.grbFilterBy.Controls.Add(this.cmbConcern);
-            this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Location = new System.Drawing.Point(3, 2);
             this.grbFilterBy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbFilterBy.Name = "grbFilterBy";
@@ -378,36 +370,6 @@
             this.grbFilterBy.TabIndex = 958800;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
-            // 
-            // cmbTransactionType
-            // 
-            this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTransactionType.FormattingEnabled = true;
-            this.cmbTransactionType.Location = new System.Drawing.Point(966, 47);
-            this.cmbTransactionType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(107, 27);
-            this.cmbTransactionType.TabIndex = 5;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(1077, 22);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(45, 20);
-            this.lblStatus.TabIndex = 111111135;
-            this.lblStatus.Text = "Status";
-            this.lblStatus.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(966, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 111111139;
-            this.label1.Text = "Transaction Type";
             // 
             // txtStockLocation
             // 
@@ -499,7 +461,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1162, 46);
+            this.btnExport.Location = new System.Drawing.Point(1050, 45);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 7;
@@ -509,21 +471,6 @@
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1080, 46);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 6;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
-            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
-            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // cmbConcern
             // 
@@ -536,19 +483,6 @@
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
             this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(1078, 47);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(103, 27);
-            this.cmbStatus.TabIndex = 5;
-            this.cmbStatus.Visible = false;
-            this.cmbStatus.Enter += new System.EventHandler(this.CmbStatus_Enter);
-            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStatus_KeyDown);
-            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbStatus_KeyPress);
-            this.cmbStatus.Leave += new System.EventHandler(this.CmbStatus_Leave);
             // 
             // lblNoRecordsFound
             // 
@@ -576,6 +510,21 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(968, 45);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 6;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
+            // 
             // INV_StockJournal_ConversionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -599,7 +548,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdStockConversion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdStockJournal)).EndInit();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
@@ -621,7 +570,6 @@
         public System.Windows.Forms.ToolStripButton tsbDelete;
         private System.Windows.Forms.GroupBox grbFilterBy;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblDGodown;
         private System.Windows.Forms.Label lblDConcern;
@@ -635,14 +583,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader22;
         private System.Windows.Forms.ColumnHeader columnHeader23;
         private System.Windows.Forms.ColumnHeader columnHeader24;
-        public System.Windows.Forms.DataGridView grdStockConversion;
+        public System.Windows.Forms.DataGridView grdStockJournal;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.PictureBox picLoader;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label lblStatus;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
-        private System.Windows.Forms.ComboBox cmbTransactionType;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnView;
     }
 }
