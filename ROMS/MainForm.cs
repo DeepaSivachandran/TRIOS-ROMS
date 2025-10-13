@@ -13,10 +13,29 @@ namespace ROMS
 {
     public partial class MainForm : Form
     {
+        private Dictionary<Form, ToolStripButton> minimizedForms = new Dictionary<Form, ToolStripButton>();
+        private Form currentOpenForm = null;
+        List<MinimizedFormInfo> minimizedFormList = new List<MinimizedFormInfo>();
+        private List<(int Index, string FormName)> minimizedFormInfoList = new List<(int, string)>();
+        private MdiClient mdiClientArea = null;
+        private Dictionary<Form, int> formMenuCodeMap = new Dictionary<Form, int>();
+
+        public class MinimizedFormInfo
+        {
+            public int Index { get; set; }
+            public string FormName { get; set; }
+            public ToolStripButton Button { get; set; }
+            public Form FormInstance { get; set; }
+        }
+        public static readonly Dictionary<string, Action> varSpecialField = new Dictionary<string, Action>
+        {
+            { "varInwardcancel", () => pbSpecialFlag = 1 }
+        };
         //------- Servic Class object declaration
         DataValidation objValidation = new DataValidation();
         public DataError objError = new DataError();
         //------- Variable Declaration
+        public static int pbSpecialFlag = 0;
         public static int PbDeleteFlag = 0;
         public static string PbCurrentForm = "0";
         public static int pbCloseForm = 0;
@@ -337,6 +356,178 @@ namespace ROMS
             }
         }
 
+        // Added By Sathish On 30-04-2025 For Minimize Reports Screen
+        public void SubForm_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender is Form form && form.WindowState == FormWindowState.Minimized)
+                {
+                    form.Hide();
+                    AddMinimizedFormToStatusBar(ref form, form.Name, 0);
+
+                    var nextForm = MdiChildren
+                        .Where(f => f != form && f.Visible && f.WindowState != FormWindowState.Minimized && !f.IsDisposed)
+                        .OrderByDescending(f => f == currentOpenForm)
+                        .FirstOrDefault();
+
+                    if (nextForm != null)
+                    {
+                        nextForm.Show();
+                        nextForm.WindowState = FormWindowState.Normal;
+                        nextForm.BringToFront();
+                        currentOpenForm = nextForm;
+                    }
+                    else
+                    {
+                        currentOpenForm = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        // Add minimized form to the status bar
+        private void AddMinimizedFormToStatusBar<T>(ref T form, string formName, int flag) where T : Form
+        {
+            try
+            {
+                if (form is DEF_Start)
+                {
+                    return;
+                }
+
+                if (flag == 1)
+                {
+                    var existing = minimizedFormList.FirstOrDefault(m => m.FormName == formName);
+                    if (existing != null)
+                    {
+                        statusBar.Items.Remove(existing.Button);
+                        minimizedFormList.Remove(existing);
+                        form = null;
+                    }
+                    return;
+                }
+
+                if (form == null || form.IsDisposed)
+                    return;
+
+                Form localForm = form;
+                if (minimizedFormList.Any(m => m.FormInstance == localForm))
+                    return;
+                form.Hide();
+                if (objStart == null || objStart.IsDisposed)
+                {
+                    objStart = new DEF_Start();
+                    objStart.MdiParent = this;
+                    CenterChildForm(objStart);
+                    objStart.Show();
+                }
+                else if (!objStart.Visible)
+                {
+                    CenterChildForm(objStart);
+                    objStart.Show();
+                }
+                ToolStripButton btn = new ToolStripButton(form.Text)
+                {
+                    DisplayStyle = ToolStripItemDisplayStyle.Text,
+                    ToolTipText = form.Text
+                };
+                btn.Click += MinimizedFormButton_Click;
+
+                statusBar.Items.Add(btn);
+
+                minimizedFormList.Add(new MinimizedFormInfo
+                {
+                    FormName = form.Name,
+                    FormInstance = form,
+                    Button = btn
+                });
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        // Restore form when clicked in status barf
+        private void MinimizedFormButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender is ToolStripButton btn)
+                {
+                    var info = minimizedFormList.FirstOrDefault(m => m.Button == btn);
+
+                    if (info == null || info.FormInstance == null || info.FormInstance.IsDisposed)
+                    {
+                        statusBar.Items.Remove(btn);
+                        minimizedFormList.RemoveAll(m => m.Button == btn);
+                        return;
+                    }
+
+                    if (info.FormInstance.WindowState == FormWindowState.Normal && info.FormInstance.Visible)
+                        return;
+
+                    foreach (Form openForm in MdiChildren)
+                    {
+                        if (openForm != info.FormInstance && openForm.WindowState == FormWindowState.Normal && openForm.Visible && !(openForm is DEF_Start))
+                        {
+                            Form tempForm = openForm;
+                            AddMinimizedFormToStatusBar(ref tempForm, tempForm.Name, 0);
+                        }
+                    }
+
+                    info.FormInstance.SuspendLayout();
+                    info.FormInstance.WindowState = FormWindowState.Normal;
+                    info.FormInstance.StartPosition = FormStartPosition.Manual;
+
+                    CenterChildForm(info.FormInstance);
+                    if (formMenuCodeMap.TryGetValue(info.FormInstance, out int menuCode))
+                    {
+                        ApplyUserPrivilegesToForm(info.FormInstance, menuCode);
+                    }
+
+                    info.FormInstance.Show();
+                    CenterChildForm(info.FormInstance);
+                    info.FormInstance.BringToFront();
+                    info.FormInstance.ResumeLayout();
+
+                    statusBar.Items.Remove(btn);
+                    minimizedFormList.Remove(info);
+                    currentOpenForm = info.FormInstance;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        // Added By Sathish On 30-04-2025 For Minimize Reports Screen
+        public void MoveCurrentOpenFormToStatusBar(Form nextFormToOpen)
+        {
+            try
+            {
+                if (currentOpenForm != null && !currentOpenForm.IsDisposed && currentOpenForm != nextFormToOpen)
+                {
+                    AddMinimizedFormToStatusBar(ref currentOpenForm, currentOpenForm.Name, 0);
+                    currentOpenForm = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         //Close Form
         public void udfnCloseChildForms()
         {
@@ -382,6 +573,333 @@ namespace ROMS
             catch (Exception ex) {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        // Added By Sathish On 30-04-2025 For Minimize Reports Screen
+        private void OpenReportForm<T>(ref T formInstance, string formName, int menuCode, string specialflag = null) where T : Form, new()
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
+
+                if (formInstance == null || formInstance.IsDisposed)
+                {
+                    formInstance = new T();
+                    formInstance.MdiParent = this;
+                    this.CenterChildForm(formInstance);
+                    formInstance.Resize += SubForm_Resize;
+
+                    var localForm = formInstance;
+
+                    formInstance.FormClosing += (s, args) =>
+                    {
+                        if (localForm != null && (localForm.WindowState == FormWindowState.Minimized || localForm.Visible))
+                        {
+                            args.Cancel = true;
+                            localForm.Hide();
+                            AddMinimizedFormToStatusBar(ref localForm, formName, 1);
+                        }
+                        else
+                        {
+                            if (localForm.WindowState == FormWindowState.Maximized)
+                                localForm.WindowState = FormWindowState.Normal;
+
+                            var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == localForm);
+                            if (minimizedItem != null)
+                            {
+                                statusBar.Items.Remove(minimizedItem.Button);
+                                minimizedFormList.Remove(minimizedItem);
+                            }
+                            currentOpenForm = null;
+                        }
+                    };
+                }
+                if (minimizedForms.ContainsKey(formInstance))
+                {
+                    ToolStripButton btn = minimizedForms[formInstance];
+                    statusBar.Items.Remove(btn);
+                    minimizedForms.Remove(formInstance);
+                    minimizedFormInfoList.RemoveAll(x => x.FormName == formName);
+                }
+                //if (currentOpenForm != null && currentOpenForm.Visible)
+                //{
+                //    MoveCurrentOpenFormToStatusBar(formInstance);
+                //}
+                //udfnCloseChildForms();
+
+                //if (!isClose) return;
+                MoveCurrentOpenFormToStatusBar(formInstance);
+
+                if (pbUserRoleId == "0")
+                {
+                    if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
+                    {
+                        MainForm.varSpecialField[specialflag]();
+                    }
+                    formInstance.MdiParent = this;
+                    this.CenterChildForm(formInstance);
+                    formInstance.Show();
+                }
+                else if (objDtMenuDetailsUser != null)
+                {
+                    var hasPrivilege = objDtMenuDetailsUser.AsEnumerable()
+                        .Any(r => r.Field<int>("MU_Code") == menuCode);
+
+                    if (!hasPrivilege)
+                        return;
+
+                    var privileges = objDtMenuDetailsUser.AsEnumerable()
+                        .Where(r => r.Field<int>("MU_Code") == menuCode)
+                        .Select(r => r.Field<int>("MU_PrivilegeCode"))
+                        .ToList();
+
+                    if (privileges.Contains(5))
+                    {
+                        if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
+                        {
+                            MainForm.varSpecialField[specialflag]();
+                        }
+                    }
+                    formInstance.MdiParent = this;
+                    this.CenterChildForm(formInstance);
+                    formInstance.Show();
+                }
+
+                //   formInstance.WindowState = FormWindowState.Maximized;
+                formInstance.BringToFront();
+                currentOpenForm = formInstance;
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void HandleFormClosingManually(Form closingForm, string formName, bool isClosing = false)
+        {
+            if (!isClosing && (closingForm.WindowState == FormWindowState.Minimized || closingForm.Visible))
+            {
+                closingForm.Hide();
+                AddMinimizedFormToStatusBar(ref closingForm, formName, 1);
+                return;
+            }
+
+            if (closingForm.WindowState == FormWindowState.Maximized)
+                closingForm.WindowState = FormWindowState.Normal;
+
+            var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == closingForm);
+            if (minimizedItem != null)
+            {
+                statusBar.Items.Remove(minimizedItem.Button);
+                minimizedFormList.Remove(minimizedItem);
+            }
+
+            currentOpenForm = null;
+
+            bool anyOtherMaximizedForms = this.MdiChildren.Any(f => f.WindowState == FormWindowState.Maximized && f.Visible);
+            if (!anyOtherMaximizedForms)
+            {
+                DEF_Start def = new DEF_Start();
+                def.MdiParent = this;
+                def.WindowState = FormWindowState.Normal;
+                def.Show();
+            }
+
+        }
+
+        public void PrepareFormClose(Form closingForm, string formName)
+        {
+            HandleFormClosingManually(closingForm, formName, true);
+            formMenuCodeMap.Remove(closingForm);
+            closingForm.Close(); // actual close
+        }
+
+        public void OpenMainForm<T>(ref T formInstance, string formName, int menuCode, string tsbNewName = null, string tssNewName = null, string tsbEditName = null, string tssEditName = null, string tsbDeleteName = null, Control gridControl = null, EventHandler doubleClickHandler = null, KeyEventHandler keyDownHandler = null, string specialflag = null) where T : Form, new()
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (!isClose) return;
+
+                AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
+
+                if (formInstance == null || formInstance.IsDisposed)
+                {
+                    formInstance = new T();
+                    formInstance.MdiParent = this;
+                    this.CenterChildForm(formInstance);
+                    formInstance.Resize += SubForm_Resize;
+
+                    var localForm = formInstance;
+                    localForm.FormClosing += (s, args) =>
+                    {
+                        if (localForm.WindowState == FormWindowState.Minimized || localForm.Visible)
+                        {
+                            args.Cancel = true;
+                            localForm.Hide();
+                            AddMinimizedFormToStatusBar(ref localForm, formName, 1);
+                        }
+                        else
+                        {
+                            if (localForm.WindowState == FormWindowState.Maximized)
+                                localForm.WindowState = FormWindowState.Normal;
+
+                            var minimizedItem = minimizedFormList.FirstOrDefault(m => m.FormInstance == localForm);
+                            if (minimizedItem != null)
+                            {
+                                statusBar.Items.Remove(minimizedItem.Button);
+                                minimizedFormList.Remove(minimizedItem);
+                            }
+                            currentOpenForm = null;
+                            bool anyOtherMaximizedForms = this.MdiChildren.Any(f => f != localForm && f.WindowState == FormWindowState.Maximized && f.Visible);
+
+                            if (!anyOtherMaximizedForms)
+                            {
+                                DEF_Start def = new DEF_Start();
+                                def.MdiParent = this;
+                                def.WindowState = FormWindowState.Maximized;
+                                def.Show();
+                            }
+                        }
+                    };
+                }
+
+                if (minimizedForms.ContainsKey(formInstance))
+                {
+                    ToolStripButton btn = minimizedForms[formInstance];
+                    statusBar.Items.Remove(btn);
+                    minimizedForms.Remove(formInstance);
+                    minimizedFormInfoList.RemoveAll(x => x.FormName == formName);
+                }
+
+                MoveCurrentOpenFormToStatusBar(formInstance);
+
+                if (pbUserRoleId == "0")
+                {
+                    if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
+                    {
+                        MainForm.varSpecialField[specialflag]();
+                    }
+                    formInstance.MdiParent = this;
+                    this.CenterChildForm(formInstance);
+                    formInstance.Show();
+                }
+                else if (objDtMenuDetailsUser != null)
+                {
+                    var privileges = objDtMenuDetailsUser.AsEnumerable()
+                        .Where(r => r.Field<int>("MU_Code") == menuCode)
+                        .Select(r => r.Field<int>("MU_PrivilegeCode"))
+                        .ToList();
+
+                    var toolStrip = formInstance.Controls.OfType<ToolStrip>().FirstOrDefault();
+
+                    var gridView = formInstance.Controls.OfType<DataGridView>().FirstOrDefault();
+
+                    ToolStripItem btnNew = null, sepNew = null;
+                    ToolStripItem btnEdit = null, sepEdit = null;
+                    ToolStripItem btnDelete = null;
+
+
+                    if (toolStrip != null)
+                    {
+                        foreach (ToolStripItem item in toolStrip.Items)
+                        {
+                            if (item.Name == tsbNewName) btnNew = item;
+                            if (item.Name == tssNewName) sepNew = item;
+                            if (item.Name == tsbEditName) btnEdit = item;
+                            if (item.Name == tssEditName) sepEdit = item;
+                            if (item.Name == tsbDeleteName) btnDelete = item;
+                        }
+
+                        if (btnNew != null) btnNew.Visible = false;
+                        if (sepNew != null) sepNew.Visible = false;
+                        if (btnEdit != null) btnEdit.Visible = false;
+                        if (sepEdit != null) sepEdit.Visible = false;
+                        if (btnDelete != null) btnDelete.Visible = false;
+
+                        if (gridControl != null)
+                        {
+                            if (doubleClickHandler != null)
+                                gridControl.DoubleClick -= doubleClickHandler;
+
+                            if (keyDownHandler != null)
+                                gridControl.KeyDown -= keyDownHandler;
+                        }
+                        if (privileges.Contains(2))
+                        {
+                            if (btnNew != null) btnNew.Visible = true;
+                            if (sepNew != null) sepNew.Visible = true;
+                        }
+
+
+                        if (privileges.Contains(3))
+                        {
+                            if (btnEdit != null) btnEdit.Visible = true;
+                            if (sepEdit != null) sepEdit.Visible = true;
+
+                            if (gridControl != null)
+                            {
+                                if (doubleClickHandler != null)
+                                    gridControl.DoubleClick += doubleClickHandler;
+
+                                if (keyDownHandler != null)
+                                    gridControl.KeyDown += keyDownHandler;
+                            }
+                        }
+
+                        if (privileges.Contains(4))
+                        {
+                            if (btnDelete != null) btnDelete.Visible = true;
+                        }
+                        if (privileges.Contains(5))
+                        {
+                            if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
+                            {
+                                MainForm.varSpecialField[specialflag]();
+                            }
+                        }
+                    }
+                    formMenuCodeMap[formInstance] = menuCode;
+                    ApplyUserPrivilegesToForm(formInstance, menuCode);
+                    formInstance.MdiParent = this;
+                    this.CenterChildForm(formInstance);
+                    formInstance.Show();
+                }
+                formInstance.BringToFront();
+                currentOpenForm = formInstance;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void ApplyUserPrivilegesToForm(Form formInstance, int menuCode)
+        {
+            if (pbUserRoleId == "0") return;
+
+            if (objDtMenuDetailsUser == null) return;
+
+            var privileges = objDtMenuDetailsUser.AsEnumerable()
+                .Where(r => r.Field<int>("MU_Code") == menuCode)
+                .Select(r => r.Field<int>("MU_PrivilegeCode"))
+                .ToList();
+
+            SetFormPrivilegeFlag(formInstance, "varNewFlag", privileges.Contains(2) ? 1 : 0);
+            SetFormPrivilegeFlag(formInstance, "varEditFlag", privileges.Contains(3) ? 1 : 0);
+            SetFormPrivilegeFlag(formInstance, "varDeleteFlag", privileges.Contains(4) ? 1 : 0);
+        }
+
+        private void SetFormPrivilegeFlag(Form form, string variableName, int value)
+        {
+            var field = form.GetType().GetField(variableName);
+            if (field != null && field.FieldType == typeof(int))
+            {
+                field.SetValue(form, value);
             }
         }
 
@@ -457,6 +975,15 @@ namespace ROMS
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
                 //lblDb.Text = "ROMS DB : "+MainForm.pbRomsSoftwareName;
+                foreach (Control ctl in this.Controls)
+                {
+                    if (ctl is MdiClient client)
+                    {
+                        mdiClientArea = client;
+                        break;
+                    }
+                }
+
                 objStart = new DEF_Start();
                 objStart.MdiParent = this;
                 objStart.Show();
@@ -465,6 +992,19 @@ namespace ROMS
             {
                 objError = new DataError(); 
                 objError.WriteFile(ex);
+            }
+        }
+        public void CenterChildForm(Form childForm)
+        {
+            if (mdiClientArea != null && childForm != null)
+            {
+                childForm.StartPosition = FormStartPosition.Manual;
+                childForm.WindowState = FormWindowState.Normal;
+
+                int x = (mdiClientArea.Width - childForm.Width) / 2;
+                int y = (mdiClientArea.Height - childForm.Height) / 2;
+
+                childForm.Location = new Point(Math.Max(x, 0), Math.Max(y, 0));
             }
         }
         public void udfnUserMappedLocations()
@@ -1515,12 +2055,13 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_CP_City = new REPORT_CP_City();
-                MainForm.objREPORT_CP_City.MdiParent = this;
-                MainForm.objREPORT_CP_City.Show();
-                PbCurrentForm = "7.1.1";
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_CP_City = new REPORT_CP_City();
+                //MainForm.objREPORT_CP_City.MdiParent = this;
+                //MainForm.objREPORT_CP_City.Show();
+                //PbCurrentForm = "7.1.1";
+                OpenReportForm(ref MainForm.objREPORT_CP_City, "REPORT_CP_City", 80101);
             }
             catch (Exception ex)
             {
@@ -1532,12 +2073,13 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_CP_State = new REPORT_CP_State();
-                MainForm.objREPORT_CP_State.MdiParent = this;
-                MainForm.objREPORT_CP_State.Show();
-                PbCurrentForm = "7.1.2";
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_CP_State = new REPORT_CP_State();
+                //MainForm.objREPORT_CP_State.MdiParent = this;
+                //MainForm.objREPORT_CP_State.Show();
+                //PbCurrentForm = "7.1.2";
+                OpenReportForm(ref MainForm.objREPORT_CP_State, "REPORT_CP_State", 80102);
             }
             catch (Exception ex)
             {
