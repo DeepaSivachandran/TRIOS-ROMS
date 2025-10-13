@@ -20,6 +20,9 @@ namespace ROMS
         DataTable Deftable = new DataTable();
         public Boolean BlnSearchImageYN = false;
         public string varUserID = "0";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
         public PAY_ChequeTransactionList()
         {
@@ -354,6 +357,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 407;
                 udfnCmbConcern();
                 //DataSet objDs = new DataSet();
                 //SPDataService objspservice = new SPDataService();
@@ -371,6 +375,43 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 this.ActiveControl = txtSupplier;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions; 
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    grdSupllierPaymentList.Columns["clmView"].Visible = privilege.Contains("2");
+                    grdSupllierPaymentList.Columns["clmCancel"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 43 && sp.EditAccess.Split(',').Contains("9")); 
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 43 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[1].Visible = privilege.Contains("2"); 
+                }
             }
             catch (Exception ex)
             {
@@ -655,7 +696,7 @@ namespace ROMS
                     Deftable = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;  udfnGridAccess(); }
             }
             catch (Exception ex)
             {

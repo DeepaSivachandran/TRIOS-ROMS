@@ -19,6 +19,7 @@ namespace ROMS
         private ToolTip tpCancel = new ToolTip();
         public int varSupplierId=0, varScheduleId=0,varPaymentID=0;
         public  DateTime pbChequeDate ;
+        public bool EditAccess = false;
         public PAY_SupplierPayment_BankDate()
         {
             InitializeComponent();
@@ -159,9 +160,25 @@ namespace ROMS
         private void PAY_SupplierPayment_BankDate_Load(object sender, EventArgs e)
         {
             dpTransactionDate.MaxDate = pbChequeDate;
+            udfnUserAccess();
             //sdpTransactionDate.MaxDate = MainForm.pbCurrentDate;
         }
-
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (EditAccess == false)
+                    { btnSave.Visible = EditAccess; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void dpTransactionDate_Leave(object sender, EventArgs e)
         {
             try
