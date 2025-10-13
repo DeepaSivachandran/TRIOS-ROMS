@@ -1362,7 +1362,7 @@ namespace ROMS
                     {
                         SPDataService objspdservice = new SPDataService();
                         int vartype = 0;
-                        if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["Transaction Type"].Value) == "Addition")
+                        if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["Transaction Type"].Value) == "Inward")
                         {
                             vartype = 378;
                         }

@@ -46,27 +46,21 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
-            this.lvSLocation = new System.Windows.Forms.ListView();
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdStockJournal = new System.Windows.Forms.DataGridView();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
-            this.txtStockLocation = new System.Windows.Forms.TextBox();
             this.dtpstkconvtodate = new System.Windows.Forms.DateTimePicker();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblDProductNamePicode = new System.Windows.Forms.Label();
             this.dtpstkconvdate = new System.Windows.Forms.DateTimePicker();
-            this.lblDGodown = new System.Windows.Forms.Label();
             this.lbloutwarddate = new System.Windows.Forms.Label();
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.btnView = new System.Windows.Forms.Button();
             this.tsRackGroupList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -161,7 +155,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.DGV_FilterProduct);
-            this.panel1.Controls.Add(this.lvSLocation);
             this.panel1.Controls.Add(this.DGV_SearchGrid);
             this.panel1.Controls.Add(this.grdStockJournal);
             this.panel1.Controls.Add(this.grbFilterBy);
@@ -200,7 +193,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(565, 76);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(336, 76);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -214,37 +207,6 @@
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
             this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
-            // 
-            // lvSLocation
-            // 
-            this.lvSLocation.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader22,
-            this.columnHeader23,
-            this.columnHeader24});
-            this.lvSLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvSLocation.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSLocation.HideSelection = false;
-            this.lvSLocation.Location = new System.Drawing.Point(341, 76);
-            this.lvSLocation.Name = "lvSLocation";
-            this.lvSLocation.Size = new System.Drawing.Size(424, 158);
-            this.lvSLocation.TabIndex = 111111132;
-            this.lvSLocation.UseCompatibleStateImageBehavior = false;
-            this.lvSLocation.View = System.Windows.Forms.View.Details;
-            this.lvSLocation.Visible = false;
-            this.lvSLocation.DoubleClick += new System.EventHandler(this.LvSLocation_DoubleClick);
-            this.lvSLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSLocation_KeyDown);
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Width = 180;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 120;
-            // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Width = 0;
             // 
             // DGV_SearchGrid
             // 
@@ -351,12 +313,10 @@
             // 
             // grbFilterBy
             // 
-            this.grbFilterBy.Controls.Add(this.txtStockLocation);
             this.grbFilterBy.Controls.Add(this.dtpstkconvtodate);
             this.grbFilterBy.Controls.Add(this.txtProductName);
             this.grbFilterBy.Controls.Add(this.lblDProductNamePicode);
             this.grbFilterBy.Controls.Add(this.dtpstkconvdate);
-            this.grbFilterBy.Controls.Add(this.lblDGodown);
             this.grbFilterBy.Controls.Add(this.lbloutwarddate);
             this.grbFilterBy.Controls.Add(this.lblDConcern);
             this.grbFilterBy.Controls.Add(this.btnExport);
@@ -370,17 +330,6 @@
             this.grbFilterBy.TabIndex = 958800;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By ";
-            // 
-            // txtStockLocation
-            // 
-            this.txtStockLocation.Location = new System.Drawing.Point(336, 47);
-            this.txtStockLocation.Name = "txtStockLocation";
-            this.txtStockLocation.Size = new System.Drawing.Size(218, 27);
-            this.txtStockLocation.TabIndex = 3;
-            this.txtStockLocation.TextChanged += new System.EventHandler(this.TxtStockLocation_TextChanged);
-            this.txtStockLocation.Enter += new System.EventHandler(this.TxtStockLocation_Enter);
-            this.txtStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtStockLocation_KeyDown);
-            this.txtStockLocation.Leave += new System.EventHandler(this.TxtStockLocation_Leave);
             // 
             // dtpstkconvtodate
             // 
@@ -396,7 +345,7 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(559, 47);
+            this.txtProductName.Location = new System.Drawing.Point(336, 47);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(402, 27);
@@ -409,7 +358,7 @@
             // lblDProductNamePicode
             // 
             this.lblDProductNamePicode.AutoSize = true;
-            this.lblDProductNamePicode.Location = new System.Drawing.Point(559, 24);
+            this.lblDProductNamePicode.Location = new System.Drawing.Point(335, 24);
             this.lblDProductNamePicode.Name = "lblDProductNamePicode";
             this.lblDProductNamePicode.Size = new System.Drawing.Size(134, 20);
             this.lblDProductNamePicode.TabIndex = 958811;
@@ -427,16 +376,6 @@
             this.dtpstkconvdate.Enter += new System.EventHandler(this.DtpOutwardDate_Enter);
             this.dtpstkconvdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DtpOutwardDate_KeyDown);
             this.dtpstkconvdate.Leave += new System.EventHandler(this.DtpOutwardDate_Leave);
-            // 
-            // lblDGodown
-            // 
-            this.lblDGodown.AutoSize = true;
-            this.lblDGodown.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblDGodown.Location = new System.Drawing.Point(336, 22);
-            this.lblDGodown.Name = "lblDGodown";
-            this.lblDGodown.Size = new System.Drawing.Size(54, 20);
-            this.lblDGodown.TabIndex = 38;
-            this.lblDGodown.Text = "Location";
             // 
             // lbloutwarddate
             // 
@@ -461,7 +400,7 @@
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport.Location = new System.Drawing.Point(1050, 45);
+            this.btnExport.Location = new System.Drawing.Point(823, 46);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(79, 29);
             this.btnExport.TabIndex = 7;
@@ -471,6 +410,21 @@
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             this.btnExport.Enter += new System.EventHandler(this.BtnExport_Enter);
             this.btnExport.Leave += new System.EventHandler(this.BtnExport_Leave);
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(743, 46);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 6;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // cmbConcern
             // 
@@ -509,21 +463,6 @@
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(968, 45);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 6;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
-            this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
-            this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
             // INV_StockJournal_ConversionList
             // 
@@ -571,18 +510,12 @@
         private System.Windows.Forms.GroupBox grbFilterBy;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.ComboBox cmbConcern;
-        private System.Windows.Forms.Label lblDGodown;
         private System.Windows.Forms.Label lblDConcern;
         private System.Windows.Forms.DateTimePicker dtpstkconvdate;
         private System.Windows.Forms.Label lbloutwarddate;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label lblDProductNamePicode;
         private System.Windows.Forms.DateTimePicker dtpstkconvtodate;
-        private System.Windows.Forms.TextBox txtStockLocation;
-        public System.Windows.Forms.ListView lvSLocation;
-        private System.Windows.Forms.ColumnHeader columnHeader22;
-        private System.Windows.Forms.ColumnHeader columnHeader23;
-        private System.Windows.Forms.ColumnHeader columnHeader24;
         public System.Windows.Forms.DataGridView grdStockJournal;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.PictureBox picLoader;

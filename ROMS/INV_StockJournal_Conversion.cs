@@ -229,7 +229,7 @@ namespace ROMS
                             grdOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdOutward.Rows.Add(grdOutward.Rows.Count + 1, lblPRID.Text, varPICode, (varTamilname), lblOutwardStockDetail.Text, lblOutwardLocationId.Text, lblOutwardRackId.Text, (lblMRP.Text).Trim(), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text), lblQuantity.Text, lblUnitId.Text, lblUtDecimal.Text);
 
-                            dtStock.Rows.Add(lblPRID.Text, string.Format("{0:G29}", decimal.Parse(Convert.ToString(lblMRP.Text.Trim()))), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), lblUnitId.Text, (txtOutwardQuantity.Text), lblOutwardRackId.Text, lblOutwardLocationId.Text, 0, 0);
+                            dtStock.Rows.Add(lblPRID.Text, string.Format("{0:G29}", decimal.Parse(Convert.ToString(lblMRP.Text.Trim()))), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), lblUnitId.Text, (txtOutwardQuantity.Text), lblOutwardRackId.Text, lblOutwardLocationId.Text, 0, 0,0, grdOutward.Rows.Count);
 
                             if (varparentflag == 2)
                             {
@@ -237,8 +237,10 @@ namespace ROMS
                                 udfnProductClear();
                             }
                             else
-                            {
-                                grpOutward.Enabled = false;
+                            { 
+                                txtOutwardProduct.Enabled = false;
+                                txtOutwardQuantity.Enabled = false;
+                                btnAdd.Enabled = false; 
                                 cmbInward_SelectedIndexChanged(sender, e);
                             }
                             //varTotalItem = Convert.ToString(DGV_inward.Rows.Count);
@@ -297,6 +299,8 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 dtStock.Columns.Add("STK_ProType", typeof(int));
                 dtStock.Columns.Add("STK_Status", typeof(int));
+                dtStock.Columns.Add("STK_SNO", typeof(int));
+                
 
                 dtConvertedProduct.TableName = "TRN_Stock_Journal_Products";
                 dtConvertedProduct.Columns.Add("STKJPR_PRID", typeof(int));
@@ -306,19 +310,20 @@ namespace ROMS
                 dtConvertedProduct.Columns.Add("STKJPR_TranactionQty", typeof(decimal));
                 dtConvertedProduct.Columns.Add("STKJPR_RKID", typeof(int));
                 dtConvertedProduct.Columns.Add("STKJPR_SLID", typeof(int));
+                dtConvertedProduct.Columns.Add("STKJPR_SNO", typeof(int));
 
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dtpConvertDate.MinDate = MainForm.pbFYStartDate;
                 dtpConvertDate.MaxDate = MainForm.pbCurrentDate;
                 grdOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
-
                 if (varAJId != 0)
                 { 
                     udfnEdit(sender, e);
                 }
 
                 this.ActiveControl = txtOutwardProduct;
+                txtInwardQty.BackColor = SystemColors.Control;
             }
             catch (Exception ex)
             {
@@ -348,14 +353,15 @@ namespace ROMS
                     if (txtOutwardProduct.Text.Length > 0 || txtOutwardProduct.Text == " ")
                     {
 
+                        DataTable dtStockClone = dtStock.DefaultView.ToTable(false, "STK_PRID", "STK_MRP", "STK_ExpiryDate", "STK_BatchNo", "STK_UTID", "STK_QTY", "STK_Source_RKID", "STK_Dest_SLID", "STK_Dest_RKID", "STK_ProType", "STK_Status");
                         var ViewType = 80;
                         int varEntry = 1;
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = ViewType;
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraProductName = txtOutwardProduct.Text;
-                        objMR_Product.paraType = varEntry;
-
+                        objMR_Product.paraType = varEntry; 
+                        objMR_Product.paraStockTransfer = dtStockClone;
 
                         objMR_Product.paraPicode = txtOutwardProduct.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
@@ -752,11 +758,13 @@ namespace ROMS
                     grdInward.Rows.Add(grdInward.Rows.Count + 1, cmbInward.SelectedValue, varPICodeChild, varTamilnameChild, lblOutwardStockDetail.Text, lblOutwardLocationId.Text, lblOutwardRackId.Text, (lblMRP.Text).Trim(), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), 0, 0, (txtOutwardQuantity.Text), lblchildunit.Text, lblUnitChildId.Text, varDecimalChild, grdOutward.Rows.Count + 1);
 
                     grdInward.Columns["clmproductnameinv"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                    dtConvertedProduct.Rows.Add(cmbInward.SelectedValue, string.Format("{0:G29}", decimal.Parse(Convert.ToString((lblMRP.Text).Trim()))), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), (txtOutwardQuantity.Text), lblOutwardRackId.Text, lblOutwardLocationId.Text);
+                    dtConvertedProduct.Rows.Add(cmbInward.SelectedValue, string.Format("{0:G29}", decimal.Parse(Convert.ToString((lblMRP.Text).Trim()))), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), (txtOutwardQuantity.Text), lblOutwardRackId.Text, lblOutwardLocationId.Text, grdInward.Rows.Count);
                 }
                 if (varparentflag == 1)
-                {
-                    grpOutward.Enabled = true;
+                { 
+                    txtOutwardProduct.Enabled = true;
+                    txtOutwardQuantity.Enabled = true;
+                    btnAdd.Enabled = true; 
                     txtOutwardProduct.Focus();
                     udfnProductClear();
                 }
@@ -1078,8 +1086,8 @@ namespace ROMS
         {
             try
             {
-                int varProductID = 0, varRKID = 0;
-                string varMRP = "", varExpiryDate = "", varBatchNo = "";
+                int varProductID = 0, varRKID = 0, varSLID=0;
+                string varMRP = "", varExpiryDate = "", varBatchNo = "",selectedDsno="";
                 if (e.RowIndex != -1)
                 {
                     switch (grdOutward.Columns[e.ColumnIndex].Name)
@@ -1088,13 +1096,19 @@ namespace ROMS
                             DialogResult dialogResult = MessageBox.Show("Are you sure want to remove ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
-                                varProductID = Convert.ToInt32(grdOutward.SelectedRows[0].Cells["clmPRID"].Value);
+                                varProductID = Convert.ToInt32(grdOutward.SelectedRows[0].Cells["clmPRID"].Value); 
                                 //varMRP = Convert.ToString(grdGoodsOutward.SelectedRows[0].Cells["clmmrp"].Value);
                                 varMRP = string.Format("{0:G29}", decimal.Parse(Convert.ToString(grdOutward.SelectedRows[0].Cells["clmmrp"].Value)));
                                 varExpiryDate = Convert.ToString(grdOutward.SelectedRows[0].Cells["clmExpirydate"].Value);
                                 varBatchNo = Convert.ToString(grdOutward.SelectedRows[0].Cells["clmBatchNo"].Value);
                                 varRKID = Convert.ToInt32(grdOutward.SelectedRows[0].Cells["clmRKID"].Value);
+                                varSLID = Convert.ToInt32(grdOutward.SelectedRows[0].Cells["locationid"].Value);
+                                selectedDsno = Convert.ToString(grdOutward.SelectedRows[0].Cells["clmdsno"].Value);
                                 grdOutward.Rows.RemoveAt(this.grdOutward.SelectedRows[0].Index);
+
+                                // Get the selected dsno value from grdOutward
+
+
                                 for (int i = 0; i < grdOutward.RowCount; i++)
                                 {
                                     grdOutward.Rows[i].Cells["clmdsno"].Value = i + 1;
@@ -1106,7 +1120,32 @@ namespace ROMS
                                         dtStock.Rows[i].Delete();
                                         dtStock.AcceptChanges();
                                     }
-                                } 
+                                }
+                                if (!string.IsNullOrEmpty(selectedDsno))
+                                {
+                                    var inwardRow = grdInward.Rows
+                                    .Cast<DataGridViewRow>()
+                                    .FirstOrDefault(r => r.Cells["clmSnoinv"].Value?.ToString() == selectedDsno);
+
+
+                                    grdInward.Rows.Remove(inwardRow); 
+
+                                    DataRow[] rowsToDelete = dtConvertedProduct.Select($"STKJPR_SNO = '{selectedDsno}'");
+                                    foreach (DataRow dr in rowsToDelete)
+                                        dr.Delete();
+
+                                    dtConvertedProduct.AcceptChanges();
+                                }
+                                for (int i = 0; i < grdInward.RowCount; i++)
+                                {
+                                    grdInward.Rows[i].Cells["clmSnoinv"].Value = i + 1;
+                                }
+
+                                txtOutwardProduct.Enabled = true;
+                                txtOutwardQuantity.Enabled = true;
+                                btnAdd.Enabled = true;
+                                txtOutwardProduct.Focus();
+                                udfnProductClear();
                             }
                             break;
                     }
@@ -1159,6 +1198,7 @@ namespace ROMS
                                 varBatchNo = Convert.ToString(grdInward.SelectedRows[0].Cells["clmbatchnoinv"].Value);
                                 varRKID = Convert.ToInt32(grdInward.SelectedRows[0].Cells["clmrackidinv"].Value);
                                 varSLID = Convert.ToInt32(grdInward.SelectedRows[0].Cells["clmlocationidinv"].Value);
+                                var selectedDsno = grdInward.SelectedRows[0].Cells["clmSnoinv"].Value?.ToString();
                                 grdInward.Rows.RemoveAt(this.grdInward.SelectedRows[0].Index);
                                 for (int i = 0; i < grdInward.RowCount; i++)
                                 {
@@ -1172,6 +1212,32 @@ namespace ROMS
                                         dtConvertedProduct.AcceptChanges();
                                     }
                                 }
+
+
+                                if (!string.IsNullOrEmpty(selectedDsno))
+                                {
+                                    var outwardRow = grdOutward.Rows
+                                    .Cast<DataGridViewRow>()
+                                    .FirstOrDefault(r => r.Cells["clmdsno"].Value?.ToString() == selectedDsno);
+
+                                    grdOutward.Rows.Remove(outwardRow);
+
+                                    DataRow[] rowsToDelete = dtStock.Select($"STK_SNO = '{selectedDsno}'");
+                                    foreach (DataRow dr in rowsToDelete)
+                                        dr.Delete();
+
+                                    dtStock.AcceptChanges();
+                                }
+                                for (int i = 0; i < grdOutward.RowCount; i++)
+                                {
+                                    grdOutward.Rows[i].Cells["clmdsno"].Value = i + 1;
+                                }
+
+                                txtOutwardProduct.Enabled = true;
+                                txtOutwardQuantity.Enabled = true;
+                                btnAdd.Enabled = true;
+                                txtOutwardProduct.Focus();
+                                udfnProductClear();
                             }
                             break;
                     }
@@ -1703,7 +1769,7 @@ namespace ROMS
 
                             grdInward.Columns["clmproductnameinv"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
 
-                            dtConvertedProduct.Rows.Add(objDs.Tables[0].Rows[0]["PRID"].ToString(), string.Format("{0:G29}", decimal.Parse(Convert.ToString((lblMRP.Text).Trim()))), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), (txtOutwardQuantity.Text), lblOutwardRackId.Text, lblOutwardLocationId.Text);
+                            dtConvertedProduct.Rows.Add(objDs.Tables[0].Rows[0]["PRID"].ToString(), string.Format("{0:G29}", decimal.Parse(Convert.ToString((lblMRP.Text).Trim()))), (lblExpiryDate.Text).Trim(), (lblBatchNo.Text).Trim(), (txtOutwardQuantity.Text), lblOutwardRackId.Text, lblOutwardLocationId.Text, grdInward.Rows.Count);
                         }
                     }
                 }
@@ -1724,7 +1790,7 @@ namespace ROMS
                 varoriginator = "Stock Journal Creation";
                 ViewType = 0;
                 bool GOID = Convert.ToBoolean(varAJId);
-                 
+                txtRemark.BackColor = Color.White;
                 epStockConvertion.Clear();
                 bool blnErrorFlag = true;
 
@@ -1736,7 +1802,15 @@ namespace ROMS
                     tpConcern.Show("Please select concern", cmbConcern, 5000);
                     blnErrorFlag = false;
                 }
-                 
+
+                if (txtRemark.Text == "")
+                {
+                    epStockConvertion.SetError(txtRemark, "Please enter remarks");
+                    txtRemark.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please enter remarks", txtRemark, 5000);
+                    blnErrorFlag = false;
+                }
 
                 if (varErrQty == 1)
                 {
@@ -1763,6 +1837,14 @@ namespace ROMS
                     {
                         ViewType = 1;
                     }
+
+                   DataTable  dtConvertedProductClone = dtConvertedProduct.DefaultView.ToTable(false, "STKJPR_PRID", "STKJPR_MRP", "STKJPR_ExpiryDate", "STKJPR_BatchNo", "STKJPR_TranactionQty", "STKJPR_RKID", "STKJPR_SLID");
+
+                    DataTable dtStockClone = dtStock.DefaultView.ToTable(false, "STK_PRID", "STK_MRP", "STK_ExpiryDate", "STK_BatchNo", "STK_UTID", "STK_QTY", "STK_Source_RKID", "STK_Dest_SLID", "STK_Dest_RKID", "STK_ProType", "STK_Status");
+
+                       
+
+
                     objTRN_Stock_Journaln.ViewType = ViewType;
                     objTRN_Stock_Journaln.ParaTransactionId = varAJId;
                     objTRN_Stock_Journaln.ParaCompanyCode = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -1770,8 +1852,8 @@ namespace ROMS
                     objTRN_Stock_Journaln.paraRemarks = txtRemark.Text.Trim();
                     objTRN_Stock_Journaln.paraOriginator = varoriginator;
                     objTRN_Stock_Journaln.ParaFlag = varCompleteFlag;
-                    objTRN_Stock_Journaln.paraStock_Journal = dtConvertedProduct;
-                    objTRN_Stock_Journaln.paraStockTransfer = dtStock;
+                    objTRN_Stock_Journaln.paraStock_Journal = dtConvertedProductClone;
+                    objTRN_Stock_Journaln.paraStockTransfer = dtStockClone;
                     objTRN_Stock_Journaln.paraStatusId = 14;
                     result = objspdservice.udfnStockJournal(objTRN_Stock_Journaln);
                     objspdservice.CloseConnection();
@@ -1897,7 +1979,7 @@ namespace ROMS
                                     Convert.ToString(objDs.Tables[1].Rows[i]["STKQTY"]), 0, Convert.ToDecimal(objDs.Tables[1].Rows[i]["STKJPR_TranactionQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]));
 
 
-                                    dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["STKJPR_TranactionQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), 0, 0);
+                                    dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["STKJPR_TranactionQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), 0, 0, 0,grdOutward.Rows.Count);
                                      
                                      
                                 }
@@ -1915,7 +1997,7 @@ namespace ROMS
                                     Convert.ToString(objDs.Tables[1].Rows[i]["STKQTY"]), 0, Convert.ToDecimal(objDs.Tables[1].Rows[i]["STKJPR_TranactionQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Decimal"]),0);
                                      
 
-                                    dtConvertedProduct.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["STKJPR_TranactionQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]));
+                                    dtConvertedProduct.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["STKJPR_TranactionQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["SLID"]), grdInward.Rows.Count);
                                      
 
                                 } 

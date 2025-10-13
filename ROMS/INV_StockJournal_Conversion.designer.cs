@@ -37,9 +37,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_StockJournal_Conversion));
             this.epStockConvertion = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnInwardAdd = new System.Windows.Forms.Button();
@@ -50,6 +52,7 @@
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.grbgodownoutward = new System.Windows.Forms.GroupBox();
+            this.lblUnitChildId = new System.Windows.Forms.Label();
             this.lblPRID = new System.Windows.Forms.Label();
             this.lblInwardUnitId = new System.Windows.Forms.Label();
             this.lblUtDecimal = new System.Windows.Forms.Label();
@@ -122,7 +125,6 @@
             this.txtOutwardQuantity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lblUnitChildId = new System.Windows.Forms.Label();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -301,6 +303,16 @@
             this.grbgodownoutward.Size = new System.Drawing.Size(1315, 70);
             this.grbgodownoutward.TabIndex = 0;
             this.grbgodownoutward.TabStop = false;
+            // 
+            // lblUnitChildId
+            // 
+            this.lblUnitChildId.AutoSize = true;
+            this.lblUnitChildId.Location = new System.Drawing.Point(649, 25);
+            this.lblUnitChildId.Name = "lblUnitChildId";
+            this.lblUnitChildId.Size = new System.Drawing.Size(16, 20);
+            this.lblUnitChildId.TabIndex = 1111262;
+            this.lblUnitChildId.Text = "0";
+            this.lblUnitChildId.Visible = false;
             // 
             // lblPRID
             // 
@@ -1083,23 +1095,23 @@
             this.clmUTID,
             this.clmUTDecimal,
             this.clmRemove});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOutward.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOutward.DefaultCellStyle = dataGridViewCellStyle12;
             this.grdOutward.EnableHeadersVisualStyles = false;
             this.grdOutward.GridColor = System.Drawing.Color.White;
             this.grdOutward.Location = new System.Drawing.Point(3, 87);
             this.grdOutward.Name = "grdOutward";
             this.grdOutward.RowHeadersVisible = false;
             this.grdOutward.RowHeadersWidth = 51;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdOutward.RowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdOutward.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.grdOutward.RowTemplate.Height = 25;
             this.grdOutward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdOutward.ShowRowErrors = false;
@@ -1146,16 +1158,6 @@
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.Width = 50;
             // 
-            // lblUnitChildId
-            // 
-            this.lblUnitChildId.AutoSize = true;
-            this.lblUnitChildId.Location = new System.Drawing.Point(649, 25);
-            this.lblUnitChildId.Name = "lblUnitChildId";
-            this.lblUnitChildId.Size = new System.Drawing.Size(16, 20);
-            this.lblUnitChildId.TabIndex = 1111262;
-            this.lblUnitChildId.Text = "0";
-            this.lblUnitChildId.Visible = false;
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -1196,6 +1198,8 @@
             // 
             // ClmBatch
             // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ClmBatch.DefaultCellStyle = dataGridViewCellStyle9;
             this.ClmBatch.HeaderText = "Batch";
             this.ClmBatch.Name = "ClmBatch";
             this.ClmBatch.ReadOnly = true;
@@ -1261,8 +1265,8 @@
             // 
             // clmrequestqty
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmrequestqty.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmrequestqty.DefaultCellStyle = dataGridViewCellStyle10;
             this.clmrequestqty.HeaderText = "Requested Qty";
             this.clmrequestqty.MinimumWidth = 6;
             this.clmrequestqty.Name = "clmrequestqty";
@@ -1273,6 +1277,8 @@
             // 
             // clmOutward
             // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmOutward.DefaultCellStyle = dataGridViewCellStyle11;
             this.clmOutward.HeaderText = "Qty";
             this.clmOutward.MinimumWidth = 6;
             this.clmOutward.Name = "clmOutward";
