@@ -375,8 +375,13 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","",0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Location.paraLocationName = txtSLocation.Text.Trim();
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(objMR_Location);
                     objDServ5.CloseConnection();
+                    //objDsSalesLoc = objDServ5.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text.Trim(), 0, 0, 0,"","",0);
                     if (objDsSalesLoc != null)
                     {
                         if (objDsSalesLoc.Tables.Count > 0)
@@ -405,7 +410,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockTransferList(0,0,Convert.ToInt32(cmbConcern.SelectedValue),Convert.ToInt32(lblSLocation.Text),0,Convert.ToInt32(lblProduct.Text),Convert.ToInt32(cmbStatus.SelectedValue),dpTrannsferFromDate.Text,dpTransferToDate.Text,0,0);
+                objDs = objspservice.udfnStockTransferList(0, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(lblSLocation.Text), 0, Convert.ToInt32(lblProduct.Text), Convert.ToInt32(cmbStatus.SelectedValue), dpTrannsferFromDate.Text, dpTransferToDate.Text, 0, 0, MainForm.pbUserMappedLocationIds);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1045,8 +1050,16 @@ namespace ROMS
                     {
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
-                        objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0, dpTrannsferFromDate.Text, dpTransferToDate.Text, 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 27;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtSLocation.Text;
+                        objMR_Location.ParaFromDate = dpTrannsferFromDate.Text;
+                        objMR_Location.ParaToDate = dpTransferToDate.Text;
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtSLocation.Text, 0, 0, 0, dpTrannsferFromDate.Text, dpTransferToDate.Text, 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

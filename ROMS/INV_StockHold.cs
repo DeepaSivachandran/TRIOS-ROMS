@@ -43,6 +43,9 @@ namespace ROMS
         {
             try
             {
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 udfnCmbConcern();
                 DataBind objDBind = new DataBind();
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,75) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
@@ -165,7 +168,6 @@ namespace ROMS
                 grdStockHold.DataSource = null;
                 DataSet objDS = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                //objDS = objdserv.udfnStockHoldList(0,0);
                 TRN_StockHold objTRNG_StockHold = new TRN_StockHold();
                 objTRNG_StockHold.ViewType = 0;
                 //objTRNG_StockHold.paraSHID = Convert.ToInt32(SHID);
@@ -178,6 +180,7 @@ namespace ROMS
                 objTRNG_StockHold.paraReason = Convert.ToInt32(cmbReason.SelectedValue);
                 objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_StockHold.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDS = objdserv.udfnStockHoldList(objTRNG_StockHold);
                 objdserv.CloseConnection();
                 if (objDS != null)
@@ -1243,14 +1246,20 @@ namespace ROMS
             {
                 if (varUpDownKeyLocation == 0)
                 {
-                    //lvLocation.Items.Clear();
+                    //lvLocation.Items.Clear(); 
                     //lvLocation.BringToFront();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 26;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtLocation.Text.Trim();
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)
@@ -2044,6 +2053,7 @@ namespace ROMS
                     objTRNG_StockHold.paraType = Convert.ToInt32(cmbType.SelectedValue);
                     objTRNG_StockHold.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                     objTRNG_StockHold.paraIPAddress = MainForm.pbIpAddress;
+                    objTRNG_StockHold.paraUserLocations = MainForm.pbUserMappedLocationIds;
                     objDs = objdserv.udfnStockHoldList(objTRNG_StockHold);
                     objdserv.CloseConnection();
                     if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }

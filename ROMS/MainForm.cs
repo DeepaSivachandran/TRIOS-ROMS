@@ -43,7 +43,8 @@ namespace ROMS
         public static bool isFormClosed = false;
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
-        public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate; 
+        public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate;
+        public static string pbUserMappedLocationIds = "0";
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart;
@@ -444,10 +445,11 @@ namespace ROMS
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
+                udfnUserMappedLocations();
                 GetDate();
                 udfnGetMenuDetails();
                 udfnGetMenuSplPermissionDetails();
-                udfnGetMenuDetailsForUser(); 
+                udfnGetMenuDetailsForUser();
                 BindMenu(sender, e);
                 CountToolStripMenuItems(ms);
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
@@ -459,7 +461,36 @@ namespace ROMS
                 objStart.Show();
             }
             catch (Exception ex)
-            { objError = new DataError(); objError.WriteFile(ex); }
+            {
+                objError = new DataError(); 
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnUserMappedLocations()
+        {
+            try
+            {
+                pbUserMappedLocationIds = "0";
+                SPDataService objSPDataService = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objSPDataService.udfnUserList(12, "", "", "", Convert.ToInt32(MainForm.pbUserID), 0, "");
+                objSPDataService.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            pbUserMappedLocationIds = Convert.ToString(objDs.Tables[0].Rows[0]["LocationCode"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         //Close Application when click logout
         private void tsbLogout_Click(object sender, EventArgs e)

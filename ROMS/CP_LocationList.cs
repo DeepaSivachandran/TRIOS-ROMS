@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -89,7 +90,11 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataSet objDS = new DataSet();
                 SPDataService objDServ = new SPDataService();
-                objDS = objdserv.udfnStockLocationList(18, 0,0,0,"",0,0,0,"","",0);
+
+                MR_Location objMR_Location = new MR_Location();
+                objMR_Location.paraViewType = 18;
+                objDs = objdserv.udfnStockLocationList(objMR_Location);
+                objdserv.CloseConnection();
                 objDServ.CloseConnection();
                 cmbLocationType.DataSource = null;
                 if (objDS != null)
@@ -130,7 +135,13 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnStockLocationList(0,(Convert.ToInt16(cmbConcern.SelectedValue)),0,0,"",0,(Convert.ToInt16(cmbLocationType.SelectedValue)), (Convert.ToInt16(cmbStatus.SelectedValue)),"","",0);
+
+                MR_Location objMR_Location = new MR_Location();
+                objMR_Location.paraViewType = 0;
+                objMR_Location.ParaCompanycode = Convert.ToInt16(cmbConcern.SelectedValue);
+                objMR_Location.paraLocationType = Convert.ToInt16(cmbLocationType.SelectedValue);
+                objMR_Location.paraStatusId = Convert.ToInt16(cmbStatus.SelectedValue);
+                objDs = objspservice.udfnStockLocationList(objMR_Location);
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {

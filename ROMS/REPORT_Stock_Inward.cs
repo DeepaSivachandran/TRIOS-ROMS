@@ -195,6 +195,7 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.paraAlpha = txtSearchByPICode.Text.Trim();
                 objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
+                objTRN_GoodsInward_Purchase.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnInwardReports(objTRN_GoodsInward_Purchase);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -269,6 +270,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
@@ -1583,8 +1585,14 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 26;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtLocation.Text.Trim();
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(26, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

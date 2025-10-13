@@ -21,5 +21,6 @@ namespace ROMS.Model
         public int paraDays { get; set; } = 0;
         public int paraOrder { get; set; } = 0;
         public int paraFilterType { get; set; } = 0;
+        public string paraUserLocations { get; set; } = "";
     }
 }

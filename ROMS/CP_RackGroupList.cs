@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -171,8 +172,14 @@ namespace ROMS
                 {
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(),0,0,0,"","",0);
-                    objDServ3.CloseConnection();
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                    objDs = objdserv.udfnStockLocationList(objMR_Location);
+                    objdserv.CloseConnection();
+
+                    //objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtStockLocation.Text.Trim(),0,0,0,"","",0);
                     if (objDsPurLoc != null)
                     {
                         if (objDsPurLoc.Tables.Count > 0)
@@ -1007,8 +1014,15 @@ namespace ROMS
                         {
                             varViewType = 22;
                         }
-                        objDs = objspdservice.udfnStockLocationList(varViewType, varCompanyId, 0, 0, txtStockLocation.Text, 0, 0, 0, "", "", 0);
+
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = varViewType;
+                        objMR_Location.ParaCompanycode = varCompanyId;
+                        objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+
+                        //objDs = objspdservice.udfnStockLocationList(varViewType, varCompanyId, 0, 0, txtStockLocation.Text, 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

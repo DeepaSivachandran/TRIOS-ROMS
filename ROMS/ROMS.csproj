@@ -287,6 +287,7 @@
     <Compile Include="GRN_ADV.designer.cs">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_Location.cs" />
     <Compile Include="Model\MR_Menu.cs" />
     <Compile Include="Model\TRN_Stock_Journal.cs" />
     <Compile Include="PUR_MismatchApprovedList.cs">
@@ -295,12 +296,75 @@
     <Compile Include="PUR_MismatchApprovedList.designer.cs">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_Godown_Valuation_Summary.cs">
+      <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PriceList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PriceList.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_Purchase_Summary_Portrait.cs">
+      <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise_Total.cs">
+      <DependentUpon>RPT_PUR_Tax_AllPurchase_MonthWise_Total.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_BillWise_Total.cs">
+      <DependentUpon>RPT_PUR_Tax_TaxDetails_BillWise_Total.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise_Summary_Total.cs">
+      <DependentUpon>RPT_PUR_Tax_TaxDetails_DayWise_Summary_Total.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_MonthWise_Total.cs">
+      <DependentUpon>RPT_PUR_Tax_TaxDetails_MonthWise_Total.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise_Total.cs">
+      <DependentUpon>RPT_PUR_Tax_TaxDetails_DayWise_Total.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise_Total.cs">
+      <DependentUpon>RPT_PUR_Tax_AllPurchase_DayWise_Total.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_Tax_TaxSummary_BillWise_Total.cs">
+      <DependentUpon>RPT_PUR_Tax_TaxSummary_BillWise_Total.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_Tax_Changes.cs">
       <DependentUpon>RPT_Tax_Changes.rpt</DependentUpon>
@@ -446,7 +510,6 @@
     <Compile Include="REPORT_CP_Product_Category.designer.cs">
       <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Controls\DynamicMenu.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
@@ -691,12 +754,6 @@
     </Compile>
     <Compile Include="PUR_PurchaseEntryApproval_Copy.designer.cs">
       <DependentUpon>PUR_PurchaseEntryApproval_Copy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CP_RackSettings_Copy.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CP_RackSettings_Copy.designer.cs">
-      <DependentUpon>CP_RackSettings_Copy.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TRN_GRNApproval.cs" />
     <Compile Include="PUR_GRN_Level_Verified.cs">
@@ -3527,9 +3584,6 @@
     <EmbeddedResource Include="PUR_PurchaseEntryApproval_Copy.resx">
       <DependentUpon>PUR_PurchaseEntryApproval_Copy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_RackSettings_Copy.resx">
-      <DependentUpon>CP_RackSettings_Copy.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRN_Level_Verified.resx">
       <DependentUpon>PUR_GRN_Level_Verified.cs</DependentUpon>
     </EmbeddedResource>
@@ -4107,6 +4161,11 @@
       <LastGenOutput>RPT_Tax_Changes.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_Godown_Valuation_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Godown_Valuation_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PAY_PayReceipt-SubReport.cs</LastGenOutput>
@@ -4222,6 +4281,11 @@
       <LastGenOutput>RPT_Purchase_Details_SupplierType.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Purchase_Summary_Portrait.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Purchase_Summary_Portrait.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_DET_Batch_Details.cs</LastGenOutput>
@@ -4237,6 +4301,41 @@
       <LastGenOutput>RPT_Purchase_PO_Blocked_Products.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise_Total.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_AllPurchase_MonthWise_Total.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxDetails_BillWise_Total.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_TaxDetails_BillWise_Total.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise_Summary_Total.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_TaxDetails_DayWise_Summary_Total.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxDetails_MonthWise_Total.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_TaxDetails_MonthWise_Total.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise_Total.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_TaxDetails_DayWise_Total.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise_Total.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_AllPurchase_DayWise_Total.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxSummary_BillWise_Total.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_Tax_TaxSummary_BillWise_Total.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_50x60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Sticker_Print_RackGroup_50x60.cs</LastGenOutput>

@@ -36,8 +36,14 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtStockLocation.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnStockLocationList(24, varCompanyCode, varSLID, 0, txtStockLocation.Text, 0, 0, 0, "", "", 0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 24;
+                    objMR_Location.ParaCompanycode = varCompanyCode;
+                    objMR_Location.paraLocationId = varSLID;
+                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                    objDs = objspdservice.udfnStockLocationList(objMR_Location);
                     objspdservice.CloseConnection();
+                    //objDs = objspdservice.udfnStockLocationList(24, varCompanyCode, varSLID, 0, txtStockLocation.Text, 0, 0, 0, "", "", 0);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

@@ -633,6 +633,7 @@ namespace ROMS
                 objTRNG_BatchConversion.paraToDate = dpToDate.Text;
                 objTRNG_BatchConversion.paraPRID = Convert.ToInt32(varPRID);
                 objTRNG_BatchConversion.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_BatchConversion.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnBatchConversionList(objTRNG_BatchConversion);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -646,7 +647,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdConversionList.DataSource = objDs.Tables[0];
                             grdConversionList.Columns["S.No."].Width = 50;
-                            grdConversionList.Columns["Concern"].Width = 120;
+                            grdConversionList.Columns["Concern"].Width = 80;
                             grdConversionList.Columns["Conversion Date"].Width = 120;
                             grdConversionList.Columns["Conversion No."].Width = 120;
                             grdConversionList.Columns["P.I Code"].Width = 100;

@@ -2421,8 +2421,12 @@ namespace ROMS
                     {
                         DataSet ObjsLocation = new DataSet();
                         SPDataService objDserv = new SPDataService();
-                        ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 25;
+                        objMR_Location.paraId = Convert.ToInt32(lblProductcode.Text.Trim());
+                        ObjsLocation = objDserv.udfnStockLocationList(objMR_Location);
                         objDserv.CloseConnection();
+                        //ObjsLocation = objDserv.udfnStockLocationList(25, 0, 0, Convert.ToInt32(lblProductcode.Text.Trim()), "", 0, 0, 0, "", "", 0);
                         if (ObjsLocation != null)
                         {
                             if (ObjsLocation.Tables.Count > 0)

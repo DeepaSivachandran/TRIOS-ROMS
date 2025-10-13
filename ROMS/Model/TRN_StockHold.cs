@@ -37,6 +37,7 @@ namespace ROMS.Model
         public string paraOriginator { get; set; } = "";
         public string paraTeller { get; set; } = "";
         public int paraType { get; set; } = 0;
+        public string paraUserLocations { get; set; } = "";
 
     }
 }

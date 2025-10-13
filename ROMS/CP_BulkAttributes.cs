@@ -201,7 +201,10 @@ namespace ROMS
                 objDSGroup = objDServ.udfnGroupList(0, 0, 0, "",0);
                 objDSSubGroup = objDServ.udfnSubGroupList(0,0,"",0,0,"",0,0,0,0, 0);
                 objDSBrand = objDServ.udfnBrandList(0,"",0,0,0,"",0);
-                objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0,"","",0);
+                MR_Location objMR_Location = new MR_Location();
+                objMR_Location.paraViewType = 17;
+                objDSLocation = objDServ.udfnStockLocationList(objMR_Location);
+                //objDSLocation = objDServ.udfnStockLocationList(17,0,0,0,"",0,0,0,"","",0);
                 objDSRack = objDServ.udfnRackList(14,0,0,0,0,"",0,0);
 
                 MR_Master objMR_Master = new MR_Master();

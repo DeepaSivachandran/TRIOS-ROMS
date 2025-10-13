@@ -414,8 +414,14 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ5 = new SPDataService();
-                    objDsSalesLoc = objDServ5.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text.Trim(), 0, 0,0,"","",0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Location.paraId = 1;
+                    objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                    objDsSalesLoc = objDServ5.udfnStockLocationList(objMR_Location);
                     objDServ5.CloseConnection();
+                    //objDsSalesLoc = objDServ5.udfnStockLocationList(14, Convert.ToInt32(cmbConcern.SelectedValue), 0, 1, txtStockLocation.Text.Trim(), 0, 0,0,"","",0);
                     if (objDsSalesLoc != null)
                     {
                         if (objDsSalesLoc.Tables.Count > 0)
@@ -457,6 +463,7 @@ namespace ROMS
                 objTRNG_Stock_Reconciliation_Products.paraPRID = Convert.ToInt32(varPRID);
                 objTRNG_Stock_Reconciliation_Products.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objTRNG_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
+                objTRNG_Stock_Reconciliation_Products.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnStockConciliationList(objTRNG_Stock_Reconciliation_Products);
                 objdserv.CloseConnection();                  
                 if (objDs != null)
@@ -856,9 +863,18 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtStockLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 6, txtStockLocation.Text, 0, 0, 0, dtpReconDate.Text, dtpReconToDate.Text, 0);
-
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 27;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraId = 6;
+                        objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                        objMR_Location.ParaFromDate = dtpReconDate.Text;
+                        objMR_Location.ParaToDate = dtpReconToDate.Text;
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+
+                        //objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 6, txtStockLocation.Text, 0, 0, 0, dtpReconDate.Text, dtpReconToDate.Text, 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

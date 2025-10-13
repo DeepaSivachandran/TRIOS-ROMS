@@ -701,7 +701,12 @@ namespace ROMS
                 {
                     if (txtPurLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(varComId), 0, 0, txtPurLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 10;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(varComId);
+                        objMR_Location.paraLocationName = txtPurLocation.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
+                        objspdservice.CloseConnection();
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -809,8 +814,13 @@ namespace ROMS
                 {
                     if (txtSalesLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(varComId), 0, 0, txtSalesLocation.Text.Trim(), 0, 0, 0, "", "", 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 10;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(varComId);
+                        objMR_Location.paraLocationName = txtSalesLocation.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(10, Convert.ToInt32(varComId), 0, 0, txtSalesLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)
@@ -5071,9 +5081,14 @@ namespace ROMS
                     string varId_PurLocation = "0";
                     DataSet objDsPurLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(varComId), 0, 0, txtPurLocation.Text.Trim(), 0, 0, 0, "", "",0);
-                    //  objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtPurLocation.Text.Trim(),0,0,0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(varComId);
+                    objMR_Location.paraLocationName = txtPurLocation.Text.Trim();
+                    objDsPurLoc = objDServ3.udfnStockLocationList(objMR_Location);
                     objDServ3.CloseConnection();
+
+                    //objDsPurLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(varComId), 0, 0, txtPurLocation.Text.Trim(), 0, 0, 0, "", "",0);
                     if (objDsPurLoc != null)
                     {
                         if (objDsPurLoc.Tables.Count > 0)
@@ -5195,9 +5210,14 @@ namespace ROMS
                     string varId_SalesLocation = "0";
                     DataSet objDsSalesLoc = new DataSet();
                     SPDataService objDServ3 = new SPDataService();
-                    objDsSalesLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(varComId), 0, 0, txtSalesLocation.Text.Trim(), 0, 0, 0, "", "", 0);
-                    //objDsPurLoc = objDServ3.udfnStockLocationList(14, 0, 0, 0, txtSalesLocation.Text.Trim(),0,0,0);
+                    MR_Location objMR_Location = new MR_Location();
+                    objMR_Location.paraViewType = 14;
+                    objMR_Location.ParaCompanycode = Convert.ToInt32(varComId);
+                    objMR_Location.paraLocationName = txtSalesLocation.Text.Trim();
+                    objDsSalesLoc = objDServ3.udfnStockLocationList(objMR_Location);
                     objDServ3.CloseConnection();
+
+                    //objDsSalesLoc = objDServ3.udfnStockLocationList(14, Convert.ToInt32(varComId), 0, 0, txtSalesLocation.Text.Trim(), 0, 0, 0, "", "", 0);
                     if (objDsSalesLoc != null)
                     {
                         if (objDsSalesLoc.Tables.Count > 0)

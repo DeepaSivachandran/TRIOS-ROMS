@@ -721,6 +721,7 @@ namespace ROMS
                     objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
                     objTRN_GoodsInward_Purchase.paraStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                     objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbEntryType.SelectedValue);
+                    objTRN_GoodsInward_Purchase.paraUserLocations = MainForm.pbUserMappedLocationIds;
                     objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                     objdserv.CloseConnection();
                     if (objDs != null)
@@ -848,6 +849,7 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.paraProductId = 0;
                 objTRN_GoodsInward_Purchase.ParaSupplierId = 0;
                 objTRN_GoodsInward_Purchase.paraTypeID = 0;
+                objTRN_GoodsInward_Purchase.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -1124,8 +1126,17 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtStockLocation.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 5, txtStockLocation.Text.Trim(), 0, 0, 0, dpFromDate.Text, dpToDate.Text, 0);
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 27;
+                        objMR_Location.paraId = 5;
+                        objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                        objMR_Location.paraLocationName = txtStockLocation.Text.Trim();
+                        objMR_Location.ParaFromDate = dpFromDate.Text;
+                        objMR_Location.ParaToDate = dpToDate.Text;
+                        objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
                         objspdservice.CloseConnection();
+                        //objDs = objspdservice.udfnStockLocationList(27, Convert.ToInt32(cmbConcern.SelectedValue), 0, 5, txtStockLocation.Text.Trim(), 0, 0, 0, dpFromDate.Text, dpToDate.Text, 0);
                         if (objDs != null)
                         {
                             if (objDs.Tables.Count != 0)

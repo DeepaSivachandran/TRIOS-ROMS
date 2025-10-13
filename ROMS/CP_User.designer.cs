@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_User));
             this.txtDLoginID = new System.Windows.Forms.TextBox();
             this.txtLoginID = new System.Windows.Forms.TextBox();
@@ -50,9 +52,11 @@
             this.txtDUserRole = new System.Windows.Forms.TextBox();
             this.txtDPassKey = new System.Windows.Forms.TextBox();
             this.epUser = new System.Windows.Forms.ErrorProvider(this.components);
+            this.grdLocation = new System.Windows.Forms.DataGridView();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdLocation)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDLoginID
@@ -211,7 +215,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(327, 223);
+            this.btnSave.Location = new System.Drawing.Point(597, 223);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
             this.btnSave.TabIndex = 9;
@@ -228,7 +232,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(417, 223);
+            this.btnClose.Location = new System.Drawing.Point(687, 223);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 10;
@@ -260,7 +264,7 @@
             this.grbForm.Controls.Add(this.txtUserName);
             this.grbForm.Location = new System.Drawing.Point(17, 4);
             this.grbForm.Name = "grbForm";
-            this.grbForm.Size = new System.Drawing.Size(525, 261);
+            this.grbForm.Size = new System.Drawing.Size(779, 261);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
@@ -323,12 +327,45 @@
             // 
             this.epUser.ContainerControl = this;
             // 
+            // grdLocation
+            // 
+            this.grdLocation.AllowUserToAddRows = false;
+            this.grdLocation.AllowUserToDeleteRows = false;
+            this.grdLocation.AllowUserToResizeColumns = false;
+            this.grdLocation.AllowUserToResizeRows = false;
+            this.grdLocation.BackgroundColor = System.Drawing.Color.White;
+            this.grdLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdLocation.ColumnHeadersHeight = 30;
+            this.grdLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdLocation.EnableHeadersVisualStyles = false;
+            this.grdLocation.GridColor = System.Drawing.Color.White;
+            this.grdLocation.Location = new System.Drawing.Point(515, 31);
+            this.grdLocation.Name = "grdLocation";
+            this.grdLocation.RowHeadersVisible = false;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.grdLocation.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.grdLocation.RowTemplate.Height = 25;
+            this.grdLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdLocation.Size = new System.Drawing.Size(264, 186);
+            this.grdLocation.StandardTab = true;
+            this.grdLocation.TabIndex = 9;
+            // 
             // CP_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(566, 269);
+            this.ClientSize = new System.Drawing.Size(813, 274);
+            this.Controls.Add(this.grdLocation);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -349,6 +386,7 @@
             this.grbForm.ResumeLayout(false);
             this.grbForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdLocation)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -375,5 +413,6 @@
         private System.Windows.Forms.ComboBox cmbPasskey;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtUserName;
+        public System.Windows.Forms.DataGridView grdLocation;
     }
 }
