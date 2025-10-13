@@ -2147,6 +2147,7 @@ namespace ROMS
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraId = varID;
                         objMR_Product.paraDamageEntry = dtDamage;
+                        objMR_Product.paraUserLocations = MainForm.pbUserMappedLocationIds;
                         SPDataService objspdservice = new SPDataService();
                         DataSet objDs = new DataSet();
                         if (VarSearchFlag == true)
