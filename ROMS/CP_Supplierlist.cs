@@ -23,7 +23,7 @@ namespace ROMS
         DataError objError;
         public int MenuCode = 0;
         string privilege = "";
-        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+       public List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_Supplierlist()
         {
             InitializeComponent();
@@ -120,7 +120,7 @@ namespace ROMS
                 tsbDelete.Visible = privilege.Contains("4"); 
                 btnPrint.Visible = privilege.Contains("5");
                 btnExport.Visible = privilege.Contains("6");
-                tsbEnvelopPrint .Visible= SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9"));
+                tsbEnvelopPrint.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9")); 
                 udfnGridAccess();
             }
             catch (Exception ex)
@@ -134,9 +134,9 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
-                { 
-                    grdSupplierList.Columns["clmCheck"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9")); 
-                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9")); 
+                {
+                    grdSupplierList.Columns["clmCheck"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9"));   
                 }
             }
             catch (Exception ex)
@@ -242,7 +242,7 @@ namespace ROMS
                     objError = new DataError();
                     objError.WriteFile(ex);
                 }
-            }
+            } 
         }
 
         private void udfnEdit()
@@ -433,7 +433,7 @@ namespace ROMS
                         dtDefaultGrid = objDs.Tables[0];
                         udfnDefaultSearchGrid();
                     }
-                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; udfnGridAccess(); }
+                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
                 }
                 else
                 {

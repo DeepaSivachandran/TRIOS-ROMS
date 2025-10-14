@@ -77,6 +77,16 @@ namespace ROMS
         DataSet objDTBank = new DataSet();
         DataTable dtOpeningCRDetails = new DataTable();
         DataTable dtStatus = new DataTable();
+        public bool OrderScheduleViewAccess = false,
+            OrderScheduleEditAccess = false ,
+            SupProMappingViewAccess = false ,
+            SupProMappingEditAccess = false ,
+            MappedProViewAccess = false ,
+            MappedProEditAccess = false ,
+            UnMappedProViewAccess = false ,
+            UnMappedProEditAccess = false ,
+            OpeningBalanceViewAccess = false ,
+            OpeningBalanceEditAccess = false  ;
         public CP_Supplier()
         {
             InitializeComponent();
@@ -1229,6 +1239,7 @@ namespace ROMS
                     tcSupplier.TabPages[3].Enabled = false; // Fourth tab
                 }
                 //tcSupplier.TabPages[4].Enabled = false;
+                udfnUserAccess();
             }
             catch (Exception ex)
             {
@@ -1237,6 +1248,61 @@ namespace ROMS
             }
             finally
             { 
+            }
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    OrderScheduleViewAccess=MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 8 && sp.EditAccess.Split(',').Contains("9"));
+                    OrderScheduleEditAccess=MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 8 && sp.EditAccess.Split(',').Contains("10"));
+
+                    SupProMappingViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 9 && sp.EditAccess.Split(',').Contains("9"));
+                    SupProMappingEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 9 && sp.EditAccess.Split(',').Contains("10"));
+
+                    MappedProViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 10 && sp.EditAccess.Split(',').Contains("9"));
+                    MappedProEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 10 && sp.EditAccess.Split(',').Contains("10"));
+
+                    UnMappedProViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 11 && sp.EditAccess.Split(',').Contains("9"));
+                    UnMappedProEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 11 && sp.EditAccess.Split(',').Contains("10"));
+
+                    OpeningBalanceViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 12 && sp.EditAccess.Split(',').Contains("9"));
+                    OpeningBalanceEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 12 && sp.EditAccess.Split(',').Contains("10"));
+
+                    // Hide or show based on View access
+                    ShowOrHideTab(tcSupplier, tbOrder, OrderScheduleViewAccess);
+                    ShowOrHideTab(tcSupplier, tpSupplierProduct, SupProMappingViewAccess);
+                    ShowOrHideTab(tcSupplier, tbSchedule, MappedProViewAccess);
+                    ShowOrHideTab(tcSupplier, tbPurchaseProducts, UnMappedProViewAccess);
+                    ShowOrHideTab(tcSupplier, tbOpeningBalance, OpeningBalanceViewAccess);
+
+                    // Disable edit controls inside each tab if no edit access
+                    tbOrder.Enabled = OrderScheduleEditAccess;
+                    tpSupplierProduct.Enabled = SupProMappingEditAccess;
+                    tbSchedule.Enabled = MappedProEditAccess;
+                    tbPurchaseProducts.Enabled = UnMappedProEditAccess;
+                    tbOpeningBalance.Enabled = OpeningBalanceEditAccess; 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void ShowOrHideTab(TabControl tabControl, TabPage tabPage, bool isVisible)
+        {
+            if (isVisible)
+            {
+                if (!tabControl.TabPages.Contains(tabPage))
+                    tabControl.TabPages.Add(tabPage);
+            }
+            else
+            {
+                if (tabControl.TabPages.Contains(tabPage))
+                    tabControl.TabPages.Remove(tabPage);
             }
         }
         public void udfnBankDropDownLoad()
