@@ -760,6 +760,9 @@ namespace ROMS
                                 rbInactive.Checked = true;
                             }
                             btnSave.Text = "Update";
+                            txtLoginID.Enabled = false;
+                            txtPassword.Enabled = false;
+                            txtCPassword.Enabled = false;
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
