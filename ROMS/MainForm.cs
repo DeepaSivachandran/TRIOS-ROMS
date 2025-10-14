@@ -74,6 +74,7 @@ namespace ROMS
         public static CP_RackList objCP_RackList;
         public static CP_UserList objCP_Userlist;
         public static CP_User objCP_User;
+        public static CP_User_ResetPassword objCP_User_ResetPassword;
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_SupplierMappinglist objCP_SupplierMappinglist;
         public static CP_Product objCP_Items;

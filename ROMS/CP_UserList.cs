@@ -158,6 +158,8 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdUserList.DataSource = objDs.Tables[0];
+                            grdUserList.Columns["clmReset"].Visible = true;
+                            grdUserList.Columns["clmReset"].Width = 110;
                             grdUserList.Columns["clmForceLogout"].Visible = true;
                             grdUserList.Columns["ID"].Visible = false;
                             grdUserList.Columns["UserRoleID"].Visible = false;
@@ -174,6 +176,7 @@ namespace ROMS
                         }
                         else
                         {
+                            grdUserList.Columns["clmReset"].Visible = false;
                             grdUserList.Columns["clmForceLogout"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
@@ -181,6 +184,7 @@ namespace ROMS
                     }
                     else
                     {
+                        grdUserList.Columns["clmReset"].Visible = false;
                         grdUserList.Columns["clmForceLogout"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
@@ -188,6 +192,7 @@ namespace ROMS
                 }
                 else
                 {
+                    grdUserList.Columns["clmReset"].Visible = false;
                     grdUserList.Columns["clmForceLogout"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
@@ -415,6 +420,8 @@ namespace ROMS
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -475,6 +482,11 @@ namespace ROMS
                             dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
                             dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
                             ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                        {
+                            BlnSearchImageYN = true;
+                            dgv2.Rows[rowIndex].Cells[i].Value = false;
                         }
                         else
                         {
@@ -607,8 +619,8 @@ namespace ROMS
                     }
                     else if (Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "412")   //Logout
                     {
-                        grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
-                        grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
+                        //grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
+                        //grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
                     }
                     grdUserList.ClearSelection();
                 }
@@ -1143,6 +1155,24 @@ namespace ROMS
                                     }
                                     udfnList();
                                 }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                        case "clmReset":
+                            try
+                            {
+                                string UsedID = "0", varUserLoginId = "0";
+                                UsedID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                varUserLoginId = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value.ToString());
+
+                                MainForm.objCP_User_ResetPassword = new CP_User_ResetPassword();
+                                MainForm.objCP_User_ResetPassword.pbvarUserID = Convert.ToInt32(UsedID);
+                                MainForm.objCP_User_ResetPassword.pbvarUserLoginID = varUserLoginId;
+                                MainForm.objCP_User_ResetPassword.ShowDialog();
                             }
                             catch (Exception ex)
                             {
