@@ -289,6 +289,13 @@
     </Compile>
     <Compile Include="Model\MR_Location.cs" />
     <Compile Include="Model\MR_Menu.cs" />
+    <Compile Include="Model\TRN_Stock_Journal.cs" />
+    <Compile Include="CP_User_ResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_User_ResetPassword.designer.cs">
+      <DependentUpon>CP_User_ResetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_MismatchApprovedList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -509,6 +516,7 @@
     <Compile Include="REPORT_CP_Product_Category.designer.cs">
       <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service Class\UserAccessHelper.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
@@ -3392,6 +3400,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\Reset Password.jpg" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\padlock.png" />
     <None Include="Resources\timetable.png" />
@@ -3486,6 +3495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_StickerPrint.resx">
       <DependentUpon>CP_StickerPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_User_ResetPassword.resx">
+      <DependentUpon>CP_User_ResetPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_MismatchApprovedList.resx">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>

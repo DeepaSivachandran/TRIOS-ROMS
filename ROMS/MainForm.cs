@@ -93,6 +93,7 @@ namespace ROMS
         public static CP_RackList objCP_RackList;
         public static CP_UserList objCP_Userlist;
         public static CP_User objCP_User;
+        public static CP_User_ResetPassword objCP_User_ResetPassword;
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_SupplierMappinglist objCP_SupplierMappinglist;
         public static CP_Product objCP_Items;
@@ -960,7 +961,7 @@ namespace ROMS
         {
             try
             {
-                udfnUserLoginProcess(411);  // Type 411 is Logged In
+                udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 411);  // Type 411 is Logged In
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
@@ -1033,19 +1034,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnUserLoginProcess(int varType)
+        public string udfnUserLoginProcess(int varUserID,int varType)
         {
+            string varResult = "";
             try
             {
                 SPDataService objspservice = new SPDataService();
-                string varResult = "";
-                varResult = objspservice.udfnUser(5, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, "", "", MainForm.pbUserID, 0, null, varType);
+                varResult = objspservice.udfnUser(5, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType);
                 objspservice.CloseConnection();
+                return varResult;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                return varResult;
             }
         }
         //Close Application when click logout
@@ -1239,7 +1242,7 @@ namespace ROMS
                         if ((System.Windows.Forms.Application.MessageLoop))
                         {
                             varCloseFlag = 1;
-                            udfnUserLoginProcess(412);  // Type 412 is Logged Out
+                            udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
                             System.Windows.Forms.Application.Exit();
                         }
                         else

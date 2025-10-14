@@ -46,9 +46,9 @@
             this.tsInwardList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlinward = new System.Windows.Forms.Panel();
             this.grdSupDEList = new System.Windows.Forms.DataGridView();
@@ -113,9 +113,9 @@
             this.tsInwardList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
-            this.toolStripSeparator2,
+            this.tssEdit,
             this.tsbEdit,
-            this.toolStripSeparator1,
+            this.tssNew,
             this.tsbNew});
             this.tsInwardList.Location = new System.Drawing.Point(0, 0);
             this.tsInwardList.Name = "tsInwardList";
@@ -146,11 +146,11 @@
             this.tsbDelete.Text = "Delete";
             this.tsbDelete.Click += new System.EventHandler(this.TsbDelete_Click);
             // 
-            // toolStripSeparator2
+            // tssEdit
             // 
-            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssEdit.Name = "tssEdit";
+            this.tssEdit.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbEdit
             // 
@@ -165,11 +165,11 @@
             this.tsbEdit.Text = "&Edit";
             this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
             // 
-            // toolStripSeparator1
+            // tssNew
             // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssNew.Name = "tssNew";
+            this.tssNew.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbNew
             // 
@@ -876,7 +876,7 @@
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         private System.Windows.Forms.ToolStrip tsInwardList;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator tssNew;
         private System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlinward;
         private System.Windows.Forms.Label lblNoRecordsFound;
@@ -896,7 +896,7 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ListView lvSupplier;
         private System.Windows.Forms.ColumnHeader columnHeader21;

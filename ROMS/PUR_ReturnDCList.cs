@@ -24,6 +24,9 @@ namespace ROMS
         private DataTable dtDefaultGrid = new DataTable();
         public int varDeleteFlag = 0;
         Boolean BlnSearchImageYN = false;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public PUR_ReturnDCList()
         {
             InitializeComponent();
@@ -31,16 +34,19 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            { 
-                MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseReturns.Show();
-            }
-            catch (Exception ex)
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseReturns.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -57,34 +63,36 @@ namespace ROMS
         }
         public void udfnDeleteHide()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (lblNoRecordsFound.Visible == false && grdReturnDCList.SelectedRows.Count == 1)
+                try
                 {
-                    if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 81)
+                    if (lblNoRecordsFound.Visible == false && grdReturnDCList.SelectedRows.Count == 1)
                     {
-                        tsbDelete.Visible = false;
-                        tssEdit.Visible = false;
-                        varDeleteFlag = 0;
-                    }
-                    else
-                    {
-                        tsbDelete.Visible = true;
-                        tssEdit.Visible = true;
-                        varDeleteFlag = 1;
+                        if (Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 16 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 39 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["PURREDC_ReasonId"].Value) == 61 || Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value) == 81)
+                        {
+                            tsbDelete.Visible = false; 
+                            varDeleteFlag = 0;
+                        }
+                        else
+                        {
+                            tsbDelete.Visible = true; 
+                            varDeleteFlag = 1;
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void PUR_ReturnDCList_Load(object sender, EventArgs e)
         {
             try
             {
+                MenuCode = 203;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -96,6 +104,33 @@ namespace ROMS
                 //txtSupplier.Focus();
               //  cmbStatus.SelectedValue = 15; //pending
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");
+                tssDelete.Visible = privilege.Contains("4");
+                btnPrint.Visible = privilege.Contains("5");
+                btnExport.Visible = privilege.Contains("6");
+                tsbDClist.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 46 && sp.EditAccess.Split(',').Contains("9"));  
             }
             catch (Exception ex)
             {
@@ -162,48 +197,38 @@ namespace ROMS
             }
         }
         private void udfnEdit()
-        {
-            //try
-            //{
-            //    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-            //    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-            //    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
-            //    MainForm.objPUR_PurchaseReturns.Show();
-            //}
-            //catch (Exception ex)
-            //{
-            //    objError = new DataError();
-            //    objError.WriteFile(ex);
-
-            //}
-            try
+        { 
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdReturnDCList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true; 
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                    MainForm.objPUR_PurchaseReturns.varReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
-                    MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Schedule ID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.varGRNStatus = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["GRN Status"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.vaReturnDCSts = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value.ToString());
-                    MainForm.objPUR_PurchaseReturns.vareditflag = 0;
-                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseReturns.Show();
+                    if (grdReturnDCList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                        MainForm.objPUR_PurchaseReturns.varReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+                        MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Schedule ID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.varGRNStatus = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["GRN Status"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.vaReturnDCSts = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value.ToString());
+                        MainForm.objPUR_PurchaseReturns.vareditflag = 0;
+                        MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                        MainForm.objPUR_PurchaseReturns.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.SendToBack();
-                picLoader.Visible = false;
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.SendToBack();
+                    picLoader.Visible = false;
+                }
             }
         }
         private void udfnSearchGridHead()
@@ -1781,73 +1806,76 @@ namespace ROMS
 
         public void udfnDelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (varDeleteFlag == 1)
+                try
                 {
-                    if (grdReturnDCList.SelectedRows.Count > 0)
+                    if (varDeleteFlag == 1)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (grdReturnDCList.SelectedRows.Count > 0)
                         {
-                            string varorginator = "Return DC Deletion", result = "";
-                            varviewtype = 2;
-                            int varUserID = 0;
-                            TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
-                            objTRN_ReturnDC.paraViewType = varviewtype;
-                            objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                            objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                            objTRN_ReturnDC.paraOriginator = varorginator;
-                            objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                            objTRN_ReturnDC.ParaSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
-                            objTRN_ReturnDC.paraDeleteFlag = 0;
-                            SPDataService objspdservice = new SPDataService();
-                            result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
-                            objspdservice.CloseConnection();
-                            string[] varvalue = result.Split('~');
-                            if (varvalue[0] == "3")
+                            DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                if (result.Split('~')[1] == "1")
+                                string varorginator = "Return DC Deletion", result = "";
+                                varviewtype = 2;
+                                int varUserID = 0;
+                                TRN_ReturnDC objTRN_ReturnDC = new TRN_ReturnDC();
+                                objTRN_ReturnDC.paraViewType = varviewtype;
+                                objTRN_ReturnDC.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                                objTRN_ReturnDC.paraOriginator = varorginator;
+                                objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                objTRN_ReturnDC.ParaSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
+                                objTRN_ReturnDC.paraDeleteFlag = 0;
+                                SPDataService objspdservice = new SPDataService();
+                                result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                                objspdservice.CloseConnection();
+                                string[] varvalue = result.Split('~');
+                                if (varvalue[0] == "3")
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    if (MainForm.objCP_Verify.flag == 1)
+                                    if (result.Split('~')[1] == "1")
                                     {
-                                        varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                        objTRN_ReturnDC.@paraViewType = varviewtype;
-                                        objTRN_ReturnDC.paraUserID = varUserID;
-                                        objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
-                                        objTRN_ReturnDC.paraOriginator = varorginator;
-                                        objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
-                                        objTRN_ReturnDC.paraDeleteFlag = 1;
-                                        result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
-                                        objspdservice.CloseConnection();
-                                        if (result.Split('~')[0] == "3")
+                                        MainForm.objCP_Verify = new CP_Verify();
+                                        MainForm.objCP_Verify.ShowDialog();
+                                        if (MainForm.objCP_Verify.flag == 1)
                                         {
-                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            varviewtype = 3;
-                                            udfnList();
+                                            varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                            objTRN_ReturnDC.@paraViewType = varviewtype;
+                                            objTRN_ReturnDC.paraUserID = varUserID;
+                                            objTRN_ReturnDC.paraIPAddress = MainForm.pbIpAddress;
+                                            objTRN_ReturnDC.paraOriginator = varorginator;
+                                            objTRN_ReturnDC.paraReturnDCID = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                            objTRN_ReturnDC.paraDeleteFlag = 1;
+                                            result = objspdservice.udfnPurchaseReturnDc(objTRN_ReturnDC);
+                                            objspdservice.CloseConnection();
+                                            if (result.Split('~')[0] == "3")
+                                            {
+                                                MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                varviewtype = 3;
+                                                udfnList();
+                                            }
+                                            else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                         }
-                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
                                 }
-                            }
-                            else if (result.Split('~')[0] == "4")
-                            {
-                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                else if (result.Split('~')[0] == "4")
+                                {
+                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
     }

@@ -54,14 +54,16 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
-            this.clmForceLogout = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
+            this.clmReset = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmForceLogout = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsUserList.SuspendLayout();
             this.pnluser.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
@@ -320,6 +322,7 @@
             this.grdUserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdUserList.ColumnHeadersVisible = false;
             this.grdUserList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmReset,
             this.clmForceLogout});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -355,6 +358,13 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Visible = false;
             // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Force Logout";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.logout;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Visible = false;
+            // 
             // btnExport
             // 
             this.btnExport.Image = global::ROMS.Properties.Resources.excel;
@@ -384,14 +394,6 @@
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
-            // 
-            // clmForceLogout
-            // 
-            this.clmForceLogout.HeaderText = "Force Logout";
-            this.clmForceLogout.Image = global::ROMS.Properties.Resources.logout;
-            this.clmForceLogout.Name = "clmForceLogout";
-            this.clmForceLogout.ReadOnly = true;
-            this.clmForceLogout.Visible = false;
             // 
             // picLoader
             // 
@@ -456,6 +458,22 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
+            // clmReset
+            // 
+            this.clmReset.HeaderText = "Reset Password";
+            this.clmReset.Image = global::ROMS.Properties.Resources.Reset_Password;
+            this.clmReset.Name = "clmReset";
+            this.clmReset.ReadOnly = true;
+            this.clmReset.Visible = false;
+            // 
+            // clmForceLogout
+            // 
+            this.clmForceLogout.HeaderText = "Force Logout";
+            this.clmForceLogout.Image = global::ROMS.Properties.Resources.logout;
+            this.clmForceLogout.Name = "clmForceLogout";
+            this.clmForceLogout.ReadOnly = true;
+            this.clmForceLogout.Visible = false;
+            // 
             // CP_UserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -516,7 +534,9 @@
         private System.Windows.Forms.Label lblSystemUser;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTotalCount;
-        private System.Windows.Forms.DataGridViewImageColumn clmForceLogout;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private System.Windows.Forms.DataGridViewImageColumn clmReset;
+        private System.Windows.Forms.DataGridViewImageColumn clmForceLogout;
     }
 }

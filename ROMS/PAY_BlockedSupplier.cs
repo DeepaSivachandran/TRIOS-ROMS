@@ -20,7 +20,9 @@ namespace ROMS
         private ToolTip tpSupplier = new ToolTip();
         private ToolTip tpReason = new ToolTip();
         Boolean BlnSearchImageYN = false;
-
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public PAY_BlockedSupplier()
         {
             InitializeComponent();
@@ -689,6 +691,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 402;
                 DataBind objDBind = new DataBind();
                 objDBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,77) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
                 objDBind = null;
@@ -696,6 +699,10 @@ namespace ROMS
                 udfnList();
 
                 grdBlockedSupplier.Columns["clmDelete"].Resizable = DataGridViewTriState.False;
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -703,7 +710,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                btnSave.Visible = privilege.Contains("2");   
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    grdBlockedSupplier.Columns["clmDelete"].Visible = privilege.Contains("4"); 
+                    DGV_SearchGrid.Columns[0].Visible = privilege.Contains("4"); 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdBlockedSupplier_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try

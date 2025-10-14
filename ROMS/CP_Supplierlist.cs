@@ -21,6 +21,9 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_Supplierlist()
         {
             InitializeComponent();
@@ -28,24 +31,27 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objCP_Supplier = new CP_Supplier();
-                MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                MainForm.objCP_Supplier.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objCP_Supplier = new CP_Supplier();
+                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    MainForm.objCP_Supplier.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
 
-            }
-            finally
-            {
-                picLoader.Visible = false;
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -76,6 +82,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 517;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
                 objDataBind.BindComboBoxListSelected("(SELECT STSID,STS_Name,STS_ModuleID FROM DEF_Status WHERE STS_ModuleID IN(0, 1) AND STSID<>-1 UNION ALL  SELECT -2, 'Not defined',1)AS DIV", "1=1", "STSID, STS_Name", cmbStatus, "", "STS_Name", "STSID");
@@ -84,6 +91,10 @@ namespace ROMS
                 cmbDay.SelectedValue = 0;
                 cmbStatus.SelectedValue = 0;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -95,94 +106,37 @@ namespace ROMS
                 grdSupplierList.ClearSelection();
             }
         }
-        public void udfndelete()
+        public void udfnFieldAccess()
         {
             try
             {
-                if (grdSupplierList.SelectedRows.Count > 0)
-                {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        int varordertype = 0, vardayide = 0, varscheduleid = 0;
-                        if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["ORDERTYPE"].Value.ToString()) == "")
-                        {
-                            varordertype = 0;
-                        }
-                        else
-                        {
-                            varordertype = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ORDERTYPE"].Value.ToString());
-                        }
-                        if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["DYID"].Value.ToString()) == "")
-                        {
-                            vardayide = 0;
-                        }
-                        else
-                        {
-                            vardayide = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["DYID"].Value.ToString());
-                        }
-                        if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()) == "")
-                        {
-                            varscheduleid = 0;
-                        }
-                        else
-                        {
-                            varscheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString());
-                        }
-                        SPDataService objspdservice = new SPDataService();
-                        varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "",   "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "","",0,null,0);
-                        string[] varvalue = varResult.Split('~');
-                        objspdservice.CloseConnection();
-                        if (varvalue[0] == "3")
-                        {
-                            varDeleteFlag = 1;
-                        }
-                        else if (varvalue[0] == "5")
-                        {
-                            DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (dialogResult1 == DialogResult.Yes)
-                            {
-                                varDeleteFlag = 1;
-                            }
-                            else { varDeleteFlag = 0; }
-                        }
-                        else if (varvalue[0] == "4")
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            varDeleteFlag = 0;
-                        }
-                        if (varDeleteFlag == 1)
-                        {
-                            SPDataService objspdservice1 = new SPDataService();
-                            //varResult = objspdservice1.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0, "", 0,1);
-                            //string[] varvalue1 = varResult.Split('~');
-                            //objspdservice.CloseConnection();
-                            //if (varvalue1[0] == "3")
-                            //{
-                            //    if (varResult.Split('~')[1] == "1")
-                            //    {
-                            MainForm.objCP_Verify = new CP_Verify();
-                            MainForm.objCP_Verify.ShowDialog();
-                            varUserID = MainForm.objCP_Verify.varUserId;
-                            if (MainForm.objCP_Verify.flag == 1)
-                            {
-                                objspdservice = new SPDataService();
-                                varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype,  "", "", "", "", "", "", "", 1, "", 0, 1, 0, 0, 0, 0, 0, "","",0,null,0);
-                                objspdservice.CloseConnection();
-                                if (varResult.Split('~')[0] == "3")
-                                {
-                                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    MainForm.objCP_Supplierlist.udfnList();
-                                }
-                                else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                            }
-                            //    }
-                            //}
-
-                        }
-                    }
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
+                btnPrint.Visible = privilege.Contains("5");
+                btnExport.Visible = privilege.Contains("6");
+                tsbEnvelopPrint .Visible= SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9"));
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                { 
+                    grdSupplierList.Columns["clmCheck"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9")); 
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 7 && sp.EditAccess.Split(',').Contains("9")); 
                 }
             }
             catch (Exception ex)
@@ -190,34 +144,135 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfndelete()
+        {
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
+            {
+                try
+                {
+                    if (grdSupplierList.SelectedRows.Count > 0)
+                    {
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            int varordertype = 0, vardayide = 0, varscheduleid = 0;
+                            if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["ORDERTYPE"].Value.ToString()) == "")
+                            {
+                                varordertype = 0;
+                            }
+                            else
+                            {
+                                varordertype = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["ORDERTYPE"].Value.ToString());
+                            }
+                            if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["DYID"].Value.ToString()) == "")
+                            {
+                                vardayide = 0;
+                            }
+                            else
+                            {
+                                vardayide = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["DYID"].Value.ToString());
+                            }
+                            if (Convert.ToString(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString()) == "")
+                            {
+                                varscheduleid = 0;
+                            }
+                            else
+                            {
+                                varscheduleid = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["Scheduleid"].Value.ToString());
+                            }
+                            SPDataService objspdservice = new SPDataService();
+                            varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", 0, "", 0, 0, 0, 0, 0, 0, 0, "", "", 0, null, 0);
+                            string[] varvalue = varResult.Split('~');
+                            objspdservice.CloseConnection();
+                            if (varvalue[0] == "3")
+                            {
+                                varDeleteFlag = 1;
+                            }
+                            else if (varvalue[0] == "5")
+                            {
+                                DialogResult dialogResult1 = MessageBox.Show(varvalue[1] + " Are you sure want to continue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (dialogResult1 == DialogResult.Yes)
+                                {
+                                    varDeleteFlag = 1;
+                                }
+                                else { varDeleteFlag = 0; }
+                            }
+                            else if (varvalue[0] == "4")
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                varDeleteFlag = 0;
+                            }
+                            if (varDeleteFlag == 1)
+                            {
+                                SPDataService objspdservice1 = new SPDataService();
+                                //varResult = objspdservice1.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", "", "", 0, "", 0,1);
+                                //string[] varvalue1 = varResult.Split('~');
+                                //objspdservice.CloseConnection();
+                                //if (varvalue1[0] == "3")
+                                //{
+                                //    if (varResult.Split('~')[1] == "1")
+                                //    {
+                                MainForm.objCP_Verify = new CP_Verify();
+                                MainForm.objCP_Verify.ShowDialog();
+                                varUserID = MainForm.objCP_Verify.varUserId;
+                                if (MainForm.objCP_Verify.flag == 1)
+                                {
+                                    objspdservice = new SPDataService();
+                                    varResult = objspdservice.udfnSupplierMaster(2, Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString()), "", "", "", 0, "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, "Delete Supplier", 0, "", 0, vardayide, 0, 0, 0, "", "", "", "", 0, "", varscheduleid, varordertype, "", "", "", "", "", "", "", 1, "", 0, 1, 0, 0, 0, 0, 0, "", "", 0, null, 0);
+                                    objspdservice.CloseConnection();
+                                    if (varResult.Split('~')[0] == "3")
+                                    {
+                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MainForm.objCP_Supplierlist.udfnList();
+                                    }
+                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                }
+                                //    }
+                                //}
+
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
         }
 
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                if (grdSupplierList.SelectedRows.Count > 0)
+                try
                 {
-                    MainForm.objCP_Supplier = new CP_Supplier();
-                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                    MainForm.objCP_Supplier.btnSave.Text = "Update";
-                    MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
-                    MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SP_STSId"].Value.ToString());
-                    MainForm.objCP_Supplier.Show();
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    if (grdSupplierList.SelectedRows.Count > 0)
+                    {
+                        MainForm.objCP_Supplier = new CP_Supplier();
+                        MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                        MainForm.objCP_Supplier.btnSave.Text = "Update";
+                        MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
+                        MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SP_STSId"].Value.ToString());
+                        MainForm.objCP_Supplier.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                }
             }
         }
 
@@ -378,7 +433,7 @@ namespace ROMS
                         dtDefaultGrid = objDs.Tables[0];
                         udfnDefaultSearchGrid();
                     }
-                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; udfnGridAccess(); }
                 }
                 else
                 {

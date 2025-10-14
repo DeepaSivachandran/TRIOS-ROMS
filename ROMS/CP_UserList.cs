@@ -14,10 +14,14 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_UserList : Form
     {
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID="";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         Boolean BlnSearchImageYN = false;
         public CP_UserList()
         {
@@ -25,15 +29,18 @@ namespace ROMS
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objCP_User = new CP_User();
-                MainForm.objCP_User.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objCP_User = new CP_User();
+                    MainForm.objCP_User.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -64,12 +71,38 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 516;
                 txtDUserList.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
             }
             catch (Exception ex)
             {
@@ -125,6 +158,8 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdUserList.DataSource = objDs.Tables[0];
+                            grdUserList.Columns["clmReset"].Visible = true;
+                            grdUserList.Columns["clmReset"].Width = 110;
                             grdUserList.Columns["clmForceLogout"].Visible = true;
                             grdUserList.Columns["ID"].Visible = false;
                             grdUserList.Columns["UserRoleID"].Visible = false;
@@ -137,9 +172,11 @@ namespace ROMS
                             grdUserList.Columns["Login Time"].Width = 120;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserList.ClearSelection();
                         }
                         else
                         {
+                            grdUserList.Columns["clmReset"].Visible = false;
                             grdUserList.Columns["clmForceLogout"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
@@ -147,6 +184,7 @@ namespace ROMS
                     }
                     else
                     {
+                        grdUserList.Columns["clmReset"].Visible = false;
                         grdUserList.Columns["clmForceLogout"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
@@ -154,6 +192,7 @@ namespace ROMS
                 }
                 else
                 {
+                    grdUserList.Columns["clmReset"].Visible = false;
                     grdUserList.Columns["clmForceLogout"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
@@ -203,81 +242,87 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdUserList.SelectedRows.Count > 0)
+                try
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdUserList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspservice = new SPDataService();
-                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 0, null, 0);
-                        objspservice.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (varResult.Split('~')[1] == "1")
+                            SPDataService objspservice = new SPDataService();
+                            varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 0, null, 0);
+                            objspservice.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (varResult.Split('~')[1] == "1")
                                 {
-                                    objspservice = new SPDataService();
-                                    varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 1, null, 0);
-                                    objspservice.CloseConnection();
-                                    if (varResult.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
+                                        objspservice = new SPDataService();
+                                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 1, null, 0);
+                                        objspservice.CloseConnection();
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdUserList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objCP_User = new CP_User();
-                    MainForm.objCP_User.btnSave.Text = "Update";
-                    MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_User.PbUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
-                    MainForm.objCP_User.PbPasskeyID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["PassKeyID"].Value);
-                    MainForm.objCP_User.PbNameoftheUser = Convert.ToString(grdUserList.SelectedRows[0].Cells["Name of the System User"].Value);
-                    MainForm.objCP_User.PbLoginid = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value);
-                    MainForm.objCP_User.PbUserRole = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
-                    MainForm.objCP_User.PbPasskey = Convert.ToString(grdUserList.SelectedRows[0].Cells["Pass Key"].Value);
-                    MainForm.objCP_User.PbStatus = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objCP_User.ShowDialog();
+                    if (grdUserList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objCP_User = new CP_User();
+                        MainForm.objCP_User.btnSave.Text = "Update";
+                        MainForm.objCP_User.varUserID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_User.PbUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
+                        MainForm.objCP_User.PbPasskeyID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["PassKeyID"].Value);
+                        MainForm.objCP_User.PbNameoftheUser = Convert.ToString(grdUserList.SelectedRows[0].Cells["Name of the System User"].Value);
+                        MainForm.objCP_User.PbLoginid = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value);
+                        MainForm.objCP_User.PbUserRole = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
+                        MainForm.objCP_User.PbPasskey = Convert.ToString(grdUserList.SelectedRows[0].Cells["Pass Key"].Value);
+                        MainForm.objCP_User.PbStatus = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_User.ShowDialog();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void CP_UserList_KeyDown(object sender, KeyEventArgs e)
@@ -375,6 +420,8 @@ namespace ROMS
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -435,6 +482,11 @@ namespace ROMS
                             dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
                             dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
                             ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                        {
+                            BlnSearchImageYN = true;
+                            dgv2.Rows[rowIndex].Cells[i].Value = false;
                         }
                         else
                         {
@@ -567,8 +619,8 @@ namespace ROMS
                     }
                     else if (Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "412")   //Logout
                     {
-                        grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
-                        grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
+                        //grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
+                        //grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
                     }
                     grdUserList.ClearSelection();
                 }
@@ -1085,14 +1137,42 @@ namespace ROMS
                                 string UsedID = "0";
                                 UsedID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString());
                                 DialogResult result;
-                                //SPDataService objDServ = new SPDataService();
-                                //string varMessage = objDServ.udfnGetMessages(87);
-                                //objDServ.CloseConnection();
-                                result = MessageBox.Show("Are you sure you want to forcefully log out this user?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(170);
+                                objDServ.CloseConnection();
+                                result = MessageBox.Show(varMessage, "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (result == DialogResult.Yes)
                                 {
-
+                                    string varResult = objMainForm.udfnUserLoginProcess(Convert.ToInt32(UsedID), 412);  // Type 412 is Logged Out
+                                    string[] resultParts = varResult.Split('~');
+                                    if (resultParts[0] == "3")
+                                    {
+                                        MessageBox.Show(resultParts[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(resultParts[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                    udfnList();
                                 }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                        case "clmReset":
+                            try
+                            {
+                                string UsedID = "0", varUserLoginId = "0";
+                                UsedID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                varUserLoginId = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value.ToString());
+
+                                MainForm.objCP_User_ResetPassword = new CP_User_ResetPassword();
+                                MainForm.objCP_User_ResetPassword.pbvarUserID = Convert.ToInt32(UsedID);
+                                MainForm.objCP_User_ResetPassword.pbvarUserLoginID = varUserLoginId;
+                                MainForm.objCP_User_ResetPassword.ShowDialog();
                             }
                             catch (Exception ex)
                             {

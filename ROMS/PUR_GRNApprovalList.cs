@@ -21,55 +21,62 @@ namespace ROMS
         public DataTable Deftable = new DataTable();
         public int varviewtype = 0, Varflag=0,varUpDownKey = 0;
         public int ApprovalFlag = 0;
+        public int MenuCode = 0;
+        string privilege = "",EntryApprovalPrivilege="";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+        List<(int MUP_Code, string EditAccess)> EntryApprovalSpecialPermissions = new List<(int, string)>();
         public PUR_GRNApprovalList()
         {
             InitializeComponent();
         } 
         private void tsbEdit_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                
-                if (grdGrnApprovalList.Rows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objPUR_GRNApproval = new PUR_GRNApproval();
-                    MainForm.objPUR_GRNApproval.txtConcern.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Concern"].Value);
-                    MainForm.objPUR_GRNApproval.txtVoucherDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Vouc Date"].Value);
-                    MainForm.objPUR_GRNApproval.txtVoucherNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Vouc No."].Value);
-                    MainForm.objPUR_GRNApproval.txtGrnDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["GRN Date"].Value);
-                    MainForm.objPUR_GRNApproval.txtGrnNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["GRN No."].Value);
-                    MainForm.objPUR_GRNApproval.txtInvoiceNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Inv No."].Value);
-                    MainForm.objPUR_GRNApproval.txtInvoiceDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Inv Date"].Value);
-                    MainForm.objPUR_GRNApproval.varSupplierID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPID"].Value);
-                    MainForm.objPUR_GRNApproval.varScheduleID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPSCID"].Value);
-                    MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
-                    MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
-                    MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
-                    MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
-                    MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value); 
-                    MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
-                    MainForm.objPUR_GRNApproval.Show();
-                } 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                    if (grdGrnApprovalList.Rows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objPUR_GRNApproval = new PUR_GRNApproval();
+                        MainForm.objPUR_GRNApproval.txtConcern.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Concern"].Value);
+                        MainForm.objPUR_GRNApproval.txtVoucherDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Vouc Date"].Value);
+                        MainForm.objPUR_GRNApproval.txtVoucherNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Vouc No."].Value);
+                        MainForm.objPUR_GRNApproval.txtGrnDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["GRN Date"].Value);
+                        MainForm.objPUR_GRNApproval.txtGrnNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["GRN No."].Value);
+                        MainForm.objPUR_GRNApproval.txtInvoiceNo.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Inv No."].Value);
+                        MainForm.objPUR_GRNApproval.txtInvoiceDate.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Inv Date"].Value);
+                        MainForm.objPUR_GRNApproval.varSupplierID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPID"].Value);
+                        MainForm.objPUR_GRNApproval.varScheduleID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["SPSCID"].Value);
+                        MainForm.objPUR_GRNApproval.varConcernID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Concern ID"].Value);
+                        MainForm.objPUR_GRNApproval.varID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objPUR_GRNApproval.txtPurchaseType.Text = Convert.ToString(grdGrnApprovalList.SelectedRows[0].Cells["Purchase Type"].Value);
+                        MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
+                        MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
+                        MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value);
+                        MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
+                        MainForm.objPUR_GRNApproval.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void PUR_GRNApprovalList_Load(object sender, EventArgs e)
         {
             try
             {
+                MenuCode = 105;
                 if (ApprovalFlag == 1)
                 {
                     tsbApproval.Visible = true;
@@ -92,6 +99,10 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -99,6 +110,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnFieldAccess()
+        { 
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions; 
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3"); 
+                btnExport.Visible = privilege.Contains("6");
+                tsbMismatch.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 21 && sp.EditAccess.Split(',').Contains("9"));
+                //Purchase entry approval link
+                var EntryApprovalResult = UserAccessHelper.LoadUserAccess(517);
+                EntryApprovalPrivilege = EntryApprovalResult.PrivilegeCode;
+                tsbApproval.Visible = EntryApprovalPrivilege.Contains("3"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnDate()
         {
             try

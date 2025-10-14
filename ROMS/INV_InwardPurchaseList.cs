@@ -23,6 +23,9 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public int varUpDownKeyLocation = 0;
         int varPRID = 0, varparaflag = 0, varviewtype = 0, varDeleteFlag = 0, Varflag = 0, varUpDownKey = 0;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_InwardPurchaseList()
         {
             InitializeComponent();
@@ -41,51 +44,54 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
-                //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
-                MainForm.objINV_InwardPurchase.varInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value);
-                MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value); //for remarks popup
-                MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_COMID"].Value);
-                MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_SLID"].Value);
-                MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPID"].Value);
-                MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPSCID"].Value);
-                MainForm.objINV_InwardPurchase.varStausId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value);
-                MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_TypeID"].Value);
-                MainForm.objINV_InwardPurchase.varEditFlag = 1;
-                MainForm.objINV_InwardPurchase.varRemarkFlag = 1;
-                MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Con"].Value);
-                MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Location"].Value);
-                MainForm.objINV_InwardPurchase.dpInwardDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GIP_Date"].Value);
-                MainForm.objINV_InwardPurchase.txtInwardNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inward No."].Value);
-                MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inv Date"].Value);
-                MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inv No."].Value);
-                MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Transaction Date"].Value);
-                MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Transaction No."].Value);
-                MainForm.objINV_InwardPurchase.varPurchaseStatus= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value);
-                MainForm.objINV_InwardPurchase.varPurchaseID= Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value);
-                MainForm.objINV_InwardPurchase.varStatus= Convert.ToString(grdInwardList.SelectedRows[0].Cells["Goods Inward Status"].Value);
-                MainForm.objINV_InwardPurchase.varGIPTransDate = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Transaction Date"].Value);
-                //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN No."].Value);
-                //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
-                picLoader.Visible = false;
-                picLoader.SendToBack();
-                MainForm.objINV_InwardPurchase.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
+                    MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                    //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
+                    MainForm.objINV_InwardPurchase.varInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value);
+                    MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value); //for remarks popup
+                    MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_COMID"].Value);
+                    MainForm.objINV_InwardPurchase.varLocationId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_SLID"].Value);
+                    MainForm.objINV_InwardPurchase.varSupplierId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPID"].Value);
+                    MainForm.objINV_InwardPurchase.varScheduleId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["SPSCID"].Value);
+                    MainForm.objINV_InwardPurchase.varStausId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value);
+                    MainForm.objINV_InwardPurchase.varGRNPurchaseFlag = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIP_TypeID"].Value);
+                    MainForm.objINV_InwardPurchase.varEditFlag = 1;
+                    MainForm.objINV_InwardPurchase.varRemarkFlag = 1;
+                    MainForm.objINV_InwardPurchase.txtConcern.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Con"].Value);
+                    MainForm.objINV_InwardPurchase.txtStockLocation.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Location"].Value);
+                    MainForm.objINV_InwardPurchase.dpInwardDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GIP_Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtInwardNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inward No."].Value);
+                    MainForm.objINV_InwardPurchase.dpInvoiceDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inv Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtInvoiceNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Inv No."].Value);
+                    MainForm.objINV_InwardPurchase.dpVoucherDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Transaction Date"].Value);
+                    MainForm.objINV_InwardPurchase.txtVoucherNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Transaction No."].Value);
+                    MainForm.objINV_InwardPurchase.varPurchaseStatus = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value);
+                    MainForm.objINV_InwardPurchase.varPurchaseID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value);
+                    MainForm.objINV_InwardPurchase.varStatus = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Goods Inward Status"].Value);
+                    MainForm.objINV_InwardPurchase.varGIPTransDate = Convert.ToString(grdInwardList.SelectedRows[0].Cells["Transaction Date"].Value);
+                    //MainForm.objINV_InwardPurchase.txtGRNNo.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN No."].Value);
+                    //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                    MainForm.objINV_InwardPurchase.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void INV_InwardPurchaseList_KeyDown(object sender, KeyEventArgs e)
@@ -151,6 +157,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 30101; 
                 udfnCmbDropDown();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
@@ -160,6 +167,31 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions; 
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");
+                tssDelete.Visible = privilege.Contains("4"); 
+                btnExport.Visible = privilege.Contains("6");
+                tsbQue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("9"));
+                lblQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("9"));  
             }
             catch (Exception ex)
             {
@@ -198,6 +230,7 @@ namespace ROMS
             {
                 MainForm.objINV_InwardQueueList = new INV_InwardQueueList();
                 MainForm.objINV_InwardQueueList.MdiParent = this.ParentForm;
+                MainForm.objINV_InwardQueueList.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("10"));
                 MainForm.objINV_InwardQueueList.Show();
             }
             catch (Exception ex)
@@ -961,82 +994,85 @@ namespace ROMS
         }
         public void udfnDelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (varDeleteFlag == 0)
+                try
                 {
-                    if (grdInwardList.SelectedRows.Count > 0)
+                    if (varDeleteFlag == 0)
                     {
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (grdInwardList.SelectedRows.Count > 0)
                         {
-                            string varorginator = "Goods Inward from GRN Deletion", result = "";
-                            varviewtype = 2;
-                            if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GRN ID"].Value)!=0)
-                            { varparaflag = 1; }
-                            else if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0)
-                            { varparaflag = 2; }
-                            int varUserID = 0;
-                            TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
-                            objTRN_GoodsInward_Purchase.ViewType = varviewtype;
-                            objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
-                            objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
-                            objTRN_GoodsInward_Purchase.paraOriginator = varorginator;
-                            objTRN_GoodsInward_Purchase.paraHostName = MainForm.pbHostName;
-                            objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GRN ID"].Value.ToString());
-                            objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value.ToString());
-                            objTRN_GoodsInward_Purchase.paraDeleteFlag = 0;
-                            objTRN_GoodsInward_Purchase.paraFlag = varparaflag;
-                            objTRN_GoodsInward_Purchase.paraInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value.ToString());
-                            SPDataService objspdservice = new SPDataService();
-                            result = objspdservice.udfnGoodsInwardPurchase(objTRN_GoodsInward_Purchase);
-                            objspdservice.CloseConnection();
-                            string[] varvalue = result.Split('~');
-                            if (varvalue[0] == "3")
+                            DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                if (result.Split('~')[1] == "1")
+                                string varorginator = "Goods Inward from GRN Deletion", result = "";
+                                varviewtype = 2;
+                                if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GRN ID"].Value) != 0)
+                                { varparaflag = 1; }
+                                else if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0)
+                                { varparaflag = 2; }
+                                int varUserID = 0;
+                                TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
+                                objTRN_GoodsInward_Purchase.ViewType = varviewtype;
+                                objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
+                                objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
+                                objTRN_GoodsInward_Purchase.paraOriginator = varorginator;
+                                objTRN_GoodsInward_Purchase.paraHostName = MainForm.pbHostName;
+                                objTRN_GoodsInward_Purchase.paraGRNID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GRN ID"].Value.ToString());
+                                objTRN_GoodsInward_Purchase.paraPurchaseID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value.ToString());
+                                objTRN_GoodsInward_Purchase.paraDeleteFlag = 0;
+                                objTRN_GoodsInward_Purchase.paraFlag = varparaflag;
+                                objTRN_GoodsInward_Purchase.paraInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value.ToString());
+                                SPDataService objspdservice = new SPDataService();
+                                result = objspdservice.udfnGoodsInwardPurchase(objTRN_GoodsInward_Purchase);
+                                objspdservice.CloseConnection();
+                                string[] varvalue = result.Split('~');
+                                if (varvalue[0] == "3")
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    if (MainForm.objCP_Verify.flag == 1)
+                                    if (result.Split('~')[1] == "1")
                                     {
-                                        varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                        objTRN_GoodsInward_Purchase.ViewType = varviewtype;
-                                        objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(varUserID);
-                                        objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
-                                        objTRN_GoodsInward_Purchase.paraOriginator = varorginator;
-                                        objTRN_GoodsInward_Purchase.paraHostName = MainForm.pbHostName;
-                                        objTRN_GoodsInward_Purchase.paraDeleteFlag = 1;
-                                        objTRN_GoodsInward_Purchase.paraInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value.ToString());
-                                        SPDataService objspdservice1 = new SPDataService();
-                                        result = objspdservice1.udfnGoodsInwardPurchase(objTRN_GoodsInward_Purchase);
-                                        objspdservice1.CloseConnection();
-                                        if (result.Split('~')[0] == "3")
+                                        MainForm.objCP_Verify = new CP_Verify();
+                                        MainForm.objCP_Verify.ShowDialog();
+                                        if (MainForm.objCP_Verify.flag == 1)
                                         {
-                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            varviewtype = 1;
-                                            udfnList();
+                                            varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                            objTRN_GoodsInward_Purchase.ViewType = varviewtype;
+                                            objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(varUserID);
+                                            objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
+                                            objTRN_GoodsInward_Purchase.paraOriginator = varorginator;
+                                            objTRN_GoodsInward_Purchase.paraHostName = MainForm.pbHostName;
+                                            objTRN_GoodsInward_Purchase.paraDeleteFlag = 1;
+                                            objTRN_GoodsInward_Purchase.paraInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value.ToString());
+                                            SPDataService objspdservice1 = new SPDataService();
+                                            result = objspdservice1.udfnGoodsInwardPurchase(objTRN_GoodsInward_Purchase);
+                                            objspdservice1.CloseConnection();
+                                            if (result.Split('~')[0] == "3")
+                                            {
+                                                MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                varviewtype = 1;
+                                                udfnList();
+                                            }
+                                            else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                         }
-                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
                                 }
-                            }
-                            else if (result.Split('~')[0] == "4")
-                            {
-                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                else if (result.Split('~')[0] == "4")
+                                {
+                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void GrdInwardList_KeyDown(object sender, KeyEventArgs e)
@@ -1875,29 +1911,31 @@ namespace ROMS
         }
         public void udfnDeleteHide()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                //if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value)==46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value)==0)
-                //{
-                //    tsbDelete.Visible = false;
-                //    tssEdit.Visible = false;
-                //}
-                if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)!=49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value)==49))
+                try
                 {
-                    tsbDelete.Visible = false;
-                    tssEdit.Visible = false;
+                    //if(Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value)==46 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value)==0)
+                    //{
+                    //    tsbDelete.Visible = false;
+                    //    tssEdit.Visible = false;
+                    //}
+                    if (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Status ID"].Value) != 45 && Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase ID"].Value) != 0 && (Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) != 49 || Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["Purchase Status"].Value) == 49))
+                    {
+                        tsbDelete.Visible = false;
+                        tssDelete.Visible = false;
+                    }
+                    else
+                    {
+                        tsbDelete.Visible = true;
+                        tssDelete.Visible = true;
+                    } 
                 }
-                else
+                catch (Exception ex)
                 {
-                    tsbDelete.Visible = true;
-                    tssEdit.Visible = true;
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
             }
         }
         private void GrdInwardList_SelectionChanged(object sender, EventArgs e)
@@ -2145,8 +2183,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try
