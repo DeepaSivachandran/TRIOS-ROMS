@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel; 
 
 namespace ROMS
 {
@@ -21,6 +21,7 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+        int MenuCode = 0;
         public PUR_SupplierScheduleList()
         {
             InitializeComponent();
@@ -98,6 +99,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 101;
                 this.ActiveControl = txtSupplier;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Days", "DYID NOT IN (-1)", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
@@ -146,6 +148,34 @@ namespace ROMS
                 cmbConcernPrint.SelectedValue = 0;
                 udfncmbLoad();
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode); 
+                string privilege = result.PrivilegeCode;
+                List<(int MUP_Code, string EditAccess)> SpecialPermissions = result.SpecialPermissions; 
+                btnPrint.Visible = privilege.Contains("5");
+                btnExport.Visible = privilege.Contains("6");
+                tsbList.Visible=SpecialPermissions.Any (sp => sp.MUP_Code == 13 && sp.EditAccess.Split(',').Contains("9")); 
+                //for new supplier 
+                var supplierResult = UserAccessHelper.LoadUserAccess(517);
+                string SupPrivilege = supplierResult.PrivilegeCode;
+                List<(int MUP_Code, string EditAccess)> SupSpecial = supplierResult.SpecialPermissions;
+                tsbNew.Visible = SupPrivilege.Contains("2");
+                tssNewSupplier.Visible = SupPrivilege.Contains("2");
+                dgvSupplierScheduleList.Enabled = SupPrivilege.Contains("3"); 
             }
             catch (Exception ex)
             {

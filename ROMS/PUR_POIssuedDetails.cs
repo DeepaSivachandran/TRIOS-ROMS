@@ -25,6 +25,7 @@ namespace ROMS
         public string varbrandcode;
         public string pbFormStatus;
         public int varupdate = 0, varPOID = 0,varsts=0, Varordertype = 0,pbDelayedStatus=0;
+        public bool EditAccess = false;
         public PUR_POIssuedDetails()
         {
             InitializeComponent();
@@ -258,6 +259,23 @@ namespace ROMS
                 txtTAT.Text = Convert.ToString(Varordertype);
                 cmbIssueMode.SelectedIndex = 0;
                 udfnEditLoad();
+                udfnUserAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (EditAccess == false)
+                    { btnSave.Enabled = EditAccess; }
+                }
             }
             catch (Exception ex)
             {

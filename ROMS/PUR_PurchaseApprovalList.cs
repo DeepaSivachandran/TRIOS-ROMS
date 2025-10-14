@@ -20,6 +20,10 @@ namespace ROMS
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
         DataTable Deftable = new DataTable();
+        public int MenuCode = 0;
+        string privilege = "",MismatachApprovalPrivilege="";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+       
         public PUR_PurchaseApprovalList()
         {
             InitializeComponent();
@@ -28,7 +32,8 @@ namespace ROMS
         private void PUR_PurchaseApprovalList_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                MenuCode = 202;
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 udfnDate();
@@ -40,6 +45,33 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;    
+                btnExport.Visible = privilege.Contains("6");
+                tsbIncompleteList.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 25 && sp.EditAccess.Split(',').Contains("9"));
+                tsbRejectedProduct.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 25 && sp.EditAccess.Split(',').Contains("9")); 
+                tsbEntryApprovedList.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 26 && sp.EditAccess.Split(',').Contains("9"));
+                  
+                var MismatchApprovalresult = UserAccessHelper.LoadUserAccess(105);
+                MismatachApprovalPrivilege = MismatchApprovalresult.PrivilegeCode;
+                tsbPurchaseApproval.Visible = MismatachApprovalPrivilege.Contains("1");
+                tsbMismatchCount.Visible = MismatachApprovalPrivilege.Contains("1");
             }
             catch (Exception ex)
             {
@@ -238,27 +270,33 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                MainForm.objPUR_PurchaseEntryApproval = new PUR_PurchaseEntryApproval();
-                MainForm.objPUR_PurchaseEntryApproval.PbSTS = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["STSID"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.varApprovalStatus = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString());
-                MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryApproval.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objPUR_PurchaseEntryApproval = new PUR_PurchaseEntryApproval();
+                    MainForm.objPUR_PurchaseEntryApproval.PbSTS = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["STSID"].Value.ToString());
+                    MainForm.objPUR_PurchaseEntryApproval.pbPurchaseno = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["PURID"].Value.ToString());
+                    MainForm.objPUR_PurchaseEntryApproval.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
+                    MainForm.objPUR_PurchaseEntryApproval.varApprovalStatus = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString());
+                    MainForm.objPUR_PurchaseEntryApproval.ApproveAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 23 && sp.EditAccess.Split(',').Contains("9")); 
+                    MainForm.objPUR_PurchaseEntryApproval.BillrateViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("9")); 
+                    MainForm.objPUR_PurchaseEntryApproval.BillrateEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("10")); 
+                    MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
+                    MainForm.objPUR_PurchaseEntryApproval.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                }
             }
         }
         public void udfnDefcolumns()

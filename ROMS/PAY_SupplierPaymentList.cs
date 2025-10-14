@@ -20,6 +20,9 @@ namespace ROMS
         DataTable Deftable = new DataTable();
         public Boolean BlnSearchImageYN = false;
         public int varUserID = 0;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
         public PAY_SupplierPaymentList()
         {
@@ -28,17 +31,19 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
-                MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
-                MainForm.objPAY_SupplierPayment.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
+                try
+                {
+                    MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
+                    MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
+                    MainForm.objPAY_SupplierPayment.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex); 
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -55,33 +60,34 @@ namespace ROMS
         }
         public void udfnEditLoad()
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                
-                if (grdSupllierPaymentList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
-                    MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
-                    MainForm.objPAY_SupplierPayment.btnSave.Text = "Update";
-                    MainForm.objPAY_SupplierPayment.varSupplierPaymentID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
-                    MainForm.objPAY_SupplierPayment.varEditFlag = 1;
-                    MainForm.objPAY_SupplierPayment.varPaymentStatus = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
-                    MainForm.objPAY_SupplierPayment.Show();
+                    if (grdSupllierPaymentList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
+                        MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
+                        MainForm.objPAY_SupplierPayment.btnSave.Text = "Update";
+                        MainForm.objPAY_SupplierPayment.varSupplierPaymentID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
+                        MainForm.objPAY_SupplierPayment.varEditFlag = 1;
+                        MainForm.objPAY_SupplierPayment.varPaymentStatus = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
+                        MainForm.objPAY_SupplierPayment.Show();
+                    } 
                 }
-                
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -517,6 +523,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 406;
                 udfnCmbConcern();
                 //DataSet objDs = new DataSet();
                 //SPDataService objspservice = new SPDataService();
@@ -534,6 +541,49 @@ namespace ROMS
                 cmbConcern.SelectedValue = 1;
                 this.ActiveControl = txtSupplier;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2"); 
+                btnExport.Visible = privilege.Contains("6"); 
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    grdSupllierPaymentList.Columns["clmPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 39 && sp.EditAccess.Split(',').Contains("9"));
+                    grdSupllierPaymentList.Columns["clmReceiptPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 40 && sp.EditAccess.Split(',').Contains("9"));
+                    grdSupllierPaymentList.Columns["clmDate"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 42 && sp.EditAccess.Split(',').Contains("9"));
+                    grdSupllierPaymentList.Columns["clmEnvelopPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 41 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 39 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[1].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 40 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[2].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 42 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[3].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 41 && sp.EditAccess.Split(',').Contains("9"));
+                }
             }
             catch (Exception ex)
             {
@@ -833,7 +883,7 @@ namespace ROMS
                     Deftable = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; udfnGridAccess(); }
             }
             catch (Exception ex)
             {
@@ -1390,6 +1440,7 @@ namespace ROMS
                                     MainForm.objPAY_SupplierPayment_BankDate.pbChequeDate = DateTime.ParseExact(chequeDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                                     MainForm.objPAY_SupplierPayment_BankDate.varSupplierId = varSPID; 
                                     MainForm.objPAY_SupplierPayment_BankDate.varPaymentID = Convert.ToInt16(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
+                                    MainForm.objPAY_SupplierPayment_BankDate.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 42 && sp.EditAccess.Split(',').Contains("10")); ;
                                     MainForm.objPAY_SupplierPayment_BankDate.ShowDialog();
                                 }
                             }
@@ -1436,6 +1487,5 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
     }
 }

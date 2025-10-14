@@ -23,22 +23,28 @@ namespace ROMS
         public string varUserID = "";
         Boolean BlnSearchImageYN = false;
         DateTime varmaxdate;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public PAY_AdvanceList()
         {
             InitializeComponent();
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objPAY_Advance = new PAY_Advance();
-                MainForm.objPAY_Advance.MdiParent = this.ParentForm;
-                MainForm.objPAY_Advance.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objPAY_Advance = new PAY_Advance();
+                    MainForm.objPAY_Advance.MdiParent = this.ParentForm;
+                    MainForm.objPAY_Advance.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -67,94 +73,100 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdAdvanceList.SelectedRows.Count > 0)
+                try
                 {
-                    if (Convert.ToString(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["AD_STSID"].Value) == "74")
+                    if (grdAdvanceList.SelectedRows.Count > 0)
                     {
-                        string varResult = "";
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (Convert.ToString(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["AD_STSID"].Value) == "74")
                         {
-                            SPDataService objspservice = new SPDataService();
-                            Model.TRN_Advance objTRN_Advance = new Model.TRN_Advance();
-                            objTRN_Advance.ViewType = 2;
-                            objTRN_Advance.paraAdvanceId = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
-                            objTRN_Advance.paraOriginator = "Advance Delete";
-                            objTRN_Advance.paraDeleteFlag = 0;
-                            varResult = objspservice.udfnAdvance(objTRN_Advance);
-                            objspservice.CloseConnection();
-
-                            //varResult = objspservice.udfnAdvance(2, Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value), 0, "", 0, 0, 0, "Advance Delete", 0);
-                            //objspservice.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            string varResult = "";
+                            DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                if (varResult.Split('~')[1] == "1")
+                                SPDataService objspservice = new SPDataService();
+                                Model.TRN_Advance objTRN_Advance = new Model.TRN_Advance();
+                                objTRN_Advance.ViewType = 2;
+                                objTRN_Advance.paraAdvanceId = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
+                                objTRN_Advance.paraOriginator = "Advance Delete";
+                                objTRN_Advance.paraDeleteFlag = 0;
+                                varResult = objspservice.udfnAdvance(objTRN_Advance);
+                                objspservice.CloseConnection();
+
+                                //varResult = objspservice.udfnAdvance(2, Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value), 0, "", 0, 0, 0, "Advance Delete", 0);
+                                //objspservice.CloseConnection();
+                                if (varResult.Split('~')[0] == "3")
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
+                                    if (varResult.Split('~')[1] == "1")
                                     {
-                                        objTRN_Advance.ViewType = 2;
-                                        objTRN_Advance.paraAdvanceId = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
-                                        objTRN_Advance.paraOriginator = "Advance Delete";
-                                        objTRN_Advance.paraDeleteFlag = 1;
-                                        varResult = objspservice.udfnAdvance(objTRN_Advance);
-                                        objspservice.CloseConnection();
-                                        //objspservice = new SPDataService();
-                                        //varResult = objspservice.udfnAdvance(2, Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value), 0, "", 0, 0, 0, "Advance Delete", 1);
-                                        //objspservice.CloseConnection();
-                                        if (varResult.Split('~')[0] == "3")
+                                        MainForm.objCP_Verify = new CP_Verify();
+                                        MainForm.objCP_Verify.ShowDialog();
+                                        varUserID = MainForm.objCP_Verify.varUserId;
+                                        if (MainForm.objCP_Verify.flag == 1)
                                         {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
+                                            objTRN_Advance.ViewType = 2;
+                                            objTRN_Advance.paraAdvanceId = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
+                                            objTRN_Advance.paraOriginator = "Advance Delete";
+                                            objTRN_Advance.paraDeleteFlag = 1;
+                                            varResult = objspservice.udfnAdvance(objTRN_Advance);
+                                            objspservice.CloseConnection();
+                                            //objspservice = new SPDataService();
+                                            //varResult = objspservice.udfnAdvance(2, Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value), 0, "", 0, 0, 0, "Advance Delete", 1);
+                                            //objspservice.CloseConnection();
+                                            if (varResult.Split('~')[0] == "3")
+                                            {
+                                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                udfnList();
+                                            }
+                                            else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                         }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                else
+                                {
+                                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdAdvanceList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objPAY_Advance = new PAY_Advance();
-                    MainForm.objPAY_Advance.MdiParent = ParentForm;
-                    MainForm.objPAY_Advance.btnSave.Text = "Update";
-                    MainForm.objPAY_Advance.pbADID = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
-                    MainForm.objPAY_Advance.PbStatus = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["AD_STSID"].Value);
-                    MainForm.objPAY_Advance.varEditFlag = 1;
-                    MainForm.objPAY_Advance.Show();
+                    if (grdAdvanceList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objPAY_Advance = new PAY_Advance();
+                        MainForm.objPAY_Advance.MdiParent = ParentForm;
+                        MainForm.objPAY_Advance.btnSave.Text = "Update";
+                        MainForm.objPAY_Advance.pbADID = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
+                        MainForm.objPAY_Advance.PbStatus = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["AD_STSID"].Value);
+                        MainForm.objPAY_Advance.varEditFlag = 1;
+                        MainForm.objPAY_Advance.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         public void udfnList()
@@ -914,6 +926,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 404;
                 udfnDate();
                 udfnConcernLoad();
                 DataBind objDataBind = new DataBind();
@@ -925,6 +938,10 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 txtSupplier.Text = "";
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -932,7 +949,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
+                btnExport.Visible = privilege.Contains("6"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void GrdAdvanceList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1523,27 +1559,26 @@ namespace ROMS
 
         private void GrdAdvanceList_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                int varSource = Convert.ToInt32(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["Source"].Value);
-                if (Convert.ToString(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["AD_STSID"].Value) == "74")
+                try
                 {
-                    tsbDelete.Visible = true;
+                    int varSource = Convert.ToInt32(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["Source"].Value);
+                    if (Convert.ToString(grdAdvanceList.Rows[grdAdvanceList.CurrentCell.RowIndex].Cells["AD_STSID"].Value) == "74")
+                    {
+                        tsbDelete.Visible = true;
+                    }
+                    /* 1- From GRN, 2 - Manual, 3 - From Supplier*/
+                    else if (varSource != 2)
+                    {
+                        tsbDelete.Visible = false;
+                    } 
                 }
-                /* 1- From GRN, 2 - Manual, 3 - From Supplier*/
-                else if (varSource !=2)
+                catch (Exception ex)
                 {
-                    tsbDelete.Visible = false;
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
-                else
-                {
-                    tsbDelete.Visible = false; tsbEdit.Visible = true; tsbNew.Visible = true; tssEdit.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
             }
         }
     }

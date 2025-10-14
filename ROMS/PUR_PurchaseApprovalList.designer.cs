@@ -40,10 +40,10 @@
             this.tsbMismatchCount = new System.Windows.Forms.ToolStripButton();
             this.tsbPurchaseApproval = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbQue = new System.Windows.Forms.ToolStripButton();
+            this.tsbEntryApprovedList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRejectedProduct = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.tsbIncompleteList = new System.Windows.Forms.ToolStripButton();
             this.pnlpurchaseapproval = new System.Windows.Forms.Panel();
             this.lvSupplier = new System.Windows.Forms.ListView();
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,6 +53,8 @@
             this.grdPurchaseEntryApproval = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblschedleCode = new System.Windows.Forms.Label();
@@ -74,8 +76,6 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
@@ -95,10 +95,10 @@
             this.tsbMismatchCount,
             this.tsbPurchaseApproval,
             this.toolStripSeparator1,
-            this.tsbQue,
+            this.tsbEntryApprovedList,
             this.toolStripSeparator2,
             this.tsbRejectedProduct,
-            this.toolStripButton2});
+            this.tsbIncompleteList});
             this.tsBrandList.Location = new System.Drawing.Point(0, 0);
             this.tsBrandList.Name = "tsBrandList";
             this.tsBrandList.Size = new System.Drawing.Size(1354, 28);
@@ -146,18 +146,18 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
-            // tsbQue
+            // tsbEntryApprovedList
             // 
-            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
-            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbQue.Name = "tsbQue";
-            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbQue.Size = new System.Drawing.Size(188, 25);
-            this.tsbQue.Text = "Purchase Entry Approved List";
-            this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
+            this.tsbEntryApprovedList.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEntryApprovedList.Image = global::ROMS.Properties.Resources.queue;
+            this.tsbEntryApprovedList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEntryApprovedList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEntryApprovedList.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEntryApprovedList.Name = "tsbEntryApprovedList";
+            this.tsbEntryApprovedList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEntryApprovedList.Size = new System.Drawing.Size(188, 25);
+            this.tsbEntryApprovedList.Text = "Purchase Entry Approved List";
+            this.tsbEntryApprovedList.Click += new System.EventHandler(this.TsbQue_Click);
             // 
             // toolStripSeparator2
             // 
@@ -180,18 +180,18 @@
             this.tsbRejectedProduct.Size = new System.Drawing.Size(33, 25);
             this.tsbRejectedProduct.Text = "0  ";
             // 
-            // toolStripButton2
+            // tsbIncompleteList
             // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.Image = global::ROMS.Properties.Resources.queue;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton2.Size = new System.Drawing.Size(197, 25);
-            this.toolStripButton2.Text = "Purchase Entry Incomplete List";
-            this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            this.tsbIncompleteList.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbIncompleteList.Image = global::ROMS.Properties.Resources.queue;
+            this.tsbIncompleteList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbIncompleteList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbIncompleteList.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbIncompleteList.Name = "tsbIncompleteList";
+            this.tsbIncompleteList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbIncompleteList.Size = new System.Drawing.Size(197, 25);
+            this.tsbIncompleteList.Text = "Purchase Entry Incomplete List";
+            this.tsbIncompleteList.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
             // pnlpurchaseapproval
             // 
@@ -340,6 +340,28 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(1018, 27);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 20);
+            this.label6.TabIndex = 132344557;
+            this.label6.Text = "No.of Records :";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotal.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotal.Location = new System.Drawing.Point(1118, 27);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(17, 20);
+            this.lblTotal.TabIndex = 132344558;
+            this.lblTotal.Text = "0";
             // 
             // label3
             // 
@@ -610,28 +632,6 @@
             this.toolStripButton1.Size = new System.Drawing.Size(184, 25);
             this.toolStripButton1.Text = "Purchase Entry Rejected List";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(1018, 27);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 20);
-            this.label6.TabIndex = 132344557;
-            this.label6.Text = "No.of Records :";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblTotal.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotal.Location = new System.Drawing.Point(1118, 27);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(17, 20);
-            this.lblTotal.TabIndex = 132344558;
-            this.lblTotal.Text = "0";
-            // 
             // PUR_PurchaseApprovalList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -697,14 +697,14 @@
         private System.Windows.Forms.PictureBox picLoader;
         public System.Windows.Forms.DataGridView grdPurchaseEntryApproval;
         private System.Windows.Forms.Button btnExport;
-        public System.Windows.Forms.ToolStripButton tsbQue;
+        public System.Windows.Forms.ToolStripButton tsbEntryApprovedList;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         public System.Windows.Forms.ToolStripButton tsbPurchaseApproval;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         public System.Windows.Forms.ToolStripButton tsbRejectedProduct;
         public System.Windows.Forms.ToolStripButton toolStripButton1;
-        public System.Windows.Forms.ToolStripButton toolStripButton2;
+        public System.Windows.Forms.ToolStripButton tsbIncompleteList;
         public System.Windows.Forms.ToolStripButton tsbMismatchCount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotal;

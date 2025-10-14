@@ -21,6 +21,9 @@ namespace ROMS
         public string varSupplierCode = "", varScheduleCode = "";
         Boolean BlnSearchImageYN = false;
         DataTable dtDefaultGrid = new DataTable();
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public PAY_CreditNoteList()
         {
             InitializeComponent();
@@ -584,6 +587,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 405;
                 lblNoRecordsFound.Visible = false;
                 lblNoRecordsFound.SendToBack();
                 udfnConcern();
@@ -593,6 +597,43 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 this.ActiveControl = cmbConcern;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;  
+                tsbEdit.Visible = privilege.Contains("3"); 
+                btnExport.Visible = privilege.Contains("6"); 
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                { 
+                    grdCreditNoteList.Columns["clmPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 37 && sp.EditAccess.Split(',').Contains("9")); 
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 37 && sp.EditAccess.Split(',').Contains("9")); 
+                }
             }
             catch (Exception ex)
             {
@@ -714,6 +755,7 @@ namespace ROMS
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
+                else { udfnGridAccess(); }
             }
             catch (Exception ex)
             {
@@ -1132,47 +1174,50 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdCreditNoteList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    if (Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["Flag"].Value)==0)
+                    if (grdCreditNoteList.SelectedRows.Count > 0)
                     {
-                        MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                        MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                        MainForm.objPUR_PurchaseReturns.varCreditDCID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
-                        MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
-                        MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                        MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
-                        MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
-                        MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
-                        MainForm.objPUR_PurchaseReturns.Show();
-                    }
-                    else
-                    {
-                        MainForm.objPAY_CreditNote = new PAY_CreditNote();
-                        MainForm.objPAY_CreditNote.MdiParent = this.ParentForm;
-                        MainForm.objPAY_CreditNote.btnSave.Text = "Update";
-                        MainForm.objPAY_CreditNote.varCreditID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["CNID"].Value);
-                        MainForm.objPAY_CreditNote.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                        MainForm.objPAY_CreditNote.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
-                        MainForm.objPAY_CreditNote.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["STSID"].Value.ToString());
-                        MainForm.objPAY_CreditNote.Show();
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        if (Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["Flag"].Value) == 0)
+                        {
+                            MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
+                            MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                            MainForm.objPUR_PurchaseReturns.varCreditDCID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
+                            MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
+                            MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                            MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                            MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
+                            MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
+                            MainForm.objPUR_PurchaseReturns.Show();
+                        }
+                        else
+                        {
+                            MainForm.objPAY_CreditNote = new PAY_CreditNote();
+                            MainForm.objPAY_CreditNote.MdiParent = this.ParentForm;
+                            MainForm.objPAY_CreditNote.btnSave.Text = "Update";
+                            MainForm.objPAY_CreditNote.varCreditID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["CNID"].Value);
+                            MainForm.objPAY_CreditNote.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                            MainForm.objPAY_CreditNote.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                            MainForm.objPAY_CreditNote.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["STSID"].Value.ToString());
+                            MainForm.objPAY_CreditNote.Show();
+                        }
                     }
                 }
-            }
-            catch(Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
 

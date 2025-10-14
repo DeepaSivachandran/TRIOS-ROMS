@@ -67,7 +67,12 @@ namespace ROMS
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
         int  varStatusFlag=0,varStatusID=0;
-        
+        public bool PurStkLocViewAcess = false, PurStkLocEditAcess = false,
+            SalesStkLocViewAcess = false, SalesStkLocEditAcess = false,
+            RetailRateViewAcess = false, RetailRateEditAcess = false,
+            WholeSaleRateViewAcess = false, WholeSaleRateEditAcess = false,
+            SalesHSNViewAcess = false, SalesHSNEditAcess = false,
+            PurHSNViewAcess = false, PurHSNEditAcess = false;
         public CP_Product()
         {
             InitializeComponent();
@@ -3808,7 +3813,23 @@ namespace ROMS
                 //}
 
                 cmbUnit.Enabled = true;
+                udfnUserAccess();
                 //txtUpp.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                     
+                }
             }
             catch (Exception ex)
             {

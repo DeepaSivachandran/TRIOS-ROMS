@@ -35,6 +35,10 @@ namespace ROMS
         DataSet objDs = new DataSet();
         public int varSettingID = 0;
         public int varBillAmnt = 0;
+
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_GeneralSettings()
         {
             InitializeComponent();
@@ -274,11 +278,32 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 602;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=49 OR MSTID=-1 ORDER BY MSTID,MST_DisplayText", "MSTID,MST_DisplayText", cmbTransactionType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 //udfnTurnAroundTimeLoad();
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                btnUpdate.Visible = privilege.Contains("3");  
             }
             catch (Exception ex)
             {

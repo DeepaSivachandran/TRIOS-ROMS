@@ -21,6 +21,9 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public Boolean BlnSearchImageYN = false;
         public string varUserID = "";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
         public PAY_DiscountVoucherList()
         {
@@ -29,15 +32,18 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objPAY_DiscountVoucher = new PAY_DiscountVoucher();
-                MainForm.objPAY_DiscountVoucher.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objPAY_DiscountVoucher = new PAY_DiscountVoucher();
+                    MainForm.objPAY_DiscountVoucher.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -54,28 +60,31 @@ namespace ROMS
         }
         public void udfnEditLoad()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdDiscountList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objPAY_DiscountVoucher = new PAY_DiscountVoucher();
-                    MainForm.objPAY_DiscountVoucher.btnSave.Text = "Update";
-                    MainForm.objPAY_DiscountVoucher.PbDiscID = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
-                    MainForm.objPAY_DiscountVoucher.ShowDialog();
+                    if (grdDiscountList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objPAY_DiscountVoucher = new PAY_DiscountVoucher();
+                        MainForm.objPAY_DiscountVoucher.btnSave.Text = "Update";
+                        MainForm.objPAY_DiscountVoucher.PbDiscID = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
+                        MainForm.objPAY_DiscountVoucher.ShowDialog();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -92,61 +101,64 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdDiscountList.SelectedRows.Count > 0)
+                try
                 {
-                    if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "102")
+                    if (grdDiscountList.SelectedRows.Count > 0)
                     {
-                        string varResult = "";
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
+                        if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "102")
                         {
-                            SPDataService objspservice = new SPDataService();
-                            Model.TRN_DiscountVoucher objTRN_DiscountVoucher = new Model.TRN_DiscountVoucher();
-                            objTRN_DiscountVoucher.ViewType = 2;
-                            objTRN_DiscountVoucher.paraDiscountId = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
-                            objTRN_DiscountVoucher.paraOriginator = "Discount Voucher Delete";
-                            varResult = objspservice.udfnDiscountVoucher(objTRN_DiscountVoucher);
-                            objspservice.CloseConnection();
-
-                            if (varResult.Split('~')[0] == "3")
+                            string varResult = "";
+                            DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                if (varResult.Split('~')[1] == "1")
-                                {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
-                                    {
-                                        objTRN_DiscountVoucher.ViewType = 2;
-                                        objTRN_DiscountVoucher.paraDiscountId = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
-                                        objTRN_DiscountVoucher.paraDeleteFlag = 1;
-                                        objTRN_DiscountVoucher.paraOriginator = "Discount Voucher Delete";
-                                        varResult = objspservice.udfnDiscountVoucher(objTRN_DiscountVoucher);
-                                        objspservice.CloseConnection();
+                                SPDataService objspservice = new SPDataService();
+                                Model.TRN_DiscountVoucher objTRN_DiscountVoucher = new Model.TRN_DiscountVoucher();
+                                objTRN_DiscountVoucher.ViewType = 2;
+                                objTRN_DiscountVoucher.paraDiscountId = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
+                                objTRN_DiscountVoucher.paraOriginator = "Discount Voucher Delete";
+                                varResult = objspservice.udfnDiscountVoucher(objTRN_DiscountVoucher);
+                                objspservice.CloseConnection();
 
-                                        if (varResult.Split('~')[0] == "3")
+                                if (varResult.Split('~')[0] == "3")
+                                {
+                                    if (varResult.Split('~')[1] == "1")
+                                    {
+                                        MainForm.objCP_Verify = new CP_Verify();
+                                        MainForm.objCP_Verify.ShowDialog();
+                                        varUserID = MainForm.objCP_Verify.varUserId;
+                                        if (MainForm.objCP_Verify.flag == 1)
                                         {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
+                                            objTRN_DiscountVoucher.ViewType = 2;
+                                            objTRN_DiscountVoucher.paraDiscountId = Convert.ToInt32(grdDiscountList.SelectedRows[0].Cells["DISCID"].Value);
+                                            objTRN_DiscountVoucher.paraDeleteFlag = 1;
+                                            objTRN_DiscountVoucher.paraOriginator = "Discount Voucher Delete";
+                                            varResult = objspservice.udfnDiscountVoucher(objTRN_DiscountVoucher);
+                                            objspservice.CloseConnection();
+
+                                            if (varResult.Split('~')[0] == "3")
+                                            {
+                                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                udfnList();
+                                            }
+                                            else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                         }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                else
+                                {
+                                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -1074,6 +1086,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 403;
                 udfnConcernLoad();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,23) AND STSID <>-1", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -1083,6 +1096,30 @@ namespace ROMS
                 dpFromdate.MaxDate = MainForm.pbCurrentDate;
                 dpTodate.MaxDate = MainForm.pbCurrentDate;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
             }
             catch (Exception ex)
             {
@@ -1257,16 +1294,19 @@ namespace ROMS
 
         private void GrdDiscountList_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "103" || Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["Source"].Value) == "1")
-                { tsbDelete.Visible = false; }
-                else { tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true; }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    if (Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["DISC_STSID"].Value) == "103" || Convert.ToString(grdDiscountList.Rows[grdDiscountList.CurrentCell.RowIndex].Cells["Source"].Value) == "1")
+                    { tsbDelete.Visible = false; }
+                    else { tsbDelete.Visible = true; }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
 

@@ -21,6 +21,9 @@ namespace ROMS
         DataTable objDtExcel = new DataTable();
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_RackList()
         {
             InitializeComponent();
@@ -28,16 +31,18 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objCP_Rack = new CP_Rack();
-                MainForm.objCP_Rack.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
+                try
+                {
+                    MainForm.objCP_Rack = new CP_Rack();
+                    MainForm.objCP_Rack.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex); 
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -68,12 +73,17 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 510;
                 cmbGroupType.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -81,7 +91,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
- 
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
+                btnExport.Visible = privilege.Contains("6"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnList()
         {
             try
@@ -276,88 +306,93 @@ namespace ROMS
 
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdGroupList.SelectedRows.Count > 0)
+                try
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdGroupList.SelectedRows.Count > 0)
                     {
-
-                        SPDataService objspservice = new SPDataService();
-                        varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "","", 0, "Rack Delete",0);
-                        objspservice.CloseConnection();
-
-                        if (varResult.Split('~')[0] == "3")
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (varResult.Split('~')[1] == "1")
+
+                            SPDataService objspservice = new SPDataService();
+                            varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 0);
+                            objspservice.CloseConnection();
+
+                            if (varResult.Split('~')[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (varResult.Split('~')[1] == "1")
                                 {
-                                    objspservice = new SPDataService();
-                                    varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 1);
-                                    objspservice.CloseConnection();
-                                    if (varResult.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
+                                        objspservice = new SPDataService();
+                                        varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 1);
+                                        objspservice.CloseConnection();
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdGroupList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objCP_Rack = new CP_Rack();
-                    MainForm.objCP_Rack.btnSave.Text = "Update";
-                    MainForm.objCP_Rack.varRackcode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
-                    MainForm.objCP_Rack.PbConcernID = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ConcernID"].Value);
-                    MainForm.objCP_Rack.varLocationCode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StockLocationID"].Value);
-                    MainForm.objCP_Rack.PbLocationName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
-                    MainForm.objCP_Rack.PbRackName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Rack Name"].Value);
-                    MainForm.objCP_Rack.PbShortName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Short Name"].Value);
-                    MainForm.objCP_Rack.PbDescription = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Description"].Value);
-                    MainForm.objCP_Rack.PbConcern = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Concern"].Value);
-                    MainForm.objCP_Rack.PbStockLocation = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
-                    MainForm.objCP_Rack.PbStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StatusID"].Value);
-                    picLoader.Visible = false;
-                    picLoader.SendToBack();
-                    MainForm.objCP_Rack.ShowDialog();
+                    if (grdGroupList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objCP_Rack = new CP_Rack();
+                        MainForm.objCP_Rack.btnSave.Text = "Update";
+                        MainForm.objCP_Rack.varRackcode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_Rack.PbConcernID = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ConcernID"].Value);
+                        MainForm.objCP_Rack.varLocationCode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StockLocationID"].Value);
+                        MainForm.objCP_Rack.PbLocationName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
+                        MainForm.objCP_Rack.PbRackName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Rack Name"].Value);
+                        MainForm.objCP_Rack.PbShortName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Short Name"].Value);
+                        MainForm.objCP_Rack.PbDescription = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Description"].Value);
+                        MainForm.objCP_Rack.PbConcern = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Concern"].Value);
+                        MainForm.objCP_Rack.PbStockLocation = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
+                        MainForm.objCP_Rack.PbStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StatusID"].Value);
+                        picLoader.Visible = false;
+                        picLoader.SendToBack();
+                        MainForm.objCP_Rack.ShowDialog();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }    
         private void CP_RackList_KeyDown(object sender, KeyEventArgs e)

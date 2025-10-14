@@ -17,7 +17,9 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public string varUserID = "";
-
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_ProductApprovalList()
         {
             InitializeComponent();
@@ -137,48 +139,49 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                if (grdItemList.SelectedRows.Count > 0)
+                try
                 {
-                    MainForm.objCP_ProductApproval = new CP_ProductApproval();
-                    MainForm.objCP_ProductApproval.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
-                    //MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    if (grdItemList.SelectedRows.Count > 0)
+                    {
+                        MainForm.objCP_ProductApproval = new CP_ProductApproval();
+                        MainForm.objCP_ProductApproval.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
+                        //MainForm.objCP_ProductApproval.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
 
-                    if (grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString() != "") 
-                    { 
-                        MainForm.objCP_ProductApproval.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
+                        if (grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString() != "")
+                        {
+                            MainForm.objCP_ProductApproval.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
+                        }
+
+                        MainForm.objCP_ProductApproval.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.varComId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
+                        //MainForm.objCP_ProductApproval.varCategoryId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRCTID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.varBrand = Convert.ToString(grdItemList.SelectedRows[0].Cells["PR_BDID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.varPURSLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_SLID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.varPURRKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_RKID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
+                        MainForm.objCP_ProductApproval.btnUpdate.Text = "Update";
+                        MainForm.objCP_ProductApproval.MdiParent = this.ParentForm;
+                        MainForm.objCP_ProductApproval.Show();
                     }
 
-                    MainForm.objCP_ProductApproval.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varComId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
-                    //MainForm.objCP_ProductApproval.varCategoryId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRCTID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varBrand = Convert.ToString(grdItemList.SelectedRows[0].Cells["PR_BDID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varPURSLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_SLID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varPURRKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_RKID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
-                    MainForm.objCP_ProductApproval.btnUpdate.Text = "Update"; 
-                    MainForm.objCP_ProductApproval.MdiParent = this.ParentForm;
-                    MainForm.objCP_ProductApproval.Show();
                 }
-
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                }
             }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-            }
-
         }
 
         public void udfnList()
@@ -973,6 +976,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 513;
                 this.ActiveControl = cmbConcern;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();
@@ -983,14 +987,33 @@ namespace ROMS
                 objDataBind = null;
                 cmbDateFilter.SelectedValue = 367;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
 
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            } 
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;  
+                tsbEdit.Visible = privilege.Contains("3"); 
+                btnExport.Visible = privilege.Contains("6"); 
             }
-
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnDropdownbind()
         {

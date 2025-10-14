@@ -15,6 +15,9 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_Companylist()
         {
             InitializeComponent();
@@ -22,24 +25,28 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
-            {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents(); 
-                MainForm.objCP_Company = new CP_Company();
-                MainForm.objCP_Company.MdiParent = this.ParentForm;
-                MainForm.objCP_Company.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
 
-            }
-            finally
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                picLoader.Visible = false; 
+                try
+                {
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    MainForm.objCP_Company = new CP_Company();
+                    MainForm.objCP_Company.MdiParent = this.ParentForm;
+                    MainForm.objCP_Company.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -65,89 +72,92 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        
-      
-
+        } 
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdCompanyList.SelectedRows.Count > 0)
+                try
                 {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdCompanyList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspdservice = new SPDataService();
-                        DataTable objContactTable = new DataTable();
-                        objContactTable.TableName = "MR_Company_Contact";
-                        objContactTable.Columns.Add("CMCON_Name", typeof(string));
-                        objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
-                        objContactTable.Columns.Add("CMCON_MobileNo", typeof(string));
-                        objContactTable.Columns.Add("CMCON_Operator", typeof(string));
-                        objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
-                        objContactTable.Columns.Add("CMCON_Primary", typeof(int));
-                        objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
-                        DataTable objBankTable = new DataTable();
-                        objBankTable.TableName = "MR_Bank";
-                        objBankTable.Columns.Add("CMBNK_Name", typeof(string));
-                        objBankTable.Columns.Add("CMBNK_ShortName", typeof(string));
-                        objBankTable.Columns.Add("CMBNK_BranchName", typeof(string));
-                        objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
-                        objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
-                        objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
-                        result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()),"", "", "","", 0, "", "","","", "","", "","", "","","", "", "", "","","","","", "Company delete", objBankTable, objContactTable,"",0);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        string result = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            udfnList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            SPDataService objspdservice = new SPDataService();
+                            DataTable objContactTable = new DataTable();
+                            objContactTable.TableName = "MR_Company_Contact";
+                            objContactTable.Columns.Add("CMCON_Name", typeof(string));
+                            objContactTable.Columns.Add("CMCON_TransactionType", typeof(int));
+                            objContactTable.Columns.Add("CMCON_MobileNo", typeof(string));
+                            objContactTable.Columns.Add("CMCON_Operator", typeof(string));
+                            objContactTable.Columns.Add("CMCON_MobileBrand", typeof(string));
+                            objContactTable.Columns.Add("CMCON_Primary", typeof(int));
+                            objContactTable.Columns.Add("CMCON_WhatsAppEnabled", typeof(int));
+                            DataTable objBankTable = new DataTable();
+                            objBankTable.TableName = "MR_Bank";
+                            objBankTable.Columns.Add("CMBNK_Name", typeof(string));
+                            objBankTable.Columns.Add("CMBNK_ShortName", typeof(string));
+                            objBankTable.Columns.Add("CMBNK_BranchName", typeof(string));
+                            objBankTable.Columns.Add("CMBNK_AccNo", typeof(string));
+                            objBankTable.Columns.Add("CMBNK_IFSC", typeof(string));
+                            objBankTable.Columns.Add("CMBNK_STSID", typeof(string));
+                            result = objspdservice.udfnCompanyMaster(2, Convert.ToInt32(grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Company delete", objBankTable, objContactTable, "", 0);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
+                            {
+                                MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
         }
 
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                Application.DoEvents();
-                if (grdCompanyList.SelectedRows.Count > 0)
+                try
                 {
-                    MainForm.objCP_Company = new CP_Company();
-                    MainForm.objCP_Company.MdiParent = this.ParentForm;
-                    MainForm.objCP_Company.varcompanyid = grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString();
-                    MainForm.objCP_Company.Show();
-                }
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    Application.DoEvents();
+                    if (grdCompanyList.SelectedRows.Count > 0)
+                    {
+                        MainForm.objCP_Company = new CP_Company();
+                        MainForm.objCP_Company.MdiParent = this.ParentForm;
+                        MainForm.objCP_Company.varcompanyid = grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString();
+                        MainForm.objCP_Company.Show();
+                    }
 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false; 
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                }
             }
         }
 
@@ -565,11 +575,15 @@ namespace ROMS
         }
 
         private void CP_Companylist_Load(object sender, EventArgs e)
-        {
-
+        { 
             try
             {
-                udfnList(); 
+                MenuCode = 503;
+                udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -577,7 +591,25 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void CP_Companylist_KeyDown(object sender, KeyEventArgs e)
         {
             try

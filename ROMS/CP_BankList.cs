@@ -19,22 +19,29 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_BankList()
         {
             InitializeComponent();
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objCP_Bank = new CP_Bank();
-                MainForm.objCP_Bank.FormBorderStyle = FormBorderStyle.FixedSingle;
-                MainForm.objCP_Bank.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objCP_Bank = new CP_Bank();
+                    MainForm.objCP_Bank.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    MainForm.objCP_Bank.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -63,84 +70,90 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdBankList.SelectedRows.Count > 0)
+                try
                 {
-                    string varResult = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdBankList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspservice = new SPDataService();
-                        varResult = "";
-                        //varResult = objspservice.udfnCity(2, Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID,0);
-                        //objspservice.CloseConnection();
-                        //if (varResult.Split('~')[0] == "3")
-                        //{
-                        //    if (varResult.Split('~')[1] == "1")
-                        //    {
-                        //        MainForm.objCP_Verify = new CP_Verify();
-                        //        MainForm.objCP_Verify.ShowDialog();
-                        //        varUserID = MainForm.objCP_Verify.varUserId;
-                        //        if (MainForm.objCP_Verify.flag == 1)
-                        //        {
+                        string varResult = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            SPDataService objspservice = new SPDataService();
+                            varResult = "";
+                            //varResult = objspservice.udfnCity(2, Convert.ToInt32(grdBankList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID,0);
+                            //objspservice.CloseConnection();
+                            //if (varResult.Split('~')[0] == "3")
+                            //{
+                            //    if (varResult.Split('~')[1] == "1")
+                            //    {
+                            //        MainForm.objCP_Verify = new CP_Verify();
+                            //        MainForm.objCP_Verify.ShowDialog();
+                            //        varUserID = MainForm.objCP_Verify.varUserId;
+                            //        if (MainForm.objCP_Verify.flag == 1)
+                            //        {
 
-                                    MR_Bank objMR_Bank = new MR_Bank();
-                                    objMR_Bank.paraViewType = 2;
-                                    objMR_Bank.paraBankId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["Bank ID"].Value); 
-                                    objMR_Bank.paraOriginator = "Bank Delete";
-                                    varResult = objspservice.udfnBank(objMR_Bank);
-                                    objspservice.CloseConnection(); 
-                                    if (varResult.Split('~')[0] == "3")
-                                    {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
-                                    }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                            MR_Bank objMR_Bank = new MR_Bank();
+                            objMR_Bank.paraViewType = 2;
+                            objMR_Bank.paraBankId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["Bank ID"].Value);
+                            objMR_Bank.paraOriginator = "Bank Delete";
+                            varResult = objspservice.udfnBank(objMR_Bank);
+                            objspservice.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                udfnList();
+                            }
+                            else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                             //    }
                             //}
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        //}
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            //}
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdBankList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objCP_Bank = new CP_Bank();
-                    MainForm.objCP_Bank.btnSave.Text = "Update";
-                    MainForm.objCP_Bank.varBankId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["Bank ID"].Value); 
-                    MainForm.objCP_Bank.pbBankName = Convert.ToString(grdBankList.SelectedRows[0].Cells["Bank Name"].Value);
-                    MainForm.objCP_Bank.pbBankShortName = Convert.ToString(grdBankList.SelectedRows[0].Cells["Short Name"].Value); 
-                    MainForm.objCP_Bank.ShowDialog();
+                    if (grdBankList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objCP_Bank = new CP_Bank();
+                        MainForm.objCP_Bank.btnSave.Text = "Update";
+                        MainForm.objCP_Bank.varBankId = Convert.ToInt32(grdBankList.SelectedRows[0].Cells["Bank ID"].Value);
+                        MainForm.objCP_Bank.pbBankName = Convert.ToString(grdBankList.SelectedRows[0].Cells["Bank Name"].Value);
+                        MainForm.objCP_Bank.pbBankShortName = Convert.ToString(grdBankList.SelectedRows[0].Cells["Short Name"].Value);
+                        MainForm.objCP_Bank.ShowDialog();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                }
             }
         }
         public void udfnList()
@@ -323,7 +336,31 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 502;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
             }
             catch (Exception ex)
             {
@@ -586,5 +623,6 @@ namespace ROMS
                 tsbTotalCount.Text = Convert.ToString(grdBankList.Rows.Count);
             }
         }
+         
     }
 }

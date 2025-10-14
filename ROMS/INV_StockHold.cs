@@ -28,6 +28,9 @@ namespace ROMS
         public string varResult = "";
         public string varUserID = "";
         public int varUpDownKeyProduct = 0, varUpDownKeyLocation = 0;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
         public string varPICode="",varSHID="", varMrp="";
         public int SHID = 0, varPRID = 0, varUTID = 0, varStockLocationId = 0, varRKID = 0, varCOMID = 0, varDecimal = 0, varUpDownKey = 0, varFlag = 0;
@@ -43,6 +46,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 306;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -55,6 +59,56 @@ namespace ROMS
                 cmbReason.SelectedValue = 0;
                 cmbType.SelectedValue = 372;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
+                btnPrint.Visible = privilege.Contains("5");
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                { 
+                    grdStockHold.Columns[0].Visible = privilege.Contains("4");
+                    grdStockHold.Columns["clmDelete"].Visible = privilege.Contains("4");
+                    grdStockHold.Columns["clmPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 31 && sp.EditAccess.Split(',').Contains("9"));
+                    grdStockHold.Columns["clmMove"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 32 && sp.EditAccess.Split(',').Contains("9"));
+                    grdStockHold.Columns["clmConvert"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 33 && sp.EditAccess.Split(',').Contains("9")); 
+                     
+                    DGV_SearchGrid.Columns[0].Visible = privilege.Contains("4"); 
+                    DGV_SearchGrid.Columns[1].Visible = privilege.Contains("4"); 
+                    DGV_SearchGrid.Columns[2].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 31 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[3].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 32 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[4].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 33 && sp.EditAccess.Split(',').Contains("9"));
+                }
             }
             catch (Exception ex)
             {
@@ -287,7 +341,7 @@ namespace ROMS
                     dtDefaultGrid = objDS.Tables[0];
                     udfnDefaultSearchGrid();
                 }
-                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; udfnGridAccess(); }
             }
             catch (Exception ex)
             {
@@ -900,26 +954,29 @@ namespace ROMS
 
         private void TsbDelete_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                string varStockHoldIds = "";
-                if (grdStockHold.Rows.Count > 0)
+                try
                 {
-                    varStockHoldIds = string.Join(",",grdStockHold.Rows.Cast<DataGridViewRow>().Where(row => row.Cells[0].Value is bool isChecked && isChecked).Select(row => row.Cells["SHID"].Value?.ToString()).Where(id => !string.IsNullOrEmpty(id)));
-                }
-                if (varStockHoldIds != "")
-                {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    string varStockHoldIds = "";
+                    if (grdStockHold.Rows.Count > 0)
                     {
-                        udfnBulkDelete(varStockHoldIds);
+                        varStockHoldIds = string.Join(",", grdStockHold.Rows.Cast<DataGridViewRow>().Where(row => row.Cells[0].Value is bool isChecked && isChecked).Select(row => row.Cells["SHID"].Value?.ToString()).Where(id => !string.IsNullOrEmpty(id)));
+                    }
+                    if (varStockHoldIds != "")
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Are you sure want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            udfnBulkDelete(varStockHoldIds);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         public void udfnBulkDelete(string varStockHoldIds)
@@ -1009,16 +1066,19 @@ namespace ROMS
 
         private void TsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objINV_StockHold_Entry = new INV_StockHold_Entry();
-                MainForm.objINV_StockHold_Entry.FormBorderStyle = FormBorderStyle.FixedSingle;
-                MainForm.objINV_StockHold_Entry.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objINV_StockHold_Entry = new INV_StockHold_Entry();
+                    MainForm.objINV_StockHold_Entry.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    MainForm.objINV_StockHold_Entry.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
 
@@ -1708,7 +1768,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+        } 
 
         private void DGV_FilterLocation_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1796,25 +1856,28 @@ namespace ROMS
         }
         private void udfnEditLoad()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdStockHold.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_StockHold_Entry = new INV_StockHold_Entry();
-                    MainForm.objINV_StockHold_Entry.btnSave.Text = "Update";
-                    MainForm.objINV_StockHold_Entry.SHID = Convert.ToInt32(grdStockHold.SelectedRows[0].Cells["SHID"].Value);
-                    picLoader.Visible = false;
-                    picLoader.SendToBack();
-                    MainForm.objINV_StockHold_Entry.ShowDialog();
+                    if (grdStockHold.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_StockHold_Entry = new INV_StockHold_Entry();
+                        MainForm.objINV_StockHold_Entry.btnSave.Text = "Update";
+                        MainForm.objINV_StockHold_Entry.SHID = Convert.ToInt32(grdStockHold.SelectedRows[0].Cells["SHID"].Value);
+                        picLoader.Visible = false;
+                        picLoader.SendToBack();
+                        MainForm.objINV_StockHold_Entry.ShowDialog();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
 

@@ -20,7 +20,9 @@ namespace ROMS
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
         Boolean BlnSearchImageYN = false;
-
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_DamageEntryList()
         {
             InitializeComponent();
@@ -28,16 +30,19 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objINV_DamageEntry = new INV_DamageEntry();
-                MainForm.objINV_DamageEntry.MdiParent = this.ParentForm;
-                MainForm.objINV_DamageEntry.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objINV_DamageEntry = new INV_DamageEntry();
+                    MainForm.objINV_DamageEntry.MdiParent = this.ParentForm;
+                    MainForm.objINV_DamageEntry.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -586,31 +591,73 @@ namespace ROMS
 
         private void INV_DamageEntryList_Load(object sender, EventArgs e)
         {
-            cmbconcern.Focus();
-            udfnCmbConcern();
-            cmbconcern.SelectedValue = MainForm.pbDefaultComId;
-            DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3,0) AND STSID NOT IN(-1,36)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-            objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (53) AND MSTID !=0", "MST_DisplayText,MSTID", cmbDMShow, "", "MST_DisplayText", "MSTID");
-            objDataBind = null;
-            cmbStatus.SelectedValue = 6;
-            /*
-            DataSet objDs = new DataSet();
-            SPDataService objspservice = new SPDataService();
-            objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 3);
-            if (objDs.Tables[0].Rows.Count > 0)
+            try
             {
-                DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                dpToDate.MinDate = varDate;
-                dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
+                MenuCode = 307;
+                cmbconcern.Focus();
+                udfnCmbConcern();
+                cmbconcern.SelectedValue = MainForm.pbDefaultComId;
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3,0) AND STSID NOT IN(-1,36)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (53) AND MSTID !=0", "MST_DisplayText,MSTID", cmbDMShow, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                cmbStatus.SelectedValue = 6;
+                 
+                dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
+                udfngridchanges();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
-            objspservice.CloseConnection();
-            */
-            dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
-            dpFromDate.MinDate = MainForm.pbFYStartDate;
-            dpFromDate.MaxDate = MainForm.pbCurrentDate;
-            dpToDate.MaxDate = MainForm.pbCurrentDate;
-            udfngridchanges();
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4"); 
+                btnExport.Visible = privilege.Contains("6"); 
+                udfnGridAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                { 
+                    grdDamageEntryList.Columns["clmSupPrint"].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 34 && sp.EditAccess.Split(',').Contains("9")); 
+                    DGV_SearchGrid.Columns[0].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 19 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[1].Visible = privilege.Contains("3");
+                    DGV_SearchGrid.Columns[2].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 44 && sp.EditAccess.Split(',').Contains("9"));
+                    DGV_SearchGrid.Columns[3].Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 20 && sp.EditAccess.Split(',').Contains("9"));
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnCmbConcern()
         {
@@ -699,90 +746,96 @@ namespace ROMS
 
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdDamageEntryList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_DamageEntry = new INV_DamageEntry();
-                    MainForm.objINV_DamageEntry.MdiParent = ParentForm;
-                    MainForm.objINV_DamageEntry.varID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value);
-                    MainForm.objINV_DamageEntry.varStatusID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objINV_DamageEntry.Show();
+                    if (grdDamageEntryList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_DamageEntry = new INV_DamageEntry();
+                        MainForm.objINV_DamageEntry.MdiParent = ParentForm;
+                        MainForm.objINV_DamageEntry.varID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value);
+                        MainForm.objINV_DamageEntry.varStatusID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objINV_DamageEntry.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdDamageEntryList.SelectedRows.Count > 0)
+                try
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdDamageEntryList.SelectedRows.Count > 0)
                     {
-                        SPDataService objDser = new SPDataService();
-                        Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
-                        objTRN_Damage.ViewType = 2;
-                        objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
-                        objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
-                        objTRN_Damage.paraOriginator = "Damage Entry Delete";
-
-                        string varResult = objDser.udfnDamageEntry(objTRN_Damage);
-                        objDser.CloseConnection();
-                        if (varResult.Split('~')[0] == "3")
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (varResult.Split('~')[1] == "1")
+                            SPDataService objDser = new SPDataService();
+                            Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
+                            objTRN_Damage.ViewType = 2;
+                            objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                            objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
+                            objTRN_Damage.paraOriginator = "Damage Entry Delete";
+
+                            string varResult = objDser.udfnDamageEntry(objTRN_Damage);
+                            objDser.CloseConnection();
+                            if (varResult.Split('~')[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (varResult.Split('~')[1] == "1")
                                 {
-                                    //SPDataService objDser = new SPDataService();
-                                    //Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
-                                    objTRN_Damage.ViewType = 2;
-                                    objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
-                                    objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
-                                    objTRN_Damage.paraOriginator = "Damage Entry Delete";
-                                    objTRN_Damage.paraDeleteFlag = 1;
-                                    varResult = objDser.udfnDamageEntry(objTRN_Damage);
-                                    if (varResult.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnTransList();
+                                        //SPDataService objDser = new SPDataService();
+                                        //Model.TRN_Damage objTRN_Damage = new Model.TRN_Damage();
+                                        objTRN_Damage.ViewType = 2;
+                                        objTRN_Damage.paraStatusId = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value.ToString());
+                                        objTRN_Damage.paraDamageEntryID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value.ToString());
+                                        objTRN_Damage.paraOriginator = "Damage Entry Delete";
+                                        objTRN_Damage.paraDeleteFlag = 1;
+                                        varResult = objDser.udfnDamageEntry(objTRN_Damage);
+                                        if (varResult.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnTransList();
+                                        }
+                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else if (varResult.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (varResult.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -3056,28 +3109,31 @@ namespace ROMS
 
         private void GrdDamageEntryList_SelectionChanged(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdDamageEntryList.Rows.Count > 0)
+                try
                 {
-                    //if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["DM_SHID"].Value) != "0")
-                    //{
-                    //    tsbDelete.Visible = false;
-                    //}
-                    if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["StatusID"].Value) != "6" && Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["StatusID"].Value) != "20" )
+                    if (grdDamageEntryList.Rows.Count > 0)
                     {
-                        tsbDelete.Visible = false;
-                    }
-                    else
-                    {
-                        tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true;
+                        //if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["DM_SHID"].Value) != "0")
+                        //{
+                        //    tsbDelete.Visible = false;
+                        //}
+                        if (Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["StatusID"].Value) != "6" && Convert.ToString(grdDamageEntryList.Rows[grdDamageEntryList.CurrentCell.RowIndex].Cells["StatusID"].Value) != "20")
+                        {
+                            tsbDelete.Visible = false;
+                        }
+                        else
+                        {
+                            tsbDelete.Visible = true; tsbEdit.Visible = true; tsbNew.Visible = true;
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
     }
