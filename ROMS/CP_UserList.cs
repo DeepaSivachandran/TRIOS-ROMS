@@ -1131,7 +1131,16 @@ namespace ROMS
                                 result = MessageBox.Show(varMessage, "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (result == DialogResult.Yes)
                                 {
-                                    objMainForm.udfnUserLoginProcess(Convert.ToInt32(UsedID), 412);  // Type 412 is Logged Out
+                                    string varResult = objMainForm.udfnUserLoginProcess(Convert.ToInt32(UsedID), 412);  // Type 412 is Logged Out
+                                    string[] resultParts = varResult.Split('~');
+                                    if (resultParts[0] == "3")
+                                    {
+                                        MessageBox.Show(resultParts[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(resultParts[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
                                     udfnList();
                                 }
                             }

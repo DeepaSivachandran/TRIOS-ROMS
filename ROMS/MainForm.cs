@@ -493,19 +493,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnUserLoginProcess(int varUserID,int varType)
+        public string udfnUserLoginProcess(int varUserID,int varType)
         {
+            string varResult = "";
             try
             {
                 SPDataService objspservice = new SPDataService();
-                string varResult = "";
                 varResult = objspservice.udfnUser(5, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType);
                 objspservice.CloseConnection();
+                return varResult;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+                return varResult;
             }
         }
         //Close Application when click logout
