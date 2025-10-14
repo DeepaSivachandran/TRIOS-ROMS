@@ -1232,12 +1232,12 @@ namespace ROMS
                 udfnEdit();
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
                 btnListPrint.Image = global::ROMS.Properties.Resources.print;
-                if (pbSupplierid == "0")
-                {
-                    tcSupplier.TabPages[1].Enabled = false; // Second tab
-                    tcSupplier.TabPages[2].Enabled = false; // Third tab
-                    tcSupplier.TabPages[3].Enabled = false; // Fourth tab
-                }
+                //if (pbSupplierid == "0")
+                //{
+                //    tcSupplier.TabPages[1].Enabled = false; // Second tab
+                //    tcSupplier.TabPages[2].Enabled = false; // Third tab
+                //    tcSupplier.TabPages[3].Enabled = false; // Fourth tab
+                //}
                 //tcSupplier.TabPages[4].Enabled = false;
                 udfnUserAccess();
             }
