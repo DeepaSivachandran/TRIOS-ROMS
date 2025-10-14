@@ -587,7 +587,7 @@ namespace ROMS
         }
 
         // Added By Sathish On 30-04-2025 For Minimize Reports Screen
-        private void OpenReportForm<T>(ref T formInstance, string formName, int menuCode, string specialflag = null) where T : Form, new()
+        public void OpenReportForm<T>(ref T formInstance, string formName, int menuCode, string specialflag = null) where T : Form, new()
         {
             try
             {
