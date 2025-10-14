@@ -4686,6 +4686,86 @@ namespace ROMS
             return ds;
         }
 
+
+
+        // added by venkat on 11/10/2025 for stock journal
+        public string udfnStockJournal(TRN_Stock_Journal objTRN_Stock_Journal)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Stock_Journal]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Journal.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Journal.ParaTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Journal.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferDate", objTRN_Stock_Journal.paraOutwardDate);
+                varSqlCommand.Parameters.AddWithValue("@paraTransferType", objTRN_Stock_Journal.paraTransferType);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTRN_Stock_Journal.paraRemarks);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Journal.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraStock_Journal", objTRN_Stock_Journal.paraStock_Journal);
+                varSqlCommand.Parameters.AddWithValue("@paraStockTransfer", objTRN_Stock_Journal.paraStockTransfer);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTRN_Stock_Journal.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@ParaFlag", objTRN_Stock_Journal.ParaFlag);
+                varSqlCommand.Parameters.AddWithValue("@ParaPRID", objTRN_Stock_Journal.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTRN_Stock_Journal.paraDeleteflag);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+
+
+        // added by venkat on 11/10/2025 for stock journal
+        public DataSet udfnStockJournalList(TRN_Stock_Journal objTRN_Stock_Journal)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Stock_Journal]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Journal.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Journal.ParaTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_Stock_Journal.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_Stock_Journal.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_Stock_Journal.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_Stock_Journal.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Journal.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Journal.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Stock_Journal.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_Stock_Journal.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRN_Stock_Journal.paraTransType);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
     }
 
 }

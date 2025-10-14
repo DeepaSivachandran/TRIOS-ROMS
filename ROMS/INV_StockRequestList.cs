@@ -21,7 +21,9 @@ namespace ROMS
         public string varUserID = "";
         public int varUpDownKey = 0;
         Boolean BlnSearchImageYN = false;
-
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_StockRequestList()
         {
             InitializeComponent();
@@ -29,17 +31,20 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                MainForm.objINV_StockRequest = new INV_StockRequest();
-                MainForm.objINV_StockRequest.MdiParent = ParentForm;
-                MainForm.objINV_StockRequest.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objINV_StockRequest = new INV_StockRequest();
+                    MainForm.objINV_StockRequest.MdiParent = ParentForm;
+                    MainForm.objINV_StockRequest.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
 
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -68,52 +73,54 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdStockRequestList.SelectedRows.Count > 0)
+                try
                 {
-                    string result = "";
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (grdStockRequestList.SelectedRows.Count > 0)
                     {
-                        
-                        SPDataService objspdservice = new SPDataService();
-                        result = "";
-                        Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
-                        objTRNS_StockRequest.ViewType = 2;
-                        objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
-                        objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
-                        result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
-                        objspdservice.CloseConnection();
-
-                        string[] varvalue = result.Split('~');
-                        if (varvalue[0] == "3")
+                        string result = "";
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            if (result.Split('~')[1] == "1")
+
+                            SPDataService objspdservice = new SPDataService();
+                            result = "";
+                            Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
+                            objTRNS_StockRequest.ViewType = 2;
+                            objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                            objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
+                            result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
+                            objspdservice.CloseConnection();
+
+                            string[] varvalue = result.Split('~');
+                            if (varvalue[0] == "3")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                varUserID = MainForm.objCP_Verify.varUserId;
-                                if (MainForm.objCP_Verify.flag == 1)
+                                if (result.Split('~')[1] == "1")
                                 {
-                                    objTRNS_StockRequest.ViewType = 2;
-                                    objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
-                                    objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
-                                    objTRNS_StockRequest.paraDeleteFlag = 1;
-                                    result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
-                                    if (result.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    varUserID = MainForm.objCP_Verify.varUserId;
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        udfnList();
+                                        objTRNS_StockRequest.ViewType = 2;
+                                        objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                                        objTRNS_StockRequest.paraOriginator = "Stock Request Delete";
+                                        objTRNS_StockRequest.paraDeleteFlag = 1;
+                                        result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
+                                        if (result.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                            else
+                            {
+                                MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
@@ -126,34 +133,38 @@ namespace ROMS
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdStockRequestList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_StockRequest = new INV_StockRequest();
-                    MainForm.objINV_StockRequest.MdiParent = ParentForm;
-                    MainForm.objINV_StockRequest.btnSave.Text = "Update";
-                    MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
-                    MainForm.objINV_StockRequest.varStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objINV_StockRequest.varMainStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
-                    MainForm.objINV_StockRequest.Show();
+                    if (grdStockRequestList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_StockRequest = new INV_StockRequest();
+                        MainForm.objINV_StockRequest.MdiParent = ParentForm;
+                        MainForm.objINV_StockRequest.btnSave.Text = "Update";
+                        MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
+                        MainForm.objINV_StockRequest.varStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objINV_StockRequest.varMainStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objINV_StockRequest.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void CP_Supplierlist_KeyDown(object sender, KeyEventArgs e)
@@ -734,6 +745,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 308;
                 cmbConcern.Focus();
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -756,6 +768,31 @@ namespace ROMS
                 dpEntryToDate.MaxDate = MainForm.pbCurrentDate;
                 tsbDelete.Visible = true;
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");     
+                btnExport.Visible = privilege.Contains("6"); 
             }
             catch (Exception ex)
             {

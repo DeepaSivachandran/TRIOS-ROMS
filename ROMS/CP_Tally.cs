@@ -41,7 +41,9 @@ namespace ROMS
         public DataTable dtSubGroup = new DataTable();
         public DataTable dtSubGroupAdd = new DataTable();
         public DataTable dtGroup = new DataTable();
-
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_Tally()
         {
             InitializeComponent();
@@ -128,8 +130,28 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 701;
                 udfnDropdownLoad();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions; 
+                btnExport.Visible = privilege.Contains("6"); 
             }
             catch (Exception ex)
             {

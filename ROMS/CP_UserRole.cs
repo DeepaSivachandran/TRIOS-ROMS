@@ -1223,20 +1223,20 @@ namespace ROMS
                     if (mainNode != null)
                     {
                         string mainMenuCode = mainNode.Tag?.ToString();
-
                         if (!string.IsNullOrEmpty(mainMenuCode))
                         {
-                            // Find the row for the selected main menu item
                             DataRow[] mainRows = objDtUserMenuDetails.Select($"MU_Code = {mainMenuCode}");
-
                             if (mainRows.Length > 0)
                             {
-                                // Set the main menu flag based on the sub-menu's root node state
-                                mainRows[0]["Menuflag"] = e.Node.Checked ? 1 : 0;
+                                bool anyChecked = HasAnyCheckedNode(tvLevl2Submenu.Nodes);
+
+                                // ✅ If at least one node checked → Menuflag = 1
+                                //    If all unchecked → Menuflag = 0
+                                mainRows[0]["Menuflag"] = anyChecked ? 1 : 0;
                             }
                         }
                     }
-                    
+
                     string nodeText = e.Node.Text;
 
                     // Find a matching node in tvSubmenu2 (recursive search)
@@ -1355,10 +1355,8 @@ namespace ROMS
             //    e.DrawDefault = true;
             //}
         }
-
         private void tvSubmenu_AfterCheck(object sender, TreeViewEventArgs e)
         {
-
             try
             {
                 if (e.Action != TreeViewAction.Unknown)
@@ -1367,55 +1365,50 @@ namespace ROMS
                     TreeNode clickedNode = e.Node;
 
                     if (e.Action != TreeViewAction.ByMouse) return; // avoid recursion when setting programmatically
-                     
-                    SetChildNodes(e.Node, e.Node.Checked); // Step 1 → check/uncheck children
-                    UpdateParentNodes(e.Node);  // Step 2 → update parent checkbox
-                    UpdateFlag(e.Node.Tag.ToString(), e.Node.Checked, clickedNode.Nodes.Count); // Step 3 → update DataTable  
 
-                    // The main menu node is the currently selected node in tvMainmenu
+                    // Step 1 → check/uncheck children
+                    SetChildNodes(e.Node, e.Node.Checked);
+
+                    // Step 2 → update parent checkbox
+                    UpdateParentNodes(e.Node);
+
+                    // Step 3 → update DataTable flag for the clicked node
+                    UpdateFlag(e.Node.Tag.ToString(), e.Node.Checked, clickedNode.Nodes.Count);
+                     
                     TreeNode mainNode = tvMainmenu.SelectedNode;
                     if (mainNode != null)
                     {
                         string mainMenuCode = mainNode.Tag?.ToString();
-
                         if (!string.IsNullOrEmpty(mainMenuCode))
                         {
-                            // Find the row for the selected main menu item
                             DataRow[] mainRows = objDtUserMenuDetails.Select($"MU_Code = {mainMenuCode}");
-
                             if (mainRows.Length > 0)
                             {
-                                // Set the main menu flag based on the sub-menu's root node state
-                                mainRows[0]["Menuflag"] = e.Node.Checked ? 1 : 0;
+                                bool anyChecked = HasAnyCheckedNode(tvSubmenu.Nodes);
+                                 
+                                mainRows[0]["Menuflag"] = anyChecked ? 1 : 0;
                             }
                         }
                     }
                 }
+
                 string nodeText = e.Node.Text;
 
-                // Find a matching node in tvSubmenu2 (recursive search)
+                // Step 5 → Sync with Level2 Tree
                 TreeNode matchingNode = FindNodeByText(tvLevl2Submenu.Nodes, nodeText);
-
-               
-
                 if (matchingNode != null && matchingNode.Checked != e.Node.Checked)
                 {
                     matchingNode.Checked = e.Node.Checked;
-
-                    // Manually call AfterCheck for the second tree
                     tvLevl2Submenu_AfterCheck(tvLevl2Submenu, new TreeViewEventArgs(matchingNode, e.Action));
                 }
-
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-            }
         }
+
 
         private void tvSubmenu_AfterExpand(object sender, TreeViewEventArgs e)
         {
@@ -1724,6 +1717,24 @@ namespace ROMS
             }
 
             return null;
-        } 
+        }
+
+        private bool HasAnyCheckedNode(TreeNodeCollection nodes)
+        {
+            try {
+                foreach (TreeNode node in nodes)
+                {
+                    if (node.Checked) return true;
+                    if (HasAnyCheckedNode(node.Nodes)) return true; // recursive check
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            return false;
+        }
+
     }
 }

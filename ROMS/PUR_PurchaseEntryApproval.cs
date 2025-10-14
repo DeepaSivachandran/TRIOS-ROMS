@@ -43,6 +43,7 @@ namespace ROMS
         public decimal varDiscountPer=0, varDiscountAmount=0,pbCostingRate=0;
         public string varCalculator = "0", varGRNPaymentType="0",varEntryApprovalNo="0";
         public int varGridErr = 0, varCheckCount = 0 , varCheckFlag=-1,varCheckButtonFlag=0, varApprovalStatus = 0, varShelflifeLevel1 = 0, varShelflifeLevel2 = 0;
+        public bool ApproveAccess = false,BillrateViewAccess=false, BillrateEditAccess = false;
         public PUR_PurchaseEntryApproval()
         {
             InitializeComponent();
@@ -807,6 +808,35 @@ namespace ROMS
                     //dpPurchaseApprovalVocDate.MinDate = MainForm.pbFYStartDate;
                     dpPurchaseApprovalVocDate.MinDate = DateTime.ParseExact(Convert.ToString(dpVoucherDate.Text), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     dpPurchaseApprovalVocDate.MaxDate = MainForm.pbCurrentDate;
+                }
+                udfnUserAccess();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (ApproveAccess == false)
+                    {
+                        grdSupplierList.Columns["clmCheck"].Visible = ApproveAccess;
+                        btnApprove.Visible = ApproveAccess;
+                        btnselectall.Visible = ApproveAccess;  
+                    }
+                    if(BillrateViewAccess==false)
+                    {
+                        grdPurchaseList.Columns["clmPurchaseRate"].Visible = BillrateViewAccess; 
+                    }
+                    if (BillrateEditAccess == false)
+                    {
+                        grdPurchaseList.Columns["clmPurchaseRate"].ReadOnly = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -4521,25 +4551,28 @@ namespace ROMS
                                 //    break;
 
                                 case "clmPurchaseRate":
-                                    if (e.Button == MouseButtons.Right)
+                                    if (BillrateEditAccess == true)
                                     {
-                                        ContextMenuStrip menustrip = new ContextMenuStrip();
-                                        if (grdPurchaseList.CurrentRow.Cells["clmPurchaseRateErr"].Value.ToString() == "0")
+                                        if (e.Button == MouseButtons.Right)
                                         {
-                                            //cm.MenuItems.Add(new MenuItem("Error"));
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Error");
-                                            cm.Name = "Error";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(error_Click);
-                                        }
-                                        else
-                                        {
-                                            ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
-                                            cm.Name = "Clear";
-                                            menustrip.Items.Add(cm);
-                                            menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
-                                            cm.Click += new EventHandler(clear_Click);
+                                            ContextMenuStrip menustrip = new ContextMenuStrip();
+                                            if (grdPurchaseList.CurrentRow.Cells["clmPurchaseRateErr"].Value.ToString() == "0")
+                                            {
+                                                //cm.MenuItems.Add(new MenuItem("Error"));
+                                                ToolStripMenuItem cm = new ToolStripMenuItem("Error");
+                                                cm.Name = "Error";
+                                                menustrip.Items.Add(cm);
+                                                menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                                cm.Click += new EventHandler(error_Click);
+                                            }
+                                            else
+                                            {
+                                                ToolStripMenuItem cm = new ToolStripMenuItem("Clear");
+                                                cm.Name = "Clear";
+                                                menustrip.Items.Add(cm);
+                                                menustrip.Show(grdPurchaseList, grdPurchaseList.PointToClient(Cursor.Position));
+                                                cm.Click += new EventHandler(clear_Click);
+                                            }
                                         }
                                     }
                                     break;
