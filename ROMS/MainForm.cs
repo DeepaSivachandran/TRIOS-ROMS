@@ -442,7 +442,7 @@ namespace ROMS
         {
             try
             {
-                udfnUserLoginProcess(411);  // Type 411 is Logged In
+                udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 411);  // Type 411 is Logged In
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
@@ -493,13 +493,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnUserLoginProcess(int varType)
+        public void udfnUserLoginProcess(int varUserID,int varType)
         {
             try
             {
                 SPDataService objspservice = new SPDataService();
                 string varResult = "";
-                varResult = objspservice.udfnUser(5, Convert.ToInt32(MainForm.pbUserID), "", "", 0, 0, "", 0, 0, "", "", MainForm.pbUserID, 0, null, varType);
+                varResult = objspservice.udfnUser(5, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType);
                 objspservice.CloseConnection();
             }
             catch (Exception ex)
@@ -699,7 +699,7 @@ namespace ROMS
                         if ((System.Windows.Forms.Application.MessageLoop))
                         {
                             varCloseFlag = 1;
-                            udfnUserLoginProcess(412);  // Type 412 is Logged Out
+                            udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
                             System.Windows.Forms.Application.Exit();
                         }
                         else

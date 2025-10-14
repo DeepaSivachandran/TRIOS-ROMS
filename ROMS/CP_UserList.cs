@@ -14,6 +14,7 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_UserList : Form
     {
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -137,6 +138,7 @@ namespace ROMS
                             grdUserList.Columns["Login Time"].Width = 120;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserList.ClearSelection();
                         }
                         else
                         {
@@ -1085,13 +1087,14 @@ namespace ROMS
                                 string UsedID = "0";
                                 UsedID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString());
                                 DialogResult result;
-                                //SPDataService objDServ = new SPDataService();
-                                //string varMessage = objDServ.udfnGetMessages(87);
-                                //objDServ.CloseConnection();
-                                result = MessageBox.Show("Are you sure you want to forcefully log out this user?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(170);
+                                objDServ.CloseConnection();
+                                result = MessageBox.Show(varMessage, "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (result == DialogResult.Yes)
                                 {
-
+                                    objMainForm.udfnUserLoginProcess(Convert.ToInt32(UsedID), 412);  // Type 412 is Logged Out
+                                    udfnList();
                                 }
                             }
                             catch (Exception ex)
