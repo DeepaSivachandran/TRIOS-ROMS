@@ -20,7 +20,7 @@ namespace ROMS
         Boolean BlnSearchImageYN = false;
         public int MenuCode = 0;
         string privilege = "";
-        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+        public List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_ProductList()
         {
             InitializeComponent();

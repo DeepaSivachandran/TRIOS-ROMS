@@ -891,7 +891,9 @@ namespace ROMS
                         //{
                         //    varsupplierID = varvalue[2];
                         //}
-                        if (tcSupplier.SelectedIndex == 1)
+                        // if (tcSupplier.SelectedIndex == 1)
+
+                        if (tcSupplier.SelectedTab.Name == "tbOrder")
                         {
                             btnSave.Text = "Update";
                             btnSaveOrderType.Text = "Update";
@@ -1670,8 +1672,7 @@ namespace ROMS
                                 }
                                 grdOpeningCrDetails.ClearSelection();
                                 udfnOpeningType();
-                            }
-                            
+                            } 
                         }
                     }
                 }
@@ -1814,11 +1815,13 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    if (tcSupplier.SelectedIndex == 0)
+                    //if (tcSupplier.SelectedIndex == 0)
+                    if (tcSupplier.SelectedTab.Name == "tbSupplier")
                     {
                         btnSave_Click(sender, e);
                     }
-                    else if (tcSupplier.SelectedIndex == 2)
+                    else //if (tcSupplier.SelectedIndex == 2)
+                     if (tcSupplier.SelectedTab.Name == "tpSupplierProduct")
                     {
                         BtnMappingsave_Click(sender, e);
                     }
@@ -3886,9 +3889,9 @@ namespace ROMS
                     errCompany.Clear();
                     udfntphide();
                     udfncolorchange();
-                    udfnSchedulecolorchange();
-
-                    if (tcSupplier.SelectedIndex == 1)
+                    udfnSchedulecolorchange(); 
+                    //if (tcSupplier.SelectedIndex == 1)
+                    if(tcSupplier.SelectedTab.Name == "tbOrder")
                     {
                         if (btnSave.Text == "Update")
                         {
@@ -3905,12 +3908,16 @@ namespace ROMS
                         txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
                         cmbOrderType.SelectedValue = 144;
                     }
-                    if (tcSupplier.SelectedIndex == 0)
+
+
+                    // if (tcSupplier.SelectedIndex == 0)
+                    if (tcSupplier.SelectedTab.Name == "tbSupplier")
                     {
                         txtName.Focus();
                         txtName.SelectionStart = txtName.Text.Length;
                     }
-                    if (tcSupplier.SelectedIndex == 3)
+                    //if (tcSupplier.SelectedIndex == 3)
+                    if (tcSupplier.SelectedTab.Name == "tbSchedule")
                     {
                         cmbOrderschedule.Focus();
                         BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
@@ -3918,7 +3925,8 @@ namespace ROMS
                         cmbOrderschedule.SelectedIndex = 0;
 
                     }
-                    if (tcSupplier.SelectedIndex == 2)
+                    //if (tcSupplier.SelectedIndex == 2)
+                    if (tcSupplier.SelectedTab.Name == "tpSupplierProduct")
                     {
                         //picLoader.Visible = true;
                         //picLoader.BringToFront();
@@ -3929,7 +3937,8 @@ namespace ROMS
                         this.ActiveControl = cmbMappingorderschedule;
 
                     }
-                    if (tcSupplier.SelectedIndex == 4)
+                    //if (tcSupplier.SelectedIndex == 4)
+                    if (tcSupplier.SelectedTab.Name == "tbPurchaseProducts")
                     {
                         udfnLoadOrderSchedulePur();
                     }
@@ -3999,7 +4008,8 @@ namespace ROMS
             if (pbSupplierid != "0")
             {
 
-                if (e.TabPageIndex == 1)
+                //if (e.TabPageIndex == 1)
+                if (e.TabPage.Name == "tbOrder")
                 {
                     try
                     {
@@ -4012,7 +4022,8 @@ namespace ROMS
                         objError.WriteFile(ex);
                     }
                 }
-                if (e.TabPageIndex == 3)
+                //if (e.TabPageIndex == 3)
+                if (e.TabPage.Name == "tbSchedule")
                 {
                     try
                     {
@@ -4026,7 +4037,8 @@ namespace ROMS
                         objError.WriteFile(ex);
                     }
                 }
-                if (e.TabPageIndex == 4)
+                // if (e.TabPageIndex == 4)
+                if (e.TabPage.Name == "tbPurchaseProducts")
                 {
                     try
                     {
@@ -4038,7 +4050,8 @@ namespace ROMS
                         objError.WriteFile(ex);
                     }
                 }
-                if (e.TabPageIndex == 2)
+                // if (e.TabPageIndex == 2)
+                if (e.TabPage.Name == "tpSupplierProduct")
                 {
                     try
                     {
