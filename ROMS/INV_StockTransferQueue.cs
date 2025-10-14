@@ -23,6 +23,7 @@ namespace ROMS
         public int varUpDownKey = 0;
         public int varErrQty = 0, varUpDownKeyLocation = 0;
         Boolean BlnSearchImageYN = false;
+        public bool EditAccess = false;
         public INV_StockTransferQueue()
         {
             InitializeComponent();
@@ -212,6 +213,23 @@ namespace ROMS
             //cmbStatus.SelectedValue = 0;
             udfnDate();
             udfnList();
+            udfnUserAccess();
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (EditAccess == false)
+                    { tsbEdit.Visible = EditAccess; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnDate()
         {
@@ -1036,37 +1054,40 @@ namespace ROMS
         }
         private void udfnEdit(int EditFlag)
         {
-            try
+            if (EditAccess == true || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (EditFlag == 1)
+                try
                 {
-                    if (grdStockTransfer.SelectedRows.Count > 0)
+                    if (EditFlag == 1)
                     {
-                        picLoader.Visible = true;
-                        picLoader.BringToFront();
-                        Application.DoEvents();
-                        MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                        MainForm.objINV_StockTransfer.MdiParent = ParentForm;
-                        //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
-                        MainForm.objINV_StockTransfer.varUpdateflag = 1;
-                        MainForm.objINV_StockTransfer.grdStockTransfer.Columns["clmRemove"].Visible = false;
-                        MainForm.objINV_StockTransfer.EditFlag = 1;
-                        MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
-                        MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
-                        MainForm.objINV_StockTransfer.ComID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["COMID"].Value);
-                        MainForm.objINV_StockTransfer.Show();
+                        if (grdStockTransfer.SelectedRows.Count > 0)
+                        {
+                            picLoader.Visible = true;
+                            picLoader.BringToFront();
+                            Application.DoEvents();
+                            MainForm.objINV_StockTransfer = new INV_StockTransfer();
+                            MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                            //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
+                            MainForm.objINV_StockTransfer.varUpdateflag = 1;
+                            MainForm.objINV_StockTransfer.grdStockTransfer.Columns["clmRemove"].Visible = false;
+                            MainForm.objINV_StockTransfer.EditFlag = 1;
+                            MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
+                            MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
+                            MainForm.objINV_StockTransfer.ComID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["COMID"].Value);
+                            MainForm.objINV_StockTransfer.Show();
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         
@@ -1657,7 +1678,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try

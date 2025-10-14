@@ -21,6 +21,9 @@ namespace ROMS
         DataTable dtChequePrintSetting = new DataTable();
         private ToolTip tpBank = new ToolTip();
         public string varImageName = "", varBankID="0";
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public CP_ChequePrint_Setting()
         {
             InitializeComponent();
@@ -174,12 +177,33 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 604;
                 udfnDropDownLoad(); 
                 cmbBank.SelectedValue = MainForm.pbDefaultComId;
                 dtChequePrintSetting.TableName = "MR_ChequePrintSettings";
                 dtChequePrintSetting.Columns.Add("CQS_CQTID", typeof(int));
                 dtChequePrintSetting.Columns.Add("CQS_BNKID", typeof(int)); 
                 udfnList();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                btnSave.Visible = privilege.Contains("3"); 
             }
             catch (Exception ex)
             {

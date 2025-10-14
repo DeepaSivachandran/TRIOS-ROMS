@@ -22,6 +22,9 @@ namespace ROMS
         public int varTransactionID = 0, varUpDownKey = 0;
         public int varPRID = 0; int varUserID = 0, ViewType = 0, varUpDownKeyLocation = 0;
         Boolean BlnSearchImageYN = false;
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
         public INV_ReconciliationList()
         {
@@ -30,17 +33,19 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-
-                MainForm.objINV_StockAdjustment = new INV_Reconciliation(); 
-                MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
-                MainForm.objINV_StockAdjustment.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                {
+                    MainForm.objINV_StockAdjustment = new INV_Reconciliation();
+                    MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                    MainForm.objINV_StockAdjustment.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -57,30 +62,33 @@ namespace ROMS
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdStockReconciliationList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_StockAdjustment = new INV_Reconciliation();
-                    MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
-                    MainForm.objINV_StockAdjustment.btnSave.Text = "Update";
-                    MainForm.objINV_StockAdjustment.varAJId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
-                    MainForm.objINV_StockAdjustment.varSTSID = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["STSID"].Value);
-                    MainForm.objINV_StockAdjustment.Show();
+                    if (grdStockReconciliationList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_StockAdjustment = new INV_Reconciliation();
+                        MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                        MainForm.objINV_StockAdjustment.btnSave.Text = "Update";
+                        MainForm.objINV_StockAdjustment.varAJId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
+                        MainForm.objINV_StockAdjustment.varSTSID = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["STSID"].Value);
+                        MainForm.objINV_StockAdjustment.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -566,6 +574,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 305;
                 udfnConcern();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -578,7 +587,10 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
                 udfnList();
-
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                }
             }
             catch (Exception ex)
             {
@@ -586,6 +598,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnConcern()
         {
@@ -1340,101 +1372,104 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(decimal));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-                dtStock.Columns.Add("STK_Source_RKID", typeof(string));
-                dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
-                dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
-                dtStock.Columns.Add("STK_ProType", typeof(int));
-                dtStock.Columns.Add("STK_Status", typeof(int));
-                if (grdStockReconciliationList.SelectedRows.Count > 0)
+                try
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    DataTable dtStock = new DataTable();
+                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                    dtStock.Columns.Add("STK_PRID", typeof(int));
+                    dtStock.Columns.Add("STK_MRP", typeof(decimal));
+                    dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                    dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                    dtStock.Columns.Add("STK_UTID", typeof(string));
+                    dtStock.Columns.Add("STK_QTY", typeof(string));
+                    dtStock.Columns.Add("STK_Source_RKID", typeof(string));
+                    dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
+                    dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
+                    dtStock.Columns.Add("STK_ProType", typeof(int));
+                    dtStock.Columns.Add("STK_Status", typeof(int));
+                    if (grdStockReconciliationList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspdservice = new SPDataService();
-                        int vartype = 0;
-                        if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["Transaction Type"].Value) == "Inward")
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            vartype = 378;
-                        }
-                        else
-                        {
-                            vartype = 377;
-                        }
-
-                        String varoriginator = "Reconcilation Delete";
-                        DataTable objGrnPO = new DataTable();
-                        TRN_Stock_Reconciliation_Products objTRNS_Stock_Reconciliation_Products = new TRN_Stock_Reconciliation_Products();
-                        objTRNS_Stock_Reconciliation_Products.ViewType = 2; 
-                        objTRNS_Stock_Reconciliation_Products.ParaTransactionId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
-                        objTRNS_Stock_Reconciliation_Products.paraTransferType = vartype;
-                        objTRNS_Stock_Reconciliation_Products.paraUserID = varUserID;
-                        objTRNS_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
-                        objTRNS_Stock_Reconciliation_Products.paraOriginator = varoriginator;
-                        objTRNS_Stock_Reconciliation_Products.paraDeleteflag = 0;
-                        string result = objspdservice.udfnStockConciliation(objTRNS_Stock_Reconciliation_Products);
-                        objspdservice.CloseConnection();
-                        string[] varvalue = result.Split('~');
-                        if (result.Split('~')[0] == "3")
-                        {
-                            if (result.Split('~')[1] == "1")
+                            SPDataService objspdservice = new SPDataService();
+                            int vartype = 0;
+                            if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["Transaction Type"].Value) == "Addition")
                             {
-                                MainForm.objCP_Verify = new CP_Verify();
-                                MainForm.objCP_Verify.ShowDialog();
-                                if (MainForm.objCP_Verify.flag == 1)
+                                vartype = 378;
+                            }
+                            else
+                            {
+                                vartype = 377;
+                            }
+
+                            String varoriginator = "Reconcilation Delete";
+                            DataTable objGrnPO = new DataTable();
+                            TRN_Stock_Reconciliation_Products objTRNS_Stock_Reconciliation_Products = new TRN_Stock_Reconciliation_Products();
+                            objTRNS_Stock_Reconciliation_Products.ViewType = 2;
+                            objTRNS_Stock_Reconciliation_Products.ParaTransactionId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
+                            objTRNS_Stock_Reconciliation_Products.paraTransferType = vartype;
+                            objTRNS_Stock_Reconciliation_Products.paraUserID = varUserID;
+                            objTRNS_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
+                            objTRNS_Stock_Reconciliation_Products.paraOriginator = varoriginator;
+                            objTRNS_Stock_Reconciliation_Products.paraDeleteflag = 0;
+                            string result = objspdservice.udfnStockConciliation(objTRNS_Stock_Reconciliation_Products);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (result.Split('~')[0] == "3")
+                            {
+                                if (result.Split('~')[1] == "1")
                                 {
-                                    
-                                    varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
-                                    objTRNS_Stock_Reconciliation_Products.ViewType = 2;
-                                    objTRNS_Stock_Reconciliation_Products.paraUserID = varUserID;
-                                    objTRNS_Stock_Reconciliation_Products.paraTransferType = vartype;
-                                    objTRNS_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
-                                    objTRNS_Stock_Reconciliation_Products.paraOriginator = varoriginator;
-                                    objTRNS_Stock_Reconciliation_Products.ParaTransactionId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
-                                    //if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value) == "Addition")
-                                    //{ 
-                                    //    objTRNS_Stock_Reconciliation_Products.paraTransferType = 378;
-                                    //}
-                                    //else { 
-                                    //    objTRNS_Stock_Reconciliation_Products.paraTransferType = 377;
-                                    //}
-                                    objTRNS_Stock_Reconciliation_Products.paraDeleteflag = 1;
-                                     result = objspdservice.udfnStockConciliation(objTRNS_Stock_Reconciliation_Products);
-                                    objspdservice.CloseConnection();
-                                    if (result.Split('~')[0] == "3")
+                                    MainForm.objCP_Verify = new CP_Verify();
+                                    MainForm.objCP_Verify.ShowDialog();
+                                    if (MainForm.objCP_Verify.flag == 1)
                                     {
-                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        ViewType = 0;
-                                        udfnList();
+
+                                        varUserID = Convert.ToInt32(MainForm.objCP_Verify.varUserId);
+                                        objTRNS_Stock_Reconciliation_Products.ViewType = 2;
+                                        objTRNS_Stock_Reconciliation_Products.paraUserID = varUserID;
+                                        objTRNS_Stock_Reconciliation_Products.paraTransferType = vartype;
+                                        objTRNS_Stock_Reconciliation_Products.paraIPAddress = MainForm.pbIpAddress;
+                                        objTRNS_Stock_Reconciliation_Products.paraOriginator = varoriginator;
+                                        objTRNS_Stock_Reconciliation_Products.ParaTransactionId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
+                                        //if (Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value) == "Addition")
+                                        //{ 
+                                        //    objTRNS_Stock_Reconciliation_Products.paraTransferType = 378;
+                                        //}
+                                        //else { 
+                                        //    objTRNS_Stock_Reconciliation_Products.paraTransferType = 377;
+                                        //}
+                                        objTRNS_Stock_Reconciliation_Products.paraDeleteflag = 1;
+                                        result = objspdservice.udfnStockConciliation(objTRNS_Stock_Reconciliation_Products);
+                                        objspdservice.CloseConnection();
+                                        if (result.Split('~')[0] == "3")
+                                        {
+                                            MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            ViewType = 0;
+                                            udfnList();
+                                        }
+                                        else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                     }
-                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                                 }
                             }
-                        }
-                        else if (result.Split('~')[0] == "4")
-                        {
-                            MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (result.Split('~')[0] == "4")
+                            {
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void GrdUserList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

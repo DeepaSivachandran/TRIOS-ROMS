@@ -44,9 +44,26 @@ namespace ROMS
         public decimal totalOrderQty = 0, totalUnitqty = 0, varFinalUnit = 0, varFinalTotalQty = 0, varFinalTotalKg = 0, varBulkunitqty = 0, varUnitqty = 0, varTotalunitqty = 0;
         public string varBlockedSupplier = "0", varBlockedReason = "";
         public int varEditFlag = 0;
+        public bool PreCloseAccess = false;
         public PUR_PurchaseOrder()
         {
             InitializeComponent();
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    if (PreCloseAccess == false)
+                    { chkStatus.Visible = PreCloseAccess; }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void PUR_PurchaseOrder_Load(object sender, EventArgs e)
         {
@@ -162,6 +179,7 @@ namespace ROMS
                 }
                 txtRemark.Enabled = false;
                 txtRemark.ReadOnly = true;
+                udfnUserAccess();
             }
             catch (Exception ex)
             {
@@ -173,6 +191,7 @@ namespace ROMS
                 lblPC.Text = grdsupplieradd.Rows.Count.ToString();
             }
         }
+    
         public void udfnEditLoad()
         {
             try

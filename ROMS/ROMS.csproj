@@ -510,6 +510,7 @@
     <Compile Include="REPORT_CP_Product_Category.designer.cs">
       <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service Class\UserAccessHelper.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">

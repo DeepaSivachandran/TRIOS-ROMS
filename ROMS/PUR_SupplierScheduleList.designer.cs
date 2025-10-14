@@ -38,7 +38,7 @@
             this.tsSupplierScheduleList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbList = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tssNewSupplier = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlSupplierScheduleList = new System.Windows.Forms.Panel();
             this.lblschedule = new System.Windows.Forms.Label();
@@ -107,7 +107,7 @@
             this.tsSupplierScheduleList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbList,
-            this.toolStripSeparator1,
+            this.tssNewSupplier,
             this.tsbNew});
             this.tsSupplierScheduleList.Location = new System.Drawing.Point(0, 0);
             this.tsSupplierScheduleList.Name = "tsSupplierScheduleList";
@@ -138,11 +138,11 @@
             this.tsbList.Text = "&PO Schedule Summary";
             this.tsbList.Click += new System.EventHandler(this.TsbList_Click);
             // 
-            // toolStripSeparator1
+            // tssNewSupplier
             // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.tssNewSupplier.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssNewSupplier.Name = "tssNewSupplier";
+            this.tssNewSupplier.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbNew
             // 
@@ -868,7 +868,7 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         public System.Windows.Forms.ComboBox cmbConcernPrint;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator tssNewSupplier;
         public System.Windows.Forms.ToolStripButton tsbList;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnPrint;

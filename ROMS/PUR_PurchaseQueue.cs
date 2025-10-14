@@ -18,6 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
+        public bool EditAccess = false;
         public PUR_PurchaseQueue()
         {
             InitializeComponent();
@@ -911,30 +912,33 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            try
+            if (Convert.ToInt32(MainForm.pbUserRoleId) != 1 || EditAccess==true)
             {
-                MainForm.objCP_Purchase = new CP_Purchase();
-                MainForm.objCP_Purchase.varQueueFlag = 1;
-                MainForm.objCP_Purchase.PbID = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["ID"].Value.ToString());
-                MainForm.objCP_Purchase.PbFlag = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Flag"].Value.ToString());
-                MainForm.objCP_Purchase.lblschedule.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
-                MainForm.objCP_Purchase.lblSupplierCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPID"].Value.ToString());
-                MainForm.objCP_Purchase.txtSupplier.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SUPPLIER"].Value.ToString());
-                MainForm.objCP_Purchase.txtGstin.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["GSTIN"].Value.ToString());
-                MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Total Products"].Value.ToString());
-                MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Total Products"].Value.ToString());
-                MainForm.objCP_Purchase.txtQRCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["QR Code"].Value.ToString());
-                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                MainForm.objCP_Purchase.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                //picLoader.Visible = false;
+                try
+                {
+                    MainForm.objCP_Purchase = new CP_Purchase();
+                    MainForm.objCP_Purchase.varQueueFlag = 1;
+                    MainForm.objCP_Purchase.PbID = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["ID"].Value.ToString());
+                    MainForm.objCP_Purchase.PbFlag = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Flag"].Value.ToString());
+                    MainForm.objCP_Purchase.lblschedule.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
+                    MainForm.objCP_Purchase.lblSupplierCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SPID"].Value.ToString());
+                    MainForm.objCP_Purchase.txtSupplier.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["SUPPLIER"].Value.ToString());
+                    MainForm.objCP_Purchase.txtGstin.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["GSTIN"].Value.ToString());
+                    MainForm.objCP_Purchase.lbltotProduct.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Total Products"].Value.ToString());
+                    MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Total Products"].Value.ToString());
+                    MainForm.objCP_Purchase.txtQRCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["QR Code"].Value.ToString());
+                    MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                    MainForm.objCP_Purchase.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    //picLoader.Visible = false;
+                }
             }
         }
         private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)

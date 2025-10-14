@@ -38,7 +38,7 @@
             this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDClist = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tssDelete = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -92,7 +92,7 @@
             this.tsPurchaseInvoiceList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDClist,
-            this.toolStripSeparator1,
+            this.tssDelete,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
@@ -128,12 +128,12 @@
             this.tsbDClist.Text = "Purchase Return DC Approved List";
             this.tsbDClist.Click += new System.EventHandler(this.TsbDClist_Click);
             // 
-            // toolStripSeparator1
+            // tssDelete
             // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.tssDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssDelete.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssDelete.Name = "tssDelete";
+            this.tssDelete.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbDelete
             // 
@@ -683,6 +683,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         private System.Windows.Forms.DataGridViewImageColumn Print;
         public System.Windows.Forms.ToolStripButton tsbDClist;
-        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.ToolStripSeparator tssDelete;
     }
 }

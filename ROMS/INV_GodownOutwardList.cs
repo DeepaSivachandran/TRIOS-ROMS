@@ -23,7 +23,9 @@ namespace ROMS
         public int varPRID = 0;
         public string varUserID = "";
         Boolean BlnSearchImageYN = false;
-
+        public int MenuCode = 0;
+        string privilege = "";
+        List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_GodownOutwardList()
         {
             InitializeComponent();
@@ -31,17 +33,19 @@ namespace ROMS
 
         private void tsbNew_Click(object sender, EventArgs e)
         {
-            try
+            if (privilege.Contains("2") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-
-                MainForm.objINV_GodownOutward = new INV_GodownOutward(); 
-                MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
-                MainForm.objINV_GodownOutward.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
+                try
+                { 
+                    MainForm.objINV_GodownOutward = new INV_GodownOutward();
+                    MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
+                    MainForm.objINV_GodownOutward.Show();
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
         }
         private void tsbEdit_Click(object sender, EventArgs e)
@@ -58,30 +62,33 @@ namespace ROMS
         }
         private void udfnEdit()
         {
-            try
+            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                if (grdOutwardList.SelectedRows.Count > 0)
+                try
                 {
-                    picLoader.Visible = true;
-                    picLoader.BringToFront();
-                    Application.DoEvents();
-                    MainForm.objINV_GodownOutward = new INV_GodownOutward();
-                    MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
-                    MainForm.objINV_GodownOutward.btnSave.Text = "Save as Draft";
-                    MainForm.objINV_GodownOutward.varGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value);
-                    MainForm.objINV_GodownOutward.varSTSID = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["STSID"].Value);
-                    MainForm.objINV_GodownOutward.Show();
+                    if (grdOutwardList.SelectedRows.Count > 0)
+                    {
+                        picLoader.Visible = true;
+                        picLoader.BringToFront();
+                        Application.DoEvents();
+                        MainForm.objINV_GodownOutward = new INV_GodownOutward();
+                        MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
+                        MainForm.objINV_GodownOutward.btnSave.Text = "Save as Draft";
+                        MainForm.objINV_GodownOutward.varGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value);
+                        MainForm.objINV_GodownOutward.varSTSID = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["STSID"].Value);
+                        MainForm.objINV_GodownOutward.Show();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+                finally
+                {
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                }
             }
         }
         private void tsbDelete_Click(object sender, EventArgs e)
@@ -565,6 +572,7 @@ namespace ROMS
         {
             try
             {
+                MenuCode = 302;
                 udfnConcern();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (35,26,0) ORDER BY STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -586,7 +594,10 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 this.ActiveControl = cmbConcern;
                 udfnList();
-
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    udfnFieldAccess();
+                } 
             }
             catch (Exception ex)
             {
@@ -594,6 +605,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+        public void udfnFieldAccess()
+        {
+            try
+            {
+                var result = UserAccessHelper.LoadUserAccess(MenuCode);
+                privilege = result.PrivilegeCode;
+                SpecialPermissions = result.SpecialPermissions;
+                tsbNew.Visible = privilege.Contains("2");
+                tssNew.Visible = privilege.Contains("2");
+                tsbEdit.Visible = privilege.Contains("3");
+                tssEdit.Visible = privilege.Contains("3");
+                tsbDelete.Visible = privilege.Contains("4");  
+                btnExport.Visible = privilege.Contains("6"); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         public void udfnConcern()
         {
@@ -1362,66 +1393,69 @@ namespace ROMS
         }
         public void udfndelete()
         {
-            try
+            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
             {
-                DataTable dtStock = new DataTable();
-                dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
-                dtStock.Columns.Add("STK_PRID", typeof(int));
-                dtStock.Columns.Add("STK_MRP", typeof(decimal));
-                dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
-                dtStock.Columns.Add("STK_BatchNo", typeof(string));
-                dtStock.Columns.Add("STK_UTID", typeof(string));
-                dtStock.Columns.Add("STK_QTY", typeof(string));
-                dtStock.Columns.Add("STK_Source_RKID", typeof(string));
-                dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
-                dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
-                dtStock.Columns.Add("STK_ProType", typeof(int));
-                dtStock.Columns.Add("STK_Status", typeof(int));
-                if (grdOutwardList.SelectedRows.Count > 0)
+                try
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    DataTable dtStock = new DataTable();
+                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                    dtStock.Columns.Add("STK_PRID", typeof(int));
+                    dtStock.Columns.Add("STK_MRP", typeof(decimal));
+                    dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
+                    dtStock.Columns.Add("STK_BatchNo", typeof(string));
+                    dtStock.Columns.Add("STK_UTID", typeof(string));
+                    dtStock.Columns.Add("STK_QTY", typeof(string));
+                    dtStock.Columns.Add("STK_Source_RKID", typeof(string));
+                    dtStock.Columns.Add("STK_Dest_SLID", typeof(int));
+                    dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
+                    dtStock.Columns.Add("STK_ProType", typeof(int));
+                    dtStock.Columns.Add("STK_Status", typeof(int));
+                    if (grdOutwardList.SelectedRows.Count > 0)
                     {
-                        SPDataService objspdservice = new SPDataService();
-                        DataTable objGrnPO = new DataTable();
-                        TRN_GoodsOutward objTRNS_GoodsOutward = new TRN_GoodsOutward();
-                        MainForm.objCP_Verify = new CP_Verify();
-                        MainForm.objCP_Verify.ShowDialog();
-                        varUserID = MainForm.objCP_Verify.varUserId;
-                        if (MainForm.objCP_Verify.flag == 1)
+                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            objTRNS_GoodsOutward.ViewType = 2;
-                            objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
-                            objTRNS_GoodsOutward.ParaCompanyCode = 0;
-                            objTRNS_GoodsOutward.paraOutwardDate = "";
-                            objTRNS_GoodsOutward.paraTransferType = 0;
-                            objTRNS_GoodsOutward.paraRemarks = "";
-                            objTRNS_GoodsOutward.paraSLID = 0;
-                            objTRNS_GoodsOutward.paraStockTransfer = dtStock;
-                            objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
-                            string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
-                            objspdservice.CloseConnection();
-                            if (result.Split('~')[0] == "3")
+                            SPDataService objspdservice = new SPDataService();
+                            DataTable objGrnPO = new DataTable();
+                            TRN_GoodsOutward objTRNS_GoodsOutward = new TRN_GoodsOutward();
+                            MainForm.objCP_Verify = new CP_Verify();
+                            MainForm.objCP_Verify.ShowDialog();
+                            varUserID = MainForm.objCP_Verify.varUserId;
+                            if (MainForm.objCP_Verify.flag == 1)
                             {
-                                MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                udfnList();
-                            }
-                            else if (result.Split('~')[0] == "4")
-                            {
-                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                objTRNS_GoodsOutward.ViewType = 2;
+                                objTRNS_GoodsOutward.ParaGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
+                                objTRNS_GoodsOutward.ParaCompanyCode = 0;
+                                objTRNS_GoodsOutward.paraOutwardDate = "";
+                                objTRNS_GoodsOutward.paraTransferType = 0;
+                                objTRNS_GoodsOutward.paraRemarks = "";
+                                objTRNS_GoodsOutward.paraSLID = 0;
+                                objTRNS_GoodsOutward.paraStockTransfer = dtStock;
+                                objTRNS_GoodsOutward.paraOriginator = "Goods Outward Delete";
+                                string result = objspdservice.udfnGoodsOutward(objTRNS_GoodsOutward);
+                                objspdservice.CloseConnection();
+                                if (result.Split('~')[0] == "3")
+                                {
+                                    MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    udfnList();
+                                }
+                                else if (result.Split('~')[0] == "4")
+                                {
+                                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
-                string varMessage = objDServ.udfnGetMessages(48);
-                objDServ.CloseConnection();
-                MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(48);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void GrdUserList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -1754,8 +1788,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
+        } 
         private void GrdOutwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
