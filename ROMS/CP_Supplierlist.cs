@@ -433,7 +433,7 @@ namespace ROMS
                         dtDefaultGrid = objDs.Tables[0];
                         udfnDefaultSearchGrid();
                     }
-                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; }
+                    else { DGV_SearchGrid.ScrollBars = ScrollBars.Vertical; udfnGridAccess(); }
                 }
                 else
                 {

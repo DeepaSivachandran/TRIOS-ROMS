@@ -154,18 +154,20 @@ namespace ROMS
                     if (grdItemList.SelectedRows.Count > 0)
                     {
                         MainForm.objCP_Items = new CP_Product();
-                        MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
-                        //MainForm.objCP_Items.varGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PRGID"].Value.ToString());
-                        //MainForm.objCP_Items.varSubGroupId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PRSGID"].Value.ToString());
-                        //MainForm.objCP_Items.varHsnId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_HSNID"].Value.ToString());
-                        //MainForm.objCP_Items.varUnitid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_UTID"].Value.ToString());
-                        //MainForm.objCP_Items.varcompanyid = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_COMID"].Value.ToString());
-                        //MainForm.objCP_Items.varBrandId = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_BDID"].Value.ToString());
-                        //MainForm.objCP_Items.varPURSLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_SLID"].Value.ToString());
-                        //MainForm.objCP_Items.varPURRKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_PUR_RKID"].Value.ToString());
-                        //MainForm.objCP_Items.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
-                        //MainForm.objCP_Items.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
-                        MainForm.objCP_Items.pbFormStatus = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["STSID"].Value.ToString());
+                        MainForm.objCP_Items.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString()); 
+                        MainForm.objCP_Items.pbFormStatus = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["STSID"].Value.ToString()); 
+                        MainForm.objCP_Items.PurStkLocViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 1 && sp.EditAccess.Split(',').Contains("9"));
+                        MainForm.objCP_Items.PurStkLocEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 1 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.SalesStkLocViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 2 && sp.EditAccess.Split(',').Contains("9"));
+                        MainForm.objCP_Items.SalesStkLocEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 2 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.RetailRateViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 3 && sp.EditAccess.Split(',').Contains("9"));
+                        MainForm.objCP_Items.RetailRateEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 3 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.WholeSaleRateViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("9"));
+                        MainForm.objCP_Items.WholeSaleRateEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.SalesHSNViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("9"));
+                        MainForm.objCP_Items.SalesHSNEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("10"));
+                        MainForm.objCP_Items.PurHSNViewAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("9"));
+                        MainForm.objCP_Items.PurHSNEditAcess = SpecialPermissions.Any(sp => sp.MUP_Code == 14 && sp.EditAccess.Split(',').Contains("10")); 
                         MainForm.objCP_Items.btnSave.Text = "Update";
                         MainForm.objCP_Items.ShowDialog();
                     }
