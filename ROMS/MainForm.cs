@@ -653,11 +653,14 @@ namespace ROMS
                         return;
 
                     var privileges = objDtMenuDetailsUser.AsEnumerable()
-                        .Where(r => r.Field<int>("MU_Code") == menuCode)
-                        .Select(r => r.Field<int>("MU_PrivilegeCode"))
-                        .ToList();
+                                    .Where(r => r.Field<int>("MU_Code") == menuCode)
+                                    .Select(r => r.Field<string>("MU_PrivilegeCode") // get as string
+                                                  .Split(',')                       // split by comma
+                                                  .Select(int.Parse)                // convert each to int
+                                                  .ToList())
+                                    .FirstOrDefault();
 
-                    if (privileges.Contains(5))
+                    if (privileges.Contains(8))
                     {
                         if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                         {
@@ -792,9 +795,12 @@ namespace ROMS
                 else if (objDtMenuDetailsUser != null)
                 {
                     var privileges = objDtMenuDetailsUser.AsEnumerable()
-                        .Where(r => r.Field<int>("MU_Code") == menuCode)
-                        .Select(r => r.Field<int>("MU_PrivilegeCode"))
-                        .ToList();
+                                    .Where(r => r.Field<int>("MU_Code") == menuCode)
+                                    .Select(r => r.Field<string>("MU_PrivilegeCode") // get as string
+                                                  .Split(',')                       // split by comma
+                                                  .Select(int.Parse)                // convert each to int
+                                                  .ToList())
+                                    .FirstOrDefault();
 
                     var toolStrip = formInstance.Controls.OfType<ToolStrip>().FirstOrDefault();
 
@@ -856,7 +862,7 @@ namespace ROMS
                         {
                             if (btnDelete != null) btnDelete.Visible = true;
                         }
-                        if (privileges.Contains(5))
+                        if (privileges.Contains(8))
                         {
                             if (!string.IsNullOrEmpty(specialflag) && MainForm.varSpecialField.ContainsKey(specialflag))
                             {
@@ -886,9 +892,12 @@ namespace ROMS
             if (objDtMenuDetailsUser == null) return;
 
             var privileges = objDtMenuDetailsUser.AsEnumerable()
-                .Where(r => r.Field<int>("MU_Code") == menuCode)
-                .Select(r => r.Field<int>("MU_PrivilegeCode"))
-                .ToList();
+                            .Where(r => r.Field<int>("MU_Code") == menuCode)
+                            .Select(r => r.Field<string>("MU_PrivilegeCode") // get as string
+                                          .Split(',')                       // split by comma
+                                          .Select(int.Parse)                // convert each to int
+                                          .ToList())
+                            .FirstOrDefault();
 
             SetFormPrivilegeFlag(formInstance, "varNewFlag", privileges.Contains(2) ? 1 : 0);
             SetFormPrivilegeFlag(formInstance, "varEditFlag", privileges.Contains(3) ? 1 : 0);
