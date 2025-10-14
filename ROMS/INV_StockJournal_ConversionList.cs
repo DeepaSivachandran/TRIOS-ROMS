@@ -67,7 +67,7 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdStockConversion.SelectedRows.Count > 0)
+                    if (grdStockJournal.SelectedRows.Count > 0)
                     {
                         picLoader.Visible = true;
                         picLoader.BringToFront();
@@ -75,8 +75,8 @@ namespace ROMS
                         MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
                         MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
                         MainForm.objINV_StockJournalConversion.btnSave.Text = "Update";
-                        MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["TransactionID"].Value);
-                        MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockConversion.SelectedRows[0].Cells["STSID"].Value);
+                        MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockJournal.SelectedRows[0].Cells["TransactionID"].Value);
+                        MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockJournal.SelectedRows[0].Cells["STSID"].Value);
                         MainForm.objINV_StockJournalConversion.Show();
                     }
                 }
@@ -1193,7 +1193,7 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 dtStock.Columns.Add("STK_ProType", typeof(int));
                 dtStock.Columns.Add("STK_Status", typeof(int));
-                if (grdStockConversion.SelectedRows.Count > 0)
+                if (grdStockJournal.SelectedRows.Count > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
