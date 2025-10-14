@@ -316,10 +316,15 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dtpConvertDate.MinDate = MainForm.pbFYStartDate;
                 dtpConvertDate.MaxDate = MainForm.pbCurrentDate;
-                grdOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 if (varAJId != 0)
-                { 
+                {
                     udfnEdit(sender, e);
+
+                    grdOutward.Columns["clmOutward"].ReadOnly = true;
+                }
+                else
+                {
+                    grdOutward.Columns["clmOutward"].DefaultCellStyle.BackColor = Color.PaleGreen;
                 }
 
                 this.ActiveControl = txtOutwardProduct;
@@ -362,6 +367,7 @@ namespace ROMS
                         objMR_Product.paraProductName = txtOutwardProduct.Text;
                         objMR_Product.paraType = varEntry; 
                         objMR_Product.paraStockTransfer = dtStockClone;
+                        objMR_Product.paraUserLocations = MainForm.pbUserMappedLocationIds;
 
                         objMR_Product.paraPicode = txtOutwardProduct.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
@@ -507,7 +513,7 @@ namespace ROMS
                 if (lblOutwardTotQty.Text != lblInwardTotQty.Text)
                 {
                     SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(166);
+                    string varMessage = objDServ.udfnGetMessages(172);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
