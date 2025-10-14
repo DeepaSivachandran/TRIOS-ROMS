@@ -1066,7 +1066,7 @@ namespace ROMS
                             }
                             else
                             {
-                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268)
+                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
                                 {
                                     objBillreport.SetParameterValue("paraType", varTypeId);
                                 }
@@ -1166,7 +1166,7 @@ namespace ROMS
                             }
                             else
                             {
-                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268)
+                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
                                 {
                                     objBillreportTestPrint.SetParameterValue("paraType", varTypeId);
                                 }
@@ -1234,7 +1234,7 @@ namespace ROMS
                             }
                             else
                             {
-                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268)
+                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
                                 {
                                     objBillreportDirectPrint.SetParameterValue("paraType", varTypeId);
                                 }

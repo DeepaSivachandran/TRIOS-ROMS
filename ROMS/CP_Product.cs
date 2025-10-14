@@ -1420,6 +1420,10 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterPurLocation.DataSource = null;
+                DGV_FilterPurLocation.Visible = false;
+                DGV_FilterSalesLocation.DataSource = null;
+                DGV_FilterSalesLocation.Visible = false;
                 lvHsnCode.Visible = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
@@ -1507,6 +1511,10 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterPurLocation.DataSource = null;
+                DGV_FilterPurLocation.Visible = false;
+                DGV_FilterSalesLocation.DataSource = null;
+                DGV_FilterSalesLocation.Visible = false;
                 btnClose.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1902,6 +1910,10 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterPurLocation.DataSource = null;
+                DGV_FilterPurLocation.Visible = false;
+                DGV_FilterSalesLocation.DataSource = null;
+                DGV_FilterSalesLocation.Visible = false;
                 DGV_FilterProduct.Visible = false;
                 DGV_FilterProduct.DataSource = null;
                 txtPICode.BackColor = Color.LemonChiffon;
@@ -4793,6 +4805,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterSalesLocation.DataSource = null;
+                DGV_FilterSalesLocation.Visible = false;
                 txtPurLocation.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -5033,6 +5047,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterSalesLocation.DataSource = null;
+                DGV_FilterSalesLocation.Visible = false;
                 DGV_FilterPurLocation.DataSource = null;
                 DGV_FilterPurLocation.Visible = false;
                 txtPurRack.BackColor = Color.LemonChiffon;
@@ -8166,6 +8182,8 @@ namespace ROMS
         {
             try
             {
+                DGV_FilterPurLocation.DataSource = null;
+                DGV_FilterPurLocation.Visible = false;
                 DGV_FilterSalesLocation.DataSource = null;
                 DGV_FilterSalesLocation.Visible = false;
                 txtSaleRack.BackColor = Color.LemonChiffon;
