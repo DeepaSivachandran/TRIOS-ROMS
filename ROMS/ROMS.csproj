@@ -296,6 +296,11 @@
     <Compile Include="CP_User_ResetPassword.designer.cs">
       <DependentUpon>CP_User_ResetPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="PUR_MismatchApprovedList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3401,10 +3406,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <None Include="Resources\minimize_Form1.png" />
-    <None Include="Resources\mini-form.png" />
-    <None Include="Resources\mini.png" />
-    <None Include="Resources\minimize.png" />
     <None Include="Resources\Reset Password.jpg" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\padlock.png" />
@@ -3966,14 +3967,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="PUR_PurchaseOrderList.resx">
       <DependentUpon>PUR_PurchaseOrderList.cs</DependentUpon>
     </EmbeddedResource>

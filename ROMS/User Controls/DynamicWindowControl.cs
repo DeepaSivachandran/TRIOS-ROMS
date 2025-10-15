@@ -33,7 +33,7 @@ namespace ROMS
             // --- Minimize Label ---
             MinimizeLabel = new ToolStripLabel()
             {
-                Image = Properties.Resources.minimize_Form,
+                Image = Properties.Resources.mismatch,
                 DisplayStyle = ToolStripItemDisplayStyle.Image,
                 Margin = new Padding(4, 0, 4, 0),
                 Alignment = ToolStripItemAlignment.Right
