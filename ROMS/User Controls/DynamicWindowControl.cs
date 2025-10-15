@@ -29,9 +29,9 @@ namespace ROMS
             // --- Minimize Label ---
             MinimizeLabel = new ToolStripLabel()
             {
-                Image = Properties.Resources.Cleared,
+                Image = Properties.Resources.minimize,
                 DisplayStyle = ToolStripItemDisplayStyle.Image,
-                Margin = new Padding(4, 0, 0, 0),
+                Margin = new Padding(4, 0, 4, 0),
                 Alignment = ToolStripItemAlignment.Right
             };
             MinimizeLabel.Click += (s, e) => FormMinimizeClicked?.Invoke(this, EventArgs.Empty);
@@ -39,7 +39,7 @@ namespace ROMS
             // --- Close Label ---
             CloseLabel = new ToolStripLabel()
             {
-                Image = Properties.Resources.Delete1,
+                Image = Properties.Resources.close_window,
                 DisplayStyle = ToolStripItemDisplayStyle.Image,
                 Margin = new Padding(4, 0, 4, 0),
                 Alignment = ToolStripItemAlignment.Right
@@ -65,7 +65,5 @@ namespace ROMS
                 _toolStrip.Items.Insert(rightStartIndex, CloseLabel);   // before close
             }
         }
-
-
     }
 }

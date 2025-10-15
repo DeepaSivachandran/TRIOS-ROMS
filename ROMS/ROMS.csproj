@@ -3401,6 +3401,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\minimize.png" />
     <None Include="Resources\Reset Password.jpg" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\padlock.png" />
@@ -5397,6 +5398,7 @@
     <None Include="Resources\download %281%29.png" />
     <None Include="Resources\download %282%29.png" />
     <None Include="Resources\double-chevron.png" />
+    <None Include="Resources\close-window.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
