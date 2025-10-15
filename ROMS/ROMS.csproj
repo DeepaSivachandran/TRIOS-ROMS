@@ -3401,6 +3401,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\minimize_Form1.png" />
     <None Include="Resources\mini-form.png" />
     <None Include="Resources\mini.png" />
     <None Include="Resources\minimize.png" />
@@ -5405,6 +5406,7 @@
     <None Include="Resources\breadcrum.png" />
     <None Include="Resources\breadcrum-Level.png" />
     <None Include="Resources\close-Form.png" />
+    <None Include="Resources\arrow1.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">

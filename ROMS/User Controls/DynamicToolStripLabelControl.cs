@@ -76,7 +76,7 @@ namespace ROMS
                         };
                         if (!isRootAssigned)
                         {
-                            lbl.Image = Properties.Resources.bread_crumb; // root
+                            lbl.Image = Properties.Resources.arrow; // root
                             isRootAssigned = true;
                         }
                         else
