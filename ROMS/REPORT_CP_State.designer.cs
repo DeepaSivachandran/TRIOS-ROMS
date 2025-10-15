@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_State));
-            this.ReportState = new System.Windows.Forms.ToolStrip();
+            this.tpStateReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportState = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -40,29 +41,28 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.ReportState.SuspendLayout();
+            this.tpStateReport.SuspendLayout();
             this.pnlReportState.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportState
+            // tpStateReport
             // 
-            this.ReportState.BackColor = System.Drawing.Color.White;
-            this.ReportState.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportState.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportState.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportState.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tpStateReport.BackColor = System.Drawing.Color.White;
+            this.tpStateReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tpStateReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tpStateReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tpStateReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportState.Location = new System.Drawing.Point(0, 0);
-            this.ReportState.Name = "ReportState";
-            this.ReportState.Size = new System.Drawing.Size(1354, 27);
-            this.ReportState.TabIndex = 35;
-            this.ReportState.Text = "State Report";
+            this.tpStateReport.Location = new System.Drawing.Point(0, 0);
+            this.tpStateReport.Name = "tpStateReport";
+            this.tpStateReport.Size = new System.Drawing.Size(1354, 27);
+            this.tpStateReport.TabIndex = 35;
+            this.tpStateReport.Text = "State Report";
             // 
             // tsbPrintFormat
             // 
@@ -89,6 +89,16 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportState
             // 
@@ -194,16 +204,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
@@ -215,7 +215,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportState);
-            this.Controls.Add(this.ReportState);
+            this.Controls.Add(this.tpStateReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -225,8 +225,8 @@
             this.Text = "State Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_State_KeyDown);
-            this.ReportState.ResumeLayout(false);
-            this.ReportState.PerformLayout();
+            this.tpStateReport.ResumeLayout(false);
+            this.tpStateReport.PerformLayout();
             this.pnlReportState.ResumeLayout(false);
             this.pnlReportState.PerformLayout();
             this.grpfilter.ResumeLayout(false);
@@ -239,7 +239,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportState;
+        private System.Windows.Forms.ToolStrip tpStateReport;
         private System.Windows.Forms.Panel pnlReportState;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

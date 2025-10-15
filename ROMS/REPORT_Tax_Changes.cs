@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class REPORT_Tax_Changes : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,49 +24,7 @@ namespace ROMS
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            this.UpdateStyles();
-            this.MaximizeBox = false;
-            this.MinimizeBox = true;
-            this.ControlBox = true;
-
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.WindowState = FormWindowState.Normal;
-            this.StartPosition = FormStartPosition.Manual;
-        }
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_MINIMIZE = 0xF020;
-            const int SC_CLOSE = 0xF060;
-
-            if (m.Msg == WM_SYSCOMMAND && (m.WParam.ToInt32() & 0xFFF0) == SC_MINIMIZE)
-            {
-                this.WindowState = FormWindowState.Minimized;
-
-                if (this.MdiParent is MainForm mainForm)
-                {
-                    mainForm.Invoke(new Action(() =>
-                    {
-                        mainForm.SubForm_Resize(this, EventArgs.Empty);
-                    }));
-                }
-                return;
-            }
-            if (m.Msg == WM_SYSCOMMAND && (m.WParam.ToInt32() & 0xFFF0) == SC_CLOSE)
-            {
-                if (this.MdiParent is MainForm mainForm)
-                {
-                    mainForm.Invoke(new Action(() =>
-                    {
-                        mainForm.PrepareFormClose(this, this.Name);
-                    }));
-                }
-                return;
-            }
-
-            base.WndProc(ref m);
+            windowControl.Initialize(tsTaxChangesReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

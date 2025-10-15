@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Product_Subgroup));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,10 +38,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Product_Subgroup));
-            this.ReportProductSubgroup = new System.Windows.Forms.ToolStrip();
+            this.tsProductSubgroupReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportProductSubgroup = new System.Windows.Forms.Panel();
             this.DGV_FilterSubgroup = new System.Windows.Forms.DataGridView();
             this.DGV_FilterGroup = new System.Windows.Forms.DataGridView();
@@ -79,8 +80,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
-            this.ReportProductSubgroup.SuspendLayout();
+            this.tsProductSubgroupReport.SuspendLayout();
             this.pnlReportProductSubgroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterGroup)).BeginInit();
@@ -89,21 +89,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportProductSubgroup
+            // tsProductSubgroupReport
             // 
-            this.ReportProductSubgroup.BackColor = System.Drawing.Color.White;
-            this.ReportProductSubgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportProductSubgroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportProductSubgroup.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportProductSubgroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsProductSubgroupReport.BackColor = System.Drawing.Color.White;
+            this.tsProductSubgroupReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsProductSubgroupReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsProductSubgroupReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsProductSubgroupReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportProductSubgroup.Location = new System.Drawing.Point(0, 0);
-            this.ReportProductSubgroup.Name = "ReportProductSubgroup";
-            this.ReportProductSubgroup.Size = new System.Drawing.Size(1354, 27);
-            this.ReportProductSubgroup.TabIndex = 35;
-            this.ReportProductSubgroup.Text = "Product Subgroup Report";
+            this.tsProductSubgroupReport.Location = new System.Drawing.Point(0, 0);
+            this.tsProductSubgroupReport.Name = "tsProductSubgroupReport";
+            this.tsProductSubgroupReport.Size = new System.Drawing.Size(1354, 27);
+            this.tsProductSubgroupReport.TabIndex = 35;
+            this.tsProductSubgroupReport.Text = "Product Subgroup Report";
             // 
             // tsbPrintFormat
             // 
@@ -130,6 +130,16 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportProductSubgroup
             // 
@@ -614,16 +624,6 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // REPORT_CP_Product_Subgroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -631,7 +631,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportProductSubgroup);
-            this.Controls.Add(this.ReportProductSubgroup);
+            this.Controls.Add(this.tsProductSubgroupReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -641,8 +641,8 @@
             this.Text = "Product Subgroup Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Brand_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Brand_KeyDown);
-            this.ReportProductSubgroup.ResumeLayout(false);
-            this.ReportProductSubgroup.PerformLayout();
+            this.tsProductSubgroupReport.ResumeLayout(false);
+            this.tsProductSubgroupReport.PerformLayout();
             this.pnlReportProductSubgroup.ResumeLayout(false);
             this.pnlReportProductSubgroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).EndInit();
@@ -658,7 +658,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportProductSubgroup;
+        private System.Windows.Forms.ToolStrip tsProductSubgroupReport;
         private System.Windows.Forms.Panel pnlReportProductSubgroup;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;
