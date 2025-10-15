@@ -20,6 +20,7 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyProduct = 0, varUpDownKeyBrand = 0, varUpDownKeySupplier = 0;
+        private ToolTip tpReportType = new ToolTip();
         public REPORT_PriceList()
         {
             InitializeComponent();
@@ -134,7 +135,18 @@ namespace ROMS
                         txtSupplier.BackColor = Color.White;
                     }
                 }
-                udfnSupplierProducts();
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                    cmbReportType.Focus();
+                }
+                else
+                {
+                    udfnSupplierProducts();
+                }
             }
             catch (Exception ex)
             {
@@ -146,6 +158,7 @@ namespace ROMS
         {
             try
             {
+                epReport.Clear();
                 string varSupplierName = "-All-",varProductName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = "",varCompany="--All--",varRateTypeName="--All--" ;  
                 int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0,varReportType=0,varRateType=0,varCompanyCode=0;
 
