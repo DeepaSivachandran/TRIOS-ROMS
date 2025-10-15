@@ -153,16 +153,6 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap breadcrum {
-            get {
-                object obj = ResourceManager.GetObject("breadcrum", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap breadcrum_Level {
             get {
                 object obj = ResourceManager.GetObject("breadcrum-Level", resourceCulture);
