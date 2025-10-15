@@ -14,6 +14,8 @@ namespace ROMS
 {
     public partial class REPORT_PUR_AdditionalValue : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -29,24 +31,7 @@ namespace ROMS
         public REPORT_PUR_AdditionalValue()
         {
             InitializeComponent();
-            //var months = new List<ComboItem>
-            //{
-            //    new ComboItem { Id = 1, Text = "January" },
-            //    new ComboItem { Id = 2, Text = "February" },
-            //    new ComboItem { Id = 3, Text = "March" },
-            //    new ComboItem { Id = 4, Text = "April" },
-            //    new ComboItem { Id = 5, Text = "May" },
-            //    new ComboItem { Id = 6, Text = "June" },
-            //    new ComboItem { Id = 7, Text = "July" },
-            //    new ComboItem { Id = 8, Text = "August" },
-            //    new ComboItem { Id = 9, Text = "September" },
-            //    new ComboItem { Id = 10, Text = "October" },
-            //    new ComboItem { Id = 11, Text = "November" },
-            //    new ComboItem { Id = 12, Text = "December" }
-            //};
-
-            //multiSelectComboBox1.LoadItems(months, "Select Month");
-
+            windowControl.Initialize(tsAdditionalReport, this);
         }
         public void udfnLoadMonths()
         {

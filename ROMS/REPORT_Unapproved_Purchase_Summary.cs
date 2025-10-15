@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class REPORT_Unapproved_Purchase_Summary : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,6 +25,7 @@ namespace ROMS
         public REPORT_Unapproved_Purchase_Summary()
         {
             InitializeComponent();
+            windowControl.Initialize(tsApprovalPendingSummaryReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

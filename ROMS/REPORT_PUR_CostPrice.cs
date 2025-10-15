@@ -12,6 +12,8 @@ namespace ROMS
 {
     public partial class REPORT_PUR_CostPrice : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -20,6 +22,7 @@ namespace ROMS
         public REPORT_PUR_CostPrice()
         {
             InitializeComponent();
+            windowControl.Initialize(tsCostPriceReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

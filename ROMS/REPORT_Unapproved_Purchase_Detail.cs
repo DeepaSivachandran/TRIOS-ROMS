@@ -18,6 +18,8 @@ namespace ROMS
 {
     public partial class REPORT_Unapproved_Purchase_Detail : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -26,6 +28,7 @@ namespace ROMS
         public REPORT_Unapproved_Purchase_Detail()
         {
             InitializeComponent();
+            windowControl.Initialize(tsApprovalPendingDetailReport, this);
         }
         private void cmbPayType_KeyDown(object sender, KeyEventArgs e)
         {

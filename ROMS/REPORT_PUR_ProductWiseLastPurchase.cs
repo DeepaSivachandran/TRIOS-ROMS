@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class REPORT_PUR_ProductWiseLastPurchase : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -24,6 +26,7 @@ namespace ROMS
         public REPORT_PUR_ProductWiseLastPurchase()
         {
             InitializeComponent();
+            windowControl.Initialize(tsLastPurchasedReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

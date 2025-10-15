@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class REPORT_Purchase_Summary : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -22,7 +23,8 @@ namespace ROMS
         public int varUpDownKey = 0;
         public REPORT_Purchase_Summary()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            windowControl.Initialize(tsPurchaseSummaryReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

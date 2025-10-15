@@ -2913,11 +2913,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Purchase_Summary = new REPORT_Purchase_Summary();
-                MainForm.objREPORT_Purchase_Summary.MdiParent = this;
-                MainForm.objREPORT_Purchase_Summary.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_Purchase_Summary = new REPORT_Purchase_Summary();
+                //MainForm.objREPORT_Purchase_Summary.MdiParent = this;
+                //MainForm.objREPORT_Purchase_Summary.Show();
                 OpenReportForm(ref MainForm.objREPORT_Purchase_Summary, "REPORT_Purchase_Summary", 80301);
                 PbCurrentForm = "7.7.1";
             }
@@ -2932,11 +2932,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Purchase_Details = new REPORT_Purchase_Details();
-                MainForm.objREPORT_Purchase_Details.MdiParent = this;
-                MainForm.objREPORT_Purchase_Details.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_Purchase_Details = new REPORT_Purchase_Details();
+                //MainForm.objREPORT_Purchase_Details.MdiParent = this;
+                //MainForm.objREPORT_Purchase_Details.Show();
                 OpenReportForm(ref MainForm.objREPORT_Purchase_Details, "REPORT_Purchase_Details", 80302);
                 PbCurrentForm = "7.7.2";
             }
@@ -2951,11 +2951,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_BatchDetails = new REPORT_PUR_BatchDetails();
-                MainForm.objREPORT_PUR_BatchDetails.MdiParent = this;
-                MainForm.objREPORT_PUR_BatchDetails.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_BatchDetails = new REPORT_PUR_BatchDetails();
+                //MainForm.objREPORT_PUR_BatchDetails.MdiParent = this;
+                //MainForm.objREPORT_PUR_BatchDetails.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_BatchDetails, "REPORT_PUR_BatchDetails", 80303);
                 PbCurrentForm = "7.7.11";
             }
@@ -2970,11 +2970,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_CostDetails = new REPORT_PUR_CostDetails();
-                MainForm.objREPORT_PUR_CostDetails.MdiParent = this;
-                MainForm.objREPORT_PUR_CostDetails.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_CostDetails = new REPORT_PUR_CostDetails();
+                //MainForm.objREPORT_PUR_CostDetails.MdiParent = this;
+                //MainForm.objREPORT_PUR_CostDetails.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_CostDetails, "REPORT_PUR_CostDetails", 80304);
                 PbCurrentForm = "7.7.11";
             }
@@ -2989,11 +2989,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Unapproved_Purchase_Summary = new REPORT_Unapproved_Purchase_Summary();
-                MainForm.objREPORT_Unapproved_Purchase_Summary.MdiParent = this;
-                MainForm.objREPORT_Unapproved_Purchase_Summary.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_Unapproved_Purchase_Summary = new REPORT_Unapproved_Purchase_Summary();
+                //MainForm.objREPORT_Unapproved_Purchase_Summary.MdiParent = this;
+                //MainForm.objREPORT_Unapproved_Purchase_Summary.Show();
                 OpenReportForm(ref MainForm.objREPORT_Unapproved_Purchase_Summary, "REPORT_Unapproved_Purchase_Summary", 80305);
                 PbCurrentForm = "7.7.3";
             }
@@ -3008,11 +3008,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Unapproved_Purchase_Detail = new REPORT_Unapproved_Purchase_Detail();
-                MainForm.objREPORT_Unapproved_Purchase_Detail.MdiParent = this;
-                MainForm.objREPORT_Unapproved_Purchase_Detail.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_Unapproved_Purchase_Detail = new REPORT_Unapproved_Purchase_Detail();
+                //MainForm.objREPORT_Unapproved_Purchase_Detail.MdiParent = this;
+                //MainForm.objREPORT_Unapproved_Purchase_Detail.Show();
                 OpenReportForm(ref MainForm.objREPORT_Unapproved_Purchase_Detail, "REPORT_Unapproved_Purchase_Detail", 80306);
                 PbCurrentForm = "7.7.4";
             }
@@ -3027,11 +3027,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Purchase_Defect_Product = new REPORT_Purchase_Defect_Product();
-                MainForm.objREPORT_Purchase_Defect_Product.MdiParent = this;
-                MainForm.objREPORT_Purchase_Defect_Product.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_Purchase_Defect_Product = new REPORT_Purchase_Defect_Product();
+                //MainForm.objREPORT_Purchase_Defect_Product.MdiParent = this;
+                //MainForm.objREPORT_Purchase_Defect_Product.Show();
                 OpenReportForm(ref MainForm.objREPORT_Purchase_Defect_Product, "REPORT_Purchase_Defect_Product", 80307);
                 PbCurrentForm = "7.7.5";
             }
@@ -3045,11 +3045,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
+                //MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
+                //MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_ProductWiseLastPurchase, "REPORT_PUR_ProductWiseLastPurchase", 80308);
                 PbCurrentForm = "7.7.9";
             }
@@ -3064,11 +3064,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_CostPrice = new REPORT_PUR_CostPrice();
-                MainForm.objREPORT_PUR_CostPrice.MdiParent = this;
-                MainForm.objREPORT_PUR_CostPrice.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_CostPrice = new REPORT_PUR_CostPrice();
+                //MainForm.objREPORT_PUR_CostPrice.MdiParent = this;
+                //MainForm.objREPORT_PUR_CostPrice.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_CostPrice, "REPORT_PUR_CostPrice", 80309);
                 PbCurrentForm = "7.7.8";
             }
@@ -3083,11 +3083,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_ProductWiseSummaryDetails = new REPORT_PUR_ProductWiseSummaryDetails();
-                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.MdiParent = this;
-                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_ProductWiseSummaryDetails = new REPORT_PUR_ProductWiseSummaryDetails();
+                //MainForm.objREPORT_PUR_ProductWiseSummaryDetails.MdiParent = this;
+                //MainForm.objREPORT_PUR_ProductWiseSummaryDetails.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_ProductWiseSummaryDetails, "REPORT_PUR_ProductWiseSummaryDetails", 80310);
                 PbCurrentForm = "7.7.7";
             }
@@ -3101,11 +3101,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_Tally = new REPORT_PUR_Tally();
-                MainForm.objREPORT_PUR_Tally.MdiParent = this;
-                MainForm.objREPORT_PUR_Tally.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_Tally = new REPORT_PUR_Tally();
+                //MainForm.objREPORT_PUR_Tally.MdiParent = this;
+                //MainForm.objREPORT_PUR_Tally.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_Tally, "REPORT_PUR_Tally", 80311);
                 PbCurrentForm = "7.7.10";
             }
@@ -3119,11 +3119,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_CP_RateChange = new REPORT_CP_RateChange();
-                MainForm.objREPORT_CP_RateChange.MdiParent = this;
-                MainForm.objREPORT_CP_RateChange.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_CP_RateChange = new REPORT_CP_RateChange();
+                //MainForm.objREPORT_CP_RateChange.MdiParent = this;
+                //MainForm.objREPORT_CP_RateChange.Show();
                 OpenReportForm(ref MainForm.objREPORT_CP_RateChange, "REPORT_CP_RateChange", 80312);
             }
             catch (Exception ex)
@@ -3137,11 +3137,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PriceList = new REPORT_PriceList();
-                MainForm.objREPORT_PriceList.MdiParent = this;
-                MainForm.objREPORT_PriceList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PriceList = new REPORT_PriceList();
+                //MainForm.objREPORT_PriceList.MdiParent = this;
+                //MainForm.objREPORT_PriceList.Show();
                 OpenReportForm(ref MainForm.objREPORT_PriceList, "REPORT_PriceList", 80315);
                 PbCurrentForm = "7.8.1";
             }
@@ -3156,11 +3156,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_AdditionalValue = new REPORT_PUR_AdditionalValue();
-                MainForm.objREPORT_PUR_AdditionalValue.MdiParent = this;
-                MainForm.objREPORT_PUR_AdditionalValue.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_AdditionalValue = new REPORT_PUR_AdditionalValue();
+                //MainForm.objREPORT_PUR_AdditionalValue.MdiParent = this;
+                //MainForm.objREPORT_PUR_AdditionalValue.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_AdditionalValue, "REPORT_PUR_AdditionalValue", 80313);
                 PbCurrentForm = "7.7.11";
             }
@@ -3175,11 +3175,11 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_DiscountValue = new REPORT_PUR_DiscountValue();
-                MainForm.objREPORT_PUR_DiscountValue.MdiParent = this;
-                MainForm.objREPORT_PUR_DiscountValue.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_DiscountValue = new REPORT_PUR_DiscountValue();
+                //MainForm.objREPORT_PUR_DiscountValue.MdiParent = this;
+                //MainForm.objREPORT_PUR_DiscountValue.Show();
                 OpenReportForm(ref MainForm.objREPORT_PUR_DiscountValue, "REPORT_PUR_DiscountValue", 80314);
                 PbCurrentForm = "7.7.11";
             }
@@ -3207,12 +3207,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void StickerPrintToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void TsmHSNCodeWiseReport_Click(object sender, EventArgs e)
         {
             try
