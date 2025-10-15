@@ -1728,12 +1728,13 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
                 udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objCP_PurchaseList = new CP_PurchaseList();
-                MainForm.objCP_PurchaseList.MdiParent = this;
-                MainForm.objCP_PurchaseList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                //MainForm.objCP_PurchaseList.MdiParent = this;
+                //MainForm.objCP_PurchaseList.Show();
+                OpenReportForm(ref MainForm.objCP_PurchaseList, "CP_PurchaseList", 201);
                 PbCurrentForm = "2.1";
             }
             catch (Exception ex)
@@ -1741,11 +1742,46 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
-        private void TsmsupplierMapping_Click(object sender, EventArgs e)
+        }
+        private void TsmpurchaseApprove_Click(object sender, EventArgs e)
         {
-          
-        } 
+            try
+            {
+                udfnGetDefaultCompany();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                //MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
+                //MainForm.objPUR_PurchaseApprovalList.Show();
+                OpenReportForm(ref MainForm.objPUR_PurchaseApprovalList, "PUR_PurchaseApprovalList", 202);
+                PbCurrentForm = "2.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void tsmpurchaseReturnDC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGetDefaultCompany();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
+                //MainForm.objINV_SalesInvoiceList.MdiParent = this;
+                //MainForm.objINV_SalesInvoiceList.Show();
+                OpenReportForm(ref MainForm.objINV_SalesInvoiceList, "PUR_ReturnDCList", 203);
+                PbCurrentForm = "2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void Tsmitem_Click(object sender, EventArgs e)
         {
             try
@@ -1756,28 +1792,6 @@ namespace ROMS
                 MainForm.objCP_Itemlist.MdiParent = this;
                 MainForm.objCP_Itemlist.Show();
                 PbCurrentForm = "5.11";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void Tsminward_Click(object sender, EventArgs e)
-        {
-          
-        }
-        private void TsmpurchaseApprove_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-                MainForm.objPUR_PurchaseApprovalList.MdiParent = this;
-                MainForm.objPUR_PurchaseApprovalList.Show();
-                PbCurrentForm = "2.3";
             }
             catch (Exception ex)
             {
@@ -3713,25 +3727,6 @@ namespace ROMS
                 //MainForm.objPUR_GRNApprovalList.Show();
                 OpenReportForm(ref MainForm.objPUR_GRNApprovalList, "PUR_GRNApprovalList", 105);
                 PbCurrentForm = "1.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void tsmpurchaseReturnDC_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
-                MainForm.objINV_SalesInvoiceList.MdiParent = this;
-                MainForm.objINV_SalesInvoiceList.Show();
-                PbCurrentForm = "2.2";
             }
             catch (Exception ex)
             {

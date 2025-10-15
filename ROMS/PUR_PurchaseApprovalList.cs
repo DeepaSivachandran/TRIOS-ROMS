@@ -16,6 +16,7 @@ namespace ROMS
 {
     public partial class PUR_PurchaseApprovalList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
@@ -27,6 +28,8 @@ namespace ROMS
         public PUR_PurchaseApprovalList()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsPurchaseEntryApprovalList, this);
         }
 
         private void PUR_PurchaseApprovalList_Load(object sender, EventArgs e)

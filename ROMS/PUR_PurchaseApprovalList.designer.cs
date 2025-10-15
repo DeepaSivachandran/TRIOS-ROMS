@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsPurchaseEntryApprovalList = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsbMismatchCount = new System.Windows.Forms.ToolStripButton();
             this.tsbPurchaseApproval = new System.Windows.Forms.ToolStripButton();
@@ -76,7 +76,7 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errPurchaseEntryApproval = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.tsBrandList.SuspendLayout();
+            this.tsPurchaseEntryApprovalList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).BeginInit();
             this.grpfilter.SuspendLayout();
@@ -85,12 +85,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.errPurchaseEntryApproval)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsPurchaseEntryApprovalList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPurchaseEntryApprovalList.BackColor = System.Drawing.Color.White;
+            this.tsPurchaseEntryApprovalList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPurchaseEntryApprovalList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPurchaseEntryApprovalList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.tsbMismatchCount,
             this.tsbPurchaseApproval,
@@ -99,11 +99,11 @@
             this.toolStripSeparator2,
             this.tsbRejectedProduct,
             this.tsbIncompleteList});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 28);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsPurchaseEntryApprovalList.Location = new System.Drawing.Point(0, 0);
+            this.tsPurchaseEntryApprovalList.Name = "tsPurchaseEntryApprovalList";
+            this.tsPurchaseEntryApprovalList.Size = new System.Drawing.Size(1354, 28);
+            this.tsPurchaseEntryApprovalList.TabIndex = 35;
+            this.tsPurchaseEntryApprovalList.Text = "Brand";
             // 
             // toolStripLabel1
             // 
@@ -639,7 +639,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlpurchaseapproval);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsPurchaseEntryApprovalList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -650,8 +650,8 @@
             this.Load += new System.EventHandler(this.PUR_PurchaseApprovalList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseApprovalList_KeyDown);
             this.Leave += new System.EventHandler(this.PUR_PurchaseApprovalList_Leave);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.tsPurchaseEntryApprovalList.ResumeLayout(false);
+            this.tsPurchaseEntryApprovalList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);
             this.pnlpurchaseapproval.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryApproval)).EndInit();
@@ -667,7 +667,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsPurchaseEntryApprovalList;
         private System.Windows.Forms.Panel pnlpurchaseapproval;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.GroupBox grpfilter;

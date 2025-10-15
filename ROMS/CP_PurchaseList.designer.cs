@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsPurchaseList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tsbQueue = new System.Windows.Forms.ToolStripButton();
@@ -79,7 +79,7 @@
             this.lblschedleCode = new System.Windows.Forms.Label();
             this.errPurchaseList = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblQueueCount = new System.Windows.Forms.Label();
-            this.tsBrandList.SuspendLayout();
+            this.tsPurchaseList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.pnlpurchase.SuspendLayout();
@@ -88,12 +88,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.errPurchaseList)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsPurchaseList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPurchaseList.BackColor = System.Drawing.Color.White;
+            this.tsPurchaseList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPurchaseList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPurchaseList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.toolStripButton1,
             this.tsbQueue,
@@ -103,11 +103,11 @@
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 27);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsPurchaseList.Location = new System.Drawing.Point(0, 0);
+            this.tsPurchaseList.Name = "tsPurchaseList";
+            this.tsPurchaseList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPurchaseList.TabIndex = 35;
+            this.tsPurchaseList.Text = "Brand";
             // 
             // tspHeader
             // 
@@ -637,7 +637,7 @@
             this.Controls.Add(this.lblSupplierCode);
             this.Controls.Add(this.lblschedleCode);
             this.Controls.Add(this.pnlpurchase);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsPurchaseList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -647,8 +647,8 @@
             this.Text = "Purchase Entry";
             this.Load += new System.EventHandler(this.CP_PurchaseList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_PurchaseList_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.tsPurchaseList.ResumeLayout(false);
+            this.tsPurchaseList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.pnlpurchase.ResumeLayout(false);
@@ -664,7 +664,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsPurchaseList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbQueue;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

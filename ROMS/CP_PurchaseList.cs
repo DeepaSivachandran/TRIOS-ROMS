@@ -17,6 +17,7 @@ namespace ROMS
 {
     public partial class CP_PurchaseList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable Deftable = new DataTable();
@@ -30,6 +31,8 @@ namespace ROMS
         public CP_PurchaseList()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsPurchaseList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

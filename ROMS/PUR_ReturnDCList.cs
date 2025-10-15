@@ -16,7 +16,7 @@ namespace ROMS
 {
     public partial class PUR_ReturnDCList : Form
     {
-
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int Varflag = 0, varviewtype=0;
@@ -30,6 +30,8 @@ namespace ROMS
         public PUR_ReturnDCList()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsReturnDCList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
