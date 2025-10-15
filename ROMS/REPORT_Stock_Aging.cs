@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class REPORT_Stock_Aging : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -25,6 +26,7 @@ namespace ROMS
         public REPORT_Stock_Aging()
         {
             InitializeComponent();
+            windowControl.Initialize(tsStockAgingReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {
