@@ -78,7 +78,7 @@ namespace ROMS
                         bool isFirstVisible = ts.Items.Cast<ToolStripItem>().OfType<ToolStripLabel>().Count() == 0;
                         lbl.Image = isFirstVisible
                             ? Properties.Resources.bread_crumb  // root label
-                            : Properties.Resources.double_chevron; // child levels
+                            : Properties.Resources.breadcrum; // child levels
 
                         lbl.ImageAlign = ContentAlignment.MiddleLeft;
                         lbl.TextImageRelation = TextImageRelation.ImageBeforeText;

@@ -143,6 +143,16 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap breadcrum {
+            get {
+                object obj = ResourceManager.GetObject("breadcrum", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap browse1 {
             get {
                 object obj = ResourceManager.GetObject("browse1", resourceCulture);
@@ -246,6 +256,16 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap close_window {
             get {
                 object obj = ResourceManager.GetObject("close-window", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close_window1 {
+            get {
+                object obj = ResourceManager.GetObject("close-window1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -586,6 +606,16 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap logout {
             get {
                 object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mini {
+            get {
+                object obj = ResourceManager.GetObject("mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -15,6 +15,7 @@ namespace ROMS
     public partial class REPORT_PUR_PeriodWiseTax : Form
     {
         private ContextMenuStrip contextMenu;
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -26,6 +27,7 @@ namespace ROMS
         public REPORT_PUR_PeriodWiseTax()
         {
             InitializeComponent();
+            windowControl.Initialize(ReportCity, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

@@ -15,6 +15,7 @@ namespace ROMS
     public partial class REPORT_PUR_TCSValue : Form
     {
         private ContextMenuStrip contextMenu;
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -25,7 +26,8 @@ namespace ROMS
         private List<ComboItem> months;
         public REPORT_PUR_TCSValue()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            windowControl.Initialize(ReportCity, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

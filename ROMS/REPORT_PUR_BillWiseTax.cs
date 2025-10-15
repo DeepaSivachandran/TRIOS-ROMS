@@ -28,66 +28,7 @@ namespace ROMS
         public REPORT_PUR_BillWiseTax()
         {
             InitializeComponent();
-            windowControl.Initialize(ReportCity);
-
-            // Hook events properly
-            windowControl.FormMinimizeClicked += WindowControl_FormMinimizeClicked;
-            windowControl.FormCloseClicked += WindowControl_FormCloseClicked;
-        }
-
-        private void WindowControl_FormMinimizeClicked(object sender, EventArgs e)
-        {
-            // Simulate real minimize click — route through WndProc
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_MINIMIZE = 0xF020;
-
-            Message msg = Message.Create(this.Handle, WM_SYSCOMMAND, new IntPtr(SC_MINIMIZE), IntPtr.Zero);
-            this.WndProc(ref msg);   // ✅ Changed from DefWndProc to WndProc
-        }
-
-        private void WindowControl_FormCloseClicked(object sender, EventArgs e)
-        {
-            // Simulate real close click — route through WndProc
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_CLOSE = 0xF060;
-
-            Message msg = Message.Create(this.Handle, WM_SYSCOMMAND, new IntPtr(SC_CLOSE), IntPtr.Zero);
-            this.WndProc(ref msg);   // ✅ Changed from DefWndProc to WndProc
-        }
-
-
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_MINIMIZE = 0xF020;
-            const int SC_CLOSE = 0xF060;
-
-            if (m.Msg == WM_SYSCOMMAND && (m.WParam.ToInt32() & 0xFFF0) == SC_MINIMIZE)
-            {
-                this.WindowState = FormWindowState.Minimized;
-
-                if (this.MdiParent is MainForm mainForm)
-                {
-                    mainForm.Invoke(new Action(() =>
-                    {
-                        mainForm.SubForm_Resize(this, EventArgs.Empty);
-                    }));
-                }
-                return;
-            }
-            if (m.Msg == WM_SYSCOMMAND && (m.WParam.ToInt32() & 0xFFF0) == SC_CLOSE)
-            {
-                if (this.MdiParent is MainForm mainForm)
-                {
-                    mainForm.Invoke(new Action(() =>
-                    {
-                        mainForm.PrepareFormClose(this, this.Name);
-                    }));
-                }
-                return;
-            }
-
-            base.WndProc(ref m);
+            windowControl.Initialize(ReportCity, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
