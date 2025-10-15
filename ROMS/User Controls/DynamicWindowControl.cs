@@ -33,7 +33,7 @@ namespace ROMS
             // --- Minimize Label ---
             MinimizeLabel = new ToolStripLabel()
             {
-                Image = Properties.Resources.minimize,
+                Image = Properties.Resources.mini_form,
                 DisplayStyle = ToolStripItemDisplayStyle.Image,
                 Margin = new Padding(4, 0, 4, 0),
                 Alignment = ToolStripItemAlignment.Right
@@ -43,7 +43,7 @@ namespace ROMS
             // --- Close Label ---
             CloseLabel = new ToolStripLabel()
             {
-                Image = Properties.Resources.close_window,
+                Image = Properties.Resources.close_Form,
                 DisplayStyle = ToolStripItemDisplayStyle.Image,
                 Margin = new Padding(4, 0, 4, 0),
                 Alignment = ToolStripItemAlignment.Right

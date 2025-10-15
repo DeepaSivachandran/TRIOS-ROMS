@@ -56,7 +56,7 @@ namespace ROMS
                 }
 
                 var visibleLabels = new List<ToolStripLabel>();
-
+                bool isRootAssigned = false;
                 // Add breadcrumb labels dynamically
                 for (int i = 0; i < 4; i++)
                 {
@@ -74,11 +74,15 @@ namespace ROMS
                             Tag = levelCode,
                             Margin = new Padding(4, 0, 4, 0)
                         };
-
-                        bool isFirstVisible = ts.Items.Cast<ToolStripItem>().OfType<ToolStripLabel>().Count() == 0;
-                        lbl.Image = isFirstVisible
-                            ? Properties.Resources.bread_crumb  // root label
-                            : Properties.Resources.breadcrum; // child levels
+                        if (!isRootAssigned)
+                        {
+                            lbl.Image = Properties.Resources.bread_crumb; // root
+                            isRootAssigned = true;
+                        }
+                        else
+                        {
+                            lbl.Image = Properties.Resources.breadcrum_Level; // child
+                        }
 
                         lbl.ImageAlign = ContentAlignment.MiddleLeft;
                         lbl.TextImageRelation = TextImageRelation.ImageBeforeText;

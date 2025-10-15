@@ -436,8 +436,21 @@ namespace ROMS
                 ToolStripButton btn = new ToolStripButton(form.Text)
                 {
                     DisplayStyle = ToolStripItemDisplayStyle.Text,
-                    ToolTipText = form.Text
+                    ToolTipText = form.Text,
+                    ForeColor = Color.DarkBlue,          // Set default text color
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold) // Optional: bold text
                 };
+                btn.MouseEnter += (s, e) =>
+                {
+                    btn.ForeColor = Color.White;         // Hover text color
+                    btn.BackColor = Color.DarkBlue;      // Hover background
+                };
+                btn.MouseLeave += (s, e) =>
+                {
+                    btn.ForeColor = Color.DarkBlue;      // Reset text color
+                    btn.BackColor = Color.Transparent;   // Reset background
+                };
+
                 btn.Click += MinimizedFormButton_Click;
 
                 statusBar.Items.Add(btn);
@@ -3304,11 +3317,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_BillWiseTax = new REPORT_PUR_BillWiseTax();
-                MainForm.objREPORT_PUR_BillWiseTax.MdiParent = this;
-                MainForm.objREPORT_PUR_BillWiseTax.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_BillWiseTax = new REPORT_PUR_BillWiseTax();
+                //MainForm.objREPORT_PUR_BillWiseTax.MdiParent = this;
+                //MainForm.objREPORT_PUR_BillWiseTax.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_BillWiseTax, "REPORT_PUR_BillWiseTax", 80601);
                 PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
@@ -3322,11 +3336,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_PeriodWiseTax = new REPORT_PUR_PeriodWiseTax();
-                MainForm.objREPORT_PUR_PeriodWiseTax.MdiParent = this;
-                MainForm.objREPORT_PUR_PeriodWiseTax.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_PeriodWiseTax = new REPORT_PUR_PeriodWiseTax();
+                //MainForm.objREPORT_PUR_PeriodWiseTax.MdiParent = this;
+                //MainForm.objREPORT_PUR_PeriodWiseTax.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_PeriodWiseTax, "REPORT_PUR_PeriodWiseTax", 80604);
                 PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
@@ -3376,11 +3391,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_AllTax = new REPORT_PUR_AllTax();
-                MainForm.objREPORT_PUR_AllTax.MdiParent = this;
-                MainForm.objREPORT_PUR_AllTax.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_AllTax = new REPORT_PUR_AllTax();
+                //MainForm.objREPORT_PUR_AllTax.MdiParent = this;
+                //MainForm.objREPORT_PUR_AllTax.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_AllTax, "REPORT_PUR_AllTax", 80603);
                 PbCurrentForm = "7.7.12";
             }
             catch (Exception ex)
@@ -3394,11 +3410,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_TCSValue = new REPORT_PUR_TCSValue();
-                MainForm.objREPORT_PUR_TCSValue.MdiParent = this;
-                MainForm.objREPORT_PUR_TCSValue.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_PUR_TCSValue = new REPORT_PUR_TCSValue();
+                //MainForm.objREPORT_PUR_TCSValue.MdiParent = this;
+                //MainForm.objREPORT_PUR_TCSValue.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_TCSValue, "REPORT_PUR_TCSValue", 80602);
                 PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
