@@ -74,7 +74,8 @@ namespace ROMS
                     ////user role report
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 413) 
                     {
-                        udfnRack();
+                        udfnUserRole();
+
                     }
                     ////user name report 
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 414)
@@ -89,7 +90,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnRack()
+        public void udfnUserRole()
         {
             try
             {
@@ -103,7 +104,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackList(15,0,0,0,0,"",0, 0);
+                objDs = objspservice.udfnUserRoleList(5, Convert.ToInt32(lblUserRoleId.Text), 0, 0, "");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -115,7 +116,8 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rack.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_UserRole.rpt");
+                    objBillreport.SetParameterValue("paraUserRoleId", Convert.ToInt32(lblUserRoleId.Text));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
