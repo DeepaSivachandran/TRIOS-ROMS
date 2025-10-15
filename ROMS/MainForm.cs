@@ -2918,6 +2918,7 @@ namespace ROMS
                 MainForm.objREPORT_Purchase_Summary = new REPORT_Purchase_Summary();
                 MainForm.objREPORT_Purchase_Summary.MdiParent = this;
                 MainForm.objREPORT_Purchase_Summary.Show();
+                OpenReportForm(ref MainForm.objREPORT_Purchase_Summary, "REPORT_Purchase_Summary", 80301);
                 PbCurrentForm = "7.7.1";
             }
             catch (Exception ex)
@@ -2936,7 +2937,46 @@ namespace ROMS
                 MainForm.objREPORT_Purchase_Details = new REPORT_Purchase_Details();
                 MainForm.objREPORT_Purchase_Details.MdiParent = this;
                 MainForm.objREPORT_Purchase_Details.Show();
+                OpenReportForm(ref MainForm.objREPORT_Purchase_Details, "REPORT_Purchase_Details", 80302);
                 PbCurrentForm = "7.7.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseBatchDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_BatchDetails = new REPORT_PUR_BatchDetails();
+                MainForm.objREPORT_PUR_BatchDetails.MdiParent = this;
+                MainForm.objREPORT_PUR_BatchDetails.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_BatchDetails, "REPORT_PUR_BatchDetails", 80303);
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseCostDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_CostDetails = new REPORT_PUR_CostDetails();
+                MainForm.objREPORT_PUR_CostDetails.MdiParent = this;
+                MainForm.objREPORT_PUR_CostDetails.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_CostDetails, "REPORT_PUR_CostDetails", 80304);
+                PbCurrentForm = "7.7.11";
             }
             catch (Exception ex)
             {
@@ -2954,6 +2994,7 @@ namespace ROMS
                 MainForm.objREPORT_Unapproved_Purchase_Summary = new REPORT_Unapproved_Purchase_Summary();
                 MainForm.objREPORT_Unapproved_Purchase_Summary.MdiParent = this;
                 MainForm.objREPORT_Unapproved_Purchase_Summary.Show();
+                OpenReportForm(ref MainForm.objREPORT_Unapproved_Purchase_Summary, "REPORT_Unapproved_Purchase_Summary", 80305);
                 PbCurrentForm = "7.7.3";
             }
             catch (Exception ex)
@@ -2972,6 +3013,7 @@ namespace ROMS
                 MainForm.objREPORT_Unapproved_Purchase_Detail = new REPORT_Unapproved_Purchase_Detail();
                 MainForm.objREPORT_Unapproved_Purchase_Detail.MdiParent = this;
                 MainForm.objREPORT_Unapproved_Purchase_Detail.Show();
+                OpenReportForm(ref MainForm.objREPORT_Unapproved_Purchase_Detail, "REPORT_Unapproved_Purchase_Detail", 80306);
                 PbCurrentForm = "7.7.4";
             }
             catch (Exception ex)
@@ -2990,6 +3032,7 @@ namespace ROMS
                 MainForm.objREPORT_Purchase_Defect_Product = new REPORT_Purchase_Defect_Product();
                 MainForm.objREPORT_Purchase_Defect_Product.MdiParent = this;
                 MainForm.objREPORT_Purchase_Defect_Product.Show();
+                OpenReportForm(ref MainForm.objREPORT_Purchase_Defect_Product, "REPORT_Purchase_Defect_Product", 80307);
                 PbCurrentForm = "7.7.5";
             }
             catch (Exception ex)
@@ -2998,9 +3041,153 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void DiscountVoucherToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TSMProductWiseLP_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
+                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_ProductWiseLastPurchase, "REPORT_PUR_ProductWiseLastPurchase", 80308);
+                PbCurrentForm = "7.7.9";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseCostPrice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_CostPrice = new REPORT_PUR_CostPrice();
+                MainForm.objREPORT_PUR_CostPrice.MdiParent = this;
+                MainForm.objREPORT_PUR_CostPrice.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_CostPrice, "REPORT_PUR_CostPrice", 80309);
+                PbCurrentForm = "7.7.8";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseProductWiseReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_ProductWiseSummaryDetails = new REPORT_PUR_ProductWiseSummaryDetails();
+                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.MdiParent = this;
+                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_ProductWiseSummaryDetails, "REPORT_PUR_ProductWiseSummaryDetails", 80310);
+                PbCurrentForm = "7.7.7";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmPurchaseTallyReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_Tally = new REPORT_PUR_Tally();
+                MainForm.objREPORT_PUR_Tally.MdiParent = this;
+                MainForm.objREPORT_PUR_Tally.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_Tally, "REPORT_PUR_Tally", 80311);
+                PbCurrentForm = "7.7.10";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void tsmRateChangeReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_RateChange = new REPORT_CP_RateChange();
+                MainForm.objREPORT_CP_RateChange.MdiParent = this;
+                MainForm.objREPORT_CP_RateChange.Show();
+                OpenReportForm(ref MainForm.objREPORT_CP_RateChange, "REPORT_CP_RateChange", 80312);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmPriceList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PriceList = new REPORT_PriceList();
+                MainForm.objREPORT_PriceList.MdiParent = this;
+                MainForm.objREPORT_PriceList.Show();
+                OpenReportForm(ref MainForm.objREPORT_PriceList, "REPORT_PriceList", 80315);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseAdditionalValueReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_AdditionalValue = new REPORT_PUR_AdditionalValue();
+                MainForm.objREPORT_PUR_AdditionalValue.MdiParent = this;
+                MainForm.objREPORT_PUR_AdditionalValue.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_AdditionalValue, "REPORT_PUR_AdditionalValue", 80313);
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmPurchaseDiscountValueReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_PUR_DiscountValue = new REPORT_PUR_DiscountValue();
+                MainForm.objREPORT_PUR_DiscountValue.MdiParent = this;
+                MainForm.objREPORT_PUR_DiscountValue.Show();
+                OpenReportForm(ref MainForm.objREPORT_PUR_DiscountValue, "REPORT_PUR_DiscountValue", 80314);
+                PbCurrentForm = "7.7.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void tsmPOStatusWise_Click(object sender, EventArgs e)
@@ -3099,32 +3286,15 @@ namespace ROMS
             }
         }
 
-        private void tsmRateChangeReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_CP_RateChange = new REPORT_CP_RateChange();
-                MainForm.objREPORT_CP_RateChange.MdiParent = this;
-                MainForm.objREPORT_CP_RateChange.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmStockInward_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_Stock_Inward = new REPORT_Stock_Inward();
-                MainForm.objREPORT_Stock_Inward.MdiParent = this;
-                MainForm.objREPORT_Stock_Inward.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_Stock_Inward = new REPORT_Stock_Inward();
+                //MainForm.objREPORT_Stock_Inward.MdiParent = this;
+                //MainForm.objREPORT_Stock_Inward.Show();
                 OpenReportForm(ref MainForm.objREPORT_Stock_Inward, "REPORT_Stock_Inward", 80401);
                 PbCurrentForm = "7.9.1";
             }
@@ -3264,100 +3434,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TsmPurchaseProductWiseReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_ProductWiseSummaryDetails = new REPORT_PUR_ProductWiseSummaryDetails();
-                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.MdiParent = this;
-                MainForm.objREPORT_PUR_ProductWiseSummaryDetails.Show();
-                PbCurrentForm = "7.7.7";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsmPurchaseCostPrice_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_CostPrice = new REPORT_PUR_CostPrice();
-                MainForm.objREPORT_PUR_CostPrice.MdiParent = this;
-                MainForm.objREPORT_PUR_CostPrice.Show();
-                PbCurrentForm = "7.7.8";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsmProductWiseLastPurchase_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void TsmPurchaseTallyReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_Tally = new REPORT_PUR_Tally();
-                MainForm.objREPORT_PUR_Tally.MdiParent = this;
-                MainForm.objREPORT_PUR_Tally.Show();
-                PbCurrentForm = "7.7.10";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsmPurchaseBatchDetails_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_BatchDetails = new REPORT_PUR_BatchDetails();
-                MainForm.objREPORT_PUR_BatchDetails.MdiParent = this;
-                MainForm.objREPORT_PUR_BatchDetails.Show();
-                PbCurrentForm = "7.7.11";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsmPurchaseCostDetails_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_CostDetails = new REPORT_PUR_CostDetails();
-                MainForm.objREPORT_PUR_CostDetails.MdiParent = this;
-                MainForm.objREPORT_PUR_CostDetails.Show();
-                PbCurrentForm = "7.7.11";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
 
         private void TsmPurchaseBillWiseTaxReport_Click(object sender, EventArgs e)
         {
@@ -3396,43 +3472,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void TsmPurchaseAdditionalValueReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_AdditionalValue = new REPORT_PUR_AdditionalValue();
-                MainForm.objREPORT_PUR_AdditionalValue.MdiParent = this;
-                MainForm.objREPORT_PUR_AdditionalValue.Show();
-                PbCurrentForm = "7.7.11";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TsmPurchaseDiscountValueReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_DiscountValue = new REPORT_PUR_DiscountValue();
-                MainForm.objREPORT_PUR_DiscountValue.MdiParent = this;
-                MainForm.objREPORT_PUR_DiscountValue.Show();
-                PbCurrentForm = "7.7.11";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmAllPurchaseTaxReport_Click(object sender, EventArgs e)
         {
             try
@@ -4238,24 +4277,6 @@ namespace ROMS
             }
         }
 
-        private void TSMProductWiseLP_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase = new REPORT_PUR_ProductWiseLastPurchase();
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.MdiParent = this;
-                MainForm.objREPORT_PUR_ProductWiseLastPurchase.Show();
-                PbCurrentForm = "7.7.9";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void tsmClearTransactions_Click(object sender, EventArgs e)
         {
             try
@@ -4392,25 +4413,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPriceList_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_PriceList = new REPORT_PriceList();
-                MainForm.objREPORT_PriceList.MdiParent = this;
-                MainForm.objREPORT_PriceList.Show();
-                PbCurrentForm = "7.8.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void tsmStockJournal_Click(object sender, EventArgs e)
         {
             try
