@@ -29,7 +29,7 @@ namespace ROMS
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            windowControl.Initialize(ReportCity, this);
+            windowControl.Initialize(tsAllPurchaseReport, this);
             this.DoubleBuffered = true;
 
             //var months = new List<ComboItem>

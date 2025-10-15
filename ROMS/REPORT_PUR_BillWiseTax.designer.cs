@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_BillWiseTax));
-            this.ReportCity = new System.Windows.Forms.ToolStrip();
+            this.tsBillwiseTaxReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbDownload = new System.Windows.Forms.ToolStripButton();
@@ -59,7 +59,7 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.ReportCity.SuspendLayout();
+            this.tsBillwiseTaxReport.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
             this.grpfilter.SuspendLayout();
@@ -67,23 +67,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportCity
+            // tsBillwiseTaxReport
             // 
-            this.ReportCity.BackColor = System.Drawing.Color.White;
-            this.ReportCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportCity.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportCity.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsBillwiseTaxReport.BackColor = System.Drawing.Color.White;
+            this.tsBillwiseTaxReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsBillwiseTaxReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsBillwiseTaxReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsBillwiseTaxReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsbDownload,
             this.tsbExport,
             this.tsLabelPlaceholder});
-            this.ReportCity.Location = new System.Drawing.Point(0, 0);
-            this.ReportCity.Name = "ReportCity";
-            this.ReportCity.Size = new System.Drawing.Size(1354, 32);
-            this.ReportCity.TabIndex = 35;
-            this.ReportCity.Text = "City Report";
+            this.tsBillwiseTaxReport.Location = new System.Drawing.Point(0, 0);
+            this.tsBillwiseTaxReport.Name = "tsBillwiseTaxReport";
+            this.tsBillwiseTaxReport.Size = new System.Drawing.Size(1354, 32);
+            this.tsBillwiseTaxReport.TabIndex = 35;
+            this.tsBillwiseTaxReport.Text = "City Report";
             // 
             // tsbPrintFormat
             // 
@@ -439,18 +439,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportCity);
-            this.Controls.Add(this.ReportCity);
+            this.Controls.Add(this.tsBillwiseTaxReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_PUR_BillWiseTax";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Billwise Tax Report";
+            this.Text = "Purchase Bill Wise Tax Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_City_KeyDown);
-            this.ReportCity.ResumeLayout(false);
-            this.ReportCity.PerformLayout();
+            this.tsBillwiseTaxReport.ResumeLayout(false);
+            this.tsBillwiseTaxReport.PerformLayout();
             this.pnlReportCity.ResumeLayout(false);
             this.pnlReportCity.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).EndInit();
@@ -465,7 +465,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportCity;
+        private System.Windows.Forms.ToolStrip tsBillwiseTaxReport;
         private System.Windows.Forms.Panel pnlReportCity;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

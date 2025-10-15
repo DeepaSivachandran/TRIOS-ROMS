@@ -15,6 +15,7 @@ namespace ROMS
     public partial class REPORT_HSN_Code : Form
     { 
         private ContextMenuStrip contextMenu;
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -26,6 +27,7 @@ namespace ROMS
         public REPORT_HSN_Code()
         {
             InitializeComponent();
+            windowControl.Initialize(tsHSNWiseReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

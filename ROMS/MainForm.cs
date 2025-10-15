@@ -3029,11 +3029,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_HSN_Code = new REPORT_HSN_Code();
-                MainForm.objREPORT_HSN_Code.MdiParent = this;
-                MainForm.objREPORT_HSN_Code.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_HSN_Code = new REPORT_HSN_Code();
+                //MainForm.objREPORT_HSN_Code.MdiParent = this;
+                //MainForm.objREPORT_HSN_Code.Show();
+                OpenReportForm(ref MainForm.objREPORT_HSN_Code, "REPORT_HSN_Code", 8060601);
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
@@ -3046,11 +3047,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
-                MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
-                MainForm.objREPORT_HSN_NameWise_Product.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_HSN_NameWise_Product = new REPORT_HSN_NameWise_Product();
+                //MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this;
+                //MainForm.objREPORT_HSN_NameWise_Product.Show();
+                OpenReportForm(ref MainForm.objREPORT_HSN_NameWise_Product, "REPORT_HSN_NameWise_Product", 8060602);
                 PbCurrentForm = "7.8.2";
             }
             catch (Exception ex)
@@ -3519,11 +3521,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_HSN_Tax_Summary = new REPORT_HSN_Tax_Summary();
-                MainForm.objREPORT_HSN_Tax_Summary.MdiParent = this;
-                MainForm.objREPORT_HSN_Tax_Summary.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_HSN_Tax_Summary = new REPORT_HSN_Tax_Summary();
+                //MainForm.objREPORT_HSN_Tax_Summary.MdiParent = this;
+                //MainForm.objREPORT_HSN_Tax_Summary.Show();
+                OpenReportForm(ref MainForm.objREPORT_HSN_Tax_Summary, "REPORT_HSN_Tax_Summary", 80605);
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)

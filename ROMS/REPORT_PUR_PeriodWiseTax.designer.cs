@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_PeriodWiseTax));
-            this.ReportCity = new System.Windows.Forms.ToolStrip();
+            this.tsPeriodWiseReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
@@ -54,28 +54,28 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.ReportCity.SuspendLayout();
+            this.tsPeriodWiseReport.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportCity
+            // tsPeriodWiseReport
             // 
-            this.ReportCity.BackColor = System.Drawing.Color.White;
-            this.ReportCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportCity.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportCity.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPeriodWiseReport.BackColor = System.Drawing.Color.White;
+            this.tsPeriodWiseReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPeriodWiseReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPeriodWiseReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsPeriodWiseReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportCity.Location = new System.Drawing.Point(0, 0);
-            this.ReportCity.Name = "ReportCity";
-            this.ReportCity.Size = new System.Drawing.Size(1354, 32);
-            this.ReportCity.TabIndex = 35;
-            this.ReportCity.Text = "City Report";
+            this.tsPeriodWiseReport.Location = new System.Drawing.Point(0, 0);
+            this.tsPeriodWiseReport.Name = "tsPeriodWiseReport";
+            this.tsPeriodWiseReport.Size = new System.Drawing.Size(1354, 32);
+            this.tsPeriodWiseReport.TabIndex = 35;
+            this.tsPeriodWiseReport.Text = "City Report";
             // 
             // tsbPrintFormat
             // 
@@ -355,7 +355,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportCity);
-            this.Controls.Add(this.ReportCity);
+            this.Controls.Add(this.tsPeriodWiseReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -365,8 +365,8 @@
             this.Text = "Purchase Period Wise Tax Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_City_KeyDown);
-            this.ReportCity.ResumeLayout(false);
-            this.ReportCity.PerformLayout();
+            this.tsPeriodWiseReport.ResumeLayout(false);
+            this.tsPeriodWiseReport.PerformLayout();
             this.pnlReportCity.ResumeLayout(false);
             this.pnlReportCity.PerformLayout();
             this.grpfilter.ResumeLayout(false);
@@ -380,7 +380,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportCity;
+        private System.Windows.Forms.ToolStrip tsPeriodWiseReport;
         private System.Windows.Forms.Panel pnlReportCity;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

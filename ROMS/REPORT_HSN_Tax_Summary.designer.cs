@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_HSN_Tax_Summary));
-            this.ReportHSN = new System.Windows.Forms.ToolStrip();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.tsHSNTaxSummary = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportHSN = new System.Windows.Forms.Panel();
             this.DGV_FilterHSN = new System.Windows.Forms.DataGridView();
             this.lvHsnName = new System.Windows.Forms.ListView();
@@ -59,9 +60,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.ReportHSN.SuspendLayout();
+            this.tsHSNTaxSummary.SuspendLayout();
             this.pnlReportHSN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterHSN)).BeginInit();
             this.grpfilter.SuspendLayout();
@@ -69,21 +69,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportHSN
+            // tsHSNTaxSummary
             // 
-            this.ReportHSN.BackColor = System.Drawing.Color.White;
-            this.ReportHSN.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportHSN.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportHSN.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportHSN.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsHSNTaxSummary.BackColor = System.Drawing.Color.White;
+            this.tsHSNTaxSummary.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsHSNTaxSummary.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsHSNTaxSummary.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsHSNTaxSummary.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportHSN.Location = new System.Drawing.Point(0, 0);
-            this.ReportHSN.Name = "ReportHSN";
-            this.ReportHSN.Size = new System.Drawing.Size(1354, 27);
-            this.ReportHSN.TabIndex = 35;
-            this.ReportHSN.Text = "HSN Report";
+            this.tsHSNTaxSummary.Location = new System.Drawing.Point(0, 0);
+            this.tsHSNTaxSummary.Name = "tsHSNTaxSummary";
+            this.tsHSNTaxSummary.Size = new System.Drawing.Size(1354, 32);
+            this.tsHSNTaxSummary.TabIndex = 35;
+            this.tsHSNTaxSummary.Text = "HSN Report";
             // 
             // tsbPrintFormat
             // 
@@ -95,7 +95,7 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(74, 24);
+            this.tsbPrintFormat.Size = new System.Drawing.Size(93, 29);
             this.tsbPrintFormat.Text = "A4-Portrait";
             // 
             // tsbFormat
@@ -106,9 +106,19 @@
             this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
+            this.tsbFormat.Size = new System.Drawing.Size(112, 29);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(69, 29);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportHSN
             // 
@@ -132,24 +142,24 @@
             this.DGV_FilterHSN.AllowUserToResizeRows = false;
             this.DGV_FilterHSN.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterHSN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterHSN.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterHSN.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_FilterHSN.ColumnHeadersHeight = 30;
             this.DGV_FilterHSN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterHSN.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterHSN.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterHSN.EnableHeadersVisualStyles = false;
             this.DGV_FilterHSN.GridColor = System.Drawing.Color.White;
             this.DGV_FilterHSN.Location = new System.Drawing.Point(387, 73);
@@ -157,9 +167,9 @@
             this.DGV_FilterHSN.ReadOnly = true;
             this.DGV_FilterHSN.RowHeadersVisible = false;
             this.DGV_FilterHSN.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterHSN.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterHSN.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterHSN.RowTemplate.Height = 25;
             this.DGV_FilterHSN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterHSN.Size = new System.Drawing.Size(218, 226);
@@ -225,7 +235,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(235, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 20);
+            this.label2.Size = new System.Drawing.Size(102, 26);
             this.label2.TabIndex = 1111229;
             this.label2.Text = "Supplier Type";
             // 
@@ -234,7 +244,7 @@
             this.cmbSupplierType.FormattingEnabled = true;
             this.cmbSupplierType.Location = new System.Drawing.Point(235, 44);
             this.cmbSupplierType.Name = "cmbSupplierType";
-            this.cmbSupplierType.Size = new System.Drawing.Size(143, 27);
+            this.cmbSupplierType.Size = new System.Drawing.Size(143, 33);
             this.cmbSupplierType.TabIndex = 3;
             this.cmbSupplierType.SelectedIndexChanged += new System.EventHandler(this.CmbSupplierType_SelectedIndexChanged);
             this.cmbSupplierType.Enter += new System.EventHandler(this.CmbSupplierType_Enter);
@@ -248,7 +258,7 @@
             this.txtHsnName.Location = new System.Drawing.Point(384, 44);
             this.txtHsnName.MaxLength = 50;
             this.txtHsnName.Name = "txtHsnName";
-            this.txtHsnName.Size = new System.Drawing.Size(177, 27);
+            this.txtHsnName.Size = new System.Drawing.Size(177, 32);
             this.txtHsnName.TabIndex = 4;
             this.txtHsnName.TextChanged += new System.EventHandler(this.TxtHsnName_TextChanged);
             this.txtHsnName.Enter += new System.EventHandler(this.TxtHsnName_Enter);
@@ -261,7 +271,7 @@
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpToDate.Location = new System.Drawing.Point(122, 45);
             this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(107, 27);
+            this.dpToDate.Size = new System.Drawing.Size(107, 32);
             this.dpToDate.TabIndex = 2;
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
             // 
@@ -271,7 +281,7 @@
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpFromDate.Location = new System.Drawing.Point(9, 45);
             this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
+            this.dpFromDate.Size = new System.Drawing.Size(107, 32);
             this.dpFromDate.TabIndex = 1;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.dpFromDate_ValueChanged);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
@@ -282,7 +292,7 @@
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(122, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 20);
+            this.label3.Size = new System.Drawing.Size(64, 26);
             this.label3.TabIndex = 1111194;
             this.label3.Text = "To Date";
             // 
@@ -292,7 +302,7 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 20);
+            this.label1.Size = new System.Drawing.Size(82, 26);
             this.label1.TabIndex = 1111193;
             this.label1.Text = "From Date";
             // 
@@ -301,7 +311,7 @@
             this.lblHsnName.AutoSize = true;
             this.lblHsnName.Location = new System.Drawing.Point(452, 23);
             this.lblHsnName.Name = "lblHsnName";
-            this.lblHsnName.Size = new System.Drawing.Size(16, 20);
+            this.lblHsnName.Size = new System.Drawing.Size(21, 25);
             this.lblHsnName.TabIndex = 958789;
             this.lblHsnName.Text = "0";
             this.lblHsnName.Visible = false;
@@ -311,7 +321,7 @@
             this.cmbGST.FormattingEnabled = true;
             this.cmbGST.Location = new System.Drawing.Point(567, 44);
             this.cmbGST.Name = "cmbGST";
-            this.cmbGST.Size = new System.Drawing.Size(109, 27);
+            this.cmbGST.Size = new System.Drawing.Size(109, 33);
             this.cmbGST.TabIndex = 5;
             this.cmbGST.Enter += new System.EventHandler(this.CmbGST_Enter);
             this.cmbGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbGST_KeyDown);
@@ -324,7 +334,7 @@
             this.lblGST.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGST.Location = new System.Drawing.Point(567, 22);
             this.lblGST.Name = "lblGST";
-            this.lblGST.Size = new System.Drawing.Size(30, 20);
+            this.lblGST.Size = new System.Drawing.Size(39, 26);
             this.lblGST.TabIndex = 1111180;
             this.lblGST.Text = "GST";
             // 
@@ -334,7 +344,7 @@
             this.lblHSN.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHSN.Location = new System.Drawing.Point(384, 22);
             this.lblHSN.Name = "lblHSN";
-            this.lblHSN.Size = new System.Drawing.Size(62, 20);
+            this.lblHSN.Size = new System.Drawing.Size(80, 26);
             this.lblHSN.TabIndex = 1111178;
             this.lblHSN.Text = "HSN Code";
             // 
@@ -362,7 +372,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 357);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -399,39 +409,29 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // REPORT_HSN_Tax_Summary
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportHSN);
-            this.Controls.Add(this.ReportHSN);
+            this.Controls.Add(this.tsHSNTaxSummary);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_HSN_Tax_Summary";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HSN Report";
+            this.Text = "HSN Wise Tax Detail Summary Report";
             this.Load += new System.EventHandler(this.REPORT_CP_HSN_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_HSN_KeyDown);
-            this.ReportHSN.ResumeLayout(false);
-            this.ReportHSN.PerformLayout();
+            this.tsHSNTaxSummary.ResumeLayout(false);
+            this.tsHSNTaxSummary.PerformLayout();
             this.pnlReportHSN.ResumeLayout(false);
             this.pnlReportHSN.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterHSN)).EndInit();
@@ -446,7 +446,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportHSN;
+        private System.Windows.Forms.ToolStrip tsHSNTaxSummary;
         private System.Windows.Forms.Panel pnlReportHSN;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

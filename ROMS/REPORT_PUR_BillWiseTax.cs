@@ -28,7 +28,7 @@ namespace ROMS
         public REPORT_PUR_BillWiseTax()
         {
             InitializeComponent();
-            windowControl.Initialize(ReportCity, this);
+            windowControl.Initialize(tsBillwiseTaxReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

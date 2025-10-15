@@ -27,7 +27,7 @@ namespace ROMS
         public REPORT_PUR_TCSValue()
         {
             InitializeComponent(); 
-            windowControl.Initialize(ReportCity, this);
+            windowControl.Initialize(tsTCSReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
