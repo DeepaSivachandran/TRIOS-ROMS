@@ -3641,8 +3641,8 @@ namespace ROMS
         {
             try
             {
+                udfnGetDefaultCompany();
                 //udfnCloseChildForms();
-                //udfnGetDefaultCompany();
                 //if (isClose == false) { return; }
                 //MainForm.objPUR_SupplierScheduleList = new PUR_SupplierScheduleList();
                 //MainForm.objPUR_SupplierScheduleList.MdiParent = this;
@@ -3661,8 +3661,8 @@ namespace ROMS
         {
             try
             {
+                udfnGetDefaultCompany();
                 //udfnCloseChildForms();
-                //udfnGetDefaultCompany();
                 //if (isClose == false) { return; }
                 //MainForm.objPUR_PurchaseOrderList = new PUR_PurchaseOrderList();
                 //MainForm.objPUR_PurchaseOrderList.MdiParent = this;
@@ -3681,8 +3681,8 @@ namespace ROMS
         {
             try
             {
+                udfnGetDefaultCompany();
                 //udfnCloseChildForms();
-                //udfnGetDefaultCompany();
                 //if (isClose == false) { return; }
                 //MainForm.objPUR_GRNDetailsList = new PUR_GRNDetailsList();
                 //MainForm.objPUR_GRNDetailsList.MdiParent = this;
@@ -3700,8 +3700,8 @@ namespace ROMS
         {
             try
             {
+                udfnGetDefaultCompany();
                 //udfnCloseChildForms();
-                //udfnGetDefaultCompany();
                 //if (isClose == false) { return; }
                 //MainForm.objPUR_PurchaseDCList = new PUR_PurchaseDCList();
                 //MainForm.objPUR_PurchaseDCList.MdiParent = this;
@@ -3719,8 +3719,8 @@ namespace ROMS
         {
             try
             {
+                udfnGetDefaultCompany();
                 //udfnCloseChildForms();
-                //udfnGetDefaultCompany();
                 //if (isClose == false) { return; }
                 //MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
                 //MainForm.objPUR_GRNApprovalList.MdiParent = this;
