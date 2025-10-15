@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class REPORT_GRN_Details : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,6 +25,7 @@ namespace ROMS
         public REPORT_GRN_Details()
         {
             InitializeComponent();
+            windowControl.Initialize(tsGRNDetailReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {
