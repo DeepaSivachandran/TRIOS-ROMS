@@ -29,7 +29,7 @@ namespace ROMS
         }
         public static readonly Dictionary<string, Action> varSpecialField = new Dictionary<string, Action>
         {
-            { "varInwardcancel", () => pbSpecialFlag = 1 }
+            { "varSpecialFlag", () => pbSpecialFlag = 1 }
         };
         //------- Servic Class object declaration
         DataValidation objValidation = new DataValidation();
