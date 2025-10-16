@@ -15,6 +15,8 @@ namespace ROMS
     //Created On:- 02-09-2023
     public partial class CP_RackSettings : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpStockLocation = new ToolTip();
@@ -62,6 +64,7 @@ namespace ROMS
         public CP_RackSettings()
         {
             InitializeComponent();
+            windowControl.Initialize(tsRackSettings, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

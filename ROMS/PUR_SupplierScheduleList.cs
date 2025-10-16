@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class PUR_SupplierScheduleList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         int Varflag = 0;
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -25,6 +27,7 @@ namespace ROMS
         public PUR_SupplierScheduleList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPOScheduleList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

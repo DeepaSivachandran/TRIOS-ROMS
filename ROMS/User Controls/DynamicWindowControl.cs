@@ -57,8 +57,8 @@ namespace ROMS
 
             if (rightStartIndex == -1)
             {
-                _toolStrip.Items.Add(MinimizeLabel);
                 _toolStrip.Items.Add(CloseLabel);
+                _toolStrip.Items.Add(MinimizeLabel);
             }
             else
             {

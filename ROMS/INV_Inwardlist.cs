@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class INV_Inwardlist : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -30,6 +32,7 @@ namespace ROMS
         public INV_Inwardlist()
         {
             InitializeComponent();
+            windowControl.Initialize(tsInwardList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -966,7 +969,7 @@ namespace ROMS
                 tssDelete.Visible = privilege.Contains("4"); 
                 btnExport.Visible = privilege.Contains("6");
                 tsbQue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("9"));
-                lblQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("9")); 
+                tsTotalQueue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("9")); 
             }
             catch (Exception ex)
             {
@@ -1258,7 +1261,7 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count != 0)
                     {
-                        lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Queue Count"]);
+                        tsTotalQueue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Queue Count"]);
                     }
                 }
             }

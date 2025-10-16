@@ -42,6 +42,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockTransferList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tss = new System.Windows.Forms.ToolStripSeparator();
             this.tsbQueueCount = new System.Windows.Forms.ToolStripButton();
             this.tsbQue = new System.Windows.Forms.ToolStripButton();
             this.tssDelete = new System.Windows.Forms.ToolStripSeparator();
@@ -63,6 +64,7 @@
             this.grdStockTransfer = new System.Windows.Forms.DataGridView();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
+            this.lblQueueCount = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblTransferToDate = new System.Windows.Forms.Label();
@@ -83,7 +85,6 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.activationService1 = new ROMS.ActivationService.ActivationService();
-            this.lblQueueCount = new System.Windows.Forms.Label();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
@@ -101,6 +102,7 @@
             this.tsStockTransferList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsStockTransferList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.tss,
             this.tsbQueueCount,
             this.tsbQue,
             this.tssDelete,
@@ -125,6 +127,13 @@
             this.tspHeader.Size = new System.Drawing.Size(103, 24);
             this.tspHeader.Text = "Stock Transfer";
             // 
+            // tss
+            // 
+            this.tss.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.tss.Name = "tss";
+            this.tss.Size = new System.Drawing.Size(6, 24);
+            // 
             // tsbQueueCount
             // 
             this.tsbQueueCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -133,10 +142,11 @@
             this.tsbQueueCount.ForeColor = System.Drawing.Color.DarkGreen;
             this.tsbQueueCount.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbQueueCount.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQueueCount.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbQueueCount.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbQueueCount.Name = "tsbQueueCount";
             this.tsbQueueCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbQueueCount.Size = new System.Drawing.Size(23, 24);
+            this.tsbQueueCount.Text = "0";
             // 
             // tsbQue
             // 
@@ -144,7 +154,7 @@
             this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
             this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbQue.Name = "tsbQue";
             this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbQue.Size = new System.Drawing.Size(63, 24);
@@ -154,9 +164,9 @@
             // tssDelete
             // 
             this.tssDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssDelete.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssDelete.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssDelete.Name = "tssDelete";
-            this.tssDelete.Size = new System.Drawing.Size(6, 27);
+            this.tssDelete.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbDelete
             // 
@@ -164,7 +174,7 @@
             this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
@@ -174,9 +184,9 @@
             // tssEdit
             // 
             this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 27);
+            this.tssEdit.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbEdit
             // 
@@ -184,7 +194,7 @@
             this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
@@ -194,9 +204,9 @@
             // tssNew
             // 
             this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssNew.Name = "tssNew";
-            this.tssNew.Size = new System.Drawing.Size(6, 27);
+            this.tssNew.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbNew
             // 
@@ -204,7 +214,7 @@
             this.tsbNew.Image = global::ROMS.Properties.Resources.New;
             this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbNew.Size = new System.Drawing.Size(52, 24);
@@ -418,6 +428,7 @@
             // 
             // grbFilterBy
             // 
+            this.grbFilterBy.Controls.Add(this.lblQueueCount);
             this.grbFilterBy.Controls.Add(this.cmbStatus);
             this.grbFilterBy.Controls.Add(this.lblStatus);
             this.grbFilterBy.Controls.Add(this.lblTransferToDate);
@@ -443,6 +454,19 @@
             this.grbFilterBy.TabIndex = 0;
             this.grbFilterBy.TabStop = false;
             this.grbFilterBy.Text = "Filter By";
+            // 
+            // lblQueueCount
+            // 
+            this.lblQueueCount.AutoSize = true;
+            this.lblQueueCount.BackColor = System.Drawing.SystemColors.Window;
+            this.lblQueueCount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQueueCount.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblQueueCount.Location = new System.Drawing.Point(1292, 24);
+            this.lblQueueCount.Name = "lblQueueCount";
+            this.lblQueueCount.Size = new System.Drawing.Size(17, 20);
+            this.lblQueueCount.TabIndex = 1111200;
+            this.lblQueueCount.Text = "0";
+            this.lblQueueCount.Visible = false;
             // 
             // cmbStatus
             // 
@@ -700,25 +724,12 @@
             this.activationService1.Url = "http://cloud.shivasoftwares.com/activation/ActivationService.svc";
             this.activationService1.UseDefaultCredentials = false;
             // 
-            // lblQueueCount
-            // 
-            this.lblQueueCount.AutoSize = true;
-            this.lblQueueCount.BackColor = System.Drawing.SystemColors.Window;
-            this.lblQueueCount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQueueCount.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblQueueCount.Location = new System.Drawing.Point(1308, 3);
-            this.lblQueueCount.Name = "lblQueueCount";
-            this.lblQueueCount.Size = new System.Drawing.Size(17, 20);
-            this.lblQueueCount.TabIndex = 1111200;
-            this.lblQueueCount.Text = "0";
-            // 
             // INV_StockTransferList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.lblQueueCount);
             this.Controls.Add(this.pnlStockTransferList);
             this.Controls.Add(this.tsStockTransferList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -727,7 +738,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "INV_StockTransferList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Supplier List";
+            this.Text = "Stock Transfer";
             this.Load += new System.EventHandler(this.INV_StockTransferList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_StockTransferList_KeyDown);
             this.tsStockTransferList.ResumeLayout(false);
@@ -792,5 +803,6 @@
         public System.Windows.Forms.ToolStripButton tsbQueueCount;
         private System.Windows.Forms.Label lblQueueCount;
         public System.Windows.Forms.DataGridView DGV_FilterLocation;
+        public System.Windows.Forms.ToolStripSeparator tss;
     }
 }

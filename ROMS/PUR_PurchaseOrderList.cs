@@ -14,6 +14,8 @@ namespace ROMS
 {
     public partial class PUR_PurchaseOrderList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private static readonly Dictionary<ToolStripButton, EventHandler> _handlers = new Dictionary<ToolStripButton, EventHandler>();
@@ -30,6 +32,7 @@ namespace ROMS
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPurchaseOrderList, this);
         }
         private void Button1_Click(object sender, EventArgs e)
         {

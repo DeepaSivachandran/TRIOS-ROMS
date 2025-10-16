@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class INV_StockRequestList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -27,6 +29,7 @@ namespace ROMS
         public INV_StockRequestList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsStockRequestList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

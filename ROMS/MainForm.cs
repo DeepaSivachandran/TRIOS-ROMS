@@ -1849,60 +1849,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TsmStockTransfer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockTransferList = new INV_StockTransferList();
-                MainForm.objINV_StockTransferList.MdiParent = this;
-                MainForm.objINV_StockTransferList.Show();
-                PbCurrentForm = "3.6";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmOutward_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_GodownOutwardList = new INV_GodownOutwardList();
-                MainForm.objINV_GodownOutwardList.MdiParent = this;
-                MainForm.objINV_GodownOutwardList.Show();
-                PbCurrentForm = "3.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmStockRequest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockRequestList = new INV_StockRequestList();
-                MainForm.objINV_StockRequestList.MdiParent = this;
-                MainForm.objINV_StockRequestList.Show();
-                PbCurrentForm = "3.4";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void TsmgenralSettings_Click(object sender, EventArgs e)
         {
             try
@@ -1983,24 +1929,6 @@ namespace ROMS
                 //MainForm.objCP_BulkAttributes.MdiParent = this;
                 //MainForm.objCP_BulkAttributes.Show();
                 //PbCurrentForm = "5.18";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
-        private void TsmStockHold_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockHold = new INV_StockHold();
-                MainForm.objINV_StockHold.MdiParent = this;
-                MainForm.objINV_StockHold.Show();
-                PbCurrentForm = "3.3";
             }
             catch (Exception ex)
             {
@@ -3740,12 +3668,13 @@ namespace ROMS
 
             try
             {
-                udfnCloseChildForms();
                 udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
-                MainForm.objINV_InwardPurchaseList.MdiParent = this;
-                MainForm.objINV_InwardPurchaseList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                //MainForm.objINV_InwardPurchaseList.MdiParent = this;
+                //MainForm.objINV_InwardPurchaseList.Show();
+                OpenReportForm(ref MainForm.objINV_InwardPurchaseList, "INV_InwardPurchaseList", 30101);
                 PbCurrentForm = "3.2.1";
             }
             catch (Exception ex)
@@ -3759,12 +3688,13 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
                 udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_Inwardlist = new INV_Inwardlist();
-                MainForm.objINV_Inwardlist.MdiParent = this;
-                MainForm.objINV_Inwardlist.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                //MainForm.objINV_Inwardlist.MdiParent = this;
+                //MainForm.objINV_Inwardlist.Show();
+                OpenReportForm(ref MainForm.objINV_Inwardlist, "INV_Inwardlist", 30102);
                 PbCurrentForm = "3.2.2";
             }
             catch (Exception ex)
@@ -3774,16 +3704,55 @@ namespace ROMS
             }
         }
 
+        private void TsmOutward_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGetDefaultCompany();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_GodownOutwardList = new INV_GodownOutwardList();
+                //MainForm.objINV_GodownOutwardList.MdiParent = this;
+                //MainForm.objINV_GodownOutwardList.Show();
+                OpenReportForm(ref MainForm.objINV_GodownOutwardList, "INV_GodownOutwardList", 302);
+                PbCurrentForm = "3.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmStockTransfer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGetDefaultCompany();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockTransferList = new INV_StockTransferList();
+                //MainForm.objINV_StockTransferList.MdiParent = this;
+                //MainForm.objINV_StockTransferList.Show();
+                OpenReportForm(ref MainForm.objINV_StockTransferList, "INV_StockTransferList", 303);
+                PbCurrentForm = "3.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmBatchConversion_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnCloseChildForms();
                 udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockConversionList = new INV_StockConversionList();
-                MainForm.objINV_StockConversionList.MdiParent = this;
-                MainForm.objINV_StockConversionList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockConversionList = new INV_StockConversionList();
+                //MainForm.objINV_StockConversionList.MdiParent = this;
+                //MainForm.objINV_StockConversionList.Show();
+                OpenReportForm(ref MainForm.objINV_StockConversionList, "INV_StockConversionList", 304);
                 PbCurrentForm = "3.8";
             }
             catch (Exception ex)
@@ -3797,12 +3766,13 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
                 udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockAdjustmentList = new INV_ReconciliationList();
-                MainForm.objINV_StockAdjustmentList.MdiParent = this;
-                MainForm.objINV_StockAdjustmentList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockAdjustmentList = new INV_ReconciliationList();
+                //MainForm.objINV_StockAdjustmentList.MdiParent = this;
+                //MainForm.objINV_StockAdjustmentList.Show();
+                OpenReportForm(ref MainForm.objINV_StockAdjustmentList, "INV_ReconciliationList", 305);
                 PbCurrentForm = "3.5";
             }
             catch (Exception ex)
@@ -3812,16 +3782,36 @@ namespace ROMS
             }
         }
 
+        private void TsmStockHold_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGetDefaultCompany();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockHold = new INV_StockHold();
+                //MainForm.objINV_StockHold.MdiParent = this;
+                //MainForm.objINV_StockHold.Show();
+                OpenReportForm(ref MainForm.objINV_StockHold, "INV_StockHold", 306);
+                PbCurrentForm = "3.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmDamageEntry_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnCloseChildForms();
                 udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
-                MainForm.objINV_DamageEntryList.MdiParent = this;
-                MainForm.objINV_DamageEntryList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_DamageEntryList = new INV_DamageEntryList();
+                //MainForm.objINV_DamageEntryList.MdiParent = this;
+                //MainForm.objINV_DamageEntryList.Show();
+                OpenReportForm(ref MainForm.objINV_DamageEntryList, "INV_DamageEntryList", 307);
                 PbCurrentForm = "3.7";
             }
             catch (Exception ex)
@@ -3831,15 +3821,35 @@ namespace ROMS
             }
         }
 
+        private void TsmStockRequest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGetDefaultCompany();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockRequestList = new INV_StockRequestList();
+                //MainForm.objINV_StockRequestList.MdiParent = this;
+                //MainForm.objINV_StockRequestList.Show();
+                OpenReportForm(ref MainForm.objINV_StockRequestList, "INV_StockRequestList", 308);
+                PbCurrentForm = "3.4";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmRackTransfer_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_RackSettings = new CP_RackSettings();
-                MainForm.objCP_RackSettings.MdiParent = this;
-                MainForm.objCP_RackSettings.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_RackSettings = new CP_RackSettings();
+                //MainForm.objCP_RackSettings.MdiParent = this;
+                //MainForm.objCP_RackSettings.Show();
+                OpenReportForm(ref MainForm.objCP_RackSettings, "CP_RackSettings", 309);
                 PbCurrentForm = "3.1";
             }
             catch (Exception ex)
@@ -3849,6 +3859,26 @@ namespace ROMS
             }
         }
 
+        private void tsmStockConversion_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                udfnGetDefaultCompany();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockJournalList = new INV_StockJournalList();
+                //MainForm.objINV_StockJournalList.MdiParent = this;
+                //MainForm.objINV_StockJournalList.Show();
+                OpenReportForm(ref MainForm.objINV_StockJournalList, "INV_StockJournalList", 310);
+                PbCurrentForm = "3.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmDirectChequePrint_Click(object sender, EventArgs e)
         {
             try
@@ -4373,25 +4403,6 @@ namespace ROMS
             }
         }
 
-        private void tsmStockConversion_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                udfnCloseChildForms();
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockJournalList = new INV_StockJournalList();
-                MainForm.objINV_StockJournalList.MdiParent = this;
-                MainForm.objINV_StockJournalList.Show();
-                PbCurrentForm = "3.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
          
         private void tsmPurPOBlockedProducts_Click(object sender, EventArgs e)
         {

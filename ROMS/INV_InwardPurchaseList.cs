@@ -16,6 +16,8 @@ namespace ROMS
 {
     public partial class INV_InwardPurchaseList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         string varUserID = "0";
@@ -29,6 +31,7 @@ namespace ROMS
         public INV_InwardPurchaseList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPurchaseGRNDCList, this);
         }
         private void tsbEdit_Click(object sender, EventArgs e)
         {
@@ -191,7 +194,7 @@ namespace ROMS
                 tssDelete.Visible = privilege.Contains("4"); 
                 btnExport.Visible = privilege.Contains("6");
                 tsbQue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("9"));
-                lblQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("9"));  
+                tsTotalQueue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("9"));  
             }
             catch (Exception ex)
             {
@@ -889,7 +892,7 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count != 0)
                     {
-                        lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows.Count.ToString());
+                        tsTotalQueue.Text = Convert.ToString(objDs.Tables[0].Rows.Count.ToString());
                     }
                 }
             }

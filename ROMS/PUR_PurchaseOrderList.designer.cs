@@ -38,7 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsPurchaseOrderList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -123,7 +123,7 @@
             this.clmEnvelopPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.tsBrandList.SuspendLayout();
+            this.tsPurchaseOrderList.SuspendLayout();
             this.pnlpurchaseapproval.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -139,24 +139,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsPurchaseOrderList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPurchaseOrderList.BackColor = System.Drawing.Color.White;
+            this.tsPurchaseOrderList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPurchaseOrderList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPurchaseOrderList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsPurchaseOrderList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 27);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsPurchaseOrderList.Location = new System.Drawing.Point(0, 0);
+            this.tsPurchaseOrderList.Name = "tsPurchaseOrderList";
+            this.tsPurchaseOrderList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPurchaseOrderList.TabIndex = 35;
+            this.tsPurchaseOrderList.Text = "Brand";
             // 
             // tspHeader
             // 
@@ -1256,7 +1256,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 676);
             this.Controls.Add(this.pnlpurchaseapproval);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsPurchaseOrderList);
             this.Controls.Add(this.button1);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1267,8 +1267,8 @@
             this.Text = "Purchase Order";
             this.Load += new System.EventHandler(this.PUR_PurchaseOrderList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseOrderList_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.tsPurchaseOrderList.ResumeLayout(false);
+            this.tsPurchaseOrderList.PerformLayout();
             this.pnlpurchaseapproval.ResumeLayout(false);
             this.pnlpurchaseapproval.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridPro)).EndInit();
@@ -1297,7 +1297,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsPurchaseOrderList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlpurchaseapproval;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;

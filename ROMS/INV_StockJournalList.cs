@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class INV_StockJournalList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -29,6 +31,7 @@ namespace ROMS
         public INV_StockJournalList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsStockConversion, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

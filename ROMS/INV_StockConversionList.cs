@@ -16,6 +16,8 @@ namespace ROMS
     public partial class INV_StockConversionList : Form
     {
 
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         public int varPRID = 0;
         public int varviewtype = 0;
@@ -29,6 +31,7 @@ namespace ROMS
         public INV_StockConversionList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsBatchConvertion, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

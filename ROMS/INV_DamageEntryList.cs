@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class INV_DamageEntryList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -26,6 +28,7 @@ namespace ROMS
         public INV_DamageEntryList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsDamageEntry, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
