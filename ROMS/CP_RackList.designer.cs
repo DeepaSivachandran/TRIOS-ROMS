@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsGroupList = new System.Windows.Forms.ToolStrip();
+            this.tsRackList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -59,7 +59,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdGroupList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsGroupList.SuspendLayout();
+            this.tsRackList.SuspendLayout();
             this.pnlRack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.grbFilterBy.SuspendLayout();
@@ -67,23 +67,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsGroupList
+            // tsRackList
             // 
-            this.tsGroupList.BackColor = System.Drawing.Color.White;
-            this.tsGroupList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsGroupList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsGroupList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsRackList.BackColor = System.Drawing.Color.White;
+            this.tsRackList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsRackList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsRackList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsGroupList.Location = new System.Drawing.Point(0, 0);
-            this.tsGroupList.Name = "tsGroupList";
-            this.tsGroupList.Size = new System.Drawing.Size(1354, 27);
-            this.tsGroupList.TabIndex = 35;
-            this.tsGroupList.Text = "Group";
+            this.tsRackList.Location = new System.Drawing.Point(0, 0);
+            this.tsRackList.Name = "tsRackList";
+            this.tsRackList.Size = new System.Drawing.Size(1354, 27);
+            this.tsRackList.TabIndex = 35;
+            this.tsRackList.Text = "Group";
             // 
             // tspHeader
             // 
@@ -455,18 +455,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlRack);
-            this.Controls.Add(this.tsGroupList);
+            this.Controls.Add(this.tsRackList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_RackList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Group";
+            this.Text = "Rack";
             this.Load += new System.EventHandler(this.CP_RackList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_RackList_KeyDown);
-            this.tsGroupList.ResumeLayout(false);
-            this.tsGroupList.PerformLayout();
+            this.tsRackList.ResumeLayout(false);
+            this.tsRackList.PerformLayout();
             this.pnlRack.ResumeLayout(false);
             this.pnlRack.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -481,7 +481,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsGroupList;
+        private System.Windows.Forms.ToolStrip tsRackList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

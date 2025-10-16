@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class CP_Rate_ChangeList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -25,6 +27,7 @@ namespace ROMS
         public CP_Rate_ChangeList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsRateChange, this);
         }
         
         private void tsbNew_Click(object sender, EventArgs e)

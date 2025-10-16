@@ -15,6 +15,8 @@ namespace ROMS
     //Created On:-17/08/2023
     public partial class CP_LocationList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         public int varStockApplicable = 0;
@@ -27,6 +29,7 @@ namespace ROMS
         public CP_LocationList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsLocation, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

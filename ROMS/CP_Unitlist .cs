@@ -13,6 +13,8 @@ namespace ROMS
          //Created On:-09/08/2023
     public partial class CP_Unitlist : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -23,6 +25,7 @@ namespace ROMS
         public CP_Unitlist()
         {
             InitializeComponent();
+            windowControl.Initialize(tsUnitList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

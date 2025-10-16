@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsUserList = new System.Windows.Forms.ToolStrip();
+            this.tsEmployee = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -61,7 +61,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdEmployeeList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsUserList.SuspendLayout();
+            this.tsEmployee.SuspendLayout();
             this.pnluser.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -69,23 +69,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsUserList
+            // tsEmployee
             // 
-            this.tsUserList.BackColor = System.Drawing.Color.White;
-            this.tsUserList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsUserList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsUserList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsEmployee.BackColor = System.Drawing.Color.White;
+            this.tsEmployee.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsEmployee.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsEmployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsUserList.Location = new System.Drawing.Point(0, 0);
-            this.tsUserList.Name = "tsUserList";
-            this.tsUserList.Size = new System.Drawing.Size(1354, 27);
-            this.tsUserList.TabIndex = 35;
-            this.tsUserList.Text = "User";
+            this.tsEmployee.Location = new System.Drawing.Point(0, 0);
+            this.tsEmployee.Name = "tsEmployee";
+            this.tsEmployee.Size = new System.Drawing.Size(1354, 27);
+            this.tsEmployee.TabIndex = 35;
+            this.tsEmployee.Text = "User";
             // 
             // tspHeader
             // 
@@ -456,18 +456,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnluser);
-            this.Controls.Add(this.tsUserList);
+            this.Controls.Add(this.tsEmployee);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_EmployeeList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User";
+            this.Text = "Employee";
             this.Load += new System.EventHandler(this.CP_EmployeeList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_EmployeeList_KeyDown);
-            this.tsUserList.ResumeLayout(false);
-            this.tsUserList.PerformLayout();
+            this.tsEmployee.ResumeLayout(false);
+            this.tsEmployee.PerformLayout();
             this.pnluser.ResumeLayout(false);
             this.pnluser.PerformLayout();
             this.grbFilterByUser.ResumeLayout(false);
@@ -482,7 +482,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsUserList;
+        private System.Windows.Forms.ToolStrip tsEmployee;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

@@ -15,6 +15,8 @@ namespace ROMS
     // Name  : Sivabharathi    Date : 02/09/2023
     public partial class CP_BulkAttributes : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
@@ -46,6 +48,7 @@ namespace ROMS
         public CP_BulkAttributes()
         {
             InitializeComponent();
+            windowControl.Initialize(tsBulkAttribute, this);
         }
         public void udfnHideGrids() {
             try

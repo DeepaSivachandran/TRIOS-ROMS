@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsUserCategoryList = new System.Windows.Forms.ToolStrip();
+            this.tsEmployeeCategory = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -52,7 +52,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserCategoryList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsUserCategoryList.SuspendLayout();
+            this.tsEmployeeCategory.SuspendLayout();
             this.pnlUserCategoryList.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -60,23 +60,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsUserCategoryList
+            // tsEmployeeCategory
             // 
-            this.tsUserCategoryList.BackColor = System.Drawing.Color.White;
-            this.tsUserCategoryList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsUserCategoryList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsUserCategoryList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsEmployeeCategory.BackColor = System.Drawing.Color.White;
+            this.tsEmployeeCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsEmployeeCategory.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsEmployeeCategory.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsUserCategoryList.Location = new System.Drawing.Point(0, 0);
-            this.tsUserCategoryList.Name = "tsUserCategoryList";
-            this.tsUserCategoryList.Size = new System.Drawing.Size(1354, 27);
-            this.tsUserCategoryList.TabIndex = 35;
-            this.tsUserCategoryList.Text = "User";
+            this.tsEmployeeCategory.Location = new System.Drawing.Point(0, 0);
+            this.tsEmployeeCategory.Name = "tsEmployeeCategory";
+            this.tsEmployeeCategory.Size = new System.Drawing.Size(1354, 27);
+            this.tsEmployeeCategory.TabIndex = 35;
+            this.tsEmployeeCategory.Text = "User";
             // 
             // tspHeader
             // 
@@ -362,7 +362,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
-            this.Controls.Add(this.tsUserCategoryList);
+            this.Controls.Add(this.tsEmployeeCategory);
             this.Controls.Add(this.pnlUserCategoryList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -370,11 +370,11 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_UserCategoryList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User";
+            this.Text = "Employee Category";
             this.Load += new System.EventHandler(this.CP_UserList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserList_KeyDown);
-            this.tsUserCategoryList.ResumeLayout(false);
-            this.tsUserCategoryList.PerformLayout();
+            this.tsEmployeeCategory.ResumeLayout(false);
+            this.tsEmployeeCategory.PerformLayout();
             this.pnlUserCategoryList.ResumeLayout(false);
             this.pnlUserCategoryList.PerformLayout();
             this.grbFilterByUser.ResumeLayout(false);
@@ -389,7 +389,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsUserCategoryList;
+        private System.Windows.Forms.ToolStrip tsEmployeeCategory;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

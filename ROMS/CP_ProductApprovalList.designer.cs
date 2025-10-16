@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsItemList = new System.Windows.Forms.ToolStrip();
+            this.tsProductApproval = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.pnlItemList = new System.Windows.Forms.Panel();
@@ -83,7 +83,7 @@
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tsItemList.SuspendLayout();
+            this.tsProductApproval.SuspendLayout();
             this.pnlItemList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).BeginInit();
             this.grpFilterby.SuspendLayout();
@@ -92,19 +92,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsItemList
+            // tsProductApproval
             // 
-            this.tsItemList.BackColor = System.Drawing.Color.White;
-            this.tsItemList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsItemList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsItemList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsProductApproval.BackColor = System.Drawing.Color.White;
+            this.tsProductApproval.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsProductApproval.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsProductApproval.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbEdit});
-            this.tsItemList.Location = new System.Drawing.Point(0, 0);
-            this.tsItemList.Name = "tsItemList";
-            this.tsItemList.Size = new System.Drawing.Size(1354, 27);
-            this.tsItemList.TabIndex = 35;
-            this.tsItemList.Text = "ItemList";
+            this.tsProductApproval.Location = new System.Drawing.Point(0, 0);
+            this.tsProductApproval.Name = "tsProductApproval";
+            this.tsProductApproval.Size = new System.Drawing.Size(1354, 27);
+            this.tsProductApproval.TabIndex = 35;
+            this.tsProductApproval.Text = "ItemList";
             // 
             // tspHeader
             // 
@@ -647,18 +647,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlItemList);
-            this.Controls.Add(this.tsItemList);
+            this.Controls.Add(this.tsProductApproval);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_ProductApprovalList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Item List";
+            this.Text = "Product Approval";
             this.Load += new System.EventHandler(this.CP_ProductList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductList_KeyDown);
-            this.tsItemList.ResumeLayout(false);
-            this.tsItemList.PerformLayout();
+            this.tsProductApproval.ResumeLayout(false);
+            this.tsProductApproval.PerformLayout();
             this.pnlItemList.ResumeLayout(false);
             this.pnlItemList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdItemList)).EndInit();
@@ -674,7 +674,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsItemList;
+        private System.Windows.Forms.ToolStrip tsProductApproval;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         private System.Windows.Forms.Panel pnlItemList;

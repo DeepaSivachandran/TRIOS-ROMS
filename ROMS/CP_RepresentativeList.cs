@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class CP_RepresentativeList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -25,6 +27,7 @@ namespace ROMS
         public CP_RepresentativeList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsRepresentative, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

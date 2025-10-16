@@ -14,6 +14,8 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_UserList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -26,6 +28,7 @@ namespace ROMS
         public CP_UserList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsUserList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

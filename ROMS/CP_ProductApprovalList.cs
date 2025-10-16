@@ -12,6 +12,8 @@ namespace ROMS
 {
     public partial class CP_ProductApprovalList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -23,6 +25,7 @@ namespace ROMS
         public CP_ProductApprovalList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsProductApproval, this);
         }
         
         private void tsbNew_Click(object sender, EventArgs e)

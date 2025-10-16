@@ -15,6 +15,8 @@ namespace ROMS
     //Created On:-24/08/2023
     public partial class CP_BrokerList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -25,6 +27,7 @@ namespace ROMS
         public CP_BrokerList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsBroker, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

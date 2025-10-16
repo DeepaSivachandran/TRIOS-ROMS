@@ -1589,142 +1589,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TsmBrand_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BrandList = new CP_BrandList();
-                MainForm.objCP_BrandList.MdiParent = this;
-                MainForm.objCP_BrandList.Show();
-                PbCurrentForm = "5.6";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmCompany_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Companylist = new CP_Companylist();
-                MainForm.objCP_Companylist.MdiParent = this;
-                MainForm.objCP_Companylist.Show();
-                PbCurrentForm = "5.2";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmSuppliyer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Supplierlist = new CP_Supplierlist();
-                MainForm.objCP_Supplierlist.MdiParent = this;
-                MainForm.objCP_Supplierlist.Show();
-                PbCurrentForm = "5.16";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmUnit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Unitlist = new CP_Unitlist();
-                MainForm.objCP_Unitlist.MdiParent = this;
-                MainForm.objCP_Unitlist.Show();
-                PbCurrentForm = "5.7";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
-        private void TsmGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_GroupList = new CP_GroupList();
-                MainForm.objCP_GroupList.MdiParent = this;
-                MainForm.objCP_GroupList.Show();
-                PbCurrentForm = "5.4";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmSubGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_SubGroupList = new CP_SubGroupList();
-                MainForm.objCP_SubGroupList.MdiParent = this;
-                MainForm.objCP_SubGroupList.Show();
-                PbCurrentForm = "5.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmUser_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Userlist = new CP_UserList();
-                MainForm.objCP_Userlist.MdiParent = this;
-                MainForm.objCP_Userlist.Show();
-                PbCurrentForm = "5.15";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmLocation_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_LocationList = new CP_LocationList();
-                MainForm.objCP_LocationList.MdiParent = this;
-                MainForm.objCP_LocationList.Show();
-                PbCurrentForm = "5.8";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void Tsmpurchaseentry_Click(object sender, EventArgs e)
         {
             try
@@ -1783,57 +1647,6 @@ namespace ROMS
             }
         }
 
-        private void Tsmitem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Itemlist = new CP_ProductList();
-                MainForm.objCP_Itemlist.MdiParent = this;
-                MainForm.objCP_Itemlist.Show();
-                PbCurrentForm = "5.11";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmRack_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_RackList = new CP_RackList();
-                MainForm.objCP_RackList.MdiParent = this;
-                MainForm.objCP_RackList.Show();
-                PbCurrentForm = "5.9";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmRackGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_RackGroupList = new CP_RackGroupList();
-                MainForm.objCP_RackGroupList.MdiParent = this;
-                MainForm.objCP_RackGroupList.Show();
-                PbCurrentForm = "5.10";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void Tsmbatchno_Click(object sender, EventArgs e)
         {
             try
@@ -1850,41 +1663,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void Tsmbroker_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_CP_BrokerList = new CP_BrokerList();
-                MainForm.objCP_CP_BrokerList.MdiParent = this;
-                MainForm.objCP_CP_BrokerList.Show();
-                PbCurrentForm = "5.17";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmHSN_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_ProductHSNlist = new CP_ProductHSNList();
-                MainForm.objCP_ProductHSNlist.MdiParent = this;
-                MainForm.objCP_ProductHSNlist.Show();
-                PbCurrentForm = "5.3";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
-          
         private void TsmSupplierOrder_Click(object sender, EventArgs e)
         {
             
@@ -1920,40 +1698,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
-        private void TsmRepresentative_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_RepresentativeList = new CP_RepresentativeList();
-                MainForm.objCP_RepresentativeList.MdiParent = this;
-                MainForm.objCP_RepresentativeList.Show();
-                PbCurrentForm = "5.19";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmEmployee_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_EmployeeList = new CP_EmployeeList();
-                MainForm.objCP_EmployeeList.MdiParent = this;
-                MainForm.objCP_EmployeeList.Show();
-                PbCurrentForm = "5.14";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void tsmCityReport_Click(object sender, EventArgs e)
         {
             try
@@ -3160,23 +2904,6 @@ namespace ROMS
             }
         }
 
-        private void tsmRateChange_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Rate_ChangeList = new CP_Rate_ChangeList();
-                MainForm.objCP_Rate_ChangeList.MdiParent = this;
-                MainForm.objCP_Rate_ChangeList.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmStockInward_Click(object sender, EventArgs e)
         {
             try
@@ -3400,26 +3127,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-         
-
-        private void TsmBank_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BankList = new CP_BankList();
-                MainForm.objCP_BankList.MdiParent = this;
-                MainForm.objCP_BankList.Show();
-                PbCurrentForm = "7.2.6";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
         private void TsmPaymentReport_Click(object sender, EventArgs e)
         {
             try
@@ -3456,26 +3163,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-        private void tsmUserRole_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_UserRoleList = new CP_UserRoleList();
-                MainForm.objCP_UserRoleList.MdiParent = this;
-                MainForm.objCP_UserRoleList.Show();
-                PbCurrentForm = "7.8.1";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void tsmpurchaseSchedule_Click(object sender, EventArgs e)
         {
             try
@@ -3941,11 +3628,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Citylist = new CP_Citylist();
-                MainForm.objCP_Citylist.MdiParent = this;
-                MainForm.objCP_Citylist.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Citylist = new CP_Citylist();
+                //MainForm.objCP_Citylist.MdiParent = this;
+                //MainForm.objCP_Citylist.Show();
+                OpenReportForm(ref MainForm.objCP_Citylist, "CP_Citylist", 501);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
@@ -3955,15 +3643,215 @@ namespace ROMS
             }
         }
 
+        private void TsmBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BankList = new CP_BankList();
+                //MainForm.objCP_BankList.MdiParent = this;
+                //MainForm.objCP_BankList.Show();
+                OpenReportForm(ref MainForm.objCP_BankList, "CP_BankList", 502);
+                PbCurrentForm = "7.2.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmCompany_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Companylist = new CP_Companylist();
+                //MainForm.objCP_Companylist.MdiParent = this;
+                //MainForm.objCP_Companylist.Show();
+                OpenReportForm(ref MainForm.objCP_Companylist, "CP_Companylist", 503);
+                PbCurrentForm = "5.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmHSN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_ProductHSNlist = new CP_ProductHSNList();
+                //MainForm.objCP_ProductHSNlist.MdiParent = this;
+                //MainForm.objCP_ProductHSNlist.Show();
+                OpenReportForm(ref MainForm.objCP_ProductHSNlist, "CP_ProductHSNList", 504);
+                PbCurrentForm = "5.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_GroupList = new CP_GroupList();
+                //MainForm.objCP_GroupList.MdiParent = this;
+                //MainForm.objCP_GroupList.Show();
+                OpenReportForm(ref MainForm.objCP_GroupList, "CP_GroupList", 505);
+                PbCurrentForm = "5.4";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmSubGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_SubGroupList = new CP_SubGroupList();
+                //MainForm.objCP_SubGroupList.MdiParent = this;
+                //MainForm.objCP_SubGroupList.Show();
+                OpenReportForm(ref MainForm.objCP_SubGroupList, "CP_SubGroupList", 506);
+                PbCurrentForm = "5.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmBrand_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BrandList = new CP_BrandList();
+                //MainForm.objCP_BrandList.MdiParent = this;
+                //MainForm.objCP_BrandList.Show();
+                OpenReportForm(ref MainForm.objCP_BrandList, "CP_BrandList", 507);
+                PbCurrentForm = "5.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmUnit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Unitlist = new CP_Unitlist();
+                //MainForm.objCP_Unitlist.MdiParent = this;
+                //MainForm.objCP_Unitlist.Show();
+                OpenReportForm(ref MainForm.objCP_Unitlist, "CP_Unitlist", 508);
+                PbCurrentForm = "5.7";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmLocation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_LocationList = new CP_LocationList();
+                //MainForm.objCP_LocationList.MdiParent = this;
+                //MainForm.objCP_LocationList.Show();
+                OpenReportForm(ref MainForm.objCP_LocationList, "CP_LocationList", 509);
+                PbCurrentForm = "5.8";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmRack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_RackList = new CP_RackList();
+                //MainForm.objCP_RackList.MdiParent = this;
+                //MainForm.objCP_RackList.Show();
+                OpenReportForm(ref MainForm.objCP_RackList, "CP_RackList", 510);
+                PbCurrentForm = "5.9";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmRackGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_RackGroupList = new CP_RackGroupList();
+                //MainForm.objCP_RackGroupList.MdiParent = this;
+                //MainForm.objCP_RackGroupList.Show();
+                OpenReportForm(ref MainForm.objCP_RackGroupList, "CP_RackGroupList", 511);
+                PbCurrentForm = "5.10";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void Tsmitem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Itemlist = new CP_ProductList();
+                //MainForm.objCP_Itemlist.MdiParent = this;
+                //MainForm.objCP_Itemlist.Show();
+                OpenReportForm(ref MainForm.objCP_Itemlist, "CP_ProductList", 512);
+                PbCurrentForm = "5.11";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmProductApproval_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_ProductApprovalList = new CP_ProductApprovalList();
-                MainForm.objCP_ProductApprovalList.MdiParent = this;
-                MainForm.objCP_ProductApprovalList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_ProductApprovalList = new CP_ProductApprovalList();
+                //MainForm.objCP_ProductApprovalList.MdiParent = this;
+                //MainForm.objCP_ProductApprovalList.Show();
+                OpenReportForm(ref MainForm.objCP_ProductApprovalList, "CP_ProductApprovalList", 513);
                 PbCurrentForm = "5.12";
             }
             catch (Exception ex)
@@ -3977,11 +3865,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_UserCategoryList = new CP_UserCategoryList();
-                MainForm.objCP_UserCategoryList.MdiParent = this;
-                MainForm.objCP_UserCategoryList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_UserCategoryList = new CP_UserCategoryList();
+                //MainForm.objCP_UserCategoryList.MdiParent = this;
+                //MainForm.objCP_UserCategoryList.Show();
+                OpenReportForm(ref MainForm.objCP_UserCategoryList, "CP_UserCategoryList", 514);
                 PbCurrentForm = "5.13";
             }
             catch (Exception ex)
@@ -3990,26 +3879,93 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void TsmEmployee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_EmployeeList = new CP_EmployeeList();
+                //MainForm.objCP_EmployeeList.MdiParent = this;
+                //MainForm.objCP_EmployeeList.Show();
+                OpenReportForm(ref MainForm.objCP_EmployeeList, "CP_EmployeeList", 515);
+                PbCurrentForm = "5.14";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void TsmUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Userlist = new CP_UserList();
+                //MainForm.objCP_Userlist.MdiParent = this;
+                //MainForm.objCP_Userlist.Show();
+                OpenReportForm(ref MainForm.objCP_Userlist, "CP_UserList", 516);
+                PbCurrentForm = "5.15";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmSuppliyer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Supplierlist = new CP_Supplierlist();
+                //MainForm.objCP_Supplierlist.MdiParent = this;
+                //MainForm.objCP_Supplierlist.Show();
+                OpenReportForm(ref MainForm.objCP_Supplierlist, "CP_Supplierlist", 517);
+                PbCurrentForm = "5.16";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void Tsmbroker_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_CP_BrokerList = new CP_BrokerList();
+                //MainForm.objCP_CP_BrokerList.MdiParent = this;
+                //MainForm.objCP_CP_BrokerList.Show();
+                OpenReportForm(ref MainForm.objCP_CP_BrokerList, "CP_BrokerList", 518);
+                PbCurrentForm = "5.17";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmStockLocationUpdate_Click(object sender, EventArgs e)
         {
             try
             {
-                try
-                {
-                    udfnCloseChildForms();
-                    if (isClose == false) { return; }
-                    MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                    MainForm.objCP_BulkAttributes.MdiParent = this;
-                    MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
-                    MainForm.objCP_BulkAttributes.Show();
-                    PbCurrentForm = "5.18";
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
+                //MainForm.objCP_BulkAttributes.Show();
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51901);
+                PbCurrentForm = "5.18";
             }
             catch (Exception ex)
             {
@@ -4022,12 +3978,15 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
+                //MainForm.objCP_BulkAttributes.Show();
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
-                MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51902);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4041,12 +4000,15 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
+                //MainForm.objCP_BulkAttributes.Show();
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
-                MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51903);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4060,12 +4022,15 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
+                //MainForm.objCP_BulkAttributes.Show();
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
-                MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51904);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4079,12 +4044,15 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
+                //MainForm.objCP_BulkAttributes.Show();
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
-                MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51905);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4098,12 +4066,15 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
+                //MainForm.objCP_BulkAttributes.Show();
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
-                MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51906);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4117,12 +4088,15 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
+                //MainForm.objCP_BulkAttributes.Show();
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
-                MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51907);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4136,12 +4110,15 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
+                //MainForm.objCP_BulkAttributes.Show();
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
-                MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51908);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4155,13 +4132,49 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.MdiParent = this;
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
-                MainForm.objCP_BulkAttributes.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                //MainForm.objCP_BulkAttributes.MdiParent = this;
+                //MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
+                //MainForm.objCP_BulkAttributes.Show();
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51909);
                 PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void TsmRepresentative_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_RepresentativeList = new CP_RepresentativeList();
+                //MainForm.objCP_RepresentativeList.MdiParent = this;
+                //MainForm.objCP_RepresentativeList.Show();
+                OpenReportForm(ref MainForm.objCP_RepresentativeList, "CP_RepresentativeList", 520);
+                PbCurrentForm = "5.19";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void tsmRateChange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Rate_ChangeList = new CP_Rate_ChangeList();
+                //MainForm.objCP_Rate_ChangeList.MdiParent = this;
+                //MainForm.objCP_Rate_ChangeList.Show();
+                OpenReportForm(ref MainForm.objCP_Rate_ChangeList, "CP_Rate_ChangeList", 521);
             }
             catch (Exception ex)
             {
@@ -4174,11 +4187,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_StickerPrint = new CP_StickerPrint();
-                MainForm.objCP_StickerPrint.MdiParent = this;
-                MainForm.objCP_StickerPrint.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_StickerPrint = new CP_StickerPrint();
+                //MainForm.objCP_StickerPrint.MdiParent = this;
+                //MainForm.objCP_StickerPrint.Show();
+                OpenReportForm(ref MainForm.objCP_StickerPrint, "CP_StickerPrint", 522);
             }
             catch (Exception ex)
             {
@@ -4191,11 +4205,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_DiectLabelPrint = new CP_DirectLabelPrint();
-                MainForm.objCP_DiectLabelPrint.MdiParent = this;
-                MainForm.objCP_DiectLabelPrint.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_DiectLabelPrint = new CP_DirectLabelPrint();
+                //MainForm.objCP_DiectLabelPrint.MdiParent = this;
+                //MainForm.objCP_DiectLabelPrint.Show();
+                OpenReportForm(ref MainForm.objCP_DiectLabelPrint, "CP_DirectLabelPrint", 523);
             }
             catch (Exception ex)
             {
@@ -4204,6 +4219,24 @@ namespace ROMS
             }
         }
 
+        private void tsmUserRole_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_UserRoleList = new CP_UserRoleList();
+                //MainForm.objCP_UserRoleList.MdiParent = this;
+                //MainForm.objCP_UserRoleList.Show();
+                OpenReportForm(ref MainForm.objCP_UserRoleList, "CP_UserRoleList", 524);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmProMapping_Click(object sender, EventArgs e)
         {
             try

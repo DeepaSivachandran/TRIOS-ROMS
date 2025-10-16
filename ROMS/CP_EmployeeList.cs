@@ -14,6 +14,8 @@ namespace ROMS
     //Created On:-19-09-2023
     public partial class CP_EmployeeList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -24,6 +26,7 @@ namespace ROMS
         public CP_EmployeeList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsEmployee, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

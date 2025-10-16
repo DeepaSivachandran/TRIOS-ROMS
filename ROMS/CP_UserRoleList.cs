@@ -14,6 +14,8 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_UserRoleList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         Boolean BlnSearchImageYN = false;
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -25,6 +27,7 @@ namespace ROMS
         public CP_UserRoleList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsUserRole, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

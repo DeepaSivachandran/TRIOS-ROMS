@@ -14,6 +14,8 @@ namespace ROMS
     //Created On:-21/08/2023
     public partial class CP_UserCategoryList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -24,6 +26,7 @@ namespace ROMS
         public CP_UserCategoryList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsEmployeeCategory, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

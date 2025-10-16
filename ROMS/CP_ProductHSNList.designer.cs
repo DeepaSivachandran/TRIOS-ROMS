@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsHSNList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -43,6 +43,8 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlhsntaxlist = new System.Windows.Forms.Panel();
             this.grbFilterByUser = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
@@ -51,9 +53,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdHSNList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTotalCount = new System.Windows.Forms.Label();
-            this.tsBrandList.SuspendLayout();
+            this.tsHSNList.SuspendLayout();
             this.pnlhsntaxlist.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -61,23 +61,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsHSNList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsHSNList.BackColor = System.Drawing.Color.White;
+            this.tsHSNList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsHSNList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsHSNList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 27);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "HSN Tax";
+            this.tsHSNList.Location = new System.Drawing.Point(0, 0);
+            this.tsHSNList.Name = "tsHSNList";
+            this.tsHSNList.Size = new System.Drawing.Size(1354, 27);
+            this.tsHSNList.TabIndex = 35;
+            this.tsHSNList.Text = "HSN Tax";
             // 
             // tspHeader
             // 
@@ -172,6 +172,28 @@
             this.grbFilterByUser.TabIndex = 0;
             this.grbFilterByUser.TabStop = false;
             this.grbFilterByUser.Text = "Filter By";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(355, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 20);
+            this.label2.TabIndex = 958820;
+            this.label2.Text = "No.of HSN :";
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalCount.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalCount.Location = new System.Drawing.Point(423, 31);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(41, 20);
+            this.lblTotalCount.TabIndex = 958821;
+            this.lblTotalCount.Text = "0000";
             // 
             // cmbStatus
             // 
@@ -345,28 +367,6 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(355, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 20);
-            this.label2.TabIndex = 958820;
-            this.label2.Text = "No.of HSN :";
-            // 
-            // lblTotalCount
-            // 
-            this.lblTotalCount.AutoSize = true;
-            this.lblTotalCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.lblTotalCount.ForeColor = System.Drawing.Color.Crimson;
-            this.lblTotalCount.Location = new System.Drawing.Point(423, 31);
-            this.lblTotalCount.Name = "lblTotalCount";
-            this.lblTotalCount.Size = new System.Drawing.Size(41, 20);
-            this.lblTotalCount.TabIndex = 958821;
-            this.lblTotalCount.Text = "0000";
-            // 
             // CP_ProductHSNList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -374,18 +374,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlhsntaxlist);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsHSNList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_ProductHSNList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "HSN Name";
             this.Load += new System.EventHandler(this.CP_ProductHSNList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ProductHSNList_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.tsHSNList.ResumeLayout(false);
+            this.tsHSNList.PerformLayout();
             this.pnlhsntaxlist.ResumeLayout(false);
             this.pnlhsntaxlist.PerformLayout();
             this.grbFilterByUser.ResumeLayout(false);
@@ -400,7 +400,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsHSNList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
