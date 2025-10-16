@@ -1146,7 +1146,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip tsBulkAttribute;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
@@ -1211,5 +1210,6 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTotalCount;
+        public System.Windows.Forms.ToolStripLabel tspHeader;
     }
 }

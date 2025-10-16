@@ -404,15 +404,46 @@ namespace ROMS
 
                 if (flag == 1)
                 {
-                    var existing = minimizedFormList.FirstOrDefault(m => m.FormName == formName);
-                    if (existing != null)
+                    // Find all minimized instances of this form type
+                    var existingList = minimizedFormList
+                        .Where(m => m.FormName == formName)
+                        .ToList();
+
+                    if (existingList.Any())
                     {
-                        statusBar.Items.Remove(existing.Button);
-                        minimizedFormList.Remove(existing);
-                        form = null;
+                        foreach (var existing in existingList)
+                        {
+                            // 🧩 Special handling for CP_BulkAttributes multi-mode forms
+                            if (form is CP_BulkAttributes newFormInstance && existing.FormInstance is CP_BulkAttributes existingFormInstance)
+                            {
+                                // If both are CP_BulkAttributes
+                                if (newFormInstance.pbMenuFlag == existingFormInstance.pbMenuFlag)
+                                {
+                                    // Same mode → remove (existing behavior)
+                                    statusBar.Items.Remove(existing.Button);
+                                    minimizedFormList.Remove(existing);
+                                    form = null;
+                                    break;
+                                }
+                                else
+                                {
+                                    // Different mode → keep both (skip removal)
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                // All other forms → default behavior (only one instance)
+                                statusBar.Items.Remove(existing.Button);
+                                minimizedFormList.Remove(existing);
+                                form = null;
+                                break;
+                            }
+                        }
                     }
                     return;
                 }
+
 
                 if (form == null || form.IsDisposed)
                     return;
@@ -3965,6 +3996,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51901);
+                objCP_BulkAttributes.Text = "Stock location, Rack & MSQ";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3987,6 +4020,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51902);
+                objCP_BulkAttributes.Text = "Minsales Qty & Barcode";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4009,6 +4044,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51903);
+                objCP_BulkAttributes.Text = "Min, Max stock & Reorder Qty";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4031,6 +4068,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51904);
+                objCP_BulkAttributes.Text = "Bulk Unit, UPP & Shelf Life";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4053,6 +4092,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51905);
+                objCP_BulkAttributes.Text = "Product Category, RM Flag & Batch";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4075,6 +4116,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51906);
+                objCP_BulkAttributes.Text = "Net & Gross Weight";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4097,6 +4140,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51907);
+                objCP_BulkAttributes.Text = "Group, Subgroup & Brand";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4119,6 +4164,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51908);
+                objCP_BulkAttributes.Text = "HSN Name";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4138,7 +4185,11 @@ namespace ROMS
                 //MainForm.objCP_BulkAttributes.MdiParent = this;
                 //MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
                 //MainForm.objCP_BulkAttributes.Show();
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51909);
+                objCP_BulkAttributes.Text = "Pro. Code, Name & Unit";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
