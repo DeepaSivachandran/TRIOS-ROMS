@@ -72,16 +72,13 @@ namespace ROMS
                 {
 
                     ////user role report
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 413) 
-                    {
+                    
                         udfnUserRole();
-
-                    }
+                      
                     ////user name report 
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 414)
-                    {
-                        udfnRackgroup();
-                    }
+                    //if (Convert.ToInt32(cmbReportType.SelectedValue) == 414)
+                    //{ 
+                    //}
                 }
             }
             catch (Exception ex)
@@ -104,7 +101,23 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnUserRoleList(5, Convert.ToInt32(lblUserRoleId.Text), 0, 0, "");
+
+                int reportType = 1;  ////user role report 
+
+                ////user name report 
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 414)
+                {
+                    reportType = 2;
+                }
+
+                if (txtUserRole.Text == "") {
+                    lblUserRoleId.Text = "0";
+                }
+                if (txtDUserList.Text == "")
+                {
+                    lblUserId.Text = "0";
+                }
+                objDs = objspservice.udfnUserRoleList(5, Convert.ToInt32(lblUserRoleId.Text), 0, 0, "", reportType, Convert.ToInt32(lblUserId.Text));
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -116,7 +129,16 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_UserRole.rpt");
+                    
+                    ///user role 
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 413)
+                    { 
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 414) ////user name report 
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_UserNamewise.rpt");
+                    }
                     objBillreport.SetParameterValue("paraUserRoleId", Convert.ToInt32(lblUserRoleId.Text));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -401,7 +423,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 if (txtUserRole.Text.Length > 0)
                 {
-                    objDs = objspdservice.udfnUserRoleList(4, 0, 1, 0, txtUserRole.Text);
+                    objDs = objspdservice.udfnUserRoleList(4, 0, 1, 0, txtUserRole.Text,0,0);
                     objspdservice.CloseConnection();
                     if (objDs != null)
                     {
@@ -455,7 +477,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnGrdeventUserRole();
-                    txtUserRole.Focus();
+                    txtDUserList.Focus();
                 }
             }
             catch (Exception ex)
@@ -470,7 +492,7 @@ namespace ROMS
             try
             {
                 udfnGrdeventUserRole();
-                txtUserRole.Focus();
+                txtDUserList.Focus();
             }
             catch (Exception ex)
             {

@@ -834,6 +834,15 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserId", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIpAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objTRNG_Stock.paraUserLocations);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objTRNG_Stock.paraCategoryID); 
+                varSqlCommand.Parameters.AddWithValue("@paraType", objTRNG_Stock.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objTRNG_Stock.paraSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRNG_Stock.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraBlockedFlag", objTRNG_Stock.paraBlockedFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraReportType", objTRNG_Stock.paraReportType);
+                varSqlCommand.Parameters.AddWithValue("@paraNameType", objTRNG_Stock.paraNameType);
+
+
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1698,6 +1707,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraTeller", objMR_Product.paraTeller);
                 varSqlCommand.Parameters.AddWithValue("@paraUserCode", objMR_Product.paraUserCode);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objMR_Product.paraUserLocations);
+                varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_Product.paraProductType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -4624,7 +4634,7 @@ namespace ROMS
 
         // Created by : Venkat
         // Created on : 03/10/2025
-        public DataSet udfnUserRoleList(int paraviewType , int paraUserRoleId, int paraStatusId,int paraMenuId,string paraUserroleName)
+        public DataSet udfnUserRoleList(int paraviewType , int paraUserRoleId, int paraStatusId,int paraMenuId,string paraUserroleName,int paraType,int paraUId)
         {
             DataSet ds = new DataSet();
             try
@@ -4639,6 +4649,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraMenuId", paraMenuId);
                 varSqlCommand.Parameters.AddWithValue("@paraUserroleName", paraUserroleName);
+                varSqlCommand.Parameters.AddWithValue("@paraUId", paraUId);
+                varSqlCommand.Parameters.AddWithValue("@paraType", paraType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
