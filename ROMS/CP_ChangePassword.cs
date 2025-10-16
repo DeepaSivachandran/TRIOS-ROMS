@@ -14,6 +14,7 @@ namespace ROMS
 {
     public partial class CP_ChangePassword : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         // Author : DEEPA
         //Sivabharathi on 10-10-2023
 
@@ -33,6 +34,7 @@ namespace ROMS
         {
             InitializeComponent();
             objValidation.resolutionsettingsForm(this);
+            windowControl.Initialize(tsProfile, this);
         }
         public void udfnLoad()
         {

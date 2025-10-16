@@ -15,6 +15,8 @@ namespace ROMS
     //Sivabharathi  Created On :25/09/2023
     public partial class CP_ChequePrint_Setting : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public DataTable dtTemplateDetails;
@@ -27,6 +29,7 @@ namespace ROMS
         public CP_ChequePrint_Setting()
         {
             InitializeComponent();
+            windowControl.Initialize(tsChequePrintSettings, this);
         }
         private void CP_Settings_Leave(object sender, EventArgs e)
         {

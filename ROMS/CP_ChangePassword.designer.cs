@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ChangePassword));
             this.epPassword = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsDesignationList = new System.Windows.Forms.ToolStrip();
+            this.tsProfile = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlprofile = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -51,7 +51,7 @@
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epPassword)).BeginInit();
-            this.tsDesignationList.SuspendLayout();
+            this.tsProfile.SuspendLayout();
             this.pnlprofile.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gpChangePassKey.SuspendLayout();
@@ -62,18 +62,18 @@
             // 
             this.epPassword.ContainerControl = this;
             // 
-            // tsDesignationList
+            // tsProfile
             // 
-            this.tsDesignationList.BackColor = System.Drawing.Color.White;
-            this.tsDesignationList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsDesignationList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsDesignationList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsProfile.BackColor = System.Drawing.Color.White;
+            this.tsProfile.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsProfile.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
-            this.tsDesignationList.Location = new System.Drawing.Point(0, 0);
-            this.tsDesignationList.Name = "tsDesignationList";
-            this.tsDesignationList.Size = new System.Drawing.Size(1360, 25);
-            this.tsDesignationList.TabIndex = 46;
-            this.tsDesignationList.Text = "Designation";
+            this.tsProfile.Location = new System.Drawing.Point(0, 0);
+            this.tsProfile.Name = "tsProfile";
+            this.tsProfile.Size = new System.Drawing.Size(1360, 25);
+            this.tsProfile.TabIndex = 46;
+            this.tsProfile.Text = "Designation";
             // 
             // tspHeader
             // 
@@ -304,7 +304,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1360, 675);
             this.Controls.Add(this.pnlprofile);
-            this.Controls.Add(this.tsDesignationList);
+            this.Controls.Add(this.tsProfile);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -312,13 +312,13 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_ChangePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New Production Plan";
+            this.Text = "My Profile";
             this.Load += new System.EventHandler(this.CP_ChangePassword_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_ChangePassword_KeyDown);
             this.Leave += new System.EventHandler(this.CP_ChangePassword_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.epPassword)).EndInit();
-            this.tsDesignationList.ResumeLayout(false);
-            this.tsDesignationList.PerformLayout();
+            this.tsProfile.ResumeLayout(false);
+            this.tsProfile.PerformLayout();
             this.pnlprofile.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -333,7 +333,7 @@
 
         #endregion
         private System.Windows.Forms.ErrorProvider epPassword;
-        private System.Windows.Forms.ToolStrip tsDesignationList;
+        private System.Windows.Forms.ToolStrip tsProfile;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlprofile;
         private System.Windows.Forms.GroupBox groupBox2;

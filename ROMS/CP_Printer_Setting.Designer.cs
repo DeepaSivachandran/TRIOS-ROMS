@@ -57,7 +57,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Btn_Close = new System.Windows.Forms.Button();
             this.Btn_Save = new System.Windows.Forms.Button();
-            this.tsHeader = new System.Windows.Forms.ToolStrip();
+            this.tsPrinterSetting = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.lbl_PrinterType = new System.Windows.Forms.Label();
             this.lbl_Printer_Name = new System.Windows.Forms.Label();
@@ -71,7 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdLabelPrinting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tsHeader.SuspendLayout();
+            this.tsPrinterSetting.SuspendLayout();
             this.SuspendLayout();
             // 
             // err_PrinterSetting
@@ -93,7 +93,7 @@
             this.TLP_Main_Bg.Controls.Add(this.Btn_Add, 4, 2);
             this.TLP_Main_Bg.Controls.Add(this.Cmb_PaperSize, 1, 2);
             this.TLP_Main_Bg.Controls.Add(this.tableLayoutPanel1, 3, 4);
-            this.TLP_Main_Bg.Controls.Add(this.tsHeader, 0, 0);
+            this.TLP_Main_Bg.Controls.Add(this.tsPrinterSetting, 0, 0);
             this.TLP_Main_Bg.Controls.Add(this.lbl_PrinterType, 1, 4);
             this.TLP_Main_Bg.Controls.Add(this.lbl_Printer_Name, 2, 1);
             this.TLP_Main_Bg.Controls.Add(this.Cmb_Printer_Name, 2, 2);
@@ -317,7 +317,7 @@
             this.Cmb_PaperSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Cmb_PaperSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_PaperSize.FormattingEnabled = true;
-            this.Cmb_PaperSize.Location = new System.Drawing.Point(21, 84);
+            this.Cmb_PaperSize.Location = new System.Drawing.Point(21, 80);
             this.Cmb_PaperSize.Name = "Cmb_PaperSize";
             this.Cmb_PaperSize.Size = new System.Drawing.Size(174, 28);
             this.Cmb_PaperSize.TabIndex = 0;
@@ -375,17 +375,17 @@
             this.Btn_Save.Enter += new System.EventHandler(this.Btn_Save_Enter);
             this.Btn_Save.Leave += new System.EventHandler(this.Btn_Save_Leave);
             // 
-            // tsHeader
+            // tsPrinterSetting
             // 
-            this.TLP_Main_Bg.SetColumnSpan(this.tsHeader, 6);
-            this.tsHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tsHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TLP_Main_Bg.SetColumnSpan(this.tsPrinterSetting, 6);
+            this.tsPrinterSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tsPrinterSetting.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
-            this.tsHeader.Location = new System.Drawing.Point(0, 0);
-            this.tsHeader.Name = "tsHeader";
-            this.tsHeader.Size = new System.Drawing.Size(904, 45);
-            this.tsHeader.TabIndex = 1;
-            this.tsHeader.Text = "Printer Setting";
+            this.tsPrinterSetting.Location = new System.Drawing.Point(0, 0);
+            this.tsPrinterSetting.Name = "tsPrinterSetting";
+            this.tsPrinterSetting.Size = new System.Drawing.Size(904, 45);
+            this.tsPrinterSetting.TabIndex = 1;
+            this.tsPrinterSetting.Text = "Printer Setting";
             // 
             // tspHeader
             // 
@@ -427,7 +427,7 @@
             this.Cmb_Printer_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Cmb_Printer_Name.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_Printer_Name.FormattingEnabled = true;
-            this.Cmb_Printer_Name.Location = new System.Drawing.Point(201, 84);
+            this.Cmb_Printer_Name.Location = new System.Drawing.Point(201, 80);
             this.Cmb_Printer_Name.Name = "Cmb_Printer_Name";
             this.Cmb_Printer_Name.Size = new System.Drawing.Size(391, 28);
             this.Cmb_Printer_Name.TabIndex = 2;
@@ -441,7 +441,7 @@
             this.Cmb_Printer_Type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Cmb_Printer_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_Printer_Type.FormattingEnabled = true;
-            this.Cmb_Printer_Type.Location = new System.Drawing.Point(201, 401);
+            this.Cmb_Printer_Type.Location = new System.Drawing.Point(201, 397);
             this.Cmb_Printer_Type.Name = "Cmb_Printer_Type";
             this.Cmb_Printer_Type.Size = new System.Drawing.Size(391, 28);
             this.Cmb_Printer_Type.TabIndex = 1;
@@ -480,7 +480,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_Printer_Setting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CP_Printer_Setting";
+            this.Text = "Printer Setting";
             this.Load += new System.EventHandler(this.CP_Printer_Setting_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Printer_Setting_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.err_PrinterSetting)).EndInit();
@@ -490,8 +490,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdLabelPrinting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tsHeader.ResumeLayout(false);
-            this.tsHeader.PerformLayout();
+            this.tsPrinterSetting.ResumeLayout(false);
+            this.tsPrinterSetting.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -511,7 +511,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button Btn_Close;
         private System.Windows.Forms.Button Btn_Save;
-        private System.Windows.Forms.ToolStrip tsHeader;
+        private System.Windows.Forms.ToolStrip tsPrinterSetting;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;

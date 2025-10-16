@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class CP_GeneralSettings : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -42,6 +44,7 @@ namespace ROMS
         public CP_GeneralSettings()
         {
             InitializeComponent();
+            windowControl.Initialize(tsGeneralSettings, this);
         }
         private void BtnClose_Click(object sender, EventArgs e)
         {

@@ -278,7 +278,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Financial_Year_Process";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Company";
+            this.Text = "Financial Year Process";
             this.Load += new System.EventHandler(this.Fy_Process_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Fy_Process_Keydown);
             this.tsFy_Process.ResumeLayout(false);

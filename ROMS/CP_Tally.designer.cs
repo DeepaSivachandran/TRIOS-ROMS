@@ -216,7 +216,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_Tally";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Export Tally";
             this.Load += new System.EventHandler(this.CP_Tally_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Tally_KeyDown);
             this.tsTally.ResumeLayout(false);

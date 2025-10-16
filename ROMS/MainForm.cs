@@ -1575,11 +1575,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_ChangePassword = new CP_ChangePassword();
-                MainForm.objCP_ChangePassword.MdiParent = this;
-                MainForm.objCP_ChangePassword.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_ChangePassword = new CP_ChangePassword();
+                //MainForm.objCP_ChangePassword.MdiParent = this;
+                //MainForm.objCP_ChangePassword.Show();
+                OpenReportForm(ref MainForm.objCP_ChangePassword, "CP_ChangePassword", 9);
                 PbCurrentForm = "8.1";
             }
             catch (Exception ex)
@@ -1842,23 +1843,6 @@ namespace ROMS
                 MainForm.objCP_BatchNoConfigurationList = new CP_BatchNoConfigurationList();
                 MainForm.objCP_BatchNoConfigurationList.MdiParent = this;
                 MainForm.objCP_BatchNoConfigurationList.Show();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsmgenralSettings_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
-                MainForm.objCP_GeneralSettings.MdiParent = this;
-                MainForm.objCP_GeneralSettings.Show();
-                PbCurrentForm = "6.2";
             }
             catch (Exception ex)
             {
@@ -3436,24 +3420,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
-        private void TsmChequePrintSettings_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_ChequePrint_Setting = new CP_ChequePrint_Setting();
-                MainForm.objCP_ChequePrint_Setting.MdiParent = this;
-                MainForm.objCP_ChequePrint_Setting.Show();
-                PbCurrentForm = "7.2.6";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmPaymentReport_Click(object sender, EventArgs e)
         {
             try
@@ -4259,11 +4225,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Settings = new CP_Settings();
-                MainForm.objCP_Settings.MdiParent = this;
-                MainForm.objCP_Settings.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Settings = new CP_Settings();
+                //MainForm.objCP_Settings.MdiParent = this;
+                //MainForm.objCP_Settings.Show();
+                OpenReportForm(ref MainForm.objCP_Settings, "CP_Settings", 601);
                 PbCurrentForm = "6.1";
             }
             catch (Exception ex)
@@ -4273,16 +4240,53 @@ namespace ROMS
             }
         }
 
+        private void TsmgenralSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_GeneralSettings = new CP_GeneralSettings();
+                //MainForm.objCP_GeneralSettings.MdiParent = this;
+                //MainForm.objCP_GeneralSettings.Show();
+                OpenReportForm(ref MainForm.objCP_GeneralSettings, "CP_GeneralSettings", 602);
+                PbCurrentForm = "6.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmPrinterSettings_Click(object sender, EventArgs e)
         {
             try
             {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_PrinterSetting = new CP_Printer_Setting();
+                //MainForm.objCP_PrinterSetting.MdiParent = this;
+                //MainForm.objCP_PrinterSetting.Show();
+                OpenReportForm(ref MainForm.objCP_PrinterSetting, "CP_Printer_Setting", 603);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_PrinterSetting = new CP_Printer_Setting();
-                MainForm.objCP_PrinterSetting.MdiParent = this;
-                MainForm.objCP_PrinterSetting.Show();
+        private void TsmChequePrintSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+            //    udfnCloseChildForms();
+            //    if (isClose == false) { return; }
+            //    MainForm.objCP_ChequePrint_Setting = new CP_ChequePrint_Setting();
+            //    MainForm.objCP_ChequePrint_Setting.MdiParent = this;
+            //    MainForm.objCP_ChequePrint_Setting.Show();
+                OpenReportForm(ref MainForm.objCP_ChequePrint_Setting, "CP_ChequePrint_Setting", 604);
+                PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)
             {
@@ -4295,12 +4299,12 @@ namespace ROMS
         {
             try
             {
-
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objCP_Tally = new CP_Tally();
-                MainForm.objCP_Tally.MdiParent = this;
-                MainForm.objCP_Tally.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objCP_Tally = new CP_Tally();
+                //MainForm.objCP_Tally.MdiParent = this;
+                //MainForm.objCP_Tally.Show();
+                OpenReportForm(ref MainForm.objCP_Tally, "CP_Tally", 701);
             }
             catch (Exception ex)
             {
@@ -4395,11 +4399,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objFinancial_Year_Process = new Financial_Year_Process();
-                MainForm.objFinancial_Year_Process.MdiParent = this;
-                MainForm.objFinancial_Year_Process.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objFinancial_Year_Process = new Financial_Year_Process();
+                //MainForm.objFinancial_Year_Process.MdiParent = this;
+                //MainForm.objFinancial_Year_Process.Show();
+                OpenReportForm(ref MainForm.objFinancial_Year_Process, "Financial_Year_Process", 1002);
             }
             catch (Exception ex)
             {
