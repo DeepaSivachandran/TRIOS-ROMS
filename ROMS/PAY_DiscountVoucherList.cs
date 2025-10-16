@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class PAY_DiscountVoucherList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable Deftable = new DataTable();
@@ -28,6 +30,7 @@ namespace ROMS
         public PAY_DiscountVoucherList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsDiscountList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

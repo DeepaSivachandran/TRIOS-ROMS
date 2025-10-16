@@ -389,7 +389,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PAY_BlockedSupplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Stock Request";
+            this.Text = "Blocked Supplier";
             this.Load += new System.EventHandler(this.PAY_BlockedSupplier_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_BlockedSupplier_KeyDown);
             this.tsBlockSupplier.ResumeLayout(false);

@@ -1936,23 +1936,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
-        private void TsbCreditNote_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_CreditNoteList = new PAY_CreditNoteList();
-                MainForm.objPAY_CreditNoteList.MdiParent = this;
-                MainForm.objPAY_CreditNoteList.Show();
-                PbCurrentForm = "4.3";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void TsmRepresentative_Click(object sender, EventArgs e)
         {
             try
@@ -2803,26 +2786,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
-          
-         
-         
-        private void TsmBlockedSupplier_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objPAY_BlockedSupplier = new PAY_BlockedSupplier();
-                MainForm.objPAY_BlockedSupplier.MdiParent = this;
-                MainForm.objPAY_BlockedSupplier.Show();
-                PbCurrentForm = "4.5";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void PurchaseOrderSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -3473,24 +3436,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         } 
-        private void TsmChequeTransaction_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_ChequeTransactionList = new PAY_ChequeTransactionList();
-                MainForm.objPAY_ChequeTransactionList.MdiParent = this;
-                MainForm.objPAY_ChequeTransactionList.Show();
-                PbCurrentForm = "7.2.6";
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void TsmChequePrintSettings_Click(object sender, EventArgs e)
         {
             try
@@ -3883,11 +3828,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
-                MainForm.objPAY_ChequePrint.MdiParent = this;
-                MainForm.objPAY_ChequePrint.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_ChequePrint = new PAY_ChequePrint();
+                //MainForm.objPAY_ChequePrint.MdiParent = this;
+                //MainForm.objPAY_ChequePrint.Show();
+                OpenReportForm(ref MainForm.objPAY_ChequePrint, "PAY_ChequePrint", 401);
                 PbCurrentForm = "4.2";
             }
             catch (Exception ex)
@@ -3897,15 +3843,34 @@ namespace ROMS
             }
         }
 
+        private void TsmBlockedSupplier_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnGetDefaultCompany();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_BlockedSupplier = new PAY_BlockedSupplier();
+                //MainForm.objPAY_BlockedSupplier.MdiParent = this;
+                //MainForm.objPAY_BlockedSupplier.Show();
+                OpenReportForm(ref MainForm.objPAY_BlockedSupplier, "PAY_BlockedSupplier", 402);
+                PbCurrentForm = "4.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmDiscountVoucher_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_DiscountVoucherList = new PAY_DiscountVoucherList();
-                MainForm.objPAY_DiscountVoucherList.MdiParent = this;
-                MainForm.objPAY_DiscountVoucherList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_DiscountVoucherList = new PAY_DiscountVoucherList();
+                //MainForm.objPAY_DiscountVoucherList.MdiParent = this;
+                //MainForm.objPAY_DiscountVoucherList.Show();
+                OpenReportForm(ref MainForm.objPAY_DiscountVoucherList, "PAY_DiscountVoucherList", 403);
             }
             catch (Exception ex)
             {
@@ -3918,11 +3883,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_AdvanceList = new PAY_AdvanceList();
-                MainForm.objPAY_AdvanceList.MdiParent = this;
-                MainForm.objPAY_AdvanceList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_AdvanceList = new PAY_AdvanceList();
+                //MainForm.objPAY_AdvanceList.MdiParent = this;
+                //MainForm.objPAY_AdvanceList.Show();
+                OpenReportForm(ref MainForm.objPAY_AdvanceList, "PAY_AdvanceList", 404);
             }
             catch (Exception ex)
             {
@@ -3931,16 +3897,54 @@ namespace ROMS
             }
         }
 
+        private void TsbCreditNote_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_CreditNoteList = new PAY_CreditNoteList();
+                //MainForm.objPAY_CreditNoteList.MdiParent = this;
+                //MainForm.objPAY_CreditNoteList.Show();
+                OpenReportForm(ref MainForm.objPAY_CreditNoteList, "PAY_CreditNoteList", 405);
+                PbCurrentForm = "4.3";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void tsmSupplierPayment_Click(object sender, EventArgs e)
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
-                MainForm.objPAY_SupplierPaymentList.MdiParent = this;
-                MainForm.objPAY_SupplierPaymentList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_SupplierPaymentList = new PAY_SupplierPaymentList();
+                //MainForm.objPAY_SupplierPaymentList.MdiParent = this;
+                //MainForm.objPAY_SupplierPaymentList.Show();
+                OpenReportForm(ref MainForm.objPAY_SupplierPaymentList, "PAY_SupplierPaymentList", 406);
                 PbCurrentForm = "4.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void TsmChequeTransaction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_ChequeTransactionList = new PAY_ChequeTransactionList();
+                //MainForm.objPAY_ChequeTransactionList.MdiParent = this;
+                //MainForm.objPAY_ChequeTransactionList.Show();
+                OpenReportForm(ref MainForm.objPAY_ChequeTransactionList, "PAY_ChequeTransactionList", 407);
+                PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)
             {
@@ -3953,11 +3957,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objPAY_GSTRDetails = new PAY_GSTRDetails();
-                MainForm.objPAY_GSTRDetails.MdiParent = this;
-                MainForm.objPAY_GSTRDetails.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objPAY_GSTRDetails = new PAY_GSTRDetails();
+                //MainForm.objPAY_GSTRDetails.MdiParent = this;
+                //MainForm.objPAY_GSTRDetails.Show();
+                OpenReportForm(ref MainForm.objPAY_GSTRDetails, "PAY_GSTRDetails", 408);
             }
             catch (Exception ex)
             {

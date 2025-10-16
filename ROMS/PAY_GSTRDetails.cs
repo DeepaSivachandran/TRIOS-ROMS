@@ -15,6 +15,8 @@ namespace ROMS
     //Created On:- 02-09-2023
     public partial class PAY_GSTRDetails : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -36,6 +38,7 @@ namespace ROMS
         public PAY_GSTRDetails()
         {
             InitializeComponent();
+            windowControl.Initialize(tsGSTRDetails, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

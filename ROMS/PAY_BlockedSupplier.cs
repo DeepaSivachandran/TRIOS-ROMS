@@ -14,6 +14,8 @@ namespace ROMS
 {
     public partial class PAY_BlockedSupplier : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -26,6 +28,7 @@ namespace ROMS
         public PAY_BlockedSupplier()
         {
             InitializeComponent();
+            windowControl.Initialize(tsBlockSupplier, this);
         }
         private void BtnSave_Click(object sender, EventArgs e)
         {

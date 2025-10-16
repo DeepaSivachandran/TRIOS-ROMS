@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tsSupplierMapping = new System.Windows.Forms.ToolStrip();
+            this.tsDirectCheque = new System.Windows.Forms.ToolStrip();
             this.tspSupplierMapping = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlSupplierMapping = new System.Windows.Forms.Panel();
@@ -64,7 +64,7 @@
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblChequeDate = new System.Windows.Forms.Label();
             this.epCheque = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsSupplierMapping.SuspendLayout();
+            this.tsDirectCheque.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,18 +72,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.epCheque)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsSupplierMapping
+            // tsDirectCheque
             // 
-            this.tsSupplierMapping.BackColor = System.Drawing.Color.White;
-            this.tsSupplierMapping.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsSupplierMapping.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsSupplierMapping.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsDirectCheque.BackColor = System.Drawing.Color.White;
+            this.tsDirectCheque.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsDirectCheque.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsDirectCheque.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspSupplierMapping});
-            this.tsSupplierMapping.Location = new System.Drawing.Point(0, 0);
-            this.tsSupplierMapping.Name = "tsSupplierMapping";
-            this.tsSupplierMapping.Size = new System.Drawing.Size(1354, 25);
-            this.tsSupplierMapping.TabIndex = 35;
-            this.tsSupplierMapping.Text = "Direct Cheque Print";
+            this.tsDirectCheque.Location = new System.Drawing.Point(0, 0);
+            this.tsDirectCheque.Name = "tsDirectCheque";
+            this.tsDirectCheque.Size = new System.Drawing.Size(1354, 25);
+            this.tsDirectCheque.TabIndex = 35;
+            this.tsDirectCheque.Text = "Direct Cheque Print";
             // 
             // tspSupplierMapping
             // 
@@ -453,19 +453,19 @@
             this.ClientSize = new System.Drawing.Size(1354, 674);
             this.Controls.Add(this.pnlSupplierMapping);
             this.Controls.Add(this.lblNoRecordsFound);
-            this.Controls.Add(this.tsSupplierMapping);
+            this.Controls.Add(this.tsDirectCheque);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PAY_ChequePrint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Goods Receipt";
+            this.Text = "Direct Cheque Printing";
             this.Load += new System.EventHandler(this.PAY_ChequePrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_ChequePrint_KeyDown);
             this.Leave += new System.EventHandler(this.PAY_ChequePrint_Leave);
-            this.tsSupplierMapping.ResumeLayout(false);
-            this.tsSupplierMapping.PerformLayout();
+            this.tsDirectCheque.ResumeLayout(false);
+            this.tsDirectCheque.PerformLayout();
             this.pnlSupplierMapping.ResumeLayout(false);
             this.grpSupplierMapping.ResumeLayout(false);
             this.grpSupplierMapping.PerformLayout();
@@ -481,7 +481,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsSupplierMapping;
+        private System.Windows.Forms.ToolStrip tsDirectCheque;
         private System.Windows.Forms.ToolStripLabel tspSupplierMapping;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Panel pnlSupplierMapping;

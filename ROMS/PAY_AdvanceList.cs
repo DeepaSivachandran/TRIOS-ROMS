@@ -17,6 +17,8 @@ namespace ROMS
          //Created On:-09/08/2023
     public partial class PAY_AdvanceList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -29,6 +31,7 @@ namespace ROMS
         public PAY_AdvanceList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsAdvanceList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
