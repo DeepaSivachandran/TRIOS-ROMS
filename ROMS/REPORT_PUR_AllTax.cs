@@ -10,10 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 
+using System.IO;
+
 namespace ROMS
 {
     public partial class REPORT_PUR_AllTax : Form
     {
+        MainForm objMainForm = new MainForm();
         private ContextMenuStrip contextMenu;
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -108,7 +111,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -150,6 +153,19 @@ namespace ROMS
                         udfnAllPurchaseTaxReport();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
             }
             catch (Exception ex)
             {
@@ -322,6 +338,13 @@ namespace ROMS
                 cmbGST.SelectedValue = 0;
                 cmbMonths.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -772,6 +795,33 @@ namespace ROMS
                     MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this.ParentForm;
                     MainForm.objREPORT_HSN_NameWise_Product.Show();
                 });
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        { 
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
