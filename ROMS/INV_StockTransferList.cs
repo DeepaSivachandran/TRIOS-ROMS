@@ -16,7 +16,7 @@ namespace ROMS
     public partial class INV_StockTransferList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -1788,9 +1788,12 @@ namespace ROMS
             try
             {
                 MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
-                MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
+                objMainForm.OpenReportForm(ref MainForm.objINV_StockTransferQueue, "INV_StockTransferQueue", 303);
                 MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
-                MainForm.objINV_StockTransferQueue.Show();
+                //MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
+                //MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
+                //MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
+                //MainForm.objINV_StockTransferQueue.Show();
             }
             catch (Exception ex)
             {
