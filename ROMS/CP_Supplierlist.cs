@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class CP_Supplierlist : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         Boolean BlnSearchImageYN = false;
         public string varSupplierIds = "0";
         ToolTip tpSupplier = new ToolTip();
@@ -27,6 +29,7 @@ namespace ROMS
         public CP_Supplierlist()
         {
             InitializeComponent();
+            windowControl.Initialize(tsSupplierList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

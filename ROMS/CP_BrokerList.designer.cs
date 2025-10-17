@@ -384,7 +384,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_BrokerList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Broker";
             this.Load += new System.EventHandler(this.CP_BrokerList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_BrokerList_KeyDown);
             this.tsBroker.ResumeLayout(false);

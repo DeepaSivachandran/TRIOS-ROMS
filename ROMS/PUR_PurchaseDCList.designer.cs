@@ -39,7 +39,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
+            this.tsPurchaseDCList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -50,6 +50,8 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pnlcity = new System.Windows.Forms.Panel();
+            this.grdPurchaseDCList = new System.Windows.Forms.DataGridView();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnExport = new System.Windows.Forms.Button();
             this.LV_Supplier = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,41 +74,39 @@
             this.lblInvoicedate = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.cmbShow = new System.Windows.Forms.ComboBox();
-            this.grdPurchaseDCList = new System.Windows.Forms.DataGridView();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.DGV_ProdSearchGrid = new System.Windows.Forms.DataGridView();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_PurchaseDC = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsPurchaseInvoiceList.SuspendLayout();
+            this.tsPurchaseDCList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlcity.SuspendLayout();
-            this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDCList)).BeginInit();
+            this.grbFilterBy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_ProdSearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ep_PurchaseDC)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsPurchaseInvoiceList
+            // tsPurchaseDCList
             // 
-            this.tsPurchaseInvoiceList.BackColor = System.Drawing.Color.White;
-            this.tsPurchaseInvoiceList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsPurchaseInvoiceList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsPurchaseInvoiceList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsPurchaseInvoiceList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPurchaseDCList.BackColor = System.Drawing.Color.White;
+            this.tsPurchaseDCList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPurchaseDCList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPurchaseDCList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsPurchaseDCList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsPurchaseInvoiceList.Location = new System.Drawing.Point(0, 0);
-            this.tsPurchaseInvoiceList.Name = "tsPurchaseInvoiceList";
-            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 27);
-            this.tsPurchaseInvoiceList.TabIndex = 35;
-            this.tsPurchaseInvoiceList.Text = "Purchase Invoice";
+            this.tsPurchaseDCList.Location = new System.Drawing.Point(0, 0);
+            this.tsPurchaseDCList.Name = "tsPurchaseDCList";
+            this.tsPurchaseDCList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPurchaseDCList.TabIndex = 35;
+            this.tsPurchaseDCList.Text = "Purchase Invoice";
             // 
             // tspHeader
             // 
@@ -265,6 +265,58 @@
             this.pnlcity.Name = "pnlcity";
             this.pnlcity.Size = new System.Drawing.Size(1354, 643);
             this.pnlcity.TabIndex = 958797;
+            // 
+            // grdPurchaseDCList
+            // 
+            this.grdPurchaseDCList.AllowUserToAddRows = false;
+            this.grdPurchaseDCList.AllowUserToDeleteRows = false;
+            this.grdPurchaseDCList.AllowUserToResizeColumns = false;
+            this.grdPurchaseDCList.AllowUserToResizeRows = false;
+            this.grdPurchaseDCList.BackgroundColor = System.Drawing.Color.White;
+            this.grdPurchaseDCList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseDCList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdPurchaseDCList.ColumnHeadersHeight = 30;
+            this.grdPurchaseDCList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdPurchaseDCList.ColumnHeadersVisible = false;
+            this.grdPurchaseDCList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmPrint});
+            this.grdPurchaseDCList.EnableHeadersVisualStyles = false;
+            this.grdPurchaseDCList.GridColor = System.Drawing.Color.White;
+            this.grdPurchaseDCList.Location = new System.Drawing.Point(3, 130);
+            this.grdPurchaseDCList.Name = "grdPurchaseDCList";
+            this.grdPurchaseDCList.ReadOnly = true;
+            this.grdPurchaseDCList.RowHeadersVisible = false;
+            this.grdPurchaseDCList.RowHeadersWidth = 100;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdPurchaseDCList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdPurchaseDCList.RowTemplate.Height = 25;
+            this.grdPurchaseDCList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPurchaseDCList.Size = new System.Drawing.Size(1348, 510);
+            this.grdPurchaseDCList.TabIndex = 1;
+            this.grdPurchaseDCList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDCList_CellContentClick);
+            this.grdPurchaseDCList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdPurchaseDCList_CellFormatting);
+            this.grdPurchaseDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDCList_DataBindingComplete);
+            this.grdPurchaseDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseDCList_Scroll);
+            this.grdPurchaseDCList.SelectionChanged += new System.EventHandler(this.GrdPurchaseDCList_SelectionChanged);
+            this.grdPurchaseDCList.DoubleClick += new System.EventHandler(this.GrdPurchaseDCList_DoubleClick);
+            this.grdPurchaseDCList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseDCList_KeyDown);
+            // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // btnExport
             // 
@@ -521,58 +573,6 @@
             this.cmbShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbShow_KeyPress);
             this.cmbShow.Leave += new System.EventHandler(this.CmbShow_Leave);
             // 
-            // grdPurchaseDCList
-            // 
-            this.grdPurchaseDCList.AllowUserToAddRows = false;
-            this.grdPurchaseDCList.AllowUserToDeleteRows = false;
-            this.grdPurchaseDCList.AllowUserToResizeColumns = false;
-            this.grdPurchaseDCList.AllowUserToResizeRows = false;
-            this.grdPurchaseDCList.BackgroundColor = System.Drawing.Color.White;
-            this.grdPurchaseDCList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseDCList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdPurchaseDCList.ColumnHeadersHeight = 30;
-            this.grdPurchaseDCList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdPurchaseDCList.ColumnHeadersVisible = false;
-            this.grdPurchaseDCList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmPrint});
-            this.grdPurchaseDCList.EnableHeadersVisualStyles = false;
-            this.grdPurchaseDCList.GridColor = System.Drawing.Color.White;
-            this.grdPurchaseDCList.Location = new System.Drawing.Point(3, 130);
-            this.grdPurchaseDCList.Name = "grdPurchaseDCList";
-            this.grdPurchaseDCList.ReadOnly = true;
-            this.grdPurchaseDCList.RowHeadersVisible = false;
-            this.grdPurchaseDCList.RowHeadersWidth = 100;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdPurchaseDCList.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.grdPurchaseDCList.RowTemplate.Height = 25;
-            this.grdPurchaseDCList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPurchaseDCList.Size = new System.Drawing.Size(1348, 510);
-            this.grdPurchaseDCList.TabIndex = 1;
-            this.grdPurchaseDCList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPurchaseDCList_CellContentClick);
-            this.grdPurchaseDCList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GrdPurchaseDCList_CellFormatting);
-            this.grdPurchaseDCList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdPurchaseDCList_DataBindingComplete);
-            this.grdPurchaseDCList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseDCList_Scroll);
-            this.grdPurchaseDCList.SelectionChanged += new System.EventHandler(this.GrdPurchaseDCList_SelectionChanged);
-            this.grdPurchaseDCList.DoubleClick += new System.EventHandler(this.GrdPurchaseDCList_DoubleClick);
-            this.grdPurchaseDCList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseDCList_KeyDown);
-            // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // DGV_ProdSearchGrid
             // 
             this.DGV_ProdSearchGrid.AllowUserToAddRows = false;
@@ -682,25 +682,25 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlcity);
-            this.Controls.Add(this.tsPurchaseInvoiceList);
+            this.Controls.Add(this.tsPurchaseDCList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_PurchaseDCList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sales Invoice";
+            this.Text = "Purchase DC";
             this.Load += new System.EventHandler(this.PUR_PurchaseDCList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseDCList_KeyDown);
-            this.tsPurchaseInvoiceList.ResumeLayout(false);
-            this.tsPurchaseInvoiceList.PerformLayout();
+            this.tsPurchaseDCList.ResumeLayout(false);
+            this.tsPurchaseDCList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.pnlcity.ResumeLayout(false);
             this.pnlcity.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDCList)).EndInit();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDCList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_ProdSearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ep_PurchaseDC)).EndInit();
@@ -711,7 +711,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsPurchaseInvoiceList;
+        private System.Windows.Forms.ToolStrip tsPurchaseDCList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.PictureBox picLoader;

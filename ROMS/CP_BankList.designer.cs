@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsCityList = new System.Windows.Forms.ToolStrip();
+            this.tsBankList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -49,20 +49,20 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdBankList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsCityList.SuspendLayout();
+            this.tsBankList.SuspendLayout();
             this.pnlCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdBankList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsCityList
+            // tsBankList
             // 
-            this.tsCityList.BackColor = System.Drawing.Color.White;
-            this.tsCityList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsCityList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsCityList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsCityList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsBankList.BackColor = System.Drawing.Color.White;
+            this.tsBankList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsBankList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsBankList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsBankList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
@@ -72,11 +72,11 @@
             this.toolStripSeparator1,
             this.tsbTotalCount,
             this.toolStripButton2});
-            this.tsCityList.Location = new System.Drawing.Point(0, 0);
-            this.tsCityList.Name = "tsCityList";
-            this.tsCityList.Size = new System.Drawing.Size(1354, 27);
-            this.tsCityList.TabIndex = 35;
-            this.tsCityList.Text = "City";
+            this.tsBankList.Location = new System.Drawing.Point(0, 0);
+            this.tsBankList.Name = "tsBankList";
+            this.tsBankList.Size = new System.Drawing.Size(1354, 27);
+            this.tsBankList.TabIndex = 35;
+            this.tsBankList.Text = "City";
             // 
             // tspHeader
             // 
@@ -288,7 +288,7 @@
             this.grdBankList.RowTemplate.Height = 25;
             this.grdBankList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBankList.Size = new System.Drawing.Size(1348, 581);
-            this.grdBankList.TabIndex = 958797; 
+            this.grdBankList.TabIndex = 958797;
             this.grdBankList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
             this.grdBankList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
             this.grdBankList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
@@ -316,19 +316,19 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlCity);
-            this.Controls.Add(this.tsCityList);
+            this.Controls.Add(this.tsBankList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_BankList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "City";
+            this.Text = "Bank";
             this.Load += new System.EventHandler(this.CP_Citylist_Load);
             this.DoubleClick += new System.EventHandler(this.CP_Citylist_DoubleClick);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Citylist_KeyDown);
-            this.tsCityList.ResumeLayout(false);
-            this.tsCityList.PerformLayout();
+            this.tsBankList.ResumeLayout(false);
+            this.tsBankList.PerformLayout();
             this.pnlCity.ResumeLayout(false);
             this.pnlCity.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -341,7 +341,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsCityList;
+        private System.Windows.Forms.ToolStrip tsBankList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

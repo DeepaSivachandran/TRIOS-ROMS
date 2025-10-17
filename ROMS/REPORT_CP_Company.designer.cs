@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Company));
-            this.ReportCompany = new System.Windows.Forms.ToolStrip();
+            this.tsCompanyReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCompany = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -42,29 +43,28 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.ReportCompany.SuspendLayout();
+            this.tsCompanyReport.SuspendLayout();
             this.pnlReportCompany.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportCompany
+            // tsCompanyReport
             // 
-            this.ReportCompany.BackColor = System.Drawing.Color.White;
-            this.ReportCompany.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportCompany.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportCompany.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportCompany.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsCompanyReport.BackColor = System.Drawing.Color.White;
+            this.tsCompanyReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsCompanyReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsCompanyReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsCompanyReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportCompany.Location = new System.Drawing.Point(0, 0);
-            this.ReportCompany.Name = "ReportCompany";
-            this.ReportCompany.Size = new System.Drawing.Size(1354, 27);
-            this.ReportCompany.TabIndex = 35;
-            this.ReportCompany.Text = "Company Report";
+            this.tsCompanyReport.Location = new System.Drawing.Point(0, 0);
+            this.tsCompanyReport.Name = "tsCompanyReport";
+            this.tsCompanyReport.Size = new System.Drawing.Size(1354, 27);
+            this.tsCompanyReport.TabIndex = 35;
+            this.tsCompanyReport.Text = "Company Report";
             // 
             // tsbPrintFormat
             // 
@@ -91,6 +91,16 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportCompany
             // 
@@ -223,16 +233,6 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
@@ -244,7 +244,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportCompany);
-            this.Controls.Add(this.ReportCompany);
+            this.Controls.Add(this.tsCompanyReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -254,8 +254,8 @@
             this.Text = "Company Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Company_KeyDown);
-            this.ReportCompany.ResumeLayout(false);
-            this.ReportCompany.PerformLayout();
+            this.tsCompanyReport.ResumeLayout(false);
+            this.tsCompanyReport.PerformLayout();
             this.pnlReportCompany.ResumeLayout(false);
             this.pnlReportCompany.PerformLayout();
             this.grpfilter.ResumeLayout(false);
@@ -268,7 +268,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportCompany;
+        private System.Windows.Forms.ToolStrip tsCompanyReport;
         private System.Windows.Forms.Panel pnlReportCompany;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

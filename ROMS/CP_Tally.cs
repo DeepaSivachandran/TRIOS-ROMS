@@ -13,6 +13,7 @@ namespace ROMS
 {
     public partial class CP_Tally : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varbrandcode = 0;
@@ -47,8 +48,8 @@ namespace ROMS
         public CP_Tally()
         {
             InitializeComponent();
+            windowControl.Initialize(tsTally, this);
             dtGroup = new DataTable();
-            
         }
      
         private void BtnClose_Click(object sender, EventArgs e)

@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class CP_SubGroupList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -29,6 +31,7 @@ namespace ROMS
         public CP_SubGroupList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsSubgroupList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

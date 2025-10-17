@@ -14,6 +14,8 @@ namespace ROMS
     //Created On:-19/09/2023
     public partial class CP_RackList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -27,6 +29,7 @@ namespace ROMS
         public CP_RackList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsRackList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

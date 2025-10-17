@@ -40,8 +40,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsRackGroupList = new System.Windows.Forms.ToolStrip();
+            this.tsOutward = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tss = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -69,7 +70,7 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsRackGroupList.SuspendLayout();
+            this.tsOutward.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -79,23 +80,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsRackGroupList
+            // tsOutward
             // 
-            this.tsRackGroupList.BackColor = System.Drawing.Color.White;
-            this.tsRackGroupList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsRackGroupList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsRackGroupList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsOutward.BackColor = System.Drawing.Color.White;
+            this.tsOutward.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsOutward.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsOutward.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.tss,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsRackGroupList.Location = new System.Drawing.Point(0, 0);
-            this.tsRackGroupList.Name = "tsRackGroupList";
-            this.tsRackGroupList.Size = new System.Drawing.Size(1354, 27);
-            this.tsRackGroupList.TabIndex = 35;
-            this.tsRackGroupList.Text = "Rack Group";
+            this.tsOutward.Location = new System.Drawing.Point(0, 0);
+            this.tsOutward.Name = "tsOutward";
+            this.tsOutward.Size = new System.Drawing.Size(1354, 27);
+            this.tsOutward.TabIndex = 35;
+            this.tsOutward.Text = "Rack Group";
             // 
             // tspHeader
             // 
@@ -107,13 +109,20 @@
             this.tspHeader.Size = new System.Drawing.Size(108, 24);
             this.tspHeader.Text = "Goods Outward";
             // 
+            // tss
+            // 
+            this.tss.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.tss.Name = "tss";
+            this.tss.Size = new System.Drawing.Size(6, 24);
+            // 
             // tsbDelete
             // 
             this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
@@ -123,9 +132,9 @@
             // tssEdit
             // 
             this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 27);
+            this.tssEdit.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbEdit
             // 
@@ -133,7 +142,7 @@
             this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
@@ -143,9 +152,9 @@
             // tssNew
             // 
             this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssNew.Name = "tssNew";
-            this.tssNew.Size = new System.Drawing.Size(6, 27); 
+            this.tssNew.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbNew
             // 
@@ -153,7 +162,7 @@
             this.tsbNew.Image = global::ROMS.Properties.Resources.New;
             this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbNew.Size = new System.Drawing.Size(52, 24);
@@ -572,18 +581,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.tsRackGroupList);
+            this.Controls.Add(this.tsOutward);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "INV_GodownOutwardList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User";
+            this.Text = "Goods Outward";
             this.Load += new System.EventHandler(this.INV_GodownOutwardList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_GodownOutwardList_KeyDown);
-            this.tsRackGroupList.ResumeLayout(false);
-            this.tsRackGroupList.PerformLayout();
+            this.tsOutward.ResumeLayout(false);
+            this.tsOutward.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).EndInit();
@@ -600,7 +609,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsRackGroupList;
+        private System.Windows.Forms.ToolStrip tsOutward;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
@@ -629,5 +638,6 @@
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         public System.Windows.Forms.DataGridView DGV_FilterLocation;
+        public System.Windows.Forms.ToolStripSeparator tss;
     }
 }

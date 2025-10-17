@@ -12,6 +12,8 @@ namespace ROMS
 {
     public partial class CP_GroupList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         public string varUserID = "";
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -28,6 +30,7 @@ namespace ROMS
         public CP_GroupList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsGroupList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

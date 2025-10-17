@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class REPORT_Tax_Changes : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -22,6 +23,8 @@ namespace ROMS
         public REPORT_Tax_Changes()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsTaxChangesReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

@@ -17,6 +17,7 @@ namespace ROMS
 {
     public partial class REPORT_ItemMovementAnalysis : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpProduct = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -26,6 +27,7 @@ namespace ROMS
         public REPORT_ItemMovementAnalysis()
         {
             InitializeComponent();
+            windowControl.Initialize(tsItemMovementReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

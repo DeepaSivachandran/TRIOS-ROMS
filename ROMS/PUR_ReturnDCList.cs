@@ -16,7 +16,7 @@ namespace ROMS
 {
     public partial class PUR_ReturnDCList : Form
     {
-
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int Varflag = 0, varviewtype=0;
@@ -30,6 +30,8 @@ namespace ROMS
         public PUR_ReturnDCList()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsReturnDCList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -1562,10 +1564,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)
@@ -1776,6 +1779,7 @@ namespace ROMS
         {
             try
             {
+                this.Close();
                 MainForm.objPUR_ReturnApprovedList = new PUR_ReturnDCApprovedList();
                 MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
                 MainForm.objPUR_ReturnApprovedList.Show();

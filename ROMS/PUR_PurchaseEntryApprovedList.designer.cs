@@ -596,7 +596,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_PurchaseEntryApprovedList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Purchase Entry Approval";
+            this.Text = "Purchase Entry Approved";
             this.Load += new System.EventHandler(this.PUR_PurchaseApprovalList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseApprovalList_KeyDown);
             this.Leave += new System.EventHandler(this.PUR_PurchaseApprovalList_Leave);

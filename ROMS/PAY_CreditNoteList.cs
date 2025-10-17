@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class PAY_CreditNoteList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int varDNID = 0;
@@ -27,6 +29,7 @@ namespace ROMS
         public PAY_CreditNoteList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsCreditNote, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

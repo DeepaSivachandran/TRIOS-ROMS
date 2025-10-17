@@ -15,6 +15,7 @@ namespace ROMS
     //Created On : 20-02-2025
     public partial class CP_DirectLabelPrint : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
 
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
@@ -41,6 +42,7 @@ namespace ROMS
         public CP_DirectLabelPrint()
         {
             InitializeComponent();
+            windowControl.Initialize(tsDirectLabelPrint, this);
         }
 
         private void PROD_LabelPrinting_KeyDown(object sender, KeyEventArgs e)

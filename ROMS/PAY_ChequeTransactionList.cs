@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class PAY_ChequeTransactionList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable Deftable = new DataTable();
@@ -27,6 +29,7 @@ namespace ROMS
         public PAY_ChequeTransactionList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsChequeTransaction, this);
         }
           
         private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

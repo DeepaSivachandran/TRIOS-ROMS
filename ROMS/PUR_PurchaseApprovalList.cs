@@ -16,6 +16,7 @@ namespace ROMS
 {
     public partial class PUR_PurchaseApprovalList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
@@ -27,6 +28,8 @@ namespace ROMS
         public PUR_PurchaseApprovalList()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsPurchaseEntryApprovalList, this);
         }
 
         private void PUR_PurchaseApprovalList_Load(object sender, EventArgs e)
@@ -435,10 +438,11 @@ namespace ROMS
                 
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)

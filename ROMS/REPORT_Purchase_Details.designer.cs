@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_Purchase_Details));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_Purchase_Details));
-            this.ReportSupplier = new System.Windows.Forms.ToolStrip();
+            this.tsPurchaseDetailsReport = new System.Windows.Forms.ToolStrip();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
@@ -55,29 +56,38 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
-            this.ReportSupplier.SuspendLayout();
+            this.tsPurchaseDetailsReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportSupplier
+            // tsPurchaseDetailsReport
             // 
-            this.ReportSupplier.BackColor = System.Drawing.Color.White;
-            this.ReportSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportSupplier.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportSupplier.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportSupplier.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPurchaseDetailsReport.BackColor = System.Drawing.Color.White;
+            this.tsPurchaseDetailsReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPurchaseDetailsReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPurchaseDetailsReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsPurchaseDetailsReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsLabelPlaceholder,
             this.tsbPrintFormat,
             this.tsbFormat});
-            this.ReportSupplier.Location = new System.Drawing.Point(0, 0);
-            this.ReportSupplier.Name = "ReportSupplier";
-            this.ReportSupplier.Size = new System.Drawing.Size(1354, 27);
-            this.ReportSupplier.TabIndex = 35;
-            this.ReportSupplier.Text = "GRN Summary Report";
+            this.tsPurchaseDetailsReport.Location = new System.Drawing.Point(0, 0);
+            this.tsPurchaseDetailsReport.Name = "tsPurchaseDetailsReport";
+            this.tsPurchaseDetailsReport.Size = new System.Drawing.Size(1354, 27);
+            this.tsPurchaseDetailsReport.TabIndex = 35;
+            this.tsPurchaseDetailsReport.Text = "GRN Summary Report";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // tsbPrintFormat
             // 
@@ -381,16 +391,6 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // REPORT_Purchase_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -398,18 +398,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportStockLocation);
-            this.Controls.Add(this.ReportSupplier);
+            this.Controls.Add(this.tsPurchaseDetailsReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_Purchase_Details";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HSN Report";
+            this.Text = "Purchase Detail Report";
             this.Load += new System.EventHandler(this.REPORT_Purchase_Details_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_GRN_Details_KeyDown);
-            this.ReportSupplier.ResumeLayout(false);
-            this.ReportSupplier.PerformLayout();
+            this.tsPurchaseDetailsReport.ResumeLayout(false);
+            this.tsPurchaseDetailsReport.PerformLayout();
             this.pnlReportStockLocation.ResumeLayout(false);
             this.pnlReportStockLocation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
@@ -423,7 +423,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportSupplier;
+        private System.Windows.Forms.ToolStrip tsPurchaseDetailsReport;
         private System.Windows.Forms.Panel pnlReportStockLocation;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

@@ -37,7 +37,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsInwardList = new System.Windows.Forms.ToolStrip();
+            this.tsPurchaseMismatchList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbApproval = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -84,7 +84,7 @@
             this.grdGrnApprovalList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tsInwardList.SuspendLayout();
+            this.tsPurchaseMismatchList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.grbFilterBy.SuspendLayout();
@@ -94,23 +94,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsInwardList
+            // tsPurchaseMismatchList
             // 
-            this.tsInwardList.BackColor = System.Drawing.Color.White;
-            this.tsInwardList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsInwardList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsInwardList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPurchaseMismatchList.BackColor = System.Drawing.Color.White;
+            this.tsPurchaseMismatchList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPurchaseMismatchList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPurchaseMismatchList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbApproval,
             this.toolStripSeparator1,
             this.tsbMismatch,
             this.tssEdit,
             this.tsbEdit});
-            this.tsInwardList.Location = new System.Drawing.Point(0, 0);
-            this.tsInwardList.Name = "tsInwardList";
-            this.tsInwardList.Size = new System.Drawing.Size(1354, 27);
-            this.tsInwardList.TabIndex = 35;
-            this.tsInwardList.Text = "Inward";
+            this.tsPurchaseMismatchList.Location = new System.Drawing.Point(0, 0);
+            this.tsPurchaseMismatchList.Name = "tsPurchaseMismatchList";
+            this.tsPurchaseMismatchList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPurchaseMismatchList.TabIndex = 35;
+            this.tsPurchaseMismatchList.Text = "Inward";
             // 
             // tspHeader
             // 
@@ -707,18 +707,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlinward);
-            this.Controls.Add(this.tsInwardList);
+            this.Controls.Add(this.tsPurchaseMismatchList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_GRNApprovalList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Purchase Mismatch Approval";
             this.Load += new System.EventHandler(this.PUR_GRNApprovalList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_GRNApprovalList_KeyDown);
-            this.tsInwardList.ResumeLayout(false);
-            this.tsInwardList.PerformLayout();
+            this.tsPurchaseMismatchList.ResumeLayout(false);
+            this.tsPurchaseMismatchList.PerformLayout();
             this.pnlinward.ResumeLayout(false);
             this.pnlinward.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
@@ -736,7 +736,7 @@
         #endregion
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbEdit;
-        private System.Windows.Forms.ToolStrip tsInwardList;
+        private System.Windows.Forms.ToolStrip tsPurchaseMismatchList;
         private System.Windows.Forms.Panel pnlinward;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;

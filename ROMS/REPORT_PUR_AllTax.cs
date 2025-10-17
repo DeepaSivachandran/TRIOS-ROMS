@@ -15,6 +15,7 @@ namespace ROMS
     public partial class REPORT_PUR_AllTax : Form
     {
         private ContextMenuStrip contextMenu;
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -27,6 +28,9 @@ namespace ROMS
         public REPORT_PUR_AllTax()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsAllPurchaseReport, this);
+            this.DoubleBuffered = true;
 
             //var months = new List<ComboItem>
             //{

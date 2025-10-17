@@ -41,7 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsRackSettings = new System.Windows.Forms.ToolStrip();
+            this.tsGSTRDetails = new System.Windows.Forms.ToolStrip();
             this.tspRackSettings = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.pnlRackSettings = new System.Windows.Forms.Panel();
@@ -76,7 +76,7 @@
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblNoRecordsFound1 = new System.Windows.Forms.Label();
-            this.tsRackSettings.SuspendLayout();
+            this.tsGSTRDetails.SuspendLayout();
             this.pnlRackSettings.SuspendLayout();
             this.grbMove.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridMove)).BeginInit();
@@ -86,18 +86,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.epRackSettings)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsRackSettings
+            // tsGSTRDetails
             // 
-            this.tsRackSettings.BackColor = System.Drawing.Color.White;
-            this.tsRackSettings.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsRackSettings.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsRackSettings.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsGSTRDetails.BackColor = System.Drawing.Color.White;
+            this.tsGSTRDetails.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsGSTRDetails.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsGSTRDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspRackSettings});
-            this.tsRackSettings.Location = new System.Drawing.Point(0, 0);
-            this.tsRackSettings.Name = "tsRackSettings";
-            this.tsRackSettings.Size = new System.Drawing.Size(1354, 25);
-            this.tsRackSettings.TabIndex = 35;
-            this.tsRackSettings.Text = "Rack Settings";
+            this.tsGSTRDetails.Location = new System.Drawing.Point(0, 0);
+            this.tsGSTRDetails.Name = "tsGSTRDetails";
+            this.tsGSTRDetails.Size = new System.Drawing.Size(1354, 25);
+            this.tsGSTRDetails.TabIndex = 35;
+            this.tsGSTRDetails.Text = "Rack Settings";
             // 
             // tspRackSettings
             // 
@@ -629,19 +629,19 @@
             this.Controls.Add(this.lblNoRecordsFound1);
             this.Controls.Add(this.lblNoRecordsFound);
             this.Controls.Add(this.pnlRackSettings);
-            this.Controls.Add(this.tsRackSettings);
+            this.Controls.Add(this.tsGSTRDetails);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PAY_GSTRDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rack Settings";
+            this.Text = "GSTR Details";
             this.Load += new System.EventHandler(this.PAY_GSTRDetails_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_GSTRDetails_KeyDown);
             this.Leave += new System.EventHandler(this.PAY_GSTRDetails_Leave);
-            this.tsRackSettings.ResumeLayout(false);
-            this.tsRackSettings.PerformLayout();
+            this.tsGSTRDetails.ResumeLayout(false);
+            this.tsGSTRDetails.PerformLayout();
             this.pnlRackSettings.ResumeLayout(false);
             this.grbMove.ResumeLayout(false);
             this.grbMove.PerformLayout();
@@ -657,7 +657,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsRackSettings;
+        private System.Windows.Forms.ToolStrip tsGSTRDetails;
         private System.Windows.Forms.ToolStripLabel tspRackSettings;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.Panel pnlRackSettings;

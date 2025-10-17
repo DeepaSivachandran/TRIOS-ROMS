@@ -12,6 +12,8 @@ namespace ROMS
 {
     public partial class CP_Companylist : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -21,6 +23,7 @@ namespace ROMS
         public CP_Companylist()
         {
             InitializeComponent();
+            windowControl.Initialize(tsCompanyList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class REPORT_GRNSummary : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,6 +25,7 @@ namespace ROMS
         public REPORT_GRNSummary()
         {
             InitializeComponent();
+            windowControl.Initialize(tsGRNSummaryReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

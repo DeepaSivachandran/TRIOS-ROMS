@@ -64,6 +64,7 @@
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tss = new System.Windows.Forms.ToolStripSeparator();
             this.tsDiscountList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDiscountList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -79,6 +80,7 @@
             this.tsDiscountList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsDiscountList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.tss,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
@@ -106,7 +108,7 @@
             this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
@@ -116,9 +118,9 @@
             // tssEdit
             // 
             this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 27);
+            this.tssEdit.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbEdit
             // 
@@ -126,7 +128,7 @@
             this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
@@ -136,9 +138,9 @@
             // tssNew
             // 
             this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssNew.Name = "tssNew";
-            this.tssNew.Size = new System.Drawing.Size(6, 27);
+            this.tssNew.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbNew
             // 
@@ -146,7 +148,7 @@
             this.tsbNew.Image = global::ROMS.Properties.Resources.New;
             this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbNew.Size = new System.Drawing.Size(52, 24);
@@ -493,6 +495,13 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // tss
+            // 
+            this.tss.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.tss.Name = "tss";
+            this.tss.Size = new System.Drawing.Size(6, 24);
+            // 
             // PAY_DiscountVoucherList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -507,7 +516,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PAY_DiscountVoucherList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Discount Voucher";
             this.Load += new System.EventHandler(this.PAY_DiscountVoucherList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_DiscountVoucherList_KeyDown);
             this.tsDiscountList.ResumeLayout(false);
@@ -556,5 +565,6 @@
         public System.Windows.Forms.PictureBox picLoader;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
+        public System.Windows.Forms.ToolStripSeparator tss;
     }
 }

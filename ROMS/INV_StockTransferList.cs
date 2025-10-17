@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class INV_StockTransferList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -27,6 +29,7 @@ namespace ROMS
         public INV_StockTransferList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsStockTransferList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -208,12 +211,16 @@ namespace ROMS
                         TsbDelete_Click(sender, e);
                     }
                 }
+                //if (e.KeyCode == Keys.Escape)
+                //{
+                //    MainForm.objStart = new DEF_Start();
+                //    MainForm.objStart.MdiParent = this.ParentForm;
+                //    MainForm.objStart.Show();   
+                //    this.Close();
+                //}
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();   
-                    this.Close();
+                    windowControl?.TriggerClose();
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
@@ -275,7 +282,7 @@ namespace ROMS
                 tssDelete.Visible = privilege.Contains("4"); 
                 btnExport.Visible = privilege.Contains("6");
                 tsbQue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("9"));
-                lblQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("9")); 
+                tsbQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("9")); 
             }
             catch (Exception ex)
             {
@@ -299,8 +306,8 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            //tsbQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["QueueCount"]);
-                            lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["QueueCount"]);
+                            tsbQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["QueueCount"]);
+                            //lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["QueueCount"]);
                         }
                     }
                 }
@@ -1784,6 +1791,10 @@ namespace ROMS
         {
             try
             {
+                //MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
+                //objMainForm.OpenReportForm(ref MainForm.objINV_StockTransferQueue, "INV_StockTransferQueue", 303);
+                //MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
+                this.Close();
                 MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
                 MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));

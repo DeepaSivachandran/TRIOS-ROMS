@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class PAY_ChequePrint : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpSuppliername = new ToolTip();
@@ -20,16 +22,7 @@ namespace ROMS
         public PAY_ChequePrint()
         {
             InitializeComponent();
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-
-            }
+            windowControl.Initialize(tsDirectCheque, this);
         }
 
         private void Txtsuppliername_TextChanged(object sender, EventArgs e)

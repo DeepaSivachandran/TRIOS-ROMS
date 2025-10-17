@@ -269,6 +269,7 @@ namespace ROMS
                 MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
                 MainForm.objINV_InwardPurchaseList.MdiParent = this.ParentForm;
                 MainForm.objINV_InwardPurchaseList.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

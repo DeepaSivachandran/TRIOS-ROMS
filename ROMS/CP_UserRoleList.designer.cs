@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsUserList = new System.Windows.Forms.ToolStrip();
+            this.tsUserRole = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -59,9 +59,9 @@
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdUserList = new System.Windows.Forms.DataGridView();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.clmClone = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tsUserList.SuspendLayout();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsUserRole.SuspendLayout();
             this.pnluser.SuspendLayout();
             this.grbFilterByUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -69,23 +69,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsUserList
+            // tsUserRole
             // 
-            this.tsUserList.BackColor = System.Drawing.Color.White;
-            this.tsUserList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsUserList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsUserList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsUserRole.BackColor = System.Drawing.Color.White;
+            this.tsUserRole.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsUserRole.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsUserRole.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsUserList.Location = new System.Drawing.Point(0, 0);
-            this.tsUserList.Name = "tsUserList";
-            this.tsUserList.Size = new System.Drawing.Size(1354, 27);
-            this.tsUserList.TabIndex = 35;
-            this.tsUserList.Text = "User";
+            this.tsUserRole.Location = new System.Drawing.Point(0, 0);
+            this.tsUserRole.Name = "tsUserRole";
+            this.tsUserRole.Size = new System.Drawing.Size(1354, 27);
+            this.tsUserRole.TabIndex = 35;
+            this.tsUserRole.Text = "User";
             // 
             // tspHeader
             // 
@@ -427,6 +427,15 @@
             this.grdUserList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
             this.grdUserList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
+            // clmClone
+            // 
+            this.clmClone.HeaderText = "";
+            this.clmClone.Image = global::ROMS.Properties.Resources.Convertion;
+            this.clmClone.Name = "clmClone";
+            this.clmClone.ReadOnly = true;
+            this.clmClone.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmClone.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -441,15 +450,6 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // clmClone
-            // 
-            this.clmClone.HeaderText = "";
-            this.clmClone.Image = global::ROMS.Properties.Resources.Convertion;
-            this.clmClone.Name = "clmClone";
-            this.clmClone.ReadOnly = true;
-            this.clmClone.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmClone.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // CP_UserRoleList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -457,18 +457,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnluser);
-            this.Controls.Add(this.tsUserList);
+            this.Controls.Add(this.tsUserRole);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_UserRoleList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "System User";
+            this.Text = "User Role";
             this.Load += new System.EventHandler(this.CP_UserList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserList_KeyDown);
-            this.tsUserList.ResumeLayout(false);
-            this.tsUserList.PerformLayout();
+            this.tsUserRole.ResumeLayout(false);
+            this.tsUserRole.PerformLayout();
             this.pnluser.ResumeLayout(false);
             this.pnluser.PerformLayout();
             this.grbFilterByUser.ResumeLayout(false);
@@ -483,7 +483,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsUserList;
+        private System.Windows.Forms.ToolStrip tsUserRole;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

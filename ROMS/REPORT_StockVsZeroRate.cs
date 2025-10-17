@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class REPORT_StockVsZeroRate : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -24,6 +25,7 @@ namespace ROMS
         public REPORT_StockVsZeroRate()
         {
             InitializeComponent();
+            windowControl.Initialize(tsStockZeroRateReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

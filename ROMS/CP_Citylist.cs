@@ -14,6 +14,8 @@ namespace ROMS
     //Created By:Sathish ; Created On:-11/08/2023
     public partial class CP_Citylist : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -25,6 +27,7 @@ namespace ROMS
         public CP_Citylist()
         {
             InitializeComponent();
+            windowControl.Initialize(tsCityList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

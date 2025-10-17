@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_SupplierWiseProduct));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,10 +44,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_SupplierWiseProduct));
-            this.ReportSupplier = new System.Windows.Forms.ToolStrip();
+            this.tsSupplierWiseProductReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportStockLocation = new System.Windows.Forms.Panel();
             this.DGV_FilterBrand = new System.Windows.Forms.DataGridView();
             this.DGV_FilterSubgroup = new System.Windows.Forms.DataGridView();
@@ -102,8 +103,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
-            this.ReportSupplier.SuspendLayout();
+            this.tsSupplierWiseProductReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).BeginInit();
@@ -114,21 +114,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportSupplier
+            // tsSupplierWiseProductReport
             // 
-            this.ReportSupplier.BackColor = System.Drawing.Color.White;
-            this.ReportSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportSupplier.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportSupplier.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportSupplier.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsSupplierWiseProductReport.BackColor = System.Drawing.Color.White;
+            this.tsSupplierWiseProductReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsSupplierWiseProductReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsSupplierWiseProductReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsSupplierWiseProductReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportSupplier.Location = new System.Drawing.Point(0, 0);
-            this.ReportSupplier.Name = "ReportSupplier";
-            this.ReportSupplier.Size = new System.Drawing.Size(1354, 27);
-            this.ReportSupplier.TabIndex = 35;
-            this.ReportSupplier.Text = "GRN Summary Report";
+            this.tsSupplierWiseProductReport.Location = new System.Drawing.Point(0, 0);
+            this.tsSupplierWiseProductReport.Name = "tsSupplierWiseProductReport";
+            this.tsSupplierWiseProductReport.Size = new System.Drawing.Size(1354, 27);
+            this.tsSupplierWiseProductReport.TabIndex = 35;
+            this.tsSupplierWiseProductReport.Text = "GRN Summary Report";
             // 
             // tsbPrintFormat
             // 
@@ -155,6 +155,16 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportStockLocation
             // 
@@ -854,16 +864,6 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // REPORT_SupplierWiseProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -871,7 +871,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportStockLocation);
-            this.Controls.Add(this.ReportSupplier);
+            this.Controls.Add(this.tsSupplierWiseProductReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -881,8 +881,8 @@
             this.Text = "Supplier Wise Products";
             this.Load += new System.EventHandler(this.REPORT_GRNSummary_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_GRNSummary_KeyDown);
-            this.ReportSupplier.ResumeLayout(false);
-            this.ReportSupplier.PerformLayout();
+            this.tsSupplierWiseProductReport.ResumeLayout(false);
+            this.tsSupplierWiseProductReport.PerformLayout();
             this.pnlReportStockLocation.ResumeLayout(false);
             this.pnlReportStockLocation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).EndInit();
@@ -900,7 +900,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportSupplier;
+        private System.Windows.Forms.ToolStrip tsSupplierWiseProductReport;
         private System.Windows.Forms.Panel pnlReportStockLocation;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

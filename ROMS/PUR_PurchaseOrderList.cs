@@ -14,6 +14,8 @@ namespace ROMS
 {
     public partial class PUR_PurchaseOrderList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private static readonly Dictionary<ToolStripButton, EventHandler> _handlers = new Dictionary<ToolStripButton, EventHandler>();
@@ -30,6 +32,7 @@ namespace ROMS
         public PUR_PurchaseOrderList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPurchaseOrderList, this);
         }
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -99,10 +102,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
 
                 if (e.KeyCode == Keys.Delete)

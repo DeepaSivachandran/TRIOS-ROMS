@@ -12,6 +12,7 @@ namespace ROMS
 {
     public partial class REPORT_CP_Broker : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         private ToolTip tpCity = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -21,6 +22,8 @@ namespace ROMS
         public REPORT_CP_Broker()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsBrokerReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

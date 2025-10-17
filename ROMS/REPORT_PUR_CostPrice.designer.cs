@@ -30,9 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_CostPrice));
-            this.ReportCity = new System.Windows.Forms.ToolStrip();
+            this.tsCostPriceReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.grpfilter = new System.Windows.Forms.GroupBox();
@@ -50,30 +51,29 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.ReportCity.SuspendLayout();
+            this.tsCostPriceReport.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportCity
+            // tsCostPriceReport
             // 
-            this.ReportCity.BackColor = System.Drawing.Color.White;
-            this.ReportCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportCity.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportCity.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportCity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsCostPriceReport.BackColor = System.Drawing.Color.White;
+            this.tsCostPriceReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsCostPriceReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsCostPriceReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsCostPriceReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportCity.Location = new System.Drawing.Point(0, 0);
-            this.ReportCity.Name = "ReportCity";
-            this.ReportCity.Size = new System.Drawing.Size(1354, 27);
-            this.ReportCity.TabIndex = 35;
-            this.ReportCity.Text = "City Report";
+            this.tsCostPriceReport.Location = new System.Drawing.Point(0, 0);
+            this.tsCostPriceReport.Name = "tsCostPriceReport";
+            this.tsCostPriceReport.Size = new System.Drawing.Size(1354, 27);
+            this.tsCostPriceReport.TabIndex = 35;
+            this.tsCostPriceReport.Text = "City Report";
             // 
             // tsbPrintFormat
             // 
@@ -100,6 +100,16 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportCity
             // 
@@ -317,16 +327,6 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
@@ -338,18 +338,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportCity);
-            this.Controls.Add(this.ReportCity);
+            this.Controls.Add(this.tsCostPriceReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_PUR_CostPrice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "City Report";
+            this.Text = "Purchase Cost Price Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_City_KeyDown);
-            this.ReportCity.ResumeLayout(false);
-            this.ReportCity.PerformLayout();
+            this.tsCostPriceReport.ResumeLayout(false);
+            this.tsCostPriceReport.PerformLayout();
             this.pnlReportCity.ResumeLayout(false);
             this.pnlReportCity.PerformLayout();
             this.grpfilter.ResumeLayout(false);
@@ -363,7 +363,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportCity;
+        private System.Windows.Forms.ToolStrip tsCostPriceReport;
         private System.Windows.Forms.Panel pnlReportCity;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

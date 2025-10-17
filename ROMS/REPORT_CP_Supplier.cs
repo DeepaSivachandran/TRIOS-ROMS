@@ -14,6 +14,7 @@ namespace ROMS
 {
     public partial class REPORT_CP_Supplier : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -22,6 +23,8 @@ namespace ROMS
         public REPORT_CP_Supplier()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsSupplierReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

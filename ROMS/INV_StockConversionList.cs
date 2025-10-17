@@ -16,6 +16,8 @@ namespace ROMS
     public partial class INV_StockConversionList : Form
     {
 
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         public int varPRID = 0;
         public int varviewtype = 0;
@@ -29,6 +31,7 @@ namespace ROMS
         public INV_StockConversionList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsBatchConvertion, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -193,10 +196,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)

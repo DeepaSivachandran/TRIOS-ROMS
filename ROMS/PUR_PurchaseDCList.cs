@@ -16,6 +16,8 @@ namespace ROMS
 {
     public partial class PUR_PurchaseDCList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         public int varviewtype = 0;
         public int Varflag = 0, varDCPrintFlag = 0; 
         DataValidation objValidation = new DataValidation();
@@ -28,6 +30,7 @@ namespace ROMS
         public PUR_PurchaseDCList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPurchaseDCList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -483,12 +486,13 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm objMainForm = new MainForm();
-                    objMainForm.udfnCloseChildForms();
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm objMainForm = new MainForm();
+                    //objMainForm.udfnCloseChildForms();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)

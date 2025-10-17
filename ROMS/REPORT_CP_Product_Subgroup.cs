@@ -13,6 +13,7 @@ namespace ROMS
 {
     public partial class REPORT_CP_Product_Subgroup : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -21,6 +22,8 @@ namespace ROMS
         public REPORT_CP_Product_Subgroup()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsProductSubgroupReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

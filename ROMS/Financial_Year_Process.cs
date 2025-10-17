@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class Financial_Year_Process : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -24,6 +25,7 @@ namespace ROMS
         public Financial_Year_Process()
         {
             InitializeComponent();
+            windowControl.Initialize(tsFy_Process, this);
         }
         private void Fy_Process_Load(object sender, EventArgs e)
         {

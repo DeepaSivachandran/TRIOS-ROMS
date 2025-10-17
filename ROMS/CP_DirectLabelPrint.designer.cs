@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_DirectLabelPrint));
-            this.tsHeader = new System.Windows.Forms.ToolStrip();
+            this.tsDirectLabelPrint = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.cmbLabelsize = new System.Windows.Forms.ComboBox();
             this.lblRawCode = new System.Windows.Forms.Label();
@@ -103,7 +103,7 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
-            this.tsHeader.SuspendLayout();
+            this.tsDirectLabelPrint.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -111,19 +111,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.errRack)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsHeader
+            // tsDirectLabelPrint
             // 
-            this.tsHeader.BackColor = System.Drawing.Color.Transparent;
-            this.tsHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsHeader.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsDirectLabelPrint.BackColor = System.Drawing.Color.Transparent;
+            this.tsDirectLabelPrint.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsDirectLabelPrint.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsDirectLabelPrint.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsDirectLabelPrint.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
-            this.tsHeader.Location = new System.Drawing.Point(0, 0);
-            this.tsHeader.Name = "tsHeader";
-            this.tsHeader.Size = new System.Drawing.Size(1360, 25);
-            this.tsHeader.TabIndex = 35;
-            this.tsHeader.Text = "toolStrip1";
+            this.tsDirectLabelPrint.Location = new System.Drawing.Point(0, 0);
+            this.tsDirectLabelPrint.Name = "tsDirectLabelPrint";
+            this.tsDirectLabelPrint.Size = new System.Drawing.Size(1360, 25);
+            this.tsDirectLabelPrint.TabIndex = 35;
+            this.tsDirectLabelPrint.Text = "toolStrip1";
             // 
             // tspHeader
             // 
@@ -986,7 +986,7 @@
             this.Controls.Add(this.grbGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblRawCode);
-            this.Controls.Add(this.tsHeader);
+            this.Controls.Add(this.tsDirectLabelPrint);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -994,11 +994,11 @@
             this.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
             this.Name = "CP_DirectLabelPrint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sticker Print";
+            this.Text = "Direct Label Print";
             this.Load += new System.EventHandler(this.CP_DiectLabelPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PROD_LabelPrinting_KeyDown);
-            this.tsHeader.ResumeLayout(false);
-            this.tsHeader.PerformLayout();
+            this.tsDirectLabelPrint.ResumeLayout(false);
+            this.tsDirectLabelPrint.PerformLayout();
             this.grbGrid.ResumeLayout(false);
             this.grbGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
@@ -1013,7 +1013,7 @@
 
         #endregion
         public System.Windows.Forms.ToolStripLabel tspHeader;
-        public System.Windows.Forms.ToolStrip tsHeader;
+        public System.Windows.Forms.ToolStrip tsDirectLabelPrint;
         public System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         public System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         public System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;

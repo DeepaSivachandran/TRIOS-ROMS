@@ -13,7 +13,7 @@ namespace ROMS
     //Created On : 20-02-2025
     public partial class CP_StickerPrint : Form
     {
-
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -33,6 +33,7 @@ namespace ROMS
         public CP_StickerPrint()
         {
             InitializeComponent();
+            windowControl.Initialize(tsStickerPrint, this);
         }
 
         private void PROD_LabelPrinting_KeyDown(object sender, KeyEventArgs e)

@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsSupplierPaymentList = new System.Windows.Forms.ToolStrip();
+            this.tsCreditNote = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
@@ -58,7 +58,8 @@
             this.lblTransactiondate = new System.Windows.Forms.Label();
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.tsSupplierPaymentList.SuspendLayout();
+            this.tss = new System.Windows.Forms.ToolStripSeparator();
+            this.tsCreditNote.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.pnlbrand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCreditNoteList)).BeginInit();
@@ -66,19 +67,20 @@
             this.grbFilterBy.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tsSupplierPaymentList
+            // tsCreditNote
             // 
-            this.tsSupplierPaymentList.BackColor = System.Drawing.Color.White;
-            this.tsSupplierPaymentList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsSupplierPaymentList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsSupplierPaymentList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsCreditNote.BackColor = System.Drawing.Color.White;
+            this.tsCreditNote.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsCreditNote.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsCreditNote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.tss,
             this.tsbEdit});
-            this.tsSupplierPaymentList.Location = new System.Drawing.Point(0, 0);
-            this.tsSupplierPaymentList.Name = "tsSupplierPaymentList";
-            this.tsSupplierPaymentList.Size = new System.Drawing.Size(1354, 27);
-            this.tsSupplierPaymentList.TabIndex = 35;
-            this.tsSupplierPaymentList.Text = "Brand";
+            this.tsCreditNote.Location = new System.Drawing.Point(0, 0);
+            this.tsCreditNote.Name = "tsCreditNote";
+            this.tsCreditNote.Size = new System.Drawing.Size(1354, 27);
+            this.tsCreditNote.TabIndex = 35;
+            this.tsCreditNote.Text = "Brand";
             // 
             // tspHeader
             // 
@@ -87,7 +89,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(82, 24);
+            this.tspHeader.Size = new System.Drawing.Size(87, 24);
             this.tspHeader.Text = "Credit Note";
             // 
             // tsbEdit
@@ -96,7 +98,7 @@
             this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
@@ -405,6 +407,13 @@
             this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnView_KeyDown);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
+            // tss
+            // 
+            this.tss.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.tss.Name = "tss";
+            this.tss.Size = new System.Drawing.Size(6, 24);
+            // 
             // PAY_CreditNoteList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -412,18 +421,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlbrand);
-            this.Controls.Add(this.tsSupplierPaymentList);
+            this.Controls.Add(this.tsCreditNote);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PAY_CreditNoteList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Credit Note";
             this.Load += new System.EventHandler(this.PAY_CreditNoteList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_CreditNoteList_KeyDown);
-            this.tsSupplierPaymentList.ResumeLayout(false);
-            this.tsSupplierPaymentList.PerformLayout();
+            this.tsCreditNote.ResumeLayout(false);
+            this.tsCreditNote.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.pnlbrand.ResumeLayout(false);
             this.pnlbrand.PerformLayout();
@@ -438,7 +447,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsSupplierPaymentList;
+        private System.Windows.Forms.ToolStrip tsCreditNote;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.PictureBox picLoader;
@@ -462,5 +471,6 @@
         public System.Windows.Forms.DataGridView grdCreditNoteList;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         public System.Windows.Forms.ToolStripButton tsbEdit;
+        public System.Windows.Forms.ToolStripSeparator tss;
     }
 }

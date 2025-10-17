@@ -15,6 +15,8 @@ namespace ROMS
     //Sivabharathi  Created On :25/09/2023
     public partial class CP_Settings : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         Boolean BlnSearchImageYN = false;
@@ -35,6 +37,7 @@ namespace ROMS
         public CP_Settings()
         {
             InitializeComponent();
+            windowControl.Initialize(tsVoucherSettings, this);
         }
         private void CP_Settings_Leave(object sender, EventArgs e)
         {

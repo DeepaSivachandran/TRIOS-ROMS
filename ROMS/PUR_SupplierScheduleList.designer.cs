@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsSupplierScheduleList = new System.Windows.Forms.ToolStrip();
+            this.tsPOScheduleList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbList = new System.Windows.Forms.ToolStripButton();
             this.tssNewSupplier = new System.Windows.Forms.ToolStripSeparator();
@@ -86,7 +86,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.ep_Supplierlist = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsSupplierScheduleList.SuspendLayout();
+            this.tsPOScheduleList.SuspendLayout();
             this.pnlSupplierScheduleList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -98,22 +98,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.ep_Supplierlist)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsSupplierScheduleList
+            // tsPOScheduleList
             // 
-            this.tsSupplierScheduleList.BackColor = System.Drawing.Color.White;
-            this.tsSupplierScheduleList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsSupplierScheduleList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsSupplierScheduleList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsSupplierScheduleList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPOScheduleList.BackColor = System.Drawing.Color.White;
+            this.tsPOScheduleList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsPOScheduleList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsPOScheduleList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsPOScheduleList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbList,
             this.tssNewSupplier,
             this.tsbNew});
-            this.tsSupplierScheduleList.Location = new System.Drawing.Point(0, 0);
-            this.tsSupplierScheduleList.Name = "tsSupplierScheduleList";
-            this.tsSupplierScheduleList.Size = new System.Drawing.Size(1354, 27);
-            this.tsSupplierScheduleList.TabIndex = 35;
-            this.tsSupplierScheduleList.Text = "Supplier Schedule List";
+            this.tsPOScheduleList.Location = new System.Drawing.Point(0, 0);
+            this.tsPOScheduleList.Name = "tsPOScheduleList";
+            this.tsPOScheduleList.Size = new System.Drawing.Size(1354, 27);
+            this.tsPOScheduleList.TabIndex = 35;
+            this.tsPOScheduleList.Text = "Supplier Schedule List";
             // 
             // tspHeader
             // 
@@ -788,19 +788,19 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlSupplierScheduleList);
-            this.Controls.Add(this.tsSupplierScheduleList);
+            this.Controls.Add(this.tsPOScheduleList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_SupplierScheduleList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Supplier Schedule List";
+            this.Text = "PO Schedule List";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PUR_SupplierScheduleList_FormClosing);
             this.Load += new System.EventHandler(this.PUR_SupplierScheduleList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_SupplierScheduleList_KeyDown);
-            this.tsSupplierScheduleList.ResumeLayout(false);
-            this.tsSupplierScheduleList.PerformLayout();
+            this.tsPOScheduleList.ResumeLayout(false);
+            this.tsPOScheduleList.PerformLayout();
             this.pnlSupplierScheduleList.ResumeLayout(false);
             this.pnlSupplierScheduleList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -822,7 +822,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsSupplierScheduleList;
+        private System.Windows.Forms.ToolStrip tsPOScheduleList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlSupplierScheduleList;

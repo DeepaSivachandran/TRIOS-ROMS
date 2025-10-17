@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsSupplierPaymentList = new System.Windows.Forms.ToolStrip();
+            this.tsChequeTransaction = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
@@ -54,30 +54,30 @@
             this.lblTransactiondate = new System.Windows.Forms.Label();
             this.lblDConcern = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmCancel = new System.Windows.Forms.DataGridViewImageColumn();
             this.grdSupllierPaymentList = new System.Windows.Forms.DataGridView();
-            this.tsSupplierPaymentList.SuspendLayout();
+            this.clmCancel = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmView = new System.Windows.Forms.DataGridViewImageColumn();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsChequeTransaction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             this.pnlbrand.SuspendLayout();
             this.grbFilterBy.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsSupplierPaymentList
+            // tsChequeTransaction
             // 
-            this.tsSupplierPaymentList.BackColor = System.Drawing.Color.White;
-            this.tsSupplierPaymentList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsSupplierPaymentList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsSupplierPaymentList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsChequeTransaction.BackColor = System.Drawing.Color.White;
+            this.tsChequeTransaction.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsChequeTransaction.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsChequeTransaction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader});
-            this.tsSupplierPaymentList.Location = new System.Drawing.Point(0, 0);
-            this.tsSupplierPaymentList.Name = "tsSupplierPaymentList";
-            this.tsSupplierPaymentList.Size = new System.Drawing.Size(1354, 25);
-            this.tsSupplierPaymentList.TabIndex = 35;
-            this.tsSupplierPaymentList.Text = "Brand";
+            this.tsChequeTransaction.Location = new System.Drawing.Point(0, 0);
+            this.tsChequeTransaction.Name = "tsChequeTransaction";
+            this.tsChequeTransaction.Size = new System.Drawing.Size(1354, 25);
+            this.tsChequeTransaction.TabIndex = 35;
+            this.tsChequeTransaction.Text = "Brand";
             // 
             // tspHeader
             // 
@@ -327,38 +327,6 @@
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 107);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1348, 536);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 111111148;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
-            // clmView
-            // 
-            this.clmView.HeaderText = "";
-            this.clmView.Image = global::ROMS.Properties.Resources.view__1_;
-            this.clmView.Name = "clmView";
-            this.clmView.ReadOnly = true;
-            this.clmView.Width = 50;
-            // 
-            // clmCancel
-            // 
-            this.clmCancel.HeaderText = "";
-            this.clmCancel.Image = global::ROMS.Properties.Resources.Delete1;
-            this.clmCancel.Name = "clmCancel";
-            this.clmCancel.ReadOnly = true;
-            this.clmCancel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCancel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmCancel.Width = 50;
-            // 
             // grdSupllierPaymentList
             // 
             this.grdSupllierPaymentList.AllowUserToAddRows = false;
@@ -406,6 +374,38 @@
             this.grdSupllierPaymentList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdSupllierPaymentList_DataBindingComplete);
             this.grdSupllierPaymentList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdSupllierPaymentList_Scroll);
             // 
+            // clmCancel
+            // 
+            this.clmCancel.HeaderText = "";
+            this.clmCancel.Image = global::ROMS.Properties.Resources.Delete1;
+            this.clmCancel.Name = "clmCancel";
+            this.clmCancel.ReadOnly = true;
+            this.clmCancel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCancel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmCancel.Width = 50;
+            // 
+            // clmView
+            // 
+            this.clmView.HeaderText = "";
+            this.clmView.Image = global::ROMS.Properties.Resources.view__1_;
+            this.clmView.Name = "clmView";
+            this.clmView.ReadOnly = true;
+            this.clmView.Width = 50;
+            // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(3, 107);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(1348, 536);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 111111148;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
             // PAY_ChequeTransactionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -413,25 +413,25 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlbrand);
-            this.Controls.Add(this.tsSupplierPaymentList);
+            this.Controls.Add(this.tsChequeTransaction);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PAY_ChequeTransactionList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Brand";
+            this.Text = "Cheque Transaction";
             this.Load += new System.EventHandler(this.PAY_SupplierPaymentList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PAY_SupplierPaymentList_KeyDown);
-            this.tsSupplierPaymentList.ResumeLayout(false);
-            this.tsSupplierPaymentList.PerformLayout();
+            this.tsChequeTransaction.ResumeLayout(false);
+            this.tsChequeTransaction.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             this.pnlbrand.ResumeLayout(false);
             this.pnlbrand.PerformLayout();
             this.grbFilterBy.ResumeLayout(false);
             this.grbFilterBy.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupllierPaymentList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,7 +439,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsSupplierPaymentList;
+        private System.Windows.Forms.ToolStrip tsChequeTransaction;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;

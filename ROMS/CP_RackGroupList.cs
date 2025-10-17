@@ -13,6 +13,8 @@ namespace ROMS
 {
     public partial class CP_RackGroupList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -27,6 +29,7 @@ namespace ROMS
         public CP_RackGroupList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsRackGroupList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

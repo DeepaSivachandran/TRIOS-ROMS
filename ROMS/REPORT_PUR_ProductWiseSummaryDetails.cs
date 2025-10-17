@@ -15,6 +15,8 @@ namespace ROMS
 {
     public partial class REPORT_PUR_ProductWiseSummaryDetails : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,6 +25,7 @@ namespace ROMS
         public REPORT_PUR_ProductWiseSummaryDetails()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPurchaseProductReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

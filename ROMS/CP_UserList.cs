@@ -14,6 +14,9 @@ namespace ROMS
     //Created On:-22/08/2023
     public partial class CP_UserList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -21,9 +24,11 @@ namespace ROMS
         public int MenuCode = 0;
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+        Boolean BlnSearchImageYN = false;
         public CP_UserList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsUserList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
@@ -156,34 +161,48 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdUserList.DataSource = objDs.Tables[0];
+                            grdUserList.Columns["clmReset"].Visible = true;
+                            grdUserList.Columns["clmReset"].Width = 110;
+                            grdUserList.Columns["clmForceLogout"].Visible = true;
                             grdUserList.Columns["ID"].Visible = false;
                             grdUserList.Columns["UserRoleID"].Visible = false;
                             grdUserList.Columns["PassKeyID"].Visible = false;
                             grdUserList.Columns["StatusID"].Visible = false;
+                            grdUserList.Columns["LogType"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50;
                             grdUserList.Columns["Name of the System User"].Width = 200;
                             grdUserList.Columns["Status"].Width = 80;
+                            grdUserList.Columns["Login Time"].Width = 120;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserList.ClearSelection();
                         }
                         else
                         {
+                            grdUserList.Columns["clmReset"].Visible = false;
+                            grdUserList.Columns["clmForceLogout"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
+                        grdUserList.Columns["clmReset"].Visible = false;
+                        grdUserList.Columns["clmForceLogout"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
                 }
                 else
                 {
+                    grdUserList.Columns["clmReset"].Visible = false;
+                    grdUserList.Columns["clmForceLogout"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                grdUserList.Columns["clmForceLogout"].DisplayIndex = grdUserList.Columns.Count - 1;
+                DGV_SearchGrid.Columns["clmForceLogout"].DisplayIndex = DGV_SearchGrid.Columns.Count - 1;
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -237,7 +256,7 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 0, null);
+                            varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 0, null, 0);
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -249,7 +268,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objspservice = new SPDataService();
-                                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 1, null);
+                                        varResult = objspservice.udfnUser(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, 0, "", 0, 0, "", "User Delete", varUserID, 1, null, 0);
                                         objspservice.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -402,6 +421,10 @@ namespace ROMS
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -449,11 +472,29 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                        {
+                            BlnSearchImageYN = true;
+                            dgv2.Rows[rowIndex].Cells[i].Value = false;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -565,6 +606,24 @@ namespace ROMS
                     {
                         grdUserList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if (Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "412" || Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value).Trim() == "")
+                    {
+                        grdUserList.Rows[i].Cells["clmForceLogout"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdUserList.Rows[i].Cells["clmForceLogout"] = print;
+                        print.ReadOnly = true;
+                    }
+                    if(Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "411")   //Login
+                    {
+                        grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.MediumSeaGreen;
+                        grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
+                    }
+                    else if (Convert.ToString(grdUserList.Rows[i].Cells["LogType"].Value) == "412")   //Logout
+                    {
+                        //grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
+                        //grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
                     }
                     grdUserList.ClearSelection();
                 }
@@ -1059,6 +1118,73 @@ namespace ROMS
             try
             {
                 e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdUserList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdUserList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmForceLogout":
+                            try
+                            {
+                                string UsedID = "0";
+                                UsedID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                DialogResult result;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(170);
+                                objDServ.CloseConnection();
+                                result = MessageBox.Show(varMessage, "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result == DialogResult.Yes)
+                                {
+                                    string varResult = objMainForm.udfnUserLoginProcess(Convert.ToInt32(UsedID), 412);  // Type 412 is Logged Out
+                                    string[] resultParts = varResult.Split('~');
+                                    if (resultParts[0] == "3")
+                                    {
+                                        MessageBox.Show(resultParts[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(resultParts[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                    udfnList();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                        case "clmReset":
+                            try
+                            {
+                                string UsedID = "0", varUserLoginId = "0";
+                                UsedID = Convert.ToString(grdUserList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                varUserLoginId = Convert.ToString(grdUserList.SelectedRows[0].Cells["Login ID"].Value.ToString());
+
+                                MainForm.objCP_User_ResetPassword = new CP_User_ResetPassword();
+                                MainForm.objCP_User_ResetPassword.pbvarUserID = Convert.ToInt32(UsedID);
+                                MainForm.objCP_User_ResetPassword.pbvarUserLoginID = varUserLoginId;
+                                MainForm.objCP_User_ResetPassword.ShowDialog();
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {

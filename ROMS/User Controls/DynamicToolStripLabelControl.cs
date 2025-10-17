@@ -14,6 +14,7 @@ namespace ROMS
     [DesignerCategory("Code")]
     public class DynamicToolStripLabelControl : Component
     {
+        MainForm objMainForm = new MainForm();
         public ToolStripLabel PlaceholderLabel { get; set; }
 
         private string[] LevelTexts = new string[4];
@@ -55,7 +56,7 @@ namespace ROMS
                 }
 
                 var visibleLabels = new List<ToolStripLabel>();
-
+                bool isRootAssigned = false;
                 // Add breadcrumb labels dynamically
                 for (int i = 0; i < 4; i++)
                 {
@@ -73,11 +74,15 @@ namespace ROMS
                             Tag = levelCode,
                             Margin = new Padding(4, 0, 4, 0)
                         };
-
-                        bool isFirstVisible = ts.Items.Cast<ToolStripItem>().OfType<ToolStripLabel>().Count() == 0;
-                        lbl.Image = isFirstVisible
-                            ? Properties.Resources.bread_crumb  // root label
-                            : Properties.Resources.double_chevron; // child levels
+                        if (!isRootAssigned)
+                        {
+                            lbl.Image = Properties.Resources.arrow; // root
+                            isRootAssigned = true;
+                        }
+                        else
+                        {
+                            lbl.Image = Properties.Resources.breadcrum_Level; // child
+                        }
 
                         lbl.ImageAlign = ContentAlignment.MiddleLeft;
                         lbl.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -220,7 +225,7 @@ namespace ROMS
                                     if (string.IsNullOrWhiteSpace(childName)) continue;
 
                                     ToolStripMenuItem menuItemChild = new ToolStripMenuItem(childName);
-                                    menuItemChild.Click += (s, e) => OpenForm(childClass, parentForm);
+                                    menuItemChild.Click += (s, e) => OpenForm(childClass, parentForm, muCode);
                                     contextMenu.Items.Add(menuItemChild);
                                 }
                                 catch (Exception ex)
@@ -234,7 +239,7 @@ namespace ROMS
                         {
                             if (string.IsNullOrWhiteSpace(menuName)) continue;
                             ToolStripMenuItem menuItem = new ToolStripMenuItem(menuName);
-                            menuItem.Click += (s, e) => OpenForm(formClass, parentForm);
+                            menuItem.Click += (s, e) => OpenForm(formClass, parentForm, muCode);
                             contextMenu.Items.Add(menuItem);
                         }
                     }
@@ -257,7 +262,7 @@ namespace ROMS
         }
 
         // Open form dynamically — for MDI handling
-        private void OpenForm(string formClass, Form parentForm)
+        private void OpenForm(string formClass, Form parentForm, int menucode)
         {
             try
             {
@@ -269,22 +274,32 @@ namespace ROMS
 
                 if (formType == null) return;
 
-                Form formInstance = (Form)Activator.CreateInstance(formType);
-
                 var staticField = typeof(MainForm).GetFields(BindingFlags.Public | BindingFlags.Static)
                     .FirstOrDefault(f => f.FieldType == formType);
 
-                staticField?.SetValue(null, formInstance);
+                object formInstance = staticField?.GetValue(null) ?? Activator.CreateInstance(formType);
 
-                Form mdiParent = Application.OpenForms.OfType<MainForm>().FirstOrDefault(f => f.IsMdiContainer);
-
-                if (mdiParent != null)
+                if (staticField != null && staticField.GetValue(null) == null)
                 {
-                    formInstance.MdiParent = mdiParent;
+                    staticField.SetValue(null, formInstance);
                 }
+                MainForm mainForm = Application.OpenForms.OfType<MainForm>().FirstOrDefault();
+                if (mainForm != null)
+                {
+                    var openReportMethod = typeof(MainForm).GetMethod("OpenReportForm",
+                        BindingFlags.Public | BindingFlags.Instance);
 
-                formInstance.Show();
-                formInstance.BringToFront();
+                    var genericMethod = openReportMethod.MakeGenericMethod(formType);
+
+                    object[] parameters = new object[] { formInstance, formClass, menucode, null };
+
+                    genericMethod.Invoke(mainForm, parameters);
+
+                    if (staticField != null)
+                    {
+                        staticField.SetValue(null, parameters[0]);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -292,6 +307,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
     }
 
     public class ToolStripLabelEventArgs : EventArgs

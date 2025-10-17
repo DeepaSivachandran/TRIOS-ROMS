@@ -16,6 +16,8 @@ namespace ROMS
 {
     public partial class INV_StockTransferQueue : Form
     {
+        //DynamicWindowControl windowControl = new DynamicWindowControl();
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -27,6 +29,7 @@ namespace ROMS
         public INV_StockTransferQueue()
         {
             InitializeComponent();
+            //windowControl.Initialize(tsStockTransferList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -1511,6 +1514,7 @@ namespace ROMS
                 MainForm.objINV_StockTransferList = new INV_StockTransferList();
                 MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
                 MainForm.objINV_StockTransferList.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

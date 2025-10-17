@@ -12,6 +12,8 @@ namespace ROMS
 {
     public partial class REPORT_PUR_Tally : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -19,6 +21,7 @@ namespace ROMS
         public REPORT_PUR_Tally()
         {
             InitializeComponent();
+            windowControl.Initialize(tsTallyReport, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

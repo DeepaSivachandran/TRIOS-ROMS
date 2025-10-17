@@ -14,6 +14,8 @@ namespace ROMS
     // Sivabharathi    Create date: 09/08/2023   
     public partial class CP_ProductHSNList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         public string varUserID = "";
         public int MenuCode = 0;
         string privilege = "";
@@ -25,6 +27,7 @@ namespace ROMS
         public CP_ProductHSNList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsHSNList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {

@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class REPORT_SupplierWiseProduct : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -23,6 +24,8 @@ namespace ROMS
         public REPORT_SupplierWiseProduct()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsSupplierWiseProductReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

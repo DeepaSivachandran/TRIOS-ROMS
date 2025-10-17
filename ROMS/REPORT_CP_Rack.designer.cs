@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Rack));
-            this.ReportRack = new System.Windows.Forms.ToolStrip();
+            this.tsRackReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportRack = new System.Windows.Forms.Panel();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.grpfilter = new System.Windows.Forms.GroupBox();
@@ -44,28 +45,27 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
-            this.ReportRack.SuspendLayout();
+            this.tsRackReport.SuspendLayout();
             this.pnlReportRack.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportRack
+            // tsRackReport
             // 
-            this.ReportRack.BackColor = System.Drawing.Color.White;
-            this.ReportRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportRack.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportRack.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportRack.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsRackReport.BackColor = System.Drawing.Color.White;
+            this.tsRackReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsRackReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsRackReport.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsRackReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportRack.Location = new System.Drawing.Point(0, 0);
-            this.ReportRack.Name = "ReportRack";
-            this.ReportRack.Size = new System.Drawing.Size(1354, 27);
-            this.ReportRack.TabIndex = 35;
-            this.ReportRack.Text = "Rack Report";
+            this.tsRackReport.Location = new System.Drawing.Point(0, 0);
+            this.tsRackReport.Name = "tsRackReport";
+            this.tsRackReport.Size = new System.Drawing.Size(1354, 27);
+            this.tsRackReport.TabIndex = 35;
+            this.tsRackReport.Text = "Rack Report";
             // 
             // tsbPrintFormat
             // 
@@ -92,6 +92,16 @@
             this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportRack
             // 
@@ -237,16 +247,6 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // REPORT_CP_Rack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -254,7 +254,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportRack);
-            this.Controls.Add(this.ReportRack);
+            this.Controls.Add(this.tsRackReport);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -264,8 +264,8 @@
             this.Text = "Rack Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Rack_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Rack_KeyDown);
-            this.ReportRack.ResumeLayout(false);
-            this.ReportRack.PerformLayout();
+            this.tsRackReport.ResumeLayout(false);
+            this.tsRackReport.PerformLayout();
             this.pnlReportRack.ResumeLayout(false);
             this.pnlReportRack.PerformLayout();
             this.grpfilter.ResumeLayout(false);
@@ -278,7 +278,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportRack;
+        private System.Windows.Forms.ToolStrip tsRackReport;
         private System.Windows.Forms.Panel pnlReportRack;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

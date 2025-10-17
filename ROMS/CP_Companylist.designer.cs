@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tsCompanyList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -57,19 +57,19 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdCompanyList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsBrandList.SuspendLayout();
+            this.tsCompanyList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCompanyList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsBrandList
+            // tsCompanyList
             // 
-            this.tsBrandList.BackColor = System.Drawing.Color.White;
-            this.tsBrandList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBrandList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsBrandList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsCompanyList.BackColor = System.Drawing.Color.White;
+            this.tsCompanyList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsCompanyList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsCompanyList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
@@ -79,11 +79,11 @@
             this.toolStripSeparator1,
             this.tsbTotalCount,
             this.toolStripButton1});
-            this.tsBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tsBrandList.Name = "tsBrandList";
-            this.tsBrandList.Size = new System.Drawing.Size(1354, 27);
-            this.tsBrandList.TabIndex = 35;
-            this.tsBrandList.Text = "Brand";
+            this.tsCompanyList.Location = new System.Drawing.Point(0, 0);
+            this.tsCompanyList.Name = "tsCompanyList";
+            this.tsCompanyList.Size = new System.Drawing.Size(1354, 27);
+            this.tsCompanyList.TabIndex = 35;
+            this.tsCompanyList.Text = "Brand";
             // 
             // tspHeader
             // 
@@ -368,7 +368,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlCompany);
-            this.Controls.Add(this.tsBrandList);
+            this.Controls.Add(this.tsCompanyList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -378,8 +378,8 @@
             this.Text = "Company";
             this.Load += new System.EventHandler(this.CP_Companylist_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Companylist_KeyDown);
-            this.tsBrandList.ResumeLayout(false);
-            this.tsBrandList.PerformLayout();
+            this.tsCompanyList.ResumeLayout(false);
+            this.tsCompanyList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);
             this.pnlCompany.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
@@ -392,7 +392,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsBrandList;
+        private System.Windows.Forms.ToolStrip tsCompanyList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

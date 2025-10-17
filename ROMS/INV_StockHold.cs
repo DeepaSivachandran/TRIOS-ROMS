@@ -14,6 +14,8 @@ namespace ROMS
 {
     public partial class INV_StockHold : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -41,6 +43,7 @@ namespace ROMS
         public INV_StockHold()
         {
             InitializeComponent();
+            windowControl.Initialize(tsStockHold, this);
         }
         private void INV_StockHold_Load(object sender, EventArgs e)
         {
@@ -131,11 +134,12 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
                     udfntooltiphide();
-                    this.Close();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
                 //if (e.KeyCode == Keys.F11)
                 //{

@@ -12,6 +12,8 @@ namespace ROMS
 {
     public partial class CP_BrandList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -26,6 +28,7 @@ namespace ROMS
         public CP_BrandList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsBrandList, this);
         }
 
         public void udfnCmbProductGroup()

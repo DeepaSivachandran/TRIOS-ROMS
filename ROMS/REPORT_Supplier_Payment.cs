@@ -21,6 +21,7 @@ namespace ROMS
 {
     public partial class REPORT_Supplier_Payment : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpReportType = new ToolTip();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -30,6 +31,7 @@ namespace ROMS
         public REPORT_Supplier_Payment()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPaymentReport, this);
         }
 
         private void cmbPayType_KeyDown(object sender, KeyEventArgs e)

@@ -16,6 +16,8 @@ namespace ROMS
 {
     public partial class PUR_GRNApprovalList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public DataTable Deftable = new DataTable();
@@ -28,6 +30,7 @@ namespace ROMS
         public PUR_GRNApprovalList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPurchaseMismatchList, this);
         } 
         private void tsbEdit_Click(object sender, EventArgs e)
         {
@@ -209,10 +212,11 @@ namespace ROMS
                     }               
                     else
                     {
-                        MainForm.objStart = new DEF_Start();
-                        MainForm.objStart.MdiParent = this.ParentForm;
-                        MainForm.objStart.Show();
-                        this.Close();
+                        //MainForm.objStart = new DEF_Start();
+                        //MainForm.objStart.MdiParent = this.ParentForm;
+                        //MainForm.objStart.Show();
+                        //this.Close();
+                        windowControl?.TriggerClose();
                     }
                 }
             }

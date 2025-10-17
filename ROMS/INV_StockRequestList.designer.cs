@@ -44,6 +44,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsStockRequestList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tss = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -100,6 +101,7 @@
             this.tsStockRequestList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsStockRequestList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.tss,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
@@ -121,13 +123,20 @@
             this.tspHeader.Size = new System.Drawing.Size(133, 24);
             this.tspHeader.Text = "Shop Stock Request";
             // 
+            // tss
+            // 
+            this.tss.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.tss.Name = "tss";
+            this.tss.Size = new System.Drawing.Size(6, 24);
+            // 
             // tsbDelete
             // 
             this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
@@ -137,9 +146,9 @@
             // tssEdit
             // 
             this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 27);
+            this.tssEdit.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbEdit
             // 
@@ -147,7 +156,7 @@
             this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
@@ -157,9 +166,9 @@
             // tssNew
             // 
             this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tssNew.Name = "tssNew";
-            this.tssNew.Size = new System.Drawing.Size(6, 27);
+            this.tssNew.Size = new System.Drawing.Size(6, 24);
             // 
             // tsbNew
             // 
@@ -167,7 +176,7 @@
             this.tsbNew.Image = global::ROMS.Properties.Resources.New;
             this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbNew.Size = new System.Drawing.Size(52, 24);
@@ -725,7 +734,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "INV_StockRequestList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Supplier List";
+            this.Text = "Shop Stock Request";
             this.Load += new System.EventHandler(this.INV_StockRequestList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Supplierlist_KeyDown);
             this.tsStockRequestList.ResumeLayout(false);
@@ -787,5 +796,6 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataGridView grdProDetails;
         public System.Windows.Forms.DataGridView DGV_SearchGridPro;
+        public System.Windows.Forms.ToolStripSeparator tss;
     }
 }

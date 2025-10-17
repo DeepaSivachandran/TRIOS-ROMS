@@ -15,6 +15,7 @@ namespace ROMS
     public partial class REPORT_HSN_Tax_Summary : Form
     {
         private ContextMenuStrip contextMenu;
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -26,6 +27,7 @@ namespace ROMS
         public REPORT_HSN_Tax_Summary()
         {
             InitializeComponent();
+            windowControl.Initialize(tsHSNTaxSummary, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

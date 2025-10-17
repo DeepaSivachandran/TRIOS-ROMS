@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class REPORT_CP_Product_Category : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -22,6 +23,8 @@ namespace ROMS
         public REPORT_CP_Product_Category()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsProductCategoryReport, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {

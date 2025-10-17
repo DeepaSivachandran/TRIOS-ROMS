@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsPurchaseInvoiceList = new System.Windows.Forms.ToolStrip();
+            this.tsReturnDCList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDClist = new System.Windows.Forms.ToolStripButton();
             this.tssDelete = new System.Windows.Forms.ToolStripSeparator();
@@ -74,7 +74,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.ep_ReturnDC = new System.Windows.Forms.ErrorProvider(this.components);
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tsPurchaseInvoiceList.SuspendLayout();
+            this.tsReturnDCList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReturnDCList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -83,13 +83,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.ep_ReturnDC)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsPurchaseInvoiceList
+            // tsReturnDCList
             // 
-            this.tsPurchaseInvoiceList.BackColor = System.Drawing.Color.White;
-            this.tsPurchaseInvoiceList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsPurchaseInvoiceList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsPurchaseInvoiceList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsPurchaseInvoiceList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsReturnDCList.BackColor = System.Drawing.Color.White;
+            this.tsReturnDCList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsReturnDCList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsReturnDCList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsReturnDCList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDClist,
             this.tssDelete,
@@ -98,11 +98,11 @@
             this.tsbEdit,
             this.tssNew,
             this.tsbNew});
-            this.tsPurchaseInvoiceList.Location = new System.Drawing.Point(0, 0);
-            this.tsPurchaseInvoiceList.Name = "tsPurchaseInvoiceList";
-            this.tsPurchaseInvoiceList.Size = new System.Drawing.Size(1354, 27);
-            this.tsPurchaseInvoiceList.TabIndex = 35;
-            this.tsPurchaseInvoiceList.Text = "Purchase Invoice";
+            this.tsReturnDCList.Location = new System.Drawing.Point(0, 0);
+            this.tsReturnDCList.Name = "tsReturnDCList";
+            this.tsReturnDCList.Size = new System.Drawing.Size(1354, 27);
+            this.tsReturnDCList.TabIndex = 35;
+            this.tsReturnDCList.Text = "Purchase Invoice";
             // 
             // tspHeader
             // 
@@ -618,18 +618,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlcity);
-            this.Controls.Add(this.tsPurchaseInvoiceList);
+            this.Controls.Add(this.tsReturnDCList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_ReturnDCList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Return DC";
+            this.Text = "Purchase Return DC";
             this.Load += new System.EventHandler(this.PUR_ReturnDCList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_ReturnDCList_KeyDown);
-            this.tsPurchaseInvoiceList.ResumeLayout(false);
-            this.tsPurchaseInvoiceList.PerformLayout();
+            this.tsReturnDCList.ResumeLayout(false);
+            this.tsReturnDCList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReturnDCList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
@@ -645,7 +645,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsPurchaseInvoiceList;
+        private System.Windows.Forms.ToolStrip tsReturnDCList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.DataGridView grdReturnDCList;
         private System.Windows.Forms.Label lblNoRecordsFound;

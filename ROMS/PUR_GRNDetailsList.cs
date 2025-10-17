@@ -16,6 +16,8 @@ namespace ROMS
 {
     public partial class PUR_GRNDetailsList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DateTime varmaxdate;
@@ -32,6 +34,7 @@ namespace ROMS
         public PUR_GRNDetailsList()
         {
             InitializeComponent();
+            windowControl.Initialize(tsGRNEntryList, this);
         }
 
         private void TsbNew_Click(object sender, EventArgs e)
@@ -107,10 +110,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)
@@ -150,7 +154,7 @@ namespace ROMS
                 udfnGeneralSettingsList();
                 if (grdGRNList.Rows.Count>0)
                 {
-                    lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
+                    tsTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
                 }
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
@@ -445,7 +449,7 @@ namespace ROMS
             finally
             {
                 picLoader.Visible = false;
-                lblTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
+                tsTotalGRN.Text = Convert.ToString(grdGRNList.Rows.Count);
                 if (varCheckChange == 0)
                 {
                     btnComplete.Enabled = false;

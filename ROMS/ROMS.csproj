@@ -290,6 +290,17 @@
     <Compile Include="Model\MR_Location.cs" />
     <Compile Include="Model\MR_Menu.cs" />
     <Compile Include="Model\TRN_Stock_Journal.cs" />
+    <Compile Include="CP_User_ResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_User_ResetPassword.designer.cs">
+      <DependentUpon>CP_User_ResetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="PUR_MismatchApprovedList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,79 +310,79 @@
     <Compile Include="Reports\RPT_Godown_Valuation_Summary.cs">
       <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PriceList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PriceList.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Summary_Portrait.cs">
       <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise_Total.cs">
       <DependentUpon>RPT_PUR_Tax_AllPurchase_MonthWise_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_BillWise_Total.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_BillWise_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise_Summary_Total.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_DayWise_Summary_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_MonthWise_Total.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_MonthWise_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise_Total.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_DayWise_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise_Total.cs">
       <DependentUpon>RPT_PUR_Tax_AllPurchase_DayWise_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxSummary_BillWise_Total.cs">
       <DependentUpon>RPT_PUR_Tax_TaxSummary_BillWise_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Tax_Changes.cs">
       <DependentUpon>RPT_Tax_Changes.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Category.cs">
       <DependentUpon>RPT_CP_Product_Category.rpt</DependentUpon>
@@ -383,100 +394,100 @@
     <Compile Include="Reports\RPT_INV_StockHold_SubReport.cs">
       <DependentUpon>RPT_INV_StockHold_SubReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PAY_SupplierPaymentGiven_Summary.cs">
       <DependentUpon>RPT_PAY_SupplierPaymentGiven_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Details_SupplierType.cs">
       <DependentUpon>RPT_Purchase_Details_SupplierType.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_PO_Blocked_Products.cs">
       <DependentUpon>RPT_Purchase_PO_Blocked_Products.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_50x35.cs">
       <DependentUpon>RPT_Sticker_Print_Product_50x35.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_50x25.cs">
       <DependentUpon>RPT_Sticker_Print_Product_50x25.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_Staff_100x70.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_Staff_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_RackGroup_100x70.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_RackGroup_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_Staff_50x25.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_Staff_50x25.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_RackGroup_50x25.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_RackGroup_50x25.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_Staff_50x35.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_Staff_50x35.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_RackGroup_50x35.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_RackGroup_50x35.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_Staff_50x60.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_Staff_50x60.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_RackGroup_50x60.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_RackGroup_50x60.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Model\TRN_Stock_Converstion.cs" />
     <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
@@ -512,10 +523,11 @@
     </Compile>
     <Compile Include="Service Class\UserAccessHelper.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
+    <Compile Include="User Controls\DynamicWindowControl.cs" />
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
-      <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAY_ChequeTransaction.designer.cs">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
@@ -607,8 +619,8 @@
     <Compile Include="Model\MR_Master.cs" />
     <Compile Include="Model\MR_Status.cs" />
     <Compile Include="PAY_Advance.cs">
-      <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAY_Advance.designer.cs">
       <DependentUpon>PAY_Advance.cs</DependentUpon>
@@ -889,639 +901,639 @@
     <Compile Include="Reports\RPT_PAY_SupplierPaymentGiven_Total.cs">
       <DependentUpon>RPT_PAY_SupplierPaymentGiven_Total.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PAY_SupplierPaymentPending.cs">
       <DependentUpon>RPT_PAY_SupplierPaymentPending.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PAY_SupplierPaymentGiven.cs">
       <DependentUpon>RPT_PAY_SupplierPaymentGiven.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PAY_BillWise_SupplierPaymentPending.cs">
       <DependentUpon>RPT_PAY_BillWise_SupplierPaymentPending.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x25.cs">
       <DependentUpon>RPT_Product_Label_Print_Plain_50x25.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_50x25.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Label_Print_50x25.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_Batch_Details.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_DET_Batch_Details.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Zero_Rate_AlphaWise.cs">
       <DependentUpon>RPT_Zero_Rate_AlphaWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Zero_Rate_SupplierWise.cs">
       <DependentUpon>RPT_Zero_Rate_SupplierWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PAY_PayReceipt-SubReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PAY_PayReceipt-SubReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Brand.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Brand.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_GST.cs">
       <DependentUpon>RPT_CP_Product_GST.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_StockHold_Print.cs">
       <DependentUpon>RPT_INV_StockHold_Print.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PAY_PayReceipt.cs">
       <DependentUpon>RPT_PAY_PayReceipt.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_Plain_100x70.cs">
       <DependentUpon>RPT_Product_Label_Print_Plain_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x60.cs">
       <DependentUpon>RPT_Product_Label_Print_Plain_50x60.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_Plain_50x35.cs">
       <DependentUpon>RPT_Product_Label_Print_Plain_50x35.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Plain_Print_A4.cs">
       <DependentUpon>RPT_Product_Landscape_Plain_Print_A4.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Plain_Print_A5.cs">
       <DependentUpon>RPT_Product_Landscape_Plain_Print_A5.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Plain_Print_A6.cs">
       <DependentUpon>RPT_Product_Landscape_Plain_Print_A6.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Plain_Print_A7.cs">
       <DependentUpon>RPT_Product_Landscape_Plain_Print_A7.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Plain_Print_A4.cs">
       <DependentUpon>RPT_Product_Portrait_Plain_Print_A4.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Plain_Print_A5.cs">
       <DependentUpon>RPT_Product_Portrait_Plain_Print_A5.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Plain_Print_A6.cs">
       <DependentUpon>RPT_Product_Portrait_Plain_Print_A6.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Plain_Print_A7.cs">
       <DependentUpon>RPT_Product_Portrait_Plain_Print_A7.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_RackGroup_50x60.cs">
       <DependentUpon>RPT_Sticker_Print_RackGroup_50x60.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_RackGroup_100x70.cs">
       <DependentUpon>RPT_Sticker_Print_RackGroup_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_RackGroup_50x25.cs">
       <DependentUpon>RPT_Sticker_Print_RackGroup_50x25.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_RackGroup_50x35.cs">
       <DependentUpon>RPT_Sticker_Print_RackGroup_50x35.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Consolidated_Grouping.cs">
       <DependentUpon>RPT_Stock_Inward_Consolidated_Grouping.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_InactiveProduct.cs">
       <DependentUpon>RPT_CP_InactiveProduct.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Details_Portrait.cs">
       <DependentUpon>RPT_Stock_Inward_Details_Portrait.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Unapproved_Purchase_Details.cs">
       <DependentUpon>RPT_Unapproved_Purchase_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_Cost_Details.cs">
       <DependentUpon>RPT_PUR_DET_Cost_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_CostPrice_Details.cs">
       <DependentUpon>RPT_PUR_DET_CostPrice_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_AdditionalValue_BillWise.cs">
       <DependentUpon>RPT_PUR_Tax_AdditionalValue_BillWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_DayWise.cs">
       <DependentUpon>RPT_PUR_Tax_AllPurchase_DayWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_DiscountValue_BillWise.cs">
       <DependentUpon>RPT_PUR_Tax_DiscountValue_BillWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_AllPurchase_MonthWise.cs">
       <DependentUpon>RPT_PUR_Tax_AllPurchase_MonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_BillWise.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_BillWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_MonthWise.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_MonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise_Summary.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_DayWise_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TCSValue_BillWise.cs">
       <DependentUpon>RPT_PUR_Tax_TCSValue_BillWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxSummary_BillWise.cs">
       <DependentUpon>RPT_PUR_Tax_TaxSummary_BillWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TCSValue_MonthWise.cs">
       <DependentUpon>RPT_PUR_Tax_TCSValue_MonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TCSValue_DayWise.cs">
       <DependentUpon>RPT_PUR_Tax_TCSValue_DayWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_DiscountValue_DayWise.cs">
       <DependentUpon>RPT_PUR_Tax_DiscountValue_DayWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_DiscountValue_MonthWise.cs">
       <DependentUpon>RPT_PUR_Tax_DiscountValue_MonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_AdditionalValue_MonthWise.cs">
       <DependentUpon>RPT_PUR_Tax_AdditionalValue_MonthWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_AdditionalValue_DayWise.cs">
       <DependentUpon>RPT_PUR_Tax_AdditionalValue_DayWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_Tax_TaxDetails_DayWise.cs">
       <DependentUpon>RPT_PUR_Tax_TaxDetails_DayWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_ProductWise_Details.cs">
       <DependentUpon>RPT_PUR_DET_ProductWise_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_ProductWise_Last_Purchased.cs">
       <DependentUpon>RPT_PUR_DET_ProductWise_Last_Purchased.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_CostPrice.cs">
       <DependentUpon>RPT_PUR_DET_CostPrice.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_100x70.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Label_Print_100x70.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_50x35.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Label_Print_50x35.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Label_Print_50x60.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Label_Print_50x60.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Print_A4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Landscape_Print_A4.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Print_A5.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Landscape_Print_A5.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Print_A6.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Landscape_Print_A6.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Landscape_Print_A7.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Landscape_Print_A7.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Print_A4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Portrait_Print_A4.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Print_A5.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Portrait_Print_A5.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Print_A6.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Portrait_Print_A6.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Product_Portrait_Print_A7.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Product_Portrait_Print_A7.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Rate_Changes_Consolidated.cs">
       <DependentUpon>RPT_Rate_Changes_Consolidated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Rate_Changes.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Rate_Changes.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_StockVsZeroRate.cs">
       <DependentUpon>RPT_StockVsZeroRate.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_Tally.cs">
       <DependentUpon>RPT_PUR_DET_Tally.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Consolidated.cs">
       <DependentUpon>RPT_Stock_Inward_Consolidated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Batch.cs">
       <DependentUpon>RPT_Stock_Inward_Batch.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Details.cs">
       <DependentUpon>RPT_Stock_Inward_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DET_ProductWise_Summary.cs">
       <DependentUpon>RPT_PUR_DET_ProductWise_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_SupplierWise.cs">
       <DependentUpon>RPT_Stock_Inward_SupplierWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_Summary.cs">
       <DependentUpon>RPT_Stock_Inward_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Inward_ProductWise.cs">
       <DependentUpon>RPT_Stock_Inward_ProductWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Valuation.cs">
       <DependentUpon>RPT_Stock_Valuation.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Godown_Valuation.cs">
       <DependentUpon>RPT_Godown_Valuation.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Expiry.cs">
       <DependentUpon>RPT_Stock_Expiry.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Aging.cs">
       <DependentUpon>RPT_Stock_Aging.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Outward_ProductWise.cs">
       <DependentUpon>RPT_Stock_Outward_ProductWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Outward_Batch.cs">
       <DependentUpon>RPT_Stock_Outward_Batch.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Outward_Details.cs">
       <DependentUpon>RPT_Stock_Outward_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Outward_Consolidated.cs">
       <DependentUpon>RPT_Stock_Outward_Consolidated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Outward_Summary.cs">
       <DependentUpon>RPT_Stock_Outward_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Hold.cs">
       <DependentUpon>RPT_Stock_Hold.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_50x25.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Sticker_Print_Rack_50x25.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_50x35.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Sticker_Print_Rack_50x35.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_100x70.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Rack_50x60.cs">
       <DependentUpon>RPT_Sticker_Print_Rack_50x60.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_SupplierLedger_Details.cs">
       <DependentUpon>RPT_SupplierLedger_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_SupplierLedger_Summary.cs">
       <DependentUpon>RPT_SupplierLedger_Summary.rpt</DependentUpon>
@@ -1533,9 +1545,9 @@
     <Compile Include="Reports\RPT_CP_Rate_Change_Live.cs">
       <DependentUpon>RPT_CP_Rate_Change_Live.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rate_Change.cs">
       <DependentUpon>RPT_CP_Rate_Change.rpt</DependentUpon>
@@ -1547,58 +1559,58 @@
     <Compile Include="Reports\RPT_INV_GoodsOutward.cs">
       <DependentUpon>RPT_INV_GoodsOutward.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_GoodsInward.cs">
       <DependentUpon>RPT_INV_GoodsInward.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProductConsolidated.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProductConsolidated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProductComposite.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProductComposite.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProductSumDetailsConsolidated.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProductSumDetailsConsolidated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProductSumDetailsComposite.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProductSumDetailsComposite.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProductSumDetails_IGST.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProductSumDetails_IGST.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProduct_IGST.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProduct_IGST.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProductSumDetails.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProductSumDetails.rpt</DependentUpon>
@@ -1610,51 +1622,51 @@
     <Compile Include="Reports\RPT_PUR_HSNNameWiseProduct.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseProduct.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWiseComposite.cs">
       <DependentUpon>RPT_PUR_HSNNameWiseComposite.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWise_IGST.cs">
       <DependentUpon>RPT_PUR_HSNNameWise_IGST.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNNameWise.cs">
       <DependentUpon>RPT_PUR_HSNNameWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNCodeWiseTaxDetails.cs">
       <DependentUpon>RPT_PUR_HSNCodeWiseTaxDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNCodeWiseComposite.cs">
       <DependentUpon>RPT_PUR_HSNCodeWiseComposite.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNCodeWise_IGST.cs">
       <DependentUpon>RPT_PUR_HSNCodeWise_IGST.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_HSNCodeWise.cs">
       <DependentUpon>RPT_PUR_HSNCodeWise.rpt</DependentUpon>
@@ -1666,114 +1678,114 @@
     <Compile Include="Reports\RPT_CP_Product_CreatedUpdated.cs">
       <DependentUpon>RPT_CP_Product_CreatedUpdated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Defect_Product.cs">
       <DependentUpon>RPT_Purchase_Defect_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Group_100x70.cs">
       <DependentUpon>RPT_Sticker_Print_Group_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Subgroup_100x70.cs">
       <DependentUpon>RPT_Sticker_Print_Subgroup_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_100x70_Copy.cs">
       <DependentUpon>RPT_Sticker_Print_Product_100x70_Copy.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_100x70.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Sticker_Print_Product_100x70.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Group_50x60.cs">
       <DependentUpon>RPT_Sticker_Print_Group_50x60.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Subgroup_50x60.cs">
       <DependentUpon>RPT_Sticker_Print_Subgroup_50x60.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_50x60_Copy.cs">
       <DependentUpon>RPT_Sticker_Print_Product_50x60_Copy.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Sticker_Print_Product_50x60.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Sticker_Print_Product_50x60.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Supplier_Envelope.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Supplier_Envelope.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Details.cs">
       <DependentUpon>RPT_Purchase_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Unapproved_Purchase_Summary.cs">
       <DependentUpon>RPT_Unapproved_Purchase_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Purchase_Summary.cs">
       <DependentUpon>RPT_Purchase_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_ProductWisePO.cs">
       <DependentUpon>RPT_ProductWisePO.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Assigned_Products.cs">
       <DependentUpon>RPT_Assigned_Products.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Unassigned_Products.cs">
       <DependentUpon>RPT_Unassigned_Products.rpt</DependentUpon>
@@ -1785,44 +1797,44 @@
     <Compile Include="Reports\RPT_SupplierWise_Products.cs">
       <DependentUpon>RPT_SupplierWise_Products.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_GRNDetails.cs">
       <DependentUpon>RPT_GRNDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_GRN_Defect_Product.cs">
       <DependentUpon>RPT_GRN_Defect_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_GRN_Supplier_Detail.cs">
       <DependentUpon>RPT_GRN_Supplier_Detail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_GRN_Batch_Detail.cs">
       <DependentUpon>RPT_GRN_Batch_Detail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DC.cs">
       <DependentUpon>RPT_PUR_DC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_HSN_Subgroup.cs">
       <AutoGen>True</AutoGen>
@@ -1841,98 +1853,98 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_HDFC.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_GoodsInwardQueue_IndividualPrint.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_GoodsInwardQueue_IndividualPrint.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_ItemMovementAnalysis.cs">
       <DependentUpon>RPT_ItemMovementAnalysis.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Product.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_Damage_Product.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Supplier.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_Damage_Supplier.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_SupplierWise.cs">
       <DependentUpon>RPT_INV_Damage_SupplierWise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Group_Subgroup.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Product_Group_Subgroup.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Min_Sales_Qty.cs">
       <DependentUpon>RPT_CP_Product_Min_Sales_Qty.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_StockLocation_Details.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Product_StockLocation_Details.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Subgroup_Group_Brand.cs">
       <DependentUpon>RPT_CP_Product_Subgroup_Group_Brand.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Stock_Nett_Gross.cs">
       <DependentUpon>RPT_CP_Product_Stock_Nett_Gross.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Stock_Shelflife.cs">
       <DependentUpon>RPT_CP_Product_Stock_Shelflife.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Default_Stock.cs">
       <DependentUpon>RPT_CP_Product_Default_Stock.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Rate.cs">
       <DependentUpon>RPT_CP_Product_Rate.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Non_Moving_Products.cs">
       <DependentUpon>RPT_Stock_Non_Moving_Products.rpt</DependentUpon>
@@ -1945,57 +1957,57 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Supplier_List.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_Damage_Supplier_DamageEntry_Wise.cs">
       <DependentUpon>RPT_INV_Damage_Supplier_DamageEntry_Wise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_GRNDetailsDC.cs">
       <DependentUpon>RPT_PUR_GRNDetailsDC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_GRNDetailsBillPrint.cs">
       <DependentUpon>RPT_PUR_GRNDetailsBillPrint.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_GRNSummary.cs">
       <DependentUpon>RPT_GRNSummary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_GRNDetailsListPrint.cs">
       <DependentUpon>RPT_PUR_GRNDetailsListPrint.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_DCList.cs">
       <DependentUpon>RPT_PUR_DCList.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_GRNDetailsList.cs">
       <DependentUpon>RPT_PUR_GRNDetailsList.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PAY_Advance-SubReport.cs">
       <DependentUpon>RPT_PAY_Advance-SubReport.rpt</DependentUpon>
@@ -2007,9 +2019,9 @@
     <Compile Include="Reports\RPT_PAY_Advance_Receipt.cs">
       <DependentUpon>RPT_PAY_Advance_Receipt.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_ReturnDC_SupplierWise.cs">
       <DependentUpon>RPT_PUR_ReturnDC_SupplierWise.rpt</DependentUpon>
@@ -2022,22 +2034,22 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_Damage_Supplier_Detail.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_GoodsInwardQueue_Products.cs">
       <DependentUpon>RPT_INV_GoodsInwardQueue_Products.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_INV_StockHold.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_StockHold.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_LP_GRN_QRCode.cs">
       <AutoGen>True</AutoGen>
@@ -2049,15 +2061,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Purchase_Order_List.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO-SubReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_PO-SubReport.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO.cs">
       <AutoGen>True</AutoGen>
@@ -2070,262 +2082,262 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_PO_Detail_Report.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_Detail_Sub-Report.cs">
       <DependentUpon>RPT_PUR_PO_Detail_Sub-Report.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_Summary_Report.cs">
       <DependentUpon>RPT_PUR_PO_Summary_Report.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_Report_Product.cs">
       <DependentUpon>RPT_PUR_PO_Report_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_ProductList_Supplier_wise.cs">
       <DependentUpon>RPT_PUR_PO_ProductList_Supplier_wise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_ProductList_Product_wise.cs">
       <DependentUpon>RPT_PUR_PO_ProductList_Product_wise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_ProductList_PO_wise.cs">
       <DependentUpon>RPT_PUR_PO_ProductList_PO_wise.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_PO_ProductList.cs">
       <DependentUpon>RPT_PUR_PO_ProductList.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Supplier_Contact.cs">
       <DependentUpon>RPT_CP_Supplier_Contact.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Supplier_PO_Details.cs">
       <DependentUpon>RPT_CP_Supplier_PO_Details.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Supplier_Address.cs">
       <DependentUpon>RPT_CP_Supplier_Address.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Supplier.cs">
       <DependentUpon>RPT_CP_Supplier.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty.cs">
       <DependentUpon>RPT_CP_Rackgroup_Product_RackMin_Qty.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Product_Weight.cs">
       <DependentUpon>RPT_CP_Rackgroup_Product_Weight.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Product_Msq.cs">
       <DependentUpon>RPT_CP_Rackgroup_Product_Msq.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Product_Barcode.cs">
       <DependentUpon>RPT_CP_Rackgroup_Product_Barcode.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Product.cs">
       <DependentUpon>RPT_CP_Rackgroup_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup.cs">
       <DependentUpon>RPT_CP_Rackgroup.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rack_Rackgroup.cs">
       <DependentUpon>RPT_CP_Rack_Rackgroup.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rack.cs">
       <DependentUpon>RPT_CP_Rack.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_StockLocation_Product.cs">
       <DependentUpon>RPT_CP_StockLocation_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_StockLocation.cs">
       <DependentUpon>RPT_CP_StockLocation.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Subgroup_StockLocation.cs">
       <DependentUpon>RPT_CP_Product_Subgroup_StockLocation.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Subgroup_Product.cs">
       <DependentUpon>RPT_CP_Product_Subgroup_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Subgroup.cs">
       <DependentUpon>RPT_CP_Product_Subgroup.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Brand_Product.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Brand_Product.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Brand_Subgroup.cs">
       <DependentUpon>RPT_CP_Brand_Subgroup.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Broker_Address.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Broker_Address.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Broker_Contact.cs">
       <DependentUpon>RPT_CP_Broker_Contact.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Group.cs">
       <DependentUpon>RPT_CP_Product_Group.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Company.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Company.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_HSN_Product.cs">
       <DependentUpon>RPT_CP_HSN_Product.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_HSN_Master.cs">
       <DependentUpon>RPT_CP_HSN_Master.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_State.cs">
       <DependentUpon>RPT_CP_State.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_City.cs">
       <DependentUpon>RPT_CP_City.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Supplier_Products.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Supplier_Products.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_SupplierProductList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_SupplierProductList.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_PUR_SupplierScheduleList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_SupplierScheduleList.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Stock.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Stock.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_TMB.cs">
       <AutoGen>True</AutoGen>
@@ -2338,43 +2350,43 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_TP_INV_Shop_Stock_Issued.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_TP_PUR_PurchaseDC.cs">
       <DependentUpon>RPT_TP_PUR_PurchaseDC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_TP_PUR_GRNDetails.cs">
       <DependentUpon>RPT_TP_PUR_GRNDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_TP_PUR_ReturnDC.cs">
       <DependentUpon>RPT_TP_PUR_ReturnDC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_TP_INV_Shop_Stock_Request_Transfer.cs">
       <DependentUpon>RPT_TP_INV_Shop_Stock_Request_Transfer.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_TP_INV_Shop_Stock_Request.cs">
       <DependentUpon>RPT_TP_INV_Shop_Stock_Request.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="REPORT_Supplier_Payment.cs">
       <SubType>Form</SubType>
@@ -2740,8 +2752,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_SupplierScheduleProductDayWise.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="INV_InwardlistQueue.cs">
       <SubType>Form</SubType>
@@ -2858,8 +2870,8 @@
       <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_DamageEntryList.cs">
-      <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="INV_DamageEntryList.designer.cs">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
@@ -2896,8 +2908,8 @@
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_GRNEntry.cs">
-      <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PUR_GRNEntry.designer.cs">
       <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
@@ -3222,8 +3234,8 @@
       <DependentUpon>CP_ProductHSNList.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_ProductHSN.cs">
-      <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="CP_ProductHSN.designer.cs">
       <DependentUpon>CP_ProductHSN.cs</DependentUpon>
@@ -3394,6 +3406,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\minimize_Form1.png" />
+    <None Include="Resources\Reset Password.jpg" />
+    <None Include="Resources\logout.png" />
     <None Include="Resources\padlock.png" />
     <None Include="Resources\timetable.png" />
     <None Include="Resources\view %281%29.png" />
@@ -3487,6 +3502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_StickerPrint.resx">
       <DependentUpon>CP_StickerPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_User_ResetPassword.resx">
+      <DependentUpon>CP_User_ResetPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_MismatchApprovedList.resx">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
@@ -3950,14 +3968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="PUR_PurchaseOrderList.resx">
       <DependentUpon>PUR_PurchaseOrderList.cs</DependentUpon>
     </EmbeddedResource>
@@ -5385,6 +5398,9 @@
     <None Include="Resources\download %281%29.png" />
     <None Include="Resources\download %282%29.png" />
     <None Include="Resources\double-chevron.png" />
+    <None Include="Resources\breadcrum-Level.png" />
+    <None Include="Resources\close-Form.png" />
+    <None Include="Resources\arrow1.png" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">

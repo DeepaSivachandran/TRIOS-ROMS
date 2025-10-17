@@ -17,6 +17,7 @@ namespace ROMS
 {
     public partial class CP_PurchaseList : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable Deftable = new DataTable();
@@ -30,6 +31,8 @@ namespace ROMS
         public CP_PurchaseList()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            windowControl.Initialize(tsPurchaseList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)
@@ -480,12 +483,13 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm objMainForm = new MainForm();
-                    objMainForm.udfnCloseChildForms();
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm objMainForm = new MainForm();
+                    //objMainForm.udfnCloseChildForms();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)
@@ -499,6 +503,7 @@ namespace ROMS
         {
             try
             {
+                this.Close();
                 MainForm.objPUR_PurchaseQueue = new PUR_PurchaseQueue();
                 MainForm.objPUR_PurchaseQueue.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 22 && sp.EditAccess.Split(',').Contains("10")); 
@@ -557,7 +562,7 @@ namespace ROMS
                 btnExport.Visible = privilege.Contains("6");
 
                 tsbQueue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 22 && sp.EditAccess.Split(',').Contains("9"));
-                lblQueueCount.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 22 && sp.EditAccess.Split(',').Contains("9"));  
+                tsTotalQueue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 22 && sp.EditAccess.Split(',').Contains("9"));  
             }
             catch (Exception ex)
             {
@@ -803,7 +808,7 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count != 0)
                     {
-                        lblQueueCount.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Queue Count"]); 
+                        tsTotalQueue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Queue Count"]); 
                     }
                 }
             }

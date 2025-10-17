@@ -17,6 +17,8 @@ namespace ROMS
 {
     public partial class CP_Printer_Setting : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
 
@@ -38,6 +40,7 @@ namespace ROMS
         public CP_Printer_Setting()
         {
             InitializeComponent();
+            windowControl.Initialize(tsPrinterSetting, this);
         }
         private void CP_Printer_Setting_Load(object sender, EventArgs e)
         {
