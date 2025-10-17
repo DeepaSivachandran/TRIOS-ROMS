@@ -34,12 +34,12 @@
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbDownload = new System.Windows.Forms.ToolStripButton();
-            this.tsbExport = new System.Windows.Forms.ToolStripButton();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+            this.tsbExport = new System.Windows.Forms.ToolStripButton(); 
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblReportType = new System.Windows.Forms.Label();
@@ -77,8 +77,7 @@
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsbDownload,
-            this.tsbExport,
-            this.tsLabelPlaceholder});
+            this.tsbExport });
             this.tsBillwiseTaxReport.Location = new System.Drawing.Point(0, 0);
             this.tsBillwiseTaxReport.Name = "tsBillwiseTaxReport";
             this.tsBillwiseTaxReport.Size = new System.Drawing.Size(1354, 32);
@@ -139,16 +138,6 @@
             this.tsbExport.ToolTipText = "Generate";
             this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
             // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(69, 29);
-            this.tsLabelPlaceholder.Text = "Levels";
-            // 
             // pnlReportCity
             // 
             this.pnlReportCity.BackColor = System.Drawing.Color.White;
@@ -208,6 +197,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.label6);
             this.grpfilter.Controls.Add(this.lblReportType);
@@ -226,6 +216,19 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(1090, 44);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 7;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
             // 
             // cmbReportType
             // 
@@ -493,6 +496,7 @@
         public System.Windows.Forms.ToolStripButton tsbExport;
         public System.Windows.Forms.ToolStripButton tsbDownload;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
-        private DynamicToolStripLabelControl dynamicLabelControl;
+        private DynamicToolStripLabelControl dynamicLabelControl; 
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

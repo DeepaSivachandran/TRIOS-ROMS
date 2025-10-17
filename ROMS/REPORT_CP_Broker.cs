@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_CP_Broker : Form
     {
+
+        MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         private ToolTip tpCity = new ToolTip();
@@ -106,7 +109,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -116,7 +119,7 @@ namespace ROMS
                     string VarCity = "0";
                     DataSet objDsCity = new DataSet();
                     SPDataService objDserv = new SPDataService();
-                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0,0);
+                    objDsCity = objDserv.udfnCitylist(2, txtCity.Text.Trim(), 0, 0);
                     objDserv.CloseConnection();
                     if (objDsCity != null)
                     {
@@ -128,7 +131,7 @@ namespace ROMS
                             }
                         }
                     }
-                    
+
                     lblcityid.Text = VarCity;
                 }
                 if (blnErrorFlag == false)
@@ -141,11 +144,11 @@ namespace ROMS
                     {
                         if (Convert.ToInt32(cmbReportType.SelectedValue) == 106)
                         {
-                            udfnContact();
+                            udfnContact(varFlag);
                         }
                         if (Convert.ToInt32(cmbReportType.SelectedValue) == 107)
                         {
-                            udfnAddress();
+                            udfnAddress(varFlag);
                         }
                     }
                 }
@@ -156,7 +159,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnContact()
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(0);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnContact(int varFlag)
         {
             try
             {
@@ -190,8 +205,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "Broker_Contact";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -211,7 +242,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnAddress()
+        public void udfnAddress(int varFlag)
         {
             try
             {
@@ -263,8 +294,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "Broker_Address";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -701,6 +748,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode); 
 
                 DataBind objDataBind = new DataBind();
+                //Transaction id 	36
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
@@ -711,6 +759,13 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -829,6 +884,37 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnList(1);
         }
     }
 }

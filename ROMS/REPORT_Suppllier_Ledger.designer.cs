@@ -45,6 +45,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblReportType = new System.Windows.Forms.Label();
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
@@ -221,6 +222,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Controls.Add(this.dpToDate);
@@ -237,6 +239,21 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(831, 42);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 5;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
             // 
             // cmbReportType
             // 
@@ -463,5 +480,6 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

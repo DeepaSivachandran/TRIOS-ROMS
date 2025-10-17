@@ -153,6 +153,16 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bread_crumb1 {
+            get {
+                object obj = ResourceManager.GetObject("bread-crumb1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap breadcrum_Level {
             get {
                 object obj = ResourceManager.GetObject("breadcrum-Level", resourceCulture);
@@ -986,6 +996,16 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap submit {
             get {
                 object obj = ResourceManager.GetObject("submit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Telegram {
+            get {
+                object obj = ResourceManager.GetObject("Telegram", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

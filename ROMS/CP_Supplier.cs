@@ -77,6 +77,16 @@ namespace ROMS
         DataSet objDTBank = new DataSet();
         DataTable dtOpeningCRDetails = new DataTable();
         DataTable dtStatus = new DataTable();
+        public bool OrderScheduleViewAccess = false,
+            OrderScheduleEditAccess = false ,
+            SupProMappingViewAccess = false ,
+            SupProMappingEditAccess = false ,
+            MappedProViewAccess = false ,
+            MappedProEditAccess = false ,
+            UnMappedProViewAccess = false ,
+            UnMappedProEditAccess = false ,
+            OpeningBalanceViewAccess = false ,
+            OpeningBalanceEditAccess = false  ;
         public CP_Supplier()
         {
             InitializeComponent();
@@ -881,7 +891,9 @@ namespace ROMS
                         //{
                         //    varsupplierID = varvalue[2];
                         //}
-                        if (tcSupplier.SelectedIndex == 1)
+                        // if (tcSupplier.SelectedIndex == 1)
+
+                        if (tcSupplier.SelectedTab.Name == "tbOrder")
                         {
                             btnSave.Text = "Update";
                             btnSaveOrderType.Text = "Update";
@@ -1222,13 +1234,14 @@ namespace ROMS
                 udfnEdit();
                 BeginInvoke(new Action(() => cmbOrderschedule.Select(int.MaxValue, 0)));
                 btnListPrint.Image = global::ROMS.Properties.Resources.print;
-                if (pbSupplierid == "0")
-                {
-                    tcSupplier.TabPages[1].Enabled = false; // Second tab
-                    tcSupplier.TabPages[2].Enabled = false; // Third tab
-                    tcSupplier.TabPages[3].Enabled = false; // Fourth tab
-                }
+                //if (pbSupplierid == "0")
+                //{
+                //    tcSupplier.TabPages[1].Enabled = false; // Second tab
+                //    tcSupplier.TabPages[2].Enabled = false; // Third tab
+                //    tcSupplier.TabPages[3].Enabled = false; // Fourth tab
+                //}
                 //tcSupplier.TabPages[4].Enabled = false;
+                udfnUserAccess();
             }
             catch (Exception ex)
             {
@@ -1237,6 +1250,61 @@ namespace ROMS
             }
             finally
             { 
+            }
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    OrderScheduleViewAccess=MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 8 && sp.EditAccess.Split(',').Contains("9"));
+                    OrderScheduleEditAccess=MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 8 && sp.EditAccess.Split(',').Contains("10"));
+
+                    SupProMappingViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 9 && sp.EditAccess.Split(',').Contains("9"));
+                    SupProMappingEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 9 && sp.EditAccess.Split(',').Contains("10"));
+
+                    MappedProViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 10 && sp.EditAccess.Split(',').Contains("9"));
+                    MappedProEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 10 && sp.EditAccess.Split(',').Contains("10"));
+
+                    UnMappedProViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 11 && sp.EditAccess.Split(',').Contains("9"));
+                    UnMappedProEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 11 && sp.EditAccess.Split(',').Contains("10"));
+
+                    OpeningBalanceViewAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 12 && sp.EditAccess.Split(',').Contains("9"));
+                    OpeningBalanceEditAccess = MainForm.objCP_Supplierlist.SpecialPermissions.Any(sp => sp.MUP_Code == 12 && sp.EditAccess.Split(',').Contains("10"));
+
+                    // Hide or show based on View access
+                    ShowOrHideTab(tcSupplier, tbOrder, OrderScheduleViewAccess);
+                    ShowOrHideTab(tcSupplier, tpSupplierProduct, SupProMappingViewAccess);
+                    ShowOrHideTab(tcSupplier, tbSchedule, MappedProViewAccess);
+                    ShowOrHideTab(tcSupplier, tbPurchaseProducts, UnMappedProViewAccess);
+                    ShowOrHideTab(tcSupplier, tbOpeningBalance, OpeningBalanceViewAccess);
+
+                    // Disable edit controls inside each tab if no edit access
+                    tbOrder.Enabled = OrderScheduleEditAccess;
+                    tpSupplierProduct.Enabled = SupProMappingEditAccess;
+                    tbSchedule.Enabled = MappedProEditAccess;
+                    tbPurchaseProducts.Enabled = UnMappedProEditAccess;
+                    tbOpeningBalance.Enabled = OpeningBalanceEditAccess; 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void ShowOrHideTab(TabControl tabControl, TabPage tabPage, bool isVisible)
+        {
+            if (isVisible)
+            {
+                if (!tabControl.TabPages.Contains(tabPage))
+                    tabControl.TabPages.Add(tabPage);
+            }
+            else
+            {
+                if (tabControl.TabPages.Contains(tabPage))
+                    tabControl.TabPages.Remove(tabPage);
             }
         }
         public void udfnBankDropDownLoad()
@@ -1604,8 +1672,7 @@ namespace ROMS
                                 }
                                 grdOpeningCrDetails.ClearSelection();
                                 udfnOpeningType();
-                            }
-                            
+                            } 
                         }
                     }
                 }
@@ -1748,11 +1815,13 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    if (tcSupplier.SelectedIndex == 0)
+                    //if (tcSupplier.SelectedIndex == 0)
+                    if (tcSupplier.SelectedTab.Name == "tbSupplier")
                     {
                         btnSave_Click(sender, e);
                     }
-                    else if (tcSupplier.SelectedIndex == 2)
+                    else //if (tcSupplier.SelectedIndex == 2)
+                     if (tcSupplier.SelectedTab.Name == "tpSupplierProduct")
                     {
                         BtnMappingsave_Click(sender, e);
                     }
@@ -3820,9 +3889,9 @@ namespace ROMS
                     errCompany.Clear();
                     udfntphide();
                     udfncolorchange();
-                    udfnSchedulecolorchange();
-
-                    if (tcSupplier.SelectedIndex == 1)
+                    udfnSchedulecolorchange(); 
+                    //if (tcSupplier.SelectedIndex == 1)
+                    if(tcSupplier.SelectedTab.Name == "tbOrder")
                     {
                         if (btnSave.Text == "Update")
                         {
@@ -3839,12 +3908,16 @@ namespace ROMS
                         txtScheduleName.SelectionStart = txtScheduleName.Text.Length;
                         cmbOrderType.SelectedValue = 144;
                     }
-                    if (tcSupplier.SelectedIndex == 0)
+
+
+                    // if (tcSupplier.SelectedIndex == 0)
+                    if (tcSupplier.SelectedTab.Name == "tbSupplier")
                     {
                         txtName.Focus();
                         txtName.SelectionStart = txtName.Text.Length;
                     }
-                    if (tcSupplier.SelectedIndex == 3)
+                    //if (tcSupplier.SelectedIndex == 3)
+                    if (tcSupplier.SelectedTab.Name == "tbSchedule")
                     {
                         cmbOrderschedule.Focus();
                         BeginInvoke(new Action(() => cmborderday.Select(int.MaxValue, 0)));
@@ -3852,7 +3925,8 @@ namespace ROMS
                         cmbOrderschedule.SelectedIndex = 0;
 
                     }
-                    if (tcSupplier.SelectedIndex == 2)
+                    //if (tcSupplier.SelectedIndex == 2)
+                    if (tcSupplier.SelectedTab.Name == "tpSupplierProduct")
                     {
                         //picLoader.Visible = true;
                         //picLoader.BringToFront();
@@ -3863,7 +3937,8 @@ namespace ROMS
                         this.ActiveControl = cmbMappingorderschedule;
 
                     }
-                    if (tcSupplier.SelectedIndex == 4)
+                    //if (tcSupplier.SelectedIndex == 4)
+                    if (tcSupplier.SelectedTab.Name == "tbPurchaseProducts")
                     {
                         udfnLoadOrderSchedulePur();
                     }
@@ -3933,7 +4008,8 @@ namespace ROMS
             if (pbSupplierid != "0")
             {
 
-                if (e.TabPageIndex == 1)
+                //if (e.TabPageIndex == 1)
+                if (e.TabPage.Name == "tbOrder")
                 {
                     try
                     {
@@ -3946,7 +4022,8 @@ namespace ROMS
                         objError.WriteFile(ex);
                     }
                 }
-                if (e.TabPageIndex == 3)
+                //if (e.TabPageIndex == 3)
+                if (e.TabPage.Name == "tbSchedule")
                 {
                     try
                     {
@@ -3960,7 +4037,8 @@ namespace ROMS
                         objError.WriteFile(ex);
                     }
                 }
-                if (e.TabPageIndex == 4)
+                // if (e.TabPageIndex == 4)
+                if (e.TabPage.Name == "tbPurchaseProducts")
                 {
                     try
                     {
@@ -3972,7 +4050,8 @@ namespace ROMS
                         objError.WriteFile(ex);
                     }
                 }
-                if (e.TabPageIndex == 2)
+                // if (e.TabPageIndex == 2)
+                if (e.TabPage.Name == "tpSupplierProduct")
                 {
                     try
                     {

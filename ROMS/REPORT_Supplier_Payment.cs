@@ -16,11 +16,14 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Runtime.InteropServices;
 using ClosedXML.Excel;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_Supplier_Payment : Form
     {
+        MainForm objMainForm = new MainForm();
+
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpReportType = new ToolTip();
         ToolTip tpSupplier = new ToolTip();
@@ -112,7 +115,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -135,8 +138,20 @@ namespace ROMS
                 }
                 if (varErrFlag == false)
                 {
-                    udfnSupplierPaymentReport();
+                    udfnSupplierPaymentReport(varFlag);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                udfnList(0);
             }
             catch (Exception ex)
             {
@@ -166,8 +181,8 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfnSupplierPaymentReport()
+        }   
+        public void udfnSupplierPaymentReport(int varFlag)
         {
             try
             {
@@ -205,6 +220,7 @@ namespace ROMS
                 objDs = objdserv.udfnPaymentReport(varViewType, varSupplierId, varScheduleId, dpFromDate.Text, dpToDate.Text, 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbPayType.SelectedValue), varCityId);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                string varReportName = "";
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -229,15 +245,18 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraCityId", varCityId, objBillreport.Subreports[0].Name.ToString());
                         objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text, objBillreport.Subreports[0].Name.ToString());
                         objBillreport.SetParameterValue("paraToDate", dpToDate.Text, objBillreport.Subreports[0].Name.ToString());
+                        varReportName = "PAY_SupplierPaymentGiven";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 376)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_SupplierPaymentPending.rpt");
+                        varReportName = "PAY_SupplierPaymentPending";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 400)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PAY_SupplierPaymentGiven_Summary.rpt");
                         objBillreport.SetParameterValue("paraPayModeName", Convert.ToString(cmbPayType.Text));
+                        varReportName = "PAY_SupplierPaymentGiven_Summary";
                     }
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraPayType", Convert.ToInt32(cmbPayType.SelectedValue));
@@ -250,8 +269,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -639,6 +674,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,104) AND MSTID<>-1 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbPayType, "", "MST_DisplayText", "MSTID");
+                //Transaction id 	115
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC"
                    , "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
@@ -651,6 +687,13 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -1118,6 +1161,38 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+
+            udfnList(1);
         }
 
         private void txtCity_TextChanged(object sender, EventArgs e)

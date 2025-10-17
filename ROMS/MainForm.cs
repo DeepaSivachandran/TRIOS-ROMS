@@ -8,6 +8,12 @@ using System.Net;
 using System.Net.Sockets;
 using System.Globalization;
 using ROMS.Model;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Globalization;
+using System.IO;
+
+
 
 namespace ROMS
 {
@@ -63,6 +69,10 @@ namespace ROMS
         public static bool isClose = false;
         public static bool isFormClosedMenu = false;
         public static DateTime pbCurrentDate, pbFYStartDate, pbFYEndDate;
+        public static string pbTelegramPath = "";
+        public static string varChatID = "";
+        public static string varToken = "";
+        public static string varcurrentdate = "";
         public static string pbUserMappedLocationIds = "0";
         //------- Form object declaration
         public static MainForm objMainForm;
@@ -1035,6 +1045,7 @@ namespace ROMS
                 udfnGetMenuDetailsForUser();
                 BindMenu(sender, e);
                 CountToolStripMenuItems(ms);
+                udfnGetTelegramToken();
                 this.Text = "ROMS" + " - " + MainForm.pbVersion + " Release Dt : " + MainForm.pbReleaseDt + " [ " + MainForm.pbSSSSoftwareName + " ]";
                 udfnCloseChildForms();
                 lblTime.Text = "Welcome " + MainForm.pbUserName + " / " + MainForm.pbUserRoleName + " @ " + MainForm.pbHostName;
@@ -1361,6 +1372,66 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnGetTelegramToken()
+        {
+            try
+            {
+                DataSet objds = new DataSet();
+                DataService objdser = new DataService(); 
+                pbTelegramPath = objdser.displaydata(" SELECT SF_Path FROM DEF_SharedFolderPath");
+                objds = objdser.GetDataset("SELECT ChatID, Token  FROM DEF_TELEGRAM_BOT_DETAILS A INNER JOIN DEF_TELEGRAM_GROUP_DETAILS B ON A.BOTID = B.BOTID");
+                pbTelegramPath = pbTelegramPath + "\\Telegram Reports\\"; 
+                // Ensure the folder exists — creates it if not
+                if (!Directory.Exists(pbTelegramPath))
+                {
+                    Directory.CreateDirectory(pbTelegramPath);
+                }
+                objdser.CloseConnection();
+                if (objds != null)
+                {
+                    if (objds.Tables.Count > 0)
+                    {
+                        if (objds.Tables[0].Rows.Count > 0)
+                        {  
+                            varChatID=(Convert.ToString(objds.Tables[0].Rows[0]["ChatID"]));
+                            varToken=(Convert.ToString(objds.Tables[0].Rows[0]["Token"]));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public async Task udfnSendToTelegram(string varPath)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    using (var form = new MultipartFormDataContent())
+                    { 
+                        // Add file content
+                        var fileContent = new ByteArrayContent(System.IO.File.ReadAllBytes(varPath));
+                        fileContent.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("multipart/form-data");
+                        form.Add(fileContent, "document", System.IO.Path.GetFileName(varPath));
+                        if (varChatID!="")
+                        {
+                            // Telegram API endpoint for sending documents
+                            var apiUrl = $"https://api.telegram.org/bot" + varToken  + "/sendDocument?chat_id=" + varChatID ;
+                            // Send request
+                            var response = await httpClient.PostAsync(apiUrl, form);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
         //take all splfield  menu for user role master
@@ -2439,47 +2510,47 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "7.1.3")
                 {
-                    MainForm.objREPORT_CP_Company.udfnList();
+                    MainForm.objREPORT_CP_Company.udfnList(0);
                 }
                 if (PbCurrentForm == "7.1.4")
                 {
-                    MainForm.objREPORT_CP_HSN.udfnHSN();
+                    MainForm.objREPORT_CP_HSN.udfnHSN(0);
                 }
                 if (PbCurrentForm == "7.1.5")
                 {
-                    MainForm.objREPORT_CP_Product_Group.udfnProductGroup();
+                    MainForm.objREPORT_CP_Product_Group.udfnProductGroup(0);
                 }
                 if (PbCurrentForm == "7.1.6")
                 {
-                    MainForm.objREPORT_CP_Broker.udfnContact();
+                    MainForm.objREPORT_CP_Broker.udfnContact(0);
                 }
                 if (PbCurrentForm == "7.1.7")
                 {
-                    MainForm.objREPORT_CP_Brand.udfnBrand();
+                    MainForm.objREPORT_CP_Brand.udfnBrand(0);
                 }
                 if (PbCurrentForm == "7.1.8")
                 {
-                    MainForm.objREPORT_CP_Product_Subgroup.udfnSubgroup();
+                    MainForm.objREPORT_CP_Product_Subgroup.udfnSubgroup(0);
                 }
                 if (PbCurrentForm == "7.1.9")
                 {
-                    MainForm.objREPORT_CP_StockLocation.udfnLocation();
+                    MainForm.objREPORT_CP_StockLocation.udfnLocation(0);
                 }
                 if (PbCurrentForm == "7.1.10")
                 {
-                    MainForm.objREPORT_CP_Rack.udfnRack();
+                    MainForm.objREPORT_CP_Rack.udfnRack(0);
                 }
                 if (PbCurrentForm == "7.1.11")
                 {
-                    MainForm.objREPORT_CP_Rackgroup.udfnRG();
+                    MainForm.objREPORT_CP_Rackgroup.udfnRG(0);
                 }
                 if (PbCurrentForm == "7.1.12")
                 {
-                    MainForm.objREPORT_CP_Supplier.udfnSupplier();
+                    MainForm.objREPORT_CP_Supplier.udfnSupplier(0);
                 }
                 if (PbCurrentForm == "7.1.13")
                 {
-                    MainForm.objREPORT_CP_Product.udfnProductGST();
+                    MainForm.objREPORT_CP_Product.udfnProductGST(0);
                 }
                 if (PbCurrentForm == "7.2.1")
                 {
@@ -2487,11 +2558,11 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "7.3.1")
                 {
-                    MainForm.objREPORT_PUR_PurchaseOrder.udfnProductDetails();
+                    MainForm.objREPORT_PUR_PurchaseOrder.udfnProductDetails(0);
                 }
                 if (PbCurrentForm == "7.3.2")
                 {
-                    MainForm.objREPORT_PUR_Purchaseorder_Summary.udfnProductDetails();
+                    MainForm.objREPORT_PUR_Purchaseorder_Summary.udfnProductDetails(0);
                 }
                 if (PbCurrentForm == "8.1")
                 {

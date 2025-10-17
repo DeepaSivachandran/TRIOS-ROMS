@@ -57,7 +57,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.tsHSNReport.SuspendLayout();
+            this.btnTelegram = new System.Windows.Forms.Button(); 
             this.pnlReportHSN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.grpfilter.SuspendLayout();
@@ -220,6 +220,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.lblHsnName);
             this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.lblStatus);
@@ -384,6 +385,21 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(945, 18);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 5;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
+            // 
             // REPORT_CP_HSN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -441,5 +457,6 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

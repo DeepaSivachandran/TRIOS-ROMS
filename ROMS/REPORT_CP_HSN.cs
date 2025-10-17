@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ROMS
 {
@@ -19,6 +20,8 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKey = 0;
+
+        MainForm objMainForm = new MainForm();
         public REPORT_CP_HSN()
         {
             InitializeComponent();
@@ -116,15 +119,15 @@ namespace ROMS
                 {
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 103)
                     {
-                        udfnHSN();
+                        udfnHSN(0);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 104)
                     {
-                        udfnHSNProduct();
+                        udfnHSNProduct(0);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 105)
                     {
-                        udfnHSNSubgroup();
+                        udfnHSNSubgroup(0);
                     }
                 }
             }
@@ -134,7 +137,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnHSN()
+        public void udfnHSN(int varFlag)
         {
             try
             {
@@ -167,9 +170,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    objValidation.CrySqlConnection(objBillreport); 
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh(); 
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "HSN_Master";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -190,7 +208,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnHSNProduct()
+        public void udfnHSNProduct(int varFlag)
         {
             try
             {
@@ -244,8 +262,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "HSN_Product";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -266,7 +300,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnHSNSubgroup()
+        public void udfnHSNSubgroup(int varFlag)
         {
             try
             {
@@ -313,8 +347,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "HSN_Subgroup";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -380,6 +430,7 @@ namespace ROMS
                 udfnHsnLoad();
                  
                 DataBind objDataBind = new DataBind();
+                //Transaction id 	35
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN ("+ ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 //objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  NOT IN (-1)", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
@@ -392,6 +443,13 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -1003,5 +1061,63 @@ namespace ROMS
             }
         }
 
+        
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    cmbReportType.Focus();
+                }
+                else
+                {
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 103)
+                    {
+                        udfnHSN(1);
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 104)
+                    {
+                        udfnHSNProduct(1);
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 105)
+                    {
+                        udfnHSNSubgroup(1);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

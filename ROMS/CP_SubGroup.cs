@@ -47,6 +47,7 @@ namespace ROMS
         public int varSortFlag = 0;
         public int varSubgroupType = 0;
         public string VarRackCreation = "0";
+        public string GroupPrivilege = "", LocationPrivilege="",RackPrivilege="";
         public CP_SubGroup()
         {
             InitializeComponent();
@@ -131,6 +132,7 @@ namespace ROMS
                     txtRack.Enabled = true;
                     btnNewRack.Enabled = true;
                 }
+                udfnUserAccess();
             }
             catch (Exception ex)
             {
@@ -140,6 +142,32 @@ namespace ROMS
             finally
             { //grdRackList.ColumnHeadersVisible = false;
               //  udfnSearchGridHead();
+            }
+        }
+        public void udfnUserAccess()
+        {
+            try
+            {
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                { 
+                    //Group
+                    var groupresult = UserAccessHelper.LoadUserAccess(505);
+                    GroupPrivilege = groupresult.PrivilegeCode;
+                    btnAdd.Visible = GroupPrivilege.Contains("2");
+                    //Brand
+                    var Locationresult = UserAccessHelper.LoadUserAccess(509);
+                    LocationPrivilege = Locationresult.PrivilegeCode;
+                    btnewlocation.Visible = LocationPrivilege.Contains("2");
+                    //Unit
+                    var Rackresult = UserAccessHelper.LoadUserAccess(510);
+                    RackPrivilege = Rackresult.PrivilegeCode;
+                    btnNewRack.Visible = RackPrivilege.Contains("2");
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnListView()

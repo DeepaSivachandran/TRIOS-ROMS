@@ -12,11 +12,13 @@ using System.Globalization;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_PUR_BillWiseTax : Form
     {
+        MainForm objMainForm = new MainForm();
         private ContextMenuStrip contextMenu;
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
@@ -71,7 +73,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -89,7 +91,7 @@ namespace ROMS
                     string varMessage = objDataService.udfnGetMessages(161);
                     MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     objDataService.CloseConnection();
-                    udfnPurchaseBillWiseReport();
+                    udfnPurchaseBillWiseReport(varFlag);
                 }
             }
             catch (Exception ex)
@@ -98,7 +100,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPurchaseBillWiseReport()
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(0);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPurchaseBillWiseReport(int varFlag)
         {
             try
             {
@@ -126,6 +140,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", "");
                 objdserv.CloseConnection();
+                string varReportName = "";
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -138,10 +153,12 @@ namespace ROMS
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 328)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxSummary_BillWise.rpt");
+                        varReportName = "PUR_Tax_TaxSummary_BillWise";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 329)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_TaxDetails_BillWise.rpt");
+                        varReportName = "PUR_Tax_TaxDetails_BillWise";
                     }
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", 0);
@@ -190,8 +207,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                      
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -235,7 +268,7 @@ namespace ROMS
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
-                DataBind objDataBind = new DataBind();
+                DataBind objDataBind = new DataBind(); //Transaction id 	97
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
@@ -243,6 +276,14 @@ namespace ROMS
                 cmbSupplierType.SelectedValue = 0;
                 cmbInvType.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
+
             }
             catch (Exception ex)
             {
@@ -1273,6 +1314,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnList(1);
         }
     }
 }

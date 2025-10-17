@@ -35,16 +35,18 @@
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCompany = new System.Windows.Forms.Panel();
             this.grpfilter = new System.Windows.Forms.GroupBox();
-            this.btnListPrint = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblCompany = new System.Windows.Forms.Label();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.tsCompanyReport.SuspendLayout();
+            this.btnTelegram = new System.Windows.Forms.Button();
+            this.btnListPrint = new System.Windows.Forms.Button();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+             
             this.pnlReportCompany.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
@@ -116,6 +118,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.btnListPrint);
             this.grpfilter.Controls.Add(this.cmbStatus);
             this.grpfilter.Controls.Add(this.lblStatus);
@@ -127,23 +130,6 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
-            // 
-            // btnListPrint
-            // 
-            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
-            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(203, 18);
-            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 1;
-            this.btnListPrint.Text = "View";
-            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnListPrint.UseVisualStyleBackColor = true;
-            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
-            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
-            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
             // 
             // cmbStatus
             // 
@@ -204,6 +190,55 @@
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // RPTViewer
+            // 
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(3, 66);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 573);
+            this.RPTViewer.TabIndex = 1111227;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(285, 18);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 2;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
+            // 
+            // btnListPrint
+            // 
+            this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
+            this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListPrint.Location = new System.Drawing.Point(203, 18);
+            this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnListPrint.Name = "btnListPrint";
+            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
+            this.btnListPrint.TabIndex = 1;
+            this.btnListPrint.Text = "View";
+            this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListPrint.UseVisualStyleBackColor = true;
+            this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
+            this.btnListPrint.Enter += new System.EventHandler(this.BtnListPrint_Enter);
+            this.btnListPrint.Leave += new System.EventHandler(this.BtnListPrint_Leave);
             // 
             // picLoader
             // 
@@ -283,5 +318,6 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

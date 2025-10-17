@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_PUR_PurchaseOrder : Form
     {
+        MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
         ToolTip tpSupplier = new ToolTip();
@@ -108,7 +110,7 @@ namespace ROMS
         {
             try
             { 
-                udfnProductDetails();
+                udfnProductDetails(0);
             }
             catch (Exception ex)
             {
@@ -151,7 +153,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnProductDetails()
+        public void udfnProductDetails(int varFlag)
         {
             try
             {
@@ -275,6 +277,7 @@ namespace ROMS
                 objDs = objdserv.udfnPOEntry(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, 0, 0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                string varReportName = "";
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -293,6 +296,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("ParaSupplier", 0);
                         objBillreport.SetParameterValue("parafilter", 0);
                         objBillreport.SetParameterValue("varHeader", "Product wise Purchase Order Report");
+                        varReportName = "ProductwisePurchaseOrder";
                     }
                     if (Convert.ToInt32(cmbShow.SelectedValue) == 160)
                     {
@@ -302,6 +306,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("ParaSupplier", 0);
                         objBillreport.SetParameterValue("parafilter", 0);
                         objBillreport.SetParameterValue("varHeader", "PO Wise Purchase Order Report");
+                        varReportName = "POWise_PurchaseOrder";
                     }
                     if (Convert.ToInt32(cmbShow.SelectedValue) == 161)
                     {
@@ -311,6 +316,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("ParaSupplier", 0);
                         objBillreport.SetParameterValue("parafilter", 1);
                         objBillreport.SetParameterValue("varHeader", "Status wise Purchase Order Report");
+                        varReportName = "StatuswisePurchaseOrder";
                     }
                     if (Convert.ToInt32(cmbShow.SelectedValue) == 159)
                     {
@@ -320,6 +326,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("ParaSupplier", 1);
                         objBillreport.SetParameterValue("varHeader", "Supplier Wise Purchase Order Report");
                         objBillreport.SetParameterValue("parafilter", 0);
+                        varReportName = "SupplierWisePurchaseOrderReport";
                     } 
                     objBillreport.SetParameterValue("ParaGroupID", Convert.ToInt32(lblGroupCode.Text));
                     objBillreport.SetParameterValue("paraProductCode", Convert.ToInt32(lblProductcode.Text));
@@ -337,8 +344,23 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt"); 
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -836,6 +858,13 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -1728,6 +1757,37 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnProductDetails(1);
         }
 
         private void CmbShow_Leave(object sender, EventArgs e)

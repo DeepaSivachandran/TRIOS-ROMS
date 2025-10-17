@@ -54,6 +54,7 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.btnTelegram = new System.Windows.Forms.Button(); 
             this.tsPeriodWiseReport.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -126,6 +127,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.lblMonths);
             this.grpfilter.Controls.Add(this.cmbMultiMonths);
             this.grpfilter.Controls.Add(this.cmbMonths);
@@ -346,7 +348,15 @@
             // 
             // dynamicLabelControl
             // 
-            this.dynamicLabelControl.PlaceholderLabel = null;
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(767, 45);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 111111200;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
             // 
             // REPORT_PUR_PeriodWiseTax
             // 
@@ -404,5 +414,6 @@
         private System.Windows.Forms.Label lblMonths;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

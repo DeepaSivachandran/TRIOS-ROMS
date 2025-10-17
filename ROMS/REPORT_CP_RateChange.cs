@@ -373,6 +373,7 @@ namespace ROMS
 
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
+                //Transaction id 	87
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "  MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                  objDataBind = null;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;

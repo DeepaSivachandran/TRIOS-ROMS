@@ -74,6 +74,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.pnlPO = new System.Windows.Forms.Panel();
@@ -211,7 +212,7 @@
             this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSupplier.Location = new System.Drawing.Point(530, 72);
+            this.DGV_FilterSupplier.Location = new System.Drawing.Point(495, 72);
             this.DGV_FilterSupplier.Name = "DGV_FilterSupplier";
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
@@ -255,7 +256,7 @@
             this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(379, 72);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(344, 72);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
@@ -299,7 +300,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(242, 72);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(207, 72);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
@@ -501,7 +502,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(526, 22);
+            this.label6.Location = new System.Drawing.Point(491, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(87, 20);
             this.label6.TabIndex = 111111150;
@@ -519,6 +520,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.dpToDate);
             this.grpfilter.Controls.Add(this.dpFromDate);
             this.grpfilter.Controls.Add(this.pnlPO);
@@ -542,11 +544,24 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(1311, 42);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(33, 30);
+            this.btnTelegram.TabIndex = 11;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            // 
             // dpToDate
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(1208, 43);
+            this.dpToDate.Location = new System.Drawing.Point(1169, 43);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(103, 27);
             this.dpToDate.TabIndex = 9;
@@ -556,7 +571,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(1099, 43);
+            this.dpFromDate.Location = new System.Drawing.Point(1064, 43);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(103, 27);
             this.dpFromDate.TabIndex = 8;
@@ -568,7 +583,7 @@
             this.pnlPO.Controls.Add(this.cmbStatus);
             this.pnlPO.Controls.Add(this.cmbCompletedStatus);
             this.pnlPO.Controls.Add(this.rbComplete);
-            this.pnlPO.Location = new System.Drawing.Point(782, 39);
+            this.pnlPO.Location = new System.Drawing.Point(747, 39);
             this.pnlPO.Name = "pnlPO";
             this.pnlPO.Size = new System.Drawing.Size(316, 35);
             this.pnlPO.TabIndex = 4;
@@ -578,7 +593,7 @@
             this.rbNotcomplete.AutoSize = true;
             this.rbNotcomplete.Checked = true;
             this.rbNotcomplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbNotcomplete.Location = new System.Drawing.Point(7, 7);
+            this.rbNotcomplete.Location = new System.Drawing.Point(-28, 7);
             this.rbNotcomplete.Name = "rbNotcomplete";
             this.rbNotcomplete.Size = new System.Drawing.Size(97, 21);
             this.rbNotcomplete.TabIndex = 4;
@@ -590,7 +605,7 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(193, 4);
+            this.cmbStatus.Location = new System.Drawing.Point(158, 4);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(117, 27);
             this.cmbStatus.TabIndex = 6;
@@ -627,7 +642,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(971, 22);
+            this.lblStatus.Location = new System.Drawing.Point(936, 22);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(63, 20);
             this.lblStatus.TabIndex = 111111155;
@@ -667,7 +682,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(376, 22);
+            this.label4.Location = new System.Drawing.Point(341, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 20);
             this.label4.TabIndex = 1111234;
@@ -676,7 +691,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(526, 43);
+            this.txtSupplier.Location = new System.Drawing.Point(491, 43);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(250, 27);
@@ -703,7 +718,7 @@
             this.txtProductName.Location = new System.Drawing.Point(9, 43);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(224, 27);
+            this.txtProductName.Size = new System.Drawing.Size(190, 27);
             this.txtProductName.TabIndex = 0;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -714,7 +729,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(239, 22);
+            this.label2.Location = new System.Drawing.Point(204, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 20);
             this.label2.TabIndex = 1111233;
@@ -723,7 +738,7 @@
             // txtSubGroup
             // 
             this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubGroup.Location = new System.Drawing.Point(376, 43);
+            this.txtSubGroup.Location = new System.Drawing.Point(341, 43);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
             this.txtSubGroup.Size = new System.Drawing.Size(144, 27);
@@ -747,7 +762,7 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(239, 43);
+            this.txtGroup.Location = new System.Drawing.Point(204, 43);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(131, 27);
@@ -762,7 +777,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1315, 42);
+            this.btnView.Location = new System.Drawing.Point(1276, 42);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(33, 29);
@@ -911,5 +926,6 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

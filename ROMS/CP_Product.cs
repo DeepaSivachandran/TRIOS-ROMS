@@ -73,6 +73,7 @@ namespace ROMS
             WholeSaleRateViewAcess = false, WholeSaleRateEditAcess = false,
             SalesHSNViewAcess = false, SalesHSNEditAcess = false,
             PurHSNViewAcess = false, PurHSNEditAcess = false;
+        string Subgroupprivilege = "", Groupprivilege="", Brandprivilege="", Unitprivilege="";
         public CP_Product()
         {
             InitializeComponent();
@@ -3839,8 +3840,97 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
-                {
-                     
+                { 
+                    PurStkLocViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 1 && sp.EditAccess.Split(',').Contains("9"));
+                    PurStkLocEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 1 && sp.EditAccess.Split(',').Contains("10"));
+
+                    SalesStkLocViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 2 && sp.EditAccess.Split(',').Contains("9"));
+                    SalesStkLocEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 2 && sp.EditAccess.Split(',').Contains("10"));
+
+                    RetailRateViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 3 && sp.EditAccess.Split(',').Contains("9"));
+                    RetailRateEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 3 && sp.EditAccess.Split(',').Contains("10"));
+
+                    WholeSaleRateViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 4 && sp.EditAccess.Split(',').Contains("9"));
+                    WholeSaleRateEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 4 && sp.EditAccess.Split(',').Contains("10"));
+
+                    SalesHSNViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 5 && sp.EditAccess.Split(',').Contains("9"));
+                    SalesHSNEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 5 && sp.EditAccess.Split(',').Contains("10"));
+
+                    PurHSNViewAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 6 && sp.EditAccess.Split(',').Contains("9"));
+                    PurHSNEditAcess = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 6 && sp.EditAccess.Split(',').Contains("10"));
+                      
+                    if (!PurStkLocViewAcess)
+                    {   txtPurLocation.UseSystemPasswordChar = true;    txtPurLocation.Enabled = false;  } 
+                    if (!SalesStkLocViewAcess)
+                    {   txtSaleLocation.UseSystemPasswordChar = true; txtSaleLocation.Enabled = false;  } 
+                    if (!RetailRateViewAcess)
+                    { txtRetailRate.UseSystemPasswordChar = true; txtRetailRate.Enabled = false;  }
+                    if (!WholeSaleRateViewAcess)
+                    { txtWSaleRate.UseSystemPasswordChar = true; txtWSaleRate.Enabled = false; }
+                    if (!SalesHSNViewAcess)
+                    { grbSalesHSN.Visible = false; }
+                    else { grbSalesHSN.Enabled = false; }
+                    if (!PurHSNViewAcess)
+                    { grbPurchaseHSN.Visible = false; }
+                    else { grbPurchaseHSN.Enabled = false; }
+
+                    if (PurStkLocEditAcess)
+                    {
+                        if (!txtPurLocation.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
+                        { txtPurLocation.ReadOnly = false; }
+                    }
+                    else // disable editing 
+                    {    txtPurLocation.ReadOnly = true;   }
+
+                    if (SalesStkLocEditAcess)
+                    {
+                        if (!txtSaleLocation.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
+                        { txtSaleLocation.ReadOnly = false; }
+                    }
+                    else // disable editing 
+                    { txtSaleLocation.ReadOnly = true; }
+
+                    if (RetailRateEditAcess)
+                    {
+                        if (!txtRetailRate.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
+                        { txtRetailRate.ReadOnly = false; }
+                    }
+                    else // disable editing 
+                    { txtRetailRate.ReadOnly = true; }
+
+                    if (WholeSaleRateEditAcess)
+                    {
+                        if (!txtWSaleRate.ReadOnly)  // Allow editing only if it's not marked readonly by system logic
+                        { txtWSaleRate.ReadOnly = false; }
+                    }
+                    else // disable editing 
+                    { txtWSaleRate.ReadOnly = true; }
+
+                    if (SalesHSNEditAcess)
+                    {
+                        grbSalesHSN.Enabled = SalesHSNEditAcess;
+                    }
+                    if (PurHSNEditAcess)
+                    {
+                        grbPurchaseHSN.Enabled = SalesHSNEditAcess;
+                    }
+
+                    //Subgroup
+                    var Subgroupresult = UserAccessHelper.LoadUserAccess(506);
+                    Subgroupprivilege = Subgroupresult.PrivilegeCode;
+                     btnSubgroup.Visible = Subgroupprivilege.Contains("2");
+                    //Group
+                    var groupresult = UserAccessHelper.LoadUserAccess(505);
+                    Groupprivilege = groupresult.PrivilegeCode;
+                    btnGroup.Visible = Groupprivilege.Contains("2");
+                    //Brand
+                    var Brandresult = UserAccessHelper.LoadUserAccess(507);
+                    Brandprivilege = Brandresult.PrivilegeCode;
+                    btnBrand.Visible = Brandprivilege.Contains("2");
+                    //Unit
+                    var Unitresult = UserAccessHelper.LoadUserAccess(508);
+                    Unitprivilege = Unitresult.PrivilegeCode;
+                    btnUnit.Visible = Unitprivilege.Contains("2");
                 }
             }
             catch (Exception ex)

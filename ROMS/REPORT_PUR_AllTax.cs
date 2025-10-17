@@ -10,10 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 
+using System.IO;
+
 namespace ROMS
 {
     public partial class REPORT_PUR_AllTax : Form
     {
+        MainForm objMainForm = new MainForm();
         private ContextMenuStrip contextMenu;
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
@@ -112,7 +115,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -154,6 +157,19 @@ namespace ROMS
                         udfnAllPurchaseTaxReport();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
             }
             catch (Exception ex)
             {
@@ -340,7 +356,7 @@ namespace ROMS
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
-                DataBind objDataBind = new DataBind();
+                DataBind objDataBind = new DataBind(); //Transaction id 	101
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_GST", "GSTID<>-1", "GST_Text,GSTID", cmbGST, "", "GST_Text", "GSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Months", "MONID<>-1", "MON_Name,MONID", cmbMonths, "", "MON_Name", "MONID");
@@ -348,6 +364,13 @@ namespace ROMS
                 cmbGST.SelectedValue = 0;
                 cmbMonths.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -798,6 +821,33 @@ namespace ROMS
                     MainForm.objREPORT_HSN_NameWise_Product.MdiParent = this.ParentForm;
                     MainForm.objREPORT_HSN_NameWise_Product.Show();
                 });
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        { 
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
