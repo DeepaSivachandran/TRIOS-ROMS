@@ -161,6 +161,9 @@ namespace ROMS
                                     //MainForm.pbRomsSoftwareName = objDs.Tables[2].Rows[1]["TableName"].ToString();
                                     MainForm.pbReleaseDt = objDs.Tables[2].Rows[0]["ReleaseDate"].ToString();
                                     this.Hide();
+
+                                    //   Initialize global idle tracker (2 minutes timeout)
+                                    var idleManager = new IdleManager(1);
                                     MainForm obj = new MainForm();
                                     obj.Show();
                                 }
