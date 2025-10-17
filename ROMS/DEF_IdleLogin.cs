@@ -12,9 +12,10 @@ namespace ROMS
 {
     public partial class DEF_IdleLogin : Form
     {
-        // Author : DEEPA
-        // Created Date: 12-02-2020
-
+        // Author : Venkat
+        // Created Date: 17-10-2025
+        MainForm objMainForm = new MainForm();
+        public int varFormCloseFlag = 0;
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -26,7 +27,7 @@ namespace ROMS
         public DEF_IdleLogin()
         {
             InitializeComponent();
-            objValidation.resolutionsettingsForm(this); 
+            objValidation.resolutionsettingsForm(this);
             _security = new SecurityController();
             lbluserName.Text = MainForm.pbUserName;
             timerClock.Start();
@@ -54,7 +55,7 @@ namespace ROMS
         {
             try
             {
-              
+
             }
             catch (Exception ex)
             {
@@ -66,7 +67,7 @@ namespace ROMS
         {
             try
             {
-               
+
             }
             catch (Exception ex)
             {
@@ -123,12 +124,12 @@ namespace ROMS
             try
             {
                 DataSet objDs = new DataSet();
-                if ( txtPassword.TextLength != 0)
+                if (txtPassword.TextLength != 0)
                 {
                     SPDataService objDser = new SPDataService();
                     int count = 0;
                     // objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
-                    objDs = objDser.udfnUserList(0,"", MainForm.pbUserName, _security.Encrypt(MainForm.pbUserName.ToLower(), txtPassword.Text), 0, 0, "");
+                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, _security.Encrypt(MainForm.pbUserName.ToLower(), txtPassword.Text), 0, 0, "");
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
@@ -138,13 +139,13 @@ namespace ROMS
                             {
                                 count = Convert.ToInt32(objDs.Tables[0].Rows[0]["countvalue"]);
                                 if (count != 0)
-                                { 
+                                {
                                     IsPasswordCorrect = true;
                                     this.Close();
                                 }
                                 else if (count == 0)
                                 {
-                                    DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2); 
+                                    DialogResult response = MessageBox.Show(Convert.ToString(objDs.Tables[1].Rows[0]["MessageText"]), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                                     txtPassword.Text = "";
                                     txtPassword.Focus();
                                 }
@@ -154,7 +155,7 @@ namespace ROMS
                 }
                 else
                 {
-                    
+
                     if (txtPassword.Text == "")
                     {
                         txtPassword.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -175,10 +176,11 @@ namespace ROMS
 
         private void timerClock_Tick(object sender, EventArgs e)
         {
-            try {
+            try
+            {
 
                 // Get the current system time
-                DateTime now = DateTime.Now; 
+                DateTime now = DateTime.Now;
                 lblClock.Text = now.ToString("hh:mm tt");
             }
             catch (Exception ex)
@@ -190,7 +192,37 @@ namespace ROMS
 
         private void DEF_IdleLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            try
+            {
+                if (objMainForm.pbForceLogoff == 0) 
+                {
+                    DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if ((objResponse == DialogResult.Yes))
+                    {
+                        objMainForm.pbForceLogoff = 1;
+                        objMainForm.pbCloseForm = 1;
+                        objMainForm.udfnClose();
+                    }
+                    else
+                    {
+                        objMainForm.pbForceLogoff = 0;
+                        e.Cancel = true;
+                    }
+                }
+                ////if (varFormCloseFlag == 0)
+                ////{
+                ////    varFormCloseFlag = 1;
+                ////    e.Cancel = true;
+                ////}
+                ////else
+                ////{
+                ////}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

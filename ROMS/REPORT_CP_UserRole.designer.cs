@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_UserRole));
-            this.ReportRack = new System.Windows.Forms.ToolStrip();
+            this.tsUserRole = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
@@ -56,27 +56,27 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.ReportRack.SuspendLayout();
+            this.tsUserRole.SuspendLayout();
             this.pnlReportRack.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // ReportRack
+            // tsUserRole
             // 
-            this.ReportRack.BackColor = System.Drawing.Color.White;
-            this.ReportRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportRack.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ReportRack.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ReportRack.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsUserRole.BackColor = System.Drawing.Color.White;
+            this.tsUserRole.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsUserRole.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsUserRole.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsUserRole.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsLabelPlaceholder});
-            this.ReportRack.Location = new System.Drawing.Point(0, 0);
-            this.ReportRack.Name = "ReportRack";
-            this.ReportRack.Size = new System.Drawing.Size(1354, 27);
-            this.ReportRack.TabIndex = 35;
-            this.ReportRack.Text = "Rack Report";
+            this.tsUserRole.Location = new System.Drawing.Point(0, 0);
+            this.tsUserRole.Name = "tsUserRole";
+            this.tsUserRole.Size = new System.Drawing.Size(1354, 27);
+            this.tsUserRole.TabIndex = 35;
+            this.tsUserRole.Text = "Rack Report";
             // 
             // tsbPrintFormat
             // 
@@ -361,18 +361,18 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlReportRack);
-            this.Controls.Add(this.ReportRack);
+            this.Controls.Add(this.tsUserRole);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_CP_UserRole";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rack Report";
+            this.Text = "User Role Report";
             this.Load += new System.EventHandler(this.REPORT_CP_Rack_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Rack_KeyDown);
-            this.ReportRack.ResumeLayout(false);
-            this.ReportRack.PerformLayout();
+            this.tsUserRole.ResumeLayout(false);
+            this.tsUserRole.PerformLayout();
             this.pnlReportRack.ResumeLayout(false);
             this.pnlReportRack.PerformLayout();
             this.grpfilter.ResumeLayout(false);
@@ -385,7 +385,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ReportRack;
+        private System.Windows.Forms.ToolStrip tsUserRole;
         private System.Windows.Forms.Panel pnlReportRack;
         private System.Windows.Forms.Label lblNoRecordsFound;
         private System.Windows.Forms.GroupBox grpfilter;

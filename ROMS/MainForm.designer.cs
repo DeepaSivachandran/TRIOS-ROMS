@@ -192,8 +192,7 @@ namespace ROMS
             this.tsmClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms = new System.Windows.Forms.MenuStrip();
-            this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms = new System.Windows.Forms.MenuStrip(); 
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
@@ -1700,12 +1699,7 @@ namespace ROMS
             this.tsmLock.Name = "tsmLock";
             this.tsmLock.Size = new System.Drawing.Size(180, 22);
             this.tsmLock.Text = "Lock";
-            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click);
-            this.tsmReportUserRole.Name = "tsmReportUserRole";
-            this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
-            this.tsmReportUserRole.Text = "User Role";
-            this.tsmReportUserRole.Visible = false;
-            this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
+            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click); 
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Location = new System.Drawing.Point(0, 537);
             this.statusBar.Name = "statusBar";

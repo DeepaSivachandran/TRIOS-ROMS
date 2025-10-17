@@ -44,7 +44,8 @@ namespace ROMS
         public static int pbSpecialFlag = 0;
         public static int PbDeleteFlag = 0;
         public static string PbCurrentForm = "0";
-        public static int pbCloseForm = 0;
+        public int pbCloseForm = 0;
+        public int pbForceLogoff = 0;
         public static int varCloseFlag = 0;
         public static int varFormDisable = 0;
         public static string pbVersion = "1.0.1";
@@ -1156,42 +1157,6 @@ namespace ROMS
         {
             try
             {
-                if (varFormDisable == 0)
-                {
-                    if (varCloseFlag == 0)
-                    {
-                        if (pbCloseForm == 0)
-                        {
-                            DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                            if ((objResponse == DialogResult.Yes))
-                            {
-                                e.Cancel = false;
-                                varCloseFlag = 1;
-                                //udfnUserLoginProcess(412);  // Type 412 is Logged Out
-                                System.Windows.Forms.Application.Exit();
-                            }
-                            else
-                            {
-                                e.Cancel = true;
-                            }
-                        }
-                        else
-                        {
-                            e.Cancel = false;
-                            varCloseFlag = 1;
-                            System.Windows.Forms.Application.Exit();
-                        }
-                    }
-                }
-                if(varFormDisable == 1)
-                {
-                    this.Cursor = Cursors.No;
-                    e.Cancel = true;
-                }
-                else
-                {
-                    this.Cursor = Cursors.Default;
-                }
             }
             catch (Exception ex)
             {
@@ -1308,15 +1273,38 @@ namespace ROMS
         public void udfnClose() {
             try
             {
-                if (pbCloseForm == 0)
+                if (pbForceLogoff == 1)
                 {
-                    DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                    if ((objResponse == DialogResult.Yes))
+
+                    varCloseFlag = 1;
+                    udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
+                    System.Windows.Forms.Application.Exit();
+                }
+                else
+                {
+                    if (pbCloseForm == 0)
+                    {
+                        DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        if ((objResponse == DialogResult.Yes))
+                        {
+                            if ((System.Windows.Forms.Application.MessageLoop))
+                            {
+                                varCloseFlag = 1;
+                                udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
+                                System.Windows.Forms.Application.Exit();
+                            }
+                            else
+                            {
+                                System.Environment.Exit(1);
+                            }
+                            Close();
+                        }
+                    }
+                    else
                     {
                         if ((System.Windows.Forms.Application.MessageLoop))
                         {
                             varCloseFlag = 1;
-                            udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
                             System.Windows.Forms.Application.Exit();
                         }
                         else
@@ -1325,19 +1313,6 @@ namespace ROMS
                         }
                         Close();
                     }
-                }
-                else
-                {
-                    if ((System.Windows.Forms.Application.MessageLoop))
-                    {
-                        varCloseFlag = 1;
-                        System.Windows.Forms.Application.Exit();
-                    }
-                    else
-                    {
-                        System.Environment.Exit(1);
-                    }
-                    Close();
                 }
             }
             catch (Exception ex)
@@ -4591,12 +4566,13 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
                 udfnGetDefaultCompany();
-                if (isClose == false) { return; }
-                MainForm.objINV_StockJournalConversionList = new INV_StockJournal_ConversionList();
-                MainForm.objINV_StockJournalConversionList.MdiParent = this;
-                MainForm.objINV_StockJournalConversionList.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objINV_StockJournalConversionList = new INV_StockJournal_ConversionList();
+                //MainForm.objINV_StockJournalConversionList.MdiParent = this;
+                //MainForm.objINV_StockJournalConversionList.Show();
+                OpenReportForm(ref MainForm.objINV_StockJournalConversionList, "INV_StockJournal_ConversionList", 311);
                 PbCurrentForm = "3.5";
             }
             catch (Exception ex)
@@ -4609,11 +4585,12 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
-                if (isClose == false) { return; }
-                MainForm.objREPORT_CP_UserRole = new REPORT_CP_UserRole();
-                MainForm.objREPORT_CP_UserRole.MdiParent = this;
-                MainForm.objREPORT_CP_UserRole.Show();
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_CP_UserRole = new REPORT_CP_UserRole();
+                //MainForm.objREPORT_CP_UserRole.MdiParent = this;
+                //MainForm.objREPORT_CP_UserRole.Show();
+                OpenReportForm(ref MainForm.objREPORT_CP_UserRole, "REPORT_CP_UserRole", 80122);
                 PbCurrentForm = "7.2.6";
             }
             catch (Exception ex)
@@ -4648,6 +4625,6 @@ namespace ROMS
                     ((MainForm)c).Enabled = status;
                 //c.Enabled = status;
             }
-        }
+        } 
     } 
 }

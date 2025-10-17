@@ -43,11 +43,11 @@
             this.lbluserName.BackColor = System.Drawing.Color.Transparent;
             this.lbluserName.Font = new System.Drawing.Font("Monotype Corsiva", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbluserName.ForeColor = System.Drawing.Color.White;
-            this.lbluserName.Location = new System.Drawing.Point(595, 151);
+            this.lbluserName.Location = new System.Drawing.Point(595, 136);
             this.lbluserName.Name = "lbluserName";
-            this.lbluserName.Size = new System.Drawing.Size(191, 79);
+            this.lbluserName.Size = new System.Drawing.Size(183, 79);
             this.lbluserName.TabIndex = 0;
-            this.lbluserName.Text = "Admin";
+            this.lbluserName.Text = "Deepa";
             this.lbluserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtPassword
@@ -91,7 +91,7 @@
             this.lblClock.BackColor = System.Drawing.Color.Transparent;
             this.lblClock.Font = new System.Drawing.Font("Oswald Regular", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblClock.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblClock.Location = new System.Drawing.Point(593, 60);
+            this.lblClock.Location = new System.Drawing.Point(593, 56);
             this.lblClock.Name = "lblClock";
             this.lblClock.Size = new System.Drawing.Size(194, 65);
             this.lblClock.TabIndex = 4;
