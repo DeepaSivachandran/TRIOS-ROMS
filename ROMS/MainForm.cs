@@ -1077,7 +1077,7 @@ namespace ROMS
                 childForm.WindowState = FormWindowState.Normal;
 
                 int x = (mdiClientArea.Width - childForm.Width) / 2;
-                int y = (mdiClientArea.Height - childForm.Height) / 2;
+                int y = (mdiClientArea.Height - childForm.Height + 48) / 2;
 
                 childForm.Location = new Point(Math.Max(x, 0), Math.Max(y, 0));
             }
