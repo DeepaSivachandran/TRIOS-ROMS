@@ -61,7 +61,7 @@
             this.txtPassKey.Location = new System.Drawing.Point(74, 14);
             this.txtPassKey.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtPassKey.MaxLength = 6;
-            this.txtPassKey.Name = "txtPassKey";
+               this.txtPassKey.Name = "txtPassKey";
             this.txtPassKey.PasswordChar = '*';
             this.txtPassKey.Size = new System.Drawing.Size(174, 28);
             this.txtPassKey.TabIndex = 8;
