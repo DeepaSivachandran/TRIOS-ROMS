@@ -212,10 +212,11 @@ namespace ROMS
                     }               
                     else
                     {
-                        MainForm.objStart = new DEF_Start();
-                        MainForm.objStart.MdiParent = this.ParentForm;
-                        MainForm.objStart.Show();
-                        this.Close();
+                        //MainForm.objStart = new DEF_Start();
+                        //MainForm.objStart.MdiParent = this.ParentForm;
+                        //MainForm.objStart.Show();
+                        //this.Close();
+                        windowControl?.TriggerClose();
                     }
                 }
             }

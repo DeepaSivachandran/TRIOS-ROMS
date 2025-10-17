@@ -59,6 +59,7 @@ namespace ROMS
                 MainForm.objCP_PurchaseList = new CP_PurchaseList();
                 MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
                 MainForm.objCP_PurchaseList.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

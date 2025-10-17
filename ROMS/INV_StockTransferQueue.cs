@@ -16,7 +16,7 @@ namespace ROMS
 {
     public partial class INV_StockTransferQueue : Form
     {
-        DynamicWindowControl windowControl = new DynamicWindowControl();
+        //DynamicWindowControl windowControl = new DynamicWindowControl();
         MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -29,7 +29,7 @@ namespace ROMS
         public INV_StockTransferQueue()
         {
             InitializeComponent();
-            windowControl.Initialize(tsStockTransferList, this);
+            //windowControl.Initialize(tsStockTransferList, this);
         }
 
         private void tsbNew_Click(object sender, EventArgs e)

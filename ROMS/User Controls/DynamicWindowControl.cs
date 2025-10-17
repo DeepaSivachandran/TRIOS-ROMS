@@ -98,5 +98,10 @@ namespace ROMS
                 }));
             }
         }
+        public void TriggerClose()
+        {
+            CloseLabel_Click(CloseLabel, EventArgs.Empty);
+        }
+
     }
 }

@@ -134,11 +134,12 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
                     udfntooltiphide();
-                    this.Close();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
                 //if (e.KeyCode == Keys.F11)
                 //{

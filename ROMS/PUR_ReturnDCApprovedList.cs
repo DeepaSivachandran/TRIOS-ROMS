@@ -1717,6 +1717,7 @@ namespace ROMS
                 MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
                 MainForm.objINV_SalesInvoiceList.MdiParent = this.ParentForm;
                 MainForm.objINV_SalesInvoiceList.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

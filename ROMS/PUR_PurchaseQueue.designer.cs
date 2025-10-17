@@ -147,7 +147,7 @@
             this.grdPurchaseEntryQueueList.RowTemplate.Height = 25;
             this.grdPurchaseEntryQueueList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseEntryQueueList.Size = new System.Drawing.Size(1348, 507);
-            this.grdPurchaseEntryQueueList.TabIndex = 958797; 
+            this.grdPurchaseEntryQueueList.TabIndex = 958797;
             this.grdPurchaseEntryQueueList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdPurchaseEntryQueueList_Scroll);
             this.grdPurchaseEntryQueueList.DoubleClick += new System.EventHandler(this.GrdPurchaseEntryQueueList_DoubleClick);
             this.grdPurchaseEntryQueueList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdPurchaseEntryQueueList_KeyDown);
@@ -492,7 +492,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PUR_PurchaseQueue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Purchase Entry";
+            this.Text = "Purchase Entry-Queue";
             this.Load += new System.EventHandler(this.PUR_PurchaseQueue_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PurchaseQueue_KeyDown);
             this.tsBrandList.ResumeLayout(false);

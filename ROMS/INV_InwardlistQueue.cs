@@ -1565,6 +1565,7 @@ namespace ROMS
                 MainForm.objINV_Inwardlist = new INV_Inwardlist();
                 MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
                 MainForm.objINV_Inwardlist.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

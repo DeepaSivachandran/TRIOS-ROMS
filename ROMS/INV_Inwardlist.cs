@@ -350,10 +350,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
                 if (e.KeyCode == Keys.Delete)
                 {
@@ -370,6 +371,7 @@ namespace ROMS
         {
             try
             {
+                this.Close();
                 MainForm.objINV_InwardlistQueue = new INV_InwardlistQueue();
                 MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_InwardlistQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("10"));
