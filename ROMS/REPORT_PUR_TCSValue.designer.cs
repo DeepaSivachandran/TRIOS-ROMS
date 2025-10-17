@@ -41,6 +41,7 @@
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.btnListPrint = new System.Windows.Forms.Button();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.lblMonths = new System.Windows.Forms.Label();
             this.cmbMultiMonths = new MultiSelectComboBox();
             this.cmbMonths = new System.Windows.Forms.ComboBox();
@@ -139,6 +140,7 @@
             this.pnlReportCity.Name = "pnlReportCity";
             this.pnlReportCity.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportCity.TabIndex = 958788;
+            this.pnlReportCity.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlReportCity_Paint);
             // 
             // DGV_FilterSupplier
             // 
@@ -203,6 +205,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.lblMonths);
             this.grpfilter.Controls.Add(this.cmbMultiMonths);
             this.grpfilter.Controls.Add(this.cmbMonths);
@@ -225,6 +228,21 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(1283, 45);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 8;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
             // 
             // lblMonths
             // 
@@ -494,6 +512,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase TCS Value Report";
             this.Load += new System.EventHandler(this.REPORT_CP_City_Load);
+            this.LocationChanged += new System.EventHandler(this.REPORT_PUR_TCSValue_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_City_KeyDown);
             this.tsTCSReport.ResumeLayout(false);
             this.tsTCSReport.PerformLayout();
@@ -542,5 +561,6 @@
         private System.Windows.Forms.Label lblMonths;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

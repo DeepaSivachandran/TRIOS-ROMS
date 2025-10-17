@@ -3447,6 +3447,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\Telegram.png" />
+    <None Include="Resources\Telegram.jpg" />
     <None Include="Resources\minimize_Form1.png" />
     <None Include="Resources\Reset Password.jpg" />
     <None Include="Resources\logout.png" />
