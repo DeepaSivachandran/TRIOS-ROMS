@@ -579,6 +579,17 @@ namespace ROMS
                     tpLabelCount.Show("Please enter label count", txtLabelCount, 5000);
                     blnErrFlag = true;
                 }
+                else
+                {
+                    if (Convert.ToInt32(txtLabelCount.Text.Trim()) <1)
+                    {
+                        errRack.SetError(txtLabelCount, "Please enter valid label count.");
+                        txtLabelCount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpLabelCount.ShowAlways = true;
+                        tpLabelCount.Show("Please enter valid label count", txtLabelCount, 5000);
+                        blnErrFlag = true;
+                    }
+                }
 
                 SPDataService objDataService = new SPDataService();
                 if (Convert.ToInt32(cmbType.SelectedIndex) == 1)
