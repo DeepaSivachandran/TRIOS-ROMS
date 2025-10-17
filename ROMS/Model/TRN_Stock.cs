@@ -22,5 +22,15 @@ namespace ROMS.Model
         public int paraOrder { get; set; } = 0;
         public int paraFilterType { get; set; } = 0;
         public string paraUserLocations { get; set; } = "";
-    }
+
+        public int paraType { get; set; } = 0;
+        public string paraAlpha { get; set; } = "";
+        public int paraNameType { get; set; } = 0;
+        public int paraBlockedFlag { get; set; } = 0;
+        public int paraReportType { get; set; } = 0;
+        public int paraSupplierId { get; set; } = 0;
+        public int paraCategoryID { get; set; } = 0;
+
+
+    }      
 }

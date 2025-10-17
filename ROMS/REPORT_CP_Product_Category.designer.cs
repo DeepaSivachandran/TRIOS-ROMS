@@ -679,7 +679,7 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 90);
+            this.picLoader.Location = new System.Drawing.Point(3, 82);
             this.picLoader.Name = "picLoader";
             this.picLoader.Size = new System.Drawing.Size(1351, 552);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;

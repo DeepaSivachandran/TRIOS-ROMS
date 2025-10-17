@@ -192,6 +192,7 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.ms.SuspendLayout();
             this.SuspendLayout();
@@ -943,7 +944,7 @@ namespace ROMS
             // tsmExportTally
             // 
             this.tsmExportTally.Name = "tsmExportTally";
-            this.tsmExportTally.Size = new System.Drawing.Size(131, 22);
+            this.tsmExportTally.Size = new System.Drawing.Size(180, 22);
             this.tsmExportTally.Text = "Export Tally";
             this.tsmExportTally.Visible = false;
             this.tsmExportTally.Click += new System.EventHandler(this.tsmExportTally_Click);
@@ -988,7 +989,8 @@ namespace ROMS
             this.tsmSupplierWiseBlockedProducts,
             this.tsmAssigned,
             this.tsmUnassignedProducts,
-            this.tsmZeroRate});
+            this.tsmZeroRate,
+            this.tsmReportUserRole});
             this.tsmMastersReport.Name = "tsmMastersReport";
             this.tsmMastersReport.Size = new System.Drawing.Size(191, 22);
             this.tsmMastersReport.Text = "Masters";
@@ -1680,8 +1682,14 @@ namespace ROMS
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
+            // tsmReportUserRole
             // statusBar
             // 
+            this.tsmReportUserRole.Name = "tsmReportUserRole";
+            this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
+            this.tsmReportUserRole.Text = "User Role";
+            this.tsmReportUserRole.Visible = false;
+            this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Location = new System.Drawing.Point(0, 537);
             this.statusBar.Name = "statusBar";
@@ -1883,6 +1891,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmPriceList;
         private System.Windows.Forms.ToolStripMenuItem tsmTaxChanges;
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournal;
+        private System.Windows.Forms.ToolStripMenuItem tsmReportUserRole;
         private System.Windows.Forms.StatusStrip statusBar;
     }
 }

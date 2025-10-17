@@ -278,6 +278,7 @@ namespace ROMS
         public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
         public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
+        public static REPORT_CP_UserRole objREPORT_CP_UserRole;
 
         public static REPORT_Supplier_Payment objREPORT_Supplier_Payment;
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
@@ -4530,6 +4531,24 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError();
+            }
+        }
+
+        private void tsmReportUserRole_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCloseChildForms();
+                if (isClose == false) { return; }
+                MainForm.objREPORT_CP_UserRole = new REPORT_CP_UserRole();
+                MainForm.objREPORT_CP_UserRole.MdiParent = this;
+                MainForm.objREPORT_CP_UserRole.Show();
+                PbCurrentForm = "7.2.6";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void DisablePageControls(bool status)
