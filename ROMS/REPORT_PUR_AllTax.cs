@@ -154,7 +154,7 @@ namespace ROMS
                     }
                     if (varMonthIds.Trim() != "" || Convert.ToInt32(cmbReportType.SelectedValue) != 339)
                     {
-                        udfnAllPurchaseTaxReport();
+                        udfnAllPurchaseTaxReport(varFlag);
                     }
                 }
             }
@@ -169,7 +169,7 @@ namespace ROMS
         {
             try
             {
-               
+                udfnList(0);
             }
             catch (Exception ex)
             {
@@ -177,7 +177,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnAllPurchaseTaxReport()
+        public void udfnAllPurchaseTaxReport(int varFlag)
         {
             try
             {
@@ -216,6 +216,8 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnPurHsnReport(varViewType, 0, "", Convert.ToInt32(cmbGST.SelectedValue), dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", varMonthIds);
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+
+                string varReportName = "";
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -227,10 +229,12 @@ namespace ROMS
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 338)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AllPurchase_DayWise.rpt");
+                        varReportName = "PUR_Tax_AllPurchase_DayWise"; 
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 339)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_AllPurchase_MonthWise.rpt");
+                        varReportName = "PUR_Tax_AllPurchase_MonthWise";
                         objBillreport.SetParameterValue("paraMonthName", varMonthName);
                         objBillreport.SetParameterValue("paraMonth", varMonthIds);
                         objBillreport.SetParameterValue("paraMonth", varMonthIds, objBillreport.Subreports[0].Name.ToString());
@@ -279,8 +283,23 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt"); 
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -831,23 +850,19 @@ namespace ROMS
 
         private void btnTelegram_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                btnTelegram.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
 
         }
 
         private void btnTelegram_Leave(object sender, EventArgs e)
-        { 
+        {
+
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
             try
             {
-                btnTelegram.BackColor = Color.Transparent;
+                udfnList(1);
             }
             catch (Exception ex)
             {

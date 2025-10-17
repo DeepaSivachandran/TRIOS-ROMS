@@ -9,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_HSN_NameWise_Product : Form
     {
+        MainForm objMainForm = new MainForm(); 
         private ContextMenuStrip contextMenu;
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
@@ -89,32 +91,40 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                try
                 {
-                    cmbReportType.Focus();
-                    epReport.SetError(cmbReportType, "Please select report type.");
-                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpReportType.ShowAlways = true;
-                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
-                }
-                else
-                {
-                    if ((Convert.ToInt32(cmbReportType.SelectedValue) == 290) && Convert.ToInt32(cmbSupplierType.SelectedValue) == -1)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                     {
-                        cmbSupplierType.Focus();
-                        epReport.SetError(cmbSupplierType, "Please select supplier type.");
-                        cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        cmbReportType.Focus();
+                        epReport.SetError(cmbReportType, "Please select report type.");
+                        cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpReportType.ShowAlways = true;
-                        tpReportType.Show("Please select supplier type.", cmbSupplierType, 5000);
+                        tpReportType.Show("Please select report type.", cmbReportType, 5000);
                     }
                     else
                     {
-                        udfnHSN();
+                        if ((Convert.ToInt32(cmbReportType.SelectedValue) == 290) && Convert.ToInt32(cmbSupplierType.SelectedValue) == -1)
+                        {
+                            cmbSupplierType.Focus();
+                            epReport.SetError(cmbSupplierType, "Please select supplier type.");
+                            cmbSupplierType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpReportType.ShowAlways = true;
+                            tpReportType.Show("Please select supplier type.", cmbSupplierType, 5000);
+                        }
+                        else
+                        {
+                            udfnHSN(varFlag);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
             }
             catch (Exception ex)
@@ -123,7 +133,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnHSN()
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            udfnList(0);
+        }
+        public void udfnHSN(int varFlag)
         {
             try
             {
@@ -177,6 +191,7 @@ namespace ROMS
                 objDs = objspservice.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), txtHsnName.Text.Trim(), 0, dpFromDate.Text, dpToDate.Text, varProductId, varGroupId, varSubgroupId, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                string varReportName = "REPORT_Company";
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -191,14 +206,17 @@ namespace ROMS
                         if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWiseProduct.rpt");
+                            varReportName = "PUR_HSNNameWiseProduct";
                         }
                         else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 31 || Convert.ToInt32(cmbSupplierType.SelectedValue) == 32)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWiseProductComposite.rpt");
+                            varReportName = "HSNNameWiseProductComposite";
                         }
                         else
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWiseProduct_IGST.rpt");
+                            varReportName = "PUR_HSNNameWiseProduct_IGST";
                         }
                     }
                     else
@@ -227,8 +245,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("paraHSNCode", txtHsnName.Text.Trim(), objBillreport.Subreports[0].Name.ToString());
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -277,6 +311,13 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -1716,6 +1757,37 @@ namespace ROMS
                 varUpDownKeyProduct = 1;
                 udfnListviewProduct();
                 btnListPrint.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnList(1);
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

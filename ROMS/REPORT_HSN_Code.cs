@@ -9,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_HSN_Code : Form
-    { 
+    {
+        MainForm objMainForm = new MainForm();
         private ContextMenuStrip contextMenu;
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
@@ -71,7 +73,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -97,12 +99,12 @@ namespace ROMS
                         }
                         else
                         {
-                            udfnHSNCodeWiseReport();
+                            udfnHSNCodeWiseReport(varFlag);
                         }
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 288)
                     {
-                        udfnHSNCodeWiseReport();
+                        udfnHSNCodeWiseReport(varFlag);
                     }
                 }
             }
@@ -112,7 +114,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnHSNCodeWiseReport()
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(0);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnHSNCodeWiseReport(int varFlag)
         {
             try
             {
@@ -155,6 +169,7 @@ namespace ROMS
                 objDs = objspservice.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), txtHsnName.Text.Trim(), Convert.ToInt32(cmbGST.SelectedValue), dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                string varReportName = "";
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -169,14 +184,17 @@ namespace ROMS
                         if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWise.rpt");
+                            varReportName = "PUR_HSNCodeWise";
                         }
                         else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 31 || Convert.ToInt32(cmbSupplierType.SelectedValue) == 32)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWiseComposite.rpt");
+                            varReportName = "PUR_HSNCodeWiseComposite";
                         }
                         else
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNCodeWise_IGST.rpt");
+                            varReportName = "PUR_HSNCodeWise_IGST";
                         }
                         objBillreport.SetParameterValue("paraHSNName", varHSNName);
                         objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
@@ -186,14 +204,17 @@ namespace ROMS
                         if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 30)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWise.rpt");
+                            varReportName = "PUR_HSNNameWise";
                         }
                         else if (Convert.ToInt32(cmbSupplierType.SelectedValue) == 31 || Convert.ToInt32(cmbSupplierType.SelectedValue) == 32)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWiseComposite.rpt");
+                            varReportName = "PUR_HSNNameWiseComposite";
                         }
                         else
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_HSNNameWise_IGST.rpt");
+                            varReportName = "PUR_HSNNameWise_IGST";
                         }
                         objBillreport.SetParameterValue("paraHSNName", varHSN_Name);
                         objBillreport.SetParameterValue("paraGSTName", Convert.ToString(cmbGST.Text));
@@ -212,8 +233,23 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt"); 
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -264,7 +300,14 @@ namespace ROMS
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
-                lblNoRecordsFound.BringToFront(); 
+                lblNoRecordsFound.BringToFront();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -1025,6 +1068,37 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnList(1);
         }
     }
 
