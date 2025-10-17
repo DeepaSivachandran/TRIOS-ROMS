@@ -76,7 +76,7 @@ namespace ROMS
         public static string pbUserMappedLocationIds = "0";
         //------- Form object declaration
         public static MainForm objMainForm;
-        public static DEF_Start objStart;
+        public static DEF_Start objStart; 
         public static CP_ChangePassword objCP_ChangePassword;
         public static CP_ChangePasswordConfirmation objCP_ChangePasswordConfirmation;
         public static CP_BrandList objCP_BrandList;
@@ -4622,6 +4622,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void tsmLock_Click(object sender, EventArgs e)
+        {
+
+            try{
+
+                DEF_IdleLogin obj = new DEF_IdleLogin();
+                obj.ShowDialog();
+            }
+             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void DisablePageControls(bool status)
         {
             foreach (Control c in this.Controls)

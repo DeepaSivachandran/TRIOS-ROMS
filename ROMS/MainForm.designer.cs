@@ -136,6 +136,7 @@ namespace ROMS
             this.tsmAssigned = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUnassignedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPO_GRNReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,6 +195,7 @@ namespace ROMS
             this.ms = new System.Windows.Forms.MenuStrip();
             this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -944,7 +946,7 @@ namespace ROMS
             // tsmExportTally
             // 
             this.tsmExportTally.Name = "tsmExportTally";
-            this.tsmExportTally.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportTally.Size = new System.Drawing.Size(131, 22);
             this.tsmExportTally.Text = "Export Tally";
             this.tsmExportTally.Visible = false;
             this.tsmExportTally.Click += new System.EventHandler(this.tsmExportTally_Click);
@@ -1160,6 +1162,14 @@ namespace ROMS
             this.tsmZeroRate.Text = "Zero Rate";
             this.tsmZeroRate.Visible = false;
             this.tsmZeroRate.Click += new System.EventHandler(this.TsmZeroRate_Click);
+            // 
+            // tsmReportUserRole
+            // 
+            this.tsmReportUserRole.Name = "tsmReportUserRole";
+            this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
+            this.tsmReportUserRole.Text = "User Role";
+            this.tsmReportUserRole.Visible = false;
+            this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
             // 
             // tsmPO_GRNReport
             // 
@@ -1581,7 +1591,8 @@ namespace ROMS
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmProfile,
-            this.tsmLogout});
+            this.tsmLogout,
+            this.tsmLock});
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmMyProfile.Name = "tsmMyProfile";
@@ -1594,14 +1605,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -1682,9 +1693,14 @@ namespace ROMS
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
+            // tsmLock
             // tsmReportUserRole
             // statusBar
             // 
+            this.tsmLock.Name = "tsmLock";
+            this.tsmLock.Size = new System.Drawing.Size(180, 22);
+            this.tsmLock.Text = "Lock";
+            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click);
             this.tsmReportUserRole.Name = "tsmReportUserRole";
             this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
             this.tsmReportUserRole.Text = "User Role";
@@ -1893,5 +1909,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournal;
         private System.Windows.Forms.ToolStripMenuItem tsmReportUserRole;
         private System.Windows.Forms.StatusStrip statusBar;
+        private System.Windows.Forms.ToolStripMenuItem tsmLock;
     }
 }
