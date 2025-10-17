@@ -230,8 +230,7 @@ namespace ROMS
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
-                lblNoRecordsFound.BringToFront();
-
+                lblNoRecordsFound.BringToFront(); 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 //Transaction id 	121
