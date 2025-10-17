@@ -10,11 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_PUR_ProductWiseSummaryDetails : Form
     {
+        MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
         ToolTip tpSupplier = new ToolTip();
@@ -87,7 +89,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -101,7 +103,7 @@ namespace ROMS
                 }
                 else
                 {
-                    udfnPurchaseProductWiseReport();
+                    udfnPurchaseProductWiseReport(varFlag);
                 }
             }
             catch (Exception ex)
@@ -110,7 +112,19 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPurchaseProductWiseReport()
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(0);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPurchaseProductWiseReport(int varFlag)
         {
             try
             {
@@ -171,6 +185,7 @@ namespace ROMS
                 objDs = objspservice.udfnPurHsnReport(varViewType, 0, "", 0, dpFromDate.Text, dpToDate.Text, varProductId, varGroupId, varSubgroupId, 0, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, 0, 0, 0, 0, Convert.ToInt32(cmbProductName.SelectedValue), "","");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                string varReportName = "";
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -183,10 +198,12 @@ namespace ROMS
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 320)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DET_ProductWise_Summary.rpt");
+                        varReportName = "ProductWise_Summary";
                     }
                     else
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_DET_ProductWise_Details.rpt");
+                        varReportName = "ProductWise_Details";
                     }
                     objBillreport.SetParameterValue("paraSupplierType", 0);
                     objBillreport.SetParameterValue("paraHSNCode", 0);
@@ -215,8 +232,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -284,6 +317,13 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbProductName.SelectedValue = 271;
                 cmbReportType.SelectedValue = -1;
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
             }
             catch (Exception ex)
             {
@@ -1824,6 +1864,37 @@ namespace ROMS
                         tsbPrintFormat.ToolTipText = string.Empty;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnList(1);
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {

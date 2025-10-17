@@ -16,11 +16,13 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Runtime.InteropServices;
 using ClosedXML.Excel;
+using System.IO;
 
 namespace ROMS
 {
     public partial class REPORT_Purchase_Details : Form
     {
+        MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -112,52 +114,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void BtnListPrint_Click(object sender, EventArgs e)
+        public void udfnList(int varFlag)
         {
             try
             {
-                //string varSupplierId = "0";
-                //if (txtSupplier.Text == "")
-                //{
-                //    lblSupplierCode.Text = "0";
-                //    lblschedleCode.Text = "0";
-                //}
-                //else
-                //{
-                //    string[] values = new string[0];
-                //    MR_Supplier objMR_Supplier = new MR_Supplier();
-                //    objMR_Supplier.ViewType = 31;
-                //    objMR_Supplier.paraSupplierScheduleid = Convert.ToInt32(lblschedleCode.Text);
-                //    objMR_Supplier.paraSupplierName = txtSupplier.Text.Trim();
-                //    DataSet objDsSupplierId = new DataSet();
-                //    SPDataService objDserv = new SPDataService();
-                //    objDsSupplierId = objDserv.udfnSupplierList(objMR_Supplier);
-                //    objDserv.CloseConnection();
-                //    if (objDsSupplierId != null)
-                //    {
-                //        if (objDsSupplierId.Tables.Count > 0)
-                //        {
-                //            if (objDsSupplierId.Tables[0].Rows.Count > 0)
-                //            {
-                //                varSupplierId = Convert.ToString(objDsSupplierId.Tables[0].Rows[0][0]);
-                //                values = Convert.ToString(varSupplierId).Split(',');
-                //            }
-                //        }
-                //    }
-                //    if (values[0] == "-1")
-                //    {
-                //        lblSupplierCode.Text = "0";
-                //        lblschedleCode.Text = "0";
-                //    }
-                //    else
-                //    {
-                //        lblSupplierCode.Text = values[0];
-                //        lblschedleCode.Text = values[1];
-                //        txtSupplier.BackColor = Color.White;
-                //    }
-                //}
-                //LV_Supplier.Visible = false;
-
                 SPDataService objDataService = new SPDataService();
                 string varMessage = objDataService.udfnGetMessages(161);
                 MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -167,8 +127,20 @@ namespace ROMS
                     lblSupplierCode.Text = "0";
                     lblschedleCode.Text = "0";
                 }
-                udfnPurchaseDetails();
+                udfnPurchaseDetails(varFlag);
                 //udfnExcel();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void BtnListPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(0);
             }
             catch (Exception ex)
             {
@@ -883,7 +855,7 @@ namespace ROMS
                 picLoader.Visible = false;
             }
         }
-        public void udfnPurchaseDetails()
+        public void udfnPurchaseDetails(int varFlag)
         {
             try
             {
@@ -948,8 +920,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "Purchase_Details";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -1388,6 +1376,14 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    string privilege = "";
+                    var result = UserAccessHelper.LoadUserAccess(currentMUCode);
+                    privilege = result.PrivilegeCode;
+                    btnTelegram.Visible = privilege.Contains("7");
+                }
+
             }
             catch (Exception ex)
             {
@@ -1487,6 +1483,37 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void btnTelegram_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTelegram.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnList(1);
         }
     }
 }

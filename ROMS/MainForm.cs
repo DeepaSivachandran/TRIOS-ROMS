@@ -4605,6 +4605,11 @@ namespace ROMS
             }
         }
 
+        private void tsmInwardStockReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsmReportUserRole_Click(object sender, EventArgs e)
         {
             try

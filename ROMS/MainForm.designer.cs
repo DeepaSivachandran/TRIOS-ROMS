@@ -136,6 +136,7 @@ namespace ROMS
             this.tsmAssigned = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUnassignedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPO_GRNReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -192,7 +193,6 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
-            this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.ms.SuspendLayout();
             this.SuspendLayout();
@@ -944,7 +944,7 @@ namespace ROMS
             // tsmExportTally
             // 
             this.tsmExportTally.Name = "tsmExportTally";
-            this.tsmExportTally.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportTally.Size = new System.Drawing.Size(131, 22);
             this.tsmExportTally.Text = "Export Tally";
             this.tsmExportTally.Visible = false;
             this.tsmExportTally.Click += new System.EventHandler(this.tsmExportTally_Click);
@@ -1161,6 +1161,14 @@ namespace ROMS
             this.tsmZeroRate.Visible = false;
             this.tsmZeroRate.Click += new System.EventHandler(this.TsmZeroRate_Click);
             // 
+            // tsmReportUserRole
+            // 
+            this.tsmReportUserRole.Name = "tsmReportUserRole";
+            this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
+            this.tsmReportUserRole.Text = "User Role";
+            this.tsmReportUserRole.Visible = false;
+            this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
+            // 
             // tsmPO_GRNReport
             // 
             this.tsmPO_GRNReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1180,7 +1188,7 @@ namespace ROMS
             // tsmPOProductWiseReport
             // 
             this.tsmPOProductWiseReport.Name = "tsmPOProductWiseReport";
-            this.tsmPOProductWiseReport.Size = new System.Drawing.Size(179, 22);
+            this.tsmPOProductWiseReport.Size = new System.Drawing.Size(180, 22);
             this.tsmPOProductWiseReport.Text = "PO Product Wise";
             this.tsmPOProductWiseReport.Visible = false;
             this.tsmPOProductWiseReport.Click += new System.EventHandler(this.tsmPOProductWiseReport_Click);
@@ -1188,7 +1196,7 @@ namespace ROMS
             // tsmPOStatusWise
             // 
             this.tsmPOStatusWise.Name = "tsmPOStatusWise";
-            this.tsmPOStatusWise.Size = new System.Drawing.Size(179, 22);
+            this.tsmPOStatusWise.Size = new System.Drawing.Size(180, 22);
             this.tsmPOStatusWise.Text = "PO Status Wise";
             this.tsmPOStatusWise.Visible = false;
             this.tsmPOStatusWise.Click += new System.EventHandler(this.tsmPOStatusWise_Click);
@@ -1196,7 +1204,7 @@ namespace ROMS
             // tsmPOSummary
             // 
             this.tsmPOSummary.Name = "tsmPOSummary";
-            this.tsmPOSummary.Size = new System.Drawing.Size(179, 22);
+            this.tsmPOSummary.Size = new System.Drawing.Size(180, 22);
             this.tsmPOSummary.Text = "PO Summary && Detail";
             this.tsmPOSummary.Visible = false;
             this.tsmPOSummary.Click += new System.EventHandler(this.tsmPOSummary_Click);
@@ -1204,7 +1212,7 @@ namespace ROMS
             // TSMGRNSummary
             // 
             this.TSMGRNSummary.Name = "TSMGRNSummary";
-            this.TSMGRNSummary.Size = new System.Drawing.Size(179, 22);
+            this.TSMGRNSummary.Size = new System.Drawing.Size(180, 22);
             this.TSMGRNSummary.Text = "GRN Summary";
             this.TSMGRNSummary.Visible = false;
             this.TSMGRNSummary.Click += new System.EventHandler(this.TSMGRNSummary_Click);
@@ -1212,7 +1220,7 @@ namespace ROMS
             // TSMGRNDetails
             // 
             this.TSMGRNDetails.Name = "TSMGRNDetails";
-            this.TSMGRNDetails.Size = new System.Drawing.Size(179, 22);
+            this.TSMGRNDetails.Size = new System.Drawing.Size(180, 22);
             this.TSMGRNDetails.Text = "GRN Detail";
             this.TSMGRNDetails.Visible = false;
             this.TSMGRNDetails.Click += new System.EventHandler(this.TSMGRNDetails_Click);
@@ -1220,7 +1228,7 @@ namespace ROMS
             // tsmGRNBatchDetail
             // 
             this.tsmGRNBatchDetail.Name = "tsmGRNBatchDetail";
-            this.tsmGRNBatchDetail.Size = new System.Drawing.Size(179, 22);
+            this.tsmGRNBatchDetail.Size = new System.Drawing.Size(180, 22);
             this.tsmGRNBatchDetail.Text = "GRN Batch Detail";
             this.tsmGRNBatchDetail.Visible = false;
             this.tsmGRNBatchDetail.Click += new System.EventHandler(this.tsmGRNBatchDetail_Click);
@@ -1228,7 +1236,7 @@ namespace ROMS
             // tsmGRNSupplierDetail
             // 
             this.tsmGRNSupplierDetail.Name = "tsmGRNSupplierDetail";
-            this.tsmGRNSupplierDetail.Size = new System.Drawing.Size(179, 22);
+            this.tsmGRNSupplierDetail.Size = new System.Drawing.Size(180, 22);
             this.tsmGRNSupplierDetail.Text = "GRN Supplier Detail";
             this.tsmGRNSupplierDetail.Visible = false;
             this.tsmGRNSupplierDetail.Click += new System.EventHandler(this.tsmGRNSupplierDetail_Click);
@@ -1236,7 +1244,7 @@ namespace ROMS
             // tsmGRNDefectPRoduct
             // 
             this.tsmGRNDefectPRoduct.Name = "tsmGRNDefectPRoduct";
-            this.tsmGRNDefectPRoduct.Size = new System.Drawing.Size(179, 22);
+            this.tsmGRNDefectPRoduct.Size = new System.Drawing.Size(180, 22);
             this.tsmGRNDefectPRoduct.Text = "GRN Defect Product";
             this.tsmGRNDefectPRoduct.Visible = false;
             this.tsmGRNDefectPRoduct.Click += new System.EventHandler(this.tsmGRNDefectPRoduct_Click);
@@ -1398,6 +1406,7 @@ namespace ROMS
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
             this.tsmInwardStockReport.Visible = false;
+            this.tsmInwardStockReport.Click += new System.EventHandler(this.tsmInwardStockReport_Click);
             // 
             // tsmStockInwardReport
             // 
@@ -1594,14 +1603,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -1682,14 +1691,8 @@ namespace ROMS
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
-            // tsmReportUserRole
             // statusBar
             // 
-            this.tsmReportUserRole.Name = "tsmReportUserRole";
-            this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
-            this.tsmReportUserRole.Text = "User Role";
-            this.tsmReportUserRole.Visible = false;
-            this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Location = new System.Drawing.Point(0, 537);
             this.statusBar.Name = "statusBar";
