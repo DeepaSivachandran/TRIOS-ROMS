@@ -137,24 +137,10 @@
             this.DGV_FilterSupplier.AllowUserToResizeRows = false;
             this.DGV_FilterSupplier.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterSupplier.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            
             this.DGV_FilterSupplier.ColumnHeadersHeight = 30;
             this.DGV_FilterSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle11;
+              
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
             this.DGV_FilterSupplier.Location = new System.Drawing.Point(176, 72);
@@ -162,9 +148,7 @@
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
             this.DGV_FilterSupplier.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterSupplier.RowsDefaultCellStyle = dataGridViewCellStyle12;
+           
             this.DGV_FilterSupplier.RowTemplate.Height = 25;
             this.DGV_FilterSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterSupplier.Size = new System.Drawing.Size(353, 226);

@@ -153,6 +153,16 @@ namespace ROMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bread_crumb1 {
+            get {
+                object obj = ResourceManager.GetObject("bread-crumb1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap breadcrum_Level {
             get {
                 object obj = ResourceManager.GetObject("breadcrum-Level", resourceCulture);
@@ -606,6 +616,16 @@ namespace ROMS.Properties {
         internal static System.Drawing.Bitmap logout {
             get {
                 object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minimize_Form {
+            get {
+                object obj = ResourceManager.GetObject("minimize_Form", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

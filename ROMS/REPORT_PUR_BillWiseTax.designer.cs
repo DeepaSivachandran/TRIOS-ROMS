@@ -34,8 +34,7 @@
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbDownload = new System.Windows.Forms.ToolStripButton();
-            this.tsbExport = new System.Windows.Forms.ToolStripButton();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+            this.tsbExport = new System.Windows.Forms.ToolStripButton(); 
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -78,8 +77,7 @@
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsbDownload,
-            this.tsbExport,
-            this.tsLabelPlaceholder});
+            this.tsbExport });
             this.tsBillwiseTaxReport.Location = new System.Drawing.Point(0, 0);
             this.tsBillwiseTaxReport.Name = "tsBillwiseTaxReport";
             this.tsBillwiseTaxReport.Size = new System.Drawing.Size(1354, 32);
@@ -498,8 +496,7 @@
         public System.Windows.Forms.ToolStripButton tsbExport;
         public System.Windows.Forms.ToolStripButton tsbDownload;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
-        private DynamicToolStripLabelControl dynamicLabelControl;
-        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
+        private DynamicToolStripLabelControl dynamicLabelControl; 
         private System.Windows.Forms.Button btnTelegram;
     }
 }

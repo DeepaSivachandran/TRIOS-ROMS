@@ -26,7 +26,7 @@ namespace ROMS
         public REPORT_PriceList()
         {
             InitializeComponent();
-            windowControl.Initialize(tsPriceReport, this);
+            windowControl.Initialize(ReportSupplier, this);
         }
         private void BtnListPrint_Enter(object sender, EventArgs e)
         {
