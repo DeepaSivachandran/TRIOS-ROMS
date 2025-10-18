@@ -140,7 +140,7 @@ namespace ROMS
                     }
                     if (varMonthIds.Trim() != "" || Convert.ToInt32(cmbReportType.SelectedValue) != 337)
                     {
-                        udfnPurchaseDiscountValueReport();
+                        udfnPurchaseDiscountValueReport(varFlag);
                     }
                 }
             }
@@ -162,7 +162,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPurchaseDiscountValueReport()
+        public void udfnPurchaseDiscountValueReport(int varFlag)
         {
             try
             {
@@ -213,6 +213,7 @@ namespace ROMS
                 objDs = objdserv.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, 0, varSupplierId, varScheduleId, Convert.ToInt32(cmbInvType.SelectedValue), 0, 0, 0, 0, "", varMonthIds);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                string varReportName = "";
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -226,16 +227,19 @@ namespace ROMS
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_DiscountValue_BillWise.rpt");
                         objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                         objBillreport.SetParameterValue("paraInvoiceTypeName", Convert.ToString(cmbInvType.Text));
+                        varReportName = "PUR_Tax_DiscountValue_BillWise";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 336)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_DiscountValue_DayWise.rpt");
+                        varReportName = "PUR_Tax_DiscountValue_DayWise";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 337)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_Tax_DiscountValue_MonthWise.rpt");
                         objBillreport.SetParameterValue("paraMonthName", varMonthName);
                         objBillreport.SetParameterValue("paraMonth", varMonthIds);
+                        varReportName = "PUR_Tax_DiscountValue_MonthWise";
                     }
                     objBillreport.SetParameterValue("paraSupplierType", Convert.ToInt32(cmbSupplierType.SelectedValue));
                     objBillreport.SetParameterValue("paraHSNCode", 0);
@@ -261,8 +265,24 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
-                    RPTViewer.ReportSource = objBillreport;
-                    RPTViewer.Refresh();
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
@@ -1221,6 +1241,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void btnTelegram_Click(object sender, EventArgs e)
+        {
+            udfnList(1);
         }
     }
 }

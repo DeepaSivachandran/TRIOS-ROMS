@@ -4610,6 +4610,11 @@ namespace ROMS
 
         }
 
+        private void tsmControlPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsmReportUserRole_Click(object sender, EventArgs e)
         {
             try
