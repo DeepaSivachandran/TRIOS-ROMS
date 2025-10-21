@@ -286,6 +286,7 @@ namespace ROMS
         public static INV_StockHold_Entry objINV_StockHold_Entry;
         public static REPORT_Stock_Aging objREPORT_Stock_Aging;
         public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
+        public static REPORT_Stock_Valuation_DateWise objREPORT_Stock_Valuation_DateWise;
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
         public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
         public static REPORT_CP_UserRole objREPORT_CP_UserRole;
@@ -3119,6 +3120,24 @@ namespace ROMS
             }
         }
 
+        private void tsmStockValuationbyDate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //udfnCloseChildForms();
+                //if (isClose == false) { return; }
+                //MainForm.objREPORT_Stock_Valuation = new REPORT_Stock_Valuation();
+                //MainForm.objREPORT_Stock_Valuation.MdiParent = this;
+                //MainForm.objREPORT_Stock_Valuation.Show();
+                OpenReportForm(ref MainForm.objREPORT_Stock_Valuation_DateWise, "REPORT_Stock_Valuation_DateWise", 80409);
+                PbCurrentForm = "7.2.5";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TsmStockVsZeroRate_Click(object sender, EventArgs e)
         {
             try
@@ -4604,6 +4623,7 @@ namespace ROMS
                 objError = new DataError();
             }
         }
+
 
         private void tsmReportUserRole_Click(object sender, EventArgs e)
         {

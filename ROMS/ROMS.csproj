@@ -530,6 +530,12 @@
     <Compile Include="REPORT_PriceList.designer.cs">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_Stock_Valuation_DateWise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Valuation_DateWise.designer.cs">
+      <DependentUpon>REPORT_Stock_Valuation_DateWise.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_Tax_Changes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5237,6 +5243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PriceList.resx">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Valuation_DateWise.resx">
+      <DependentUpon>REPORT_Stock_Valuation_DateWise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Tax_Changes.resx">
       <DependentUpon>REPORT_Tax_Changes.cs</DependentUpon>

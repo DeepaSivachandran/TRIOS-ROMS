@@ -136,6 +136,7 @@ namespace ROMS
             this.tsmAssigned = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUnassignedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPO_GRNReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -192,8 +193,8 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
-            this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -944,7 +945,7 @@ namespace ROMS
             // tsmExportTally
             // 
             this.tsmExportTally.Name = "tsmExportTally";
-            this.tsmExportTally.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportTally.Size = new System.Drawing.Size(131, 22);
             this.tsmExportTally.Text = "Export Tally";
             this.tsmExportTally.Visible = false;
             this.tsmExportTally.Click += new System.EventHandler(this.tsmExportTally_Click);
@@ -1160,6 +1161,14 @@ namespace ROMS
             this.tsmZeroRate.Text = "Zero Rate";
             this.tsmZeroRate.Visible = false;
             this.tsmZeroRate.Click += new System.EventHandler(this.TsmZeroRate_Click);
+            // 
+            // tsmReportUserRole
+            // 
+            this.tsmReportUserRole.Name = "tsmReportUserRole";
+            this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
+            this.tsmReportUserRole.Text = "User Role";
+            this.tsmReportUserRole.Visible = false;
+            this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
             // 
             // tsmPO_GRNReport
             // 
@@ -1392,6 +1401,7 @@ namespace ROMS
             this.tsmStockHoldReport,
             this.tsmStockAging,
             this.tsmStockValuation,
+            this.tsmStockValuationbyDate,
             this.tsmStockVsZeroRate,
             this.tsmNonMoving});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
@@ -1682,20 +1692,22 @@ namespace ROMS
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
-            // tsmReportUserRole
             // statusBar
             // 
-            this.tsmReportUserRole.Name = "tsmReportUserRole";
-            this.tsmReportUserRole.Size = new System.Drawing.Size(225, 22);
-            this.tsmReportUserRole.Text = "User Role";
-            this.tsmReportUserRole.Visible = false;
-            this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Location = new System.Drawing.Point(0, 537);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
+            // 
+            // tsmStockValuationbyDate
+            // 
+            this.tsmStockValuationbyDate.Name = "tsmStockValuationbyDate";
+            this.tsmStockValuationbyDate.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockValuationbyDate.Text = "Stock Valuation by Date";
+            this.tsmStockValuationbyDate.Visible = false;
+            this.tsmStockValuationbyDate.Click += new System.EventHandler(this.tsmStockValuationbyDate_Click);
             // 
             // MainForm
             // 
@@ -1893,5 +1905,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournal;
         private System.Windows.Forms.ToolStripMenuItem tsmReportUserRole;
         private System.Windows.Forms.StatusStrip statusBar;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockValuationbyDate;
     }
 }

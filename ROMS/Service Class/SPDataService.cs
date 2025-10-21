@@ -841,6 +841,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBlockedFlag", objTRNG_Stock.paraBlockedFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraReportType", objTRNG_Stock.paraReportType);
                 varSqlCommand.Parameters.AddWithValue("@paraNameType", objTRNG_Stock.paraNameType);
+                varSqlCommand.Parameters.AddWithValue("@paraDate", objTRNG_Stock.paraDate);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNG_Stock.paraFlag);
 
 
                 varSqlCommand.CommandTimeout = 0;

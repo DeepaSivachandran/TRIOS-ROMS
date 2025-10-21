@@ -30,7 +30,7 @@ namespace ROMS.Model
         public int paraReportType { get; set; } = 0;
         public int paraSupplierId { get; set; } = 0;
         public int paraCategoryID { get; set; } = 0;
-
-
+        public string paraDate { get; set; } = "";
+        public int paraFlag { get; set; } = 0;
     }      
 }
