@@ -221,12 +221,13 @@
             // chkNone
             // 
             this.chkNone.AutoSize = true;
-            this.chkNone.Location = new System.Drawing.Point(219, 466);
+            this.chkNone.Location = new System.Drawing.Point(280, 23);
             this.chkNone.Name = "chkNone";
-            this.chkNone.Size = new System.Drawing.Size(55, 24);
+            this.chkNone.Size = new System.Drawing.Size(158, 24);
             this.chkNone.TabIndex = 111111178;
-            this.chkNone.Text = "None";
+            this.chkNone.Text = "Disable Item Name Print";
             this.chkNone.UseVisualStyleBackColor = true;
+            this.chkNone.CheckedChanged += new System.EventHandler(this.chkNone_CheckedChanged);
             // 
             // lblDesc
             // 
@@ -841,7 +842,7 @@
             // 
             this.lblDProduct.AutoSize = true;
             this.lblDProduct.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDProduct.Location = new System.Drawing.Point(115, 30);
+            this.lblDProduct.Location = new System.Drawing.Point(115, 29);
             this.lblDProduct.Name = "lblDProduct";
             this.lblDProduct.Size = new System.Drawing.Size(121, 17);
             this.lblDProduct.TabIndex = 1111203;

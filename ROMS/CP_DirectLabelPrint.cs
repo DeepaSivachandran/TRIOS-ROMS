@@ -51,10 +51,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objStart = new DEF_Start();
-                    MainForm.objStart.MdiParent = this.ParentForm;
-                    MainForm.objStart.Show();
-                    this.Close();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)
@@ -581,7 +582,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPrintType.Focus();
+                    if (cmbPrintType.Enabled == true)
+                    {
+                        cmbPrintType.Focus();
+                    }
+                    else
+                    {
+                        cmbLabelsize.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -985,7 +993,7 @@ namespace ROMS
                 lblNoRecordsFound.Visible = true;
                 txtLabelProduct.Text = "";
                 lblNoRecordsFound.BringToFront();
-
+                cmbTemplate.Text = "-Select-";
             }
             catch (Exception ex)
             {
@@ -999,12 +1007,26 @@ namespace ROMS
         {
             try
             {
-                int flag = 1;
+                int flag = 1, varProductId = -1;
 
                 if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
                 {
                     flag = 2;
                 }
+                decimal varMRP = 0, varSalesRate = 0;
+                if (txtMrp.Text.Trim() != "")
+                {
+                    varMRP = Convert.ToDecimal(txtMrp.Text);
+                }
+                if (txtSalesRate.Text.Trim() != "")
+                {
+                    varSalesRate = Convert.ToDecimal(txtSalesRate.Text);
+                }
+                if (txtProductName.Text.Trim() != "")
+                {
+                    varProductId = Convert.ToInt32(lblProduct.Text);
+                }
+
                 picLoader4.Visible = true;
                 errRack.Clear();
                 int varPrint = 0;
@@ -1013,9 +1035,9 @@ namespace ROMS
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 70;  
                 objMR_Product.paraFlag = flag;
-                objMR_Product.ParaMRP = Convert.ToDouble(txtMrp.Text); 
-                objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
-                objMR_Product.ParaRetail = Convert.ToDouble(txtSalesRate.Text);
+                objMR_Product.ParaMRP = Convert.ToDouble(varMRP);
+                objMR_Product.ParaProductCode = varProductId;
+                objMR_Product.ParaRetail = Convert.ToDouble(varSalesRate);
                 objMR_Product.paraLabelCount = Convert.ToInt32(txtNoofcopy.Text); 
                 objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
                 objSPdataservice.CloseConnection();
@@ -1053,9 +1075,9 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
                         objBillreport.SetParameterValue("paraFlag", flag);
-                        objBillreport.SetParameterValue("ParaMRP", Convert.ToDecimal(txtMrp.Text));
-                        objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
-                        objBillreport.SetParameterValue("ParaRetail", Convert.ToDecimal(txtSalesRate.Text));
+                        objBillreport.SetParameterValue("ParaMRP", varMRP);
+                        objBillreport.SetParameterValue("ParaProductCode", varProductId);
+                        objBillreport.SetParameterValue("ParaRetail", varSalesRate);
                         objBillreport.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
 
                         //Title Name Only pass used Reports
@@ -1136,7 +1158,7 @@ namespace ROMS
                             objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
                         objBillreportTestPrint.SetParameterValue("paraFlag", flag);
-                        objBillreportTestPrint.SetParameterValue("ParaMRP", Convert.ToDouble(txtMrp.Text));
+                        objBillreportTestPrint.SetParameterValue("ParaMRP", varMRP);
                         if (templateType == "A4" || templateType == "100*70" )
                         {
                             objBillreportTestPrint.SetParameterValue("paraLabelCount", 1);
@@ -1154,9 +1176,9 @@ namespace ROMS
                             objBillreportTestPrint.SetParameterValue("paraLabelCount", 8);
                         }
 
-                        objBillreportTestPrint.SetParameterValue("ParaRetail", Convert.ToDouble(txtSalesRate.Text));
+                        objBillreportTestPrint.SetParameterValue("ParaRetail", varSalesRate);
 
-                        objBillreportTestPrint.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
+                        objBillreportTestPrint.SetParameterValue("ParaProductCode", varProductId);
 
                         //Title Name Only pass used Reports
                         if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
@@ -1221,9 +1243,9 @@ namespace ROMS
                             objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
                         objBillreportDirectPrint.SetParameterValue("paraFlag", flag);
-                        objBillreportDirectPrint.SetParameterValue("ParaMRP", Convert.ToDouble(txtMrp.Text));
-                        objBillreportDirectPrint.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
-                        objBillreportDirectPrint.SetParameterValue("ParaRetail", Convert.ToDouble(txtSalesRate.Text));
+                        objBillreportDirectPrint.SetParameterValue("ParaMRP", varMRP);
+                        objBillreportDirectPrint.SetParameterValue("ParaProductCode", varProductId);
+                        objBillreportDirectPrint.SetParameterValue("ParaRetail", varSalesRate);
                         objBillreportDirectPrint.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
 
                         //Title Name Only pass used Reports
@@ -1668,13 +1690,96 @@ namespace ROMS
                 {
                     cmbTitle.SelectedValue = -1;
                     cmbTitle.Enabled = false;
-                    chkNone.Checked = false;
-                    chkNone.Enabled = false;
+                    //chkNone.Checked = false;
+                    //chkNone.Enabled = false;
                 }
                 if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
                 {
-                    chkNone.Checked = false;
-                    chkNone.Enabled = false;
+                    //chkNone.Checked = false;
+                    //chkNone.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkNone_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnPrintDetailsEnable();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPrintDetailsEnable()
+        {
+            try
+            {
+                if (chkNone.Checked == true)
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                    RPTViewer.ReportSource = null;
+                    txtProductName.Text = "";
+                    lblPICode.Text = "";
+                    lblProductName.Text = "";
+                    lblUnit.Text = "";
+                    lblRetail.Text = "";
+                    lblWholesale.Text = "";
+                    txtLabelProduct.Text = "";
+                    txtMrp.Text = "";
+                    txtSalesRate.Text = "";
+                    txtNoofcopy.Text = "";
+                    cmbPrintType.SelectedValue = 364;
+                    cmbPrintLanguage.SelectedValue = 322;
+                    cmbLabelsize.SelectedValue = -1;
+
+                    cmbTemplate.Text = "-Select";
+                    cmbTemplate.Enabled = false;
+                    txtProductName.Enabled = false;
+                    cmbPrintLanguage.Enabled = false;
+                    txtLabelProduct.Enabled = false;
+                    btnUpdate.Enabled = false;
+                    txtMrp.Enabled = false;
+                    txtSalesRate.Enabled = false;
+                    cmbPrintType.Enabled = false;
+                    txtNoofcopy.Focus();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                    RPTViewer.ReportSource = null;
+                    txtProductName.Focus();
+                    txtProductName.Text = "";
+                    lblPICode.Text = "";
+                    lblProductName.Text = "";
+                    lblUnit.Text = "";
+                    lblRetail.Text = "";
+                    lblWholesale.Text = "";
+                    txtLabelProduct.Text = "";
+                    txtMrp.Text = "";
+                    txtSalesRate.Text = "";
+                    txtNoofcopy.Text = "";
+                    cmbPrintType.SelectedValue = 363;
+                    cmbPrintLanguage.SelectedValue = 322;
+                    cmbLabelsize.SelectedValue = -1;
+
+                    cmbTemplate.Text = "-Select";
+                    txtProductName.Enabled = true;
+                    cmbPrintLanguage.Enabled = true;
+                    txtLabelProduct.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    txtMrp.Enabled = true;
+                    txtSalesRate.Enabled = true;
+                    cmbPrintType.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -1864,37 +1969,39 @@ namespace ROMS
                     tpLabelCount.Show("Please enter No.of copy", txtNoofcopy, 5000);
                     blnErrFlag = true;
                 }
-
-                if (Convert.ToString(txtProductName.Text.Trim()) == "")
+                if (chkNone.Checked == false)
                 {
-                    errRack.SetError(txtProductName, "Please enter productname.");
-                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProdtctname.ShowAlways = true;
-                    tpProdtctname.Show("Please enter productname", txtProductName, 5000);
-                    blnErrFlag = true;
-                }
-                if (Convert.ToString(txtMrp.Text.Trim()) == "")
-                {
-                    errRack.SetError(txtMrp, "Please enter MRP.");
-                    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMRP.ShowAlways = true;
-                    tpMRP.Show("Please enter MRP", txtMrp, 5000);
-                    blnErrFlag = true;
-                }
-                if (Convert.ToString(txtSalesRate.Text.Trim()) == "")
-                {
-                    errRack.SetError(txtSalesRate, "Please enter salesrate.");
-                    txtSalesRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSalesRate.ShowAlways = true;
-                    tpSalesRate.Show("Please enter salesrate", txtSalesRate, 5000);
-                    blnErrFlag = true;
-                }
-                if (Convert.ToString(txtMrp.Text.Trim())   != "")
-                {
-                    if (Convert.ToDecimal(txtMrp.Text) < Convert.ToDecimal(txtSalesRate.Text))
+                    if (Convert.ToString(txtProductName.Text.Trim()) == "")
                     {
-                        MessageBox.Show("MRP amount is less then retail sales amount...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        errRack.SetError(txtProductName, "Please enter productname.");
+                        txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpProdtctname.ShowAlways = true;
+                        tpProdtctname.Show("Please enter productname", txtProductName, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (Convert.ToString(txtMrp.Text.Trim()) == "")
+                    {
+                        errRack.SetError(txtMrp, "Please enter MRP.");
+                        txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMRP.ShowAlways = true;
+                        tpMRP.Show("Please enter MRP", txtMrp, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (Convert.ToString(txtSalesRate.Text.Trim()) == "")
+                    {
+                        errRack.SetError(txtSalesRate, "Please enter salesrate.");
+                        txtSalesRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSalesRate.ShowAlways = true;
+                        tpSalesRate.Show("Please enter salesrate", txtSalesRate, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (Convert.ToString(txtMrp.Text.Trim()) != "")
+                    {
+                        if (Convert.ToDecimal(txtMrp.Text) < Convert.ToDecimal(txtSalesRate.Text))
+                        {
+                            MessageBox.Show("MRP amount is less then retail sales amount...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                 }
                 if (cmbTitle.Enabled == true)
