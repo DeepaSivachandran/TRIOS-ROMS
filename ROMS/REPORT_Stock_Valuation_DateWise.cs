@@ -190,8 +190,17 @@ namespace ROMS
                     }
                     else
                     {
+                        string FromReportName = "Groupwise";
+                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 422)
+                        {
+                            FromReportName = "Subgroupwise";
+                        }
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 423)
+                        {
+                            FromReportName = "Godownwise";
+                        }
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        string varReportName = "Stock Valuation By Date";
+                        string varReportName = "Stock Valuation By Date" + "-" + FromReportName;
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
