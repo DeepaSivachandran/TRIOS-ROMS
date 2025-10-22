@@ -23,6 +23,7 @@ namespace ROMS
         private ToolTip tpcashpurchase = new ToolTip();
         private ToolTip tpLPRate = new ToolTip();
         private ToolTip tpCashLimit = new ToolTip();
+        private ToolTip tpLogoff = new ToolTip();
         private ToolTip tpBillAmount = new ToolTip();
         private ToolTip tpGRNQty = new ToolTip();
         private ToolTip tpReturnAlertDays = new ToolTip();
@@ -131,6 +132,7 @@ namespace ROMS
                             txtLPRate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_LPRatePer"]);
                             txtRTGSMinLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
                             txtCashLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CashPaymentLimit"]);
+                            txtLoggofftime.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_LogoffTime"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -164,6 +166,16 @@ namespace ROMS
                             {
                                 chkRCStockShow.Checked = false;
                             }
+
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_ISLogoff"]) == "1")
+                            {
+                                chkBoxLogoff.Checked = true;
+                            }
+                            else
+                            {
+                                chkBoxLogoff.Checked = false;
+                            }
+
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
                         {
@@ -228,7 +240,7 @@ namespace ROMS
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                int varGRNCheck = 0, varDCCheck = 0, varRCCheck = 0;
+                int varGRNCheck = 0, varDCCheck = 0, varRCCheck = 0, varlogoffEnable = 0;
                 if(chkGRNPrint.Checked==true)
                 {
                     varGRNCheck = 1;
@@ -249,7 +261,13 @@ namespace ROMS
                 {
                     varRCCheck = 1;
                 }
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit); 
+                if (chkBoxLogoff.Checked == true)
+                {
+                    varlogoffEnable = 1;
+                }
+
+
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit, varlogoffEnable, Convert.ToInt32(txtLoggofftime.Text)); 
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -765,6 +783,16 @@ namespace ROMS
                     tpCashLimit.Show("Please valid amount!", txtCashLimit, 5000);
                     blnErrorFlag = true;
                 }
+
+                if (chkBoxLogoff.Checked == true && (txtLoggofftime.Text == "" || txtLoggofftime.Text == "0"))
+                {
+                    epGeneralSettings.SetError(txtLoggofftime, "Please valid mins!");
+                    txtLoggofftime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpLogoff.ShowAlways = true;
+                    tpLogoff.Show("Please valid mins!", txtLoggofftime, 5000);
+                    blnErrorFlag = true;
+                }
+
                 if (blnErrorFlag == false)
                 {
                     epGeneralSettings.Clear();
@@ -796,6 +824,7 @@ namespace ROMS
                 txtbackuppath.BackColor = Color.White;
                 txtPerLevel1.BackColor = Color.White;
                 txtPerLevel2.BackColor = Color.White;
+                txtLoggofftime.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -1798,6 +1827,92 @@ namespace ROMS
             try
             {
                 txtCashLimit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkBoxLogoff_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkBoxLogoff.Checked == false)
+                {
+                    txtLoggofftime.Enabled = false;
+                    txtLoggofftime.ReadOnly = true;
+                }
+                else {
+
+                    txtLoggofftime.Enabled = true;
+                    txtLoggofftime.ReadOnly = false;
+                }
+                txtLoggofftime.Text = "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLoggofftime_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLoggofftime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLoggofftime_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLoggofftime.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLoggofftime_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLoggofftime.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {

@@ -2213,7 +2213,7 @@ namespace ROMS
                 if (varUpDownKeyChildLocation == 0)
                 {
                     txtRack.Text = "";
-                    txtMrp.Text = "";
+                    //txtMrp.Text = "";
                     txtChildQty.Text = "";
                     udfnSLocationValid();
                     SPDataService objspdservice = new SPDataService();
@@ -6207,8 +6207,9 @@ namespace ROMS
                 txtParentRack.Text = "";
                 txtParentMRP.Text = "";
                 txtBatchno2.Text = "";
-                txtparentqty2.Text = "";
-                
+                txtparentqty2.Text = ""; txtChildQty.Text = "";
+
+
 
             }
             catch (Exception ex)
