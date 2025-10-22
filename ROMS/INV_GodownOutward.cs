@@ -1167,7 +1167,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0 || txtProductName.Text == " ")
                     {
-                        var ViewType = 37;
+                        var ViewType = 81;
                         int varEntry = 0;
                         if (btnSave.Text == "Update") { varEntry = varGOId; }
                         MR_Product objMR_Product = new MR_Product();
