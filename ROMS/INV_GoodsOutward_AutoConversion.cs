@@ -58,7 +58,7 @@ namespace ROMS
                 btnSave.Focus();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdGoodsOutward.DataSource = null;
+                grdGOConversion.DataSource = null;
 
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 82;
@@ -79,18 +79,18 @@ namespace ROMS
 
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                grdGoodsOutward.Rows.Add(objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"], objDs.Tables[0].Rows[i]["Batch Details"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["Expiry Date"], objDs.Tables[0].Rows[i]["Batch No."], objDs.Tables[0].Rows[i]["Location"], objDs.Tables[0].Rows[i]["Rack"], objDs.Tables[0].Rows[i]["UPP"],objDs.Tables[0].Rows[i]["UPPValue"], objDs.Tables[0].Rows[i]["Quantity"], objDs.Tables[0].Rows[i]["Unit"], "", "", objDs.Tables[0].Rows[i]["Bulk Unit"], objDs.Tables[0].Rows[i]["PRID"], objDs.Tables[0].Rows[i]["SLID"], objDs.Tables[0].Rows[i]["RKID"]);
+                                grdGOConversion.Rows.Add(objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"], objDs.Tables[0].Rows[i]["Batch Details"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["Expiry Date"], objDs.Tables[0].Rows[i]["Batch No."], objDs.Tables[0].Rows[i]["Location"], objDs.Tables[0].Rows[i]["Rack"], objDs.Tables[0].Rows[i]["UPP"], objDs.Tables[0].Rows[i]["UPPValue"], objDs.Tables[0].Rows[i]["Quantity"], objDs.Tables[0].Rows[i]["Unit"], "", "", objDs.Tables[0].Rows[i]["Bulk Unit"], "", objDs.Tables[0].Rows[i]["PRID"], objDs.Tables[0].Rows[i]["SLID"], objDs.Tables[0].Rows[i]["RKID"]);
                             }
-                            grdGoodsOutward.ClearSelection();
-                            grdGoodsOutward.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdGoodsOutward.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGoodsOutward.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGoodsOutward.Columns["clmConversionQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGoodsOutward.Columns["clmActualQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGoodsOutward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGoodsOutward.Columns["clmUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGoodsOutward.Columns["clmChildUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGoodsOutward.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGOConversion.ClearSelection();
+                            grdGOConversion.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdGOConversion.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGOConversion.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGOConversion.Columns["clmConversionQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGOConversion.Columns["clmActualQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdGOConversion.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGOConversion.Columns["clmUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGOConversion.Columns["clmChildUnit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGOConversion.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -179,9 +179,9 @@ namespace ROMS
         {
             try
             {
-                if (grdGoodsOutward.IsCurrentCellDirty)
+                if (grdGOConversion.IsCurrentCellDirty)
                 {
-                    grdGoodsOutward.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    grdGOConversion.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
             }
             catch (Exception ex)
@@ -195,7 +195,7 @@ namespace ROMS
         {
             try
             {
-                if (grdGoodsOutward.CurrentCell.OwningColumn.Name == "clmConversionQty")
+                if (grdGOConversion.CurrentCell.OwningColumn.Name == "clmConversionQty")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -211,7 +211,7 @@ namespace ROMS
         {
             try
             {
-                if (grdGoodsOutward.CurrentCell.OwningColumn.Name == "clmConversionQty")
+                if (grdGOConversion.CurrentCell.OwningColumn.Name == "clmConversionQty")
                 {
                     if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {
@@ -235,7 +235,78 @@ namespace ROMS
         {
             try
             {
+                bool blnErrFlag = false;
+                if (Convert.ToInt32(lblRequiredQty.Text) > Convert.ToInt32(lblTransferQty.Text))
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(113);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrFlag = true;
+                }
+                if (blnErrFlag == false)
+                {
+                    udfnConvert();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnConvert()
+        {
+            try
+            {
+                var outward = MainForm.objINV_GodownOutward;
 
+                outward.txtStockQuantity.Text = lblTransferQty.Text;
+
+                outward.grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font =
+                    new Font("Uni Ila.Sundaram-03", 11.75F);
+
+                outward.grdGoodsOutward.Rows.Add(
+                    outward.grdGoodsOutward.Rows.Count + 1,
+                    outward.varPRID,
+                    outward.varPICode,
+                    outward.varTamilname,
+                    outward.varRKID,
+                    "",//outward.txtRack.Text.Trim(),
+                    "",//outward.txtMrp.Text.Trim(),
+                    "",//outward.txtExpiryDate.Text.Trim(),
+                    "",//outward.txtBatchNo.Text.Trim(),
+                    outward.txtStockQuantity.Text.Trim(),
+                    0,
+                    "",//outward.txtOutwardQuantity.Text,
+                    outward.varUnit,
+                    outward.varUTID,
+                    outward.varDecimal
+                );
+
+                outward.dtStock.Rows.Add(
+                    outward.varPRID,
+                    "",//string.Format("{0:G29}", decimal.Parse(outward.txtMrp.Text.Trim())),
+                    "",//outward.txtExpiryDate.Text.Trim(),
+                    "",//outward.txtBatchNo.Text.Trim(),
+                    outward.varUTID,
+                    "",//outward.txtOutwardQuantity.Text,
+                    outward.varRKID,
+                    outward.varDestSLID,
+                    outward.varDestRKID,
+                    0
+                );
+
+                outward.txtTotalItem.Text = outward.grdGoodsOutward.Rows.Count.ToString();
+
+                var cols = outward.grdGoodsOutward.Columns;
+                cols["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                cols["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                cols["clmOutward"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                cols["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Clear product details
+                outward.udfnProductClear();
             }
             catch (Exception ex)
             {
@@ -248,27 +319,27 @@ namespace ROMS
         {
             try
             {
-                int varQuantity = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmQuantity"].Value);
-                int varUPP = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmUPPValue"].Value);
+                int varQuantity = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmQuantity"].Value);
+                int varUPP = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmUPPValue"].Value);
                 int varTransferQuantity = 0;
-                if (grdGoodsOutward.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
+                if (grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
                 {
-                    varTransferQuantity = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmConversionQty"].Value);
+                    varTransferQuantity = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value);
                 }
                 if (varQuantity < varTransferQuantity)
                 {
-                    grdGoodsOutward.Rows[e.RowIndex].Cells["clmConversionQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    grdGOConversion.Rows[e.RowIndex].Cells["clmConversionQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                if (grdGoodsOutward.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
+                if (grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
                 {
-                    grdGoodsOutward.CurrentRow.Cells["clmActualQty"].Value = Convert.ToString(varUPP * varTransferQuantity);
+                    grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = Convert.ToString(varUPP * varTransferQuantity);
                     CalculateTotalTransferQty();
                 }
-                else { grdGoodsOutward.CurrentRow.Cells["clmActualQty"].Value = ""; }
+                else { grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = ""; }
             }
             catch (Exception ex)
             {
@@ -282,7 +353,7 @@ namespace ROMS
             {
                 decimal totalTransferValue = 0;
 
-                foreach (DataGridViewRow row in grdGoodsOutward.Rows)
+                foreach (DataGridViewRow row in grdGOConversion.Rows)
                 {
                     // Skip new rows or empty rows
                     if (row.IsNewRow) continue;

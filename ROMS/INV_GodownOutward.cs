@@ -39,7 +39,7 @@ namespace ROMS
         public int varUpdate = 0,VarUpdateFlag=0;
         public int varCompanyId = 0, varDestSLID = 0, varDestRKID = 0,varStatusId=0,varDecimal=0;
         string varProductID = "", varMRP = "", varExpiryDate = "", varBatchNo = "",varRackId="";
-        DataTable dtStock = new DataTable();
+        public DataTable dtStock = new DataTable();
         public string vargroupcode;
         public String pbFormStatus;
         private bool varErrorFlag;
@@ -2116,7 +2116,7 @@ namespace ROMS
             try
             {
                 btnAdd.BackColor = Color.LemonChiffon;
-                //udfnAutoConversion();
+                udfnAutoConversion();
             }
             catch (Exception ex)
             {
