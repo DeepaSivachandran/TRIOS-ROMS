@@ -307,6 +307,12 @@
     <Compile Include="PUR_MismatchApprovedList.designer.cs">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_GoodsOutward_AutoConversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GoodsOutward_AutoConversion.designer.cs">
+      <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_Godown_Valuation_Summary.cs">
       <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3601,6 +3607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_CreditnoteDetails.resx">
       <DependentUpon>PUR_CreditnoteDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_GoodsOutward_AutoConversion.resx">
+      <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_Purchase_Level_Verified.resx">
       <DependentUpon>PUR_Purchase_Level_Verified.cs</DependentUpon>

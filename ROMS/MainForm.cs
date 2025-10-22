@@ -169,6 +169,7 @@ namespace ROMS
         public static INV_StockRequest objINV_StockRequest;
         public static INV_GodownOutward objINV_GodownOutward;
         public static INV_GodownOutwardList objINV_GodownOutwardList;
+        public static INV_GoodsOutward_AutoConversion objINV_GoodsOutward_AutoConversion;
         public static INV_Inwardlist objINV_Inwardlist;
         public static INV_Inward objINV_Inward;
         public static INV_StockTransfer objINV_StockTransfer;
