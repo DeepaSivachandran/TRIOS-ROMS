@@ -314,6 +314,12 @@
     <Compile Include="PUR_MismatchApprovedList.designer.cs">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_GoodsOutward_AutoConversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_GoodsOutward_AutoConversion.designer.cs">
+      <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_Godown_Valuation_Summary.cs">
       <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -383,6 +389,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_Stock_Valuation_Godownwise.cs">
+      <DependentUpon>RPT_Stock_Valuation_Godownwise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Stock_Valuation_Subgroupwise.cs">
+      <DependentUpon>RPT_Stock_Valuation_Subgroupwise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Stock_Valuation_Groupwise.cs">
+      <DependentUpon>RPT_Stock_Valuation_Groupwise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_Tax_Changes.cs">
       <DependentUpon>RPT_Tax_Changes.rpt</DependentUpon>
@@ -515,6 +542,12 @@
     </Compile>
     <Compile Include="REPORT_PriceList.designer.cs">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_Stock_Valuation_DateWise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Valuation_DateWise.designer.cs">
+      <DependentUpon>REPORT_Stock_Valuation_DateWise.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Tax_Changes.cs">
       <SubType>Form</SubType>
@@ -3585,6 +3618,9 @@
     <EmbeddedResource Include="PUR_CreditnoteDetails.resx">
       <DependentUpon>PUR_CreditnoteDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_GoodsOutward_AutoConversion.resx">
+      <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PUR_Purchase_Level_Verified.resx">
       <DependentUpon>PUR_Purchase_Level_Verified.cs</DependentUpon>
     </EmbeddedResource>
@@ -4443,6 +4479,21 @@
       <LastGenOutput>RPT_Sticker_Print_Rack_RackGroup_50x60.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_Stock_Valuation_Groupwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock_Valuation_Groupwise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_Stock_Valuation_Subgroupwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock_Valuation_Subgroupwise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_Stock_Valuation_Godownwise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock_Valuation_Godownwise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_Unapproved_Purchase_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Unapproved_Purchase_Details.cs</LastGenOutput>
@@ -5211,6 +5262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PriceList.resx">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Valuation_DateWise.resx">
+      <DependentUpon>REPORT_Stock_Valuation_DateWise.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Tax_Changes.resx">
       <DependentUpon>REPORT_Tax_Changes.cs</DependentUpon>

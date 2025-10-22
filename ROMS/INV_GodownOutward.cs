@@ -52,7 +52,7 @@ namespace ROMS
         public string varPICode = "", varPEname = "", varPTname = "", varPID = "", varUTID = "", varPRID = "", varRKID = "", varTotalItem = "", varUnit = "", varTransType = "";
         private int varviewtype = 0;
         bool varVoucherSkip = false;
-        public int varClose = 0, varDateChange = 0;
+        public int varClose = 0, varDateChange = 0, varChildStockFlag = 0;
         public string varUserID = "";
 
         public INV_GodownOutward()
@@ -593,6 +593,7 @@ namespace ROMS
                 varUpDownKey = 0;
                 DGV_FilterLocation.Visible = false;
                 DGV_FilterLocation.DataSource = null;
+
             }
             catch (Exception ex)
             {
@@ -1167,7 +1168,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0 || txtProductName.Text == " ")
                     {
-                        var ViewType = 37;
+                        var ViewType = 81;
                         int varEntry = 0;
                         if (btnSave.Text == "Update") { varEntry = varGOId; }
                         MR_Product objMR_Product = new MR_Product();
@@ -1230,6 +1231,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Name"].Visible = false;
                                     DGV_FilterProduct.Columns["STK_RKID"].Visible = false;
                                     DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_Parent_ID"].Visible = false;
+                                    DGV_FilterProduct.Columns["isChildStockFlag"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
@@ -1357,6 +1360,7 @@ namespace ROMS
                 txtStockQuantity.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_Qty"].Value.ToString();
                 lblQuantity.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
                 txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                varChildStockFlag = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["isChildStockFlag"].Value.ToString());
                 txtStockQuantity.TextAlign = HorizontalAlignment.Right;
                 txtMrp.TextAlign = HorizontalAlignment.Right;
                 //udfnProductAdd(); 
@@ -2026,7 +2030,7 @@ namespace ROMS
             {
                 varUpDownKeyLocation = 1;
                 udfnLvStockLocation();
-                txtProductName.Focus();
+                txtTeller.Focus();
             }
             catch (Exception ex)
             {
@@ -2096,9 +2100,36 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtProductName.Focus();
+                        txtTeller.Focus();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnAdd_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.LemonChiffon;
+                //udfnAutoConversion();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnAdd_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnAdd.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -2729,6 +2760,7 @@ namespace ROMS
                 txtOutwardQuantity.Text = "";
                 varPRID = "";
                 varPICode = "";
+                varTamilname = "";
                 varRKID = "";
                 varUTID = "";
                 lblQuantity.Text = "";
@@ -2802,6 +2834,52 @@ namespace ROMS
                     cmbConcern.BackColor = Color.White;
 
                 }
+            }
+        }
+        public void udfnAutoConversion()
+        {
+            try
+            {
+                if (txtOutwardQuantity.Text == "")
+                {
+                    epGoodsOutward.SetError(txtOutwardQuantity, "Please enter outward quantity");
+                    txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpOutwardQuantity.ShowAlways = true;
+                    tpOutwardQuantity.Show("Please enter outward quantity", txtOutwardQuantity, 5000);
+                }
+                else
+                {
+                    if (Convert.ToDecimal(txtOutwardQuantity.Text) > 0)
+                    {
+                        if (varChildStockFlag == 1)
+                        {
+                            epGoodsOutward.Clear();
+                            MainForm.objINV_GoodsOutward_AutoConversion = new INV_GoodsOutward_AutoConversion();
+                            MainForm.objINV_GoodsOutward_AutoConversion.varParentId = varPRID;
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblProductName.Text = varPICode + "-" + varTamilname;
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblParentStkQty.Text = txtStockQuantity.Text;
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblParentQty.Text = txtOutwardQuantity.Text;
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblRequiredQty.Text = Convert.ToString(Convert.ToInt32(txtOutwardQuantity.Text) - Convert.ToInt32(txtStockQuantity.Text));
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblParentStkUnit.Text = lblQuantity.Text;
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblParentTransferUnit.Text = lblQuantity.Text;
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblRequiredUnit.Text = lblQuantity.Text;
+                            MainForm.objINV_GoodsOutward_AutoConversion.lblTransUnit.Text = lblQuantity.Text;
+                            MainForm.objINV_GoodsOutward_AutoConversion.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        epGoodsOutward.SetError(txtOutwardQuantity, "Please enter valid outward quantity");
+                        txtOutwardQuantity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpOutwardQuantity.ShowAlways = true;
+                        tpOutwardQuantity.Show("Please enter valid outward quantity", txtOutwardQuantity, 5000);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void BtnAdd_Click(object sender, EventArgs e)

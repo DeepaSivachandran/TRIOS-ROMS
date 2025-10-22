@@ -36,6 +36,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -315,6 +316,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpFromDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -717,6 +719,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpToDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -857,6 +860,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbInvType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

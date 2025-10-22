@@ -195,6 +195,7 @@ namespace ROMS
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1401,6 +1402,7 @@ namespace ROMS
             this.tsmStockHoldReport,
             this.tsmStockAging,
             this.tsmStockValuation,
+            this.tsmStockValuationbyDate,
             this.tsmStockVsZeroRate,
             this.tsmNonMoving});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
@@ -1706,6 +1708,14 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
+            // tsmStockValuationbyDate
+            // 
+            this.tsmStockValuationbyDate.Name = "tsmStockValuationbyDate";
+            this.tsmStockValuationbyDate.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockValuationbyDate.Text = "Stock Valuation by Date";
+            this.tsmStockValuationbyDate.Visible = false;
+            this.tsmStockValuationbyDate.Click += new System.EventHandler(this.tsmStockValuationbyDate_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1903,5 +1913,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmReportUserRole;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripMenuItem tsmLock;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockValuationbyDate;
     }
 }
