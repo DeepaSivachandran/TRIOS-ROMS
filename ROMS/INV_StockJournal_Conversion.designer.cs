@@ -122,9 +122,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.grdOutward = new System.Windows.Forms.DataGridView();
-            this.txtOutwardQuantity = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmdsno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmicode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,6 +139,9 @@
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtOutwardQuantity = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epStockConvertion)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -272,7 +272,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(889, 161);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(1012, 161);
             this.DGV_FilterProduct.TabIndex = 1111226;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -1125,39 +1125,6 @@
             this.grdOutward.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.grdOutward_RowsRemoved);
             this.grdOutward.Enter += new System.EventHandler(this.grdOutward_Enter);
             // 
-            // txtOutwardQuantity
-            // 
-            this.txtOutwardQuantity.Location = new System.Drawing.Point(511, 24);
-            this.txtOutwardQuantity.MaxLength = 5;
-            this.txtOutwardQuantity.Name = "txtOutwardQuantity";
-            this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtOutwardQuantity.Size = new System.Drawing.Size(76, 27);
-            this.txtOutwardQuantity.TabIndex = 2;
-            this.txtOutwardQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtOutwardQuantity.Enter += new System.EventHandler(this.txtOutwardQuantity_Enter);
-            this.txtOutwardQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOutwardQuantity_KeyDown);
-            this.txtOutwardQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOutwardQuantity_KeyPress);
-            this.txtOutwardQuantity.Leave += new System.EventHandler(this.txtOutwardQuantity_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(479, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 20);
-            this.label2.TabIndex = 958829;
-            this.label2.Text = "Qty";
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.MinimumWidth = 6;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.ReadOnly = true;
-            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn2.Width = 50;
-            // 
             // clmdsno
             // 
             this.clmdsno.HeaderText = "S.No.";
@@ -1321,6 +1288,39 @@
             this.clmRemove.ReadOnly = true;
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.Width = 50;
+            // 
+            // txtOutwardQuantity
+            // 
+            this.txtOutwardQuantity.Location = new System.Drawing.Point(511, 24);
+            this.txtOutwardQuantity.MaxLength = 5;
+            this.txtOutwardQuantity.Name = "txtOutwardQuantity";
+            this.txtOutwardQuantity.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtOutwardQuantity.Size = new System.Drawing.Size(76, 27);
+            this.txtOutwardQuantity.TabIndex = 2;
+            this.txtOutwardQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtOutwardQuantity.Enter += new System.EventHandler(this.txtOutwardQuantity_Enter);
+            this.txtOutwardQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOutwardQuantity_KeyDown);
+            this.txtOutwardQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOutwardQuantity_KeyPress);
+            this.txtOutwardQuantity.Leave += new System.EventHandler(this.txtOutwardQuantity_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(479, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 20);
+            this.label2.TabIndex = 958829;
+            this.label2.Text = "Qty";
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.MinimumWidth = 6;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.ReadOnly = true;
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.Width = 50;
             // 
             // INV_StockJournal_Conversion
             // 

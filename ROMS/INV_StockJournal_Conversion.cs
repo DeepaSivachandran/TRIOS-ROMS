@@ -384,8 +384,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_EName"].Visible = true;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 320;
-                                    DGV_FilterProduct.Columns["slid"].Visible = false;
-                                    DGV_FilterProduct.Columns["PR_PICode"].Visible = false;
+                                    DGV_FilterProduct.Columns["slid"].Visible = false; 
                                     DGV_FilterProduct.Columns["SL_EName"].Width = 120;
                                     DGV_FilterProduct.Columns["RK_ShortName"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_MRP"].Width = 60;

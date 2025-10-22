@@ -194,6 +194,7 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1590,7 +1591,8 @@ namespace ROMS
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmProfile,
-            this.tsmLogout});
+            this.tsmLogout,
+            this.tsmLock});
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmMyProfile.Name = "tsmMyProfile";
@@ -1603,14 +1605,14 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(109, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(109, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
@@ -1693,6 +1695,10 @@ namespace ROMS
             // 
             // statusBar
             // 
+            this.tsmLock.Name = "tsmLock";
+            this.tsmLock.Size = new System.Drawing.Size(180, 22);
+            this.tsmLock.Text = "Lock";
+            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click); 
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Location = new System.Drawing.Point(0, 537);
             this.statusBar.Name = "statusBar";
@@ -1896,5 +1902,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournal;
         private System.Windows.Forms.ToolStripMenuItem tsmReportUserRole;
         private System.Windows.Forms.StatusStrip statusBar;
+        private System.Windows.Forms.ToolStripMenuItem tsmLock;
     }
 }

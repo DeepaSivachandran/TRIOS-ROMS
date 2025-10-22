@@ -12,6 +12,7 @@ namespace ROMS
 {
     public partial class REPORT_CP_UserRole : Form
     {
+        DynamicWindowControl windowControl = new DynamicWindowControl();
         ToolTip tpSupplier = new ToolTip();
         private ToolTip tpCity = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -20,6 +21,7 @@ namespace ROMS
         public REPORT_CP_UserRole()
         {
             InitializeComponent();
+            windowControl.Initialize(tsUserRole, this);
         }
         private void CmbStatus_KeyDown(object sender, KeyEventArgs e)
         {

@@ -184,6 +184,12 @@
     <Compile Include="CP_UserRole.designer.cs">
       <DependentUpon>CP_UserRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="DEF_IdleLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DEF_IdleLogin.designer.cs">
+      <DependentUpon>DEF_IdleLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,7 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="IdleManager.cs" />
     <Compile Include="INV_StockJournal_Conversion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3441,6 +3448,9 @@
     <EmbeddedResource Include="CP_UserRole.resx">
       <DependentUpon>CP_UserRole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DEF_IdleLogin.resx">
+      <DependentUpon>DEF_IdleLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -5412,6 +5422,7 @@
     <None Include="Resources\breadcrum-Level.png" />
     <None Include="Resources\close-Form.png" />
     <None Include="Resources\arrow1.png" />
+    <None Include="Resources\application-locked.jpg" />
     <Content Include="Resources\Issue.png" />
     <None Include="Resources\newcancelBill1.png" />
     <EmbeddedResource Include="REPORT_ItemMovementAnalysis.resx">
