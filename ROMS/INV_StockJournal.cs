@@ -2282,7 +2282,8 @@ namespace ROMS
         {
             try
             {
-                SPDataService objspdservice = new SPDataService();
+                txtMrp.Text = "";
+                   SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 77;
@@ -2322,18 +2323,20 @@ namespace ROMS
                             lvChildRack1.Visible = false;
 
                             varChild1PrMRPFlag = Convert.ToString(objDs.Tables[0].Rows[0]["PR_MRPflag"]);
+                            txtMrp.Text = Convert.ToString(Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_UPP"]) * Convert.ToInt32(dtStock.Rows[0]["STK_MRP"]) );
+
+                            txtMrp.ReadOnly = true;
+                            txtMrp.Enabled = false;
+
                             if (varChild1PrMRPFlag == "1")
                             {
                                 varChild1PrMRPFlag = "1";
-                                txtMrp.ReadOnly = false;
-                                txtMrp.Enabled = true;
+                                //txtMrp.ReadOnly = false;
+                                //txtMrp.Enabled = true;
                             }
                             else
-                            {
-                                txtMrp.Text = "0";
+                            { 
                                 varChild1PrMRPFlag = "0";
-                                txtMrp.ReadOnly = true;
-                                txtMrp.Enabled = false;
                             }
                             if (Convert.ToInt32(varChild1BatchNo) == 73)  //disabled
                             {
@@ -2640,8 +2643,12 @@ namespace ROMS
             {
                 if (grdStockadjustment.RowCount > 0)
                 {
-
-
+                    epStockConvertion.Clear();
+                    txtRack.BackColor = Color.White;
+                    txtChildQty.BackColor = Color.White;
+                    txtChildStockLocation1.BackColor = Color.White;
+                    txtMrp.BackColor = Color.White;
+                    cmbChildProduct1.BackColor = Color.White;
                     if (cmbChildProduct1.Text != "")
                     {
                         DGV_FilterProduct.Visible = false;
@@ -2671,12 +2678,20 @@ namespace ROMS
                             tpStockLocation.Show("Please enter location.", txtChildStockLocation1, 5000);
                             varErrorFlag = false;
                         }
-                        if ((txtMrp.Text.Trim() == "" || Convert.ToDecimal(txtMrp.Text) == 0) && varPrMRPFlag == "1")
+                        if ((txtMrp.Text.Trim() == "" || Convert.ToDecimal(txtMrp.Text) == 0)  )
                         {
                             txtMrp.BackColor = ColorTranslator.FromHtml("#fabdbd");
                             epStockConvertion.SetError(txtMrp, "Please enter MRP.");
                             tpMrp.ShowAlways = true;
                             tpMrp.Show("Please enter MRP.", txtMrp, 5000);
+                            varErrorFlag = false;
+                        }
+                        if (Convert.ToInt32(cmbChildProduct1.SelectedValue) == -1)
+                        {
+                            cmbChildProduct1.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                            epStockConvertion.SetError(cmbChildProduct1, "Please select child item");
+                            tpMrp.ShowAlways = true;
+                            tpMrp.Show("Please select child item", cmbChildProduct1, 5000);
                             varErrorFlag = false;
                         }
 

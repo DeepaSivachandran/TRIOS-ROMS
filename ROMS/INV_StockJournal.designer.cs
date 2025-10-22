@@ -32,6 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -50,12 +56,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_StockJournal));
             this.epStockConvertion = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnChildAdd = new System.Windows.Forms.Button();
@@ -69,6 +69,43 @@
             this.pnlGoodsOutward = new System.Windows.Forms.Panel();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
+            this.grpChildType2 = new System.Windows.Forms.GroupBox();
+            this.DGVBatch2 = new System.Windows.Forms.DataGridView();
+            this.lblparent2unit = new System.Windows.Forms.Label();
+            this.cmbChildProduct2 = new System.Windows.Forms.ComboBox();
+            this.lblparent2totqty = new System.Windows.Forms.Label();
+            this.lblChildStockDetail = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtChildStockqty = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.lblQuantity2 = new System.Windows.Forms.Label();
+            this.grdChild2 = new System.Windows.Forms.DataGridView();
+            this.clmslno2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpridChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmpicodeChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmproductChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmlocationidChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmlocationChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRackIdChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2MRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2ExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2BatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2stkqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2UTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2UTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmchild2uppvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmChild2Remove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.txtChildQty2 = new System.Windows.Forms.TextBox();
+            this.txtbatch2 = new System.Windows.Forms.TextBox();
+            this.aa = new System.Windows.Forms.Label();
             this.DGV_FilterParentLocation = new System.Windows.Forms.DataGridView();
             this.DGV_FilterChildLocation = new System.Windows.Forms.DataGridView();
             this.lbluppunitid = new System.Windows.Forms.Label();
@@ -229,49 +266,15 @@
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtParentQuantity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.grpChildType2 = new System.Windows.Forms.GroupBox();
-            this.DGVBatch2 = new System.Windows.Forms.DataGridView();
-            this.lblparent2unit = new System.Windows.Forms.Label();
-            this.cmbChildProduct2 = new System.Windows.Forms.ComboBox();
-            this.lblparent2totqty = new System.Windows.Forms.Label();
-            this.lblChildStockDetail = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtChildStockqty = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.lblQuantity2 = new System.Windows.Forms.Label();
-            this.grdChild2 = new System.Windows.Forms.DataGridView();
-            this.clmslno2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpridChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmpicodeChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmproductChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmlocationidChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmlocationChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRackIdChild2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2MRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2ExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2BatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2stkqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2UTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2UTDecimal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmchild2uppvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChild2Remove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.txtChildQty2 = new System.Windows.Forms.TextBox();
-            this.txtbatch2 = new System.Windows.Forms.TextBox();
-            this.aa = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.epStockConvertion)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
             this.grpGoodsOutward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
+            this.grpChildType2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVBatch2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdChild2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterParentLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterChildLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVFilterBatch)).BeginInit();
@@ -283,9 +286,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdParent2)).BeginInit();
             this.grpParentType1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStockadjustment)).BeginInit();
-            this.grpChildType2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVBatch2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdChild2)).BeginInit();
             this.SuspendLayout();
             // 
             // epStockConvertion
@@ -461,6 +461,468 @@
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
             this.DGV_FilterProduct.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DGV_FilterProduct_DataBindingComplete);
             this.DGV_FilterProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
+            // 
+            // grpChildType2
+            // 
+            this.grpChildType2.Controls.Add(this.btnBatch1);
+            this.grpChildType2.Controls.Add(this.DGVBatch2);
+            this.grpChildType2.Controls.Add(this.lblparent2unit);
+            this.grpChildType2.Controls.Add(this.cmbChildProduct2);
+            this.grpChildType2.Controls.Add(this.lblparent2totqty);
+            this.grpChildType2.Controls.Add(this.lblChildStockDetail);
+            this.grpChildType2.Controls.Add(this.label22);
+            this.grpChildType2.Controls.Add(this.label23);
+            this.grpChildType2.Controls.Add(this.txtChildStockqty);
+            this.grpChildType2.Controls.Add(this.label24);
+            this.grpChildType2.Controls.Add(this.label25);
+            this.grpChildType2.Controls.Add(this.label26);
+            this.grpChildType2.Controls.Add(this.btnChild2);
+            this.grpChildType2.Controls.Add(this.label27);
+            this.grpChildType2.Controls.Add(this.lblQuantity2);
+            this.grpChildType2.Controls.Add(this.grdChild2);
+            this.grpChildType2.Controls.Add(this.txtChildQty2);
+            this.grpChildType2.Controls.Add(this.txtbatch2);
+            this.grpChildType2.Controls.Add(this.aa);
+            this.grpChildType2.Location = new System.Drawing.Point(11, 80);
+            this.grpChildType2.Name = "grpChildType2";
+            this.grpChildType2.Size = new System.Drawing.Size(671, 514);
+            this.grpChildType2.TabIndex = 1111226;
+            this.grpChildType2.TabStop = false;
+            this.grpChildType2.Text = "Child";
+            // 
+            // DGVBatch2
+            // 
+            this.DGVBatch2.AllowUserToAddRows = false;
+            this.DGVBatch2.AllowUserToDeleteRows = false;
+            this.DGVBatch2.AllowUserToResizeColumns = false;
+            this.DGVBatch2.AllowUserToResizeRows = false;
+            this.DGVBatch2.BackgroundColor = System.Drawing.Color.White;
+            this.DGVBatch2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVBatch2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DGVBatch2.ColumnHeadersHeight = 30;
+            this.DGVBatch2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVBatch2.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DGVBatch2.EnableHeadersVisualStyles = false;
+            this.DGVBatch2.GridColor = System.Drawing.Color.White;
+            this.DGVBatch2.Location = new System.Drawing.Point(65, 93);
+            this.DGVBatch2.Name = "DGVBatch2";
+            this.DGVBatch2.ReadOnly = true;
+            this.DGVBatch2.RowHeadersVisible = false;
+            this.DGVBatch2.RowHeadersWidth = 51;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGVBatch2.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.DGVBatch2.RowTemplate.Height = 25;
+            this.DGVBatch2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVBatch2.Size = new System.Drawing.Size(560, 114);
+            this.DGVBatch2.TabIndex = 1111248;
+            this.DGVBatch2.Visible = false;
+            this.DGVBatch2.DoubleClick += new System.EventHandler(this.DGVBatch2_DoubleClick);
+            this.DGVBatch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGVBatch2_KeyDown);
+            // 
+            // lblparent2unit
+            // 
+            this.lblparent2unit.AutoSize = true;
+            this.lblparent2unit.Location = new System.Drawing.Point(633, 484);
+            this.lblparent2unit.Name = "lblparent2unit";
+            this.lblparent2unit.Size = new System.Drawing.Size(0, 20);
+            this.lblparent2unit.TabIndex = 1111228;
+            // 
+            // cmbChildProduct2
+            // 
+            this.cmbChildProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbChildProduct2.FormattingEnabled = true;
+            this.cmbChildProduct2.Location = new System.Drawing.Point(65, 24);
+            this.cmbChildProduct2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbChildProduct2.Name = "cmbChildProduct2";
+            this.cmbChildProduct2.Size = new System.Drawing.Size(311, 27);
+            this.cmbChildProduct2.TabIndex = 0;
+            this.cmbChildProduct2.SelectedIndexChanged += new System.EventHandler(this.cmbChildProduct2_SelectedIndexChanged);
+            this.cmbChildProduct2.Enter += new System.EventHandler(this.cmbChildProduct2_Enter);
+            this.cmbChildProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbChildProduct2_KeyDown);
+            this.cmbChildProduct2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbChildProduct2_KeyPress);
+            this.cmbChildProduct2.Leave += new System.EventHandler(this.cmbChildProduct2_Leave);
+            // 
+            // lblparent2totqty
+            // 
+            this.lblparent2totqty.AutoSize = true;
+            this.lblparent2totqty.BackColor = System.Drawing.Color.White;
+            this.lblparent2totqty.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblparent2totqty.ForeColor = System.Drawing.Color.Blue;
+            this.lblparent2totqty.Location = new System.Drawing.Point(585, 481);
+            this.lblparent2totqty.Name = "lblparent2totqty";
+            this.lblparent2totqty.Size = new System.Drawing.Size(0, 26);
+            this.lblparent2totqty.TabIndex = 1111225;
+            this.lblparent2totqty.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblChildStockDetail
+            // 
+            this.lblChildStockDetail.AutoSize = true;
+            this.lblChildStockDetail.Location = new System.Drawing.Point(9, 103);
+            this.lblChildStockDetail.Name = "lblChildStockDetail";
+            this.lblChildStockDetail.Size = new System.Drawing.Size(0, 20);
+            this.lblChildStockDetail.TabIndex = 1111161;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(312, 64);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(58, 20);
+            this.label22.TabIndex = 1111158;
+            this.label22.Text = "Avl Stock";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(9, 64);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(41, 20);
+            this.label23.TabIndex = 1111224;
+            this.label23.Text = "Batch";
+            // 
+            // txtChildStockqty
+            // 
+            this.txtChildStockqty.Enabled = false;
+            this.txtChildStockqty.Location = new System.Drawing.Point(373, 61);
+            this.txtChildStockqty.Name = "txtChildStockqty";
+            this.txtChildStockqty.ReadOnly = true;
+            this.txtChildStockqty.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtChildStockqty.Size = new System.Drawing.Size(97, 27);
+            this.txtChildStockqty.TabIndex = 1000;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(1045, 16);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(0, 20);
+            this.label24.TabIndex = 1111158;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(483, 484);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(99, 20);
+            this.label25.TabIndex = 958825;
+            this.label25.Text = "Total Parent  Qty";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(9, 27);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(52, 20);
+            this.label26.TabIndex = 1111161;
+            this.label26.Text = "Product";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(1262, 43);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(0, 20);
+            this.label27.TabIndex = 958834;
+            // 
+            // lblQuantity2
+            // 
+            this.lblQuantity2.AutoSize = true;
+            this.lblQuantity2.Location = new System.Drawing.Point(604, 64);
+            this.lblQuantity2.Name = "lblQuantity2";
+            this.lblQuantity2.Size = new System.Drawing.Size(0, 20);
+            this.lblQuantity2.TabIndex = 958834;
+            // 
+            // grdChild2
+            // 
+            this.grdChild2.AllowUserToAddRows = false;
+            this.grdChild2.AllowUserToDeleteRows = false;
+            this.grdChild2.AllowUserToResizeRows = false;
+            this.grdChild2.BackgroundColor = System.Drawing.Color.White;
+            this.grdChild2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdChild2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.grdChild2.ColumnHeadersHeight = 30;
+            this.grdChild2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdChild2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmslno2,
+            this.clmpridChild2,
+            this.clmpicodeChild2,
+            this.clmproductChild2,
+            this.clmlocationidChild2,
+            this.clmlocationChild2,
+            this.clmRackIdChild2,
+            this.s,
+            this.clmChild2MRP,
+            this.clmChild2ExpiryDate,
+            this.clmChild2BatchNo,
+            this.clmChild2stkqty,
+            this.dataGridViewTextBoxColumn30,
+            this.clmChild2Qty,
+            this.dataGridViewTextBoxColumn32,
+            this.clmChild2UTID,
+            this.clmChild2UTDecimal,
+            this.clmchild2uppvalue,
+            this.clmChild2Remove});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdChild2.DefaultCellStyle = dataGridViewCellStyle8;
+            this.grdChild2.EnableHeadersVisualStyles = false;
+            this.grdChild2.GridColor = System.Drawing.Color.White;
+            this.grdChild2.Location = new System.Drawing.Point(3, 126);
+            this.grdChild2.Name = "grdChild2";
+            this.grdChild2.RowHeadersVisible = false;
+            this.grdChild2.RowHeadersWidth = 51;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdChild2.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.grdChild2.RowTemplate.Height = 25;
+            this.grdChild2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdChild2.ShowRowErrors = false;
+            this.grdChild2.Size = new System.Drawing.Size(665, 352);
+            this.grdChild2.TabIndex = 100;
+            this.grdChild2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdChild2_CellContentClick);
+            this.grdChild2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdChild2_CellEndEdit);
+            this.grdChild2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdChild2_CellValueChanged);
+            this.grdChild2.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdChild2_DataBindingComplete);
+            this.grdChild2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdChild2_EditingControlShowing);
+            this.grdChild2.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.grdChild2_RowsAdded);
+            this.grdChild2.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.grdChild2_RowsRemoved);
+            // 
+            // clmslno2
+            // 
+            this.clmslno2.HeaderText = "S.No.";
+            this.clmslno2.MinimumWidth = 6;
+            this.clmslno2.Name = "clmslno2";
+            this.clmslno2.ReadOnly = true;
+            this.clmslno2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmslno2.Width = 50;
+            // 
+            // clmpridChild2
+            // 
+            this.clmpridChild2.HeaderText = "PRID";
+            this.clmpridChild2.MinimumWidth = 6;
+            this.clmpridChild2.Name = "clmpridChild2";
+            this.clmpridChild2.ReadOnly = true;
+            this.clmpridChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmpridChild2.Visible = false;
+            this.clmpridChild2.Width = 125;
+            // 
+            // clmpicodeChild2
+            // 
+            this.clmpicodeChild2.HeaderText = "P.I Code";
+            this.clmpicodeChild2.MinimumWidth = 6;
+            this.clmpicodeChild2.Name = "clmpicodeChild2";
+            this.clmpicodeChild2.ReadOnly = true;
+            this.clmpicodeChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmpicodeChild2.Visible = false;
+            this.clmpicodeChild2.Width = 125;
+            // 
+            // clmproductChild2
+            // 
+            this.clmproductChild2.HeaderText = "Product Name";
+            this.clmproductChild2.MinimumWidth = 6;
+            this.clmproductChild2.Name = "clmproductChild2";
+            this.clmproductChild2.ReadOnly = true;
+            this.clmproductChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmproductChild2.Visible = false;
+            this.clmproductChild2.Width = 300;
+            // 
+            // clmlocationidChild2
+            // 
+            this.clmlocationidChild2.HeaderText = "locationid";
+            this.clmlocationidChild2.MinimumWidth = 6;
+            this.clmlocationidChild2.Name = "clmlocationidChild2";
+            this.clmlocationidChild2.Visible = false;
+            this.clmlocationidChild2.Width = 125;
+            // 
+            // clmlocationChild2
+            // 
+            this.clmlocationChild2.HeaderText = "Location";
+            this.clmlocationChild2.MinimumWidth = 6;
+            this.clmlocationChild2.Name = "clmlocationChild2";
+            this.clmlocationChild2.ReadOnly = true;
+            this.clmlocationChild2.Width = 125;
+            // 
+            // clmRackIdChild2
+            // 
+            this.clmRackIdChild2.HeaderText = "Rack ID";
+            this.clmRackIdChild2.MinimumWidth = 6;
+            this.clmRackIdChild2.Name = "clmRackIdChild2";
+            this.clmRackIdChild2.ReadOnly = true;
+            this.clmRackIdChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRackIdChild2.Visible = false;
+            this.clmRackIdChild2.Width = 125;
+            // 
+            // s
+            // 
+            this.s.HeaderText = "Rack";
+            this.s.MinimumWidth = 6;
+            this.s.Name = "s";
+            this.s.ReadOnly = true;
+            this.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.s.Width = 80;
+            // 
+            // clmChild2MRP
+            // 
+            this.clmChild2MRP.HeaderText = "MRP";
+            this.clmChild2MRP.MinimumWidth = 6;
+            this.clmChild2MRP.Name = "clmChild2MRP";
+            this.clmChild2MRP.ReadOnly = true;
+            this.clmChild2MRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2MRP.Width = 80;
+            // 
+            // clmChild2ExpiryDate
+            // 
+            this.clmChild2ExpiryDate.HeaderText = "Expiry Date";
+            this.clmChild2ExpiryDate.MinimumWidth = 6;
+            this.clmChild2ExpiryDate.Name = "clmChild2ExpiryDate";
+            this.clmChild2ExpiryDate.ReadOnly = true;
+            this.clmChild2ExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2ExpiryDate.Width = 125;
+            // 
+            // clmChild2BatchNo
+            // 
+            this.clmChild2BatchNo.HeaderText = "Batch No.";
+            this.clmChild2BatchNo.MinimumWidth = 6;
+            this.clmChild2BatchNo.Name = "clmChild2BatchNo";
+            this.clmChild2BatchNo.ReadOnly = true;
+            this.clmChild2BatchNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2BatchNo.Width = 110;
+            // 
+            // clmChild2stkqty
+            // 
+            this.clmChild2stkqty.HeaderText = "Stock Quantity";
+            this.clmChild2stkqty.MinimumWidth = 6;
+            this.clmChild2stkqty.Name = "clmChild2stkqty";
+            this.clmChild2stkqty.ReadOnly = true;
+            this.clmChild2stkqty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2stkqty.Visible = false;
+            this.clmChild2stkqty.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn30
+            // 
+            this.dataGridViewTextBoxColumn30.HeaderText = "Requested Qty";
+            this.dataGridViewTextBoxColumn30.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
+            this.dataGridViewTextBoxColumn30.ReadOnly = true;
+            this.dataGridViewTextBoxColumn30.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn30.Visible = false;
+            this.dataGridViewTextBoxColumn30.Width = 125;
+            // 
+            // clmChild2Qty
+            // 
+            this.clmChild2Qty.HeaderText = "Qty";
+            this.clmChild2Qty.MinimumWidth = 6;
+            this.clmChild2Qty.Name = "clmChild2Qty";
+            this.clmChild2Qty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2Qty.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn32
+            // 
+            this.dataGridViewTextBoxColumn32.HeaderText = "Unit";
+            this.dataGridViewTextBoxColumn32.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
+            this.dataGridViewTextBoxColumn32.ReadOnly = true;
+            this.dataGridViewTextBoxColumn32.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn32.Width = 70;
+            // 
+            // clmChild2UTID
+            // 
+            this.clmChild2UTID.HeaderText = "UTID";
+            this.clmChild2UTID.MinimumWidth = 6;
+            this.clmChild2UTID.Name = "clmChild2UTID";
+            this.clmChild2UTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2UTID.Visible = false;
+            this.clmChild2UTID.Width = 125;
+            // 
+            // clmChild2UTDecimal
+            // 
+            this.clmChild2UTDecimal.HeaderText = "UTDecimal";
+            this.clmChild2UTDecimal.MinimumWidth = 6;
+            this.clmChild2UTDecimal.Name = "clmChild2UTDecimal";
+            this.clmChild2UTDecimal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChild2UTDecimal.Visible = false;
+            this.clmChild2UTDecimal.Width = 125;
+            // 
+            // clmchild2uppvalue
+            // 
+            this.clmchild2uppvalue.HeaderText = "clmchild2uppvalue";
+            this.clmchild2uppvalue.MinimumWidth = 6;
+            this.clmchild2uppvalue.Name = "clmchild2uppvalue";
+            this.clmchild2uppvalue.Visible = false;
+            this.clmchild2uppvalue.Width = 125;
+            // 
+            // clmChild2Remove
+            // 
+            this.clmChild2Remove.HeaderText = "";
+            this.clmChild2Remove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmChild2Remove.MinimumWidth = 6;
+            this.clmChild2Remove.Name = "clmChild2Remove";
+            this.clmChild2Remove.ReadOnly = true;
+            this.clmChild2Remove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmChild2Remove.Width = 50;
+            // 
+            // txtChildQty2
+            // 
+            this.txtChildQty2.Location = new System.Drawing.Point(504, 61);
+            this.txtChildQty2.MaxLength = 5;
+            this.txtChildQty2.Name = "txtChildQty2";
+            this.txtChildQty2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtChildQty2.Size = new System.Drawing.Size(97, 27);
+            this.txtChildQty2.TabIndex = 3;
+            this.txtChildQty2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtChildQty2.Enter += new System.EventHandler(this.txtChildQty2_Enter);
+            this.txtChildQty2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChildQty2_KeyDown);
+            this.txtChildQty2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChildQty2_KeyPress);
+            this.txtChildQty2.Leave += new System.EventHandler(this.txtChildQty2_Leave);
+            // 
+            // txtbatch2
+            // 
+            this.txtbatch2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtbatch2.Location = new System.Drawing.Point(65, 61);
+            this.txtbatch2.MaxLength = 1000;
+            this.txtbatch2.Name = "txtbatch2";
+            this.txtbatch2.Size = new System.Drawing.Size(215, 27);
+            this.txtbatch2.TabIndex = 1;
+            this.txtbatch2.TextChanged += new System.EventHandler(this.txtbatch2_TextChanged);
+            this.txtbatch2.Enter += new System.EventHandler(this.txtbatch2_Enter);
+            this.txtbatch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbatch2_KeyDown);
+            this.txtbatch2.Leave += new System.EventHandler(this.txtbatch2_Leave);
+            // 
+            // aa
+            // 
+            this.aa.AutoSize = true;
+            this.aa.Location = new System.Drawing.Point(473, 64);
+            this.aa.Name = "aa";
+            this.aa.Size = new System.Drawing.Size(28, 20);
+            this.aa.TabIndex = 958829;
+            this.aa.Text = "Qty";
             // 
             // DGV_FilterParentLocation
             // 
@@ -1411,8 +1873,10 @@
             // 
             // txtMrp
             // 
+            this.txtMrp.Enabled = false;
             this.txtMrp.Location = new System.Drawing.Point(253, 60);
             this.txtMrp.Name = "txtMrp";
+            this.txtMrp.ReadOnly = true;
             this.txtMrp.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtMrp.Size = new System.Drawing.Size(116, 27);
             this.txtMrp.TabIndex = 3;
@@ -2349,468 +2813,6 @@
             this.label2.TabIndex = 958829;
             this.label2.Text = "Qty";
             // 
-            // grpChildType2
-            // 
-            this.grpChildType2.Controls.Add(this.btnBatch1);
-            this.grpChildType2.Controls.Add(this.DGVBatch2);
-            this.grpChildType2.Controls.Add(this.lblparent2unit);
-            this.grpChildType2.Controls.Add(this.cmbChildProduct2);
-            this.grpChildType2.Controls.Add(this.lblparent2totqty);
-            this.grpChildType2.Controls.Add(this.lblChildStockDetail);
-            this.grpChildType2.Controls.Add(this.label22);
-            this.grpChildType2.Controls.Add(this.label23);
-            this.grpChildType2.Controls.Add(this.txtChildStockqty);
-            this.grpChildType2.Controls.Add(this.label24);
-            this.grpChildType2.Controls.Add(this.label25);
-            this.grpChildType2.Controls.Add(this.label26);
-            this.grpChildType2.Controls.Add(this.btnChild2);
-            this.grpChildType2.Controls.Add(this.label27);
-            this.grpChildType2.Controls.Add(this.lblQuantity2);
-            this.grpChildType2.Controls.Add(this.grdChild2);
-            this.grpChildType2.Controls.Add(this.txtChildQty2);
-            this.grpChildType2.Controls.Add(this.txtbatch2);
-            this.grpChildType2.Controls.Add(this.aa);
-            this.grpChildType2.Location = new System.Drawing.Point(11, 80);
-            this.grpChildType2.Name = "grpChildType2";
-            this.grpChildType2.Size = new System.Drawing.Size(671, 514);
-            this.grpChildType2.TabIndex = 1111226;
-            this.grpChildType2.TabStop = false;
-            this.grpChildType2.Text = "Child";
-            // 
-            // DGVBatch2
-            // 
-            this.DGVBatch2.AllowUserToAddRows = false;
-            this.DGVBatch2.AllowUserToDeleteRows = false;
-            this.DGVBatch2.AllowUserToResizeColumns = false;
-            this.DGVBatch2.AllowUserToResizeRows = false;
-            this.DGVBatch2.BackgroundColor = System.Drawing.Color.White;
-            this.DGVBatch2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVBatch2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGVBatch2.ColumnHeadersHeight = 30;
-            this.DGVBatch2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVBatch2.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DGVBatch2.EnableHeadersVisualStyles = false;
-            this.DGVBatch2.GridColor = System.Drawing.Color.White;
-            this.DGVBatch2.Location = new System.Drawing.Point(65, 93);
-            this.DGVBatch2.Name = "DGVBatch2";
-            this.DGVBatch2.ReadOnly = true;
-            this.DGVBatch2.RowHeadersVisible = false;
-            this.DGVBatch2.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGVBatch2.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.DGVBatch2.RowTemplate.Height = 25;
-            this.DGVBatch2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVBatch2.Size = new System.Drawing.Size(560, 114);
-            this.DGVBatch2.TabIndex = 1111248;
-            this.DGVBatch2.Visible = false;
-            this.DGVBatch2.DoubleClick += new System.EventHandler(this.DGVBatch2_DoubleClick);
-            this.DGVBatch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGVBatch2_KeyDown);
-            // 
-            // lblparent2unit
-            // 
-            this.lblparent2unit.AutoSize = true;
-            this.lblparent2unit.Location = new System.Drawing.Point(633, 484);
-            this.lblparent2unit.Name = "lblparent2unit";
-            this.lblparent2unit.Size = new System.Drawing.Size(0, 20);
-            this.lblparent2unit.TabIndex = 1111228;
-            // 
-            // cmbChildProduct2
-            // 
-            this.cmbChildProduct2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbChildProduct2.FormattingEnabled = true;
-            this.cmbChildProduct2.Location = new System.Drawing.Point(65, 24);
-            this.cmbChildProduct2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbChildProduct2.Name = "cmbChildProduct2";
-            this.cmbChildProduct2.Size = new System.Drawing.Size(311, 27);
-            this.cmbChildProduct2.TabIndex = 0;
-            this.cmbChildProduct2.SelectedIndexChanged += new System.EventHandler(this.cmbChildProduct2_SelectedIndexChanged);
-            this.cmbChildProduct2.Enter += new System.EventHandler(this.cmbChildProduct2_Enter);
-            this.cmbChildProduct2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbChildProduct2_KeyDown);
-            this.cmbChildProduct2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbChildProduct2_KeyPress);
-            this.cmbChildProduct2.Leave += new System.EventHandler(this.cmbChildProduct2_Leave);
-            // 
-            // lblparent2totqty
-            // 
-            this.lblparent2totqty.AutoSize = true;
-            this.lblparent2totqty.BackColor = System.Drawing.Color.White;
-            this.lblparent2totqty.Font = new System.Drawing.Font("Oswald Regular", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblparent2totqty.ForeColor = System.Drawing.Color.Blue;
-            this.lblparent2totqty.Location = new System.Drawing.Point(585, 481);
-            this.lblparent2totqty.Name = "lblparent2totqty";
-            this.lblparent2totqty.Size = new System.Drawing.Size(0, 26);
-            this.lblparent2totqty.TabIndex = 1111225;
-            this.lblparent2totqty.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lblChildStockDetail
-            // 
-            this.lblChildStockDetail.AutoSize = true;
-            this.lblChildStockDetail.Location = new System.Drawing.Point(9, 103);
-            this.lblChildStockDetail.Name = "lblChildStockDetail";
-            this.lblChildStockDetail.Size = new System.Drawing.Size(0, 20);
-            this.lblChildStockDetail.TabIndex = 1111161;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(312, 64);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(58, 20);
-            this.label22.TabIndex = 1111158;
-            this.label22.Text = "Avl Stock";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(9, 64);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(41, 20);
-            this.label23.TabIndex = 1111224;
-            this.label23.Text = "Batch";
-            // 
-            // txtChildStockqty
-            // 
-            this.txtChildStockqty.Enabled = false;
-            this.txtChildStockqty.Location = new System.Drawing.Point(373, 61);
-            this.txtChildStockqty.Name = "txtChildStockqty";
-            this.txtChildStockqty.ReadOnly = true;
-            this.txtChildStockqty.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtChildStockqty.Size = new System.Drawing.Size(97, 27);
-            this.txtChildStockqty.TabIndex = 1000;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(1045, 16);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(0, 20);
-            this.label24.TabIndex = 1111158;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(483, 484);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(99, 20);
-            this.label25.TabIndex = 958825;
-            this.label25.Text = "Total Parent  Qty";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(9, 27);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(52, 20);
-            this.label26.TabIndex = 1111161;
-            this.label26.Text = "Product";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(1262, 43);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(0, 20);
-            this.label27.TabIndex = 958834;
-            // 
-            // lblQuantity2
-            // 
-            this.lblQuantity2.AutoSize = true;
-            this.lblQuantity2.Location = new System.Drawing.Point(604, 64);
-            this.lblQuantity2.Name = "lblQuantity2";
-            this.lblQuantity2.Size = new System.Drawing.Size(0, 20);
-            this.lblQuantity2.TabIndex = 958834;
-            // 
-            // grdChild2
-            // 
-            this.grdChild2.AllowUserToAddRows = false;
-            this.grdChild2.AllowUserToDeleteRows = false;
-            this.grdChild2.AllowUserToResizeRows = false;
-            this.grdChild2.BackgroundColor = System.Drawing.Color.White;
-            this.grdChild2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdChild2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.grdChild2.ColumnHeadersHeight = 30;
-            this.grdChild2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdChild2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmslno2,
-            this.clmpridChild2,
-            this.clmpicodeChild2,
-            this.clmproductChild2,
-            this.clmlocationidChild2,
-            this.clmlocationChild2,
-            this.clmRackIdChild2,
-            this.s,
-            this.clmChild2MRP,
-            this.clmChild2ExpiryDate,
-            this.clmChild2BatchNo,
-            this.clmChild2stkqty,
-            this.dataGridViewTextBoxColumn30,
-            this.clmChild2Qty,
-            this.dataGridViewTextBoxColumn32,
-            this.clmChild2UTID,
-            this.clmChild2UTDecimal,
-            this.clmchild2uppvalue,
-            this.clmChild2Remove});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdChild2.DefaultCellStyle = dataGridViewCellStyle8;
-            this.grdChild2.EnableHeadersVisualStyles = false;
-            this.grdChild2.GridColor = System.Drawing.Color.White;
-            this.grdChild2.Location = new System.Drawing.Point(3, 126);
-            this.grdChild2.Name = "grdChild2";
-            this.grdChild2.RowHeadersVisible = false;
-            this.grdChild2.RowHeadersWidth = 51;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdChild2.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.grdChild2.RowTemplate.Height = 25;
-            this.grdChild2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdChild2.ShowRowErrors = false;
-            this.grdChild2.Size = new System.Drawing.Size(665, 352);
-            this.grdChild2.TabIndex = 100;
-            this.grdChild2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdChild2_CellContentClick);
-            this.grdChild2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdChild2_CellEndEdit);
-            this.grdChild2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdChild2_CellValueChanged);
-            this.grdChild2.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdChild2_DataBindingComplete);
-            this.grdChild2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdChild2_EditingControlShowing);
-            this.grdChild2.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.grdChild2_RowsAdded);
-            this.grdChild2.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.grdChild2_RowsRemoved);
-            // 
-            // clmslno2
-            // 
-            this.clmslno2.HeaderText = "S.No.";
-            this.clmslno2.MinimumWidth = 6;
-            this.clmslno2.Name = "clmslno2";
-            this.clmslno2.ReadOnly = true;
-            this.clmslno2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmslno2.Width = 50;
-            // 
-            // clmpridChild2
-            // 
-            this.clmpridChild2.HeaderText = "PRID";
-            this.clmpridChild2.MinimumWidth = 6;
-            this.clmpridChild2.Name = "clmpridChild2";
-            this.clmpridChild2.ReadOnly = true;
-            this.clmpridChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmpridChild2.Visible = false;
-            this.clmpridChild2.Width = 125;
-            // 
-            // clmpicodeChild2
-            // 
-            this.clmpicodeChild2.HeaderText = "P.I Code";
-            this.clmpicodeChild2.MinimumWidth = 6;
-            this.clmpicodeChild2.Name = "clmpicodeChild2";
-            this.clmpicodeChild2.ReadOnly = true;
-            this.clmpicodeChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmpicodeChild2.Visible = false;
-            this.clmpicodeChild2.Width = 125;
-            // 
-            // clmproductChild2
-            // 
-            this.clmproductChild2.HeaderText = "Product Name";
-            this.clmproductChild2.MinimumWidth = 6;
-            this.clmproductChild2.Name = "clmproductChild2";
-            this.clmproductChild2.ReadOnly = true;
-            this.clmproductChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmproductChild2.Visible = false;
-            this.clmproductChild2.Width = 300;
-            // 
-            // clmlocationidChild2
-            // 
-            this.clmlocationidChild2.HeaderText = "locationid";
-            this.clmlocationidChild2.MinimumWidth = 6;
-            this.clmlocationidChild2.Name = "clmlocationidChild2";
-            this.clmlocationidChild2.Visible = false;
-            this.clmlocationidChild2.Width = 125;
-            // 
-            // clmlocationChild2
-            // 
-            this.clmlocationChild2.HeaderText = "Location";
-            this.clmlocationChild2.MinimumWidth = 6;
-            this.clmlocationChild2.Name = "clmlocationChild2";
-            this.clmlocationChild2.ReadOnly = true;
-            this.clmlocationChild2.Width = 125;
-            // 
-            // clmRackIdChild2
-            // 
-            this.clmRackIdChild2.HeaderText = "Rack ID";
-            this.clmRackIdChild2.MinimumWidth = 6;
-            this.clmRackIdChild2.Name = "clmRackIdChild2";
-            this.clmRackIdChild2.ReadOnly = true;
-            this.clmRackIdChild2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRackIdChild2.Visible = false;
-            this.clmRackIdChild2.Width = 125;
-            // 
-            // s
-            // 
-            this.s.HeaderText = "Rack";
-            this.s.MinimumWidth = 6;
-            this.s.Name = "s";
-            this.s.ReadOnly = true;
-            this.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.s.Width = 80;
-            // 
-            // clmChild2MRP
-            // 
-            this.clmChild2MRP.HeaderText = "MRP";
-            this.clmChild2MRP.MinimumWidth = 6;
-            this.clmChild2MRP.Name = "clmChild2MRP";
-            this.clmChild2MRP.ReadOnly = true;
-            this.clmChild2MRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChild2MRP.Width = 80;
-            // 
-            // clmChild2ExpiryDate
-            // 
-            this.clmChild2ExpiryDate.HeaderText = "Expiry Date";
-            this.clmChild2ExpiryDate.MinimumWidth = 6;
-            this.clmChild2ExpiryDate.Name = "clmChild2ExpiryDate";
-            this.clmChild2ExpiryDate.ReadOnly = true;
-            this.clmChild2ExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChild2ExpiryDate.Width = 125;
-            // 
-            // clmChild2BatchNo
-            // 
-            this.clmChild2BatchNo.HeaderText = "Batch No.";
-            this.clmChild2BatchNo.MinimumWidth = 6;
-            this.clmChild2BatchNo.Name = "clmChild2BatchNo";
-            this.clmChild2BatchNo.ReadOnly = true;
-            this.clmChild2BatchNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChild2BatchNo.Width = 110;
-            // 
-            // clmChild2stkqty
-            // 
-            this.clmChild2stkqty.HeaderText = "Stock Quantity";
-            this.clmChild2stkqty.MinimumWidth = 6;
-            this.clmChild2stkqty.Name = "clmChild2stkqty";
-            this.clmChild2stkqty.ReadOnly = true;
-            this.clmChild2stkqty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChild2stkqty.Visible = false;
-            this.clmChild2stkqty.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn30
-            // 
-            this.dataGridViewTextBoxColumn30.HeaderText = "Requested Qty";
-            this.dataGridViewTextBoxColumn30.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
-            this.dataGridViewTextBoxColumn30.ReadOnly = true;
-            this.dataGridViewTextBoxColumn30.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn30.Visible = false;
-            this.dataGridViewTextBoxColumn30.Width = 125;
-            // 
-            // clmChild2Qty
-            // 
-            this.clmChild2Qty.HeaderText = "Qty";
-            this.clmChild2Qty.MinimumWidth = 6;
-            this.clmChild2Qty.Name = "clmChild2Qty";
-            this.clmChild2Qty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChild2Qty.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn32
-            // 
-            this.dataGridViewTextBoxColumn32.HeaderText = "Unit";
-            this.dataGridViewTextBoxColumn32.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
-            this.dataGridViewTextBoxColumn32.ReadOnly = true;
-            this.dataGridViewTextBoxColumn32.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn32.Width = 70;
-            // 
-            // clmChild2UTID
-            // 
-            this.clmChild2UTID.HeaderText = "UTID";
-            this.clmChild2UTID.MinimumWidth = 6;
-            this.clmChild2UTID.Name = "clmChild2UTID";
-            this.clmChild2UTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChild2UTID.Visible = false;
-            this.clmChild2UTID.Width = 125;
-            // 
-            // clmChild2UTDecimal
-            // 
-            this.clmChild2UTDecimal.HeaderText = "UTDecimal";
-            this.clmChild2UTDecimal.MinimumWidth = 6;
-            this.clmChild2UTDecimal.Name = "clmChild2UTDecimal";
-            this.clmChild2UTDecimal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChild2UTDecimal.Visible = false;
-            this.clmChild2UTDecimal.Width = 125;
-            // 
-            // clmchild2uppvalue
-            // 
-            this.clmchild2uppvalue.HeaderText = "clmchild2uppvalue";
-            this.clmchild2uppvalue.MinimumWidth = 6;
-            this.clmchild2uppvalue.Name = "clmchild2uppvalue";
-            this.clmchild2uppvalue.Visible = false;
-            this.clmchild2uppvalue.Width = 125;
-            // 
-            // clmChild2Remove
-            // 
-            this.clmChild2Remove.HeaderText = "";
-            this.clmChild2Remove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmChild2Remove.MinimumWidth = 6;
-            this.clmChild2Remove.Name = "clmChild2Remove";
-            this.clmChild2Remove.ReadOnly = true;
-            this.clmChild2Remove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmChild2Remove.Width = 50;
-            // 
-            // txtChildQty2
-            // 
-            this.txtChildQty2.Location = new System.Drawing.Point(504, 61);
-            this.txtChildQty2.MaxLength = 5;
-            this.txtChildQty2.Name = "txtChildQty2";
-            this.txtChildQty2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtChildQty2.Size = new System.Drawing.Size(97, 27);
-            this.txtChildQty2.TabIndex = 3;
-            this.txtChildQty2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtChildQty2.Enter += new System.EventHandler(this.txtChildQty2_Enter);
-            this.txtChildQty2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChildQty2_KeyDown);
-            this.txtChildQty2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChildQty2_KeyPress);
-            this.txtChildQty2.Leave += new System.EventHandler(this.txtChildQty2_Leave);
-            // 
-            // txtbatch2
-            // 
-            this.txtbatch2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtbatch2.Location = new System.Drawing.Point(65, 61);
-            this.txtbatch2.MaxLength = 1000;
-            this.txtbatch2.Name = "txtbatch2";
-            this.txtbatch2.Size = new System.Drawing.Size(215, 27);
-            this.txtbatch2.TabIndex = 1;
-            this.txtbatch2.TextChanged += new System.EventHandler(this.txtbatch2_TextChanged);
-            this.txtbatch2.Enter += new System.EventHandler(this.txtbatch2_Enter);
-            this.txtbatch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbatch2_KeyDown);
-            this.txtbatch2.Leave += new System.EventHandler(this.txtbatch2_Leave);
-            // 
-            // aa
-            // 
-            this.aa.AutoSize = true;
-            this.aa.Location = new System.Drawing.Point(473, 64);
-            this.aa.Name = "aa";
-            this.aa.Size = new System.Drawing.Size(28, 20);
-            this.aa.TabIndex = 958829;
-            this.aa.Text = "Qty";
-            // 
             // dataGridViewImageColumn2
             // 
             this.dataGridViewImageColumn2.HeaderText = "";
@@ -2849,6 +2851,10 @@
             this.grpGoodsOutward.ResumeLayout(false);
             this.grpGoodsOutward.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
+            this.grpChildType2.ResumeLayout(false);
+            this.grpChildType2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVBatch2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdChild2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterParentLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterChildLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVFilterBatch)).EndInit();
@@ -2865,10 +2871,6 @@
             this.grpParentType1.ResumeLayout(false);
             this.grpParentType1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStockadjustment)).EndInit();
-            this.grpChildType2.ResumeLayout(false);
-            this.grpChildType2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVBatch2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdChild2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

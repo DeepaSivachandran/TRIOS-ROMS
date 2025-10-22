@@ -1157,6 +1157,50 @@ namespace ROMS
         {
             try
             {
+                try
+                {
+                    if (varFormDisable == 0)
+                    {
+                        if (varCloseFlag == 0)
+                        {
+                            if (pbCloseForm == 0)
+                            {
+                                DialogResult objResponse = MessageBox.Show("Are you sure want to logout?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                if ((objResponse == DialogResult.Yes))
+                                {
+                                    e.Cancel = false;
+                                    varCloseFlag = 1;
+                                    //udfnUserLoginProcess(412);  // Type 412 is Logged Out
+                                    System.Windows.Forms.Application.Exit();
+                                }
+                                else
+                                {
+                                    e.Cancel = true;
+                                }
+                            }
+                            else
+                            {
+                                e.Cancel = false;
+                                varCloseFlag = 1;
+                                System.Windows.Forms.Application.Exit();
+                            }
+                        }
+                    }
+                    if (varFormDisable == 1)
+                    {
+                        this.Cursor = Cursors.No;
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Cursor = Cursors.Default;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
             }
             catch (Exception ex)
             {
@@ -1274,11 +1318,10 @@ namespace ROMS
             try
             {
                 if (pbForceLogoff == 1)
-                {
-
-                    varCloseFlag = 1;
+                {  
                     udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
-                    System.Windows.Forms.Application.Exit();
+                    System.Environment.Exit(1);
+                    Close();
                 }
                 else
                 {

@@ -500,8 +500,9 @@ namespace ROMS
                             grdStockReconciliationList.Columns["Created By"].Width = 120;
                             grdStockReconciliationList.Columns["Created On"].Width = 150;
                             grdStockReconciliationList.Columns["STSID"].Visible = false;
-                            grdStockReconciliationList.Columns["Status"].Width = 120;
+                            grdStockReconciliationList.Columns["Status"].Width = 120; 
                             grdStockReconciliationList.Columns["Status"].Visible = false;
+                            grdStockReconciliationList.Columns["Transaction Type"].Visible = false;
                             grdStockReconciliationList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockReconciliationList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockReconciliationList.Columns["Transaction Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -559,6 +560,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Transaction Date"].Width = 120;
                 DGV_SearchGrid.Columns["Transaction No."].Width = 130;
                 DGV_SearchGrid.Columns["Transaction Type"].Width = 130;
+                DGV_SearchGrid.Columns["Transaction Type"].Visible = false;
                 DGV_SearchGrid.Columns["Stock Location"].Visible = false;
                 DGV_SearchGrid.Columns["TransactionID"].Visible = false;
                 DGV_SearchGrid.Columns["Total Products"].Width = 120;

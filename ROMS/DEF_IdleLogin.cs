@@ -33,6 +33,7 @@ namespace ROMS
             timerClock.Start();
             this.StartPosition = FormStartPosition.Manual;
 
+            objMainForm.pbForceLogoff = 0;
             // Get the size of the primary screen
             Screen primaryScreen = Screen.PrimaryScreen;
             Rectangle screenArea = primaryScreen.WorkingArea; // WorkingArea excludes the taskbar
@@ -141,6 +142,8 @@ namespace ROMS
                                 if (count != 0)
                                 {
                                     IsPasswordCorrect = true;
+                                    objMainForm.pbForceLogoff = 1;
+                                    objMainForm.pbCloseForm = 1; 
                                     this.Close();
                                 }
                                 else if (count == 0)
