@@ -2554,7 +2554,7 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "7.2.1")
                 {
-                    MainForm.objREPORT_Stock.udfnList();
+                    MainForm.objREPORT_Stock.udfnList(0);
                 }
                 if (PbCurrentForm == "7.3.1")
                 {
@@ -4605,12 +4605,17 @@ namespace ROMS
             }
         }
 
+        private void tsmReports_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsmInwardStockReport_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void tsmControlPanel_Click(object sender, EventArgs e)
+        private void tsmInwardStockReport_Click_1(object sender, EventArgs e)
         {
 
         }

@@ -110,7 +110,7 @@ namespace ROMS
                 }
                 else
                 {
-                    udfnStockInwardReport();
+                    udfnStockInwardReport(varFlag);
                 }
             }
             catch (Exception ex)
@@ -2277,7 +2277,7 @@ namespace ROMS
 
         private void btnTelegram_Click(object sender, EventArgs e)
         {
-
+            udfnList(1);
         }
 
         private void label6_Click(object sender, EventArgs e)
