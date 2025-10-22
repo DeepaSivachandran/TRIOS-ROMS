@@ -1476,10 +1476,12 @@ namespace ROMS
                 if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
                 {
                     txtLabelProduct.Text = lbdname.Text;
+                    txtLabelProduct.Font = new Font("Oswald Regular", 10.75f);
                 }
                 else
                 {
                     txtLabelProduct.Text = lbltname.Text;
+                    txtLabelProduct.Font = new Font("Uni Ila.Sundaram-03", 12f);
                 }
 
             }
