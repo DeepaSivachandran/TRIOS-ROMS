@@ -1408,8 +1408,7 @@ namespace ROMS
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
-            this.tsmInwardStockReport.Visible = false;
-            this.tsmInwardStockReport.Click += new System.EventHandler(this.tsmInwardStockReport_Click_1);
+            this.tsmInwardStockReport.Visible = false; 
             // 
             // tsmStockInwardReport
             // 
