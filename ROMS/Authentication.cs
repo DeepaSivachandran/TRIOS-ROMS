@@ -162,11 +162,28 @@ namespace ROMS
                                     MainForm.pbReleaseDt = objDs.Tables[2].Rows[0]["ReleaseDate"].ToString();
                                     this.Hide();
 
-                                    //   Initialize global idle tracker (2 minutes timeout) 
-                                    string varInterval = "10";
-                                    DataService objDserv = new DataService();
-                                    //varInterval = objDserv.displaydata("select * from MR_GeneralSettings");
-                                    var idleManager = new IdleManager(Convert.ToInt32(varInterval));
+                                    //   Initialize global idle tracker (10 minutes timeout) 
+                                    int varInterval = 10,varLogOffenable = 0;
+                                    
+                                    DataService objDserv = new DataService(); 
+                                    SPDataService objdserv = new SPDataService();
+                                    objDs = objdserv.udfnGeneralSettingList(0);
+                                    objdserv.CloseConnection();
+                                    if (objDs != null)
+                                    {
+                                        if (objDs.Tables.Count != 0)
+                                        {
+                                            if (objDs.Tables[0].Rows.Count != 0)
+                                            {
+                                                varLogOffenable = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_ISLogoff"]);
+                                                varInterval = Convert.ToInt32(objDs.Tables[0].Rows[0]["GS_LogoffTime"]);
+                                            }
+                                        }
+                                    }
+                                    if (varLogOffenable == 1)
+                                    {
+                                        var idleManager = new IdleManager(Convert.ToInt32(varInterval));
+                                    }
                                     MainForm obj = new MainForm();
                                     obj.Show();
                                 }
