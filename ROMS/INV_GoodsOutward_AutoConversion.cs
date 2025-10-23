@@ -63,6 +63,7 @@ namespace ROMS
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 82;
                 objMR_Product.ParaProductCode = Convert.ToInt32(varParentId);
+                objMR_Product.paraStockTransfer = MainForm.objINV_GodownOutward.dtStock;
                 SPDataService objdserv = new SPDataService();
                 DataSet objDs;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
@@ -259,8 +260,17 @@ namespace ROMS
                     {
                         if (row.IsNewRow) continue;
 
+                        decimal stockQty = 0;
+                        decimal conversionQty = 0;
+
                         decimal actualQty = 0;
                         decimal transferQty = 0;
+
+                        if (row.Cells["clmQuantity"].Value != null)
+                            decimal.TryParse(row.Cells["clmQuantity"].Value.ToString(), out stockQty);
+
+                        if (row.Cells["clmConversionQty"].Value != null)
+                            decimal.TryParse(row.Cells["clmConversionQty"].Value.ToString(), out conversionQty);
 
                         if (row.Cells["clmActualQty"].Value != null)
                             decimal.TryParse(row.Cells["clmActualQty"].Value.ToString(), out actualQty);
@@ -272,6 +282,18 @@ namespace ROMS
                         {
                             allRowsInvalid = false;
                         }
+                        // Check if stockQty < conversionQty
+                        if (stockQty < conversionQty)
+                        {
+                            row.Cells["clmConversionQty"].Style.BackColor = Color.LightPink;
+                            qtyErrorFlag = true;
+                            blnErrFlag = true;
+                        }
+                        else
+                        {
+                            row.Cells["clmConversionQty"].Style.BackColor = Color.PaleGreen;
+                        }
+
                         // Check if actualQty < transferQty
                         if (actualQty < transferQty)
                         {
@@ -446,21 +468,31 @@ namespace ROMS
         {
             try
             {
+                int varErrFlag = 0;
                 int varQuantity = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmQuantity"].Value);
                 int varUPP = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmUPPValue"].Value);
                 int varTransferQuantity = 0;
+
                 if (grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value != null && grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
                 {
-                    varTransferQuantity = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value);
-                    grdGOConversion.CurrentRow.Cells["clmTransferQty"].ReadOnly = false;
-                    grdGOConversion.CurrentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
+                    if (varErrFlag == 0)
+                    {
+                        varTransferQuantity = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value);
+                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].ReadOnly = false;
+                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
+                    }
+                    else
+                    {
+                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].ReadOnly = true;
+                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
+                    }
                 }
                 else
                 {
+                    varErrFlag = 1;
                     grdGOConversion.CurrentRow.Cells["clmTransferQty"].ReadOnly = true;
                     grdGOConversion.CurrentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
                 }
-
                 if (varQuantity < varTransferQuantity)
                 {
                     grdGOConversion.Rows[e.RowIndex].Cells["clmConversionQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -468,11 +500,16 @@ namespace ROMS
                     string varMessage = objDServ.udfnGetMessages(89);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrFlag = 1;
                 }
                 if (grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value != null && grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
                 {
-                    grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = Convert.ToString(varUPP * varTransferQuantity);
-                    CalculateTotalTransferQty();
+                    if (varErrFlag == 0)
+                    {
+                        grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = Convert.ToString(varUPP * varTransferQuantity);
+                        CalculateTotalTransferQty();
+                    }
+                    else { grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = ""; }
                 }
                 else { grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = ""; }
             }
