@@ -2499,6 +2499,8 @@ namespace ROMS
                     objTRNS_GoodsOutward.paraRemarks = txtRemark.Text.Trim();
                     objTRNS_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
                     objTRNS_GoodsOutward.paraStockTransfer = dtStock;
+                    objTRNS_GoodsOutward.paraStockChild = dtStockChild;
+                    objTRNS_GoodsOutward.paraStockConversion = dtConvertedProduct;
                     objTRNS_GoodsOutward.paraOriginator = varoriginator;
                     objTRNS_GoodsOutward.ParaFlag = varCompleteFlag;
                     objTRNS_GoodsOutward.paraStatusId = varStatusId;

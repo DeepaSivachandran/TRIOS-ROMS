@@ -262,7 +262,7 @@ namespace ROMS
 
                         decimal stockQty = 0;
                         decimal conversionQty = 0;
-
+                            
                         decimal actualQty = 0;
                         decimal transferQty = 0;
 
@@ -304,6 +304,14 @@ namespace ROMS
                         else
                         {
                             row.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
+                        }
+
+                        //ConversionQty filled but TransferQty empty or zero ---
+                        if (conversionQty > 0 && transferQty <= 0)
+                        {
+                            row.Cells["clmTransferQty"].Style.BackColor = Color.LightPink;
+                            allRowsInvalid = true;
+                            blnErrFlag = true;
                         }
                     }
 
@@ -468,56 +476,101 @@ namespace ROMS
         {
             try
             {
-                int varErrFlag = 0;
-                int varQuantity = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmQuantity"].Value);
-                int varUPP = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmUPPValue"].Value);
-                int varTransferQuantity = 0;
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                    return;
+                SPDataService objDServ = new SPDataService();
+                var currentCell = grdGOConversion.Columns[e.ColumnIndex];
+                var currentRow = grdGOConversion.Rows[e.RowIndex];
 
-                if (grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value != null && grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
+                int varErrFlag = 0;
+                int varQuantity = Convert.ToInt32(currentRow.Cells["clmQuantity"].Value ?? 0);
+                int varUPP = Convert.ToInt32(currentRow.Cells["clmUPPValue"].Value ?? 0);
+
+                // --- Handle clmConversionQty edits ---
+                if (currentCell.Name == "clmConversionQty")
                 {
-                    if (varErrFlag == 0)
+                    string strConversion = Convert.ToString(currentRow.Cells["clmConversionQty"].Value)?.Trim();
+                    int varConversionQty = string.IsNullOrEmpty(strConversion) ? 0 : Convert.ToInt32(strConversion);
+
+                    // If empty or zero → disable and clear TransferQty
+                    if (varConversionQty <= 0)
                     {
-                        varTransferQuantity = Convert.ToInt32(grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value);
-                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].ReadOnly = false;
-                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
+                        currentRow.Cells["clmTransferQty"].ReadOnly = true;
+                        currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
+                        currentRow.Cells["clmTransferQty"].Value = "";
+                        currentRow.Cells["clmActualQty"].Value = "";
+                        return;
+                    }
+
+                    // If entered ConversionQty > available Quantity → show warning
+                    if (varQuantity < varConversionQty)
+                    {
+                        currentRow.Cells["clmConversionQty"].Style.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        varErrFlag = 1;
                     }
                     else
                     {
-                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].ReadOnly = true;
-                        grdGOConversion.CurrentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
+                        currentRow.Cells["clmConversionQty"].Style.BackColor = Color.PaleGreen;
                     }
-                }
-                else
-                {
-                    varErrFlag = 1;
-                    grdGOConversion.CurrentRow.Cells["clmTransferQty"].ReadOnly = true;
-                    grdGOConversion.CurrentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
-                }
-                if (varQuantity < varTransferQuantity)
-                {
-                    grdGOConversion.Rows[e.RowIndex].Cells["clmConversionQty"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(89);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    varErrFlag = 1;
-                }
-                if (grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value != null && grdGOConversion.CurrentRow.Cells["clmConversionQty"].Value.ToString().Trim() != "")
-                {
+
+                    // If no error → enable TransferQty
                     if (varErrFlag == 0)
                     {
-                        grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = Convert.ToString(varUPP * varTransferQuantity);
+                        currentRow.Cells["clmTransferQty"].ReadOnly = false;
+                        currentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
+                    }
+                    else
+                    {
+                        currentRow.Cells["clmTransferQty"].ReadOnly = true;
+                        currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
+                    }
+
+                    // Update ActualQty only if no errors
+                    if (varErrFlag == 0 && varConversionQty > 0)
+                    {
+                        currentRow.Cells["clmActualQty"].Value = (varUPP * varConversionQty).ToString();
                         CalculateTotalTransferQty();
                     }
-                    else { grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = ""; }
+                    else
+                    {
+                        currentRow.Cells["clmActualQty"].Value = "";
+                    }
                 }
-                else { grdGOConversion.CurrentRow.Cells["clmActualQty"].Value = ""; }
+
+                // --- Handle clmTransferQty edits ---
+                else if (currentCell.Name == "clmTransferQty")
+                {
+                    string strTransfer = Convert.ToString(currentRow.Cells["clmTransferQty"].Value)?.Trim();
+                    int varTransferQty = string.IsNullOrEmpty(strTransfer) ? 0 : Convert.ToInt32(strTransfer);
+
+                    int varActualQty = Convert.ToInt32(currentRow.Cells["clmActualQty"].Value ?? 0);
+                    int varConversionQty = Convert.ToInt32(currentRow.Cells["clmConversionQty"].Value ?? 0);
+
+                    // Validation: ActualQty < TransferQty → highlight and warn
+                    if (varActualQty < varTransferQty)
+                    {
+                        currentRow.Cells["clmTransferQty"].Style.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        currentRow.Cells["clmTransferQty"].Value = "";
+                        varErrFlag = 1;
+                    }
+                    else
+                    {
+                        currentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+
         }
         private void CalculateTotalTransferQty()
         {

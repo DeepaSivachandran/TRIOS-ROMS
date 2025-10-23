@@ -28,5 +28,7 @@ namespace ROMS.Model
         public DataTable paraStockTransfer { get; set; } = null;
         public string paraTeller { get; set; } = "";
         public string paraUserLocations { get; set; } = "";
+        public DataTable paraStockChild { get; set; } = null;
+        public DataTable paraStockConversion { get; set; } = null;
     }
 }
