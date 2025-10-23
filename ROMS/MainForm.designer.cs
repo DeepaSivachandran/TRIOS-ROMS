@@ -169,6 +169,7 @@ namespace ROMS
             this.tsmStockHoldReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockAging = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockValuation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockVsZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNonMoving = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinanceReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -187,6 +188,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFYSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,8 +196,6 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1408,7 +1408,7 @@ namespace ROMS
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
-            this.tsmInwardStockReport.Visible = false; 
+            this.tsmInwardStockReport.Visible = false;
             // 
             // tsmStockInwardReport
             // 
@@ -1457,6 +1457,14 @@ namespace ROMS
             this.tsmStockValuation.Text = "Stock Valuation";
             this.tsmStockValuation.Visible = false;
             this.tsmStockValuation.Click += new System.EventHandler(this.TsmStockValuation_Click);
+            // 
+            // tsmStockValuationbyDate
+            // 
+            this.tsmStockValuationbyDate.Name = "tsmStockValuationbyDate";
+            this.tsmStockValuationbyDate.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockValuationbyDate.Text = "Stock Valuation by Date";
+            this.tsmStockValuationbyDate.Visible = false;
+            this.tsmStockValuationbyDate.Click += new System.EventHandler(this.tsmStockValuationbyDate_Click);
             // 
             // tsmStockVsZeroRate
             // 
@@ -1592,8 +1600,8 @@ namespace ROMS
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmProfile,
-            this.tsmLogout,
-            this.tsmLock});
+            this.tsmLock,
+            this.tsmLogout});
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmMyProfile.Name = "tsmMyProfile";
@@ -1606,16 +1614,23 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(223, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(223, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
+            // 
+            // tsmLock
+            // 
+            this.tsmLock.Name = "tsmLock";
+            this.tsmLock.Size = new System.Drawing.Size(223, 22);
+            this.tsmLock.Text = "Application Lock (Ctrl + Alt + L)";
+            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click);
             // 
             // tsmFYSettings
             // 
@@ -1696,24 +1711,12 @@ namespace ROMS
             // 
             // statusBar
             // 
-            this.tsmLock.Name = "tsmLock";
-            this.tsmLock.Size = new System.Drawing.Size(180, 22);
-            this.tsmLock.Text = "Lock";
-            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click); 
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Location = new System.Drawing.Point(0, 537);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmStockValuationbyDate
-            // 
-            this.tsmStockValuationbyDate.Name = "tsmStockValuationbyDate";
-            this.tsmStockValuationbyDate.Size = new System.Drawing.Size(204, 22);
-            this.tsmStockValuationbyDate.Text = "Stock Valuation by Date";
-            this.tsmStockValuationbyDate.Visible = false;
-            this.tsmStockValuationbyDate.Click += new System.EventHandler(this.tsmStockValuationbyDate_Click);
             // 
             // MainForm
             // 
@@ -1735,6 +1738,7 @@ namespace ROMS
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ms.ResumeLayout(false);
             this.ms.PerformLayout();

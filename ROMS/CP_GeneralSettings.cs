@@ -133,6 +133,7 @@ namespace ROMS
                             txtRTGSMinLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RTGSMinLimit"]);
                             txtCashLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CashPaymentLimit"]);
                             txtLoggofftime.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_LogoffTime"]);
+                            txtInactiveuserday.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_UserInactivedays"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -175,6 +176,33 @@ namespace ROMS
                             {
                                 chkBoxLogoff.Checked = false;
                             }
+
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_MultiUserSameSystem"]) == "1")
+                            {
+                                chkMultiUserSameSystem.Checked = true;
+                            }
+                            else
+                            {
+                                chkMultiUserSameSystem.Checked = false;
+                            }
+
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_SameUserSameSystem"]) == "1")
+                            {
+                                chkSameUserSameSystem.Checked = true;
+                            }
+                            else
+                            {
+                                chkSameUserSameSystem.Checked = false;
+                            }
+
+                            if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_SameUserMultiSystem"]) == "1")
+                            {
+                                chkSameUserMultipleSystem.Checked = true;
+                            }
+                            else
+                            {
+                                chkSameUserMultipleSystem.Checked = false;
+                            } 
 
                         }
                         if (objDs.Tables[1].Rows.Count != 0)
@@ -240,7 +268,7 @@ namespace ROMS
                 {
                     objGeneralSettings.Rows.Add(varSettingID,Convert.ToInt32(grdOrderType.Rows[i].Cells["Order_TypeID"].Value), Convert.ToInt32(grdOrderType.Rows[i].Cells["Days"].Value));
                 }
-                int varGRNCheck = 0, varDCCheck = 0, varRCCheck = 0, varlogoffEnable = 0;
+                int varGRNCheck = 0, varDCCheck = 0, varRCCheck = 0, varlogoffEnable = 0, varSameUserMultipleSystem=0, varSameUserSameSystem=0, varMultiUserSameSystem=0;
                 if(chkGRNPrint.Checked==true)
                 {
                     varGRNCheck = 1;
@@ -266,8 +294,21 @@ namespace ROMS
                     varlogoffEnable = 1;
                 }
 
+                if (chkSameUserMultipleSystem.Checked == true)
+                {
+                    varSameUserMultipleSystem = 1;
+                }
+                if (chkSameUserSameSystem.Checked == true)
+                {
+                    varSameUserSameSystem = 1;
+                }
+                if (chkMultiUserSameSystem.Checked == true)
+                {
+                    varMultiUserSameSystem = 1;
+                }
 
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtVerificationDays.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit, varlogoffEnable, Convert.ToInt32(txtLoggofftime.Text)); 
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtInactiveuserday.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit, varlogoffEnable, Convert.ToInt32(txtLoggofftime.Text), Convert.ToInt32(txtInactiveuserday.Text), varMultiUserSameSystem, varSameUserSameSystem, varSameUserMultipleSystem); 
+
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -791,6 +832,25 @@ namespace ROMS
                     tpLogoff.ShowAlways = true;
                     tpLogoff.Show("Please valid mins!", txtLoggofftime, 5000);
                     blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtInactiveuserday.Text.Trim()) == "")
+                {
+                    epGeneralSettings.SetError(txtInactiveuserday, "Please days.");
+                    txtInactiveuserday.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerificationDays.ShowAlways = true;
+                    tpVerificationDays.Show("Please enter valid days.", txtVerificationDays, 5000);
+                    blnErrorFlag = true;
+                }
+                else
+                {
+                    if (Convert.ToInt32(txtInactiveuserday.Text) < 1 || Convert.ToInt32(txtInactiveuserday.Text) > 365)
+                    {
+                        epGeneralSettings.SetError(txtInactiveuserday, "Please enter valid days.");
+                        txtInactiveuserday.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpVerificationDays.ShowAlways = true;
+                        tpVerificationDays.Show("Please enter valid days.", txtInactiveuserday, 5000);
+                        blnErrorFlag = true;
+                    }
                 }
 
                 if (blnErrorFlag == false)
@@ -1791,7 +1851,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnUpdate.Focus();
+                    txtInactiveuserday.Focus();
                 }
             }
             catch (Exception ex)
@@ -1913,6 +1973,70 @@ namespace ROMS
             try
             {
                 txtLoggofftime.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtInactiveuserday_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtInactiveuserday.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void txtInactiveuserday_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtInactiveuserday_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtInactiveuserday.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtInactiveuserday_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {
