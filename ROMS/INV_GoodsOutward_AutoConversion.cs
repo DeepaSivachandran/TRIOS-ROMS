@@ -398,7 +398,7 @@ namespace ROMS
                         objOutward.varTamilname,
                         row.Cells["clmRKID"].Value,
                         row.Cells["clmRack"].Value,
-                        string.Format("{0:G29}", decimal.Parse(Convert.ToString(parentMRP))), // MRP
+                        string.Format("{0:F2}", decimal.Parse(Convert.ToString(parentMRP))), // MRP
                         row.Cells["clmExpiryDate"].Value,
                         row.Cells["clmBatchNo"].Value,
                         conversionQty, // Stock Quantity
@@ -412,7 +412,7 @@ namespace ROMS
                     // dtStock
                     objOutward.dtStock.Rows.Add(
                         objOutward.varPRID,
-                        string.Format("{0:G29}", decimal.Parse(Convert.ToString(parentMRP))),  // MRP
+                        string.Format("{0:F2}", decimal.Parse(Convert.ToString(parentMRP))),  // MRP
                         row.Cells["clmExpiryDate"].Value,
                         row.Cells["clmBatchNo"].Value,
                         objOutward.varUTID,
@@ -441,7 +441,7 @@ namespace ROMS
                     // Add row to dtConvertedProduct
                     objOutward.dtConvertedProduct.Rows.Add(
                         objOutward.varPRID,                    // STKCONPR_PRID
-                        parentMRP,                             // STKCONPR_MRP
+                        string.Format("{0:F2}", decimal.Parse(Convert.ToString(parentMRP))), // STKCONPR_MRP
                         row.Cells["clmExpiryDate"].Value,      // STKCONPR_ExpiryDate
                         row.Cells["clmBatchNo"].Value,         // STKCONPR_BatchNo
                         conversionQty,                         // STKCONPR_TranactionQty (Outward Qty)
