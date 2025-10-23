@@ -106,6 +106,7 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnConversion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epGoodsOutward)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -758,6 +759,7 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.btnConversion);
             this.grpproductname.Controls.Add(this.label5);
             this.grpproductname.Controls.Add(this.label4);
             this.grpproductname.Controls.Add(this.txtStockQuantity);
@@ -959,6 +961,19 @@
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 125;
             // 
+            // btnConversion
+            // 
+            this.epGoodsOutward.SetIconAlignment(this.btnConversion, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.btnConversion.Image = global::ROMS.Properties.Resources.Convert;
+            this.btnConversion.Location = new System.Drawing.Point(1248, 36);
+            this.btnConversion.Name = "btnConversion";
+            this.btnConversion.Size = new System.Drawing.Size(35, 35);
+            this.btnConversion.TabIndex = 111111174;
+            this.btnConversion.UseVisualStyleBackColor = true;
+            this.btnConversion.Click += new System.EventHandler(this.btnConversion_Click);
+            this.btnConversion.Enter += new System.EventHandler(this.btnConversion_Enter);
+            this.btnConversion.Leave += new System.EventHandler(this.btnConversion_Leave);
+            // 
             // INV_GodownOutward
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1066,5 +1081,6 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         public System.Windows.Forms.TextBox txtStockQuantity;
         public System.Windows.Forms.TextBox txtTotalItem;
+        private System.Windows.Forms.Button btnConversion;
     }
 }

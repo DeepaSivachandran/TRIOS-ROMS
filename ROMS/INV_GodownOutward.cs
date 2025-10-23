@@ -2142,7 +2142,45 @@ namespace ROMS
             try
             {
                 btnAdd.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConversion_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 udfnAutoConversion();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConversion_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConversion.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConversion_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnConversion.BackColor = Color.Transparent;
             }
             catch (Exception ex)
             {
@@ -2525,6 +2563,8 @@ namespace ROMS
                                 objTRNS_GoodsOutward.paraRemarks = txtRemark.Text.Trim();
                                 objTRNS_GoodsOutward.paraSLID = Convert.ToInt32(varStockLocationId);
                                 objTRNS_GoodsOutward.paraStockTransfer = dtStock;
+                                objTRNS_GoodsOutward.paraStockChild = dtStockChild;
+                                objTRNS_GoodsOutward.paraStockConversion = dtConvertedProduct;
                                 objTRNS_GoodsOutward.paraOriginator = varoriginator;
                                 objTRNS_GoodsOutward.paraCompletedby = Convert.ToInt32(varUserID);
                                 objTRNS_GoodsOutward.ParaFlag = 1;
