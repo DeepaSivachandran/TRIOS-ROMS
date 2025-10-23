@@ -74,6 +74,7 @@
             this.clmPRID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGOConversion)).BeginInit();
             this.SuspendLayout();
@@ -120,7 +121,8 @@
             this.clmTransferQty,
             this.clmPRID,
             this.clmSLID,
-            this.clmRKID});
+            this.clmRKID,
+            this.clmUTID});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -472,6 +474,13 @@
             this.clmRKID.Visible = false;
             this.clmRKID.Width = 5;
             // 
+            // clmUTID
+            // 
+            this.clmUTID.HeaderText = "UTID";
+            this.clmUTID.Name = "clmUTID";
+            this.clmUTID.Visible = false;
+            this.clmUTID.Width = 5;
+            // 
             // INV_GoodsOutward_AutoConversion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -555,5 +564,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
     }
 }

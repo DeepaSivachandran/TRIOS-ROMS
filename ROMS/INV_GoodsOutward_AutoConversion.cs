@@ -79,7 +79,7 @@ namespace ROMS
 
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
-                                int rowIndex = grdGOConversion.Rows.Add(objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"], objDs.Tables[0].Rows[i]["Batch Details"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["Expiry Date"], objDs.Tables[0].Rows[i]["Batch No."], objDs.Tables[0].Rows[i]["Location"], objDs.Tables[0].Rows[i]["Rack"], objDs.Tables[0].Rows[i]["UPP"], objDs.Tables[0].Rows[i]["UPPValue"], objDs.Tables[0].Rows[i]["Quantity"], objDs.Tables[0].Rows[i]["Unit"], "", "", objDs.Tables[0].Rows[i]["Bulk Unit"], "", objDs.Tables[0].Rows[i]["PRID"], objDs.Tables[0].Rows[i]["SLID"], objDs.Tables[0].Rows[i]["RKID"]);
+                                int rowIndex = grdGOConversion.Rows.Add(objDs.Tables[0].Rows[i]["S.No."], objDs.Tables[0].Rows[i]["P.I Code"], objDs.Tables[0].Rows[i]["Product Name"], objDs.Tables[0].Rows[i]["Batch Details"], objDs.Tables[0].Rows[i]["MRP"], objDs.Tables[0].Rows[i]["Expiry Date"], objDs.Tables[0].Rows[i]["Batch No."], objDs.Tables[0].Rows[i]["Location"], objDs.Tables[0].Rows[i]["Rack"], objDs.Tables[0].Rows[i]["UPP"], objDs.Tables[0].Rows[i]["UPPValue"], objDs.Tables[0].Rows[i]["Quantity"], objDs.Tables[0].Rows[i]["Unit"], "", "", objDs.Tables[0].Rows[i]["Bulk Unit"], "", objDs.Tables[0].Rows[i]["PRID"], objDs.Tables[0].Rows[i]["SLID"], objDs.Tables[0].Rows[i]["RKID"], objDs.Tables[0].Rows[i]["UTID"]);
 
                                 grdGOConversion.Rows[rowIndex].Cells["clmTransferQty"].ReadOnly = true;
                                 grdGOConversion.Rows[rowIndex].Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
@@ -241,6 +241,7 @@ namespace ROMS
             try
             {
                 bool blnErrFlag = false;
+                bool qtyErrorFlag = false;
 
                 if (Convert.ToInt32(lblRequiredQty.Text) > Convert.ToInt32(lblTransferQty.Text))
                 {
@@ -270,11 +271,29 @@ namespace ROMS
                         if (actualQty > 0 || transferQty > 0)
                         {
                             allRowsInvalid = false;
-                            break;
+                        }
+                        // Check if actualQty < transferQty
+                        if (actualQty < transferQty)
+                        {
+                            row.Cells["clmTransferQty"].Style.BackColor = Color.LightPink;
+                            qtyErrorFlag = true;
+                            blnErrFlag = true;
+                        }
+                        else
+                        {
+                            row.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
                         }
                     }
 
                     if (allRowsInvalid)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(89);
+                        objDServ.CloseConnection();
+                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        blnErrFlag = true;
+                    }
+                    if (qtyErrorFlag)
                     {
                         SPDataService objDServ = new SPDataService();
                         string varMessage = objDServ.udfnGetMessages(113);
@@ -301,7 +320,7 @@ namespace ROMS
             try
             {
                 // Reference to the parent form
-                var outward = MainForm.objINV_GodownOutward;
+                var objOutward = MainForm.objINV_GodownOutward;
 
                 // Loop through all child product rows
                 foreach (DataGridViewRow row in grdGOConversion.Rows)
@@ -342,11 +361,11 @@ namespace ROMS
                     if (uppValue > 0) parentMRP = mrp / uppValue;
 
                     // Add to parent grid
-                    outward.grdGoodsOutward.Rows.Add(
-                        outward.grdGoodsOutward.Rows.Count + 1,
-                        outward.varPRID,
-                        outward.varPICode,
-                        outward.varTamilname,
+                    objOutward.grdGoodsOutward.Rows.Add(
+                        objOutward.grdGoodsOutward.Rows.Count + 1,
+                        objOutward.varPRID,
+                        objOutward.varPICode,
+                        objOutward.varTamilname,
                         row.Cells["clmRKID"].Value,
                         row.Cells["clmRack"].Value,
                         string.Format("{0:G29}", decimal.Parse(Convert.ToString(parentMRP))), // MRP
@@ -355,30 +374,55 @@ namespace ROMS
                         conversionQty, // Stock Quantity
                         0,
                         transferQty,   // Outward Quantity
-                        outward.varUnit,
-                        outward.varUTID,
-                        outward.varDecimal
+                        objOutward.varUnit,
+                        objOutward.varUTID,
+                        objOutward.varDecimal
                     );
 
                     // dtStock
-                    outward.dtStock.Rows.Add(
-                        outward.varPRID,
+                    objOutward.dtStock.Rows.Add(
+                        objOutward.varPRID,
                         string.Format("{0:G29}", decimal.Parse(Convert.ToString(parentMRP))),  // MRP
                         row.Cells["clmExpiryDate"].Value,
                         row.Cells["clmBatchNo"].Value,
-                        outward.varUTID,
+                        objOutward.varUTID,
                         transferQty,           // Outward Qty
                         row.Cells["clmRKID"].Value,
-                        outward.varDestSLID,
-                        outward.varDestRKID,
+                        row.Cells["clmSLID"].Value,
+                        objOutward.varDestRKID,
                         conversionQty           // Stock Qty
                     );
 
+                    // Add to child stock dtStockChild
+                    objOutward.dtStockChild.Rows.Add(
+                        row.Cells["clmPRID"].Value,          // STK_PRID
+                        row.Cells["clmMRP"].Value,           // STK_MRP
+                        row.Cells["clmExpiryDate"].Value,    // STK_ExpiryDate
+                        row.Cells["clmBatchNo"].Value,       // STK_BatchNo
+                        row.Cells["clmUTID"].Value,          // STK_UTID
+                        row.Cells["clmConversionQty"].Value, // STK_QTY
+                        row.Cells["clmRKID"].Value,          // STK_Source_RKID
+                        row.Cells["clmSLID"].Value,          // STK_Dest_SLID
+                        0,                                   // STK_Dest_RKID
+                        0,                                   // STK_ProType
+                        0                                    // STK_Status
+                    );
+
+                    // Add row to dtConvertedProduct
+                    objOutward.dtConvertedProduct.Rows.Add(
+                        objOutward.varPRID,                    // STKCONPR_PRID
+                        parentMRP,                             // STKCONPR_MRP
+                        row.Cells["clmExpiryDate"].Value,      // STKCONPR_ExpiryDate
+                        row.Cells["clmBatchNo"].Value,         // STKCONPR_BatchNo
+                        conversionQty,                         // STKCONPR_TranactionQty (Outward Qty)
+                        row.Cells["clmRKID"].Value,            // STKCONPR_RKID
+                        row.Cells["clmSLID"].Value             // STKCONPR_SLID
+                    );
                 }
 
-                outward.txtTotalItem.Text = outward.grdGoodsOutward.Rows.Count.ToString();
+                objOutward.txtTotalItem.Text = objOutward.grdGoodsOutward.Rows.Count.ToString();
 
-                var cols = outward.grdGoodsOutward.Columns;
+                var cols = objOutward.grdGoodsOutward.Columns;
                 cols["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 cols["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 cols["clmOutward"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -387,7 +431,7 @@ namespace ROMS
                 cols["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
 
                 // Clear product details
-                outward.udfnProductClear();
+                objOutward.udfnProductClear();
                 this.Close();
             }
             catch (Exception ex)
