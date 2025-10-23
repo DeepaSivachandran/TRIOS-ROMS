@@ -16,6 +16,7 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
+        public DataTable dtStockChild = new DataTable(), dtConvertedProduct = new DataTable();
 
         private ToolTip tpExpiryDate = new ToolTip();
         private ToolTip tpMrp = new ToolTip();
@@ -883,6 +884,31 @@ namespace ROMS
                 dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                 dtStock.Columns.Add("STK_ProType", typeof(int));
                 dtStock.Columns.Add("STK_Status", typeof(int));
+
+
+                dtStockChild.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                dtStockChild.Columns.Add("STK_PRID", typeof(int));
+                dtStockChild.Columns.Add("STK_MRP", typeof(decimal));
+                dtStockChild.Columns.Add("STK_ExpiryDate", typeof(string));
+                dtStockChild.Columns.Add("STK_BatchNo", typeof(string));
+                dtStockChild.Columns.Add("STK_UTID", typeof(string));
+                dtStockChild.Columns.Add("STK_QTY", typeof(string));
+                dtStockChild.Columns.Add("STK_Source_RKID", typeof(string));
+                dtStockChild.Columns.Add("STK_Dest_SLID", typeof(int));
+                dtStockChild.Columns.Add("STK_Dest_RKID", typeof(int));
+                dtStockChild.Columns.Add("STK_ProType", typeof(int));
+                dtStockChild.Columns.Add("STK_Status", typeof(int));
+
+
+                dtConvertedProduct.TableName = "TRN_Stock_Conversion_Products";
+                dtConvertedProduct.Columns.Add("STKCONPR_PRID", typeof(int));
+                dtConvertedProduct.Columns.Add("STKCONPR_MRP", typeof(decimal));
+                dtConvertedProduct.Columns.Add("STKCONPR_ExpiryDate", typeof(string));
+                dtConvertedProduct.Columns.Add("STKCONPR_BatchNo", typeof(string));
+                dtConvertedProduct.Columns.Add("STKCONPR_TranactionQty", typeof(decimal));
+                dtConvertedProduct.Columns.Add("STKCONPR_RKID", typeof(int));
+                dtConvertedProduct.Columns.Add("STKCONPR_SLID", typeof(int));
+
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
