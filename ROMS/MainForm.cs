@@ -4010,6 +4010,11 @@ namespace ROMS
             }
         }
 
+        private void tsmPurchaseReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 

@@ -169,6 +169,7 @@ namespace ROMS
             this.tsmStockHoldReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockAging = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockValuation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockVsZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNonMoving = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinanceReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -187,6 +188,7 @@ namespace ROMS
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFYSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,8 +196,6 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1273,6 +1273,7 @@ namespace ROMS
             this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseReport.Text = "Purchase";
             this.tsmPurchaseReport.Visible = false;
+            this.tsmPurchaseReport.Click += new System.EventHandler(this.tsmPurchaseReport_Click);
             // 
             // tsmPurchaseSummary
             // 
@@ -1408,7 +1409,7 @@ namespace ROMS
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
-            this.tsmInwardStockReport.Visible = false; 
+            this.tsmInwardStockReport.Visible = false;
             // 
             // tsmStockInwardReport
             // 
@@ -1457,6 +1458,14 @@ namespace ROMS
             this.tsmStockValuation.Text = "Stock Valuation";
             this.tsmStockValuation.Visible = false;
             this.tsmStockValuation.Click += new System.EventHandler(this.TsmStockValuation_Click);
+            // 
+            // tsmStockValuationbyDate
+            // 
+            this.tsmStockValuationbyDate.Name = "tsmStockValuationbyDate";
+            this.tsmStockValuationbyDate.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockValuationbyDate.Text = "Stock Valuation by Date";
+            this.tsmStockValuationbyDate.Visible = false;
+            this.tsmStockValuationbyDate.Click += new System.EventHandler(this.tsmStockValuationbyDate_Click);
             // 
             // tsmStockVsZeroRate
             // 
@@ -1617,6 +1626,13 @@ namespace ROMS
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
+            // tsmLock
+            // 
+            this.tsmLock.Name = "tsmLock";
+            this.tsmLock.Size = new System.Drawing.Size(180, 22);
+            this.tsmLock.Text = "Lock";
+            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click);
+            // 
             // tsmFYSettings
             // 
             this.tsmFYSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1696,24 +1712,12 @@ namespace ROMS
             // 
             // statusBar
             // 
-            this.tsmLock.Name = "tsmLock";
-            this.tsmLock.Size = new System.Drawing.Size(180, 22);
-            this.tsmLock.Text = "Lock";
-            this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click); 
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusBar.Location = new System.Drawing.Point(0, 537);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmStockValuationbyDate
-            // 
-            this.tsmStockValuationbyDate.Name = "tsmStockValuationbyDate";
-            this.tsmStockValuationbyDate.Size = new System.Drawing.Size(204, 22);
-            this.tsmStockValuationbyDate.Text = "Stock Valuation by Date";
-            this.tsmStockValuationbyDate.Visible = false;
-            this.tsmStockValuationbyDate.Click += new System.EventHandler(this.tsmStockValuationbyDate_Click);
             // 
             // MainForm
             // 
