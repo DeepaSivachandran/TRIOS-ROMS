@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -212,7 +213,8 @@ namespace ROMS
         public string udfnGeneralSettings(int ViewType, int paraGeneralSettingsID, decimal paraGS_CPA, decimal paraGS_DVA, int paraGS_GRNQty, int paraGS_RAD, 
             int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable, 
             string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2,int paraVerificationDays,int paraAgingMonths,decimal paraLPRatePer,
-            decimal paraRTGSMinLimit, int paraRCStockShow, decimal paraCashPaymentLimit,int paralogoffenable, int paralogofftime)
+            decimal paraRTGSMinLimit, int paraRCStockShow, decimal paraCashPaymentLimit,int paralogoffenable, int paralogofftime,int paraInactivedays, int
+                paraMultiUserSameSystem, int paraSameUserSameSystem, int paraSameUserMultiSystem)
         {
             string varResult = "";
             try
@@ -248,6 +250,13 @@ namespace ROMS
 
                 varSqlCommand.Parameters.AddWithValue("@paralogoffenable", paralogoffenable);
                 varSqlCommand.Parameters.AddWithValue("@paralogofftime", paralogofftime);
+                varSqlCommand.Parameters.AddWithValue("@paraInactivedays", paraInactivedays);
+
+                varSqlCommand.Parameters.AddWithValue("@paraMultiUserSameSystem", paraMultiUserSameSystem);
+                varSqlCommand.Parameters.AddWithValue("@paraSameUserSameSystem", paraSameUserSameSystem);
+                varSqlCommand.Parameters.AddWithValue("@paraSameUserMultiSystem", paraSameUserMultiSystem);
+
+
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -1552,6 +1561,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUser", paraUser);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraSystemName", Dns.GetHostName());
+
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

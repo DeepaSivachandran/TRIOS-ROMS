@@ -551,7 +551,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "INV_StockJournal_ConversionList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Stock Journal";
+            this.Text = "Stock Journal List";
             this.Load += new System.EventHandler(this.INV_GodownOutwardList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_GodownOutwardList_KeyDown);
             this.tsStockJournalList.ResumeLayout(false);

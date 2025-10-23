@@ -3684,7 +3684,7 @@ namespace ROMS
                 }
 
                 txtProductName.Focus();
-                UpdateComboBoxState();
+                UpdateComboBoxState(); grdStockadjustment.ClearSelection();
             }
             catch (Exception ex)
             {
