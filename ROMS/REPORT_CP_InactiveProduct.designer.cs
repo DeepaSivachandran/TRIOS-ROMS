@@ -475,7 +475,7 @@
             // 
             // btnTelegram
             // 
-            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.Image = global::ROMS.Properties.Resources.Telegram;
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTelegram.Location = new System.Drawing.Point(1221, 45);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

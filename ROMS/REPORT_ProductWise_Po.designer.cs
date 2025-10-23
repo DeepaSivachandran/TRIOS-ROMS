@@ -593,7 +593,7 @@
             this.rbNotcomplete.AutoSize = true;
             this.rbNotcomplete.Checked = true;
             this.rbNotcomplete.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbNotcomplete.Location = new System.Drawing.Point(-28, 7);
+            this.rbNotcomplete.Location = new System.Drawing.Point(6, 7);
             this.rbNotcomplete.Name = "rbNotcomplete";
             this.rbNotcomplete.Size = new System.Drawing.Size(97, 21);
             this.rbNotcomplete.TabIndex = 4;
@@ -605,7 +605,7 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(158, 4);
+            this.cmbStatus.Location = new System.Drawing.Point(193, 4);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(117, 27);
             this.cmbStatus.TabIndex = 6;

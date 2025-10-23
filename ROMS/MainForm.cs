@@ -4009,11 +4009,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tsmPurchaseReport_Click(object sender, EventArgs e)
-        {
-
-        }
+         
 
         private void tsmLock_Click(object sender, EventArgs e)
         {
