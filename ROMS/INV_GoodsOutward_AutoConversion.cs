@@ -565,13 +565,24 @@ namespace ROMS
                         currentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
                     }
                 }
+                int requiredQty = Convert.ToInt32(lblRequiredQty.Text);
+                bool isValid = ValidateActualQtyForChildren(grdGOConversion, requiredQty);
+
+                if (!isValid)
+                {
+                    currentRow.Cells["clmConversionQty"].Value = "";
+                    currentRow.Cells["clmActualQty"].Value = "";
+                    CalculateTotalTransferQty();
+                    currentRow.Cells["clmTransferQty"].ReadOnly = true;
+                    currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
+                }
+
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
         private void CalculateTotalTransferQty()
         {
@@ -611,7 +622,41 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private bool ValidateActualQtyForChildren(DataGridView grid, int requiredQty)
+        {
+            try
+            {
+                int varTotalActualQty = 0;
+                int varChildCount = 0;
 
+                foreach (DataGridViewRow row in grid.Rows)
+                {
+                    if (row.Cells["clmActualQty"].Value != null && int.TryParse(row.Cells["clmActualQty"].Value.ToString(), out int actualQty))
+                    {
+                        if (actualQty > 0)
+                        {
+                            varChildCount++;
+                            varTotalActualQty += actualQty;
+                        }
+                    }
+                }
+
+                if (varChildCount == 1)
+                    return true;
+                if (varTotalActualQty > requiredQty)
+                {
+                    string message = $"Total Actual Quantity ({varTotalActualQty}) exceeds Required Quantity ({requiredQty}) for multiple children.";
+                    MessageBox.Show(message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            return true;
+        }
         private void BtnClose_Click(object sender, EventArgs e)
         {
             try
