@@ -288,7 +288,7 @@ namespace ROMS
             this.tsmAccounts.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
             this.tsmAccounts.Size = new System.Drawing.Size(63, 21);
             this.tsmAccounts.Text = "&Accounts";
-            this.tsmAccounts.Visible = false; 
+            this.tsmAccounts.Visible = false;
             // 
             // tsmPurchaseEntry1
             // 
@@ -966,7 +966,7 @@ namespace ROMS
             this.tsmReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
             this.tsmReports.Size = new System.Drawing.Size(57, 21);
             this.tsmReports.Text = "&Reports";
-            this.tsmReports.Visible = false;
+            this.tsmReports.Visible = false; 
             // 
             // tsmMastersReport
             // 
