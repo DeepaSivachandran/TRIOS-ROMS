@@ -565,18 +565,17 @@ namespace ROMS
                         currentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
                     }
                 }
-                int requiredQty = Convert.ToInt32(lblRequiredQty.Text);
-                bool isValid = ValidateActualQtyForChildren(grdGOConversion, requiredQty);
+                //int requiredQty = Convert.ToInt32(lblRequiredQty.Text);
+                //bool isValid = ValidateActualQtyForChildren(grdGOConversion, requiredQty);
 
-                if (!isValid)
-                {
-                    currentRow.Cells["clmConversionQty"].Value = "";
-                    currentRow.Cells["clmActualQty"].Value = "";
-                    CalculateTotalTransferQty();
-                    currentRow.Cells["clmTransferQty"].ReadOnly = true;
-                    currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
-                }
-
+                //if (!isValid)
+                //{
+                //    currentRow.Cells["clmConversionQty"].Value = "";
+                //    currentRow.Cells["clmActualQty"].Value = "";
+                //    CalculateTotalTransferQty();
+                //    currentRow.Cells["clmTransferQty"].ReadOnly = true;
+                //    currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
+                //}
             }
             catch (Exception ex)
             {
