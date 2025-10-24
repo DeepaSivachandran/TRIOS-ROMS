@@ -1179,7 +1179,7 @@ namespace ROMS
                                 {
                                     e.Cancel = false;
                                     varCloseFlag = 1;
-                                    //udfnUserLoginProcess(412);  // Type 412 is Logged Out
+                                    udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412); // Type 412 is Logged Out
                                     System.Windows.Forms.Application.Exit();
                                 }
                                 else
