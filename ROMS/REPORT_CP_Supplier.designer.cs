@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Supplier));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSupplierReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -43,6 +42,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.lblcityid = new System.Windows.Forms.Label();
             this.cmbSupplierType = new System.Windows.Forms.ComboBox();
             this.cmbReturnPolicy = new System.Windows.Forms.ComboBox();
@@ -65,7 +65,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.btnTelegram = new System.Windows.Forms.Button(); 
             this.tsSupplierReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterCity)).BeginInit();
@@ -147,10 +146,16 @@
             this.DGV_FilterCity.AllowUserToResizeRows = false;
             this.DGV_FilterCity.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterCity.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-          
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterCity.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_FilterCity.ColumnHeadersHeight = 30;
             this.DGV_FilterCity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            
             this.DGV_FilterCity.EnableHeadersVisualStyles = false;
             this.DGV_FilterCity.GridColor = System.Drawing.Color.White;
             this.DGV_FilterCity.Location = new System.Drawing.Point(433, 71);
@@ -158,7 +163,9 @@
             this.DGV_FilterCity.ReadOnly = true;
             this.DGV_FilterCity.RowHeadersVisible = false;
             this.DGV_FilterCity.RowHeadersWidth = 51;
-             
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.DGV_FilterCity.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterCity.RowTemplate.Height = 25;
             this.DGV_FilterCity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterCity.Size = new System.Drawing.Size(211, 226);
@@ -225,6 +232,21 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(1296, 41);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 9;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
             // 
             // lblcityid
             // 
@@ -489,21 +511,6 @@
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
-            // 
-            // btnTelegram
-            // 
-            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
-            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1296, 41);
-            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnTelegram.Name = "btnTelegram";
-            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 9;
-            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTelegram.UseVisualStyleBackColor = true;
-            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
-            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
-            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
             // 
             // REPORT_CP_Supplier
             // 

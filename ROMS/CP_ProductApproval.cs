@@ -4749,7 +4749,7 @@ namespace ROMS
                                     int varHSNID = Convert.ToInt32(dr["PRHSN_HSNID"]);
                                     int varAddFlag = Convert.ToInt32(dr["AddFlag"]);
                                     int varEditFlag = Convert.ToInt32(dr["EditFlag"]);
-                                    string changedDate = Convert.ToString(dr["PRHSN_ChangedDate"]);
+                                    string changedDate = DateTime.TryParse(dr["PRHSN_ChangedDate"]?.ToString(), out DateTime dt) ? dt.ToString("yyyy-MM-dd HH:mm:ss.fff") : string.Empty;
                                     int userID = Convert.ToInt32(dr["PRHSN_MakerID"]);
 
                                     // Add row to Purchase Grid (Type = 1)

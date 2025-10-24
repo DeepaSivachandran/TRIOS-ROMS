@@ -1760,6 +1760,11 @@ namespace ROMS
             }
         }
 
+        private void DGV_FilterUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void txtUser_Leave(object sender, EventArgs e)
         {
             try

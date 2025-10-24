@@ -1075,7 +1075,7 @@ namespace ROMS
             }
         }
         private void TxtSupplier_TextChanged(object sender, EventArgs e)
-        {
+       {
             try
             {
                 if (varUpDownKey == 0)

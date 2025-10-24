@@ -11767,7 +11767,7 @@ namespace ROMS
                     PbCGstamt = PbGstamt / 2;
                     PbSGstamt = PbGstamt / 2;
                 }
-                pbCostingRate = PbNetamt / varInvQty;
+                pbCostingRate = PbNetamt / (varInvQty+varFreeQty);
             }
             catch (Exception ex)
             {
