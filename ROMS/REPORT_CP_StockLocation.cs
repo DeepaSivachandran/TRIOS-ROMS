@@ -2070,6 +2070,8 @@ namespace ROMS
         {
             udfnList(1);
         }
+         
+
         private void TxtGroup_TextChanged(object sender, EventArgs e)
         {
             try
