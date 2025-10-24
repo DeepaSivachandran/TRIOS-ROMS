@@ -2840,7 +2840,7 @@
             this.MinimizeBox = false;
             this.Name = "INV_StockJournal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Goods Outward";
+            this.Text = "Stock Conversion";
             this.Load += new System.EventHandler(this.INV_GodownOutward_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_GodownOutward_KeyDown);
             this.Leave += new System.EventHandler(this.INV_GodownOutward_Leave);

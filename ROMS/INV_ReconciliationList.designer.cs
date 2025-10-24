@@ -615,7 +615,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "INV_ReconciliationList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Stock Adjustment";
+            this.Text = "Stock Adjustment List";
             this.Load += new System.EventHandler(this.INV_GodownOutwardList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.INV_GodownOutwardList_KeyDown);
             this.tsStockAdjustment.ResumeLayout(false);

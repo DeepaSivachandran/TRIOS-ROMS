@@ -1600,8 +1600,8 @@ namespace ROMS
             // 
             this.tsmMyProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmProfile,
-            this.tsmLogout,
-            this.tsmLock});
+            this.tsmLock,
+            this.tsmLogout});
             this.tsmMyProfile.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmMyProfile.Name = "tsmMyProfile";
@@ -1614,22 +1614,22 @@ namespace ROMS
             // tsmProfile
             // 
             this.tsmProfile.Name = "tsmProfile";
-            this.tsmProfile.Size = new System.Drawing.Size(180, 22);
+            this.tsmProfile.Size = new System.Drawing.Size(223, 22);
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // tsmLogout
             // 
             this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(180, 22);
+            this.tsmLogout.Size = new System.Drawing.Size(223, 22);
             this.tsmLogout.Text = "Logout";
             this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
             // tsmLock
             // 
             this.tsmLock.Name = "tsmLock";
-            this.tsmLock.Size = new System.Drawing.Size(180, 22);
-            this.tsmLock.Text = "Lock";
+            this.tsmLock.Size = new System.Drawing.Size(223, 22);
+            this.tsmLock.Text = "Application Lock (Ctrl + Alt + L)";
             this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click);
             // 
             // tsmFYSettings
@@ -1738,6 +1738,7 @@ namespace ROMS
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ms.ResumeLayout(false);
             this.ms.PerformLayout();

@@ -4008,7 +4008,24 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            try {
+                if (e.Control && e.Alt && e.KeyCode == Keys.L)
+                {
+                    DEF_IdleLogin obj = new DEF_IdleLogin();
+                    obj.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 
