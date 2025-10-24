@@ -41,6 +41,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_GodownOutward));
             this.epGoodsOutward = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnConversion = new System.Windows.Forms.Button();
             this.tsStockTransferList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlGoodsOutward = new System.Windows.Forms.Panel();
@@ -106,7 +107,6 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnConversion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epGoodsOutward)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -134,6 +134,19 @@
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.btnAdd_Enter);
             this.btnAdd.Leave += new System.EventHandler(this.btnAdd_Leave);
+            // 
+            // btnConversion
+            // 
+            this.epGoodsOutward.SetIconAlignment(this.btnConversion, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.btnConversion.Image = global::ROMS.Properties.Resources.Convert;
+            this.btnConversion.Location = new System.Drawing.Point(1248, 36);
+            this.btnConversion.Name = "btnConversion";
+            this.btnConversion.Size = new System.Drawing.Size(35, 35);
+            this.btnConversion.TabIndex = 7;
+            this.btnConversion.UseVisualStyleBackColor = true;
+            this.btnConversion.Click += new System.EventHandler(this.btnConversion_Click);
+            this.btnConversion.Enter += new System.EventHandler(this.btnConversion_Enter);
+            this.btnConversion.Leave += new System.EventHandler(this.btnConversion_Leave);
             // 
             // tsStockTransferList
             // 
@@ -960,19 +973,6 @@
             this.dataGridViewImageColumn1.ReadOnly = true;
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 125;
-            // 
-            // btnConversion
-            // 
-            this.epGoodsOutward.SetIconAlignment(this.btnConversion, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.btnConversion.Image = global::ROMS.Properties.Resources.Convert;
-            this.btnConversion.Location = new System.Drawing.Point(1248, 36);
-            this.btnConversion.Name = "btnConversion";
-            this.btnConversion.Size = new System.Drawing.Size(35, 35);
-            this.btnConversion.TabIndex = 111111174;
-            this.btnConversion.UseVisualStyleBackColor = true;
-            this.btnConversion.Click += new System.EventHandler(this.btnConversion_Click);
-            this.btnConversion.Enter += new System.EventHandler(this.btnConversion_Enter);
-            this.btnConversion.Leave += new System.EventHandler(this.btnConversion_Leave);
             // 
             // INV_GodownOutward
             // 

@@ -653,6 +653,12 @@ namespace ROMS
                 if (isClose == false) { return; }
                 AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
 
+                if (formInstance != null && !formInstance.IsDisposed)
+                {
+                    formInstance.FormClosing -= null;
+                    formInstance.Dispose();
+                    formInstance = null;
+                }
                 if (formInstance == null || formInstance.IsDisposed)
                 {
                     formInstance = new T();
@@ -740,6 +746,7 @@ namespace ROMS
                 }
 
                 //   formInstance.WindowState = FormWindowState.Maximized;
+
                 formInstance.BringToFront();
                 currentOpenForm = formInstance;
 
