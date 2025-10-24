@@ -499,6 +499,7 @@ namespace ROMS
                         currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
                         currentRow.Cells["clmTransferQty"].Value = "";
                         currentRow.Cells["clmActualQty"].Value = "";
+                        CalculateTotalTransferQty();
                         return;
                     }
 
