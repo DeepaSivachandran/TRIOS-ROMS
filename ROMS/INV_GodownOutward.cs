@@ -1121,19 +1121,6 @@ namespace ROMS
             }
         }
 
-        private void LvStockLocation_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnLvStockLocation();
-                txtTeller.Focus();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         public void udfnLvStockLocation()
         {
             try
@@ -1142,23 +1129,6 @@ namespace ROMS
                 {
                     varStockLocationId = Convert.ToString(DGV_FilterLocation.SelectedRows[0].Cells["SLID"].Value.ToString());
                     txtStockLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void LvStockLocation_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnLvStockLocation();
-                    txtTeller.Focus();
                 }
             }
             catch (Exception ex)
