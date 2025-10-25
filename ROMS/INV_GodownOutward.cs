@@ -706,7 +706,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnAdd.Focus();
+                    if (btnConversion.Enabled == true)
+                    {
+                        btnConversion.Focus();
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
                 }
             }
             catch (Exception ex)
