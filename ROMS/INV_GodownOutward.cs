@@ -871,7 +871,8 @@ namespace ROMS
         private void INV_GodownOutward_Load(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                btnConversion.Enabled = false;
                 dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
                 dtStock.Columns.Add("STK_PRID", typeof(int));
                 dtStock.Columns.Add("STK_MRP", typeof(decimal));
@@ -1187,6 +1188,7 @@ namespace ROMS
                     txtBatchNo.Text = "";
                     txtStockQuantity.Text = "";
                     txtOutwardQuantity.Text = "";
+                    txtOutwardQuantity.BackColor = Color.White;
                     lblQuantity.Text = "";
                     SLID = varStockLocationId;
                     //lvproduct.Items.Clear();
@@ -1389,6 +1391,14 @@ namespace ROMS
                 varChildStockFlag = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["isChildStockFlag"].Value.ToString());
                 txtStockQuantity.TextAlign = HorizontalAlignment.Right;
                 txtMrp.TextAlign = HorizontalAlignment.Right;
+                if (varChildStockFlag == 1)
+                {
+                    btnConversion.Enabled = true;
+                }
+                else
+                {
+                    btnConversion.Enabled = false;
+                }
                 //udfnProductAdd(); 
             }
             catch (Exception ex)
@@ -2832,6 +2842,8 @@ namespace ROMS
                 varRKID = "";
                 varUTID = "";
                 lblQuantity.Text = "";
+                varChildStockFlag = 0;
+                btnConversion.Enabled = false;
             }
             catch (Exception ex)
             {
