@@ -198,11 +198,11 @@
             // lblExpiryDate
             // 
             this.lblExpiryDate.AutoSize = true;
-            this.lblExpiryDate.Location = new System.Drawing.Point(950, 450);
+            this.lblExpiryDate.Location = new System.Drawing.Point(911, 450);
             this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(85, 20);
+            this.lblExpiryDate.Size = new System.Drawing.Size(126, 20);
             this.lblExpiryDate.TabIndex = 1111149;
-            this.lblExpiryDate.Text = "Transfer Qty : ";
+            this.lblExpiryDate.Text = "Total Consumed Qty : ";
             // 
             // lblTransferQty
             // 
@@ -442,7 +442,7 @@
             // 
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGreen;
             this.clmConversionQty.DefaultCellStyle = dataGridViewCellStyle3;
-            this.clmConversionQty.HeaderText = "Conversion Child Qty";
+            this.clmConversionQty.HeaderText = "Convert Child Qty";
             this.clmConversionQty.MaxInputLength = 5;
             this.clmConversionQty.Name = "clmConversionQty";
             this.clmConversionQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -450,7 +450,7 @@
             // 
             // clmActualQty
             // 
-            this.clmActualQty.HeaderText = "Conversion Parent Qty";
+            this.clmActualQty.HeaderText = "Convert Parent Qty";
             this.clmActualQty.Name = "clmActualQty";
             this.clmActualQty.ReadOnly = true;
             this.clmActualQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -471,7 +471,7 @@
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.PaleGreen;
             this.clmTransferQty.DefaultCellStyle = dataGridViewCellStyle5;
-            this.clmTransferQty.HeaderText = "Transfer Qty";
+            this.clmTransferQty.HeaderText = "Consumed Parent Qty";
             this.clmTransferQty.Name = "clmTransferQty";
             this.clmTransferQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmTransferQty.Width = 80;
@@ -545,7 +545,7 @@
             this.MinimizeBox = false;
             this.Name = "INV_GoodsOutward_AutoConversion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Goods Outward Auto Conversion";
+            this.Text = "Child to Parent Auto Conversion";
             this.Load += new System.EventHandler(this.PUR_PODamaged_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PODamaged_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();

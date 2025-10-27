@@ -252,7 +252,29 @@ namespace ROMS
                 bool blnErrFlag = false;
                 bool qtyErrorFlag = false;
 
-                if (Convert.ToInt32(lblRequiredQty.Text) != Convert.ToInt32(lblTransferQty.Text))
+                decimal varRequiredQty = 0;
+                decimal varTransferQty = 0;
+                decimal.TryParse(lblRequiredQty.Text, out varRequiredQty);
+                decimal.TryParse(lblTransferQty.Text, out varTransferQty);
+
+                decimal minUPP = decimal.MaxValue;
+                foreach (DataGridViewRow row in grdGOConversion.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    if (row.Cells["clmUPPValue"]?.Value != null &&
+                        decimal.TryParse(row.Cells["clmUPPValue"].Value.ToString(), out decimal uppVal))
+                    {
+                        if (uppVal < minUPP)
+                            minUPP = uppVal;
+                    }
+                }
+                if (minUPP == decimal.MaxValue)
+                    minUPP = 0;
+
+                decimal varAllowedLimit = varRequiredQty + (minUPP > 0 ? (minUPP - 1) : 0);
+
+                if (varTransferQty < varRequiredQty)
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(113);
@@ -260,6 +282,15 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrFlag = true;
                 }
+                else if (varTransferQty > varAllowedLimit)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(113);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrFlag = true;
+                }
+
                 if (!blnErrFlag)
                 {
                     bool allRowsInvalid = true;
