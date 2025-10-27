@@ -706,6 +706,26 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
+                    decimal stockQty = 0;
+                    decimal outwardQty = 0;
+
+                    decimal.TryParse(txtStockQuantity.Text, out stockQty);
+                    decimal.TryParse(txtOutwardQuantity.Text, out outwardQty);
+                    if (outwardQty < stockQty || outwardQty <= 0)
+                    {
+                        btnConversion.Enabled = false;
+                    }
+                    else
+                    {
+                        if (varChildStockFlag == 1)
+                        {
+                            btnConversion.Enabled = true;
+                        }
+                        else
+                        {
+                            btnConversion.Enabled = false;
+                        }
+                    }
                     if (btnConversion.Enabled == true)
                     {
                         btnConversion.Focus();
