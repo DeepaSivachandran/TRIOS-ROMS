@@ -22,6 +22,7 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varParentId, varMasterType = "0";
         public string pbFormStatus;
+        public int grid_flag = 0;
         public INV_GoodsOutward_AutoConversion()
         {
             InitializeComponent();
@@ -251,7 +252,7 @@ namespace ROMS
                 bool blnErrFlag = false;
                 bool qtyErrorFlag = false;
 
-                if (Convert.ToInt32(lblRequiredQty.Text) > Convert.ToInt32(lblTransferQty.Text))
+                if (Convert.ToInt32(lblRequiredQty.Text) != Convert.ToInt32(lblTransferQty.Text))
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(113);
@@ -481,41 +482,153 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    e.Handled = true;
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    e.Handled = true;
 
-                    DataGridView dgv = (DataGridView)sender;
-                    int colIndex = dgv.CurrentCell.ColumnIndex;
-                    int rowIndex = dgv.CurrentCell.RowIndex;
+                //    DataGridView dgv = (DataGridView)sender;
+                //    int colIndex = dgv.CurrentCell.ColumnIndex;
+                //    int rowIndex = dgv.CurrentCell.RowIndex;
 
-                    // Check if current column is "clmConversionQty"
-                    if (dgv.Columns[colIndex].Name == "clmConversionQty")
-                    {
-                        // Find the "clmTransferQty" column
-                        int targetColIndex = dgv.Columns["clmTransferQty"].Index;
+                //    // Check if current column is "clmConversionQty"
+                //    if (dgv.Columns[colIndex].Name == "clmConversionQty")
+                //    {
+                //        // Find the "clmTransferQty" column
+                //        int targetColIndex = dgv.Columns["clmTransferQty"].Index;
 
-                        // Check if the target cell is NOT read-only
-                        if (!dgv.Rows[rowIndex].Cells[targetColIndex].ReadOnly)
-                        {
-                            dgv.CurrentCell = dgv.Rows[rowIndex].Cells[targetColIndex];
-                            e.Handled = true;
-                            return;
-                        }
-                    }
+                //        // Check if the target cell is NOT read-only
+                //        if (!dgv.Rows[rowIndex].Cells[targetColIndex].ReadOnly)
+                //        {
+                //            dgv.CurrentCell = dgv.Rows[rowIndex].Cells[targetColIndex];
+                //            e.Handled = true;
+                //            return;
+                //        }
+                //    }
 
-                    int nextRow = rowIndex + 1;
-                    if (nextRow < dgv.Rows.Count)
-                    {
-                        dgv.CurrentCell = dgv.Rows[nextRow].Cells[colIndex];
-                    }
-                }
+                //    int nextRow = rowIndex + 1;
+                //    if (nextRow < dgv.Rows.Count)
+                //    {
+                //        dgv.CurrentCell = dgv.Rows[nextRow].Cells[colIndex];
+                //    }
+                //}
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            try
+            {
+                if (grdGOConversion.Focused)
+                    grid_flag = 1;
+
+                if (grid_flag == 1)
+                {
+                    if (keyData == Keys.Enter || keyData == Keys.Right || keyData == Keys.Tab)
+                    {
+                        if (grdGOConversion.CurrentCell == null)
+                            return base.ProcessCmdKey(ref msg, keyData);
+
+                        string currentColumn = grdGOConversion.Columns[grdGOConversion.CurrentCell.ColumnIndex].Name;
+                        if (currentColumn != "clmConversionQty" && currentColumn != "clmTransferQty")
+                            return base.ProcessCmdKey(ref msg, keyData);
+
+                        int icolumn = grdGOConversion.CurrentCell.ColumnIndex;
+                        int irow = grdGOConversion.CurrentCell.RowIndex;
+                        int i = irow;
+                        int intsection = grdGOConversion.Columns.Count - 1;
+                        int intlvariant = grdGOConversion.Columns.Count - 9;
+
+                        if (intsection == icolumn)
+                        {
+                            grdGOConversion.CurrentCell = grdGOConversion[intsection, irow + 1];
+                            icolumn = grdGOConversion.Columns.Count - 1;
+                            irow = grdGOConversion.CurrentCell.RowIndex;
+                        }
+                        else if (intlvariant == icolumn)
+                        {
+                        A:
+                            if (icolumn == grdGOConversion.Columns.Count - 9)
+                            {
+                                if (irow < grdGOConversion.Rows.Count - 1)
+                                {
+                                    grdGOConversion.CurrentCell = grdGOConversion[3, irow + 1];
+                                    icolumn = grdGOConversion.CurrentCell.ColumnIndex;
+                                    irow = grdGOConversion.CurrentCell.RowIndex;
+                                }
+                                else
+                                {
+                                    grdGOConversion.CurrentCell = grdGOConversion[icolumn + 1, irow];
+                                    if (grdGOConversion.CurrentCell.ReadOnly)
+                                    {
+                                        icolumn++;
+                                        goto A;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                grdGOConversion.CurrentCell = grdGOConversion[icolumn + 1, irow];
+                                if (grdGOConversion.CurrentCell.ReadOnly)
+                                {
+                                    icolumn++;
+                                    goto A;
+                                }
+                            }
+                        }
+                        else
+                        {
+                        A:
+                            if (icolumn == grdGOConversion.Columns.Count - 1)
+                            {
+                                if (irow < grdGOConversion.Rows.Count - 1)
+                                {
+                                    grdGOConversion.CurrentCell = grdGOConversion[13, irow + 1];
+                                    icolumn = grdGOConversion.CurrentCell.ColumnIndex;
+                                    irow = grdGOConversion.CurrentCell.RowIndex;
+                                }
+                                else
+                                {
+                                    grdGOConversion.ClearSelection();
+                                }
+                            }
+                            else
+                            {
+                                if (!grdGOConversion[icolumn + 1, irow].Visible)
+                                {
+                                    icolumn++;
+                                    goto A;
+                                }
+                                else
+                                {
+                                    grdGOConversion.CurrentCell = grdGOConversion[icolumn + 1, irow];
+                                    if (grdGOConversion.CurrentCell.ReadOnly)
+                                    {
+                                        icolumn++;
+                                        goto A;
+                                    }
+                                }
+                            }
+                        }
+
+                        grid_flag = 0;
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void grdGoodsOutward_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -545,7 +658,7 @@ namespace ROMS
                         currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
                         currentRow.Cells["clmTransferQty"].Value = "";
                         currentRow.Cells["clmActualQty"].Value = "";
-                        CalculateTotalTransferQty();
+                        //CalculateTotalTransferQty();
                         return;
                     }
 
@@ -573,13 +686,15 @@ namespace ROMS
                     {
                         currentRow.Cells["clmTransferQty"].ReadOnly = true;
                         currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
+                        currentRow.Cells["clmTransferQty"].Value = "";
+                        currentRow.Cells["clmActualQty"].Value = "";
                     }
 
                     // Update ActualQty only if no errors
                     if (varErrFlag == 0 && varConversionQty > 0)
                     {
                         currentRow.Cells["clmActualQty"].Value = (varUPP * varConversionQty).ToString();
-                        CalculateTotalTransferQty();
+                        //CalculateTotalTransferQty();
                     }
                     else
                     {
@@ -610,6 +725,7 @@ namespace ROMS
                     {
                         currentRow.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
                     }
+                    CalculateTotalTransferQty();
                 }
                 //int requiredQty = Convert.ToInt32(lblRequiredQty.Text);
                 //bool isValid = ValidateActualQtyForChildren(grdGOConversion, requiredQty);
@@ -635,6 +751,7 @@ namespace ROMS
             {
                 decimal totalTransferValue = 0;
 
+                /*
                 foreach (DataGridViewRow row in grdGOConversion.Rows)
                 {
                     // Skip new rows or empty rows
@@ -658,7 +775,20 @@ namespace ROMS
 
                     totalTransferValue += upp * transferQty;
                 }
+                */
+                if (grdGOConversion != null && grdGOConversion.Columns.Contains("clmTransferQty"))
+                {
+                    foreach (DataGridViewRow row in grdGOConversion.Rows)
+                    {
+                        if (row.IsNewRow) continue;
 
+                        if (row.Cells["clmTransferQty"]?.Value != null &&
+                            decimal.TryParse(row.Cells["clmTransferQty"].Value.ToString(), out decimal qty))
+                        {
+                            totalTransferValue += qty;
+                        }
+                    }
+                }
                 lblTransferQty.Text = totalTransferValue.ToString("0.##");
             }
             catch (Exception ex)
