@@ -270,7 +270,7 @@ namespace ROMS
 
                         decimal stockQty = 0;
                         decimal conversionQty = 0;
-                            
+
                         decimal actualQty = 0;
                         decimal transferQty = 0;
 
