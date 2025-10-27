@@ -28,21 +28,6 @@ namespace ROMS
         {
             InitializeComponent();
             objValidation.resolutionsettingsForm(this);
-            _security = new SecurityController();
-            lbluserName.Text = MainForm.pbUserName;
-            timerClock.Start();
-            this.StartPosition = FormStartPosition.Manual;
-
-            objMainForm.pbForceLogoff = 0;
-            // Get the size of the primary screen
-            Screen primaryScreen = Screen.PrimaryScreen;
-            Rectangle screenArea = primaryScreen.WorkingArea; // WorkingArea excludes the taskbar
-
-            int x = (screenArea.Width - this.Width) / 2;
-
-            int y = (screenArea.Height - this.Height + 48) / 2;
-
-            this.Location = new Point(x, y);
         }
         public static DEF_IdleLogin GetInstance()
         {
@@ -51,31 +36,7 @@ namespace ROMS
                 instance = new DEF_IdleLogin();
             }
             return instance;
-        }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
@@ -130,7 +91,7 @@ namespace ROMS
                     SPDataService objDser = new SPDataService();
                     int count = 0;
                     // objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
-                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, _security.Encrypt(MainForm.pbUserName.ToLower(), txtPassword.Text), 0, 0, "");
+                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, _security.Encrypt(MainForm.pbUserName.ToLower(), txtPassword.Text), 0, 3, "");
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
@@ -143,7 +104,8 @@ namespace ROMS
                                 {
                                     IsPasswordCorrect = true;
                                     objMainForm.pbForceLogoff = 1;
-                                    objMainForm.pbCloseForm = 1; 
+                                    objMainForm.pbCloseForm = 1;
+                                    objMainForm.udfnUserIdleProcess(Convert.ToInt32(MainForm.pbUserID), 0);
                                     this.Close();
                                 }
                                 else if (count == 0)
@@ -227,5 +189,36 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DEF_IdleLogin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                _security = new SecurityController();
+                lbluserName.Text = MainForm.pbUserName;
+                timerClock.Start();
+                this.StartPosition = FormStartPosition.Manual;
+
+                objMainForm.pbForceLogoff = 0;
+                // Get the size of the primary screen
+                Screen primaryScreen = Screen.PrimaryScreen;
+                Rectangle screenArea = primaryScreen.WorkingArea; // WorkingArea excludes the taskbar
+
+                int x = (screenArea.Width - this.Width) / 2;
+
+                int y = (screenArea.Height - this.Height + 48) / 2;
+
+                this.Location = new Point(x, y);
+
+                objMainForm.udfnUserIdleProcess(Convert.ToInt32(MainForm.pbUserID), 1);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+      
     }
 }

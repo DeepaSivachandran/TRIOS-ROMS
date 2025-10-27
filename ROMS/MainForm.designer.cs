@@ -187,15 +187,17 @@ namespace ROMS
             this.tsmItemMovementReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFYSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearTransactions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmDashBoard = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.timerClock = new System.Windows.Forms.Timer(this.components);
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1618,19 +1620,19 @@ namespace ROMS
             this.tsmProfile.Text = "Profile";
             this.tsmProfile.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
-            // tsmLogout
-            // 
-            this.tsmLogout.Name = "tsmLogout";
-            this.tsmLogout.Size = new System.Drawing.Size(223, 22);
-            this.tsmLogout.Text = "Logout";
-            this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
-            // 
             // tsmLock
             // 
             this.tsmLock.Name = "tsmLock";
             this.tsmLock.Size = new System.Drawing.Size(223, 22);
             this.tsmLock.Text = "Application Lock (Ctrl + Alt + L)";
             this.tsmLock.Click += new System.EventHandler(this.tsmLock_Click);
+            // 
+            // tsmLogout
+            // 
+            this.tsmLogout.Name = "tsmLogout";
+            this.tsmLogout.Size = new System.Drawing.Size(223, 22);
+            this.tsmLogout.Text = "Logout";
+            this.tsmLogout.Click += new System.EventHandler(this.tsmLogout_Click);
             // 
             // tsmFYSettings
             // 
@@ -1687,6 +1689,7 @@ namespace ROMS
             this.ms.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbLogo,
+            this.tsmDashBoard,
             this.tsmpurchase,
             this.tsmAccounts,
             this.tsmInventory,
@@ -1709,6 +1712,15 @@ namespace ROMS
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
             // 
+            // tsmDashBoard
+            // 
+            this.tsmDashBoard.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.tsmDashBoard.Name = "tsmDashBoard";
+            this.tsmDashBoard.Size = new System.Drawing.Size(72, 21);
+            this.tsmDashBoard.Text = "Dashboard";
+            this.tsmDashBoard.Visible = false;
+            this.tsmDashBoard.Click += new System.EventHandler(this.tsmDashBoard_Click);
+            // 
             // statusBar
             // 
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1717,6 +1729,10 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
+            // 
+            // timerClock
+            // 
+            this.timerClock.Tick += new System.EventHandler(this.timerClock_Tick);
             // 
             // MainForm
             // 
@@ -1917,5 +1933,7 @@ namespace ROMS
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripMenuItem tsmLock;
         private System.Windows.Forms.ToolStripMenuItem tsmStockValuationbyDate;
+        private System.Windows.Forms.ToolStripMenuItem tsmDashBoard;
+        private System.Windows.Forms.Timer timerClock;
     }
 }

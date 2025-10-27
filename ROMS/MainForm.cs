@@ -159,8 +159,8 @@ namespace ROMS
         public static CP_UserRole objCP_UserRole;
         // added by venkat on 03-10-2025
         public static CP_UserRoleList objCP_UserRoleList;
-        public static CP_UserRole_SPL objCP_UserRole_SPL;
-
+        public static CP_UserRole_SPL objCP_UserRole_SPL; 
+        public static CP_DashBoard objCP_DashBorad;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -292,6 +292,8 @@ namespace ROMS
         public static REPORT_StockVsZeroRate objREPORT_StockVsZeroRate;
         public static REPORT_Stock_Non_Moving_Products objREPORT_Stock_Non_Moving_Products;
         public static REPORT_CP_UserRole objREPORT_CP_UserRole;
+
+        
 
         public static REPORT_Supplier_Payment objREPORT_Supplier_Payment;
         public static REPORT_ItemMovementAnalysis objREPORT_ItemMovementAnalysis;
@@ -1061,10 +1063,19 @@ namespace ROMS
                         break;
                     }
                 }
+                 
 
-                objStart = new DEF_Start();
-                objStart.MdiParent = this;
-                objStart.Show();
+                if (objDtMenuDetailsUser.AsEnumerable().Any(row => row.Field<int>("mu_code") == 11))
+                {
+                    tsmDashBoard_Click(sender, e);
+                }
+                else
+                {
+                    objStart = new DEF_Start();
+                    objStart.MdiParent = this;
+                    objStart.Show();
+                }
+                timerClock.Start();
             }
             catch (Exception ex)
             {
@@ -1128,6 +1139,24 @@ namespace ROMS
                 return varResult;
             }
         }
+        public string udfnUserIdleProcess(int varUserID, int varType)
+        {
+            string varResult = "";
+            try
+            {
+                //////varType = 0 then not idle , varType= 1 is idle
+                SPDataService objspservice = new SPDataService();
+                varResult = objspservice.udfnUser(6, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType);
+                objspservice.CloseConnection();
+                return varResult;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                return varResult;
+            }
+        }
         //Close Application when click logout
         private void tsbLogout_Click(object sender, EventArgs e)
         {
@@ -1172,7 +1201,8 @@ namespace ROMS
                                 {
                                     e.Cancel = false;
                                     varCloseFlag = 1;
-                                    //udfnUserLoginProcess(412);  // Type 412 is Logged Out
+                                    udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
+                                    udfnUserIdleProcess(Convert.ToInt32(MainForm.pbUserID), 0);// removed idle status
                                     System.Windows.Forms.Application.Exit();
                                 }
                                 else
@@ -1321,7 +1351,8 @@ namespace ROMS
             {
                 if (pbForceLogoff == 1)
                 {  
-                    udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
+                    udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out 
+                    udfnUserIdleProcess(Convert.ToInt32(MainForm.pbUserID), 0);// removed idle status
                     System.Environment.Exit(1);
                     Close();
                 }
@@ -1336,6 +1367,7 @@ namespace ROMS
                             {
                                 varCloseFlag = 1;
                                 udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 412);  // Type 412 is Logged Out
+                                udfnUserIdleProcess(Convert.ToInt32(MainForm.pbUserID), 0);// removed idle status
                                 System.Windows.Forms.Application.Exit();
                             }
                             else
@@ -4018,6 +4050,56 @@ namespace ROMS
                     DEF_IdleLogin obj = new DEF_IdleLogin();
                     obj.ShowDialog();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void tsmDashBoard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_DashBorad, "CP_DashBorad", 11);
+                PbCurrentForm = "6.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void timerClock_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SPDataService objSPDataService = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objSPDataService.udfnUserList(3, "", "", "", Convert.ToInt32(MainForm.pbUserID), 0, "");
+
+
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0) 
+                        {  
+
+                            if (Convert.ToInt32(objDs.Tables[0].Rows[0]["U_LogType"]) == 412)
+                            { 
+                                udfnUserIdleProcess(Convert.ToInt32(MainForm.pbUserID), 0);// removed idle status
+                                System.Environment.Exit(1);
+                                Close();
+                            }
+                        }
+                    }
+                }
+                objSPDataService.CloseConnection();
+
+               
             }
             catch (Exception ex)
             {
