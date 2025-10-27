@@ -86,6 +86,13 @@ namespace ROMS
                                 grdGOConversion.Rows[rowIndex].Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
                             }
                             grdGOConversion.ClearSelection();
+                            if (grdGOConversion.Rows.Count > 0)
+                            {
+                                grdGOConversion.ClearSelection();
+                                grdGOConversion.CurrentCell = grdGOConversion.Rows[0].Cells["clmConversionQty"];
+                                grdGOConversion.Rows[0].Selected = true;
+                                grdGOConversion.Focus();
+                            }
                             grdGOConversion.Columns["clmProduct"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdGOConversion.Columns["clmMRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGOConversion.Columns["clmQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -470,7 +477,46 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void grdGOConversion_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.Handled = true;
 
+                    DataGridView dgv = (DataGridView)sender;
+                    int colIndex = dgv.CurrentCell.ColumnIndex;
+                    int rowIndex = dgv.CurrentCell.RowIndex;
+
+                    // Check if current column is "clmConversionQty"
+                    if (dgv.Columns[colIndex].Name == "clmConversionQty")
+                    {
+                        // Find the "clmTransferQty" column
+                        int targetColIndex = dgv.Columns["clmTransferQty"].Index;
+
+                        // Check if the target cell is NOT read-only
+                        if (!dgv.Rows[rowIndex].Cells[targetColIndex].ReadOnly)
+                        {
+                            dgv.CurrentCell = dgv.Rows[rowIndex].Cells[targetColIndex];
+                            e.Handled = true;
+                            return;
+                        }
+                    }
+
+                    int nextRow = rowIndex + 1;
+                    if (nextRow < dgv.Rows.Count)
+                    {
+                        dgv.CurrentCell = dgv.Rows[nextRow].Cells[colIndex];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void grdGoodsOutward_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {

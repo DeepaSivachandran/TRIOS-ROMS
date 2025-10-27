@@ -99,7 +99,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdGOConversion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdGOConversion.ColumnHeadersHeight = 30;
+            this.grdGOConversion.ColumnHeadersHeight = 45;
             this.grdGOConversion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdGOConversion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmSno,
@@ -146,6 +146,7 @@
             this.grdGOConversion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdGoodsOutward_CellEndEdit);
             this.grdGOConversion.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdGoodsOutward_CurrentCellDirtyStateChanged);
             this.grdGOConversion.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdGoodsOutward_EditingControlShowing);
+            this.grdGOConversion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdGOConversion_KeyDown);
             // 
             // lblNoRecordsFound
             // 
@@ -215,7 +216,7 @@
             // 
             this.lblParentQty.AutoSize = true;
             this.lblParentQty.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentQty.Location = new System.Drawing.Point(101, 65);
+            this.lblParentQty.Location = new System.Drawing.Point(143, 65);
             this.lblParentQty.Name = "lblParentQty";
             this.lblParentQty.Size = new System.Drawing.Size(18, 24);
             this.lblParentQty.TabIndex = 1111152;
@@ -224,17 +225,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 17);
+            this.label2.Location = new System.Drawing.Point(13, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 20);
+            this.label2.Size = new System.Drawing.Size(130, 20);
             this.label2.TabIndex = 1111151;
-            this.label2.Text = "Product Name : ";
+            this.label2.Text = "Product Name             : ";
             // 
             // lblParentTransferUnit
             // 
             this.lblParentTransferUnit.AutoSize = true;
             this.lblParentTransferUnit.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentTransferUnit.Location = new System.Drawing.Point(143, 65);
+            this.lblParentTransferUnit.Location = new System.Drawing.Point(185, 65);
             this.lblParentTransferUnit.Name = "lblParentTransferUnit";
             this.lblParentTransferUnit.Size = new System.Drawing.Size(32, 24);
             this.lblParentTransferUnit.TabIndex = 1111153;
@@ -244,7 +245,7 @@
             // 
             this.lblProductName.AutoSize = true;
             this.lblProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(103, 17);
+            this.lblProductName.Location = new System.Drawing.Point(143, 17);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(112, 20);
             this.lblProductName.TabIndex = 1111154;
@@ -253,17 +254,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 43);
+            this.label1.Location = new System.Drawing.Point(14, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 20);
+            this.label1.Size = new System.Drawing.Size(127, 20);
             this.label1.TabIndex = 1111155;
-            this.label1.Text = "Stock Qty         :";
+            this.label1.Text = "Stock Qty                     :";
             // 
             // lblParentStkQty
             // 
             this.lblParentStkQty.AutoSize = true;
             this.lblParentStkQty.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentStkQty.Location = new System.Drawing.Point(101, 41);
+            this.lblParentStkQty.Location = new System.Drawing.Point(143, 41);
             this.lblParentStkQty.Name = "lblParentStkQty";
             this.lblParentStkQty.Size = new System.Drawing.Size(18, 24);
             this.lblParentStkQty.TabIndex = 1111156;
@@ -273,7 +274,7 @@
             // 
             this.lblParentStkUnit.AutoSize = true;
             this.lblParentStkUnit.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentStkUnit.Location = new System.Drawing.Point(143, 41);
+            this.lblParentStkUnit.Location = new System.Drawing.Point(185, 41);
             this.lblParentStkUnit.Name = "lblParentStkUnit";
             this.lblParentStkUnit.Size = new System.Drawing.Size(32, 24);
             this.lblParentStkUnit.TabIndex = 1111157;
@@ -284,24 +285,24 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 67);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 20);
+            this.label4.Size = new System.Drawing.Size(129, 20);
             this.label4.TabIndex = 1111158;
-            this.label4.Text = "Transfer Qty    :";
+            this.label4.Text = "Outward Qty                :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 92);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 20);
+            this.label5.Size = new System.Drawing.Size(130, 20);
             this.label5.TabIndex = 1111159;
-            this.label5.Text = "Required Qty   :";
+            this.label5.Text = "Conversion Required  :";
             // 
             // lblRequiredQty
             // 
             this.lblRequiredQty.AutoSize = true;
             this.lblRequiredQty.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblRequiredQty.Location = new System.Drawing.Point(101, 90);
+            this.lblRequiredQty.Location = new System.Drawing.Point(143, 90);
             this.lblRequiredQty.Name = "lblRequiredQty";
             this.lblRequiredQty.Size = new System.Drawing.Size(18, 24);
             this.lblRequiredQty.TabIndex = 1111160;
@@ -311,7 +312,7 @@
             // 
             this.lblRequiredUnit.AutoSize = true;
             this.lblRequiredUnit.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblRequiredUnit.Location = new System.Drawing.Point(143, 90);
+            this.lblRequiredUnit.Location = new System.Drawing.Point(185, 90);
             this.lblRequiredUnit.Name = "lblRequiredUnit";
             this.lblRequiredUnit.Size = new System.Drawing.Size(32, 24);
             this.lblRequiredUnit.TabIndex = 1111161;
@@ -404,6 +405,7 @@
             // 
             this.clmUPPValue.HeaderText = "UPPValue";
             this.clmUPPValue.Name = "clmUPPValue";
+            this.clmUPPValue.ReadOnly = true;
             this.clmUPPValue.Visible = false;
             // 
             // clmQuantity
@@ -424,13 +426,13 @@
             // 
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.PaleGreen;
             this.clmConversionQty.DefaultCellStyle = dataGridViewCellStyle2;
-            this.clmConversionQty.HeaderText = "Conversion Qty";
+            this.clmConversionQty.HeaderText = "Conversion Child Qty";
             this.clmConversionQty.MaxInputLength = 5;
             this.clmConversionQty.Name = "clmConversionQty";
             // 
             // clmActualQty
             // 
-            this.clmActualQty.HeaderText = "Quantity";
+            this.clmActualQty.HeaderText = "Conversion Parent Qty";
             this.clmActualQty.Name = "clmActualQty";
             this.clmActualQty.ReadOnly = true;
             this.clmActualQty.Width = 80;
@@ -478,6 +480,7 @@
             // 
             this.clmUTID.HeaderText = "UTID";
             this.clmUTID.Name = "clmUTID";
+            this.clmUTID.ReadOnly = true;
             this.clmUTID.Visible = false;
             this.clmUTID.Width = 5;
             // 
