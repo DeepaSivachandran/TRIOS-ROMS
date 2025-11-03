@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPurchaseList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsTotalQueue = new System.Windows.Forms.ToolStripButton();
             this.tsbQueue = new System.Windows.Forms.ToolStripButton();
             this.tssDelete = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +58,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpFilterby = new System.Windows.Forms.GroupBox();
+            this.lblQueueCount = new System.Windows.Forms.Label();
             this.btnTally = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,8 +79,6 @@
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.lblschedleCode = new System.Windows.Forms.Label();
             this.errPurchaseList = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblQueueCount = new System.Windows.Forms.Label();
-            this.tsTotalQueue = new System.Windows.Forms.ToolStripButton();
             this.tsPurchaseList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseEntryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -96,7 +95,6 @@
             this.tsPurchaseList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsPurchaseList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
-            this.toolStripButton1,
             this.tsTotalQueue,
             this.tsbQueue,
             this.tssDelete,
@@ -121,16 +119,18 @@
             this.tspHeader.Size = new System.Drawing.Size(107, 24);
             this.tspHeader.Text = "Purchase Entry";
             // 
-            // toolStripButton1
+            // tsTotalQueue
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.Enabled = false;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 24);
+            this.tsTotalQueue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsTotalQueue.Enabled = false;
+            this.tsTotalQueue.ForeColor = System.Drawing.Color.DarkGreen;
+            this.tsTotalQueue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsTotalQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsTotalQueue.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.tsTotalQueue.Name = "tsTotalQueue";
+            this.tsTotalQueue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsTotalQueue.Size = new System.Drawing.Size(23, 24);
+            this.tsTotalQueue.Text = "0";
             // 
             // tsbQueue
             // 
@@ -138,7 +138,7 @@
             this.tsbQueue.Image = global::ROMS.Properties.Resources.queue;
             this.tsbQueue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbQueue.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbQueue.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbQueue.Name = "tsbQueue";
             this.tsbQueue.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbQueue.Size = new System.Drawing.Size(63, 24);
@@ -158,7 +158,7 @@
             this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
             this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbDelete.Size = new System.Drawing.Size(63, 24);
@@ -178,7 +178,7 @@
             this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
             this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbEdit.Size = new System.Drawing.Size(50, 24);
@@ -198,7 +198,7 @@
             this.tsbNew.Image = global::ROMS.Properties.Resources.New;
             this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbNew.Size = new System.Drawing.Size(52, 24);
@@ -213,14 +213,14 @@
             this.grdPurchaseEntryList.AllowUserToResizeRows = false;
             this.grdPurchaseEntryList.BackgroundColor = System.Drawing.Color.White;
             this.grdPurchaseEntryList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdPurchaseEntryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdPurchaseEntryList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.grdPurchaseEntryList.ColumnHeadersHeight = 30;
             this.grdPurchaseEntryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdPurchaseEntryList.ColumnHeadersVisible = false;
@@ -233,9 +233,9 @@
             this.grdPurchaseEntryList.Name = "grdPurchaseEntryList";
             this.grdPurchaseEntryList.ReadOnly = true;
             this.grdPurchaseEntryList.RowHeadersVisible = false;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPurchaseEntryList.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPurchaseEntryList.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdPurchaseEntryList.RowTemplate.Height = 25;
             this.grdPurchaseEntryList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdPurchaseEntryList.Size = new System.Drawing.Size(1348, 510);
@@ -282,32 +282,32 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle14;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 74);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -394,6 +394,19 @@
             this.grpFilterby.TabIndex = 958802;
             this.grpFilterby.TabStop = false;
             this.grpFilterby.Text = "Filter By";
+            // 
+            // lblQueueCount
+            // 
+            this.lblQueueCount.AutoSize = true;
+            this.lblQueueCount.BackColor = System.Drawing.SystemColors.Window;
+            this.lblQueueCount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQueueCount.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblQueueCount.Location = new System.Drawing.Point(1271, 0);
+            this.lblQueueCount.Name = "lblQueueCount";
+            this.lblQueueCount.Size = new System.Drawing.Size(17, 20);
+            this.lblQueueCount.TabIndex = 1111198;
+            this.lblQueueCount.Text = "0";
+            this.lblQueueCount.Visible = false;
             // 
             // btnTally
             // 
@@ -618,32 +631,6 @@
             // 
             this.errPurchaseList.ContainerControl = this;
             // 
-            // lblQueueCount
-            // 
-            this.lblQueueCount.AutoSize = true;
-            this.lblQueueCount.BackColor = System.Drawing.SystemColors.Window;
-            this.lblQueueCount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQueueCount.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblQueueCount.Location = new System.Drawing.Point(1271, 0);
-            this.lblQueueCount.Name = "lblQueueCount";
-            this.lblQueueCount.Size = new System.Drawing.Size(17, 20);
-            this.lblQueueCount.TabIndex = 1111198;
-            this.lblQueueCount.Text = "0";
-            this.lblQueueCount.Visible = false;
-            // 
-            // tsTotalQueue
-            // 
-            this.tsTotalQueue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsTotalQueue.Enabled = false;
-            this.tsTotalQueue.ForeColor = System.Drawing.Color.DarkGreen;
-            this.tsTotalQueue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsTotalQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsTotalQueue.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
-            this.tsTotalQueue.Name = "tsTotalQueue";
-            this.tsTotalQueue.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsTotalQueue.Size = new System.Drawing.Size(23, 24);
-            this.tsTotalQueue.Text = "0";
-            // 
             // CP_PurchaseList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -717,7 +704,6 @@
         public System.Windows.Forms.Label lblschedleCode;
         private System.Windows.Forms.ErrorProvider errPurchaseList;
         private System.Windows.Forms.PictureBox picLoader;
-        public System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Label lblQueueCount;
         public System.Windows.Forms.ToolStripSeparator tssDelete;
         public System.Windows.Forms.ToolStripButton tsbDelete;

@@ -506,9 +506,10 @@ namespace ROMS
             {
                 this.Close();
                 MainForm.objPUR_PurchaseQueue = new PUR_PurchaseQueue();
-                MainForm.objPUR_PurchaseQueue.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 22 && sp.EditAccess.Split(',').Contains("10")); 
-                MainForm.objPUR_PurchaseQueue.Show();
+                //MainForm.objPUR_PurchaseQueue.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 22 && sp.EditAccess.Split(',').Contains("10"));
+                objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseQueue);
+                MainForm.objPUR_PurchaseQueue.ShowDialog();
             }
             catch (Exception ex)
             {
