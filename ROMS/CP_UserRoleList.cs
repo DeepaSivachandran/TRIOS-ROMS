@@ -15,7 +15,7 @@ namespace ROMS
     public partial class CP_UserRoleList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         Boolean BlnSearchImageYN = false;
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -36,8 +36,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_UserRole = new CP_UserRole();
-                    MainForm.objCP_UserRole.MdiParent = this.ParentForm;
-                    MainForm.objCP_UserRole.Show();
+                    //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
+                    MainForm.objCP_UserRole.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -263,8 +264,9 @@ namespace ROMS
                         MainForm.objCP_UserRole.varUserRoleName = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
                         MainForm.objCP_UserRole.varCLone = 0;
                         MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objCP_UserRole.MdiParent = this.ParentForm;
-                        MainForm.objCP_UserRole.Show();
+                        //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
+                        objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
+                        MainForm.objCP_UserRole.ShowDialog();
                     }
                 }
                 catch (Exception ex)
@@ -1096,8 +1098,9 @@ namespace ROMS
                             MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
                             MainForm.objCP_UserRole.varCLone = 1; 
                             MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
-                            MainForm.objCP_UserRole.MdiParent = this.ParentForm;
-                            MainForm.objCP_UserRole.Show();
+                            //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
+                            objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
+                            MainForm.objCP_UserRole.ShowDialog();
                             break;
                     }
                 }

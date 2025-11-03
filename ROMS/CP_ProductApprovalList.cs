@@ -13,7 +13,7 @@ namespace ROMS
     public partial class CP_ProductApprovalList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -170,8 +170,9 @@ namespace ROMS
                         MainForm.objCP_ProductApproval.varSALESLID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_SLID"].Value.ToString());
                         MainForm.objCP_ProductApproval.varSALERKID = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["PR_SALE_RKID"].Value.ToString());
                         MainForm.objCP_ProductApproval.btnUpdate.Text = "Update";
-                        MainForm.objCP_ProductApproval.MdiParent = this.ParentForm;
-                        MainForm.objCP_ProductApproval.Show();
+                        //MainForm.objCP_ProductApproval.MdiParent = this.ParentForm;
+                        objMainForm.CenterEntryForm(this, MainForm.objCP_ProductApproval);
+                        MainForm.objCP_ProductApproval.ShowDialog();
                     }
 
                 }

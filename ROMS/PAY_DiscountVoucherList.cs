@@ -16,7 +16,7 @@ namespace ROMS
     public partial class PAY_DiscountVoucherList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable Deftable = new DataTable();

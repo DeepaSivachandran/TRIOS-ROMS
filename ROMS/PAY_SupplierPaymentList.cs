@@ -16,7 +16,7 @@ namespace ROMS
     public partial class PAY_SupplierPaymentList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable Deftable = new DataTable();
@@ -39,8 +39,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
-                    MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
-                    MainForm.objPAY_SupplierPayment.Show();
+                    //MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPAY_SupplierPayment);
+                    MainForm.objPAY_SupplierPayment.ShowDialog();
                 }
                 catch (Exception ex)
                 {

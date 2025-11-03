@@ -14,7 +14,7 @@ namespace ROMS
     public partial class CP_RackGroupList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -39,8 +39,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_RackGroup = new CP_RackGroup();
-                    MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
-                    MainForm.objCP_RackGroup.Show();
+                    //MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_RackGroup);
+                    MainForm.objCP_RackGroup.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -150,8 +151,9 @@ namespace ROMS
                     MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                     // picLoader.Visible = false;
                     //picLoader.SendToBack();
-                    MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
-                    MainForm.objCP_RackGroup.Show();
+                    //MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_RackGroup);
+                    MainForm.objCP_RackGroup.ShowDialog();
                 }
                 catch (Exception ex)
                 {

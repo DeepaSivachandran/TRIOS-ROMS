@@ -13,7 +13,7 @@ namespace ROMS
     public partial class CP_Companylist : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -37,8 +37,9 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objCP_Company = new CP_Company();
-                    MainForm.objCP_Company.MdiParent = this.ParentForm;
-                    MainForm.objCP_Company.Show();
+                    //MainForm.objCP_Company.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_Company);
+                    MainForm.objCP_Company.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -146,9 +147,10 @@ namespace ROMS
                     if (grdCompanyList.SelectedRows.Count > 0)
                     {
                         MainForm.objCP_Company = new CP_Company();
-                        MainForm.objCP_Company.MdiParent = this.ParentForm;
+                        //MainForm.objCP_Company.MdiParent = this.ParentForm;
                         MainForm.objCP_Company.varcompanyid = grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString();
-                        MainForm.objCP_Company.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objCP_Company);
+                        MainForm.objCP_Company.ShowDialog();
                     }
 
                 }

@@ -14,7 +14,7 @@ namespace ROMS
     public partial class CP_Supplierlist : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         Boolean BlnSearchImageYN = false;
         public string varSupplierIds = "0";
         ToolTip tpSupplier = new ToolTip();
@@ -42,8 +42,9 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objCP_Supplier = new CP_Supplier();
-                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                    MainForm.objCP_Supplier.Show();
+                    //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                    MainForm.objCP_Supplier.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -260,11 +261,12 @@ namespace ROMS
                     if (grdSupplierList.SelectedRows.Count > 0)
                     {
                         MainForm.objCP_Supplier = new CP_Supplier();
-                        MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                        //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                         MainForm.objCP_Supplier.btnSave.Text = "Update";
                         MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
                         MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SP_STSId"].Value.ToString());
-                        MainForm.objCP_Supplier.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                        MainForm.objCP_Supplier.ShowDialog();
                     }
                 }
                 catch (Exception ex)
