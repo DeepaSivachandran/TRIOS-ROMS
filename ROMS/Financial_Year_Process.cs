@@ -81,10 +81,11 @@ namespace ROMS
             }
             if (e.KeyCode == Keys.Escape)
             {
-                MainForm.objStart = new DEF_Start();
-                MainForm.objStart.MdiParent = this.ParentForm;
-                MainForm.objStart.Show();
-                this.Close();
+                //MainForm.objStart = new DEF_Start();
+                //MainForm.objStart.MdiParent = this.ParentForm;
+                //MainForm.objStart.Show();
+                //this.Close();
+                windowControl?.TriggerClose();
             }
         }
         private void BtnStart_Click(object sender, EventArgs e)
