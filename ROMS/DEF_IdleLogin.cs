@@ -130,7 +130,7 @@ namespace ROMS
                     SPDataService objDser = new SPDataService();
                     int count = 0;
                     // objDs = objDser.udfnUserList(0,varUserName ,txtUserName.Text.Trim(), GenerateMD5(txtPassword.Text),0,"");
-                    objDs = objDser.udfnUserList(0, "", MainForm.pbUserName, _security.Encrypt(MainForm.pbUserName.ToLower(), txtPassword.Text), 0, 0, "");
+                    objDs = objDser.udfnUserList(0, "", MainForm.pbLoginId, _security.Encrypt(MainForm.pbLoginId.ToLower(), txtPassword.Text), 0, 3, "");
                     objDser.CloseConnection();
                     if (objDs != null)
                     {
