@@ -16,7 +16,7 @@ namespace ROMS
     public partial class PUR_SupplierScheduleList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         int Varflag = 0;
         ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
@@ -36,10 +36,10 @@ namespace ROMS
             {
                 
                 MainForm.objCP_Supplier = new CP_Supplier();
-                MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                 MainForm.objCP_Supplier.PoScheduleFlag = 1;
-                MainForm.objCP_Supplier.Show();
-                
+                objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                MainForm.objCP_Supplier.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1485,11 +1485,13 @@ namespace ROMS
                 if (dgvSupplierScheduleList.SelectedRows.Count > 0)
                 {
                     MainForm.objCP_Supplier = new CP_Supplier();
-                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                     MainForm.objCP_Supplier.btnSave.Text = "Update";
                     MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(dgvSupplierScheduleList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
-                    MainForm.objCP_Supplier.PoScheduleFlag = 1; 
-                    MainForm.objCP_Supplier.Show();
+                    MainForm.objCP_Supplier.PoScheduleFlag = 1;
+
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                    MainForm.objCP_Supplier.ShowDialog();
                 }
             }
             catch (Exception ex)

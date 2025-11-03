@@ -17,6 +17,7 @@ namespace ROMS
     public partial class INV_InwardPurchaseList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
+        MainForm objMainForm = new MainForm();
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -55,7 +56,7 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                    MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                    //MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                     //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
                     MainForm.objINV_InwardPurchase.varInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value);
                     MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value); //for remarks popup
@@ -83,7 +84,8 @@ namespace ROMS
                     //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();
-                    MainForm.objINV_InwardPurchase.Show();
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
+                    MainForm.objINV_InwardPurchase.ShowDialog();
                 }
                 catch (Exception ex)
                 {

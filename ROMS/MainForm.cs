@@ -1091,7 +1091,49 @@ namespace ROMS
 
                 childForm.Location = new Point(Math.Max(x, 0), Math.Max(y, 0));
             }
+            if (mdiClientArea == null && childForm != null)
+            {
+                //childForm.StartPosition = FormStartPosition.Manual;
+                //childForm.WindowState = FormWindowState.Normal;
+
+                //int x = (1536 - childForm.Width) / 2;
+                //int y = (746 - childForm.Height) / 2;
+                // Get screen location of parent form
+                Point parentScreenLocation = this.PointToScreen(Point.Empty);
+
+                // Now offset manually relative to parent
+                int x = parentScreenLocation.X + 91;
+                int y = parentScreenLocation.Y + 500;
+
+                childForm.Location = new Point(x, y);
+
+            }
         }
+        public void CenterEntryForm(Form parentForm, Form childForm)
+        {
+            if (parentForm == null || childForm == null)
+                return;
+
+            childForm.StartPosition = FormStartPosition.Manual;
+            childForm.WindowState = FormWindowState.Normal;
+
+            try
+            {
+                Point parentScreenLocation = parentForm.PointToScreen(Point.Empty);
+                int x = parentScreenLocation.X + (parentForm.Width - childForm.Width) / 2;
+                int y = parentScreenLocation.Y + (parentForm.Height - childForm.Height) / 2;
+
+                x = Math.Max(x, 0);
+                y = Math.Max(y, 0);
+                childForm.Location = new Point(x, y);
+            }
+            catch
+            {
+                childForm.StartPosition = FormStartPosition.CenterScreen;
+            }
+        }
+
+
         public void udfnUserMappedLocations()
         {
             try

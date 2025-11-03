@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class INV_StockJournal_ConversionList : Form
     {
+        MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -39,10 +40,10 @@ namespace ROMS
             {
                 try
                 {
-
                     MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
-                    MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
-                    MainForm.objINV_StockJournalConversion.Show();
+                    //MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockJournalConversion);
+                    MainForm.objINV_StockJournalConversion.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -75,11 +76,12 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
-                        MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                        //MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
                         MainForm.objINV_StockJournalConversion.btnSave.Text = "Update";
                         MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockJournal.SelectedRows[0].Cells["TransactionID"].Value);
                         MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockJournal.SelectedRows[0].Cells["STSID"].Value);
-                        MainForm.objINV_StockJournalConversion.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockJournalConversion);
+                        MainForm.objINV_StockJournalConversion.ShowDialog();
                     }
                 }
                 catch (Exception ex)

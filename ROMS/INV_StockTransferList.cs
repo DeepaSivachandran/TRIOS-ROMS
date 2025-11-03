@@ -39,9 +39,10 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                    MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
+                    //MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
                     MainForm.objINV_StockTransfer.EditFlag = 0;
-                    MainForm.objINV_StockTransfer.Show();
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransfer);
+                    MainForm.objINV_StockTransfer.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -1187,14 +1188,15 @@ namespace ROMS
                             picLoader.BringToFront();
                             Application.DoEvents();
                             MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                            MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                            //MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                             //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                             MainForm.objINV_StockTransfer.EditFlag = 0;
                             MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
                             MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                             MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
                             MainForm.objINV_StockTransfer.varTransactionType = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STR_TransactionType"].Value);
-                            MainForm.objINV_StockTransfer.Show();
+                            objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransfer);
+                            MainForm.objINV_StockTransfer.ShowDialog();
                         }
                     }
                 }

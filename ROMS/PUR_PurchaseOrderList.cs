@@ -15,7 +15,7 @@ namespace ROMS
     public partial class PUR_PurchaseOrderList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private static readonly Dictionary<ToolStripButton, EventHandler> _handlers = new Dictionary<ToolStripButton, EventHandler>();
@@ -60,8 +60,9 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
-                    MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseOrder.Show();
+                    //MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseOrder);
+                    MainForm.objPUR_PurchaseOrder.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -420,9 +421,10 @@ namespace ROMS
                     MainForm.objPUR_PurchaseOrder.txtRemark.Text = Convert.ToString(grdPurchaseorderlist.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
                     MainForm.objPUR_PurchaseOrder.Currentsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
                     MainForm.objPUR_PurchaseOrder.pbSupplierpend = Supplierpend;
-                    MainForm.objPUR_PurchaseOrder.PreCloseAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 17 && sp.EditAccess.Split(',').Contains("9")); 
-                    MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseOrder.Show();
+                    MainForm.objPUR_PurchaseOrder.PreCloseAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 17 && sp.EditAccess.Split(',').Contains("9"));
+                    // MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseOrder);
+                    MainForm.objPUR_PurchaseOrder.ShowDialog();
                 }
                 catch (Exception ex)
                 {

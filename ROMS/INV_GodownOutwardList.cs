@@ -16,7 +16,7 @@ namespace ROMS
     public partial class INV_GodownOutwardList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -41,8 +41,9 @@ namespace ROMS
                 try
                 { 
                     MainForm.objINV_GodownOutward = new INV_GodownOutward();
-                    MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
-                    MainForm.objINV_GodownOutward.Show();
+                    //MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_GodownOutward);
+                    MainForm.objINV_GodownOutward.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -75,11 +76,12 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_GodownOutward = new INV_GodownOutward();
-                        MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
+                        //MainForm.objINV_GodownOutward.MdiParent = this.ParentForm;
                         MainForm.objINV_GodownOutward.btnSave.Text = "Save as Draft";
                         MainForm.objINV_GodownOutward.varGOId = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["GOID"].Value);
                         MainForm.objINV_GodownOutward.varSTSID = Convert.ToInt32(grdOutwardList.SelectedRows[0].Cells["STSID"].Value);
-                        MainForm.objINV_GodownOutward.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objINV_GodownOutward);
+                        MainForm.objINV_GodownOutward.ShowDialog();
                     }
                 }
                 catch (Exception ex)

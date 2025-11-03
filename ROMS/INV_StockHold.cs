@@ -15,7 +15,7 @@ namespace ROMS
     public partial class INV_StockHold : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();

@@ -17,7 +17,7 @@ namespace ROMS
     public partial class PUR_PurchaseDCList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         public int varviewtype = 0;
         public int Varflag = 0, varDCPrintFlag = 0; 
         DataValidation objValidation = new DataValidation();
@@ -41,8 +41,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objPUR_PurchaseDC = new PUR_PurchaseDC();
-                    MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseDC.Show();
+                    //MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseDC);
+                    MainForm.objPUR_PurchaseDC.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -277,8 +278,9 @@ namespace ROMS
                             MainForm.objPUR_PurchaseDC.editFlag = 2;
                         }
                         //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
-                        MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
-                        MainForm.objPUR_PurchaseDC.Show();
+                        //MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
+                        objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseDC);
+                        MainForm.objPUR_PurchaseDC.ShowDialog();
                     }
                 }
                 catch (Exception ex)

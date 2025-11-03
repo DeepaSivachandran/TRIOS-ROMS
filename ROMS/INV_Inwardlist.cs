@@ -16,7 +16,7 @@ namespace ROMS
     public partial class INV_Inwardlist : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -43,8 +43,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_Inward = new INV_Inward();
-                    MainForm.objINV_Inward.MdiParent = this.ParentForm;
-                    MainForm.objINV_Inward.Show(); 
+                    //MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
+                    MainForm.objINV_Inward.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -57,7 +58,6 @@ namespace ROMS
         {
             try
             {
-
                 udfnEdit(0);
             }
             catch (Exception ex)
@@ -311,20 +311,6 @@ namespace ROMS
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TsbNew_Click_1(object sender, EventArgs e)
-        { 
-            try
-            {
-                MainForm.objINV_Inward = new INV_Inward(); 
-                MainForm.objINV_Inward.MdiParent = this.ParentForm; 
-                MainForm.objINV_Inward.Show();
             }
             catch (Exception ex)
             {
@@ -1986,14 +1972,15 @@ namespace ROMS
                             picLoader.BringToFront();
                             Application.DoEvents();
                             MainForm.objINV_Inward = new INV_Inward();
-                            MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                            //MainForm.objINV_Inward.MdiParent = this.ParentForm;
                             MainForm.objINV_Inward.btnSave.Text = "Save as Draft";
                             MainForm.objINV_Inward.varEditflag = 0;
                             MainForm.objINV_Inward.varUpdateflag = 0;
                             MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
                             MainForm.objINV_Inward.varGISTRID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STRID"].Value);
                             MainForm.objINV_Inward.varSTSID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STSID"].Value);
-                            MainForm.objINV_Inward.Show();
+                            objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
+                            MainForm.objINV_Inward.ShowDialog();
                         }
                     }
                 }

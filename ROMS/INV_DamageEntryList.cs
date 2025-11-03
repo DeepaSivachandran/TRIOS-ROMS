@@ -16,7 +16,7 @@ namespace ROMS
     public partial class INV_DamageEntryList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -38,8 +38,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_DamageEntry = new INV_DamageEntry();
-                    MainForm.objINV_DamageEntry.MdiParent = this.ParentForm;
-                    MainForm.objINV_DamageEntry.Show();
+                    //MainForm.objINV_DamageEntry.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_DamageEntry);
+                    MainForm.objINV_DamageEntry.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -760,10 +761,11 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_DamageEntry = new INV_DamageEntry();
-                        MainForm.objINV_DamageEntry.MdiParent = ParentForm;
+                        //MainForm.objINV_DamageEntry.MdiParent = ParentForm;
                         MainForm.objINV_DamageEntry.varID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value);
                         MainForm.objINV_DamageEntry.varStatusID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objINV_DamageEntry.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objINV_DamageEntry);
+                        MainForm.objINV_DamageEntry.ShowDialog();
                     }
                 }
                 catch (Exception ex)

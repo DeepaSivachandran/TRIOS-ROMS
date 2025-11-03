@@ -16,7 +16,7 @@ namespace ROMS
     public partial class INV_ReconciliationList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -41,8 +41,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockAdjustment = new INV_Reconciliation();
-                    MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
-                    MainForm.objINV_StockAdjustment.Show();
+                    //MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
+                    MainForm.objINV_StockAdjustment.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -75,11 +76,12 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockAdjustment = new INV_Reconciliation();
-                        MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                        //MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
                         MainForm.objINV_StockAdjustment.btnSave.Text = "Update";
                         MainForm.objINV_StockAdjustment.varAJId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
                         MainForm.objINV_StockAdjustment.varSTSID = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["STSID"].Value);
-                        MainForm.objINV_StockAdjustment.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
+                        MainForm.objINV_StockAdjustment.ShowDialog();
                     }
                 }
                 catch (Exception ex)

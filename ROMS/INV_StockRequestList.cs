@@ -16,7 +16,7 @@ namespace ROMS
     public partial class INV_StockRequestList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -39,14 +39,14 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockRequest = new INV_StockRequest();
-                    MainForm.objINV_StockRequest.MdiParent = ParentForm;
-                    MainForm.objINV_StockRequest.Show();
+                    //MainForm.objINV_StockRequest.MdiParent = ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockRequest);
+                    MainForm.objINV_StockRequest.ShowDialog();
                 }
                 catch (Exception ex)
                 {
                     objError = new DataError();
                     objError.WriteFile(ex);
-
                 }
             }
         }
@@ -150,12 +150,13 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockRequest = new INV_StockRequest();
-                        MainForm.objINV_StockRequest.MdiParent = ParentForm;
+                        //MainForm.objINV_StockRequest.MdiParent = ParentForm;
                         MainForm.objINV_StockRequest.btnSave.Text = "Update";
                         MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
                         MainForm.objINV_StockRequest.varStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objINV_StockRequest.varMainStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objINV_StockRequest.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockRequest);
+                        MainForm.objINV_StockRequest.ShowDialog();
                     }
                 }
                 catch (Exception ex)

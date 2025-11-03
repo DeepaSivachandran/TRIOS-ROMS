@@ -18,7 +18,7 @@ namespace ROMS
     public partial class CP_PurchaseList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
-        DataValidation objValidation = new DataValidation();
+        DataValidation objValidation = new DataValidation(); MainForm objMainForm = new MainForm();
         DataError objError;
         DataTable Deftable = new DataTable();
         ToolTip tpSupplier = new ToolTip();
@@ -42,14 +42,14 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_Purchase = new CP_Purchase();
-                    MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                    MainForm.objCP_Purchase.Show();
+                    //MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
+                    MainForm.objCP_Purchase.ShowDialog();
                 }
                 catch (Exception ex)
                 {
                     objError = new DataError();
                     objError.WriteFile(ex);
-
                 }
             }
         }
@@ -81,8 +81,9 @@ namespace ROMS
                     MainForm.objCP_Purchase.PbApprovalStsid = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString());
                     MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString());
                     MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Pur Entry Full Status"].Value.ToString());
-                    MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                    MainForm.objCP_Purchase.Show();
+                    //MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
+                    MainForm.objCP_Purchase.ShowDialog();
                 }
                 catch (Exception ex)
                 {

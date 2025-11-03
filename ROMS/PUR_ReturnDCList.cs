@@ -17,6 +17,8 @@ namespace ROMS
     public partial class PUR_ReturnDCList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
+        MainForm objMainForm = new MainForm();
+
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public int Varflag = 0, varviewtype=0;
@@ -41,8 +43,9 @@ namespace ROMS
                 try
                 {
                     MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseReturns.Show();
+                    //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
+                    MainForm.objPUR_PurchaseReturns.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -217,8 +220,9 @@ namespace ROMS
                         MainForm.objPUR_PurchaseReturns.varGRNStatus = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["GRN Status"].Value.ToString());
                         MainForm.objPUR_PurchaseReturns.vaReturnDCSts = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value.ToString());
                         MainForm.objPUR_PurchaseReturns.vareditflag = 0;
-                        MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                        MainForm.objPUR_PurchaseReturns.Show();
+                        //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                        objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
+                        MainForm.objPUR_PurchaseReturns.ShowDialog();
                     }
                 }
                 catch (Exception ex)

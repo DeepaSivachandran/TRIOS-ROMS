@@ -206,7 +206,7 @@
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.Size = new System.Drawing.Size(56, 24);
             this.tsbNew.Text = "&New";
-            this.tsbNew.Click += new System.EventHandler(this.TsbNew_Click_1);
+            this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
             // 
             // pnlinward
             // 

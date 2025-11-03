@@ -16,6 +16,7 @@ namespace ROMS
 {
     public partial class PUR_PurchaseApprovalList : Form
     {
+        MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -288,8 +289,9 @@ namespace ROMS
                     MainForm.objPUR_PurchaseEntryApproval.ApproveAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 23 && sp.EditAccess.Split(',').Contains("9")); 
                     MainForm.objPUR_PurchaseEntryApproval.BillrateViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("9")); 
                     MainForm.objPUR_PurchaseEntryApproval.BillrateEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("10")); 
-                    MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseEntryApproval.Show();
+                    //MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryApproval);
+                    MainForm.objPUR_PurchaseEntryApproval.ShowDialog();
                 }
                 catch (Exception ex)
                 {
