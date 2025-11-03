@@ -16,6 +16,7 @@ namespace ROMS
 {
     public partial class PUR_ReturnDCApprovedList : Form
     {
+        MainForm objMainForm = new MainForm();
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -187,8 +188,9 @@ namespace ROMS
                     MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Supplier ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Schedule ID"].Value.ToString());
                     MainForm.objPUR_PurchaseReturns.vareditflag = 1;
-                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseReturns.Show();
+                    //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
+                    MainForm.objPUR_PurchaseReturns.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -1500,9 +1502,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
-                    MainForm.objINV_SalesInvoiceList.MdiParent = this.ParentForm;
-                    MainForm.objINV_SalesInvoiceList.Show();
+                    //MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
+                    //MainForm.objINV_SalesInvoiceList.MdiParent = this.ParentForm;
+                    //MainForm.objINV_SalesInvoiceList.Show();
                     this.Close();
                 }
             }
@@ -1714,9 +1716,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
-                MainForm.objINV_SalesInvoiceList.MdiParent = this.ParentForm;
-                MainForm.objINV_SalesInvoiceList.Show();
+                //MainForm.objINV_SalesInvoiceList = new PUR_ReturnDCList();
+                //MainForm.objINV_SalesInvoiceList.MdiParent = this.ParentForm;
+                //MainForm.objINV_SalesInvoiceList.Show();
                 this.Close();
             }
             catch (Exception ex)

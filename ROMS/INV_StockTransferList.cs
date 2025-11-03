@@ -1796,11 +1796,12 @@ namespace ROMS
                 //MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
                 //objMainForm.OpenReportForm(ref MainForm.objINV_StockTransferQueue, "INV_StockTransferQueue", 303);
                 //MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
-                this.Close();
+                
                 MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
-                MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
+                //MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
-                MainForm.objINV_StockTransferQueue.Show();
+                objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransferQueue);
+                MainForm.objINV_StockTransferQueue.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -194,9 +194,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objINV_StockTransferList = new INV_StockTransferList();
-                    MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
-                    MainForm.objINV_StockTransferList.Show();
+                    //MainForm.objINV_StockTransferList = new INV_StockTransferList();
+                    //MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
+                    //MainForm.objINV_StockTransferList.Show();
                     this.Close();
                 }
             }
@@ -1069,7 +1069,7 @@ namespace ROMS
                             picLoader.BringToFront();
                             Application.DoEvents();
                             MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                            MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                            //MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                             //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                             MainForm.objINV_StockTransfer.varUpdateflag = 1;
                             MainForm.objINV_StockTransfer.grdStockTransfer.Columns["clmRemove"].Visible = false;
@@ -1077,7 +1077,8 @@ namespace ROMS
                             MainForm.objINV_StockTransfer.varStockRequestID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                             MainForm.objINV_StockTransfer.varStockRequestSLID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SLID"].Value);
                             MainForm.objINV_StockTransfer.ComID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["COMID"].Value);
-                            MainForm.objINV_StockTransfer.Show();
+                            objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransfer);
+                            MainForm.objINV_StockTransfer.ShowDialog();
                         }
                     }
                 }
@@ -1511,9 +1512,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objINV_StockTransferList = new INV_StockTransferList();
-                MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
-                MainForm.objINV_StockTransferList.Show();
+                //MainForm.objINV_StockTransferList = new INV_StockTransferList();
+                //MainForm.objINV_StockTransferList.MdiParent = this.ParentForm;
+                //MainForm.objINV_StockTransferList.Show();
                 this.Close();
             }
             catch (Exception ex)

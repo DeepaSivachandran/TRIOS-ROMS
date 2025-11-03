@@ -357,11 +357,11 @@ namespace ROMS
         {
             try
             {
-                this.Close();
                 MainForm.objINV_InwardlistQueue = new INV_InwardlistQueue();
-                MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
+                //MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_InwardlistQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("10"));
-                MainForm.objINV_InwardlistQueue.Show();
+                objMainForm.CenterEntryForm(this, MainForm.objINV_InwardlistQueue);
+                MainForm.objINV_InwardlistQueue.ShowDialog();
             }
             catch (Exception ex)
             {

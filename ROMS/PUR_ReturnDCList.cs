@@ -1783,10 +1783,10 @@ namespace ROMS
         {
             try
             {
-                this.Close();
                 MainForm.objPUR_ReturnApprovedList = new PUR_ReturnDCApprovedList();
-                MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_ReturnApprovedList.Show();
+                //MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
+                objMainForm.CenterEntryForm(this, MainForm.objPUR_ReturnApprovedList);
+                MainForm.objPUR_ReturnApprovedList.ShowDialog();
             }
             catch (Exception ex)
             {

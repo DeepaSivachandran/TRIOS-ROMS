@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class PUR_PurchaseEntryApprovedList : Form
     {
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
@@ -240,8 +241,9 @@ namespace ROMS
                 MainForm.objCP_Purchase.varUnApproveFlag = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_CompleteFlag"].Value);
                 MainForm.objCP_Purchase.pbPaymentCompletedFlag = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["Payment Status"].Value);
                 //MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
-                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                MainForm.objCP_Purchase.Show();
+                //MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
+                MainForm.objCP_Purchase.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -414,9 +416,10 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-                    MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
-                    MainForm.objPUR_PurchaseApprovalList.Show();
+                    this.Close();
+                    //MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                    //MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                    //MainForm.objPUR_PurchaseApprovalList.Show();
                 }
             }
             catch (Exception ex)
@@ -1356,9 +1359,10 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-                MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseApprovalList.Show();
+                this.Close();
+                //MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                //MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                //MainForm.objPUR_PurchaseApprovalList.Show();
             }
             catch (Exception ex)
             {

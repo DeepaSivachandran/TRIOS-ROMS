@@ -1347,8 +1347,9 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseEntryApprovedList = new PUR_PurchaseEntryApprovedList();
-                MainForm.objPUR_PurchaseEntryApprovedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryApprovedList.Show();
+                //MainForm.objPUR_PurchaseEntryApprovedList.MdiParent = this.ParentForm;
+                objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryApprovedList);
+                MainForm.objPUR_PurchaseEntryApprovedList.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1384,8 +1385,9 @@ namespace ROMS
             {
                 MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
                 MainForm.objPUR_GRNApprovalList.ApprovalFlag = 1;
-                MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNApprovalList.Show();
+                //MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
+                objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApprovalList);
+                MainForm.objPUR_GRNApprovalList.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1416,8 +1418,9 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseEntryRejectedList = new PUR_PurchaseEntryRejectedList();
-                MainForm.objPUR_PurchaseEntryRejectedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseEntryRejectedList.Show();
+                //MainForm.objPUR_PurchaseEntryRejectedList.MdiParent = this.ParentForm;
+                objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryRejectedList);
+                MainForm.objPUR_PurchaseEntryRejectedList.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -15,6 +15,7 @@ namespace ROMS
 {
     public partial class INV_InwardQueueList : Form
     {
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         ToolTip tpSupplier = new ToolTip();
@@ -85,7 +86,7 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                        MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                        //MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                         //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
                         MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value);
                         MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
@@ -108,7 +109,8 @@ namespace ROMS
 
                         picLoader.Visible = false;
                         picLoader.SendToBack();
-                        MainForm.objINV_InwardPurchase.Show();
+                        objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
+                        MainForm.objINV_InwardPurchase.ShowDialog();
                     }
                 }
                 catch (Exception ex)
@@ -137,9 +139,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
-                    MainForm.objINV_InwardPurchaseList.MdiParent = this.ParentForm;
-                    MainForm.objINV_InwardPurchaseList.Show();
+                    //MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                    //MainForm.objINV_InwardPurchaseList.MdiParent = this.ParentForm;
+                    //MainForm.objINV_InwardPurchaseList.Show();
                     this.Close();
                 }
             }
@@ -266,9 +268,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
-                MainForm.objINV_InwardPurchaseList.MdiParent = this.ParentForm;
-                MainForm.objINV_InwardPurchaseList.Show();
+                //MainForm.objINV_InwardPurchaseList = new INV_InwardPurchaseList();
+                //MainForm.objINV_InwardPurchaseList.MdiParent = this.ParentForm;
+                //MainForm.objINV_InwardPurchaseList.Show();
                 this.Close();
             }
             catch (Exception ex)

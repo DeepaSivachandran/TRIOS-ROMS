@@ -207,9 +207,10 @@ namespace ROMS
                 {
                     if (ApprovalFlag == 1)
                     {
-                        MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-                        MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
-                        MainForm.objPUR_PurchaseApprovalList.Show();
+                        this.Close();
+                        //MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                        //MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                        //MainForm.objPUR_PurchaseApprovalList.Show();
                     }               
                     else
                     {
@@ -1536,9 +1537,10 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
-                MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
-                MainForm.objPUR_PurchaseApprovalList.Show();
+                this.Close();
+                //MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
+                //MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                //MainForm.objPUR_PurchaseApprovalList.Show();
             }
             catch (Exception ex)
             {
@@ -1629,8 +1631,9 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_MismatchApprovedList = new PUR_MismatchApprovedList();
-                MainForm.objPUR_MismatchApprovedList.MdiParent = this.ParentForm;
-                MainForm.objPUR_MismatchApprovedList.Show();
+                //MainForm.objPUR_MismatchApprovedList.MdiParent = this.ParentForm;
+                objMainForm.CenterEntryForm(this, MainForm.objPUR_MismatchApprovedList);
+                MainForm.objPUR_MismatchApprovedList.ShowDialog();
             }
             catch (Exception ex)
             {

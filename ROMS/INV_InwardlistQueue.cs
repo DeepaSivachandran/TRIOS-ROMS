@@ -223,9 +223,9 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
-                    MainForm.objINV_Inwardlist = new INV_Inwardlist();
-                    MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
-                    MainForm.objINV_Inwardlist.Show();
+                    //MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                    //MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
+                    //MainForm.objINV_Inwardlist.Show();
                     this.Close();
                 }
             }
@@ -1562,9 +1562,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objINV_Inwardlist = new INV_Inwardlist();
-                MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
-                MainForm.objINV_Inwardlist.Show();
+                //MainForm.objINV_Inwardlist = new INV_Inwardlist();
+                //MainForm.objINV_Inwardlist.MdiParent = this.ParentForm;
+                //MainForm.objINV_Inwardlist.Show();
                 this.Close();
             }
             catch (Exception ex)

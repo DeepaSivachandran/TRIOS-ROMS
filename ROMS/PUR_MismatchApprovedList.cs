@@ -16,6 +16,7 @@ namespace ROMS
 {
     public partial class PUR_MismatchApprovedList : Form
     {
+        MainForm objMainForm = new MainForm();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         public DataTable Deftable = new DataTable();
@@ -52,8 +53,9 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
                     MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value);
                     MainForm.objPUR_GRNApproval.pbEditFlag = 1; 
-                    MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
-                    MainForm.objPUR_GRNApproval.Show();
+                    //MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
+                    objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApproval);
+                    MainForm.objPUR_GRNApproval.ShowDialog();
                 } 
             }
             catch (Exception ex)
@@ -885,9 +887,10 @@ namespace ROMS
         {
             try
             {
-                MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
-                MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
-                MainForm.objPUR_GRNApprovalList.Show();
+                this.Close();
+                //MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
+                //MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
+                //MainForm.objPUR_GRNApprovalList.Show();
             }
             catch (Exception ex)
             {
