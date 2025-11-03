@@ -40,9 +40,9 @@ namespace ROMS
                 {
                     //MainForm objMainForm = new MainForm();
                     //objMainForm.udfnCloseChildForms();
-                    MainForm.objCP_PurchaseList = new CP_PurchaseList();
-                    MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
-                    MainForm.objCP_PurchaseList.Show();
+                    //MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                    //MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
+                    //MainForm.objCP_PurchaseList.Show();
                     this.Close();
                 } 
             }
@@ -56,10 +56,10 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_PurchaseList = new CP_PurchaseList();
-                MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
-                MainForm.objCP_PurchaseList.Show();
                 this.Close();
+                //MainForm.objCP_PurchaseList = new CP_PurchaseList();
+                //MainForm.objCP_PurchaseList.MdiParent = this.ParentForm;
+                //MainForm.objCP_PurchaseList.Show();
             }
             catch (Exception ex)
             {
@@ -1038,6 +1038,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
     }
 }
