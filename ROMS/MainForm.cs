@@ -670,6 +670,10 @@ namespace ROMS
 
                     formInstance.FormClosing += (s, args) =>
                     {
+                        if (args.CloseReason == CloseReason.MdiFormClosing || args.CloseReason == CloseReason.FormOwnerClosing || args.CloseReason == CloseReason.ApplicationExitCall)
+                        {
+                            return;
+                        }
                         if (localForm != null && (localForm.WindowState == FormWindowState.Minimized || localForm.Visible))
                         {
                             args.Cancel = true;
