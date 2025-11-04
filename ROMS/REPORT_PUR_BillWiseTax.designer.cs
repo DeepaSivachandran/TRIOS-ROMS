@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_PUR_BillWiseTax));
             this.tsBillwiseTaxReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbDownload = new System.Windows.Forms.ToolStripButton();
-            this.tsbExport = new System.Windows.Forms.ToolStripButton(); 
+            this.tsbExport = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportCity = new System.Windows.Forms.Panel();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -77,10 +80,11 @@
             this.tsbPrintFormat,
             this.tsbFormat,
             this.tsbDownload,
-            this.tsbExport });
+            this.tsbExport,
+            this.tsLabelPlaceholder});
             this.tsBillwiseTaxReport.Location = new System.Drawing.Point(0, 0);
             this.tsBillwiseTaxReport.Name = "tsBillwiseTaxReport";
-            this.tsBillwiseTaxReport.Size = new System.Drawing.Size(1354, 32);
+            this.tsBillwiseTaxReport.Size = new System.Drawing.Size(1354, 31);
             this.tsBillwiseTaxReport.TabIndex = 35;
             this.tsBillwiseTaxReport.Text = "City Report";
             // 
@@ -94,7 +98,7 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(109, 29);
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 28);
             this.tsbPrintFormat.Text = "A4-Landscape";
             this.tsbPrintFormat.ToolTipText = "A4-Landscape";
             // 
@@ -106,7 +110,7 @@
             this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(112, 29);
+            this.tsbFormat.Size = new System.Drawing.Size(90, 28);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
             // 
@@ -119,7 +123,7 @@
             this.tsbDownload.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbDownload.Name = "tsbDownload";
             this.tsbDownload.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDownload.Size = new System.Drawing.Size(104, 29);
+            this.tsbDownload.Size = new System.Drawing.Size(89, 28);
             this.tsbDownload.Text = "Download";
             this.tsbDownload.ToolTipText = "Download";
             this.tsbDownload.Click += new System.EventHandler(this.tsbDownload_Click);
@@ -133,10 +137,16 @@
             this.tsbExport.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbExport.Name = "tsbExport";
             this.tsbExport.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbExport.Size = new System.Drawing.Size(102, 29);
+            this.tsbExport.Size = new System.Drawing.Size(86, 28);
             this.tsbExport.Text = "Generate";
             this.tsbExport.ToolTipText = "Generate";
             this.tsbExport.Click += new System.EventHandler(this.tsbExport_Click);
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(42, 28);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportCity
             // 
@@ -162,6 +172,14 @@
             this.DGV_FilterSupplier.AllowUserToResizeRows = false;
             this.DGV_FilterSupplier.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterSupplier.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterSupplier.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_FilterSupplier.ColumnHeadersHeight = 29;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
@@ -170,6 +188,9 @@
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
             this.DGV_FilterSupplier.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.DGV_FilterSupplier.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterSupplier.RowTemplate.Height = 25;
             this.DGV_FilterSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterSupplier.Size = new System.Drawing.Size(317, 226);
@@ -235,7 +256,7 @@
             this.cmbReportType.FormattingEnabled = true;
             this.cmbReportType.Location = new System.Drawing.Point(9, 46);
             this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(230, 33);
+            this.cmbReportType.Size = new System.Drawing.Size(230, 27);
             this.cmbReportType.TabIndex = 0;
             this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
@@ -249,7 +270,7 @@
             this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(559, 23);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 26);
+            this.label6.Size = new System.Drawing.Size(87, 20);
             this.label6.TabIndex = 111111190;
             this.label6.Text = "Supplier Name";
             // 
@@ -259,7 +280,7 @@
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportType.Location = new System.Drawing.Point(9, 23);
             this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(91, 26);
+            this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 111111193;
             this.lblReportType.Text = "Report type";
             // 
@@ -268,7 +289,7 @@
             this.cmbInvType.FormattingEnabled = true;
             this.cmbInvType.Location = new System.Drawing.Point(882, 45);
             this.cmbInvType.Name = "cmbInvType";
-            this.cmbInvType.Size = new System.Drawing.Size(121, 33);
+            this.cmbInvType.Size = new System.Drawing.Size(121, 27);
             this.cmbInvType.TabIndex = 5;
             this.cmbInvType.Enter += new System.EventHandler(this.CmbInvType_Enter);
             this.cmbInvType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbInvType_KeyDown);
@@ -281,7 +302,7 @@
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(882, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 26);
+            this.label4.Size = new System.Drawing.Size(54, 20);
             this.label4.TabIndex = 111111190;
             this.label4.Text = "Inv Type";
             // 
@@ -291,7 +312,7 @@
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpToDate.Location = new System.Drawing.Point(358, 46);
             this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(103, 32);
+            this.dpToDate.Size = new System.Drawing.Size(103, 27);
             this.dpToDate.TabIndex = 2;
             this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
@@ -303,7 +324,7 @@
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(358, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 26);
+            this.label3.Size = new System.Drawing.Size(49, 20);
             this.label3.TabIndex = 111111188;
             this.label3.Text = "To Date";
             // 
@@ -313,7 +334,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(559, 46);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(317, 32);
+            this.txtSupplier.Size = new System.Drawing.Size(317, 27);
             this.txtSupplier.TabIndex = 4;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -326,7 +347,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(467, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 26);
+            this.label2.Size = new System.Drawing.Size(82, 20);
             this.label2.TabIndex = 111111186;
             this.label2.Text = "Supplier Type";
             // 
@@ -335,7 +356,7 @@
             this.cmbSupplierType.FormattingEnabled = true;
             this.cmbSupplierType.Location = new System.Drawing.Point(467, 46);
             this.cmbSupplierType.Name = "cmbSupplierType";
-            this.cmbSupplierType.Size = new System.Drawing.Size(86, 33);
+            this.cmbSupplierType.Size = new System.Drawing.Size(86, 27);
             this.cmbSupplierType.TabIndex = 3;
             this.cmbSupplierType.Enter += new System.EventHandler(this.CmbSupplierType_Enter);
             this.cmbSupplierType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplierType_KeyDown);
@@ -348,7 +369,7 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(245, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 26);
+            this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 111111184;
             this.label1.Text = "From Date";
             // 
@@ -358,7 +379,7 @@
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpFromDate.Location = new System.Drawing.Point(245, 46);
             this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(107, 32);
+            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 1;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
@@ -371,7 +392,7 @@
             this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
             this.lblSupplierCode.Location = new System.Drawing.Point(515, 24);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(21, 25);
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 111111192;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -383,7 +404,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 354);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -394,7 +415,7 @@
             this.lblScheduleCode.BackColor = System.Drawing.Color.LimeGreen;
             this.lblScheduleCode.Location = new System.Drawing.Point(493, 24);
             this.lblScheduleCode.Name = "lblScheduleCode";
-            this.lblScheduleCode.Size = new System.Drawing.Size(21, 25);
+            this.lblScheduleCode.Size = new System.Drawing.Size(16, 20);
             this.lblScheduleCode.TabIndex = 111111191;
             this.lblScheduleCode.Text = "0";
             this.lblScheduleCode.Visible = false;
@@ -437,7 +458,7 @@
             // 
             // REPORT_PUR_BillWiseTax
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
@@ -495,8 +516,8 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         public System.Windows.Forms.ToolStripButton tsbExport;
         public System.Windows.Forms.ToolStripButton tsbDownload;
-        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl; 
         private System.Windows.Forms.Button btnTelegram;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
     }
 }

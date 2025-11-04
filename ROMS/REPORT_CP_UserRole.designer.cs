@@ -45,6 +45,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnTelegram = new System.Windows.Forms.Button();
             this.lblUserId = new System.Windows.Forms.Label();
             this.lblUserRoleId = new System.Windows.Forms.Label();
             this.btnListPrint = new System.Windows.Forms.Button();
@@ -213,6 +214,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.lblUserId);
             this.grpfilter.Controls.Add(this.lblUserRoleId);
             this.grpfilter.Controls.Add(this.btnListPrint);
@@ -227,6 +229,21 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            // 
+            // btnTelegram
+            // 
+            this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
+            this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTelegram.Location = new System.Drawing.Point(1267, 18);
+            this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTelegram.Name = "btnTelegram";
+            this.btnTelegram.Size = new System.Drawing.Size(35, 30);
+            this.btnTelegram.TabIndex = 5;
+            this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTelegram.UseVisualStyleBackColor = true;
+            this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
+            this.btnTelegram.Enter += new System.EventHandler(this.btnTelegram_Enter);
+            this.btnTelegram.Leave += new System.EventHandler(this.btnTelegram_Leave);
             // 
             // lblUserId
             // 
@@ -412,5 +429,6 @@
         private System.Windows.Forms.TextBox txtUserRole;
         private System.Windows.Forms.Label lblUserRoleId;
         private System.Windows.Forms.Label lblUserId;
+        private System.Windows.Forms.Button btnTelegram;
     }
 }

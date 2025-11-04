@@ -34,8 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPaymentReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -89,7 +87,7 @@
             this.tsLabelPlaceholder});
             this.tsPaymentReport.Location = new System.Drawing.Point(0, 0);
             this.tsPaymentReport.Name = "tsPaymentReport";
-            this.tsPaymentReport.Size = new System.Drawing.Size(1354, 32);
+            this.tsPaymentReport.Size = new System.Drawing.Size(1354, 27);
             this.tsPaymentReport.TabIndex = 35;
             this.tsPaymentReport.Text = "GRN Summary Report";
             // 
@@ -103,7 +101,7 @@
             this.tsbPrintFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbPrintFormat.Name = "tsbPrintFormat";
             this.tsbPrintFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbPrintFormat.Size = new System.Drawing.Size(108, 29);
+            this.tsbPrintFormat.Size = new System.Drawing.Size(89, 24);
             this.tsbPrintFormat.Text = "A3-Landscape";
             this.tsbPrintFormat.ToolTipText = "A3-Landscape";
             // 
@@ -115,7 +113,7 @@
             this.tsbFormat.Margin = new System.Windows.Forms.Padding(-5, 1, 30, 2);
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbFormat.Size = new System.Drawing.Size(112, 29);
+            this.tsbFormat.Size = new System.Drawing.Size(90, 24);
             this.tsbFormat.Text = "Print Format : ";
             this.tsbFormat.ToolTipText = "Print Format";
             // 
@@ -126,7 +124,7 @@
             this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(69, 29);
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 24);
             this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlReportStockLocation
@@ -151,10 +149,16 @@
             this.DGV_FilterCity.AllowUserToResizeRows = false;
             this.DGV_FilterCity.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterCity.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterCity.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_FilterCity.ColumnHeadersHeight = 30;
             this.DGV_FilterCity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            
             this.DGV_FilterCity.EnableHeadersVisualStyles = false;
             this.DGV_FilterCity.GridColor = System.Drawing.Color.White;
             this.DGV_FilterCity.Location = new System.Drawing.Point(873, 75);
@@ -162,7 +166,9 @@
             this.DGV_FilterCity.ReadOnly = true;
             this.DGV_FilterCity.RowHeadersVisible = false;
             this.DGV_FilterCity.RowHeadersWidth = 51;
-            
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.DGV_FilterCity.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterCity.RowTemplate.Height = 25;
             this.DGV_FilterCity.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterCity.Size = new System.Drawing.Size(211, 226);
@@ -179,10 +185,16 @@
             this.DGV_FilterProduct.AllowUserToResizeRows = false;
             this.DGV_FilterProduct.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.ColumnHeadersHeight = 30;
             this.DGV_FilterProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
             this.DGV_FilterProduct.Location = new System.Drawing.Point(592, 75);
@@ -190,7 +202,9 @@
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
             this.DGV_FilterProduct.RowHeadersWidth = 51;
-           
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterProduct.Size = new System.Drawing.Size(305, 226);
@@ -247,7 +261,7 @@
             this.lblcityid.AutoSize = true;
             this.lblcityid.Location = new System.Drawing.Point(925, 24);
             this.lblcityid.Name = "lblcityid";
-            this.lblcityid.Size = new System.Drawing.Size(21, 25);
+            this.lblcityid.Size = new System.Drawing.Size(16, 20);
             this.lblcityid.TabIndex = 111111189;
             this.lblcityid.Text = "0";
             this.lblcityid.Visible = false;
@@ -258,7 +272,7 @@
             this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(289, 23);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 26);
+            this.label10.Size = new System.Drawing.Size(54, 20);
             this.label10.TabIndex = 111111188;
             this.label10.Text = "Concern";
             // 
@@ -268,7 +282,7 @@
             this.lblCity.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCity.Location = new System.Drawing.Point(870, 23);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(39, 26);
+            this.lblCity.Size = new System.Drawing.Size(31, 20);
             this.lblCity.TabIndex = 111111169;
             this.lblCity.Text = "City";
             // 
@@ -278,7 +292,7 @@
             this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
             this.lblSupplierCode.Location = new System.Drawing.Point(734, 23);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(21, 25);
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 1111192;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -289,7 +303,7 @@
             this.txtCity.Location = new System.Drawing.Point(870, 46);
             this.txtCity.MaxLength = 100;
             this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(211, 32);
+            this.txtCity.Size = new System.Drawing.Size(211, 27);
             this.txtCity.TabIndex = 5;
             this.txtCity.TextChanged += new System.EventHandler(this.txtCity_TextChanged);
             this.txtCity.Enter += new System.EventHandler(this.txtCity_Enter);
@@ -301,7 +315,7 @@
             this.cmbConcern.FormattingEnabled = true;
             this.cmbConcern.Location = new System.Drawing.Point(289, 46);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(68, 33);
+            this.cmbConcern.Size = new System.Drawing.Size(68, 27);
             this.cmbConcern.TabIndex = 1;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -313,7 +327,7 @@
             this.cmbReportType.FormattingEnabled = true;
             this.cmbReportType.Location = new System.Drawing.Point(9, 46);
             this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(274, 33);
+            this.cmbReportType.Size = new System.Drawing.Size(274, 27);
             this.cmbReportType.TabIndex = 0;
             this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.CmbReportType_SelectedIndexChanged);
             this.cmbReportType.Enter += new System.EventHandler(this.CmbReportType_Enter);
@@ -327,7 +341,7 @@
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpToDate.Location = new System.Drawing.Point(476, 46);
             this.dpToDate.Name = "dpToDate";
-            this.dpToDate.Size = new System.Drawing.Size(107, 32);
+            this.dpToDate.Size = new System.Drawing.Size(107, 27);
             this.dpToDate.TabIndex = 3;
             this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
@@ -339,7 +353,7 @@
             this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReportType.Location = new System.Drawing.Point(9, 23);
             this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(91, 26);
+            this.lblReportType.Size = new System.Drawing.Size(73, 20);
             this.lblReportType.TabIndex = 111111187;
             this.lblReportType.Text = "Report type";
             // 
@@ -349,7 +363,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(589, 46);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(275, 32);
+            this.txtSupplier.Size = new System.Drawing.Size(275, 27);
             this.txtSupplier.TabIndex = 4;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -362,7 +376,7 @@
             this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
             this.lblschedleCode.Location = new System.Drawing.Point(712, 23);
             this.lblschedleCode.Name = "lblschedleCode";
-            this.lblschedleCode.Size = new System.Drawing.Size(21, 25);
+            this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
             this.lblschedleCode.TabIndex = 1111191;
             this.lblschedleCode.Text = "0";
             this.lblschedleCode.Visible = false;
@@ -373,7 +387,7 @@
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpFromDate.Location = new System.Drawing.Point(363, 46);
             this.dpFromDate.Name = "dpFromDate";
-            this.dpFromDate.Size = new System.Drawing.Size(107, 32);
+            this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 2;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
@@ -386,7 +400,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(589, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 26);
+            this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111187;
             this.label2.Text = "Supplier Name";
             // 
@@ -396,7 +410,7 @@
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(476, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 26);
+            this.label3.Size = new System.Drawing.Size(49, 20);
             this.label3.TabIndex = 1111190;
             this.label3.Text = "To Date";
             // 
@@ -406,7 +420,7 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(363, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 26);
+            this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 1111189;
             this.label1.Text = "From Date";
             // 
@@ -415,7 +429,7 @@
             this.cmbPayType.FormattingEnabled = true;
             this.cmbPayType.Location = new System.Drawing.Point(1087, 46);
             this.cmbPayType.Name = "cmbPayType";
-            this.cmbPayType.Size = new System.Drawing.Size(120, 33);
+            this.cmbPayType.Size = new System.Drawing.Size(120, 27);
             this.cmbPayType.TabIndex = 6;
             this.cmbPayType.Enter += new System.EventHandler(this.cmbPayType_Enter);
             this.cmbPayType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbPayType_KeyDown);
@@ -428,7 +442,7 @@
             this.lblStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(1087, 23);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(112, 26);
+            this.lblStatus.Size = new System.Drawing.Size(88, 20);
             this.lblStatus.TabIndex = 1111182;
             this.lblStatus.Text = "Payment Mode";
             // 
@@ -456,7 +470,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 356);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -499,7 +513,7 @@
             // 
             // REPORT_Supplier_Payment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);

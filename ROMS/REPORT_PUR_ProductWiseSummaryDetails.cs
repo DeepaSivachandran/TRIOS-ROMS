@@ -1903,7 +1903,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         private void LvBrand_DoubleClick(object sender, EventArgs e)
         {
             udfnBrandAutocomplete();
