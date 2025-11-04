@@ -352,6 +352,34 @@ namespace ROMS
                             allRowsInvalid = true;
                             blnErrFlag = true;
                         }
+
+                        // ===== New Validation: UPP vs Consumed Qty =====
+                        if (row.Cells["clmUPPValue"]?.Value != null &&
+                            row.Cells["clmConversionQty"]?.Value != null &&
+                            row.Cells["clmTransferQty"]?.Value != null)
+                        {
+                            decimal uppValue = 0, convertParentQty = 0, consumedParentQty = 0;
+                            decimal.TryParse(row.Cells["clmUPPValue"].Value.ToString(), out uppValue);
+                            decimal.TryParse(row.Cells["clmConversionQty"].Value.ToString(), out convertParentQty);
+                            decimal.TryParse(row.Cells["clmTransferQty"].Value.ToString(), out consumedParentQty);
+
+
+                            if (uppValue > 0 && convertParentQty > 0)
+                            {
+                                decimal minAllowed = (convertParentQty - 1) * uppValue;
+
+                                if (consumedParentQty < minAllowed)
+                                {
+                                    row.Cells["clmTransferQty"].Style.BackColor = Color.LightPink;
+                                    qtyErrorFlag = true;
+                                    blnErrFlag = true;
+                                }
+                                else
+                                {
+                                    row.Cells["clmTransferQty"].Style.BackColor = Color.PaleGreen;
+                                }
+                            }
+                        }
                     }
 
                     if (allRowsInvalid)
