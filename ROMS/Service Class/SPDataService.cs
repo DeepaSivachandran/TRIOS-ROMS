@@ -4437,6 +4437,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_GoodsInward_Purchase.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_GoodsInward_Purchase.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraPICode", objTRN_GoodsInward_Purchase.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraRateType", objTRN_GoodsInward_Purchase.paraRateType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

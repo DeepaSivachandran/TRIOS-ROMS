@@ -208,7 +208,7 @@ namespace ROMS
         {
             try
             {
-                if (grdGOConversion.CurrentCell.OwningColumn.Name == "clmConversionQty")
+                if (grdGOConversion.CurrentCell.OwningColumn.Name == "clmConversionQty"|| grdGOConversion.CurrentCell.OwningColumn.Name == "clmTransferQty")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
@@ -224,7 +224,7 @@ namespace ROMS
         {
             try
             {
-                if (grdGOConversion.CurrentCell.OwningColumn.Name == "clmConversionQty")
+                if (grdGOConversion.CurrentCell.OwningColumn.Name == "clmConversionQty" || grdGOConversion.CurrentCell.OwningColumn.Name == "clmTransferQty")
                 {
                     if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {

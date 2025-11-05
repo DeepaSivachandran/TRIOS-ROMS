@@ -237,6 +237,7 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.paraRKGID = varRackGroupCode;
                 objTRN_GoodsInward_Purchase.paraBrandID = varBrandCode;
                 objTRN_GoodsInward_Purchase.paraTypeID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objTRN_GoodsInward_Purchase.paraRateType = Convert.ToInt32(cmbRate.SelectedValue);
                 objTRN_GoodsInward_Purchase.ParaFromDate = dpFromDate.Text;
                 objTRN_GoodsInward_Purchase.ParaToDate = dpToDate.Text;
                 objTRN_GoodsInward_Purchase.paraAlpha = txtProductName.Text;
@@ -272,6 +273,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraBrandID", varBrandCode);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
                     objBillreport.SetParameterValue("paraProCategoryID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRateType", Convert.ToInt32(cmbRate.SelectedValue));
                     objBillreport.SetParameterValue("paraProTypeName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraSPID", varSupplierCode);
                     objBillreport.SetParameterValue("paraSPSCID", varScheduleCode);
@@ -361,7 +363,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
 
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125,0) AND MSTID<>-1 ", "MST_DisplayText,MSTID,MST_ShortName", cmRate, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (125) AND MSTID<>-1 ", "MST_DisplayText,MSTID,MST_ShortName", cmbRate, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbStatus.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1;
@@ -2094,7 +2096,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpFromDate.Focus();
+                    cmbRate.Focus();
                 }
             }
             catch (Exception ex)
@@ -2265,7 +2267,70 @@ namespace ROMS
         {
             udfnList(1);
         }
-         
+
+        private void cmbRate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRate.BackColor = Color.LemonChiffon;
+                udfnGridNull((Control)sender);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtProductName.Visible == true)
+                    {
+                        txtProductName.Focus();
+                    }
+                    else
+                    {
+                        txtSupplier.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void TxtRackgroup_TextChanged(object sender, EventArgs e)
         {
             try

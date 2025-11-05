@@ -52,6 +52,7 @@ namespace ROMS.Model
         public int paraEntryTypeID { get; set; } = 0;
         public int paraRKGID { get; set; } = 0;
         public int paraBrandID { get; set; } = 0;
+        public int paraRateType { get; set; } = 0;
         public string paraUserLocations { get; set; } = "";
     }
 }
