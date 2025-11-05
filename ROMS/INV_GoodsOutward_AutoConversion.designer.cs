@@ -472,6 +472,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.PaleGreen;
             this.clmTransferQty.DefaultCellStyle = dataGridViewCellStyle5;
             this.clmTransferQty.HeaderText = "Consumed Parent Qty";
+            this.clmTransferQty.MaxInputLength = 5;
             this.clmTransferQty.Name = "clmTransferQty";
             this.clmTransferQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmTransferQty.Width = 80;
