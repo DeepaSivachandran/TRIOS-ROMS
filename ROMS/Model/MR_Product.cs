@@ -56,6 +56,7 @@ namespace ROMS.Model
         public string paraTeller = "";
         public string paraUserLocations = "";
         public int paraProductType = 0;
+        public int paraRackStatusID = 0;
 
         
     }

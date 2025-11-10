@@ -174,7 +174,7 @@ namespace ROMS
             txtEmployeeName.Text = "";
             txtRack.Text = "";
             cmbConcern.SelectedValue = 0;
-            cmbStatus.SelectedValue = 0;
+            cmbStatus.SelectedValue = 1;
         }
         public void udfnRG(int varFlag)
         {
@@ -190,7 +190,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRackGroupList(3, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "");
+                objDs = objspservice.udfnRackGroupList(3, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, Convert.ToInt32(cmbStatus.SelectedValue), "",Convert.ToInt32(cmbproductStatus.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -206,6 +206,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraProductStatusID", Convert.ToInt32(cmbproductStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -304,7 +305,8 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
-                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -327,7 +329,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
@@ -431,7 +434,8 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
-                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -454,7 +458,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
@@ -558,7 +563,8 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
-                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -581,7 +587,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
@@ -686,7 +693,8 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
-                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -709,7 +717,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
@@ -814,7 +823,8 @@ namespace ROMS
                 objMR_Product.paraEMPId = EMPCode;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
-                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -837,7 +847,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
@@ -921,7 +932,7 @@ namespace ROMS
                 string varId_RackGroup = "0";
                 DataSet objDsRackGroup = new DataSet();
                 SPDataService objDServ4 = new SPDataService();
-                objDsRackGroup = objDServ4.udfnRackGroupList(5, 0, 0, 0, 0, txtRackgroup.Text.Trim());
+                objDsRackGroup = objDServ4.udfnRackGroupList(5, 0, 0, 0, 0, txtRackgroup.Text.Trim(),0);
                 objDServ4.CloseConnection();
                 if (objDsRackGroup != null)
                 {
@@ -1076,16 +1087,18 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind(); //Transaction id 	41
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1)   Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbproductStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = 0;
                 cmbSubgroupType.SelectedValue = 0;
-                cmbStatus.SelectedValue = 0;
+                cmbStatus.SelectedValue = 1;
+                cmbproductStatus.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -1234,7 +1247,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtRackgroup.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnRackGroupList(4, 0, 0, 0, 0, txtRackgroup.Text.Trim());
+                        objDs = objspdservice.udfnRackGroupList(4, 0, 0, 0, 0, txtRackgroup.Text.Trim(),0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {
@@ -2028,7 +2041,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    cmbproductStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -2090,6 +2103,60 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void cmbproductStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            { 
+                cmbproductStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbproductStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }  
+
+        private void cmbproductStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbproductStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbproductStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

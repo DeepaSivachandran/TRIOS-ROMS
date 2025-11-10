@@ -51,6 +51,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbproductStatus = new System.Windows.Forms.ComboBox();
             this.btnTelegram = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -289,6 +291,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label5);
+            this.grpfilter.Controls.Add(this.cmbproductStatus);
             this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.label4);
             this.grpfilter.Controls.Add(this.cmbStatus);
@@ -317,17 +321,40 @@
             this.grpfilter.Size = new System.Drawing.Size(1330, 83);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
-            this.grpfilter.Text = "Filter By"; 
+            this.grpfilter.Text = "Filter By";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(1105, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 20);
+            this.label5.TabIndex = 1111246;
+            this.label5.Text = "Product Status";
+            // 
+            // cmbproductStatus
+            // 
+            this.cmbproductStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbproductStatus.FormattingEnabled = true;
+            this.cmbproductStatus.Location = new System.Drawing.Point(1105, 45);
+            this.cmbproductStatus.Name = "cmbproductStatus";
+            this.cmbproductStatus.Size = new System.Drawing.Size(104, 27);
+            this.cmbproductStatus.TabIndex = 7;
+            this.cmbproductStatus.Enter += new System.EventHandler(this.cmbproductStatus_Enter);
+            this.cmbproductStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbproductStatus_KeyDown);
+            this.cmbproductStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbproductStatus_KeyPress);
+            this.cmbproductStatus.Leave += new System.EventHandler(this.cmbproductStatus_Leave);
             // 
             // btnTelegram
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1181, 44);
+            this.btnTelegram.Location = new System.Drawing.Point(1260, 44);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 8;
+            this.btnTelegram.TabIndex = 9;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -339,9 +366,9 @@
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(990, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 20);
+            this.label4.Size = new System.Drawing.Size(110, 20);
             this.label4.TabIndex = 1111244;
-            this.label4.Text = "Status";
+            this.label4.Text = "Rack Group Status";
             // 
             // cmbStatus
             // 
@@ -430,12 +457,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1100, 44);
+            this.btnListPrint.Location = new System.Drawing.Point(1219, 44);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 7;
-            this.btnListPrint.Text = "View";
+            this.btnListPrint.Size = new System.Drawing.Size(36, 29);
+            this.btnListPrint.TabIndex = 8;
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -712,5 +738,7 @@
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
         private System.Windows.Forms.Button btnTelegram;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbproductStatus;
     }
 }

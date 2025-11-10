@@ -1725,6 +1725,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserCode", objMR_Product.paraUserCode);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objMR_Product.paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_Product.paraProductType);
+                varSqlCommand.Parameters.AddWithValue("@paraRackStatusID", objMR_Product.paraRackStatusID);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -1845,7 +1846,7 @@ namespace ROMS
             return varResult;
         }
         // Sivabharathi    Create date: 24/08/2023    Description:Rack Group List SP
-        public DataSet udfnRackGroupList(int ViewType, int paraCompanyId, int paraLocationId, int paraRackGroupId, int paraStatusId, string paraRKGName)
+        public DataSet udfnRackGroupList(int ViewType, int paraCompanyId, int paraLocationId, int paraRackGroupId, int paraStatusId, string paraRKGName,int paraProductStatusID)
         {
             DataSet ds = new DataSet();
             try
@@ -1859,6 +1860,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRackGroupId", paraRackGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraRKGName", paraRKGName);
+                varSqlCommand.Parameters.AddWithValue("@paraProductStatusID", paraProductStatusID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
