@@ -208,6 +208,7 @@ namespace ROMS
                 objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
                 objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
                 objMR_Product.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -229,6 +230,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroupName));
                     objBillreport.SetParameterValue("paraSubgroup", Convert.ToInt32(lblSubGroupCode.Text));
                     objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroupName));
+                    objBillreport.SetParameterValue("paraStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -310,6 +312,10 @@ namespace ROMS
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                DataBind objDataBind = new DataBind(); //Transaction id 	41 
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null; 
+                cmbStatus.SelectedValue = 0;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     string privilege = "";
@@ -1180,7 +1186,7 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                btnListPrint.Focus();
+                cmbStatus.Focus();
             }
             catch (Exception ex)
             {
@@ -1250,7 +1256,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnListPrint.Focus();
+                        cmbStatus.Focus();
                     }
                 }
             }
@@ -1290,6 +1296,66 @@ namespace ROMS
         private void btnTelegram_Click(object sender, EventArgs e)
         {
             udfnUnassignedProduct(1);
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {  
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnBrandAutocomplete()

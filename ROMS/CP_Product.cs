@@ -7353,12 +7353,13 @@ namespace ROMS
             try
             {
                 if (Convert.ToInt32(cmbProductType.SelectedValue) == 341) //Parent
-                { 
+                {
+                    txtProductName.Text = "";
                     txtProductName.Enabled = false;
                     txtGroup.Enabled = true;
                     txtSubGroup.Enabled = true;
                     txtBrand.Enabled = true;
-
+                    lblParentcode.Text = "0";
 
                     txtGroup.ReadOnly = false;
                     txtSubGroup.ReadOnly = false;

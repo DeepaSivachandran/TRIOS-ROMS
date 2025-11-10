@@ -317,7 +317,7 @@
             this.grpfilter.Size = new System.Drawing.Size(1330, 83);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
-            this.grpfilter.Text = "Filter By";
+            this.grpfilter.Text = "Filter By"; 
             // 
             // btnTelegram
             // 
