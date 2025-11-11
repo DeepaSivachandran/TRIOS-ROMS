@@ -108,6 +108,7 @@ namespace ROMS
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_SupplierMappinglist objCP_SupplierMappinglist;
         public static CP_Product objCP_Items;
+        public static CP_Product_Popup objCP_Product_Popup;
         public static CP_RackSettinglist objCP_RackSettinglist;
         public static CP_RackSettings objCP_RackSettings;
         public static CP_ProductList objCP_Itemlist;
@@ -4065,11 +4066,18 @@ namespace ROMS
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
+            try
+            {
                 if (e.Control && e.Alt && e.KeyCode == Keys.L)
                 {
                     DEF_IdleLogin obj = new DEF_IdleLogin();
                     obj.ShowDialog();
+                }
+                if (e.KeyCode == Keys.F10) //PM Stock
+                {
+                    MainForm.objCP_Product_Popup = new CP_Product_Popup();
+                    MainForm.objCP_Product_Popup.MdiParent = this.ParentForm;
+                    MainForm.objCP_Product_Popup.ShowDialog();
                 }
             }
             catch (Exception ex)

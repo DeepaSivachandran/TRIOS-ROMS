@@ -287,6 +287,12 @@
     <Compile Include="CP_ChequePrint_Setting.designer.cs">
       <DependentUpon>CP_ChequePrint_Setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Product_Popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product_Popup.designer.cs">
+      <DependentUpon>CP_Product_Popup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MR_ChequeTransactionSettings.cs" />
     <Compile Include="GRN_ADV.cs">
       <SubType>Form</SubType>
@@ -3566,6 +3572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GRN_ADV.resx">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product_Popup.resx">
+      <DependentUpon>CP_Product_Popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
