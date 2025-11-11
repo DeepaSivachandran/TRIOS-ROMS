@@ -3493,6 +3493,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\zoom-out.jpg" />
+    <None Include="Resources\zoom-in.jpg" />
+    <None Include="Resources\right rotate.jpg" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\Brightness.jpg" />
+    <None Include="Resources\image-edit.jpg" />
+    <None Include="Resources\crop.jpg" />
+    <None Include="Resources\left rotate.jpg" />
     <Content Include="Resources\minimize_Form.png" />
     <None Include="Resources\Telegram.png" />
     <None Include="Resources\Telegram.jpg" />
