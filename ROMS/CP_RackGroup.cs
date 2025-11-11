@@ -145,14 +145,14 @@ namespace ROMS
                 {
                     string varRGID = Convert.ToString(varId);
                     SPDataService objspservice = new SPDataService();
-                    objDS = objspservice.udfnGetSlNo("MR_RackGroup", "Update", "RKGID", varRGID);
+                    objDS = objspservice.udfnGetSlNo("MR_RackGroup", "Update", "RKGID", varRGID, "RKG_SINO");
                     objspservice.CloseConnection();
 
                 }
                 else
                 {
                     SPDataService objspservice = new SPDataService();
-                    objDS = objspservice.udfnGetSlNo("MR_RackGroup ", "Create", "1=1", "");
+                    objDS = objspservice.udfnGetSlNo("MR_RackGroup ", "Create", "1=1", "", "RKG_SINO");
                     objspservice.CloseConnection();
                 }
                 if (objDS != null)

@@ -161,6 +161,10 @@ namespace ROMS
         public static CP_UserRoleList objCP_UserRoleList;
         public static CP_UserRole_SPL objCP_UserRole_SPL;
 
+        //Added By Sathish ON 11-11-2025
+        public static CP_Route objCP_Route;
+        public static CP_Routelist objCP_Routelist;
+
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -4078,7 +4082,21 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void tsmRoute_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Routelist, "CP_Routelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 

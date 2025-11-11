@@ -4386,7 +4386,7 @@ namespace ROMS
             }
             return varResult;
         }
-        public DataSet udfnGetSlNo(string paraTableName, string paraProcess, string paraColumnName, string paraColumnValue)
+        public DataSet udfnGetSlNo(string paraTableName, string paraProcess, string paraColumnName, string paraColumnValue,string paraSerialColumn)
         {
             DataSet ds = new DataSet();
 
@@ -4399,6 +4399,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProcess", paraProcess);
                 varSqlCommand.Parameters.AddWithValue("@paraColumnName", paraColumnName);
                 varSqlCommand.Parameters.AddWithValue("@paraColumnValue", paraColumnValue);
+                varSqlCommand.Parameters.AddWithValue("@paraSerialColumn", paraSerialColumn);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
@@ -4798,7 +4799,68 @@ namespace ROMS
             }
             return ds;
         }
+        //Created By : Sathish, Created On :-11-11-2025
+        public string udfnRoute(int ViewType, int paraRouteId, string paraRouteEName, string paraRouteTName,int paraOrderNo, int paraStatusId, string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Route]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteId", paraRouteId);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteEName", paraRouteEName);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteTName", paraRouteTName);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderNo", paraOrderNo);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        public DataSet udfnRoutelist(int paraViewType,  int paraRouteID, int paraStatus)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Route", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteID", paraRouteID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
