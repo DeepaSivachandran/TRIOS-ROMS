@@ -257,6 +257,7 @@
             this.lvVerified1 = new System.Windows.Forms.ListView();
             this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -2642,6 +2643,7 @@
             // 
             this.tbProduct.Controls.Add(this.tabPage1);
             this.tbProduct.Controls.Add(this.tabPage2);
+            this.tbProduct.Controls.Add(this.tabPage3);
             this.tbProduct.Location = new System.Drawing.Point(5, 2);
             this.tbProduct.Name = "tbProduct";
             this.tbProduct.SelectedIndex = 0;
@@ -2883,6 +2885,16 @@
             // columnHeader44
             // 
             this.columnHeader44.Width = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(881, 618);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Product Image";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // CP_Product
             // 
@@ -3164,5 +3176,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmSalesRemove;
         public System.Windows.Forms.DataGridView DGV_FilterPurLocation;
         public System.Windows.Forms.DataGridView DGV_FilterSalesLocation;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
