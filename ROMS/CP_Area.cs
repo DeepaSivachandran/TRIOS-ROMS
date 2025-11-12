@@ -19,6 +19,7 @@ namespace ROMS
         private ToolTip tpTAreaName = new ToolTip();
         private ToolTip tpRouteName = new ToolTip();
         public string varSupplierIds;
+        public int varUpDownKeyLocation = 0;
         public CP_Area()
         {
             InitializeComponent();
@@ -67,20 +68,20 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(txtREName.Text).Trim() == "")
+                if (Convert.ToString(txtAEName.Text).Trim() == "")
                 {
-                    errArea.SetError(txtREName, "Please enter area english name.");
-                    txtREName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errArea.SetError(txtAEName, "Please enter area english name.");
+                    txtAEName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpEAreaName.ShowAlways = true;
-                    tpEAreaName.Show("Please enter area english name.", txtREName, 5000);
+                    tpEAreaName.Show("Please enter area english name.", txtAEName, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtRTName.Text).Trim() == "")
+                if (Convert.ToString(txtATName.Text).Trim() == "")
                 {
-                    errArea.SetError(txtRTName, "Please enter area tamil name.");
-                    txtRTName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    errArea.SetError(txtATName, "Please enter area tamil name.");
+                    txtATName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpTAreaName.ShowAlways = true;
-                    tpTAreaName.Show("Please enter area tamil name.", txtRTName, 5000);
+                    tpTAreaName.Show("Please enter area tamil name.", txtATName, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -118,6 +119,266 @@ namespace ROMS
             try
             {
                 btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAEName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAEName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAEName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtATName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAEName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAEName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtATName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtATName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtATName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtRName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtATName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtATName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varUpDownKeyLocation == 0)
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtRName.Text.Length > 0)
+                    {
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 20;
+                        objMR_Location.paraLocationName = txtRName.Text.Trim();
+                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
+                        objspdservice.CloseConnection();
+
+                        //objDs = objspdservice.udfnStockLocationList(20, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterLocation.Visible = true;
+                                    DGV_FilterLocation.DataSource = objDs.Tables[0];
+                                    DGV_FilterLocation.Columns["SLID"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_TName"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_ShortName"].Visible = false;
+                                    DGV_FilterLocation.Columns["SL_EName"].HeaderText = "Location";
+                                    DGV_FilterLocation.Columns["SL_EName"].Width = 220;
+                                    DGV_FilterLocation.Columns["SL_EName"].DisplayIndex = 0;
+                                    DGV_FilterLocation.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterLocation.DataSource = null;
+                                    DGV_FilterLocation.Visible = false;
+                                }
+                            }
+                            else
+                            {
+                                DGV_FilterLocation.DataSource = null;
+                                DGV_FilterLocation.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            DGV_FilterLocation.DataSource = null;
+                            DGV_FilterLocation.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        DGV_FilterLocation.DataSource = null;
+                        DGV_FilterLocation.Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnclose()
+        {
+            try
+            {
+                this.Close();
             }
             catch (Exception ex)
             {

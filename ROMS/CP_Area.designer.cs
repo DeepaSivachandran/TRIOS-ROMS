@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Area));
             this.errArea = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails = new System.Windows.Forms.GroupBox();
@@ -38,15 +41,17 @@
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtRName = new System.Windows.Forms.TextBox();
             this.txtDRouteName = new System.Windows.Forms.TextBox();
-            this.txtRTName = new System.Windows.Forms.TextBox();
-            this.txtREName = new System.Windows.Forms.TextBox();
+            this.txtATName = new System.Windows.Forms.TextBox();
+            this.txtAEName = new System.Windows.Forms.TextBox();
             this.txtDAreaTName = new System.Windows.Forms.TextBox();
             this.txtDAreaEName = new System.Windows.Forms.TextBox();
+            this.DGV_FilterLocation = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errArea)).BeginInit();
             this.grbDetails.SuspendLayout();
             this.pnlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
             this.SuspendLayout();
             // 
             // errArea
@@ -59,10 +64,10 @@
             this.grbDetails.Controls.Add(this.btnSave);
             this.grbDetails.Controls.Add(this.txtStatus);
             this.grbDetails.Controls.Add(this.pnlStatus);
-            this.grbDetails.Controls.Add(this.textBox2);
+            this.grbDetails.Controls.Add(this.txtRName);
             this.grbDetails.Controls.Add(this.txtDRouteName);
-            this.grbDetails.Controls.Add(this.txtRTName);
-            this.grbDetails.Controls.Add(this.txtREName);
+            this.grbDetails.Controls.Add(this.txtATName);
+            this.grbDetails.Controls.Add(this.txtAEName);
             this.grbDetails.Controls.Add(this.txtDAreaTName);
             this.grbDetails.Controls.Add(this.txtDAreaEName);
             this.grbDetails.Location = new System.Drawing.Point(12, 3);
@@ -86,6 +91,9 @@
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // btnSave
             // 
@@ -151,14 +159,18 @@
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtRName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(128, 86);
-            this.textBox2.MaxLength = 100;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(240, 28);
-            this.textBox2.TabIndex = 13;
+            this.txtRName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRName.Location = new System.Drawing.Point(128, 86);
+            this.txtRName.MaxLength = 100;
+            this.txtRName.Name = "txtRName";
+            this.txtRName.Size = new System.Drawing.Size(240, 28);
+            this.txtRName.TabIndex = 13;
+            this.txtRName.TextChanged += new System.EventHandler(this.txtRName_TextChanged);
+            this.txtRName.Enter += new System.EventHandler(this.txtRName_Enter);
+            this.txtRName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRName_KeyDown);
+            this.txtRName.Leave += new System.EventHandler(this.txtRName_Leave);
             // 
             // txtDRouteName
             // 
@@ -173,23 +185,29 @@
             this.txtDRouteName.TabIndex = 12;
             this.txtDRouteName.Text = "Route Name";
             // 
-            // txtRTName
+            // txtATName
             // 
-            this.txtRTName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F);
-            this.txtRTName.Location = new System.Drawing.Point(128, 58);
-            this.txtRTName.MaxLength = 100;
-            this.txtRTName.Name = "txtRTName";
-            this.txtRTName.Size = new System.Drawing.Size(240, 27);
-            this.txtRTName.TabIndex = 9;
+            this.txtATName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F);
+            this.txtATName.Location = new System.Drawing.Point(128, 58);
+            this.txtATName.MaxLength = 100;
+            this.txtATName.Name = "txtATName";
+            this.txtATName.Size = new System.Drawing.Size(240, 27);
+            this.txtATName.TabIndex = 9;
+            this.txtATName.Enter += new System.EventHandler(this.txtATName_Enter);
+            this.txtATName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtATName_KeyDown);
+            this.txtATName.Leave += new System.EventHandler(this.txtATName_Leave);
             // 
-            // txtREName
+            // txtAEName
             // 
-            this.txtREName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtREName.Location = new System.Drawing.Point(128, 30);
-            this.txtREName.MaxLength = 100;
-            this.txtREName.Name = "txtREName";
-            this.txtREName.Size = new System.Drawing.Size(240, 28);
-            this.txtREName.TabIndex = 8;
+            this.txtAEName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAEName.Location = new System.Drawing.Point(128, 30);
+            this.txtAEName.MaxLength = 100;
+            this.txtAEName.Name = "txtAEName";
+            this.txtAEName.Size = new System.Drawing.Size(240, 28);
+            this.txtAEName.TabIndex = 8;
+            this.txtAEName.Enter += new System.EventHandler(this.txtAEName_Enter);
+            this.txtAEName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAEName_KeyDown);
+            this.txtAEName.Leave += new System.EventHandler(this.txtAEName_Leave);
             // 
             // txtDAreaTName
             // 
@@ -217,12 +235,55 @@
             this.txtDAreaEName.TabIndex = 11;
             this.txtDAreaEName.Text = "Area English Name";
             // 
+            // DGV_FilterLocation
+            // 
+            this.DGV_FilterLocation.AllowUserToAddRows = false;
+            this.DGV_FilterLocation.AllowUserToDeleteRows = false;
+            this.DGV_FilterLocation.AllowUserToResizeColumns = false;
+            this.DGV_FilterLocation.AllowUserToResizeRows = false;
+            this.DGV_FilterLocation.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_FilterLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_FilterLocation.ColumnHeadersHeight = 30;
+            this.DGV_FilterLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterLocation.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_FilterLocation.EnableHeadersVisualStyles = false;
+            this.DGV_FilterLocation.GridColor = System.Drawing.Color.White;
+            this.DGV_FilterLocation.Location = new System.Drawing.Point(18, 117);
+            this.DGV_FilterLocation.Name = "DGV_FilterLocation";
+            this.DGV_FilterLocation.ReadOnly = true;
+            this.DGV_FilterLocation.RowHeadersVisible = false;
+            this.DGV_FilterLocation.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterLocation.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_FilterLocation.RowTemplate.Height = 25;
+            this.DGV_FilterLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_FilterLocation.Size = new System.Drawing.Size(260, 95);
+            this.DGV_FilterLocation.TabIndex = 111111173;
+            this.DGV_FilterLocation.Visible = false;
+            // 
             // CP_Area
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(418, 216);
+            this.Controls.Add(this.DGV_FilterLocation);
             this.Controls.Add(this.grbDetails);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -242,6 +303,7 @@
             this.grbDetails.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,17 +311,18 @@
         #endregion
         private System.Windows.Forms.ErrorProvider errArea;
         private System.Windows.Forms.GroupBox grbDetails;
-        private System.Windows.Forms.TextBox txtRTName;
-        private System.Windows.Forms.TextBox txtREName;
+        private System.Windows.Forms.TextBox txtATName;
+        private System.Windows.Forms.TextBox txtAEName;
         private System.Windows.Forms.TextBox txtDAreaTName;
         private System.Windows.Forms.TextBox txtDAreaEName;
         private System.Windows.Forms.TextBox txtDRouteName;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtRName;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.RadioButton rbInActive;
         private System.Windows.Forms.Button btnClose;
         public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.DataGridView DGV_FilterLocation;
     }
 }
