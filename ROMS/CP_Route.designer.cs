@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Route));
-            this.txtDRootTName = new System.Windows.Forms.TextBox();
-            this.txtDRootEName = new System.Windows.Forms.TextBox();
+            this.txtDRouteTName = new System.Windows.Forms.TextBox();
+            this.txtDRouteEName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.cmbRSNo = new System.Windows.Forms.ComboBox();
             this.txtDRouteOrderNo = new System.Windows.Forms.TextBox();
@@ -49,31 +49,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtDRootTName
+            // txtDRouteTName
             // 
-            this.txtDRootTName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDRootTName.Enabled = false;
-            this.txtDRootTName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDRootTName.Location = new System.Drawing.Point(6, 58);
-            this.txtDRootTName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDRootTName.Name = "txtDRootTName";
-            this.txtDRootTName.ReadOnly = true;
-            this.txtDRootTName.Size = new System.Drawing.Size(122, 28);
-            this.txtDRootTName.TabIndex = 6;
-            this.txtDRootTName.Text = "Route Tamil Name";
+            this.txtDRouteTName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDRouteTName.Enabled = false;
+            this.txtDRouteTName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDRouteTName.Location = new System.Drawing.Point(6, 58);
+            this.txtDRouteTName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDRouteTName.Name = "txtDRouteTName";
+            this.txtDRouteTName.ReadOnly = true;
+            this.txtDRouteTName.Size = new System.Drawing.Size(122, 28);
+            this.txtDRouteTName.TabIndex = 6;
+            this.txtDRouteTName.Text = "Route Tamil Name";
             // 
-            // txtDRootEName
+            // txtDRouteEName
             // 
-            this.txtDRootEName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDRootEName.Enabled = false;
-            this.txtDRootEName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDRootEName.Location = new System.Drawing.Point(6, 30);
-            this.txtDRootEName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDRootEName.Name = "txtDRootEName";
-            this.txtDRootEName.ReadOnly = true;
-            this.txtDRootEName.Size = new System.Drawing.Size(122, 28);
-            this.txtDRootEName.TabIndex = 7;
-            this.txtDRootEName.Text = "Route English Name";
+            this.txtDRouteEName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDRouteEName.Enabled = false;
+            this.txtDRouteEName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDRouteEName.Location = new System.Drawing.Point(6, 30);
+            this.txtDRouteEName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDRouteEName.Name = "txtDRouteEName";
+            this.txtDRouteEName.ReadOnly = true;
+            this.txtDRouteEName.Size = new System.Drawing.Size(122, 28);
+            this.txtDRouteEName.TabIndex = 7;
+            this.txtDRouteEName.Text = "Route English Name";
             // 
             // grbform
             // 
@@ -84,8 +84,8 @@
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.txtStatus);
-            this.grbform.Controls.Add(this.txtDRootTName);
-            this.grbform.Controls.Add(this.txtDRootEName);
+            this.grbform.Controls.Add(this.txtDRouteTName);
+            this.grbform.Controls.Add(this.txtDRouteEName);
             this.grbform.Controls.Add(this.pnlStatus);
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.grbform.Location = new System.Drawing.Point(6, 1);
@@ -268,8 +268,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtDRootTName;
-        private System.Windows.Forms.TextBox txtDRootEName;
+        private System.Windows.Forms.TextBox txtDRouteTName;
+        private System.Windows.Forms.TextBox txtDRouteEName;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
         private System.Windows.Forms.ErrorProvider epRoute;

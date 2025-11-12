@@ -145,8 +145,8 @@ namespace ROMS
                 {
                     epRoute.SetError(txtRTName, "Please enter route tamil name.");
                     txtRTName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpREName.ShowAlways = true;
-                    tpREName.Show("Please enter route tamil name.", txtRTName, 5000);
+                    tpRTName.ShowAlways = true;
+                    tpRTName.Show("Please enter route tamil name.", txtRTName, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
