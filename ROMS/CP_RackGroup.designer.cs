@@ -106,6 +106,7 @@
             this.tsRackGroup = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlRackGroup = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblUserId = new System.Windows.Forms.Label();
             this.lblEmpCode = new System.Windows.Forms.Label();
@@ -113,7 +114,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label4 = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGridLeft)).BeginInit();
@@ -165,7 +165,7 @@
             this.cmbRGOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbRGOrderNo.Name = "cmbRGOrderNo";
             this.cmbRGOrderNo.Size = new System.Drawing.Size(67, 27);
-            this.cmbRGOrderNo.TabIndex = 2;
+            this.cmbRGOrderNo.TabIndex = 3;
             this.cmbRGOrderNo.Enter += new System.EventHandler(this.CmbRGOrderNo_Enter);
             this.cmbRGOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbRGOrderNo_KeyDown);
             this.cmbRGOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbRGOrderNo_KeyPress);
@@ -301,7 +301,7 @@
             this.DGV_SearchGridLeft.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_SearchGridLeft.EnableHeadersVisualStyles = false;
             this.DGV_SearchGridLeft.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGridLeft.Location = new System.Drawing.Point(18, 87);
+            this.DGV_SearchGridLeft.Location = new System.Drawing.Point(20, 87);
             this.DGV_SearchGridLeft.Name = "DGV_SearchGridLeft";
             this.DGV_SearchGridLeft.RowHeadersVisible = false;
             this.DGV_SearchGridLeft.RowHeadersWidth = 70;
@@ -353,7 +353,7 @@
             this.Add.Location = new System.Drawing.Point(652, 249);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(31, 29);
-            this.Add.TabIndex = 4;
+            this.Add.TabIndex = 6;
             this.Add.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Click += new System.EventHandler(this.Add_Click);
@@ -478,7 +478,7 @@
             this.btnView.Location = new System.Drawing.Point(225, 52);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(74, 29);
-            this.btnView.TabIndex = 3;
+            this.btnView.TabIndex = 5;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -544,11 +544,11 @@
             // 
             // txtRackGroupName
             // 
-            this.txtRackGroupName.Location = new System.Drawing.Point(426, 18);
+            this.txtRackGroupName.Location = new System.Drawing.Point(427, 18);
             this.txtRackGroupName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRackGroupName.MaxLength = 20;
             this.txtRackGroupName.Name = "txtRackGroupName";
-            this.txtRackGroupName.Size = new System.Drawing.Size(194, 27);
+            this.txtRackGroupName.Size = new System.Drawing.Size(221, 27);
             this.txtRackGroupName.TabIndex = 1;
             this.txtRackGroupName.Enter += new System.EventHandler(this.TxtRackGroupName_Enter);
             this.txtRackGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackGroupName_KeyDown);
@@ -562,7 +562,7 @@
             this.cmbStockLocation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbStockLocation.Name = "cmbStockLocation";
             this.cmbStockLocation.Size = new System.Drawing.Size(116, 27);
-            this.cmbStockLocation.TabIndex = 2;
+            this.cmbStockLocation.TabIndex = 4;
             this.cmbStockLocation.SelectedIndexChanged += new System.EventHandler(this.CmbStockLocation_SelectedIndexChanged);
             this.cmbStockLocation.Enter += new System.EventHandler(this.CmbStockLocation_Enter);
             this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbStockLocation_KeyDown);
@@ -623,7 +623,8 @@
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(146, 27);
-            this.pnlStatus.TabIndex = 5;
+            this.pnlStatus.TabIndex = 2;
+            this.pnlStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStatus_Paint);
             // 
             // rbActive
             // 
@@ -720,7 +721,7 @@
             this.btnAddemployee.Location = new System.Drawing.Point(652, 117);
             this.btnAddemployee.Name = "btnAddemployee";
             this.btnAddemployee.Size = new System.Drawing.Size(31, 29);
-            this.btnAddemployee.TabIndex = 1111140;
+            this.btnAddemployee.TabIndex = 3;
             this.btnAddemployee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddemployee.UseVisualStyleBackColor = true;
             this.btnAddemployee.Click += new System.EventHandler(this.BtnAddemployee_Click);
@@ -950,7 +951,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 30);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -968,7 +969,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 30);
-            this.btnClose.TabIndex = 3;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1021,6 +1022,15 @@
             this.pnlRackGroup.Name = "pnlRackGroup";
             this.pnlRackGroup.Size = new System.Drawing.Size(1354, 644);
             this.pnlRackGroup.TabIndex = 37;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(958, 616);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 20);
+            this.label4.TabIndex = 1111143;
+            this.label4.Text = "Status";
             // 
             // label2
             // 
@@ -1082,15 +1092,6 @@
             // columnHeader6
             // 
             this.columnHeader6.Width = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(958, 616);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 20);
-            this.label4.TabIndex = 1111143;
-            this.label4.Text = "Status";
             // 
             // CP_RackGroup
             // 

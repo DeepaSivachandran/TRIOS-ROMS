@@ -913,7 +913,7 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            if (Convert.ToInt32(MainForm.pbUserRoleId) != 1 || EditAccess==true)
+            if (Convert.ToInt32(MainForm.pbUserRoleId) == 1 || EditAccess==true)
             {
                 try
                 {

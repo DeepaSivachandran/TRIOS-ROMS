@@ -2183,7 +2183,7 @@ namespace ROMS
             return varResult;
         }
         /*Added by deepa on 19-09-2023*/
-        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag)
+        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag,string paraEMPTName)
         {
             string varResult = "";
             try
@@ -2201,7 +2201,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName); 
+                varSqlCommand.Parameters.AddWithValue("@paraEMPTName", paraEMPTName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -4386,7 +4387,7 @@ namespace ROMS
             }
             return varResult;
         }
-        public DataSet udfnGetSlNo(string paraTableName, string paraProcess, string paraColumnName, string paraColumnValue)
+        public DataSet udfnGetSlNo(string paraTableName, string paraProcess, string paraColumnName, string paraColumnValue,string paraSerialColumn)
         {
             DataSet ds = new DataSet();
 
@@ -4399,6 +4400,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProcess", paraProcess);
                 varSqlCommand.Parameters.AddWithValue("@paraColumnName", paraColumnName);
                 varSqlCommand.Parameters.AddWithValue("@paraColumnValue", paraColumnValue);
+                varSqlCommand.Parameters.AddWithValue("@paraSerialColumn", paraSerialColumn);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;
