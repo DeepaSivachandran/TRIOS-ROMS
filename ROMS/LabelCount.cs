@@ -16,10 +16,12 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpCancel = new ToolTip();
-        public string varSupplierIds;
+        public string varSupplierIds, varGIId="0";
+        public int varPrid=0,varFlag=0;
         public LabelCount()
         {
             InitializeComponent();
+            
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -44,7 +46,13 @@ namespace ROMS
                         return;
                     }
                 }
-                udfnPrint();
+                if (varFlag == 1) ///inward sticker print count
+                {
+                    udfnStickerPrint();
+                }
+                else { 
+                    udfnPrint();
+                }
             }
             catch (Exception ex)
             {
@@ -93,6 +101,47 @@ namespace ROMS
             }
         }
 
+
+        public void udfnStickerPrint()
+        {
+            try
+            {
+                if (varGIId != "0")
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Inward_Sticker_Print_100x70.rpt");
+
+                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varGIId));
+                    objBillreport.SetParameterValue("paraPRID", Convert.ToInt32(varPrid));
+                    objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
+                    objBillreport.SetParameterValue("paraFlag", 2); ////item wise sticker print  for inward
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+                else {
+                    return;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -150,6 +199,12 @@ namespace ROMS
         {
             try
             {
+                this.Text = "Supplier Envelope Label";
+                if (varFlag == 1) ///inward sticker print count
+                {
+                    this.Text = "Inward Label print";
+                }
+
                 txtCount.Focus();
             }
             catch (Exception ex)
