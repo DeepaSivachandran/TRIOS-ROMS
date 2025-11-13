@@ -2450,7 +2450,7 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "7.1.11")
                 {
-                    MainForm.objREPORT_CP_Rackgroup.udfnRG(0);
+                    MainForm.objREPORT_CP_Rackgroup.udfnRG(0,0);
                 }
                 if (PbCurrentForm == "7.1.12")
                 {
