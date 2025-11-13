@@ -55,6 +55,7 @@ namespace ROMS
         bool varVoucherSkip = false;
         public int varClose = 0, varDateChange = 0, varChildStockFlag = 0;
         public string varUserID = "";
+        public int varAutoTriggerFlag = 0;
 
         public INV_GodownOutward()
         {
@@ -1171,6 +1172,7 @@ namespace ROMS
             {
                 if (varUpDownKey == 0)
                 {
+                    varAutoTriggerFlag = 0;
                     if (VarSearchFlag == true)
                     {
                         txtProductName.CharacterCasing = CharacterCasing.Upper;
@@ -1241,6 +1243,7 @@ namespace ROMS
                                     //lvproduct.Columns[10].Width = 50;
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
+                                    DGV_FilterProduct.Columns["RowNo"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 320;
                                     //DGV_FilterProduct.Columns["SL_EName"].Width = 70;
@@ -3038,38 +3041,7 @@ namespace ROMS
                         }
                         else
                         {
-                            if (txtOutwardQuantity.Text != "")
-                            {
-                                //if (varDecimal == 6)
-                                //{
-                                string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), varDecimal);
-                                txtOutwardQuantity.Text = Qty;
-                                //}
-                                //if (varDecimal == 7)
-                                //{
-                                //    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 2);
-                                //    txtOutwardQuantity.Text = Qty;
-                                //}
-                                //if (varDecimal == 8)
-                                //{
-                                //    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), 3);
-                                //    txtOutwardQuantity.Text = Qty;
-                                //}
-                            }
-                            grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (varTamilname), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text), varUnit, varUTID, varDecimal);
-                            dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text), varRKID, varDestSLID, varDestRKID, 0);
-                            txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
-                            //varTotalItem = Convert.ToString(DGV_inward.Rows.Count);
-                            grdGoodsOutward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGoodsOutward.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGoodsOutward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGoodsOutward.Columns["clmunit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdGoodsOutward.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            udfnProductClear();
-                            txtProductName.Focus();
-
+                            udfnAdd();
                         }
                     }
                     else
@@ -3110,7 +3082,35 @@ namespace ROMS
             }
 
         }
-
+        public void udfnAdd()
+        {
+            try
+            {
+                if (txtOutwardQuantity.Text != "")
+                {
+                    string Qty = objValidation.udfnDecimal((txtOutwardQuantity.Text).Trim(), varDecimal);
+                    txtOutwardQuantity.Text = Qty;
+                }
+                grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (varTamilname), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text), varUnit, varUTID, varDecimal);
+                dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text), varRKID, varDestSLID, varDestRKID, 0);
+                txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
+                //varTotalItem = Convert.ToString(DGV_inward.Rows.Count);
+                grdGoodsOutward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdGoodsOutward.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdGoodsOutward.Columns["clmOutward"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdGoodsOutward.Columns["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdGoodsOutward.Columns["clmunit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdGoodsOutward.Columns["clmdsno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                udfnProductClear();
+                txtProductName.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void Lvproduct_SelectedIndexChanged(object sender, EventArgs e)
         {
 
