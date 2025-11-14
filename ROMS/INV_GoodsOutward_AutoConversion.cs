@@ -526,9 +526,13 @@ namespace ROMS
                 cols["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 cols["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 cols["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                int varQty = 0;
+                varQty = Convert.ToInt32(lblParentQty.Text) - Convert.ToInt32(lblRequiredQty.Text);
 
+                objOutward.txtOutwardQuantity.Text = Convert.ToString(varQty);
+                objOutward.udfnAdd();
                 // Clear product details
-                objOutward.udfnProductClear();
+                //objOutward.udfnProductClear();
                 this.Close();
             }
             catch (Exception ex)

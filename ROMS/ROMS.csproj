@@ -287,6 +287,12 @@
     <Compile Include="CP_ChequePrint_Setting.designer.cs">
       <DependentUpon>CP_ChequePrint_Setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Product_Popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product_Popup.designer.cs">
+      <DependentUpon>CP_Product_Popup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MR_ChequeTransactionSettings.cs" />
     <Compile Include="GRN_ADV.cs">
       <SubType>Form</SubType>
@@ -3487,6 +3493,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <None Include="Resources\zoom-out.jpg" />
+    <None Include="Resources\zoom-in.jpg" />
+    <None Include="Resources\right rotate.jpg" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\Brightness.jpg" />
+    <None Include="Resources\image-edit.jpg" />
+    <None Include="Resources\crop.jpg" />
+    <None Include="Resources\left rotate.jpg" />
     <Content Include="Resources\minimize_Form.png" />
     <None Include="Resources\Telegram.png" />
     <None Include="Resources\Telegram.jpg" />
@@ -3566,6 +3580,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GRN_ADV.resx">
       <DependentUpon>GRN_ADV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product_Popup.resx">
+      <DependentUpon>CP_Product_Popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
