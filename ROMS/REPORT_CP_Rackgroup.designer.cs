@@ -29,15 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Rackgroup));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsRackGroupReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlReportRackgroup = new System.Windows.Forms.Panel();
-            this.DGV_FilterRackgroup = new System.Windows.Forms.DataGridView();
             this.lvRack = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,6 +47,9 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.cmbRackGroup = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbproductStatus = new System.Windows.Forms.ComboBox();
             this.btnTelegram = new System.Windows.Forms.Button();
@@ -72,7 +71,6 @@
             this.lblRack = new System.Windows.Forms.Label();
             this.txtEmployeeName = new System.Windows.Forms.TextBox();
             this.lblEmployeeName = new System.Windows.Forms.Label();
-            this.txtRackgroup = new System.Windows.Forms.TextBox();
             this.lblRackgroup = new System.Windows.Forms.Label();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblReportType = new System.Windows.Forms.Label();
@@ -82,7 +80,6 @@
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsRackGroupReport.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).BeginInit();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
@@ -142,7 +139,6 @@
             // pnlReportRackgroup
             // 
             this.pnlReportRackgroup.BackColor = System.Drawing.Color.White;
-            this.pnlReportRackgroup.Controls.Add(this.DGV_FilterRackgroup);
             this.pnlReportRackgroup.Controls.Add(this.lvRack);
             this.pnlReportRackgroup.Controls.Add(this.lvRackIncharge);
             this.pnlReportRackgroup.Controls.Add(this.lvRackgroup);
@@ -154,50 +150,6 @@
             this.pnlReportRackgroup.Name = "pnlReportRackgroup";
             this.pnlReportRackgroup.Size = new System.Drawing.Size(1354, 643);
             this.pnlReportRackgroup.TabIndex = 958788;
-            // 
-            // DGV_FilterRackgroup
-            // 
-            this.DGV_FilterRackgroup.AllowUserToAddRows = false;
-            this.DGV_FilterRackgroup.AllowUserToDeleteRows = false;
-            this.DGV_FilterRackgroup.AllowUserToResizeColumns = false;
-            this.DGV_FilterRackgroup.AllowUserToResizeRows = false;
-            this.DGV_FilterRackgroup.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_FilterRackgroup.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterRackgroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGV_FilterRackgroup.ColumnHeadersHeight = 30;
-            this.DGV_FilterRackgroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterRackgroup.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DGV_FilterRackgroup.EnableHeadersVisualStyles = false;
-            this.DGV_FilterRackgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterRackgroup.Location = new System.Drawing.Point(419, 74);
-            this.DGV_FilterRackgroup.Name = "DGV_FilterRackgroup";
-            this.DGV_FilterRackgroup.ReadOnly = true;
-            this.DGV_FilterRackgroup.RowHeadersVisible = false;
-            this.DGV_FilterRackgroup.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterRackgroup.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_FilterRackgroup.RowTemplate.Height = 25;
-            this.DGV_FilterRackgroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterRackgroup.Size = new System.Drawing.Size(386, 226);
-            this.DGV_FilterRackgroup.TabIndex = 111111158;
-            this.DGV_FilterRackgroup.Visible = false;
-            this.DGV_FilterRackgroup.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
-            this.DGV_FilterRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterProduct_KeyDown);
             // 
             // lvRack
             // 
@@ -291,6 +243,9 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label6);
+            this.grpfilter.Controls.Add(this.cmbType);
+            this.grpfilter.Controls.Add(this.cmbRackGroup);
             this.grpfilter.Controls.Add(this.label5);
             this.grpfilter.Controls.Add(this.cmbproductStatus);
             this.grpfilter.Controls.Add(this.btnTelegram);
@@ -312,7 +267,6 @@
             this.grpfilter.Controls.Add(this.lblRack);
             this.grpfilter.Controls.Add(this.txtEmployeeName);
             this.grpfilter.Controls.Add(this.lblEmployeeName);
-            this.grpfilter.Controls.Add(this.txtRackgroup);
             this.grpfilter.Controls.Add(this.lblRackgroup);
             this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblReportType);
@@ -323,11 +277,46 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1132, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 20);
+            this.label6.TabIndex = 1111248;
+            this.label6.Text = "Type";
+            // 
+            // cmbType
+            // 
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Location = new System.Drawing.Point(1132, 45);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(110, 27);
+            this.cmbType.TabIndex = 8;
+            this.cmbType.Enter += new System.EventHandler(this.cmbType_Enter);
+            this.cmbType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbType_KeyDown);
+            this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
+            this.cmbType.Leave += new System.EventHandler(this.cmbType_Leave);
+            // 
+            // cmbRackGroup
+            // 
+            this.cmbRackGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRackGroup.FormattingEnabled = true;
+            this.cmbRackGroup.Location = new System.Drawing.Point(407, 45);
+            this.cmbRackGroup.Name = "cmbRackGroup";
+            this.cmbRackGroup.Size = new System.Drawing.Size(137, 27);
+            this.cmbRackGroup.TabIndex = 2;
+            this.cmbRackGroup.Enter += new System.EventHandler(this.cmbRackGroup_Enter);
+            this.cmbRackGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRackGroup_KeyDown);
+            this.cmbRackGroup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRackGroup_KeyPress);
+            this.cmbRackGroup.Leave += new System.EventHandler(this.cmbRackGroup_Leave);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1105, 22);
+            this.label5.Location = new System.Drawing.Point(1022, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 20);
             this.label5.TabIndex = 1111246;
@@ -337,7 +326,7 @@
             // 
             this.cmbproductStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbproductStatus.FormattingEnabled = true;
-            this.cmbproductStatus.Location = new System.Drawing.Point(1105, 45);
+            this.cmbproductStatus.Location = new System.Drawing.Point(1022, 45);
             this.cmbproductStatus.Name = "cmbproductStatus";
             this.cmbproductStatus.Size = new System.Drawing.Size(104, 27);
             this.cmbproductStatus.TabIndex = 7;
@@ -350,11 +339,11 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1260, 44);
+            this.btnTelegram.Location = new System.Drawing.Point(1289, 44);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 9;
+            this.btnTelegram.TabIndex = 10;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -364,7 +353,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(990, 22);
+            this.label4.Location = new System.Drawing.Point(912, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(110, 20);
             this.label4.TabIndex = 1111244;
@@ -374,7 +363,7 @@
             // 
             this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(990, 45);
+            this.cmbStatus.Location = new System.Drawing.Point(912, 45);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(104, 27);
             this.cmbStatus.TabIndex = 6;
@@ -387,7 +376,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(880, 22);
+            this.label3.Location = new System.Drawing.Point(802, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 20);
             this.label3.TabIndex = 1111242;
@@ -397,7 +386,7 @@
             // 
             this.cmbFormat.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFormat.FormattingEnabled = true;
-            this.cmbFormat.Location = new System.Drawing.Point(880, 45);
+            this.cmbFormat.Location = new System.Drawing.Point(802, 45);
             this.cmbFormat.Name = "cmbFormat";
             this.cmbFormat.Size = new System.Drawing.Size(104, 27);
             this.cmbFormat.TabIndex = 5;
@@ -410,7 +399,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(628, 22);
+            this.label2.Location = new System.Drawing.Point(550, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 20);
             this.label2.TabIndex = 1111240;
@@ -420,7 +409,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(770, 22);
+            this.label1.Location = new System.Drawing.Point(692, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 20);
             this.label1.TabIndex = 1111239;
@@ -430,7 +419,7 @@
             // 
             this.cmbSubgroupType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSubgroupType.FormattingEnabled = true;
-            this.cmbSubgroupType.Location = new System.Drawing.Point(628, 45);
+            this.cmbSubgroupType.Location = new System.Drawing.Point(550, 45);
             this.cmbSubgroupType.Name = "cmbSubgroupType";
             this.cmbSubgroupType.Size = new System.Drawing.Size(136, 27);
             this.cmbSubgroupType.TabIndex = 3;
@@ -443,7 +432,7 @@
             // 
             this.cmbProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductCategory.FormattingEnabled = true;
-            this.cmbProductCategory.Location = new System.Drawing.Point(770, 45);
+            this.cmbProductCategory.Location = new System.Drawing.Point(692, 45);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(104, 27);
             this.cmbProductCategory.TabIndex = 4;
@@ -457,11 +446,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1219, 44);
+            this.btnListPrint.Location = new System.Drawing.Point(1248, 44);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(36, 29);
-            this.btnListPrint.TabIndex = 8;
+            this.btnListPrint.TabIndex = 9;
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -570,19 +559,6 @@
             this.lblEmployeeName.Text = "Employee Name";
             this.lblEmployeeName.Visible = false;
             // 
-            // txtRackgroup
-            // 
-            this.txtRackgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRackgroup.Location = new System.Drawing.Point(407, 45);
-            this.txtRackgroup.MaxLength = 100;
-            this.txtRackgroup.Name = "txtRackgroup";
-            this.txtRackgroup.Size = new System.Drawing.Size(215, 27);
-            this.txtRackgroup.TabIndex = 2;
-            this.txtRackgroup.TextChanged += new System.EventHandler(this.TxtRackgroup_TextChanged);
-            this.txtRackgroup.Enter += new System.EventHandler(this.TxtRackgroup_Enter);
-            this.txtRackgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackgroup_KeyDown);
-            this.txtRackgroup.Leave += new System.EventHandler(this.TxtRackgroup_Leave);
-            // 
             // lblRackgroup
             // 
             this.lblRackgroup.AutoSize = true;
@@ -681,7 +657,6 @@
             this.tsRackGroupReport.PerformLayout();
             this.pnlReportRackgroup.ResumeLayout(false);
             this.pnlReportRackgroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterRackgroup)).EndInit();
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
@@ -702,7 +677,6 @@
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnListPrint;
         private System.Windows.Forms.Label lblRackgroup;
-        private System.Windows.Forms.TextBox txtRackgroup;
         private System.Windows.Forms.Label lblEmployeeName;
         private System.Windows.Forms.TextBox txtEmployeeName;
         private System.Windows.Forms.Label lblRack;
@@ -724,7 +698,6 @@
         private System.Windows.Forms.Label lblRackCode;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.Label lblConcern;
-        public System.Windows.Forms.DataGridView DGV_FilterRackgroup;
         private System.Windows.Forms.ComboBox cmbProductCategory;
         private System.Windows.Forms.ComboBox cmbSubgroupType;
         private System.Windows.Forms.Label label2;
@@ -740,5 +713,8 @@
         private System.Windows.Forms.Button btnTelegram;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbproductStatus;
+        private System.Windows.Forms.ComboBox cmbRackGroup;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbType;
     }
 }
