@@ -50,6 +50,10 @@ namespace ROMS
                 {
                     udfnStickerPrint();
                 }
+                if (varFlag == 2) ///inward sticker print count
+                {
+                    udfnStickerFormPurchasePrint();
+                }
                 else { 
                     udfnPrint();
                 }
@@ -142,6 +146,50 @@ namespace ROMS
                 this.Close();
             }
         }
+
+        public void udfnStickerFormPurchasePrint()
+        {
+            try
+            {
+                if (varGIId != "0")
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Inward_FPurchase_Sticker_Print_100x70.rpt");
+
+                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varGIId));
+                    objBillreport.SetParameterValue("paraPRID", Convert.ToInt32(varPrid));
+                    objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
+                    objBillreport.SetParameterValue("paraFlag", 2); ////item wise sticker print  for inward
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+                else
+                {
+                    return;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
+
+        
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try

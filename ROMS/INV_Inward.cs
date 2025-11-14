@@ -245,6 +245,7 @@ namespace ROMS
                     }
                 }
                 udfnSave();
+                 
             }
             catch (Exception ex)
             {
@@ -466,6 +467,10 @@ namespace ROMS
                             }
                             udfnInwardReport(InwardId);
                         }
+                        if (varGIId == 0) {
+
+                            udfnStickerPrint(varvalue[2]);
+                        }
                         //udfnClear();
                         this.Close();
                     }
@@ -556,7 +561,7 @@ namespace ROMS
                     MainForm.objReportLoad.Text = varHeader;
                     MainForm.objReportLoad.ShowDialog();
 
-                    udfnStickerPrint(varInwardId);
+                    
                 }
             }
             catch (Exception ex)

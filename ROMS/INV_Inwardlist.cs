@@ -1563,6 +1563,8 @@ namespace ROMS
                     {
                         grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+
+                      
                     }
                     if (Convert.ToString(grdInwardList.Rows[i].Cells["STSID"].Value) == "41")
                     {
@@ -1572,6 +1574,7 @@ namespace ROMS
                         grdInwardList.Rows[i].Cells["clmPrint"] = print;
                         print.ReadOnly = true;
                     }
+                     
                     //sticker reprint
                     if (Convert.ToString(grdInwardList.Rows[i].Cells["StickerFlag"].Value) == "0")
                     {
@@ -1581,7 +1584,7 @@ namespace ROMS
                         grdInwardList.Rows[i].Cells["clmStickerPrint"] = print;
                         print.ReadOnly = true;
                     }
-                    
+
                 }
                 grdInwardList.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
                 grdInwardList.Columns["clmStickerPrint"].Resizable = DataGridViewTriState.False;
