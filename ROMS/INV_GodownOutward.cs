@@ -1250,8 +1250,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["RK_ShortName"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_MRP"].Width = 60;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].Width = 90;
+                                    DGV_FilterProduct.Columns["MFD Date"].Width = 90;
                                     DGV_FilterProduct.Columns["STK_BatchNo"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_Qty"].Width = 70;
+                                    DGV_FilterProduct.Columns["Retail Rate"].Width = 80;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 50;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGV_FilterProduct.Columns["UTID"].Visible = false;
@@ -1262,6 +1264,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_Parent_ID"].Visible = false;
                                     DGV_FilterProduct.Columns["isChildStockFlag"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
+                                    DGV_FilterProduct.Columns["Shelf Life"].Width = 100;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 4;
@@ -1281,8 +1284,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["STK_Qty"].HeaderText = "Stock Qty";
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGV_FilterProduct.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Columns["STK_MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["STK_Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Visible = true;
 
