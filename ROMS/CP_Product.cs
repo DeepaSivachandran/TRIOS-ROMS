@@ -2977,8 +2977,8 @@ namespace ROMS
                     cmbRM.Enabled = false;
                     cmbRM.SelectedValue = 240;
                 }
-                ////convertion type only allow child concept otherwise all are parent
-                if (Convert.ToInt32(cmbProductCategory.SelectedValue) != 14)
+                ////convertion type AND Production only allow child concept otherwise all are parent
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) != 14 && Convert.ToInt32(cmbProductCategory.SelectedValue) != 16)
                 {
                     cmbProductType.SelectedValue = 341;
                     cmbProductType.Enabled = false;

@@ -379,8 +379,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(268, 22);
-            this.tspHeader.Text = "Stock Conversion (Conversion Products Only)";
+            this.tspHeader.Size = new System.Drawing.Size(342, 22);
+            this.tspHeader.Text = "Stock Conversion (Conversion && Production Products Only)";
             // 
             // pnlGoodsOutward
             // 
