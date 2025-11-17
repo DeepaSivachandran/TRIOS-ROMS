@@ -1269,9 +1269,13 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 4;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 5;
-                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 6;
-                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 7;
-                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 8;
+                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 6;
+                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 7;
+
+                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 8;
+                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 9;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 10;
+
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
