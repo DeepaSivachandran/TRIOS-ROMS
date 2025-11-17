@@ -712,7 +712,7 @@ namespace ROMS
 
                     decimal.TryParse(txtStockQuantity.Text, out stockQty);
                     decimal.TryParse(txtOutwardQuantity.Text, out outwardQty);
-                    if (outwardQty < stockQty || outwardQty <= 0)
+                    if (outwardQty <= stockQty || outwardQty <= 0)
                     {
                         btnConversion.Enabled = false;
                     }
