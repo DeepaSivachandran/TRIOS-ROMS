@@ -3858,6 +3858,8 @@ namespace ROMS
                 cmbUnit.Enabled = true;
                 udfnUserAccess();
                 //txtUpp.Enabled = true;
+                btnSave.Visible = true;
+                btnImageUpdate.Visible = false;
             }
             catch (Exception ex)
             {
@@ -6654,6 +6656,8 @@ namespace ROMS
         {
             try
             {
+                btnSave.Visible = true;
+                btnImageUpdate.Visible = false;
                 if (tbProduct.SelectedIndex == 1)
                 {
                     txtPURHSNName.Focus();
@@ -6674,8 +6678,6 @@ namespace ROMS
                 {
                     btnImageUpdate.Visible = false;
                     btnImageClose.Visible = false;
-
-                    btnSave.Visible = true;
                     btnClose.Visible = true;
                     cbCompleted.Visible = true;
                 }
