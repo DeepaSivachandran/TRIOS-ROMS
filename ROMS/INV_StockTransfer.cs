@@ -1510,14 +1510,23 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["QTY"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].Width = 90;
                                     DGV_FilterProduct.Columns["RK_ShortName"].Width = 70;
+                                    DGV_FilterProduct.Columns["UPP"].Width = 70;
+                                    DGV_FilterProduct.Columns["Retail Rate"].Width = 80;
 
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 4;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 5;
-                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 6;
-                                    DGV_FilterProduct.Columns["QTY"].DisplayIndex = 7;
-                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 8;
+
+                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 6;
+                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 7;
+                                     
+                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 8;
+                                    DGV_FilterProduct.Columns["QTY"].DisplayIndex = 9;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 10;
+                                    DGV_FilterProduct.Columns["Retail Rate"].DisplayIndex = 11;
+                                    DGV_FilterProduct.Columns["UPP"].DisplayIndex = 12;
+                                     
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
@@ -1532,6 +1541,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["STK_MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["QTY"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGV_FilterProduct.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                                     if (VarSearchFlag == false)
                                     {
@@ -3227,6 +3238,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void DGV_FilterDLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
