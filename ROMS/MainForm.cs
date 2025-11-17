@@ -146,7 +146,8 @@ namespace ROMS
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_StickerPrint objCP_StickerPrint;
         // added by venkat on 09-08-2025
-        public static CP_DirectLabelPrint objCP_DiectLabelPrint;
+        public static CP_DirectLabelPrint objCP_DirectLabelPrint;
+        public static CP_DirectLabelList objCP_DirectLabelList;
         public static CP_Printer_Setting objCP_PrinterSetting;
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
@@ -3806,7 +3807,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_DiectLabelPrint, "CP_DirectLabelPrint", 523);
+                OpenReportForm(ref MainForm.objCP_DirectLabelList, "CP_DirectLabelList", 523);
             }
             catch (Exception ex)
             {
