@@ -34,7 +34,7 @@ namespace ROMS
         public int varErrQty = 0;
         public int varCloseFlag = 0;
         public int varUpDownKey = 0;
-        public int varAJId = 0;
+        public int varAJId = 0, varUpDownKeyBrand = 0;
         public int varSTSID = 0;
         public int varUpdate = 0, VarUpdateFlag = 0;
         public int varCompanyId = 0, varDestSLID = 0, varDestRKID = 0, varStatusId = 0, varDecimal = 0, varUpDownKeyLocation = 0;
@@ -154,8 +154,17 @@ namespace ROMS
         {
             try
             {
+                if (Convert.ToInt32(cmbGroup.SelectedValue) == 0) {
+
+                    cmbGroup.BackColor = ColorTranslator.FromHtml("#fabdbd");
+                    epStockReconciliation.SetError(cmbGroup, "Please select group");
+                    tpmrp.ShowAlways = true;
+                    tpmrp.Show("Please select group.", cmbGroup, 5000);
+                }
                 DGV_FilterLocation.DataSource = null;
-                DGV_FilterLocation.Visible = false;
+                DGV_FilterLocation.Visible = false; 
+                DGV_FilterBrand.DataSource = null;
+                DGV_FilterBrand.Visible = false;
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -675,20 +684,20 @@ namespace ROMS
                     }
                 }
 
-                objDT = objdserv.udfnBrandList(14, "", 0,0, 0, "", 0);
-                objdserv.CloseConnection();
-                if (objDT != null)
-                {
-                    if (objDT.Tables.Count != 0)
-                    {
-                        if (objDT.Tables[0].Rows.Count != 0)
-                        {
-                            cmbBrand.ValueMember = "BDID";
-                            cmbBrand.DisplayMember = "BD_EName";
-                            cmbBrand.DataSource = objDT.Tables[0];
-                        }
-                    }
-                }
+                //objDT = objdserv.udfnBrandList(14, "", 0,0, 0, "", 0);
+                //objdserv.CloseConnection();
+                //if (objDT != null)
+                //{
+                //    if (objDT.Tables.Count != 0)
+                //    {
+                //        if (objDT.Tables[0].Rows.Count != 0)
+                //        {
+                //            cmbBrand.ValueMember = "BDID";
+                //            cmbBrand.DisplayMember = "BD_EName";
+                //            cmbBrand.DataSource = objDT.Tables[0];
+                //        }
+                //    }
+                //}
 
 
             }
@@ -792,7 +801,7 @@ namespace ROMS
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraSubgroup = Convert.ToInt32(cmbSubGroup.SelectedValue);
                         objMR_Product.paraGroup = Convert.ToInt32(cmbGroup.SelectedValue);
-                        objMR_Product.paraBrandID = Convert.ToInt32(cmbBrand.SelectedValue);
+                        objMR_Product.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
 
                         objMR_Product.paraLocationId = Convert.ToInt32(varStockLocationId);
                         objMR_Product.paraId = varEntry;
@@ -1652,7 +1661,7 @@ namespace ROMS
                     //        txtProductName.Focus();
                     //    }
                     //}
-                    txtProductName.Focus();
+                    cmbGroup.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1725,7 +1734,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtProductName.Focus();
+                        cmbGroup.Focus();
                         //if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 377) //outward
                         //{
                         //    txtProductName.Focus();
@@ -1751,50 +1760,7 @@ namespace ROMS
             }
         }
 
-
-        private void lvStockLocation_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnLvStockLocation();
-                    if (txtRack.Enabled == true)
-                    {
-                        txtRack.Focus();
-                    }
-                    else
-                    {
-                        txtProductName.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void lvStockLocation_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnLvStockLocation();
-                if (txtRack.Enabled == true)
-                {
-                    txtRack.Focus();
-                }
-                else
-                {
-                    txtProductName.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         public void udfnLvStockLocation()
         {
             try
@@ -2347,7 +2313,7 @@ namespace ROMS
                 varUpDownKeyLocation = 1;
                 udfnLvStockLocation();
 
-                txtProductName.Focus();
+                cmbGroup.Focus();
                 //if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 377) //outward
                 //{
                 //    txtProductName.Focus();
@@ -2363,7 +2329,7 @@ namespace ROMS
                 //        txtProductName.Focus();
                 //    }
                 //}
-                 
+
             }
             catch (Exception ex)
             {
@@ -2433,7 +2399,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtProductName.Focus();
+                        cmbGroup.Focus();
                         //if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 377) //outward
                         //{
                         //    txtProductName.Focus();
@@ -2495,10 +2461,389 @@ namespace ROMS
                     }
                 }
                 else {
-
+                    cmbSubGroup.DataSource = null;
                     cmbSubGroup.Enabled = false;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbSubGroup.Focus();
                 }
-                cmbBrand.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGroup.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSubGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtBatchNo.Focus();
+            }
+        }
+
+        private void cmbSubGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSubGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSubGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSubGroup_Leave(object sender, EventArgs e)
+        {
+
+            try
+            {
+                cmbSubGroup.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBrand_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrand.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyBrand = 0;
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    DGV_FilterBrand.Focus();
+
+                }
+                if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
+                {
+                    txtProductName.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_FilterBrand.Focus();
+                }
+                if (DGV_FilterBrand.CurrentCell == null && DGV_FilterBrand.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_FilterBrand.Focus();
+                    int RowIndex = DGV_FilterBrand.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterBrand.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyBrand = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyBrand = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterBrand.CurrentCell = DGV_FilterBrand.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtBrand.Text = DGV_FilterBrand.Rows[RowIndex].Cells["BD_EName"].Value.ToString();
+                            }
+                            txtBrand.Focus();
+                            txtBrand.SelectionStart = txtBrand.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterBrand.Rows.Count) DGV_FilterBrand.CurrentCell = DGV_FilterBrand.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterBrand.Rows.Count))
+                            {
+                                txtBrand.Text = DGV_FilterBrand.Rows[RowIndex].Cells["BD_EName"].Value.ToString();
+                            }
+
+                            txtBrand.Focus();
+                            txtBrand.SelectionStart = txtBrand.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterBrand.Rows.Count > 0)
+                                {
+                                    varUpDownKeyBrand = 1;
+                                    udfnBrandAutocomplete();
+                                    DGV_FilterBrand.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtBrand.Focus();
+                    //txtBrand.SelectionStart = txtBrand.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtBrand.SelectedText = true;
+                        TextBox txtBrand = sender as TextBox;
+                        txtBrand.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        txtProductName.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBrand_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrand.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void txtBrand_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varUpDownKeyBrand == 0)
+                {
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtBrand.Text.Length > 0)
+                    {
+                        objDs = objspdservice.udfnBrandList(6, "0", 0, Convert.ToInt32(cmbSubGroup.SelectedValue), 0, txtBrand.Text.Trim(), 0);
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_FilterBrand.Visible = true;
+                                    DGV_FilterBrand.DataSource = objDs.Tables[0];
+                                    DGV_FilterBrand.Columns["BDID"].Visible = false;
+                                    DGV_FilterBrand.Columns["BD_EName"].HeaderText = "Brand English Name";
+                                    DGV_FilterBrand.Columns["BD_TName"].HeaderText = "Brand Tamil Name";
+                                    DGV_FilterBrand.Columns["BD_EName"].Width = 180;
+                                    DGV_FilterBrand.Columns["BD_TName"].Width = 200;
+                                    DGV_FilterBrand.Columns["BD_EName"].DisplayIndex = 0;
+                                    DGV_FilterBrand.Columns["BD_TName"].DisplayIndex = 1;
+                                    DGV_FilterBrand.Columns["BD_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                    DGV_FilterBrand.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_FilterBrand.Visible = false;
+                                    DGV_FilterBrand.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_FilterBrand.Visible = false;
+                                DGV_FilterBrand.DataSource = null;
+                            }
+                        }
+                        else
+                        {
+                            DGV_FilterBrand.Visible = false;
+                            DGV_FilterBrand.DataSource = null;
+                        }
+                    }
+                    else
+                    {
+                        DGV_FilterBrand.Visible = false;
+                        DGV_FilterBrand.DataSource = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void DGV_FilterBrand_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyBrand = 1;
+                udfnBrandAutocomplete();
+                txtProductName.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterBrand_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_FilterBrand.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_FilterBrand.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyBrand = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyBrand = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_FilterBrand.CurrentCell = DGV_FilterBrand.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtBrand.Text = DGV_FilterBrand.SelectedRows[0].Cells["BD_EName"].Value.ToString();
+
+                            txtBrand.Focus();
+                            txtBrand.SelectionStart = txtBrand.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_FilterBrand.Rows.Count) DGV_FilterBrand.CurrentCell = DGV_FilterBrand.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_FilterBrand.Rows.Count))
+                            {
+                                txtBrand.Text = DGV_FilterBrand.Rows[RowIndex].Cells["BD_EName"].Value.ToString();
+                            }
+
+                            txtBrand.Focus();
+                            txtBrand.SelectionStart = txtBrand.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_FilterBrand.Rows.Count > 0)
+                                {
+                                    varUpDownKeyBrand = 1;
+                                    udfnBrandAutocomplete();
+                                    DGV_FilterBrand.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        TextBox txtBrand = sender as TextBox;
+                        txtBrand.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        txtProductName.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3796,6 +4141,27 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnBrandAutocomplete()
+        {
+            try
+            {
+                if (txtBrand.Text.Trim() != "")
+                {
+                    txtBrand.Text = DGV_FilterBrand.SelectedRows[0].Cells["BD_EName"].Value.ToString();
+                    lblBrandCode.Text = DGV_FilterBrand.SelectedRows[0].Cells["BDID"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                txtProductName.Focus(); 
             }
         }
     }
