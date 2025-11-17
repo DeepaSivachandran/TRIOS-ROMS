@@ -3858,6 +3858,8 @@ namespace ROMS
                 cmbUnit.Enabled = true;
                 udfnUserAccess();
                 //txtUpp.Enabled = true;
+                btnSave.Visible = true;
+                btnImageUpdate.Visible = false;
             }
             catch (Exception ex)
             {
@@ -6654,6 +6656,8 @@ namespace ROMS
         {
             try
             {
+                btnSave.Visible = true;
+                btnImageUpdate.Visible = false;
                 if (tbProduct.SelectedIndex == 1)
                 {
                     txtPURHSNName.Focus();
@@ -6664,19 +6668,12 @@ namespace ROMS
                 if (tbProduct.SelectedIndex == 2)
                 {
                     btnImageUpdate.Visible = true;
-                    btnImageClose.Visible = true;
-
                     btnSave.Visible = false;
-                    btnClose.Visible = false;
                     cbCompleted.Visible = false;
                 }
                 else
                 {
                     btnImageUpdate.Visible = false;
-                    btnImageClose.Visible = false;
-
-                    btnSave.Visible = true;
-                    btnClose.Visible = true;
                     cbCompleted.Visible = true;
                 }
             }
@@ -8727,7 +8724,8 @@ namespace ROMS
             try
             {
                 varUpDownKeySalesLocation = 1;
-                udfnSaleLocationAutocomplete(); 
+                udfnSaleLocationAutocomplete();
+                DGV_FilterSalesLocation.Visible = false;
                 if (txtSaleRack.Enabled == true)
                 {
                     txtSaleRack.Focus();
