@@ -964,6 +964,20 @@ namespace ROMS
                         udfnEdit();
                     }
                 }
+
+
+                DataTable dt = new DataTable();
+
+                dt.Columns.Add("S.No.");
+                dt.Columns.Add("Location");
+                dt.Columns.Add("Quantity");
+                grdLocation.DataSource = dt;
+                grdLocation.Columns["S.No."].Width = 60;
+                grdLocation.Columns["Location"].Width = 250;
+                grdLocation.Columns["Quantity"].Width = 90;
+                grdLocation.Columns["S.No."].Width = 50;
+                grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
             catch (Exception ex)
             {
@@ -1408,7 +1422,8 @@ namespace ROMS
                 {
                     btnConversion.Enabled = false;
                 }
-                //udfnProductAdd(); 
+                //udfnProductAdd();
+                udfnProductBasedStkLocation();
             }
             catch (Exception ex)
             {
@@ -1418,6 +1433,40 @@ namespace ROMS
             finally
             {
                 DGV_FilterProduct.Visible = false;
+            }
+        }
+        public void udfnProductBasedStkLocation()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                TRN_GoodsOutward objTRNG_GoodsOutward = new TRN_GoodsOutward();
+                objTRNG_GoodsOutward.ViewType = 3;
+                objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varPRID);
+                objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        grdLocation.DataSource = objDs.Tables[0];
+                        grdLocation.Columns["Location"].Width = 250;
+                        grdLocation.Columns["Quantity"].Width = 90;
+                        grdLocation.Columns["S.No."].Width = 50;
+                        grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    else
+                    {
+                        grdLocation.DataSource = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
