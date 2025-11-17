@@ -1902,6 +1902,7 @@ namespace ROMS
             {
                 if (chkBoxLogoff.Checked == false)
                 {
+                    txtLoggofftime.Text = "0";
                     txtLoggofftime.Enabled = false;
                     txtLoggofftime.ReadOnly = true;
                 }
@@ -1910,7 +1911,7 @@ namespace ROMS
                     txtLoggofftime.Enabled = true;
                     txtLoggofftime.ReadOnly = false;
                 }
-                txtLoggofftime.Text = "0";
+                
             }
             catch (Exception ex)
             {
