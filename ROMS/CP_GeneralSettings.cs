@@ -1638,7 +1638,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMonths.Focus();
+                    if (txtMonths.Visible == true)
+                    {
+                        txtMonths.Focus();
+                    }
+                    else
+                    {
+                        txtLPRate.Focus();
+                    }
                 }
             }
             catch (Exception ex)

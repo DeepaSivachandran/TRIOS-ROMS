@@ -39,6 +39,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(INV_GoodsOutward_AutoConversion));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdGOConversion = new System.Windows.Forms.DataGridView();
+            this.lblNoRecordsFound = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.lblTransferQty = new System.Windows.Forms.Label();
+            this.lblParentQty = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblParentTransferUnit = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
+            this.lblParentStkQty = new System.Windows.Forms.Label();
+            this.lblParentStkUnit = new System.Windows.Forms.Label();
+            this.lblRequiredQty = new System.Windows.Forms.Label();
+            this.lblRequiredUnit = new System.Windows.Forms.Label();
+            this.lblTransUnit = new System.Windows.Forms.Label();
+            this.grbStockQty = new System.Windows.Forms.GroupBox();
+            this.grbOutward = new System.Windows.Forms.GroupBox();
+            this.grbConversion = new System.Windows.Forms.GroupBox();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPIcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,23 +77,6 @@
             this.clmSLID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRKID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.lblExpiryDate = new System.Windows.Forms.Label();
-            this.lblTransferQty = new System.Windows.Forms.Label();
-            this.lblParentQty = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblParentTransferUnit = new System.Windows.Forms.Label();
-            this.lblProductName = new System.Windows.Forms.Label();
-            this.lblParentStkQty = new System.Windows.Forms.Label();
-            this.lblParentStkUnit = new System.Windows.Forms.Label();
-            this.lblRequiredQty = new System.Windows.Forms.Label();
-            this.lblRequiredUnit = new System.Windows.Forms.Label();
-            this.lblTransUnit = new System.Windows.Forms.Label();
-            this.grbStockQty = new System.Windows.Forms.GroupBox();
-            this.grbOutward = new System.Windows.Forms.GroupBox();
-            this.grbConversion = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGOConversion)).BeginInit();
             this.grbStockQty.SuspendLayout();
@@ -152,189 +152,6 @@
             this.grdGOConversion.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdGoodsOutward_CurrentCellDirtyStateChanged);
             this.grdGOConversion.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdGoodsOutward_EditingControlShowing);
             this.grdGOConversion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdGOConversion_KeyDown);
-            // 
-            // clmSno
-            // 
-            this.clmSno.HeaderText = "S.No.";
-            this.clmSno.Name = "clmSno";
-            this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 50;
-            // 
-            // clmPIcode
-            // 
-            this.clmPIcode.HeaderText = "P.I Code";
-            this.clmPIcode.Name = "clmPIcode";
-            this.clmPIcode.ReadOnly = true;
-            this.clmPIcode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmProduct
-            // 
-            this.clmProduct.HeaderText = "Product Name";
-            this.clmProduct.Name = "clmProduct";
-            this.clmProduct.ReadOnly = true;
-            this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmProduct.Width = 240;
-            // 
-            // clmBatchDetails
-            // 
-            this.clmBatchDetails.HeaderText = "Batch Details";
-            this.clmBatchDetails.Name = "clmBatchDetails";
-            this.clmBatchDetails.ReadOnly = true;
-            this.clmBatchDetails.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmBatchDetails.Width = 290;
-            // 
-            // clmMRP
-            // 
-            this.clmMRP.HeaderText = "MRP";
-            this.clmMRP.Name = "clmMRP";
-            this.clmMRP.ReadOnly = true;
-            this.clmMRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmMRP.Visible = false;
-            this.clmMRP.Width = 90;
-            // 
-            // clmExpiryDate
-            // 
-            this.clmExpiryDate.HeaderText = "Expiry Date";
-            this.clmExpiryDate.Name = "clmExpiryDate";
-            this.clmExpiryDate.ReadOnly = true;
-            this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmExpiryDate.Visible = false;
-            this.clmExpiryDate.Width = 90;
-            // 
-            // clmBatchNo
-            // 
-            this.clmBatchNo.HeaderText = "Batch No.";
-            this.clmBatchNo.Name = "clmBatchNo";
-            this.clmBatchNo.ReadOnly = true;
-            this.clmBatchNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmBatchNo.Visible = false;
-            this.clmBatchNo.Width = 80;
-            // 
-            // clmLocation
-            // 
-            this.clmLocation.HeaderText = "Location";
-            this.clmLocation.Name = "clmLocation";
-            this.clmLocation.ReadOnly = true;
-            this.clmLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmLocation.Visible = false;
-            // 
-            // clmRack
-            // 
-            this.clmRack.HeaderText = "Rack";
-            this.clmRack.Name = "clmRack";
-            this.clmRack.ReadOnly = true;
-            this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRack.Visible = false;
-            this.clmRack.Width = 70;
-            // 
-            // clmUPP
-            // 
-            this.clmUPP.HeaderText = "UPP";
-            this.clmUPP.Name = "clmUPP";
-            this.clmUPP.ReadOnly = true;
-            this.clmUPP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUPP.Width = 80;
-            // 
-            // clmUPPValue
-            // 
-            this.clmUPPValue.HeaderText = "UPPValue";
-            this.clmUPPValue.Name = "clmUPPValue";
-            this.clmUPPValue.ReadOnly = true;
-            this.clmUPPValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUPPValue.Visible = false;
-            // 
-            // clmQuantity
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clmQuantity.DefaultCellStyle = dataGridViewCellStyle2;
-            this.clmQuantity.HeaderText = "Stock Qty";
-            this.clmQuantity.Name = "clmQuantity";
-            this.clmQuantity.ReadOnly = true;
-            this.clmQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmQuantity.Width = 90;
-            // 
-            // clmUnit
-            // 
-            this.clmUnit.HeaderText = "Unit";
-            this.clmUnit.Name = "clmUnit";
-            this.clmUnit.ReadOnly = true;
-            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUnit.Width = 45;
-            // 
-            // clmConversionQty
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmConversionQty.DefaultCellStyle = dataGridViewCellStyle3;
-            this.clmConversionQty.HeaderText = "Convert Child Qty";
-            this.clmConversionQty.MaxInputLength = 5;
-            this.clmConversionQty.Name = "clmConversionQty";
-            this.clmConversionQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmConversionQty.Width = 80;
-            // 
-            // clmActualQty
-            // 
-            this.clmActualQty.HeaderText = "Convert Parent Qty";
-            this.clmActualQty.Name = "clmActualQty";
-            this.clmActualQty.ReadOnly = true;
-            this.clmActualQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmActualQty.Width = 80;
-            // 
-            // clmChildUnit
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.clmChildUnit.DefaultCellStyle = dataGridViewCellStyle4;
-            this.clmChildUnit.HeaderText = "Unit";
-            this.clmChildUnit.Name = "clmChildUnit";
-            this.clmChildUnit.ReadOnly = true;
-            this.clmChildUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmChildUnit.Width = 45;
-            // 
-            // clmTransferQty
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmTransferQty.DefaultCellStyle = dataGridViewCellStyle5;
-            this.clmTransferQty.HeaderText = "Consumed Parent Qty";
-            this.clmTransferQty.MaxInputLength = 5;
-            this.clmTransferQty.Name = "clmTransferQty";
-            this.clmTransferQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmTransferQty.Width = 80;
-            // 
-            // clmPRID
-            // 
-            this.clmPRID.HeaderText = "PRID";
-            this.clmPRID.Name = "clmPRID";
-            this.clmPRID.ReadOnly = true;
-            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmPRID.Visible = false;
-            this.clmPRID.Width = 5;
-            // 
-            // clmSLID
-            // 
-            this.clmSLID.HeaderText = "SLID";
-            this.clmSLID.Name = "clmSLID";
-            this.clmSLID.ReadOnly = true;
-            this.clmSLID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmSLID.Visible = false;
-            this.clmSLID.Width = 5;
-            // 
-            // clmRKID
-            // 
-            this.clmRKID.HeaderText = "RKID";
-            this.clmRKID.Name = "clmRKID";
-            this.clmRKID.ReadOnly = true;
-            this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmRKID.Visible = false;
-            this.clmRKID.Width = 5;
-            // 
-            // clmUTID
-            // 
-            this.clmUTID.HeaderText = "UTID";
-            this.clmUTID.Name = "clmUTID";
-            this.clmUTID.ReadOnly = true;
-            this.clmUTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUTID.Visible = false;
-            this.clmUTID.Width = 5;
             // 
             // lblNoRecordsFound
             // 
@@ -525,6 +342,190 @@
             this.grbConversion.TabStop = false;
             this.grbConversion.Text = "Conversion Required";
             // 
+            // clmSno
+            // 
+            this.clmSno.HeaderText = "S.No.";
+            this.clmSno.Name = "clmSno";
+            this.clmSno.ReadOnly = true;
+            this.clmSno.Width = 35;
+            // 
+            // clmPIcode
+            // 
+            this.clmPIcode.HeaderText = "P.I Code";
+            this.clmPIcode.Name = "clmPIcode";
+            this.clmPIcode.ReadOnly = true;
+            this.clmPIcode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPIcode.Width = 160;
+            // 
+            // clmProduct
+            // 
+            this.clmProduct.HeaderText = "Product Name";
+            this.clmProduct.Name = "clmProduct";
+            this.clmProduct.ReadOnly = true;
+            this.clmProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmProduct.Width = 240;
+            // 
+            // clmBatchDetails
+            // 
+            this.clmBatchDetails.HeaderText = "Batch Details";
+            this.clmBatchDetails.Name = "clmBatchDetails";
+            this.clmBatchDetails.ReadOnly = true;
+            this.clmBatchDetails.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmBatchDetails.Width = 290;
+            // 
+            // clmMRP
+            // 
+            this.clmMRP.HeaderText = "MRP";
+            this.clmMRP.Name = "clmMRP";
+            this.clmMRP.ReadOnly = true;
+            this.clmMRP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmMRP.Visible = false;
+            this.clmMRP.Width = 90;
+            // 
+            // clmExpiryDate
+            // 
+            this.clmExpiryDate.HeaderText = "Expiry Date";
+            this.clmExpiryDate.Name = "clmExpiryDate";
+            this.clmExpiryDate.ReadOnly = true;
+            this.clmExpiryDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmExpiryDate.Visible = false;
+            this.clmExpiryDate.Width = 90;
+            // 
+            // clmBatchNo
+            // 
+            this.clmBatchNo.HeaderText = "Batch No.";
+            this.clmBatchNo.Name = "clmBatchNo";
+            this.clmBatchNo.ReadOnly = true;
+            this.clmBatchNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmBatchNo.Visible = false;
+            this.clmBatchNo.Width = 80;
+            // 
+            // clmLocation
+            // 
+            this.clmLocation.HeaderText = "Location";
+            this.clmLocation.Name = "clmLocation";
+            this.clmLocation.ReadOnly = true;
+            this.clmLocation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmLocation.Visible = false;
+            // 
+            // clmRack
+            // 
+            this.clmRack.HeaderText = "Rack";
+            this.clmRack.Name = "clmRack";
+            this.clmRack.ReadOnly = true;
+            this.clmRack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRack.Visible = false;
+            this.clmRack.Width = 70;
+            // 
+            // clmUPP
+            // 
+            this.clmUPP.HeaderText = "UPP";
+            this.clmUPP.Name = "clmUPP";
+            this.clmUPP.ReadOnly = true;
+            this.clmUPP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUPP.Width = 70;
+            // 
+            // clmUPPValue
+            // 
+            this.clmUPPValue.HeaderText = "UPPValue";
+            this.clmUPPValue.Name = "clmUPPValue";
+            this.clmUPPValue.ReadOnly = true;
+            this.clmUPPValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUPPValue.Visible = false;
+            // 
+            // clmQuantity
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmQuantity.HeaderText = "Stock Qty";
+            this.clmQuantity.Name = "clmQuantity";
+            this.clmQuantity.ReadOnly = true;
+            this.clmQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmQuantity.Width = 65;
+            // 
+            // clmUnit
+            // 
+            this.clmUnit.HeaderText = "Unit";
+            this.clmUnit.Name = "clmUnit";
+            this.clmUnit.ReadOnly = true;
+            this.clmUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUnit.Width = 45;
+            // 
+            // clmConversionQty
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmConversionQty.DefaultCellStyle = dataGridViewCellStyle3;
+            this.clmConversionQty.HeaderText = "Convert Child Qty";
+            this.clmConversionQty.MaxInputLength = 5;
+            this.clmConversionQty.Name = "clmConversionQty";
+            this.clmConversionQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmConversionQty.Width = 80;
+            // 
+            // clmActualQty
+            // 
+            this.clmActualQty.HeaderText = "Convert Parent Qty";
+            this.clmActualQty.Name = "clmActualQty";
+            this.clmActualQty.ReadOnly = true;
+            this.clmActualQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmActualQty.Width = 80;
+            // 
+            // clmChildUnit
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.clmChildUnit.DefaultCellStyle = dataGridViewCellStyle4;
+            this.clmChildUnit.HeaderText = "Unit";
+            this.clmChildUnit.Name = "clmChildUnit";
+            this.clmChildUnit.ReadOnly = true;
+            this.clmChildUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmChildUnit.Width = 45;
+            // 
+            // clmTransferQty
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmTransferQty.DefaultCellStyle = dataGridViewCellStyle5;
+            this.clmTransferQty.HeaderText = "Consumed Parent Qty";
+            this.clmTransferQty.MaxInputLength = 5;
+            this.clmTransferQty.Name = "clmTransferQty";
+            this.clmTransferQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmTransferQty.Width = 80;
+            // 
+            // clmPRID
+            // 
+            this.clmPRID.HeaderText = "PRID";
+            this.clmPRID.Name = "clmPRID";
+            this.clmPRID.ReadOnly = true;
+            this.clmPRID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPRID.Visible = false;
+            this.clmPRID.Width = 5;
+            // 
+            // clmSLID
+            // 
+            this.clmSLID.HeaderText = "SLID";
+            this.clmSLID.Name = "clmSLID";
+            this.clmSLID.ReadOnly = true;
+            this.clmSLID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSLID.Visible = false;
+            this.clmSLID.Width = 5;
+            // 
+            // clmRKID
+            // 
+            this.clmRKID.HeaderText = "RKID";
+            this.clmRKID.Name = "clmRKID";
+            this.clmRKID.ReadOnly = true;
+            this.clmRKID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmRKID.Visible = false;
+            this.clmRKID.Width = 5;
+            // 
+            // clmUTID
+            // 
+            this.clmUTID.HeaderText = "UTID";
+            this.clmUTID.Name = "clmUTID";
+            this.clmUTID.ReadOnly = true;
+            this.clmUTID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmUTID.Visible = false;
+            this.clmUTID.Width = 5;
+            // 
             // INV_GoodsOutward_AutoConversion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -585,6 +586,9 @@
         public System.Windows.Forms.Label lblRequiredQty;
         public System.Windows.Forms.Label lblRequiredUnit;
         public System.Windows.Forms.Label lblTransUnit;
+        private System.Windows.Forms.GroupBox grbStockQty;
+        private System.Windows.Forms.GroupBox grbOutward;
+        private System.Windows.Forms.GroupBox grbConversion;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPIcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;
@@ -606,8 +610,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSLID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRKID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUTID;
-        private System.Windows.Forms.GroupBox grbStockQty;
-        private System.Windows.Forms.GroupBox grbOutward;
-        private System.Windows.Forms.GroupBox grbConversion;
     }
 }

@@ -29,22 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsGeneralSettings = new System.Windows.Forms.ToolStrip();
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
+            this.grpUserInfo = new System.Windows.Forms.GroupBox();
+            this.chkSameUserMultipleSystem = new System.Windows.Forms.CheckBox();
+            this.chkSameUserSameSystem = new System.Windows.Forms.CheckBox();
+            this.chkBoxLogoff = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtInactiveuserday = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.lblMins = new System.Windows.Forms.Label();
             this.txtLoggofftime = new System.Windows.Forms.TextBox();
-            this.chkBoxLogoff = new System.Windows.Forms.CheckBox();
+            this.lblMins = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.chkMultiUserSameSystem = new System.Windows.Forms.CheckBox();
             this.txtCashLimit = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.txtRTGSMinLimit = new System.Windows.Forms.TextBox();
@@ -73,12 +77,6 @@
             this.rbYes = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.grdReport = new System.Windows.Forms.DataGridView();
-            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmReportText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtReportText = new System.Windows.Forms.TextBox();
             this.lblReportname = new System.Windows.Forms.Label();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
@@ -99,23 +97,25 @@
             this.grdOrderType = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grdReport = new System.Windows.Forms.DataGridView();
+            this.clmTransaction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmReportText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epGeneralSettings = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grpUserInfo = new System.Windows.Forms.GroupBox();
-            this.chkSameUserSameSystem = new System.Windows.Forms.CheckBox();
-            this.chkSameUserMultipleSystem = new System.Windows.Forms.CheckBox();
-            this.chkMultiUserSameSystem = new System.Windows.Forms.CheckBox();
             this.tsGeneralSettings.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpGeneralsettings.SuspendLayout();
+            this.grpUserInfo.SuspendLayout();
             this.grbShelflife.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReport)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrderType)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epGeneralSettings)).BeginInit();
-            this.grpUserInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsGeneralSettings
@@ -202,6 +202,55 @@
             this.grpGeneralsettings.TabIndex = 958794;
             this.grpGeneralsettings.TabStop = false;
             // 
+            // grpUserInfo
+            // 
+            this.grpUserInfo.Controls.Add(this.chkSameUserMultipleSystem);
+            this.grpUserInfo.Controls.Add(this.chkSameUserSameSystem);
+            this.grpUserInfo.Controls.Add(this.chkBoxLogoff);
+            this.grpUserInfo.Controls.Add(this.label21);
+            this.grpUserInfo.Controls.Add(this.txtInactiveuserday);
+            this.grpUserInfo.Controls.Add(this.txtLoggofftime);
+            this.grpUserInfo.Controls.Add(this.lblMins);
+            this.grpUserInfo.Controls.Add(this.label20);
+            this.grpUserInfo.Controls.Add(this.chkMultiUserSameSystem);
+            this.grpUserInfo.Location = new System.Drawing.Point(622, 381);
+            this.grpUserInfo.Name = "grpUserInfo";
+            this.grpUserInfo.Size = new System.Drawing.Size(700, 198);
+            this.grpUserInfo.TabIndex = 23;
+            this.grpUserInfo.TabStop = false;
+            this.grpUserInfo.Text = "User Login Activity";
+            // 
+            // chkSameUserMultipleSystem
+            // 
+            this.chkSameUserMultipleSystem.AutoSize = true;
+            this.chkSameUserMultipleSystem.Location = new System.Drawing.Point(15, 132);
+            this.chkSameUserMultipleSystem.Name = "chkSameUserMultipleSystem";
+            this.chkSameUserMultipleSystem.Size = new System.Drawing.Size(356, 24);
+            this.chkSameUserMultipleSystem.TabIndex = 27;
+            this.chkSameUserMultipleSystem.Text = "Allow concurrent login for the same user on multiple systems";
+            this.chkSameUserMultipleSystem.UseVisualStyleBackColor = true;
+            // 
+            // chkSameUserSameSystem
+            // 
+            this.chkSameUserSameSystem.AutoSize = true;
+            this.chkSameUserSameSystem.Location = new System.Drawing.Point(15, 96);
+            this.chkSameUserSameSystem.Name = "chkSameUserSameSystem";
+            this.chkSameUserSameSystem.Size = new System.Drawing.Size(355, 24);
+            this.chkSameUserSameSystem.TabIndex = 26;
+            this.chkSameUserSameSystem.Text = "Allow concurrent login for the same user on the same system";
+            this.chkSameUserSameSystem.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxLogoff
+            // 
+            this.chkBoxLogoff.AutoSize = true;
+            this.chkBoxLogoff.Location = new System.Drawing.Point(15, 28);
+            this.chkBoxLogoff.Name = "chkBoxLogoff";
+            this.chkBoxLogoff.Size = new System.Drawing.Size(165, 24);
+            this.chkBoxLogoff.TabIndex = 23;
+            this.chkBoxLogoff.Text = "Idle Session Auto Lockout";
+            this.chkBoxLogoff.UseVisualStyleBackColor = true;
+            this.chkBoxLogoff.CheckedChanged += new System.EventHandler(this.chkBoxLogoff_CheckedChanged);
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -226,26 +275,6 @@
             this.txtInactiveuserday.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInactiveuserday_KeyPress);
             this.txtInactiveuserday.Leave += new System.EventHandler(this.txtInactiveuserday_Leave);
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(15, 64);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(314, 20);
-            this.label20.TabIndex = 1111228;
-            this.label20.Text = "Auto deactivate users who have not logged in for the last";
-            // 
-            // lblMins
-            // 
-            this.lblMins.AutoSize = true;
-            this.lblMins.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMins.Location = new System.Drawing.Point(400, 30);
-            this.lblMins.Name = "lblMins";
-            this.lblMins.Size = new System.Drawing.Size(35, 20);
-            this.lblMins.TabIndex = 1111226;
-            this.lblMins.Text = "Mins";
-            // 
             // txtLoggofftime
             // 
             this.txtLoggofftime.Enabled = false;
@@ -262,16 +291,35 @@
             this.txtLoggofftime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLoggofftime_KeyPress);
             this.txtLoggofftime.Leave += new System.EventHandler(this.txtLoggofftime_Leave);
             // 
-            // chkBoxLogoff
+            // lblMins
             // 
-            this.chkBoxLogoff.AutoSize = true;
-            this.chkBoxLogoff.Location = new System.Drawing.Point(15, 28);
-            this.chkBoxLogoff.Name = "chkBoxLogoff";
-            this.chkBoxLogoff.Size = new System.Drawing.Size(165, 24);
-            this.chkBoxLogoff.TabIndex = 23;
-            this.chkBoxLogoff.Text = "Idle Session Auto Lockout";
-            this.chkBoxLogoff.UseVisualStyleBackColor = true;
-            this.chkBoxLogoff.CheckedChanged += new System.EventHandler(this.chkBoxLogoff_CheckedChanged);
+            this.lblMins.AutoSize = true;
+            this.lblMins.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMins.Location = new System.Drawing.Point(400, 30);
+            this.lblMins.Name = "lblMins";
+            this.lblMins.Size = new System.Drawing.Size(35, 20);
+            this.lblMins.TabIndex = 1111226;
+            this.lblMins.Text = "Mins";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(15, 64);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(314, 20);
+            this.label20.TabIndex = 1111228;
+            this.label20.Text = "Auto deactivate users who have not logged in for the last";
+            // 
+            // chkMultiUserSameSystem
+            // 
+            this.chkMultiUserSameSystem.AutoSize = true;
+            this.chkMultiUserSameSystem.Location = new System.Drawing.Point(15, 168);
+            this.chkMultiUserSameSystem.Name = "chkMultiUserSameSystem";
+            this.chkMultiUserSameSystem.Size = new System.Drawing.Size(349, 24);
+            this.chkMultiUserSameSystem.TabIndex = 28;
+            this.chkMultiUserSameSystem.Text = "Allow multiple logins for different users on the same system";
+            this.chkMultiUserSameSystem.UseVisualStyleBackColor = true;
             // 
             // txtCashLimit
             // 
@@ -374,6 +422,7 @@
             this.txtMonths.Size = new System.Drawing.Size(64, 27);
             this.txtMonths.TabIndex = 16;
             this.txtMonths.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMonths.Visible = false;
             this.txtMonths.Enter += new System.EventHandler(this.TxtMonths_Enter);
             this.txtMonths.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonths_KeyDown);
             this.txtMonths.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonths_KeyPress);
@@ -388,6 +437,7 @@
             this.label15.Size = new System.Drawing.Size(84, 20);
             this.label15.TabIndex = 1111216;
             this.label15.Text = "Aging Months";
+            this.label15.Visible = false;
             // 
             // label14
             // 
@@ -592,94 +642,6 @@
             this.btnAdd.Enter += new System.EventHandler(this.BtnAdd_Enter);
             this.btnAdd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnAdd_KeyDown);
             this.btnAdd.Leave += new System.EventHandler(this.BtnAdd_Leave);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.grdReport);
-            this.groupBox2.Location = new System.Drawing.Point(622, 64);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(709, 227);
-            this.groupBox2.TabIndex = 1111199;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Report Footer Text";
-            // 
-            // grdReport
-            // 
-            this.grdReport.AllowUserToAddRows = false;
-            this.grdReport.AllowUserToDeleteRows = false;
-            this.grdReport.AllowUserToResizeColumns = false;
-            this.grdReport.AllowUserToResizeRows = false;
-            this.grdReport.BackgroundColor = System.Drawing.Color.White;
-            this.grdReport.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle43.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle43.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdReport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
-            this.grdReport.ColumnHeadersHeight = 30;
-            this.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmTransaction,
-            this.clmReportText,
-            this.clmTransactionID,
-            this.clmRemove});
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdReport.DefaultCellStyle = dataGridViewCellStyle44;
-            this.grdReport.EnableHeadersVisualStyles = false;
-            this.grdReport.GridColor = System.Drawing.Color.White;
-            this.grdReport.Location = new System.Drawing.Point(11, 26);
-            this.grdReport.Name = "grdReport";
-            this.grdReport.ReadOnly = true;
-            this.grdReport.RowHeadersVisible = false;
-            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.White;
-            this.grdReport.RowsDefaultCellStyle = dataGridViewCellStyle45;
-            this.grdReport.RowTemplate.Height = 25;
-            this.grdReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdReport.Size = new System.Drawing.Size(689, 188);
-            this.grdReport.TabIndex = 1111198;
-            this.grdReport.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReport_CellContentClick);
-            this.grdReport.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReport_DataBindingComplete);
-            // 
-            // clmTransaction
-            // 
-            this.clmTransaction.HeaderText = "Transaction";
-            this.clmTransaction.Name = "clmTransaction";
-            this.clmTransaction.ReadOnly = true;
-            this.clmTransaction.Width = 150;
-            // 
-            // clmReportText
-            // 
-            this.clmReportText.HeaderText = "Report Text";
-            this.clmReportText.Name = "clmReportText";
-            this.clmReportText.ReadOnly = true;
-            this.clmReportText.Width = 450;
-            // 
-            // clmTransactionID
-            // 
-            this.clmTransactionID.HeaderText = "Transaction ID";
-            this.clmTransactionID.Name = "clmTransactionID";
-            this.clmTransactionID.ReadOnly = true;
-            this.clmTransactionID.Visible = false;
-            // 
-            // clmRemove
-            // 
-            this.clmRemove.HeaderText = "Remove";
-            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmRemove.Name = "clmRemove";
-            this.clmRemove.ReadOnly = true;
-            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmRemove.Width = 60;
             // 
             // txtReportText
             // 
@@ -886,32 +848,32 @@
             this.grdOrderType.AllowUserToResizeRows = false;
             this.grdOrderType.BackgroundColor = System.Drawing.Color.White;
             this.grdOrderType.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle46.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle46.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdOrderType.ColumnHeadersHeight = 30;
             this.grdOrderType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle47.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdOrderType.EnableHeadersVisualStyles = false;
             this.grdOrderType.GridColor = System.Drawing.Color.White;
             this.grdOrderType.Location = new System.Drawing.Point(6, 26);
             this.grdOrderType.Name = "grdOrderType";
             this.grdOrderType.RowHeadersVisible = false;
-            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.White;
-            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grdOrderType.RowTemplate.Height = 25;
             this.grdOrderType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdOrderType.Size = new System.Drawing.Size(157, 188);
@@ -953,6 +915,94 @@
             this.btnUpdate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BtnUpdate_KeyDown);
             this.btnUpdate.Leave += new System.EventHandler(this.BtnUpdate_Leave);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.grdReport);
+            this.groupBox2.Location = new System.Drawing.Point(622, 64);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(709, 227);
+            this.groupBox2.TabIndex = 1111199;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Report Footer Text";
+            // 
+            // grdReport
+            // 
+            this.grdReport.AllowUserToAddRows = false;
+            this.grdReport.AllowUserToDeleteRows = false;
+            this.grdReport.AllowUserToResizeColumns = false;
+            this.grdReport.AllowUserToResizeRows = false;
+            this.grdReport.BackgroundColor = System.Drawing.Color.White;
+            this.grdReport.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdReport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdReport.ColumnHeadersHeight = 30;
+            this.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmTransaction,
+            this.clmReportText,
+            this.clmTransactionID,
+            this.clmRemove});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReport.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdReport.EnableHeadersVisualStyles = false;
+            this.grdReport.GridColor = System.Drawing.Color.White;
+            this.grdReport.Location = new System.Drawing.Point(11, 26);
+            this.grdReport.Name = "grdReport";
+            this.grdReport.ReadOnly = true;
+            this.grdReport.RowHeadersVisible = false;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdReport.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdReport.RowTemplate.Height = 25;
+            this.grdReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdReport.Size = new System.Drawing.Size(689, 188);
+            this.grdReport.TabIndex = 1111198;
+            this.grdReport.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdReport_CellContentClick);
+            this.grdReport.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdReport_DataBindingComplete);
+            // 
+            // clmTransaction
+            // 
+            this.clmTransaction.HeaderText = "Transaction";
+            this.clmTransaction.Name = "clmTransaction";
+            this.clmTransaction.ReadOnly = true;
+            this.clmTransaction.Width = 150;
+            // 
+            // clmReportText
+            // 
+            this.clmReportText.HeaderText = "Report Text";
+            this.clmReportText.Name = "clmReportText";
+            this.clmReportText.ReadOnly = true;
+            this.clmReportText.Width = 450;
+            // 
+            // clmTransactionID
+            // 
+            this.clmTransactionID.HeaderText = "Transaction ID";
+            this.clmTransactionID.Name = "clmTransactionID";
+            this.clmTransactionID.ReadOnly = true;
+            this.clmTransactionID.Visible = false;
+            // 
+            // clmRemove
+            // 
+            this.clmRemove.HeaderText = "Remove";
+            this.clmRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmRemove.Name = "clmRemove";
+            this.clmRemove.ReadOnly = true;
+            this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmRemove.Width = 60;
+            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -970,54 +1020,6 @@
             // epGeneralSettings
             // 
             this.epGeneralSettings.ContainerControl = this;
-            // 
-            // grpUserInfo
-            // 
-            this.grpUserInfo.Controls.Add(this.chkSameUserMultipleSystem);
-            this.grpUserInfo.Controls.Add(this.chkSameUserSameSystem);
-            this.grpUserInfo.Controls.Add(this.chkBoxLogoff);
-            this.grpUserInfo.Controls.Add(this.label21);
-            this.grpUserInfo.Controls.Add(this.txtInactiveuserday);
-            this.grpUserInfo.Controls.Add(this.txtLoggofftime);
-            this.grpUserInfo.Controls.Add(this.lblMins);
-            this.grpUserInfo.Controls.Add(this.label20);
-            this.grpUserInfo.Controls.Add(this.chkMultiUserSameSystem);
-            this.grpUserInfo.Location = new System.Drawing.Point(622, 381);
-            this.grpUserInfo.Name = "grpUserInfo";
-            this.grpUserInfo.Size = new System.Drawing.Size(700, 198);
-            this.grpUserInfo.TabIndex = 23;
-            this.grpUserInfo.TabStop = false;
-            this.grpUserInfo.Text = "User Login Activity";
-            // 
-            // chkSameUserSameSystem
-            // 
-            this.chkSameUserSameSystem.AutoSize = true;
-            this.chkSameUserSameSystem.Location = new System.Drawing.Point(15, 96);
-            this.chkSameUserSameSystem.Name = "chkSameUserSameSystem";
-            this.chkSameUserSameSystem.Size = new System.Drawing.Size(355, 24);
-            this.chkSameUserSameSystem.TabIndex = 26;
-            this.chkSameUserSameSystem.Text = "Allow concurrent login for the same user on the same system";
-            this.chkSameUserSameSystem.UseVisualStyleBackColor = true;
-            // 
-            // chkSameUserMultipleSystem
-            // 
-            this.chkSameUserMultipleSystem.AutoSize = true;
-            this.chkSameUserMultipleSystem.Location = new System.Drawing.Point(15, 132);
-            this.chkSameUserMultipleSystem.Name = "chkSameUserMultipleSystem";
-            this.chkSameUserMultipleSystem.Size = new System.Drawing.Size(356, 24);
-            this.chkSameUserMultipleSystem.TabIndex = 27;
-            this.chkSameUserMultipleSystem.Text = "Allow concurrent login for the same user on multiple systems";
-            this.chkSameUserMultipleSystem.UseVisualStyleBackColor = true;
-            // 
-            // chkMultiUserSameSystem
-            // 
-            this.chkMultiUserSameSystem.AutoSize = true;
-            this.chkMultiUserSameSystem.Location = new System.Drawing.Point(15, 168);
-            this.chkMultiUserSameSystem.Name = "chkMultiUserSameSystem";
-            this.chkMultiUserSameSystem.Size = new System.Drawing.Size(349, 24);
-            this.chkMultiUserSameSystem.TabIndex = 28;
-            this.chkMultiUserSameSystem.Text = "Allow multiple logins for different users on the same system";
-            this.chkMultiUserSameSystem.UseVisualStyleBackColor = true;
             // 
             // CP_GeneralSettings
             // 
@@ -1043,16 +1045,16 @@
             this.pnlSettings.ResumeLayout(false);
             this.grpGeneralsettings.ResumeLayout(false);
             this.grpGeneralsettings.PerformLayout();
-            this.grbShelflife.ResumeLayout(false);
-            this.grbShelflife.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdReport)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdOrderType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epGeneralSettings)).EndInit();
             this.grpUserInfo.ResumeLayout(false);
             this.grpUserInfo.PerformLayout();
+            this.grbShelflife.ResumeLayout(false);
+            this.grbShelflife.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdOrderType)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epGeneralSettings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
