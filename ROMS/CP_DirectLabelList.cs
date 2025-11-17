@@ -80,38 +80,28 @@ namespace ROMS
                 {
                     if (grdDirectLabelList.SelectedRows.Count > 0)
                     {
-                        string varResult = "";
+                        string result = "";
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            SPDataService objspservice = new SPDataService();
-                            varResult = "";
-                            varResult = objspservice.udfnCity(2, Convert.ToInt32(grdDirectLabelList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 0);
-                            objspservice.CloseConnection();
-                            if (varResult.Split('~')[0] == "3")
+                            SPDataService objspdservice = new SPDataService();
+                            MR_Product objMR_Product = new MR_Product();
+                            objMR_Product.paraViewType = 2;
+                            objMR_Product.paraId = Convert.ToInt32(grdDirectLabelList.SelectedRows[0].Cells["ID"].Value);
+                            objMR_Product.paraOriginator = "Label Print Delete";
+                            result = objspdservice.udfnLabelPrint(objMR_Product);
+                            objspdservice.CloseConnection();
+                            string[] varvalue = result.Split('~');
+                            if (result.Split('~')[0] == "3")
                             {
-                                if (varResult.Split('~')[1] == "1")
+                                if (result.Split('~')[0] != "1")
                                 {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
-                                    {
-                                        objspservice = new SPDataService();
-                                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdDirectLabelList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 1);
-                                        objspservice.CloseConnection();
-                                        if (varResult.Split('~')[0] == "3")
-                                        {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
-                                        }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                    }
+                                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                     }

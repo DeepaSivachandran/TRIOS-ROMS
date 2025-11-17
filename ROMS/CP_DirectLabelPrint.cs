@@ -2050,7 +2050,7 @@ namespace ROMS
                 objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);
                 objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue); ;
                 objMR_Product.paraLabelTitle = Convert.ToInt32(cmbTitle.SelectedValue);     
-                objMR_Product.paraProductLabelNameEng = lblProductName.Text;
+                objMR_Product.paraProductLabelNameEng = txtLabelProduct.Text;
                 objMR_Product.paraOriginator = "Label Print Save"; 
                 result = objspdservice.udfnLabelPrint(objMR_Product);
                 objspdservice.CloseConnection();
