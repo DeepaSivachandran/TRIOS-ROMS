@@ -354,11 +354,16 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Inward_FPurchase_Sticker_Print_100x70.cs">
-      <DependentUpon>RPT_Inward_FPurchase_Sticker_Print_100x70.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Inward_FPurchase_Sticker_Print_100x70.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_Inward_Sticker_Print_100x70.cs">
+      <DependentUpon>RPT_Inward_Sticker_Print_100x70.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Reports\RPT_PriceList.cs">
       <AutoGen>True</AutoGen>
@@ -422,13 +427,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\RPT_Inward_Sticker_Print_100x70.cs">
-      <DependentUpon>RPT_Inward_Sticker_Print_100x70.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_Stock_Detail.cs">
       <AutoGen>True</AutoGen>
@@ -4322,7 +4320,10 @@
     <EmbeddedResource Include="Reports\RPT_Inward_FPurchase_Sticker_Print_100x70.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Inward_FPurchase_Sticker_Print_100x70.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Inward_Sticker_Print_100x70.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Inward_Sticker_Print_100x70.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -4492,11 +4493,6 @@
     <EmbeddedResource Include="Reports\RPT_PUR_Tax_TaxSummary_BillWise_Total.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_Tax_TaxSummary_BillWise_Total.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_Inward_Sticker_Print_100x70.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Inward_Sticker_Print_100x70.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_RackGroup_50x60.rpt">
