@@ -8724,7 +8724,8 @@ namespace ROMS
             try
             {
                 varUpDownKeySalesLocation = 1;
-                udfnSaleLocationAutocomplete(); 
+                udfnSaleLocationAutocomplete();
+                DGV_FilterSalesLocation.Visible = false;
                 if (txtSaleRack.Enabled == true)
                 {
                     txtSaleRack.Focus();
