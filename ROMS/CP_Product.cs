@@ -6668,17 +6668,12 @@ namespace ROMS
                 if (tbProduct.SelectedIndex == 2)
                 {
                     btnImageUpdate.Visible = true;
-                    btnImageClose.Visible = true;
-
                     btnSave.Visible = false;
-                    btnClose.Visible = false;
                     cbCompleted.Visible = false;
                 }
                 else
                 {
                     btnImageUpdate.Visible = false;
-                    btnImageClose.Visible = false;
-                    btnClose.Visible = true;
                     cbCompleted.Visible = true;
                 }
             }
