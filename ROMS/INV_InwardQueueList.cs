@@ -934,6 +934,7 @@ namespace ROMS
                                 grdInwardQueueList.Columns["SPSCID"].Visible = false;
                                 grdInwardQueueList.Columns["SPSCID"].Visible = false;
                                 grdInwardQueueList.Columns["Location ID"].Visible = false;
+                                grdInwardQueueList.Columns["StickerFlag"].Visible = false;
                                 grdInwardQueueList.Columns["Concern ID"].Visible = false;
                                 grdInwardQueueList.Columns["My Products"].Visible = false;
                                 grdInwardQueueList.Columns["Type ID"].Visible = false;
