@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -164,10 +165,14 @@ namespace ROMS
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdDirectLabelList.DataSource = null;
+
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnCitylist(0,"",0,0);
+                SPDataService objdserv = new SPDataService();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 0;
+                objDs = objdserv.udfnLabelPrintList(objMR_Product);
+                objdserv.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -179,16 +184,9 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdDirectLabelList.DataSource = objDs.Tables[0];
                             grdDirectLabelList.Columns["ID"].Visible = false;
-                            grdDirectLabelList.Columns["StateId"].Visible = false;
-                            grdDirectLabelList.Columns["StatusID"].Visible = false;
-                            grdDirectLabelList.Columns["Status"].Visible = false;
                             grdDirectLabelList.Columns["S.No."].Width = 50;
-                            grdDirectLabelList.Columns["State Name"].Width = 120;
-                            grdDirectLabelList.Columns["City Name"].Width = 200;
-                            grdDirectLabelList.Columns["Status"].Width = 80;
+                            grdDirectLabelList.Columns["Product Name"].Width = 200;
                             grdDirectLabelList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdDirectLabelList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdDirectLabelList.Columns["Total Suppliers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -201,7 +199,6 @@ namespace ROMS
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
-                    objspservice.CloseConnection();
                 }
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
@@ -231,13 +228,8 @@ namespace ROMS
             {
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
-                DGV_SearchGrid.Columns["StateId"].Visible = false;
-                DGV_SearchGrid.Columns["StatusID"].Visible = false;
-                DGV_SearchGrid.Columns["Status"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["State Name"].Width = 120;
-                DGV_SearchGrid.Columns["City Name"].Width = 200;
-                DGV_SearchGrid.Columns["Status"].Width = 80;
+                DGV_SearchGrid.Columns["Product Name"].Width = 200;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -389,20 +381,20 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdDirectLabelList.Rows.Count; i++)
-                {
-                    if (Convert.ToString(grdDirectLabelList.Rows[i].Cells["StatusID"].Value) == "1")
-                    {
-                        grdDirectLabelList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdDirectLabelList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        grdDirectLabelList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdDirectLabelList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    }
-                    grdDirectLabelList.ClearSelection();
-                }
+                //for (int i = 0; i < grdDirectLabelList.Rows.Count; i++)
+                //{
+                //    if (Convert.ToString(grdDirectLabelList.Rows[i].Cells["StatusID"].Value) == "1")
+                //    {
+                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //    else
+                //    {
+                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //    grdDirectLabelList.ClearSelection();
+                //}
             }
             catch (Exception ex)
             {
