@@ -1727,6 +1727,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objMR_Product.paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_Product.paraProductType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackStatusID", objMR_Product.paraRackStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraStockAdjustment", objMR_Product.paraStockAdjustment);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -4800,6 +4801,48 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
+        }
+
+
+
+        // added by venkat on 17/11/2025 for label print
+        public string udfnLabelPrint(MR_Product objMR_Product)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Label_Print]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Product.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraId", objMR_Product.paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraLanguage", objMR_Product.paraLanguage);
+                varSqlCommand.Parameters.AddWithValue("@paraLPMRP", objMR_Product.paraLPMRP);
+                varSqlCommand.Parameters.AddWithValue("@parasales_rate", objMR_Product.parasales_rate);
+                varSqlCommand.Parameters.AddWithValue("@paraCopies", objMR_Product.paraCopies);
+                varSqlCommand.Parameters.AddWithValue("@paraPrintType", objMR_Product.paraPrintType);
+                varSqlCommand.Parameters.AddWithValue("@paraLabelSize", objMR_Product.paraLabelSize);
+                varSqlCommand.Parameters.AddWithValue("@paraLabelTemplate", objMR_Product.paraLabelTemplate);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Product.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraLabelTitle", objMR_Product.paraLabelTitle); 
+                varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameEng", objMR_Product.paraProductLabelNameEng); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
         }
 
     }

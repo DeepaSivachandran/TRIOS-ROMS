@@ -1318,6 +1318,7 @@ namespace ROMS
             try
             {
                 udfnReportView("Direct Print");
+                udfnSave();
             }
             catch (Exception ex)
             {
@@ -2022,6 +2023,49 @@ namespace ROMS
                     errRack.Clear();
                     udfnReportView("Preview");
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnSave()
+        {
+            try {
+
+                string result = "";
+                SPDataService objspdservice = new SPDataService();
+                MR_Product objMR_Product = new MR_Product();
+
+                
+                objMR_Product.paraViewType = 0;
+                objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
+                objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
+                objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text); 
+                objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
+                objMR_Product.paraCopies = Convert.ToInt32(txtNoofcopy.Text);
+                objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
+                objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue); ;
+                objMR_Product.paraLabelTitle = Convert.ToInt32(cmbTitle.SelectedValue);     
+                objMR_Product.paraProductLabelNameEng = lblProductName.Text;
+                objMR_Product.paraOriginator = "Label Print Save"; 
+                result = objspdservice.udfnLabelPrint(objMR_Product);
+                objspdservice.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (result.Split('~')[0] == "3")
+                {
+                    if (result.Split('~')[0] != "1")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);  
+                    }
+                } 
+                else
+                {
+                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
             catch (Exception ex)
             {

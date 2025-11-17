@@ -45,6 +45,7 @@ namespace ROMS
                 }
                 else
                 {
+                    grdInward.Columns["clmStickerPrint"].Visible = false;
                     udfnUddtTable();
                     ClearSupplier();
                     EditLoad();
@@ -112,6 +113,20 @@ namespace ROMS
                     {
                         grdInward.Rows[row.Index].Cells["clmExpiryDate"].ReadOnly = true;
                         grdInward.Rows[row.Index].Cells["clmExpiryDate"].Style.BackColor = Color.LightGray;
+                    }
+                    if (varID != 0 || varInwardId != 0)
+                    {//sticker reprint
+                        for (int i = 0; i < grdInward.Rows.Count; i++)
+                        {
+                            if (Convert.ToString(grdInward.Rows[i].Cells["clmStickerFlag"].Value) == "0")
+                            {
+                                grdInward.Rows[i].Cells["clmStickerPrint"].ReadOnly = true;
+                                DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                                print.Value = "";
+                                grdInward.Rows[i].Cells["clmStickerPrint"] = print;
+                                print.ReadOnly = true;
+                            }
+                        }
                     }
                 }
                 //for (int i = 0; i < grdGrnlist.Rows.Count; i++)
@@ -695,6 +710,20 @@ namespace ROMS
                                         }
                                     }
                                 }
+                            }
+                            break;
+                        case "clmStickerPrint":
+                            DialogResult dialogResult1 = MessageBox.Show("Are you sure want to print ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult1 == DialogResult.Yes)
+                            {
+                                string varProductID = "";
+                                varProductID = Convert.ToString(grdInward.CurrentRow.Cells["clmPRID"].Value);
+
+                                MainForm.objLabelCount = new LabelCount();
+                                MainForm.objLabelCount.varPrid = Convert.ToInt32(varProductID);
+                                MainForm.objLabelCount.varGIId = Convert.ToString(varID);
+                                MainForm.objLabelCount.varFlag = 2;
+                                MainForm.objLabelCount.ShowDialog();
                             }
                             break;
                     }
@@ -2258,6 +2287,9 @@ namespace ROMS
                                     {
                                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         varCloseFlag = 1;
+                                        if (varEditFlag == 0) { 
+                                            udfnStickerPrint(varvalue[2]);
+                                        }
                                         udfnclose();
                                         if (varEditFlag == 0)
                                         {
@@ -3132,10 +3164,13 @@ namespace ROMS
             {
                 if (varID!=0 || varInwardId !=0 )
                 {
+                   
                     varPurApproved = "0";
                     int varviewtype = 0;
                     if (varEditFlag == 1)
-                    { varviewtype = 2; }
+                    { varviewtype = 2;
+                        grdInward.Columns["clmStickerPrint"].Visible = true;
+                    }
                     if(varStausId==45)
                     {
                         chkCompleted.Checked = false;
@@ -3314,7 +3349,7 @@ namespace ROMS
                                             ,Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["BatchNo Generation"]), Convert.ToString(objDs.Tables[0].Rows[i]["Shelflife Status"]), Convert.ToString(objDs.Tables[0].Rows[i]["MRP Flag"]), 
                                            Convert.ToString(objDs.Tables[0].Rows[i]["Disable"]), Convert.ToString(objDs.Tables[0].Rows[i]["UnReadable"]), Convert.ToString(objDs.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDs.Tables[0].Rows[i]["Stock Qty"]),0, Convert.ToString(objDs.Tables[0].Rows[i]["RM Flag"]), Convert.ToInt32(objDs.Tables[0].Rows[i]["actuallife"]), 
                                            Convert.ToDecimal(objDs.Tables[0].Rows[i]["Per"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeValue"]), Convert.ToString(objDs.Tables[0].Rows[i]["SheflifeStatus"]), Convert.ToString(objDs.Tables[0].Rows[i]["ShelflifeType"]), Convert.ToString(objDs.Tables[0].Rows[i]["Reason"]),
-                                           Convert.ToString(objDs.Tables[0].Rows[i]["Full Reason"]), Convert.ToString(objDs.Tables[0].Rows[i]["FinalQty"]), Convert.ToString(objDs.Tables[0].Rows[i]["EntryTypeProID"]));
+                                           Convert.ToString(objDs.Tables[0].Rows[i]["Full Reason"]), Convert.ToString(objDs.Tables[0].Rows[i]["FinalQty"]), Convert.ToString(objDs.Tables[0].Rows[i]["EntryTypeProID"]), Convert.ToString(objDs.Tables[0].Rows[i]["StickerFlag"]));
                                     udfnStatus();
                                     if(varEditFlag==0)
                                     {
@@ -3807,6 +3842,8 @@ namespace ROMS
                     grdInward.Columns["clmShopQty"].DefaultCellStyle.BackColor = Color.LightGray;
                     grdInward.Columns["clmRack"].DefaultCellStyle.BackColor = Color.LightGray;
                 }
+
+                GrdGrnlist_DataBindingComplete(grdInward,new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
             }
         }
         public void udfnStatus()
@@ -4088,6 +4125,56 @@ namespace ROMS
             //return base.ProcessCmdKey(ref msg, keyData);
             // below is for enter key return
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        public void udfnStickerPrint(string varInwardId)
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP *************** 
+
+
+                SPDataService objdserv = new SPDataService();
+                TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase(); 
+                objTRN_GoodsInward_Purchase.ViewType = 8;
+                objTRN_GoodsInward_Purchase.paraID = Convert.ToInt32(varInwardId);
+                objTRN_GoodsInward_Purchase.paraFlag = 1;
+                objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress; 
+                objDs = objdserv.udfnInwardPurchaseList(objTRN_GoodsInward_Purchase);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            string varHeader = "";
+                            CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Inward_FPurchase_Sticker_Print_100x70.rpt");
+
+                            objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varInwardId));
+                            objBillreport.SetParameterValue("paraPRID", 0);
+                            objBillreport.SetParameterValue("paraFlag", 1);
+                            objBillreport.SetParameterValue("paraStickerCount", 0);
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                            objValidation.CrySqlConnection(objBillreport);
+
+                            MainForm.objReportLoad = new ReportLoad();
+                            MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                            MainForm.objReportLoad.Text = varHeader;
+                            MainForm.objReportLoad.ShowDialog();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

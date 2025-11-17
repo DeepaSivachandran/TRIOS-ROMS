@@ -99,7 +99,6 @@
             this.MinimizeBox = false;
             this.Name = "LabelCount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Supplier Envelope Label";
             this.Load += new System.EventHandler(this.CancelReason_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Brand_Leave);

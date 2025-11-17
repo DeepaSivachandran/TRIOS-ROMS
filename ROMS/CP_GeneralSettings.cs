@@ -1912,13 +1912,13 @@ namespace ROMS
                     txtLoggofftime.Text = "0";
                     txtLoggofftime.Enabled = false;
                     txtLoggofftime.ReadOnly = true;
+                    txtLoggofftime.Text = "0";
                 }
                 else {
 
                     txtLoggofftime.Enabled = true;
                     txtLoggofftime.ReadOnly = false;
                 }
-                
             }
             catch (Exception ex)
             {

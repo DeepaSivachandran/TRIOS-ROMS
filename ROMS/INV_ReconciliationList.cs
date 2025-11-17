@@ -1385,7 +1385,7 @@ namespace ROMS
                 try
                 {
                     DataTable dtStock = new DataTable();
-                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                    dtStock.TableName = "TRN_StockTransfer_Product_Adjustment";
                     dtStock.Columns.Add("STK_PRID", typeof(int));
                     dtStock.Columns.Add("STK_MRP", typeof(decimal));
                     dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
@@ -1397,6 +1397,7 @@ namespace ROMS
                     dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                     dtStock.Columns.Add("STK_ProType", typeof(int));
                     dtStock.Columns.Add("STK_Status", typeof(int));
+                    dtStock.Columns.Add("STK_ModifiedQTY", typeof(decimal));
                     if (grdStockReconciliationList.SelectedRows.Count > 0)
                     {
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
