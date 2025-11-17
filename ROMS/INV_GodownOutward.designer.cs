@@ -219,7 +219,7 @@
             this.grbStock.Size = new System.Drawing.Size(478, 143);
             this.grbStock.TabIndex = 111111174;
             this.grbStock.TabStop = false;
-            this.grbStock.Text = "Stock";
+            this.grbStock.Text = "Location Wise Stock";
             // 
             // grdLocation
             // 
@@ -522,6 +522,7 @@
             this.grdGoodsOutward.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdGoodsOutward_CellEndEdit);
             this.grdGoodsOutward.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DGV_inward_DataBindingComplete);
             this.grdGoodsOutward.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGV_inward_EditingControlShowing);
+            this.grdGoodsOutward.SelectionChanged += new System.EventHandler(this.grdGoodsOutward_SelectionChanged);
             this.grdGoodsOutward.Enter += new System.EventHandler(this.GrdGoodsOutward_Enter);
             // 
             // clmdsno

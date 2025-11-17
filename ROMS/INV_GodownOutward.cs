@@ -965,9 +965,23 @@ namespace ROMS
                     }
                 }
 
-
+                udfnDefaultHeader();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDefaultHeader()
+        {
+            try
+            {
+                grdLocation.RowTemplate.Height = 20;
+                grdLocation.ColumnHeadersHeight = 25;
+                grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                grdLocation.DataSource = null;
                 DataTable dt = new DataTable();
-
                 dt.Columns.Add("S.No.");
                 dt.Columns.Add("Location");
                 dt.Columns.Add("Quantity");
@@ -1423,7 +1437,7 @@ namespace ROMS
                     btnConversion.Enabled = false;
                 }
                 //udfnProductAdd();
-                udfnProductBasedStkLocation();
+                udfnProductBasedStkLocation(Convert.ToInt32(varPRID));
             }
             catch (Exception ex)
             {
@@ -1435,7 +1449,7 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
             }
         }
-        public void udfnProductBasedStkLocation()
+        public void udfnProductBasedStkLocation(int varProductID)
         {
             try
             {
@@ -1443,13 +1457,17 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 TRN_GoodsOutward objTRNG_GoodsOutward = new TRN_GoodsOutward();
                 objTRNG_GoodsOutward.ViewType = 3;
-                objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varPRID);
+                objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varProductID);
                 objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
+                        grdLocation.RowTemplate.Height = 20;
+                        grdLocation.ColumnHeadersHeight = 25;
+                        grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
                         grdLocation.DataSource = objDs.Tables[0];
                         grdLocation.Columns["Location"].Width = 250;
                         grdLocation.Columns["Quantity"].Width = 90;
@@ -1459,7 +1477,7 @@ namespace ROMS
                     }
                     else
                     {
-                        grdLocation.DataSource = null;
+                        udfnDefaultHeader();
                     }
                 }
             }
@@ -2270,6 +2288,23 @@ namespace ROMS
             }
         }
 
+        private void grdGoodsOutward_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdGoodsOutward.SelectedRows.Count > 0)
+                {
+                    int varProductId = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmPRID"].Value);
+                    udfnProductBasedStkLocation(varProductId);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnTeller()
         {
             try
@@ -2902,6 +2937,7 @@ namespace ROMS
                 lblQuantity.Text = "";
                 varChildStockFlag = 0;
                 btnConversion.Enabled = false;
+                udfnDefaultHeader();
             }
             catch (Exception ex)
             {
