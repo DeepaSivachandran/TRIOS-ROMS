@@ -15,6 +15,8 @@ namespace ROMS
     //Created By:Sathish ; Created On:-17/11/2025
     public partial class CP_DirectLabelList : Form
     {
+        private HashSet<int> changedLPIDs = new HashSet<int>(); private bool isRunning = true;
+
         DynamicWindowControl windowControl = new DynamicWindowControl();
         MainForm objMainForm = new MainForm();
 
@@ -325,7 +327,7 @@ namespace ROMS
             try
             {
                 MenuCode = 501;
-                udfnList();
+                udfnList(); udfnLoad();//udfnRateChanged();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     udfnFieldAccess();
@@ -337,6 +339,27 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public async void udfnLoad()
+        {
+            try
+            {
+                _ = RefreshLoop();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private async Task RefreshLoop()
+        {
+            while (isRunning)
+            {
+                await udfnRateChanged();   // call your function
+                await Task.Delay(1000);    // wait 1 sec
+            }
+        }
+
         public void udfnFieldAccess()
         {
             try
@@ -379,27 +402,78 @@ namespace ROMS
         {
             try
             {
-                //for (int i = 0; i < grdDirectLabelList.Rows.Count; i++)
-                //{
-                //    if (Convert.ToString(grdDirectLabelList.Rows[i].Cells["StatusID"].Value) == "1")
-                //    {
-                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    else
-                //    {
-                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                //        grdDirectLabelList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                //    }
-                //    grdDirectLabelList.ClearSelection();
-                //}
+                grdDirectLabelList.ClearSelection();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }           
+            }
         }
+
+        public async Task udfnRateChanged()
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    DataSet objDs = new DataSet();
+                    SPDataService objdserv = new SPDataService();
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 2;
+
+                    objDs = objdserv.udfnLabelPrintList(objMR_Product);
+                    objdserv.CloseConnection();
+
+                    changedLPIDs.Clear();
+
+                    if (objDs != null &&
+                        objDs.Tables.Count > 0 &&
+                        objDs.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in objDs.Tables[0].Rows)
+                        {
+                            if (dr["isFlagChange"] != DBNull.Value &&
+                                dr["isFlagChange"].ToString() == "1")
+                            {
+                                changedLPIDs.Add(Convert.ToInt32(dr["LPID"]));
+                            }
+                        }
+                    }
+                });
+
+                // After data is loaded → refresh grid color
+                grdDirectLabelList.Invoke(new Action(() =>
+                {
+                    HighlightChangedRows();
+                }));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void HighlightChangedRows()
+        {
+            foreach (DataGridViewRow row in grdDirectLabelList.Rows)
+            {
+                if (row.Cells["ID"].Value != null)
+                {
+                    int lpid = Convert.ToInt32(row.Cells["ID"].Value);
+                    if (changedLPIDs.Contains(lpid))
+                    {
+                        row.DefaultCellStyle.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = Color.White;
+                    }
+                }
+            }
+        }
+
+
         private void GrdCityList_Scroll(object sender, ScrollEventArgs e)
         {
             try
