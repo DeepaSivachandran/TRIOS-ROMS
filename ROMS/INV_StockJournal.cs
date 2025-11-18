@@ -3617,9 +3617,12 @@ namespace ROMS
                                     DGVBatch2.Columns["RK_ShortName"].Width = 70;
                                     DGVBatch2.Columns["STK_MRP"].Width = 60;
                                     DGVBatch2.Columns["STK_ExpiryDate"].Width = 90;
+                                    DGVBatch2.Columns["MFD Date"].Width = 90;
                                     DGVBatch2.Columns["STK_BatchNo"].Width = 70;
                                     DGVBatch2.Columns["STK_Qty"].Width = 70;
+                                    DGVBatch2.Columns["Retail Rate"].Width = 80;
                                     DGVBatch2.Columns["UT_Symbol"].Width = 50;
+                                    DGVBatch2.Columns["UPP"].Width = 50;
                                     DGVBatch2.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGVBatch2.Columns["UTID"].Visible = false;
                                     DGVBatch2.Columns["PRODUCTLIST"].Visible = false;
@@ -3634,9 +3637,13 @@ namespace ROMS
                                     DGVBatch2.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGVBatch2.Columns["STK_MRP"].DisplayIndex = 4;
                                     DGVBatch2.Columns["STK_ExpiryDate"].DisplayIndex = 5;
-                                    DGVBatch2.Columns["STK_BatchNo"].DisplayIndex = 6;
-                                    DGVBatch2.Columns["STK_Qty"].DisplayIndex = 7;
-                                    DGVBatch2.Columns["UT_Symbol"].DisplayIndex = 8;
+                                    DGVBatch2.Columns["Shelf Life"].DisplayIndex = 6;
+                                    DGVBatch2.Columns["MFD Date"].DisplayIndex = 7;
+                                    DGVBatch2.Columns["STK_BatchNo"].DisplayIndex = 8;
+                                    DGVBatch2.Columns["STK_Qty"].DisplayIndex = 9;
+                                    DGVBatch2.Columns["UT_Symbol"].DisplayIndex = 10;
+                                    DGVBatch2.Columns["Retail Rate"].DisplayIndex = 11;
+                                    DGVBatch2.Columns["UPP"].DisplayIndex = 12;
                                     DGVBatch2.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGVBatch2.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGVBatch2.Columns["PR_EName"].HeaderText = "Product Name";
@@ -3653,6 +3660,8 @@ namespace ROMS
                                     DGVBatch2.Columns["STK_MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGVBatch2.Columns["STK_Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGVBatch2.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGVBatch2.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGVBatch2.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGVBatch2.Visible = true;
 
 
