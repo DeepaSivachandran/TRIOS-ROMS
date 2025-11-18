@@ -540,7 +540,14 @@ namespace ROMS
                 varQty = Convert.ToInt32(lblParentQty.Text) - Convert.ToInt32(lblRequiredQty.Text);
 
                 objOutward.txtOutwardQuantity.Text = Convert.ToString(varQty);
-                objOutward.udfnAdd();
+                if (Convert.ToDecimal(objOutward.txtStockQuantity.Text) > 0)
+                {
+                    objOutward.udfnAdd();
+                }
+                else
+                {
+                    objOutward.udfnProductClear();
+                }
                 // Clear product details
                 //objOutward.udfnProductClear();
                 this.Close();
