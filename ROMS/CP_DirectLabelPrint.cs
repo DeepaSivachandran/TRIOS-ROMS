@@ -39,6 +39,7 @@ namespace ROMS
         List<string> varListSubgroupCodes = new List<string>();
         List<string> varListGroupCodes = new List<string>();
 
+        public int pbLPID = 0;
         public CP_DirectLabelPrint()
         {
             InitializeComponent();
@@ -433,13 +434,67 @@ namespace ROMS
                 lblUnit.Text = "";
                 lblRetail.Text = "";
                 lblWholesale.Text = "";
+                if (pbLPID != 0)
+                {
+                    udfnEdit();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                if (pbLPID != 0)
+                {
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 1;
+                    objMR_Product.ParaProductCode = pbLPID;
+                    SPDataService objspservice = new SPDataService();
+                    DataSet objDS;
+                    objDS = objdserv.udfnLabelPrintList(objMR_Product);
+                    objdserv.CloseConnection();
+                    if (objDS != null)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            txtProductName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductEName"].ToString());
+                            DGV_FilterProduct.Visible = false;
+                            cmbPrintLanguage.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LanguageType"].ToString());
+                            cmbPrintType.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["PrintType"].ToString());
+                            cmbTemplate.SelectedValue = Convert.ToString(objDS.Tables[0].Rows[0]["Template"].ToString());
+                            cmbTitle.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["Title"].ToString());
+                            cmbLabelsize.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LabelSize"].ToString());
+                            lblProduct.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PRID"].ToString());
+                            txtMrp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MRP"].ToString());
+                            txtSalesRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["S.Rate"].ToString());
+                            txtNoofcopy.Text = Convert.ToString(objDS.Tables[0].Rows[0]["No.Of Copies"].ToString());
+                            txtLabelProduct.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Label Name"].ToString());
+                            lblProductName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductTName"].ToString());
 
+
+                            lblPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PI Code"]);
+                            lblUnit.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Unit"]);
+                            lblRetail.Text = Convert.ToString(objDS.Tables[0].Rows[0]["R.Rate"]);
+                            lblWholesale.Text = Convert.ToString(objDS.Tables[0].Rows[0]["W.Rate"]);
+                            lbdname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"]);
+                            lbltname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"]);
+                            udfnReportView("Preview");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnDropdownLoad()
@@ -2059,7 +2114,8 @@ namespace ROMS
                 {
                     if (result.Split('~')[0] != "1")
                     {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);  
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objCP_DirectLabelList.udfnList();
                     }
                 } 
                 else

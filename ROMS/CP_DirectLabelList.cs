@@ -129,6 +129,7 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objCP_DirectLabelPrint = new CP_DirectLabelPrint();
+                        MainForm.objCP_DirectLabelPrint.pbLPID = Convert.ToInt32(grdDirectLabelList.SelectedRows[0].Cells["ID"].Value.ToString());
                         objMainForm.CenterEntryForm(this, MainForm.objCP_DirectLabelPrint);
                         picLoader.Visible = false;
                         MainForm.objCP_DirectLabelPrint.ShowDialog();
@@ -175,8 +176,14 @@ namespace ROMS
                             grdDirectLabelList.DataSource = objDs.Tables[0];
                             grdDirectLabelList.Columns["ID"].Visible = false;
                             grdDirectLabelList.Columns["S.No."].Width = 50;
-                            grdDirectLabelList.Columns["Product Name"].Width = 200;
+                            grdDirectLabelList.Columns["P.I Code"].Width = 150;
+                            grdDirectLabelList.Columns["Product Name"].Width = 400;
                             grdDirectLabelList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdDirectLabelList.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDirectLabelList.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDirectLabelList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDirectLabelList.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdDirectLabelList.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
                         {

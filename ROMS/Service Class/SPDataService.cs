@@ -4854,6 +4854,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("MRG_Label_Print", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Product.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraLPID", objMR_Product.ParaProductCode);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", objMR_Product.paraStatusId);
