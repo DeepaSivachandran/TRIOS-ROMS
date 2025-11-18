@@ -1638,7 +1638,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtMonths.Focus();
+                    if (txtMonths.Visible == true)
+                    {
+                        txtMonths.Focus();
+                    }
+                    else
+                    {
+                        txtLPRate.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1911,7 +1918,6 @@ namespace ROMS
                     txtLoggofftime.Enabled = true;
                     txtLoggofftime.ReadOnly = false;
                 }
-                txtLoggofftime.Text = "0";
             }
             catch (Exception ex)
             {

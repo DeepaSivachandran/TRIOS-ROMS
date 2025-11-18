@@ -712,7 +712,7 @@ namespace ROMS
 
                     decimal.TryParse(txtStockQuantity.Text, out stockQty);
                     decimal.TryParse(txtOutwardQuantity.Text, out outwardQty);
-                    if (outwardQty < stockQty || outwardQty <= 0)
+                    if (outwardQty <= stockQty || outwardQty <= 0)
                     {
                         btnConversion.Enabled = false;
                     }
@@ -964,6 +964,34 @@ namespace ROMS
                         udfnEdit();
                     }
                 }
+
+                udfnDefaultHeader();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDefaultHeader()
+        {
+            try
+            {
+                grdLocation.RowTemplate.Height = 20;
+                grdLocation.ColumnHeadersHeight = 25;
+                grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                grdLocation.DataSource = null;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("S.No.");
+                dt.Columns.Add("Location");
+                dt.Columns.Add("Quantity");
+                grdLocation.DataSource = dt;
+                grdLocation.Columns["S.No."].Width = 60;
+                grdLocation.Columns["Location"].Width = 250;
+                grdLocation.Columns["Quantity"].Width = 90;
+                grdLocation.Columns["S.No."].Width = 50;
+                grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
             catch (Exception ex)
             {
@@ -1250,8 +1278,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["RK_ShortName"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_MRP"].Width = 60;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].Width = 90;
+                                    DGV_FilterProduct.Columns["MFD Date"].Width = 90;
                                     DGV_FilterProduct.Columns["STK_BatchNo"].Width = 70;
                                     DGV_FilterProduct.Columns["STK_Qty"].Width = 70;
+                                    DGV_FilterProduct.Columns["Retail Rate"].Width = 80;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 50;
                                     DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGV_FilterProduct.Columns["UTID"].Visible = false;
@@ -1262,13 +1292,18 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PR_Parent_ID"].Visible = false;
                                     DGV_FilterProduct.Columns["isChildStockFlag"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
+                                    DGV_FilterProduct.Columns["Shelf Life"].Width = 100;
                                     DGV_FilterProduct.Columns["UT_Symbol"].Width = 60;
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 4;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 5;
-                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 6;
-                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 7;
-                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 8;
+                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 6;
+                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 7;
+
+                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 8;
+                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 9;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 10;
+
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
@@ -1281,8 +1316,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["STK_Qty"].HeaderText = "Stock Qty";
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGV_FilterProduct.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Columns["STK_MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["STK_Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Visible = true;
 
@@ -1399,7 +1436,8 @@ namespace ROMS
                 {
                     btnConversion.Enabled = false;
                 }
-                //udfnProductAdd(); 
+                //udfnProductAdd();
+                udfnProductBasedStkLocation(Convert.ToInt32(varPRID));
             }
             catch (Exception ex)
             {
@@ -1409,6 +1447,44 @@ namespace ROMS
             finally
             {
                 DGV_FilterProduct.Visible = false;
+            }
+        }
+        public void udfnProductBasedStkLocation(int varProductID)
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                TRN_GoodsOutward objTRNG_GoodsOutward = new TRN_GoodsOutward();
+                objTRNG_GoodsOutward.ViewType = 3;
+                objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varProductID);
+                objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        grdLocation.RowTemplate.Height = 20;
+                        grdLocation.ColumnHeadersHeight = 25;
+                        grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+                        grdLocation.DataSource = objDs.Tables[0];
+                        grdLocation.Columns["Location"].Width = 250;
+                        grdLocation.Columns["Quantity"].Width = 90;
+                        grdLocation.Columns["S.No."].Width = 50;
+                        grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    else
+                    {
+                        udfnDefaultHeader();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -2212,6 +2288,23 @@ namespace ROMS
             }
         }
 
+        private void grdGoodsOutward_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdGoodsOutward.SelectedRows.Count > 0)
+                {
+                    int varProductId = Convert.ToInt32(grdGoodsOutward.CurrentRow.Cells["clmPRID"].Value);
+                    udfnProductBasedStkLocation(varProductId);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnTeller()
         {
             try
@@ -2844,6 +2937,7 @@ namespace ROMS
                 lblQuantity.Text = "";
                 varChildStockFlag = 0;
                 btnConversion.Enabled = false;
+                udfnDefaultHeader();
             }
             catch (Exception ex)
             {

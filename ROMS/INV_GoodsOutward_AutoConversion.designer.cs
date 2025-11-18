@@ -48,14 +48,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblParentTransferUnit = new System.Windows.Forms.Label();
             this.lblProductName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblParentStkQty = new System.Windows.Forms.Label();
             this.lblParentStkUnit = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblRequiredQty = new System.Windows.Forms.Label();
             this.lblRequiredUnit = new System.Windows.Forms.Label();
             this.lblTransUnit = new System.Windows.Forms.Label();
+            this.grbStockQty = new System.Windows.Forms.GroupBox();
+            this.grbOutward = new System.Windows.Forms.GroupBox();
+            this.grbConversion = new System.Windows.Forms.GroupBox();
             this.clmSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPIcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +79,9 @@
             this.clmUTID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGOConversion)).BeginInit();
+            this.grbStockQty.SuspendLayout();
+            this.grbOutward.SuspendLayout();
+            this.grbConversion.SuspendLayout();
             this.SuspendLayout();
             // 
             // errUnit
@@ -217,17 +220,18 @@
             // lblParentQty
             // 
             this.lblParentQty.AutoSize = true;
-            this.lblParentQty.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentQty.Location = new System.Drawing.Point(143, 65);
+            this.lblParentQty.Font = new System.Drawing.Font("Oswald Regular", 16.25F);
+            this.lblParentQty.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblParentQty.Location = new System.Drawing.Point(31, 27);
             this.lblParentQty.Name = "lblParentQty";
-            this.lblParentQty.Size = new System.Drawing.Size(18, 24);
+            this.lblParentQty.Size = new System.Drawing.Size(68, 30);
             this.lblParentQty.TabIndex = 1111152;
-            this.lblParentQty.Text = "0";
+            this.lblParentQty.Text = "99999";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 17);
+            this.label2.Location = new System.Drawing.Point(13, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 20);
             this.label2.TabIndex = 1111151;
@@ -236,87 +240,62 @@
             // lblParentTransferUnit
             // 
             this.lblParentTransferUnit.AutoSize = true;
-            this.lblParentTransferUnit.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentTransferUnit.Location = new System.Drawing.Point(185, 65);
+            this.lblParentTransferUnit.Font = new System.Drawing.Font("Oswald Regular", 15.25F);
+            this.lblParentTransferUnit.Location = new System.Drawing.Point(93, 27);
             this.lblParentTransferUnit.Name = "lblParentTransferUnit";
-            this.lblParentTransferUnit.Size = new System.Drawing.Size(32, 24);
+            this.lblParentTransferUnit.Size = new System.Drawing.Size(41, 29);
             this.lblParentTransferUnit.TabIndex = 1111153;
             this.lblParentTransferUnit.Text = "Nos";
             // 
             // lblProductName
             // 
             this.lblProductName.AutoSize = true;
-            this.lblProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(143, 17);
+            this.lblProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
+            this.lblProductName.Location = new System.Drawing.Point(143, 35);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(112, 20);
+            this.lblProductName.Size = new System.Drawing.Size(127, 21);
             this.lblProductName.TabIndex = 1111154;
             this.lblProductName.Text = "Product Name";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 20);
-            this.label1.TabIndex = 1111155;
-            this.label1.Text = "Stock Qty                     :";
             // 
             // lblParentStkQty
             // 
             this.lblParentStkQty.AutoSize = true;
-            this.lblParentStkQty.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentStkQty.Location = new System.Drawing.Point(143, 41);
+            this.lblParentStkQty.Font = new System.Drawing.Font("Oswald Regular", 16.25F);
+            this.lblParentStkQty.ForeColor = System.Drawing.Color.Green;
+            this.lblParentStkQty.Location = new System.Drawing.Point(31, 27);
             this.lblParentStkQty.Name = "lblParentStkQty";
-            this.lblParentStkQty.Size = new System.Drawing.Size(18, 24);
+            this.lblParentStkQty.Size = new System.Drawing.Size(68, 30);
             this.lblParentStkQty.TabIndex = 1111156;
-            this.lblParentStkQty.Text = "0";
+            this.lblParentStkQty.Text = "99999";
             // 
             // lblParentStkUnit
             // 
             this.lblParentStkUnit.AutoSize = true;
-            this.lblParentStkUnit.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblParentStkUnit.Location = new System.Drawing.Point(185, 41);
+            this.lblParentStkUnit.Font = new System.Drawing.Font("Oswald Regular", 15.25F);
+            this.lblParentStkUnit.Location = new System.Drawing.Point(93, 27);
             this.lblParentStkUnit.Name = "lblParentStkUnit";
-            this.lblParentStkUnit.Size = new System.Drawing.Size(32, 24);
+            this.lblParentStkUnit.Size = new System.Drawing.Size(41, 29);
             this.lblParentStkUnit.TabIndex = 1111157;
             this.lblParentStkUnit.Text = "Nos";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 67);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 20);
-            this.label4.TabIndex = 1111158;
-            this.label4.Text = "Outward Qty                :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 92);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 20);
-            this.label5.TabIndex = 1111159;
-            this.label5.Text = "Conversion Required  :";
             // 
             // lblRequiredQty
             // 
             this.lblRequiredQty.AutoSize = true;
-            this.lblRequiredQty.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblRequiredQty.Location = new System.Drawing.Point(143, 90);
+            this.lblRequiredQty.Font = new System.Drawing.Font("Oswald Regular", 16.25F);
+            this.lblRequiredQty.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredQty.Location = new System.Drawing.Point(31, 27);
             this.lblRequiredQty.Name = "lblRequiredQty";
-            this.lblRequiredQty.Size = new System.Drawing.Size(18, 24);
+            this.lblRequiredQty.Size = new System.Drawing.Size(68, 30);
             this.lblRequiredQty.TabIndex = 1111160;
-            this.lblRequiredQty.Text = "0";
+            this.lblRequiredQty.Text = "99999";
             // 
             // lblRequiredUnit
             // 
             this.lblRequiredUnit.AutoSize = true;
-            this.lblRequiredUnit.Font = new System.Drawing.Font("Oswald Regular", 12.25F);
-            this.lblRequiredUnit.Location = new System.Drawing.Point(185, 90);
+            this.lblRequiredUnit.Font = new System.Drawing.Font("Oswald Regular", 15.25F);
+            this.lblRequiredUnit.Location = new System.Drawing.Point(93, 27);
             this.lblRequiredUnit.Name = "lblRequiredUnit";
-            this.lblRequiredUnit.Size = new System.Drawing.Size(32, 24);
+            this.lblRequiredUnit.Size = new System.Drawing.Size(41, 29);
             this.lblRequiredUnit.TabIndex = 1111161;
             this.lblRequiredUnit.Text = "Nos";
             // 
@@ -330,12 +309,45 @@
             this.lblTransUnit.TabIndex = 1111162;
             this.lblTransUnit.Text = "Nos";
             // 
+            // grbStockQty
+            // 
+            this.grbStockQty.Controls.Add(this.lblParentStkUnit);
+            this.grbStockQty.Controls.Add(this.lblParentStkQty);
+            this.grbStockQty.Location = new System.Drawing.Point(803, 35);
+            this.grbStockQty.Name = "grbStockQty";
+            this.grbStockQty.Size = new System.Drawing.Size(139, 76);
+            this.grbStockQty.TabIndex = 1111163;
+            this.grbStockQty.TabStop = false;
+            this.grbStockQty.Text = "Stock Qty";
+            // 
+            // grbOutward
+            // 
+            this.grbOutward.Controls.Add(this.lblParentTransferUnit);
+            this.grbOutward.Controls.Add(this.lblParentQty);
+            this.grbOutward.Location = new System.Drawing.Point(948, 35);
+            this.grbOutward.Name = "grbOutward";
+            this.grbOutward.Size = new System.Drawing.Size(139, 76);
+            this.grbOutward.TabIndex = 1111164;
+            this.grbOutward.TabStop = false;
+            this.grbOutward.Text = "Outward Qty";
+            // 
+            // grbConversion
+            // 
+            this.grbConversion.Controls.Add(this.lblRequiredUnit);
+            this.grbConversion.Controls.Add(this.lblRequiredQty);
+            this.grbConversion.Location = new System.Drawing.Point(1093, 35);
+            this.grbConversion.Name = "grbConversion";
+            this.grbConversion.Size = new System.Drawing.Size(139, 76);
+            this.grbConversion.TabIndex = 1111165;
+            this.grbConversion.TabStop = false;
+            this.grbConversion.Text = "Conversion Required";
+            // 
             // clmSno
             // 
             this.clmSno.HeaderText = "S.No.";
             this.clmSno.Name = "clmSno";
             this.clmSno.ReadOnly = true;
-            this.clmSno.Width = 50;
+            this.clmSno.Width = 35;
             // 
             // clmPIcode
             // 
@@ -343,6 +355,7 @@
             this.clmPIcode.Name = "clmPIcode";
             this.clmPIcode.ReadOnly = true;
             this.clmPIcode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPIcode.Width = 160;
             // 
             // clmProduct
             // 
@@ -410,7 +423,7 @@
             this.clmUPP.Name = "clmUPP";
             this.clmUPP.ReadOnly = true;
             this.clmUPP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmUPP.Width = 80;
+            this.clmUPP.Width = 70;
             // 
             // clmUPPValue
             // 
@@ -428,7 +441,7 @@
             this.clmQuantity.Name = "clmQuantity";
             this.clmQuantity.ReadOnly = true;
             this.clmQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmQuantity.Width = 90;
+            this.clmQuantity.Width = 65;
             // 
             // clmUnit
             // 
@@ -519,17 +532,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1244, 522);
+            this.Controls.Add(this.grbConversion);
+            this.Controls.Add(this.grbOutward);
+            this.Controls.Add(this.grbStockQty);
             this.Controls.Add(this.lblTransUnit);
-            this.Controls.Add(this.lblRequiredUnit);
-            this.Controls.Add(this.lblRequiredQty);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.lblParentStkUnit);
-            this.Controls.Add(this.lblParentStkQty);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblProductName);
-            this.Controls.Add(this.lblParentTransferUnit);
-            this.Controls.Add(this.lblParentQty);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblTransferQty);
             this.Controls.Add(this.lblExpiryDate);
@@ -551,6 +558,12 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PUR_PODamaged_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGOConversion)).EndInit();
+            this.grbStockQty.ResumeLayout(false);
+            this.grbStockQty.PerformLayout();
+            this.grbOutward.ResumeLayout(false);
+            this.grbOutward.PerformLayout();
+            this.grbConversion.ResumeLayout(false);
+            this.grbConversion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -568,14 +581,14 @@
         public System.Windows.Forms.Label lblParentQty;
         public System.Windows.Forms.Label lblParentTransferUnit;
         public System.Windows.Forms.Label lblProductName;
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblParentStkQty;
         public System.Windows.Forms.Label lblParentStkUnit;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label lblRequiredQty;
         public System.Windows.Forms.Label lblRequiredUnit;
         public System.Windows.Forms.Label lblTransUnit;
+        private System.Windows.Forms.GroupBox grbStockQty;
+        private System.Windows.Forms.GroupBox grbOutward;
+        private System.Windows.Forms.GroupBox grbConversion;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPIcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduct;

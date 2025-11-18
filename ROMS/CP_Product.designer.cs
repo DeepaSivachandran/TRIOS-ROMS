@@ -77,6 +77,11 @@
             this.txtSubGroup = new System.Windows.Forms.TextBox();
             this.lblBrand = new System.Windows.Forms.Label();
             this.txtBrand = new System.Windows.Forms.TextBox();
+            this.btnLabelingDetails = new System.Windows.Forms.Label();
+            this.btnUnit = new System.Windows.Forms.Label();
+            this.btnBrand = new System.Windows.Forms.Label();
+            this.btnGroup = new System.Windows.Forms.Label();
+            this.btnSubgroup = new System.Windows.Forms.Label();
             this.txtUpp = new System.Windows.Forms.TextBox();
             this.txtDUPP = new System.Windows.Forms.TextBox();
             this.cmbProductCategory = new System.Windows.Forms.ComboBox();
@@ -208,6 +213,8 @@
             this.clmPurEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmChangedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMakerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPurRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnPURHSN = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dpPurEffectiveFrom = new System.Windows.Forms.DateTimePicker();
@@ -230,6 +237,8 @@
             this.clmSalesEditFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesChangedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSalesMakerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnSalesHSN = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dpSalesEffectiveFrom = new System.Windows.Forms.DateTimePicker();
@@ -242,44 +251,6 @@
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.DGV_FilterSalesLocation = new System.Windows.Forms.DataGridView();
-            this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.lvVerified1 = new System.Windows.Forms.ListView();
-            this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tsMenu = new System.Windows.Forms.ToolStrip();
-            this.tsbReset = new System.Windows.Forms.ToolStripButton();
-            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbRotateR = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbRotateL = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbZoomOut = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnLabelingDetails = new System.Windows.Forms.Label();
-            this.btnUnit = new System.Windows.Forms.Label();
-            this.btnBrand = new System.Windows.Forms.Label();
-            this.btnGroup = new System.Windows.Forms.Label();
-            this.btnSubgroup = new System.Windows.Forms.Label();
-            this.clmPurRemove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnPURHSN = new System.Windows.Forms.Button();
-            this.clmSalesRemove = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnSalesHSN = new System.Windows.Forms.Button();
-            this.tsbZoomIn = new System.Windows.Forms.ToolStripButton();
-            this.tsbCropImage = new System.Windows.Forms.ToolStripButton();
-            this.tsbCrop = new System.Windows.Forms.ToolStripButton();
-            this.tsbBrowse = new System.Windows.Forms.ToolStripButton();
-            this.tsbColour = new System.Windows.Forms.ToolStripButton();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnBrowse = new System.Windows.Forms.Button();
             this.pnlImageContainer = new System.Windows.Forms.Panel();
             this.pnlControls = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -289,7 +260,35 @@
             this.tbBrightness = new System.Windows.Forms.TrackBar();
             this.tbContrast = new System.Windows.Forms.TrackBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnImageClose = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tsMenu = new System.Windows.Forms.ToolStrip();
+            this.tsbReset = new System.Windows.Forms.ToolStripButton();
+            this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbRotateR = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbRotateL = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbZoomOut = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbZoomIn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCropImage = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCrop = new System.Windows.Forms.ToolStripButton();
+            this.tsbBrowse = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbColour = new System.Windows.Forms.ToolStripButton();
+            this.DGV_FilterSalesLocation = new System.Windows.Forms.DataGridView();
+            this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.lvVerified1 = new System.Windows.Forms.ListView();
+            this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -312,15 +311,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).BeginInit();
-            this.pnlProductDetails.SuspendLayout();
-            this.tsMenu.SuspendLayout();
             this.pnlImageContainer.SuspendLayout();
             this.pnlControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbSaturation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbBrightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbContrast)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tsMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).BeginInit();
+            this.pnlProductDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -754,6 +753,68 @@
             this.txtBrand.Enter += new System.EventHandler(this.TxtBrand_Enter);
             this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBrand_KeyDown);
             this.txtBrand.Leave += new System.EventHandler(this.TxtBrand_Leave);
+            // 
+            // btnLabelingDetails
+            // 
+            this.btnLabelingDetails.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btnLabelingDetails.Image = global::ROMS.Properties.Resources.down_arrow;
+            this.btnLabelingDetails.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLabelingDetails.Location = new System.Drawing.Point(502, 81);
+            this.btnLabelingDetails.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnLabelingDetails.Name = "btnLabelingDetails";
+            this.btnLabelingDetails.Size = new System.Drawing.Size(21, 22);
+            this.btnLabelingDetails.TabIndex = 119;
+            this.btnLabelingDetails.Text = "        ";
+            this.btnLabelingDetails.Click += new System.EventHandler(this.BtnLabelingDetails_Click);
+            // 
+            // btnUnit
+            // 
+            this.btnUnit.Image = global::ROMS.Properties.Resources.New;
+            this.btnUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnUnit.Location = new System.Drawing.Point(251, 324);
+            this.btnUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnUnit.Name = "btnUnit";
+            this.btnUnit.Size = new System.Drawing.Size(21, 22);
+            this.btnUnit.TabIndex = 29;
+            this.btnUnit.Text = "        ";
+            this.btnUnit.Click += new System.EventHandler(this.BtnUnit_Click);
+            // 
+            // btnBrand
+            // 
+            this.btnBrand.Image = global::ROMS.Properties.Resources.New;
+            this.btnBrand.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBrand.Location = new System.Drawing.Point(520, 294);
+            this.btnBrand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnBrand.Name = "btnBrand";
+            this.btnBrand.Size = new System.Drawing.Size(21, 22);
+            this.btnBrand.TabIndex = 28;
+            this.btnBrand.Text = "        ";
+            this.btnBrand.Click += new System.EventHandler(this.BtnBrand_Click);
+            // 
+            // btnGroup
+            // 
+            this.btnGroup.Image = global::ROMS.Properties.Resources.New;
+            this.btnGroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnGroup.Location = new System.Drawing.Point(520, 267);
+            this.btnGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnGroup.Name = "btnGroup";
+            this.btnGroup.Size = new System.Drawing.Size(21, 22);
+            this.btnGroup.TabIndex = 27;
+            this.btnGroup.Text = "        ";
+            this.btnGroup.Click += new System.EventHandler(this.BtnGroup_Click);
+            // 
+            // btnSubgroup
+            // 
+            this.btnSubgroup.Image = global::ROMS.Properties.Resources.New;
+            this.btnSubgroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSubgroup.Location = new System.Drawing.Point(442, 240);
+            this.btnSubgroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnSubgroup.Name = "btnSubgroup";
+            this.btnSubgroup.Size = new System.Drawing.Size(21, 22);
+            this.btnSubgroup.TabIndex = 26;
+            this.btnSubgroup.Text = "        ";
+            this.btnSubgroup.ClientSizeChanged += new System.EventHandler(this.BtnSubgroup_Click);
+            this.btnSubgroup.Click += new System.EventHandler(this.BtnSubgroup_Click);
             // 
             // txtUpp
             // 
@@ -2266,6 +2327,29 @@
             this.clmMakerID.ReadOnly = true;
             this.clmMakerID.Visible = false;
             // 
+            // clmPurRemove
+            // 
+            this.clmPurRemove.HeaderText = "Remove";
+            this.clmPurRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmPurRemove.MinimumWidth = 6;
+            this.clmPurRemove.Name = "clmPurRemove";
+            this.clmPurRemove.ReadOnly = true;
+            this.clmPurRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmPurRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmPurRemove.Width = 50;
+            // 
+            // btnPURHSN
+            // 
+            this.btnPURHSN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPURHSN.Image = global::ROMS.Properties.Resources.plus;
+            this.btnPURHSN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPURHSN.Location = new System.Drawing.Point(314, 46);
+            this.btnPURHSN.Name = "btnPURHSN";
+            this.btnPURHSN.Size = new System.Drawing.Size(25, 25);
+            this.btnPURHSN.TabIndex = 2;
+            this.btnPURHSN.UseVisualStyleBackColor = true;
+            this.btnPURHSN.Click += new System.EventHandler(this.BtnPURHSN_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -2497,6 +2581,29 @@
             this.clmSalesMakerID.ReadOnly = true;
             this.clmSalesMakerID.Visible = false;
             // 
+            // clmSalesRemove
+            // 
+            this.clmSalesRemove.HeaderText = "Remove";
+            this.clmSalesRemove.Image = global::ROMS.Properties.Resources.remove;
+            this.clmSalesRemove.MinimumWidth = 6;
+            this.clmSalesRemove.Name = "clmSalesRemove";
+            this.clmSalesRemove.ReadOnly = true;
+            this.clmSalesRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmSalesRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmSalesRemove.Width = 50;
+            // 
+            // btnSalesHSN
+            // 
+            this.btnSalesHSN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSalesHSN.Image = global::ROMS.Properties.Resources.plus;
+            this.btnSalesHSN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalesHSN.Location = new System.Drawing.Point(314, 46);
+            this.btnSalesHSN.Name = "btnSalesHSN";
+            this.btnSalesHSN.Size = new System.Drawing.Size(25, 25);
+            this.btnSalesHSN.TabIndex = 5;
+            this.btnSalesHSN.UseVisualStyleBackColor = true;
+            this.btnSalesHSN.Click += new System.EventHandler(this.BtnSalesHSN_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -2704,7 +2811,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(881, 618);
+            this.tabPage2.Size = new System.Drawing.Size(906, 618);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "HSN Details";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2724,83 +2831,134 @@
             this.tabPage3.Text = "Product Image";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // DGV_FilterSalesLocation
+            // pnlImageContainer
             // 
-            this.DGV_FilterSalesLocation.AllowUserToAddRows = false;
-            this.DGV_FilterSalesLocation.AllowUserToDeleteRows = false;
-            this.DGV_FilterSalesLocation.AllowUserToResizeColumns = false;
-            this.DGV_FilterSalesLocation.AllowUserToResizeRows = false;
-            this.DGV_FilterSalesLocation.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_FilterSalesLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterSalesLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGV_FilterSalesLocation.ColumnHeadersHeight = 30;
-            this.DGV_FilterSalesLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterSalesLocation.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DGV_FilterSalesLocation.EnableHeadersVisualStyles = false;
-            this.DGV_FilterSalesLocation.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSalesLocation.Location = new System.Drawing.Point(184, 554);
-            this.DGV_FilterSalesLocation.Name = "DGV_FilterSalesLocation";
-            this.DGV_FilterSalesLocation.ReadOnly = true;
-            this.DGV_FilterSalesLocation.RowHeadersVisible = false;
-            this.DGV_FilterSalesLocation.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterSalesLocation.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_FilterSalesLocation.RowTemplate.Height = 25;
-            this.DGV_FilterSalesLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterSalesLocation.Size = new System.Drawing.Size(388, 131);
-            this.DGV_FilterSalesLocation.TabIndex = 111111167;
-            this.DGV_FilterSalesLocation.Visible = false;
-            this.DGV_FilterSalesLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSalesLocation_CellDoubleClick);
-            this.DGV_FilterSalesLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterSalesLocation_KeyDown);
+            this.pnlImageContainer.AutoScroll = true;
+            this.pnlImageContainer.Controls.Add(this.pnlControls);
+            this.pnlImageContainer.Controls.Add(this.pictureBox1);
+            this.pnlImageContainer.Location = new System.Drawing.Point(258, 37);
+            this.pnlImageContainer.Name = "pnlImageContainer";
+            this.pnlImageContainer.Size = new System.Drawing.Size(647, 540);
+            this.pnlImageContainer.TabIndex = 17;
             // 
-            // pnlProductDetails
+            // pnlControls
             // 
-            this.pnlProductDetails.Controls.Add(this.tbProduct);
-            this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
-            this.pnlProductDetails.Name = "pnlProductDetails";
-            this.pnlProductDetails.Size = new System.Drawing.Size(932, 655);
-            this.pnlProductDetails.TabIndex = 1111144;
+            this.pnlControls.Controls.Add(this.label5);
+            this.pnlControls.Controls.Add(this.label6);
+            this.pnlControls.Controls.Add(this.label7);
+            this.pnlControls.Controls.Add(this.tbSaturation);
+            this.pnlControls.Controls.Add(this.tbBrightness);
+            this.pnlControls.Controls.Add(this.tbContrast);
+            this.pnlControls.Location = new System.Drawing.Point(3, 3);
+            this.pnlControls.Name = "pnlControls";
+            this.pnlControls.Size = new System.Drawing.Size(641, 74);
+            this.pnlControls.TabIndex = 5;
+            this.pnlControls.Visible = false;
             // 
-            // lvVerified1
+            // label5
             // 
-            this.lvVerified1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader43,
-            this.columnHeader44});
-            this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvVerified1.HideSelection = false;
-            this.lvVerified1.Location = new System.Drawing.Point(386, 645);
-            this.lvVerified1.Name = "lvVerified1";
-            this.lvVerified1.Size = new System.Drawing.Size(222, 40);
-            this.lvVerified1.TabIndex = 111111149;
-            this.lvVerified1.UseCompatibleStateImageBehavior = false;
-            this.lvVerified1.View = System.Windows.Forms.View.Details;
-            this.lvVerified1.Visible = false;
-            this.lvVerified1.DoubleClick += new System.EventHandler(this.LvVerified1_DoubleClick);
-            this.lvVerified1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvVerified1_KeyDown);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(495, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 20);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Saturation";
             // 
-            // columnHeader43
+            // label6
             // 
-            this.columnHeader43.Width = 120;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(290, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Contrast";
             // 
-            // columnHeader44
+            // label7
             // 
-            this.columnHeader44.Width = 0;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(69, 48);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Brightness";
+            // 
+            // tbSaturation
+            // 
+            this.tbSaturation.Location = new System.Drawing.Point(438, 3);
+            this.tbSaturation.Maximum = 50;
+            this.tbSaturation.Minimum = -50;
+            this.tbSaturation.Name = "tbSaturation";
+            this.tbSaturation.Size = new System.Drawing.Size(197, 45);
+            this.tbSaturation.TabIndex = 4;
+            this.tbSaturation.Scroll += new System.EventHandler(this.tbSaturation_Scroll);
+            // 
+            // tbBrightness
+            // 
+            this.tbBrightness.Location = new System.Drawing.Point(13, 3);
+            this.tbBrightness.Maximum = 50;
+            this.tbBrightness.Minimum = -50;
+            this.tbBrightness.Name = "tbBrightness";
+            this.tbBrightness.Size = new System.Drawing.Size(197, 45);
+            this.tbBrightness.TabIndex = 2;
+            this.tbBrightness.Scroll += new System.EventHandler(this.tbBrightness_Scroll);
+            // 
+            // tbContrast
+            // 
+            this.tbContrast.Location = new System.Drawing.Point(227, 3);
+            this.tbContrast.Maximum = 50;
+            this.tbContrast.Minimum = -50;
+            this.tbContrast.Name = "tbContrast";
+            this.tbContrast.Size = new System.Drawing.Size(197, 45);
+            this.tbContrast.TabIndex = 3;
+            this.tbContrast.Scroll += new System.EventHandler(this.tbContrast_Scroll);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(641, 534);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(105, 583);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(84, 29);
+            this.btnClear.TabIndex = 16;
+            this.btnClear.Text = "Clear";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Visible = false;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnBrowse.Image = global::ROMS.Properties.Resources.folder;
+            this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBrowse.Location = new System.Drawing.Point(15, 583);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(84, 29);
+            this.btnBrowse.TabIndex = 15;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Visible = false;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 37);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 540);
+            this.flowLayoutPanel1.TabIndex = 14;
             // 
             // tsMenu
             // 
@@ -2906,157 +3064,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator5.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator6.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Remove";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn1.MinimumWidth = 6;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Remove";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.MinimumWidth = 6;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.ReadOnly = true;
-            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn2.Width = 50;
-            // 
-            // btnLabelingDetails
-            // 
-            this.btnLabelingDetails.BackColor = System.Drawing.Color.LemonChiffon;
-            this.btnLabelingDetails.Image = global::ROMS.Properties.Resources.down_arrow;
-            this.btnLabelingDetails.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLabelingDetails.Location = new System.Drawing.Point(502, 81);
-            this.btnLabelingDetails.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnLabelingDetails.Name = "btnLabelingDetails";
-            this.btnLabelingDetails.Size = new System.Drawing.Size(21, 22);
-            this.btnLabelingDetails.TabIndex = 119;
-            this.btnLabelingDetails.Text = "        ";
-            this.btnLabelingDetails.Click += new System.EventHandler(this.BtnLabelingDetails_Click);
-            // 
-            // btnUnit
-            // 
-            this.btnUnit.Image = global::ROMS.Properties.Resources.New;
-            this.btnUnit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUnit.Location = new System.Drawing.Point(251, 324);
-            this.btnUnit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnUnit.Name = "btnUnit";
-            this.btnUnit.Size = new System.Drawing.Size(21, 22);
-            this.btnUnit.TabIndex = 29;
-            this.btnUnit.Text = "        ";
-            this.btnUnit.Click += new System.EventHandler(this.BtnUnit_Click);
-            // 
-            // btnBrand
-            // 
-            this.btnBrand.Image = global::ROMS.Properties.Resources.New;
-            this.btnBrand.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBrand.Location = new System.Drawing.Point(520, 294);
-            this.btnBrand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnBrand.Name = "btnBrand";
-            this.btnBrand.Size = new System.Drawing.Size(21, 22);
-            this.btnBrand.TabIndex = 28;
-            this.btnBrand.Text = "        ";
-            this.btnBrand.Click += new System.EventHandler(this.BtnBrand_Click);
-            // 
-            // btnGroup
-            // 
-            this.btnGroup.Image = global::ROMS.Properties.Resources.New;
-            this.btnGroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGroup.Location = new System.Drawing.Point(520, 267);
-            this.btnGroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnGroup.Name = "btnGroup";
-            this.btnGroup.Size = new System.Drawing.Size(21, 22);
-            this.btnGroup.TabIndex = 27;
-            this.btnGroup.Text = "        ";
-            this.btnGroup.Click += new System.EventHandler(this.BtnGroup_Click);
-            // 
-            // btnSubgroup
-            // 
-            this.btnSubgroup.Image = global::ROMS.Properties.Resources.New;
-            this.btnSubgroup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSubgroup.Location = new System.Drawing.Point(442, 240);
-            this.btnSubgroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnSubgroup.Name = "btnSubgroup";
-            this.btnSubgroup.Size = new System.Drawing.Size(21, 22);
-            this.btnSubgroup.TabIndex = 26;
-            this.btnSubgroup.Text = "        ";
-            this.btnSubgroup.ClientSizeChanged += new System.EventHandler(this.BtnSubgroup_Click);
-            this.btnSubgroup.Click += new System.EventHandler(this.BtnSubgroup_Click);
-            // 
-            // clmPurRemove
-            // 
-            this.clmPurRemove.HeaderText = "Remove";
-            this.clmPurRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmPurRemove.MinimumWidth = 6;
-            this.clmPurRemove.Name = "clmPurRemove";
-            this.clmPurRemove.ReadOnly = true;
-            this.clmPurRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmPurRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmPurRemove.Width = 50;
-            // 
-            // btnPURHSN
-            // 
-            this.btnPURHSN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnPURHSN.Image = global::ROMS.Properties.Resources.plus;
-            this.btnPURHSN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPURHSN.Location = new System.Drawing.Point(314, 46);
-            this.btnPURHSN.Name = "btnPURHSN";
-            this.btnPURHSN.Size = new System.Drawing.Size(25, 25);
-            this.btnPURHSN.TabIndex = 2;
-            this.btnPURHSN.UseVisualStyleBackColor = true;
-            this.btnPURHSN.Click += new System.EventHandler(this.BtnPURHSN_Click);
-            // 
-            // clmSalesRemove
-            // 
-            this.clmSalesRemove.HeaderText = "Remove";
-            this.clmSalesRemove.Image = global::ROMS.Properties.Resources.remove;
-            this.clmSalesRemove.MinimumWidth = 6;
-            this.clmSalesRemove.Name = "clmSalesRemove";
-            this.clmSalesRemove.ReadOnly = true;
-            this.clmSalesRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmSalesRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmSalesRemove.Width = 50;
-            // 
-            // btnSalesHSN
-            // 
-            this.btnSalesHSN.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSalesHSN.Image = global::ROMS.Properties.Resources.plus;
-            this.btnSalesHSN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalesHSN.Location = new System.Drawing.Point(314, 46);
-            this.btnSalesHSN.Name = "btnSalesHSN";
-            this.btnSalesHSN.Size = new System.Drawing.Size(25, 25);
-            this.btnSalesHSN.TabIndex = 5;
-            this.btnSalesHSN.UseVisualStyleBackColor = true;
-            this.btnSalesHSN.Click += new System.EventHandler(this.BtnSalesHSN_Click);
-            // 
             // tsbZoomIn
             // 
             this.tsbZoomIn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -3069,6 +3076,13 @@
             this.tsbZoomIn.Size = new System.Drawing.Size(23, 28);
             this.tsbZoomIn.Click += new System.EventHandler(this.tsbZoomIn_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            // 
             // tsbCropImage
             // 
             this.tsbCropImage.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -3080,6 +3094,13 @@
             this.tsbCropImage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbCropImage.Size = new System.Drawing.Size(23, 28);
             this.tsbCropImage.Click += new System.EventHandler(this.tsbCropImage_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator5.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
             // 
             // tsbCrop
             // 
@@ -3106,6 +3127,13 @@
             this.tsbBrowse.Text = "Browse";
             this.tsbBrowse.Click += new System.EventHandler(this.tsbBrowse_Click);
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator6.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
+            // 
             // tsbColour
             // 
             this.tsbColour.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -3117,6 +3145,106 @@
             this.tsbColour.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbColour.Size = new System.Drawing.Size(24, 28);
             this.tsbColour.Click += new System.EventHandler(this.tsbColour_Click);
+            // 
+            // DGV_FilterSalesLocation
+            // 
+            this.DGV_FilterSalesLocation.AllowUserToAddRows = false;
+            this.DGV_FilterSalesLocation.AllowUserToDeleteRows = false;
+            this.DGV_FilterSalesLocation.AllowUserToResizeColumns = false;
+            this.DGV_FilterSalesLocation.AllowUserToResizeRows = false;
+            this.DGV_FilterSalesLocation.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_FilterSalesLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterSalesLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_FilterSalesLocation.ColumnHeadersHeight = 30;
+            this.DGV_FilterSalesLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterSalesLocation.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_FilterSalesLocation.EnableHeadersVisualStyles = false;
+            this.DGV_FilterSalesLocation.GridColor = System.Drawing.Color.White;
+            this.DGV_FilterSalesLocation.Location = new System.Drawing.Point(184, 554);
+            this.DGV_FilterSalesLocation.Name = "DGV_FilterSalesLocation";
+            this.DGV_FilterSalesLocation.ReadOnly = true;
+            this.DGV_FilterSalesLocation.RowHeadersVisible = false;
+            this.DGV_FilterSalesLocation.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterSalesLocation.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_FilterSalesLocation.RowTemplate.Height = 25;
+            this.DGV_FilterSalesLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_FilterSalesLocation.Size = new System.Drawing.Size(388, 131);
+            this.DGV_FilterSalesLocation.TabIndex = 111111167;
+            this.DGV_FilterSalesLocation.Visible = false;
+            this.DGV_FilterSalesLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSalesLocation_CellDoubleClick);
+            this.DGV_FilterSalesLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterSalesLocation_KeyDown);
+            // 
+            // pnlProductDetails
+            // 
+            this.pnlProductDetails.Controls.Add(this.tbProduct);
+            this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
+            this.pnlProductDetails.Name = "pnlProductDetails";
+            this.pnlProductDetails.Size = new System.Drawing.Size(932, 655);
+            this.pnlProductDetails.TabIndex = 1111144;
+            // 
+            // lvVerified1
+            // 
+            this.lvVerified1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader43,
+            this.columnHeader44});
+            this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvVerified1.HideSelection = false;
+            this.lvVerified1.Location = new System.Drawing.Point(386, 645);
+            this.lvVerified1.Name = "lvVerified1";
+            this.lvVerified1.Size = new System.Drawing.Size(222, 40);
+            this.lvVerified1.TabIndex = 111111149;
+            this.lvVerified1.UseCompatibleStateImageBehavior = false;
+            this.lvVerified1.View = System.Windows.Forms.View.Details;
+            this.lvVerified1.Visible = false;
+            this.lvVerified1.DoubleClick += new System.EventHandler(this.LvVerified1_DoubleClick);
+            this.lvVerified1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvVerified1_KeyDown);
+            // 
+            // columnHeader43
+            // 
+            this.columnHeader43.Width = 120;
+            // 
+            // columnHeader44
+            // 
+            this.columnHeader44.Width = 0;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Remove";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.MinimumWidth = 6;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.ReadOnly = true;
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn2.Width = 50;
             // 
             // btnClose
             // 
@@ -3151,149 +3279,6 @@
             this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 37);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 540);
-            this.flowLayoutPanel1.TabIndex = 14;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(105, 583);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(84, 29);
-            this.btnClear.TabIndex = 16;
-            this.btnClear.Text = "Clear";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Visible = false;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnBrowse.Image = global::ROMS.Properties.Resources.folder;
-            this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBrowse.Location = new System.Drawing.Point(15, 583);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(84, 29);
-            this.btnBrowse.TabIndex = 15;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Visible = false;
-            // 
-            // pnlImageContainer
-            // 
-            this.pnlImageContainer.AutoScroll = true;
-            this.pnlImageContainer.Controls.Add(this.pnlControls);
-            this.pnlImageContainer.Controls.Add(this.pictureBox1);
-            this.pnlImageContainer.Location = new System.Drawing.Point(258, 37);
-            this.pnlImageContainer.Name = "pnlImageContainer";
-            this.pnlImageContainer.Size = new System.Drawing.Size(647, 540);
-            this.pnlImageContainer.TabIndex = 17;
-            // 
-            // pnlControls
-            // 
-            this.pnlControls.Controls.Add(this.label5);
-            this.pnlControls.Controls.Add(this.label6);
-            this.pnlControls.Controls.Add(this.label7);
-            this.pnlControls.Controls.Add(this.tbSaturation);
-            this.pnlControls.Controls.Add(this.tbBrightness);
-            this.pnlControls.Controls.Add(this.tbContrast);
-            this.pnlControls.Location = new System.Drawing.Point(3, 3);
-            this.pnlControls.Name = "pnlControls";
-            this.pnlControls.Size = new System.Drawing.Size(641, 74);
-            this.pnlControls.TabIndex = 5;
-            this.pnlControls.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(495, 48);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 20);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Saturation";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(290, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Contrast";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(69, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Brightness";
-            // 
-            // tbSaturation
-            // 
-            this.tbSaturation.Location = new System.Drawing.Point(438, 3);
-            this.tbSaturation.Maximum = 50;
-            this.tbSaturation.Minimum = -50;
-            this.tbSaturation.Name = "tbSaturation";
-            this.tbSaturation.Size = new System.Drawing.Size(197, 45);
-            this.tbSaturation.TabIndex = 4;
-            this.tbSaturation.Scroll += new System.EventHandler(this.tbSaturation_Scroll);
-            // 
-            // tbBrightness
-            // 
-            this.tbBrightness.Location = new System.Drawing.Point(13, 3);
-            this.tbBrightness.Maximum = 50;
-            this.tbBrightness.Minimum = -50;
-            this.tbBrightness.Name = "tbBrightness";
-            this.tbBrightness.Size = new System.Drawing.Size(197, 45);
-            this.tbBrightness.TabIndex = 2;
-            this.tbBrightness.Scroll += new System.EventHandler(this.tbBrightness_Scroll);
-            // 
-            // tbContrast
-            // 
-            this.tbContrast.Location = new System.Drawing.Point(227, 3);
-            this.tbContrast.Maximum = 50;
-            this.tbContrast.Minimum = -50;
-            this.tbContrast.Name = "tbContrast";
-            this.tbContrast.Size = new System.Drawing.Size(197, 45);
-            this.tbContrast.TabIndex = 3;
-            this.tbContrast.Scroll += new System.EventHandler(this.tbContrast_Scroll);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(641, 534);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
-            // btnImageClose
-            // 
-            this.btnImageClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnImageClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnImageClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImageClose.Location = new System.Drawing.Point(831, 659);
-            this.btnImageClose.Name = "btnImageClose";
-            this.btnImageClose.Size = new System.Drawing.Size(75, 29);
-            this.btnImageClose.TabIndex = 19;
-            this.btnImageClose.Text = "Close";
-            this.btnImageClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImageClose.UseVisualStyleBackColor = true;
-            this.btnImageClose.Click += new System.EventHandler(this.btnImageClose_Click);
-            // 
             // btnImageUpdate
             // 
             this.btnImageUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -3314,7 +3299,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(952, 691);
-            this.Controls.Add(this.btnImageClose);
             this.Controls.Add(this.lvSaleRack);
             this.Controls.Add(this.btnImageUpdate);
             this.Controls.Add(this.lvVerified1);
@@ -3371,10 +3355,6 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).EndInit();
-            this.pnlProductDetails.ResumeLayout(false);
-            this.tsMenu.ResumeLayout(false);
-            this.tsMenu.PerformLayout();
             this.pnlImageContainer.ResumeLayout(false);
             this.pnlControls.ResumeLayout(false);
             this.pnlControls.PerformLayout();
@@ -3382,6 +3362,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbBrightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbContrast)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tsMenu.ResumeLayout(false);
+            this.tsMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).EndInit();
+            this.pnlProductDetails.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3633,7 +3617,6 @@
         private System.Windows.Forms.TrackBar tbBrightness;
         private System.Windows.Forms.TrackBar tbContrast;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnImageClose;
         private System.Windows.Forms.Button btnImageUpdate;
     }
 }

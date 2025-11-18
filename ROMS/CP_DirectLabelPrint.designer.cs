@@ -39,6 +39,7 @@
             this.lblRawCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbGrid = new System.Windows.Forms.GroupBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.chkNone = new System.Windows.Forms.CheckBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -173,6 +174,7 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.btnClose);
             this.grbGrid.Controls.Add(this.chkNone);
             this.grbGrid.Controls.Add(this.lblDesc);
             this.grbGrid.Controls.Add(this.lblDescription);
@@ -217,6 +219,22 @@
             this.grbGrid.Size = new System.Drawing.Size(1341, 629);
             this.grbGrid.TabIndex = 3;
             this.grbGrid.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(321, 589);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(78, 29);
+            this.btnClose.TabIndex = 111111179;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
             // 
             // chkNone
             // 
@@ -1083,5 +1101,6 @@
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.CheckBox chkNone;
+        private System.Windows.Forms.Button btnClose;
     }
 }
