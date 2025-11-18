@@ -38,6 +38,7 @@ namespace ROMS
         private int varsno;
         List<string> varListSubgroupCodes = new List<string>();
         List<string> varListGroupCodes = new List<string>();
+        public int varClose = 0;
 
         public int pbLPID = 0;
         public CP_DirectLabelPrint()
@@ -52,11 +53,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    //MainForm.objStart = new DEF_Start();
-                    //MainForm.objStart.MdiParent = this.ParentForm;
-                    //MainForm.objStart.Show();
-                    this.Close();
-                    //windowControl?.TriggerClose();
+                    udfnclose();
                 }
             }
             catch (Exception ex)
@@ -112,16 +109,6 @@ namespace ROMS
         }
 
         private void CmbCompany_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnClose_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnClose_Leave(object sender, EventArgs e)
         {
 
         }
@@ -1850,10 +1837,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objStart = new DEF_Start();
-                MainForm.objStart.MdiParent = this.ParentForm;
-                MainForm.objStart.Show();
-                this.Close();
+                udfnclose();
             }
             catch (Exception ex)
             {
@@ -1861,6 +1845,52 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnclose()
+        {
+            try
+            {
+                if (varClose == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objCP_DirectLabelList.udfnList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void btnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void cmbLabelsize_KeyDown(object sender, KeyEventArgs e)
         {
             try
