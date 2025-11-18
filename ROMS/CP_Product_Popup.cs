@@ -268,6 +268,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdItemList.DataSource = objDs.Tables[0];
                             grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdItemList.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns["S.No."].Frozen = true;
@@ -275,7 +276,12 @@ namespace ROMS
                             grdItemList.Columns["P.I Code"].Frozen = true;
                             grdItemList.Columns["Product Name"].Frozen = true;
                             grdItemList.Columns["S.No."].Width = 50;
+                            grdItemList.Columns["Unit"].Width = 40;
+                            grdItemList.Columns["R.Rate"].Width = 80;
+                            grdItemList.Columns["W.Rate"].Width = 80;
+                            grdItemList.Columns["UPP"].Width = 80;
                             grdItemList.Columns["P.I Code"].Width = 100;
+                            grdItemList.Columns["Phone No."].Width = 120;
                             grdItemList.Columns["Product Name"].Width = 300;
                             grdItemList.Columns["Supplier"].Width = 300;
                             grdItemList.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
