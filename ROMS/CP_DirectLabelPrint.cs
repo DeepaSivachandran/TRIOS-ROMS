@@ -2100,6 +2100,8 @@ namespace ROMS
                 objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
                 objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text); 
                 objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
+                objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
+                objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
                 objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
                 objMR_Product.paraCopies = Convert.ToInt32(txtNoofcopy.Text);
                 objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);

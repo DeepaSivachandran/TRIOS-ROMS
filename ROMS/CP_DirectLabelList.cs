@@ -184,6 +184,7 @@ namespace ROMS
                             grdDirectLabelList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdDirectLabelList.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdDirectLabelList.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdDirectLabelList.ClearSelection();
                         }
                         else
                         {

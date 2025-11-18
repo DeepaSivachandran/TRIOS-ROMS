@@ -61,6 +61,7 @@ namespace ROMS.Model
         public int paraLanguage = 0;
         public float paraLPMRP = 0;
         public float parasales_rate = 0;
+        public float parawholesale_rate = 0;
         public int paraCopies = 0;
         public int paraPrintType = 0;
         public int paraLabelSize = 0;
