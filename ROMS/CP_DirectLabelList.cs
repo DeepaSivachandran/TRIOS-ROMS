@@ -681,5 +681,10 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CP_DirectLabelList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            isRunning = false;
+        }
     }
 }
