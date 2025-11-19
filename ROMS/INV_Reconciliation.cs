@@ -3682,7 +3682,7 @@ namespace ROMS
                             grdStockadjustment.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                             grdStockadjustment.Rows.Add(grdStockadjustment.Rows.Count + 1, varPRID, varPICode, (varTamilname), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (varExpiryDate).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtReconciliationQuantity.Text),
 
-                               ( (txtStockQuantity.Text.Trim()) + Convert.ToInt32(txtReconciliationQuantity.Text)), varUnit, varUTID, varDecimal);
+                               ( (txtStockQuantity.Text.Trim()) + Convert.ToDecimal(txtReconciliationQuantity.Text)), varUnit, varUTID, varDecimal);
                         //}
 
                          
