@@ -2323,7 +2323,7 @@ namespace ROMS
                             lvChildRack1.Visible = false;
 
                             varChild1PrMRPFlag = Convert.ToString(objDs.Tables[0].Rows[0]["PR_MRPflag"]);
-                            txtMrp.Text = Convert.ToString(Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_UPP"]) * Convert.ToInt32(dtStock.Rows[0]["STK_MRP"]) );
+                            txtMrp.Text = Convert.ToString(Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_UPP"]) * Convert.ToInt32(dtStock.Rows[dtStock.Rows.Count - 1 ]["STK_MRP"]) );
 
                             txtMrp.ReadOnly = true;
                             txtMrp.Enabled = false;
@@ -2361,7 +2361,7 @@ namespace ROMS
                                         if (objDs.Tables[0].Rows.Count != 0)
                                         {
                                             txtBatchno.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
-                                            txtBatchno.Enabled = false;
+                                            txtBatchno.Enabled = true;
                                         }
                                     }
                                 }
@@ -5503,6 +5503,42 @@ namespace ROMS
             }
         }
 
+        private void txtBatchno_Leave(object sender, EventArgs e)
+        {
+            try { txtBatchno.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBatchno_Enter(object sender, EventArgs e)
+        {
+            try { txtBatchno.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBatchno_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtChildQty.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterParentLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -6594,6 +6630,8 @@ namespace ROMS
                     udfnChildLoad();
                 }
                 DGV_FilterProduct.Visible = false;
+                DGVBatch2.Visible = false;
+                DGVFilterBatch.Visible = false;
             }
         }
         private void UpdateComboBoxState()
