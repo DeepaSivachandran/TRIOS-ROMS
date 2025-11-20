@@ -196,13 +196,13 @@ namespace ROMS
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 310)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Aging.rpt");
-                        objBillreport.SetParameterValue("paraMonthsName", varMonthsName);
+                        //objBillreport.SetParameterValue("paraMonthsName", varMonthsName);
                         varReportName = "Stock_Aging";
                     }
                     else
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Expiry.rpt");
-                        objBillreport.SetParameterValue("paraDayName", varMonthsName);
+                        //objBillreport.SetParameterValue("paraDayName", varMonthsName);
                         varReportName = "Stock_Expiry";
                     }
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
@@ -406,13 +406,13 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterLocation.Visible == false)
                 {
-                    if (txtMonths.Enabled == true)
+                    if (txtMonths.Visible == true)
                     {
                         txtMonths.Focus();
                     }
                     else
                     {
-                        btnView.Focus();
+                        cmbOrderBy.Focus();
                     }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
@@ -486,13 +486,13 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        if (txtMonths.Enabled == true)
+                        if (txtMonths.Visible == true)
                         {
                             txtMonths.Focus();
                         }
                         else
                         {
-                            btnView.Focus();
+                            cmbOrderBy.Focus();
                         }
                     }
                 }
@@ -510,13 +510,13 @@ namespace ROMS
             {
                 varUpDownKeyLocation = 1;
                 udfnLvStockLocation();
-                if (txtMonths.Enabled == true)
+                if (txtMonths.Visible == true)
                 {
                     txtMonths.Focus();
                 }
                 else
                 {
-                    btnView.Focus();
+                    cmbOrderBy.Focus();
                 }
             }
             catch (Exception ex)
@@ -587,13 +587,13 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        if (txtMonths.Enabled == true)
+                        if (txtMonths.Visible == true)
                         {
                             txtMonths.Focus();
                         }
                         else
                         {
-                            btnView.Focus();
+                            cmbOrderBy.Focus();
                         }
                     }
                 }
