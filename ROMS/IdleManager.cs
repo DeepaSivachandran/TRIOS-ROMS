@@ -47,22 +47,25 @@ namespace ROMS
 
             if (idleTime.TotalMinutes >= idleTimeoutMinutes)
             {
+
                 idleTimer.Stop();
-                // 🔸 Check if DEF_IdleLogin form is already open
+
                 bool isAlreadyOpen = Application.OpenForms.OfType<DEF_IdleLogin>().Any();
                 if (isAlreadyOpen)
-                {
-                    // Already open → don't open again
                     return;
-                }
 
-                Form activeForm = Form.ActiveForm;
-
-
-                // Show message (you can also call logout, restart, etc.)
+                // Get the correct owner window
+                Form ownerForm = Form.ActiveForm
+                                 ?? Application.OpenForms.Cast<Form>().FirstOrDefault()
+                                 ?? null;
 
                 DEF_IdleLogin obj = new DEF_IdleLogin();
-                obj.ShowDialog();
+                obj.StartPosition = FormStartPosition.CenterParent;
+
+                if (ownerForm != null)
+                    obj.ShowDialog(ownerForm);   //   Correct way
+                else
+                    obj.ShowDialog();            // Fallback
 
                 if (obj.IsPasswordCorrect)
                 {

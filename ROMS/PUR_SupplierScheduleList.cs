@@ -1437,6 +1437,9 @@ namespace ROMS
                     {
                         dgvSupplierScheduleList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.Red;
                         dgvSupplierScheduleList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+
+                        dgvSupplierScheduleList.Rows[i].Cells["Supplier"].Style.BackColor = Color.Red;
+                        dgvSupplierScheduleList.Rows[i].Cells["Supplier"].Style.ForeColor = Color.White;
                     }
                     if (Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "-1" || Convert.ToString(dgvSupplierScheduleList.Rows[i].Cells["SP_ReturnApplicable"].Value) == "0") // Not Defined
                     {

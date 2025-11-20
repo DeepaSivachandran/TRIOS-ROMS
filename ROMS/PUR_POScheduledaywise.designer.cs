@@ -254,7 +254,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.grdPOSchedule.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdPOSchedule.RowTemplate.Height = 25;
-            this.grdPOSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdPOSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdPOSchedule.Size = new System.Drawing.Size(1256, 251);
             this.grdPOSchedule.TabIndex = 1111178;
             this.grdPOSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdPOSchedule_CellContentClick);

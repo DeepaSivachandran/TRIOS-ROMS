@@ -898,7 +898,23 @@ namespace ROMS
                     {
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.LimeGreen;
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                         
+                         
                         varActiveCount++;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SP_STSID"].Value) == "1" )
+                    { 
+
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.BackColor = Color.LimeGreen;
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.ForeColor = Color.White;
+
+                        varActiveCount++;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SP_STSID"].Value) == "2" || Convert.ToString(grdSupplierList.Rows[i].Cells["SP_STSID"].Value) == "98")
+                    { 
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.BackColor = Color.Tomato;
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.ForeColor = Color.White;
+                        varInactiveCount++;
                     }
                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
@@ -909,7 +925,7 @@ namespace ROMS
                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.Tomato;
-                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White; 
                         varInactiveCount++;
                     }
 
