@@ -427,7 +427,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    txtLocation.Focus();
+                    cmbStockLocation.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -500,7 +500,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtLocation.Focus();
+                        cmbStockLocation.Focus();
                     }
                 }
             }
@@ -610,7 +610,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
             catch (Exception ex)
             {
@@ -626,7 +626,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    txtLocation.Focus();
+                    cmbStockLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -662,7 +662,7 @@ namespace ROMS
             {
                 varUpDownKeyProduct = 1;
                 udfnProductEvent();
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
             catch (Exception ex)
             {
@@ -732,7 +732,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtLocation.Focus();
+                        cmbStockLocation.Focus();
                     }
                 }
             }
@@ -1509,7 +1509,7 @@ namespace ROMS
             }
             finally
             {
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
         }
 
@@ -1557,7 +1557,7 @@ namespace ROMS
                             {
                                 txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -1570,7 +1570,7 @@ namespace ROMS
                                 txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
 
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -1586,7 +1586,7 @@ namespace ROMS
                                 break;
                             }
                     }
-                    txtLocation.Focus();
+                    cmbStockLocation.Focus();
                     //txtLocation.SelectionStart = txtLocation.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
@@ -1973,7 +1973,7 @@ namespace ROMS
 
                             txtLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
 
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -1986,7 +1986,7 @@ namespace ROMS
                                 txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
 
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -2587,6 +2587,71 @@ namespace ROMS
             }
         }
 
+        private void cmbStockLocation_Enter(object sender, EventArgs e)
+        { 
+            try
+            {
+                cmbStockLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbStockLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSearchByPICode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStockLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStockLocation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnGroupAutocomplete()
         {
             try
@@ -2673,7 +2738,7 @@ namespace ROMS
                     lblScheduleCode.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
             catch (Exception ex)
             {
