@@ -306,7 +306,7 @@ namespace ROMS
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,130) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockType, "", "MST_DisplayText", "MSTID");
 
-
+                //Transaction id -128
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
 
                 objDataBind = null;
@@ -314,6 +314,7 @@ namespace ROMS
                 cmbType.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1; 
                 cmbCategory.SelectedValue = 0; 
+                cmbLanuguage.SelectedValue = 271; 
                 cmbStockType.SelectedValue = 419; ////in stock
                 //udfnList();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
