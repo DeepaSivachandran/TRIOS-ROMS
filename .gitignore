@@ -338,6 +338,3 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-ROMS/Reports/RPT_CP_Supplier_Contact.rpt
-ROMS/Reports/RPT_CP_Supplier_Contact.cs
-/ROMS/Reports
