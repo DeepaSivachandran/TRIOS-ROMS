@@ -136,7 +136,7 @@ namespace ROMS
 
                 objTRNG_Stock.paraPRID = Convert.ToInt32(lblProduct.Text.Trim());
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
-//objTRNG_Stock.paraSLID = Convert.ToInt32(locationcode);
+                //objTRNG_Stock.paraSLID = Convert.ToInt32(locationcode);
                 objTRNG_Stock.paraGroupID = Convert.ToInt32(lblGroupCode.Text);
                 objTRNG_Stock.paraSubGroupID = Convert.ToInt32(lblSubGroupCode.Text);
                 objTRNG_Stock.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
