@@ -341,6 +341,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -464,6 +466,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -713,6 +717,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
                     objBillreport.SetParameterValue("paraType", Convert.ToString(cmbFormat.SelectedValue));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -836,6 +842,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -1090,6 +1098,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1)   Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbproductStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=133 ", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,120) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbRetailRate, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = 0;
@@ -1858,8 +1868,9 @@ namespace ROMS
                     {
                         cmbType.Focus();
                     }
-                    else {
-                        btnListPrint.Focus();
+                    else 
+                    {
+                        cmbOrderBy.Focus();
                     }
                 }
             }
@@ -2006,6 +2017,116 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
 
+        }
+
+        private void cmbOrderBy_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbRetailRate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRetailRate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRetailRate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

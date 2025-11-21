@@ -332,6 +332,12 @@
     <Compile Include="INV_GoodsOutward_AutoConversion.designer.cs">
       <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Rackgroup_ShelfLife.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_Rackgroup_ShelfLife.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_CP_UserNamewise.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4308,6 +4314,10 @@
       <LastGenOutput>RPT_Godown_Valuation_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_ShelfLife.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rackgroup_ShelfLife.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_UserNamewise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_UserNamewise.cs</LastGenOutput>

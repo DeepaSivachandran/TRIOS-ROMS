@@ -77,6 +77,10 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.cmbOrderBy = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbRetailRate = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsRackGroupReport.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
@@ -159,7 +163,7 @@
             this.columnHeader9});
             this.lvRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvRack.HideSelection = false;
-            this.lvRack.Location = new System.Drawing.Point(1047, 83);
+            this.lvRack.Location = new System.Drawing.Point(1047, 196);
             this.lvRack.Name = "lvRack";
             this.lvRack.Size = new System.Drawing.Size(291, 157);
             this.lvRack.TabIndex = 1111231;
@@ -189,7 +193,7 @@
             this.columnHeader6});
             this.lvRackIncharge.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvRackIncharge.HideSelection = false;
-            this.lvRackIncharge.Location = new System.Drawing.Point(789, 83);
+            this.lvRackIncharge.Location = new System.Drawing.Point(789, 196);
             this.lvRackIncharge.Name = "lvRackIncharge";
             this.lvRackIncharge.Size = new System.Drawing.Size(457, 157);
             this.lvRackIncharge.TabIndex = 1111230;
@@ -219,7 +223,7 @@
             this.columnHeader3});
             this.lvRackgroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvRackgroup.HideSelection = false;
-            this.lvRackgroup.Location = new System.Drawing.Point(721, 83);
+            this.lvRackgroup.Location = new System.Drawing.Point(721, 196);
             this.lvRackgroup.Name = "lvRackgroup";
             this.lvRackgroup.Size = new System.Drawing.Size(457, 157);
             this.lvRackgroup.TabIndex = 1111229;
@@ -243,6 +247,10 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label8);
+            this.grpfilter.Controls.Add(this.cmbRetailRate);
+            this.grpfilter.Controls.Add(this.label7);
+            this.grpfilter.Controls.Add(this.cmbOrderBy);
             this.grpfilter.Controls.Add(this.label6);
             this.grpfilter.Controls.Add(this.cmbType);
             this.grpfilter.Controls.Add(this.cmbRackGroup);
@@ -272,7 +280,7 @@
             this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Location = new System.Drawing.Point(12, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1330, 83);
+            this.grpfilter.Size = new System.Drawing.Size(1330, 116);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -339,11 +347,11 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1289, 44);
+            this.btnTelegram.Location = new System.Drawing.Point(1289, 76);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 10;
+            this.btnTelegram.TabIndex = 12;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -446,11 +454,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1248, 44);
+            this.btnListPrint.Location = new System.Drawing.Point(1248, 77);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(36, 29);
-            this.btnListPrint.TabIndex = 9;
+            this.btnListPrint.TabIndex = 11;
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -597,7 +605,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 356);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 373);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
@@ -611,9 +619,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(12, 91);
+            this.picLoader.Location = new System.Drawing.Point(12, 124);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1330, 551);
+            this.picLoader.Size = new System.Drawing.Size(1330, 518);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -624,13 +632,57 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(12, 91);
+            this.RPTViewer.Location = new System.Drawing.Point(12, 124);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1326, 548);
+            this.RPTViewer.Size = new System.Drawing.Size(1326, 515);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
+            // 
+            // cmbOrderBy
+            // 
+            this.cmbOrderBy.FormattingEnabled = true;
+            this.cmbOrderBy.Location = new System.Drawing.Point(912, 78);
+            this.cmbOrderBy.Name = "cmbOrderBy";
+            this.cmbOrderBy.Size = new System.Drawing.Size(104, 27);
+            this.cmbOrderBy.TabIndex = 9;
+            this.cmbOrderBy.Enter += new System.EventHandler(this.cmbOrderBy_Enter);
+            this.cmbOrderBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOrderBy_KeyDown);
+            this.cmbOrderBy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbOrderBy_KeyPress);
+            this.cmbOrderBy.Leave += new System.EventHandler(this.cmbOrderBy_Leave);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(849, 81);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 20);
+            this.label7.TabIndex = 1111250;
+            this.label7.Text = "Order By";
+            // 
+            // cmbRetailRate
+            // 
+            this.cmbRetailRate.FormattingEnabled = true;
+            this.cmbRetailRate.Location = new System.Drawing.Point(1096, 78);
+            this.cmbRetailRate.Name = "cmbRetailRate";
+            this.cmbRetailRate.Size = new System.Drawing.Size(146, 27);
+            this.cmbRetailRate.TabIndex = 10;
+            this.cmbRetailRate.Enter += new System.EventHandler(this.cmbRetailRate_Enter);
+            this.cmbRetailRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRetailRate_KeyDown);
+            this.cmbRetailRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRetailRate_KeyPress);
+            this.cmbRetailRate.Leave += new System.EventHandler(this.cmbRetailRate_Leave);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(1022, 81);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 20);
+            this.label8.TabIndex = 1111252;
+            this.label8.Text = "Retail Rate";
             // 
             // dynamicLabelControl
             // 
@@ -716,5 +768,9 @@
         private System.Windows.Forms.ComboBox cmbRackGroup;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.ComboBox cmbOrderBy;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbRetailRate;
+        private System.Windows.Forms.Label label8;
     }
 }
