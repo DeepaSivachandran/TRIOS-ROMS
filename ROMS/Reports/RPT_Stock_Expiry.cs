@@ -226,7 +226,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraDayName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -234,7 +234,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraGroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -242,7 +242,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraSubgroupName {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandName {
             get {
                 return this.DataDefinition.ParameterFields[15];
             }
@@ -250,17 +250,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraBrandName {
-            get {
-                return this.DataDefinition.ParameterFields[16];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_paraUserLocations {
             get {
-                return this.DataDefinition.ParameterFields[17];
+                return this.DataDefinition.ParameterFields[16];
             }
         }
     }

@@ -105,6 +105,7 @@ namespace ROMS
         public CP_Product()
         {
             InitializeComponent();
+            flowLayoutPanel1.AutoScroll = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -9735,6 +9736,10 @@ namespace ROMS
             groupBox3.Enabled = false;
             grbPurchaseHSN.Enabled = false;
             grbSalesHSN.Enabled = false;
+            tsMenu.Enabled = false;
+            flowLayoutPanel1.Enabled = false;
+            btnImageUpdate.Enabled = false;
+            pictureBox1.Enabled = false;
             this.ActiveControl = rbInActive;
         }
         public void udfnBindImages(DataTable objdt)

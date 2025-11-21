@@ -962,6 +962,7 @@ namespace ROMS
                     {
                         this.ActiveControl = txtProductName;
                         udfnEdit();
+                        grdGoodsOutward.Columns["clmQty"].Visible = false;
                     }
                 }
 
