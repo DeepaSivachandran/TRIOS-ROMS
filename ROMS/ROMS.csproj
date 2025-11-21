@@ -423,6 +423,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_Stock_Adjustment.cs">
+      <DependentUpon>RPT_Stock_Adjustment.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_Summary.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -589,6 +596,12 @@
     </Compile>
     <Compile Include="REPORT_PriceList.designer.cs">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_Stock_Adjustment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Adjustment.designer.cs">
+      <DependentUpon>REPORT_Stock_Adjustment.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Stock_Valuation_DateWise.cs">
       <SubType>Form</SubType>
@@ -4570,6 +4583,11 @@
       <LastGenOutput>RPT_Stock_Detail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_Stock_Adjustment.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock_Adjustment.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_Stock_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_Summary.cs</LastGenOutput>
@@ -5348,6 +5366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PriceList.resx">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Adjustment.resx">
+      <DependentUpon>REPORT_Stock_Adjustment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Valuation_DateWise.resx">
       <DependentUpon>REPORT_Stock_Valuation_DateWise.cs</DependentUpon>
