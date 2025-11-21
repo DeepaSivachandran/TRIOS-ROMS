@@ -172,6 +172,7 @@ namespace ROMS
             this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockVsZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNonMoving = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockAdjustment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinanceReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierLedgerReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,7 +197,6 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmStockAdjustment = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1484,6 +1484,14 @@ namespace ROMS
             this.tsmNonMoving.Visible = false;
             this.tsmNonMoving.Click += new System.EventHandler(this.tsmNonMoving_Click);
             // 
+            // tsmStockAdjustment
+            // 
+            this.tsmStockAdjustment.Name = "tsmStockAdjustment";
+            this.tsmStockAdjustment.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockAdjustment.Text = "Stock Adjustment";
+            this.tsmStockAdjustment.Visible = false;
+            this.tsmStockAdjustment.Click += new System.EventHandler(this.tsmStockAdjustment_Click);
+            // 
             // tsmFinanceReport
             // 
             this.tsmFinanceReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1719,13 +1727,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmStockAdjustment
-            // 
-            this.tsmStockAdjustment.Name = "tsmStockAdjustment";
-            this.tsmStockAdjustment.Size = new System.Drawing.Size(204, 22);
-            this.tsmStockAdjustment.Text = "Stock Adjustment";
-            this.tsmStockAdjustment.Click += new System.EventHandler(this.tsmStockAdjustment_Click);
             // 
             // MainForm
             // 
