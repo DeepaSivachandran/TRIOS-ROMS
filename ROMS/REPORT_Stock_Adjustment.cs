@@ -180,7 +180,7 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     varReportName = "Stock_Adjustment";
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Outward_Summary.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Adjustment.rpt");
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
