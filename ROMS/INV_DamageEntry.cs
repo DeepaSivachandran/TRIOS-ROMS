@@ -62,7 +62,7 @@ namespace ROMS
         DataTable dtDamage = new DataTable();
         DataTable dtEmployee = new DataTable();
         DataTable dtChecker = new DataTable();
-
+        int varDMFromOther = 0;
         public INV_DamageEntry()
         {
             InitializeComponent();
@@ -2139,11 +2139,15 @@ namespace ROMS
                     txtQuantity.Text = "";
                     cmbSupplier.Text = "-Select-"; cmbSupplier.DataSource = null;
                     cmbReason.Text = "-Select-";
+                    int varViewType = 0;
+                    if (varDMFromOther == 0) 
+                    { varViewType = 38; }
+                    else { varViewType = 85; }
                     //lvProduct.Items.Clear();
                     if (txtProductName.Text.Length > 0)
                     {
                         MR_Product objMR_Product = new MR_Product();
-                        objMR_Product.paraViewType = 38;
+                        objMR_Product.paraViewType = varViewType;
                         objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                         objMR_Product.paraId = varID;
                         objMR_Product.paraDamageEntry = dtDamage;
@@ -2206,43 +2210,48 @@ namespace ROMS
                                     */
                                     DGV_FilterProduct.Visible = true;
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
+                                    if (varDMFromOther == 0)
+                                    {
+                                        DGV_FilterProduct.Columns["STK_RKID"].Visible = false;
+                                        DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
+                                        DGV_FilterProduct.Columns["STK_SLID"].Visible = false;
+                                        DGV_FilterProduct.Columns["STK_Qty"].Visible = false;
+                                        DGV_FilterProduct.Columns["SLID"].Visible = false;
+                                        DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
+                                        DGV_FilterProduct.Columns["SL_ShortName"].DisplayIndex = 3;
+                                        DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 4;
+                                        DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 5;
+                                        DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 6;
+                                        DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 7;
+                                        DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 8;
+                                        DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 9;
+                                        DGV_FilterProduct.Columns["QTY"].DisplayIndex = 10;
+                                        DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 11;
+                                        DGV_FilterProduct.Columns["Retail Rate"].DisplayIndex = 12;
+                                        DGV_FilterProduct.Columns["UPP"].DisplayIndex = 13;
+                                        DGV_FilterProduct.Columns["RK_ShortName"].HeaderText = "Rack";
+                                        DGV_FilterProduct.Columns["STK_MRP"].HeaderText = "MRP";
+                                        DGV_FilterProduct.Columns["STK_ExpiryDate"].HeaderText = "Expiry Date";
+                                        DGV_FilterProduct.Columns["STK_BatchNo"].HeaderText = "Batch No.";
+                                        DGV_FilterProduct.Columns["QTY"].HeaderText = "Quantity";
+                                        DGV_FilterProduct.Columns["SL_ShortName"].HeaderText = "Location";
+                                        DGV_FilterProduct.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                        DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    }
+
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_UTID"].Visible = false;
-                                    DGV_FilterProduct.Columns["STK_RKID"].Visible = false;
-                                    DGV_FilterProduct.Columns["UT_Decimal"].Visible = false;
                                     DGV_FilterProduct.Columns["Product"].Visible = false;
-                                    DGV_FilterProduct.Columns["STK_SLID"].Visible = false;
-                                    DGV_FilterProduct.Columns["STK_Qty"].Visible = false;
-                                    DGV_FilterProduct.Columns["SLID"].Visible = false;
                                     DGV_FilterProduct.Columns["PR_PICode"].Width = 120;
                                     DGV_FilterProduct.Columns["PR_EName"].Width = 320;
                                     DGV_FilterProduct.Columns["PR_TName"].Width = 320;
-                                    DGV_FilterProduct.Columns["PR_PICode"].DisplayIndex = 1;
-                                    DGV_FilterProduct.Columns["SL_ShortName"].DisplayIndex = 3;
-                                    DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 4;
-                                    DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 5;
-                                    DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 6;
-                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 7;
-                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 8;
-                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 9;
-                                    DGV_FilterProduct.Columns["QTY"].DisplayIndex = 10;
-                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 11;
-                                    DGV_FilterProduct.Columns["Retail Rate"].DisplayIndex = 12;
-                                    DGV_FilterProduct.Columns["UPP"].DisplayIndex = 13;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_PICode"].HeaderText = "PI Code";
-                                    DGV_FilterProduct.Columns["RK_ShortName"].HeaderText = "Rack";
-                                    DGV_FilterProduct.Columns["STK_MRP"].HeaderText = "MRP";
-                                    DGV_FilterProduct.Columns["STK_ExpiryDate"].HeaderText = "Expiry Date";
-                                    DGV_FilterProduct.Columns["STK_BatchNo"].HeaderText = "Batch No.";
-                                    DGV_FilterProduct.Columns["QTY"].HeaderText = "Quantity";
                                     DGV_FilterProduct.Columns["UT_Symbol"].HeaderText = "Unit";
-                                    DGV_FilterProduct.Columns["SL_ShortName"].HeaderText = "Location";
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                    DGV_FilterProduct.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                                    DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
 
                                     if (VarSearchFlag == false)
                                     {
@@ -2304,7 +2313,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    chkDamageOtherLoc.Focus();
                 }
             }
             catch (Exception ex)
@@ -2373,27 +2382,48 @@ namespace ROMS
                     varRKID = selectedItem.SubItems[14].Text;
                     varDecimal =Convert.ToInt32(selectedItem.SubItems[15].Text);
                     */
+                    if (varDMFromOther == 0)
+                    {
+                        varPICode = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
+                        varProductName = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
+                        txtLocation.Text = DGV_FilterProduct.SelectedRows[0].Cells["SL_ShortName"].Value.ToString();
+                        txtRack.Text = DGV_FilterProduct.SelectedRows[0].Cells["RK_ShortName"].Value.ToString();
+                        txtMrp.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_MRP"].Value.ToString();
+                        txtExpiryDate.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_ExpiryDate"].Value.ToString();
+                        txtBatchNo.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_BatchNo"].Value.ToString();
+                        txtStockQty.Text = DGV_FilterProduct.SelectedRows[0].Cells["QTY"].Value.ToString();
+                        lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                        varSLID = DGV_FilterProduct.SelectedRows[0].Cells["STK_SLID"].Value.ToString();
+                        varUTID = DGV_FilterProduct.SelectedRows[0].Cells["PR_UTID"].Value.ToString();
+                        lblUnit.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
+                        varUnitSymbol = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
+                        varMRP = DGV_FilterProduct.SelectedRows[0].Cells["STK_MRP"].Value.ToString();
+                        varExpiryDate = DGV_FilterProduct.SelectedRows[0].Cells["STK_ExpiryDate"].Value.ToString();
+                        varBatchNo = DGV_FilterProduct.SelectedRows[0].Cells["STK_BatchNo"].Value.ToString();
+                        varProductCode = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                        varRKID = DGV_FilterProduct.SelectedRows[0].Cells["STK_RKID"].Value.ToString();
+                        varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
+                        txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                    }
+                    else
+                    {
+                        varPICode = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
+                        varProductName = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
 
-                    varPICode = DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value.ToString();
-                    varProductName = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
-                    txtLocation.Text = DGV_FilterProduct.SelectedRows[0].Cells["SL_ShortName"].Value.ToString();
-                    txtRack.Text = DGV_FilterProduct.SelectedRows[0].Cells["RK_ShortName"].Value.ToString();
-                    txtMrp.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_MRP"].Value.ToString();
-                    txtExpiryDate.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_ExpiryDate"].Value.ToString();
-                    txtBatchNo.Text = DGV_FilterProduct.SelectedRows[0].Cells["STK_BatchNo"].Value.ToString();
-                    txtStockQty.Text = DGV_FilterProduct.SelectedRows[0].Cells["QTY"].Value.ToString();
-                    lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                    varSLID = DGV_FilterProduct.SelectedRows[0].Cells["STK_SLID"].Value.ToString();
-                    varUTID = DGV_FilterProduct.SelectedRows[0].Cells["PR_UTID"].Value.ToString();
-                    lblUnit.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
-                    varUnitSymbol = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
-                    varMRP = DGV_FilterProduct.SelectedRows[0].Cells["STK_MRP"].Value.ToString();
-                    varExpiryDate = DGV_FilterProduct.SelectedRows[0].Cells["STK_ExpiryDate"].Value.ToString();
-                    varBatchNo = DGV_FilterProduct.SelectedRows[0].Cells["STK_BatchNo"].Value.ToString();
-                    varProductCode = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                    varRKID = DGV_FilterProduct.SelectedRows[0].Cells["STK_RKID"].Value.ToString();
-                    varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
-                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                        txtLocation.Text = "None"; txtRack.Text = "None";
+                        txtMrp.Text = ""; txtExpiryDate.Text = ""; txtBatchNo.Text = ""; txtStockQty.Text = "";
+                        varMRP = ""; varExpiryDate = ""; varBatchNo = ""; varSLID = "0";
+
+                        lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                        varUTID = DGV_FilterProduct.SelectedRows[0].Cells["PR_UTID"].Value.ToString();
+                        lblUnit.Text = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
+                        varUnitSymbol = DGV_FilterProduct.SelectedRows[0].Cells["UT_Symbol"].Value.ToString();
+
+                        varProductCode = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                        varRKID = DGV_FilterProduct.SelectedRows[0].Cells["STK_RKID"].Value.ToString();
+                        varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
+                        txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                    }
                     udfnSupplierLoad();
                 }
             }
@@ -2413,6 +2443,19 @@ namespace ROMS
                 txtStockQty.BackColor = SystemColors.Control;
                 txtQuantity.BackColor = Color.White;
                 cmbSupplier.BackColor = Color.White;
+            }
+        }
+        public void udfnProductDetailsFromOther()
+        {
+            try
+            {
+               
+                udfnSupplierLoad();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnSupplierLoad()
@@ -3423,7 +3466,69 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void chkDamageOtherLoc_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkDamageOtherLoc.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkDamageOtherLoc_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkDamageOtherLoc.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtEntryNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkDamageOtherLoc_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(chkDamageOtherLoc.Checked==true)
+                { varDMFromOther = 1; }
+                else { varDMFromOther = 0; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkDamageOtherLoc_KeyDown(object sender, KeyEventArgs e)
+        { 
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterProduct_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
