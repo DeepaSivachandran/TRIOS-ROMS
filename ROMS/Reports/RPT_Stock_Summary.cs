@@ -319,6 +319,14 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[25];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_paraUserLocations {
+            get {
+                return this.DataDefinition.ParameterFields[26];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
