@@ -69,7 +69,7 @@ namespace ROMS.Model
         public int paraLabelTitle = 0; 
         public string paraProductLabelNameEng = "";
         public string paraOriginator = "";
-
-        
+        public int ParaOrderby = 0;
+        public int ParaRate = 0;
     }
 }

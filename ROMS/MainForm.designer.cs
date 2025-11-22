@@ -172,6 +172,7 @@ namespace ROMS
             this.tsmStockValuationbyDate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockVsZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNonMoving = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockAdjustment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinanceReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierLedgerReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -1404,7 +1405,8 @@ namespace ROMS
             this.tsmStockValuation,
             this.tsmStockValuationbyDate,
             this.tsmStockVsZeroRate,
-            this.tsmNonMoving});
+            this.tsmNonMoving,
+            this.tsmStockAdjustment});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
@@ -1481,6 +1483,14 @@ namespace ROMS
             this.tsmNonMoving.Text = "Non-Moving Product Stock";
             this.tsmNonMoving.Visible = false;
             this.tsmNonMoving.Click += new System.EventHandler(this.tsmNonMoving_Click);
+            // 
+            // tsmStockAdjustment
+            // 
+            this.tsmStockAdjustment.Name = "tsmStockAdjustment";
+            this.tsmStockAdjustment.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockAdjustment.Text = "Stock Adjustment";
+            this.tsmStockAdjustment.Visible = false;
+            this.tsmStockAdjustment.Click += new System.EventHandler(this.tsmStockAdjustment_Click);
             // 
             // tsmFinanceReport
             // 
@@ -1917,5 +1927,6 @@ namespace ROMS
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripMenuItem tsmLock;
         private System.Windows.Forms.ToolStripMenuItem tsmStockValuationbyDate;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockAdjustment;
     }
 }
