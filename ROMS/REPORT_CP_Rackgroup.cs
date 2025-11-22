@@ -92,9 +92,9 @@ namespace ROMS
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 122)
                     {
-                        //udfnRGProRackMinQty(varFlag,itemType);
+                        udfnRGProRackMinQty(varFlag,itemType);
                     }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 122)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 432)
                     {
                         udfnRGProShelflife(varFlag,itemType);
                     }
@@ -468,6 +468,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbproductStatus.Text));
                     objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
