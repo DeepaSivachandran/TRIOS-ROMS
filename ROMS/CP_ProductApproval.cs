@@ -109,6 +109,28 @@ namespace ROMS
                 DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    try
+                    {
+                        pictureBox1.Image?.Dispose();
+                        pictureBox1.Image = null;
+
+                        originalImage?.Dispose();
+                        originalImage = null;
+
+                        foreach (var ei in editableImages)
+                        {
+                            ei.Thumbnail.Image?.Dispose();
+                            ei.Thumbnail.Image = null;
+                        }
+
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                    }
+                    catch (Exception ex)
+                    {
+                        objError = new DataError();
+                        objError.WriteFile(ex);
+                    }
                     this.Close();
                 }
             }
@@ -4243,6 +4265,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private Image LoadImageWithoutLock(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (Image img = Image.FromStream(fs))
+                {
+                    return new Bitmap(img);
+                }
+            }
+        }
 
 
         private void AddImageToPanel(string filePath)
@@ -4257,8 +4289,8 @@ namespace ROMS
                 };
 
                 PictureBox pictureBox = new PictureBox
-                {
-                    Image = Image.FromFile(filePath),
+                { 
+                    Image = LoadImageWithoutLock(filePath),
                     ImageLocation = filePath,
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Size = new Size(100, 100),
@@ -4315,7 +4347,8 @@ namespace ROMS
                 if (originalImage != null)
                     originalImage.Dispose();
 
-                originalImage = Image.FromFile(path);
+                originalImage = LoadImageWithoutLock(path);
+
                 zoom = 1.0f;
 
                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
