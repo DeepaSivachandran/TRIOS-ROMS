@@ -383,8 +383,8 @@ namespace ROMS
             {
                 if (objStart != null && !objStart.IsDisposed && objStart.Visible)
                 {
-                    objStart.Visible = false;
-                    //objStart.Hide();
+                    objStart.Close();
+                    objStart = null;
                 }
             }
             catch (Exception ex)
@@ -393,7 +393,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
 
         // Added By Sathish On 30-04-2025 For Minimize Reports Screen
         public void SubForm_Resize(object sender, EventArgs e)
