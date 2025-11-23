@@ -42,9 +42,13 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objCP_Supplier = new CP_Supplier();
-                    //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
-                    MainForm.objCP_Supplier.ShowDialog();
+                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Supplier;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_Supplier.Show();
                 }
                 catch (Exception ex)
                 {
@@ -261,12 +265,16 @@ namespace ROMS
                     if (grdSupplierList.SelectedRows.Count > 0)
                     {
                         MainForm.objCP_Supplier = new CP_Supplier();
-                        //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                        MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                         MainForm.objCP_Supplier.btnSave.Text = "Update";
                         MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
                         MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SP_STSId"].Value.ToString());
-                        objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
-                        MainForm.objCP_Supplier.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objCP_Supplier;
+                        main.CurrentParentListForm = this;
+                        MainForm.objCP_Supplier.Show();
                     }
                 }
                 catch (Exception ex)

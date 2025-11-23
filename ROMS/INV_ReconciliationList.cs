@@ -41,9 +41,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockAdjustment = new INV_Reconciliation();
-                    //MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
-                    MainForm.objINV_StockAdjustment.ShowDialog();
+                    MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_StockAdjustment;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_StockAdjustment.Show();
                 }
                 catch (Exception ex)
                 {
@@ -76,12 +80,16 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockAdjustment = new INV_Reconciliation();
-                        //MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                        MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
                         MainForm.objINV_StockAdjustment.btnSave.Text = "Update";
                         MainForm.objINV_StockAdjustment.varAJId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
                         MainForm.objINV_StockAdjustment.varSTSID = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["STSID"].Value);
-                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
-                        MainForm.objINV_StockAdjustment.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objINV_StockAdjustment;
+                        main.CurrentParentListForm = this;
+                        MainForm.objINV_StockAdjustment.Show();
                     }
                 }
                 catch (Exception ex)

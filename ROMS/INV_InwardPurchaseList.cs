@@ -57,7 +57,7 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                    //MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                    MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                     //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
                     MainForm.objINV_InwardPurchase.varInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value);
                     MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value); //for remarks popup
@@ -85,8 +85,13 @@ namespace ROMS
                     //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
-                    MainForm.objINV_InwardPurchase.ShowDialog();
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
+
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_InwardPurchase;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_InwardPurchase.Show();
                 }
                 catch (Exception ex)
                 {
@@ -236,10 +241,15 @@ namespace ROMS
             try
             {
                 MainForm.objINV_InwardQueueList = new INV_InwardQueueList();
-                //MainForm.objINV_InwardQueueList.MdiParent = this.ParentForm;
+                MainForm.objINV_InwardQueueList.MdiParent = this.ParentForm;
                 MainForm.objINV_InwardQueueList.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("10"));
-                objMainForm.CenterEntryForm(this, MainForm.objINV_InwardQueueList);
-                MainForm.objINV_InwardQueueList.ShowDialog();
+                //objMainForm.CenterEntryForm(this, MainForm.objINV_InwardQueueList);
+
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objINV_InwardQueueList;
+                main.CurrentParentListForm = this;
+                MainForm.objINV_InwardQueueList.Show();
             }
             catch (Exception ex)
             {

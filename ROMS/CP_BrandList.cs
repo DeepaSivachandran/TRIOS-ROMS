@@ -101,9 +101,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_Brand = new CP_Brand();
-                    //MainForm.objCP_Brand.MdiParent = ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_Brand);
-                    MainForm.objCP_Brand.ShowDialog();
+                    MainForm.objCP_Brand.MdiParent = ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_Brand);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Brand;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_Brand.Show();
                 }
                 catch (Exception ex)
                 {
@@ -251,12 +255,16 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objCP_Brand = new CP_Brand();
-                        //MainForm.objCP_Brand.MdiParent = ParentForm;
+                        MainForm.objCP_Brand.MdiParent = ParentForm;
                         MainForm.objCP_Brand.btnSave.Text = "Update";
                         MainForm.objCP_Brand.varId = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["ID"].Value);
                         MainForm.objCP_Brand.varStatusid = Convert.ToInt32(grdBrandList.SelectedRows[0].Cells["Status ID"].Value);
-                        objMainForm.CenterEntryForm(this, MainForm.objCP_Brand);
-                        MainForm.objCP_Brand.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objCP_Brand);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objCP_Brand;
+                        main.CurrentParentListForm = this;
+                        MainForm.objCP_Brand.Show();
                     }
                 }
                 catch (Exception ex)

@@ -241,9 +241,13 @@ namespace ROMS
                 MainForm.objCP_Purchase.varUnApproveFlag = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["PUR_CompleteFlag"].Value);
                 MainForm.objCP_Purchase.pbPaymentCompletedFlag = Convert.ToInt32(grdPurchaseEntryApproval.SelectedRows[0].Cells["Payment Status"].Value);
                 //MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryApproval.SelectedRows[0].Cells["Status"].Value.ToString());
-                //MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
-                MainForm.objCP_Purchase.ShowDialog();
+                MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                //objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objCP_Purchase;
+                main.CurrentParentListForm = this;
+                MainForm.objCP_Purchase.Show();
             }
             catch (Exception ex)
             {

@@ -43,9 +43,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                    //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
-                    MainForm.objPUR_PurchaseReturns.ShowDialog();
+                    MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPUR_PurchaseReturns;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPUR_PurchaseReturns.Show();
                 }
                 catch (Exception ex)
                 {
@@ -220,9 +224,13 @@ namespace ROMS
                         MainForm.objPUR_PurchaseReturns.varGRNStatus = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["GRN Status"].Value.ToString());
                         MainForm.objPUR_PurchaseReturns.vaReturnDCSts = Convert.ToInt32(grdReturnDCList.SelectedRows[0].Cells["Status ID"].Value.ToString());
                         MainForm.objPUR_PurchaseReturns.vareditflag = 0;
-                        //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
-                        objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
-                        MainForm.objPUR_PurchaseReturns.ShowDialog();
+                        MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                        //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objPUR_PurchaseReturns;
+                        main.CurrentParentListForm = this;
+                        MainForm.objPUR_PurchaseReturns.Show();
                     }
                 }
                 catch (Exception ex)
@@ -1784,9 +1792,13 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_ReturnApprovedList = new PUR_ReturnDCApprovedList();
-                //MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
-                objMainForm.CenterEntryForm(this, MainForm.objPUR_ReturnApprovedList);
-                MainForm.objPUR_ReturnApprovedList.ShowDialog();
+                MainForm.objPUR_ReturnApprovedList.MdiParent = this.ParentForm;
+                //objMainForm.CenterEntryForm(this, MainForm.objPUR_ReturnApprovedList);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objPUR_ReturnApprovedList;
+                main.CurrentParentListForm = this;
+                MainForm.objPUR_ReturnApprovedList.Show();
             }
             catch (Exception ex)
             {

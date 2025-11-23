@@ -40,8 +40,14 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_DirectLabelPrint = new CP_DirectLabelPrint();
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_DirectLabelPrint);
-                    MainForm.objCP_DirectLabelPrint.ShowDialog();
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_DirectLabelPrint);
+                    MainForm.objCP_DirectLabelPrint.MdiParent = this.ParentForm;
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_DirectLabelPrint.Show();
+
                 }
                 catch (Exception ex)
                 {
@@ -132,9 +138,14 @@ namespace ROMS
                         Application.DoEvents();
                         MainForm.objCP_DirectLabelPrint = new CP_DirectLabelPrint();
                         MainForm.objCP_DirectLabelPrint.pbLPID = Convert.ToInt32(grdDirectLabelList.SelectedRows[0].Cells["ID"].Value.ToString());
-                        objMainForm.CenterEntryForm(this, MainForm.objCP_DirectLabelPrint);
+                        //objMainForm.CenterEntryForm(this, MainForm.objCP_DirectLabelPrint);
                         picLoader.Visible = false;
-                        MainForm.objCP_DirectLabelPrint.ShowDialog();
+                        MainForm.objCP_DirectLabelPrint.MdiParent = this.ParentForm;
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
+                        main.CurrentParentListForm = this;
+                        MainForm.objCP_DirectLabelPrint.Show();
                     }
                 }
                 catch (Exception ex)

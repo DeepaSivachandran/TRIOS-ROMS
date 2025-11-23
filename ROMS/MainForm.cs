@@ -1,4 +1,4 @@
-﻿                  using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -25,6 +25,10 @@ namespace ROMS
         private List<(int Index, string FormName)> minimizedFormInfoList = new List<(int, string)>();
         private MdiClient mdiClientArea = null;
         private Dictionary<Form, int> formMenuCodeMap = new Dictionary<Form, int>();
+        // Entry/List control flags
+        public bool IsEntryFormOpen = false;
+        public Form CurrentEntryForm = null;
+        public Form CurrentParentListForm = null;
 
         public class MinimizedFormInfo
         {
@@ -373,6 +377,23 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void HideStartScreen()
+        {
+            try
+            {
+                if (objStart != null && !objStart.IsDisposed && objStart.Visible)
+                {
+                    objStart.Visible = false;
+                    //objStart.Hide();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
 
         // Added By Sathish On 30-04-2025 For Minimize Reports Screen
         public void SubForm_Resize(object sender, EventArgs e)
@@ -381,6 +402,12 @@ namespace ROMS
             {
                 if (sender is Form form && form.WindowState == FormWindowState.Minimized)
                 {
+                    // ENTRY FORM? → HIDE ONLY, DO NOT ADD STATUS BAR
+                    if (IsEntryFormOpen && CurrentEntryForm == form)
+                    {
+                        form.Hide();
+                        return;
+                    }
                     form.Hide();
                     AddMinimizedFormToStatusBar(ref form, form.Name, 0);
 
@@ -418,6 +445,12 @@ namespace ROMS
                 {
                     return;
                 }
+                // BLOCK: Prevent EntryForm from being minimized
+                if (IsEntryFormOpen && CurrentEntryForm == form)
+                {
+                    return;  // Skip adding entry to status bar
+                }
+
 
                 if (flag == 1)
                 {
@@ -543,6 +576,10 @@ namespace ROMS
                             AddMinimizedFormToStatusBar(ref tempForm, tempForm.Name, 0);
                         }
                     }
+                    if (IsEntryFormOpen && CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
+                    {
+                        CurrentEntryForm.Hide();
+                    }
 
                     info.FormInstance.SuspendLayout();
                     info.FormInstance.WindowState = FormWindowState.Normal;
@@ -554,9 +591,18 @@ namespace ROMS
                         ApplyUserPrivilegesToForm(info.FormInstance, menuCode);
                     }
 
-                    info.FormInstance.Show();
+                    info.FormInstance.Show(); HideStartScreen();
+
                     CenterChildForm(info.FormInstance);
                     info.FormInstance.BringToFront();
+                    if (IsEntryFormOpen && CurrentParentListForm == info.FormInstance)
+                    {
+                        if (CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
+                        {
+                            CurrentEntryForm.Show();
+                            CurrentEntryForm.BringToFront();
+                        }
+                    }
                     info.FormInstance.ResumeLayout();
 
                     statusBar.Items.Remove(btn);
@@ -579,9 +625,15 @@ namespace ROMS
             {
                 if (currentOpenForm != null && !currentOpenForm.IsDisposed && currentOpenForm != nextFormToOpen)
                 {
+                    if (IsEntryFormOpen && currentOpenForm == CurrentEntryForm)
+                    {
+                        currentOpenForm.Hide();
+                        return;
+                    }
                     AddMinimizedFormToStatusBar(ref currentOpenForm, currentOpenForm.Name, 0);
                     currentOpenForm = null;
                 }
+                HideStartScreen();
             }
             catch (Exception ex)
             {
@@ -712,6 +764,13 @@ namespace ROMS
                 //udfnCloseChildForms();
 
                 //if (!isClose) return;
+                
+                // If entry form is open, hide it before opening new list form
+                if (IsEntryFormOpen && CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
+                {
+                    CurrentEntryForm.Hide();
+                }
+                //This is move the opened list form to the statusbar inside
                 MoveCurrentOpenFormToStatusBar(formInstance);
 
                 if (pbUserRoleId == "0")
@@ -749,7 +808,8 @@ namespace ROMS
                     }
                     formInstance.MdiParent = this;
                     this.CenterChildForm(formInstance);
-                    formInstance.Show();
+                    formInstance.Show(); HideStartScreen();
+
                 }
 
                 //   formInstance.WindowState = FormWindowState.Maximized;

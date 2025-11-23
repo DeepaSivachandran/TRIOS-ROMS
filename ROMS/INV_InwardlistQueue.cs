@@ -73,6 +73,10 @@ namespace ROMS
                     MainForm.objINV_Inward.varSLID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["SLID"].Value);
                     MainForm.objINV_Inward.varcomID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["COMID"].Value);
                     MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_Inward;
+                    main.CurrentParentListForm = this;
                     MainForm.objINV_Inward.Show();
                 }
                 catch (Exception ex)

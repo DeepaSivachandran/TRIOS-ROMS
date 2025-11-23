@@ -42,9 +42,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_Purchase = new CP_Purchase();
-                    //MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
-                    MainForm.objCP_Purchase.ShowDialog();
+                    MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Purchase;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_Purchase.Show();
                 }
                 catch (Exception ex)
                 {
@@ -81,9 +85,13 @@ namespace ROMS
                     MainForm.objCP_Purchase.PbApprovalStsid = Convert.ToInt32(grdPurchaseEntryList.SelectedRows[0].Cells["PUR_Approval_STSID"].Value.ToString());
                     MainForm.objCP_Purchase.pbPurchaseno = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["PURID"].Value.ToString());
                     MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryList.SelectedRows[0].Cells["Pur Entry Full Status"].Value.ToString());
-                    //MainForm.objCP_Purchase.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
-                    MainForm.objCP_Purchase.ShowDialog();
+                    MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_Purchase);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Purchase;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_Purchase.Show();
                 }
                 catch (Exception ex)
                 {
@@ -506,10 +514,14 @@ namespace ROMS
             {
                 this.Close();
                 MainForm.objPUR_PurchaseQueue = new PUR_PurchaseQueue();
-                //MainForm.objPUR_PurchaseQueue.MdiParent = this.ParentForm;
+                MainForm.objPUR_PurchaseQueue.MdiParent = this.ParentForm;
                 MainForm.objPUR_PurchaseQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 22 && sp.EditAccess.Split(',').Contains("10"));
-                objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseQueue);
-                MainForm.objPUR_PurchaseQueue.ShowDialog();
+                //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseQueue);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objPUR_PurchaseQueue;
+                main.CurrentParentListForm = this;
+                MainForm.objPUR_PurchaseQueue.Show();
             }
             catch (Exception ex)
             {

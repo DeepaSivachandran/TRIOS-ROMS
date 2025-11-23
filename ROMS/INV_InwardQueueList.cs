@@ -86,7 +86,7 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                        //MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                        MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                         //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
                         MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["ID"].Value);
                         MainForm.objINV_InwardPurchase.varConcernId = Convert.ToInt32(grdInwardQueueList.SelectedRows[0].Cells["Concern ID"].Value);
@@ -109,8 +109,13 @@ namespace ROMS
 
                         picLoader.Visible = false;
                         picLoader.SendToBack();
-                        objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
-                        MainForm.objINV_InwardPurchase.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
+
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objINV_InwardPurchase;
+                        main.CurrentParentListForm = this;
+                        MainForm.objINV_InwardPurchase.Show();
                     }
                 }
                 catch (Exception ex)

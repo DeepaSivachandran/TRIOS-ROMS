@@ -43,9 +43,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_Inward = new INV_Inward();
-                    //MainForm.objINV_Inward.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
-                    MainForm.objINV_Inward.ShowDialog();
+                    MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_Inward;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_Inward.Show();
                 }
                 catch (Exception ex)
                 {
@@ -361,10 +365,14 @@ namespace ROMS
             try
             {
                 MainForm.objINV_InwardlistQueue = new INV_InwardlistQueue();
-                //MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
+                MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_InwardlistQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("10"));
-                objMainForm.CenterEntryForm(this, MainForm.objINV_InwardlistQueue);
-                MainForm.objINV_InwardlistQueue.ShowDialog();
+                //objMainForm.CenterEntryForm(this, MainForm.objINV_InwardlistQueue);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objINV_InwardlistQueue;
+                main.CurrentParentListForm = this;
+                MainForm.objINV_InwardlistQueue.Show();
             }
             catch (Exception ex)
             {
@@ -2031,15 +2039,19 @@ namespace ROMS
                             picLoader.BringToFront();
                             Application.DoEvents();
                             MainForm.objINV_Inward = new INV_Inward();
-                            //MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                            MainForm.objINV_Inward.MdiParent = this.ParentForm;
                             MainForm.objINV_Inward.btnSave.Text = "Save as Draft";
                             MainForm.objINV_Inward.varEditflag = 0;
                             MainForm.objINV_Inward.varUpdateflag = 0;
                             MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
                             MainForm.objINV_Inward.varGISTRID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STRID"].Value);
                             MainForm.objINV_Inward.varSTSID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STSID"].Value);
-                            objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
-                            MainForm.objINV_Inward.ShowDialog();
+                            //objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
+                            MainForm main = (MainForm)this.MdiParent;
+                            main.IsEntryFormOpen = true;
+                            main.CurrentEntryForm = MainForm.objINV_Inward;
+                            main.CurrentParentListForm = this;
+                            MainForm.objINV_Inward.Show();
                         }
                     }
                 }

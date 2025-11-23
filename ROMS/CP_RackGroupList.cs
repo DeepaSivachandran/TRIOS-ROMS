@@ -39,9 +39,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_RackGroup = new CP_RackGroup();
-                    //MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_RackGroup);
-                    MainForm.objCP_RackGroup.ShowDialog();
+                    MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_RackGroup);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_RackGroup;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_RackGroup.Show();
                 }
                 catch (Exception ex)
                 {
@@ -151,9 +155,13 @@ namespace ROMS
                     MainForm.objCP_RackGroup.varStockId = Convert.ToInt32(grdRackGroupList.SelectedRows[0].Cells["StockLocation ID"].Value);
                     // picLoader.Visible = false;
                     //picLoader.SendToBack();
-                    //MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_RackGroup);
-                    MainForm.objCP_RackGroup.ShowDialog();
+                    MainForm.objCP_RackGroup.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_RackGroup);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_RackGroup;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_RackGroup.Show();
                 }
                 catch (Exception ex)
                 {

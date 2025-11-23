@@ -41,9 +41,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
-                    //MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockJournalConversion);
-                    MainForm.objINV_StockJournalConversion.ShowDialog();
+                    MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_StockJournalConversion);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_StockJournalConversion;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_StockJournalConversion.Show();
                 }
                 catch (Exception ex)
                 {
@@ -76,12 +80,16 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockJournalConversion = new INV_StockJournal_Conversion();
-                        //MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
+                        MainForm.objINV_StockJournalConversion.MdiParent = this.ParentForm;
                         MainForm.objINV_StockJournalConversion.btnSave.Text = "Update";
                         MainForm.objINV_StockJournalConversion.varAJId = Convert.ToInt32(grdStockJournal.SelectedRows[0].Cells["TransactionID"].Value);
                         MainForm.objINV_StockJournalConversion.varSTSID = Convert.ToInt32(grdStockJournal.SelectedRows[0].Cells["STSID"].Value);
-                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockJournalConversion);
-                        MainForm.objINV_StockJournalConversion.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objINV_StockJournalConversion);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objINV_StockJournalConversion;
+                        main.CurrentParentListForm = this;
+                        MainForm.objINV_StockJournalConversion.Show();
                     }
                 }
                 catch (Exception ex)

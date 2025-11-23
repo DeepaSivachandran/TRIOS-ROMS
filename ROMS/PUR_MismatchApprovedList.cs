@@ -53,9 +53,13 @@ namespace ROMS
                     MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
                     MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value);
                     MainForm.objPUR_GRNApproval.pbEditFlag = 1; 
-                    //MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApproval);
-                    MainForm.objPUR_GRNApproval.ShowDialog();
+                    MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApproval);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPUR_GRNApproval;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPUR_GRNApproval.Show();
                 } 
             }
             catch (Exception ex)
