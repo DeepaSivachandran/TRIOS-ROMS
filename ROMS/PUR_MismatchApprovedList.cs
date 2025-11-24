@@ -163,6 +163,10 @@ namespace ROMS
                     {
                         MainForm.objPUR_PurchaseApprovalList = new PUR_PurchaseApprovalList();
                         MainForm.objPUR_PurchaseApprovalList.MdiParent = this.ParentForm;
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objPUR_PurchaseApprovalList;
+                        main.CurrentParentListForm = this;
                         MainForm.objPUR_PurchaseApprovalList.Show();
                     }               
                     else

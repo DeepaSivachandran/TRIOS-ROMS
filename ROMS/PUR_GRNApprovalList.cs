@@ -1634,6 +1634,7 @@ namespace ROMS
         {
             try
             {
+                this.Close();
                 MainForm.objPUR_MismatchApprovedList = new PUR_MismatchApprovedList();
                 MainForm.objPUR_MismatchApprovedList.MdiParent = this.ParentForm;
                 //objMainForm.CenterEntryForm(this, MainForm.objPUR_MismatchApprovedList);
