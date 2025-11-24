@@ -57,5 +57,6 @@ namespace ROMS.Model
         public int paraTrnID { get; set; } = 0;
         public int paraPrintName { get; set; } = 0;
         public int paraId { get; set; } = 0;
+        public int paraConverttype { get; set; } = 0;
     }
 }
