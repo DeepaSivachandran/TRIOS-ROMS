@@ -143,7 +143,6 @@ namespace ROMS
                 {
                     varAlphaName = txtSearchByPICode.Text;
                 }
-                int varViewType = 1;
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -154,7 +153,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
-                objTRN_GoodsInward_Purchase.ViewType = varViewType;
+                objTRN_GoodsInward_Purchase.ViewType = 7;
                 objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRN_GoodsInward_Purchase.ParaFromDate = Convert.ToString(dpFromDate.Text);
                 objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
@@ -166,7 +165,10 @@ namespace ROMS
                 objTRN_GoodsInward_Purchase.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objTRN_GoodsInward_Purchase.paraIPAddress = MainForm.pbIpAddress;
                 objTRN_GoodsInward_Purchase.paraUserLocations = MainForm.pbUserMappedLocationIds;
-                objDs = objdserv.udfnOutwardReports(objTRN_GoodsInward_Purchase);
+                objTRN_GoodsInward_Purchase.paraTrnID = 0;
+                objTRN_GoodsInward_Purchase.paraId = 2;
+                objTRN_GoodsInward_Purchase.paraPrintName = Convert.ToInt32(cmbProductName.SelectedValue);
+                objDs = objdserv.udfnInwardReports(objTRN_GoodsInward_Purchase);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 string varReportName = "";
@@ -195,6 +197,10 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraPRSGID", varSubgroupId);
                     objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text.Trim());
                     objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    objBillreport.SetParameterValue("paraPrintName", Convert.ToInt32(cmbProductName.SelectedValue));
+                    objBillreport.SetParameterValue("paraPRID", 0);
+                    objBillreport.SetParameterValue("paraTrnID", 0);
+                    objBillreport.SetParameterValue("paraId", 2);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
@@ -1318,7 +1324,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbProductName.Focus();
                 }
             }
             catch (Exception ex)

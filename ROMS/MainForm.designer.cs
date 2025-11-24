@@ -1489,7 +1489,6 @@ namespace ROMS
             this.tsmStockAdjustment.Name = "tsmStockAdjustment";
             this.tsmStockAdjustment.Size = new System.Drawing.Size(204, 22);
             this.tsmStockAdjustment.Text = "Stock Adjustment";
-            this.tsmStockAdjustment.Visible = false;
             this.tsmStockAdjustment.Click += new System.EventHandler(this.tsmStockAdjustment_Click);
             // 
             // tsmFinanceReport

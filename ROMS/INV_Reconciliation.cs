@@ -3165,13 +3165,21 @@ namespace ROMS
                     string[] varvalue = result.Split('~');
                     if (result.Split('~')[0] == "3")
                     {
-
-
                         if (result.Split('~')[0] != "1")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = txtProductName;
                             MainForm.objINV_StockAdjustmentList.udfnList();
+                            string varSRCID = "0";
+                            if (varAJId == 0)
+                            {
+                                varSRCID = varvalue[2];
+                            }
+                            else
+                            {
+                                varSRCID = Convert.ToString(varAJId);
+                            }
+                            udfnAdjustmentReport(varSRCID);
                             udfnClear();
                             this.Close();
                         }
@@ -3199,6 +3207,41 @@ namespace ROMS
             finally
             {
                 grdStockadjustment.ClearSelection();
+            }
+        }
+        public void udfnAdjustmentReport(string varSRCID)
+        {
+            try
+            {
+                DialogResult result1;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(87);
+                objDServ.CloseConnection();
+                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result1 == DialogResult.Yes)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Adjustment.rpt");
+                    varHeader = "Stock Adjustment Report";
+
+                    objBillreport.SetParameterValue("paraId", 1);
+                    objBillreport.SetParameterValue("paraTrnID", Convert.ToInt32(varSRCID));
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnClear()
@@ -3688,7 +3731,7 @@ namespace ROMS
                          
 
 
-                        dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtReconciliationQuantity.Text), varRKID, varDestSLID, varDestRKID, 0,0,0);
+                        dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (varExpiryDate).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtReconciliationQuantity.Text), varRKID, varDestSLID, varDestRKID, 0,0,0);
 
 
 

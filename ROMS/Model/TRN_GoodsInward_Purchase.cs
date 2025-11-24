@@ -54,5 +54,8 @@ namespace ROMS.Model
         public int paraBrandID { get; set; } = 0;
         public int paraRateType { get; set; } = 0;
         public string paraUserLocations { get; set; } = "";
+        public int paraTrnID { get; set; } = 0;
+        public int paraPrintName { get; set; } = 0;
+        public int paraId { get; set; } = 0;
     }
 }
