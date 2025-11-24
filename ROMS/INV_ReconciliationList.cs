@@ -1887,7 +1887,7 @@ namespace ROMS
                             try
                             {
                                 string varSRCID = "0";
-                                varSRCID = Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["SRCID"].Value.ToString());
+                                varSRCID = Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value.ToString());
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
