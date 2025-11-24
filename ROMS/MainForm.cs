@@ -703,7 +703,7 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
+                //udfnCloseChildForms();
                 if (isClose == false) { return; }
                 AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
 
@@ -771,6 +771,8 @@ namespace ROMS
                 }
                 //This is move the opened list form to the statusbar inside
                 //MoveCurrentOpenFormToStatusBar(formInstance);
+                //This is close the already opened form
+                CloseAllOtherForms(formInstance);
 
                 if (pbUserRoleId == "0")
                 {
@@ -861,6 +863,38 @@ namespace ROMS
             formMenuCodeMap.Remove(closingForm);
             closingForm.Close(); // actual close
         }
+        public void CloseAllOtherForms(Form newForm)
+        {
+            foreach (Form child in MdiChildren)
+            {
+                if (child == newForm)
+                    continue;
+
+                if (child is DEF_Start)
+                    continue;
+
+                if (IsEntryFormOpen && child == CurrentEntryForm)
+                {
+                    CurrentEntryForm.Close();
+                    IsEntryFormOpen = false;
+                    continue;
+                }
+
+                if (child.WindowState == FormWindowState.Minimized)
+                    continue;
+                child.Close();
+            }
+            minimizedFormList.RemoveAll(m =>
+            {
+                if (m.FormInstance == null || m.FormInstance.IsDisposed)
+                {
+                    statusBar.Items.Remove(m.Button);
+                    return true;
+                }
+                return false;
+            });
+        }
+
 
         public void OpenMainForm<T>(ref T formInstance, string formName, int menuCode, string tsbNewName = null, string tssNewName = null, string tsbEditName = null, string tssEditName = null, string tsbDeleteName = null, Control gridControl = null, EventHandler doubleClickHandler = null, KeyEventHandler keyDownHandler = null, string specialflag = null) where T : Form, new()
         {
