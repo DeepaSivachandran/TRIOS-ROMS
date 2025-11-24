@@ -770,7 +770,7 @@ namespace ROMS
                     CurrentEntryForm.Hide();
                 }
                 //This is move the opened list form to the statusbar inside
-                MoveCurrentOpenFormToStatusBar(formInstance);
+                //MoveCurrentOpenFormToStatusBar(formInstance);
 
                 if (pbUserRoleId == "0")
                 {
