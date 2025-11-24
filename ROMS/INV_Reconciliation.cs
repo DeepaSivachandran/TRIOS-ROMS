@@ -3226,6 +3226,23 @@ namespace ROMS
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Adjustment.rpt");
                     varHeader = "Stock Adjustment Report";
 
+                    objBillreport.SetParameterValue("paraBrandName", "-All-");
+                    objBillreport.SetParameterValue("paraGroupName", "-All-");
+                    objBillreport.SetParameterValue("paraSubgroupName", "-All-");
+                    objBillreport.SetParameterValue("paraAlphaName", "-All-");
+                    objBillreport.SetParameterValue("paraCompanyName", "-All-");
+                    objBillreport.SetParameterValue("paraCompanyCode", 0);
+                    objBillreport.SetParameterValue("paraFromDate", dpStockRec.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpStockRec.Text);
+                    objBillreport.SetParameterValue("paraSLID", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraPRGID", 0);
+                    objBillreport.SetParameterValue("paraPRSGID", 0);
+                    objBillreport.SetParameterValue("paraAlpha", "");
+                    objBillreport.SetParameterValue("paraLocationName", "-All-");
+                    objBillreport.SetParameterValue("paraPrintName", "271");
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                    objBillreport.SetParameterValue("paraPRID", 0);
                     objBillreport.SetParameterValue("paraId", 1);
                     objBillreport.SetParameterValue("paraTrnID", Convert.ToInt32(varSRCID));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
