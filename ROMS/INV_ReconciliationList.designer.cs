@@ -53,7 +53,6 @@
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grdStockReconciliationList = new System.Windows.Forms.DataGridView();
-            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -72,6 +71,7 @@
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockAdjustment.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
@@ -367,14 +367,6 @@
             this.grdStockReconciliationList.DoubleClick += new System.EventHandler(this.GrdUserList_DoubleClick);
             this.grdStockReconciliationList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdUserList_KeyDown);
             // 
-            // clmPrint
-            // 
-            this.clmPrint.HeaderText = "Print";
-            this.clmPrint.Name = "clmPrint";
-            this.clmPrint.ReadOnly = true;
-            this.clmPrint.Visible = false;
-            this.clmPrint.Width = 50;
-            // 
             // grbFilterBy
             // 
             this.grbFilterBy.Controls.Add(this.cmbTransactionType);
@@ -601,6 +593,15 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // clmPrint
+            // 
+            this.clmPrint.HeaderText = "Print";
+            this.clmPrint.Image = global::ROMS.Properties.Resources.print16;
+            this.clmPrint.Name = "clmPrint";
+            this.clmPrint.ReadOnly = true;
+            this.clmPrint.Visible = false;
+            this.clmPrint.Width = 50;
+            // 
             // INV_ReconciliationList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -665,8 +666,8 @@
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
         private System.Windows.Forms.ComboBox cmbTransactionType;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
         public System.Windows.Forms.DataGridView DGV_FilterLocation;
         public System.Windows.Forms.ToolStripSeparator tss;
+        private System.Windows.Forms.DataGridViewImageColumn clmPrint;
     }
 }
