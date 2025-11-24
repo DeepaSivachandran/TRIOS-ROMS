@@ -618,6 +618,12 @@
     <Compile Include="REPORT_PriceList.designer.cs">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="REPORT_Stock_Journal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Journal.designer.cs">
+      <DependentUpon>REPORT_Stock_Journal.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_Stock_Conversion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5408,6 +5414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PriceList.resx">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Journal.resx">
+      <DependentUpon>REPORT_Stock_Journal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Conversion.resx">
       <DependentUpon>REPORT_Stock_Conversion.cs</DependentUpon>
