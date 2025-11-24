@@ -502,7 +502,7 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdStockJournal.Columns["clmPrint"].Visible = false;
+                            grdStockJournal.Columns["clmPrint"].Visible = true;
                             grdStockJournal.DataSource = objDs.Tables[0];
                             grdStockJournal.Columns["S.No."].Width = 50;
                             grdStockJournal.Columns["Concern"].Width = 120;
@@ -1325,14 +1325,14 @@ namespace ROMS
                         grdStockJournal.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdStockJournal.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    if (Convert.ToInt32(grdStockJournal.Rows[i].Cells["STSID"].Value) == 35)
-                    {
-                        grdStockJournal.Rows[i].Cells["clmPrint"].ReadOnly = true;
-                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
-                        print.Value = "";
-                        grdStockJournal.Rows[i].Cells["clmPrint"] = print;
-                        print.ReadOnly = true;
-                    }
+                    //if (Convert.ToInt32(grdStockJournal.Rows[i].Cells["STSID"].Value) == 35)
+                    //{
+                    //    grdStockJournal.Rows[i].Cells["clmPrint"].ReadOnly = true;
+                    //    DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                    //    print.Value = "";
+                    //    grdStockJournal.Rows[i].Cells["clmPrint"] = print;
+                    //    print.ReadOnly = true;
+                    //}
                 }
             }
             catch (Exception ex)
@@ -1496,8 +1496,8 @@ namespace ROMS
                         case "clmPrint":
                             try
                             {
-                                string GOID = "0";
-                                GOID = Convert.ToString(grdStockJournal.SelectedRows[0].Cells["GOID"].Value.ToString());
+                                string varSJID = "0";
+                                varSJID = Convert.ToString(grdStockJournal.SelectedRows[0].Cells["TransactionID"].Value.ToString());
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -1508,10 +1508,28 @@ namespace ROMS
                                     string varHeader = "";
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsOutward.rpt");
-                                    varHeader = "Goods Outward Report";
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Journal.rpt");
+                                    varHeader = "Stock Journal Report";
 
-                                    objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(GOID));
+                                    objBillreport.SetParameterValue("paraBrandName", "-All-");
+                                    objBillreport.SetParameterValue("paraGroupName", "-All-");
+                                    objBillreport.SetParameterValue("paraSubgroupName", "-All-");
+                                    objBillreport.SetParameterValue("paraAlphaName", "-All-");
+                                    objBillreport.SetParameterValue("paraCompanyName", "-All-");
+                                    objBillreport.SetParameterValue("paraCompanyCode", 0);
+                                    objBillreport.SetParameterValue("paraFromDate", dtpstkconvdate.Text);
+                                    objBillreport.SetParameterValue("paraToDate", dtpstkconvtodate.Text);
+                                    objBillreport.SetParameterValue("paraSLID", 0);
+                                    objBillreport.SetParameterValue("paraBrandID", 0);
+                                    objBillreport.SetParameterValue("paraPRGID", 0);
+                                    objBillreport.SetParameterValue("paraPRSGID", 0);
+                                    objBillreport.SetParameterValue("paraAlpha", "");
+                                    objBillreport.SetParameterValue("paraLocationName", "-All-");
+                                    objBillreport.SetParameterValue("paraPrintName", "271");
+                                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                                    objBillreport.SetParameterValue("paraPRID", 0);
+                                    objBillreport.SetParameterValue("paraId", 1);
+                                    objBillreport.SetParameterValue("paraTrnID", Convert.ToInt32(varSJID));
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objValidation.CrySqlConnection(objBillreport);
