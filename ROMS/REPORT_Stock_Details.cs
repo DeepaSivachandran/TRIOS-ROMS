@@ -204,6 +204,7 @@ namespace ROMS
                 objTRNG_Stock.paraAlpha = txtSearchByPICode.Text.Trim();
                 objTRNG_Stock.paraFromDate = dpFromDate.Text;
                 objTRNG_Stock.paraToDate = dpToDate.Text;
+                objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 if (Convert.ToInt32(cmbProductName.SelectedValue) == 270)
                 {
                     objTRNG_Stock.paraNameType = 2;
@@ -253,7 +254,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraNameType", varNameType);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    //objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
