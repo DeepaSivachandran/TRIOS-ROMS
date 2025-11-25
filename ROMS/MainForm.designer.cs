@@ -174,6 +174,7 @@ namespace ROMS
             this.tsmNonMoving = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockAdjustment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockConversionReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockJournalReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinanceReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierLedgerReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPaymentReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -198,7 +199,6 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmStockJournalReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1493,6 +1493,7 @@ namespace ROMS
             this.tsmStockAdjustment.Name = "tsmStockAdjustment";
             this.tsmStockAdjustment.Size = new System.Drawing.Size(204, 22);
             this.tsmStockAdjustment.Text = "Stock Adjustment";
+            this.tsmStockAdjustment.Visible = false;
             this.tsmStockAdjustment.Click += new System.EventHandler(this.tsmStockAdjustment_Click);
             // 
             // tsmStockConversionReport
@@ -1500,7 +1501,16 @@ namespace ROMS
             this.tsmStockConversionReport.Name = "tsmStockConversionReport";
             this.tsmStockConversionReport.Size = new System.Drawing.Size(204, 22);
             this.tsmStockConversionReport.Text = "Stock Conversion";
+            this.tsmStockConversionReport.Visible = false;
             this.tsmStockConversionReport.Click += new System.EventHandler(this.tsmStockConversionReport_Click);
+            // 
+            // tsmStockJournalReport
+            // 
+            this.tsmStockJournalReport.Name = "tsmStockJournalReport";
+            this.tsmStockJournalReport.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockJournalReport.Text = "Stock Journal";
+            this.tsmStockJournalReport.Visible = false;
+            this.tsmStockJournalReport.Click += new System.EventHandler(this.tsmStockJournalReport_Click);
             // 
             // tsmFinanceReport
             // 
@@ -1737,13 +1747,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmStockJournalReport
-            // 
-            this.tsmStockJournalReport.Name = "tsmStockJournalReport";
-            this.tsmStockJournalReport.Size = new System.Drawing.Size(204, 22);
-            this.tsmStockJournalReport.Text = "Stock Journal";
-            this.tsmStockJournalReport.Click += new System.EventHandler(this.tsmStockJournalReport_Click);
             // 
             // MainForm
             // 
