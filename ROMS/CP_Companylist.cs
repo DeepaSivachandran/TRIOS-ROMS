@@ -37,9 +37,13 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objCP_Company = new CP_Company();
-                    //MainForm.objCP_Company.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_Company);
-                    MainForm.objCP_Company.ShowDialog();
+                    MainForm.objCP_Company.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_Company);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Company;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_Company.Show();
                 }
                 catch (Exception ex)
                 {
@@ -147,10 +151,14 @@ namespace ROMS
                     if (grdCompanyList.SelectedRows.Count > 0)
                     {
                         MainForm.objCP_Company = new CP_Company();
-                        //MainForm.objCP_Company.MdiParent = this.ParentForm;
+                        MainForm.objCP_Company.MdiParent = this.ParentForm;
                         MainForm.objCP_Company.varcompanyid = grdCompanyList.SelectedRows[0].Cells["ID"].Value.ToString();
-                        objMainForm.CenterEntryForm(this, MainForm.objCP_Company);
-                        MainForm.objCP_Company.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objCP_Company);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objCP_Company;
+                        main.CurrentParentListForm = this;
+                        MainForm.objCP_Company.Show();
                     }
 
                 }

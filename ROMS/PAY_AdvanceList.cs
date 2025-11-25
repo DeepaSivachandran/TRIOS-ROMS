@@ -40,9 +40,14 @@ namespace ROMS
                 try
                 {
                     MainForm.objPAY_Advance = new PAY_Advance();
-                    //MainForm.objPAY_Advance.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPAY_Advance);
-                    MainForm.objPAY_Advance.ShowDialog();
+                    MainForm.objPAY_Advance.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPAY_Advance);
+
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPAY_Advance;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPAY_Advance.Show();
                 }
                 catch (Exception ex)
                 {
@@ -158,13 +163,17 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objPAY_Advance = new PAY_Advance();
-                        //MainForm.objPAY_Advance.MdiParent = ParentForm;
+                        MainForm.objPAY_Advance.MdiParent = ParentForm;
                         MainForm.objPAY_Advance.btnSave.Text = "Update";
                         MainForm.objPAY_Advance.pbADID = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["ADID"].Value);
                         MainForm.objPAY_Advance.PbStatus = Convert.ToInt32(grdAdvanceList.SelectedRows[0].Cells["AD_STSID"].Value);
                         MainForm.objPAY_Advance.varEditFlag = 1;
-                        objMainForm.CenterEntryForm(this, MainForm.objPAY_Advance);
-                        MainForm.objPAY_Advance.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objPAY_Advance);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objPAY_Advance;
+                        main.CurrentParentListForm = this;
+                        MainForm.objPAY_Advance.Show();
                     }
                 }
                 catch (Exception ex)

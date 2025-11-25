@@ -38,9 +38,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_DamageEntry = new INV_DamageEntry();
-                    //MainForm.objINV_DamageEntry.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_DamageEntry);
-                    MainForm.objINV_DamageEntry.ShowDialog();
+                    MainForm.objINV_DamageEntry.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_DamageEntry);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_DamageEntry;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_DamageEntry.Show();
                 }
                 catch (Exception ex)
                 {
@@ -761,11 +765,15 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_DamageEntry = new INV_DamageEntry();
-                        //MainForm.objINV_DamageEntry.MdiParent = ParentForm;
+                        MainForm.objINV_DamageEntry.MdiParent = ParentForm;
                         MainForm.objINV_DamageEntry.varID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["DMID"].Value);
                         MainForm.objINV_DamageEntry.varStatusID = Convert.ToInt32(grdDamageEntryList.SelectedRows[0].Cells["StatusID"].Value);
-                        objMainForm.CenterEntryForm(this, MainForm.objINV_DamageEntry);
-                        MainForm.objINV_DamageEntry.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objINV_DamageEntry);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objINV_DamageEntry;
+                        main.CurrentParentListForm = this;
+                        MainForm.objINV_DamageEntry.Show();
                     }
                 }
                 catch (Exception ex)

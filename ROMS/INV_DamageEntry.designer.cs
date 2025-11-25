@@ -171,7 +171,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(119, 25);
+            this.tspHeader.Size = new System.Drawing.Size(100, 22);
             this.tspHeader.Text = "Damage Entry";
             // 
             // tsInwardList
@@ -184,7 +184,7 @@
             this.tspHeader});
             this.tsInwardList.Location = new System.Drawing.Point(0, 0);
             this.tsInwardList.Name = "tsInwardList";
-            this.tsInwardList.Size = new System.Drawing.Size(1354, 28);
+            this.tsInwardList.Size = new System.Drawing.Size(1354, 25);
             this.tsInwardList.TabIndex = 35;
             this.tsInwardList.Text = "Inward";
             // 
@@ -248,7 +248,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(897, 226);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(1074, 226);
             this.DGV_FilterProduct.TabIndex = 111111149;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);
@@ -465,7 +465,7 @@
             this.chkStatus.AutoSize = true;
             this.chkStatus.Location = new System.Drawing.Point(898, 607);
             this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Size = new System.Drawing.Size(105, 29);
+            this.chkStatus.Size = new System.Drawing.Size(86, 24);
             this.chkStatus.TabIndex = 15;
             this.chkStatus.Text = "Completed";
             this.chkStatus.UseVisualStyleBackColor = true;
@@ -583,7 +583,7 @@
             this.txttotalitem.Location = new System.Drawing.Point(1080, 606);
             this.txttotalitem.Name = "txttotalitem";
             this.txttotalitem.ReadOnly = true;
-            this.txttotalitem.Size = new System.Drawing.Size(62, 32);
+            this.txttotalitem.Size = new System.Drawing.Size(62, 27);
             this.txttotalitem.TabIndex = 16;
             this.txttotalitem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -592,7 +592,7 @@
             this.lbltotalproducts.AutoSize = true;
             this.lbltotalproducts.Location = new System.Drawing.Point(985, 609);
             this.lbltotalproducts.Name = "lbltotalproducts";
-            this.lbltotalproducts.Size = new System.Drawing.Size(108, 25);
+            this.lbltotalproducts.Size = new System.Drawing.Size(87, 20);
             this.lbltotalproducts.TabIndex = 958821;
             this.lbltotalproducts.Text = "Total Products";
             // 
@@ -613,7 +613,7 @@
             this.lblnarration.AutoSize = true;
             this.lblnarration.Location = new System.Drawing.Point(898, 468);
             this.lblnarration.Name = "lblnarration";
-            this.lblnarration.Size = new System.Drawing.Size(70, 25);
+            this.lblnarration.Size = new System.Drawing.Size(56, 20);
             this.lblnarration.TabIndex = 958812;
             this.lblnarration.Text = "Remarks";
             // 
@@ -1011,7 +1011,7 @@
             this.lblScheduleCode.AutoSize = true;
             this.lblScheduleCode.Location = new System.Drawing.Point(1130, 36);
             this.lblScheduleCode.Name = "lblScheduleCode";
-            this.lblScheduleCode.Size = new System.Drawing.Size(0, 25);
+            this.lblScheduleCode.Size = new System.Drawing.Size(0, 20);
             this.lblScheduleCode.TabIndex = 958820;
             this.lblScheduleCode.Visible = false;
             // 
@@ -1020,7 +1020,7 @@
             this.lblSupplierCode.AutoSize = true;
             this.lblSupplierCode.Location = new System.Drawing.Point(1069, 36);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(0, 25);
+            this.lblSupplierCode.Size = new System.Drawing.Size(0, 20);
             this.lblSupplierCode.TabIndex = 958819;
             this.lblSupplierCode.Visible = false;
             // 
@@ -1030,7 +1030,7 @@
             this.txtEntryNo.Location = new System.Drawing.Point(259, 36);
             this.txtEntryNo.Name = "txtEntryNo";
             this.txtEntryNo.ReadOnly = true;
-            this.txtEntryNo.Size = new System.Drawing.Size(171, 32);
+            this.txtEntryNo.Size = new System.Drawing.Size(171, 27);
             this.txtEntryNo.TabIndex = 2;
             // 
             // lbEntryNo
@@ -1038,7 +1038,7 @@
             this.lbEntryNo.AutoSize = true;
             this.lbEntryNo.Location = new System.Drawing.Point(259, 14);
             this.lbEntryNo.Name = "lbEntryNo";
-            this.lbEntryNo.Size = new System.Drawing.Size(71, 25);
+            this.lbEntryNo.Size = new System.Drawing.Size(58, 20);
             this.lbEntryNo.TabIndex = 958818;
             this.lbEntryNo.Text = "Entry No.";
             // 
@@ -1047,7 +1047,7 @@
             this.lblEntryDate.AutoSize = true;
             this.lblEntryDate.Location = new System.Drawing.Point(146, 14);
             this.lblEntryDate.Name = "lblEntryDate";
-            this.lblEntryDate.Size = new System.Drawing.Size(81, 25);
+            this.lblEntryDate.Size = new System.Drawing.Size(66, 20);
             this.lblEntryDate.TabIndex = 958817;
             this.lblEntryDate.Text = "Entry Date";
             // 
@@ -1057,7 +1057,7 @@
             this.dpEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpEntryDate.Location = new System.Drawing.Point(146, 36);
             this.dpEntryDate.Name = "dpEntryDate";
-            this.dpEntryDate.Size = new System.Drawing.Size(107, 32);
+            this.dpEntryDate.Size = new System.Drawing.Size(107, 27);
             this.dpEntryDate.TabIndex = 1;
             this.dpEntryDate.ValueChanged += new System.EventHandler(this.DpEntryDate_ValueChanged);
             this.dpEntryDate.Enter += new System.EventHandler(this.DpEntryDate_Enter);
@@ -1071,7 +1071,7 @@
             this.cmbConcern.Location = new System.Drawing.Point(13, 36);
             this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(127, 33);
+            this.cmbConcern.Size = new System.Drawing.Size(127, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
@@ -1084,7 +1084,7 @@
             this.lblConcern.AutoSize = true;
             this.lblConcern.Location = new System.Drawing.Point(13, 14);
             this.lblConcern.Name = "lblConcern";
-            this.lblConcern.Size = new System.Drawing.Size(66, 25);
+            this.lblConcern.Size = new System.Drawing.Size(54, 20);
             this.lblConcern.TabIndex = 86;
             this.lblConcern.Text = "Concern";
             // 
@@ -1125,7 +1125,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(936, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 25);
+            this.label3.Size = new System.Drawing.Size(48, 20);
             this.label3.TabIndex = 1111245;
             this.label3.Text = "Reason";
             // 
@@ -1135,7 +1135,7 @@
             this.cmbReason.FormattingEnabled = true;
             this.cmbReason.Location = new System.Drawing.Point(936, 37);
             this.cmbReason.Name = "cmbReason";
-            this.cmbReason.Size = new System.Drawing.Size(148, 33);
+            this.cmbReason.Size = new System.Drawing.Size(148, 27);
             this.cmbReason.TabIndex = 11;
             this.cmbReason.Enter += new System.EventHandler(this.CmbReason_Enter);
             this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbReason_KeyDown);
@@ -1148,7 +1148,7 @@
             this.cmbSupplier.FormattingEnabled = true;
             this.cmbSupplier.Location = new System.Drawing.Point(1090, 37);
             this.cmbSupplier.Name = "cmbSupplier";
-            this.cmbSupplier.Size = new System.Drawing.Size(220, 33);
+            this.cmbSupplier.Size = new System.Drawing.Size(220, 27);
             this.cmbSupplier.TabIndex = 12;
             this.cmbSupplier.Enter += new System.EventHandler(this.CmbSupplier_Enter);
             this.cmbSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplier_KeyDown);
@@ -1160,7 +1160,7 @@
             this.lblProduct.AutoSize = true;
             this.lblProduct.Location = new System.Drawing.Point(212, 14);
             this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(0, 25);
+            this.lblProduct.Size = new System.Drawing.Size(0, 20);
             this.lblProduct.TabIndex = 1111243;
             this.lblProduct.Visible = false;
             // 
@@ -1169,7 +1169,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(413, 14);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 25);
+            this.label4.Size = new System.Drawing.Size(35, 20);
             this.label4.TabIndex = 1111242;
             this.label4.Text = "Rack";
             // 
@@ -1178,7 +1178,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(271, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 25);
+            this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 1111241;
             this.label2.Text = "Location";
             // 
@@ -1188,7 +1188,7 @@
             this.txtRack.Location = new System.Drawing.Point(413, 36);
             this.txtRack.Name = "txtRack";
             this.txtRack.ReadOnly = true;
-            this.txtRack.Size = new System.Drawing.Size(107, 32);
+            this.txtRack.Size = new System.Drawing.Size(107, 27);
             this.txtRack.TabIndex = 5;
             // 
             // label1
@@ -1196,7 +1196,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(773, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 25);
+            this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 1111239;
             this.label1.Text = "Stock Qty";
             // 
@@ -1206,7 +1206,7 @@
             this.txtLocation.Location = new System.Drawing.Point(271, 37);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.ReadOnly = true;
-            this.txtLocation.Size = new System.Drawing.Size(136, 32);
+            this.txtLocation.Size = new System.Drawing.Size(136, 27);
             this.txtLocation.TabIndex = 4;
             // 
             // txtExpiryDate
@@ -1215,7 +1215,7 @@
             this.txtExpiryDate.Location = new System.Drawing.Point(601, 37);
             this.txtExpiryDate.Name = "txtExpiryDate";
             this.txtExpiryDate.ReadOnly = true;
-            this.txtExpiryDate.Size = new System.Drawing.Size(75, 32);
+            this.txtExpiryDate.Size = new System.Drawing.Size(75, 27);
             this.txtExpiryDate.TabIndex = 7;
             this.txtExpiryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1241,7 +1241,7 @@
             this.txtStockQty.Location = new System.Drawing.Point(773, 37);
             this.txtStockQty.Name = "txtStockQty";
             this.txtStockQty.ReadOnly = true;
-            this.txtStockQty.Size = new System.Drawing.Size(64, 32);
+            this.txtStockQty.Size = new System.Drawing.Size(64, 27);
             this.txtStockQty.TabIndex = 9;
             this.txtStockQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1251,7 +1251,7 @@
             this.textBox5.Location = new System.Drawing.Point(526, 36);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(17, 32);
+            this.textBox5.Size = new System.Drawing.Size(17, 27);
             this.textBox5.TabIndex = 1111237;
             this.textBox5.TabStop = false;
             this.textBox5.Text = "₹";
@@ -1261,7 +1261,7 @@
             this.lblUnit.AutoSize = true;
             this.lblUnit.Location = new System.Drawing.Point(902, 40);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(0, 25);
+            this.lblUnit.Size = new System.Drawing.Size(0, 20);
             this.lblUnit.TabIndex = 1111186;
             // 
             // txtBatchNo
@@ -1271,7 +1271,7 @@
             this.txtBatchNo.MaxLength = 10;
             this.txtBatchNo.Name = "txtBatchNo";
             this.txtBatchNo.ReadOnly = true;
-            this.txtBatchNo.Size = new System.Drawing.Size(85, 32);
+            this.txtBatchNo.Size = new System.Drawing.Size(85, 27);
             this.txtBatchNo.TabIndex = 8;
             this.txtBatchNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBatchNo.Enter += new System.EventHandler(this.TxtBatchNo_Enter);
@@ -1283,7 +1283,7 @@
             this.lblbatchno.AutoSize = true;
             this.lblbatchno.Location = new System.Drawing.Point(682, 14);
             this.lblbatchno.Name = "lblbatchno";
-            this.lblbatchno.Size = new System.Drawing.Size(75, 25);
+            this.lblbatchno.Size = new System.Drawing.Size(61, 20);
             this.lblbatchno.TabIndex = 958816;
             this.lblbatchno.Text = "Batch No.";
             // 
@@ -1292,7 +1292,7 @@
             this.lblExpiryDate.AutoSize = true;
             this.lblExpiryDate.Location = new System.Drawing.Point(601, 14);
             this.lblExpiryDate.Name = "lblExpiryDate";
-            this.lblExpiryDate.Size = new System.Drawing.Size(86, 25);
+            this.lblExpiryDate.Size = new System.Drawing.Size(70, 20);
             this.lblExpiryDate.TabIndex = 958821;
             this.lblExpiryDate.Text = "Expiry Date";
             // 
@@ -1301,7 +1301,7 @@
             this.lblSupplierName.AutoSize = true;
             this.lblSupplierName.Location = new System.Drawing.Point(1090, 14);
             this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(109, 25);
+            this.lblSupplierName.Size = new System.Drawing.Size(87, 20);
             this.lblSupplierName.TabIndex = 27;
             this.lblSupplierName.Text = "Supplier Name";
             // 
@@ -1310,7 +1310,7 @@
             this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductName.Location = new System.Drawing.Point(6, 37);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(259, 32);
+            this.txtProductName.Size = new System.Drawing.Size(259, 27);
             this.txtProductName.TabIndex = 3;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -1322,7 +1322,7 @@
             this.txtQuantity.Location = new System.Drawing.Point(843, 37);
             this.txtQuantity.MaxLength = 8;
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(56, 32);
+            this.txtQuantity.Size = new System.Drawing.Size(56, 27);
             this.txtQuantity.TabIndex = 10;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtQuantity.Enter += new System.EventHandler(this.TxtQuantity_Enter);
@@ -1335,7 +1335,7 @@
             this.lblQty.AutoSize = true;
             this.lblQty.Location = new System.Drawing.Point(843, 14);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(51, 25);
+            this.lblQty.Size = new System.Drawing.Size(42, 20);
             this.lblQty.TabIndex = 80;
             this.lblQty.Text = "Tr.Qty";
             // 
@@ -1344,7 +1344,7 @@
             this.lblProductName.AutoSize = true;
             this.lblProductName.Location = new System.Drawing.Point(6, 14);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(169, 25);
+            this.lblProductName.Size = new System.Drawing.Size(139, 20);
             this.lblProductName.TabIndex = 28;
             this.lblProductName.Text = "Search by P.I Code (F11)";
             // 
@@ -1354,7 +1354,7 @@
             this.txtMrp.Location = new System.Drawing.Point(543, 36);
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.ReadOnly = true;
-            this.txtMrp.Size = new System.Drawing.Size(52, 32);
+            this.txtMrp.Size = new System.Drawing.Size(52, 27);
             this.txtMrp.TabIndex = 6;
             this.txtMrp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMrp.Enter += new System.EventHandler(this.TxtMrp_Enter);
@@ -1367,7 +1367,7 @@
             this.lblMrp.AutoSize = true;
             this.lblMrp.Location = new System.Drawing.Point(526, 14);
             this.lblMrp.Name = "lblMrp";
-            this.lblMrp.Size = new System.Drawing.Size(42, 25);
+            this.lblMrp.Size = new System.Drawing.Size(34, 20);
             this.lblMrp.TabIndex = 77;
             this.lblMrp.Text = "MRP";
             // 
@@ -1376,7 +1376,7 @@
             this.lblEdit.AutoSize = true;
             this.lblEdit.Location = new System.Drawing.Point(711, 19);
             this.lblEdit.Name = "lblEdit";
-            this.lblEdit.Size = new System.Drawing.Size(0, 25);
+            this.lblEdit.Size = new System.Drawing.Size(0, 20);
             this.lblEdit.TabIndex = 37;
             this.lblEdit.Visible = false;
             // 
@@ -1386,7 +1386,7 @@
             // 
             // INV_DamageEntry
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);

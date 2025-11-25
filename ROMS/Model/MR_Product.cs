@@ -45,6 +45,7 @@ namespace ROMS.Model
         public int paraId = 0;
         public int ParaGRNID = 0;
         public DataTable paraDamageEntry = null;
+        public DataTable paraStockAdjustment = null;
         public string paraCreatedON = "";
         public int paraLabelCount = 0;
         public int paraType = 0;
@@ -57,7 +58,18 @@ namespace ROMS.Model
         public string paraUserLocations = "";
         public int paraProductType = 0;
         public int paraRackStatusID = 0;
-
-        
+        public int paraLanguage = 0;
+        public float paraLPMRP = 0;
+        public float parasales_rate = 0;
+        public float parawholesale_rate = 0;
+        public int paraCopies = 0;
+        public int paraPrintType = 0;
+        public int paraLabelSize = 0;
+        public string paraLabelTemplate ="";
+        public int paraLabelTitle = 0; 
+        public string paraProductLabelNameEng = "";
+        public string paraOriginator = "";
+        public int ParaOrderby = 0;
+        public int ParaRate = 0;
     }
 }

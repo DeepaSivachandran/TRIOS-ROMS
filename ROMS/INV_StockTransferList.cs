@@ -39,10 +39,14 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                    //MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
+                    MainForm.objINV_StockTransfer.MdiParent = this.ParentForm;
                     MainForm.objINV_StockTransfer.EditFlag = 0;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransfer);
-                    MainForm.objINV_StockTransfer.ShowDialog();
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransfer);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_StockTransfer;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_StockTransfer.Show();
                 }
                 catch (Exception ex)
                 {
@@ -1188,15 +1192,19 @@ namespace ROMS
                             picLoader.BringToFront();
                             Application.DoEvents();
                             MainForm.objINV_StockTransfer = new INV_StockTransfer();
-                            //MainForm.objINV_StockTransfer.MdiParent = ParentForm;
+                            MainForm.objINV_StockTransfer.MdiParent = ParentForm;
                             //MainForm.objINV_StockTransfer.btnSave.Text = "Update";
                             MainForm.objINV_StockTransfer.EditFlag = 0;
                             MainForm.objINV_StockTransfer.varStockTransferID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STRID"].Value);
                             MainForm.objINV_StockTransfer.varSTSRQID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["SRQID"].Value);
                             MainForm.objINV_StockTransfer.varStatusID = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["StatusID"].Value);
                             MainForm.objINV_StockTransfer.varTransactionType = Convert.ToInt32(grdStockTransfer.SelectedRows[0].Cells["STR_TransactionType"].Value);
-                            objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransfer);
-                            MainForm.objINV_StockTransfer.ShowDialog();
+                            //objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransfer);
+                            MainForm main = (MainForm)this.MdiParent;
+                            main.IsEntryFormOpen = true;
+                            main.CurrentEntryForm = MainForm.objINV_StockTransfer;
+                            main.CurrentParentListForm = this;
+                            MainForm.objINV_StockTransfer.Show();
                         }
                     }
                 }
@@ -1798,10 +1806,14 @@ namespace ROMS
                 //MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
                 
                 MainForm.objINV_StockTransferQueue = new INV_StockTransferQueue();
-                //MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
+                MainForm.objINV_StockTransferQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_StockTransferQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 30 && sp.EditAccess.Split(',').Contains("10"));
-                objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransferQueue);
-                MainForm.objINV_StockTransferQueue.ShowDialog();
+                //objMainForm.CenterEntryForm(this, MainForm.objINV_StockTransferQueue);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objINV_StockTransferQueue;
+                main.CurrentParentListForm = this;
+                MainForm.objINV_StockTransferQueue.Show();
             }
             catch (Exception ex)
             {

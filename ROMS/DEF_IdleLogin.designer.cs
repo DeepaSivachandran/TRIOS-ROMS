@@ -39,6 +39,7 @@
             // 
             // lbluserName
             // 
+            this.lbluserName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbluserName.AutoSize = true;
             this.lbluserName.BackColor = System.Drawing.Color.Transparent;
             this.lbluserName.Font = new System.Drawing.Font("Monotype Corsiva", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));

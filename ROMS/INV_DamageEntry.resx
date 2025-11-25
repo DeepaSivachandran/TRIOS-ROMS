@@ -192,8 +192,8 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="QrcodeImg.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
-        dAAAEnQB3mYfeAAAAq9JREFUaEPtzzFy5FAMQ8G5/6V3k5GCplCgZCce+1UhIADyS69/v4SXxqfy96Of
+        iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAq9JREFUaEPtzzFy5FAMQ8G5/6V3k5GCplCgZCce+1UhIADyS69/v4SXxqfy96Of
         xvjR1+v1SGlffzvr35UMx4Wt0r7+dta/KxlOKibstwcPUq7v3Ej94aRiwv6P/VE/POViP/XEXpqVuQzH
         ogdTLvZTT+ylWZnLcCx6MOVt1k+5vTQrcxmORQ+mvM36KbeXZmUuw7HowZTL1k93zZ2VuQzHogdTLls/
         3TV3VuYynFRMbPv2nJPv3Ej94aRiYtu355x850bqD+co3pX73z3flQzHha3c/+75rmQ6XyQ9mHxp+VO+

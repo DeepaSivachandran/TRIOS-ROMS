@@ -732,14 +732,18 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objPUR_GRNDetails = new PUR_GRNDetails();
-                    //MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
+                    MainForm.objPUR_GRNDetails.MdiParent = this.ParentForm;
                     MainForm.objPUR_GRNDetails.pbSupplierId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_SPID"].Value.ToString());
                     MainForm.objPUR_GRNDetails.pbGRNId = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRNID"].Value.ToString());
                     MainForm.objPUR_GRNDetails.varSupplierType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["SP_SupplierType"].Value);
                     MainForm.objPUR_GRNDetails.varOrderType = Convert.ToInt32(grdGRNList.SelectedRows[0].Cells["GRN_OrderType"].Value);
                     MainForm.objPUR_GRNDetails.pbStsID = Convert.ToString(grdGRNList.SelectedRows[0].Cells["GRN_STSID"].Value);
-                    objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNDetails);
-                    MainForm.objPUR_GRNDetails.ShowDialog();
+                    //objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNDetails);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPUR_GRNDetails;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPUR_GRNDetails.Show();
                 }
                 catch (Exception ex)
                 {

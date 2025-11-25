@@ -1,4 +1,4 @@
-﻿                  using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -25,6 +25,10 @@ namespace ROMS
         private List<(int Index, string FormName)> minimizedFormInfoList = new List<(int, string)>();
         private MdiClient mdiClientArea = null;
         private Dictionary<Form, int> formMenuCodeMap = new Dictionary<Form, int>();
+        // Entry/List control flags
+        public bool IsEntryFormOpen = false;
+        public Form CurrentEntryForm = null;
+        public Form CurrentParentListForm = null;
 
         public class MinimizedFormInfo
         {
@@ -108,6 +112,7 @@ namespace ROMS
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_SupplierMappinglist objCP_SupplierMappinglist;
         public static CP_Product objCP_Items;
+        public static CP_Product_Popup objCP_Product_Popup;
         public static CP_RackSettinglist objCP_RackSettinglist;
         public static CP_RackSettings objCP_RackSettings;
         public static CP_ProductList objCP_Itemlist;
@@ -145,7 +150,8 @@ namespace ROMS
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_StickerPrint objCP_StickerPrint;
         // added by venkat on 09-08-2025
-        public static CP_DirectLabelPrint objCP_DiectLabelPrint;
+        public static CP_DirectLabelPrint objCP_DirectLabelPrint;
+        public static CP_DirectLabelList objCP_DirectLabelList;
         public static CP_Printer_Setting objCP_PrinterSetting;
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
@@ -346,6 +352,10 @@ namespace ROMS
 
         public static REPORT_Stock_Inward objREPORT_Stock_Inward;
         public static REPORT_Stock_Outward objREPORT_Stock_Outward;
+        public static REPORT_Stock_Adjustment objREPORT_Stock_Adjustment;
+        public static REPORT_Stock_Conversion objREPORT_Stock_Conversion;
+        public static REPORT_Stock_Journal objREPORT_Stock_Journal;
+        public static REPORT_Stock_Details objREPORT_Stock_Details;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -374,6 +384,22 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void HideStartScreen()
+        {
+            try
+            {
+                if (objStart != null && !objStart.IsDisposed && objStart.Visible)
+                {
+                    objStart.Close();
+                    objStart = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         // Added By Sathish On 30-04-2025 For Minimize Reports Screen
         public void SubForm_Resize(object sender, EventArgs e)
@@ -382,6 +408,12 @@ namespace ROMS
             {
                 if (sender is Form form && form.WindowState == FormWindowState.Minimized)
                 {
+                    // ENTRY FORM? → HIDE ONLY, DO NOT ADD STATUS BAR
+                    if (IsEntryFormOpen && CurrentEntryForm == form)
+                    {
+                        form.Hide();
+                        return;
+                    }
                     form.Hide();
                     AddMinimizedFormToStatusBar(ref form, form.Name, 0);
 
@@ -419,6 +451,12 @@ namespace ROMS
                 {
                     return;
                 }
+                // BLOCK: Prevent EntryForm from being minimized
+                if (IsEntryFormOpen && CurrentEntryForm == form)
+                {
+                    return;  // Skip adding entry to status bar
+                }
+
 
                 if (flag == 1)
                 {
@@ -544,6 +582,10 @@ namespace ROMS
                             AddMinimizedFormToStatusBar(ref tempForm, tempForm.Name, 0);
                         }
                     }
+                    if (IsEntryFormOpen && CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
+                    {
+                        CurrentEntryForm.Hide();
+                    }
 
                     info.FormInstance.SuspendLayout();
                     info.FormInstance.WindowState = FormWindowState.Normal;
@@ -555,9 +597,18 @@ namespace ROMS
                         ApplyUserPrivilegesToForm(info.FormInstance, menuCode);
                     }
 
-                    info.FormInstance.Show();
+                    info.FormInstance.Show(); HideStartScreen();
+
                     CenterChildForm(info.FormInstance);
                     info.FormInstance.BringToFront();
+                    if (IsEntryFormOpen && CurrentParentListForm == info.FormInstance)
+                    {
+                        if (CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
+                        {
+                            CurrentEntryForm.Show();
+                            CurrentEntryForm.BringToFront();
+                        }
+                    }
                     info.FormInstance.ResumeLayout();
 
                     statusBar.Items.Remove(btn);
@@ -580,9 +631,15 @@ namespace ROMS
             {
                 if (currentOpenForm != null && !currentOpenForm.IsDisposed && currentOpenForm != nextFormToOpen)
                 {
+                    if (IsEntryFormOpen && currentOpenForm == CurrentEntryForm)
+                    {
+                        currentOpenForm.Hide();
+                        return;
+                    }
                     AddMinimizedFormToStatusBar(ref currentOpenForm, currentOpenForm.Name, 0);
                     currentOpenForm = null;
                 }
+                HideStartScreen();
             }
             catch (Exception ex)
             {
@@ -653,7 +710,7 @@ namespace ROMS
         {
             try
             {
-                udfnCloseChildForms();
+                //udfnCloseChildForms();
                 if (isClose == false) { return; }
                 AddMinimizedFormToStatusBar(ref formInstance, formName, 1);
 
@@ -713,7 +770,16 @@ namespace ROMS
                 //udfnCloseChildForms();
 
                 //if (!isClose) return;
-                MoveCurrentOpenFormToStatusBar(formInstance);
+                
+                // If entry form is open, hide it before opening new list form
+                if (IsEntryFormOpen && CurrentEntryForm != null && !CurrentEntryForm.IsDisposed)
+                {
+                    CurrentEntryForm.Hide();
+                }
+                //This is move the opened list form to the statusbar inside
+                //MoveCurrentOpenFormToStatusBar(formInstance);
+                //This is close the already opened form
+                CloseAllOtherForms(formInstance);
 
                 if (pbUserRoleId == "0")
                 {
@@ -750,7 +816,8 @@ namespace ROMS
                     }
                     formInstance.MdiParent = this;
                     this.CenterChildForm(formInstance);
-                    formInstance.Show();
+                    formInstance.Show(); HideStartScreen();
+
                 }
 
                 //   formInstance.WindowState = FormWindowState.Maximized;
@@ -803,6 +870,38 @@ namespace ROMS
             formMenuCodeMap.Remove(closingForm);
             closingForm.Close(); // actual close
         }
+        public void CloseAllOtherForms(Form newForm)
+        {
+            foreach (Form child in MdiChildren)
+            {
+                if (child == newForm)
+                    continue;
+
+                if (child is DEF_Start)
+                    continue;
+
+                if (IsEntryFormOpen && child == CurrentEntryForm)
+                {
+                    CurrentEntryForm.Close();
+                    IsEntryFormOpen = false;
+                    continue;
+                }
+
+                if (child.WindowState == FormWindowState.Minimized)
+                    continue;
+                child.Close();
+            }
+            minimizedFormList.RemoveAll(m =>
+            {
+                if (m.FormInstance == null || m.FormInstance.IsDisposed)
+                {
+                    statusBar.Items.Remove(m.Button);
+                    return true;
+                }
+                return false;
+            });
+        }
+
 
         public void OpenMainForm<T>(ref T formInstance, string formName, int menuCode, string tsbNewName = null, string tssNewName = null, string tsbEditName = null, string tssEditName = null, string tsbDeleteName = null, Control gridControl = null, EventHandler doubleClickHandler = null, KeyEventHandler keyDownHandler = null, string specialflag = null) where T : Form, new()
         {
@@ -2454,7 +2553,7 @@ namespace ROMS
                 }
                 if (PbCurrentForm == "7.1.11")
                 {
-                    MainForm.objREPORT_CP_Rackgroup.udfnRG(0);
+                    MainForm.objREPORT_CP_Rackgroup.udfnRG(0,0);
                 }
                 if (PbCurrentForm == "7.1.12")
                 {
@@ -3809,7 +3908,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_DiectLabelPrint, "CP_DirectLabelPrint", 523);
+                OpenReportForm(ref MainForm.objCP_DirectLabelList, "CP_DirectLabelList", 523);
             }
             catch (Exception ex)
             {
@@ -4069,12 +4168,76 @@ namespace ROMS
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            try {
+            try
+            {
                 if (e.Control && e.Alt && e.KeyCode == Keys.L)
                 {
                     DEF_IdleLogin obj = new DEF_IdleLogin();
                     obj.ShowDialog();
                 }
+                if (e.KeyCode == Keys.F10) //PM Stock
+                {
+                    MainForm.objCP_Product_Popup = new CP_Product_Popup();
+                    MainForm.objCP_Product_Popup.MdiParent = this.ParentForm;
+                    MainForm.objCP_Product_Popup.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockAdjustment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Adjustment, "REPORT_Stock_Adjustment", 80410);
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockConversionReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Conversion, "REPORT_Stock_Conversion", 80411);
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockJournalReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Journal, "REPORT_Stock_Journal", 80412);
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockDetailsReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Details, "REPORT_Stock_Details", 80413);
+                PbCurrentForm = "7.9.1";
+            }
             }
             catch (Exception ex)
             {

@@ -39,9 +39,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objPAY_SupplierPayment = new PAY_SupplierPayment();
-                    //MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPAY_SupplierPayment);
-                    MainForm.objPAY_SupplierPayment.ShowDialog();
+                    MainForm.objPAY_SupplierPayment.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPAY_SupplierPayment);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPAY_SupplierPayment;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPAY_SupplierPayment.Show();
                 }
                 catch (Exception ex)
                 {
@@ -79,6 +83,10 @@ namespace ROMS
                         MainForm.objPAY_SupplierPayment.varSupplierPaymentID = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAYID"].Value);
                         MainForm.objPAY_SupplierPayment.varEditFlag = 1;
                         MainForm.objPAY_SupplierPayment.varPaymentStatus = Convert.ToInt32(grdSupllierPaymentList.SelectedRows[0].Cells["PAY_STSID"].Value);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objPAY_SupplierPayment;
+                        main.CurrentParentListForm = this;
                         MainForm.objPAY_SupplierPayment.Show();
                     } 
                 }

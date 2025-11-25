@@ -41,9 +41,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objPUR_PurchaseDC = new PUR_PurchaseDC();
-                    //MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseDC);
-                    MainForm.objPUR_PurchaseDC.ShowDialog();
+                    MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseDC);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPUR_PurchaseDC;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPUR_PurchaseDC.Show();
                 }
                 catch (Exception ex)
                 {
@@ -278,9 +282,13 @@ namespace ROMS
                             MainForm.objPUR_PurchaseDC.editFlag = 2;
                         }
                         //MainForm.objPUR_PurchaseDC.txtRemark.Text = Convert.ToString(grdPurchaseDCList.SelectedRows[0].Cells["PO_Remarks"].Value.ToString());
-                        //MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
-                        objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseDC);
-                        MainForm.objPUR_PurchaseDC.ShowDialog();
+                        MainForm.objPUR_PurchaseDC.MdiParent = this.ParentForm;
+                        //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseDC);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objPUR_PurchaseDC;
+                        main.CurrentParentListForm = this;
+                        MainForm.objPUR_PurchaseDC.Show();
                     }
                 }
                 catch (Exception ex)

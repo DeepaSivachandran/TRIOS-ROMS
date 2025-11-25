@@ -15,7 +15,7 @@ namespace ROMS
     //Created On : 20-02-2025
     public partial class CP_DirectLabelPrint : Form
     {
-        DynamicWindowControl windowControl = new DynamicWindowControl();
+        //DynamicWindowControl windowControl = new DynamicWindowControl();
 
         //*************** Object for Service Classes Initialisation  ***********
         DataValidation objValidation = new DataValidation();
@@ -38,11 +38,13 @@ namespace ROMS
         private int varsno;
         List<string> varListSubgroupCodes = new List<string>();
         List<string> varListGroupCodes = new List<string>();
+        public int varClose = 0;
 
+        public int pbLPID = 0;
         public CP_DirectLabelPrint()
         {
             InitializeComponent();
-            windowControl.Initialize(tsDirectLabelPrint, this);
+            //windowControl.Initialize(tsDirectLabelPrint, this);
         }
 
         private void PROD_LabelPrinting_KeyDown(object sender, KeyEventArgs e)
@@ -51,11 +53,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    //MainForm.objStart = new DEF_Start();
-                    //MainForm.objStart.MdiParent = this.ParentForm;
-                    //MainForm.objStart.Show();
-                    //this.Close();
-                    windowControl?.TriggerClose();
+                    udfnclose();
                 }
             }
             catch (Exception ex)
@@ -111,16 +109,6 @@ namespace ROMS
         }
 
         private void CmbCompany_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnClose_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnClose_Leave(object sender, EventArgs e)
         {
 
         }
@@ -433,13 +421,67 @@ namespace ROMS
                 lblUnit.Text = "";
                 lblRetail.Text = "";
                 lblWholesale.Text = "";
+                if (pbLPID != 0)
+                {
+                    udfnEdit();
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnEdit()
+        {
+            try
+            {
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+                if (pbLPID != 0)
+                {
+                    MR_Product objMR_Product = new MR_Product();
+                    objMR_Product.paraViewType = 1;
+                    objMR_Product.ParaProductCode = pbLPID;
+                    SPDataService objspservice = new SPDataService();
+                    DataSet objDS;
+                    objDS = objdserv.udfnLabelPrintList(objMR_Product);
+                    objdserv.CloseConnection();
+                    if (objDS != null)
+                    {
+                        if (objDS.Tables[0].Rows.Count > 0)
+                        {
+                            txtProductName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductEName"].ToString());
+                            DGV_FilterProduct.Visible = false;
+                            cmbPrintLanguage.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LanguageType"].ToString());
+                            cmbPrintType.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["PrintType"].ToString());
+                            cmbTemplate.SelectedValue = Convert.ToString(objDS.Tables[0].Rows[0]["Template"].ToString());
+                            cmbTitle.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["Title"].ToString());
+                            cmbLabelsize.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LabelSize"].ToString());
+                            lblProduct.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PRID"].ToString());
+                            txtMrp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MRP"].ToString());
+                            txtSalesRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["S.Rate"].ToString());
+                            txtNoofcopy.Text = Convert.ToString(objDS.Tables[0].Rows[0]["No.Of Copies"].ToString());
+                            txtLabelProduct.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Label Name"].ToString());
+                            lblProductName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductTName"].ToString());
 
+
+                            lblPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PI Code"]);
+                            lblUnit.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Unit"]);
+                            lblRetail.Text = Convert.ToString(objDS.Tables[0].Rows[0]["R.Rate"]);
+                            lblWholesale.Text = Convert.ToString(objDS.Tables[0].Rows[0]["W.Rate"]);
+                            lbdname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"]);
+                            lbltname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"]);
+                            udfnReportView("Preview");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnDropdownLoad()
@@ -1318,6 +1360,7 @@ namespace ROMS
             try
             {
                 udfnReportView("Direct Print");
+                udfnSave();
             }
             catch (Exception ex)
             {
@@ -1447,7 +1490,7 @@ namespace ROMS
                     }
 
 
-                    result = objspdservice.udfnProductMaster(15, Convert.ToInt32(lblProduct.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, itemEname, itemTname, "", 0,"");
+                    result = objspdservice.udfnProductMaster(15, Convert.ToInt32(lblProduct.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, itemEname, itemTname, "", 0,"", "");
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
@@ -1794,10 +1837,7 @@ namespace ROMS
         {
             try
             {
-                MainForm.objStart = new DEF_Start();
-                MainForm.objStart.MdiParent = this.ParentForm;
-                MainForm.objStart.Show();
-                this.Close();
+                udfnclose();
             }
             catch (Exception ex)
             {
@@ -1805,6 +1845,52 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnclose()
+        {
+            try
+            {
+                if (varClose == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                        MainForm.objCP_DirectLabelList.udfnList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void btnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void cmbLabelsize_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2022,6 +2108,53 @@ namespace ROMS
                     errRack.Clear();
                     udfnReportView("Preview");
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnSave()
+        {
+            try {
+
+                string result = "";
+                SPDataService objspdservice = new SPDataService();
+                MR_Product objMR_Product = new MR_Product();
+
+                
+                objMR_Product.paraViewType = 0;
+                objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
+                objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
+                objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text); 
+                objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
+                objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
+                objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
+                objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
+                objMR_Product.paraCopies = Convert.ToInt32(txtNoofcopy.Text);
+                objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);
+                objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue); ;
+                objMR_Product.paraLabelTitle = Convert.ToInt32(cmbTitle.SelectedValue);     
+                objMR_Product.paraProductLabelNameEng = txtLabelProduct.Text;
+                objMR_Product.paraOriginator = "Label Print Save"; 
+                result = objspdservice.udfnLabelPrint(objMR_Product);
+                objspdservice.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (result.Split('~')[0] == "3")
+                {
+                    if (result.Split('~')[0] != "1")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objCP_DirectLabelList.udfnList();
+                    }
+                } 
+                else
+                {
+                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
             catch (Exception ex)
             {

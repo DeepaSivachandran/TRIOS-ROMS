@@ -257,6 +257,8 @@ namespace ROMS
                 decimal.TryParse(lblRequiredQty.Text, out varRequiredQty);
                 decimal.TryParse(lblTransferQty.Text, out varTransferQty);
 
+                //Upp Wise Stock Maximum Transfer Allow Logic
+                /*
                 decimal minUPP = decimal.MaxValue;
                 foreach (DataGridViewRow row in grdGOConversion.Rows)
                 {
@@ -290,7 +292,15 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     blnErrFlag = true;
                 }
-
+                */
+                if (varTransferQty != varRequiredQty)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(113);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    blnErrFlag = true;
+                }
                 if (!blnErrFlag)
                 {
                     bool allRowsInvalid = true;
@@ -526,9 +536,20 @@ namespace ROMS
                 cols["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 cols["clmExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 cols["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
+                int varQty = 0;
+                varQty = Convert.ToInt32(lblParentQty.Text) - Convert.ToInt32(lblRequiredQty.Text);
 
+                objOutward.txtOutwardQuantity.Text = Convert.ToString(varQty);
+                if (Convert.ToDecimal(objOutward.txtStockQuantity.Text) > 0)
+                {
+                    objOutward.udfnAdd();
+                }
+                else
+                {
+                    objOutward.udfnProductClear();
+                }
                 // Clear product details
-                objOutward.udfnProductClear();
+                //objOutward.udfnProductClear();
                 this.Close();
             }
             catch (Exception ex)
@@ -717,7 +738,7 @@ namespace ROMS
                         currentRow.Cells["clmTransferQty"].Style.BackColor = Color.LightGray;
                         currentRow.Cells["clmTransferQty"].Value = "";
                         currentRow.Cells["clmActualQty"].Value = "";
-                        //CalculateTotalTransferQty();
+                        CalculateTotalTransferQty();
                         return;
                     }
 

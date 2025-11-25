@@ -41,9 +41,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockConversion = new INV_StockConversion();
-                    //MainForm.objINV_StockConversion.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockConversion);
-                    MainForm.objINV_StockConversion.ShowDialog();
+                    MainForm.objINV_StockConversion.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_StockConversion);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_StockConversion;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_StockConversion.Show();
                 }
                 catch (Exception ex)
                 {
@@ -76,11 +80,15 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockConversion = new INV_StockConversion();
-                        //MainForm.objINV_StockConversion.MdiParent = this.ParentForm;
+                        MainForm.objINV_StockConversion.MdiParent = this.ParentForm;
                         MainForm.objINV_StockConversion.btnSave.Text = "Update";
                         MainForm.objINV_StockConversion.varBTID = Convert.ToInt32(grdConversionList.SelectedRows[0].Cells["BTID"].Value);
-                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockConversion);
-                        MainForm.objINV_StockConversion.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objINV_StockConversion);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objINV_StockConversion;
+                        main.CurrentParentListForm = this;
+                        MainForm.objINV_StockConversion.Show();
                     }
                 }
                 catch (Exception ex)

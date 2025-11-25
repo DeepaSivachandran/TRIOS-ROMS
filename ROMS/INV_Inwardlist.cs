@@ -43,9 +43,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_Inward = new INV_Inward();
-                    //MainForm.objINV_Inward.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
-                    MainForm.objINV_Inward.ShowDialog();
+                    MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_Inward;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_Inward.Show();
                 }
                 catch (Exception ex)
                 {
@@ -149,6 +153,9 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                    DGV_SearchGrid.Columns[1].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                     
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -358,10 +365,14 @@ namespace ROMS
             try
             {
                 MainForm.objINV_InwardlistQueue = new INV_InwardlistQueue();
-                //MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
+                MainForm.objINV_InwardlistQueue.MdiParent = this.ParentForm;
                 MainForm.objINV_InwardlistQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("10"));
-                objMainForm.CenterEntryForm(this, MainForm.objINV_InwardlistQueue);
-                MainForm.objINV_InwardlistQueue.ShowDialog();
+                //objMainForm.CenterEntryForm(this, MainForm.objINV_InwardlistQueue);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objINV_InwardlistQueue;
+                main.CurrentParentListForm = this;
+                MainForm.objINV_InwardlistQueue.Show();
             }
             catch (Exception ex)
             {
@@ -1170,6 +1181,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdInwardList.DataSource = objDs.Tables[0];
                             grdInwardList.Columns["clmPrint"].Visible = true;
+                            grdInwardList.Columns["clmStickerPrint"].Visible = true;
                             grdInwardList.Columns["S.No."].Width = 50;
                             grdInwardList.Columns["Concern"].Width = 120;
                             grdInwardList.Columns["Inward Date"].Width = 120;
@@ -1178,6 +1190,7 @@ namespace ROMS
                             grdInwardList.Columns["SLID"].Visible = false;
                             grdInwardList.Columns["Transaction Type"].Width = 120;
                             grdInwardList.Columns["GIID"].Visible = false;
+                            grdInwardList.Columns["StickerFlag"].Visible = false;
                             grdInwardList.Columns["STRID"].Visible = false;
                             grdInwardList.Columns["Total Products"].Width = 120;
                             grdInwardList.Columns["STSID"].Visible = false;
@@ -1199,6 +1212,7 @@ namespace ROMS
                     else
                     {
                         grdInwardList.Columns["clmPrint"].Visible = false;
+                        grdInwardList.Columns["clmStickerPrint"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
@@ -1207,6 +1221,7 @@ namespace ROMS
                 else
                 {
                     grdInwardList.Columns["clmPrint"].Visible = false;
+                    grdInwardList.Columns["clmStickerPrint"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
@@ -1214,6 +1229,7 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == true)
                 {
                     grdInwardList.Columns["clmPrint"].Visible = false;
+                    grdInwardList.Columns["clmStickerPrint"].Visible = false;
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultSearchGrid();
                 }
@@ -1555,6 +1571,8 @@ namespace ROMS
                     {
                         grdInwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdInwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+
+                      
                     }
                     if (Convert.ToString(grdInwardList.Rows[i].Cells["STSID"].Value) == "41")
                     {
@@ -1564,8 +1582,20 @@ namespace ROMS
                         grdInwardList.Rows[i].Cells["clmPrint"] = print;
                         print.ReadOnly = true;
                     }
+                     
+                    //sticker reprint
+                    if (Convert.ToString(grdInwardList.Rows[i].Cells["StickerFlag"].Value) == "0")
+                    {
+                        grdInwardList.Rows[i].Cells["clmStickerPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdInwardList.Rows[i].Cells["clmStickerPrint"] = print;
+                        print.ReadOnly = true;
+                    }
+
                 }
                 grdInwardList.Columns["clmPrint"].Resizable = DataGridViewTriState.False;
+                grdInwardList.Columns["clmStickerPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {
@@ -1914,6 +1944,43 @@ namespace ROMS
                                 objError.WriteFile(ex);
                             }
                             break;
+                        case "clmStickerPrint":
+                            try
+                            {
+                                string GIID = "0";
+                                GIID = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GIID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Inward_Sticker_Print_100x70.rpt"); 
+
+                                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(GIID));
+                                    objBillreport.SetParameterValue("paraPRID", 0);
+                                    objBillreport.SetParameterValue("paraFlag", 1);
+                                    objBillreport.SetParameterValue("paraStickerCount", 0);
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
                     }
                 }
             }
@@ -1972,15 +2039,19 @@ namespace ROMS
                             picLoader.BringToFront();
                             Application.DoEvents();
                             MainForm.objINV_Inward = new INV_Inward();
-                            //MainForm.objINV_Inward.MdiParent = this.ParentForm;
+                            MainForm.objINV_Inward.MdiParent = this.ParentForm;
                             MainForm.objINV_Inward.btnSave.Text = "Save as Draft";
                             MainForm.objINV_Inward.varEditflag = 0;
                             MainForm.objINV_Inward.varUpdateflag = 0;
                             MainForm.objINV_Inward.varGIId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIID"].Value);
                             MainForm.objINV_Inward.varGISTRID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STRID"].Value);
                             MainForm.objINV_Inward.varSTSID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["STSID"].Value);
-                            objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
-                            MainForm.objINV_Inward.ShowDialog();
+                            //objMainForm.CenterEntryForm(this, MainForm.objINV_Inward);
+                            MainForm main = (MainForm)this.MdiParent;
+                            main.IsEntryFormOpen = true;
+                            main.CurrentEntryForm = MainForm.objINV_Inward;
+                            main.CurrentParentListForm = this;
+                            MainForm.objINV_Inward.Show();
                         }
                     }
                 }

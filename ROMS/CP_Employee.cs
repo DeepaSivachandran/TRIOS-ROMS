@@ -17,6 +17,7 @@ namespace ROMS
         DataError objError;
         public DataTable dtModules = new DataTable();
         private ToolTip tpempname = new ToolTip();
+        private ToolTip tpempTname = new ToolTip();
         private ToolTip tpempcode = new ToolTip();
         private ToolTip tpUserCategory  = new ToolTip();
         public string PbDefault;
@@ -25,6 +26,7 @@ namespace ROMS
         public string PbNameoftheUser = "";
         public string PbEmpCode = "";
         public string PbUserCategory = "";
+        public string pbempTName = "";
         public int PbUserCategoryID = 0;
         public int PbStatus=0;
         public int varUpdate = 0;
@@ -90,7 +92,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbUserCategory.Focus();
+                    txtEmployeeNameinTamil.Focus();
                 }
             }
             catch (Exception ex)
@@ -224,7 +226,7 @@ namespace ROMS
                 {
                     varEmpID = "0";
                 }
-                varResult = objspservice.udfnEmployee(varViewType, Convert.ToInt32( varEmpID), (txtEmpCode.Text).Trim(), (txtEmpName.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), varstatus, varoriginator,MainForm.pbUserID,0);
+                varResult = objspservice.udfnEmployee(varViewType, Convert.ToInt32( varEmpID), (txtEmpCode.Text).Trim(), (txtEmpName.Text).Trim(), Convert.ToInt16(cmbUserCategory.SelectedValue), varstatus, varoriginator,MainForm.pbUserID,0,Convert.ToString(txtEmployeeNameinTamil.Text.Trim()));
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -280,6 +282,14 @@ namespace ROMS
                     tpempname.ShowAlways = true;
                     tpempname.Show("Please enter employee name", txtEmpName, 5000);
                     blnErrorFlag = true;
+                }  
+                if (Convert.ToString(txtEmployeeNameinTamil.Text).Trim() == "")
+                {
+                    epUser.SetError(txtEmployeeNameinTamil, "Please enter employee name in tamil");
+                    txtEmployeeNameinTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpempTname.ShowAlways = true;
+                    tpempTname.Show("Please enter employee name in tamil", txtEmployeeNameinTamil, 5000);
+                    blnErrorFlag = true;
                 }
                 if (Convert.ToString(cmbUserCategory.SelectedValue) == "" || Convert.ToString(cmbUserCategory.SelectedValue) == "-1")
                 {
@@ -309,6 +319,7 @@ namespace ROMS
         {
             txtEmpCode.Text = "";
             txtEmpName.Text = "";
+            txtEmployeeNameinTamil.Text = "";
             cmbUserCategory.SelectedIndex = 0;
             rbActive.Checked = true;
             btnSave.Text = "Save";
@@ -448,6 +459,7 @@ namespace ROMS
             {   
                 txtEmpCode.Text = PbEmpCode;
                 txtEmpName.Text = PbNameoftheUser;
+                txtEmployeeNameinTamil.Text = pbempTName;
                 cmbUserCategory.SelectedValue = PbUserCategoryID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if(PbStatus==2)
@@ -647,5 +659,88 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void txtDStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlStatus_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtDUserCategory_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDLoginID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmpName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmployeeNameinTamil_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtEmployeeNameinTamil.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtEmployeeNameinTamil_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbUserCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtEmployeeNameinTamil_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(txtEmployeeNameinTamil.Text).Trim() == "")
+                {
+                    epUser.SetError(txtEmployeeNameinTamil, "Please enter employee name in tamil"); 
+                    txtEmployeeNameinTamil.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpempTname.ShowAlways = true;
+                    tpempTname.Show("Please enter employee name in tamil", txtEmployeeNameinTamil, 5000); 
+                }
+                else
+                {
+                    epUser.Clear();
+                    txtEmployeeNameinTamil.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
     }
 }

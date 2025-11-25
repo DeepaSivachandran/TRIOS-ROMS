@@ -46,7 +46,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -70,6 +70,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPOList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -214,6 +216,8 @@
             this.clmBulkUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmgst = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMSQ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRXSQ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTMXSQ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMXSQ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmstock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmpreviouspend = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -275,7 +279,7 @@
             this.tsbSupplier});
             this.tsPOList.Location = new System.Drawing.Point(0, 0);
             this.tsPOList.Name = "tsPOList";
-            this.tsPOList.Size = new System.Drawing.Size(1354, 28);
+            this.tsPOList.Size = new System.Drawing.Size(1354, 25);
             this.tsPOList.TabIndex = 35;
             this.tsPOList.Text = "Purchase Order";
             // 
@@ -286,7 +290,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(131, 25);
+            this.tspHeader.Size = new System.Drawing.Size(109, 22);
             this.tspHeader.Text = "Purchase Order";
             // 
             // tsbEdit
@@ -297,7 +301,7 @@
             this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbEdit.Name = "tsbEdit";
             this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(160, 29);
+            this.tsbEdit.Size = new System.Drawing.Size(137, 24);
             this.tsbEdit.Text = "&Return DC Pending";
             this.tsbEdit.Visible = false;
             // 
@@ -310,7 +314,7 @@
             this.tsbSupplier.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
             this.tsbSupplier.Name = "tsbSupplier";
             this.tsbSupplier.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbSupplier.Size = new System.Drawing.Size(29, 25);
+            this.tsbSupplier.Size = new System.Drawing.Size(24, 24);
             this.tsbSupplier.Visible = false;
             // 
             // pnlpurchaseorder
@@ -472,7 +476,7 @@
             this.lblUnitDecimal.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnitDecimal.Location = new System.Drawing.Point(616, 306);
             this.lblUnitDecimal.Name = "lblUnitDecimal";
-            this.lblUnitDecimal.Size = new System.Drawing.Size(21, 25);
+            this.lblUnitDecimal.Size = new System.Drawing.Size(16, 20);
             this.lblUnitDecimal.TabIndex = 1111220;
             this.lblUnitDecimal.Text = "0";
             this.lblUnitDecimal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -500,7 +504,7 @@
             this.chkStatus.Enabled = false;
             this.chkStatus.Location = new System.Drawing.Point(820, 588);
             this.chkStatus.Name = "chkStatus";
-            this.chkStatus.Size = new System.Drawing.Size(99, 29);
+            this.chkStatus.Size = new System.Drawing.Size(80, 24);
             this.chkStatus.TabIndex = 1111218;
             this.chkStatus.Text = "Pre-Close";
             this.chkStatus.UseVisualStyleBackColor = true;
@@ -513,7 +517,7 @@
             this.lblMxsq.ForeColor = System.Drawing.Color.Crimson;
             this.lblMxsq.Location = new System.Drawing.Point(953, 120);
             this.lblMxsq.Name = "lblMxsq";
-            this.lblMxsq.Size = new System.Drawing.Size(0, 24);
+            this.lblMxsq.Size = new System.Drawing.Size(0, 17);
             this.lblMxsq.TabIndex = 1111217;
             this.lblMxsq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -523,7 +527,7 @@
             this.label14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(988, 121);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 26);
+            this.label14.Size = new System.Drawing.Size(0, 20);
             this.label14.TabIndex = 1111215;
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -534,7 +538,7 @@
             this.label15.ForeColor = System.Drawing.Color.Crimson;
             this.label15.Location = new System.Drawing.Point(917, 120);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(57, 24);
+            this.label15.Size = new System.Drawing.Size(45, 17);
             this.label15.TabIndex = 1111216;
             this.label15.Text = "MXSQ : ";
             // 
@@ -545,7 +549,7 @@
             this.lblWeightvalue.ForeColor = System.Drawing.Color.Crimson;
             this.lblWeightvalue.Location = new System.Drawing.Point(818, 120);
             this.lblWeightvalue.Name = "lblWeightvalue";
-            this.lblWeightvalue.Size = new System.Drawing.Size(0, 24);
+            this.lblWeightvalue.Size = new System.Drawing.Size(0, 17);
             this.lblWeightvalue.TabIndex = 1111213;
             this.lblWeightvalue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -556,7 +560,7 @@
             this.label13.ForeColor = System.Drawing.Color.Crimson;
             this.label13.Location = new System.Drawing.Point(787, 120);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(46, 24);
+            this.label13.Size = new System.Drawing.Size(36, 17);
             this.label13.TabIndex = 1111214;
             this.label13.Text = "UPP : ";
             // 
@@ -567,7 +571,7 @@
             this.lblKG.ForeColor = System.Drawing.Color.Crimson;
             this.lblKG.Location = new System.Drawing.Point(1084, 611);
             this.lblKG.Name = "lblKG";
-            this.lblKG.Size = new System.Drawing.Size(22, 26);
+            this.lblKG.Size = new System.Drawing.Size(17, 20);
             this.lblKG.TabIndex = 1111212;
             this.lblKG.Text = "0";
             // 
@@ -578,7 +582,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(1026, 613);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(66, 24);
+            this.label12.Size = new System.Drawing.Size(53, 17);
             this.label12.TabIndex = 1111211;
             this.label12.Text = "Total Kg :";
             // 
@@ -590,7 +594,7 @@
             this.cmbUnit.Location = new System.Drawing.Point(660, 115);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbUnit.Name = "cmbUnit";
-            this.cmbUnit.Size = new System.Drawing.Size(63, 33);
+            this.cmbUnit.Size = new System.Drawing.Size(63, 27);
             this.cmbUnit.TabIndex = 5;
             this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
             this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
@@ -692,7 +696,7 @@
             this.lblSupplierOrderpolicy.Font = new System.Drawing.Font("Oswald Regular", 7F);
             this.lblSupplierOrderpolicy.Location = new System.Drawing.Point(6, 83);
             this.lblSupplierOrderpolicy.Name = "lblSupplierOrderpolicy";
-            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(0, 16);
+            this.lblSupplierOrderpolicy.Size = new System.Drawing.Size(0, 14);
             this.lblSupplierOrderpolicy.TabIndex = 1111205;
             this.lblSupplierOrderpolicy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -703,7 +707,7 @@
             this.asa.Font = new System.Drawing.Font("Oswald Regular", 7F);
             this.asa.Location = new System.Drawing.Point(6, 83);
             this.asa.Name = "asa";
-            this.asa.Size = new System.Drawing.Size(0, 16);
+            this.asa.Size = new System.Drawing.Size(0, 14);
             this.asa.TabIndex = 1111206;
             this.asa.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -714,7 +718,7 @@
             this.lblsupplierScheduletype.Font = new System.Drawing.Font("Oswald Regular", 7F);
             this.lblsupplierScheduletype.Location = new System.Drawing.Point(6, 58);
             this.lblsupplierScheduletype.Name = "lblsupplierScheduletype";
-            this.lblsupplierScheduletype.Size = new System.Drawing.Size(0, 16);
+            this.lblsupplierScheduletype.Size = new System.Drawing.Size(0, 14);
             this.lblsupplierScheduletype.TabIndex = 1111203;
             this.lblsupplierScheduletype.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -725,7 +729,7 @@
             this.lblSupplierCity.Font = new System.Drawing.Font("Oswald Regular", 7F);
             this.lblSupplierCity.Location = new System.Drawing.Point(6, 30);
             this.lblSupplierCity.Name = "lblSupplierCity";
-            this.lblSupplierCity.Size = new System.Drawing.Size(0, 16);
+            this.lblSupplierCity.Size = new System.Drawing.Size(0, 14);
             this.lblSupplierCity.TabIndex = 1111204;
             this.lblSupplierCity.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -736,7 +740,7 @@
             this.lblSuppliername.Font = new System.Drawing.Font("Oswald Regular", 8F);
             this.lblSuppliername.Location = new System.Drawing.Point(6, 16);
             this.lblSuppliername.Name = "lblSuppliername";
-            this.lblSuppliername.Size = new System.Drawing.Size(0, 19);
+            this.lblSuppliername.Size = new System.Drawing.Size(0, 15);
             this.lblSuppliername.TabIndex = 1111200;
             this.lblSuppliername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -747,7 +751,7 @@
             this.lblsupplierGST.Font = new System.Drawing.Font("Oswald Regular", 7F);
             this.lblsupplierGST.Location = new System.Drawing.Point(6, 45);
             this.lblsupplierGST.Name = "lblsupplierGST";
-            this.lblsupplierGST.Size = new System.Drawing.Size(0, 16);
+            this.lblsupplierGST.Size = new System.Drawing.Size(0, 14);
             this.lblsupplierGST.TabIndex = 1111201;
             this.lblsupplierGST.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -758,7 +762,7 @@
             this.lblsupplierpayment.Font = new System.Drawing.Font("Oswald Regular", 7F);
             this.lblsupplierpayment.Location = new System.Drawing.Point(6, 70);
             this.lblsupplierpayment.Name = "lblsupplierpayment";
-            this.lblsupplierpayment.Size = new System.Drawing.Size(0, 16);
+            this.lblsupplierpayment.Size = new System.Drawing.Size(0, 14);
             this.lblsupplierpayment.TabIndex = 1111202;
             this.lblsupplierpayment.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -798,10 +802,10 @@
             this.tp1.Controls.Add(this.txtSalesManName);
             this.tp1.Controls.Add(this.textBox14);
             this.tp1.Controls.Add(this.textBox16);
-            this.tp1.Location = new System.Drawing.Point(4, 28);
+            this.tp1.Location = new System.Drawing.Point(4, 24);
             this.tp1.Name = "tp1";
             this.tp1.Padding = new System.Windows.Forms.Padding(3);
-            this.tp1.Size = new System.Drawing.Size(569, 71);
+            this.tp1.Size = new System.Drawing.Size(569, 75);
             this.tp1.TabIndex = 2;
             this.tp1.Text = "Salesman Details";
             this.tp1.UseVisualStyleBackColor = true;
@@ -826,7 +830,7 @@
             this.txtSalesManMobile.Location = new System.Drawing.Point(81, 26);
             this.txtSalesManMobile.MaxLength = 10;
             this.txtSalesManMobile.Name = "txtSalesManMobile";
-            this.txtSalesManMobile.Size = new System.Drawing.Size(145, 26);
+            this.txtSalesManMobile.Size = new System.Drawing.Size(145, 22);
             this.txtSalesManMobile.TabIndex = 1111186;
             this.txtSalesManMobile.Enter += new System.EventHandler(this.TxtSalesManMobile_Enter);
             this.txtSalesManMobile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesManMobile_KeyDown);
@@ -855,7 +859,7 @@
             this.textBox18.Location = new System.Drawing.Point(6, 4);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(75, 26);
+            this.textBox18.Size = new System.Drawing.Size(75, 22);
             this.textBox18.TabIndex = 1111183;
             this.textBox18.TabStop = false;
             this.textBox18.Text = "Name";
@@ -866,7 +870,7 @@
             this.txtSalesManwhatsapp.Location = new System.Drawing.Point(81, 48);
             this.txtSalesManwhatsapp.MaxLength = 10;
             this.txtSalesManwhatsapp.Name = "txtSalesManwhatsapp";
-            this.txtSalesManwhatsapp.Size = new System.Drawing.Size(145, 26);
+            this.txtSalesManwhatsapp.Size = new System.Drawing.Size(145, 22);
             this.txtSalesManwhatsapp.TabIndex = 1111188;
             this.txtSalesManwhatsapp.Enter += new System.EventHandler(this.TxtSalesManwhatsapp_Enter);
             this.txtSalesManwhatsapp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesManwhatsapp_KeyDown);
@@ -879,7 +883,7 @@
             this.txtSalesManName.Location = new System.Drawing.Point(81, 4);
             this.txtSalesManName.MaxLength = 50;
             this.txtSalesManName.Name = "txtSalesManName";
-            this.txtSalesManName.Size = new System.Drawing.Size(145, 26);
+            this.txtSalesManName.Size = new System.Drawing.Size(145, 22);
             this.txtSalesManName.TabIndex = 1111184;
             this.txtSalesManName.Enter += new System.EventHandler(this.TxtSalesManName_Enter);
             this.txtSalesManName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesManName_KeyDown);
@@ -893,7 +897,7 @@
             this.textBox14.Location = new System.Drawing.Point(6, 48);
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(75, 26);
+            this.textBox14.Size = new System.Drawing.Size(75, 22);
             this.textBox14.TabIndex = 1111187;
             this.textBox14.TabStop = false;
             this.textBox14.Text = "WhatsApp No.";
@@ -906,7 +910,7 @@
             this.textBox16.Location = new System.Drawing.Point(6, 26);
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(75, 26);
+            this.textBox16.Size = new System.Drawing.Size(75, 22);
             this.textBox16.TabIndex = 1111185;
             this.textBox16.TabStop = false;
             this.textBox16.Text = "Phone No.";
@@ -914,10 +918,10 @@
             // tp2
             // 
             this.tp2.Controls.Add(this.grdRepDetails);
-            this.tp2.Location = new System.Drawing.Point(4, 28);
+            this.tp2.Location = new System.Drawing.Point(4, 24);
             this.tp2.Name = "tp2";
             this.tp2.Padding = new System.Windows.Forms.Padding(3);
-            this.tp2.Size = new System.Drawing.Size(569, 71);
+            this.tp2.Size = new System.Drawing.Size(569, 75);
             this.tp2.TabIndex = 1;
             this.tp2.Text = "Representative Details";
             this.tp2.UseVisualStyleBackColor = true;
@@ -966,10 +970,10 @@
             this.tp3.Controls.Add(this.txtDReturnCycle);
             this.tp3.Controls.Add(this.cmbReturnPolicy);
             this.tp3.Controls.Add(this.textBox20);
-            this.tp3.Location = new System.Drawing.Point(4, 28);
+            this.tp3.Location = new System.Drawing.Point(4, 24);
             this.tp3.Name = "tp3";
             this.tp3.Padding = new System.Windows.Forms.Padding(3);
-            this.tp3.Size = new System.Drawing.Size(569, 71);
+            this.tp3.Size = new System.Drawing.Size(569, 75);
             this.tp3.TabIndex = 3;
             this.tp3.Text = "Return Cycle";
             this.tp3.UseVisualStyleBackColor = true;
@@ -1004,7 +1008,7 @@
             this.cmbSecondLevel.FormattingEnabled = true;
             this.cmbSecondLevel.Location = new System.Drawing.Point(362, 27);
             this.cmbSecondLevel.Name = "cmbSecondLevel";
-            this.cmbSecondLevel.Size = new System.Drawing.Size(145, 27);
+            this.cmbSecondLevel.Size = new System.Drawing.Size(145, 23);
             this.cmbSecondLevel.TabIndex = 81;
             this.cmbSecondLevel.SelectedIndexChanged += new System.EventHandler(this.CmbSecondLevel_SelectedIndexChanged);
             this.cmbSecondLevel.Enter += new System.EventHandler(this.CmbSecondLevel_Enter);
@@ -1020,7 +1024,7 @@
             this.txtNextLevel.Location = new System.Drawing.Point(255, 28);
             this.txtNextLevel.Name = "txtNextLevel";
             this.txtNextLevel.ReadOnly = true;
-            this.txtNextLevel.Size = new System.Drawing.Size(107, 26);
+            this.txtNextLevel.Size = new System.Drawing.Size(107, 22);
             this.txtNextLevel.TabIndex = 85;
             // 
             // cmbPolicyContent
@@ -1029,7 +1033,7 @@
             this.cmbPolicyContent.FormattingEnabled = true;
             this.cmbPolicyContent.Location = new System.Drawing.Point(362, 6);
             this.cmbPolicyContent.Name = "cmbPolicyContent";
-            this.cmbPolicyContent.Size = new System.Drawing.Size(145, 27);
+            this.cmbPolicyContent.Size = new System.Drawing.Size(145, 23);
             this.cmbPolicyContent.TabIndex = 80;
             this.cmbPolicyContent.SelectedIndexChanged += new System.EventHandler(this.CmbPolicyContent_SelectedIndexChanged);
             this.cmbPolicyContent.Enter += new System.EventHandler(this.CmbPolicyContent_Enter);
@@ -1045,7 +1049,7 @@
             this.txtReturnText.Location = new System.Drawing.Point(255, 6);
             this.txtReturnText.Name = "txtReturnText";
             this.txtReturnText.ReadOnly = true;
-            this.txtReturnText.Size = new System.Drawing.Size(107, 26);
+            this.txtReturnText.Size = new System.Drawing.Size(107, 22);
             this.txtReturnText.TabIndex = 84;
             // 
             // cmbReturnType
@@ -1054,7 +1058,7 @@
             this.cmbReturnType.FormattingEnabled = true;
             this.cmbReturnType.Location = new System.Drawing.Point(110, 27);
             this.cmbReturnType.Name = "cmbReturnType";
-            this.cmbReturnType.Size = new System.Drawing.Size(145, 27);
+            this.cmbReturnType.Size = new System.Drawing.Size(145, 23);
             this.cmbReturnType.TabIndex = 79;
             this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.CmbReturnType_SelectedIndexChanged);
             this.cmbReturnType.Enter += new System.EventHandler(this.CmbReturnType_Enter);
@@ -1070,7 +1074,7 @@
             this.txtDReturnCycle.Location = new System.Drawing.Point(5, 28);
             this.txtDReturnCycle.Name = "txtDReturnCycle";
             this.txtDReturnCycle.ReadOnly = true;
-            this.txtDReturnCycle.Size = new System.Drawing.Size(105, 26);
+            this.txtDReturnCycle.Size = new System.Drawing.Size(105, 22);
             this.txtDReturnCycle.TabIndex = 83;
             this.txtDReturnCycle.Text = "Return Cycle";
             // 
@@ -1080,7 +1084,7 @@
             this.cmbReturnPolicy.FormattingEnabled = true;
             this.cmbReturnPolicy.Location = new System.Drawing.Point(110, 6);
             this.cmbReturnPolicy.Name = "cmbReturnPolicy";
-            this.cmbReturnPolicy.Size = new System.Drawing.Size(145, 27);
+            this.cmbReturnPolicy.Size = new System.Drawing.Size(145, 23);
             this.cmbReturnPolicy.TabIndex = 78;
             this.cmbReturnPolicy.SelectedIndexChanged += new System.EventHandler(this.CmbReturnPolicy_SelectedIndexChanged);
             this.cmbReturnPolicy.Enter += new System.EventHandler(this.CmbReturnPolicy_Enter);
@@ -1096,7 +1100,7 @@
             this.textBox20.Location = new System.Drawing.Point(5, 6);
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
-            this.textBox20.Size = new System.Drawing.Size(105, 26);
+            this.textBox20.Size = new System.Drawing.Size(105, 22);
             this.textBox20.TabIndex = 82;
             this.textBox20.Text = "Returns Applicable";
             // 
@@ -1155,7 +1159,7 @@
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(622, 118);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 26);
+            this.label11.Size = new System.Drawing.Size(32, 20);
             this.label11.TabIndex = 1111191;
             this.label11.Text = "Unit";
             // 
@@ -1166,7 +1170,7 @@
             this.lblPC.ForeColor = System.Drawing.Color.Crimson;
             this.lblPC.Location = new System.Drawing.Point(1084, 588);
             this.lblPC.Name = "lblPC";
-            this.lblPC.Size = new System.Drawing.Size(22, 26);
+            this.lblPC.Size = new System.Drawing.Size(17, 20);
             this.lblPC.TabIndex = 1111190;
             this.lblPC.Text = "0";
             // 
@@ -1177,7 +1181,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(996, 590);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 24);
+            this.label7.Size = new System.Drawing.Size(83, 17);
             this.label7.TabIndex = 1111189;
             this.label7.Text = "Total Products :";
             // 
@@ -1189,7 +1193,7 @@
             this.lblpocreatedon.ForeColor = System.Drawing.Color.Black;
             this.lblpocreatedon.Location = new System.Drawing.Point(310, 610);
             this.lblpocreatedon.Name = "lblpocreatedon";
-            this.lblpocreatedon.Size = new System.Drawing.Size(0, 20);
+            this.lblpocreatedon.Size = new System.Drawing.Size(0, 16);
             this.lblpocreatedon.TabIndex = 1111188;
             // 
             // lblPOCreateby
@@ -1200,7 +1204,7 @@
             this.lblPOCreateby.ForeColor = System.Drawing.Color.Black;
             this.lblPOCreateby.Location = new System.Drawing.Point(310, 585);
             this.lblPOCreateby.Name = "lblPOCreateby";
-            this.lblPOCreateby.Size = new System.Drawing.Size(0, 20);
+            this.lblPOCreateby.Size = new System.Drawing.Size(0, 16);
             this.lblPOCreateby.TabIndex = 1111187;
             // 
             // label10
@@ -1209,7 +1213,7 @@
             this.label10.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(231, 610);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 20);
+            this.label10.Size = new System.Drawing.Size(76, 16);
             this.label10.TabIndex = 1111186;
             this.label10.Text = "PO Created On :";
             // 
@@ -1219,7 +1223,7 @@
             this.label9.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(231, 585);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 20);
+            this.label9.Size = new System.Drawing.Size(76, 16);
             this.label9.TabIndex = 1111185;
             this.label9.Text = "PO Created By :";
             // 
@@ -1228,7 +1232,7 @@
             this.txtProductQty.Location = new System.Drawing.Point(562, 115);
             this.txtProductQty.MaxLength = 8;
             this.txtProductQty.Name = "txtProductQty";
-            this.txtProductQty.Size = new System.Drawing.Size(58, 32);
+            this.txtProductQty.Size = new System.Drawing.Size(58, 27);
             this.txtProductQty.TabIndex = 4;
             this.txtProductQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtProductQty.Enter += new System.EventHandler(this.TxtProductQty_Enter);
@@ -1242,7 +1246,7 @@
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(500, 118);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 26);
+            this.label5.Size = new System.Drawing.Size(62, 20);
             this.label5.TabIndex = 1111181;
             this.label5.Text = "Order Qty";
             // 
@@ -1252,7 +1256,7 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(144, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 26);
+            this.label1.Size = new System.Drawing.Size(52, 20);
             this.label1.TabIndex = 20;
             this.label1.Text = "PO Date";
             // 
@@ -1262,7 +1266,7 @@
             this.dpPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpPlanDate.Location = new System.Drawing.Point(148, 37);
             this.dpPlanDate.Name = "dpPlanDate";
-            this.dpPlanDate.Size = new System.Drawing.Size(112, 32);
+            this.dpPlanDate.Size = new System.Drawing.Size(112, 27);
             this.dpPlanDate.TabIndex = 1;
             this.dpPlanDate.ValueChanged += new System.EventHandler(this.DpPlanDate_ValueChanged);
             this.dpPlanDate.Enter += new System.EventHandler(this.DpPlanDate_Enter);
@@ -1290,7 +1294,7 @@
             this.cmbConcern.Location = new System.Drawing.Point(8, 37);
             this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(114, 33);
+            this.cmbConcern.Size = new System.Drawing.Size(114, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
@@ -1303,7 +1307,7 @@
             this.lblGodown.AutoSize = true;
             this.lblGodown.Location = new System.Drawing.Point(8, 16);
             this.lblGodown.Name = "lblGodown";
-            this.lblGodown.Size = new System.Drawing.Size(66, 25);
+            this.lblGodown.Size = new System.Drawing.Size(54, 20);
             this.lblGodown.TabIndex = 1111178;
             this.lblGodown.Text = "Concern";
             // 
@@ -1357,7 +1361,7 @@
             "Mobile App"});
             this.cmbIssueMode.Location = new System.Drawing.Point(129, 74);
             this.cmbIssueMode.Name = "cmbIssueMode";
-            this.cmbIssueMode.Size = new System.Drawing.Size(177, 33);
+            this.cmbIssueMode.Size = new System.Drawing.Size(177, 27);
             this.cmbIssueMode.TabIndex = 2;
             this.cmbIssueMode.SelectedIndexChanged += new System.EventHandler(this.CmbIssueMode_SelectedIndexChanged);
             this.cmbIssueMode.Enter += new System.EventHandler(this.CmbIssueMode_Enter);
@@ -1373,7 +1377,7 @@
             this.textBox6.Location = new System.Drawing.Point(263, 128);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(43, 32);
+            this.textBox6.Size = new System.Drawing.Size(43, 27);
             this.textBox6.TabIndex = 1111189;
             this.textBox6.Text = "DAY(S)";
             // 
@@ -1385,7 +1389,7 @@
             this.txtDmode.Location = new System.Drawing.Point(17, 101);
             this.txtDmode.Name = "txtDmode";
             this.txtDmode.ReadOnly = true;
-            this.txtDmode.Size = new System.Drawing.Size(112, 32);
+            this.txtDmode.Size = new System.Drawing.Size(112, 27);
             this.txtDmode.TabIndex = 1111181;
             this.txtDmode.TabStop = false;
             // 
@@ -1396,7 +1400,7 @@
             this.txtTurnAroundTime.Location = new System.Drawing.Point(129, 128);
             this.txtTurnAroundTime.MaxLength = 3;
             this.txtTurnAroundTime.Name = "txtTurnAroundTime";
-            this.txtTurnAroundTime.Size = new System.Drawing.Size(134, 32);
+            this.txtTurnAroundTime.Size = new System.Drawing.Size(134, 27);
             this.txtTurnAroundTime.TabIndex = 4;
             this.txtTurnAroundTime.Enter += new System.EventHandler(this.TxtTAT_Enter);
             this.txtTurnAroundTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTAT_KeyDown);
@@ -1411,7 +1415,7 @@
             this.textBox4.Location = new System.Drawing.Point(17, 128);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(112, 32);
+            this.textBox4.Size = new System.Drawing.Size(112, 27);
             this.textBox4.TabIndex = 1111179;
             this.textBox4.TabStop = false;
             this.textBox4.Text = "Turn Around Time";
@@ -1423,7 +1427,7 @@
             this.txtissuemodevalue.Location = new System.Drawing.Point(129, 101);
             this.txtissuemodevalue.MaxLength = 50;
             this.txtissuemodevalue.Name = "txtissuemodevalue";
-            this.txtissuemodevalue.Size = new System.Drawing.Size(177, 32);
+            this.txtissuemodevalue.Size = new System.Drawing.Size(177, 27);
             this.txtissuemodevalue.TabIndex = 3;
             this.txtissuemodevalue.Enter += new System.EventHandler(this.txtissuemodevalue_Enter);
             this.txtissuemodevalue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtissuemodevalue_KeyDown);
@@ -1437,7 +1441,7 @@
             this.txtIssuedBy.Location = new System.Drawing.Point(129, 47);
             this.txtIssuedBy.MaxLength = 20;
             this.txtIssuedBy.Name = "txtIssuedBy";
-            this.txtIssuedBy.Size = new System.Drawing.Size(177, 32);
+            this.txtIssuedBy.Size = new System.Drawing.Size(177, 27);
             this.txtIssuedBy.TabIndex = 1;
             this.txtIssuedBy.Enter += new System.EventHandler(this.TxtIssuedBy_Enter);
             this.txtIssuedBy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtIssuedBy_KeyDown);
@@ -1451,7 +1455,7 @@
             this.textBox2.Location = new System.Drawing.Point(17, 74);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(112, 32);
+            this.textBox2.Size = new System.Drawing.Size(112, 27);
             this.textBox2.TabIndex = 5;
             this.textBox2.TabStop = false;
             this.textBox2.Text = "Mode of Issue";
@@ -1464,7 +1468,7 @@
             this.textBox1.Location = new System.Drawing.Point(17, 47);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(112, 32);
+            this.textBox1.Size = new System.Drawing.Size(112, 27);
             this.textBox1.TabIndex = 4;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "Issued By";
@@ -1477,7 +1481,7 @@
             this.txtDTamilName.Location = new System.Drawing.Point(17, 20);
             this.txtDTamilName.Name = "txtDTamilName";
             this.txtDTamilName.ReadOnly = true;
-            this.txtDTamilName.Size = new System.Drawing.Size(112, 32);
+            this.txtDTamilName.Size = new System.Drawing.Size(112, 27);
             this.txtDTamilName.TabIndex = 3;
             this.txtDTamilName.TabStop = false;
             this.txtDTamilName.Text = "Issue Date And Time";
@@ -1490,7 +1494,7 @@
             this.dpissuedateandtime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dpissuedateandtime.Location = new System.Drawing.Point(129, 20);
             this.dpissuedateandtime.Name = "dpissuedateandtime";
-            this.dpissuedateandtime.Size = new System.Drawing.Size(177, 32);
+            this.dpissuedateandtime.Size = new System.Drawing.Size(177, 27);
             this.dpissuedateandtime.TabIndex = 0;
             this.dpissuedateandtime.Enter += new System.EventHandler(this.Dpissuedateandtime_Enter);
             this.dpissuedateandtime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Dpissuedateandtime_KeyDown);
@@ -1518,7 +1522,7 @@
             this.txtpono.MaxLength = 50;
             this.txtpono.Name = "txtpono";
             this.txtpono.ReadOnly = true;
-            this.txtpono.Size = new System.Drawing.Size(226, 32);
+            this.txtpono.Size = new System.Drawing.Size(226, 27);
             this.txtpono.TabIndex = 1111168;
             // 
             // label2
@@ -1527,7 +1531,7 @@
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(274, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 26);
+            this.label2.Size = new System.Drawing.Size(44, 20);
             this.label2.TabIndex = 1111167;
             this.label2.Text = "PO No.";
             // 
@@ -1548,7 +1552,7 @@
             this.lblRemark.AutoSize = true;
             this.lblRemark.Location = new System.Drawing.Point(431, 588);
             this.lblRemark.Name = "lblRemark";
-            this.lblRemark.Size = new System.Drawing.Size(70, 25);
+            this.lblRemark.Size = new System.Drawing.Size(56, 20);
             this.lblRemark.TabIndex = 1111166;
             this.lblRemark.Text = "Remarks";
             // 
@@ -1572,7 +1576,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(148, 68);
             this.txtSupplier.MaxLength = 50;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(352, 32);
+            this.txtSupplier.Size = new System.Drawing.Size(352, 27);
             this.txtSupplier.TabIndex = 2;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
@@ -1585,7 +1589,7 @@
             this.lblDESupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDESupplier.Location = new System.Drawing.Point(8, 71);
             this.lblDESupplier.Name = "lblDESupplier";
-            this.lblDESupplier.Size = new System.Drawing.Size(67, 26);
+            this.lblDESupplier.Size = new System.Drawing.Size(54, 20);
             this.lblDESupplier.TabIndex = 1111160;
             this.lblDESupplier.Text = "Supplier";
             // 
@@ -1596,7 +1600,7 @@
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoRecordsFound.Location = new System.Drawing.Point(617, 274);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
-            this.lblNoRecordsFound.Size = new System.Drawing.Size(130, 25);
+            this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958763;
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1622,7 +1626,7 @@
             this.lblPossibleSupplierRecords.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPossibleSupplierRecords.Location = new System.Drawing.Point(238, 84);
             this.lblPossibleSupplierRecords.Name = "lblPossibleSupplierRecords";
-            this.lblPossibleSupplierRecords.Size = new System.Drawing.Size(106, 20);
+            this.lblPossibleSupplierRecords.Size = new System.Drawing.Size(84, 16);
             this.lblPossibleSupplierRecords.TabIndex = 1111161;
             this.lblPossibleSupplierRecords.Text = "No Records Found";
             this.lblPossibleSupplierRecords.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1742,7 +1746,7 @@
             this.lblNorecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNorecord.Location = new System.Drawing.Point(440, 86);
             this.lblNorecord.Name = "lblNorecord";
-            this.lblNorecord.Size = new System.Drawing.Size(106, 20);
+            this.lblNorecord.Size = new System.Drawing.Size(84, 16);
             this.lblNorecord.TabIndex = 1111139;
             this.lblNorecord.Text = "No Records Found";
             this.lblNorecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1769,7 +1773,7 @@
             this.lblFinishedNoRecord.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFinishedNoRecord.Location = new System.Drawing.Point(164, 73);
             this.lblFinishedNoRecord.Name = "lblFinishedNoRecord";
-            this.lblFinishedNoRecord.Size = new System.Drawing.Size(106, 20);
+            this.lblFinishedNoRecord.Size = new System.Drawing.Size(84, 16);
             this.lblFinishedNoRecord.TabIndex = 1111138;
             this.lblFinishedNoRecord.Text = "No Records Found";
             this.lblFinishedNoRecord.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1781,7 +1785,7 @@
             this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(327, 139);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(91, 20);
+            this.label8.Size = new System.Drawing.Size(75, 16);
             this.label8.TabIndex = 1111174;
             this.label8.Text = "Partial Pending";
             // 
@@ -1900,7 +1904,7 @@
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(257, 139);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 20);
+            this.label6.Size = new System.Drawing.Size(64, 16);
             this.label6.TabIndex = 1111172;
             this.label6.Text = "Prev.Pending";
             // 
@@ -1912,7 +1916,7 @@
             this.txtProductName.Location = new System.Drawing.Point(8, 115);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(492, 32);
+            this.txtProductName.Size = new System.Drawing.Size(492, 27);
             this.txtProductName.TabIndex = 3;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
@@ -1925,7 +1929,7 @@
             this.lblDProduct.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
             this.lblDProduct.Location = new System.Drawing.Point(8, 98);
             this.lblDProduct.Name = "lblDProduct";
-            this.lblDProduct.Size = new System.Drawing.Size(152, 21);
+            this.lblDProduct.Size = new System.Drawing.Size(121, 17);
             this.lblDProduct.TabIndex = 2;
             this.lblDProduct.Text = "Search by P.I Code (F11)";
             // 
@@ -1957,6 +1961,8 @@
             this.clmBulkUnit,
             this.clmgst,
             this.clmMSQ,
+            this.clmRXSQ,
+            this.clmTMXSQ,
             this.clmMXSQ,
             this.clmstock,
             this.clmpreviouspend,
@@ -1993,9 +1999,9 @@
             this.grdsupplieradd.Name = "grdsupplieradd";
             this.grdsupplieradd.RowHeadersVisible = false;
             this.grdsupplieradd.RowHeadersWidth = 51;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdsupplieradd.RowsDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdsupplieradd.RowsDefaultCellStyle = dataGridViewCellStyle42;
             this.grdsupplieradd.RowTemplate.Height = 25;
             this.grdsupplieradd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdsupplieradd.Size = new System.Drawing.Size(1325, 277);
@@ -2012,7 +2018,7 @@
             this.lblschedule.AutoSize = true;
             this.lblschedule.Location = new System.Drawing.Point(1054, 122);
             this.lblschedule.Name = "lblschedule";
-            this.lblschedule.Size = new System.Drawing.Size(21, 25);
+            this.lblschedule.Size = new System.Drawing.Size(16, 20);
             this.lblschedule.TabIndex = 1111210;
             this.lblschedule.Text = "0";
             this.lblschedule.Visible = false;
@@ -2022,7 +2028,7 @@
             this.lblProductcode.AutoSize = true;
             this.lblProductcode.Location = new System.Drawing.Point(1163, 208);
             this.lblProductcode.Name = "lblProductcode";
-            this.lblProductcode.Size = new System.Drawing.Size(21, 25);
+            this.lblProductcode.Size = new System.Drawing.Size(16, 20);
             this.lblProductcode.TabIndex = 1111209;
             this.lblProductcode.Text = "0";
             this.lblProductcode.Visible = false;
@@ -2032,7 +2038,7 @@
             this.lblSupplierCode.AutoSize = true;
             this.lblSupplierCode.Location = new System.Drawing.Point(1154, 208);
             this.lblSupplierCode.Name = "lblSupplierCode";
-            this.lblSupplierCode.Size = new System.Drawing.Size(21, 25);
+            this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 1111208;
             this.lblSupplierCode.Text = "0";
             this.lblSupplierCode.Visible = false;
@@ -2153,11 +2159,29 @@
             this.clmMSQ.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.clmMSQ.Width = 50;
             // 
-            // clmMXSQ
+            // clmRXSQ
             // 
             dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmMXSQ.DefaultCellStyle = dataGridViewCellStyle24;
-            this.clmMXSQ.HeaderText = "MXSQ";
+            this.clmRXSQ.DefaultCellStyle = dataGridViewCellStyle24;
+            this.clmRXSQ.HeaderText = "RXSQ";
+            this.clmRXSQ.Name = "clmRXSQ";
+            this.clmRXSQ.ReadOnly = true;
+            this.clmRXSQ.Width = 50;
+            // 
+            // clmTMXSQ
+            // 
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmTMXSQ.DefaultCellStyle = dataGridViewCellStyle25;
+            this.clmTMXSQ.HeaderText = "MXSQ";
+            this.clmTMXSQ.Name = "clmTMXSQ";
+            this.clmTMXSQ.ReadOnly = true;
+            this.clmTMXSQ.Width = 50;
+            // 
+            // clmMXSQ
+            // 
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmMXSQ.DefaultCellStyle = dataGridViewCellStyle26;
+            this.clmMXSQ.HeaderText = "TMXSQ";
             this.clmMXSQ.MinimumWidth = 6;
             this.clmMXSQ.Name = "clmMXSQ";
             this.clmMXSQ.ReadOnly = true;
@@ -2166,8 +2190,8 @@
             // 
             // clmstock
             // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmstock.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmstock.DefaultCellStyle = dataGridViewCellStyle27;
             this.clmstock.HeaderText = "Recm. Order Qty";
             this.clmstock.MinimumWidth = 6;
             this.clmstock.Name = "clmstock";
@@ -2177,8 +2201,8 @@
             // 
             // clmpreviouspend
             // 
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmpreviouspend.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmpreviouspend.DefaultCellStyle = dataGridViewCellStyle28;
             this.clmpreviouspend.HeaderText = "Previous Pending";
             this.clmpreviouspend.MinimumWidth = 6;
             this.clmpreviouspend.Name = "clmpreviouspend";
@@ -2188,8 +2212,8 @@
             // 
             // clmOtherSupplierprevious
             // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmOtherSupplierprevious.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmOtherSupplierprevious.DefaultCellStyle = dataGridViewCellStyle29;
             this.clmOtherSupplierprevious.HeaderText = "Other.Sup Pre.Pend";
             this.clmOtherSupplierprevious.MinimumWidth = 6;
             this.clmOtherSupplierprevious.Name = "clmOtherSupplierprevious";
@@ -2199,8 +2223,8 @@
             // 
             // clmPartialPendingQty
             // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmPartialPendingQty.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmPartialPendingQty.DefaultCellStyle = dataGridViewCellStyle30;
             this.clmPartialPendingQty.HeaderText = "Partial Pending";
             this.clmPartialPendingQty.MinimumWidth = 6;
             this.clmPartialPendingQty.Name = "clmPartialPendingQty";
@@ -2210,8 +2234,8 @@
             // 
             // clmothersupplierpartialpending
             // 
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmothersupplierpartialpending.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmothersupplierpartialpending.DefaultCellStyle = dataGridViewCellStyle31;
             this.clmothersupplierpartialpending.HeaderText = "Other.Sup Par.Pend";
             this.clmothersupplierpartialpending.MinimumWidth = 6;
             this.clmothersupplierpartialpending.Name = "clmothersupplierpartialpending";
@@ -2221,8 +2245,8 @@
             // 
             // clmreorderqty
             // 
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.clmreorderqty.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.clmreorderqty.DefaultCellStyle = dataGridViewCellStyle32;
             this.clmreorderqty.HeaderText = "Reorder Qty";
             this.clmreorderqty.MinimumWidth = 6;
             this.clmreorderqty.Name = "clmreorderqty";
@@ -2233,11 +2257,11 @@
             // 
             // clmOrderqty
             // 
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.Black;
-            this.clmOrderqty.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            dataGridViewCellStyle33.ForeColor = System.Drawing.Color.Black;
+            this.clmOrderqty.DefaultCellStyle = dataGridViewCellStyle33;
             this.clmOrderqty.HeaderText = "Bulk Unit Order Qty ";
             this.clmOrderqty.MinimumWidth = 6;
             this.clmOrderqty.Name = "clmOrderqty";
@@ -2247,8 +2271,8 @@
             // 
             // Column2
             // 
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle34;
             this.Column2.HeaderText = "Bulk Unit";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -2259,10 +2283,10 @@
             // 
             // clmunitorderqty
             // 
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.clmunitorderqty.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.clmunitorderqty.DefaultCellStyle = dataGridViewCellStyle35;
             this.clmunitorderqty.HeaderText = "Unit Order Qty ";
             this.clmunitorderqty.MinimumWidth = 6;
             this.clmunitorderqty.Name = "clmunitorderqty";
@@ -2272,8 +2296,8 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle36;
             this.Column1.HeaderText = "Unit";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -2284,10 +2308,10 @@
             // 
             // clmordertotalqty
             // 
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.PaleGreen;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.clmordertotalqty.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.PaleGreen;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.clmordertotalqty.DefaultCellStyle = dataGridViewCellStyle37;
             this.clmordertotalqty.HeaderText = "Total Order Qty ";
             this.clmordertotalqty.MinimumWidth = 6;
             this.clmordertotalqty.Name = "clmordertotalqty";
@@ -2296,8 +2320,8 @@
             // 
             // u
             // 
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.u.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.u.DefaultCellStyle = dataGridViewCellStyle38;
             this.u.HeaderText = "Unit";
             this.u.MinimumWidth = 6;
             this.u.Name = "u";
@@ -2307,10 +2331,10 @@
             // 
             // clmtotalkg
             // 
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.clmtotalkg.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
+            this.clmtotalkg.DefaultCellStyle = dataGridViewCellStyle39;
             this.clmtotalkg.HeaderText = "Total Wt";
             this.clmtotalkg.MinimumWidth = 6;
             this.clmtotalkg.Name = "clmtotalkg";
@@ -2320,8 +2344,8 @@
             // 
             // uu
             // 
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.uu.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.uu.DefaultCellStyle = dataGridViewCellStyle40;
             this.uu.HeaderText = "Unit";
             this.uu.MinimumWidth = 6;
             this.uu.Name = "uu";
@@ -2431,8 +2455,8 @@
             // 
             // clmremarks
             // 
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmremarks.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmremarks.DefaultCellStyle = dataGridViewCellStyle41;
             this.clmremarks.HeaderText = "Product Remarks";
             this.clmremarks.MinimumWidth = 6;
             this.clmremarks.Name = "clmremarks";
@@ -2467,7 +2491,7 @@
             // 
             // PUR_PurchaseOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
@@ -2658,6 +2682,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBulkUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmgst;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMSQ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRXSQ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmTMXSQ;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMXSQ;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmstock;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmpreviouspend;

@@ -19,6 +19,7 @@ namespace ROMS
         DynamicWindowControl windowControl = new DynamicWindowControl();
         MainForm objMainForm = new MainForm();
 
+        Boolean BlnSearchImageYN = false;
         DataValidation objValidation = new DataValidation();
         DataError objError;
         string varUserID = "0";
@@ -56,7 +57,7 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objINV_InwardPurchase = new INV_InwardPurchase();
-                    //MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
+                    MainForm.objINV_InwardPurchase.MdiParent = this.ParentForm;
                     //MainForm.objINV_InwardPurchase.btnSave.Text = "Update";
                     MainForm.objINV_InwardPurchase.varInwardId = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value);
                     MainForm.objINV_InwardPurchase.varID = Convert.ToInt32(grdInwardList.SelectedRows[0].Cells["GIPID"].Value); //for remarks popup
@@ -84,8 +85,13 @@ namespace ROMS
                     //MainForm.objINV_InwardPurchase.dpGRNDate.Text = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GRN Date"].Value);
                     picLoader.Visible = false;
                     picLoader.SendToBack();
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
-                    MainForm.objINV_InwardPurchase.ShowDialog();
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_InwardPurchase);
+
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_InwardPurchase;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_InwardPurchase.Show();
                 }
                 catch (Exception ex)
                 {
@@ -235,10 +241,15 @@ namespace ROMS
             try
             {
                 MainForm.objINV_InwardQueueList = new INV_InwardQueueList();
-                //MainForm.objINV_InwardQueueList.MdiParent = this.ParentForm;
+                MainForm.objINV_InwardQueueList.MdiParent = this.ParentForm;
                 MainForm.objINV_InwardQueueList.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 28 && sp.EditAccess.Split(',').Contains("10"));
-                objMainForm.CenterEntryForm(this, MainForm.objINV_InwardQueueList);
-                MainForm.objINV_InwardQueueList.ShowDialog();
+                //objMainForm.CenterEntryForm(this, MainForm.objINV_InwardQueueList);
+
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objINV_InwardQueueList;
+                main.CurrentParentListForm = this;
+                MainForm.objINV_InwardQueueList.Show();
             }
             catch (Exception ex)
             {
@@ -787,7 +798,9 @@ namespace ROMS
                                 grdInwardList.Columns["Location"].Width = 130;
                                 grdInwardList.Columns["Created By"].Width = 200;
                                 grdInwardList.Columns["Goods Inward Status"].Width = 150;
-                              //  grdInwardList.Columns["Created On"].Width = 140;
+                                //  grdInwardList.Columns["Created On"].Width = 140;
+                                grdInwardList.Columns["clmStickerPrint"].Visible = true;
+                                
                                 grdInwardList.Columns["GSTIN"].Visible = false;
                                 grdInwardList.Columns["Location"].Width = 170;
                                 // grdInwardQueueList.Columns["Status"].Width = 100;
@@ -811,18 +824,21 @@ namespace ROMS
                             {
                                 lblNoRecordsFound.Visible = true;
                                 lblNoRecordsFound.BringToFront();
+                                grdInwardList.Columns["clmStickerPrint"].Visible = false;
                             }
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                            grdInwardList.Columns["clmStickerPrint"].Visible = false;
                         }
                     }
                     else
                     {
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
+                        grdInwardList.Columns["clmStickerPrint"].Visible = false;
                     }
                     udfnSearchGridHead();
                     if (lblNoRecordsFound.Visible == true)
@@ -931,6 +947,9 @@ namespace ROMS
                     {
                         DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     }
+
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -951,13 +970,26 @@ namespace ROMS
                             dgv2.Columns.Add((DataGridViewColumn)col.Clone());
                             visibleColumns.Add(col.Index);
                         }
-                    }
+                    } 
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -2190,7 +2222,64 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+
+        private void grdInwardList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdInwardList.Columns[e.ColumnIndex].Name)
+                    {
+                        
+                        case "clmStickerPrint":
+                            try
+                            {
+                                string GIID = "0";
+                                GIID = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GIPID"].Value.ToString());
+                                DialogResult result1;
+                                SPDataService objDServ = new SPDataService();
+                                string varMessage = objDServ.udfnGetMessages(87);
+                                objDServ.CloseConnection();
+                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    string varHeader = "";
+                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Inward_FPurchase_Sticker_Print_100x70.rpt");
+
+                                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(GIID));
+                                    objBillreport.SetParameterValue("paraPRID", 0);
+                                    objBillreport.SetParameterValue("paraFlag", 1);
+                                    objBillreport.SetParameterValue("paraStickerCount", 0);
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                                    objValidation.CrySqlConnection(objBillreport);
+
+                                    MainForm.objReportLoad = new ReportLoad();
+                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                    MainForm.objReportLoad.Text = varHeader;
+                                    MainForm.objReportLoad.ShowDialog();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -2276,13 +2365,26 @@ namespace ROMS
                     {
                         grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.BackColor = Color.LimeGreen;
                         grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.ForeColor = Color.White;
+                       
                     }
                     else if (Convert.ToString(grdInwardList.Rows[i].Cells["Status ID"].Value) == "45") //Draft
                     {
                         grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.BackColor = Color.Tomato;
                         grdInwardList.Rows[i].Cells["Goods Inward Status"].Style.ForeColor = Color.White;
                     }
+                    //sticker reprint
+                    if (Convert.ToString(grdInwardList.Rows[i].Cells["StickerFlag"].Value) == "0")
+                    {
+                        grdInwardList.Rows[i].Cells["clmStickerPrint"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdInwardList.Rows[i].Cells["clmStickerPrint"] = print;
+                        print.ReadOnly = true;
+                    }
+
                 }
+
+                grdInwardList.Columns["clmStickerPrint"].Resizable = DataGridViewTriState.False;
             }
             catch (Exception ex)
             {

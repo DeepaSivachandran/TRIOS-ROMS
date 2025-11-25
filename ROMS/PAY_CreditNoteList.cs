@@ -1190,27 +1190,35 @@ namespace ROMS
                         if (Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["Flag"].Value) == 0)
                         {
                             MainForm.objPUR_PurchaseReturns = new PUR_PurchaseReturns();
-                            //MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
+                            MainForm.objPUR_PurchaseReturns.MdiParent = this.ParentForm;
                             MainForm.objPUR_PurchaseReturns.varCreditDCID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DCID"].Value.ToString());
                             MainForm.objPUR_PurchaseReturns.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["DC_STSID"].Value.ToString());
                             MainForm.objPUR_PurchaseReturns.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
                             MainForm.objPUR_PurchaseReturns.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
                             MainForm.objPUR_PurchaseReturns.btnSave.Text = "Update";
                             MainForm.objPUR_PurchaseReturns.varEditFlag = 1;
-                            objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
-                            MainForm.objPUR_PurchaseReturns.ShowDialog();
+                            //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseReturns);
+                            MainForm main = (MainForm)this.MdiParent;
+                            main.IsEntryFormOpen = true;
+                            main.CurrentEntryForm = MainForm.objPUR_PurchaseReturns;
+                            main.CurrentParentListForm = this;
+                            MainForm.objPUR_PurchaseReturns.Show();
                         }
                         else
                         {
                             MainForm.objPAY_CreditNote = new PAY_CreditNote();
-                            //MainForm.objPAY_CreditNote.MdiParent = this.ParentForm;
+                            MainForm.objPAY_CreditNote.MdiParent = this.ParentForm;
                             MainForm.objPAY_CreditNote.btnSave.Text = "Update";
                             MainForm.objPAY_CreditNote.varCreditID = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["CNID"].Value);
                             MainForm.objPAY_CreditNote.pbSupplierId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPID"].Value.ToString());
                             MainForm.objPAY_CreditNote.pbScheduleid = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["SPSCID"].Value.ToString());
                             MainForm.objPAY_CreditNote.varStatusId = Convert.ToInt32(grdCreditNoteList.SelectedRows[0].Cells["STSID"].Value.ToString());
-                            objMainForm.CenterEntryForm(this, MainForm.objPAY_CreditNote);
-                            MainForm.objPAY_CreditNote.ShowDialog();
+                            //objMainForm.CenterEntryForm(this, MainForm.objPAY_CreditNote);
+                            MainForm main = (MainForm)this.MdiParent;
+                            main.IsEntryFormOpen = true;
+                            main.CurrentEntryForm = MainForm.objPAY_CreditNote;
+                            main.CurrentParentListForm = this;
+                            MainForm.objPAY_CreditNote.Show();
                         }
                     }
                 }

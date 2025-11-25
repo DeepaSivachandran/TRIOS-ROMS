@@ -2323,7 +2323,7 @@ namespace ROMS
                             lvChildRack1.Visible = false;
 
                             varChild1PrMRPFlag = Convert.ToString(objDs.Tables[0].Rows[0]["PR_MRPflag"]);
-                            txtMrp.Text = Convert.ToString(Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_UPP"]) * Convert.ToInt32(dtStock.Rows[0]["STK_MRP"]) );
+                            txtMrp.Text = Convert.ToString(Convert.ToInt32(objDs.Tables[0].Rows[0]["PR_UPP"]) * Convert.ToInt32(dtStock.Rows[dtStock.Rows.Count - 1 ]["STK_MRP"]) );
 
                             txtMrp.ReadOnly = true;
                             txtMrp.Enabled = false;
@@ -2361,7 +2361,7 @@ namespace ROMS
                                         if (objDs.Tables[0].Rows.Count != 0)
                                         {
                                             txtBatchno.Text = objDs.Tables[0].Rows[0]["Date"].ToString();
-                                            txtBatchno.Enabled = false;
+                                            txtBatchno.Enabled = true;
                                         }
                                     }
                                 }
@@ -3617,9 +3617,12 @@ namespace ROMS
                                     DGVBatch2.Columns["RK_ShortName"].Width = 70;
                                     DGVBatch2.Columns["STK_MRP"].Width = 60;
                                     DGVBatch2.Columns["STK_ExpiryDate"].Width = 90;
+                                    DGVBatch2.Columns["MFD Date"].Width = 90;
                                     DGVBatch2.Columns["STK_BatchNo"].Width = 70;
                                     DGVBatch2.Columns["STK_Qty"].Width = 70;
+                                    DGVBatch2.Columns["Retail Rate"].Width = 80;
                                     DGVBatch2.Columns["UT_Symbol"].Width = 50;
+                                    DGVBatch2.Columns["UPP"].Width = 50;
                                     DGVBatch2.Columns["PR_PICode"].DisplayIndex = 1;
                                     DGVBatch2.Columns["UTID"].Visible = false;
                                     DGVBatch2.Columns["PRODUCTLIST"].Visible = false;
@@ -3634,9 +3637,13 @@ namespace ROMS
                                     DGVBatch2.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGVBatch2.Columns["STK_MRP"].DisplayIndex = 4;
                                     DGVBatch2.Columns["STK_ExpiryDate"].DisplayIndex = 5;
-                                    DGVBatch2.Columns["STK_BatchNo"].DisplayIndex = 6;
-                                    DGVBatch2.Columns["STK_Qty"].DisplayIndex = 7;
-                                    DGVBatch2.Columns["UT_Symbol"].DisplayIndex = 8;
+                                    DGVBatch2.Columns["Shelf Life"].DisplayIndex = 6;
+                                    DGVBatch2.Columns["MFD Date"].DisplayIndex = 7;
+                                    DGVBatch2.Columns["STK_BatchNo"].DisplayIndex = 8;
+                                    DGVBatch2.Columns["STK_Qty"].DisplayIndex = 9;
+                                    DGVBatch2.Columns["UT_Symbol"].DisplayIndex = 10;
+                                    DGVBatch2.Columns["Retail Rate"].DisplayIndex = 11;
+                                    DGVBatch2.Columns["UPP"].DisplayIndex = 12;
                                     DGVBatch2.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGVBatch2.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGVBatch2.Columns["PR_EName"].HeaderText = "Product Name";
@@ -3653,6 +3660,8 @@ namespace ROMS
                                     DGVBatch2.Columns["STK_MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGVBatch2.Columns["STK_Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGVBatch2.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGVBatch2.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGVBatch2.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGVBatch2.Visible = true;
 
 
@@ -5494,6 +5503,42 @@ namespace ROMS
             }
         }
 
+        private void txtBatchno_Leave(object sender, EventArgs e)
+        {
+            try { txtBatchno.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBatchno_Enter(object sender, EventArgs e)
+        {
+            try { txtBatchno.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBatchno_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtChildQty.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterParentLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -5981,6 +6026,16 @@ namespace ROMS
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = txtProductName;
                             MainForm.objINV_StockJournalList.udfnList();
+                            string varSConID = "0";
+                            if (varAJId == 0)
+                            {
+                                varSConID = varvalue[2];
+                            }
+                            else
+                            {
+                                varSConID = Convert.ToString(varAJId);
+                            }
+                            udfnConversionReport(varSConID);
                             udfnClear();
                             this.Close();
                         }
@@ -6012,6 +6067,58 @@ namespace ROMS
                 grdChild.ClearSelection();
                 grdParent2.ClearSelection();
                 grdChild2.ClearSelection();
+            }
+        }
+        public void udfnConversionReport(string varSConID)
+        {
+            try
+            {
+                DialogResult result1;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(87);
+                objDServ.CloseConnection();
+                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result1 == DialogResult.Yes)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Conversion.rpt");
+                    varHeader = "Stock Conversion Report";
+
+                    objBillreport.SetParameterValue("paraBrandName", "-All-");
+                    objBillreport.SetParameterValue("paraGroupName", "-All-");
+                    objBillreport.SetParameterValue("paraSubgroupName", "-All-");
+                    objBillreport.SetParameterValue("paraProductName", "-All-");
+                    objBillreport.SetParameterValue("paraCompanyName", "-All-");
+                    objBillreport.SetParameterValue("paraCompanyCode", 0);
+                    objBillreport.SetParameterValue("paraFromDate", dtpConvertDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dtpConvertDate.Text);
+                    objBillreport.SetParameterValue("paraSLID", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraPRGID", 0);
+                    objBillreport.SetParameterValue("paraPRSGID", 0);
+                    objBillreport.SetParameterValue("paraLocationName", "-All-");
+                    objBillreport.SetParameterValue("paraPrintName", "271");
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                    objBillreport.SetParameterValue("paraPRID", 0);
+                    objBillreport.SetParameterValue("paraId", 1);
+                    objBillreport.SetParameterValue("paraTrnID", Convert.ToInt32(varSConID));
+                    objBillreport.SetParameterValue("paraConverttype", 0);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnOutwardReport(string varOutwardId)
@@ -6585,6 +6692,8 @@ namespace ROMS
                     udfnChildLoad();
                 }
                 DGV_FilterProduct.Visible = false;
+                DGVBatch2.Visible = false;
+                DGVFilterBatch.Visible = false;
             }
         }
         private void UpdateComboBoxState()

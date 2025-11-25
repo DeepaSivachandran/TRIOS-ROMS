@@ -149,7 +149,9 @@
             this.clmFullReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFinalQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmEntrytypeProID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStickerFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.clmStickerPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
@@ -337,7 +339,9 @@
             this.clmFullReason,
             this.clmFinalQty,
             this.clmEntrytypeProID,
+            this.clmStickerFlag,
             this.clmStatus,
+            this.clmStickerPrint,
             this.clmRemove});
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
@@ -1336,12 +1340,26 @@
             this.clmEntrytypeProID.ReadOnly = true;
             this.clmEntrytypeProID.Visible = false;
             // 
+            // clmStickerFlag
+            // 
+            this.clmStickerFlag.HeaderText = "clmStickerFlag";
+            this.clmStickerFlag.Name = "clmStickerFlag";
+            this.clmStickerFlag.Visible = false;
+            // 
             // clmStatus
             // 
             this.clmStatus.DataPropertyName = "Status";
             this.clmStatus.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.clmStatus.HeaderText = "Status";
             this.clmStatus.Name = "clmStatus";
+            // 
+            // clmStickerPrint
+            // 
+            this.clmStickerPrint.HeaderText = "Sticker Print";
+            this.clmStickerPrint.Image = global::ROMS.Properties.Resources.print16;
+            this.clmStickerPrint.Name = "clmStickerPrint";
+            this.clmStickerPrint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmStickerPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // clmRemove
             // 
@@ -1493,7 +1511,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFullReason;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFinalQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmEntrytypeProID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStickerFlag;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewImageColumn clmStickerPrint;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
     }
 }

@@ -261,6 +261,10 @@ namespace ROMS
                 MainForm.objCP_Purchase.lblstatusvalue.Text = Convert.ToString(grdPurchaseEntryRejected.SelectedRows[0].Cells["Pur Entry Full Status"].Value.ToString());
                 MainForm.objCP_Purchase.varPurEditFlag = 1;
                 MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objCP_Purchase;
+                main.CurrentParentListForm = this;
                 MainForm.objCP_Purchase.Show();
             }
             catch (Exception ex)

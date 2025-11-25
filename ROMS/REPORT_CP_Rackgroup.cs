@@ -31,9 +31,7 @@ namespace ROMS
         {
             try
             {
-                lvRack.Visible = false;
-                DGV_FilterRackgroup.Visible = false;
-                DGV_FilterRackgroup.DataSource = null;
+                lvRack.Visible = false; 
                 varUpDownKeyRackGroup = 0;
                 btnListPrint.BackColor = Color.LemonChiffon;
             }
@@ -65,29 +63,40 @@ namespace ROMS
                 }
                 else
                 {
+                    int itemType = Convert.ToInt32(cmbType.SelectedValue);
+
+                    if (itemType == 405) ////withpicode
+                    { itemType = 2; }
+                    else if (itemType == 406) ////withoutpicode
+                    { itemType = 1; }
+
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 117)
                     {
-                        udfnRG(varFlag);
+                        udfnRG(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 118)
                     {
-                        udfnRGProduct(varFlag);
+                        udfnRGProduct(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 119)
                     {
-                        udfnRGProBarcode(varFlag);
+                        udfnRGProBarcode(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 120)
                     {
-                        udfnRGProMsq(varFlag);
+                        udfnRGProMsq(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 121)
                     {
-                        udfnRGProWeight(varFlag);
+                        udfnRGProWeight(varFlag, itemType);
                     }
                     if (Convert.ToInt32(cmbReportType.SelectedValue) == 122)
                     {
-                        udfnRGProRackMinQty(varFlag);
+                        udfnRGProRackMinQty(varFlag,itemType);
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 432)
+                    {
+                        udfnRGProShelflife(varFlag,itemType);
                     }
                 }
             }
@@ -109,6 +118,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+      
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -117,11 +127,12 @@ namespace ROMS
                 if(Convert.ToInt32(cmbReportType.SelectedValue)==-1)
                 {
                     cmbConcern.SelectedValue = 0;
-                    txtRackgroup.Text = "";
+                    cmbRackGroup.SelectedValue = 0; ;
                 }
                 if(Convert.ToInt32(cmbReportType.SelectedValue)==117)
                 {
-                    txtRackgroup.Enabled = false;
+                    cmbRackGroup.Enabled = false;
+                    
                     txtEmployeeName.Enabled = false;
                     txtRack.Enabled = false;
                     cmbProductCategory.SelectedValue = 0;
@@ -131,7 +142,7 @@ namespace ROMS
                 }
                 else
                 {
-                    txtRackgroup.Enabled = true;
+                    cmbRackGroup.Enabled = true;
                     txtEmployeeName.Enabled = true;
                     txtRack.Enabled = true;
                     cmbProductCategory.Enabled = true;
@@ -161,6 +172,12 @@ namespace ROMS
                         tsbPrintFormat.ToolTipText = string.Empty;
                     }
                 }
+
+                cmbType.Enabled = true;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 117)
+                {
+                    cmbType.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -169,14 +186,13 @@ namespace ROMS
             }
         }
         public void udfnClear()
-        {
-            txtRackgroup.Text = "";
+        { 
             txtEmployeeName.Text = "";
             txtRack.Text = "";
             cmbConcern.SelectedValue = 0;
             cmbStatus.SelectedValue = 1;
         }
-        public void udfnRG(int varFlag)
+        public void udfnRG(int varFlag, int itemType)
         {
             try
             {
@@ -210,7 +226,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName); 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -250,7 +266,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProduct(int varFlag)
+        public void udfnRGProduct(int varFlag, int itemType)
         {
             try
             {
@@ -267,16 +283,9 @@ namespace ROMS
                 int varPrint = 0;
                 int RKGCode = 0,RKCode=0,EMPCode=0;
                 string RKGName = "", RKName = "", RKInchargeName = "";
-                if(txtRackgroup.Text=="")
-                {
-                    RKGCode = 0;
-                    RKGName = "-All-";
-                }
-                else
-                {
-                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
-                    RKGName = Convert.ToString(txtRackgroup.Text);
-                }
+                
+                    RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                    RKGName = Convert.ToString(cmbRackGroup.Name); 
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
@@ -307,6 +316,8 @@ namespace ROMS
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -336,10 +347,13 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraWithCode", itemType);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -379,7 +393,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProBarcode(int varFlag)
+        public void udfnRGProBarcode(int varFlag,int itemType)
         {
             try
             {
@@ -396,16 +410,9 @@ namespace ROMS
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
                 string RKGName = "", RKName = "", RKInchargeName = "";
-                if (txtRackgroup.Text == "")
-                {
-                    RKGCode = 0;
-                    RKGName = "-All-";
-                }
-                else
-                {
-                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
-                    RKGName = Convert.ToString(txtRackgroup.Text);
-                }
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
@@ -436,6 +443,8 @@ namespace ROMS
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -459,16 +468,21 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbproductStatus.Text));
                     objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraWithCode", itemType);
+
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -508,7 +522,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProMsq(int varFlag)
+        public void udfnRGProMsq(int varFlag,int itemType)
         {
             try
             {
@@ -525,16 +539,9 @@ namespace ROMS
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
                 string RKGName = "", RKName = "", RKInchargeName = "";
-                if (txtRackgroup.Text == "")
-                {
-                    RKGCode = 0;
-                    RKGName = "-All-";
-                }
-                else
-                {
-                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
-                    RKGName = Convert.ToString(txtRackgroup.Text);
-                }
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
@@ -565,6 +572,8 @@ namespace ROMS
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -599,6 +608,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraWithCode", itemType);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -638,7 +648,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProWeight(int varFlag)
+        public void udfnRGProWeight(int varFlag,int itemType)
         {
             try
             {
@@ -655,16 +665,9 @@ namespace ROMS
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
                 string RKGName = "", RKName = "", RKInchargeName = "";
-                if (txtRackgroup.Text == "")
-                {
-                    RKGCode = 0;
-                    RKGName = "-All-";
-                }
-                else
-                {
-                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
-                    RKGName = Convert.ToString(txtRackgroup.Text);
-                }
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
@@ -695,6 +698,8 @@ namespace ROMS
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -725,10 +730,13 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
                     objBillreport.SetParameterValue("paraType", Convert.ToString(cmbFormat.SelectedValue));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraWithCode", itemType);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -768,7 +776,7 @@ namespace ROMS
                 GC.Collect();
             }
         }
-        public void udfnRGProRackMinQty(int varFlag)
+        public void udfnRGProRackMinQty(int varFlag,int itemType)
         {
             try
             {
@@ -785,16 +793,9 @@ namespace ROMS
                 int varPrint = 0;
                 int RKGCode = 0, RKCode = 0, EMPCode = 0;
                 string RKGName = "", RKName = "", RKInchargeName = "";
-                if (txtRackgroup.Text == "")
-                {
-                    RKGCode = 0;
-                    RKGName = "-All-";
-                }
-                else
-                {
-                    RKGCode = Convert.ToInt32(lblRackgroupCode.Text);
-                    RKGName = Convert.ToString(txtRackgroup.Text);
-                }
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
                 if (txtEmployeeName.Text == "")
                 {
                     EMPCode = 0;
@@ -825,6 +826,8 @@ namespace ROMS
                 objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
                 objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -854,10 +857,140 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraWithCode", itemType);
+                    objValidation.CrySqlConnection(objBillreport);
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "Rackgroup_Product_RackMin_Qty";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
+            }
+        }
+        public void udfnRGProShelflife(int varFlag, int itemType)
+        {
+            try
+            {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
+                btnListPrint.Enabled = false;
+                lblReportType.Focus();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0, RKCode = 0, EMPCode = 0;
+                string RKGName = "", RKName = "", RKInchargeName = "";
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
+                if (txtEmployeeName.Text == "")
+                {
+                    EMPCode = 0;
+                    RKInchargeName = "-All-";
+                }
+                else
+                {
+                    EMPCode = Convert.ToInt32(lblEmpCode.Text);
+                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
+                }
+                if (txtRack.Text == "")
+                {
+                    RKCode = 0;
+                    RKName = "-All";
+                }
+                else
+                {
+                    RKCode = Convert.ToInt32(lblRackCode.Text);
+                    RKName = Convert.ToString(txtRack.Text);
+                }
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 84;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraRackId = RKCode;
+                objMR_Product.paraRKGId = RKGCode;
+                objMR_Product.paraEMPId = EMPCode;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
+                objMR_Product.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_ShelfLife.rpt");
+                    objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.SetParameterValue("paraEMPID", EMPCode);
+                    objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGName", RKGName);
+                    objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
+                    objBillreport.SetParameterValue("paraRKName", RKName);
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraWithCode", itemType);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
@@ -926,30 +1059,30 @@ namespace ROMS
         }
         public void udfnRackGroupValid()
         {
-            /* Check purchase rack is valid or not*/
-            if (txtRackgroup.Text != "")
-            {
-                string varId_RackGroup = "0";
-                DataSet objDsRackGroup = new DataSet();
-                SPDataService objDServ4 = new SPDataService();
-                objDsRackGroup = objDServ4.udfnRackGroupList(5, 0, 0, 0, 0, txtRackgroup.Text.Trim(),0);
-                objDServ4.CloseConnection();
-                if (objDsRackGroup != null)
-                {
-                    if (objDsRackGroup.Tables.Count > 0)
-                    {
-                        if (objDsRackGroup.Tables[0].Rows.Count > 0)
-                        {
-                            varId_RackGroup = Convert.ToString(objDsRackGroup.Tables[0].Rows[0][0]);
-                        }
-                    }
-                }
-                lblRackgroupCode.Text = Convert.ToString(varId_RackGroup);
-                if (varId_RackGroup == "0" || varId_RackGroup == "-1")
-                {
-                    //lblRackgroupCode.Text = "0";
-                }
-            }
+            ///* Check purchase rack is valid or not*/
+            //if (txtRackgroup.Text != "")
+            //{
+            //    string varId_RackGroup = "0";
+            //    DataSet objDsRackGroup = new DataSet();
+            //    SPDataService objDServ4 = new SPDataService();
+            //    objDsRackGroup = objDServ4.udfnRackGroupList(5, 0, 0, 0, 0, txtRackgroup.Text.Trim(),0);
+            //    objDServ4.CloseConnection();
+            //    if (objDsRackGroup != null)
+            //    {
+            //        if (objDsRackGroup.Tables.Count > 0)
+            //        {
+            //            if (objDsRackGroup.Tables[0].Rows.Count > 0)
+            //            {
+            //                varId_RackGroup = Convert.ToString(objDsRackGroup.Tables[0].Rows[0][0]);
+            //            }
+            //        }
+            //    }
+            //    lblRackgroupCode.Text = Convert.ToString(varId_RackGroup);
+            //    if (varId_RackGroup == "0" || varId_RackGroup == "-1")
+            //    {
+            //        //lblRackgroupCode.Text = "0";
+            //    }
+            //}
         }
         public void udfnRackInchargeValid()
         {
@@ -1021,9 +1154,7 @@ namespace ROMS
         private void CmbReportType_Enter(object sender, EventArgs e)
         {
             try
-            {
-                DGV_FilterRackgroup.Visible = false;
-                DGV_FilterRackgroup.DataSource = null;
+            { 
                 varUpDownKeyRackGroup = 0;
                 cmbReportType.BackColor = Color.LemonChiffon;
             }
@@ -1086,13 +1217,31 @@ namespace ROMS
                         }
                     }
                 }
+                objDs = objdserv.udfnRackGroupList(6, 0, 0, 0, 0, "", 0);
+                objdserv.CloseConnection();
+
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            cmbRackGroup.ValueMember = "RKGID";
+                            cmbRackGroup.DisplayMember = "RKG_Name";
+                            cmbRackGroup.DataSource = objDs.Tables[0];
+                        }
+                    }
+                }
                 DataBind objDataBind = new DataBind(); //Transaction id 	41
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (124)  ", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1)   Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1) OR STSID=0 Order by STSID,STS_Name", "STS_Name,STSID", cmbproductStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=133 ", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,120) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbRetailRate, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = 0;
@@ -1116,188 +1265,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        private void TxtRackgroup_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRackgroup.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRackgroup_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                varUpDownKeyRackGroup = 0;
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                {
-                    DGV_FilterRackgroup.Focus();
-                }
-                if (e.KeyCode == Keys.Enter && DGV_FilterRackgroup.Visible == false)
-                {
-                    cmbSubgroupType.Focus();
-                }
-                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
-                {
-                    DGV_FilterRackgroup.Focus();
-                }
-                if (DGV_FilterRackgroup.CurrentCell == null && DGV_FilterRackgroup.RowCount == 0)
-                {
-                    return;
-                }
-                else
-                {
-                    DGV_FilterRackgroup.Focus();
-                    int RowIndex = DGV_FilterRackgroup.CurrentCell.RowIndex;
-                    int ClmIndex = DGV_FilterRackgroup.CurrentCell.ColumnIndex;
-                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                    {
-                        varUpDownKeyRackGroup = 1;
-                    }
-                    else
-                    {
-                        varUpDownKeyRackGroup = 0;
-                    }
-                    switch (e.KeyCode)
-                    {
-                        case Keys.Up:
-                            RowIndex--;
-                            if (RowIndex >= 0) DGV_FilterRackgroup.CurrentCell = DGV_FilterRackgroup.Rows[RowIndex].Cells[ClmIndex];
-                            if (RowIndex != (-1))
-                            {
-                                txtRackgroup.Text = DGV_FilterRackgroup.Rows[RowIndex].Cells["RKG_Name"].Value.ToString();
-                            }
-                            txtRackgroup.Focus();
-                            txtRackgroup.SelectionStart = txtRackgroup.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Down:
-                            RowIndex++;
-                            if (RowIndex < DGV_FilterRackgroup.Rows.Count) DGV_FilterRackgroup.CurrentCell = DGV_FilterRackgroup.Rows[RowIndex].Cells[ClmIndex];
-
-                            if (RowIndex != (DGV_FilterRackgroup.Rows.Count))
-                            {
-                                txtRackgroup.Text = DGV_FilterRackgroup.Rows[RowIndex].Cells["RKG_Name"].Value.ToString();
-                            }
-
-                            txtRackgroup.Focus();
-                            txtRackgroup.SelectionStart = txtRackgroup.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Enter:
-                            {
-                                if (DGV_FilterRackgroup.Rows.Count > 0)
-                                {
-                                    varUpDownKeyRackGroup = 1;
-                                    udfnRackgroup();
-                                    DGV_FilterRackgroup.Visible = false;
-                                }
-                                e.Handled = e.SuppressKeyPress = true;
-                                break;
-                            }
-                    }
-                    txtRackgroup.Focus();
-                    e.Handled = true;
-                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
-                    {
-                        //txtRackgroup.SelectedText = true;
-                        TextBox txtRackgroup = sender as TextBox;
-                        txtRackgroup.SelectAll();
-                        e.Handled = true;
-                    }
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        cmbSubgroupType.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRackgroup_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRackgroup.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void TxtRackgroup_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (varUpDownKeyRackGroup == 0)
-                {
-                    SPDataService objspdservice = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    if (txtRackgroup.Text.Length > 0)
-                    {
-                        objDs = objspdservice.udfnRackGroupList(4, 0, 0, 0, 0, txtRackgroup.Text.Trim(),0);
-                        objspdservice.CloseConnection();
-                        if (objDs != null)
-                        {
-                            if (objDs.Tables.Count != 0)
-                            {
-                                if (objDs.Tables[0].Rows.Count != 0)
-                                {
-                                    DGV_FilterRackgroup.Visible = true;
-                                    DGV_FilterRackgroup.DataSource = objDs.Tables[0];
-                                    DGV_FilterRackgroup.Columns["RKGID"].Visible = false;
-                                    DGV_FilterRackgroup.Columns["RKG_Name"].HeaderText = "Rack Group";
-                                    DGV_FilterRackgroup.Columns["RKG_Name"].Width = 350;
-                                    DGV_FilterRackgroup.Columns["RKG_Name"].DisplayIndex = 0;
-                                    DGV_FilterRackgroup.BringToFront();
-                                }
-                                else
-                                {
-                                    DGV_FilterRackgroup.Visible = false;
-                                    DGV_FilterRackgroup.DataSource = null;
-                                }
-                            }
-                            else
-                            {
-                                DGV_FilterRackgroup.Visible = false;
-                                DGV_FilterRackgroup.DataSource = null;
-                            }
-                        }
-                        else
-                        {
-                            DGV_FilterRackgroup.Visible = false;
-                            DGV_FilterRackgroup.DataSource = null;
-                        }
-                    }
-                    else
-                    {
-                        DGV_FilterRackgroup.Visible = false;
-                        DGV_FilterRackgroup.DataSource = null;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
+        } 
         private void TxtRack_Enter(object sender, EventArgs e)
         {
             try
@@ -1449,11 +1417,7 @@ namespace ROMS
         {
             try
             {
-                if (txtRackgroup.Text.Trim() != "")
-                {
-                    lblRackgroupCode.Text = DGV_FilterRackgroup.SelectedRows[0].Cells["RKGID"].Value.ToString();
-                    txtRackgroup.Text = DGV_FilterRackgroup.SelectedRows[0].Cells["RKG_Name"].Value.ToString();
-                }
+                
             }
             catch (Exception ex)
             {
@@ -1693,9 +1657,7 @@ namespace ROMS
         private void CmbConcern_Enter(object sender, EventArgs e)
         {
             try
-            {
-                DGV_FilterRackgroup.Visible = false;
-                DGV_FilterRackgroup.DataSource = null;
+            { 
                 varUpDownKeyRackGroup = 0;
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
@@ -1712,9 +1674,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtRackgroup.Enabled == true)
+                    if (cmbRackGroup.Enabled == true)
                     {
-                        txtRackgroup.Focus();
+                        cmbRackGroup.Focus();
                     }
                     else
                     {
@@ -1769,85 +1731,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DGV_FilterProduct_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
-                {
-                    int RowIndex = DGV_FilterRackgroup.CurrentCell.RowIndex;
-                    int ClmIndex = DGV_FilterRackgroup.CurrentCell.ColumnIndex;
-                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
-                    {
-                        varUpDownKeyRackGroup = 1;
-                    }
-                    else
-                    {
-                        varUpDownKeyRackGroup = 0;
-                    }
-                    switch (e.KeyCode)
-                    {
-                        case Keys.Up:
-                            RowIndex--;
-                            if (RowIndex >= 0) DGV_FilterRackgroup.CurrentCell = DGV_FilterRackgroup.Rows[RowIndex].Cells[ClmIndex];
-
-                            txtRackgroup.Text = DGV_FilterRackgroup.SelectedRows[0].Cells["RKG_Name"].Value.ToString();
-
-                            txtRackgroup.Focus();
-                            txtRackgroup.SelectionStart = txtRackgroup.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Down:
-                            RowIndex++;
-                            if (RowIndex < DGV_FilterRackgroup.Rows.Count) DGV_FilterRackgroup.CurrentCell = DGV_FilterRackgroup.Rows[RowIndex].Cells[ClmIndex];
-
-                            if (RowIndex != (DGV_FilterRackgroup.Rows.Count))
-                            {
-                                txtRackgroup.Text = DGV_FilterRackgroup.Rows[RowIndex].Cells["RKG_Name"].Value.ToString();
-                            }
-
-                            txtRackgroup.Focus();
-                            txtRackgroup.SelectionStart = txtRackgroup.Text.Length;
-                            e.Handled = true;
-                            break;
-                        case Keys.Enter:
-                            {
-                                if (DGV_FilterRackgroup.Rows.Count > 0)
-                                {
-                                    varUpDownKeyRackGroup = 1;
-                                    udfnRackgroup();
-                                    DGV_FilterRackgroup.Visible = false;
-                                }
-                                e.Handled = e.SuppressKeyPress = true;
-                                break;
-                            }
-                    }
-                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
-                    {
-                        TextBox txtRackgroup = sender as TextBox;
-                        txtRackgroup.SelectAll();
-                        e.Handled = true;
-                    }
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        cmbSubgroupType.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void CmbSubgroupType_Enter(object sender, EventArgs e)
         {
             try
-            {
-                DGV_FilterRackgroup.Visible = false;
-                DGV_FilterRackgroup.DataSource = null;
+            { 
                 cmbSubgroupType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1902,9 +1791,7 @@ namespace ROMS
         private void CmbProductCategory_Enter(object sender, EventArgs e)
         {
             try
-            {
-                DGV_FilterRackgroup.Visible = false;
-                DGV_FilterRackgroup.DataSource = null;
+            { 
                 cmbProductCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1966,9 +1853,7 @@ namespace ROMS
         private void CmbFormat_Enter(object sender, EventArgs e)
         {
             try
-            {
-                DGV_FilterRackgroup.Visible = false;
-                DGV_FilterRackgroup.DataSource = null;
+            { 
                 cmbFormat.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2023,9 +1908,7 @@ namespace ROMS
         private void cmbStatus_Enter(object sender, EventArgs e)
         {
             try
-            {
-                DGV_FilterRackgroup.Visible = false;
-                DGV_FilterRackgroup.DataSource = null;
+            { 
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2123,7 +2006,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    if (cmbType.Enabled == true)
+                    {
+                        cmbType.Focus();
+                    }
+                    else 
+                    {
+                        cmbRetailRate.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2151,6 +2041,228 @@ namespace ROMS
             try
             {
                 cmbproductStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRackGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRackGroup.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbProductCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRackGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void cmbType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbRetailRate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void cmbOrderBy_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbRetailRate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderBy_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderBy.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRetailRate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRetailRate.BackColor = Color.White;
             }
             catch (Exception ex)
             {

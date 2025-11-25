@@ -59,9 +59,13 @@ namespace ROMS
                         MainForm.objPUR_GRNApproval.varGRNAID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["GRNAID"].Value);
                         MainForm.objPUR_GRNApproval.varFlag = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["FLAG"].Value);
                         MainForm.objPUR_GRNApproval.varGRNID = Convert.ToInt32(grdGrnApprovalList.SelectedRows[0].Cells["Trans ID"].Value);
-                        //MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
-                        objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApproval);
-                        MainForm.objPUR_GRNApproval.ShowDialog();
+                        MainForm.objPUR_GRNApproval.MdiParent = this.ParentForm;
+                        //objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApproval);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objPUR_GRNApproval;
+                        main.CurrentParentListForm = this;
+                        MainForm.objPUR_GRNApproval.Show();
                     }
                 }
                 catch (Exception ex)
@@ -1630,10 +1634,15 @@ namespace ROMS
         {
             try
             {
+                this.Close();
                 MainForm.objPUR_MismatchApprovedList = new PUR_MismatchApprovedList();
-                //MainForm.objPUR_MismatchApprovedList.MdiParent = this.ParentForm;
-                objMainForm.CenterEntryForm(this, MainForm.objPUR_MismatchApprovedList);
-                MainForm.objPUR_MismatchApprovedList.ShowDialog();
+                MainForm.objPUR_MismatchApprovedList.MdiParent = this.ParentForm;
+                //objMainForm.CenterEntryForm(this, MainForm.objPUR_MismatchApprovedList);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objPUR_MismatchApprovedList;
+                main.CurrentParentListForm = this;
+                MainForm.objPUR_MismatchApprovedList.Show();
             }
             catch (Exception ex)
             {

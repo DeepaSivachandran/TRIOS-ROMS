@@ -289,9 +289,13 @@ namespace ROMS
                     MainForm.objPUR_PurchaseEntryApproval.ApproveAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 23 && sp.EditAccess.Split(',').Contains("9")); 
                     MainForm.objPUR_PurchaseEntryApproval.BillrateViewAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("9")); 
                     MainForm.objPUR_PurchaseEntryApproval.BillrateEditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 24 && sp.EditAccess.Split(',').Contains("10")); 
-                    //MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryApproval);
-                    MainForm.objPUR_PurchaseEntryApproval.ShowDialog();
+                    MainForm.objPUR_PurchaseEntryApproval.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryApproval);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPUR_PurchaseEntryApproval;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPUR_PurchaseEntryApproval.Show();
                 }
                 catch (Exception ex)
                 {
@@ -1347,9 +1351,13 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseEntryApprovedList = new PUR_PurchaseEntryApprovedList();
-                //MainForm.objPUR_PurchaseEntryApprovedList.MdiParent = this.ParentForm;
-                objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryApprovedList);
-                MainForm.objPUR_PurchaseEntryApprovedList.ShowDialog();
+                MainForm.objPUR_PurchaseEntryApprovedList.MdiParent = this.ParentForm;
+                //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryApprovedList);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objPUR_PurchaseEntryApprovedList;
+                main.CurrentParentListForm = this;
+                MainForm.objPUR_PurchaseEntryApprovedList.Show();
             }
             catch (Exception ex)
             {
@@ -1374,20 +1382,19 @@ namespace ROMS
             }
         }
 
-        private void GrdPurchaseEntryApproval_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void TsbPurchaseApproval_Click(object sender, EventArgs e)
         {
             try
             {
                 MainForm.objPUR_GRNApprovalList = new PUR_GRNApprovalList();
                 MainForm.objPUR_GRNApprovalList.ApprovalFlag = 1;
-                //MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
-                objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApprovalList);
-                MainForm.objPUR_GRNApprovalList.ShowDialog();
+                MainForm.objPUR_GRNApprovalList.MdiParent = this.ParentForm;
+                //objMainForm.CenterEntryForm(this, MainForm.objPUR_GRNApprovalList);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objPUR_GRNApprovalList;
+                main.CurrentParentListForm = this;
+                MainForm.objPUR_GRNApprovalList.Show();
             }
             catch (Exception ex)
             {
@@ -1418,9 +1425,13 @@ namespace ROMS
             try
             {
                 MainForm.objPUR_PurchaseEntryRejectedList = new PUR_PurchaseEntryRejectedList();
-                //MainForm.objPUR_PurchaseEntryRejectedList.MdiParent = this.ParentForm;
-                objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryRejectedList);
-                MainForm.objPUR_PurchaseEntryRejectedList.ShowDialog();
+                MainForm.objPUR_PurchaseEntryRejectedList.MdiParent = this.ParentForm;
+                //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseEntryRejectedList);
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objPUR_PurchaseEntryRejectedList;
+                main.CurrentParentListForm = this;
+                MainForm.objPUR_PurchaseEntryRejectedList.Show();
             }
             catch (Exception ex)
             {

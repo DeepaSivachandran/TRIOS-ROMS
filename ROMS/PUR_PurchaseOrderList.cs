@@ -60,9 +60,13 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objPUR_PurchaseOrder = new PUR_PurchaseOrder();
-                    //MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseOrder);
-                    MainForm.objPUR_PurchaseOrder.ShowDialog();
+                    MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseOrder);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPUR_PurchaseOrder;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPUR_PurchaseOrder.Show();
                 }
                 catch (Exception ex)
                 {
@@ -422,9 +426,13 @@ namespace ROMS
                     MainForm.objPUR_PurchaseOrder.Currentsts = Convert.ToInt32(grdPurchaseorderlist.SelectedRows[0].Cells["PO_CurrentSTSID"].Value.ToString());
                     MainForm.objPUR_PurchaseOrder.pbSupplierpend = Supplierpend;
                     MainForm.objPUR_PurchaseOrder.PreCloseAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 17 && sp.EditAccess.Split(',').Contains("9"));
-                    // MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseOrder);
-                    MainForm.objPUR_PurchaseOrder.ShowDialog();
+                    MainForm.objPUR_PurchaseOrder.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objPUR_PurchaseOrder);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objPUR_PurchaseOrder;
+                    main.CurrentParentListForm = this;
+                    MainForm.objPUR_PurchaseOrder.Show();
                 }
                 catch (Exception ex)
                 {

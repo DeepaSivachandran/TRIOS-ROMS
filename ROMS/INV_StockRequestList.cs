@@ -39,9 +39,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockRequest = new INV_StockRequest();
-                    //MainForm.objINV_StockRequest.MdiParent = ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockRequest);
-                    MainForm.objINV_StockRequest.ShowDialog();
+                    MainForm.objINV_StockRequest.MdiParent = ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_StockRequest);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_StockRequest;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_StockRequest.Show();
                 }
                 catch (Exception ex)
                 {
@@ -150,13 +154,17 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockRequest = new INV_StockRequest();
-                        //MainForm.objINV_StockRequest.MdiParent = ParentForm;
+                        MainForm.objINV_StockRequest.MdiParent = ParentForm;
                         MainForm.objINV_StockRequest.btnSave.Text = "Update";
                         MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
                         MainForm.objINV_StockRequest.varStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objINV_StockRequest.varMainStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
-                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockRequest);
-                        MainForm.objINV_StockRequest.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objINV_StockRequest);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objINV_StockRequest;
+                        main.CurrentParentListForm = this;
+                        MainForm.objINV_StockRequest.Show();
                     }
                 }
                 catch (Exception ex)

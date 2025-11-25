@@ -726,9 +726,13 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 4;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 5;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 6;
-                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 7;
-                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 8;
-                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 9;
+                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 7;
+                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 8;
+                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 9;
+                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 10;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 11;
+                                    DGV_FilterProduct.Columns["Retail Rate"].DisplayIndex = 12;
+                                    DGV_FilterProduct.Columns["UPP"].DisplayIndex = 13;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
                                     DGV_FilterProduct.Columns["PR_EName"].HeaderText = "Product Name";
@@ -745,6 +749,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["STK_MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["STK_Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                    DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    DGV_FilterProduct.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Visible = true;
                                     if (VarSearchFlag == false)
                                     {

@@ -69,6 +69,7 @@ namespace ROMS
         {
             try
             {
+                string locationcode = MainForm.pbUserMappedLocationIds;
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     epReport.SetError(cmbReportType, "Please select report type.");
@@ -98,14 +99,15 @@ namespace ROMS
                 {
                     lblBrandCode.Text = "0";
                 }
-                if (txtLocation.Text == "")
-                {
-                    lblLocationCode.Text = "0";
-                }
+               
                 if (txtSupplier.Text == "")
                 {
                     lblSupplierCode.Text = "0";
                 } 
+                if(Convert.ToInt32(cmbStockLocation.SelectedValue)!=0)
+                {
+                    locationcode = Convert.ToString(cmbStockLocation.SelectedValue);
+                }
                 btnListPrint.Enabled = false;
                 lblConcern.Focus();
                 lblNoRecordsFound.Visible = false;
@@ -134,7 +136,7 @@ namespace ROMS
 
                 objTRNG_Stock.paraPRID = Convert.ToInt32(lblProduct.Text.Trim());
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
-                objTRNG_Stock.paraSLID = Convert.ToInt32(lblLocationCode.Text);
+                //objTRNG_Stock.paraSLID = Convert.ToInt32(locationcode);
                 objTRNG_Stock.paraGroupID = Convert.ToInt32(lblGroupCode.Text);
                 objTRNG_Stock.paraSubGroupID = Convert.ToInt32(lblSubGroupCode.Text);
                 objTRNG_Stock.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
@@ -188,7 +190,7 @@ namespace ROMS
                         varReportName = "Stock_Summary_Location";
                     }   
                     objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue)); 
-                    objBillreport.SetParameterValue("paraSLID", lblLocationCode.Text);
+                    objBillreport.SetParameterValue("paraSLID",Convert.ToInt32(cmbStockLocation.SelectedValue));
                     objBillreport.SetParameterValue("paraPRID", lblProduct.Text);
                     objBillreport.SetParameterValue("paraPRGID", lblGroupCode.Text);
                     objBillreport.SetParameterValue("paraPRSGID", lblSubGroupCode.Text);
@@ -198,6 +200,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraStockType", Convert.ToInt32(cmbStockType.SelectedValue));
                     objBillreport.SetParameterValue("paraBlockedFlag", Convert.ToInt32(cmbProductType.SelectedValue));
+                    objBillreport.SetParameterValue("paraUserLocations", Convert.ToString(locationcode));
                     objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text);
                     if (Convert.ToInt32(cmbLanuguage.SelectedValue) == 270)
                     {
@@ -270,11 +273,11 @@ namespace ROMS
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 80403;
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
-                DataSet objDs = new DataSet();
+                DataSet objDs = new DataSet(); 
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
                 objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
-                objdserv.CloseConnection();
+                
                 cmbConcern.DataSource = null;
                 if (objDs != null)
                 {
@@ -287,7 +290,30 @@ namespace ROMS
                             cmbConcern.DataSource = objDs.Tables[0];
                         }
                     }
-                } 
+                }
+                DataSet objDsSL = new DataSet();
+                MR_Location objMR_Location = new MR_Location();
+                objMR_Location.paraViewType = 33;
+                objMR_Location.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Location.paraLocationName = txtLocation.Text.Trim();
+                objMR_Location.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                objDsSL = objdserv.udfnStockLocationList(objMR_Location);
+                objdserv.CloseConnection();
+                cmbStockLocation.DataSource = null;
+                if (objDsSL != null)
+                {
+                    if (objDsSL.Tables.Count > 0)
+                    {
+                        if (objDsSL.Tables[0].Rows.Count > 0)
+                        {
+                            cmbStockLocation.ValueMember = "SLID";
+                            cmbStockLocation.DisplayMember = "SL_EName";
+                            cmbStockLocation.DataSource = objDsSL.Tables[0];
+                        }
+                    }
+                }
+
+
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
@@ -306,7 +332,7 @@ namespace ROMS
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,130) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockType, "", "MST_DisplayText", "MSTID");
 
-
+                //Transaction id -128
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
 
                 objDataBind = null;
@@ -314,6 +340,7 @@ namespace ROMS
                 cmbType.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1; 
                 cmbCategory.SelectedValue = 0; 
+                cmbLanuguage.SelectedValue = 271; 
                 cmbStockType.SelectedValue = 419; ////in stock
                 //udfnList();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
@@ -426,7 +453,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    txtLocation.Focus();
+                    cmbStockLocation.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -499,7 +526,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtLocation.Focus();
+                        cmbStockLocation.Focus();
                     }
                 }
             }
@@ -609,7 +636,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
             catch (Exception ex)
             {
@@ -625,7 +652,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    txtLocation.Focus();
+                    cmbStockLocation.Focus();
                 }
             }
             catch (Exception ex)
@@ -661,7 +688,7 @@ namespace ROMS
             {
                 varUpDownKeyProduct = 1;
                 udfnProductEvent();
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
             catch (Exception ex)
             {
@@ -731,7 +758,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtLocation.Focus();
+                        cmbStockLocation.Focus();
                     }
                 }
             }
@@ -1508,7 +1535,7 @@ namespace ROMS
             }
             finally
             {
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
         }
 
@@ -1556,7 +1583,7 @@ namespace ROMS
                             {
                                 txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -1569,7 +1596,7 @@ namespace ROMS
                                 txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
 
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -1585,7 +1612,7 @@ namespace ROMS
                                 break;
                             }
                     }
-                    txtLocation.Focus();
+                    cmbStockLocation.Focus();
                     //txtLocation.SelectionStart = txtLocation.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
@@ -1972,7 +1999,7 @@ namespace ROMS
 
                             txtLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
 
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -1985,7 +2012,7 @@ namespace ROMS
                                 txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
                             }
 
-                            txtLocation.Focus();
+                            cmbStockLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;
                             break;
@@ -2586,6 +2613,81 @@ namespace ROMS
             }
         }
 
+        private void cmbStockLocation_Enter(object sender, EventArgs e)
+        { 
+            try
+            {
+                cmbStockLocation.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbStockLocation_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSearchByPICode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStockLocation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStockLocation_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStockLocation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGV_FilterLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         public void udfnGroupAutocomplete()
         {
             try
@@ -2672,7 +2774,7 @@ namespace ROMS
                     lblScheduleCode.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SPSCID"].Value.ToString();
                     txtSupplier.Text = DGV_FilterSupplier.SelectedRows[0].Cells["SP_NAME"].Value.ToString();
                 }
-                txtLocation.Focus();
+                cmbStockLocation.Focus();
             }
             catch (Exception ex)
             {

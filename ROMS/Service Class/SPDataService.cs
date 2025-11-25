@@ -855,6 +855,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraNameType", objTRNG_Stock.paraNameType);
                 varSqlCommand.Parameters.AddWithValue("@paraDate", objTRNG_Stock.paraDate);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNG_Stock.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_Stock.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_Stock.paraToDate);
 
 
                 varSqlCommand.CommandTimeout = 0;
@@ -1587,7 +1589,7 @@ namespace ROMS
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
              , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
-              int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller)
+              int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames)
         {
             string result = "";
             try
@@ -1650,6 +1652,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraParentId", paraParentId);
                 varSqlCommand.Parameters.AddWithValue("@paraSalesProduct", paraSalesProduct);
                 varSqlCommand.Parameters.AddWithValue("@paraInactiveTeller", paraInactiveTeller);
+                varSqlCommand.Parameters.AddWithValue("@paraImageNames", paraImageNames);
 
                 varSqlCommand.CommandTimeout = 0;
 
@@ -1726,6 +1729,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objMR_Product.paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_Product.paraProductType);
                 varSqlCommand.Parameters.AddWithValue("@paraRackStatusID", objMR_Product.paraRackStatusID);
+                varSqlCommand.Parameters.AddWithValue("@paraStockAdjustment", objMR_Product.paraStockAdjustment);
+                varSqlCommand.Parameters.AddWithValue("@ParaOrderby", objMR_Product.ParaOrderby);
+                varSqlCommand.Parameters.AddWithValue("@ParaRate", objMR_Product.ParaRate);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -2183,7 +2189,7 @@ namespace ROMS
             return varResult;
         }
         /*Added by deepa on 19-09-2023*/
-        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag)
+        public string udfnEmployee(int paraViewType, int paraEMPID, string paraEMPCode, string paraEMPName, int paraCTID, int paraSTSID, string paraOriginator, string paraUserID, int paraDeleteFlag,string paraEMPTName)
         {
             string varResult = "";
             try
@@ -2201,7 +2207,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName); 
+                varSqlCommand.Parameters.AddWithValue("@paraEMPTName", paraEMPTName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -4179,6 +4186,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_GoodsInward_Purchase.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraPRGID", objTRN_GoodsInward_Purchase.paraGroupId);
                 varSqlCommand.Parameters.AddWithValue("@paraPRSGID", objTRN_GoodsInward_Purchase.paraSubgroupId);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRN_GoodsInward_Purchase.paraBrandID);
                 varSqlCommand.Parameters.AddWithValue("@paraAlpha", objTRN_GoodsInward_Purchase.paraAlpha);
                 varSqlCommand.Parameters.AddWithValue("@paraEntryTypeID", objTRN_GoodsInward_Purchase.paraEntryTypeID);
                 varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objTRN_GoodsInward_Purchase.ParaSupplierId);
@@ -4186,6 +4194,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_GoodsInward_Purchase.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_GoodsInward_Purchase.paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objTRN_GoodsInward_Purchase.paraUserLocations);
+                varSqlCommand.Parameters.AddWithValue("@paraTrnID", objTRN_GoodsInward_Purchase.paraTrnID);
+                varSqlCommand.Parameters.AddWithValue("@paraPrintName", objTRN_GoodsInward_Purchase.paraPrintName);
+                varSqlCommand.Parameters.AddWithValue("@paraId", objTRN_GoodsInward_Purchase.paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraConverttype", objTRN_GoodsInward_Purchase.paraConverttype);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -4911,6 +4923,78 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+
+        // added by venkat on 17/11/2025 for label print
+        public string udfnLabelPrint(MR_Product objMR_Product)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Label_Print]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Product.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraId", objMR_Product.paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraLanguage", objMR_Product.paraLanguage);
+                varSqlCommand.Parameters.AddWithValue("@paraLPMRP", objMR_Product.paraLPMRP);
+                varSqlCommand.Parameters.AddWithValue("@parasales_rate", objMR_Product.parasales_rate);
+                varSqlCommand.Parameters.AddWithValue("@paraCopies", objMR_Product.paraCopies);
+                varSqlCommand.Parameters.AddWithValue("@paraPrintType", objMR_Product.paraPrintType);
+                varSqlCommand.Parameters.AddWithValue("@paraLabelSize", objMR_Product.paraLabelSize);
+                varSqlCommand.Parameters.AddWithValue("@paraLabelTemplate", objMR_Product.paraLabelTemplate);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Product.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraLabelTitle", objMR_Product.paraLabelTitle); 
+                varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameEng", objMR_Product.paraProductLabelNameEng); 
+                varSqlCommand.Parameters.AddWithValue("@paraRetail", objMR_Product.ParaRetail);
+                varSqlCommand.Parameters.AddWithValue("@parawholesale_rate", objMR_Product.parawholesale_rate);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+        //Added BY Sathish ON 17-11-2025 For Direct Label Print List
+        public DataSet udfnLabelPrintList(MR_Product objMR_Product)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Label_Print", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Product.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraLPID", objMR_Product.ParaProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objMR_Product.paraStatusId);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

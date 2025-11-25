@@ -42,9 +42,13 @@ namespace ROMS
                     picLoader.BringToFront();
                     Application.DoEvents();
                     MainForm.objCP_Supplier = new CP_Supplier();
-                    //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
-                    MainForm.objCP_Supplier.ShowDialog();
+                    MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Supplier;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_Supplier.Show();
                 }
                 catch (Exception ex)
                 {
@@ -261,12 +265,16 @@ namespace ROMS
                     if (grdSupplierList.SelectedRows.Count > 0)
                     {
                         MainForm.objCP_Supplier = new CP_Supplier();
-                        //MainForm.objCP_Supplier.MdiParent = this.ParentForm;
+                        MainForm.objCP_Supplier.MdiParent = this.ParentForm;
                         MainForm.objCP_Supplier.btnSave.Text = "Update";
                         MainForm.objCP_Supplier.pbSupplierid = Convert.ToString(grdSupplierList.SelectedRows[0].Cells["SupplierID"].Value.ToString());
                         MainForm.objCP_Supplier.pbFormStatus = Convert.ToInt32(grdSupplierList.SelectedRows[0].Cells["SP_STSId"].Value.ToString());
-                        objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
-                        MainForm.objCP_Supplier.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objCP_Supplier);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objCP_Supplier;
+                        main.CurrentParentListForm = this;
+                        MainForm.objCP_Supplier.Show();
                     }
                 }
                 catch (Exception ex)
@@ -898,7 +906,23 @@ namespace ROMS
                     {
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.LimeGreen;
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                         
+                         
                         varActiveCount++;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SP_STSID"].Value) == "1" )
+                    { 
+
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.BackColor = Color.LimeGreen;
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.ForeColor = Color.White;
+
+                        varActiveCount++;
+                    }
+                    if (Convert.ToString(grdSupplierList.Rows[i].Cells["SP_STSID"].Value) == "2" || Convert.ToString(grdSupplierList.Rows[i].Cells["SP_STSID"].Value) == "98")
+                    { 
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.BackColor = Color.Tomato;
+                        grdSupplierList.Rows[i].Cells["Supplier Status"].Style.ForeColor = Color.White;
+                        varInactiveCount++;
                     }
                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "0" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
@@ -909,7 +933,7 @@ namespace ROMS
                     if (Convert.ToString(grdSupplierList.Rows[i].Cells["STS"].Value) == "2" && Convert.ToString(grdSupplierList.Rows[i].Cells["Schedule Status"].Value) != "")
                     {
                         grdSupplierList.Rows[i].Cells["Schedule Status"].Style.BackColor = Color.Tomato;
-                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White;
+                        grdSupplierList.Rows[i].Cells["Schedule Status"].Style.ForeColor = Color.White; 
                         varInactiveCount++;
                     }
 

@@ -36,9 +36,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_UserRole = new CP_UserRole();
-                    //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
-                    MainForm.objCP_UserRole.ShowDialog();
+                    MainForm.objCP_UserRole.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_UserRole;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_UserRole.Show();
                 }
                 catch (Exception ex)
                 {
@@ -264,9 +268,13 @@ namespace ROMS
                         MainForm.objCP_UserRole.varUserRoleName = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
                         MainForm.objCP_UserRole.varCLone = 0;
                         MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
-                        //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
-                        objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
-                        MainForm.objCP_UserRole.ShowDialog();
+                        MainForm.objCP_UserRole.MdiParent = this.ParentForm;
+                        //objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
+                        main.CurrentParentListForm = this;
+                        MainForm.objCP_UserRole.Show();
                     }
                 }
                 catch (Exception ex)

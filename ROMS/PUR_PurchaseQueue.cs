@@ -913,7 +913,7 @@ namespace ROMS
         }
         public void udfnEdit()
         {
-            if (Convert.ToInt32(MainForm.pbUserRoleId) != 1 || EditAccess==true)
+            if (Convert.ToInt32(MainForm.pbUserRoleId) == 1 || EditAccess==true)
             {
                 try
                 {
@@ -929,6 +929,10 @@ namespace ROMS
                     MainForm.objCP_Purchase.lblRemainProduct.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["Total Products"].Value.ToString());
                     MainForm.objCP_Purchase.txtQRCode.Text = Convert.ToString(grdPurchaseEntryQueueList.SelectedRows[0].Cells["QR Code"].Value.ToString());
                     MainForm.objCP_Purchase.MdiParent = this.ParentForm;
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Purchase;
+                    main.CurrentParentListForm = this;
                     MainForm.objCP_Purchase.Show();
                 }
                 catch (Exception ex)

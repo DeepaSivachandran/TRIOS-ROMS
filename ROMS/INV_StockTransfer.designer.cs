@@ -242,9 +242,10 @@
             this.DGV_FilterDLocation.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterDLocation.RowTemplate.Height = 25;
             this.DGV_FilterDLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterDLocation.Size = new System.Drawing.Size(221, 232);
+            this.DGV_FilterDLocation.Size = new System.Drawing.Size(324, 232);
             this.DGV_FilterDLocation.TabIndex = 111111174;
             this.DGV_FilterDLocation.Visible = false;
+            this.DGV_FilterDLocation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterDLocation_CellContentClick);
             this.DGV_FilterDLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterDLocation_CellDoubleClick);
             this.DGV_FilterDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterDLocation_KeyDown);
             // 
@@ -330,7 +331,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(908, 226);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(1249, 226);
             this.DGV_FilterProduct.TabIndex = 111111142;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellDoubleClick);

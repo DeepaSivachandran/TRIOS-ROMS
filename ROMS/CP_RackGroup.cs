@@ -2799,6 +2799,11 @@ namespace ROMS
             }
         }
 
+        private void pnlStatus_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+         
         private void DGV_SearchGridRight_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try

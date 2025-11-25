@@ -41,9 +41,13 @@ namespace ROMS
                 try
                 {
                     MainForm.objINV_StockAdjustment = new INV_Reconciliation();
-                    //MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
-                    objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
-                    MainForm.objINV_StockAdjustment.ShowDialog();
+                    MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                    //objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objINV_StockAdjustment;
+                    main.CurrentParentListForm = this;
+                    MainForm.objINV_StockAdjustment.Show();
                 }
                 catch (Exception ex)
                 {
@@ -76,12 +80,16 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objINV_StockAdjustment = new INV_Reconciliation();
-                        //MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
+                        MainForm.objINV_StockAdjustment.MdiParent = this.ParentForm;
                         MainForm.objINV_StockAdjustment.btnSave.Text = "Update";
                         MainForm.objINV_StockAdjustment.varAJId = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value);
                         MainForm.objINV_StockAdjustment.varSTSID = Convert.ToInt32(grdStockReconciliationList.SelectedRows[0].Cells["STSID"].Value);
-                        objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
-                        MainForm.objINV_StockAdjustment.ShowDialog();
+                        //objMainForm.CenterEntryForm(this, MainForm.objINV_StockAdjustment);
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objINV_StockAdjustment;
+                        main.CurrentParentListForm = this;
+                        MainForm.objINV_StockAdjustment.Show();
                     }
                 }
                 catch (Exception ex)
@@ -489,7 +497,7 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdStockReconciliationList.Columns["clmPrint"].Visible = false;
+                            grdStockReconciliationList.Columns["clmPrint"].Visible = true;
                             grdStockReconciliationList.DataSource = objDs.Tables[0];
                             grdStockReconciliationList.Columns["S.No."].Width = 50;
                             grdStockReconciliationList.Columns["Concern"].Width = 120;
@@ -1385,7 +1393,7 @@ namespace ROMS
                 try
                 {
                     DataTable dtStock = new DataTable();
-                    dtStock.TableName = "TRN_StockTransfer_Product_AutoComplete";
+                    dtStock.TableName = "TRN_StockTransfer_Product_Adjustment";
                     dtStock.Columns.Add("STK_PRID", typeof(int));
                     dtStock.Columns.Add("STK_MRP", typeof(decimal));
                     dtStock.Columns.Add("STK_ExpiryDate", typeof(string));
@@ -1397,6 +1405,7 @@ namespace ROMS
                     dtStock.Columns.Add("STK_Dest_RKID", typeof(int));
                     dtStock.Columns.Add("STK_ProType", typeof(int));
                     dtStock.Columns.Add("STK_Status", typeof(int));
+                    dtStock.Columns.Add("STK_ModifiedQTY", typeof(decimal));
                     if (grdStockReconciliationList.SelectedRows.Count > 0)
                     {
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1501,14 +1510,14 @@ namespace ROMS
                         grdStockReconciliationList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdStockReconciliationList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    if (Convert.ToInt32(grdStockReconciliationList.Rows[i].Cells["STSID"].Value) == 35)
-                    {
-                        grdStockReconciliationList.Rows[i].Cells["clmPrint"].ReadOnly = true;
-                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
-                        print.Value = "";
-                        grdStockReconciliationList.Rows[i].Cells["clmPrint"] = print;
-                        print.ReadOnly = true;
-                    }
+                    //if (Convert.ToInt32(grdStockReconciliationList.Rows[i].Cells["STSID"].Value) == 35)
+                    //{
+                    //    grdStockReconciliationList.Rows[i].Cells["clmPrint"].ReadOnly = true;
+                    //    DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                    //    print.Value = "";
+                    //    grdStockReconciliationList.Rows[i].Cells["clmPrint"] = print;
+                    //    print.ReadOnly = true;
+                    //}
                 }
             }
             catch (Exception ex)
@@ -1877,8 +1886,8 @@ namespace ROMS
                         case "clmPrint":
                             try
                             {
-                                string GOID = "0";
-                                GOID = Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["GOID"].Value.ToString());
+                                string varSRCID = "0";
+                                varSRCID = Convert.ToString(grdStockReconciliationList.SelectedRows[0].Cells["TransactionID"].Value.ToString());
                                 DialogResult result1;
                                 SPDataService objDServ = new SPDataService();
                                 string varMessage = objDServ.udfnGetMessages(87);
@@ -1889,10 +1898,28 @@ namespace ROMS
                                     string varHeader = "";
                                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsOutward.rpt");
-                                    varHeader = "Goods Outward Report";
+                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Adjustment.rpt");
+                                    varHeader = "Stock Adjustment Report";
 
-                                    objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(GOID));
+                                    objBillreport.SetParameterValue("paraBrandName", "-All-");
+                                    objBillreport.SetParameterValue("paraGroupName", "-All-");
+                                    objBillreport.SetParameterValue("paraSubgroupName", "-All-");
+                                    objBillreport.SetParameterValue("paraAlphaName", "-All-");
+                                    objBillreport.SetParameterValue("paraCompanyName", "-All-");
+                                    objBillreport.SetParameterValue("paraCompanyCode", 0);
+                                    objBillreport.SetParameterValue("paraFromDate", dtpReconDate.Text);
+                                    objBillreport.SetParameterValue("paraToDate", dtpReconToDate.Text);
+                                    objBillreport.SetParameterValue("paraSLID", 0);
+                                    objBillreport.SetParameterValue("paraBrandID", 0);
+                                    objBillreport.SetParameterValue("paraPRGID", 0);
+                                    objBillreport.SetParameterValue("paraPRSGID", 0);
+                                    objBillreport.SetParameterValue("paraAlpha", "");
+                                    objBillreport.SetParameterValue("paraLocationName", "-All-");
+                                    objBillreport.SetParameterValue("paraPrintName", "271");
+                                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                                    objBillreport.SetParameterValue("paraPRID", 0);
+                                    objBillreport.SetParameterValue("paraId", 1);
+                                    objBillreport.SetParameterValue("paraTrnID", Convert.ToInt32(varSRCID));
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                                     objValidation.CrySqlConnection(objBillreport);
