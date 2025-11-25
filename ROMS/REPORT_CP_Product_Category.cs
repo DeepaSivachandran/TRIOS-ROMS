@@ -85,7 +85,19 @@ namespace ROMS
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
             try
-            {
+            { 
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSupplier.ShowAlways = true;
+                    tpSupplier.Show("Please select report type.", cmbReportType, 5000);
+                    cmbReportType.Focus();
+                    return;
+                }
+                epReport.Clear();
+                cmbReportType.BackColor = Color.White;
+
                 udfnProductCategoryReport(0);
             }
             catch (Exception ex)
@@ -138,6 +150,7 @@ namespace ROMS
                 objMR_Product.paraType = varTypeId;
                 objMR_Product.paraFlag = Convert.ToInt32(cmbProductName.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.ParaProductCode = Convert.ToInt32(lblProduct.Text);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -152,12 +165,22 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Category.rpt");
+
+
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 433) //detail report
+                    {
+
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Category.rpt");
+                    }
+                    else { 
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Category_Location.rpt");
+                    }
                     objBillreport.SetParameterValue("paraGroupId", varGroupId);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
                     objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                    objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProduct.Text));
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
                     objBillreport.SetParameterValue("paraFlag", Convert.ToInt32(cmbProductName.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
@@ -246,6 +269,9 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,1,16) AND STSID NOT IN (120,-1)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=134 OR MSTID = -1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbProductName.SelectedValue = 271;
@@ -1192,6 +1218,7 @@ namespace ROMS
             try
             {
                 cmbProductName.BackColor = Color.LemonChiffon;
+                DGV_FilterProduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1262,7 +1289,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbCategory.Focus();
+                    cmbReportType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1828,6 +1855,64 @@ namespace ROMS
                     {
                         cmbProductName.Focus();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvGroup.Visible = false;
+                lvSubGroup.Visible = false;
+                udfnGridNull((Control)sender);
+                cmbReportType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_Leave(object sender, EventArgs e)
+        {
+            try
+            { 
+                cmbReportType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbCategory.Focus();
                 }
             }
             catch (Exception ex)
