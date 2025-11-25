@@ -349,6 +349,9 @@ namespace ROMS
         public static REPORT_Stock_Inward objREPORT_Stock_Inward;
         public static REPORT_Stock_Outward objREPORT_Stock_Outward;
         public static REPORT_Stock_Adjustment objREPORT_Stock_Adjustment;
+        public static REPORT_Stock_Conversion objREPORT_Stock_Conversion;
+        public static REPORT_Stock_Journal objREPORT_Stock_Journal;
+        public static REPORT_Stock_Details objREPORT_Stock_Details;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -4186,7 +4189,49 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_Stock_Adjustment, "REPORT_Stock_Adjustment", 80401);
+                OpenReportForm(ref MainForm.objREPORT_Stock_Adjustment, "REPORT_Stock_Adjustment", 80410);
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockConversionReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Conversion, "REPORT_Stock_Conversion", 80411);
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockJournalReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Journal, "REPORT_Stock_Journal", 80412);
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockDetailsReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Details, "REPORT_Stock_Details", 80413);
                 PbCurrentForm = "7.9.1";
             }
             catch (Exception ex)

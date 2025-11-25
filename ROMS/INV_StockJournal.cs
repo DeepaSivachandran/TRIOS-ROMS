@@ -6026,6 +6026,16 @@ namespace ROMS
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.ActiveControl = txtProductName;
                             MainForm.objINV_StockJournalList.udfnList();
+                            string varSConID = "0";
+                            if (varAJId == 0)
+                            {
+                                varSConID = varvalue[2];
+                            }
+                            else
+                            {
+                                varSConID = Convert.ToString(varAJId);
+                            }
+                            udfnConversionReport(varSConID);
                             udfnClear();
                             this.Close();
                         }
@@ -6057,6 +6067,58 @@ namespace ROMS
                 grdChild.ClearSelection();
                 grdParent2.ClearSelection();
                 grdChild2.ClearSelection();
+            }
+        }
+        public void udfnConversionReport(string varSConID)
+        {
+            try
+            {
+                DialogResult result1;
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(87);
+                objDServ.CloseConnection();
+                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result1 == DialogResult.Yes)
+                {
+                    string varHeader = "";
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Conversion.rpt");
+                    varHeader = "Stock Conversion Report";
+
+                    objBillreport.SetParameterValue("paraBrandName", "-All-");
+                    objBillreport.SetParameterValue("paraGroupName", "-All-");
+                    objBillreport.SetParameterValue("paraSubgroupName", "-All-");
+                    objBillreport.SetParameterValue("paraProductName", "-All-");
+                    objBillreport.SetParameterValue("paraCompanyName", "-All-");
+                    objBillreport.SetParameterValue("paraCompanyCode", 0);
+                    objBillreport.SetParameterValue("paraFromDate", dtpConvertDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dtpConvertDate.Text);
+                    objBillreport.SetParameterValue("paraSLID", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraPRGID", 0);
+                    objBillreport.SetParameterValue("paraPRSGID", 0);
+                    objBillreport.SetParameterValue("paraLocationName", "-All-");
+                    objBillreport.SetParameterValue("paraPrintName", "271");
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                    objBillreport.SetParameterValue("paraPRID", 0);
+                    objBillreport.SetParameterValue("paraId", 1);
+                    objBillreport.SetParameterValue("paraTrnID", Convert.ToInt32(varSConID));
+                    objBillreport.SetParameterValue("paraConverttype", 0);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.Text = varHeader;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         public void udfnOutwardReport(string varOutwardId)

@@ -14,7 +14,7 @@ using System.IO;
 
 namespace ROMS
 {
-    public partial class REPORT_Stock_Adjustment : Form
+    public partial class REPORT_Stock_Journal : Form
     {
         MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
@@ -24,7 +24,7 @@ namespace ROMS
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0, varUpDownKeyLocation = 0, varUpDownKeySupplier = 0;
         private ToolTip tpReportType = new ToolTip();
-        public REPORT_Stock_Adjustment()
+        public REPORT_Stock_Journal()
         {
             InitializeComponent();
             windowControl.Initialize(tsOutwardReport, this);
@@ -105,7 +105,7 @@ namespace ROMS
         {
             try
             {
-                udfnStockAdjustmentReport(varFlag);
+                udfnStockJournalReport(varFlag);
             }
             catch (Exception ex)
             {
@@ -113,7 +113,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnStockAdjustmentReport(int varFlag)
+        public void udfnStockJournalReport(int varFlag)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 TRN_GoodsInward_Purchase objTRN_GoodsInward_Purchase = new TRN_GoodsInward_Purchase();
-                objTRN_GoodsInward_Purchase.ViewType = 7;
+                objTRN_GoodsInward_Purchase.ViewType = 8;
                 objTRN_GoodsInward_Purchase.paraCompanyId = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRN_GoodsInward_Purchase.ParaFromDate = Convert.ToString(dpFromDate.Text);
                 objTRN_GoodsInward_Purchase.ParaToDate = Convert.ToString(dpToDate.Text);
@@ -181,8 +181,8 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    varReportName = "Stock_Adjustment";
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Adjustment.rpt");
+                    varReportName = "Stock_Journal";
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Journal.rpt");
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
@@ -265,7 +265,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80410;
+                int currentMUCode = 80412;
 
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()

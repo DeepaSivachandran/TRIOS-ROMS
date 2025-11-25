@@ -437,6 +437,20 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_Stock_Journal.cs">
+      <DependentUpon>RPT_Stock_Journal.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_Stock_Conversion.cs">
+      <DependentUpon>RPT_Stock_Conversion.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_Detail.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -631,6 +645,24 @@
     </Compile>
     <Compile Include="REPORT_PriceList.designer.cs">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_Stock_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Details.designer.cs">
+      <DependentUpon>REPORT_Stock_Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_Stock_Journal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Journal.designer.cs">
+      <DependentUpon>REPORT_Stock_Journal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_Stock_Conversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Stock_Conversion.designer.cs">
+      <DependentUpon>REPORT_Stock_Conversion.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_Stock_Adjustment.cs">
       <SubType>Form</SubType>
@@ -4621,6 +4653,16 @@
       <LastGenOutput>RPT_Stock_Valuation_Godownwise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_Stock_Conversion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock_Conversion.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_Stock_Journal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock_Journal.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_Stock_Detail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_Detail.cs</LastGenOutput>
@@ -5414,6 +5456,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_PriceList.resx">
       <DependentUpon>REPORT_PriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Details.resx">
+      <DependentUpon>REPORT_Stock_Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Journal.resx">
+      <DependentUpon>REPORT_Stock_Journal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Stock_Conversion.resx">
+      <DependentUpon>REPORT_Stock_Conversion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock_Adjustment.resx">
       <DependentUpon>REPORT_Stock_Adjustment.cs</DependentUpon>
