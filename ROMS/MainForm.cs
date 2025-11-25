@@ -4188,7 +4188,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_Stock_Adjustment, "REPORT_Stock_Adjustment", 80401);
+                OpenReportForm(ref MainForm.objREPORT_Stock_Adjustment, "REPORT_Stock_Adjustment", 80410);
                 PbCurrentForm = "7.9.1";
             }
             catch (Exception ex)
@@ -4202,7 +4202,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_Stock_Conversion, "REPORT_Stock_Conversion", 80401);
+                OpenReportForm(ref MainForm.objREPORT_Stock_Conversion, "REPORT_Stock_Conversion", 80411);
                 PbCurrentForm = "7.9.1";
             }
             catch (Exception ex)
@@ -4216,7 +4216,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_Stock_Journal, "REPORT_Stock_Journal", 80401);
+                OpenReportForm(ref MainForm.objREPORT_Stock_Journal, "REPORT_Stock_Journal", 80412);
                 PbCurrentForm = "7.9.1";
             }
             catch (Exception ex)
