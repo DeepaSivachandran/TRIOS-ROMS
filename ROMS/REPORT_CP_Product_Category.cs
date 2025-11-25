@@ -257,7 +257,14 @@ namespace ROMS
             {
                 MainForm objMainForm = new MainForm(); 
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80119;
+                int currentMUCode = 80119; 
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -269,8 +276,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,1,16) AND STSID NOT IN (120,-1)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
-
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=134 OR MSTID = -1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID");
+                 
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
 
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
@@ -1913,6 +1920,36 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     cmbCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbReportType.SelectedItem is DataRowView drv)
+                {
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) != -1)
+                    {
+                        if (drv.Row.Table.Columns.Contains("MST_ShortName") &&
+                        drv["MST_ShortName"] != DBNull.Value)
+                        {
+                            string varTooltipText = drv["MST_ShortName"]?.ToString() ?? string.Empty;
+                            tsbPrintFormat.Text = varTooltipText;
+                            tsbPrintFormat.ToolTipText = varTooltipText;
+                        }
+                        else
+                        {
+                            tsbPrintFormat.Text = string.Empty;
+                            tsbPrintFormat.ToolTipText = string.Empty;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
