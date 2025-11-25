@@ -166,6 +166,7 @@ namespace ROMS
             this.tsmStockInwardReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockOutwardReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockDetailsReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockHoldReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockAging = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockValuation = new System.Windows.Forms.ToolStripMenuItem();
@@ -199,7 +200,6 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmStockDetailsReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1111,6 +1111,7 @@ namespace ROMS
             this.tsmProductCategory.Name = "tsmProductCategory";
             this.tsmProductCategory.Size = new System.Drawing.Size(225, 22);
             this.tsmProductCategory.Text = "Product Category";
+            this.tsmProductCategory.Visible = false;
             this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
             // 
             // tsmTaxChanges
@@ -1118,6 +1119,7 @@ namespace ROMS
             this.tsmTaxChanges.Name = "tsmTaxChanges";
             this.tsmTaxChanges.Size = new System.Drawing.Size(225, 22);
             this.tsmTaxChanges.Text = "Tax Changes";
+            this.tsmTaxChanges.Visible = false;
             this.tsmTaxChanges.Click += new System.EventHandler(this.tsmTaxChanges_Click);
             // 
             // tsmInactiveProduct
@@ -1141,6 +1143,7 @@ namespace ROMS
             this.tsmSupplierWiseBlockedProducts.Name = "tsmSupplierWiseBlockedProducts";
             this.tsmSupplierWiseBlockedProducts.Size = new System.Drawing.Size(225, 22);
             this.tsmSupplierWiseBlockedProducts.Text = "Supplier wise Blocked Products";
+            this.tsmSupplierWiseBlockedProducts.Visible = false;
             this.tsmSupplierWiseBlockedProducts.Click += new System.EventHandler(this.tsmSupplierWiseBlockedProducts_Click);
             // 
             // tsmAssigned
@@ -1441,6 +1444,14 @@ namespace ROMS
             this.tsmStockReport.Text = "As On Stock";
             this.tsmStockReport.Visible = false;
             this.tsmStockReport.Click += new System.EventHandler(this.tsmStockReport_Click);
+            // 
+            // tsmStockDetailsReport
+            // 
+            this.tsmStockDetailsReport.Name = "tsmStockDetailsReport";
+            this.tsmStockDetailsReport.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockDetailsReport.Text = "Stock";
+            this.tsmStockDetailsReport.Visible = false;
+            this.tsmStockDetailsReport.Click += new System.EventHandler(this.tsmStockDetailsReport_Click);
             // 
             // tsmStockHoldReport
             // 
@@ -1749,14 +1760,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmStockDetailsReport
-            // 
-            this.tsmStockDetailsReport.Name = "tsmStockDetailsReport";
-            this.tsmStockDetailsReport.Size = new System.Drawing.Size(204, 22);
-            this.tsmStockDetailsReport.Text = "Stock";
-            this.tsmStockDetailsReport.Visible = false;
-            this.tsmStockDetailsReport.Click += new System.EventHandler(this.tsmStockDetailsReport_Click);
             // 
             // MainForm
             // 
