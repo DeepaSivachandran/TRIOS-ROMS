@@ -4238,7 +4238,6 @@ namespace ROMS
                 OpenReportForm(ref MainForm.objREPORT_Stock_Details, "REPORT_Stock_Details", 80413);
                 PbCurrentForm = "7.9.1";
             }
-            }
             catch (Exception ex)
             {
                 objError = new DataError();
