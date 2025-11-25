@@ -134,7 +134,7 @@ namespace ROMS
         {
             try
             {
-                string varLocationName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varProductName = "-All-";
+                string varLocationName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varProductName = "-All-", varAlphaName = "-All-";
                 int varLocationId = 0, varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varProductId = 0, varNameType = 0;
                 if (txtLocation.Text.Trim() != "")
                 {
@@ -156,10 +156,14 @@ namespace ROMS
                     varBrandName = txtBrand.Text;
                     varBrandId = Convert.ToInt32(lblBrandCode.Text);
                 }
-                if (txtBrand.Text.Trim() != "")
+                if (txtProductName.Text.Trim() != "")
                 {
                     varProductName = txtProductName.Text;
                     varProductId = Convert.ToInt32(lblProductcode.Text);
+                }
+                if (txtSearchByPICode.Text.Trim() != "")
+                {
+                    varAlphaName = txtSearchByPICode.Text;
                 }
 
                 if (Convert.ToInt32(cmbProductName.SelectedValue) == 270)
@@ -231,24 +235,25 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Detail_Cumulative.rpt");
                     }
-                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
-                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
-                    objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("BrandName", varBrandName);
+                    objBillreport.SetParameterValue("GroupName", varGroupName);
+                    objBillreport.SetParameterValue("SubGroupName", varSubgroupName);
+                    objBillreport.SetParameterValue("alphaName", varAlphaName);
+                    objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text.Trim());
+                    objBillreport.SetParameterValue("Companyname", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
                     objBillreport.SetParameterValue("paraSLID", varLocationId);
-                    objBillreport.SetParameterValue("paraBrandID", varBrandId);
-                    objBillreport.SetParameterValue("paraGroupID", varGroupId);
-                    objBillreport.SetParameterValue("paraSubGroupID", varSubgroupId);
+                    objBillreport.SetParameterValue("paraBrandId", varBrandId);
+                    objBillreport.SetParameterValue("paraPRGID", varGroupId);
+                    objBillreport.SetParameterValue("paraPRSGID", varSubgroupId);
                     objBillreport.SetParameterValue("paraPRID", varProductId);
                     objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraNameType", varNameType);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+                    //objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)

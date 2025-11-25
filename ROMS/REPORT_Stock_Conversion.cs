@@ -145,7 +145,7 @@ namespace ROMS
                     varBrandName = txtBrand.Text;
                     varBrandId = Convert.ToInt32(lblBrandCode.Text);
                 }
-                if (txtBrand.Text.Trim() != "")
+                if (txtProductName.Text.Trim() != "")
                 {
                     varProductName = txtProductName.Text;
                     varProductId = Convert.ToInt32(lblProductcode.Text);
