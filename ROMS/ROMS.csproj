@@ -317,6 +317,12 @@
     <Compile Include="CP_Area.designer.cs">
       <DependentUpon>CP_Area.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_CustomerType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_CustomerType.designer.cs">
+      <DependentUpon>CP_CustomerType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MR_ChequeTransactionSettings.cs" />
     <Compile Include="GRN_ADV.cs">
       <SubType>Form</SubType>
@@ -3692,6 +3698,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Area.resx">
       <DependentUpon>CP_Area.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_CustomerType.resx">
+      <DependentUpon>CP_CustomerType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
