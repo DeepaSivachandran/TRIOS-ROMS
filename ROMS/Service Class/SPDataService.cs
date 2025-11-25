@@ -855,6 +855,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraNameType", objTRNG_Stock.paraNameType);
                 varSqlCommand.Parameters.AddWithValue("@paraDate", objTRNG_Stock.paraDate);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNG_Stock.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRNG_Stock.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRNG_Stock.paraToDate);
 
 
                 varSqlCommand.CommandTimeout = 0;

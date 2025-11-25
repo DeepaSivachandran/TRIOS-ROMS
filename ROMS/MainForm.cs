@@ -351,6 +351,7 @@ namespace ROMS
         public static REPORT_Stock_Adjustment objREPORT_Stock_Adjustment;
         public static REPORT_Stock_Conversion objREPORT_Stock_Conversion;
         public static REPORT_Stock_Journal objREPORT_Stock_Journal;
+        public static REPORT_Stock_Details objREPORT_Stock_Details;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -4217,6 +4218,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_Stock_Journal, "REPORT_Stock_Journal", 80412);
+                PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockDetailsReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Details, "REPORT_Stock_Details", 80413);
                 PbCurrentForm = "7.9.1";
             }
             catch (Exception ex)

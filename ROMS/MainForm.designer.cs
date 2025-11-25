@@ -199,6 +199,7 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmStockDetailsReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1402,6 +1403,7 @@ namespace ROMS
             this.tsmStockInwardReport,
             this.tsmStockOutwardReport,
             this.tsmStockReport,
+            this.tsmStockDetailsReport,
             this.tsmStockHoldReport,
             this.tsmStockAging,
             this.tsmStockValuation,
@@ -1436,7 +1438,7 @@ namespace ROMS
             // 
             this.tsmStockReport.Name = "tsmStockReport";
             this.tsmStockReport.Size = new System.Drawing.Size(204, 22);
-            this.tsmStockReport.Text = "Stock";
+            this.tsmStockReport.Text = "As On Stock";
             this.tsmStockReport.Visible = false;
             this.tsmStockReport.Click += new System.EventHandler(this.tsmStockReport_Click);
             // 
@@ -1748,6 +1750,14 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
+            // tsmStockDetailsReport
+            // 
+            this.tsmStockDetailsReport.Name = "tsmStockDetailsReport";
+            this.tsmStockDetailsReport.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockDetailsReport.Text = "Stock";
+            this.tsmStockDetailsReport.Visible = false;
+            this.tsmStockDetailsReport.Click += new System.EventHandler(this.tsmStockDetailsReport_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1950,5 +1960,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockAdjustment;
         private System.Windows.Forms.ToolStripMenuItem tsmStockConversionReport;
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournalReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockDetailsReport;
     }
 }
