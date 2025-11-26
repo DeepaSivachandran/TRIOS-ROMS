@@ -1490,7 +1490,7 @@ namespace ROMS
                     }
 
 
-                    result = objspdservice.udfnProductMaster(15, Convert.ToInt32(lblProduct.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, itemEname, itemTname, "", 0,"", "", 0, 0);
+                    result = objspdservice.udfnProductMaster(15, Convert.ToInt32(lblProduct.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, itemEname, itemTname, "", 0, "", "", 0, 0, 0);
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")
