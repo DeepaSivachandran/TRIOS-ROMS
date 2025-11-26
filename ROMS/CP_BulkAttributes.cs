@@ -950,7 +950,7 @@ namespace ROMS
                     {
                         varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, objBulkUpdate, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "");
+                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, objBulkUpdate, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0);
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")

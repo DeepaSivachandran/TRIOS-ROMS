@@ -1229,13 +1229,22 @@ namespace ROMS
                     {
                         varSalesProduct = 1;
                     }
+                    int varIntermediateUPP = 0, varProductionMSQ = 0;
+                    if (txtIntermediateUPP.Text.Trim() != "")
+                    {
+                        varIntermediateUPP = Convert.ToInt32(txtIntermediateUPP.Text);
+                    }
+                    if (txtProductionMSQ.Text.Trim() != "")
+                    {
+                        varProductionMSQ = Convert.ToInt32(txtProductionMSQ.Text);
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
                     , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text, varSalesProduct,txtTeller.Text.Trim(),"");
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -3020,6 +3029,21 @@ namespace ROMS
                 { 
                     cmbProductType.Enabled = true;
                 }
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16)
+                {
+                    cmbIntermediateUnit.Enabled = true;
+                    txtIntermediateUPP.Enabled = true;
+                    txtProductionMSQ.Enabled = true;
+                }
+                else
+                {
+                    cmbIntermediateUnit.Enabled = false;
+                    txtIntermediateUPP.Enabled = false;
+                    txtProductionMSQ.Enabled = false;
+                    txtIntermediateUPP.Text = "";
+                    txtProductionMSQ.Text = "";
+                    cmbIntermediateUnit.SelectedValue = -1;
+                }
             }
             catch (Exception ex)
             {
@@ -3680,7 +3704,14 @@ namespace ROMS
             try
             {
                 //BeginInvoke(new Action(() => cmbUnit.Select(int.MaxValue, 0)));
-
+                if (Convert.ToInt32(cmbUnit.SelectedValue) != -1)
+                {
+                    txtInterUnit.Text = cmbUnit.Text;
+                }
+                else
+                {
+                    txtInterUnit.Text = "";
+                }
                  
 
             }
@@ -4012,6 +4043,21 @@ namespace ROMS
                             cmbChildUnit.ValueMember = "UTID";
                             cmbChildUnit.DisplayMember = "UT_Symbol";
                             cmbChildUnit.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid, 0);
+                objdserv.CloseConnection();
+                cmbIntermediateUnit.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbIntermediateUnit.ValueMember = "UTID";
+                            cmbIntermediateUnit.DisplayMember = "UT_Symbol";
+                            cmbIntermediateUnit.DataSource = objDT.Tables[0];
                         }
                     }
                 }
@@ -6774,7 +6820,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "");
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8415,7 +8461,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath);
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8484,6 +8530,136 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     cmbProductCategory.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIntermediateUPP.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbIntermediateUnit.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIntermediateUPP.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbIntermediateUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbIntermediateUnit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbIntermediateUnit.SelectedValue) != -1)
+                {
+                    txtProductionUnit.Text = cmbIntermediateUnit.Text;
+                }
+                else
+                {
+                    txtProductionUnit.Text = "";
                 }
             }
             catch (Exception ex)
@@ -9604,6 +9780,10 @@ namespace ROMS
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
                             cmbConcern.Enabled = false;
 
+
+                            txtIntermediateUPP.Text = Convert.ToString(objDS.Tables[0].Rows[0]["IntermediateUPP"].ToString());
+                            cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
+                            txtProductionMSQ.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductionMSQ"].ToString());
                             btnSave.Text = "Update";
                             //pnlStatus.Enabled = true;
                         }
@@ -9747,6 +9927,7 @@ namespace ROMS
             groupBox3.Enabled = false;
             grbPurchaseHSN.Enabled = false;
             grbSalesHSN.Enabled = false;
+            grbIntermediateDetails.Enabled = false;
             tsMenu.Enabled = false;
             flowLayoutPanel1.Enabled = false;
             btnImageUpdate.Enabled = false;
