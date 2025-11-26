@@ -290,6 +290,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
+            this.txtIntermediateUPP = new System.Windows.Forms.TextBox();
+            this.cmbIntermediateUnit = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -2661,6 +2663,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cmbIntermediateUnit);
+            this.tabPage1.Controls.Add(this.txtIntermediateUPP);
             this.tabPage1.Controls.Add(this.DGV_FilterPurLocation);
             this.tabPage1.Controls.Add(this.txtTeller);
             this.tabPage1.Controls.Add(this.textBox11);
@@ -3293,6 +3297,35 @@
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
             // 
+            // txtIntermediateUPP
+            // 
+            this.txtIntermediateUPP.Enabled = false;
+            this.txtIntermediateUPP.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtIntermediateUPP.Location = new System.Drawing.Point(748, 585);
+            this.txtIntermediateUPP.MaxLength = 5;
+            this.txtIntermediateUPP.Name = "txtIntermediateUPP";
+            this.txtIntermediateUPP.Size = new System.Drawing.Size(43, 27);
+            this.txtIntermediateUPP.TabIndex = 111111168;
+            this.txtIntermediateUPP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtIntermediateUPP.Enter += new System.EventHandler(this.txtIntermediateUPP_Enter);
+            this.txtIntermediateUPP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIntermediateUPP_KeyDown);
+            this.txtIntermediateUPP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIntermediateUPP_KeyPress);
+            this.txtIntermediateUPP.Leave += new System.EventHandler(this.txtIntermediateUPP_Leave);
+            // 
+            // cmbIntermediateUnit
+            // 
+            this.cmbIntermediateUnit.Enabled = false;
+            this.cmbIntermediateUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbIntermediateUnit.FormattingEnabled = true;
+            this.cmbIntermediateUnit.Location = new System.Drawing.Point(791, 585);
+            this.cmbIntermediateUnit.Name = "cmbIntermediateUnit";
+            this.cmbIntermediateUnit.Size = new System.Drawing.Size(68, 27);
+            this.cmbIntermediateUnit.TabIndex = 111111169;
+            this.cmbIntermediateUnit.Enter += new System.EventHandler(this.cmbIntermediateUnit_Enter);
+            this.cmbIntermediateUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbIntermediateUnit_KeyDown);
+            this.cmbIntermediateUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbIntermediateUnit_KeyPress);
+            this.cmbIntermediateUnit.Leave += new System.EventHandler(this.cmbIntermediateUnit_Leave);
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -3300,13 +3333,13 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(952, 691);
             this.Controls.Add(this.lvSaleRack);
-            this.Controls.Add(this.btnImageUpdate);
             this.Controls.Add(this.lvVerified1);
             this.Controls.Add(this.DGV_FilterSalesLocation);
             this.Controls.Add(this.pnlProductDetails);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbCompleted);
+            this.Controls.Add(this.btnImageUpdate);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -3618,5 +3651,7 @@
         private System.Windows.Forms.TrackBar tbContrast;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnImageUpdate;
+        private System.Windows.Forms.TextBox txtIntermediateUPP;
+        public System.Windows.Forms.ComboBox cmbIntermediateUnit;
     }
 }
