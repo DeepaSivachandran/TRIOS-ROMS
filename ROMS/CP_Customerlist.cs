@@ -12,7 +12,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace ROMS
 {
     //Created By:Sathish ; Created On:-26/11/2025
-    public partial class CP_CustomerTypelist : Form
+    public partial class CP_Customerlist : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
@@ -24,10 +24,10 @@ namespace ROMS
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
-        public CP_CustomerTypelist()
+        public CP_Customerlist()
         {
             InitializeComponent();
-            windowControl.Initialize(tsCustomerTypeList, this);
+            windowControl.Initialize(tsCustomerList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
@@ -35,9 +35,9 @@ namespace ROMS
             {
                 try
                 {
-                    MainForm.objCP_CustomerType = new CP_CustomerType();
-                    MainForm.objCP_CustomerType.FormBorderStyle = FormBorderStyle.FixedSingle;
-                    MainForm.objCP_CustomerType.ShowDialog();
+                    MainForm.objCP_Customer = new CP_Customer();
+                    MainForm.objCP_Customer.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    MainForm.objCP_Customer.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -76,7 +76,7 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdCustomerTypeList.SelectedRows.Count > 0)
+                    if (grdCustomerList.SelectedRows.Count > 0)
                     {
                         string varResult = "";
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -84,7 +84,7 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnCustomerType(2, Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value), "", 0, "Customer Type Delete");
+                            varResult = objspservice.udfnCustomerType(2, Convert.ToInt32(grdCustomerList.SelectedRows[0].Cells["ID"].Value), "", 0, "Customer Type Delete");
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -115,16 +115,16 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdCustomerTypeList.SelectedRows.Count > 0)
+                    if (grdCustomerList.SelectedRows.Count > 0)
                     {
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
-                        MainForm.objCP_CustomerType = new CP_CustomerType();
-                        MainForm.objCP_CustomerType.btnSave.Text = "Update";
-                        MainForm.objCP_CustomerType.pbCusTypeId = Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value);
-                        MainForm.objCP_CustomerType.PbStatus = Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objCP_CustomerType.ShowDialog();
+                        MainForm.objCP_Customer = new CP_Customer();
+                        MainForm.objCP_Customer.btnSave.Text = "Update";
+                        MainForm.objCP_Customer.pbCustomerId = Convert.ToInt32(grdCustomerList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_Customer.PbStatus = Convert.ToInt32(grdCustomerList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_Customer.ShowDialog();
                     }
                 }
                 catch (Exception ex)
@@ -147,7 +147,7 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdCustomerTypeList.DataSource = null;
+                grdCustomerList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
@@ -161,14 +161,14 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdCustomerTypeList.DataSource = objDs.Tables[0];
-                            grdCustomerTypeList.Columns["ID"].Visible = false;
-                            grdCustomerTypeList.Columns["StatusID"].Visible = false;
-                            grdCustomerTypeList.Columns["S.No."].Width = 50;
-                            grdCustomerTypeList.Columns["Customer Type"].Width = 200;
-                            grdCustomerTypeList.Columns["Status"].Width = 80;
-                            grdCustomerTypeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCustomerTypeList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            //grdCustomerList.DataSource = objDs.Tables[0];
+                            //grdCustomerList.Columns["ID"].Visible = false;
+                            //grdCustomerList.Columns["StatusID"].Visible = false;
+                            //grdCustomerList.Columns["S.No."].Width = 50;
+                            //grdCustomerList.Columns["Customer Type"].Width = 200;
+                            //grdCustomerList.Columns["Status"].Width = 80;
+                            //grdCustomerList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            //grdCustomerList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -201,7 +201,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdCustomerTypeList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdCustomerList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -230,10 +230,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    udfnGridSearchHeading(grdCustomerTypeList, DGV_SearchGrid);
+                    udfnGridSearchHeading(grdCustomerList, DGV_SearchGrid);
                     DGV_SearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in grdCustomerTypeList.Columns)
+                    foreach (DataGridViewColumn col in grdCustomerList.Columns)
                     {
                         DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
@@ -377,19 +377,19 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdCustomerTypeList.Rows.Count; i++)
+                for (int i = 0; i < grdCustomerList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdCustomerTypeList.Rows[i].Cells["StatusID"].Value) == "1")
+                    if (Convert.ToString(grdCustomerList.Rows[i].Cells["StatusID"].Value) == "1")
                     {
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdCustomerList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdCustomerList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdCustomerList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdCustomerList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdCustomerTypeList.ClearSelection();
+                    grdCustomerList.ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -405,16 +405,16 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdCustomerTypeList.HorizontalScrollingOffset;
+                    int offSetValue = grdCustomerList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdCustomerTypeList.Width > grdCustomerTypeList.HorizontalScrollingOffset && grdCustomerTypeList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdCustomerList.Width > grdCustomerList.HorizontalScrollingOffset && grdCustomerList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdCustomerTypeList);
+                    udfnscrollVisible(DGV_SearchGrid, grdCustomerList);
                 }
             }
             catch (Exception ex)
@@ -459,9 +459,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdCustomerTypeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerTypeList);
+                grdCustomerList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerList);
                 objDser.CloseConnection();
-                grdCustomerTypeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCustomerList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -492,10 +492,10 @@ namespace ROMS
         {
             try
             {
-                if (grdCustomerTypeList.ColumnCount > 0)
+                if (grdCustomerList.ColumnCount > 0)
                 {
-                    grdCustomerTypeList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerTypeList.HorizontalScrollingOffset;
+                    grdCustomerList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerList.HorizontalScrollingOffset;
                 }
             }
             catch (Exception ex)
@@ -511,10 +511,10 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdCustomerTypeList.HorizontalScrollingOffset;
+                    int offSetValue = grdCustomerList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdCustomerTypeList.Width > grdCustomerTypeList.HorizontalScrollingOffset && grdCustomerTypeList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdCustomerList.Width > grdCustomerList.HorizontalScrollingOffset && grdCustomerList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
@@ -545,15 +545,15 @@ namespace ROMS
         {
             if (lblNoRecordsFound.Visible == false)
             {
-                DataGridViewColumn newColumn = grdCustomerTypeList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdCustomerTypeList.SortedColumn;
+                DataGridViewColumn newColumn = grdCustomerList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdCustomerList.SortedColumn;
                 ListSortDirection direction;
                 // If oldColumn is null, then the DataGridView is not sorted.
                 if (oldColumn != null)
                 {
                     // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
-                        grdCustomerTypeList.SortOrder == SortOrder.Ascending)
+                        grdCustomerList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
@@ -568,13 +568,13 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdCustomerTypeList.Sort(newColumn, direction);
+                grdCustomerList.Sort(newColumn, direction);
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
                     SortOrder.Ascending : SortOrder.Descending;
                 DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerTypeList.HorizontalScrollingOffset;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerList.HorizontalScrollingOffset;
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
         }
@@ -594,9 +594,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdCustomerTypeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerTypeList);
+                grdCustomerList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerList);
                 objDser.CloseConnection();
-                grdCustomerTypeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCustomerList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex)
@@ -606,7 +606,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdCustomerTypeList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdCustomerList.Rows.Count);
             }
         }
 

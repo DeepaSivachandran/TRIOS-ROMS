@@ -84,7 +84,7 @@
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(209, 28);
-            this.pnlStatus.TabIndex = 10;
+            this.pnlStatus.TabIndex = 1;
             // 
             // rbActive
             // 
@@ -95,7 +95,7 @@
             this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 3;
+            this.rbActive.TabIndex = 1;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             this.rbInActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 4;
+            this.rbInActive.TabIndex = 2;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.rbInActive_Enter);
@@ -144,7 +144,7 @@
             this.grbForm.Name = "grbForm";
             this.grbForm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbForm.Size = new System.Drawing.Size(337, 140);
-            this.grbForm.TabIndex = 15;
+            this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
             // btnClose
@@ -156,7 +156,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 34);
-            this.btnClose.TabIndex = 13;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(82, 34);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;

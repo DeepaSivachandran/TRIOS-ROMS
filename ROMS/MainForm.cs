@@ -172,6 +172,8 @@ namespace ROMS
         public static CP_Routelist objCP_Routelist;
         public static CP_CustomerType objCP_CustomerType;
         public static CP_CustomerTypelist objCP_CustomerTypelist;
+        public static CP_Customer objCP_Customer;
+        public static CP_Customerlist objCP_Customerlist;
 
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
@@ -4266,6 +4268,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_CustomerTypelist, "CP_CustomerTypelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Customerlist, "CP_Customerlist", 501);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)

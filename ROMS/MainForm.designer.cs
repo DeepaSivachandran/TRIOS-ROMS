@@ -201,8 +201,9 @@ namespace ROMS
             this.ms = new System.Windows.Forms.MenuStrip();
             this.tsmSalesMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRoute = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusBar = new System.Windows.Forms.StatusStrip();
             this.tsmCustomerType = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1760,7 +1761,8 @@ namespace ROMS
             // 
             this.tsmSalesMasters.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmRoute,
-            this.tsmCustomerType});
+            this.tsmCustomerType,
+            this.tsmCustomer});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
@@ -1774,6 +1776,13 @@ namespace ROMS
             this.tsmRoute.Text = "Route";
             this.tsmRoute.Click += new System.EventHandler(this.tsmRoute_Click);
             // 
+            // tsmCustomerType
+            // 
+            this.tsmCustomerType.Name = "tsmCustomerType";
+            this.tsmCustomerType.Size = new System.Drawing.Size(180, 22);
+            this.tsmCustomerType.Text = "Customer Type";
+            this.tsmCustomerType.Click += new System.EventHandler(this.tsmCustomerType_Click);
+            // 
             // statusBar
             // 
             this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1783,12 +1792,12 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmCustomerType
+            // tsmCustomer
             // 
-            this.tsmCustomerType.Name = "tsmCustomerType";
-            this.tsmCustomerType.Size = new System.Drawing.Size(180, 22);
-            this.tsmCustomerType.Text = "Customer Type";
-            this.tsmCustomerType.Click += new System.EventHandler(this.tsmCustomerType_Click);
+            this.tsmCustomer.Name = "tsmCustomer";
+            this.tsmCustomer.Size = new System.Drawing.Size(180, 22);
+            this.tsmCustomer.Text = "Customer";
+            this.tsmCustomer.Click += new System.EventHandler(this.tsmCustomer_Click);
             // 
             // MainForm
             // 
@@ -1996,5 +2005,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmSalesMasters;
         private System.Windows.Forms.ToolStripMenuItem tsmRoute;
         private System.Windows.Forms.ToolStripMenuItem tsmCustomerType;
+        private System.Windows.Forms.ToolStripMenuItem tsmCustomer;
     }
 }

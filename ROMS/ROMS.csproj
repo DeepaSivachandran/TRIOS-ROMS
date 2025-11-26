@@ -166,6 +166,18 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Customer.designer.cs">
+      <DependentUpon>CP_Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Customerlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Customerlist.designer.cs">
+      <DependentUpon>CP_Customerlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_DirectLabelList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3629,6 +3641,12 @@
     <None Include="Resources\right arrow.gif" />
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Customer.resx">
+      <DependentUpon>CP_Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Customerlist.resx">
+      <DependentUpon>CP_Customerlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DirectLabelList.resx">
       <DependentUpon>CP_DirectLabelList.cs</DependentUpon>
