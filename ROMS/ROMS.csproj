@@ -172,6 +172,12 @@
     <Compile Include="CP_DirectLabelList.designer.cs">
       <DependentUpon>CP_DirectLabelList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_CustomerTypelist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_CustomerTypelist.designer.cs">
+      <DependentUpon>CP_CustomerTypelist.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Routelist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3626,6 +3632,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DirectLabelList.resx">
       <DependentUpon>CP_DirectLabelList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_CustomerTypelist.resx">
+      <DependentUpon>CP_CustomerTypelist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Routelist.resx">
       <DependentUpon>CP_Routelist.cs</DependentUpon>

@@ -15,47 +15,92 @@ namespace ROMS
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
-        private ToolTip tpCancel = new ToolTip();
-        public string varSupplierIds, varGIId="0";
-        public int varPrid=0,varFlag=0;
+        private ToolTip tpCustomerType = new ToolTip();
+        public int pbCusTypeId = 0, PbStatus = 0, varUpdate = 0;
         public CP_CustomerType()
         {
             InitializeComponent();
-            
+        }
+        public void udfnSave()
+        {
+            try
+            {
+                if (rbActive.Checked == true) { PbStatus = 1; }
+                else { PbStatus = 2; }
+                SPDataService objspservice = new SPDataService();
+                string varResult = "",
+                varoriginator = ""; int varType = 0;
+                if (btnSave.Text == "Save")
+                {
+                    varoriginator = "Customer Type Creation";
+                    varType = 0;
+                }
+                else
+                {
+                    varoriginator = "Customer Type Updation";
+                    varType = 1;
+                }
+                varResult = objspservice.udfnCustomerType(varType, 0, txtCustomerType.Text.Trim(), txtCustomerType.Text.Trim(),0, PbStatus, varoriginator);
+                objspservice.CloseConnection();
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MainForm.objCP_Routelist.udfnList();
+                    if (btnSave.Text == "Save")
+                    {
+                        txtCustomerType.Text = "";
+                        this.ActiveControl = txtCustomerType;
+                        MainForm.objCP_CustomerTypelist.udfnList();
+                    }
+                    if (btnSave.Text == "Update")
+                    {
+                        varUpdate = 1;
+                        udfnclose();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Enabled = true;
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnclose()
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtCount.Text.Trim() == "")
+                if (txtCustomerType.Text.Trim() == "")
                 {
-                    errBrand.SetError(txtCount, "Please enter no. of copies.");
-                    txtCount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCancel.ShowAlways = true;
-                    tpCancel.Show("Please enter no. of copies.", txtCount, 5000);
-                    return;
+                    epCustomerType.SetError(txtCustomerType, "Please enter customer type.");
+                    txtCustomerType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomerType.ShowAlways = true;
+                    tpCustomerType.Show("Please enter customer type.", txtCustomerType, 5000);
                 }
                 else
                 {
-                    if (Convert.ToInt32(txtCount.Text.Trim()) < 1)
-                    {
-                        errBrand.SetError(txtCount, "Please enter valid no. of copies.");
-                        txtCount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpCancel.ShowAlways = true;
-                        tpCancel.Show("Please enter valid no. of copies.", txtCount, 5000);
-                        return;
-                    }
-                }
-                if (varFlag == 1) ///inward sticker print count
-                {
-                    udfnStickerPrint();
-                }
-                if (varFlag == 2) ///inward sticker print count
-                {
-                    udfnStickerFormPurchasePrint();
-                }
-                else { 
-                    udfnPrint();
+                    epCustomerType.Clear();
+                    btnSave.Enabled = false;
+                    udfnSave();
+                    btnSave.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -64,132 +109,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPrint()
-        {
-            try
-            {
-                errBrand.Clear();
-                SPDataService objSPdataservice = new SPDataService();
-                DataSet objDs = new DataSet();
-                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 42;
-                objMR_Supplier.paraSupplierIds = varSupplierIds;
-                objMR_Supplier.paraStickerCount = Convert.ToInt32(txtCount.Text.Trim());
-                objDs = objSPdataservice.udfnSupplierList(objMR_Supplier);
-                objSPdataservice.CloseConnection();
-                if (objDs != null)
-                {
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Supplier_Envelope.rpt");
-                    objBillreport.SetParameterValue("paraSupplierIds", varSupplierIds);
-                    objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
-                    objValidation.CrySqlConnection(objBillreport);
-                    MainForm.objReportLoad = new ReportLoad();
-                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                    MainForm.objReportLoad.ShowDialog();
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                this.Close();
-            }
-        }
-
-
-        public void udfnStickerPrint()
-        {
-            try
-            {
-                if (varGIId != "0")
-                {
-                    string varHeader = "";
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Inward_Sticker_Print_100x70.rpt");
-
-                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varGIId));
-                    objBillreport.SetParameterValue("paraPRID", Convert.ToInt32(varPrid));
-                    objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
-                    objBillreport.SetParameterValue("paraFlag", 2); ////item wise sticker print  for inward
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-
-                    MainForm.objReportLoad = new ReportLoad();
-                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                    MainForm.objReportLoad.Text = varHeader;
-                    MainForm.objReportLoad.ShowDialog();
-                }
-                else {
-                    return;
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                this.Close();
-            }
-        }
-
-        public void udfnStickerFormPurchasePrint()
-        {
-            try
-            {
-                if (varGIId != "0")
-                {
-                    string varHeader = "";
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Inward_FPurchase_Sticker_Print_100x70.rpt");
-
-                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varGIId));
-                    objBillreport.SetParameterValue("paraPRID", Convert.ToInt32(varPrid));
-                    objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
-                    objBillreport.SetParameterValue("paraFlag", 2); ////item wise sticker print  for inward
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objValidation.CrySqlConnection(objBillreport);
-
-                    MainForm.objReportLoad = new ReportLoad();
-                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                    MainForm.objReportLoad.Text = varHeader;
-                    MainForm.objReportLoad.ShowDialog();
-                }
-                else
-                {
-                    return;
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                this.Close();
-            }
-        }
-
-        
         private void btnSave_Enter(object sender, EventArgs e)
         {
             try
@@ -218,7 +137,7 @@ namespace ROMS
         {
             try
             {
-                tpCancel.Active = false;
+                tpCustomerType.Active = false;
             }
             catch (Exception ex)
             {
@@ -227,13 +146,27 @@ namespace ROMS
             }
         }
 
-        private void CP_Brand_KeyDown(object sender, KeyEventArgs e)
+        private void CP_CustomerType_Load(object sender, EventArgs e)
         {
             try
             {
-                if (e.KeyCode == Keys.F5)
+                this.ActiveControl = txtCustomerType;
+                if (pbCusTypeId == 0)
                 {
-                    btnSave_Click(sender, e);
+                    pnlStatus.Enabled = false;
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    pnlStatus.Enabled = true;
+                    if (PbStatus == 1)
+                    {
+                        rbActive.Checked = true;
+                    }
+                    else if(PbStatus == 2)
+                    {
+                        rbInActive.Checked = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -243,17 +176,37 @@ namespace ROMS
             }
         }
 
-        private void CancelReason_Load(object sender, EventArgs e)
+        private void txtCustomerType_Enter(object sender, EventArgs e)
         {
             try
             {
-                this.Text = "Supplier Envelope Label";
-                if (varFlag == 1) ///inward sticker print count
+                txtCustomerType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCustomerType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
                 {
-                    this.Text = "Inward Label print";
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if(rbActive.Checked==true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
                 }
-
-                txtCount.Focus();
             }
             catch (Exception ex)
             {
@@ -262,11 +215,11 @@ namespace ROMS
             }
         }
 
-        private void TxtReason_Enter(object sender, EventArgs e)
+        private void txtCustomerType_Leave(object sender, EventArgs e)
         {
             try
             {
-                txtCount.BackColor = Color.LemonChiffon;
+                txtCustomerType.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -275,7 +228,56 @@ namespace ROMS
             }
         }
 
-        private void TxtReason_KeyDown(object sender, KeyEventArgs e)
+        private void rbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void rbInActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void rbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void rbInActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -291,11 +293,14 @@ namespace ROMS
             }
         }
 
-        private void TxtReason_Leave(object sender, EventArgs e)
+        private void rbInActive_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                txtCount.BackColor = Color.White;
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -304,14 +309,27 @@ namespace ROMS
             }
         }
 
-        private void TxtCount_KeyPress(object sender, KeyPressEventArgs e)
+        private void CP_CustomerType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                if (e.KeyCode == Keys.F5)
                 {
-                    e.Handled = true;
+                    btnSave_Click(sender, e);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_CustomerType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpCustomerType.Active = false;
             }
             catch (Exception ex)
             {

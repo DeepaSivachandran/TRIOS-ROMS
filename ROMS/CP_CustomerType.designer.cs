@@ -30,56 +30,37 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_CustomerType));
-            this.txtCount = new System.Windows.Forms.TextBox();
-            this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnSave = new System.Windows.Forms.Button();
+            this.txtCustomerType = new System.Windows.Forms.TextBox();
+            this.epCustomerType = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.errBrand)).BeginInit();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.epCustomerType)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtCount
+            // txtCustomerType
             // 
-            this.txtCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCount.Location = new System.Drawing.Point(113, 23);
-            this.txtCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtCount.MaxLength = 50;
-            this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(210, 27);
-            this.txtCount.TabIndex = 0;
-            this.txtCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtCount.Enter += new System.EventHandler(this.TxtReason_Enter);
-            this.txtCount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReason_KeyDown);
-            this.txtCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCount_KeyPress);
-            this.txtCount.Leave += new System.EventHandler(this.TxtReason_Leave);
+            this.txtCustomerType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtCustomerType.Location = new System.Drawing.Point(113, 23);
+            this.txtCustomerType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCustomerType.MaxLength = 30;
+            this.txtCustomerType.Name = "txtCustomerType";
+            this.txtCustomerType.Size = new System.Drawing.Size(210, 27);
+            this.txtCustomerType.TabIndex = 0;
+            this.txtCustomerType.Enter += new System.EventHandler(this.txtCustomerType_Enter);
+            this.txtCustomerType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomerType_KeyDown);
+            this.txtCustomerType.Leave += new System.EventHandler(this.txtCustomerType_Leave);
             // 
-            // errBrand
+            // epCustomerType
             // 
-            this.errBrand.ContainerControl = this;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(169, 88);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 34);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
+            this.epCustomerType.ContainerControl = this;
             // 
             // txtStatus
             // 
@@ -118,6 +99,9 @@
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
+            this.rbActive.Enter += new System.EventHandler(this.rbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbActive_KeyDown);
+            this.rbActive.Leave += new System.EventHandler(this.rbActive_Leave);
             // 
             // rbInActive
             // 
@@ -130,6 +114,9 @@
             this.rbInActive.TabIndex = 4;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
+            this.rbInActive.Enter += new System.EventHandler(this.rbInActive_Enter);
+            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbInActive_KeyDown);
+            this.rbInActive.Leave += new System.EventHandler(this.rbInActive_Leave);
             // 
             // textBox1
             // 
@@ -143,6 +130,22 @@
             this.textBox1.Size = new System.Drawing.Size(107, 28);
             this.textBox1.TabIndex = 12;
             this.textBox1.Text = "Customer Type";
+            // 
+            // grbForm
+            // 
+            this.grbForm.Controls.Add(this.textBox1);
+            this.grbForm.Controls.Add(this.btnClose);
+            this.grbForm.Controls.Add(this.txtCustomerType);
+            this.grbForm.Controls.Add(this.btnSave);
+            this.grbForm.Controls.Add(this.txtStatus);
+            this.grbForm.Controls.Add(this.pnlStatus);
+            this.grbForm.Location = new System.Drawing.Point(12, 13);
+            this.grbForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbForm.Name = "grbForm";
+            this.grbForm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbForm.Size = new System.Drawing.Size(337, 140);
+            this.grbForm.TabIndex = 15;
+            this.grbForm.TabStop = false;
             // 
             // btnClose
             // 
@@ -158,21 +161,22 @@
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // grbForm
+            // btnSave
             // 
-            this.grbForm.Controls.Add(this.textBox1);
-            this.grbForm.Controls.Add(this.btnClose);
-            this.grbForm.Controls.Add(this.txtCount);
-            this.grbForm.Controls.Add(this.btnSave);
-            this.grbForm.Controls.Add(this.txtStatus);
-            this.grbForm.Controls.Add(this.pnlStatus);
-            this.grbForm.Location = new System.Drawing.Point(12, 13);
-            this.grbForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbForm.Name = "grbForm";
-            this.grbForm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbForm.Size = new System.Drawing.Size(337, 140);
-            this.grbForm.TabIndex = 15;
-            this.grbForm.TabStop = false;
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(169, 88);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(74, 34);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
             // CP_CustomerType
             // 
@@ -191,10 +195,10 @@
             this.Name = "CP_CustomerType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Type";
-            this.Load += new System.EventHandler(this.CancelReason_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_Brand_Leave);
-            ((System.ComponentModel.ISupportInitialize)(this.errBrand)).EndInit();
+            this.Load += new System.EventHandler(this.CP_CustomerType_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_CustomerType_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_CustomerType_Leave);
+            ((System.ComponentModel.ISupportInitialize)(this.epCustomerType)).EndInit();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.grbForm.ResumeLayout(false);
@@ -204,8 +208,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider errBrand;
-        public System.Windows.Forms.TextBox txtCount;
+        private System.Windows.Forms.ErrorProvider epCustomerType;
+        public System.Windows.Forms.TextBox txtCustomerType;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtStatus;
