@@ -40,18 +40,17 @@ namespace ROMS
                     varoriginator = "Customer Type Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnCustomerType(varType, 0, txtCustomerType.Text.Trim(), txtCustomerType.Text.Trim(),0, PbStatus, varoriginator);
+                varResult = objspservice.udfnCustomerType(varType, pbCusTypeId, txtCustomerType.Text.Trim(), PbStatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_Routelist.udfnList();
+                    MainForm.objCP_CustomerTypelist.udfnList();
                     if (btnSave.Text == "Save")
                     {
                         txtCustomerType.Text = "";
                         this.ActiveControl = txtCustomerType;
-                        MainForm.objCP_CustomerTypelist.udfnList();
                     }
                     if (btnSave.Text == "Update")
                     {
@@ -150,6 +149,8 @@ namespace ROMS
         {
             try
             {
+                MainForm.objCP_CustomerTypelist.picLoader.Visible = false;
+                MainForm.objCP_CustomerTypelist.picLoader.SendToBack();
                 this.ActiveControl = txtCustomerType;
                 if (pbCusTypeId == 0)
                 {
@@ -158,6 +159,7 @@ namespace ROMS
                 }
                 else
                 {
+                    udfnEdit();
                     pnlStatus.Enabled = true;
                     if (PbStatus == 1)
                     {
@@ -175,7 +177,31 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnEdit()
+        {
+            try
+            {
+                if (pbCusTypeId != 0)
+                {
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnCustomerTypelist(1, pbCusTypeId, 0);
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            txtCustomerType.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_Name"]);
+                            txtCustomerType.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void txtCustomerType_Enter(object sender, EventArgs e)
         {
             try
@@ -205,6 +231,10 @@ namespace ROMS
                         {
                             rbInActive.Focus();
                         }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
                     }
                 }
             }

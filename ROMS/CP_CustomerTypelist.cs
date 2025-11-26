@@ -27,7 +27,7 @@ namespace ROMS
         public CP_CustomerTypelist()
         {
             InitializeComponent();
-            windowControl.Initialize(tsRouteList, this);
+            windowControl.Initialize(tsCustomerTypeList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
@@ -76,7 +76,7 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdRouteList.SelectedRows.Count > 0)
+                    if (grdCustomerTypeList.SelectedRows.Count > 0)
                     {
                         string varResult = "";
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -84,7 +84,7 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnRoute(2, Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Route Delete");
+                            varResult = objspservice.udfnCustomerType(2, Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value), "", 0, "Customer Type Delete");
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -115,15 +115,15 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdRouteList.SelectedRows.Count > 0)
+                    if (grdCustomerTypeList.SelectedRows.Count > 0)
                     {
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objCP_CustomerType = new CP_CustomerType();
-                        //MainForm.objCP_CustomerType.btnSave.Text = "Update";
-                        //MainForm.objCP_CustomerType.varRouteId = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["ID"].Value);
-                        //MainForm.objCP_CustomerType.PbStatus = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_CustomerType.btnSave.Text = "Update";
+                        MainForm.objCP_CustomerType.pbCusTypeId = Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_CustomerType.PbStatus = Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_CustomerType.ShowDialog();
                     }
                 }
@@ -147,11 +147,11 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdRouteList.DataSource = null;
+                grdCustomerTypeList.DataSource = null;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRoutelist(0, 0, Convert.ToInt32(cmbStatus.SelectedValue));
+                objDs = objspservice.udfnCustomerTypelist(0, 0, Convert.ToInt32(cmbStatus.SelectedValue));
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -161,17 +161,14 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            //grdRouteList.DataSource = objDs.Tables[0];
-                            //grdRouteList.Columns["ID"].Visible = false;
-                            //grdRouteList.Columns["Order No"].Visible = false;
-                            //grdRouteList.Columns["StatusID"].Visible = false;
-                            //grdRouteList.Columns["S.No."].Width = 50;
-                            //grdRouteList.Columns["Route Name in Tamil"].Width = 200;
-                            //grdRouteList.Columns["Route Name in English"].Width = 200;
-                            //grdRouteList.Columns["Status"].Width = 80;
-                            //grdRouteList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdRouteList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdRouteList.Columns["Route Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdCustomerTypeList.DataSource = objDs.Tables[0];
+                            grdCustomerTypeList.Columns["ID"].Visible = false;
+                            grdCustomerTypeList.Columns["StatusID"].Visible = false;
+                            grdCustomerTypeList.Columns["S.No."].Width = 50;
+                            grdCustomerTypeList.Columns["Customer Type"].Width = 200;
+                            grdCustomerTypeList.Columns["Status"].Width = 80;
+                            grdCustomerTypeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCustomerTypeList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -204,7 +201,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdRouteList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdCustomerTypeList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -215,11 +212,9 @@ namespace ROMS
             {
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
-                DGV_SearchGrid.Columns["Order No"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Route Name in Tamil"].Width = 200;
-                DGV_SearchGrid.Columns["Route Name in English"].Width = 200;
+                DGV_SearchGrid.Columns["Customer Type"].Width = 200;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -235,10 +230,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    udfnGridSearchHeading(grdRouteList, DGV_SearchGrid);
+                    udfnGridSearchHeading(grdCustomerTypeList, DGV_SearchGrid);
                     DGV_SearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in grdRouteList.Columns)
+                    foreach (DataGridViewColumn col in grdCustomerTypeList.Columns)
                     {
                         DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
@@ -382,19 +377,19 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdRouteList.Rows.Count; i++)
+                for (int i = 0; i < grdCustomerTypeList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdRouteList.Rows[i].Cells["StatusID"].Value) == "1")
+                    if (Convert.ToString(grdCustomerTypeList.Rows[i].Cells["StatusID"].Value) == "1")
                     {
-                        grdRouteList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdRouteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdRouteList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdRouteList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdRouteList.ClearSelection();
+                    grdCustomerTypeList.ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -410,16 +405,16 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdRouteList.HorizontalScrollingOffset;
+                    int offSetValue = grdCustomerTypeList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdRouteList.Width > grdRouteList.HorizontalScrollingOffset && grdRouteList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdCustomerTypeList.Width > grdCustomerTypeList.HorizontalScrollingOffset && grdCustomerTypeList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdRouteList);
+                    udfnscrollVisible(DGV_SearchGrid, grdCustomerTypeList);
                 }
             }
             catch (Exception ex)
@@ -464,9 +459,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdRouteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdRouteList);
+                grdCustomerTypeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerTypeList);
                 objDser.CloseConnection();
-                grdRouteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCustomerTypeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -497,10 +492,10 @@ namespace ROMS
         {
             try
             {
-                if (grdRouteList.ColumnCount > 0)
+                if (grdCustomerTypeList.ColumnCount > 0)
                 {
-                    grdRouteList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdRouteList.HorizontalScrollingOffset;
+                    grdCustomerTypeList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerTypeList.HorizontalScrollingOffset;
                 }
             }
             catch (Exception ex)
@@ -516,10 +511,10 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdRouteList.HorizontalScrollingOffset;
+                    int offSetValue = grdCustomerTypeList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdRouteList.Width > grdRouteList.HorizontalScrollingOffset && grdRouteList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdCustomerTypeList.Width > grdCustomerTypeList.HorizontalScrollingOffset && grdCustomerTypeList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
@@ -550,15 +545,15 @@ namespace ROMS
         {
             if (lblNoRecordsFound.Visible == false)
             {
-                DataGridViewColumn newColumn = grdRouteList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdRouteList.SortedColumn;
+                DataGridViewColumn newColumn = grdCustomerTypeList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdCustomerTypeList.SortedColumn;
                 ListSortDirection direction;
                 // If oldColumn is null, then the DataGridView is not sorted.
                 if (oldColumn != null)
                 {
                     // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
-                        grdRouteList.SortOrder == SortOrder.Ascending)
+                        grdCustomerTypeList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
@@ -573,13 +568,13 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdRouteList.Sort(newColumn, direction);
+                grdCustomerTypeList.Sort(newColumn, direction);
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
                     SortOrder.Ascending : SortOrder.Descending;
                 DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdRouteList.HorizontalScrollingOffset;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerTypeList.HorizontalScrollingOffset;
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
         }
@@ -599,9 +594,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdRouteList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdRouteList);
+                grdCustomerTypeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerTypeList);
                 objDser.CloseConnection();
-                grdRouteList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdCustomerTypeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex)
@@ -611,7 +606,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdRouteList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdCustomerTypeList.Rows.Count);
             }
         }
 

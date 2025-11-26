@@ -166,10 +166,10 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(169, 88);
+            this.btnSave.Location = new System.Drawing.Point(161, 88);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 34);
+            this.btnSave.Size = new System.Drawing.Size(82, 34);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -210,7 +210,6 @@
         #endregion
         private System.Windows.Forms.ErrorProvider epCustomerType;
         public System.Windows.Forms.TextBox txtCustomerType;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Panel pnlStatus;
@@ -218,5 +217,6 @@
         private System.Windows.Forms.RadioButton rbInActive;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbForm;
+        public System.Windows.Forms.Button btnSave;
     }
 }
