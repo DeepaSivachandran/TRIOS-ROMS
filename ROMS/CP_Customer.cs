@@ -216,7 +216,10 @@ namespace ROMS
         {
             try
             {
-
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -268,7 +271,10 @@ namespace ROMS
         {
             try
             {
-
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -379,7 +385,7 @@ namespace ROMS
         {
             try
             {
-
+                objValidation.udfnGSTIN(e);
             }
             catch (Exception ex)
             {
