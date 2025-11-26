@@ -113,8 +113,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(181, 24);
-            this.tspHeader.Text = "Product Attributes Bulk Update";
+            this.tspHeader.Size = new System.Drawing.Size(199, 24);
+            this.tspHeader.Text = "Spl Product Attributes Bulk Update";
             // 
             // pnlMenu
             // 

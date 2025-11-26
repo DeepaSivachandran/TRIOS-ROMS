@@ -134,6 +134,7 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static CP_GeneralSettings objCP_GeneralSettings;
         public static CP_BulkAttributes objCP_BulkAttributes;
+        public static CP_Spl_Products_Bulk objCP_Spl_Products_Bulk;
         public static CP_BulkAttributeVerify objCP_BulkAttributeVerify;
         public static CP_RepresentativeList objCP_RepresentativeList;
         public static CP_Representative objCP_Representative;
@@ -4248,8 +4249,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51901);
-                objCP_BulkAttributes.Text = "Stock location, Rack & MSQ";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
+                objCP_BulkAttributes.Text = "Spl Product Attributes Bulk Update";
+                objCP_BulkAttributes.tspHeader.Text = "Spl Product Attributes Bulk Update";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
