@@ -4241,6 +4241,24 @@ namespace ROMS
             }
         }
 
+        private void tsmSplField_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
+                MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51901);
+                objCP_BulkAttributes.Text = "Stock location, Rack & MSQ";
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 

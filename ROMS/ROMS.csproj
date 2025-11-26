@@ -166,6 +166,12 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Spl_Products_Bulk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Spl_Products_Bulk.designer.cs">
+      <DependentUpon>CP_Spl_Products_Bulk.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_DirectLabelList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3599,6 +3605,9 @@
     <None Include="Resources\right arrow.gif" />
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Spl_Products_Bulk.resx">
+      <DependentUpon>CP_Spl_Products_Bulk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DirectLabelList.resx">
       <DependentUpon>CP_DirectLabelList.cs</DependentUpon>
