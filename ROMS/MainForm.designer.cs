@@ -337,6 +337,7 @@ namespace ROMS
             this.tsmInventory.Size = new System.Drawing.Size(64, 21);
             this.tsmInventory.Text = "&Inventory";
             this.tsmInventory.Visible = false;
+            this.tsmInventory.Click += new System.EventHandler(this.tsmInventory_Click);
             // 
             // tsminward
             // 
@@ -345,7 +346,7 @@ namespace ROMS
             this.tsmInwardfromothers});
             this.tsminward.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsminward.Name = "tsminward";
-            this.tsminward.Size = new System.Drawing.Size(171, 22);
+            this.tsminward.Size = new System.Drawing.Size(180, 22);
             this.tsminward.Text = "Goods Inward";
             this.tsminward.Visible = false;
             // 
@@ -368,7 +369,7 @@ namespace ROMS
             // tsmOutward
             // 
             this.tsmOutward.Name = "tsmOutward";
-            this.tsmOutward.Size = new System.Drawing.Size(171, 22);
+            this.tsmOutward.Size = new System.Drawing.Size(180, 22);
             this.tsmOutward.Text = "Goods Outward";
             this.tsmOutward.Visible = false;
             this.tsmOutward.Click += new System.EventHandler(this.TsmOutward_Click);
@@ -376,7 +377,7 @@ namespace ROMS
             // tsmStockTransfer
             // 
             this.tsmStockTransfer.Name = "tsmStockTransfer";
-            this.tsmStockTransfer.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockTransfer.Size = new System.Drawing.Size(180, 22);
             this.tsmStockTransfer.Text = "Stock Transfer";
             this.tsmStockTransfer.Visible = false;
             this.tsmStockTransfer.Click += new System.EventHandler(this.TsmStockTransfer_Click);
@@ -384,7 +385,7 @@ namespace ROMS
             // tsmBatchConversion
             // 
             this.tsmBatchConversion.Name = "tsmBatchConversion";
-            this.tsmBatchConversion.Size = new System.Drawing.Size(171, 22);
+            this.tsmBatchConversion.Size = new System.Drawing.Size(180, 22);
             this.tsmBatchConversion.Text = "Batch Conversion";
             this.tsmBatchConversion.Visible = false;
             this.tsmBatchConversion.Click += new System.EventHandler(this.tsmBatchConversion_Click);
@@ -392,7 +393,7 @@ namespace ROMS
             // tsmStockReconciliation
             // 
             this.tsmStockReconciliation.Name = "tsmStockReconciliation";
-            this.tsmStockReconciliation.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockReconciliation.Size = new System.Drawing.Size(180, 22);
             this.tsmStockReconciliation.Text = "Stock Adjustment";
             this.tsmStockReconciliation.Visible = false;
             this.tsmStockReconciliation.Click += new System.EventHandler(this.tsmStockReconciliation_Click);
@@ -400,7 +401,7 @@ namespace ROMS
             // tsmStockHold
             // 
             this.tsmStockHold.Name = "tsmStockHold";
-            this.tsmStockHold.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockHold.Size = new System.Drawing.Size(180, 22);
             this.tsmStockHold.Text = "Stock Hold";
             this.tsmStockHold.Visible = false;
             this.tsmStockHold.Click += new System.EventHandler(this.TsmStockHold_Click);
@@ -408,7 +409,7 @@ namespace ROMS
             // tsmDamageEntry
             // 
             this.tsmDamageEntry.Name = "tsmDamageEntry";
-            this.tsmDamageEntry.Size = new System.Drawing.Size(171, 22);
+            this.tsmDamageEntry.Size = new System.Drawing.Size(180, 22);
             this.tsmDamageEntry.Text = "Damage Entry";
             this.tsmDamageEntry.Visible = false;
             this.tsmDamageEntry.Click += new System.EventHandler(this.tsmDamageEntry_Click);
@@ -416,7 +417,7 @@ namespace ROMS
             // tsmStockReq
             // 
             this.tsmStockReq.Name = "tsmStockReq";
-            this.tsmStockReq.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockReq.Size = new System.Drawing.Size(180, 22);
             this.tsmStockReq.Text = "Shop Stock Request";
             this.tsmStockReq.Visible = false;
             this.tsmStockReq.Click += new System.EventHandler(this.TsmStockRequest_Click);
@@ -424,7 +425,7 @@ namespace ROMS
             // tsmRackTransfer
             // 
             this.tsmRackTransfer.Name = "tsmRackTransfer";
-            this.tsmRackTransfer.Size = new System.Drawing.Size(171, 22);
+            this.tsmRackTransfer.Size = new System.Drawing.Size(180, 22);
             this.tsmRackTransfer.Text = "Rack Transfer";
             this.tsmRackTransfer.Visible = false;
             this.tsmRackTransfer.Click += new System.EventHandler(this.tsmRackTransfer_Click);
@@ -432,7 +433,7 @@ namespace ROMS
             // tsmStockConversion
             // 
             this.tsmStockConversion.Name = "tsmStockConversion";
-            this.tsmStockConversion.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockConversion.Size = new System.Drawing.Size(180, 22);
             this.tsmStockConversion.Text = "Stock Conversion";
             this.tsmStockConversion.Visible = false;
             this.tsmStockConversion.Click += new System.EventHandler(this.tsmStockConversion_Click);
@@ -440,7 +441,7 @@ namespace ROMS
             // tsmStockJournal
             // 
             this.tsmStockJournal.Name = "tsmStockJournal";
-            this.tsmStockJournal.Size = new System.Drawing.Size(171, 22);
+            this.tsmStockJournal.Size = new System.Drawing.Size(180, 22);
             this.tsmStockJournal.Text = "Stock Journal";
             this.tsmStockJournal.Visible = false;
             this.tsmStockJournal.Click += new System.EventHandler(this.tsmStockJournal_Click);

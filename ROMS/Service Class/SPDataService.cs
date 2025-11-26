@@ -157,6 +157,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraTime", objMR_Master.paraTime);
                 varSqlCommand.Parameters.AddWithValue("@paraTimeFormat", objMR_Master.paraTimeFormat);
                 varSqlCommand.Parameters.AddWithValue("@ParaProduct_HSN", objMR_Master.ParaProduct_HSN);
+                varSqlCommand.Parameters.AddWithValue("@paraMRP", objMR_Master.paraMRP);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
