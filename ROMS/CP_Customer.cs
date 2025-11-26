@@ -130,6 +130,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Customer_Type", "CusType_STSID=1 ORDER BY CusTypeID", "CusType_Name,CusTypeID", cmbCustomerType, "", "CusType_Name", "CusTypeID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (1,2,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
                 objDataBind = null;
                 if (pbCustomerId == 0)
                 {
@@ -498,6 +499,268 @@ namespace ROMS
             }
         }
 
+        private void cmbState_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbState.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbState_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void cmbState_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbState_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbState.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
+                txtCity.Text = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCity.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvCity.Items.Count == 0 || txtCity.Text == "")
+                    {
+                        txtCity.Focus();
+                        lvCity.Visible = false;
+                    }
+                    else
+                    {
+                        lvCity.Focus();
+                    }
+                    if (lvCity.Items.Count > 0)
+                    {
+                        lvCity.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPincode.Focus();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCity.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                lvCity.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtCity.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnCitylist(1, txtCity.Text, Convert.ToInt32(cmbState.SelectedValue), 0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString(), objDs.Tables[0].Rows[i]["ST_TIN"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvCity.Items.Add(objList);
+                                }
+                                lvCity.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvCity.Visible = false;
+                    lvCity.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPincode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvCity.Visible = false;
+                txtPincode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPincode_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtPincode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPincode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPincode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvCity_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCityBind();
+                txtPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnCityBind();
+                    txtPincode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnCityBind()
+        {
+            try
+            {
+                if (txtCity.Text != "")
+                {
+                    ListViewItem selectedItem = lvCity.SelectedItems[0];
+                    txtCity.Text = selectedItem.SubItems[0].Text;
+                    lblCityId.Text = selectedItem.SubItems[2].Text;
+                    lvCity.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvCity.Visible = false;
+            }
+        }
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
