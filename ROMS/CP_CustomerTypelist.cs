@@ -84,7 +84,7 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnCustomerType(2, Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value), "", 0, "Customer Type Delete");
+                            varResult = objspservice.udfnCustomerType(2, Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value),"", "", 0, "Customer Type Delete");
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {

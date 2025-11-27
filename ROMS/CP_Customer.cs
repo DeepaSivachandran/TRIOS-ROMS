@@ -39,7 +39,7 @@ namespace ROMS
                     varoriginator = "Customer Type Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnCustomerType(varType, pbCustomerId, txtCustomerName.Text.Trim(), PbStatus, varoriginator);
+                varResult = objspservice.udfnCustomerType(varType, pbCustomerId, txtCustomerName.Text.Trim(), txtCustomerName.Text.Trim(), PbStatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

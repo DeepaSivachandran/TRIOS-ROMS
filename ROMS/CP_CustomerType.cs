@@ -41,7 +41,7 @@ namespace ROMS
                     varoriginator = "Customer Type Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnCustomerType(varType, pbCusTypeId, txtCustomerType.Text.Trim(), PbStatus, varoriginator);
+                varResult = objspservice.udfnCustomerType(varType, pbCusTypeId, txtCustomerType.Text.Trim(), txtCustomerTypeTName.Text.Trim(), PbStatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -90,13 +90,22 @@ namespace ROMS
             {
                 if (txtCustomerType.Text.Trim() == "")
                 {
-                    epCustomerType.SetError(txtCustomerType, "Please enter customer type.");
+                    epCustomerType.SetError(txtCustomerType, "Please enter customer type english name.");
                     txtCustomerType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCustomerType.ShowAlways = true;
-                    tpCustomerType.Show("Please enter customer type.", txtCustomerType, 5000);
+                    tpCustomerType.Show("Please enter customer type english name.", txtCustomerType, 5000);
+                }
+                else if (txtCustomerTypeTName.Text.Trim() == "")
+                {
+                    epCustomerType.SetError(txtCustomerTypeTName, "Please enter customer type tamil name.");
+                    txtCustomerTypeTName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomerType.ShowAlways = true;
+                    tpCustomerType.Show("Please enter customer type tamil name.", txtCustomerTypeTName, 5000);
                 }
                 else
                 {
+                    txtCustomerType.BackColor = Color.White;
+                    txtCustomerTypeTName.BackColor = Color.White;
                     epCustomerType.Clear();
                     btnSave.Enabled = false;
                     udfnSave();
@@ -222,21 +231,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        if(rbActive.Checked==true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInActive.Focus();
-                        }
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    txtCustomerTypeTName.Focus();
                 }
             }
             catch (Exception ex)
@@ -332,6 +327,62 @@ namespace ROMS
                 {
                     btnSave.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCustomerTypeTName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCustomerTypeTName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCustomerTypeTName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCustomerTypeTName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCustomerType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

@@ -5012,7 +5012,7 @@ namespace ROMS
         }
 
         //Created By : Sathish, Created On :-11-11-2025
-        public string udfnCustomerType(int ViewType, int paraCusTypeId, string paraCusTypeName,int paraStatusId, string paraOriginator)
+        public string udfnCustomerType(int ViewType, int paraCusTypeId, string paraCusTypeEName, string paraCusTypeTName, int paraStatusId, string paraOriginator)
         {
             string varResult = "";
             try
@@ -5022,7 +5022,8 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraCusTypeId", paraCusTypeId);
-                varSqlCommand.Parameters.AddWithValue("@paraCusTypeName", paraCusTypeName);
+                varSqlCommand.Parameters.AddWithValue("@paraCusTypeEName", paraCusTypeEName);
+                varSqlCommand.Parameters.AddWithValue("@paraCusTypeTName", paraCusTypeTName);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
