@@ -5142,6 +5142,40 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnArea(TRN_Stock_Journal objTRN_Stock_Journal)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Stock_Journal]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Journal.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Journal.ParaTransactionId);
+                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_Stock_Journal.paraFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_Stock_Journal.paraToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_Stock_Journal.paraSLID);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_Stock_Journal.paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Journal.ParaCompanyCode);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Journal.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Stock_Journal.paraUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_Stock_Journal.paraIPAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRN_Stock_Journal.paraTransType);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }

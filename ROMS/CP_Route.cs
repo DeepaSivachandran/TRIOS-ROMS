@@ -381,6 +381,10 @@ namespace ROMS
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 MainForm.objCP_Routelist.picLoader.Visible = false;
                 MainForm.objCP_Routelist.picLoader.SendToBack();
+                grdArea.Rows.Add(false, "Virudhunagar");
+                grdArea.Rows.Add(false, "Aruppukottai");
+                grdArea.Rows.Add(false, "Sivakasi");
+                grdArea.Rows.Add(false, "Sattur"); 
             }
             catch (Exception ex)
             {
@@ -543,6 +547,21 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grbform_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

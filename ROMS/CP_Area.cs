@@ -188,7 +188,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRName.Focus();
+                    cmbOrderNo.Focus();
                 }
             }
             catch (Exception ex)
@@ -215,7 +215,7 @@ namespace ROMS
         {
             try
             {
-                txtRName.BackColor = Color.LemonChiffon;
+                cmbOrderNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -258,7 +258,7 @@ namespace ROMS
         {
             try
             {
-                txtRName.BackColor = Color.White;
+                cmbOrderNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -266,75 +266,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtRName_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (varUpDownKeyLocation == 0)
-                {
-                    SPDataService objspdservice = new SPDataService();
-                    DataSet objDs = new DataSet();
-                    if (txtRName.Text.Length > 0)
-                    {
-                        MR_Location objMR_Location = new MR_Location();
-                        objMR_Location.paraViewType = 20;
-                        objMR_Location.paraLocationName = txtRName.Text.Trim();
-                        objDs = objspdservice.udfnStockLocationList(objMR_Location);
-                        objspdservice.CloseConnection();
-
-                        //objDs = objspdservice.udfnStockLocationList(20, Convert.ToInt32(cmbConcern.SelectedValue), 0, 0, txtLocation.Text, 0, 0, 0, "", "", 0);
-                        if (objDs != null)
-                        {
-                            if (objDs.Tables.Count != 0)
-                            {
-                                if (objDs.Tables[0].Rows.Count != 0)
-                                {
-                                    DGV_FilterLocation.Visible = true;
-                                    DGV_FilterLocation.DataSource = objDs.Tables[0];
-                                    DGV_FilterLocation.Columns["SLID"].Visible = false;
-                                    DGV_FilterLocation.Columns["SL_TName"].Visible = false;
-                                    DGV_FilterLocation.Columns["SL_ShortName"].Visible = false;
-                                    DGV_FilterLocation.Columns["SL_EName"].HeaderText = "Location";
-                                    DGV_FilterLocation.Columns["SL_EName"].Width = 220;
-                                    DGV_FilterLocation.Columns["SL_EName"].DisplayIndex = 0;
-                                    DGV_FilterLocation.BringToFront();
-                                }
-                                else
-                                {
-                                    DGV_FilterLocation.DataSource = null;
-                                    DGV_FilterLocation.Visible = false;
-                                }
-                            }
-                            else
-                            {
-                                DGV_FilterLocation.DataSource = null;
-                                DGV_FilterLocation.Visible = false;
-                            }
-                        }
-                        else
-                        {
-                            DGV_FilterLocation.DataSource = null;
-                            DGV_FilterLocation.Visible = false;
-                        }
-                    }
-                    else
-                    {
-                        DGV_FilterLocation.DataSource = null;
-                        DGV_FilterLocation.Visible = false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-
-            }
-        }
+         
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -386,5 +318,222 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void cmbRoute_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRoute.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRoute_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtAEName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRoute_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRoute_Leave(object sender, EventArgs e)
+        {
+            try
+            { 
+                cmbRoute.BackColor = Color.White; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRoute.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOrderNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCity_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCity.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbCity.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbInActive_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbInActive_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbInActive.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCity_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCity.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
+ 

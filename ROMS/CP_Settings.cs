@@ -1639,6 +1639,12 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void DGV_SearchGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void TxtNoOfDegits_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
