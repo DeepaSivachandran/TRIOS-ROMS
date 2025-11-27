@@ -17,7 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpVehicle = new ToolTip();
-        public int pbCusTypeId = 0, PbStatus = 0, varUpdate = 0;
+        public int pbVehicleId = 0, PbStatus = 0, varUpdate = 0;
         public CP_Vehicle()
         {
             InitializeComponent();
@@ -28,30 +28,37 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { PbStatus = 1; }
                 else { PbStatus = 2; }
+                decimal varCapacity = 0;
+                if (txtCapacity.Text.Trim() != "")
+                {
+                    varCapacity = Convert.ToDecimal(txtCapacity.Text);
+                }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    varoriginator = "Customer Type Creation";
+                    varoriginator = "Vehicle Creation";
                     varType = 0;
                 }
                 else
                 {
-                    varoriginator = "Customer Type Updation";
+                    varoriginator = "Vehicle Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnCustomerType(varType, pbCusTypeId, txtVehicleName.Text.Trim(), txtShortName.Text.Trim(), PbStatus, varoriginator);
+                varResult = objspservice.udfnVehicle(varType, pbVehicleId, txtVehicleName.Text.Trim(), txtShortName.Text.Trim(), txtRegisterNo.Text.Trim(), varCapacity, PbStatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_CustomerTypelist.udfnList();
+                    MainForm.objCP_Vehiclelist.udfnList();
                     if (btnSave.Text == "Save")
                     {
                         txtVehicleName.Text = "";
                         txtShortName.Text = "";
+                        txtRegisterNo.Text = "";
+                        txtCapacity.Text = "";
                         this.ActiveControl = txtVehicleName;
                     }
                     if (btnSave.Text == "Update")
@@ -156,13 +163,13 @@ namespace ROMS
             }
         }
 
-        private void CP_CustomerType_Load(object sender, EventArgs e)
+        private void CP_Vehicle_Load(object sender, EventArgs e)
         {
             try
             {
-                MainForm.objCP_CustomerTypelist.picLoader.Visible = false;
-                MainForm.objCP_CustomerTypelist.picLoader.SendToBack();
-                if (pbCusTypeId == 0)
+                MainForm.objCP_Vehiclelist.picLoader.Visible = false;
+                MainForm.objCP_Vehiclelist.picLoader.SendToBack();
+                if (pbVehicleId == 0)
                 {
                     this.ActiveControl = txtVehicleName;
                     pnlStatus.Enabled = false;
@@ -196,11 +203,11 @@ namespace ROMS
         {
             try
             {
-                if (pbCusTypeId != 0)
+                if (pbVehicleId != 0)
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnCustomerTypelist(1, pbCusTypeId, 0);
+                    objDs = objspservice.udfnCustomerTypelist(1, pbVehicleId, 0);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

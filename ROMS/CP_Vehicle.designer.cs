@@ -98,7 +98,7 @@
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActive.Location = new System.Drawing.Point(61, 1);
+            this.rbActive.Location = new System.Drawing.Point(81, 1);
             this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
@@ -114,7 +114,7 @@
             // 
             this.rbInActive.AutoSize = true;
             this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbInActive.Location = new System.Drawing.Point(129, 1);
+            this.rbInActive.Location = new System.Drawing.Point(149, 1);
             this.rbInActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
@@ -162,12 +162,13 @@
             // 
             // txtCapacity
             // 
-            this.txtCapacity.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCapacity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtCapacity.Location = new System.Drawing.Point(144, 103);
-            this.txtCapacity.MaxLength = 100;
+            this.txtCapacity.MaxLength = 8;
             this.txtCapacity.Name = "txtCapacity";
             this.txtCapacity.Size = new System.Drawing.Size(299, 27);
             this.txtCapacity.TabIndex = 3;
+            this.txtCapacity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCapacity.Enter += new System.EventHandler(this.txtCapacity_Enter);
             this.txtCapacity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCapacity_KeyDown);
             this.txtCapacity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapacity_KeyPress);
@@ -188,7 +189,7 @@
             // 
             // txtRegisterNo
             // 
-            this.txtRegisterNo.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegisterNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtRegisterNo.Location = new System.Drawing.Point(144, 76);
             this.txtRegisterNo.MaxLength = 100;
             this.txtRegisterNo.Name = "txtRegisterNo";
@@ -214,9 +215,10 @@
             // 
             // txtShortName
             // 
-            this.txtShortName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtShortName.Location = new System.Drawing.Point(144, 49);
-            this.txtShortName.MaxLength = 100;
+            this.txtShortName.MaxLength = 20;
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(299, 27);
             this.txtShortName.TabIndex = 1;
@@ -285,7 +287,7 @@
             this.Name = "CP_Vehicle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vehicle Details";
-            this.Load += new System.EventHandler(this.CP_CustomerType_Load);
+            this.Load += new System.EventHandler(this.CP_Vehicle_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_CustomerType_KeyDown);
             this.Leave += new System.EventHandler(this.CP_CustomerType_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.epVehicle)).EndInit();
