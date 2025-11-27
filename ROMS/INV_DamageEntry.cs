@@ -1603,7 +1603,7 @@ namespace ROMS
                             varDMFromOther = Convert.ToInt32(objDS.Tables[0].Rows[0]["DM_FromOtherLoc"]);
                         }
                         if(varDMFromOther==0)
-                        { chkDamageOtherLoc.Checked = false; }
+                        { chkDamageOtherLoc.Checked = false; chkDamageOtherLoc.Enabled = false; }
                         else { chkDamageOtherLoc.Checked = true; chkDamageOtherLoc.Enabled = false; }
                         if (objDS.Tables[0].Rows.Count > 0)
                         {
@@ -2012,6 +2012,7 @@ namespace ROMS
                     objTRN_Damage.paraOriginator = varoriginator;
                     objTRN_Damage.paraDamageEntry = dtDamage;
                     objTRN_Damage.paraEmployeeId = varEmployeeId;
+                    objTRN_Damage.paraDMFromOtherLoc = varDMFromOther;
                     varResult = objspservice.udfnDamageEntry(objTRN_Damage);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
@@ -2556,12 +2557,11 @@ namespace ROMS
                 cmbSupplier.BackColor = Color.White;
             }
         }
-        public void udfnBatchDetails()
-        
+        public void udfnBatchDetails() 
         {
             try
             {
-                decimal varMRP = 0; string varExpiryDate = ""; int ExpiryDateFlag = 0;
+                decimal varMRP = 0; string varExpiryDate = ""; int ExpiryDateFlag = 0; int AutoBatchFlag = 0;
                 if(Convert.ToString(txtMrp.Text)!="")
                 {
                     varMRP = Convert.ToDecimal(txtMrp.Text);
@@ -2579,7 +2579,11 @@ namespace ROMS
                         ExpiryDateFlag = 1;
                     } 
                 }
-                if (ExpiryDateFlag == 1)
+                if(expirydateFlag==1 && varBatchNoGeneration==74 &&  varMRPFlag==1)
+                {
+                    AutoBatchFlag = 1;
+                }
+                if (AutoBatchFlag == 1)
                 {
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 31; 
@@ -2670,6 +2674,7 @@ namespace ROMS
                                         }
                                     }
                                 }
+                                udfnBatchDetails();
                             }
                             if (varShelflife == 1)
                             {
@@ -2737,8 +2742,7 @@ namespace ROMS
         public void udfnProductDetailsFromOther()
         {
             try
-            {
-               
+            { 
                 udfnSupplierLoad();
             }
             catch (Exception ex)
@@ -3857,7 +3861,18 @@ namespace ROMS
             {
                 varUpDownKey = 1;
                 udfnProductEvent();
-                txtQuantity.Focus();
+                if (varDMFromOther == 0)
+                {
+                    txtQuantity.Focus();
+                }
+                else
+                {
+                    if (txtMrp.Enabled == true)
+                    { txtMrp.Focus(); }
+                    else if (txtBatchNo.Enabled == true)
+                    { txtBatchNo.Focus(); }
+                    else { txtQuantity.Focus(); }
+                }
             }
             catch (Exception ex)
             {
@@ -3958,7 +3973,18 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtQuantity.Focus();
+                        if (varDMFromOther == 0)
+                        {
+                            txtQuantity.Focus();
+                        }
+                        else
+                        {
+                            if (txtMrp.Enabled == true)
+                            { txtMrp.Focus(); }
+                            else if (txtBatchNo.Enabled == true)
+                            { txtBatchNo.Focus(); }
+                            else { txtQuantity.Focus(); }
+                        }
                     }
                 }
             }
