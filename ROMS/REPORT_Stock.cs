@@ -145,7 +145,7 @@ namespace ROMS
                 objTRNG_Stock.paraCategoryID = Convert.ToInt32(cmbCategory.SelectedValue);
                 objTRNG_Stock.paraStockType = Convert.ToInt32(cmbStockType.SelectedValue);
                 objTRNG_Stock.paraBlockedFlag = Convert.ToInt32(cmbProductType.SelectedValue);
-
+                objTRNG_Stock.paraUserLocations = locationcode;
                 if (Convert.ToInt32(cmbProductType.SelectedValue) == 418)
                 { 
                     objTRNG_Stock.paraBlockedFlag = 1;
@@ -215,7 +215,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraBlockedFlag",1);
                     } 
                     objBillreport.SetParameterValue("alphaName", string.IsNullOrWhiteSpace(txtSearchByPICode.Text) ? "-All-" : txtSearchByPICode.Text.Trim());
-                    objBillreport.SetParameterValue("paraLocationName", string.IsNullOrWhiteSpace(txtLocation.Text) ? "-All-" : txtLocation.Text.Trim());
+                    objBillreport.SetParameterValue("paraLocationName", string.IsNullOrWhiteSpace(cmbStockLocation.Text) ? "-All-" : cmbStockLocation.Text.Trim());
                     objBillreport.SetParameterValue("supplierName", string.IsNullOrWhiteSpace(txtSupplier.Text) ? "-All-" : txtSupplier.Text.Trim());
                     objBillreport.SetParameterValue("ProductName", string.IsNullOrWhiteSpace(txtProductName.Text) ? "-All-" : txtProductName.Text.Trim());
                     objBillreport.SetParameterValue("productCategory", cmbCategory.Text);

@@ -1034,7 +1034,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "REPORT_Stock";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "b";
+            this.Text = "Stock";
             this.Load += new System.EventHandler(this.REPORT_CP_Product_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_CP_Product_KeyDown);
             this.tsStockReport.ResumeLayout(false);

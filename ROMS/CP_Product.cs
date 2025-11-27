@@ -63,6 +63,7 @@ namespace ROMS
         private ToolTip tpemail = new ToolTip();
         private ToolTip tpgstin = new ToolTip();
         private ToolTip tpfssai = new ToolTip();
+        private ToolTip tpIntermediateUnit = new ToolTip();
         private ToolTip tpshortname = new ToolTip();
         private ToolTip tppincode = new ToolTip();
         private ToolTip tpcity = new ToolTip();
@@ -1014,6 +1015,48 @@ namespace ROMS
                     }
                      
                 }
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && (Convert.ToString(txtIntermediateUPP.Text.Trim()) != "" || Convert.ToString(txtProductionMSQ.Text.Trim()) != ""))
+                {
+                    if (Convert.ToInt32(cmbIntermediateUnit.SelectedValue) == -1)
+                    {
+                        errItems.SetError(cmbIntermediateUnit, "Please select intermediate unit");
+                        cmbIntermediateUnit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIntermediateUnit.ShowAlways = true;
+                        tpIntermediateUnit.Show("Please select intermediate unit", cmbIntermediateUnit, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                else
+                {
+                    cmbIntermediateUnit.BackColor = Color.White;
+                }
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && Convert.ToInt32(cmbIntermediateUnit.SelectedValue) != -1)
+                {
+                    if (Convert.ToString(txtIntermediateUPP.Text.Trim()) == "")
+                    {
+                        errItems.SetError(txtIntermediateUPP, "Please enter intermediate upp");
+                        txtIntermediateUPP.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIntermediateUnit.ShowAlways = true;
+                        tpIntermediateUnit.Show("Please enter intermediate upp", txtIntermediateUPP, 5000);
+                        blnErrorFlag = true;
+                    }
+                    else
+                    {
+                        txtIntermediateUPP.BackColor = Color.White;
+                    }
+                    if (Convert.ToString(txtProductionMSQ.Text.Trim()) == "")
+                    {
+                        errItems.SetError(txtProductionMSQ, "Please enter production msq");
+                        txtProductionMSQ.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIntermediateUnit.ShowAlways = true;
+                        tpIntermediateUnit.Show("Please enter production msq", txtProductionMSQ, 5000);
+                        blnErrorFlag = true;
+                    }
+                    else
+                    {
+                        txtProductionMSQ.BackColor = Color.White;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -1229,13 +1272,23 @@ namespace ROMS
                     {
                         varSalesProduct = 1;
                     }
+                    int varIntermediateUPP = 0;
+                        decimal varProductionMSQ = 0;
+                    if (txtIntermediateUPP.Text.Trim() != "")
+                    {
+                        varIntermediateUPP = Convert.ToInt32(txtIntermediateUPP.Text);
+                    }
+                    if (txtProductionMSQ.Text.Trim() != "")
+                    {
+                        varProductionMSQ = Convert.ToDecimal(txtProductionMSQ.Text);
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
                     , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(),lblParentcode.Text, varSalesProduct,txtTeller.Text.Trim(),"");
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -1513,6 +1566,7 @@ namespace ROMS
                 tpPurHSN.ShowAlways = false;
                 tpSalesHSN.ShowAlways = false;
                 tpVerifier.ShowAlways = false;
+                tpIntermediateUnit.ShowAlways = false;
                 this.Close();
                 //MainForm.objCP_Itemlist.udfnList();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
@@ -1683,18 +1737,19 @@ namespace ROMS
                     }
                     else
                     {
-                        if (txtPurLocation.Enabled == true)
-                        {
-                            txtPurLocation.Focus();
-                        }
-                        else if (txtPurRack.Enabled == true)
-                        {
-                            txtPurRack.Focus();
-                        }
-                        else
-                        {
-                            txtSaleLocation.Focus();
-                        }
+                        txtWeight.Focus();
+                        //if (txtPurLocation.Enabled == true)
+                        //{
+                        //    txtPurLocation.Focus();
+                        //}
+                        //else if (txtPurRack.Enabled == true)
+                        //{
+                        //    txtPurRack.Focus();
+                        //}
+                        //else
+                        //{
+                        //    txtSaleLocation.Focus();
+                        //}
                     }
                 }
             }
@@ -1824,7 +1879,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    if (txtIntermediateUPP.Enabled == true)
+                    {
+                        txtIntermediateUPP.Focus();
+                    }
+                    else
+                    {
+                        cmbBatchNoEntry.Focus();
+                    }
                     //txtHsnName.Focus();
                 }
             }
@@ -3020,6 +3082,21 @@ namespace ROMS
                 { 
                     cmbProductType.Enabled = true;
                 }
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16)
+                {
+                    cmbIntermediateUnit.Enabled = true;
+                    txtIntermediateUPP.Enabled = true;
+                    txtProductionMSQ.Enabled = true;
+                }
+                else
+                {
+                    cmbIntermediateUnit.Enabled = false;
+                    txtIntermediateUPP.Enabled = false;
+                    txtProductionMSQ.Enabled = false;
+                    txtIntermediateUPP.Text = "";
+                    txtProductionMSQ.Text = "";
+                    cmbIntermediateUnit.SelectedValue = -1;
+                }
             }
             catch (Exception ex)
             {
@@ -3118,18 +3195,19 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtPurLocation.Enabled == true)
-                    {
-                        txtPurLocation.Focus();
-                    }
-                    else if (txtPurRack.Enabled == true)
-                    {
-                        txtPurRack.Focus();
-                    }
-                    else
-                    {
-                        txtSaleLocation.Focus();
-                    }
+                    txtWeight.Focus();
+                    //if (txtPurLocation.Enabled == true)
+                    //{
+                    //    txtPurLocation.Focus();
+                    //}
+                    //else if (txtPurRack.Enabled == true)
+                    //{
+                    //    txtPurRack.Focus();
+                    //}
+                    //else
+                    //{
+                    //    txtSaleLocation.Focus();
+                    //}
                 }
             }
             catch (Exception ex)
@@ -3594,7 +3672,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNoEntry.Focus();
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -3680,7 +3772,14 @@ namespace ROMS
             try
             {
                 //BeginInvoke(new Action(() => cmbUnit.Select(int.MaxValue, 0)));
-
+                if (Convert.ToInt32(cmbUnit.SelectedValue) != -1)
+                {
+                    txtInterUnit.Text = cmbUnit.Text;
+                }
+                else
+                {
+                    txtInterUnit.Text = "";
+                }
                  
 
             }
@@ -4012,6 +4111,21 @@ namespace ROMS
                             cmbChildUnit.ValueMember = "UTID";
                             cmbChildUnit.DisplayMember = "UT_Symbol";
                             cmbChildUnit.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid, 0);
+                objdserv.CloseConnection();
+                cmbIntermediateUnit.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbIntermediateUnit.ValueMember = "UTID";
+                            cmbIntermediateUnit.DisplayMember = "UT_Symbol";
+                            cmbIntermediateUnit.DataSource = objDT.Tables[0];
                         }
                     }
                 }
@@ -5339,7 +5453,21 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbBatchNoEntry.Focus();
+                        if (pnlStatus.Enabled == true)
+                        {
+                            if (rbActive.Checked == true)
+                            {
+                                rbActive.Focus();
+                            }
+                            else
+                            {
+                                rbInActive.Focus();
+                            }
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
                     }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
@@ -5419,7 +5547,21 @@ namespace ROMS
                         }
                         else
                         {
-                            cmbBatchNoEntry.Focus();
+                            if (pnlStatus.Enabled == true)
+                            {
+                                if (rbActive.Checked == true)
+                                {
+                                    rbActive.Focus();
+                                }
+                                else
+                                {
+                                    rbInActive.Focus();
+                                }
+                            }
+                            else
+                            {
+                                btnSave.Focus();
+                            }
                         }
                     }
                 }
@@ -6135,7 +6277,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtWeight.Focus();
+                    if (txtPurLocation.Enabled == true)
+                    {
+                        txtPurLocation.Focus();
+                    }
+                    else if (txtPurRack.Enabled == true)
+                    {
+                        txtPurRack.Focus();
+                    }
+                    else
+                    {
+                        txtSaleLocation.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -6774,7 +6927,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "");
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8415,7 +8568,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath);
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8485,6 +8638,203 @@ namespace ROMS
                 {
                     cmbProductCategory.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIntermediateUPP.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbIntermediateUnit.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtIntermediateUPP_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIntermediateUPP.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbIntermediateUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductionMSQ.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbIntermediateUnit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbIntermediateUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbIntermediateUnit.SelectedValue) != -1)
+                {
+                    txtProductionUnit.Text = cmbIntermediateUnit.Text;
+                }
+                else
+                {
+                    txtProductionUnit.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductionMSQ.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbBatchNoEntry.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductionMSQ.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -9329,7 +9679,24 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     if (lblSaleRackCode.Text != "0") { txtRackMOQQty.Focus(); }
-                    else { cmbBatchNoEntry.Focus(); }
+                    else
+                    {
+                        if (pnlStatus.Enabled == true)
+                        {
+                            if (rbActive.Checked == true)
+                            {
+                                rbActive.Focus();
+                            }
+                            else
+                            {
+                                rbInActive.Focus();
+                            }
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -9353,7 +9720,10 @@ namespace ROMS
                 }
                 else
                 {
-                    txtRackMOQQty.Enabled = true;
+                    if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                    {
+                        txtRackMOQQty.Enabled = true;
+                    }
                     txtSaleRack.BackColor = Color.White;
                     errItems.Clear();
                 }
@@ -9372,6 +9742,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSaleRackAutocomplete();
+
+                    if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                    {
+                        txtRackMOQQty.Enabled = true;
+                    }
                     txtRackMOQQty.Focus();
                 }
             }
@@ -9387,6 +9762,10 @@ namespace ROMS
             try
             {
                 udfnSaleRackAutocomplete();
+                if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                {
+                    txtRackMOQQty.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -9604,8 +9983,21 @@ namespace ROMS
                             cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["COMPANY"].ToString();
                             cmbConcern.Enabled = false;
 
+
+
+                            txtIntermediateUPP.Text = Convert.ToString(objDS.Tables[0].Rows[0]["IntermediateUPP"].ToString());
+                            cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
+                            txtProductionMSQ.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductionMSQ"].ToString());
                             btnSave.Text = "Update";
                             //pnlStatus.Enabled = true;
+                            if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                            {
+                                txtRackMOQQty.Enabled = true;
+                            }
+                            else
+                            {
+                                txtRackMOQQty.Enabled = false;
+                            }
                         }
                         if (objDS.Tables[1] != null)
                         {
@@ -9747,6 +10139,7 @@ namespace ROMS
             groupBox3.Enabled = false;
             grbPurchaseHSN.Enabled = false;
             grbSalesHSN.Enabled = false;
+            grbIntermediateDetails.Enabled = false;
             tsMenu.Enabled = false;
             flowLayoutPanel1.Enabled = false;
             btnImageUpdate.Enabled = false;
