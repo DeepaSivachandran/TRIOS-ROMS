@@ -63,6 +63,7 @@ namespace ROMS
         private ToolTip tpemail = new ToolTip();
         private ToolTip tpgstin = new ToolTip();
         private ToolTip tpfssai = new ToolTip();
+        private ToolTip tpIntermediateUnit = new ToolTip();
         private ToolTip tpshortname = new ToolTip();
         private ToolTip tppincode = new ToolTip();
         private ToolTip tpcity = new ToolTip();
@@ -1014,6 +1015,48 @@ namespace ROMS
                     }
                      
                 }
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && (Convert.ToString(txtIntermediateUPP.Text.Trim()) != "" || Convert.ToString(txtProductionMSQ.Text.Trim()) != ""))
+                {
+                    if (Convert.ToInt32(cmbIntermediateUnit.SelectedValue) == -1)
+                    {
+                        errItems.SetError(cmbIntermediateUnit, "Please select intermediate unit");
+                        cmbIntermediateUnit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIntermediateUnit.ShowAlways = true;
+                        tpIntermediateUnit.Show("Please select intermediate unit", cmbIntermediateUnit, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                else
+                {
+                    cmbIntermediateUnit.BackColor = Color.White;
+                }
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && Convert.ToInt32(cmbIntermediateUnit.SelectedValue) != -1)
+                {
+                    if (Convert.ToString(txtIntermediateUPP.Text.Trim()) == "")
+                    {
+                        errItems.SetError(txtIntermediateUPP, "Please enter intermediate upp");
+                        txtIntermediateUPP.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIntermediateUnit.ShowAlways = true;
+                        tpIntermediateUnit.Show("Please enter intermediate upp", txtIntermediateUPP, 5000);
+                        blnErrorFlag = true;
+                    }
+                    else
+                    {
+                        txtIntermediateUPP.BackColor = Color.White;
+                    }
+                    if (Convert.ToString(txtProductionMSQ.Text.Trim()) == "")
+                    {
+                        errItems.SetError(txtProductionMSQ, "Please enter production msq");
+                        txtProductionMSQ.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpIntermediateUnit.ShowAlways = true;
+                        tpIntermediateUnit.Show("Please enter production msq", txtProductionMSQ, 5000);
+                        blnErrorFlag = true;
+                    }
+                    else
+                    {
+                        txtProductionMSQ.BackColor = Color.White;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -1523,6 +1566,7 @@ namespace ROMS
                 tpPurHSN.ShowAlways = false;
                 tpSalesHSN.ShowAlways = false;
                 tpVerifier.ShowAlways = false;
+                tpIntermediateUnit.ShowAlways = false;
                 this.Close();
                 //MainForm.objCP_Itemlist.udfnList();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
