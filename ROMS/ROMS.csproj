@@ -178,6 +178,18 @@
     <Compile Include="CP_Customerlist.designer.cs">
       <DependentUpon>CP_Customerlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Vehiclelist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Vehiclelist.designer.cs">
+      <DependentUpon>CP_Vehiclelist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Vehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Vehicle.designer.cs">
+      <DependentUpon>CP_Vehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_DirectLabelList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3647,6 +3659,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Customerlist.resx">
       <DependentUpon>CP_Customerlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Vehiclelist.resx">
+      <DependentUpon>CP_Vehiclelist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Vehicle.resx">
+      <DependentUpon>CP_Vehicle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DirectLabelList.resx">
       <DependentUpon>CP_DirectLabelList.cs</DependentUpon>
