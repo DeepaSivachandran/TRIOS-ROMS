@@ -40,6 +40,8 @@
             this.grbForm = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtItemNameTamil = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epCustomerType)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
@@ -48,7 +50,7 @@
             // txtCustomerType
             // 
             this.txtCustomerType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCustomerType.Location = new System.Drawing.Point(113, 23);
+            this.txtCustomerType.Location = new System.Drawing.Point(189, 23);
             this.txtCustomerType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCustomerType.MaxLength = 30;
             this.txtCustomerType.Name = "txtCustomerType";
@@ -67,11 +69,11 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(6, 50);
+            this.txtStatus.Location = new System.Drawing.Point(6, 77);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(107, 28);
+            this.txtStatus.Size = new System.Drawing.Size(183, 28);
             this.txtStatus.TabIndex = 11;
             this.txtStatus.Text = "Status";
             // 
@@ -80,11 +82,11 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(114, 50);
+            this.pnlStatus.Location = new System.Drawing.Point(189, 77);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(209, 28);
-            this.pnlStatus.TabIndex = 1;
+            this.pnlStatus.Size = new System.Drawing.Size(210, 27);
+            this.pnlStatus.TabIndex = 2;
             // 
             // rbActive
             // 
@@ -95,7 +97,7 @@
             this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 1;
+            this.rbActive.TabIndex = 2;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -111,7 +113,7 @@
             this.rbInActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 2;
+            this.rbInActive.TabIndex = 3;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.rbInActive_Enter);
@@ -127,12 +129,14 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(107, 28);
+            this.textBox1.Size = new System.Drawing.Size(183, 28);
             this.textBox1.TabIndex = 12;
-            this.textBox1.Text = "Customer Type";
+            this.textBox1.Text = "Customer Type Name in English";
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.txtItemNameTamil);
+            this.grbForm.Controls.Add(this.textBox2);
             this.grbForm.Controls.Add(this.textBox1);
             this.grbForm.Controls.Add(this.btnClose);
             this.grbForm.Controls.Add(this.txtCustomerType);
@@ -143,7 +147,7 @@
             this.grbForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbForm.Name = "grbForm";
             this.grbForm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbForm.Size = new System.Drawing.Size(337, 140);
+            this.grbForm.Size = new System.Drawing.Size(418, 162);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
@@ -152,11 +156,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(249, 88);
+            this.btnClose.Location = new System.Drawing.Point(325, 114);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 34);
-            this.btnClose.TabIndex = 4;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -166,11 +170,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(161, 88);
+            this.btnSave.Location = new System.Drawing.Point(237, 112);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(82, 34);
-            this.btnSave.TabIndex = 3;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -178,12 +182,34 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(6, 49);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(183, 28);
+            this.textBox2.TabIndex = 13;
+            this.textBox2.Text = "Customer Type Name in Tamil";
+            // 
+            // txtItemNameTamil
+            // 
+            this.txtItemNameTamil.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtItemNameTamil.Location = new System.Drawing.Point(189, 50);
+            this.txtItemNameTamil.MaxLength = 100;
+            this.txtItemNameTamil.Name = "txtItemNameTamil";
+            this.txtItemNameTamil.Size = new System.Drawing.Size(210, 27);
+            this.txtItemNameTamil.TabIndex = 1;
+            // 
             // CP_CustomerType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(363, 166);
+            this.ClientSize = new System.Drawing.Size(444, 192);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -218,5 +244,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbForm;
         public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtItemNameTamil;
     }
 }
