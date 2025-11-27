@@ -20,5 +20,6 @@ namespace ROMS.Model
         public string paraTime = "";
         public string paraTimeFormat = "";
         public DataTable ParaProduct_HSN = null;
+        public decimal paraMRP = 0;
     }
 }

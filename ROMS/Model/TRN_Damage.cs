@@ -20,6 +20,7 @@ namespace ROMS.Model
         public string paraOriginator { get; set; } = "";
         public string paraEmployeeId { get; set; } = "";
         public int paraSHID { get; set; } = 0;
+        public int paraDMFromOtherLoc { get; set; } = 0;
         public DataTable paraDamageEntry { get; set; } = null;
         public byte[] paraQrimg { get; set; } = null;
     }
