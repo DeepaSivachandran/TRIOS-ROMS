@@ -4246,11 +4246,11 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51901);
-                objCP_BulkAttributes.Text = "Spl Product Attributes Bulk Update";
-                objCP_BulkAttributes.tspHeader.Text = "Spl Product Attributes Bulk Update";
+                MainForm.objCP_Spl_Products_Bulk = new CP_Spl_Products_Bulk();
+                MainForm.objCP_Spl_Products_Bulk.pbMenuFlag = 1;
+                OpenReportForm(ref MainForm.objCP_Spl_Products_Bulk, "CP_Spl_Products_Bulk", 51901);
+                objCP_Spl_Products_Bulk.Text = "Spl Product Attributes Bulk Update";
+                objCP_Spl_Products_Bulk.tspHeader.Text = "Spl Product Attributes Bulk Update";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
