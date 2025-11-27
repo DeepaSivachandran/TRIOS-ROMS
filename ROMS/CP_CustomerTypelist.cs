@@ -165,10 +165,14 @@ namespace ROMS
                             grdCustomerTypeList.Columns["ID"].Visible = false;
                             grdCustomerTypeList.Columns["StatusID"].Visible = false;
                             grdCustomerTypeList.Columns["S.No."].Width = 50;
-                            grdCustomerTypeList.Columns["Customer Type"].Width = 200;
+                            grdCustomerTypeList.Columns["Customer Type English Name"].Width = 200;
+                            grdCustomerTypeList.Columns["Customer Type Tamil Name"].Width = 250;
+                            grdCustomerTypeList.Columns["Total Customers"].Width = 120;
                             grdCustomerTypeList.Columns["Status"].Width = 80;
                             grdCustomerTypeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdCustomerTypeList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCustomerTypeList.Columns["Customer Type Tamil Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdCustomerTypeList.Columns["Total Customers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -214,7 +218,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Customer Type"].Width = 200;
+                DGV_SearchGrid.Columns["Customer Type English Name"].Width = 200;
+                DGV_SearchGrid.Columns["Customer Type Tamil Name"].Width = 250;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

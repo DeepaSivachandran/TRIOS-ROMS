@@ -51,6 +51,7 @@ namespace ROMS
                     if (btnSave.Text == "Save")
                     {
                         txtCustomerType.Text = "";
+                        txtCustomerTypeTName.Text = "";
                         this.ActiveControl = txtCustomerType;
                     }
                     if (btnSave.Text == "Update")
@@ -161,9 +162,9 @@ namespace ROMS
             {
                 MainForm.objCP_CustomerTypelist.picLoader.Visible = false;
                 MainForm.objCP_CustomerTypelist.picLoader.SendToBack();
-                this.ActiveControl = txtCustomerType;
                 if (pbCusTypeId == 0)
                 {
+                    this.ActiveControl = txtCustomerType;
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
                 }
@@ -173,11 +174,15 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     if (PbStatus == 1)
                     {
+                        this.ActiveControl = txtCustomerType;
                         rbActive.Checked = true;
                     }
                     else if(PbStatus == 2)
                     {
+                        txtCustomerType.Enabled = false;
+                        txtCustomerTypeTName.Enabled = false;
                         rbInActive.Checked = true;
+                        rbInActive.Focus();
                     }
                 }
             }
@@ -201,6 +206,7 @@ namespace ROMS
                         if (objDs.Tables.Count != 0)
                         {
                             txtCustomerType.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_Name"]);
+                            txtCustomerTypeTName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_TName"]);
                             txtCustomerType.Focus();
                         }
                     }
