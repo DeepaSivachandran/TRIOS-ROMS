@@ -1009,7 +1009,7 @@
             this.columnHeader42});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(167, 256);
+            this.lvSubGroup.Location = new System.Drawing.Point(167, 283);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(337, 78);
             this.lvSubGroup.TabIndex = 122;
@@ -1063,7 +1063,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(167, 283);
+            this.lvGroup.Location = new System.Drawing.Point(167, 256);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(337, 78);
             this.lvGroup.TabIndex = 123;
@@ -1163,7 +1163,7 @@
             this.groupBox1.Location = new System.Drawing.Point(6, 355);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 159);
-            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             // 
             // cmbNetQty
@@ -1173,7 +1173,7 @@
             this.cmbNetQty.Location = new System.Drawing.Point(222, 17);
             this.cmbNetQty.Name = "cmbNetQty";
             this.cmbNetQty.Size = new System.Drawing.Size(45, 27);
-            this.cmbNetQty.TabIndex = 27;
+            this.cmbNetQty.TabIndex = 18;
             this.cmbNetQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbNetQty_KeyPress);
             // 
             // textBox3
@@ -1195,7 +1195,7 @@
             this.txtGrossWeight.MaxLength = 10;
             this.txtGrossWeight.Name = "txtGrossWeight";
             this.txtGrossWeight.Size = new System.Drawing.Size(100, 27);
-            this.txtGrossWeight.TabIndex = 28;
+            this.txtGrossWeight.TabIndex = 19;
             this.txtGrossWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGrossWeight.Enter += new System.EventHandler(this.TxtGrossWeight_Enter);
             this.txtGrossWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtGrossWeight_KeyDown);
@@ -1222,7 +1222,7 @@
             this.txtReOrderQty.MaxLength = 10;
             this.txtReOrderQty.Name = "txtReOrderQty";
             this.txtReOrderQty.Size = new System.Drawing.Size(145, 27);
-            this.txtReOrderQty.TabIndex = 31;
+            this.txtReOrderQty.TabIndex = 22;
             this.txtReOrderQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtReOrderQty.Enter += new System.EventHandler(this.TxtReOrderQty_Enter);
             this.txtReOrderQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtReOrderQty_KeyDown);
@@ -1249,7 +1249,7 @@
             this.txtMinStock.MaxLength = 10;
             this.txtMinStock.Name = "txtMinStock";
             this.txtMinStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMinStock.TabIndex = 29;
+            this.txtMinStock.TabIndex = 20;
             this.txtMinStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMinStock.Enter += new System.EventHandler(this.TxtMinStock_Enter);
             this.txtMinStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMinStock_KeyDown);
@@ -1276,7 +1276,7 @@
             this.txtMaxStock.MaxLength = 10;
             this.txtMaxStock.Name = "txtMaxStock";
             this.txtMaxStock.Size = new System.Drawing.Size(145, 27);
-            this.txtMaxStock.TabIndex = 30;
+            this.txtMaxStock.TabIndex = 21;
             this.txtMaxStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMaxStock.Enter += new System.EventHandler(this.TxtMaxStock_Enter);
             this.txtMaxStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxStock_KeyDown);
@@ -1303,7 +1303,7 @@
             this.txtWeight.MaxLength = 10;
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(100, 27);
-            this.txtWeight.TabIndex = 26;
+            this.txtWeight.TabIndex = 17;
             this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWeight.Enter += new System.EventHandler(this.TxtWeight_Enter);
             this.txtWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWeight_KeyDown);
@@ -1330,7 +1330,7 @@
             this.txtRackMOQQty.MaxLength = 8;
             this.txtRackMOQQty.Name = "txtRackMOQQty";
             this.txtRackMOQQty.Size = new System.Drawing.Size(381, 27);
-            this.txtRackMOQQty.TabIndex = 19;
+            this.txtRackMOQQty.TabIndex = 41;
             this.txtRackMOQQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRackMOQQty.Enter += new System.EventHandler(this.TxtMaxOrderQty_Enter);
             this.txtRackMOQQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMaxOrderQty_KeyDown);
@@ -1357,7 +1357,7 @@
             this.txtRMinSaleQty.MaxLength = 10;
             this.txtRMinSaleQty.Name = "txtRMinSaleQty";
             this.txtRMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtRMinSaleQty.TabIndex = 32;
+            this.txtRMinSaleQty.TabIndex = 23;
             this.txtRMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRMinSaleQty.Enter += new System.EventHandler(this.TxtRMinSaleQty_Enter);
             this.txtRMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRMinSaleQty_KeyDown);
@@ -1383,7 +1383,7 @@
             this.cbExpiry.Location = new System.Drawing.Point(10, 19);
             this.cbExpiry.Name = "cbExpiry";
             this.cbExpiry.Size = new System.Drawing.Size(77, 24);
-            this.cbExpiry.TabIndex = 22;
+            this.cbExpiry.TabIndex = 33;
             this.cbExpiry.Text = "Shelf Life";
             this.cbExpiry.UseVisualStyleBackColor = true;
             this.cbExpiry.CheckedChanged += new System.EventHandler(this.CbExpiry_CheckedChanged);
@@ -1398,7 +1398,7 @@
             this.txtBarcode.MaxLength = 20;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(145, 27);
-            this.txtBarcode.TabIndex = 36;
+            this.txtBarcode.TabIndex = 27;
             this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtBarcode.Enter += new System.EventHandler(this.TxtBarcode_Enter);
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode_KeyDown);
@@ -1424,7 +1424,7 @@
             this.txtWSaleRate.MaxLength = 10;
             this.txtWSaleRate.Name = "txtWSaleRate";
             this.txtWSaleRate.Size = new System.Drawing.Size(145, 27);
-            this.txtWSaleRate.TabIndex = 35;
+            this.txtWSaleRate.TabIndex = 26;
             this.txtWSaleRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWSaleRate.Enter += new System.EventHandler(this.TxtWSaleRate_Enter);
             this.txtWSaleRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWSaleRate_KeyDown);
@@ -1464,7 +1464,7 @@
             this.txtRetailRate.MaxLength = 10;
             this.txtRetailRate.Name = "txtRetailRate";
             this.txtRetailRate.Size = new System.Drawing.Size(145, 27);
-            this.txtRetailRate.TabIndex = 33;
+            this.txtRetailRate.TabIndex = 24;
             this.txtRetailRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRetailRate.Enter += new System.EventHandler(this.TxtRetailRate_Enter);
             this.txtRetailRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRetailRate_KeyDown);
@@ -1487,7 +1487,7 @@
             this.groupBox2.Location = new System.Drawing.Point(291, 355);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(282, 163);
-            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             // 
             // txtWMinSaleQty
@@ -1497,7 +1497,7 @@
             this.txtWMinSaleQty.MaxLength = 10;
             this.txtWMinSaleQty.Name = "txtWMinSaleQty";
             this.txtWMinSaleQty.Size = new System.Drawing.Size(145, 27);
-            this.txtWMinSaleQty.TabIndex = 34;
+            this.txtWMinSaleQty.TabIndex = 25;
             this.txtWMinSaleQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtWMinSaleQty.Enter += new System.EventHandler(this.TxtWMinSaleQty_Enter);
             this.txtWMinSaleQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtWMinSaleQty_KeyDown);
@@ -1556,7 +1556,7 @@
             this.rbInActive.Location = new System.Drawing.Point(76, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 1;
+            this.rbInActive.TabIndex = 44;
             this.rbInActive.TabStop = true;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
@@ -1572,7 +1572,7 @@
             this.rbActive.Location = new System.Drawing.Point(9, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 0;
+            this.rbActive.TabIndex = 43;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.CheckedChanged += new System.EventHandler(this.RbActive_CheckedChanged);
@@ -1602,7 +1602,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(739, 450);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(158, 27);
-            this.pnlStatus.TabIndex = 37;
+            this.pnlStatus.TabIndex = 43;
             this.pnlStatus.TabStop = true;
             // 
             // grpExpire
@@ -1615,7 +1615,7 @@
             this.grpExpire.Location = new System.Drawing.Point(864, 117);
             this.grpExpire.Name = "grpExpire";
             this.grpExpire.Size = new System.Drawing.Size(279, 76);
-            this.grpExpire.TabIndex = 22;
+            this.grpExpire.TabIndex = 33;
             this.grpExpire.TabStop = false;
             // 
             // chkMRP
@@ -1624,7 +1624,7 @@
             this.chkMRP.Location = new System.Drawing.Point(10, 47);
             this.chkMRP.Name = "chkMRP";
             this.chkMRP.Size = new System.Drawing.Size(53, 24);
-            this.chkMRP.TabIndex = 25;
+            this.chkMRP.TabIndex = 36;
             this.chkMRP.Text = "MRP";
             this.chkMRP.UseVisualStyleBackColor = true;
             this.chkMRP.Enter += new System.EventHandler(this.ChkMRP_Enter);
@@ -1637,7 +1637,7 @@
             this.txtSelfLife.MaxLength = 3;
             this.txtSelfLife.Name = "txtSelfLife";
             this.txtSelfLife.Size = new System.Drawing.Size(44, 27);
-            this.txtSelfLife.TabIndex = 23;
+            this.txtSelfLife.TabIndex = 34;
             this.txtSelfLife.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSelfLife.Visible = false;
             this.txtSelfLife.Enter += new System.EventHandler(this.TxtSelfLife_Enter);
@@ -1651,7 +1651,7 @@
             this.cmbPeriod.Location = new System.Drawing.Point(166, 18);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(101, 27);
-            this.cmbPeriod.TabIndex = 24;
+            this.cmbPeriod.TabIndex = 35;
             this.cmbPeriod.Visible = false;
             this.cmbPeriod.SelectedIndexChanged += new System.EventHandler(this.CmbPeriod_SelectedIndexChanged);
             this.cmbPeriod.Enter += new System.EventHandler(this.CmbPeriod_Enter);
@@ -1688,7 +1688,7 @@
             this.grplocation.Location = new System.Drawing.Point(579, 202);
             this.grplocation.Name = "grplocation";
             this.grplocation.Size = new System.Drawing.Size(564, 95);
-            this.grplocation.TabIndex = 15;
+            this.grplocation.TabIndex = 37;
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Default Stock Location For Purchase";
             // 
@@ -1811,7 +1811,7 @@
             this.txtPurRack.MaxLength = 100;
             this.txtPurRack.Name = "txtPurRack";
             this.txtPurRack.Size = new System.Drawing.Size(179, 27);
-            this.txtPurRack.TabIndex = 16;
+            this.txtPurRack.TabIndex = 38;
             this.txtPurRack.TextChanged += new System.EventHandler(this.TxtPurRack_TextChanged);
             this.txtPurRack.Enter += new System.EventHandler(this.TxtPurRack_Enter);
             this.txtPurRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurRack_KeyDown);
@@ -1824,7 +1824,7 @@
             this.txtPurLocation.MaxLength = 100;
             this.txtPurLocation.Name = "txtPurLocation";
             this.txtPurLocation.Size = new System.Drawing.Size(156, 27);
-            this.txtPurLocation.TabIndex = 15;
+            this.txtPurLocation.TabIndex = 37;
             this.txtPurLocation.TextChanged += new System.EventHandler(this.TxtPurLocation_TextChanged);
             this.txtPurLocation.Enter += new System.EventHandler(this.TxtPurLocation_Enter);
             this.txtPurLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurLocation_KeyDown);
@@ -1896,7 +1896,7 @@
             this.grbSalesStockLocation.Location = new System.Drawing.Point(579, 303);
             this.grbSalesStockLocation.Name = "grbSalesStockLocation";
             this.grbSalesStockLocation.Size = new System.Drawing.Size(564, 141);
-            this.grbSalesStockLocation.TabIndex = 17;
+            this.grbSalesStockLocation.TabIndex = 39;
             this.grbSalesStockLocation.TabStop = false;
             this.grbSalesStockLocation.Text = "Default Stock Location For Sales";
             // 
@@ -1906,7 +1906,7 @@
             this.chkSameasPurchase.Location = new System.Drawing.Point(15, 24);
             this.chkSameasPurchase.Name = "chkSameasPurchase";
             this.chkSameasPurchase.Size = new System.Drawing.Size(125, 24);
-            this.chkSameasPurchase.TabIndex = 93;
+            this.chkSameasPurchase.TabIndex = 42;
             this.chkSameasPurchase.Text = "Same as Purchase";
             this.chkSameasPurchase.UseVisualStyleBackColor = true;
             this.chkSameasPurchase.CheckedChanged += new System.EventHandler(this.ChkSameasPurchase_CheckedChanged);
@@ -1918,7 +1918,7 @@
             this.txtSaleRack.MaxLength = 100;
             this.txtSaleRack.Name = "txtSaleRack";
             this.txtSaleRack.Size = new System.Drawing.Size(179, 27);
-            this.txtSaleRack.TabIndex = 18;
+            this.txtSaleRack.TabIndex = 40;
             this.txtSaleRack.TextChanged += new System.EventHandler(this.TxtSaleRack_TextChanged);
             this.txtSaleRack.Enter += new System.EventHandler(this.TxtSaleRack_Enter);
             this.txtSaleRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSaleRack_KeyDown);
@@ -1931,7 +1931,7 @@
             this.txtSaleLocation.MaxLength = 100;
             this.txtSaleLocation.Name = "txtSaleLocation";
             this.txtSaleLocation.Size = new System.Drawing.Size(156, 27);
-            this.txtSaleLocation.TabIndex = 17;
+            this.txtSaleLocation.TabIndex = 39;
             this.txtSaleLocation.TextChanged += new System.EventHandler(this.TxtSaleLocation_TextChanged);
             this.txtSaleLocation.Enter += new System.EventHandler(this.TxtSaleLocation_Enter);
             this.txtSaleLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSaleLocation_KeyDown);
@@ -1997,7 +1997,7 @@
             this.lvSaleRack.HideSelection = false;
             this.lvSaleRack.Location = new System.Drawing.Point(960, 412);
             this.lvSaleRack.Name = "lvSaleRack";
-            this.lvSaleRack.Size = new System.Drawing.Size(388, 78);
+            this.lvSaleRack.Size = new System.Drawing.Size(229, 126);
             this.lvSaleRack.TabIndex = 134;
             this.lvSaleRack.UseCompatibleStateImageBehavior = false;
             this.lvSaleRack.View = System.Windows.Forms.View.Details;
@@ -2029,7 +2029,7 @@
             this.grbBatchNoDetails.Location = new System.Drawing.Point(580, 109);
             this.grbBatchNoDetails.Name = "grbBatchNoDetails";
             this.grbBatchNoDetails.Size = new System.Drawing.Size(278, 84);
-            this.grbBatchNoDetails.TabIndex = 20;
+            this.grbBatchNoDetails.TabIndex = 31;
             this.grbBatchNoDetails.TabStop = false;
             this.grbBatchNoDetails.Text = "Batch No. Details";
             // 
@@ -2040,7 +2040,7 @@
             this.cmbBatchNoGeneration.Location = new System.Drawing.Point(120, 48);
             this.cmbBatchNoGeneration.Name = "cmbBatchNoGeneration";
             this.cmbBatchNoGeneration.Size = new System.Drawing.Size(145, 27);
-            this.cmbBatchNoGeneration.TabIndex = 21;
+            this.cmbBatchNoGeneration.TabIndex = 32;
             this.cmbBatchNoGeneration.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoGeneration_SelectedIndexChanged);
             this.cmbBatchNoGeneration.Enter += new System.EventHandler(this.CmbBatchNoGeneration_Enter);
             this.cmbBatchNoGeneration.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoGeneration_KeyDown);
@@ -2067,7 +2067,7 @@
             this.cmbBatchNoEntry.Location = new System.Drawing.Point(120, 21);
             this.cmbBatchNoEntry.Name = "cmbBatchNoEntry";
             this.cmbBatchNoEntry.Size = new System.Drawing.Size(145, 27);
-            this.cmbBatchNoEntry.TabIndex = 20;
+            this.cmbBatchNoEntry.TabIndex = 31;
             this.cmbBatchNoEntry.SelectedIndexChanged += new System.EventHandler(this.CmbBatchNoEntry_SelectedIndexChanged);
             this.cmbBatchNoEntry.Enter += new System.EventHandler(this.CmbBatchNoEntry_Enter);
             this.cmbBatchNoEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchNoEntry_KeyDown);
@@ -2144,9 +2144,9 @@
             this.columnHeader19});
             this.lvPurRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurRack.HideSelection = false;
-            this.lvPurRack.Location = new System.Drawing.Point(941, 261);
+            this.lvPurRack.Location = new System.Drawing.Point(958, 291);
             this.lvPurRack.Name = "lvPurRack";
-            this.lvPurRack.Size = new System.Drawing.Size(272, 78);
+            this.lvPurRack.Size = new System.Drawing.Size(229, 126);
             this.lvPurRack.TabIndex = 125;
             this.lvPurRack.UseCompatibleStateImageBehavior = false;
             this.lvPurRack.View = System.Windows.Forms.View.Details;
@@ -2174,7 +2174,7 @@
             this.cbCompleted.Location = new System.Drawing.Point(875, 661);
             this.cbCompleted.Name = "cbCompleted";
             this.cbCompleted.Size = new System.Drawing.Size(86, 24);
-            this.cbCompleted.TabIndex = 39;
+            this.cbCompleted.TabIndex = 45;
             this.cbCompleted.Text = "Completed";
             this.cbCompleted.UseVisualStyleBackColor = true;
             this.cbCompleted.CheckedChanged += new System.EventHandler(this.CbCompleted_CheckedChanged);
@@ -2716,14 +2716,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.DGV_FilterProduct);
             this.tabPage1.Controls.Add(this.grbIntermediateDetails);
             this.tabPage1.Controls.Add(this.DGV_FilterPurLocation);
             this.tabPage1.Controls.Add(this.txtTeller);
             this.tabPage1.Controls.Add(this.textBox11);
-            this.tabPage1.Controls.Add(this.lvPurRack);
             this.tabPage1.Controls.Add(this.lvBrand);
             this.tabPage1.Controls.Add(this.lvSubGroup);
-            this.tabPage1.Controls.Add(this.DGV_FilterProduct);
             this.tabPage1.Controls.Add(this.lvGroup);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.pnlStatus);
@@ -2756,7 +2755,7 @@
             this.grbIntermediateDetails.Location = new System.Drawing.Point(5, 519);
             this.grbIntermediateDetails.Name = "grbIntermediateDetails";
             this.grbIntermediateDetails.Size = new System.Drawing.Size(408, 93);
-            this.grbIntermediateDetails.TabIndex = 111111170;
+            this.grbIntermediateDetails.TabIndex = 28;
             this.grbIntermediateDetails.TabStop = false;
             this.grbIntermediateDetails.Text = "Intermediate";
             // 
@@ -2791,8 +2790,12 @@
             this.txtProductionMSQ.MaxLength = 5;
             this.txtProductionMSQ.Name = "txtProductionMSQ";
             this.txtProductionMSQ.Size = new System.Drawing.Size(54, 27);
-            this.txtProductionMSQ.TabIndex = 111111174;
+            this.txtProductionMSQ.TabIndex = 30;
             this.txtProductionMSQ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtProductionMSQ.Enter += new System.EventHandler(this.txtProductionMSQ_Enter);
+            this.txtProductionMSQ.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProductionMSQ_KeyDown);
+            this.txtProductionMSQ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductionMSQ_KeyPress);
+            this.txtProductionMSQ.Leave += new System.EventHandler(this.txtProductionMSQ_Leave);
             // 
             // textBox13
             // 
@@ -2839,7 +2842,7 @@
             this.cmbIntermediateUnit.Location = new System.Drawing.Point(257, 25);
             this.cmbIntermediateUnit.Name = "cmbIntermediateUnit";
             this.cmbIntermediateUnit.Size = new System.Drawing.Size(73, 27);
-            this.cmbIntermediateUnit.TabIndex = 111111169;
+            this.cmbIntermediateUnit.TabIndex = 29;
             this.cmbIntermediateUnit.SelectedIndexChanged += new System.EventHandler(this.cmbIntermediateUnit_SelectedIndexChanged);
             this.cmbIntermediateUnit.Enter += new System.EventHandler(this.cmbIntermediateUnit_Enter);
             this.cmbIntermediateUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbIntermediateUnit_KeyDown);
@@ -2854,7 +2857,7 @@
             this.txtIntermediateUPP.MaxLength = 5;
             this.txtIntermediateUPP.Name = "txtIntermediateUPP";
             this.txtIntermediateUPP.Size = new System.Drawing.Size(54, 27);
-            this.txtIntermediateUPP.TabIndex = 111111168;
+            this.txtIntermediateUPP.TabIndex = 28;
             this.txtIntermediateUPP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtIntermediateUPP.Enter += new System.EventHandler(this.txtIntermediateUPP_Enter);
             this.txtIntermediateUPP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIntermediateUPP_KeyDown);
@@ -3313,7 +3316,7 @@
             this.DGV_FilterSalesLocation.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_FilterSalesLocation.RowTemplate.Height = 25;
             this.DGV_FilterSalesLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterSalesLocation.Size = new System.Drawing.Size(388, 131);
+            this.DGV_FilterSalesLocation.Size = new System.Drawing.Size(388, 155);
             this.DGV_FilterSalesLocation.TabIndex = 111111167;
             this.DGV_FilterSalesLocation.Visible = false;
             this.DGV_FilterSalesLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSalesLocation_CellDoubleClick);
@@ -3337,7 +3340,7 @@
             this.lvVerified1.HideSelection = false;
             this.lvVerified1.Location = new System.Drawing.Point(960, 506);
             this.lvVerified1.Name = "lvVerified1";
-            this.lvVerified1.Size = new System.Drawing.Size(200, 40);
+            this.lvVerified1.Size = new System.Drawing.Size(200, 123);
             this.lvVerified1.TabIndex = 111111149;
             this.lvVerified1.UseCompatibleStateImageBehavior = false;
             this.lvVerified1.View = System.Windows.Forms.View.Details;
@@ -3383,7 +3386,7 @@
             this.btnClose.Location = new System.Drawing.Point(1086, 659);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 41;
+            this.btnClose.TabIndex = 47;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -3399,7 +3402,7 @@
             this.btnSave.Location = new System.Drawing.Point(967, 659);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 29);
-            this.btnSave.TabIndex = 40;
+            this.btnSave.TabIndex = 46;
             this.btnSave.Text = "Save as Draft";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -3428,6 +3431,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1194, 691);
+            this.Controls.Add(this.lvPurRack);
             this.Controls.Add(this.lvSaleRack);
             this.Controls.Add(this.lvVerified1);
             this.Controls.Add(this.DGV_FilterSalesLocation);

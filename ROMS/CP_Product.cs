@@ -1692,18 +1692,19 @@ namespace ROMS
                     }
                     else
                     {
-                        if (txtPurLocation.Enabled == true)
-                        {
-                            txtPurLocation.Focus();
-                        }
-                        else if (txtPurRack.Enabled == true)
-                        {
-                            txtPurRack.Focus();
-                        }
-                        else
-                        {
-                            txtSaleLocation.Focus();
-                        }
+                        txtWeight.Focus();
+                        //if (txtPurLocation.Enabled == true)
+                        //{
+                        //    txtPurLocation.Focus();
+                        //}
+                        //else if (txtPurRack.Enabled == true)
+                        //{
+                        //    txtPurRack.Focus();
+                        //}
+                        //else
+                        //{
+                        //    txtSaleLocation.Focus();
+                        //}
                     }
                 }
             }
@@ -1833,7 +1834,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    if (txtIntermediateUPP.Enabled == true)
+                    {
+                        txtIntermediateUPP.Focus();
+                    }
+                    else
+                    {
+                        cmbBatchNoEntry.Focus();
+                    }
                     //txtHsnName.Focus();
                 }
             }
@@ -3142,18 +3150,19 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtPurLocation.Enabled == true)
-                    {
-                        txtPurLocation.Focus();
-                    }
-                    else if (txtPurRack.Enabled == true)
-                    {
-                        txtPurRack.Focus();
-                    }
-                    else
-                    {
-                        txtSaleLocation.Focus();
-                    }
+                    txtWeight.Focus();
+                    //if (txtPurLocation.Enabled == true)
+                    //{
+                    //    txtPurLocation.Focus();
+                    //}
+                    //else if (txtPurRack.Enabled == true)
+                    //{
+                    //    txtPurRack.Focus();
+                    //}
+                    //else
+                    //{
+                    //    txtSaleLocation.Focus();
+                    //}
                 }
             }
             catch (Exception ex)
@@ -3618,7 +3627,21 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNoEntry.Focus();
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -5385,7 +5408,21 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbBatchNoEntry.Focus();
+                        if (pnlStatus.Enabled == true)
+                        {
+                            if (rbActive.Checked == true)
+                            {
+                                rbActive.Focus();
+                            }
+                            else
+                            {
+                                rbInActive.Focus();
+                            }
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
                     }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
@@ -5465,7 +5502,21 @@ namespace ROMS
                         }
                         else
                         {
-                            cmbBatchNoEntry.Focus();
+                            if (pnlStatus.Enabled == true)
+                            {
+                                if (rbActive.Checked == true)
+                                {
+                                    rbActive.Focus();
+                                }
+                                else
+                                {
+                                    rbInActive.Focus();
+                                }
+                            }
+                            else
+                            {
+                                btnSave.Focus();
+                            }
                         }
                     }
                 }
@@ -6181,7 +6232,18 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtWeight.Focus();
+                    if (txtPurLocation.Enabled == true)
+                    {
+                        txtPurLocation.Focus();
+                    }
+                    else if (txtPurRack.Enabled == true)
+                    {
+                        txtPurRack.Focus();
+                    }
+                    else
+                    {
+                        txtSaleLocation.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -8614,7 +8676,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductionMSQ.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -8661,6 +8726,70 @@ namespace ROMS
                 {
                     txtProductionUnit.Text = "";
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductionMSQ.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbBatchNoEntry.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                // Allow only one decimal point
+                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductionMSQ_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductionMSQ.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -9505,7 +9634,24 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     if (lblSaleRackCode.Text != "0") { txtRackMOQQty.Focus(); }
-                    else { cmbBatchNoEntry.Focus(); }
+                    else
+                    {
+                        if (pnlStatus.Enabled == true)
+                        {
+                            if (rbActive.Checked == true)
+                            {
+                                rbActive.Focus();
+                            }
+                            else
+                            {
+                                rbInActive.Focus();
+                            }
+                        }
+                        else
+                        {
+                            btnSave.Focus();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -9529,7 +9675,10 @@ namespace ROMS
                 }
                 else
                 {
-                    txtRackMOQQty.Enabled = true;
+                    if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                    {
+                        txtRackMOQQty.Enabled = true;
+                    }
                     txtSaleRack.BackColor = Color.White;
                     errItems.Clear();
                 }
@@ -9548,6 +9697,11 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnSaleRackAutocomplete();
+
+                    if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                    {
+                        txtRackMOQQty.Enabled = true;
+                    }
                     txtRackMOQQty.Focus();
                 }
             }
@@ -9563,6 +9717,10 @@ namespace ROMS
             try
             {
                 udfnSaleRackAutocomplete();
+                if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                {
+                    txtRackMOQQty.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -9781,11 +9939,20 @@ namespace ROMS
                             cmbConcern.Enabled = false;
 
 
+
                             txtIntermediateUPP.Text = Convert.ToString(objDS.Tables[0].Rows[0]["IntermediateUPP"].ToString());
                             cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
                             txtProductionMSQ.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductionMSQ"].ToString());
                             btnSave.Text = "Update";
                             //pnlStatus.Enabled = true;
+                            if (Convert.ToString(lblSaleRackCode.Text) != "0")
+                            {
+                                txtRackMOQQty.Enabled = true;
+                            }
+                            else
+                            {
+                                txtRackMOQQty.Enabled = false;
+                            }
                         }
                         if (objDS.Tables[1] != null)
                         {
