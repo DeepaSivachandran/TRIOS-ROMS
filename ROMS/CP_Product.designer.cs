@@ -1009,7 +1009,7 @@
             this.columnHeader42});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(167, 283);
+            this.lvSubGroup.Location = new System.Drawing.Point(167, 256);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(337, 78);
             this.lvSubGroup.TabIndex = 122;
@@ -1063,7 +1063,7 @@
             this.columnHeader13});
             this.lvGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvGroup.HideSelection = false;
-            this.lvGroup.Location = new System.Drawing.Point(167, 256);
+            this.lvGroup.Location = new System.Drawing.Point(168, 283);
             this.lvGroup.Name = "lvGroup";
             this.lvGroup.Size = new System.Drawing.Size(337, 78);
             this.lvGroup.TabIndex = 123;
@@ -1093,7 +1093,7 @@
             this.columnHeader3});
             this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(167, 311);
+            this.lvBrand.Location = new System.Drawing.Point(168, 311);
             this.lvBrand.Name = "lvBrand";
             this.lvBrand.Size = new System.Drawing.Size(337, 78);
             this.lvBrand.TabIndex = 1111147;
@@ -2716,14 +2716,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lvBrand);
+            this.tabPage1.Controls.Add(this.lvGroup);
             this.tabPage1.Controls.Add(this.DGV_FilterProduct);
             this.tabPage1.Controls.Add(this.grbIntermediateDetails);
             this.tabPage1.Controls.Add(this.DGV_FilterPurLocation);
             this.tabPage1.Controls.Add(this.txtTeller);
             this.tabPage1.Controls.Add(this.textBox11);
-            this.tabPage1.Controls.Add(this.lvBrand);
             this.tabPage1.Controls.Add(this.lvSubGroup);
-            this.tabPage1.Controls.Add(this.lvGroup);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.pnlStatus);
             this.tabPage1.Controls.Add(this.groupBox3);

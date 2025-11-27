@@ -1229,14 +1229,15 @@ namespace ROMS
                     {
                         varSalesProduct = 1;
                     }
-                    int varIntermediateUPP = 0, varProductionMSQ = 0;
+                    int varIntermediateUPP = 0;
+                        decimal varProductionMSQ = 0;
                     if (txtIntermediateUPP.Text.Trim() != "")
                     {
                         varIntermediateUPP = Convert.ToInt32(txtIntermediateUPP.Text);
                     }
                     if (txtProductionMSQ.Text.Trim() != "")
                     {
-                        varProductionMSQ = Convert.ToInt32(txtProductionMSQ.Text);
+                        varProductionMSQ = Convert.ToDecimal(txtProductionMSQ.Text);
                     }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
