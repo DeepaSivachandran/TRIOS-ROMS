@@ -189,6 +189,7 @@
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -224,6 +225,7 @@
             this.Name = "CP_CustomerType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Type";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_CustomerType_FormClosing);
             this.Load += new System.EventHandler(this.CP_CustomerType_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_CustomerType_KeyDown);
             this.Leave += new System.EventHandler(this.CP_CustomerType_Leave);

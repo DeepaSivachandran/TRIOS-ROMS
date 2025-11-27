@@ -54,12 +54,12 @@
             // txtVehicleName
             // 
             this.txtVehicleName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtVehicleName.Location = new System.Drawing.Point(144, 22);
+            this.txtVehicleName.Location = new System.Drawing.Point(144, 49);
             this.txtVehicleName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtVehicleName.MaxLength = 30;
+            this.txtVehicleName.MaxLength = 50;
             this.txtVehicleName.Name = "txtVehicleName";
             this.txtVehicleName.Size = new System.Drawing.Size(299, 27);
-            this.txtVehicleName.TabIndex = 0;
+            this.txtVehicleName.TabIndex = 1;
             this.txtVehicleName.Enter += new System.EventHandler(this.txtVehicleName_Enter);
             this.txtVehicleName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVehicleName_KeyDown);
             this.txtVehicleName.Leave += new System.EventHandler(this.txtVehicleName_Leave);
@@ -130,7 +130,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(6, 22);
+            this.textBox1.Location = new System.Drawing.Point(6, 49);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -164,11 +164,10 @@
             // 
             this.txtCapacity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtCapacity.Location = new System.Drawing.Point(144, 103);
-            this.txtCapacity.MaxLength = 8;
+            this.txtCapacity.MaxLength = 30;
             this.txtCapacity.Name = "txtCapacity";
             this.txtCapacity.Size = new System.Drawing.Size(299, 27);
             this.txtCapacity.TabIndex = 3;
-            this.txtCapacity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCapacity.Enter += new System.EventHandler(this.txtCapacity_Enter);
             this.txtCapacity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCapacity_KeyDown);
             this.txtCapacity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapacity_KeyPress);
@@ -189,12 +188,13 @@
             // 
             // txtRegisterNo
             // 
+            this.txtRegisterNo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRegisterNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtRegisterNo.Location = new System.Drawing.Point(144, 76);
-            this.txtRegisterNo.MaxLength = 100;
+            this.txtRegisterNo.Location = new System.Drawing.Point(144, 22);
+            this.txtRegisterNo.MaxLength = 12;
             this.txtRegisterNo.Name = "txtRegisterNo";
             this.txtRegisterNo.Size = new System.Drawing.Size(299, 27);
-            this.txtRegisterNo.TabIndex = 2;
+            this.txtRegisterNo.TabIndex = 0;
             this.txtRegisterNo.Enter += new System.EventHandler(this.txtRegisterNo_Enter);
             this.txtRegisterNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRegisterNo_KeyDown);
             this.txtRegisterNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRegisterNo_KeyPress);
@@ -205,23 +205,23 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(6, 76);
+            this.textBox4.Location = new System.Drawing.Point(6, 22);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(138, 27);
             this.textBox4.TabIndex = 15;
-            this.textBox4.Text = "Register Number";
+            this.textBox4.Text = "Vehicle Number";
             // 
             // txtShortName
             // 
             this.txtShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtShortName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtShortName.Location = new System.Drawing.Point(144, 49);
-            this.txtShortName.MaxLength = 20;
+            this.txtShortName.Location = new System.Drawing.Point(144, 76);
+            this.txtShortName.MaxLength = 10;
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(299, 27);
-            this.txtShortName.TabIndex = 1;
+            this.txtShortName.TabIndex = 2;
             this.txtShortName.Enter += new System.EventHandler(this.txtShortName_Enter);
             this.txtShortName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShortName_KeyDown);
             this.txtShortName.Leave += new System.EventHandler(this.txtShortName_Leave);
@@ -231,7 +231,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(6, 49);
+            this.textBox2.Location = new System.Drawing.Point(6, 76);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -252,6 +252,7 @@
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -287,9 +288,10 @@
             this.Name = "CP_Vehicle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vehicle Details";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Vehicle_FormClosing);
             this.Load += new System.EventHandler(this.CP_Vehicle_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_CustomerType_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_CustomerType_Leave);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Vehicle_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_Vehicle_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.epVehicle)).EndInit();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();

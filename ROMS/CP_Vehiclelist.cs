@@ -84,7 +84,7 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnCustomerType(2, Convert.ToInt32(grdVehicleList.SelectedRows[0].Cells["ID"].Value),"", "", 0, "Vehicle Delete");
+                            varResult = objspservice.udfnVehicle(2, Convert.ToInt32(grdVehicleList.SelectedRows[0].Cells["ID"].Value), "", "", "", "", 0, "Vehicle Delete");
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -120,11 +120,11 @@ namespace ROMS
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
-                        MainForm.objCP_CustomerType = new CP_CustomerType();
-                        MainForm.objCP_CustomerType.btnSave.Text = "Update";
-                        MainForm.objCP_CustomerType.pbCusTypeId = Convert.ToInt32(grdVehicleList.SelectedRows[0].Cells["ID"].Value);
-                        MainForm.objCP_CustomerType.PbStatus = Convert.ToInt32(grdVehicleList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objCP_CustomerType.ShowDialog();
+                        MainForm.objCP_Vehicle = new CP_Vehicle();
+                        MainForm.objCP_Vehicle.btnSave.Text = "Update";
+                        MainForm.objCP_Vehicle.pbVehicleId = Convert.ToInt32(grdVehicleList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_Vehicle.PbStatus = Convert.ToInt32(grdVehicleList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_Vehicle.ShowDialog();
                     }
                 }
                 catch (Exception ex)
@@ -166,14 +166,13 @@ namespace ROMS
                             grdVehicleList.Columns["ID"].Visible = false;
                             grdVehicleList.Columns["StatusID"].Visible = false;
                             grdVehicleList.Columns["S.No."].Width = 50;
-                            grdVehicleList.Columns["Vehicle Name"].Width = 200;
-                            grdVehicleList.Columns["V Short Name"].Width = 120;
-                            grdVehicleList.Columns["Register No."].Width = 100;
-                            grdVehicleList.Columns["Capacity"].Width = 80;
+                            grdVehicleList.Columns["Vehicle Name"].Width = 150;
+                            grdVehicleList.Columns["V Short Name"].Width = 110;
+                            grdVehicleList.Columns["Vehicle Number"].Width = 130;
+                            grdVehicleList.Columns["Capacity"].Width = 120;
                             grdVehicleList.Columns["Status"].Width = 80;
                             grdVehicleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdVehicleList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdVehicleList.Columns["Capacity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -220,8 +219,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 grdVehicleList.Columns["Vehicle Name"].Width = 200;
                 grdVehicleList.Columns["V Short Name"].Width = 120;
-                grdVehicleList.Columns["Register No."].Width = 100;
-                grdVehicleList.Columns["Capacity"].Width = 80;
+                grdVehicleList.Columns["Vehicle Number"].Width = 100;
+                grdVehicleList.Columns["Capacity"].Width = 120;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

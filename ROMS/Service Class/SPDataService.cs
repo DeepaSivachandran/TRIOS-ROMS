@@ -5077,7 +5077,7 @@ namespace ROMS
             return ds;
         }
         //Created By : Sathish, Created On :-11-11-2025
-        public string udfnVehicle(int ViewType, int paraVehicleId, string paraVehicleName, string paraShortName, string paraRegisterNo, decimal paraCapactiy, int paraStatusId, string paraOriginator)
+        public string udfnVehicle(int ViewType, int paraVehicleId, string paraVehicleName, string paraShortName, string paraRegisterNo, string paraCapactiy, int paraStatusId, string paraOriginator)
         {
             string varResult = "";
             try

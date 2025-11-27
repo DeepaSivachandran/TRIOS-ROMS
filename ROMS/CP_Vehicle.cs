@@ -28,11 +28,6 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { PbStatus = 1; }
                 else { PbStatus = 2; }
-                decimal varCapacity = 0;
-                if (txtCapacity.Text.Trim() != "")
-                {
-                    varCapacity = Convert.ToDecimal(txtCapacity.Text);
-                }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
@@ -46,7 +41,7 @@ namespace ROMS
                     varoriginator = "Vehicle Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnVehicle(varType, pbVehicleId, txtVehicleName.Text.Trim(), txtShortName.Text.Trim(), txtRegisterNo.Text.Trim(), varCapacity, PbStatus, varoriginator);
+                varResult = objspservice.udfnVehicle(varType, pbVehicleId, txtVehicleName.Text.Trim(), txtShortName.Text.Trim(), txtRegisterNo.Text.Trim(), txtCapacity.Text.Trim(), PbStatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -55,11 +50,11 @@ namespace ROMS
                     MainForm.objCP_Vehiclelist.udfnList();
                     if (btnSave.Text == "Save")
                     {
+                        txtRegisterNo.Text = "";
                         txtVehicleName.Text = "";
                         txtShortName.Text = "";
-                        txtRegisterNo.Text = "";
                         txtCapacity.Text = "";
-                        this.ActiveControl = txtVehicleName;
+                        this.ActiveControl = txtRegisterNo;
                     }
                     if (btnSave.Text == "Update")
                     {
@@ -96,24 +91,45 @@ namespace ROMS
         {
             try
             {
+                bool blnErrFlag = false;
+                if (txtRegisterNo.Text.Trim() == "")
+                {
+                    epVehicle.SetError(txtRegisterNo, "Please enter vehicle number.");
+                    txtRegisterNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVehicle.ShowAlways = true;
+                    tpVehicle.Show("Please enter vehicle number.", txtRegisterNo, 5000);
+                    blnErrFlag = true;
+                }
                 if (txtVehicleName.Text.Trim() == "")
                 {
                     epVehicle.SetError(txtVehicleName, "Please enter vehicle name.");
                     txtVehicleName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpVehicle.ShowAlways = true;
                     tpVehicle.Show("Please enter vehicle name.", txtVehicleName, 5000);
+                    blnErrFlag = true;
                 }
-                else if (txtShortName.Text.Trim() == "")
+                if (txtShortName.Text.Trim() == "")
                 {
-                    epVehicle.SetError(txtShortName, "Please enter shortname name.");
+                    epVehicle.SetError(txtShortName, "Please enter vehicle shortname name.");
                     txtShortName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpVehicle.ShowAlways = true;
-                    tpVehicle.Show("Please enter shortname name.", txtShortName, 5000);
+                    tpVehicle.Show("Please enter vehicle shortname name.", txtShortName, 5000);
+                    blnErrFlag = true;
                 }
-                else
+                if (txtCapacity.Text.Trim() == "")
                 {
+                    epVehicle.SetError(txtCapacity, "Please enter capacity.");
+                    txtCapacity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVehicle.ShowAlways = true;
+                    tpVehicle.Show("Please enter capacity.", txtCapacity, 5000);
+                    blnErrFlag = true;
+                }
+                if (blnErrFlag == false)
+                {
+                    txtRegisterNo.BackColor = Color.White;
                     txtVehicleName.BackColor = Color.White;
                     txtShortName.BackColor = Color.White;
+                    txtCapacity.BackColor = Color.White;
                     epVehicle.Clear();
                     btnSave.Enabled = false;
                     udfnSave();
@@ -171,7 +187,7 @@ namespace ROMS
                 MainForm.objCP_Vehiclelist.picLoader.SendToBack();
                 if (pbVehicleId == 0)
                 {
-                    this.ActiveControl = txtVehicleName;
+                    this.ActiveControl = txtRegisterNo;
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
                 }
@@ -181,13 +197,15 @@ namespace ROMS
                     pnlStatus.Enabled = true;
                     if (PbStatus == 1)
                     {
-                        this.ActiveControl = txtVehicleName;
+                        this.ActiveControl = txtRegisterNo;
                         rbActive.Checked = true;
                     }
                     else if(PbStatus == 2)
                     {
+                        txtRegisterNo.Enabled = false;
                         txtVehicleName.Enabled = false;
                         txtShortName.Enabled = false;
+                        txtCapacity.Enabled = false;
                         rbInActive.Checked = true;
                         rbInActive.Focus();
                     }
@@ -207,14 +225,16 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnCustomerTypelist(1, pbVehicleId, 0);
+                    objDs = objspservice.udfnVehiclelist(1, pbVehicleId, 0);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
                         {
-                            txtVehicleName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_Name"]);
-                            txtShortName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_TName"]);
-                            txtVehicleName.Focus();
+                            txtRegisterNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Vehicle Number"]);
+                            txtVehicleName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Vehicle Name"]);
+                            txtShortName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["V Short Name"]);
+                            txtCapacity.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Capacity"]);
+                            txtRegisterNo.Focus();
                         }
                     }
                 }
@@ -367,7 +387,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRegisterNo.Focus();
+                    txtCapacity.Focus();
                 }
             }
             catch (Exception ex)
@@ -409,7 +429,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCapacity.Focus();
+                    txtVehicleName.Focus();
                 }
             }
             catch (Exception ex)
@@ -497,15 +517,52 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
+                //if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                //{
+                //    e.Handled = true;
+                //}
 
-                // Allow only one decimal point
-                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                //// Allow only one decimal point
+                //if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                //{
+                //    e.Handled = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Vehicle_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varUpdate == 0)
                 {
-                    e.Handled = true;
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -515,12 +572,17 @@ namespace ROMS
             }
         }
 
-        private void CP_CustomerType_KeyDown(object sender, KeyEventArgs e)
+        private void CP_Vehicle_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }
@@ -531,7 +593,7 @@ namespace ROMS
             }
         }
 
-        private void CP_CustomerType_Leave(object sender, EventArgs e)
+        private void CP_Vehicle_Leave(object sender, EventArgs e)
         {
             try
             {

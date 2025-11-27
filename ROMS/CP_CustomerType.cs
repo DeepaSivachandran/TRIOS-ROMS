@@ -397,12 +397,54 @@ namespace ROMS
             }
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_CustomerType_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varUpdate == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CP_CustomerType_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
                 if (e.KeyCode == Keys.F5)
                 {
+                    btnSave.Focus();
                     btnSave_Click(sender, e);
                 }
             }
