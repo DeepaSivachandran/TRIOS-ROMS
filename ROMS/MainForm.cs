@@ -176,6 +176,8 @@ namespace ROMS
         public static CP_Customerlist objCP_Customerlist;
         public static CP_Vehicle objCP_Vehicle;
         public static CP_Vehiclelist objCP_Vehiclelist;
+        public static CP_DeliveryPerson objCP_DeliveryPerson;
+        public static CP_DeliveryPersonlist objCP_DeliveryPersonlist;
 
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
@@ -4298,6 +4300,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Vehiclelist, "CP_Vehiclelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDeliveryPerson_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_DeliveryPersonlist, "CP_DeliveryPersonlist", 501);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)

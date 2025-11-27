@@ -5076,7 +5076,7 @@ namespace ROMS
             }
             return ds;
         }
-        //Created By : Sathish, Created On :-11-11-2025
+        //Created By : Sathish, Created On :-27-11-2025
         public string udfnVehicle(int ViewType, int paraVehicleId, string paraVehicleName, string paraShortName, string paraRegisterNo, string paraCapactiy, int paraStatusId, string paraOriginator)
         {
             string varResult = "";
@@ -5110,7 +5110,7 @@ namespace ROMS
             }
             return varResult;
         }
-        //Created By : Sathish, Created On :-11-11-2025
+        //Created By : Sathish, Created On :-27-11-2025
         public DataSet udfnVehiclelist(int paraViewType, int paraVehicleID, int paraStatus)
         {
             DataSet ds = new DataSet();
@@ -5121,6 +5121,69 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraVehicleID", paraVehicleID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        //Created By : Sathish, Created On :-27-11-2025
+        public string udfnDeliveryPerson(int ViewType, int paraDeliveryPersonId, string paraName, string paraMobileNo, string paraCode, int paraStatusId, string paraOriginator)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_DeliveryPerson]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDeliveryPersonId", paraDeliveryPersonId);
+                varSqlCommand.Parameters.AddWithValue("@paraName", paraName);
+                varSqlCommand.Parameters.AddWithValue("@paraMobileNo", paraMobileNo);
+                varSqlCommand.Parameters.AddWithValue("@paraCode", paraCode);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        //Created By : Sathish, Created On :-27-11-2025
+        public DataSet udfnDeliveryPersonlist(int paraViewType, int paraDeliveryPersonId, int paraStatus)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_DeliveryPerson", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraDeliveryPersonId", paraDeliveryPersonId);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);

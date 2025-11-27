@@ -205,6 +205,7 @@ namespace ROMS
             this.tsmCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.tsmVehicle = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeliveryPerson = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1764,7 +1765,8 @@ namespace ROMS
             this.tsmRoute,
             this.tsmCustomerType,
             this.tsmCustomer,
-            this.tsmVehicle});
+            this.tsmVehicle,
+            this.tsmDeliveryPerson});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
@@ -1807,6 +1809,13 @@ namespace ROMS
             this.tsmVehicle.Size = new System.Drawing.Size(180, 22);
             this.tsmVehicle.Text = "Vehicle";
             this.tsmVehicle.Click += new System.EventHandler(this.tsmVehicle_Click);
+            // 
+            // tsmDeliveryPerson
+            // 
+            this.tsmDeliveryPerson.Name = "tsmDeliveryPerson";
+            this.tsmDeliveryPerson.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeliveryPerson.Text = "Delivery Person";
+            this.tsmDeliveryPerson.Click += new System.EventHandler(this.tsmDeliveryPerson_Click);
             // 
             // MainForm
             // 
@@ -2016,5 +2025,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmCustomerType;
         private System.Windows.Forms.ToolStripMenuItem tsmCustomer;
         private System.Windows.Forms.ToolStripMenuItem tsmVehicle;
+        private System.Windows.Forms.ToolStripMenuItem tsmDeliveryPerson;
     }
 }
