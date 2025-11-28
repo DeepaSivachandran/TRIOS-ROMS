@@ -77,7 +77,7 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdCustomerTypeList.SelectedRows.Count > 0)
+                    if (grdTransportList.SelectedRows.Count > 0)
                     {
                         string varResult = "";
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -87,7 +87,7 @@ namespace ROMS
                             varResult = "";
                             MR_Sales obj = new MR_Sales();
                             obj.paraViewType = 2;
-                            obj.paraTransportId = Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value);
+                            obj.paraTransportId = Convert.ToInt32(grdTransportList.SelectedRows[0].Cells["ID"].Value);
                             obj.paraOriginator = "Transport Delete";
 
                             varResult = objspservice.udfnTransport(obj);
@@ -122,15 +122,15 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdCustomerTypeList.SelectedRows.Count > 0)
+                    if (grdTransportList.SelectedRows.Count > 0)
                     {
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objCP_Transport = new CP_Transport();
                         MainForm.objCP_Transport.btnSave.Text = "Update";
-                        MainForm.objCP_Transport.pbTransportId = Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["ID"].Value);
-                        MainForm.objCP_Transport.PbStatus = Convert.ToInt32(grdCustomerTypeList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_Transport.pbTransportId = Convert.ToInt32(grdTransportList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_Transport.PbStatus = Convert.ToInt32(grdTransportList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_Transport.ShowDialog();
                     }
                 }
@@ -154,7 +154,7 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdCustomerTypeList.DataSource = null; 
+                grdTransportList.DataSource = null; 
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
 
@@ -173,19 +173,19 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdCustomerTypeList.DataSource = objDs.Tables[0];
-                            grdCustomerTypeList.Columns["ID"].Visible = false;
-                            grdCustomerTypeList.Columns["StatusID"].Visible = false;
-                            grdCustomerTypeList.Columns["S.No."].Width = 50;
-                            grdCustomerTypeList.Columns["Transport English Name"].Width = 200;
-                            grdCustomerTypeList.Columns["Transport Tamil Name"].Width = 250;
-                            grdCustomerTypeList.Columns["Short Name"].Width = 120;
-                            grdCustomerTypeList.Columns["Contact Person"].Width = 150;
-                            grdCustomerTypeList.Columns["Mobile No."].Width = 120;
-                            grdCustomerTypeList.Columns["Status"].Width = 80;
-                            grdCustomerTypeList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCustomerTypeList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCustomerTypeList.Columns["Transport Tamil Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdTransportList.DataSource = objDs.Tables[0];
+                            grdTransportList.Columns["ID"].Visible = false;
+                            grdTransportList.Columns["StatusID"].Visible = false;
+                            grdTransportList.Columns["S.No."].Width = 50;
+                            grdTransportList.Columns["Transport English Name"].Width = 200;
+                            grdTransportList.Columns["Transport Tamil Name"].Width = 250;
+                            grdTransportList.Columns["Short Name"].Width = 120;
+                            grdTransportList.Columns["Contact Person"].Width = 150;
+                            grdTransportList.Columns["Mobile No."].Width = 120;
+                            grdTransportList.Columns["Status"].Width = 80;
+                            grdTransportList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdTransportList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdTransportList.Columns["Transport Tamil Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
                         {
@@ -218,7 +218,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdCustomerTypeList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdTransportList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -251,10 +251,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    udfnGridSearchHeading(grdCustomerTypeList, DGV_SearchGrid);
+                    udfnGridSearchHeading(grdTransportList, DGV_SearchGrid);
                     DGV_SearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in grdCustomerTypeList.Columns)
+                    foreach (DataGridViewColumn col in grdTransportList.Columns)
                     {
                         DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
@@ -398,19 +398,19 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdCustomerTypeList.Rows.Count; i++)
+                for (int i = 0; i < grdTransportList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdCustomerTypeList.Rows[i].Cells["StatusID"].Value) == "1")
+                    if (Convert.ToString(grdTransportList.Rows[i].Cells["StatusID"].Value) == "1")
                     {
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdTransportList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdTransportList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdCustomerTypeList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdTransportList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdTransportList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdCustomerTypeList.ClearSelection();
+                    grdTransportList.ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -426,16 +426,16 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdCustomerTypeList.HorizontalScrollingOffset;
+                    int offSetValue = grdTransportList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdCustomerTypeList.Width > grdCustomerTypeList.HorizontalScrollingOffset && grdCustomerTypeList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdTransportList.Width > grdTransportList.HorizontalScrollingOffset && grdTransportList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdCustomerTypeList);
+                    udfnscrollVisible(DGV_SearchGrid, grdTransportList);
                 }
             }
             catch (Exception ex)
@@ -480,9 +480,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdCustomerTypeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerTypeList);
+                grdTransportList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdTransportList);
                 objDser.CloseConnection();
-                grdCustomerTypeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdTransportList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -513,10 +513,10 @@ namespace ROMS
         {
             try
             {
-                if (grdCustomerTypeList.ColumnCount > 0)
+                if (grdTransportList.ColumnCount > 0)
                 {
-                    grdCustomerTypeList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerTypeList.HorizontalScrollingOffset;
+                    grdTransportList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdTransportList.HorizontalScrollingOffset;
                 }
             }
             catch (Exception ex)
@@ -532,10 +532,10 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdCustomerTypeList.HorizontalScrollingOffset;
+                    int offSetValue = grdTransportList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdCustomerTypeList.Width > grdCustomerTypeList.HorizontalScrollingOffset && grdCustomerTypeList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdTransportList.Width > grdTransportList.HorizontalScrollingOffset && grdTransportList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
@@ -566,15 +566,15 @@ namespace ROMS
         {
             if (lblNoRecordsFound.Visible == false)
             {
-                DataGridViewColumn newColumn = grdCustomerTypeList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdCustomerTypeList.SortedColumn;
+                DataGridViewColumn newColumn = grdTransportList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdTransportList.SortedColumn;
                 ListSortDirection direction;
                 // If oldColumn is null, then the DataGridView is not sorted.
                 if (oldColumn != null)
                 {
                     // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
-                        grdCustomerTypeList.SortOrder == SortOrder.Ascending)
+                        grdTransportList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
@@ -589,13 +589,13 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdCustomerTypeList.Sort(newColumn, direction);
+                grdTransportList.Sort(newColumn, direction);
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
                     SortOrder.Ascending : SortOrder.Descending;
                 DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdCustomerTypeList.HorizontalScrollingOffset;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdTransportList.HorizontalScrollingOffset;
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
         }
@@ -615,9 +615,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdCustomerTypeList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdCustomerTypeList);
+                grdTransportList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdTransportList);
                 objDser.CloseConnection();
-                grdCustomerTypeList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdTransportList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex)
@@ -627,7 +627,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdCustomerTypeList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdTransportList.Rows.Count);
             }
         }
 
