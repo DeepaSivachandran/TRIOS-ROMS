@@ -4816,70 +4816,9 @@ namespace ROMS
             }
             return ds;
         }
+        
         //Created By : Sathish, Created On :-11-11-2025
-        public string udfnArea(int ViewType, int paraAreaId, string paraAreaEName, string paraAreaTName, int paraRouteID, int paraStatusId, string paraOriginator)
-        {
-            string varResult = "";
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRS_Area]", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraAreaId", paraAreaId);
-                varSqlCommand.Parameters.AddWithValue("@paraAreaEName", paraAreaEName);
-                varSqlCommand.Parameters.AddWithValue("@paraAreaTName", paraAreaTName);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteID", paraRouteID);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
-                varSqlCommand.CommandTimeout = 0;
-                varResult = varSqlCommand.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return varResult;
-        }
-        //Created By : Sathish, Created On :-11-11-2025
-        public DataSet udfnArealist(int paraViewType,int paraAreaID, int paraRouteID, int paraStatus)
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("MRG_Area", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraAreaID", paraAreaID);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteID", paraRouteID);
-                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-
-                varSqlCommand.CommandTimeout = 0;
-                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
-                sa.Fill(ds);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return ds;
-        }
+       
         //Created By : Sathish, Created On :-11-11-2025
         public string udfnRoute(int ViewType, int paraRouteId, string paraRouteEName, string paraRouteTName,int paraOrderNo, int paraStatusId, string paraOriginator)
         {
@@ -5141,41 +5080,7 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return ds;
-        }
-        //public DataSet udfnArea(MR_Area objMR_Area)
-        //{
-        //    DataSet ds = new DataSet();
-        //    try
-        //    {
-        //        tmpspcall = new SPCall();
-        //        SqlCommand varSqlCommand = new SqlCommand("[MRG_Area]", tmpspcall.objConn);
-        //        varSqlCommand.CommandType = CommandType.StoredProcedure;
-        //        varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Journal.ViewType);
-        //        varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Journal.ParaTransactionId);
-        //        varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_Stock_Journal.paraFromDate);
-        //        varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_Stock_Journal.paraToDate);
-        //        varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_Stock_Journal.paraSLID);
-        //        varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_Stock_Journal.paraPRID);
-        //        varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Journal.ParaCompanyCode);
-        //        varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Journal.paraStatusId);
-        //        varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Stock_Journal.paraUserID);
-        //        varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_Stock_Journal.paraIPAddress);
-        //        varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRN_Stock_Journal.paraTransType);
-        //        varSqlCommand.CommandTimeout = 0;
-        //        SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
-        //        sa.Fill(ds);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //    finally
-        //    {
-        //        tmpspcall.CloseConnection();
-        //    }
-        //    return ds;
-        //}
+        } 
         public string udfnArea(MR_Area objMR_Area)
         {
             string result = "";
@@ -5193,9 +5098,71 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Area.paraOriginator); 
                 varSqlCommand.Parameters.AddWithValue("@paraOrderNo", objMR_Area.paraOrderNo); 
                 varSqlCommand.Parameters.AddWithValue("@paraCTYID", objMR_Area.paraCTYID);  
+                varSqlCommand.Parameters.AddWithValue("@paraDistance", objMR_Area.paraDistance);  
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName); 
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+        public DataSet udfnArealist(MR_Area objMR_Area)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_Area", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Area.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraAreaId", objMR_Area.paraAreaId);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteID", objMR_Area.paraRouteID);
+                varSqlCommand.Parameters.AddWithValue("@paraStatus", objMR_Area.paraRouteID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        } 
+        public string udfnRoute(MR_Route objMR_Route)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Route]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Route.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteId", objMR_Route.paraRouteId);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteTName", objMR_Route.paraRouteTName);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteEName", objMR_Route.paraRouteEName); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Route.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Route.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderNo", objMR_Route.paraOrderNo); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 result = varSqlCommand.ExecuteScalar().ToString();
             }

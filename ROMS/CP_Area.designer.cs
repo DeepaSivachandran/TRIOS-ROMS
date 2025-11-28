@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Area));
             this.errArea = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.txtDistance = new System.Windows.Forms.TextBox();
+            this.txtDDistance = new System.Windows.Forms.TextBox();
             this.cmbOrderNo = new System.Windows.Forms.ComboBox();
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -48,8 +50,6 @@
             this.txtAEName = new System.Windows.Forms.TextBox();
             this.txtDAreaTName = new System.Windows.Forms.TextBox();
             this.txtDAreaEName = new System.Windows.Forms.TextBox();
-            this.txtDistance = new System.Windows.Forms.TextBox();
-            this.txtDDistance = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errArea)).BeginInit();
             this.grbDetails.SuspendLayout();
             this.pnlStatus.SuspendLayout();
@@ -84,7 +84,32 @@
             this.grbDetails.Size = new System.Drawing.Size(388, 275);
             this.grbDetails.TabIndex = 0;
             this.grbDetails.TabStop = false;
-            this.grbDetails.Enter += new System.EventHandler(this.grbDetails_Enter);
+            // 
+            // txtDistance
+            // 
+            this.txtDistance.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F);
+            this.txtDistance.Location = new System.Drawing.Point(136, 139);
+            this.txtDistance.MaxLength = 8;
+            this.txtDistance.Name = "txtDistance";
+            this.txtDistance.Size = new System.Drawing.Size(240, 27);
+            this.txtDistance.TabIndex = 4;
+            this.txtDistance.Enter += new System.EventHandler(this.txtDistance_Enter);
+            this.txtDistance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDistance_KeyDown);
+            this.txtDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDistance_KeyPress);
+            this.txtDistance.Leave += new System.EventHandler(this.txtDistance_Leave);
+            // 
+            // txtDDistance
+            // 
+            this.txtDDistance.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDDistance.Enabled = false;
+            this.txtDDistance.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDDistance.Location = new System.Drawing.Point(14, 139);
+            this.txtDDistance.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDDistance.Name = "txtDDistance";
+            this.txtDDistance.ReadOnly = true;
+            this.txtDDistance.Size = new System.Drawing.Size(122, 28);
+            this.txtDDistance.TabIndex = 22;
+            this.txtDDistance.Text = "Distance";
             // 
             // cmbOrderNo
             // 
@@ -95,7 +120,6 @@
             this.cmbOrderNo.Name = "cmbOrderNo";
             this.cmbOrderNo.Size = new System.Drawing.Size(240, 27);
             this.cmbOrderNo.TabIndex = 3;
-            this.cmbOrderNo.SelectedIndexChanged += new System.EventHandler(this.cmbOrderNo_SelectedIndexChanged);
             this.cmbOrderNo.Enter += new System.EventHandler(this.cmbOrderNo_Enter);
             this.cmbOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOrderNo_KeyDown);
             this.cmbOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbOrderNo_KeyPress);
@@ -103,6 +127,7 @@
             // 
             // cmbCity
             // 
+            this.cmbCity.Enabled = false;
             this.cmbCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCity.FormattingEnabled = true;
             this.cmbCity.Location = new System.Drawing.Point(136, 168);
@@ -110,7 +135,6 @@
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(240, 27);
             this.cmbCity.TabIndex = 5;
-            this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
             this.cmbCity.Enter += new System.EventHandler(this.cmbCity_Enter);
             this.cmbCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCity_KeyDown);
             this.cmbCity.Leave += new System.EventHandler(this.cmbCity_Leave);
@@ -127,7 +151,6 @@
             this.textBox2.Size = new System.Drawing.Size(122, 28);
             this.textBox2.TabIndex = 20;
             this.textBox2.Text = "City";
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox1
             // 
@@ -141,7 +164,6 @@
             this.textBox1.Size = new System.Drawing.Size(122, 28);
             this.textBox1.TabIndex = 19;
             this.textBox1.Text = "Route";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // cmbRoute
             // 
@@ -154,7 +176,6 @@
             this.cmbRoute.Name = "cmbRoute";
             this.cmbRoute.Size = new System.Drawing.Size(240, 27);
             this.cmbRoute.TabIndex = 0;
-            this.cmbRoute.SelectedIndexChanged += new System.EventHandler(this.cmbRoute_SelectedIndexChanged);
             this.cmbRoute.Enter += new System.EventHandler(this.cmbRoute_Enter);
             this.cmbRoute.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRoute_KeyDown);
             this.cmbRoute.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRoute_KeyPress);
@@ -216,7 +237,6 @@
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(240, 28);
             this.pnlStatus.TabIndex = 6;
-            this.pnlStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStatus_Paint);
             // 
             // rbActive
             // 
@@ -258,7 +278,6 @@
             this.txtDRouteName.Size = new System.Drawing.Size(122, 28);
             this.txtDRouteName.TabIndex = 12;
             this.txtDRouteName.Text = "Order No.";
-            this.txtDRouteName.TextChanged += new System.EventHandler(this.txtDRouteName_TextChanged);
             // 
             // txtATName
             // 
@@ -268,7 +287,6 @@
             this.txtATName.Name = "txtATName";
             this.txtATName.Size = new System.Drawing.Size(240, 27);
             this.txtATName.TabIndex = 2;
-            this.txtATName.TextChanged += new System.EventHandler(this.txtATName_TextChanged);
             this.txtATName.Enter += new System.EventHandler(this.txtATName_Enter);
             this.txtATName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtATName_KeyDown);
             this.txtATName.Leave += new System.EventHandler(this.txtATName_Leave);
@@ -281,7 +299,6 @@
             this.txtAEName.Name = "txtAEName";
             this.txtAEName.Size = new System.Drawing.Size(240, 28);
             this.txtAEName.TabIndex = 1;
-            this.txtAEName.TextChanged += new System.EventHandler(this.txtAEName_TextChanged);
             this.txtAEName.Enter += new System.EventHandler(this.txtAEName_Enter);
             this.txtAEName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAEName_KeyDown);
             this.txtAEName.Leave += new System.EventHandler(this.txtAEName_Leave);
@@ -298,7 +315,6 @@
             this.txtDAreaTName.Size = new System.Drawing.Size(122, 28);
             this.txtDAreaTName.TabIndex = 10;
             this.txtDAreaTName.Text = "Area Name in Tamil";
-            this.txtDAreaTName.TextChanged += new System.EventHandler(this.txtDAreaTName_TextChanged);
             // 
             // txtDAreaEName
             // 
@@ -312,31 +328,6 @@
             this.txtDAreaEName.Size = new System.Drawing.Size(122, 28);
             this.txtDAreaEName.TabIndex = 11;
             this.txtDAreaEName.Text = "Area Name in English";
-            this.txtDAreaEName.TextChanged += new System.EventHandler(this.txtDAreaEName_TextChanged);
-            // 
-            // txtDistance
-            // 
-            this.txtDistance.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F);
-            this.txtDistance.Location = new System.Drawing.Point(136, 139);
-            this.txtDistance.MaxLength = 100;
-            this.txtDistance.Name = "txtDistance";
-            this.txtDistance.Size = new System.Drawing.Size(240, 27);
-            this.txtDistance.TabIndex = 4;
-            this.txtDistance.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // txtDDistance
-            // 
-            this.txtDDistance.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDDistance.Enabled = false;
-            this.txtDDistance.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDDistance.Location = new System.Drawing.Point(14, 139);
-            this.txtDDistance.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDDistance.Name = "txtDDistance";
-            this.txtDDistance.ReadOnly = true;
-            this.txtDDistance.Size = new System.Drawing.Size(122, 28);
-            this.txtDDistance.TabIndex = 22;
-            this.txtDDistance.Text = "Distance";
-            this.txtDDistance.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // CP_Area
             // 

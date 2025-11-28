@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ROMS.Model;
 
 namespace ROMS
 {
@@ -73,6 +74,18 @@ namespace ROMS
                     varoriginator = "Route Updation";
                     varType = 1;
                 }
+
+                SPDataService objspdservice = new SPDataService();
+                MR_Route objMR_Route = new MR_Route();
+                objMR_Route.ViewType = varType;
+                objMR_Route.paraRouteId = varRouteId;
+                objMR_Route.paraRouteTName = txtRTName.Text.Trim();
+                objMR_Route.paraRouteEName = txtREName.Text.Trim(); 
+                objMR_Route.paraStatusId = PbStatus;
+                objMR_Route.paraOriginator = varoriginator;
+                objMR_Route.paraOrderNo = Convert.ToInt32(cmbRSNo.SelectedValue); 
+                varResult = objspdservice.udfnRoute(objMR_Route);
+                objspdservice.CloseConnection();
                 varResult = objspservice.udfnRoute(varType, varRouteId, txtREName.Text.Trim(), txtRTName.Text.Trim(), Convert.ToInt32(cmbRSNo.SelectedValue), PbStatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
@@ -547,21 +560,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtStatus_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grbform_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

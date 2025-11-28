@@ -4323,6 +4323,16 @@ namespace ROMS
             }
         }
 
+        private void tsmControlPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmReports_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 

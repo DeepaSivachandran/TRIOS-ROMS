@@ -7,21 +7,18 @@ using System.Data;
 
 namespace ROMS.Model
 {
-    public class MR_Area
+    public class MR_Route
     {
         public int ViewType = 0;
-        public int paraAreaId = 0;
-        public string paraAreaTName = "";
-        public string paraAreaEName = "";
-        public int paraRouteID = 0;
+        public int paraRouteId = 0;
+        public string paraRouteTName = "";
+        public string paraRouteEName = ""; 
         public int paraStatusId = 0;
         public int paraUserID = 0;
         public string paraIPAddress = "";
         public string paraOriginator = "";
         public string paraHostName = "";
-        public int paraOrderNo = 0;
-        public int paraCTYID = 0; 
-        public int paraUserRoleId = 0;   
-        public decimal paraDistance = 0;   
+        public int paraOrderNo = 0; 
+        public int paraUserRoleId = 0;    
     }
 }
