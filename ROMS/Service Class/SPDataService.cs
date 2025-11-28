@@ -1589,7 +1589,7 @@ namespace ROMS
               double paraReorderQty, double paraRetailMinstk, double paraRetailrate, double paraWMinqty, double paraWsaleRate, string paraBarcode, int paraHSNCode
              , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
-              int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames,int paraIntermediateUPP,int paraIntermediateUnit,decimal paraProductionMSQ)
+              int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames,int paraIntermediateUPP,int paraIntermediateUnit,decimal paraProductionMSQ, DataTable paraMR_SPl_Bulk)
         {
             string result = "";
             try
@@ -1656,6 +1656,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIntermediateUPP", paraIntermediateUPP);
                 varSqlCommand.Parameters.AddWithValue("@paraIntermediateUnit", paraIntermediateUnit);
                 varSqlCommand.Parameters.AddWithValue("@paraProductionMSQ", paraProductionMSQ);
+                varSqlCommand.Parameters.AddWithValue("@paraMR_SPl_Bulk", paraMR_SPl_Bulk);
 
                 varSqlCommand.CommandTimeout = 0;
 

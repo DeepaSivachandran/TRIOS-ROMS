@@ -1288,7 +1288,7 @@ namespace ROMS
                     , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ);
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ,null);
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -6927,7 +6927,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0);
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0,null);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8568,7 +8568,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0);
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0,null);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
