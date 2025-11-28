@@ -402,7 +402,7 @@ namespace ROMS
         {
             try
             {
-                txtCustomerType.BackColor = Color.White;
+                txtCustomerTypeTName.BackColor = Color.White;
             }
             catch (Exception ex)
             {

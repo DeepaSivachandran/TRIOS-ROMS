@@ -33,28 +33,35 @@
             this.txtMarriageHallEName = new System.Windows.Forms.TextBox();
             this.epMarriageHall = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtStatus = new System.Windows.Forms.TextBox();
-            this.pnlStatus = new System.Windows.Forms.Panel();
-            this.rbActive = new System.Windows.Forms.RadioButton();
-            this.rbInActive = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.txtReason = new System.Windows.Forms.TextBox();
+            this.txtTeller = new System.Windows.Forms.TextBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtDistance = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtRoute = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtArea = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtMarriageHallTName = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epMarriageHall)).BeginInit();
-            this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtMarriageHallEName
             // 
             this.txtMarriageHallEName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMarriageHallEName.Location = new System.Drawing.Point(189, 23);
+            this.txtMarriageHallEName.Location = new System.Drawing.Point(162, 21);
             this.txtMarriageHallEName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMarriageHallEName.MaxLength = 30;
             this.txtMarriageHallEName.Name = "txtMarriageHallEName";
-            this.txtMarriageHallEName.Size = new System.Drawing.Size(255, 27);
+            this.txtMarriageHallEName.Size = new System.Drawing.Size(219, 27);
             this.txtMarriageHallEName.TabIndex = 0;
             this.txtMarriageHallEName.Enter += new System.EventHandler(this.txtMarriageHallEName_Enter);
             this.txtMarriageHallEName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMarriageHallEName_KeyDown);
@@ -68,73 +75,41 @@
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
-            this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(6, 77);
+            this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtStatus.Location = new System.Drawing.Point(5, 161);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(183, 28);
+            this.txtStatus.Size = new System.Drawing.Size(157, 27);
             this.txtStatus.TabIndex = 11;
             this.txtStatus.Text = "Status";
-            // 
-            // pnlStatus
-            // 
-            this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlStatus.Controls.Add(this.rbActive);
-            this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(189, 77);
-            this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(255, 27);
-            this.pnlStatus.TabIndex = 2;
-            // 
-            // rbActive
-            // 
-            this.rbActive.AutoSize = true;
-            this.rbActive.Checked = true;
-            this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActive.Location = new System.Drawing.Point(57, 1);
-            this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.rbActive.Name = "rbActive";
-            this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 2;
-            this.rbActive.TabStop = true;
-            this.rbActive.Text = "Active";
-            this.rbActive.UseVisualStyleBackColor = true;
-            this.rbActive.Enter += new System.EventHandler(this.rbActive_Enter);
-            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbActive_KeyDown);
-            this.rbActive.Leave += new System.EventHandler(this.rbActive_Leave);
-            // 
-            // rbInActive
-            // 
-            this.rbInActive.AutoSize = true;
-            this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbInActive.Location = new System.Drawing.Point(125, 1);
-            this.rbInActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.rbInActive.Name = "rbInActive";
-            this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 3;
-            this.rbInActive.Text = "Inactive";
-            this.rbInActive.UseVisualStyleBackColor = true;
-            this.rbInActive.Enter += new System.EventHandler(this.rbInActive_Enter);
-            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbInActive_KeyDown);
-            this.rbInActive.Leave += new System.EventHandler(this.rbInActive_Leave);
             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(6, 22);
+            this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox1.Location = new System.Drawing.Point(5, 21);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(183, 28);
+            this.textBox1.Size = new System.Drawing.Size(157, 27);
             this.textBox1.TabIndex = 12;
             this.textBox1.Text = "Marriage Hall Name in English";
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.txtReason);
+            this.grbForm.Controls.Add(this.txtTeller);
+            this.grbForm.Controls.Add(this.cmbStatus);
+            this.grbForm.Controls.Add(this.textBox7);
+            this.grbForm.Controls.Add(this.textBox6);
+            this.grbForm.Controls.Add(this.txtDistance);
+            this.grbForm.Controls.Add(this.textBox5);
+            this.grbForm.Controls.Add(this.txtRoute);
+            this.grbForm.Controls.Add(this.textBox4);
+            this.grbForm.Controls.Add(this.txtArea);
+            this.grbForm.Controls.Add(this.textBox3);
             this.grbForm.Controls.Add(this.txtMarriageHallTName);
             this.grbForm.Controls.Add(this.textBox2);
             this.grbForm.Controls.Add(this.textBox1);
@@ -142,22 +117,167 @@
             this.grbForm.Controls.Add(this.txtMarriageHallEName);
             this.grbForm.Controls.Add(this.btnSave);
             this.grbForm.Controls.Add(this.txtStatus);
-            this.grbForm.Controls.Add(this.pnlStatus);
-            this.grbForm.Location = new System.Drawing.Point(12, 13);
+            this.grbForm.Location = new System.Drawing.Point(10, 12);
             this.grbForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbForm.Name = "grbForm";
             this.grbForm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbForm.Size = new System.Drawing.Size(460, 333);
+            this.grbForm.Size = new System.Drawing.Size(394, 339);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
+            // 
+            // txtReason
+            // 
+            this.txtReason.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtReason.Location = new System.Drawing.Point(162, 217);
+            this.txtReason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtReason.MaxLength = 200;
+            this.txtReason.Multiline = true;
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Size = new System.Drawing.Size(219, 72);
+            this.txtReason.TabIndex = 7;
+            this.txtReason.Enter += new System.EventHandler(this.txtReason_Enter);
+            this.txtReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtReason_KeyDown);
+            this.txtReason.Leave += new System.EventHandler(this.txtReason_Leave);
+            // 
+            // txtTeller
+            // 
+            this.txtTeller.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtTeller.Location = new System.Drawing.Point(162, 189);
+            this.txtTeller.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTeller.MaxLength = 50;
+            this.txtTeller.Name = "txtTeller";
+            this.txtTeller.Size = new System.Drawing.Size(219, 27);
+            this.txtTeller.TabIndex = 6;
+            this.txtTeller.TextChanged += new System.EventHandler(this.txtTeller_TextChanged);
+            this.txtTeller.Enter += new System.EventHandler(this.txtTeller_Enter);
+            this.txtTeller.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTeller_KeyDown);
+            this.txtTeller.Leave += new System.EventHandler(this.txtTeller_Leave);
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(162, 160);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(219, 28);
+            this.cmbStatus.TabIndex = 5;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
+            this.cmbStatus.Enter += new System.EventHandler(this.cmbStatus_Enter);
+            this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStatus_KeyDown);
+            this.cmbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStatus_KeyPress);
+            this.cmbStatus.Leave += new System.EventHandler(this.cmbStatus_Leave);
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox7.Location = new System.Drawing.Point(5, 189);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(157, 27);
+            this.textBox7.TabIndex = 21;
+            this.textBox7.Text = "Teller";
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox6.Enabled = false;
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox6.Location = new System.Drawing.Point(5, 217);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(157, 27);
+            this.textBox6.TabIndex = 20;
+            this.textBox6.Text = "Reason";
+            // 
+            // txtDistance
+            // 
+            this.txtDistance.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDistance.Location = new System.Drawing.Point(162, 133);
+            this.txtDistance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtDistance.MaxLength = 30;
+            this.txtDistance.Name = "txtDistance";
+            this.txtDistance.Size = new System.Drawing.Size(219, 27);
+            this.txtDistance.TabIndex = 4;
+            this.txtDistance.Enter += new System.EventHandler(this.txtDistance_Enter);
+            this.txtDistance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDistance_KeyDown);
+            this.txtDistance.Leave += new System.EventHandler(this.txtDistance_Leave);
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox5.Location = new System.Drawing.Point(5, 133);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(157, 27);
+            this.textBox5.TabIndex = 18;
+            this.textBox5.Text = "Distance";
+            // 
+            // txtRoute
+            // 
+            this.txtRoute.Enabled = false;
+            this.txtRoute.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtRoute.Location = new System.Drawing.Point(162, 105);
+            this.txtRoute.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtRoute.MaxLength = 50;
+            this.txtRoute.Name = "txtRoute";
+            this.txtRoute.ReadOnly = true;
+            this.txtRoute.Size = new System.Drawing.Size(219, 27);
+            this.txtRoute.TabIndex = 3;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox4.Location = new System.Drawing.Point(5, 105);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(157, 27);
+            this.textBox4.TabIndex = 16;
+            this.textBox4.Text = "Route";
+            // 
+            // txtArea
+            // 
+            this.txtArea.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtArea.Location = new System.Drawing.Point(162, 77);
+            this.txtArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtArea.MaxLength = 50;
+            this.txtArea.Name = "txtArea";
+            this.txtArea.Size = new System.Drawing.Size(219, 27);
+            this.txtArea.TabIndex = 2;
+            this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter);
+            this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
+            this.txtArea.Leave += new System.EventHandler(this.txtArea_Leave);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox3.Location = new System.Drawing.Point(5, 77);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(157, 27);
+            this.textBox3.TabIndex = 14;
+            this.textBox3.Text = "Area";
             // 
             // txtMarriageHallTName
             // 
             this.txtMarriageHallTName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarriageHallTName.Location = new System.Drawing.Point(189, 50);
+            this.txtMarriageHallTName.Location = new System.Drawing.Point(162, 49);
             this.txtMarriageHallTName.MaxLength = 100;
             this.txtMarriageHallTName.Name = "txtMarriageHallTName";
-            this.txtMarriageHallTName.Size = new System.Drawing.Size(255, 27);
+            this.txtMarriageHallTName.Size = new System.Drawing.Size(219, 27);
             this.txtMarriageHallTName.TabIndex = 1;
             this.txtMarriageHallTName.Enter += new System.EventHandler(this.txtMarriageHallTName_Enter);
             this.txtMarriageHallTName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMarriageHallTName_KeyDown);
@@ -167,12 +287,12 @@
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(6, 49);
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox2.Location = new System.Drawing.Point(5, 49);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(183, 28);
+            this.textBox2.Size = new System.Drawing.Size(157, 27);
             this.textBox2.TabIndex = 13;
             this.textBox2.Text = "Marriage Hall Name in Tamil";
             // 
@@ -181,11 +301,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(370, 112);
+            this.btnClose.Location = new System.Drawing.Point(309, 299);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(74, 34);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.Size = new System.Drawing.Size(72, 32);
+            this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -196,11 +316,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(282, 112);
+            this.btnSave.Location = new System.Drawing.Point(222, 299);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(82, 34);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.Size = new System.Drawing.Size(81, 32);
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -210,16 +330,16 @@
             // 
             // CP_MarriageHall
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(484, 359);
+            this.ClientSize = new System.Drawing.Size(415, 364);
             this.Controls.Add(this.grbForm);
-            this.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CP_MarriageHall";
@@ -230,8 +350,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_MarriageHall_KeyDown);
             this.Leave += new System.EventHandler(this.CP_MarriageHall_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.epMarriageHall)).EndInit();
-            this.pnlStatus.ResumeLayout(false);
-            this.pnlStatus.PerformLayout();
             this.grbForm.ResumeLayout(false);
             this.grbForm.PerformLayout();
             this.ResumeLayout(false);
@@ -243,13 +361,21 @@
         public System.Windows.Forms.TextBox txtMarriageHallEName;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.Panel pnlStatus;
-        private System.Windows.Forms.RadioButton rbActive;
-        private System.Windows.Forms.RadioButton rbInActive;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbForm;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox txtMarriageHallTName;
+        private System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox txtArea;
+        private System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox txtRoute;
+        private System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.TextBox txtDistance;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        public System.Windows.Forms.TextBox txtTeller;
+        public System.Windows.Forms.TextBox txtReason;
     }
 }

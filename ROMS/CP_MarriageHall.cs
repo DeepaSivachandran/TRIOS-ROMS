@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    //Created By:Sathish ; Created On:-26/11/2025
+    //Created By:Sathish ; Created On:-28/11/2025
     public partial class CP_MarriageHall : Form
     {
         DataValidation objValidation = new DataValidation();
@@ -26,8 +26,6 @@ namespace ROMS
         {
             try
             {
-                if (rbActive.Checked == true) { PbStatus = 1; }
-                else { PbStatus = 2; }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
@@ -98,21 +96,51 @@ namespace ROMS
         {
             try
             {
+                bool blnErrFlag = false;
                 if (txtMarriageHallEName.Text.Trim() == "")
                 {
                     epMarriageHall.SetError(txtMarriageHallEName, "Please enter marriage hall english name.");
                     txtMarriageHallEName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMarriageHall.ShowAlways = true;
                     tpMarriageHall.Show("Please enter marriage hall english name.", txtMarriageHallEName, 5000);
+                    blnErrFlag = true;
                 }
-                else if (txtMarriageHallTName.Text.Trim() == "")
+                if (txtMarriageHallTName.Text.Trim() == "")
                 {
                     epMarriageHall.SetError(txtMarriageHallTName, "Please enter marriage hall tamil name.");
                     txtMarriageHallTName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMarriageHall.ShowAlways = true;
                     tpMarriageHall.Show("Please enter marriage hall tamil name.", txtMarriageHallTName, 5000);
+                    blnErrFlag = true;
                 }
-                else
+                if (txtArea.Text.Trim() == "")
+                {
+                    epMarriageHall.SetError(txtArea, "Please enter area name.");
+                    txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMarriageHall.ShowAlways = true;
+                    tpMarriageHall.Show("Please enter area name.", txtArea, 5000);
+                    blnErrFlag = true;
+                }
+                if (txtDistance.Text.Trim() == "")
+                {
+                    epMarriageHall.SetError(txtDistance, "Please enter distance.");
+                    txtDistance.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMarriageHall.ShowAlways = true;
+                    tpMarriageHall.Show("Please enter distance.", txtDistance, 5000);
+                    blnErrFlag = true;
+                }
+                if (Convert.ToInt32(cmbStatus.SelectedValue) == 98)
+                {
+                    if (txtTeller.Text.Trim() == "")
+                    {
+                        epMarriageHall.SetError(txtTeller, "Please enter teller.");
+                        txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMarriageHall.ShowAlways = true;
+                        tpMarriageHall.Show("Please enter teller.", txtTeller, 5000);
+                        blnErrFlag = true;
+                    }
+                }
+                if (blnErrFlag == false)
                 {
                     txtMarriageHallEName.BackColor = Color.White;
                     txtMarriageHallTName.BackColor = Color.White;
@@ -132,6 +160,8 @@ namespace ROMS
         {
             try
             {
+                txtRoute.ReadOnly = true;
+                txtRoute.Enabled = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -171,27 +201,31 @@ namespace ROMS
             {
                 MainForm.objCP_MarriageHalllist.picLoader.Visible = false;
                 MainForm.objCP_MarriageHalllist.picLoader.SendToBack();
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (1,2,98)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
+                objDataBind = null;
+
                 if (pbMarriageHallId == 0)
                 {
                     this.ActiveControl = txtMarriageHallEName;
-                    pnlStatus.Enabled = false;
-                    rbActive.Checked = true;
+                    cmbStatus.SelectedValue = 1;
+                    cmbStatus.Enabled = false;
                 }
                 else
                 {
                     udfnEdit();
-                    pnlStatus.Enabled = true;
                     if (PbStatus == 1)
                     {
                         this.ActiveControl = txtMarriageHallEName;
-                        rbActive.Checked = true;
+                        //rbActive.Checked = true;
                     }
                     else if(PbStatus == 2)
                     {
-                        txtMarriageHallEName.Enabled = false;
-                        txtMarriageHallTName.Enabled = false;
-                        rbInActive.Checked = true;
-                        rbInActive.Focus();
+                        //txtMarriageHallEName.Enabled = false;
+                        //txtMarriageHallTName.Enabled = false;
+                        //rbInActive.Checked = true;
+                        //rbInActive.Focus();
                     }
                 }
             }
@@ -274,87 +308,6 @@ namespace ROMS
             }
         }
 
-        private void rbActive_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                rbActive.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void rbInActive_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                rbInActive.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void rbActive_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                rbActive.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void rbInActive_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                rbInActive.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void rbActive_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void rbInActive_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void txtMarriageHallTName_Enter(object sender, EventArgs e)
         {
             try
@@ -374,21 +327,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        if (rbActive.Checked == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInActive.Focus();
-                        }
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    txtArea.Focus();
                 }
             }
             catch (Exception ex)
@@ -402,7 +341,7 @@ namespace ROMS
         {
             try
             {
-                txtMarriageHallEName.BackColor = Color.White;
+                txtMarriageHallTName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -439,6 +378,260 @@ namespace ROMS
                     {
                         e.Cancel = true;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtArea_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRoute.ReadOnly = false;
+                txtRoute.Enabled = true;
+                txtArea.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtDistance.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtArea_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtArea.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDistance_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDistance.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDistance_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDistance_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDistance.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtReason.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtReason_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReason.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtReason_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtReason_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReason.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtTeller.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbStatus.SelectedValue) == 98)
+                {
+                    txtTeller.Enabled = true;
+                    txtReason.Enabled = true;
+                }
+                else
+                {
+                    txtTeller.Enabled = false;
+                    txtReason.Enabled = false;
+                    txtTeller.Text = "";
+                    txtReason.Text = "";
                 }
             }
             catch (Exception ex)
