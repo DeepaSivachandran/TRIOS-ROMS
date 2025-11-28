@@ -178,6 +178,18 @@
     <Compile Include="CP_Customerlist.designer.cs">
       <DependentUpon>CP_Customerlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_MarriageHalllist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_MarriageHalllist.designer.cs">
+      <DependentUpon>CP_MarriageHalllist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_MarriageHall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_MarriageHall.designer.cs">
+      <DependentUpon>CP_MarriageHall.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Transportlist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3696,6 +3708,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Customerlist.resx">
       <DependentUpon>CP_Customerlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_MarriageHalllist.resx">
+      <DependentUpon>CP_MarriageHalllist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_MarriageHall.resx">
+      <DependentUpon>CP_MarriageHall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Transportlist.resx">
       <DependentUpon>CP_Transportlist.cs</DependentUpon>

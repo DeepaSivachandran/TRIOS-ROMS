@@ -208,6 +208,7 @@ namespace ROMS
             this.tsmMobile = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1770,7 +1771,8 @@ namespace ROMS
             this.tsmVehicle,
             this.tsmDeliveryPerson,
             this.tsmMobile,
-            this.tsmTransport});
+            this.tsmTransport,
+            this.tsmMarriageHall});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
@@ -1834,6 +1836,13 @@ namespace ROMS
             this.tsmTransport.Size = new System.Drawing.Size(180, 22);
             this.tsmTransport.Text = "Transport";
             this.tsmTransport.Click += new System.EventHandler(this.tsmTransport_Click);
+            // 
+            // tsmMarriageHall
+            // 
+            this.tsmMarriageHall.Name = "tsmMarriageHall";
+            this.tsmMarriageHall.Size = new System.Drawing.Size(180, 22);
+            this.tsmMarriageHall.Text = "Marriage Hall";
+            this.tsmMarriageHall.Click += new System.EventHandler(this.tsmMarriageHall_Click);
             // 
             // MainForm
             // 
@@ -2046,5 +2055,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmDeliveryPerson;
         private System.Windows.Forms.ToolStripMenuItem tsmMobile;
         private System.Windows.Forms.ToolStripMenuItem tsmTransport;
+        private System.Windows.Forms.ToolStripMenuItem tsmMarriageHall;
     }
 }
