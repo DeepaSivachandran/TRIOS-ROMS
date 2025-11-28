@@ -394,7 +394,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    txtDistance.Focus();
                 }
             }
             catch (Exception ex)
@@ -533,6 +533,66 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void grbDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbRoute_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAEName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtATName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlStatus_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDAreaEName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDAreaTName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDRouteName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

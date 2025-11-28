@@ -5142,28 +5142,62 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnArea(TRN_Stock_Journal objTRN_Stock_Journal)
+        //public DataSet udfnArea(MR_Area objMR_Area)
+        //{
+        //    DataSet ds = new DataSet();
+        //    try
+        //    {
+        //        tmpspcall = new SPCall();
+        //        SqlCommand varSqlCommand = new SqlCommand("[MRG_Area]", tmpspcall.objConn);
+        //        varSqlCommand.CommandType = CommandType.StoredProcedure;
+        //        varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Journal.ViewType);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Journal.ParaTransactionId);
+        //        varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_Stock_Journal.paraFromDate);
+        //        varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_Stock_Journal.paraToDate);
+        //        varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_Stock_Journal.paraSLID);
+        //        varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_Stock_Journal.paraPRID);
+        //        varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Journal.ParaCompanyCode);
+        //        varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Journal.paraStatusId);
+        //        varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Stock_Journal.paraUserID);
+        //        varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_Stock_Journal.paraIPAddress);
+        //        varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRN_Stock_Journal.paraTransType);
+        //        varSqlCommand.CommandTimeout = 0;
+        //        SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+        //        sa.Fill(ds);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        objError = new DataError();
+        //        objError.WriteFile(ex);
+        //    }
+        //    finally
+        //    {
+        //        tmpspcall.CloseConnection();
+        //    }
+        //    return ds;
+        //}
+        public string udfnArea(MR_Area objMR_Area)
         {
-            DataSet ds = new DataSet();
+            string result = "";
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[TRNG_Stock_Journal]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_Area]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", objTRN_Stock_Journal.ViewType);
-                varSqlCommand.Parameters.AddWithValue("@ParaTransactionId", objTRN_Stock_Journal.ParaTransactionId);
-                varSqlCommand.Parameters.AddWithValue("@paraFromDate", objTRN_Stock_Journal.paraFromDate);
-                varSqlCommand.Parameters.AddWithValue("@paraToDate", objTRN_Stock_Journal.paraToDate);
-                varSqlCommand.Parameters.AddWithValue("@paraSLID", objTRN_Stock_Journal.paraSLID);
-                varSqlCommand.Parameters.AddWithValue("@paraPRID", objTRN_Stock_Journal.paraPRID);
-                varSqlCommand.Parameters.AddWithValue("@ParaCompanyCode", objTRN_Stock_Journal.ParaCompanyCode);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTRN_Stock_Journal.paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", objTRN_Stock_Journal.paraUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRN_Stock_Journal.paraIPAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRN_Stock_Journal.paraTransType);
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Area.ViewType); 
+                varSqlCommand.Parameters.AddWithValue("@paraAreaId", objMR_Area.paraAreaId); 
+                varSqlCommand.Parameters.AddWithValue("@paraAreaTName", objMR_Area.paraAreaTName); 
+                varSqlCommand.Parameters.AddWithValue("@paraAreaEName", objMR_Area.paraAreaEName); 
+                varSqlCommand.Parameters.AddWithValue("@paraRouteID", objMR_Area.paraRouteID); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Area.paraStatusId); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Area.paraOriginator); 
+                varSqlCommand.Parameters.AddWithValue("@paraOrderNo", objMR_Area.paraOrderNo); 
+                varSqlCommand.Parameters.AddWithValue("@paraCTYID", objMR_Area.paraCTYID);  
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName); 
                 varSqlCommand.CommandTimeout = 0;
-                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
-                sa.Fill(ds);
+                result = varSqlCommand.ExecuteScalar().ToString();
             }
             catch (Exception ex)
             {
@@ -5174,7 +5208,7 @@ namespace ROMS
             {
                 tmpspcall.CloseConnection();
             }
-            return ds;
+            return result;
         }
     }
 
