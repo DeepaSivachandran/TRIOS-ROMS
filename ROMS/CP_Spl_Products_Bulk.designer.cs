@@ -45,12 +45,17 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbFiledtype = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.grpSupplierMapping = new System.Windows.Forms.GroupBox();
             this.grbMapped = new System.Windows.Forms.GroupBox();
             this.txtmappingproductsearch2 = new System.Windows.Forms.TextBox();
             this.DGV_SearchGrid1 = new System.Windows.Forms.DataGridView();
             this.grdFinalSupplierMapping = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
+            this.picLoader = new System.Windows.Forms.PictureBox();
+            this.grbUnmapped = new System.Windows.Forms.GroupBox();
+            this.txtBrand = new System.Windows.Forms.TextBox();
             this.lvMappingGroup = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -59,13 +64,11 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtMappingSubGroup = new System.Windows.Forms.TextBox();
             this.lvBrand = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.grbUnmapped = new System.Windows.Forms.GroupBox();
-            this.txtBrand = new System.Windows.Forms.TextBox();
-            this.txtMappingSubGroup = new System.Windows.Forms.TextBox();
             this.txtMappingGroup = new System.Windows.Forms.TextBox();
             this.txtSearchByProduct1 = new System.Windows.Forms.TextBox();
             this.btnMappingView = new System.Windows.Forms.Button();
@@ -76,6 +79,7 @@
             this.lblSearchbyProduct1 = new System.Windows.Forms.Label();
             this.lblDEGroup = new System.Windows.Forms.Label();
             this.lblDESubGroup = new System.Windows.Forms.Label();
+            this.picloader2 = new System.Windows.Forms.PictureBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.BtnaddMove = new System.Windows.Forms.Button();
             this.btnMappingUnselectAll = new System.Windows.Forms.Button();
@@ -112,10 +116,6 @@
             this.tssmanualattendance = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picLoader = new System.Windows.Forms.PictureBox();
-            this.picloader2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbFiledtype = new System.Windows.Forms.ComboBox();
             this.errSpl = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsBulkAttribute.SuspendLayout();
             this.pnlMenu.SuspendLayout();
@@ -124,12 +124,12 @@
             this.grbMapped.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdFinalSupplierMapping)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.grbUnmapped.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picloader2)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errSpl)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,8 +153,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(245, 24);
-            this.tspHeader.Text = "Product Attributes Product Type Bulk Update";
+            this.tspHeader.Size = new System.Drawing.Size(290, 24);
+            this.tspHeader.Text = "Product Attributes Product Classification Bulk Update";
             // 
             // pnlMenu
             // 
@@ -176,6 +176,25 @@
             this.groupBox1.Size = new System.Drawing.Size(1343, 630);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            // 
+            // cmbFiledtype
+            // 
+            this.cmbFiledtype.FormattingEnabled = true;
+            this.cmbFiledtype.Location = new System.Drawing.Point(145, 17);
+            this.cmbFiledtype.Name = "cmbFiledtype";
+            this.cmbFiledtype.Size = new System.Drawing.Size(195, 25);
+            this.cmbFiledtype.TabIndex = 958827;
+            this.cmbFiledtype.SelectedIndexChanged += new System.EventHandler(this.cmbFiledtype_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(17, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 20);
+            this.label1.TabIndex = 958826;
+            this.label1.Text = "Product Classification";
             // 
             // grpSupplierMapping
             // 
@@ -328,6 +347,59 @@
             this.label12.TabIndex = 37;
             this.label12.Text = "Search by P.I Code";
             // 
+            // picLoader
+            // 
+            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoader.ErrorImage = null;
+            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoader.InitialImage = null;
+            this.picLoader.Location = new System.Drawing.Point(6, 86);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(609, 420);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 958824;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
+            // 
+            // grbUnmapped
+            // 
+            this.grbUnmapped.BackColor = System.Drawing.Color.SeaShell;
+            this.grbUnmapped.Controls.Add(this.txtBrand);
+            this.grbUnmapped.Controls.Add(this.lvMappingGroup);
+            this.grbUnmapped.Controls.Add(this.lvMappingSubGroup);
+            this.grbUnmapped.Controls.Add(this.txtMappingSubGroup);
+            this.grbUnmapped.Controls.Add(this.lvBrand);
+            this.grbUnmapped.Controls.Add(this.txtMappingGroup);
+            this.grbUnmapped.Controls.Add(this.txtSearchByProduct1);
+            this.grbUnmapped.Controls.Add(this.btnMappingView);
+            this.grbUnmapped.Controls.Add(this.lblNoRecordsFound);
+            this.grbUnmapped.Controls.Add(this.grdProducts);
+            this.grbUnmapped.Controls.Add(this.label4);
+            this.grbUnmapped.Controls.Add(this.DGV_SearchGrid);
+            this.grbUnmapped.Controls.Add(this.lblSearchbyProduct1);
+            this.grbUnmapped.Controls.Add(this.lblDEGroup);
+            this.grbUnmapped.Controls.Add(this.lblDESubGroup);
+            this.grbUnmapped.Controls.Add(this.picloader2);
+            this.grbUnmapped.Location = new System.Drawing.Point(11, 16);
+            this.grbUnmapped.Name = "grbUnmapped";
+            this.grbUnmapped.Size = new System.Drawing.Size(643, 513);
+            this.grbUnmapped.TabIndex = 958822;
+            this.grbUnmapped.TabStop = false;
+            this.grbUnmapped.Text = "Unmapped Products";
+            // 
+            // txtBrand
+            // 
+            this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBrand.Location = new System.Drawing.Point(238, 53);
+            this.txtBrand.MaxLength = 50;
+            this.txtBrand.Name = "txtBrand";
+            this.txtBrand.Size = new System.Drawing.Size(122, 27);
+            this.txtBrand.TabIndex = 2;
+            this.txtBrand.TextChanged += new System.EventHandler(this.txtBrand_TextChanged);
+            this.txtBrand.Enter += new System.EventHandler(this.txtBrand_Enter);
+            this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBrand_KeyDown);
+            this.txtBrand.Leave += new System.EventHandler(this.txtBrand_Leave);
+            // 
             // lvMappingGroup
             // 
             this.lvMappingGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -388,6 +460,19 @@
             // 
             this.columnHeader9.Width = 0;
             // 
+            // txtMappingSubGroup
+            // 
+            this.txtMappingSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMappingSubGroup.Location = new System.Drawing.Point(124, 53);
+            this.txtMappingSubGroup.MaxLength = 50;
+            this.txtMappingSubGroup.Name = "txtMappingSubGroup";
+            this.txtMappingSubGroup.Size = new System.Drawing.Size(108, 27);
+            this.txtMappingSubGroup.TabIndex = 1;
+            this.txtMappingSubGroup.TextChanged += new System.EventHandler(this.txtMappingSubGroup_TextChanged);
+            this.txtMappingSubGroup.Enter += new System.EventHandler(this.txtMappingSubGroup_Enter);
+            this.txtMappingSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMappingSubGroup_KeyDown);
+            this.txtMappingSubGroup.Leave += new System.EventHandler(this.txtMappingSubGroup_Leave);
+            // 
             // lvBrand
             // 
             this.lvBrand.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -417,58 +502,6 @@
             // columnHeader12
             // 
             this.columnHeader12.Width = 0;
-            // 
-            // grbUnmapped
-            // 
-            this.grbUnmapped.BackColor = System.Drawing.Color.SeaShell;
-            this.grbUnmapped.Controls.Add(this.txtBrand);
-            this.grbUnmapped.Controls.Add(this.lvMappingGroup);
-            this.grbUnmapped.Controls.Add(this.lvMappingSubGroup);
-            this.grbUnmapped.Controls.Add(this.txtMappingSubGroup);
-            this.grbUnmapped.Controls.Add(this.lvBrand);
-            this.grbUnmapped.Controls.Add(this.txtMappingGroup);
-            this.grbUnmapped.Controls.Add(this.txtSearchByProduct1);
-            this.grbUnmapped.Controls.Add(this.btnMappingView);
-            this.grbUnmapped.Controls.Add(this.lblNoRecordsFound);
-            this.grbUnmapped.Controls.Add(this.grdProducts);
-            this.grbUnmapped.Controls.Add(this.label4);
-            this.grbUnmapped.Controls.Add(this.DGV_SearchGrid);
-            this.grbUnmapped.Controls.Add(this.lblSearchbyProduct1);
-            this.grbUnmapped.Controls.Add(this.lblDEGroup);
-            this.grbUnmapped.Controls.Add(this.lblDESubGroup);
-            this.grbUnmapped.Controls.Add(this.picloader2);
-            this.grbUnmapped.Location = new System.Drawing.Point(11, 16);
-            this.grbUnmapped.Name = "grbUnmapped";
-            this.grbUnmapped.Size = new System.Drawing.Size(643, 513);
-            this.grbUnmapped.TabIndex = 958822;
-            this.grbUnmapped.TabStop = false;
-            this.grbUnmapped.Text = "Un Mapped Products";
-            // 
-            // txtBrand
-            // 
-            this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBrand.Location = new System.Drawing.Point(238, 53);
-            this.txtBrand.MaxLength = 50;
-            this.txtBrand.Name = "txtBrand";
-            this.txtBrand.Size = new System.Drawing.Size(122, 27);
-            this.txtBrand.TabIndex = 2;
-            this.txtBrand.TextChanged += new System.EventHandler(this.txtBrand_TextChanged);
-            this.txtBrand.Enter += new System.EventHandler(this.txtBrand_Enter);
-            this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBrand_KeyDown);
-            this.txtBrand.Leave += new System.EventHandler(this.txtBrand_Leave);
-            // 
-            // txtMappingSubGroup
-            // 
-            this.txtMappingSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMappingSubGroup.Location = new System.Drawing.Point(124, 53);
-            this.txtMappingSubGroup.MaxLength = 50;
-            this.txtMappingSubGroup.Name = "txtMappingSubGroup";
-            this.txtMappingSubGroup.Size = new System.Drawing.Size(108, 27);
-            this.txtMappingSubGroup.TabIndex = 1;
-            this.txtMappingSubGroup.TextChanged += new System.EventHandler(this.txtMappingSubGroup_TextChanged);
-            this.txtMappingSubGroup.Enter += new System.EventHandler(this.txtMappingSubGroup_Enter);
-            this.txtMappingSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMappingSubGroup_KeyDown);
-            this.txtMappingSubGroup.Leave += new System.EventHandler(this.txtMappingSubGroup_Leave);
             // 
             // txtMappingGroup
             // 
@@ -649,6 +682,20 @@
             this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
             this.lblDESubGroup.TabIndex = 29;
             this.lblDESubGroup.Text = "Product Sub Group";
+            // 
+            // picloader2
+            // 
+            this.picloader2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picloader2.ErrorImage = null;
+            this.picloader2.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picloader2.InitialImage = null;
+            this.picloader2.Location = new System.Drawing.Point(7, 89);
+            this.picloader2.Name = "picloader2";
+            this.picloader2.Size = new System.Drawing.Size(630, 418);
+            this.picloader2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picloader2.TabIndex = 958825;
+            this.picloader2.TabStop = false;
+            this.picloader2.Visible = false;
             // 
             // btnRemove
             // 
@@ -1033,53 +1080,6 @@
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
-            // picLoader
-            // 
-            this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picLoader.ErrorImage = null;
-            this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(6, 86);
-            this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(609, 420);
-            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picLoader.TabIndex = 958824;
-            this.picLoader.TabStop = false;
-            this.picLoader.Visible = false;
-            // 
-            // picloader2
-            // 
-            this.picloader2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.picloader2.ErrorImage = null;
-            this.picloader2.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.picloader2.InitialImage = null;
-            this.picloader2.Location = new System.Drawing.Point(7, 89);
-            this.picloader2.Name = "picloader2";
-            this.picloader2.Size = new System.Drawing.Size(630, 418);
-            this.picloader2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picloader2.TabIndex = 958825;
-            this.picloader2.TabStop = false;
-            this.picloader2.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 20);
-            this.label1.TabIndex = 958826;
-            this.label1.Text = "Product Field Type";
-            // 
-            // cmbFiledtype
-            // 
-            this.cmbFiledtype.FormattingEnabled = true;
-            this.cmbFiledtype.Location = new System.Drawing.Point(131, 17);
-            this.cmbFiledtype.Name = "cmbFiledtype";
-            this.cmbFiledtype.Size = new System.Drawing.Size(195, 25);
-            this.cmbFiledtype.TabIndex = 958827;
-            this.cmbFiledtype.SelectedIndexChanged += new System.EventHandler(this.cmbFiledtype_SelectedIndexChanged);
-            // 
             // errSpl
             // 
             this.errSpl.ContainerControl = this;
@@ -1111,14 +1111,14 @@
             this.grbMapped.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdFinalSupplierMapping)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.grbUnmapped.ResumeLayout(false);
             this.grbUnmapped.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picloader2)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picloader2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errSpl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
