@@ -39,7 +39,7 @@ namespace ROMS
                     varoriginator = "Customer Type Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnCustomerType(varType, pbCustomerId, txtCustomerName.Text.Trim(), txtCustomerName.Text.Trim(), PbStatus, varoriginator);
+                //varResult = objspservice.udfnCustomerType(varType, pbCustomerId, txtCustomerName.Text.Trim(), txtCustomerName.Text.Trim(), PbStatus, varoriginator);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -781,7 +781,7 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnCustomerTypelist(1, pbCustomerId, 0);
+                    //objDs = objspservice.udfnCustomerTypelist(1, pbCustomerId, 0);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

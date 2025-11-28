@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -84,8 +85,14 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnDeliveryPerson(2, Convert.ToInt32(grdDeliveryPersonList.SelectedRows[0].Cells["ID"].Value), "", "", "", 0, "Delivery Person Delete");
+                            MR_Sales obj = new MR_Sales();
+                            obj.paraViewType = 2;
+                            obj.paraDeliveryPersonId = Convert.ToInt32(grdDeliveryPersonList.SelectedRows[0].Cells["ID"].Value);
+                            obj.paraOriginator = "Delivery Person Delete";
+
+                            varResult = objspservice.udfnDeliveryPerson(obj);
                             objspservice.CloseConnection();
+
                             if (varResult.Split('~')[0] == "3")
                             {
                                 MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -147,11 +154,16 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdDeliveryPersonList.DataSource = null;
+                grdDeliveryPersonList.DataSource = null; 
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnDeliveryPersonlist(0, 0, Convert.ToInt32(cmbStatus.SelectedValue));
+
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = 0;
+                obj.paraDeliveryPersonId = 0;
+                obj.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objDs = objspservice.udfnDeliveryPersonList(obj);
+
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)

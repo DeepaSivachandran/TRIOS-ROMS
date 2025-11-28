@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -76,7 +77,7 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdDeliveryPersonList.SelectedRows.Count > 0)
+                    if (grdMobileList.SelectedRows.Count > 0)
                     {
                         string varResult = "";
                         DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -84,8 +85,14 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnDeliveryPerson(2, Convert.ToInt32(grdDeliveryPersonList.SelectedRows[0].Cells["ID"].Value), "", "", "", 0, "Delivery Person Delete");
+                            MR_Sales obj = new MR_Sales();
+                            obj.paraViewType = 2;
+                            obj.paraMobileId = Convert.ToInt32(grdMobileList.SelectedRows[0].Cells["ID"].Value);
+                            obj.paraOriginator = "Mobile Delete";
+
+                            varResult = objspservice.udfnMobile(obj);
                             objspservice.CloseConnection();
+
                             if (varResult.Split('~')[0] == "3")
                             {
                                 MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -115,15 +122,15 @@ namespace ROMS
             {
                 try
                 {
-                    if (grdDeliveryPersonList.SelectedRows.Count > 0)
+                    if (grdMobileList.SelectedRows.Count > 0)
                     {
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objCP_Mobile = new CP_Mobile();
                         MainForm.objCP_Mobile.btnSave.Text = "Update";
-                        MainForm.objCP_Mobile.pbMobileId = Convert.ToInt32(grdDeliveryPersonList.SelectedRows[0].Cells["ID"].Value);
-                        MainForm.objCP_Mobile.PbStatus = Convert.ToInt32(grdDeliveryPersonList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_Mobile.pbMobileId = Convert.ToInt32(grdMobileList.SelectedRows[0].Cells["ID"].Value);
+                        MainForm.objCP_Mobile.PbStatus = Convert.ToInt32(grdMobileList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_Mobile.ShowDialog();
                     }
                 }
@@ -147,11 +154,15 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
-                grdDeliveryPersonList.DataSource = null;
+                grdMobileList.DataSource = null;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnDeliveryPersonlist(0, 0, Convert.ToInt32(cmbStatus.SelectedValue));
+
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = 0;
+                obj.paraMobileId = 0;
+                obj.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objDs = objspservice.udfnMobileList(obj);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -161,16 +172,16 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            grdDeliveryPersonList.DataSource = objDs.Tables[0];
-                            grdDeliveryPersonList.Columns["ID"].Visible = false;
-                            grdDeliveryPersonList.Columns["StatusID"].Visible = false;
-                            grdDeliveryPersonList.Columns["S.No."].Width = 50;
-                            grdDeliveryPersonList.Columns["Code"].Width = 120;
-                            grdDeliveryPersonList.Columns["Name"].Width = 200;
-                            grdDeliveryPersonList.Columns["Mobile Number"].Width = 120;
-                            grdDeliveryPersonList.Columns["Status"].Width = 80;
-                            grdDeliveryPersonList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdDeliveryPersonList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdMobileList.DataSource = objDs.Tables[0];
+                            grdMobileList.Columns["ID"].Visible = false;
+                            grdMobileList.Columns["StatusID"].Visible = false;
+                            grdMobileList.Columns["S.No."].Width = 50;
+                            grdMobileList.Columns["Mobile Name"].Width = 200;
+                            grdMobileList.Columns["Mobile No."].Width = 120;
+                            grdMobileList.Columns["Vendor"].Width = 120;
+                            grdMobileList.Columns["Status"].Width = 80;
+                            grdMobileList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdMobileList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -203,7 +214,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdDeliveryPersonList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdMobileList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -216,9 +227,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Code"].Width = 120;
-                DGV_SearchGrid.Columns["Name"].Width = 200;
-                DGV_SearchGrid.Columns["Mobile Number"].Width = 120;
+                grdMobileList.Columns["Mobile Name"].Width = 200;
+                grdMobileList.Columns["Mobile No."].Width = 120;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -234,10 +244,10 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    udfnGridSearchHeading(grdDeliveryPersonList, DGV_SearchGrid);
+                    udfnGridSearchHeading(grdMobileList, DGV_SearchGrid);
                     DGV_SearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
-                    foreach (DataGridViewColumn col in grdDeliveryPersonList.Columns)
+                    foreach (DataGridViewColumn col in grdMobileList.Columns)
                     {
                         DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
@@ -381,19 +391,19 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdDeliveryPersonList.Rows.Count; i++)
+                for (int i = 0; i < grdMobileList.Rows.Count; i++)
                 {
-                    if (Convert.ToString(grdDeliveryPersonList.Rows[i].Cells["StatusID"].Value) == "1")
+                    if (Convert.ToString(grdMobileList.Rows[i].Cells["StatusID"].Value) == "1")
                     {
-                        grdDeliveryPersonList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdDeliveryPersonList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdMobileList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                        grdMobileList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     else
                     {
-                        grdDeliveryPersonList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdDeliveryPersonList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                        grdMobileList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdMobileList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    grdDeliveryPersonList.ClearSelection();
+                    grdMobileList.ClearSelection();
                 }
             }
             catch (Exception ex)
@@ -409,16 +419,16 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdDeliveryPersonList.HorizontalScrollingOffset;
+                    int offSetValue = grdMobileList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdDeliveryPersonList.Width > grdDeliveryPersonList.HorizontalScrollingOffset && grdDeliveryPersonList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdMobileList.Width > grdMobileList.HorizontalScrollingOffset && grdMobileList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
                     DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
                     DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdDeliveryPersonList);
+                    udfnscrollVisible(DGV_SearchGrid, grdMobileList);
                 }
             }
             catch (Exception ex)
@@ -463,9 +473,9 @@ namespace ROMS
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdDeliveryPersonList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdDeliveryPersonList);
+                grdMobileList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdMobileList);
                 objDser.CloseConnection();
-                grdDeliveryPersonList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdMobileList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -496,10 +506,10 @@ namespace ROMS
         {
             try
             {
-                if (grdDeliveryPersonList.ColumnCount > 0)
+                if (grdMobileList.ColumnCount > 0)
                 {
-                    grdDeliveryPersonList.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdDeliveryPersonList.HorizontalScrollingOffset;
+                    grdMobileList.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_SearchGrid.HorizontalScrollingOffset = grdMobileList.HorizontalScrollingOffset;
                 }
             }
             catch (Exception ex)
@@ -515,10 +525,10 @@ namespace ROMS
                 if (lblNoRecordsFound.Visible == false)
                 {
                     int totalWidth = 0;
-                    int offSetValue = grdDeliveryPersonList.HorizontalScrollingOffset;
+                    int offSetValue = grdMobileList.HorizontalScrollingOffset;
                     foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
                         totalWidth += col.Width;
-                    if (totalWidth - grdDeliveryPersonList.Width > grdDeliveryPersonList.HorizontalScrollingOffset && grdDeliveryPersonList.HorizontalScrollingOffset > 0)
+                    if (totalWidth - grdMobileList.Width > grdMobileList.HorizontalScrollingOffset && grdMobileList.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
@@ -549,15 +559,15 @@ namespace ROMS
         {
             if (lblNoRecordsFound.Visible == false)
             {
-                DataGridViewColumn newColumn = grdDeliveryPersonList.Columns[e.ColumnIndex];
-                DataGridViewColumn oldColumn = grdDeliveryPersonList.SortedColumn;
+                DataGridViewColumn newColumn = grdMobileList.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdMobileList.SortedColumn;
                 ListSortDirection direction;
                 // If oldColumn is null, then the DataGridView is not sorted.
                 if (oldColumn != null)
                 {
                     // Sort the same column again, reversing the SortOrder.
                     if (oldColumn == newColumn &&
-                        grdDeliveryPersonList.SortOrder == SortOrder.Ascending)
+                        grdMobileList.SortOrder == SortOrder.Ascending)
                     {
                         direction = ListSortDirection.Descending;
                     }
@@ -572,13 +582,13 @@ namespace ROMS
                 {
                     direction = ListSortDirection.Ascending;
                 }
-                grdDeliveryPersonList.Sort(newColumn, direction);
+                grdMobileList.Sort(newColumn, direction);
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
                     SortOrder.Ascending : SortOrder.Descending;
                 DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdDeliveryPersonList.HorizontalScrollingOffset;
+                DGV_SearchGrid.HorizontalScrollingOffset = grdMobileList.HorizontalScrollingOffset;
                 DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
         }
@@ -598,9 +608,9 @@ namespace ROMS
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdDeliveryPersonList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdDeliveryPersonList);
+                grdMobileList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdMobileList);
                 objDser.CloseConnection();
-                grdDeliveryPersonList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
+                grdMobileList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 //DGV_SearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex)
@@ -610,7 +620,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdDeliveryPersonList.Rows.Count);
+                tsbTotalCount.Text = Convert.ToString(grdMobileList.Rows.Count);
             }
         }
 

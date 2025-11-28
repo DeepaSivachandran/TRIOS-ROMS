@@ -41,8 +41,17 @@ namespace ROMS
                     varoriginator = "Customer Type Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnCustomerType(varType, pbCusTypeId, txtCustomerType.Text.Trim(), txtCustomerTypeTName.Text.Trim(), PbStatus, varoriginator);
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = varType;
+                obj.paraCusTypeId = pbCusTypeId;
+                obj.paraCusTypeEName = txtCustomerType.Text.Trim();
+                obj.paraCusTypeTName = txtCustomerTypeTName.Text.Trim();
+                obj.paraStatusId = PbStatus;
+                obj.paraOriginator = varoriginator;
+
+                varResult = objspservice.udfnCustomerType(obj);
                 objspservice.CloseConnection();
+
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -200,7 +209,12 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnCustomerTypelist(1, pbCusTypeId, 0);
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 1;
+                    obj.paraCusTypeId = pbCusTypeId;
+                    obj.paraStatusId = 0;
+                    objDs = objspservice.udfnCustomerTypeList(obj);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

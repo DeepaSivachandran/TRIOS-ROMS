@@ -41,8 +41,19 @@ namespace ROMS
                     varoriginator = "Vehicle Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnVehicle(varType, pbVehicleId, txtVehicleName.Text.Trim(), txtShortName.Text.Trim(), txtRegisterNo.Text.Trim(), txtCapacity.Text.Trim(), PbStatus, varoriginator);
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = varType;
+                obj.paraVehicleId = pbVehicleId;
+                obj.paraVehicleName = txtVehicleName.Text.Trim();
+                obj.paraShortName = txtShortName.Text.Trim();
+                obj.paraRegisterNo = txtRegisterNo.Text.Trim();
+                obj.paraCapacity = txtCapacity.Text.Trim();
+                obj.paraStatusId = PbStatus;
+                obj.paraOriginator = varoriginator;
+
+                varResult = objspservice.udfnVehicle(obj);
                 objspservice.CloseConnection();
+
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -225,7 +236,13 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnVehiclelist(1, pbVehicleId, 0);
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 1;
+                    obj.paraVehicleId = pbVehicleId;
+                    obj.paraStatusId = 0;
+                    objDs = objspservice.udfnVehicleList(obj);
+
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

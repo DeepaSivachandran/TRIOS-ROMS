@@ -44,6 +44,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.cmbVendor = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.epMobile)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
@@ -137,6 +138,7 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.cmbVendor);
             this.grbForm.Controls.Add(this.txtMobileNo);
             this.grbForm.Controls.Add(this.textBox4);
             this.grbForm.Controls.Add(this.txtVendor);
@@ -184,11 +186,12 @@
             // txtVendor
             // 
             this.txtVendor.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtVendor.Location = new System.Drawing.Point(189, 49);
+            this.txtVendor.Location = new System.Drawing.Point(6, 148);
             this.txtVendor.MaxLength = 50;
             this.txtVendor.Name = "txtVendor";
-            this.txtVendor.Size = new System.Drawing.Size(255, 27);
+            this.txtVendor.Size = new System.Drawing.Size(88, 27);
             this.txtVendor.TabIndex = 1;
+            this.txtVendor.Visible = false;
             this.txtVendor.Enter += new System.EventHandler(this.txtVendor_Enter);
             this.txtVendor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVendor_KeyDown);
             this.txtVendor.Leave += new System.EventHandler(this.txtVendor_Leave);
@@ -238,6 +241,19 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
+            // cmbVendor
+            // 
+            this.cmbVendor.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.cmbVendor.FormattingEnabled = true;
+            this.cmbVendor.Location = new System.Drawing.Point(189, 49);
+            this.cmbVendor.Name = "cmbVendor";
+            this.cmbVendor.Size = new System.Drawing.Size(255, 27);
+            this.cmbVendor.TabIndex = 1;
+            this.cmbVendor.Enter += new System.EventHandler(this.cmbVendor_Enter);
+            this.cmbVendor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbVendor_KeyDown);
+            this.cmbVendor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbVendor_KeyPress);
+            this.cmbVendor.Leave += new System.EventHandler(this.cmbVendor_Leave);
+            // 
             // CP_Mobile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -283,5 +299,6 @@
         private System.Windows.Forms.TextBox txtVendor;
         private System.Windows.Forms.TextBox txtMobileNo;
         private System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.ComboBox cmbVendor;
     }
 }

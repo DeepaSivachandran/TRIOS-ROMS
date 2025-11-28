@@ -41,8 +41,18 @@ namespace ROMS
                     varoriginator = "Delivery Person Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnDeliveryPerson(varType, pbDeliveryPersonId, txtDeliveryPersonName.Text.Trim(), txtMobileNo.Text.Trim(), txtDeliveryPersonCode.Text.Trim(), PbStatus, varoriginator);
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = varType;
+                obj.paraDeliveryPersonId = pbDeliveryPersonId;
+                obj.paraName = txtDeliveryPersonName.Text.Trim();
+                obj.paraMobileNo = txtMobileNo.Text.Trim();
+                obj.paraCode = txtDeliveryPersonCode.Text.Trim();
+                obj.paraStatusId = PbStatus;
+                obj.paraOriginator = varoriginator;
+
+                varResult = objspservice.udfnDeliveryPerson(obj);
                 objspservice.CloseConnection();
+
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -210,7 +220,12 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnDeliveryPersonlist(1, pbDeliveryPersonId, 0);
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 1;
+                    obj.paraDeliveryPersonId = pbDeliveryPersonId;
+                    obj.paraStatusId = 0;
+                    objDs = objspservice.udfnDeliveryPersonList(obj);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)

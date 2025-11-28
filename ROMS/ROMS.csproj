@@ -377,6 +377,7 @@
     <Compile Include="CP_CustomerType.designer.cs">
       <DependentUpon>CP_CustomerType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_Sales.cs" />
     <Compile Include="Model\MR_ChequeTransactionSettings.cs" />
     <Compile Include="GRN_ADV.cs">
       <SubType>Form</SubType>

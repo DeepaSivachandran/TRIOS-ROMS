@@ -33,16 +33,26 @@ namespace ROMS
                 varoriginator = ""; int varType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    varoriginator = "Delivery Person Creation";
+                    varoriginator = "Mobile Creation";
                     varType = 0;
                 }
                 else
                 {
-                    varoriginator = "Delivery Person Updation";
+                    varoriginator = "Mobile Updation";
                     varType = 1;
                 }
-                varResult = objspservice.udfnMobile(varType, pbMobileId, txtVendor.Text.Trim(), txtMobileNo.Text.Trim(), txtMobileName.Text.Trim(), PbStatus, varoriginator);
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = varType;
+                obj.paraMobileId = pbMobileId;
+                obj.paraMobileName = txtMobileName.Text.Trim();
+                obj.paraVendor = Convert.ToInt32(cmbVendor.SelectedValue);
+                obj.paraMobileNo = txtMobileNo.Text.Trim();
+                obj.paraStatusId = PbStatus;
+                obj.paraOriginator = varoriginator;
+
+                varResult = objspservice.udfnMobile(obj);
                 objspservice.CloseConnection();
+
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -51,7 +61,7 @@ namespace ROMS
                     if (btnSave.Text == "Save")
                     {
                         txtMobileName.Text = "";
-                        txtVendor.Text = "";
+                        cmbVendor.SelectedValue = -1;
                         txtMobileNo.Text = "";
                         this.ActiveControl = txtMobileName;
                     }
@@ -92,17 +102,24 @@ namespace ROMS
             {
                 if (txtMobileName.Text.Trim() == "")
                 {
-                    epMobile.SetError(txtMobileName, "Please enter delivery person code.");
+                    epMobile.SetError(txtMobileName, "Please enter mobile name.");
                     txtMobileName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMobile.ShowAlways = true;
-                    tpMobile.Show("Please enter delivery person code.", txtMobileName, 5000);
+                    tpMobile.Show("Please enter mobile name.", txtMobileName, 5000);
                 }
-                else if (txtVendor.Text.Trim() == "")
+                //else if (txtVendor.Text.Trim() == "")
+                //{
+                //    epMobile.SetError(txtVendor, "Please enter delivery person name.");
+                //    txtVendor.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpMobile.ShowAlways = true;
+                //    tpMobile.Show("Please enter delivery person name.", txtVendor, 5000);
+                //}
+                else if (Convert.ToInt32(cmbVendor.SelectedValue) == -1)
                 {
-                    epMobile.SetError(txtVendor, "Please enter delivery person name.");
-                    txtVendor.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epMobile.SetError(cmbVendor, "Please select vendor.");
+                    cmbVendor.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMobile.ShowAlways = true;
-                    tpMobile.Show("Please enter delivery person name.", txtVendor, 5000);
+                    tpMobile.Show("Please select vendor.", cmbVendor, 5000);
                 }
                 else if (txtMobileNo.Text.Trim() == "")
                 {
@@ -114,7 +131,7 @@ namespace ROMS
                 else
                 {
                     txtMobileName.BackColor = Color.White;
-                    txtVendor.BackColor = Color.White;
+                    cmbVendor.BackColor = Color.White;
                     txtMobileNo.BackColor = Color.White;
                     epMobile.Clear();
                     btnSave.Enabled = false;
@@ -171,6 +188,10 @@ namespace ROMS
             {
                 MainForm.objCP_Mobilelist.picLoader.Visible = false;
                 MainForm.objCP_Mobilelist.picLoader.SendToBack();
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,137) AND MSTID<>0 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbVendor, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 if (pbMobileId == 0)
                 {
                     this.ActiveControl = txtMobileName;
@@ -189,7 +210,7 @@ namespace ROMS
                     else if(PbStatus == 2)
                     {
                         txtMobileName.Enabled = false;
-                        txtVendor.Enabled = false;
+                        cmbVendor.Enabled = false;
                         txtMobileNo.Enabled = false;
                         rbInActive.Checked = true;
                         rbInActive.Focus();
@@ -210,14 +231,19 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    objDs = objspservice.udfnMobilelist(1, pbMobileId, 0);
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 1;
+                    obj.paraMobileId = pbMobileId;
+                    obj.paraStatusId = 0;
+                    objDs = objspservice.udfnMobileList(obj);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
                         {
-                            txtMobileName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Code"]);
-                            txtVendor.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Name"]);
-                            txtMobileNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Mobile Number"]);
+                            txtMobileName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Mobile Name"]);
+                            cmbVendor.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Vendor"]);
+                            txtMobileNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Mobile No."]);
                             txtMobileName.Focus();
                         }
                     }
@@ -248,7 +274,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtVendor.Focus();
+                    cmbVendor.Focus();
                 }
             }
             catch (Exception ex)
@@ -495,6 +521,61 @@ namespace ROMS
                 {
                     e.Handled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVendor_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbVendor.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVendor_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtMobileNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVendor_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbVendor.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVendor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {
