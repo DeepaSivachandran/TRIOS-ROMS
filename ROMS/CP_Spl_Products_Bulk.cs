@@ -509,8 +509,10 @@ namespace ROMS
                 {
                     lblNoRecordsFound.Visible = true;
                     objdtProducts.Rows.Clear();
+                    objdtProducts=null;
+                    lblNoRecordsFound.BringToFront();
                     //objdtProducts.AcceptChanges();
-                    grdProducts.DataSource = null;
+                    grdProducts.DataSource = objdtProducts;
                 }
                 if (objDs.Tables[1].Rows.Count > 0)
                 {
@@ -550,6 +552,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
                     grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
 
+                    grdFinalSupplierMapping.Columns["Mapped Flag"].Visible = false;
                     grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["P.I Code"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
@@ -559,6 +562,14 @@ namespace ROMS
 
                     udfnGridRemove();
                     btnMappingsave.Text = "Update";
+                }
+                else
+                {
+                    //lblNoRecordsFound.Visible = true;
+                    objdtProductsMapping.Rows.Clear();
+                    objdtProductsMapping = null;
+                    //objdtProducts.AcceptChanges();
+                    grdFinalSupplierMapping.DataSource = objdtProductsMapping;
                 }
                 objspservice.CloseConnection();
                 udfnSearchGridHead(); //grid 1
@@ -1572,7 +1583,7 @@ namespace ROMS
         {
             try
             {
-                var vScrollbar = grdProducts.Controls.OfType<VScrollBar>().First();
+                var vScrollbar = grdFinalSupplierMapping.Controls.OfType<VScrollBar>().First();
                 if (vScrollbar.Visible == true)
                 {
                     List<int> visibleColumns = new List<int>();
@@ -1580,14 +1591,14 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    int I = DGV_SearchGrid1.Rows.Count - 1;
                     if (I == 0)
                     {
                         int rowIndex = 1;
-                        DGV_SearchGrid.Rows.Add();
+                        DGV_SearchGrid1.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            DGV_SearchGrid1.Rows[rowIndex].Cells[i].Value = "";
                         }
                     }
                 }
@@ -1753,6 +1764,7 @@ namespace ROMS
                     grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
                     grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+                    grdFinalSupplierMapping.Columns["Mapped Flag"].Visible = false;
 
                     grdFinalSupplierMapping.Sort(grdFinalSupplierMapping.Columns["Mapped Flag"], ListSortDirection.Descending);
                     udfnsearchgridHead();
@@ -1892,16 +1904,20 @@ namespace ROMS
                         productIdsToRemove.Add(productId);
                     }
                 }
-                for (int i = 0; i < objdtProducts.Rows.Count; i++)
+                if (objdtProducts != null)
                 {
-                    string productId = Convert.ToString(objdtProducts.Rows[i]["PRODUCTID"]);
-                    if (productIdsToRemove.Contains(productId))
+                    for (int i = 0; i < objdtProducts.Rows.Count; i++)
                     {
-                        objdtProducts.Rows[i].Delete(); // Mark row for deletion
+                        string productId = Convert.ToString(objdtProducts.Rows[i]["PRODUCTID"]);
+                        if (productIdsToRemove.Contains(productId))
+                        {
+                            objdtProducts.Rows[i].Delete(); // Mark row for deletion
+                        }
                     }
+
+                    objdtProducts.AcceptChanges();
+                    grdProducts.DataSource = objdtProducts;
                 }
-                objdtProducts.AcceptChanges();
-                grdProducts.DataSource = objdtProducts;
             }
             catch (Exception ex)
             {
@@ -2080,6 +2096,49 @@ namespace ROMS
             }
         }
 
+        private void btnProView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbFiledtype.SelectedValue) == -1)
+                {
+                    errSpl.SetError(cmbFiledtype, "Please select field type");
+                    cmbFiledtype.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpFiledtype.ShowAlways = true;
+                    tpFiledtype.Show("Please select field type.", cmbFiledtype, 5000);
+                    return;
+                }
+                errSpl.Clear();
+                cmbFiledtype.BackColor = Color.White;
+                udfnList();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFiledtype_Enter(object sender, EventArgs e)
+        {
+            try { cmbFiledtype.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFiledtype_Leave(object sender, EventArgs e)
+        { 
+            try { cmbFiledtype.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnProductRemove(object sender, EventArgs e) {
 
             try
@@ -2163,6 +2222,7 @@ namespace ROMS
                 grdFinalSupplierMapping.Columns["SUBGROUPID"].Visible = false;
                 grdFinalSupplierMapping.Columns["PRODUCTID"].Visible = false;
                 grdFinalSupplierMapping.Columns["Product Name in English"].Visible = false;
+                grdFinalSupplierMapping.Columns["Mapped Flag"].Visible = false;
                 grdProducts.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 grdFinalSupplierMapping.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 grdFinalSupplierMapping.Columns["S.No."].ReadOnly = true;
@@ -2170,6 +2230,8 @@ namespace ROMS
                 grdFinalSupplierMapping.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdFinalSupplierMapping.Columns["Unit"].ReadOnly = true;
                 grdFinalSupplierMapping.Columns["Product SubGroup"].ReadOnly = true;
+
+                grdFinalSupplierMapping.Columns["Mapped Flag"].Visible = false;
 
                 for (int j = 0; j < grdFinalSupplierMapping.RowCount; j++)
                 {
