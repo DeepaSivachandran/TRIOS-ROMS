@@ -203,10 +203,11 @@ namespace ROMS
             this.tsmRoute = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomerType = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomer = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusBar = new System.Windows.Forms.StatusStrip();
             this.tsmVehicle = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeliveryPerson = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMobile = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1768,7 +1769,8 @@ namespace ROMS
             this.tsmCustomer,
             this.tsmVehicle,
             this.tsmDeliveryPerson,
-            this.tsmMobile});
+            this.tsmMobile,
+            this.tsmTransport});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
@@ -1796,15 +1798,6 @@ namespace ROMS
             this.tsmCustomer.Text = "Customer";
             this.tsmCustomer.Click += new System.EventHandler(this.tsmCustomer_Click);
             // 
-            // statusBar
-            // 
-            this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusBar.Location = new System.Drawing.Point(0, 537);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1275, 22);
-            this.statusBar.TabIndex = 115;
-            this.statusBar.Text = "statusStrip1";
-            // 
             // tsmVehicle
             // 
             this.tsmVehicle.Name = "tsmVehicle";
@@ -1825,6 +1818,22 @@ namespace ROMS
             this.tsmMobile.Size = new System.Drawing.Size(180, 22);
             this.tsmMobile.Text = "Mobile";
             this.tsmMobile.Click += new System.EventHandler(this.tsmMobile_Click);
+            // 
+            // statusBar
+            // 
+            this.statusBar.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusBar.Location = new System.Drawing.Point(0, 537);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(1275, 22);
+            this.statusBar.TabIndex = 115;
+            this.statusBar.Text = "statusStrip1";
+            // 
+            // tsmTransport
+            // 
+            this.tsmTransport.Name = "tsmTransport";
+            this.tsmTransport.Size = new System.Drawing.Size(180, 22);
+            this.tsmTransport.Text = "Transport";
+            this.tsmTransport.Click += new System.EventHandler(this.tsmTransport_Click);
             // 
             // MainForm
             // 
@@ -2036,5 +2045,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmVehicle;
         private System.Windows.Forms.ToolStripMenuItem tsmDeliveryPerson;
         private System.Windows.Forms.ToolStripMenuItem tsmMobile;
+        private System.Windows.Forms.ToolStripMenuItem tsmTransport;
     }
 }
