@@ -459,7 +459,14 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode.rpt");
+                    if (Convert.ToInt32(cmbType.SelectedValue) == 405)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode_PI.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode.rpt");
+                    }
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
