@@ -1510,13 +1510,13 @@ namespace ROMS
                     if (rbSales.Checked == true)
                     {
                         varFlag = 2;
-                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0,0, null, "", "","",0,"", "", 0, 0, 0, null);
+                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0,0, null, "", "","",0,"", "", 0, 0, 0, null, 0, 0, 0, 0);
                         objspservice.CloseConnection();
                     }
                     else if (rbPurchase.Checked == true)
                     {
                         varFlag = 1;
-                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "",varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0,0, null, "", "","",0,"", "", 0, 0, 0, null);
+                        varResult = objspservice.udfnProductMaster(varType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "",varSourceLocationID, varDestinationLocationID, varSourceRackID, varDestinationRackID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, varoriginator, 0, null, varFlag, varProductID,0,0,0,0,0, null, "", "","",0,"", "", 0, 0, 0, null, 0, 0, 0, 0);
                         objspservice.CloseConnection();
                     }
                     string[] varvalue = varResult.Split('~');

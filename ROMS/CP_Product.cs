@@ -1282,13 +1282,33 @@ namespace ROMS
                     {
                         varProductionMSQ = Convert.ToDecimal(txtProductionMSQ.Text);
                     }
+
+                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0;
+
+                    if (chkFocus.Checked==true) {
+                        FocusFlag = 1;
+                    }
+                    if (chkPrioirty.Checked == true)
+                    {
+                        Priority_Flag = 1;
+                    }
+                    if (chkSpl.Checked == true)
+                    {
+                        Spl_Flag = 1;
+                    }
+                    if (chkOwn.Checked == true)
+                    {
+                        OwnFlag = 1;
+                    }
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
                     Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupId), Convert.ToInt32(varbrandid),
                     Convert.ToInt32(cmbUnit.SelectedValue), Convert.ToInt32(cmbChildUnit.SelectedValue), txtUpp.Text, Convert.ToInt32(varPurLocationId), Convert.ToInt32(varSalesLocationId)
                     , Convert.ToInt32(varPurRackId), Convert.ToInt32(varSalesRackId), rackmoq, Convert.ToInt32(cmbBatchNoEntry.SelectedValue), Convert.ToInt32(cmbBatchNoGeneration.SelectedValue),
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
-                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ,null);
+                    varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ,null
+                     ,FocusFlag, Priority_Flag, Spl_Flag, OwnFlag
+                    );
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
@@ -6927,7 +6947,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0,null);
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0,null, 0, 0, 0, 0);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8568,7 +8588,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0,null);
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0,null, 0, 0, 0, 0);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -9988,6 +10008,36 @@ namespace ROMS
                             txtIntermediateUPP.Text = Convert.ToString(objDS.Tables[0].Rows[0]["IntermediateUPP"].ToString());
                             cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
                             txtProductionMSQ.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductionMSQ"].ToString());
+
+
+                            cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
+
+                            int FocusFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Focus_Flag"].ToString())
+                                , Priority_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Priority_Flag"].ToString())
+                                , Spl_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Spl_Flag"].ToString())
+                                , OwnFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_OwnFlag"].ToString());
+
+                                 
+
+                            if (FocusFlag  == 1)
+                            {
+                                chkFocus.Checked = true;
+                            }
+                            if (Priority_Flag == 1)
+                            {
+                                chkPrioirty.Checked = true;
+                            }
+                            if (Spl_Flag == 1)
+                            {
+                                chkSpl.Checked = true;
+                            }
+                            if (OwnFlag == 1)
+                            {
+                                chkOwn.Checked = true;
+                            }
+
+
+
                             btnSave.Text = "Update";
                             //pnlStatus.Enabled = true;
                             if (Convert.ToString(lblSaleRackCode.Text) != "0")
