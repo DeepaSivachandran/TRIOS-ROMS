@@ -339,15 +339,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_CP_Rackgroup_Product_Barcode_PI.cs">
-      <DependentUpon>RPT_CP_Rackgroup_Product_Barcode_PI.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_CP_Rackgroup_Product_Barcode_PICode.cs">
+      <DependentUpon>RPT_CP_Rackgroup_Product_Barcode_PICode.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_PI.cs">
-      <DependentUpon>RPT_CP_Rackgroup_Product_RackMin_Qty_PI.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_PICode.cs">
+      <DependentUpon>RPT_CP_Rackgroup_Product_RackMin_Qty_PICode.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -4387,14 +4387,14 @@
       <LastGenOutput>RPT_CP_Product_Category_Location.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_PI.rpt">
+    <Content Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_PICode.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_CP_Rackgroup_Product_RackMin_Qty_PI.cs</LastGenOutput>
+      <LastGenOutput>RPT_CP_Rackgroup_Product_RackMin_Qty_PICode.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_CP_Rackgroup_Product_Barcode_PI.rpt">
+    <Content Include="Reports\RPT_CP_Rackgroup_Product_Barcode_PICode.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_CP_Rackgroup_Product_Barcode_PI.cs</LastGenOutput>
+      <LastGenOutput>RPT_CP_Rackgroup_Product_Barcode_PICode.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_ShelfLife.rpt">

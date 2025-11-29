@@ -461,7 +461,7 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbType.SelectedValue) == 405)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode_PI.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode_PICode.rpt");
                     }
                     else
                     {
@@ -858,7 +858,7 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbType.SelectedValue) == 405)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_PI.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_PICode.rpt");
                     }
                     else
                     {
