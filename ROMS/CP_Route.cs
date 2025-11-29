@@ -86,7 +86,7 @@ namespace ROMS
                 objMR_Route.paraOrderNo = Convert.ToInt32(cmbRSNo.SelectedValue); 
                 varResult = objspdservice.udfnRoute(objMR_Route);
                 objspdservice.CloseConnection();
-                varResult = objspservice.udfnRoute(varType, varRouteId, txtREName.Text.Trim(), txtRTName.Text.Trim(), Convert.ToInt32(cmbRSNo.SelectedValue), PbStatus, varoriginator);
+ 
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -393,11 +393,7 @@ namespace ROMS
                 }
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 MainForm.objCP_Routelist.picLoader.Visible = false;
-                MainForm.objCP_Routelist.picLoader.SendToBack();
-                grdArea.Rows.Add(false, "Virudhunagar");
-                grdArea.Rows.Add(false, "Aruppukottai");
-                grdArea.Rows.Add(false, "Sivakasi");
-                grdArea.Rows.Add(false, "Sattur"); 
+                MainForm.objCP_Routelist.picLoader.SendToBack(); 
             }
             catch (Exception ex)
             {
