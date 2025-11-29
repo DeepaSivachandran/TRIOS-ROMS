@@ -47,7 +47,7 @@ namespace ROMS
                 obj.paraStatusId = PbStatus;
                 obj.paraOriginator = varoriginator;
 
-                //varResult = objspservice.udfnMarriageHall(obj);
+                varResult = objspservice.udfnMarriageHall(obj);
                 objspservice.CloseConnection();
 
                 string[] varvalue = varResult.Split('~');
@@ -248,7 +248,7 @@ namespace ROMS
                     obj.paraViewType = 1;
                     obj.paraCusTypeId = pbMarriageHallId;
                     obj.paraStatusId = 0;
-                    objDs = objspservice.udfnCustomerTypeList(obj);
+                    objDs = objspservice.udfnMarriageHallList(obj);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
@@ -450,7 +450,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    if (cmbStatus.Enabled == true)
+                    {
+                        cmbStatus.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)
