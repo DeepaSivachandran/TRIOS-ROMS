@@ -841,8 +841,22 @@ namespace ROMS
                     RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
+                    //int varType = Convert.ToInt32(cmbType.SelectedValue);
+
+                    //if (varType == 405) ////withpicode
+                    //{ varType = 2; }
+                    //else if (varType == 406) ////withoutpicode
+                    //{ varType = 1; }
+
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
+                    if (Convert.ToInt32(cmbType.SelectedValue) == 405)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_PI.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
+                    }
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
