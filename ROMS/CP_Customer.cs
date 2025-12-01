@@ -28,24 +28,70 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
-                varoriginator = ""; int varType = 0;
+                varoriginator = ""; int varType = 0, varCustomerType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    varoriginator = "Customer Type Creation";
+                    varoriginator = "Customer Creation";
                     varType = 0;
                 }
                 else
                 {
-                    varoriginator = "Customer Type Updation";
+                    varoriginator = "Customer Updation";
                     varType = 1;
                 }
-                //varResult = objspservice.udfnCustomerType(varType, pbCustomerId, txtCustomerName.Text.Trim(), txtCustomerName.Text.Trim(), PbStatus, varoriginator);
+
+                if (rbCash.Checked == true)
+                {
+                    varCustomerType = 326;  // Cash
+                }
+                if (rbCredit.Checked == true)
+                {
+                    varCustomerType = 327;  // Credit
+                }
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = varType; // 0 = Insert, 1 = Update, 2 = Delete
+                obj.paraCustomerId = pbCustomerId; // set if updating or deleting
+                obj.paraCUS_Name = txtCustomerName.Text.Trim();
+                obj.paraCUS_ReferenceName = txtReferenceName.Text.Trim();
+                obj.paraCUS_MobileNo = txtContactNo.Text.Trim();
+                obj.paraCUS_PhoneNo = txtWhatsappNo.Text.Trim();
+                //obj.paraCUS_TypeID = Convert.ToInt32(cmbCustomerType.SelectedValue); 
+                obj.paraCUS_CategoryTypeID = Convert.ToInt32(cmbCustomerType.SelectedValue); 
+                obj.paraCUS_Credit_Limit = string.IsNullOrEmpty(txtCreditLimit.Text.Trim()) ? 0 : Convert.ToInt32(txtCreditLimit.Text.Trim());
+                obj.paraCUS_CreditDays = string.IsNullOrEmpty(txtCreditDays.Text.Trim()) ? 0 : Convert.ToInt32(txtCreditDays.Text.Trim());
+                obj.paraCUS_OpeningBalance = string.IsNullOrEmpty(txtOBAmt.Text.Trim()) ? 0 : (float)Convert.ToDecimal(txtOBAmt.Text.Trim());
+                obj.paraCUS_OpeningBalanceType = Convert.ToInt32(cmbOBType.SelectedValue);
+                obj.paraCUS_GSTIN = txtGSTIN.Text.Trim();
+                obj.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+
+                // Billing Address
+                obj.para_Billing_Address1 = txtaddress1.Text.Trim();
+                obj.para_Billing_Address2 = txtaddress2.Text.Trim();
+                obj.para_Billing_STID = Convert.ToInt32(cmbState.SelectedValue);
+                obj.para_Billing_AID = Convert.ToInt32(lblAreaId.Text.Trim());
+                obj.para_Billing_CTYID = Convert.ToInt32(lblCityId.Text.Trim());
+                obj.para_Billing_Pincode = txtPincode.Text.Trim();
+                obj.para_Billing_Landmark = txtLandmark.Text.Trim();
+
+                // Shipping Address
+                obj.para_Shipping_Address1 = txtShipaddress1.Text.Trim();
+                obj.para_Shipping_Address2 = txtShipaddress2.Text.Trim();
+                obj.para_Shipping_STID = Convert.ToInt32(cmbShipState.SelectedValue);
+                obj.para_Shipping_AID = Convert.ToInt32(lblShipAreaId.Text.Trim());
+                obj.para_Shipping_CTYID = Convert.ToInt32(lblShipCityId.Text.Trim());
+                obj.para_Shipping_Pincode = txtShipPincode.Text.Trim();
+                obj.para_Shipping_Landmark = txtShipLandmark.Text.Trim();
+
+                // Common
+                obj.paraOriginator = varoriginator;
+                varResult = objspservice.udfnCustomer(obj);
                 objspservice.CloseConnection();
+
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_CustomerTypelist.udfnList();
+                    MainForm.objCP_Customerlist.udfnList();
                     if (btnSave.Text == "Save")
                     {
                         txtCustomerName.Text = "";
@@ -131,6 +177,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Customer_Type", "CusType_STSID=1 ORDER BY CusTypeID", "CusType_Name,CusTypeID", cmbCustomerType, "", "CusType_Name", "CusTypeID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (1,2,29)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbShipState, "", "ST_Name", "STID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (29,0) AND MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbOBType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 if (pbCustomerId == 0)
                 {
@@ -187,11 +235,11 @@ namespace ROMS
             }
         }
 
-        private void txtMobileNumber_Enter(object sender, EventArgs e)
+        private void txtContactNo_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtMobileNumber.BackColor = Color.LemonChiffon;
+                txtContactNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -200,7 +248,7 @@ namespace ROMS
             }
         }
 
-        private void txtMobileNumber_KeyDown(object sender, KeyEventArgs e)
+        private void txtContactNo_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -213,7 +261,7 @@ namespace ROMS
             }
         }
 
-        private void txtMobileNumber_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtContactNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -229,11 +277,11 @@ namespace ROMS
             }
         }
 
-        private void txtMobileNumber_Leave(object sender, EventArgs e)
+        private void txtContactNo_Leave(object sender, EventArgs e)
         {
             try
             {
-                txtMobileNumber.BackColor = Color.White;
+                txtContactNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -242,11 +290,11 @@ namespace ROMS
             }
         }
 
-        private void txtPhoneNumber_Enter(object sender, EventArgs e)
+        private void txtWhatsappNo_Enter(object sender, EventArgs e)
         {
             try
             {
-                txtPhoneNumber.BackColor = Color.LemonChiffon;
+                txtWhatsappNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -255,7 +303,7 @@ namespace ROMS
             }
         }
 
-        private void txtPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        private void txtWhatsappNo_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -268,7 +316,7 @@ namespace ROMS
             }
         }
 
-        private void txtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtWhatsappNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
@@ -284,11 +332,11 @@ namespace ROMS
             }
         }
 
-        private void txtPhoneNumber_Leave(object sender, EventArgs e)
+        private void txtWhatsappNo_Leave(object sender, EventArgs e)
         {
             try
             {
-                txtPhoneNumber.BackColor = Color.White;
+                txtWhatsappNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -550,6 +598,7 @@ namespace ROMS
             {
                 BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
                 txtCity.Text = "";
+                lblCityId.Text = "0";
             }
             catch (Exception ex)
             {
@@ -761,6 +810,1040 @@ namespace ROMS
                 lvCity.Visible = false;
             }
         }
+
+        private void txtReferenceName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReferenceName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtReferenceName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtReferenceName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtReferenceName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCreditDays_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCreditDays.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCreditDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCreditDays_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCreditDays_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCreditDays.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOBType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOBType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOBType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (txtGSTIN.Enabled == true)
+                    {
+                        txtGSTIN.Focus();
+                    }
+                    else
+                    {
+                        cmbStatus.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOBType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOBType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOBType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtaddress1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtaddress1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtaddress1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtaddress1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtaddress1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtaddress2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtaddress2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtaddress2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtaddress2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtaddress2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtArea_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtArea.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvArea.Items.Count == 0 || txtArea.Text == "")
+                    {
+                        txtCity.Focus();
+                        lvArea.Visible = false;
+                    }
+                    else
+                    {
+                        lvArea.Focus();
+                    }
+                    if (lvArea.Items.Count > 0)
+                    {
+                        lvArea.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCity.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtArea_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtArea.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLandmark_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLandmark.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLandmark_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLandmark_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLandmark.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipaddress1_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipaddress1.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipaddress1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipaddress1_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipaddress1.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipaddress2_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipaddress2.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipaddress2_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipaddress2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipaddress2.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShipState_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShipState.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShipState_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void cmbShipState_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShipState_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbShipState.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbShipState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BeginInvoke(new Action(() => cmbShipState.Select(int.MaxValue, 0)));
+                txtShipCity.Text = "";
+                lblShipCityId.Text = "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipArea_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipArea.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvShipArea.Items.Count == 0 || txtArea.Text == "")
+                    {
+                        txtShipCity.Focus();
+                        lvShipArea.Visible = false;
+                    }
+                    else
+                    {
+                        lvShipArea.Focus();
+                    }
+                    if (lvShipArea.Items.Count > 0)
+                    {
+                        lvShipArea.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShipCity.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipArea_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipArea.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipCity_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipCity.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    if (lvShipCity.Items.Count == 0 || txtShipCity.Text == "")
+                    {
+                        txtShipCity.Focus();
+                        lvShipCity.Visible = false;
+                    }
+                    else
+                    {
+                        lvShipCity.Focus();
+                    }
+                    if (lvShipCity.Items.Count > 0)
+                    {
+                        lvShipCity.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPincode.Focus();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipCity_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipCity.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipCity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                lvShipCity.Items.Clear();
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                if (txtShipCity.Text.Length > 0)
+                {
+                    objDs = objspdservice.udfnCitylist(1, txtShipCity.Text, Convert.ToInt32(cmbShipState.SelectedValue), 0);
+                    objspdservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["CTY_NAME"].ToString(), objDs.Tables[0].Rows[i]["ST_NAME"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString(), objDs.Tables[0].Rows[i]["ST_TIN"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvShipCity.Items.Add(objList);
+                                }
+                                lvShipCity.Visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lvShipCity.Visible = false;
+                    lvShipCity.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipPincode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                lvShipCity.Visible = false;
+                txtShipPincode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipPincode_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtShipPincode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipPincode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipPincode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipLandmark_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLandmark.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipLandmark_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipLandmark_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtShipLandmark.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvShipCity_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnShipCityBind();
+                txtShipPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvShipCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnShipCityBind();
+                    txtShipPincode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnShipCityBind()
+        {
+            try
+            {
+                if (txtShipCity.Text != "")
+                {
+                    ListViewItem selectedItem = lvShipCity.SelectedItems[0];
+                    txtShipCity.Text = selectedItem.SubItems[0].Text;
+                    lblShipCityId.Text = selectedItem.SubItems[2].Text;
+                    lvShipCity.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvShipCity.Visible = false;
+            }
+        }
+
+        private void chkSameasBilling_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnShippingBind(chkSameasBilling.Checked);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnShippingBind(bool isSameAsBilling)
+        {
+            try
+            {
+                if (isSameAsBilling)
+                {
+                    // Copy billing values to shipping
+                    txtShipaddress1.Text = txtaddress1.Text.Trim();
+                    txtShipaddress2.Text = txtaddress2.Text.Trim();
+                    cmbShipState.SelectedValue = cmbState.SelectedValue;
+                    txtShipArea.Text = txtArea.Text.Trim();
+                    txtShipCity.Text = txtCity.Text.Trim();
+                    lblShipAreaId.Text = lblAreaId.Text.Trim();
+                    lblShipCityId.Text = lblCityId.Text.Trim();
+                    txtShipPincode.Text = txtPincode.Text.Trim();
+                    txtShipLandmark.Text = txtLandmark.Text.Trim();
+                    lvShipArea.Visible = false;
+                }
+                else
+                {
+                    // Clear shipping values
+                    txtShipaddress1.Text = "";
+                    txtShipaddress2.Text = "";
+                    cmbShipState.SelectedValue = -1;
+                    txtShipArea.Text = "";
+                    txtShipCity.Text = "";
+                    lblShipAreaId.Text = "0";
+                    lblShipCityId.Text = "0";
+                    txtShipPincode.Text = "";
+                    txtShipLandmark.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnclose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Customer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varUpdate == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCash_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbCash.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCash_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtOBAmt.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCash_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbCash.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCredit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                rbCredit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCredit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCreditLimit.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCredit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                rbCredit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtOBAmt_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtOBAmt.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtOBAmt_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbOBType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtOBAmt_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtOBAmt.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCash_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCreditLimit.Text = "";
+                txtCreditDays.Text = "";
+                txtOBAmt.Text = "";
+                txtGSTIN.Text = "";
+
+                txtCreditLimit.Enabled = false;
+                txtCreditDays.Enabled = false;
+                txtOBAmt.Enabled = false;
+                cmbOBType.Enabled = false;
+                txtGSTIN.Enabled = false;
+
+                txtCreditLimit.ReadOnly = true;
+                txtCreditDays.ReadOnly = true;
+                txtOBAmt.ReadOnly = true;
+                txtGSTIN.ReadOnly = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbCredit_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtCreditLimit.Enabled = true;
+                txtCreditDays.Enabled = true;
+                txtOBAmt.Enabled = true;
+                cmbOBType.Enabled = true;
+                txtGSTIN.Enabled = true;
+
+                txtCreditLimit.ReadOnly = false;
+                txtCreditDays.ReadOnly = false;
+                txtOBAmt.ReadOnly = false;
+                txtGSTIN.ReadOnly = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try

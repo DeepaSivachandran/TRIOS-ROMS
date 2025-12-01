@@ -52,5 +52,36 @@ namespace ROMS.Model
         public string paraTeller { get; set; } = "";
         public string paraReason { get; set; } = "";
 
+        // -------------------- Customer --------------------
+        public int paraCustomerId { get; set; } = 0;
+        public string paraCUS_Name { get; set; } = "";
+        public string paraCUS_MobileNo { get; set; } = "";
+        public string paraCUS_PhoneNo { get; set; } = "";
+        public int paraCUS_CategoryTypeID { get; set; } = 0;
+        public int paraCUS_TypeID { get; set; } = 0;
+        public string paraCUS_GSTIN { get; set; } = "";
+        public int paraCUS_Credit_Limit { get; set; } = 0;
+        public string paraCUS_ReferenceName { get; set; } = "";
+        public int paraCUS_CreditDays { get; set; } = 0;
+        public float paraCUS_OpeningBalance { get; set; } = 0;
+        public int paraCUS_OpeningBalanceType { get; set; } = 0;
+
+        public string para_Billing_Address1 { get; set; } = "";
+        public string para_Billing_Address2 { get; set; } = "";
+        public int para_Billing_AID { get; set; } = 0;
+        public int para_Billing_CTYID { get; set; } = 0;
+        public int para_Billing_STID { get; set; } = 0;
+        public string para_Billing_Pincode { get; set; } = "";
+        public string para_Billing_Landmark { get; set; } = "";
+
+        public string para_Shipping_Address1 { get; set; } = "";
+        public string para_Shipping_Address2 { get; set; } = "";
+        public int para_Shipping_AID { get; set; } = 0;
+        public int para_Shipping_CTYID { get; set; } = 0;
+        public int para_Shipping_STID { get; set; } = 0;
+        public string para_Shipping_Pincode { get; set; } = "";
+        public string para_Shipping_Landmark { get; set; } = "";
+
+
     }
 }

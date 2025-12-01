@@ -5293,6 +5293,7 @@ namespace ROMS
             }
             return ds;
         }
+        //  Added BY Sathish ON 28-11-2025
         public string udfnTransport(MR_Sales obj)
         {
             string varResult = "";
@@ -5331,6 +5332,7 @@ namespace ROMS
             return varResult;
 
         }
+        //  Added BY Sathish ON 28-11-2025
         public DataSet udfnTransportList(MR_Sales obj)
         {
             DataSet ds = new DataSet();
@@ -5362,6 +5364,7 @@ namespace ROMS
             }
             return ds;
         }
+        //  Added BY Sathish ON 28-11-2025
         public string udfnMarriageHall(MR_Sales obj)
         {
             string varResult = "";
@@ -5402,6 +5405,7 @@ namespace ROMS
             return varResult;
 
         }
+        //  Added BY Sathish ON 28-11-2025
         public DataSet udfnMarriageHallList(MR_Sales obj)
         {
             DataSet ds = new DataSet();
@@ -5434,6 +5438,67 @@ namespace ROMS
             }
             return ds;
         }
+        //  Added BY Sathish ON 01-12-2025 For Customer Save Update Delete SP
+        public string udfnCustomer(MR_Sales obj)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand cmd = new SqlCommand("[MRS_Customer]", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
+                cmd.Parameters.AddWithValue("@paraCUS_Name", obj.paraCUS_Name);
+                cmd.Parameters.AddWithValue("@paraCUS_MobileNo", obj.paraCUS_MobileNo);
+                cmd.Parameters.AddWithValue("@paraCUS_PhoneNo", obj.paraCUS_PhoneNo);
+                cmd.Parameters.AddWithValue("@paraCUS_CategoryTypeID", obj.paraCUS_CategoryTypeID);
+                cmd.Parameters.AddWithValue("@paraCUS_TypeID", obj.paraCUS_TypeID);
+                cmd.Parameters.AddWithValue("@paraCUS_GSTIN", obj.paraCUS_GSTIN);
+                cmd.Parameters.AddWithValue("@paraCUS_Credit_Limit", obj.paraCUS_Credit_Limit);
+                cmd.Parameters.AddWithValue("@paraCUS_ReferenceName", obj.paraCUS_ReferenceName);
+                cmd.Parameters.AddWithValue("@paraCUS_CreditDays", obj.paraCUS_CreditDays);
+                cmd.Parameters.AddWithValue("@paraCUS_OpeningBalance", obj.paraCUS_OpeningBalance);
+                cmd.Parameters.AddWithValue("@paraCUS_OpeningBalanceType", obj.paraCUS_OpeningBalanceType);
+                cmd.Parameters.AddWithValue("@paraStatusId", obj.paraStatusId);
+
+                cmd.Parameters.AddWithValue("@para_Billing_Address1", obj.para_Billing_Address1);
+                cmd.Parameters.AddWithValue("@para_Billing_Address2", obj.para_Billing_Address2);
+                cmd.Parameters.AddWithValue("@para_Billing_AID", obj.para_Billing_AID);
+                cmd.Parameters.AddWithValue("@para_Billing_CTYID", obj.para_Billing_CTYID);
+                cmd.Parameters.AddWithValue("@para_Billing_STID", obj.para_Billing_STID);
+                cmd.Parameters.AddWithValue("@para_Billing_Pincode", obj.para_Billing_Pincode);
+                cmd.Parameters.AddWithValue("@para_Billing_Landmark", obj.para_Billing_Landmark);
+
+                cmd.Parameters.AddWithValue("@para_Shipping_Address1", obj.para_Shipping_Address1);
+                cmd.Parameters.AddWithValue("@para_Shipping_Address2", obj.para_Shipping_Address2);
+                cmd.Parameters.AddWithValue("@para_Shipping_AID", obj.para_Shipping_AID);
+                cmd.Parameters.AddWithValue("@para_Shipping_CTYID", obj.para_Shipping_CTYID);
+                cmd.Parameters.AddWithValue("@para_Shipping_STID", obj.para_Shipping_STID);
+                cmd.Parameters.AddWithValue("@para_Shipping_Pincode", obj.para_Shipping_Pincode);
+                cmd.Parameters.AddWithValue("@para_Shipping_Landmark", obj.para_Shipping_Landmark);
+                cmd.Parameters.AddWithValue("@paraOriginator", obj.paraOriginator);
+
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                cmd.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+
+                cmd.CommandTimeout = 0;
+                varResult = cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+
     }
 
 }
