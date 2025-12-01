@@ -50,6 +50,13 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lvArea = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblAreaId = new System.Windows.Forms.Label();
+            this.lblRouteId = new System.Windows.Forms.Label();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.epMarriageHall)).BeginInit();
             this.grbForm.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +106,7 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.lvArea);
             this.grbForm.Controls.Add(this.txtReason);
             this.grbForm.Controls.Add(this.txtTeller);
             this.grbForm.Controls.Add(this.cmbStatus);
@@ -254,6 +262,7 @@
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(219, 27);
             this.txtArea.TabIndex = 2;
+            this.txtArea.TextChanged += new System.EventHandler(this.txtArea_TextChanged);
             this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter);
             this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
             this.txtArea.Leave += new System.EventHandler(this.txtArea_Leave);
@@ -328,12 +337,70 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
+            // lvArea
+            // 
+            this.lvArea.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader3,
+            this.columnHeader2,
+            this.columnHeader4});
+            this.lvArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvArea.HideSelection = false;
+            this.lvArea.Location = new System.Drawing.Point(162, 104);
+            this.lvArea.Name = "lvArea";
+            this.lvArea.Size = new System.Drawing.Size(223, 90);
+            this.lvArea.TabIndex = 1111145;
+            this.lvArea.UseCompatibleStateImageBehavior = false;
+            this.lvArea.View = System.Windows.Forms.View.Details;
+            this.lvArea.Visible = false;
+            this.lvArea.DoubleClick += new System.EventHandler(this.lvArea_DoubleClick);
+            this.lvArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvArea_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // lblAreaId
+            // 
+            this.lblAreaId.AutoSize = true;
+            this.lblAreaId.Location = new System.Drawing.Point(397, 92);
+            this.lblAreaId.Name = "lblAreaId";
+            this.lblAreaId.Size = new System.Drawing.Size(16, 20);
+            this.lblAreaId.TabIndex = 1111146;
+            this.lblAreaId.Text = "0";
+            this.lblAreaId.Visible = false;
+            // 
+            // lblRouteId
+            // 
+            this.lblRouteId.AutoSize = true;
+            this.lblRouteId.Location = new System.Drawing.Point(397, 120);
+            this.lblRouteId.Name = "lblRouteId";
+            this.lblRouteId.Size = new System.Drawing.Size(16, 20);
+            this.lblRouteId.TabIndex = 1111147;
+            this.lblRouteId.Text = "0";
+            this.lblRouteId.Visible = false;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 0;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 0;
+            // 
             // CP_MarriageHall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(415, 364);
+            this.Controls.Add(this.lblRouteId);
+            this.Controls.Add(this.lblAreaId);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -353,6 +420,7 @@
             this.grbForm.ResumeLayout(false);
             this.grbForm.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -377,5 +445,12 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         public System.Windows.Forms.TextBox txtTeller;
         public System.Windows.Forms.TextBox txtReason;
+        public System.Windows.Forms.ListView lvArea;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Label lblAreaId;
+        private System.Windows.Forms.Label lblRouteId;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

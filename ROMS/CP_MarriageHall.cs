@@ -41,10 +41,15 @@ namespace ROMS
                 }
                 MR_Sales obj = new MR_Sales();
                 obj.paraViewType = varType;
-                obj.paraCusTypeId = pbMarriageHallId;
-                obj.paraCusTypeEName = txtMarriageHallEName.Text.Trim();
-                obj.paraCusTypeTName = txtMarriageHallTName.Text.Trim();
-                obj.paraStatusId = PbStatus;
+                obj.paraMHId = pbMarriageHallId;
+                obj.paraMHEName = txtMarriageHallEName.Text.Trim();
+                obj.paraMHTName = txtMarriageHallTName.Text.Trim();
+                obj.paraAreaId = Convert.ToInt32(lblAreaId.Text);
+                obj.paraRouteId = Convert.ToInt32(lblRouteId.Text);
+                obj.paraDistance = txtDistance.Text.Trim();
+                obj.paraTeller = txtTeller.Text.Trim();
+                obj.paraReason = txtReason.Text.Trim();
+                obj.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 obj.paraOriginator = varoriginator;
 
                 varResult = objspservice.udfnMarriageHall(obj);
@@ -59,6 +64,11 @@ namespace ROMS
                     {
                         txtMarriageHallEName.Text = "";
                         txtMarriageHallTName.Text = "";
+                        txtArea.Text = "";
+                        txtRoute.Text = "";
+                        lblAreaId.Text = "0";
+                        lblRouteId.Text = "0";
+                        txtDistance.Text = "";
                         this.ActiveControl = txtMarriageHallEName;
                     }
                     if (btnSave.Text == "Update")
@@ -121,6 +131,17 @@ namespace ROMS
                     tpMarriageHall.Show("Please enter area name.", txtArea, 5000);
                     blnErrFlag = true;
                 }
+                else
+                {
+                    if (lblAreaId.Text == "0")
+                    {
+                        epMarriageHall.SetError(txtArea, "Please enter valid area name.");
+                        txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMarriageHall.ShowAlways = true;
+                        tpMarriageHall.Show("Please enter valid area name.", txtArea, 5000);
+                        blnErrFlag = true;
+                    }
+                }
                 if (txtDistance.Text.Trim() == "")
                 {
                     epMarriageHall.SetError(txtDistance, "Please enter distance.");
@@ -160,8 +181,6 @@ namespace ROMS
         {
             try
             {
-                txtRoute.ReadOnly = true;
-                txtRoute.Enabled = false;
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -246,15 +265,23 @@ namespace ROMS
 
                     MR_Sales obj = new MR_Sales();
                     obj.paraViewType = 1;
-                    obj.paraCusTypeId = pbMarriageHallId;
-                    obj.paraStatusId = 0;
+                    obj.paraMHId = pbMarriageHallId;
                     objDs = objspservice.udfnMarriageHallList(obj);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
                         {
-                            txtMarriageHallEName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_Name"]);
-                            txtMarriageHallTName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_TName"]);
+                            txtMarriageHallEName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["EName"]);
+                            txtMarriageHallTName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TName"]);
+                            txtArea.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Area"]);
+                            txtRoute.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Route"]);
+                            txtDistance.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Distance"]);
+                            txtTeller.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Teller"]);
+                            txtReason.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Reason"]);
+                            cmbStatus.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["STSID"]);
+                            lblAreaId.Text = Convert.ToString(objDs.Tables[0].Rows[0]["AID"]);
+                            lblRouteId.Text = Convert.ToString(objDs.Tables[0].Rows[0]["RID"]);
+                            lvArea.Visible = false;
                             txtMarriageHallEName.Focus();
                         }
                     }
@@ -391,8 +418,6 @@ namespace ROMS
         {
             try
             {
-                txtRoute.ReadOnly = false;
-                txtRoute.Enabled = true;
                 txtArea.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -406,6 +431,22 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvArea.Items.Count == 0 || txtArea.Text == "")
+                    {
+                        txtDistance.Focus();
+                        lvArea.Visible = false;
+                    }
+                    else
+                    {
+                        lvArea.Focus();
+                    }
+                    if (lvArea.Items.Count > 0)
+                    {
+                        lvArea.Items[0].Selected = true;
+                    }
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     txtDistance.Focus();
@@ -431,6 +472,72 @@ namespace ROMS
             }
         }
 
+        private void txtArea_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvArea.Items.Clear();
+                if (txtArea.Text.Length > 0)
+                {
+                    lblAreaId.Text = "0";
+                    lblRouteId.Text = "0";
+                    txtRoute.Text = "";
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 2;
+                    obj.paraMHEName = txtArea.Text.Trim();
+                    objDs = objspservice.udfnMarriageHallList(obj);
+                    objspservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["Area"].ToString(), objDs.Tables[0].Rows[i]["Route"].ToString(), objDs.Tables[0].Rows[i]["AID"].ToString() , objDs.Tables[0].Rows[i]["RID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    lvArea.Columns[2].Width = 0;
+                                    lvArea.Columns[3].Width = 0;
+                                    lvArea.Items.Add(objList);
+                                }
+                                lvArea.Visible = true;
+                            }
+                            else
+                            {
+                                lvArea.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvArea.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvArea.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvArea.Visible = false;
+                    lvArea.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
         private void txtDistance_Enter(object sender, EventArgs e)
         {
             try
@@ -647,6 +754,61 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void lvArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnAreaEvent();
+                    txtDistance.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvArea_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAreaEvent();
+                txtDistance.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnAreaEvent()
+        {
+            try
+            {
+                if (txtArea.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvArea.SelectedItems[0];
+                    txtArea.Text = selectedItem.SubItems[0].Text;
+                    txtRoute.Text = selectedItem.SubItems[1].Text;
+                    lblAreaId.Text = selectedItem.SubItems[2].Text;
+                    lblRouteId.Text = selectedItem.SubItems[3].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvArea.Visible = false;
+            }
+        }
+
 
         private void CP_MarriageHall_KeyDown(object sender, KeyEventArgs e)
         {

@@ -28,7 +28,7 @@ namespace ROMS
         public CP_MarriageHalllist()
         {
             InitializeComponent();
-            windowControl.Initialize(tsCustomerTypeList, this);
+            windowControl.Initialize(tsMarriageHallList, this);
         }
         private void tsbNew_Click(object sender, EventArgs e)
         {
@@ -87,10 +87,10 @@ namespace ROMS
                             varResult = "";
                             MR_Sales obj = new MR_Sales();
                             obj.paraViewType = 2;
-                            obj.paraCusTypeId = Convert.ToInt32(grdMarriageHallList.SelectedRows[0].Cells["ID"].Value);
-                            obj.paraOriginator = "Customer Type Delete";
+                            obj.paraMHId = Convert.ToInt32(grdMarriageHallList.SelectedRows[0].Cells["ID"].Value);
+                            obj.paraOriginator = "Marriage Hall Delete";
 
-                            varResult = objspservice.udfnCustomerType(obj);
+                            varResult = objspservice.udfnMarriageHall(obj);
                             objspservice.CloseConnection();
 
                             if (varResult.Split('~')[0] == "3")
@@ -159,10 +159,9 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
 
                 MR_Sales obj = new MR_Sales();
-                obj.paraViewType = 0;
-                obj.paraCusTypeId = 0;
+                obj.paraViewType =0;
                 obj.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
-                objDs = objspservice.udfnCustomerTypeList(obj);
+                objDs = objspservice.udfnMarriageHallList(obj);
 
                 if (objDs != null)
                 {
@@ -177,14 +176,12 @@ namespace ROMS
                             grdMarriageHallList.Columns["ID"].Visible = false;
                             grdMarriageHallList.Columns["StatusID"].Visible = false;
                             grdMarriageHallList.Columns["S.No."].Width = 50;
-                            grdMarriageHallList.Columns["Customer Type English Name"].Width = 200;
-                            grdMarriageHallList.Columns["Customer Type Tamil Name"].Width = 250;
-                            grdMarriageHallList.Columns["Total Customers"].Width = 120;
+                            grdMarriageHallList.Columns["Marriage Hall English Name"].Width = 200;
+                            grdMarriageHallList.Columns["Marriage Hall Tamil Name"].Width = 250;
                             grdMarriageHallList.Columns["Status"].Width = 80;
                             grdMarriageHallList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdMarriageHallList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdMarriageHallList.Columns["Customer Type Tamil Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdMarriageHallList.Columns["Total Customers"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdMarriageHallList.Columns["Marriage Hall Tamil Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
                         {
@@ -230,8 +227,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Customer Type English Name"].Width = 200;
-                DGV_SearchGrid.Columns["Customer Type Tamil Name"].Width = 250;
+                DGV_SearchGrid.Columns["Marriage Hall Name"].Width = 200;
+                DGV_SearchGrid.Columns["Marriage Hall Name"].Width = 250;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
@@ -401,9 +398,14 @@ namespace ROMS
                         grdMarriageHallList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdMarriageHallList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    else
+                    else if (Convert.ToString(grdMarriageHallList.Rows[i].Cells["StatusID"].Value) == "2")
                     {
                         grdMarriageHallList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                        grdMarriageHallList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        grdMarriageHallList.Rows[i].Cells["Status"].Style.BackColor = Color.Red;
                         grdMarriageHallList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
                     grdMarriageHallList.ClearSelection();

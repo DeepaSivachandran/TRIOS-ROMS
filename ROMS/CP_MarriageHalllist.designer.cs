@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tsCustomerTypeList = new System.Windows.Forms.ToolStrip();
+            this.tsMarriageHallList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -53,7 +53,7 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdMarriageHallList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.tsCustomerTypeList.SuspendLayout();
+            this.tsMarriageHallList.SuspendLayout();
             this.pnlRoute.SuspendLayout();
             this.grbFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -61,13 +61,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
-            // tsCustomerTypeList
+            // tsMarriageHallList
             // 
-            this.tsCustomerTypeList.BackColor = System.Drawing.Color.White;
-            this.tsCustomerTypeList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsCustomerTypeList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsCustomerTypeList.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsCustomerTypeList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsMarriageHallList.BackColor = System.Drawing.Color.White;
+            this.tsMarriageHallList.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsMarriageHallList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsMarriageHallList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsMarriageHallList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
@@ -77,11 +77,11 @@
             this.toolStripSeparator1,
             this.tsbTotalCount,
             this.toolStripButton2});
-            this.tsCustomerTypeList.Location = new System.Drawing.Point(0, 0);
-            this.tsCustomerTypeList.Name = "tsCustomerTypeList";
-            this.tsCustomerTypeList.Size = new System.Drawing.Size(1354, 27);
-            this.tsCustomerTypeList.TabIndex = 35;
-            this.tsCustomerTypeList.Text = "City";
+            this.tsMarriageHallList.Location = new System.Drawing.Point(0, 0);
+            this.tsMarriageHallList.Name = "tsMarriageHallList";
+            this.tsMarriageHallList.Size = new System.Drawing.Size(1354, 27);
+            this.tsMarriageHallList.TabIndex = 35;
+            this.tsMarriageHallList.Text = "City";
             // 
             // tspHeader
             // 
@@ -373,7 +373,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlRoute);
-            this.Controls.Add(this.tsCustomerTypeList);
+            this.Controls.Add(this.tsMarriageHallList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -384,8 +384,8 @@
             this.Load += new System.EventHandler(this.CP_Citylist_Load);
             this.DoubleClick += new System.EventHandler(this.CP_Citylist_DoubleClick);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Citylist_KeyDown);
-            this.tsCustomerTypeList.ResumeLayout(false);
-            this.tsCustomerTypeList.PerformLayout();
+            this.tsMarriageHallList.ResumeLayout(false);
+            this.tsMarriageHallList.PerformLayout();
             this.pnlRoute.ResumeLayout(false);
             this.pnlRoute.PerformLayout();
             this.grbFilter.ResumeLayout(false);
@@ -400,7 +400,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip tsCustomerTypeList;
+        private System.Windows.Forms.ToolStrip tsMarriageHallList;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;

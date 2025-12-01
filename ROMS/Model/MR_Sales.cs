@@ -41,5 +41,16 @@ namespace ROMS.Model
         public string paraTransportEName { get; set; } = "";
         public string paraTransportTName { get; set; } = "";
         public string paraContactPersonName { get; set; } = "";
+
+        // -------------------- Transport --------------------
+        public int paraMHId { get; set; } = 0;
+        public int paraAreaId { get; set; } = 0;
+        public int paraRouteId { get; set; } = 0;
+        public string paraMHEName { get; set; } = "";
+        public string paraMHTName { get; set; } = "";
+        public string paraDistance { get; set; } = "";
+        public string paraTeller { get; set; } = "";
+        public string paraReason { get; set; } = "";
+
     }
 }

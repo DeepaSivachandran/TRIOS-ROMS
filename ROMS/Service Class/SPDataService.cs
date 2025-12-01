@@ -5368,16 +5368,18 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand cmd = new SqlCommand("[MRS_Transport]", tmpspcall.objConn);
+                SqlCommand cmd = new SqlCommand("[MRS_MarriageHall]", tmpspcall.objConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
-                cmd.Parameters.AddWithValue("@paraTransportId", obj.paraTransportId);
-                cmd.Parameters.AddWithValue("@paraTransportEName", obj.paraTransportEName);
-                cmd.Parameters.AddWithValue("@paraTransportTName", obj.paraTransportTName);
-                cmd.Parameters.AddWithValue("@paraShortName", obj.paraShortName);
-                cmd.Parameters.AddWithValue("@paraContactPersonName", obj.paraContactPersonName);
-                cmd.Parameters.AddWithValue("@paraMobileNo", obj.paraMobileNo);
+                cmd.Parameters.AddWithValue("@paraMHId", obj.paraMHId);
+                cmd.Parameters.AddWithValue("@paraMHEName", obj.paraMHEName);
+                cmd.Parameters.AddWithValue("@paraMHTName", obj.paraMHTName);
+                cmd.Parameters.AddWithValue("@paraAreaId", obj.paraAreaId);
+                cmd.Parameters.AddWithValue("@paraRouteId", obj.paraRouteId);
+                cmd.Parameters.AddWithValue("@paraDistance", obj.paraDistance);
+                cmd.Parameters.AddWithValue("@paraTeller", obj.paraTeller);
+                cmd.Parameters.AddWithValue("@paraReason", obj.paraReason);
                 cmd.Parameters.AddWithValue("@paraStatusId", obj.paraStatusId);
                 cmd.Parameters.AddWithValue("@paraOriginator", obj.paraOriginator);
 
@@ -5406,11 +5408,12 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand cmd = new SqlCommand("MRG_Transport", tmpspcall.objConn);
+                SqlCommand cmd = new SqlCommand("MRG_MarriageHall", tmpspcall.objConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
-                cmd.Parameters.AddWithValue("@paraTransportId", obj.paraTransportId);
+                cmd.Parameters.AddWithValue("@paraMHId", obj.paraMHId);
+                cmd.Parameters.AddWithValue("@paraMHEName", obj.paraMHEName);
                 cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
