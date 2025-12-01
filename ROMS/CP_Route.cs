@@ -401,6 +401,33 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnRoute()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                MR_Route objMR_Route = new MR_Route();
+                objMR_Route.ViewType = 2; 
+                objDs = objspservice.udfnRouteList(objMR_Route);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                             
+                        } 
+                    } 
+                    objspservice.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnEdit()
         {
             try

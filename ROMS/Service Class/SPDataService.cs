@@ -5154,12 +5154,8 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[MRS_Route]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Route.ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteId", objMR_Route.paraRouteId);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteTName", objMR_Route.paraRouteTName);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteEName", objMR_Route.paraRouteEName); 
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Route.paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Route.paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraOrderNo", objMR_Route.paraOrderNo); 
+                varSqlCommand.Parameters.AddWithValue("@paraRouteId", objMR_Route.paraRouteId); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Route.paraStatusId); 
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -5176,6 +5172,39 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return result;
+        }
+        public DataSet udfnRouteList(MR_Route objMR_Route)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_Route]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Route.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteId", objMR_Route.paraRouteId);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteTName", objMR_Route.paraRouteTName);
+                varSqlCommand.Parameters.AddWithValue("@paraRouteEName", objMR_Route.paraRouteEName);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_Route.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Route.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraOrderNo", objMR_Route.paraOrderNo);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
         }
     }
 

@@ -37,8 +37,6 @@
             this.txtDRouteEName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.grdArea = new System.Windows.Forms.DataGridView();
-            this.clmCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbRSNo = new System.Windows.Forms.ComboBox();
             this.txtDRouteOrderNo = new System.Windows.Forms.TextBox();
             this.txtRTName = new System.Windows.Forms.TextBox();
@@ -50,6 +48,7 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epRoute = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clmCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdArea)).BeginInit();
             this.pnlStatus.SuspendLayout();
@@ -102,7 +101,7 @@
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Size = new System.Drawing.Size(379, 386);
             this.grbform.TabIndex = 28;
-            this.grbform.TabStop = false; 
+            this.grbform.TabStop = false;
             // 
             // grdArea
             // 
@@ -122,8 +121,7 @@
             this.grdArea.ColumnHeadersHeight = 30;
             this.grdArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdArea.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmCheckBox,
-            this.clmArea});
+            this.clmCheckBox});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -145,21 +143,7 @@
             this.grdArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdArea.ShowRowErrors = false;
             this.grdArea.Size = new System.Drawing.Size(363, 193);
-            this.grdArea.TabIndex = 1111147; 
-            // 
-            // clmCheckBox
-            // 
-            this.clmCheckBox.HeaderText = "";
-            this.clmCheckBox.Name = "clmCheckBox";
-            this.clmCheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCheckBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmCheckBox.Width = 50;
-            // 
-            // clmArea
-            // 
-            this.clmArea.HeaderText = "Area";
-            this.clmArea.Name = "clmArea";
-            this.clmArea.Width = 280;
+            this.grdArea.TabIndex = 1111147;
             // 
             // cmbRSNo
             // 
@@ -169,7 +153,7 @@
             this.cmbRSNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbRSNo.Name = "cmbRSNo";
             this.cmbRSNo.Size = new System.Drawing.Size(235, 27);
-            this.cmbRSNo.TabIndex = 2; 
+            this.cmbRSNo.TabIndex = 2;
             this.cmbRSNo.Enter += new System.EventHandler(this.cmbRSNo_Enter);
             this.cmbRSNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRSNo_KeyDown);
             this.cmbRSNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRSNo_KeyPress);
@@ -257,7 +241,7 @@
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(128, 28);
             this.txtStatus.TabIndex = 8;
-            this.txtStatus.Text = "Status"; 
+            this.txtStatus.Text = "Status";
             // 
             // pnlStatus
             // 
@@ -300,6 +284,14 @@
             // epRoute
             // 
             this.epRoute.ContainerControl = this;
+            // 
+            // clmCheckBox
+            // 
+            this.clmCheckBox.HeaderText = "";
+            this.clmCheckBox.Name = "clmCheckBox";
+            this.clmCheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCheckBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmCheckBox.Width = 50;
             // 
             // CP_Route
             // 
@@ -350,6 +342,5 @@
         private System.Windows.Forms.TextBox txtDRouteOrderNo;
         public System.Windows.Forms.DataGridView grdArea;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheckBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmArea;
     }
 }

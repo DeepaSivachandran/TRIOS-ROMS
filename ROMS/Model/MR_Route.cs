@@ -19,6 +19,6 @@ namespace ROMS.Model
         public string paraOriginator = "";
         public string paraHostName = "";
         public int paraOrderNo = 0; 
-        public int paraUserRoleId = 0;    
+        public int paraUserRoleId = 0;   
     }
 }
