@@ -373,6 +373,7 @@ namespace ROMS
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
                     udfnLoadSlNo();
+                    udfnRoute();
                 }
                 else
                 {
@@ -416,7 +417,7 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                             
+                            grdArea.DataSource = objDs.Tables[0];
                         } 
                     } 
                     objspservice.CloseConnection();
