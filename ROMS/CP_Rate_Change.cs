@@ -26,7 +26,11 @@ namespace ROMS
         public string varSubgroupId = "";
         public string vargroupId = "";
         public string varupdate = "0";
-        public int varProductload = 0;
+        public int varProductload = 0, ratetype = 0;
+        public decimal Rrate = 0,prevRrate = 0,Wrate = 0, prevWrate = 0 , rate = 0 , prevrate = 0;
+
+         
+
         //tool tip
         private ToolTip tpRRate = new ToolTip();
         private ToolTip tpWRate = new ToolTip();
@@ -50,14 +54,6 @@ namespace ROMS
                     tpRRate.Show("Please enter valid rate", txtRRateLive, 5000);
                     blnErrorFlag = true;
                 }
-                if ((txtWRateLive.Text.Contains(".") && txtWRateLive.Text.Length < 2) || Convert.ToString(txtWRateLive.Text).Trim() == "")
-                {
-                    errItems.SetError(txtWRateLive, "Please enter valid rate");
-                    txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpWRate.ShowAlways = true;
-                    tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
-                    blnErrorFlag = true;
-                }
                 if (Convert.ToString(txtTeller.Text).Trim() == "")
                 {
                     errItems.SetError(txtTeller, "Please enter valid name");
@@ -74,29 +70,43 @@ namespace ROMS
                     tpProduct.Show("Please enter valid product", txtProductName, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtWRateLive.Text).Trim() != "" && Convert.ToString(txtRRateLive.Text).Trim() != "")
+                if (ratetype == 448)
                 {
-                    if (Convert.ToDecimal(txtRRateLive.Text) < Convert.ToDecimal(txtWRateLive.Text))
+
+                    if ((txtWRateLive.Text.Contains(".") && txtWRateLive.Text.Length < 2) || Convert.ToString(txtWRateLive.Text).Trim() == "")
                     {
-                        errItems.SetError(txtWRateLive, "Whole sale rate should be lesser than retail rate!");
+                        errItems.SetError(txtWRateLive, "Please enter valid rate");
                         txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpWRate.ShowAlways = true;
-                        tpWRate.Show("Whole sale rate should be lesser than retail rate!", txtWRateLive, 5000);
+                        tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
                         blnErrorFlag = true;
                     }
-                }
-                if (Convert.ToString(txtRRateLive.Text).Trim() != "" && Convert.ToString(txtWRateLive.Text).Trim() != "")
-                {
-                    if (Convert.ToDecimal(txtRRateLive.Text) == 0 && Convert.ToDecimal(txtWRateLive.Text) > 0)
+
+                    if (Convert.ToString(txtWRateLive.Text).Trim() != "" && Convert.ToString(txtRRateLive.Text).Trim() != "")
                     {
-                        txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        SPDataService objDataService = new SPDataService();
-                        string varMessage = objDataService.udfnGetMessages(157);
-                        objDataService.CloseConnection();
-                        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        blnErrorFlag = true;
+                        if (Convert.ToDecimal(txtRRateLive.Text) < Convert.ToDecimal(txtWRateLive.Text))
+                        {
+                            errItems.SetError(txtWRateLive, "Whole sale rate should be lesser than retail rate!");
+                            txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpWRate.ShowAlways = true;
+                            tpWRate.Show("Whole sale rate should be lesser than retail rate!", txtWRateLive, 5000);
+                            blnErrorFlag = true;
+                        }
+                    }
+                    if (Convert.ToString(txtRRateLive.Text).Trim() != "" && Convert.ToString(txtWRateLive.Text).Trim() != "")
+                    {
+                        if (Convert.ToDecimal(txtRRateLive.Text) == 0 && Convert.ToDecimal(txtWRateLive.Text) > 0)
+                        {
+                            txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            SPDataService objDataService = new SPDataService();
+                            string varMessage = objDataService.udfnGetMessages(157);
+                            objDataService.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            blnErrorFlag = true;
+                        }
                     }
                 }
+                
                 if (blnErrorFlag == false)
                 {
                     udfnSave();
@@ -113,12 +123,35 @@ namespace ROMS
         {
             try
             {
+                double varwrate = 0;
+                prevRrate = 0;
+                prevWrate = 0;
+                if (txtWRateLive.Text != "")
+                {
+                    varwrate = Convert.ToDouble(txtWRateLive.Text);
+
+                }
+                if (txtRRatePrev.Text != "")
+                {
+                    prevRrate = Convert.ToDecimal(txtRRatePrev.Text); 
+                }
+                if (txtWRatePrev.Text != "")
+                {
+                    prevWrate = Convert.ToDecimal(txtWRatePrev.Text);
+                }
+                
+
+
+
                 TRN_RateChange objRateChange = new TRN_RateChange();
                 objRateChange.paraViewType = 0;
                 objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text);
                 objRateChange.paraRRate = Convert.ToDouble(txtRRateLive.Text);
-                objRateChange.paraWRate = Convert.ToDouble(txtWRateLive.Text);
+                objRateChange.paraWRate = varwrate;
+                objRateChange.RRate_Prev = Convert.ToDouble(prevRrate);
+                objRateChange.WRate_Prev = Convert.ToDouble(prevWrate);
                 objRateChange.paraTeller = Convert.ToString(txtTeller.Text).Trim();
+                objRateChange.paraType = ratetype;
                 objRateChange.paraOriginator = "Rate Change";
 
                 SPDataService objspservice = new SPDataService();
@@ -189,6 +222,14 @@ namespace ROMS
                 lblStockQty.Text = ""; 
                 lblCurrentStock.Visible = false;
                 lblStockQty.Visible = false;
+
+                Rrate = 0;
+                prevRrate = 0;
+                Wrate = 0;
+                prevWrate = 0;
+                ratetype = 0;
+                rate = 0;
+                prevrate = 0;
             }
             catch (Exception ex)
             {
@@ -476,7 +517,7 @@ namespace ROMS
                     if (txtProductName.Text.Length > 0)
                     {
                         MR_Product objMR_Product = new MR_Product();
-                        objMR_Product.paraViewType = 48;
+                        objMR_Product.paraViewType = 88;
                         objMR_Product.paraProductName = txtProductName.Text;
                         objMR_Product.paraFlag = 1;                         //Load Only Eligible for Sales Products
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
@@ -504,6 +545,17 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+
+
+
+                                    DGV_FilterProduct.Columns["PREV R.Rate"].Visible = false;
+                                    DGV_FilterProduct.Columns["PREV W.Rate"].Visible = false;
+                                    DGV_FilterProduct.Columns["PRPM_TYPE"].Visible = false;
+                                    DGV_FilterProduct.Columns["PRPM_RATE"].Visible = false;
+                                    DGV_FilterProduct.Columns["PRPR_RATE_PREV"].Visible = false;
+                                     
+
+
                                     DGV_FilterProduct.BringToFront();
                                 }
                                 else
@@ -929,6 +981,18 @@ namespace ROMS
                 {
                     lblProductcode.Text =  DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+
+                    Rrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["R.Rate"].Value);
+                    prevRrate = Convert.ToDecimal( DGV_FilterProduct.SelectedRows[0].Cells["PREV R.Rate"].Value); 
+                    Wrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["W.Rate"].Value);
+                    prevWrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PREV W.Rate"].Value);
+                    ratetype = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PRPM_TYPE"].Value);
+                    rate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PRPM_RATE"].Value);
+                    prevrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PRPR_RATE_PREV"].Value);
+
+
+                    lblPICode.Text = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value);
+
                     udfnListviewProduct();
                 } 
             }
@@ -1045,7 +1109,6 @@ namespace ROMS
                             {
                                 if (objDs.Tables[0].Rows.Count != 0)
                                 {
-                                    lblPICode.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PICODE"]);
                                     lblSubGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Subgroup Name"]);
                                     lblGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Group Name"]);
                                     lblProductName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["ENAME"]);
@@ -1077,6 +1140,30 @@ namespace ROMS
                                         lblStockQty.Visible = true;
                                         lblStockQty.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CurrentStock"]) + " " + Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]);
                                     }
+
+
+                                    txtWRatePrev.Enabled = false;
+                                    txtWRateLast.Enabled = false;
+
+                                    if (ratetype != 448)
+                                    { 
+                                        txtRRatePrev.Text = Convert.ToString(rate);
+                                        txtRRateLast.Text = Convert.ToString(prevrate); 
+                                        txtWRatePrev.Text = "0";
+                                        txtWRateLast.Text = "0"; 
+                                        txtWRateLive.Enabled = false;
+                                    }
+                                    else
+                                    { 
+                                        txtWRateLive.Enabled = true;
+                                        txtRRatePrev.Text = Convert.ToString(Rrate);
+                                        txtRRateLast.Text = Convert.ToString(prevRrate);
+                                        txtWRatePrev.Text = Convert.ToString(Wrate);
+                                        txtWRateLast.Text = Convert.ToString(prevWrate);
+                                    } 
+
+
+                                    lblProductName.Text = txtProductName.Text;
                                 }
                                 else { udfnclear(); }
                             }

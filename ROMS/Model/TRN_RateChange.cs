@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace ROMS.Model
         public int paraProductID { get; set; } = 0;
         public double paraRRate { get; set; } = 0;
         public double paraWRate { get; set; } = 0;
+        public double WRate_Prev { get; set; } = 0;
+        public double RRate_Prev { get; set; } = 0;
         public string paraTeller { get; set; } = "";
         public string paraOriginator { get; set; } = "";
         public int paraGroupID { get; set; } = 0;
@@ -23,5 +26,8 @@ namespace ROMS.Model
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
         public int paraCompanyCode { get; set; } = 0;
+
+        public  DataTable paraApprove { get; set; } = null;
+
     }
 }

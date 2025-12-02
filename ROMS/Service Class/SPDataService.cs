@@ -4062,6 +4062,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTrnRateChange.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objTrnRateChange.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraRRatePrev", objTrnRateChange.RRate_Prev);
+                varSqlCommand.Parameters.AddWithValue("@paraWRatePrev", objTrnRateChange.WRate_Prev);
+                varSqlCommand.Parameters.AddWithValue("@paraApprove", objTrnRateChange.paraApprove);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

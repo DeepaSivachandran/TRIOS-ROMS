@@ -85,6 +85,7 @@ namespace ROMS
             this.tsmRack = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRackGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
+            this.tpProductClassification = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEmployeee = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,6 +104,7 @@ namespace ROMS
             this.tsmProCodeUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRepresentative = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRateApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStickerPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDirectLabelPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUserRole = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,7 +202,6 @@ namespace ROMS
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tpProductClassification = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -607,6 +608,7 @@ namespace ROMS
             this.tsmBulkUpdate,
             this.tsmRepresentative,
             this.tsmRateChange,
+            this.tsmRateApproval,
             this.tsmStickerPrint,
             this.tsmDirectLabelPrint,
             this.tsmUserRole});
@@ -712,6 +714,13 @@ namespace ROMS
             this.tsmProduct.Text = "Product";
             this.tsmProduct.Visible = false;
             this.tsmProduct.Click += new System.EventHandler(this.Tsmitem_Click);
+            // 
+            // tpProductClassification
+            // 
+            this.tpProductClassification.Name = "tpProductClassification";
+            this.tpProductClassification.Size = new System.Drawing.Size(225, 22);
+            this.tpProductClassification.Text = "Product Classification";
+            this.tpProductClassification.Click += new System.EventHandler(this.tpProductClassification_Click);
             // 
             // tsmProductApproval
             // 
@@ -866,6 +875,13 @@ namespace ROMS
             this.tsmRateChange.Visible = false;
             this.tsmRateChange.Click += new System.EventHandler(this.tsmRateChange_Click);
             // 
+            // tsmRateApproval
+            // 
+            this.tsmRateApproval.Name = "tsmRateApproval";
+            this.tsmRateApproval.Size = new System.Drawing.Size(225, 22);
+            this.tsmRateApproval.Text = "Rate Change Approval";
+            this.tsmRateApproval.Click += new System.EventHandler(this.tsmRateApproval_Click);
+            // 
             // tsmStickerPrint
             // 
             this.tsmStickerPrint.Name = "tsmStickerPrint";
@@ -909,7 +925,7 @@ namespace ROMS
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -917,7 +933,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -925,7 +941,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -933,7 +949,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
@@ -1763,13 +1779,6 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tpProductClassification
-            // 
-            this.tpProductClassification.Name = "tpProductClassification";
-            this.tpProductClassification.Size = new System.Drawing.Size(225, 22);
-            this.tpProductClassification.Text = "Product Classification";
-            this.tpProductClassification.Click += new System.EventHandler(this.tpProductClassification_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -1974,5 +1983,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournalReport;
         private System.Windows.Forms.ToolStripMenuItem tsmStockDetailsReport;
         private System.Windows.Forms.ToolStripMenuItem tpProductClassification;
+        private System.Windows.Forms.ToolStripMenuItem tsmRateApproval;
     }
 }

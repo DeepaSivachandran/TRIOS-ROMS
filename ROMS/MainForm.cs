@@ -149,6 +149,7 @@ namespace ROMS
         public static LabelCount objLabelCount;
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
+        public static CP_Rate_ChangeApproval objCP_Rate_ChangeApproval;
         public static CP_StickerPrint objCP_StickerPrint;
         // added by venkat on 09-08-2025
         public static CP_DirectLabelPrint objCP_DirectLabelPrint;
@@ -4252,6 +4253,19 @@ namespace ROMS
                 objCP_Spl_Products_Bulk.Text = "Product Classification";
                 objCP_Spl_Products_Bulk.tspHeader.Text = "Product Classification";
                 PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRateApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 521);
             }
             catch (Exception ex)
             {
