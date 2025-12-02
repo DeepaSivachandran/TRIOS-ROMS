@@ -55,14 +55,15 @@ namespace ROMS.Model
         // -------------------- Customer --------------------
         public int paraCustomerId { get; set; } = 0;
         public string paraCUS_Name { get; set; } = "";
-        public string paraCUS_MobileNo { get; set; } = "";
-        public string paraCUS_PhoneNo { get; set; } = "";
+        public string paraCUS_ContactNo { get; set; } = "";
+        public string paraCUS_WhatsappNo { get; set; } = "";
         public int paraCUS_CategoryTypeID { get; set; } = 0;
         public int paraCUS_TypeID { get; set; } = 0;
         public string paraCUS_GSTIN { get; set; } = "";
         public int paraCUS_Credit_Limit { get; set; } = 0;
         public string paraCUS_ReferenceName { get; set; } = "";
         public int paraCUS_CreditDays { get; set; } = 0;
+        public int paraCUS_TotalInvoice { get; set; } = 0;
         public float paraCUS_OpeningBalance { get; set; } = 0;
         public int paraCUS_OpeningBalanceType { get; set; } = 0;
 

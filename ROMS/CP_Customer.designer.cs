@@ -36,6 +36,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.grbForm = new System.Windows.Forms.GroupBox();
             this.grbShippingAddress = new System.Windows.Forms.GroupBox();
+            this.lblShipAreaId = new System.Windows.Forms.Label();
+            this.lvShipArea = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.txtShipArea = new System.Windows.Forms.TextBox();
             this.chkSameasBilling = new System.Windows.Forms.CheckBox();
@@ -56,6 +62,12 @@
             this.textBox24 = new System.Windows.Forms.TextBox();
             this.textBox25 = new System.Windows.Forms.TextBox();
             this.grbBillingAddress = new System.Windows.Forms.GroupBox();
+            this.lblAreaId = new System.Windows.Forms.Label();
+            this.lvArea = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox26 = new System.Windows.Forms.TextBox();
             this.txtArea = new System.Windows.Forms.TextBox();
             this.lvCity = new System.Windows.Forms.ListView();
@@ -75,6 +87,12 @@
             this.txtDPincode = new System.Windows.Forms.TextBox();
             this.txtDArea = new System.Windows.Forms.TextBox();
             this.grbPersonlDetails = new System.Windows.Forms.GroupBox();
+            this.txtTotalInvoice = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.pnlStatus = new System.Windows.Forms.Panel();
+            this.rbCash = new System.Windows.Forms.RadioButton();
+            this.rbCredit = new System.Windows.Forms.RadioButton();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.cmbOBType = new System.Windows.Forms.ComboBox();
             this.txtOBAmt = new System.Windows.Forms.TextBox();
             this.textBox27 = new System.Windows.Forms.TextBox();
@@ -96,22 +114,10 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.lvArea = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvShipArea = new System.Windows.Forms.ListView();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblAreaId = new System.Windows.Forms.Label();
-            this.lblShipAreaId = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.pnlStatus = new System.Windows.Forms.Panel();
-            this.rbCash = new System.Windows.Forms.RadioButton();
-            this.rbCredit = new System.Windows.Forms.RadioButton();
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.epCustomer)).BeginInit();
             this.grbForm.SuspendLayout();
             this.grbShippingAddress.SuspendLayout();
@@ -181,11 +187,9 @@
             // grbShippingAddress
             // 
             this.grbShippingAddress.Controls.Add(this.lblShipAreaId);
-            this.grbShippingAddress.Controls.Add(this.lvShipArea);
             this.grbShippingAddress.Controls.Add(this.textBox28);
             this.grbShippingAddress.Controls.Add(this.txtShipArea);
             this.grbShippingAddress.Controls.Add(this.chkSameasBilling);
-            this.grbShippingAddress.Controls.Add(this.lvShipCity);
             this.grbShippingAddress.Controls.Add(this.txtShipLandmark);
             this.grbShippingAddress.Controls.Add(this.textBox16);
             this.grbShippingAddress.Controls.Add(this.txtShipaddress1);
@@ -206,12 +210,60 @@
             this.grbShippingAddress.TabStop = false;
             this.grbShippingAddress.Text = "Shipping Address";
             // 
+            // lblShipAreaId
+            // 
+            this.lblShipAreaId.AutoSize = true;
+            this.lblShipAreaId.Location = new System.Drawing.Point(519, 114);
+            this.lblShipAreaId.Name = "lblShipAreaId";
+            this.lblShipAreaId.Size = new System.Drawing.Size(16, 20);
+            this.lblShipAreaId.TabIndex = 1111148;
+            this.lblShipAreaId.Text = "0";
+            this.lblShipAreaId.Visible = false;
+            // 
+            // lvShipArea
+            // 
+            this.lvShipArea.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader15,
+            this.columnHeader16});
+            this.lvShipArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvShipArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvShipArea.HideSelection = false;
+            this.lvShipArea.Location = new System.Drawing.Point(109, 338);
+            this.lvShipArea.Name = "lvShipArea";
+            this.lvShipArea.Size = new System.Drawing.Size(223, 90);
+            this.lvShipArea.TabIndex = 1111147;
+            this.lvShipArea.UseCompatibleStateImageBehavior = false;
+            this.lvShipArea.View = System.Windows.Forms.View.Details;
+            this.lvShipArea.Visible = false;
+            this.lvShipArea.DoubleClick += new System.EventHandler(this.lvShipArea_DoubleClick);
+            this.lvShipArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvShipArea_KeyDown);
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Width = 200;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Width = 0;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Width = 0;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Width = 0;
+            // 
             // textBox28
             // 
             this.textBox28.BackColor = System.Drawing.SystemColors.Control;
             this.textBox28.Enabled = false;
             this.textBox28.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox28.Location = new System.Drawing.Point(15, 135);
+            this.textBox28.Location = new System.Drawing.Point(15, 107);
             this.textBox28.Name = "textBox28";
             this.textBox28.ReadOnly = true;
             this.textBox28.Size = new System.Drawing.Size(107, 27);
@@ -221,11 +273,12 @@
             // txtShipArea
             // 
             this.txtShipArea.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtShipArea.Location = new System.Drawing.Point(122, 135);
+            this.txtShipArea.Location = new System.Drawing.Point(122, 107);
             this.txtShipArea.MaxLength = 50;
             this.txtShipArea.Name = "txtShipArea";
             this.txtShipArea.Size = new System.Drawing.Size(397, 27);
             this.txtShipArea.TabIndex = 91;
+            this.txtShipArea.TextChanged += new System.EventHandler(this.txtShipArea_TextChanged);
             this.txtShipArea.Enter += new System.EventHandler(this.txtShipArea_Enter);
             this.txtShipArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipArea_KeyDown);
             this.txtShipArea.Leave += new System.EventHandler(this.txtShipArea_Leave);
@@ -248,7 +301,7 @@
             this.columnHeader4});
             this.lvShipCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvShipCity.HideSelection = false;
-            this.lvShipCity.Location = new System.Drawing.Point(122, 190);
+            this.lvShipCity.Location = new System.Drawing.Point(15, 388);
             this.lvShipCity.Name = "lvShipCity";
             this.lvShipCity.Size = new System.Drawing.Size(210, 52);
             this.lvShipCity.TabIndex = 78;
@@ -305,7 +358,7 @@
             // txtShipCity
             // 
             this.txtShipCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtShipCity.Location = new System.Drawing.Point(122, 163);
+            this.txtShipCity.Location = new System.Drawing.Point(122, 135);
             this.txtShipCity.MaxLength = 50;
             this.txtShipCity.Name = "txtShipCity";
             this.txtShipCity.Size = new System.Drawing.Size(210, 27);
@@ -318,7 +371,7 @@
             // txtShipPincode
             // 
             this.txtShipPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtShipPincode.Location = new System.Drawing.Point(385, 163);
+            this.txtShipPincode.Location = new System.Drawing.Point(385, 135);
             this.txtShipPincode.MaxLength = 6;
             this.txtShipPincode.Name = "txtShipPincode";
             this.txtShipPincode.Size = new System.Drawing.Size(134, 27);
@@ -342,7 +395,7 @@
             // 
             this.cmbShipState.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.cmbShipState.FormattingEnabled = true;
-            this.cmbShipState.Location = new System.Drawing.Point(122, 106);
+            this.cmbShipState.Location = new System.Drawing.Point(122, 162);
             this.cmbShipState.Name = "cmbShipState";
             this.cmbShipState.Size = new System.Drawing.Size(210, 28);
             this.cmbShipState.TabIndex = 26;
@@ -369,7 +422,7 @@
             this.textBox21.BackColor = System.Drawing.SystemColors.Control;
             this.textBox21.Enabled = false;
             this.textBox21.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox21.Location = new System.Drawing.Point(15, 163);
+            this.textBox21.Location = new System.Drawing.Point(15, 135);
             this.textBox21.Name = "textBox21";
             this.textBox21.ReadOnly = true;
             this.textBox21.Size = new System.Drawing.Size(107, 27);
@@ -393,7 +446,7 @@
             this.textBox23.BackColor = System.Drawing.SystemColors.Control;
             this.textBox23.Enabled = false;
             this.textBox23.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox23.Location = new System.Drawing.Point(15, 107);
+            this.textBox23.Location = new System.Drawing.Point(15, 163);
             this.textBox23.Name = "textBox23";
             this.textBox23.ReadOnly = true;
             this.textBox23.Size = new System.Drawing.Size(107, 27);
@@ -405,7 +458,7 @@
             this.textBox24.BackColor = System.Drawing.SystemColors.Control;
             this.textBox24.Enabled = false;
             this.textBox24.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox24.Location = new System.Drawing.Point(332, 163);
+            this.textBox24.Location = new System.Drawing.Point(332, 135);
             this.textBox24.Name = "textBox24";
             this.textBox24.ReadOnly = true;
             this.textBox24.Size = new System.Drawing.Size(53, 27);
@@ -427,10 +480,8 @@
             // grbBillingAddress
             // 
             this.grbBillingAddress.Controls.Add(this.lblAreaId);
-            this.grbBillingAddress.Controls.Add(this.lvArea);
             this.grbBillingAddress.Controls.Add(this.textBox26);
             this.grbBillingAddress.Controls.Add(this.txtArea);
-            this.grbBillingAddress.Controls.Add(this.lvCity);
             this.grbBillingAddress.Controls.Add(this.txtLandmark);
             this.grbBillingAddress.Controls.Add(this.textBox14);
             this.grbBillingAddress.Controls.Add(this.txtaddress1);
@@ -451,12 +502,60 @@
             this.grbBillingAddress.TabStop = false;
             this.grbBillingAddress.Text = "Billing Address";
             // 
+            // lblAreaId
+            // 
+            this.lblAreaId.AutoSize = true;
+            this.lblAreaId.Location = new System.Drawing.Point(509, 85);
+            this.lblAreaId.Name = "lblAreaId";
+            this.lblAreaId.Size = new System.Drawing.Size(16, 20);
+            this.lblAreaId.TabIndex = 1111147;
+            this.lblAreaId.Text = "0";
+            this.lblAreaId.Visible = false;
+            // 
+            // lvArea
+            // 
+            this.lvArea.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader13,
+            this.columnHeader14});
+            this.lvArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvArea.HideSelection = false;
+            this.lvArea.Location = new System.Drawing.Point(15, 337);
+            this.lvArea.Name = "lvArea";
+            this.lvArea.Size = new System.Drawing.Size(223, 90);
+            this.lvArea.TabIndex = 1111146;
+            this.lvArea.UseCompatibleStateImageBehavior = false;
+            this.lvArea.View = System.Windows.Forms.View.Details;
+            this.lvArea.Visible = false;
+            this.lvArea.DoubleClick += new System.EventHandler(this.lvArea_DoubleClick);
+            this.lvArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvArea_KeyDown);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Width = 200;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Width = 0;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Width = 0;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Width = 0;
+            // 
             // textBox26
             // 
             this.textBox26.BackColor = System.Drawing.SystemColors.Control;
             this.textBox26.Enabled = false;
             this.textBox26.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox26.Location = new System.Drawing.Point(15, 111);
+            this.textBox26.Location = new System.Drawing.Point(15, 83);
             this.textBox26.Name = "textBox26";
             this.textBox26.ReadOnly = true;
             this.textBox26.Size = new System.Drawing.Size(107, 27);
@@ -466,11 +565,12 @@
             // txtArea
             // 
             this.txtArea.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtArea.Location = new System.Drawing.Point(122, 111);
+            this.txtArea.Location = new System.Drawing.Point(122, 83);
             this.txtArea.MaxLength = 50;
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(397, 27);
             this.txtArea.TabIndex = 89;
+            this.txtArea.TextChanged += new System.EventHandler(this.txtArea_TextChanged);
             this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter);
             this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
             this.txtArea.Leave += new System.EventHandler(this.txtArea_Leave);
@@ -482,7 +582,7 @@
             this.columnHeader3});
             this.lvCity.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvCity.HideSelection = false;
-            this.lvCity.Location = new System.Drawing.Point(122, 166);
+            this.lvCity.Location = new System.Drawing.Point(15, 337);
             this.lvCity.Name = "lvCity";
             this.lvCity.Size = new System.Drawing.Size(210, 52);
             this.lvCity.TabIndex = 78;
@@ -539,7 +639,7 @@
             // txtCity
             // 
             this.txtCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCity.Location = new System.Drawing.Point(122, 139);
+            this.txtCity.Location = new System.Drawing.Point(122, 111);
             this.txtCity.MaxLength = 50;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(210, 27);
@@ -552,7 +652,7 @@
             // txtPincode
             // 
             this.txtPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPincode.Location = new System.Drawing.Point(385, 139);
+            this.txtPincode.Location = new System.Drawing.Point(385, 111);
             this.txtPincode.MaxLength = 6;
             this.txtPincode.Name = "txtPincode";
             this.txtPincode.Size = new System.Drawing.Size(134, 27);
@@ -576,7 +676,7 @@
             // 
             this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(122, 82);
+            this.cmbState.Location = new System.Drawing.Point(122, 138);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(210, 28);
             this.cmbState.TabIndex = 26;
@@ -603,7 +703,7 @@
             this.txtDCity.BackColor = System.Drawing.SystemColors.Control;
             this.txtDCity.Enabled = false;
             this.txtDCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDCity.Location = new System.Drawing.Point(15, 139);
+            this.txtDCity.Location = new System.Drawing.Point(15, 111);
             this.txtDCity.Name = "txtDCity";
             this.txtDCity.ReadOnly = true;
             this.txtDCity.Size = new System.Drawing.Size(107, 27);
@@ -627,7 +727,7 @@
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(15, 83);
+            this.textBox6.Location = new System.Drawing.Point(15, 139);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(107, 27);
@@ -639,7 +739,7 @@
             this.txtDPincode.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPincode.Enabled = false;
             this.txtDPincode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPincode.Location = new System.Drawing.Point(332, 139);
+            this.txtDPincode.Location = new System.Drawing.Point(332, 111);
             this.txtDPincode.Name = "txtDPincode";
             this.txtDPincode.ReadOnly = true;
             this.txtDPincode.Size = new System.Drawing.Size(53, 27);
@@ -660,8 +760,14 @@
             // 
             // grbPersonlDetails
             // 
+            this.grbPersonlDetails.Controls.Add(this.txtTotalInvoice);
+            this.grbPersonlDetails.Controls.Add(this.lvShipArea);
+            this.grbPersonlDetails.Controls.Add(this.lvArea);
+            this.grbPersonlDetails.Controls.Add(this.textBox11);
             this.grbPersonlDetails.Controls.Add(this.pnlStatus);
             this.grbPersonlDetails.Controls.Add(this.textBox10);
+            this.grbPersonlDetails.Controls.Add(this.lvCity);
+            this.grbPersonlDetails.Controls.Add(this.lvShipCity);
             this.grbPersonlDetails.Controls.Add(this.cmbOBType);
             this.grbPersonlDetails.Controls.Add(this.txtOBAmt);
             this.grbPersonlDetails.Controls.Add(this.textBox27);
@@ -691,6 +797,93 @@
             this.grbPersonlDetails.TabStop = false;
             this.grbPersonlDetails.Text = "Personal Details";
             // 
+            // txtTotalInvoice
+            // 
+            this.txtTotalInvoice.Enabled = false;
+            this.txtTotalInvoice.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtTotalInvoice.Location = new System.Drawing.Point(122, 219);
+            this.txtTotalInvoice.MaxLength = 3;
+            this.txtTotalInvoice.Name = "txtTotalInvoice";
+            this.txtTotalInvoice.ReadOnly = true;
+            this.txtTotalInvoice.Size = new System.Drawing.Size(210, 27);
+            this.txtTotalInvoice.TabIndex = 9;
+            this.txtTotalInvoice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotalInvoice.Enter += new System.EventHandler(this.txtTotalInvoice_Enter);
+            this.txtTotalInvoice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTotalInvoice_KeyDown);
+            this.txtTotalInvoice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalInvoice_KeyPress);
+            this.txtTotalInvoice.Leave += new System.EventHandler(this.txtTotalInvoice_Leave);
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox11.Enabled = false;
+            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox11.Location = new System.Drawing.Point(202, 191);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(74, 27);
+            this.textBox11.TabIndex = 84;
+            this.textBox11.Text = "Credit Days";
+            // 
+            // pnlStatus
+            // 
+            this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlStatus.Controls.Add(this.rbCash);
+            this.pnlStatus.Controls.Add(this.rbCredit);
+            this.pnlStatus.Location = new System.Drawing.Point(122, 163);
+            this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlStatus.Name = "pnlStatus";
+            this.pnlStatus.Size = new System.Drawing.Size(210, 27);
+            this.pnlStatus.TabIndex = 5;
+            // 
+            // rbCash
+            // 
+            this.rbCash.AutoSize = true;
+            this.rbCash.Checked = true;
+            this.rbCash.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCash.Location = new System.Drawing.Point(37, 1);
+            this.rbCash.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbCash.Name = "rbCash";
+            this.rbCash.Size = new System.Drawing.Size(54, 24);
+            this.rbCash.TabIndex = 5;
+            this.rbCash.TabStop = true;
+            this.rbCash.Text = "Cash";
+            this.rbCash.UseVisualStyleBackColor = true;
+            this.rbCash.CheckedChanged += new System.EventHandler(this.rbCash_CheckedChanged);
+            this.rbCash.Enter += new System.EventHandler(this.rbCash_Enter);
+            this.rbCash.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbCash_KeyDown);
+            this.rbCash.Leave += new System.EventHandler(this.rbCash_Leave);
+            // 
+            // rbCredit
+            // 
+            this.rbCredit.AutoSize = true;
+            this.rbCredit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCredit.Location = new System.Drawing.Point(105, 1);
+            this.rbCredit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbCredit.Name = "rbCredit";
+            this.rbCredit.Size = new System.Drawing.Size(61, 24);
+            this.rbCredit.TabIndex = 6;
+            this.rbCredit.Text = "Credit";
+            this.rbCredit.UseVisualStyleBackColor = true;
+            this.rbCredit.CheckedChanged += new System.EventHandler(this.rbCredit_CheckedChanged);
+            this.rbCredit.Enter += new System.EventHandler(this.rbCredit_Enter);
+            this.rbCredit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbCredit_KeyDown);
+            this.rbCredit.Leave += new System.EventHandler(this.rbCredit_Leave);
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox10.Location = new System.Drawing.Point(15, 163);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(107, 27);
+            this.textBox10.TabIndex = 82;
+            this.textBox10.Text = "Customer Type";
+            // 
             // cmbOBType
             // 
             this.cmbOBType.Enabled = false;
@@ -703,7 +896,7 @@
             this.cmbOBType.Location = new System.Drawing.Point(289, 246);
             this.cmbOBType.Name = "cmbOBType";
             this.cmbOBType.Size = new System.Drawing.Size(43, 27);
-            this.cmbOBType.TabIndex = 81;
+            this.cmbOBType.TabIndex = 11;
             this.cmbOBType.Enter += new System.EventHandler(this.cmbOBType_Enter);
             this.cmbOBType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOBType_KeyDown);
             this.cmbOBType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbOBType_KeyPress);
@@ -718,7 +911,7 @@
             this.txtOBAmt.Name = "txtOBAmt";
             this.txtOBAmt.ReadOnly = true;
             this.txtOBAmt.Size = new System.Drawing.Size(147, 27);
-            this.txtOBAmt.TabIndex = 80;
+            this.txtOBAmt.TabIndex = 10;
             this.txtOBAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtOBAmt.Enter += new System.EventHandler(this.txtOBAmt_Enter);
             this.txtOBAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOBAmt_KeyDown);
@@ -753,12 +946,13 @@
             // 
             this.txtCreditDays.Enabled = false;
             this.txtCreditDays.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCreditDays.Location = new System.Drawing.Point(122, 219);
-            this.txtCreditDays.MaxLength = 10;
+            this.txtCreditDays.Location = new System.Drawing.Point(275, 191);
+            this.txtCreditDays.MaxLength = 3;
             this.txtCreditDays.Name = "txtCreditDays";
             this.txtCreditDays.ReadOnly = true;
-            this.txtCreditDays.Size = new System.Drawing.Size(210, 27);
-            this.txtCreditDays.TabIndex = 24;
+            this.txtCreditDays.Size = new System.Drawing.Size(57, 27);
+            this.txtCreditDays.TabIndex = 8;
+            this.txtCreditDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCreditDays.Enter += new System.EventHandler(this.txtCreditDays_Enter);
             this.txtCreditDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCreditDays_KeyDown);
             this.txtCreditDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCreditDays_KeyPress);
@@ -775,7 +969,7 @@
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(107, 27);
             this.textBox12.TabIndex = 25;
-            this.textBox12.Text = "Credit Days";
+            this.textBox12.Text = "Total Invoices";
             // 
             // textBox9
             // 
@@ -798,7 +992,7 @@
             this.txtReferenceName.MaxLength = 30;
             this.txtReferenceName.Name = "txtReferenceName";
             this.txtReferenceName.Size = new System.Drawing.Size(210, 27);
-            this.txtReferenceName.TabIndex = 13;
+            this.txtReferenceName.TabIndex = 1;
             this.txtReferenceName.Enter += new System.EventHandler(this.txtReferenceName_Enter);
             this.txtReferenceName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtReferenceName_KeyDown);
             this.txtReferenceName.Leave += new System.EventHandler(this.txtReferenceName_Leave);
@@ -810,7 +1004,7 @@
             this.txtWhatsappNo.MaxLength = 10;
             this.txtWhatsappNo.Name = "txtWhatsappNo";
             this.txtWhatsappNo.Size = new System.Drawing.Size(210, 27);
-            this.txtWhatsappNo.TabIndex = 15;
+            this.txtWhatsappNo.TabIndex = 3;
             this.txtWhatsappNo.Enter += new System.EventHandler(this.txtWhatsappNo_Enter);
             this.txtWhatsappNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWhatsappNo_KeyDown);
             this.txtWhatsappNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWhatsappNo_KeyPress);
@@ -823,7 +1017,7 @@
             this.txtContactNo.MaxLength = 15;
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(210, 27);
-            this.txtContactNo.TabIndex = 14;
+            this.txtContactNo.TabIndex = 2;
             this.txtContactNo.Enter += new System.EventHandler(this.txtContactNo_Enter);
             this.txtContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContactNo_KeyDown);
             this.txtContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactNo_KeyPress);
@@ -836,7 +1030,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(122, 301);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(210, 28);
-            this.cmbStatus.TabIndex = 25;
+            this.cmbStatus.TabIndex = 13;
             this.cmbStatus.Enter += new System.EventHandler(this.cmbStatus_Enter);
             this.cmbStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStatus_KeyDown);
             this.cmbStatus.Leave += new System.EventHandler(this.cmbStatus_Leave);
@@ -874,7 +1068,7 @@
             this.cmbCustomerType.Location = new System.Drawing.Point(122, 135);
             this.cmbCustomerType.Name = "cmbCustomerType";
             this.cmbCustomerType.Size = new System.Drawing.Size(210, 28);
-            this.cmbCustomerType.TabIndex = 18;
+            this.cmbCustomerType.TabIndex = 4;
             this.cmbCustomerType.SelectedIndexChanged += new System.EventHandler(this.cmbCustomerType_SelectedIndexChanged);
             this.cmbCustomerType.Enter += new System.EventHandler(this.cmbCustomerType_Enter);
             this.cmbCustomerType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCustomerType_KeyDown);
@@ -890,7 +1084,7 @@
             this.txtGSTIN.Name = "txtGSTIN";
             this.txtGSTIN.ReadOnly = true;
             this.txtGSTIN.Size = new System.Drawing.Size(210, 27);
-            this.txtGSTIN.TabIndex = 21;
+            this.txtGSTIN.TabIndex = 12;
             this.txtGSTIN.Enter += new System.EventHandler(this.txtGSTIN_Enter);
             this.txtGSTIN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGSTIN_KeyDown);
             this.txtGSTIN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGSTIN_KeyPress);
@@ -927,11 +1121,11 @@
             this.txtCreditLimit.Enabled = false;
             this.txtCreditLimit.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtCreditLimit.Location = new System.Drawing.Point(122, 191);
-            this.txtCreditLimit.MaxLength = 3;
+            this.txtCreditLimit.MaxLength = 6;
             this.txtCreditLimit.Name = "txtCreditLimit";
             this.txtCreditLimit.ReadOnly = true;
-            this.txtCreditLimit.Size = new System.Drawing.Size(210, 27);
-            this.txtCreditLimit.TabIndex = 23;
+            this.txtCreditLimit.Size = new System.Drawing.Size(79, 27);
+            this.txtCreditLimit.TabIndex = 7;
             this.txtCreditLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCreditLimit.Enter += new System.EventHandler(this.txtCreditLimit_Enter);
             this.txtCreditLimit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCreditLimit_KeyDown);
@@ -983,151 +1177,21 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // lvArea
+            // columnHeader13
             // 
-            this.lvArea.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.lvArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvArea.HideSelection = false;
-            this.lvArea.Location = new System.Drawing.Point(109, 48);
-            this.lvArea.Name = "lvArea";
-            this.lvArea.Size = new System.Drawing.Size(223, 90);
-            this.lvArea.TabIndex = 1111146;
-            this.lvArea.UseCompatibleStateImageBehavior = false;
-            this.lvArea.View = System.Windows.Forms.View.Details;
-            this.lvArea.Visible = false;
+            this.columnHeader13.Width = 0;
             // 
-            // columnHeader5
+            // columnHeader14
             // 
-            this.columnHeader5.Width = 200;
+            this.columnHeader14.Width = 0;
             // 
-            // columnHeader6
+            // columnHeader15
             // 
-            this.columnHeader6.Width = 0;
+            this.columnHeader15.Width = 0;
             // 
-            // columnHeader7
+            // columnHeader16
             // 
-            this.columnHeader7.Width = 0;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Width = 0;
-            // 
-            // lvShipArea
-            // 
-            this.lvShipArea.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12});
-            this.lvShipArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvShipArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvShipArea.HideSelection = false;
-            this.lvShipArea.Location = new System.Drawing.Point(15, 72);
-            this.lvShipArea.Name = "lvShipArea";
-            this.lvShipArea.Size = new System.Drawing.Size(223, 90);
-            this.lvShipArea.TabIndex = 1111147;
-            this.lvShipArea.UseCompatibleStateImageBehavior = false;
-            this.lvShipArea.View = System.Windows.Forms.View.Details;
-            this.lvShipArea.Visible = false;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Width = 200;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Width = 0;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Width = 0;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Width = 0;
-            // 
-            // lblAreaId
-            // 
-            this.lblAreaId.AutoSize = true;
-            this.lblAreaId.Location = new System.Drawing.Point(509, 85);
-            this.lblAreaId.Name = "lblAreaId";
-            this.lblAreaId.Size = new System.Drawing.Size(16, 20);
-            this.lblAreaId.TabIndex = 1111147;
-            this.lblAreaId.Text = "0";
-            this.lblAreaId.Visible = false;
-            // 
-            // lblShipAreaId
-            // 
-            this.lblShipAreaId.AutoSize = true;
-            this.lblShipAreaId.Location = new System.Drawing.Point(519, 114);
-            this.lblShipAreaId.Name = "lblShipAreaId";
-            this.lblShipAreaId.Size = new System.Drawing.Size(16, 20);
-            this.lblShipAreaId.TabIndex = 1111148;
-            this.lblShipAreaId.Text = "0";
-            this.lblShipAreaId.Visible = false;
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox10.Location = new System.Drawing.Point(15, 163);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(107, 27);
-            this.textBox10.TabIndex = 82;
-            this.textBox10.Text = "Customer Type";
-            // 
-            // pnlStatus
-            // 
-            this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlStatus.Controls.Add(this.rbCash);
-            this.pnlStatus.Controls.Add(this.rbCredit);
-            this.pnlStatus.Location = new System.Drawing.Point(122, 163);
-            this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(210, 27);
-            this.pnlStatus.TabIndex = 83;
-            // 
-            // rbCash
-            // 
-            this.rbCash.AutoSize = true;
-            this.rbCash.Checked = true;
-            this.rbCash.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCash.Location = new System.Drawing.Point(37, 1);
-            this.rbCash.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.rbCash.Name = "rbCash";
-            this.rbCash.Size = new System.Drawing.Size(54, 24);
-            this.rbCash.TabIndex = 2;
-            this.rbCash.TabStop = true;
-            this.rbCash.Text = "Cash";
-            this.rbCash.UseVisualStyleBackColor = true;
-            this.rbCash.CheckedChanged += new System.EventHandler(this.rbCash_CheckedChanged);
-            this.rbCash.Enter += new System.EventHandler(this.rbCash_Enter);
-            this.rbCash.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbCash_KeyDown);
-            this.rbCash.Leave += new System.EventHandler(this.rbCash_Leave);
-            // 
-            // rbCredit
-            // 
-            this.rbCredit.AutoSize = true;
-            this.rbCredit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCredit.Location = new System.Drawing.Point(105, 1);
-            this.rbCredit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.rbCredit.Name = "rbCredit";
-            this.rbCredit.Size = new System.Drawing.Size(61, 24);
-            this.rbCredit.TabIndex = 3;
-            this.rbCredit.Text = "Credit";
-            this.rbCredit.UseVisualStyleBackColor = true;
-            this.rbCredit.CheckedChanged += new System.EventHandler(this.rbCredit_CheckedChanged);
-            this.rbCredit.Enter += new System.EventHandler(this.rbCredit_Enter);
-            this.rbCredit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbCredit_KeyDown);
-            this.rbCredit.Leave += new System.EventHandler(this.rbCredit_Leave);
+            this.columnHeader16.Width = 0;
             // 
             // CP_Customer
             // 
@@ -1245,5 +1309,11 @@
         private System.Windows.Forms.Panel pnlStatus;
         private System.Windows.Forms.RadioButton rbCash;
         private System.Windows.Forms.RadioButton rbCredit;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtTotalInvoice;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
     }
 }

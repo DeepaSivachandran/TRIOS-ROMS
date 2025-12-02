@@ -5451,14 +5451,15 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
                 cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
                 cmd.Parameters.AddWithValue("@paraCUS_Name", obj.paraCUS_Name);
-                cmd.Parameters.AddWithValue("@paraCUS_MobileNo", obj.paraCUS_MobileNo);
-                cmd.Parameters.AddWithValue("@paraCUS_PhoneNo", obj.paraCUS_PhoneNo);
+                cmd.Parameters.AddWithValue("@paraCUS_ContactNo", obj.paraCUS_ContactNo);
+                cmd.Parameters.AddWithValue("@paraCUS_WhatsappNo", obj.paraCUS_WhatsappNo);
                 cmd.Parameters.AddWithValue("@paraCUS_CategoryTypeID", obj.paraCUS_CategoryTypeID);
                 cmd.Parameters.AddWithValue("@paraCUS_TypeID", obj.paraCUS_TypeID);
                 cmd.Parameters.AddWithValue("@paraCUS_GSTIN", obj.paraCUS_GSTIN);
                 cmd.Parameters.AddWithValue("@paraCUS_Credit_Limit", obj.paraCUS_Credit_Limit);
                 cmd.Parameters.AddWithValue("@paraCUS_ReferenceName", obj.paraCUS_ReferenceName);
                 cmd.Parameters.AddWithValue("@paraCUS_CreditDays", obj.paraCUS_CreditDays);
+                cmd.Parameters.AddWithValue("@paraCUS_TotalInvoice", obj.paraCUS_TotalInvoice);
                 cmd.Parameters.AddWithValue("@paraCUS_OpeningBalance", obj.paraCUS_OpeningBalance);
                 cmd.Parameters.AddWithValue("@paraCUS_OpeningBalanceType", obj.paraCUS_OpeningBalanceType);
                 cmd.Parameters.AddWithValue("@paraStatusId", obj.paraStatusId);

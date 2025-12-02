@@ -53,12 +53,13 @@ namespace ROMS
                 obj.paraCustomerId = pbCustomerId; // set if updating or deleting
                 obj.paraCUS_Name = txtCustomerName.Text.Trim();
                 obj.paraCUS_ReferenceName = txtReferenceName.Text.Trim();
-                obj.paraCUS_MobileNo = txtContactNo.Text.Trim();
-                obj.paraCUS_PhoneNo = txtWhatsappNo.Text.Trim();
-                //obj.paraCUS_TypeID = Convert.ToInt32(cmbCustomerType.SelectedValue); 
+                obj.paraCUS_ContactNo = txtContactNo.Text.Trim();
+                obj.paraCUS_WhatsappNo = txtWhatsappNo.Text.Trim();
+                obj.paraCUS_TypeID = varCustomerType; 
                 obj.paraCUS_CategoryTypeID = Convert.ToInt32(cmbCustomerType.SelectedValue); 
                 obj.paraCUS_Credit_Limit = string.IsNullOrEmpty(txtCreditLimit.Text.Trim()) ? 0 : Convert.ToInt32(txtCreditLimit.Text.Trim());
                 obj.paraCUS_CreditDays = string.IsNullOrEmpty(txtCreditDays.Text.Trim()) ? 0 : Convert.ToInt32(txtCreditDays.Text.Trim());
+                obj.paraCUS_TotalInvoice = string.IsNullOrEmpty(txtTotalInvoice.Text.Trim()) ? 0 : Convert.ToInt32(txtTotalInvoice.Text.Trim());
                 obj.paraCUS_OpeningBalance = string.IsNullOrEmpty(txtOBAmt.Text.Trim()) ? 0 : (float)Convert.ToDecimal(txtOBAmt.Text.Trim());
                 obj.paraCUS_OpeningBalanceType = Convert.ToInt32(cmbOBType.SelectedValue);
                 obj.paraCUS_GSTIN = txtGSTIN.Text.Trim();
@@ -138,6 +139,13 @@ namespace ROMS
                     txtCustomerName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCustomer.ShowAlways = true;
                     tpCustomer.Show("Please enter customer type.", txtCustomerName, 5000);
+                }
+                if (txtReferenceName.Text.Trim() == "")
+                {
+                    epCustomer.SetError(txtReferenceName, "Please enter reference name.");
+                    txtReferenceName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter reference name.", txtReferenceName, 5000);
                 }
                 else
                 {
@@ -1103,6 +1111,74 @@ namespace ROMS
             }
         }
 
+        private void txtArea_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvArea.Items.Clear();
+                if (txtArea.Text.Length > 0)
+                {
+                    lblAreaId.Text = "0";
+                    lblCityId.Text = "0";
+                    txtCity.Text = "";
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 2;
+                    obj.paraMHEName = txtArea.Text.Trim();
+                    objDs = objspservice.udfnMarriageHallList(obj);
+                    objspservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["Area"].ToString(), objDs.Tables[0].Rows[i]["City"].ToString(), objDs.Tables[0].Rows[i]["State"].ToString(), objDs.Tables[0].Rows[i]["AID"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString(), objDs.Tables[0].Rows[i]["STID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    lvArea.Columns[3].Width = 0;
+                                    lvArea.Columns[4].Width = 0;
+                                    lvArea.Columns[5].Width = 0;
+                                    lvArea.Items.Add(objList);
+                                }
+                                lvArea.Visible = true;
+                            }
+                            else
+                            {
+                                lvArea.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvArea.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvArea.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvArea.Visible = false;
+                    lvArea.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
+            }
+        }
+
         private void txtLandmark_Enter(object sender, EventArgs e)
         {
             try
@@ -1335,6 +1411,74 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void txtShipArea_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lvShipArea.Items.Clear();
+                if (txtShipArea.Text.Length > 0)
+                {
+                    lblShipAreaId.Text = "0";
+                    lblShipCityId.Text = "0";
+                    txtShipCity.Text = "";
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 2;
+                    obj.paraMHEName = txtShipArea.Text.Trim();
+                    objDs = objspservice.udfnMarriageHallList(obj);
+                    objspservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["Area"].ToString(), objDs.Tables[0].Rows[i]["City"].ToString(), objDs.Tables[0].Rows[i]["State"].ToString(), objDs.Tables[0].Rows[i]["AID"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString(), objDs.Tables[0].Rows[i]["STID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    objList.UseItemStyleForSubItems = false;
+                                    lvArea.Columns[3].Width = 0;
+                                    lvArea.Columns[4].Width = 0;
+                                    lvArea.Columns[5].Width = 0;
+                                    lvArea.Items.Add(objList);
+                                }
+                                lvShipArea.Visible = true;
+                            }
+                            else
+                            {
+                                lvShipArea.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvShipArea.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvShipArea.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvShipArea.Visible = false;
+                    lvShipArea.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+
             }
         }
 
@@ -1801,17 +1945,20 @@ namespace ROMS
             {
                 txtCreditLimit.Text = "";
                 txtCreditDays.Text = "";
+                txtTotalInvoice.Text = "";
                 txtOBAmt.Text = "";
                 txtGSTIN.Text = "";
 
                 txtCreditLimit.Enabled = false;
                 txtCreditDays.Enabled = false;
+                txtTotalInvoice.Enabled = false;
                 txtOBAmt.Enabled = false;
                 cmbOBType.Enabled = false;
                 txtGSTIN.Enabled = false;
 
                 txtCreditLimit.ReadOnly = true;
                 txtCreditDays.ReadOnly = true;
+                txtTotalInvoice.ReadOnly = true;
                 txtOBAmt.ReadOnly = true;
                 txtGSTIN.ReadOnly = true;
             }
@@ -1828,12 +1975,14 @@ namespace ROMS
             {
                 txtCreditLimit.Enabled = true;
                 txtCreditDays.Enabled = true;
+                txtTotalInvoice.Enabled = true;
                 txtOBAmt.Enabled = true;
                 cmbOBType.Enabled = true;
                 txtGSTIN.Enabled = true;
 
                 txtCreditLimit.ReadOnly = false;
                 txtCreditDays.ReadOnly = false;
+                txtTotalInvoice.ReadOnly = false;
                 txtOBAmt.ReadOnly = false;
                 txtGSTIN.ReadOnly = false;
             }
@@ -1844,6 +1993,170 @@ namespace ROMS
             }
         }
 
+        private void txtTotalInvoice_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTotalInvoice.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTotalInvoice_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTotalInvoice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTotalInvoice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTotalInvoice.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnAreaEvent();
+                    txtPincode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvArea_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnAreaEvent();
+                txtPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnAreaEvent()
+        {
+            try
+            {
+                if (txtArea.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvArea.SelectedItems[0];
+                    txtArea.Text = selectedItem.SubItems[0].Text;
+                    txtCity.Text = selectedItem.SubItems[1].Text;
+                    lblAreaId.Text = selectedItem.SubItems[3].Text;
+                    lblCityId.Text = selectedItem.SubItems[4].Text;
+                    cmbState.SelectedValue = Convert.ToInt32(selectedItem.SubItems[5].Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvArea.Visible = false;
+            }
+        }
+
+        private void lvShipArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnShipAreaEvent();
+                    txtShipPincode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvShipArea_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnShipAreaEvent();
+                txtShipPincode.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnShipAreaEvent()
+        {
+            try
+            {
+                if (txtShipArea.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvShipArea.SelectedItems[0];
+                    txtShipArea.Text = selectedItem.SubItems[0].Text;
+                    txtShipCity.Text = selectedItem.SubItems[1].Text;
+                    lblShipAreaId.Text = selectedItem.SubItems[3].Text;
+                    lblShipCityId.Text = selectedItem.SubItems[4].Text;
+                    cmbShipState.SelectedValue= Convert.ToInt32(selectedItem.SubItems[5].Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvShipArea.Visible = false;
+            }
+        }
         private void btnSave_Leave(object sender, EventArgs e)
         {
             try
