@@ -179,6 +179,8 @@ namespace ROMS
         //Added by sivabharathi on 27/11/2025
         public static CP_AreaList objCP_AreaList;
         public static CP_Area objCP_Area;
+        public static CP_TempCustomerList objCP_TempCustomerList;
+        public static CP_TemporaryCustomer objCP_TemporaryCustomer;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -4331,6 +4333,20 @@ namespace ROMS
         private void tsmReports_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void temporToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_TempCustomerList, "CP_TempCustomerList", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

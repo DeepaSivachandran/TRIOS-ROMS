@@ -37,18 +37,18 @@
             this.txtDRouteEName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
             this.grdArea = new System.Windows.Forms.DataGridView();
+            this.clmCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cmbRSNo = new System.Windows.Forms.ComboBox();
             this.txtDRouteOrderNo = new System.Windows.Forms.TextBox();
             this.txtRTName = new System.Windows.Forms.TextBox();
             this.txtREName = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epRoute = new System.Windows.Forms.ErrorProvider(this.components);
-            this.clmCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdArea)).BeginInit();
             this.pnlStatus.SuspendLayout();
@@ -145,6 +145,14 @@
             this.grdArea.Size = new System.Drawing.Size(363, 193);
             this.grdArea.TabIndex = 1111147;
             // 
+            // clmCheckBox
+            // 
+            this.clmCheckBox.HeaderText = "";
+            this.clmCheckBox.Name = "clmCheckBox";
+            this.clmCheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmCheckBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmCheckBox.Width = 50;
+            // 
             // cmbRSNo
             // 
             this.cmbRSNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -196,40 +204,6 @@
             this.txtREName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtREName_KeyDown);
             this.txtREName.Leave += new System.EventHandler(this.txtREName_Leave);
             // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(288, 342);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 6;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(202, 342);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
-            // 
             // txtStatus
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
@@ -266,6 +240,7 @@
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // rbInActive
@@ -279,19 +254,46 @@
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
+            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbInActive_KeyDown);
             this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
             // epRoute
             // 
             this.epRoute.ContainerControl = this;
             // 
-            // clmCheckBox
+            // btnClose
             // 
-            this.clmCheckBox.HeaderText = "";
-            this.clmCheckBox.Name = "clmCheckBox";
-            this.clmCheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCheckBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmCheckBox.Width = 50;
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(288, 342);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(80, 33);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(202, 342);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(80, 33);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
             // CP_Route
             // 

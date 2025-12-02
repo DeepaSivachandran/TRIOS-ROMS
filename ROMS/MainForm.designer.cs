@@ -205,6 +205,7 @@ namespace ROMS
             this.tsmCustomerType = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVehicle = new System.Windows.Forms.ToolStripMenuItem();
+            this.temporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.ms.SuspendLayout();
             this.SuspendLayout();
@@ -914,7 +915,7 @@ namespace ROMS
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -922,7 +923,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -930,7 +931,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -938,7 +939,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(179, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
@@ -957,7 +958,7 @@ namespace ROMS
             // tsmExportTally
             // 
             this.tsmExportTally.Name = "tsmExportTally";
-            this.tsmExportTally.Size = new System.Drawing.Size(180, 22);
+            this.tsmExportTally.Size = new System.Drawing.Size(131, 22);
             this.tsmExportTally.Text = "Export Tally";
             this.tsmExportTally.Visible = false;
             this.tsmExportTally.Click += new System.EventHandler(this.tsmExportTally_Click);
@@ -1768,7 +1769,8 @@ namespace ROMS
             this.tsmArea,
             this.tsmCustomerType,
             this.tsmCustomer,
-            this.tsmVehicle});
+            this.tsmVehicle,
+            this.temporToolStripMenuItem});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
@@ -1778,37 +1780,44 @@ namespace ROMS
             // tsmRoute
             // 
             this.tsmRoute.Name = "tsmRoute";
-            this.tsmRoute.Size = new System.Drawing.Size(146, 22);
+            this.tsmRoute.Size = new System.Drawing.Size(180, 22);
             this.tsmRoute.Text = "Route";
             this.tsmRoute.Click += new System.EventHandler(this.tsmRoute_Click);
             // 
             // tsmArea
             // 
             this.tsmArea.Name = "tsmArea";
-            this.tsmArea.Size = new System.Drawing.Size(146, 22);
+            this.tsmArea.Size = new System.Drawing.Size(180, 22);
             this.tsmArea.Text = "Area";
             this.tsmArea.Click += new System.EventHandler(this.tsmArea_Click);
             // 
             // tsmCustomerType
             // 
             this.tsmCustomerType.Name = "tsmCustomerType";
-            this.tsmCustomerType.Size = new System.Drawing.Size(146, 22);
+            this.tsmCustomerType.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomerType.Text = "Customer Type";
             this.tsmCustomerType.Click += new System.EventHandler(this.tsmCustomerType_Click);
             // 
             // tsmCustomer
             // 
             this.tsmCustomer.Name = "tsmCustomer";
-            this.tsmCustomer.Size = new System.Drawing.Size(146, 22);
+            this.tsmCustomer.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomer.Text = "Customer";
             this.tsmCustomer.Click += new System.EventHandler(this.tsmCustomer_Click);
             // 
             // tsmVehicle
             // 
             this.tsmVehicle.Name = "tsmVehicle";
-            this.tsmVehicle.Size = new System.Drawing.Size(146, 22);
+            this.tsmVehicle.Size = new System.Drawing.Size(180, 22);
             this.tsmVehicle.Text = "Vehicle";
             this.tsmVehicle.Click += new System.EventHandler(this.tsmVehicle_Click);
+            // 
+            // temporToolStripMenuItem
+            // 
+            this.temporToolStripMenuItem.Name = "temporToolStripMenuItem";
+            this.temporToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.temporToolStripMenuItem.Text = "Temporary Customer";
+            this.temporToolStripMenuItem.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
             // 
             // statusBar
             // 
@@ -2028,5 +2037,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmCustomer;
         private System.Windows.Forms.ToolStripMenuItem tsmVehicle;
         private System.Windows.Forms.ToolStripMenuItem tsmArea;
+        private System.Windows.Forms.ToolStripMenuItem temporToolStripMenuItem;
     }
 }

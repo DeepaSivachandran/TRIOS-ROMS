@@ -33,7 +33,7 @@ namespace ROMS
         public int varLocationCode = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
-        public int varFormFlag = 0;
+        public int varFormFlag = 0,varSalesBillPrint=0;
         public CP_Rack()
         {
             InitializeComponent();
@@ -46,8 +46,7 @@ namespace ROMS
                 tpStockLocation.Active = false;
                 tpRackName.Active = false;
                 tpShortName.Active = false;
-                tpDescription.Active = false;
-               
+                tpDescription.Active = false; 
             }
             catch (Exception ex)
             {
@@ -123,6 +122,7 @@ namespace ROMS
                 this.ActiveControl = txtRackName;
                 //cmbStockLocation.SelectedValue = PbStockLocationID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
+                if (varSalesBillPrint == 1) { chkSalesBillPrint.Checked = true; } else { chkSalesBillPrint.Checked = false; }
                 if(PbStatus==2)
                 {
                     udfnDisable();
@@ -149,6 +149,9 @@ namespace ROMS
             {
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
+
+                if (chkSalesBillPrint.Checked == true) { varSalesBillPrint = 1; }
+                else { varSalesBillPrint = 0; }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
@@ -207,7 +210,7 @@ namespace ROMS
                 }
                 if (varLocationId != -1)
                 {
-                    varResult = objspservice.udfnRack(varType, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), varLocationId, (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator,0);
+                    varResult = objspservice.udfnRack(varType, varRackcode, Convert.ToInt16(cmbConcern.SelectedValue), varLocationId, (txtRackName.Text).Trim(), (txtShortName.Text).Trim(), (txtDescription.Text).Trim(), varstatus, varoriginator,0, varSalesBillPrint);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -330,8 +333,10 @@ namespace ROMS
                 txtRackName.Text = "";
                 txtShortName.Text = "";
                 txtDescription.Text = "";
+                varSalesBillPrint = 0;
                 //cmbConcern.SelectedIndex = 0;
                 btnSave.Text = "Save";
+                chkSalesBillPrint.Checked = false;
                 //cmbStockLocation.Focus();
                 //this.ActiveControl = cmbStockLocation;
             }
@@ -696,7 +701,7 @@ namespace ROMS
                             rbInactive.Focus();
                         }
                     }
-                    else { btnSave.Focus(); }
+                    else { chkSalesBillPrint.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -757,9 +762,17 @@ namespace ROMS
         {
             try
             {
-                if (e.KeyCode == Keys.Enter)
+                try
                 {
-                    btnSave.Focus();
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        chkSalesBillPrint.Focus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
                 }
             }
             catch (Exception ex)
@@ -774,7 +787,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnSave.Focus();
+                    chkSalesBillPrint.Focus();
                 }
             }
             catch (Exception ex)
@@ -1007,6 +1020,51 @@ namespace ROMS
             }
         }
 
+        private void chkSalesBillPrint_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterLocation.DataSource = null;
+                DGV_FilterLocation.Visible = false;
+                chkSalesBillPrint.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesBillPrint_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                     btnSave.Focus(); 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesBillPrint_Leave(object sender, EventArgs e)
+        {
+            try
+            { 
+                chkSalesBillPrint.BackColor = Color.White; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1078,5 +1136,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+ 
     }
 }

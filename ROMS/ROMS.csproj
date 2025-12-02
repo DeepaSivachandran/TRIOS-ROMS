@@ -184,6 +184,24 @@
     <Compile Include="CP_AreaList.designer.cs">
       <DependentUpon>CP_AreaList.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_CardMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_CardMachine.designer.cs">
+      <DependentUpon>CP_CardMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_TemporaryCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_TemporaryCustomer.designer.cs">
+      <DependentUpon>CP_TemporaryCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_TempCustomerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_TempCustomerList.designer.cs">
+      <DependentUpon>CP_TempCustomerList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Vehiclelist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,6 +377,7 @@
     <Compile Include="CP_CustomerType.designer.cs">
       <DependentUpon>CP_CustomerType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_TemporaryCustomer.cs" />
     <Compile Include="Model\MR_Route.cs" />
     <Compile Include="Model\MR_ChequeTransactionSettings.cs" />
     <Compile Include="GRN_ADV.cs">
@@ -3670,6 +3689,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_AreaList.resx">
       <DependentUpon>CP_AreaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_CardMachine.resx">
+      <DependentUpon>CP_CardMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_TemporaryCustomer.resx">
+      <DependentUpon>CP_TemporaryCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_TempCustomerList.resx">
+      <DependentUpon>CP_TempCustomerList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Vehiclelist.resx">
       <DependentUpon>CP_Vehiclelist.cs</DependentUpon>

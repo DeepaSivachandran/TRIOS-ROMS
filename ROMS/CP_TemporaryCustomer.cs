@@ -7,91 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ROMS.Model;
 
 namespace ROMS
 {
     //Created By:-Sathish ; Created On:-11-08-2023
-    public partial class CP_City : Form
+    public partial class CP_TemporaryCustomer : Form
     {
         DataError objError;
-        private ToolTip tpCityName = new ToolTip();
-        private ToolTip tpState = new ToolTip();
-        public string varbrandcode;
-        public string pbFormStatus;
-        public int varstatus;
-        public string PbCityName="";
-        public int varCityCode= 0;
-        public string varCityName = "";
-        public string PbStateName="";
-        public string pbDistrictName="";
-        public int PbStateId=0;
-        public int PbStatus=0;
+        private ToolTip tpREName = new ToolTip();
+        private ToolTip tpRTName = new ToolTip();
+        public int varTempCustID = 0;
+        public int PbStatus = 0;
         public int varUpdate = 0;
-        public int varmastertype = 0;
-        public int varflog = 0;
-        public CP_City()
+        public CP_TemporaryCustomer()
         {
             InitializeComponent();
         }
-        private void CP_City_Leave(object sender, EventArgs e)
+        public void udfnLoadSlNo()
         {
             try
             {
-                tpCityName.Active = false;
-                tpState.Active = false;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CP_City_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                if (varflog == 0)
+                DataSet objDS;
+                if (varTempCustID != 0)
                 {
-                    DataBind objDataBind = new DataBind();
-                    objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
-                    objDataBind = null;
-                    if (btnSave.Text == "Save")
-                    {
-                        pnlStatus.Enabled = false;
-                    }
-                    else
-                    {
-                        pnlStatus.Enabled = true;
-                        udfnLoad();
-                    }
-                    this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                    MainForm.objCP_Citylist.picLoader.Visible = false;
-                    MainForm.objCP_Citylist.picLoader.SendToBack();
+                    string varRID = Convert.ToString(varTempCustID);
+                    SPDataService objspservice = new SPDataService();
+                    objDS = objspservice.udfnGetSlNo("MR_Route", "Update", "RID", varRID, "R_OrderNo");
+                    objspservice.CloseConnection();
                 }
                 else
                 {
-                    DataBind objDTBind = new DataBind();
-                    objDTBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID ="+ MainForm.objCP_CP_Broker.varStateID, "ST_Name,STID", cmbState, "", "ST_Name", "STID");
-                    cmbState.Enabled = false;
-                    objDTBind = null;
+                    SPDataService objspservice = new SPDataService();
+                    objDS = objspservice.udfnGetSlNo("MR_Route ", "Create", "1=1", "", "R_OrderNo");
+                    objspservice.CloseConnection();
                 }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally {
-            }
-        }
-        private void udfnLoad()
-        {
-            try
-            {
-                txtCityName.Text = PbCityName;
-                txtDistrictName.Text = pbDistrictName;
-                cmbState.SelectedValue = PbStateId;
-                if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
+                
             }
             catch (Exception ex)
             {
@@ -103,50 +54,56 @@ namespace ROMS
         {
             try
             {
-                if (rbActive.Checked == true) { varstatus = 1; }
-                else { varstatus = 2; }
+                if (rbActive.Checked == true) { PbStatus = 1; }
+                else { PbStatus = 2; }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = "";int varType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    varoriginator = "City Creation";
+                    varoriginator = "Temporary Customer Creation";
                     varType = 0;
                 }
                 else
                 {
-                    varoriginator = "City Updation";
-                    varType = 1;    
+                    varoriginator = "Temporary Customer Updation";
+                    varType = 1;
                 }
-                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator,MainForm.pbUserID,0,Convert.ToString(txtDistrictName.Text.Trim()));
+                 
+                // Create a new DataTable with only ID column
+                DataTable dtArea = new DataTable();
+                dtArea.Columns.Add("AID", typeof(int));
+
+                // Filter only checked rows and get only AR_AID
+                 
+
+                SPDataService objspdservice = new SPDataService();
+                MR_TemporaryCustomer objMR_TemporaryCustomer = new MR_TemporaryCustomer();
+                objMR_TemporaryCustomer.ViewType = varType;
+                objMR_TemporaryCustomer.paraTempCusID = varTempCustID;
+                objMR_TemporaryCustomer.paraTempCusContactNo = txtContactNo.Text.Trim();
+                objMR_TemporaryCustomer.paraTempCustomorName = txtTempCustomerName.Text.Trim();
+                objMR_TemporaryCustomer.paraStatusId = PbStatus; 
+                objMR_TemporaryCustomer.paraOriginator = varoriginator; 
+                varResult = objspdservice.udfnTemporayCustomer(objMR_TemporaryCustomer);
+                objspdservice.CloseConnection();
+ 
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //udfnclear();
-                    //MainForm.objCP_Citylist.udfnList();
-                    if (varmastertype == 1)
+                    MainForm.objCP_TempCustomerList.udfnList();
+                    if (btnSave.Text == "Save")
                     {
-                        varmastertype = 0;
-                        varUpdate = 1;
-                        varCityCode = Convert.ToInt16(varResult.Split('~')[2]);
-                        varCityName = Convert.ToString(varResult.Split('~')[2]);
-                        MainForm.objCP_CP_Broker.varCityName = txtCityName.Text;
-                        MainForm.objCP_CP_Broker.varCityCode = varCityCode;
-                        MainForm.objCP_CP_Broker.varStateID = Convert.ToInt32(cmbState.SelectedValue);
-                        udfnclose();
-                    }
-                    else
-                    {
-                        MainForm.objCP_Citylist.udfnList();
+                        udfnclear();
+                        MainForm.objCP_TempCustomerList.udfnList();
                     }
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
                         udfnclose();
                     }
-                    udfnclear();
                 }
                 else
                 {
@@ -159,7 +116,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();   
+                SPDataService objDServ = new SPDataService();
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -174,10 +131,10 @@ namespace ROMS
         {
             try
             {
-                txtCityName.Text = "";
-                txtCityName.Focus();
-                txtDistrictName.Text = "";
-                this.ActiveControl = txtCityName;
+                txtTempCustomerName.Text = "";
+                txtContactNo.Text = "";
+                udfnLoadSlNo();
+                txtTempCustomerName.Focus();
             }
             catch (Exception ex)
             {
@@ -190,26 +147,20 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(txtCityName.Text).Trim() == "")
+                if (Convert.ToString(txtTempCustomerName.Text).Trim() == "")
                 {
-                    epCity.SetError(txtCityName, "Please enter city name");
-                    txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please enter city name", txtCityName, 5000);
+                    epRoute.SetError(txtTempCustomerName, "Please enter customer name.");
+                    txtTempCustomerName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpREName.ShowAlways = true;
+                    tpREName.Show("Please enter customer name.", txtTempCustomerName, 5000);
                     blnErrorFlag = true;
-                }
-                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
-                {
-                    epCity.SetError(cmbState, "Please select state name.");
-                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpState.ShowAlways = true;
-                    tpState.Show("Please select state name.", cmbState, 5000);
-                    blnErrorFlag = true;
-                }
+                } 
                 if (blnErrorFlag == false)
                 {
+                    epRoute.Clear();
                     btnSave.Enabled = false;
                     udfnSave(sender, e);
+                    btnSave.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -263,10 +214,10 @@ namespace ROMS
             try
             {
                 udfnclose();
-                if (varmastertype == 0)
-                {
-                    MainForm.objCP_Citylist.udfnList();
-                }
+                //if (varmastertype == 0)
+                //{
+                //    MainForm.objCP_Routelist.udfnList();
+                //}
             }
             catch (Exception ex)
             {
@@ -293,145 +244,6 @@ namespace ROMS
                 btnClose.BackColor = Color.Transparent;
             }
             catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbState_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbState.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbState_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtDistrictName.Focus();
-                }
-            }
-            catch(Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtCityName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtCityName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtCityName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(txtCityName.Text).Trim() == "")
-                {
-                    epCity.SetError(txtCityName, "Please enter city name");
-                    txtCityName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCityName.ShowAlways = true;
-                    tpCityName.Show("Please enter city name", txtCityName, 5000);
-                 
-                }
-                else
-                {
-                    epCity.Clear();
-                    txtCityName.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void TxtCityName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    //if (pnlStatus.Enabled)
-                    //{
-                    //    rbActive.Focus();
-                    //}
-                    //else { btnSave.Focus(); }
-                    btnSave.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CP_City_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Escape)
-                {
-                    udfnclose();
-                }
-                if (e.KeyCode == Keys.F5)
-                {
-                    btnSave.Focus();
-                    btnSave_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbState_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToString(cmbState.SelectedValue) == "" || Convert.ToString(cmbState.SelectedValue) == "-1")
-                {
-                    epCity.SetError(cmbState, "Please select state name");
-                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpState.ShowAlways = true;
-                    tpState.Show("Please select state name", cmbState, 5000);
-                }
-                else
-                {
-                    epCity.Clear();
-                    cmbState.BackColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void CmbState_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                e.Handled = true;
-            }
-            catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -485,7 +297,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void CP_City_FormClosing(object sender, FormClosingEventArgs e)
+
+        private void CP_Route_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
@@ -509,52 +322,18 @@ namespace ROMS
             }
         }
 
-        private void CmbState_SelectedIndexChanged(object sender, EventArgs e)
+        private void CP_Route_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        } 
-
-        private void txtDistrictName_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDistrictName.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtDistrictName_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtDistrictName.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void txtDistrictName_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                { 
-                    txtCityName.Focus();
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
+                if (e.KeyCode == Keys.F5)
+                {
+                    btnSave.Focus();
+                    btnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -562,6 +341,214 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void CP_Route_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tpREName.Active = false;
+                tpRTName.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CP_Route_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (btnSave.Text == "Save")
+                {
+                    pnlStatus.Enabled = false;
+                    rbActive.Checked = true;
+                    udfnLoadSlNo(); 
+                }
+                else
+                {
+                    udfnLoadSlNo();
+                    udfnEdit();
+                    pnlStatus.Enabled = true;
+                    if (PbStatus == 1) 
+                    { 
+                        rbActive.Checked = true; 
+                    }
+                    else 
+                    {
+                        //txtTempCustomerName.Enabled = false;
+                        //txtContactNo.Enabled = false;  
+                        rbInActive.Checked = true;
+                    }
+                }
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                MainForm.objCP_TempCustomerList.picLoader.Visible = false;
+                MainForm.objCP_TempCustomerList.picLoader.SendToBack(); 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+        public void udfnEdit()
+        {
+            try
+            {
+                if (varTempCustID != 0)
+                {
+                    DataSet objDs = new DataSet();  
+                    SPDataService objspservice = new SPDataService();
+                    MR_TemporaryCustomer objMR_TemporaryCustomer = new MR_TemporaryCustomer();
+                    objMR_TemporaryCustomer.ViewType = 1;
+                    objMR_TemporaryCustomer.paraTempCusID = varTempCustID;
+                    objDs = objspservice.udfnTemporayCustomerList(objMR_TemporaryCustomer); 
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                txtTempCustomerName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TEMPCUS_Name"]);
+                                txtContactNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TEMPCUS_ContactNo"]); 
+                                txtTempCustomerName.Focus();
+                            } 
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtREName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTempCustomerName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtREName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    txtContactNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtREName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTempCustomerName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRTName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtContactNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRTName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if(rbActive.Enabled==true)
+                    { rbActive.Focus(); }
+                    else { btnSave.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRTName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtContactNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+            
+
+        private void rbInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                { 
+                    btnSave.Focus(); 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTempCustomerName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

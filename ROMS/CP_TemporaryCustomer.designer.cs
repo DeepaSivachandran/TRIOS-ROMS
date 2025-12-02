@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_City
+    partial class CP_TemporaryCustomer
     {
         /// <summary>
         /// Required designer variable.
@@ -29,105 +29,100 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_City));
-            this.txtDCityName = new System.Windows.Forms.TextBox();
-            this.txtDStateName = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_TemporaryCustomer));
+            this.txtDContactNo = new System.Windows.Forms.TextBox();
+            this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
-            this.txtCityName = new System.Windows.Forms.TextBox();
-            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.txtContactNo = new System.Windows.Forms.TextBox();
+            this.txtTempCustomerName = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
-            this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtDistrictName = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.epRoute = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtDCityName
+            // txtDContactNo
             // 
-            this.txtDCityName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDCityName.Enabled = false;
-            this.txtDCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDCityName.Location = new System.Drawing.Point(37, 102);
-            this.txtDCityName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDCityName.Name = "txtDCityName";
-            this.txtDCityName.ReadOnly = true;
-            this.txtDCityName.Size = new System.Drawing.Size(122, 28);
-            this.txtDCityName.TabIndex = 6;
-            this.txtDCityName.Text = "City Name";
+            this.txtDContactNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDContactNo.Enabled = false;
+            this.txtDContactNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDContactNo.Location = new System.Drawing.Point(6, 52);
+            this.txtDContactNo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDContactNo.Name = "txtDContactNo";
+            this.txtDContactNo.ReadOnly = true;
+            this.txtDContactNo.Size = new System.Drawing.Size(128, 28);
+            this.txtDContactNo.TabIndex = 6;
+            this.txtDContactNo.Text = "Contact No.";
             // 
-            // txtDStateName
+            // txtCustomerName
             // 
-            this.txtDStateName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDStateName.Enabled = false;
-            this.txtDStateName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStateName.Location = new System.Drawing.Point(37, 46);
-            this.txtDStateName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtDStateName.Name = "txtDStateName";
-            this.txtDStateName.ReadOnly = true;
-            this.txtDStateName.Size = new System.Drawing.Size(122, 28);
-            this.txtDStateName.TabIndex = 7;
-            this.txtDStateName.Text = "State Name";
+            this.txtCustomerName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtCustomerName.Enabled = false;
+            this.txtCustomerName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustomerName.Location = new System.Drawing.Point(6, 24);
+            this.txtCustomerName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtCustomerName.Name = "txtCustomerName";
+            this.txtCustomerName.ReadOnly = true;
+            this.txtCustomerName.Size = new System.Drawing.Size(128, 28);
+            this.txtCustomerName.TabIndex = 7;
+            this.txtCustomerName.Text = "Customer Name";
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.txtDistrictName);
-            this.grbform.Controls.Add(this.textBox2);
-            this.grbform.Controls.Add(this.txtCityName);
-            this.grbform.Controls.Add(this.cmbState);
+            this.grbform.Controls.Add(this.txtContactNo);
+            this.grbform.Controls.Add(this.txtTempCustomerName);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.txtStatus);
-            this.grbform.Controls.Add(this.txtDCityName);
-            this.grbform.Controls.Add(this.txtDStateName);
+            this.grbform.Controls.Add(this.txtDContactNo);
+            this.grbform.Controls.Add(this.txtCustomerName);
             this.grbform.Controls.Add(this.pnlStatus);
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.grbform.Location = new System.Drawing.Point(13, 14);
+            this.grbform.Location = new System.Drawing.Point(10, 1);
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(437, 216);
+            this.grbform.Size = new System.Drawing.Size(379, 155);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
-            // txtCityName
+            // txtContactNo
             // 
-            this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCityName.Location = new System.Drawing.Point(159, 102);
-            this.txtCityName.MaxLength = 50;
-            this.txtCityName.Name = "txtCityName";
-            this.txtCityName.Size = new System.Drawing.Size(240, 28);
-            this.txtCityName.TabIndex = 2; 
-            this.txtCityName.Enter += new System.EventHandler(this.TxtCityName_Enter);
-            this.txtCityName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCityName_KeyDown);
-            this.txtCityName.Leave += new System.EventHandler(this.TxtCityName_Leave);
+            this.txtContactNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactNo.Location = new System.Drawing.Point(134, 52);
+            this.txtContactNo.MaxLength = 20;
+            this.txtContactNo.Name = "txtContactNo";
+            this.txtContactNo.Size = new System.Drawing.Size(235, 28);
+            this.txtContactNo.TabIndex = 1;
+            this.txtContactNo.Enter += new System.EventHandler(this.txtRTName_Enter);
+            this.txtContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRTName_KeyDown);
+            this.txtContactNo.Leave += new System.EventHandler(this.txtRTName_Leave);
             // 
-            // cmbState
+            // txtTempCustomerName
             // 
-            this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(159, 46);
-            this.cmbState.Name = "cmbState";
-            this.cmbState.Size = new System.Drawing.Size(240, 28);
-            this.cmbState.TabIndex = 0;
-            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.CmbState_SelectedIndexChanged);
-            this.cmbState.Enter += new System.EventHandler(this.CmbState_Enter);
-            this.cmbState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbState_KeyDown);
-            this.cmbState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbState_KeyPress);
-            this.cmbState.Leave += new System.EventHandler(this.CmbState_Leave);
+            this.txtTempCustomerName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTempCustomerName.Location = new System.Drawing.Point(134, 24);
+            this.txtTempCustomerName.MaxLength = 50;
+            this.txtTempCustomerName.Name = "txtTempCustomerName";
+            this.txtTempCustomerName.Size = new System.Drawing.Size(235, 28);
+            this.txtTempCustomerName.TabIndex = 0;
+            this.txtTempCustomerName.TextChanged += new System.EventHandler(this.txtTempCustomerName_TextChanged);
+            this.txtTempCustomerName.Enter += new System.EventHandler(this.txtREName_Enter);
+            this.txtTempCustomerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtREName_KeyDown);
+            this.txtTempCustomerName.Leave += new System.EventHandler(this.txtREName_Leave);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(319, 170);
+            this.btnClose.Location = new System.Drawing.Point(288, 113);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
@@ -144,12 +139,12 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(234, 170);
+            this.btnSave.Location = new System.Drawing.Point(202, 113);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
             this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Update";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -161,89 +156,64 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(37, 130);
+            this.txtStatus.Location = new System.Drawing.Point(6, 79);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(122, 28);
+            this.txtStatus.Size = new System.Drawing.Size(128, 28);
             this.txtStatus.TabIndex = 8;
             this.txtStatus.Text = "Status";
-            this.txtStatus.Visible = false;
             // 
             // pnlStatus
             // 
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(159, 130);
+            this.pnlStatus.Location = new System.Drawing.Point(134, 79);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(240, 28);
+            this.pnlStatus.Size = new System.Drawing.Size(235, 28);
             this.pnlStatus.TabIndex = 3;
-            this.pnlStatus.Visible = false;
             // 
             // rbActive
             // 
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActive.Location = new System.Drawing.Point(44, 1);
+            this.rbActive.Location = new System.Drawing.Point(39, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
             this.rbActive.TabIndex = 3;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
-            this.rbActive.UseVisualStyleBackColor = true; 
+            this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
             // rbInActive
             // 
             this.rbInActive.AutoSize = true;
             this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbInActive.Location = new System.Drawing.Point(122, 1);
+            this.rbInActive.Location = new System.Drawing.Point(117, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
             this.rbInActive.TabIndex = 4;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
+            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbInActive_KeyDown);
             this.rbInActive.Leave += new System.EventHandler(this.RbInActive_Leave);
             // 
-            // epCity
+            // epRoute
             // 
-            this.epCity.ContainerControl = this;
+            this.epRoute.ContainerControl = this;
             // 
-            // txtDistrictName
-            // 
-            this.txtDistrictName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDistrictName.Location = new System.Drawing.Point(159, 74);
-            this.txtDistrictName.MaxLength = 20;
-            this.txtDistrictName.Name = "txtDistrictName";
-            this.txtDistrictName.Size = new System.Drawing.Size(240, 28);
-            this.txtDistrictName.TabIndex = 1; 
-            this.txtDistrictName.Enter += new System.EventHandler(this.txtDistrictName_Enter);
-            this.txtDistrictName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDistrictName_KeyDown);
-            this.txtDistrictName.Leave += new System.EventHandler(this.txtDistrictName_Leave);
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(37, 74);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(122, 28);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.Text = "District Name"; 
-            // 
-            // CP_City
+            // CP_TemporaryCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(469, 242);
+            this.ClientSize = new System.Drawing.Size(399, 166);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -252,37 +222,35 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_City";
+            this.Name = "CP_TemporaryCustomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "City Details";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_City_FormClosing);
-            this.Load += new System.EventHandler(this.CP_City_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_City_KeyDown);
-            this.Leave += new System.EventHandler(this.CP_City_Leave);
+            this.Text = "Temporary Customer Details";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Route_FormClosing);
+            this.Load += new System.EventHandler(this.CP_Route_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Route_KeyDown);
+            this.Leave += new System.EventHandler(this.CP_Route_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtDCityName;
-        private System.Windows.Forms.TextBox txtDStateName;
+        private System.Windows.Forms.TextBox txtDContactNo;
+        private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox grbform;
-        private System.Windows.Forms.ErrorProvider epCity;
+        private System.Windows.Forms.ErrorProvider epRoute;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.RadioButton rbInActive;
         private System.Windows.Forms.RadioButton rbActive;
-        private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Panel pnlStatus;
         public System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtCityName;
-        private System.Windows.Forms.TextBox txtDistrictName;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTempCustomerName;
+        private System.Windows.Forms.TextBox txtContactNo;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using ROMS.Model;
 
 namespace ROMS
 {
@@ -151,7 +152,10 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnRoutelist(0, 0, Convert.ToInt32(cmbStatus.SelectedValue));
+                MR_Route objMR_Route = new MR_Route();
+                objMR_Route.ViewType = 0;
+                objMR_Route.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objDs = objspservice.udfnRouteList(objMR_Route);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)

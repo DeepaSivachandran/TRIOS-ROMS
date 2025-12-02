@@ -12,7 +12,7 @@ using ROMS.Model;
 namespace ROMS
 {
     //Created By:-Sathish ; Created On:-11-08-2023
-    public partial class CP_Route : Form
+    public partial class CP_CardMachine : Form
     {
         DataError objError;
         private ToolTip tpREName = new ToolTip();
@@ -20,7 +20,7 @@ namespace ROMS
         public int varRouteId = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
-        public CP_Route()
+        public CP_CardMachine()
         {
             InitializeComponent();
         }
@@ -44,9 +44,9 @@ namespace ROMS
                 }
                 if (objDS != null)
                 {
-                    cmbRSNo.DataSource = objDS.Tables[0];
-                    cmbRSNo.DisplayMember = "num";
-                    cmbRSNo.ValueMember = "num";
+                    cmbConcern.DataSource = objDS.Tables[0];
+                    cmbConcern.DisplayMember = "num";
+                    cmbConcern.ValueMember = "num";
                 }
             }
             catch (Exception ex)
@@ -75,34 +75,17 @@ namespace ROMS
                     varType = 1;
                 }
                  
-                // Create a new DataTable with only ID column
-                DataTable dtArea = new DataTable();
-                dtArea.Columns.Add("AID", typeof(int));
-
-                // Filter only checked rows and get only AR_AID
-                var ids = grdArea.Rows.Cast<DataGridViewRow>()
-                .Where(r => Convert.ToBoolean(r.Cells["clmCheckBox"].Value) == true)  // Checkbox column name
-                .Select(r => Convert.ToInt32(r.Cells["AID"].Value))               // ID column
-                .ToList();
-
-                if (ids.Any())
-                {
-                    foreach (var id in ids)
-                    {
-                        dtArea.Rows.Add(id);
-                    }
-                }
+               
 
                 SPDataService objspdservice = new SPDataService();
                 MR_Route objMR_Route = new MR_Route();
                 objMR_Route.ViewType = varType;
                 objMR_Route.paraRouteId = varRouteId;
-                objMR_Route.paraRouteTName = txtRTName.Text.Trim();
-                objMR_Route.paraRouteEName = txtREName.Text.Trim(); 
-                objMR_Route.paraStatusId = PbStatus;
-                objMR_Route.paraAreaRoute = dtArea;
+                objMR_Route.paraRouteTName = txtProvider.Text.Trim();
+                objMR_Route.paraRouteEName = txtMachineName.Text.Trim(); 
+                objMR_Route.paraStatusId = PbStatus; 
                 objMR_Route.paraOriginator = varoriginator;
-                objMR_Route.paraOrderNo = Convert.ToInt32(cmbRSNo.SelectedValue); 
+                objMR_Route.paraOrderNo = Convert.ToInt32(cmbConcern.SelectedValue); 
                 varResult = objspdservice.udfnRoute(objMR_Route);
                 objspdservice.CloseConnection();
  
@@ -149,10 +132,10 @@ namespace ROMS
         {
             try
             {
-                txtREName.Text = "";
-                txtRTName.Text = "";
+                txtMachineName.Text = "";
+                txtProvider.Text = "";
                 udfnLoadSlNo();
-                txtREName.Focus();
+                txtMachineName.Focus();
             }
             catch (Exception ex)
             {
@@ -165,20 +148,20 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(txtREName.Text).Trim() == "")
+                if (Convert.ToString(txtMachineName.Text).Trim() == "")
                 {
-                    epRoute.SetError(txtREName, "Please enter route english name.");
-                    txtREName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epRoute.SetError(txtMachineName, "Please enter route english name.");
+                    txtMachineName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpREName.ShowAlways = true;
-                    tpREName.Show("Please enter route english name.", txtREName, 5000);
+                    tpREName.Show("Please enter route english name.", txtMachineName, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToString(txtRTName.Text).Trim() == "")
+                if (Convert.ToString(txtProvider.Text).Trim() == "")
                 {
-                    epRoute.SetError(txtRTName, "Please enter route tamil name.");
-                    txtRTName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epRoute.SetError(txtProvider, "Please enter route tamil name.");
+                    txtProvider.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpRTName.ShowAlways = true;
-                    tpRTName.Show("Please enter route tamil name.", txtRTName, 5000);
+                    tpRTName.Show("Please enter route tamil name.", txtProvider, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -392,7 +375,6 @@ namespace ROMS
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
                     udfnLoadSlNo();
-                    udfnRoute();
                 }
                 else
                 {
@@ -405,9 +387,9 @@ namespace ROMS
                     }
                     else 
                     {
-                        txtREName.Enabled = false;
-                        txtRTName.Enabled = false;
-                        cmbRSNo.Enabled = false;
+                        txtMachineName.Enabled = false;
+                        txtProvider.Enabled = false;
+                        cmbConcern.Enabled = false;
                         rbInActive.Checked = true;
                     }
                 }
@@ -420,34 +402,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfnRoute()
-        {
-            try
-            {
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                MR_Route objMR_Route = new MR_Route();
-                objMR_Route.ViewType = 2; 
-                objDs = objspservice.udfnRouteList(objMR_Route);
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            grdArea.DataSource = objDs.Tables[0];
-                        } 
-                    } 
-                    objspservice.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         public void udfnEdit()
         {
             try
@@ -466,25 +421,12 @@ namespace ROMS
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtREName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_EName"]);
-                                txtRTName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_TName"]);
-                                cmbRSNo.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["R_OrderNo"]);
-                                txtREName.Focus();
+                                txtMachineName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_EName"]);
+                                txtProvider.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_TName"]);
+                                cmbConcern.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["R_OrderNo"]);
+                                txtMachineName.Focus();
                             }
-                            if (objDs.Tables[1].Rows.Count != 0)
-                            {
-                                // dtFlags contains ID + Flag values
-                                grdArea.DataSource = objDs.Tables[1];
-                                var idsToCheck = objDs.Tables[1].AsEnumerable()
-                                    .Where(x => x.Field<int>("Flag") == 1)
-                                    .Select(x => x.Field<int>("AID"))
-                                    .ToList(); 
-                                // Loop through grid rows and check only matching IDs
-                                grdArea.Rows.Cast<DataGridViewRow>()
-                                    .Where(r => idsToCheck.Contains(Convert.ToInt32(r.Cells["AID"].Value)))
-                                    .ToList()
-                                    .ForEach(r => r.Cells["clmCheckBox"].Value = true); 
-                            }
+                              
                         }
                     }
                 }
@@ -499,7 +441,7 @@ namespace ROMS
         {
             try
             {
-                txtREName.BackColor = Color.LemonChiffon;
+                txtMachineName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -514,7 +456,7 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    txtRTName.Focus();
+                    txtProvider.Focus();
                 }
             }
             catch (Exception ex)
@@ -528,7 +470,7 @@ namespace ROMS
         {
             try
             {
-                txtREName.BackColor = Color.White;
+                txtMachineName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -541,7 +483,7 @@ namespace ROMS
         {
             try
             {
-                txtRTName.BackColor = Color.LemonChiffon;
+                txtProvider.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -556,7 +498,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbRSNo.Focus();
+                    cmbConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -570,7 +512,7 @@ namespace ROMS
         {
             try
             {
-                txtRTName.BackColor = Color.White;
+                txtProvider.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -583,7 +525,7 @@ namespace ROMS
         {
             try
             {
-                cmbRSNo.BackColor = Color.LemonChiffon;
+                cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -598,14 +540,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (rbActive.Enabled == true)
-                    {
-                        rbActive.Focus();
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    cmbBank.Focus();
                 }
             }
             catch (Exception ex)
@@ -619,7 +554,7 @@ namespace ROMS
         {
             try
             {
-
+                e.Handled = true;
             }
             catch (Exception ex)
             {
@@ -632,7 +567,7 @@ namespace ROMS
         {
             try
             {
-                cmbRSNo.BackColor = Color.White;
+                cmbConcern.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -666,6 +601,68 @@ namespace ROMS
                     
                         btnSave.Focus(); 
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+        private void cmbBank_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (rbActive.Enabled == true)
+                    {
+                        cmbBank.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBank_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBank.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBank_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBank_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBank.BackColor = Color.White;
             }
             catch (Exception ex)
             {
