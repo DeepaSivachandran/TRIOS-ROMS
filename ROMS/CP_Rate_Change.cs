@@ -671,7 +671,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtWRateLive.Focus();
+                    if (txtWRateLive.Enabled ==true)
+                    {
+                        txtWRateLive.Focus();
+                    }
+                    else
+                    {
+                        txtTeller.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1152,6 +1159,7 @@ namespace ROMS
                                         txtWRatePrev.Text = "0";
                                         txtWRateLast.Text = "0"; 
                                         txtWRateLive.Enabled = false;
+                                        txtWRateLive.BackColor = System.Drawing.SystemColors.Control;
                                     }
                                     else
                                     { 
