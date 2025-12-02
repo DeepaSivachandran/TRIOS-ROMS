@@ -133,21 +133,199 @@ namespace ROMS
         {
             try
             {
-                if (txtCustomerName.Text.Trim() == "")
+                bool blnErrFlag = false;
+                if (string.IsNullOrWhiteSpace(txtCustomerName.Text))
                 {
-                    epCustomer.SetError(txtCustomerName, "Please enter customer type.");
+                    epCustomer.SetError(txtCustomerName, "Please enter customer name.");
                     txtCustomerName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCustomer.ShowAlways = true;
-                    tpCustomer.Show("Please enter customer type.", txtCustomerName, 5000);
+                    tpCustomer.Show("Please enter customer name.", txtCustomerName, 5000);
+                    blnErrFlag = true;
                 }
-                if (txtReferenceName.Text.Trim() == "")
+                if (string.IsNullOrWhiteSpace(txtReferenceName.Text))
                 {
                     epCustomer.SetError(txtReferenceName, "Please enter reference name.");
                     txtReferenceName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCustomer.ShowAlways = true;
                     tpCustomer.Show("Please enter reference name.", txtReferenceName, 5000);
+                    blnErrFlag = true;
                 }
-                else
+                if (string.IsNullOrWhiteSpace(txtContactNo.Text))
+                {
+                    epCustomer.SetError(txtContactNo, "Please enter contact no.");
+                    txtContactNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter contact no.", txtContactNo, 5000);
+                    blnErrFlag = true;
+                }
+                else if (!long.TryParse(txtContactNo.Text.Trim(), out _) || txtContactNo.Text.Trim().Length != 10)
+                {
+                    epCustomer.SetError(txtContactNo, "Please enter valid contact no.");
+                    txtContactNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter valid contact no.", txtContactNo, 5000);
+                    blnErrFlag = true;
+                }
+                if (rbCredit.Checked == true)  // Credit
+                {
+                    if (!string.IsNullOrWhiteSpace(txtCreditLimit.Text))
+                    {
+                        if (!decimal.TryParse(txtCreditLimit.Text.Trim(), out _))
+                        {
+                            epCustomer.SetError(txtCreditLimit, "Please enter valid credit limit.");
+                            txtCreditLimit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpCustomer.ShowAlways = true;
+                            tpCustomer.Show("Please enter valid credit limit.", txtCreditLimit, 5000);
+                            blnErrFlag = true;
+                        }
+                    }
+                    else
+                    {
+                        epCustomer.SetError(txtCreditLimit, "Please enter credit limit.");
+                        txtCreditLimit.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCustomer.ShowAlways = true;
+                        tpCustomer.Show("Please enter credit limit.", txtCreditLimit, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (!string.IsNullOrWhiteSpace(txtCreditDays.Text))
+                    {
+                        if (!int.TryParse(txtCreditDays.Text.Trim(), out _))
+                        {
+                            epCustomer.SetError(txtCreditDays, "Please enter valid credit days.");
+                            txtCreditDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpCustomer.ShowAlways = true;
+                            tpCustomer.Show("Please enter valid credit days.", txtCreditDays, 5000);
+                            blnErrFlag = true;
+                        }
+                    }
+                    else
+                    {
+                        epCustomer.SetError(txtCreditDays, "Please enter credit days.");
+                        txtCreditDays.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCustomer.ShowAlways = true;
+                        tpCustomer.Show("Please enter credit days.", txtCreditDays, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (!string.IsNullOrWhiteSpace(txtTotalInvoice.Text))
+                    {
+                        if (!decimal.TryParse(txtTotalInvoice.Text.Trim(), out _))
+                        {
+                            epCustomer.SetError(txtTotalInvoice, "Please enter valid total invoice.");
+                            txtTotalInvoice.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpCustomer.ShowAlways = true;
+                            tpCustomer.Show("Please enter valid total invoice.", txtTotalInvoice, 5000);
+                            blnErrFlag = true;
+                        }
+                    }
+                    else
+                    {
+                        epCustomer.SetError(txtTotalInvoice, "Please enter total invoice.");
+                        txtTotalInvoice.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCustomer.ShowAlways = true;
+                        tpCustomer.Show("Please enter total invoice.", txtTotalInvoice, 5000);
+                        blnErrFlag = true;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(txtOBAmt.Text))
+                    {
+                        if (!decimal.TryParse(txtOBAmt.Text.Trim(), out _))
+                        {
+                            epCustomer.SetError(txtOBAmt, "Please enter valid opening balance.");
+                            txtOBAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                            tpCustomer.ShowAlways = true;
+                            tpCustomer.Show("Please enter valid opening balance.", txtOBAmt, 5000);
+                            blnErrFlag = true;
+                        }
+                    }
+                    else
+                    {
+                        epCustomer.SetError(txtOBAmt, "Please enter opening balance.");
+                        txtOBAmt.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCustomer.ShowAlways = true;
+                        tpCustomer.Show("Please enter opening balance.", txtOBAmt, 5000);
+                        blnErrFlag = true;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(txtGSTIN.Text))
+                    {
+                        epCustomer.SetError(txtGSTIN, "Please enter GSTIN.");
+                        txtGSTIN.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCustomer.ShowAlways = true;
+                        tpCustomer.Show("Please enter GSTIN.", txtGSTIN, 5000);
+                        blnErrFlag = true;
+                    }
+                }
+
+                if (cmbStatus.SelectedValue == null || Convert.ToInt32(cmbStatus.SelectedValue) == -1)
+                {
+                    epCustomer.SetError(cmbStatus, "Please select the status.");
+                    cmbStatus.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please select the status.", cmbStatus, 5000);
+                    blnErrFlag = true;
+                }
+                // --- Billing Address Validations ---
+                if (string.IsNullOrWhiteSpace(txtaddress1.Text))
+                {
+                    epCustomer.SetError(txtaddress1, "Please enter address line 1.");
+                    txtaddress1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter address line 1.", txtaddress1, 5000);
+                    blnErrFlag = true;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtaddress2.Text))
+                {
+                    epCustomer.SetError(txtaddress2, "Please enter address line 2.");
+                    txtaddress2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter address line 2.", txtaddress2, 5000);
+                    blnErrFlag = true;
+                }
+
+                if (cmbState.SelectedValue == null || Convert.ToInt32(cmbState.SelectedValue) == -1)
+                {
+                    epCustomer.SetError(cmbState, "Please select state.");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please select state.", cmbState, 5000);
+                    blnErrFlag = true;
+                }
+                if (string.IsNullOrWhiteSpace(txtArea.Text))
+                {
+                    epCustomer.SetError(txtArea, "Please enter area name.");
+                    txtArea.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter area name.", txtArea, 5000);
+                    blnErrFlag = true;
+                }
+                else if (string.IsNullOrWhiteSpace(lblAreaId.Text) || lblAreaId.Text.Trim() == "0")
+                {
+                    epCustomer.SetError(txtArea, "Please enter a valid area.");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter a valid area.", txtArea, 5000);
+                    blnErrFlag = true;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtPincode.Text))
+                {
+                    epCustomer.SetError(txtPincode, "Please enter pincode.");
+                    txtPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter pincode.", txtPincode, 5000);
+                    blnErrFlag = true;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtLandmark.Text))
+                {
+                    epCustomer.SetError(txtLandmark, "Please enter landmark.");
+                    txtLandmark.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCustomer.ShowAlways = true;
+                    tpCustomer.Show("Please enter landmark.", txtLandmark, 5000);
+                    blnErrFlag = true;
+                }
+
+                if (blnErrFlag == false)
                 {
                     epCustomer.Clear();
                     btnSave.Enabled = false;
@@ -605,8 +783,8 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
-                txtCity.Text = "";
-                lblCityId.Text = "0";
+                //txtCity.Text = "";
+                //lblCityId.Text = "0";
             }
             catch (Exception ex)
             {
@@ -1346,8 +1524,8 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbShipState.Select(int.MaxValue, 0)));
-                txtShipCity.Text = "";
-                lblShipCityId.Text = "0";
+                //txtShipCity.Text = "";
+                //lblShipCityId.Text = "0";
             }
             catch (Exception ex)
             {
@@ -1443,10 +1621,10 @@ namespace ROMS
                                     string[] row = { objDs.Tables[0].Rows[i]["Area"].ToString(), objDs.Tables[0].Rows[i]["City"].ToString(), objDs.Tables[0].Rows[i]["State"].ToString(), objDs.Tables[0].Rows[i]["AID"].ToString(), objDs.Tables[0].Rows[i]["CTYID"].ToString(), objDs.Tables[0].Rows[i]["STID"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     objList.UseItemStyleForSubItems = false;
-                                    lvArea.Columns[3].Width = 0;
-                                    lvArea.Columns[4].Width = 0;
-                                    lvArea.Columns[5].Width = 0;
-                                    lvArea.Items.Add(objList);
+                                    lvShipArea.Columns[3].Width = 0;
+                                    lvShipArea.Columns[4].Width = 0;
+                                    lvShipArea.Columns[5].Width = 0;
+                                    lvShipArea.Items.Add(objList);
                                 }
                                 lvShipArea.Visible = true;
                             }
@@ -1754,6 +1932,7 @@ namespace ROMS
                     txtShipPincode.Text = txtPincode.Text.Trim();
                     txtShipLandmark.Text = txtLandmark.Text.Trim();
                     lvShipArea.Visible = false;
+                    lvShipCity.Visible = false;
                 }
                 else
                 {
@@ -2177,13 +2356,63 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
-                    //objDs = objspservice.udfnCustomerTypelist(1, pbCustomerId, 0);
+                    MR_Sales obj = new MR_Sales();
+                    obj.paraViewType = 1;
+                    obj.paraCustomerId = pbCustomerId;
+                    obj.paraStatusId = 0;
+                    objDs = objspservice.udfnCustomerList(obj);
                     if (objDs != null)
                     {
-                        if (objDs.Tables.Count != 0)
+                        if (objDs != null && objDs.Tables.Count > 0 && objDs.Tables[0].Rows.Count > 0)
                         {
-                            txtCustomerName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_Name"]);
-                            txtCustomerName.Focus();
+                            DataRow dr = objDs.Tables[0].Rows[0];
+
+                            txtCustomerName.Text = dr["CUS_Name"].ToString();
+                            txtReferenceName.Text = dr["CUS_ReferenceName"].ToString();
+                            txtContactNo.Text = dr["CUS_ContactNo"].ToString();
+                            txtWhatsappNo.Text = dr["CUS_WhatsappNo"].ToString();
+                            cmbCustomerType.SelectedValue = Convert.ToInt32(dr["CUS_CategoryTypeID"]);
+
+                            int cusType = Convert.ToInt32(dr["CUS_CusTypeID"]);
+                            if (cusType == 326)
+                            {
+                                rbCash.Checked = true;
+                            }
+                            else if (cusType == 327)
+                            {
+                                rbCredit.Checked = true;
+                            }
+                            if (cusType == 326)
+                            {
+                                txtCreditLimit.Text = dr["CUS_Credit_Limit"].ToString();
+                                txtCreditDays.Text = dr["CUS_CreditDays"].ToString();
+                                txtTotalInvoice.Text = dr["CUS_TotalInvoice"].ToString();
+                                txtOBAmt.Text = dr["CUS_OpeningBalance"].ToString();
+                                cmbOBType.SelectedValue = Convert.ToInt32(dr["CUS_OpeningBalanceType"]);
+                                txtGSTIN.Text = dr["CUS_GSTIN"].ToString();
+                            }
+                            txtaddress1.Text = dr["CUS_Billing_Address1"].ToString();
+                            txtaddress2.Text = dr["CUS_Billing_Address2"].ToString();
+                            txtArea.Text = dr["BillArea"].ToString();
+                            txtCity.Text = dr["BillCity"].ToString();
+                            lblAreaId.Text = dr["CUS_Billing_AID"].ToString();
+                            lblCityId.Text = dr["CUS_Billing_CTYID"].ToString();
+                            cmbState.SelectedValue = Convert.ToInt32(dr["CUS_Billing_STID"]);
+                            txtPincode.Text = dr["CUS_Billing_Pincode"].ToString();
+                            txtLandmark.Text = dr["CUS_Billing_Landmark"].ToString();
+
+                            txtShipaddress1.Text = dr["CUS_Shipping_Address1"].ToString();
+                            txtShipaddress2.Text = dr["CUS_Shipping_Address2"].ToString();
+                            txtShipArea.Text = dr["ShipArea"].ToString();
+                            txtShipCity.Text = dr["ShipCity"].ToString();
+                            lblShipAreaId.Text = dr["CUS_Shipping_AID"].ToString();
+                            lblShipCityId.Text = dr["CUS_Shipping_CTYID"].ToString();
+                            cmbShipState.SelectedValue = Convert.ToInt32(dr["CUS_Shipping_STID"]);
+                            txtShipPincode.Text = dr["CUS_Shipping_Pincode"].ToString();
+                            txtShipLandmark.Text = dr["CUS_Shipping_Landmark"].ToString();
+
+                            lvArea.Visible = false;
+                            lvShipArea.Visible = false;
                         }
                     }
                 }

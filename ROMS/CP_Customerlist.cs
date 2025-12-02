@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -84,7 +85,12 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            //varResult = objspservice.udfnCustomerType(2, Convert.ToInt32(grdCustomerList.SelectedRows[0].Cells["ID"].Value),"", "", 0, "Customer Type Delete");
+                            MR_Sales obj = new MR_Sales();
+                            obj.paraViewType = 2;
+                            obj.paraCustomerId = Convert.ToInt32(grdCustomerList.SelectedRows[0].Cells["ID"].Value);
+                            obj.paraOriginator = "Customer Delete";
+
+                            varResult = objspservice.udfnCustomer(obj);
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -149,9 +155,13 @@ namespace ROMS
                 //********** To display a data in a grid  ******************
                 grdCustomerList.DataSource = null;
                 DataSet objDs = new DataSet();
-                //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                //objDs = objspservice.udfnCustomerTypelist(0, 0, Convert.ToInt32(cmbStatus.SelectedValue));
+
+                MR_Sales obj = new MR_Sales();
+                obj.paraViewType = 0;
+                obj.paraCustomerId = 0;
+                obj.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objDs = objspservice.udfnCustomerList(obj);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -161,14 +171,17 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
-                            //grdCustomerList.DataSource = objDs.Tables[0];
-                            //grdCustomerList.Columns["ID"].Visible = false;
-                            //grdCustomerList.Columns["StatusID"].Visible = false;
-                            //grdCustomerList.Columns["S.No."].Width = 50;
-                            //grdCustomerList.Columns["Customer Type"].Width = 200;
-                            //grdCustomerList.Columns["Status"].Width = 80;
-                            //grdCustomerList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdCustomerList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCustomerList.DataSource = objDs.Tables[0];
+                            grdCustomerList.Columns["ID"].Visible = false;
+                            grdCustomerList.Columns["StatusID"].Visible = false;
+                            grdCustomerList.Columns["S.No."].Width = 50;
+                            grdCustomerList.Columns["GSTIN"].Width = 150;
+                            grdCustomerList.Columns["Customer Name"].Width = 200;
+                            grdCustomerList.Columns["Customer Category"].Width = 150;
+                            grdCustomerList.Columns["Contact No."].Width = 120;
+                            grdCustomerList.Columns["Status"].Width = 80;
+                            grdCustomerList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdCustomerList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -214,7 +227,10 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Customer Type"].Width = 200;
+                DGV_SearchGrid.Columns["GSTIN"].Width = 150;
+                DGV_SearchGrid.Columns["Customer Name"].Width = 200;
+                DGV_SearchGrid.Columns["Customer Category"].Width = 150;
+                DGV_SearchGrid.Columns["Contact No."].Width = 120;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

@@ -5500,6 +5500,39 @@ namespace ROMS
             return varResult;
         }
 
+        //Created By : Sathish, Created On :-02-12-2025
+        public DataSet udfnCustomerList(MR_Sales obj)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand cmd = new SqlCommand("MRG_Customer", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
+                cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(cmd);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
     }
 
 }
