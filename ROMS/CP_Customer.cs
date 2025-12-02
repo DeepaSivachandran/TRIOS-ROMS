@@ -158,7 +158,7 @@ namespace ROMS
                     tpCustomer.Show("Please enter contact no.", txtContactNo, 5000);
                     blnErrFlag = true;
                 }
-                else if (!long.TryParse(txtContactNo.Text.Trim(), out _) || txtContactNo.Text.Trim().Length != 10)
+                else if (!long.TryParse(txtContactNo.Text.Trim(), out _) || txtContactNo.Text.Trim().Length != 15)
                 {
                     epCustomer.SetError(txtContactNo, "Please enter valid contact no.");
                     txtContactNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
