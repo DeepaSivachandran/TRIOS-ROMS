@@ -205,8 +205,10 @@ namespace ROMS
             this.tsmCustomerType = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVehicle = new System.Windows.Forms.ToolStripMenuItem();
-            this.temporToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTemporyCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmCardMachine = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmUPI = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1770,7 +1772,9 @@ namespace ROMS
             this.tsmCustomerType,
             this.tsmCustomer,
             this.tsmVehicle,
-            this.temporToolStripMenuItem});
+            this.tsmTemporyCustomer,
+            this.tsmCardMachine,
+            this.tsmUPI});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
@@ -1812,12 +1816,12 @@ namespace ROMS
             this.tsmVehicle.Text = "Vehicle";
             this.tsmVehicle.Click += new System.EventHandler(this.tsmVehicle_Click);
             // 
-            // temporToolStripMenuItem
+            // tsmTemporyCustomer
             // 
-            this.temporToolStripMenuItem.Name = "temporToolStripMenuItem";
-            this.temporToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.temporToolStripMenuItem.Text = "Temporary Customer";
-            this.temporToolStripMenuItem.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
+            this.tsmTemporyCustomer.Name = "tsmTemporyCustomer";
+            this.tsmTemporyCustomer.Size = new System.Drawing.Size(180, 22);
+            this.tsmTemporyCustomer.Text = "Temporary Customer";
+            this.tsmTemporyCustomer.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
             // 
             // statusBar
             // 
@@ -1827,6 +1831,20 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
+            // 
+            // tsmCardMachine
+            // 
+            this.tsmCardMachine.Name = "tsmCardMachine";
+            this.tsmCardMachine.Size = new System.Drawing.Size(180, 22);
+            this.tsmCardMachine.Text = "Card Machine";
+            this.tsmCardMachine.Click += new System.EventHandler(this.tsmCardMachine_Click);
+            // 
+            // tsmUPI
+            // 
+            this.tsmUPI.Name = "tsmUPI";
+            this.tsmUPI.Size = new System.Drawing.Size(180, 22);
+            this.tsmUPI.Text = "UPI";
+            this.tsmUPI.Click += new System.EventHandler(this.tsmUPI_Click);
             // 
             // MainForm
             // 
@@ -2037,6 +2055,8 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmCustomer;
         private System.Windows.Forms.ToolStripMenuItem tsmVehicle;
         private System.Windows.Forms.ToolStripMenuItem tsmArea;
-        private System.Windows.Forms.ToolStripMenuItem temporToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmTemporyCustomer;
+        private System.Windows.Forms.ToolStripMenuItem tsmCardMachine;
+        private System.Windows.Forms.ToolStripMenuItem tsmUPI;
     }
 }

@@ -181,6 +181,10 @@ namespace ROMS
         public static CP_Area objCP_Area;
         public static CP_TempCustomerList objCP_TempCustomerList;
         public static CP_TemporaryCustomer objCP_TemporaryCustomer;
+        public static CP_CardMachineList objCP_CardMachineList;
+        public static CP_CardMachine objCP_CardMachine;
+        public static CP_UPIList objCP_UPIList;
+        public static CP_UPI objCP_UPI;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -4340,6 +4344,34 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_TempCustomerList, "CP_TempCustomerList", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCardMachine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_CardMachineList, "CP_CardMachineList", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmUPI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_UPIList, "CP_UPIList", 501);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)

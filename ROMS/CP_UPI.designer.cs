@@ -33,12 +33,18 @@
             this.txtDProvider = new System.Windows.Forms.TextBox();
             this.txtDMachineName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.grpLogo = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblCompanyLogoPath = new System.Windows.Forms.Label();
+            this.lblCompanyLogoFilename = new System.Windows.Forms.Label();
+            this.btncollegeLogoUpload = new System.Windows.Forms.Button();
+            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.cmbProvider = new System.Windows.Forms.ComboBox();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtDRouteOrderNo = new System.Windows.Forms.TextBox();
-            this.txtMachineName = new System.Windows.Forms.TextBox();
+            this.txtUPIId = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtStatus = new System.Windows.Forms.TextBox();
@@ -46,17 +52,11 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epRoute = new System.Windows.Forms.ErrorProvider(this.components);
-            this.grpLogo = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblCompanyLogoPath = new System.Windows.Forms.Label();
-            this.lblCompanyLogoFilename = new System.Windows.Forms.Label();
-            this.btncollegeLogoUpload = new System.Windows.Forms.Button();
-            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.grbform.SuspendLayout();
-            this.pnlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
             this.grpLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
+            this.pnlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDProvider
@@ -70,8 +70,7 @@
             this.txtDProvider.ReadOnly = true;
             this.txtDProvider.Size = new System.Drawing.Size(128, 28);
             this.txtDProvider.TabIndex = 6;
-            this.txtDProvider.Text = "Provider";
-            this.txtDProvider.TextChanged += new System.EventHandler(this.txtDProvider_TextChanged);
+            this.txtDProvider.Text = "Provider"; 
             // 
             // txtDMachineName
             // 
@@ -94,7 +93,7 @@
             this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.cmbConcern);
             this.grbform.Controls.Add(this.txtDRouteOrderNo);
-            this.grbform.Controls.Add(this.txtMachineName);
+            this.grbform.Controls.Add(this.txtUPIId);
             this.grbform.Controls.Add(this.btnClose);
             this.grbform.Controls.Add(this.btnSave);
             this.grbform.Controls.Add(this.txtStatus);
@@ -109,6 +108,71 @@
             this.grbform.Size = new System.Drawing.Size(614, 233);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            // 
+            // grpLogo
+            // 
+            this.grpLogo.Controls.Add(this.label1);
+            this.grpLogo.Controls.Add(this.lblCompanyLogoPath);
+            this.grpLogo.Controls.Add(this.lblCompanyLogoFilename);
+            this.grpLogo.Controls.Add(this.btncollegeLogoUpload);
+            this.grpLogo.Controls.Add(this.picCompanyLogo);
+            this.grpLogo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpLogo.Location = new System.Drawing.Point(387, 15);
+            this.grpLogo.Name = "grpLogo";
+            this.grpLogo.Size = new System.Drawing.Size(209, 207);
+            this.grpLogo.TabIndex = 1111149;
+            this.grpLogo.TabStop = false;
+            this.grpLogo.Text = "Logo Details"; 
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 176);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(174, 16);
+            this.label1.TabIndex = 251;
+            this.label1.Text = "Upload JPG, PNG files (100X100) only";
+            // 
+            // lblCompanyLogoPath
+            // 
+            this.lblCompanyLogoPath.AutoSize = true;
+            this.lblCompanyLogoPath.Location = new System.Drawing.Point(215, 156);
+            this.lblCompanyLogoPath.Name = "lblCompanyLogoPath";
+            this.lblCompanyLogoPath.Size = new System.Drawing.Size(0, 20);
+            this.lblCompanyLogoPath.TabIndex = 250;
+            this.lblCompanyLogoPath.Visible = false;
+            // 
+            // lblCompanyLogoFilename
+            // 
+            this.lblCompanyLogoFilename.AutoSize = true;
+            this.lblCompanyLogoFilename.Location = new System.Drawing.Point(203, 93);
+            this.lblCompanyLogoFilename.Name = "lblCompanyLogoFilename";
+            this.lblCompanyLogoFilename.Size = new System.Drawing.Size(0, 20);
+            this.lblCompanyLogoFilename.TabIndex = 249;
+            this.lblCompanyLogoFilename.Visible = false;
+            // 
+            // btncollegeLogoUpload
+            // 
+            this.btncollegeLogoUpload.Image = global::ROMS.Properties.Resources.browse1;
+            this.btncollegeLogoUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btncollegeLogoUpload.Location = new System.Drawing.Point(67, 141);
+            this.btncollegeLogoUpload.Name = "btncollegeLogoUpload";
+            this.btncollegeLogoUpload.Size = new System.Drawing.Size(84, 29);
+            this.btncollegeLogoUpload.TabIndex = 246;
+            this.btncollegeLogoUpload.Text = "Browse";
+            this.btncollegeLogoUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btncollegeLogoUpload.UseVisualStyleBackColor = true;
+            // 
+            // picCompanyLogo
+            // 
+            this.picCompanyLogo.Image = global::ROMS.Properties.Resources.picture;
+            this.picCompanyLogo.InitialImage = null;
+            this.picCompanyLogo.Location = new System.Drawing.Point(58, 31);
+            this.picCompanyLogo.Name = "picCompanyLogo";
+            this.picCompanyLogo.Size = new System.Drawing.Size(100, 100);
+            this.picCompanyLogo.TabIndex = 247;
+            this.picCompanyLogo.TabStop = false;
             // 
             // cmbProvider
             // 
@@ -161,6 +225,7 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(235, 27);
             this.cmbConcern.TabIndex = 2;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.cmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.cmbRSNo_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRSNo_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRSNo_KeyPress);
@@ -179,17 +244,17 @@
             this.txtDRouteOrderNo.TabIndex = 1111146;
             this.txtDRouteOrderNo.Text = "Concern";
             // 
-            // txtMachineName
+            // txtUPIId
             // 
-            this.txtMachineName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMachineName.Location = new System.Drawing.Point(134, 52);
-            this.txtMachineName.MaxLength = 30;
-            this.txtMachineName.Name = "txtMachineName";
-            this.txtMachineName.Size = new System.Drawing.Size(235, 28);
-            this.txtMachineName.TabIndex = 0;
-            this.txtMachineName.Enter += new System.EventHandler(this.txtREName_Enter);
-            this.txtMachineName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtREName_KeyDown);
-            this.txtMachineName.Leave += new System.EventHandler(this.txtREName_Leave);
+            this.txtUPIId.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUPIId.Location = new System.Drawing.Point(134, 52);
+            this.txtUPIId.MaxLength = 30;
+            this.txtUPIId.Name = "txtUPIId";
+            this.txtUPIId.Size = new System.Drawing.Size(235, 28);
+            this.txtUPIId.TabIndex = 0;
+            this.txtUPIId.Enter += new System.EventHandler(this.txtREName_Enter);
+            this.txtUPIId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtREName_KeyDown);
+            this.txtUPIId.Leave += new System.EventHandler(this.txtREName_Leave);
             // 
             // btnClose
             // 
@@ -282,72 +347,6 @@
             // 
             this.epRoute.ContainerControl = this;
             // 
-            // grpLogo
-            // 
-            this.grpLogo.Controls.Add(this.label1);
-            this.grpLogo.Controls.Add(this.lblCompanyLogoPath);
-            this.grpLogo.Controls.Add(this.lblCompanyLogoFilename);
-            this.grpLogo.Controls.Add(this.btncollegeLogoUpload);
-            this.grpLogo.Controls.Add(this.picCompanyLogo);
-            this.grpLogo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpLogo.Location = new System.Drawing.Point(387, 15);
-            this.grpLogo.Name = "grpLogo";
-            this.grpLogo.Size = new System.Drawing.Size(209, 207);
-            this.grpLogo.TabIndex = 1111149;
-            this.grpLogo.TabStop = false;
-            this.grpLogo.Text = "Logo Details";
-            this.grpLogo.Enter += new System.EventHandler(this.grpLogo_Enter);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 176);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 16);
-            this.label1.TabIndex = 251;
-            this.label1.Text = "Upload JPG, PNG files (100X100) only";
-            // 
-            // lblCompanyLogoPath
-            // 
-            this.lblCompanyLogoPath.AutoSize = true;
-            this.lblCompanyLogoPath.Location = new System.Drawing.Point(215, 156);
-            this.lblCompanyLogoPath.Name = "lblCompanyLogoPath";
-            this.lblCompanyLogoPath.Size = new System.Drawing.Size(0, 20);
-            this.lblCompanyLogoPath.TabIndex = 250;
-            this.lblCompanyLogoPath.Visible = false;
-            // 
-            // lblCompanyLogoFilename
-            // 
-            this.lblCompanyLogoFilename.AutoSize = true;
-            this.lblCompanyLogoFilename.Location = new System.Drawing.Point(203, 93);
-            this.lblCompanyLogoFilename.Name = "lblCompanyLogoFilename";
-            this.lblCompanyLogoFilename.Size = new System.Drawing.Size(0, 20);
-            this.lblCompanyLogoFilename.TabIndex = 249;
-            this.lblCompanyLogoFilename.Visible = false;
-            // 
-            // btncollegeLogoUpload
-            // 
-            this.btncollegeLogoUpload.Image = global::ROMS.Properties.Resources.browse1;
-            this.btncollegeLogoUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btncollegeLogoUpload.Location = new System.Drawing.Point(67, 141);
-            this.btncollegeLogoUpload.Name = "btncollegeLogoUpload";
-            this.btncollegeLogoUpload.Size = new System.Drawing.Size(84, 29);
-            this.btncollegeLogoUpload.TabIndex = 246;
-            this.btncollegeLogoUpload.Text = "Browse";
-            this.btncollegeLogoUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btncollegeLogoUpload.UseVisualStyleBackColor = true;
-            // 
-            // picCompanyLogo
-            // 
-            this.picCompanyLogo.Image = global::ROMS.Properties.Resources.picture;
-            this.picCompanyLogo.InitialImage = null;
-            this.picCompanyLogo.Location = new System.Drawing.Point(58, 31);
-            this.picCompanyLogo.Name = "picCompanyLogo";
-            this.picCompanyLogo.Size = new System.Drawing.Size(100, 100);
-            this.picCompanyLogo.TabIndex = 247;
-            this.picCompanyLogo.TabStop = false;
-            // 
             // CP_UPI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -371,12 +370,12 @@
             this.Leave += new System.EventHandler(this.CP_Route_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
-            this.pnlStatus.ResumeLayout(false);
-            this.pnlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).EndInit();
             this.grpLogo.ResumeLayout(false);
             this.grpLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
+            this.pnlStatus.ResumeLayout(false);
+            this.pnlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -393,7 +392,7 @@
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.Panel pnlStatus;
         public System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtMachineName;
+        private System.Windows.Forms.TextBox txtUPIId;
         private System.Windows.Forms.ComboBox cmbConcern;
         private System.Windows.Forms.TextBox txtDRouteOrderNo;
         private System.Windows.Forms.ComboBox cmbBank;

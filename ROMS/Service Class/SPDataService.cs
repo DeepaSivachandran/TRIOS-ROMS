@@ -5185,7 +5185,7 @@ namespace ROMS
             try
             {
                 tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRG_TemporaryCustomerList]", tmpspcall.objConn);
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_TemporaryCustomer]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_TemporaryCustomer.ViewType);
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_TemporaryCustomer.paraStatusId);
@@ -5222,6 +5222,102 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_TemporaryCustomer.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_TemporaryCustomer.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraTempCusID", objMR_TemporaryCustomer.paraTempCusID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+        public string udfnCardMachine(MR_CardMachine objMR_CardMachine)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_CardMachine]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_CardMachine.ViewType); 
+                varSqlCommand.Parameters.AddWithValue("@paraCardMachineId", objMR_CardMachine.paraCardMachineId); 
+                varSqlCommand.Parameters.AddWithValue("@paraCardMachineName", objMR_CardMachine.paraCardMachineName); 
+                varSqlCommand.Parameters.AddWithValue("@paraProviderID", objMR_CardMachine.paraProviderID); 
+                varSqlCommand.Parameters.AddWithValue("@paraConcernID", objMR_CardMachine.paraConcernID); 
+                varSqlCommand.Parameters.AddWithValue("@paraComBankId", objMR_CardMachine.paraComBankId); 
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_CardMachine.paraStatusId); 
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_CardMachine.paraOriginator);  
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                result = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return result;
+        }
+        public DataSet udfnCardMachineList(MR_CardMachine objMR_CardMachine)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_CardMachine]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_CardMachine.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_CardMachine.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraCardMachineId", objMR_CardMachine.paraCardMachineId);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public string udfnUPI(MR_UPI objMR_UPI)
+        {
+            string result = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_UPI]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_UPI.ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraId", objMR_UPI.paraId);
+                varSqlCommand.Parameters.AddWithValue("@paraUPIID", objMR_UPI.paraUPIID);
+                varSqlCommand.Parameters.AddWithValue("@paraProviderID", objMR_UPI.paraProviderID);
+                varSqlCommand.Parameters.AddWithValue("@paraConcernID", objMR_UPI.paraConcernID);
+                varSqlCommand.Parameters.AddWithValue("@paraComBankId", objMR_UPI.paraComBankId);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_UPI.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_UPI.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraLogoName", objMR_UPI.paraLogoName);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

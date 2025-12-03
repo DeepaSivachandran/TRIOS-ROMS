@@ -395,6 +395,8 @@
     <Compile Include="CP_CustomerType.designer.cs">
       <DependentUpon>CP_CustomerType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_UPI.cs" />
+    <Compile Include="Model\MR_CardMachine.cs" />
     <Compile Include="Model\MR_TemporaryCustomer.cs" />
     <Compile Include="Model\MR_Route.cs" />
     <Compile Include="Model\MR_ChequeTransactionSettings.cs" />

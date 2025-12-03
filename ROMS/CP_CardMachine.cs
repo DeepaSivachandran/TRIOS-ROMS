@@ -17,44 +17,13 @@ namespace ROMS
         DataError objError;
         private ToolTip tpREName = new ToolTip();
         private ToolTip tpRTName = new ToolTip();
-        public int varRouteId = 0;
+        public int varID = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
         public CP_CardMachine()
         {
             InitializeComponent();
-        }
-        public void udfnLoadSlNo()
-        {
-            try
-            {
-                DataSet objDS;
-                if (varRouteId != 0)
-                {
-                    string varRID = Convert.ToString(varRouteId);
-                    SPDataService objspservice = new SPDataService();
-                    objDS = objspservice.udfnGetSlNo("MR_Route", "Update", "RID", varRID, "R_OrderNo");
-                    objspservice.CloseConnection();
-                }
-                else
-                {
-                    SPDataService objspservice = new SPDataService();
-                    objDS = objspservice.udfnGetSlNo("MR_Route ", "Create", "1=1", "", "R_OrderNo");
-                    objspservice.CloseConnection();
-                }
-                if (objDS != null)
-                {
-                    cmbConcern.DataSource = objDS.Tables[0];
-                    cmbConcern.DisplayMember = "num";
-                    cmbConcern.ValueMember = "num";
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         public void udfnSave(object sender,EventArgs e)
         {
             try
@@ -66,38 +35,36 @@ namespace ROMS
                 varoriginator = "";int varType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    varoriginator = "Route Creation";
+                    varoriginator = "Card Machine Creation";
                     varType = 0;
                 }
                 else
                 {
-                    varoriginator = "Route Updation";
+                    varoriginator = "Card Machine Updation";
                     varType = 1;
-                }
-                 
-               
-
+                } 
                 SPDataService objspdservice = new SPDataService();
-                MR_Route objMR_Route = new MR_Route();
-                objMR_Route.ViewType = varType;
-                objMR_Route.paraRouteId = varRouteId; 
-                objMR_Route.paraRouteEName = txtMachineName.Text.Trim(); 
-                objMR_Route.paraStatusId = PbStatus; 
-                objMR_Route.paraOriginator = varoriginator;
-                objMR_Route.paraOrderNo = Convert.ToInt32(cmbConcern.SelectedValue); 
-                varResult = objspdservice.udfnRoute(objMR_Route);
+                MR_CardMachine objMR_CardMachine = new MR_CardMachine();
+                objMR_CardMachine.ViewType = varType;
+                objMR_CardMachine.paraCardMachineName = txtMachineName.Text.Trim();
+                objMR_CardMachine.paraConcernID = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_CardMachine.paraComBankId = Convert.ToInt32(cmbBank.SelectedValue);
+                objMR_CardMachine.paraStatusId = Convert.ToInt32(PbStatus);
+                objMR_CardMachine.paraProviderID = Convert.ToInt32(cmbProvider.SelectedValue);
+                objMR_CardMachine.paraCardMachineId = Convert.ToInt32(varID);
+                objMR_CardMachine.paraOriginator = varoriginator; 
+                varResult = objspdservice.udfnCardMachine(objMR_CardMachine);
                 objspdservice.CloseConnection();
- 
-                objspservice.CloseConnection();
+  
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_Routelist.udfnList();
+                    MainForm.objCP_CardMachineList.udfnList();
                     if (btnSave.Text == "Save")
                     {
                         udfnclear();
-                        MainForm.objCP_Routelist.udfnList();
+                        MainForm.objCP_CardMachineList.udfnList();
                     }
                     if (btnSave.Text == "Update")
                     {
@@ -131,8 +98,9 @@ namespace ROMS
         {
             try
             {
-                txtMachineName.Text = ""; 
-                udfnLoadSlNo();
+                txtMachineName.Text = "";
+                cmbConcern.SelectedValue = -1;
+                cmbProvider.SelectedValue = -1;
                 txtMachineName.Focus();
             }
             catch (Exception ex)
@@ -361,15 +329,14 @@ namespace ROMS
         {
             try
             {
+                udfnDropDownLoad();
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
-                    rbActive.Checked = true;
-                    udfnLoadSlNo();
+                    rbActive.Checked = true; 
                 }
                 else
-                {
-                    udfnLoadSlNo();
+                { 
                     udfnEdit();
                     pnlStatus.Enabled = true;
                     if (PbStatus == 1) 
@@ -384,35 +351,96 @@ namespace ROMS
                     }
                 }
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                MainForm.objCP_Routelist.picLoader.Visible = false;
-                MainForm.objCP_Routelist.picLoader.SendToBack(); 
+                MainForm.objCP_CardMachineList.picLoader.Visible = false;
+                MainForm.objCP_CardMachineList.picLoader.SendToBack(); 
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+        public void udfnBankDropDown()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService();
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnCompanyList(14, Convert.ToInt16(cmbConcern.SelectedValue), "", "", 0);
+                objdserv.CloseConnection();
+                cmbBank.DataSource = null;  
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbBank.ValueMember = "CMBNK_ID";
+                            cmbBank.DisplayMember = "Bank";
+                            cmbBank.DataSource = objDT.Tables[0]; 
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDropDownLoad()
+        {
+            try
+            {
+                SPDataService objdserv = new SPDataService(); 
+                DataSet objDT = new DataSet();
+                objDT = objdserv.udfnCompanyList(3, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
+                cmbConcern.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbConcern.ValueMember = "COMID";
+                            cmbConcern.DisplayMember = "COM_ShortName";
+                            cmbConcern.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,17) AND MSTID<>0 ORDER BY MST_DisplayText desc", "MST_DisplayText,MSTID", cmbProvider, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                udfnBankDropDown();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnEdit()
         {
             try
             {
-                if (varRouteId != 0)
+                if (varID != 0)
                 {
                     DataSet objDs = new DataSet();  
                     SPDataService objspservice = new SPDataService();
-                    MR_Route objMR_Route = new MR_Route();
-                    objMR_Route.ViewType = 1;
-                    objMR_Route.paraRouteId = varRouteId;
-                    objDs = objspservice.udfnRouteList(objMR_Route); 
+                    MR_CardMachine objMR_CardMachine = new MR_CardMachine();
+                    objMR_CardMachine.ViewType = 1;
+                    objMR_CardMachine.paraCardMachineId = varID;
+                    objDs = objspservice.udfnCardMachineList(objMR_CardMachine); 
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtMachineName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_EName"]); 
-                                cmbConcern.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["R_OrderNo"]);
+                                txtMachineName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["MachineName"]); 
+                                cmbConcern.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["ComID"]);
+                                cmbBank.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["BankID"]);
+                                cmbProvider.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_ProviderID"]);
                                 txtMachineName.Focus();
                             }
                               
@@ -676,6 +704,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void cmbConcern_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            udfnBankDropDown();
         }
     }
 }

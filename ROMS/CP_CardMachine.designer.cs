@@ -151,6 +151,7 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(235, 27);
             this.cmbConcern.TabIndex = 2;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.cmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.cmbRSNo_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRSNo_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRSNo_KeyPress);

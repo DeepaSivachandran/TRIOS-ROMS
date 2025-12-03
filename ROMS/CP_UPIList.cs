@@ -36,9 +36,9 @@ namespace ROMS
             {
                 try
                 {
-                    MainForm.objCP_Route = new CP_Route();
-                    MainForm.objCP_Route.FormBorderStyle = FormBorderStyle.FixedSingle;
-                    MainForm.objCP_Route.ShowDialog();
+                    MainForm.objCP_UPI = new CP_UPI();
+                    MainForm.objCP_UPI.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    MainForm.objCP_UPI.ShowDialog();
                 }
                 catch (Exception ex)
                 {
