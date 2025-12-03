@@ -156,6 +156,14 @@ namespace ROMS
                             grdItemList.Columns["Brand Id"].Visible = false;
                             grdItemList.Columns["Brand Name"].Visible = false;
                             lblNoRecordsFound.Visible = false;
+
+
+                            //grdItemList.Columns["Live W.Rate"].Visible = false;
+                            //grdItemList.Columns["Last W.Rate"].Visible = false;
+
+                            //grdItemList.Columns["Live R.Rate"].HeaderText = "New Rate";
+                            //grdItemList.Columns["Last R.Rate"].HeaderText = "Last Rate";
+
                             lblNoRecordsFound.SendToBack();
                         }
                         else

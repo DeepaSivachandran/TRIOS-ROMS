@@ -1396,6 +1396,7 @@ namespace ROMS
             try
             {
                 dtDefaultGrid = null;
+                chkSelectAll.Visible = true;
                 DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -1503,6 +1504,27 @@ namespace ROMS
                             grdItemList.Columns["Brand Id"].Visible = false;
                             grdItemList.Columns["Brand Name"].Visible = false;
                             grdItemList.Columns["clmCheck"].Visible = true; 
+
+                            grdItemList.Columns["Live W.Rate"].Visible = false; 
+                            grdItemList.Columns["Last W.Rate"].Visible = false;
+
+
+                            grdItemList.Columns["Live R.Rate"].HeaderText = "New Rate";
+                            grdItemList.Columns["Last R.Rate"].HeaderText = "Last Rate";
+
+
+                            grdItemList.Columns["S.No."].ReadOnly = true;
+                            grdItemList.Columns["P.I Code"].ReadOnly = true;
+                            grdItemList.Columns["Product"].ReadOnly = true;
+                            grdItemList.Columns["Unit"].ReadOnly = true;
+                            grdItemList.Columns["Last R.Rate"].ReadOnly = true;
+                            grdItemList.Columns["Last W.Rate"].ReadOnly = true;
+                            grdItemList.Columns["Live R.Rate"].ReadOnly = true;
+                            grdItemList.Columns["Live W.Rate"].ReadOnly = true;
+                            grdItemList.Columns["Teller"].ReadOnly = true;
+                            grdItemList.Columns["Last Updated By"].ReadOnly = true;
+
+
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                         }
@@ -1510,6 +1532,7 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                            chkSelectAll.Visible = false;
                         }
                        
 
@@ -1518,12 +1541,14 @@ namespace ROMS
                     {
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
+                        chkSelectAll.Visible = false;
                     }
                 }
                 else
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
+                    chkSelectAll.Visible = false;
                 }
                 udfnSearchGridHead();
                 if (lblNoRecordsFound.Visible == true)
@@ -1623,6 +1648,7 @@ namespace ROMS
         {
             try
             {
+                chkSelectAll.Visible = true;
                 if (dtDefaultGrid.Rows.Count != 0)
                 {
                     DGV_SearchGrid.DataSource = dtDefaultGrid;
@@ -1654,6 +1680,7 @@ namespace ROMS
                 {
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
+                    chkSelectAll.Visible = false;
                 }
             }
             catch (Exception ex)

@@ -1343,8 +1343,9 @@ namespace ROMS
                     }
                     if (lblParentcode.Text != "0" && lblParentcode.Text != "" && varupdateproductcode == 0) 
                     {
-                        txtItemNameEnglish.Text = txtItemNameEnglish.Text + " " + txtUpp.Text + " " + cmbChildUnit.Text;
-                        txtItemNameTamil.Text = txtItemNameTamil.Text + " " + txtUpp.Text + " " + cmbChildUnit.Text;
+                        txtItemNameEnglish.Text = txtItemNameEnglish.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
+                        txtItemNameTamil.Text = txtItemNameTamil.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
+                        txtPICode.Text = txtPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text +") ";
                     }
 
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
@@ -2027,7 +2028,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtRMinSaleQty.Focus();
+                    txtBarcode.Focus();
                 }
             }
             catch (Exception ex)
@@ -9227,7 +9228,34 @@ namespace ROMS
 
                     }
 
-                 
+                    if (row.Cells["clmTypeid"].Value != null &&
+                        row.Cells["clmTypeid"].Value.ToString() == "447" || row.Cells["clmTypeid"].Value.ToString() == "448")
+                    {
+                        row.Cells["clmOffset"].ReadOnly = true;
+                        row.Cells["clmStatus"].ReadOnly = true;
+
+
+                        row.Cells["clmOffset"].Value = 454;
+                        row.Cells["clmStatus"].Value = 454;
+
+                        // 1. Clear the ComboBox value
+                        row.Cells["clmMinQty"].Value = "";
+                        row.Cells["clmOffsetValue"].Value = "";
+
+                        // 2. Make ComboBox cell readonly
+                        row.Cells["clmMinQty"].ReadOnly = true;
+                        row.Cells["clmOffsetValue"].ReadOnly = true;
+
+                        // Optional: give a light gray background to show it's disabled
+                        row.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmStatus"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmStatus"].Style.BackColor = Color.LightGray;
+
+                    }
+
                 }
             }
             catch (Exception ex)

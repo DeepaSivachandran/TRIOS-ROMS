@@ -1160,6 +1160,7 @@ namespace ROMS
                                         txtWRateLast.Text = "0"; 
                                         txtWRateLive.Enabled = false;
                                         txtWRateLive.BackColor = System.Drawing.SystemColors.Control;
+                                        txtDWSaleRate.Text = "Rate";
                                     }
                                     else
                                     { 
@@ -1168,7 +1169,8 @@ namespace ROMS
                                         txtRRateLast.Text = Convert.ToString(prevRrate);
                                         txtWRatePrev.Text = Convert.ToString(Wrate);
                                         txtWRateLast.Text = Convert.ToString(prevWrate);
-                                    } 
+                                        txtDWSaleRate.Text = "R.Rate";
+                                    }
 
 
                                     lblProductName.Text = txtProductName.Text;
