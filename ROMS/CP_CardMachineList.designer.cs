@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_TempCustomerList
+    partial class CP_CardMachineList
     {
         /// <summary>
         /// Required designer variable.
@@ -35,27 +35,29 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsRouteList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbTotalCount = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.pnlRoute = new System.Windows.Forms.Panel();
             this.grbFilter = new System.Windows.Forms.GroupBox();
-            this.btnView = new System.Windows.Forms.Button();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdTempCustomerList = new System.Windows.Forms.DataGridView();
+            this.grdRouteList = new System.Windows.Forms.DataGridView();
+            this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsRouteList.SuspendLayout();
             this.pnlRoute.SuspendLayout();
             this.grbFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdTempCustomerList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRouteList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +73,8 @@
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
+            this.tsbNew,
+            this.toolStripSeparator1,
             this.tsbTotalCount,
             this.toolStripButton2});
             this.tsRouteList.Location = new System.Drawing.Point(0, 0);
@@ -79,30 +83,6 @@
             this.tsRouteList.TabIndex = 35;
             this.tsRouteList.Text = "City";
             // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(138, 24);
-            this.tspHeader.Text = "Temporary Customer";
-            // 
-            // tsbDelete
-            // 
-            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbDelete.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
-            this.tsbDelete.Text = "Delete";
-            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
-            // 
             // tssEdit
             // 
             this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -110,26 +90,19 @@
             this.tssEdit.Name = "tssEdit";
             this.tssEdit.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsbEdit
-            // 
-            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEdit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
-            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
-            this.tsbEdit.Text = "&Edit";
-            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
-            // 
             // tssNew
             // 
             this.tssNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tssNew.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
             this.tssNew.Name = "tssNew";
             this.tssNew.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsbTotalCount
             // 
@@ -153,8 +126,8 @@
             this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton2.Size = new System.Drawing.Size(168, 24);
-            this.toolStripButton2.Text = "No. of temporary customers :";
+            this.toolStripButton2.Size = new System.Drawing.Size(132, 24);
+            this.toolStripButton2.Text = "No. of Card Machines :";
             // 
             // pnlRoute
             // 
@@ -162,7 +135,7 @@
             this.pnlRoute.Controls.Add(this.grbFilter);
             this.pnlRoute.Controls.Add(this.DGV_SearchGrid);
             this.pnlRoute.Controls.Add(this.lblNoRecordsFound);
-            this.pnlRoute.Controls.Add(this.grdTempCustomerList);
+            this.pnlRoute.Controls.Add(this.grdRouteList);
             this.pnlRoute.Controls.Add(this.picLoader);
             this.pnlRoute.Location = new System.Drawing.Point(0, 31);
             this.pnlRoute.Name = "pnlRoute";
@@ -181,21 +154,6 @@
             this.grbFilter.TabIndex = 958801;
             this.grbFilter.TabStop = false;
             this.grbFilter.Text = "Filter By";
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::ROMS.Properties.Resources.view;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(189, 22);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 1;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            this.btnView.Enter += new System.EventHandler(this.btnView_Enter);
-            this.btnView.Leave += new System.EventHandler(this.btnView_Leave);
             // 
             // cmbStatus
             // 
@@ -278,14 +236,14 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // grdTempCustomerList
+            // grdRouteList
             // 
-            this.grdTempCustomerList.AllowUserToAddRows = false;
-            this.grdTempCustomerList.AllowUserToDeleteRows = false;
-            this.grdTempCustomerList.AllowUserToResizeColumns = false;
-            this.grdTempCustomerList.AllowUserToResizeRows = false;
-            this.grdTempCustomerList.BackgroundColor = System.Drawing.Color.White;
-            this.grdTempCustomerList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdRouteList.AllowUserToAddRows = false;
+            this.grdRouteList.AllowUserToDeleteRows = false;
+            this.grdRouteList.AllowUserToResizeColumns = false;
+            this.grdRouteList.AllowUserToResizeRows = false;
+            this.grdRouteList.BackgroundColor = System.Drawing.Color.White;
+            this.grdRouteList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -293,10 +251,10 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdTempCustomerList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdTempCustomerList.ColumnHeadersHeight = 30;
-            this.grdTempCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdTempCustomerList.ColumnHeadersVisible = false;
+            this.grdRouteList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdRouteList.ColumnHeadersHeight = 30;
+            this.grdRouteList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdRouteList.ColumnHeadersVisible = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -304,25 +262,40 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdTempCustomerList.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdTempCustomerList.EnableHeadersVisualStyles = false;
-            this.grdTempCustomerList.GridColor = System.Drawing.Color.White;
-            this.grdTempCustomerList.Location = new System.Drawing.Point(12, 130);
-            this.grdTempCustomerList.Name = "grdTempCustomerList";
-            this.grdTempCustomerList.ReadOnly = true;
-            this.grdTempCustomerList.RowHeadersVisible = false;
-            this.grdTempCustomerList.RowHeadersWidth = 100;
+            this.grdRouteList.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdRouteList.EnableHeadersVisualStyles = false;
+            this.grdRouteList.GridColor = System.Drawing.Color.White;
+            this.grdRouteList.Location = new System.Drawing.Point(12, 130);
+            this.grdRouteList.Name = "grdRouteList";
+            this.grdRouteList.ReadOnly = true;
+            this.grdRouteList.RowHeadersVisible = false;
+            this.grdRouteList.RowHeadersWidth = 100;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdTempCustomerList.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdTempCustomerList.RowTemplate.Height = 25;
-            this.grdTempCustomerList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdTempCustomerList.Size = new System.Drawing.Size(1330, 509);
-            this.grdTempCustomerList.TabIndex = 958797;
-            this.grdTempCustomerList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
-            this.grdTempCustomerList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
-            this.grdTempCustomerList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
-            this.grdTempCustomerList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCityList_KeyDown);
+            this.grdRouteList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdRouteList.RowTemplate.Height = 25;
+            this.grdRouteList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdRouteList.Size = new System.Drawing.Size(1330, 509);
+            this.grdRouteList.TabIndex = 958797;
+            this.grdRouteList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
+            this.grdRouteList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
+            this.grdRouteList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
+            this.grdRouteList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCityList_KeyDown);
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(189, 22);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 1;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.btnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.btnView_Leave);
             // 
             // picLoader
             // 
@@ -339,7 +312,59 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // CP_TempCustomerList
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(99, 24);
+            this.tspHeader.Text = "Card Machine";
+            // 
+            // tsbDelete
+            // 
+            this.tsbDelete.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbDelete.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.tsbDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDelete.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbDelete.Name = "tsbDelete";
+            this.tsbDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbDelete.Size = new System.Drawing.Size(63, 24);
+            this.tsbDelete.Text = "Delete";
+            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
+            // 
+            // tsbEdit
+            // 
+            this.tsbEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEdit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbEdit.Image = global::ROMS.Properties.Resources.Edit;
+            this.tsbEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbEdit.Size = new System.Drawing.Size(50, 24);
+            this.tsbEdit.Text = "&Edit";
+            this.tsbEdit.Click += new System.EventHandler(this.tsbEdit_Click);
+            // 
+            // tsbNew
+            // 
+            this.tsbNew.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbNew.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbNew.Image = global::ROMS.Properties.Resources.New;
+            this.tsbNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNew.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.tsbNew.Name = "tsbNew";
+            this.tsbNew.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbNew.Size = new System.Drawing.Size(52, 24);
+            this.tsbNew.Text = "&New";
+            this.tsbNew.Click += new System.EventHandler(this.tsbNew_Click);
+            // 
+            // CP_CardMachineList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -351,7 +376,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "CP_TempCustomerList";
+            this.Name = "CP_CardMachineList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "City";
             this.Load += new System.EventHandler(this.CP_Citylist_Load);
@@ -364,7 +389,7 @@
             this.grbFilter.ResumeLayout(false);
             this.grbFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdTempCustomerList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRouteList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -379,11 +404,13 @@
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
         public System.Windows.Forms.ToolStripSeparator tssNew;
+        public System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.Panel pnlRoute;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdTempCustomerList;
+        public System.Windows.Forms.DataGridView grdRouteList;
         public System.Windows.Forms.PictureBox picLoader;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.ToolStripButton tsbTotalCount;
         public System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.GroupBox grbFilter;

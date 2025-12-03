@@ -166,6 +166,18 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_UPI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UPI.designer.cs">
+      <DependentUpon>CP_UPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_UPIList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_UPIList.designer.cs">
+      <DependentUpon>CP_UPIList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Customer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +201,12 @@
     </Compile>
     <Compile Include="CP_CardMachine.designer.cs">
       <DependentUpon>CP_CardMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_CardMachineList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_CardMachineList.designer.cs">
+      <DependentUpon>CP_CardMachineList.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_TemporaryCustomer.cs">
       <SubType>Form</SubType>
@@ -3681,6 +3699,12 @@
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_UPI.resx">
+      <DependentUpon>CP_UPI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_UPIList.resx">
+      <DependentUpon>CP_UPIList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Customer.resx">
       <DependentUpon>CP_Customer.cs</DependentUpon>
     </EmbeddedResource>
@@ -3692,6 +3716,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_CardMachine.resx">
       <DependentUpon>CP_CardMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_CardMachineList.resx">
+      <DependentUpon>CP_CardMachineList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_TemporaryCustomer.resx">
       <DependentUpon>CP_TemporaryCustomer.cs</DependentUpon>

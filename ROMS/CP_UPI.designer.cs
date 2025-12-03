@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_CardMachine
+    partial class CP_UPI
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_CardMachine));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_UPI));
             this.txtDProvider = new System.Windows.Forms.TextBox();
             this.txtDMachineName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
@@ -46,9 +46,17 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epRoute = new System.Windows.Forms.ErrorProvider(this.components);
+            this.grpLogo = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblCompanyLogoPath = new System.Windows.Forms.Label();
+            this.lblCompanyLogoFilename = new System.Windows.Forms.Label();
+            this.btncollegeLogoUpload = new System.Windows.Forms.Button();
+            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
+            this.grpLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDProvider
@@ -56,29 +64,31 @@
             this.txtDProvider.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProvider.Enabled = false;
             this.txtDProvider.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDProvider.Location = new System.Drawing.Point(6, 52);
+            this.txtDProvider.Location = new System.Drawing.Point(6, 25);
             this.txtDProvider.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDProvider.Name = "txtDProvider";
             this.txtDProvider.ReadOnly = true;
             this.txtDProvider.Size = new System.Drawing.Size(128, 28);
             this.txtDProvider.TabIndex = 6;
             this.txtDProvider.Text = "Provider";
+            this.txtDProvider.TextChanged += new System.EventHandler(this.txtDProvider_TextChanged);
             // 
             // txtDMachineName
             // 
             this.txtDMachineName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDMachineName.Enabled = false;
             this.txtDMachineName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDMachineName.Location = new System.Drawing.Point(6, 24);
+            this.txtDMachineName.Location = new System.Drawing.Point(6, 52);
             this.txtDMachineName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDMachineName.Name = "txtDMachineName";
             this.txtDMachineName.ReadOnly = true;
             this.txtDMachineName.Size = new System.Drawing.Size(128, 28);
             this.txtDMachineName.TabIndex = 7;
-            this.txtDMachineName.Text = "Machine Name";
+            this.txtDMachineName.Text = "UPI ID";
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.grpLogo);
             this.grbform.Controls.Add(this.cmbProvider);
             this.grbform.Controls.Add(this.cmbBank);
             this.grbform.Controls.Add(this.textBox1);
@@ -92,11 +102,11 @@
             this.grbform.Controls.Add(this.txtDMachineName);
             this.grbform.Controls.Add(this.pnlStatus);
             this.grbform.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.grbform.Location = new System.Drawing.Point(10, 1);
+            this.grbform.Location = new System.Drawing.Point(11, 2);
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(379, 208);
+            this.grbform.Size = new System.Drawing.Size(614, 233);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
@@ -104,7 +114,7 @@
             // 
             this.cmbProvider.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProvider.FormattingEnabled = true;
-            this.cmbProvider.Location = new System.Drawing.Point(134, 52);
+            this.cmbProvider.Location = new System.Drawing.Point(134, 25);
             this.cmbProvider.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbProvider.Name = "cmbProvider";
             this.cmbProvider.Size = new System.Drawing.Size(235, 27);
@@ -172,8 +182,8 @@
             // txtMachineName
             // 
             this.txtMachineName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMachineName.Location = new System.Drawing.Point(134, 24);
-            this.txtMachineName.MaxLength = 50;
+            this.txtMachineName.Location = new System.Drawing.Point(134, 52);
+            this.txtMachineName.MaxLength = 30;
             this.txtMachineName.Name = "txtMachineName";
             this.txtMachineName.Size = new System.Drawing.Size(235, 28);
             this.txtMachineName.TabIndex = 0;
@@ -272,12 +282,78 @@
             // 
             this.epRoute.ContainerControl = this;
             // 
-            // CP_CardMachine
+            // grpLogo
+            // 
+            this.grpLogo.Controls.Add(this.label1);
+            this.grpLogo.Controls.Add(this.lblCompanyLogoPath);
+            this.grpLogo.Controls.Add(this.lblCompanyLogoFilename);
+            this.grpLogo.Controls.Add(this.btncollegeLogoUpload);
+            this.grpLogo.Controls.Add(this.picCompanyLogo);
+            this.grpLogo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpLogo.Location = new System.Drawing.Point(387, 15);
+            this.grpLogo.Name = "grpLogo";
+            this.grpLogo.Size = new System.Drawing.Size(209, 207);
+            this.grpLogo.TabIndex = 1111149;
+            this.grpLogo.TabStop = false;
+            this.grpLogo.Text = "Logo Details";
+            this.grpLogo.Enter += new System.EventHandler(this.grpLogo_Enter);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 176);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(174, 16);
+            this.label1.TabIndex = 251;
+            this.label1.Text = "Upload JPG, PNG files (100X100) only";
+            // 
+            // lblCompanyLogoPath
+            // 
+            this.lblCompanyLogoPath.AutoSize = true;
+            this.lblCompanyLogoPath.Location = new System.Drawing.Point(215, 156);
+            this.lblCompanyLogoPath.Name = "lblCompanyLogoPath";
+            this.lblCompanyLogoPath.Size = new System.Drawing.Size(0, 20);
+            this.lblCompanyLogoPath.TabIndex = 250;
+            this.lblCompanyLogoPath.Visible = false;
+            // 
+            // lblCompanyLogoFilename
+            // 
+            this.lblCompanyLogoFilename.AutoSize = true;
+            this.lblCompanyLogoFilename.Location = new System.Drawing.Point(203, 93);
+            this.lblCompanyLogoFilename.Name = "lblCompanyLogoFilename";
+            this.lblCompanyLogoFilename.Size = new System.Drawing.Size(0, 20);
+            this.lblCompanyLogoFilename.TabIndex = 249;
+            this.lblCompanyLogoFilename.Visible = false;
+            // 
+            // btncollegeLogoUpload
+            // 
+            this.btncollegeLogoUpload.Image = global::ROMS.Properties.Resources.browse1;
+            this.btncollegeLogoUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btncollegeLogoUpload.Location = new System.Drawing.Point(67, 141);
+            this.btncollegeLogoUpload.Name = "btncollegeLogoUpload";
+            this.btncollegeLogoUpload.Size = new System.Drawing.Size(84, 29);
+            this.btncollegeLogoUpload.TabIndex = 246;
+            this.btncollegeLogoUpload.Text = "Browse";
+            this.btncollegeLogoUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btncollegeLogoUpload.UseVisualStyleBackColor = true;
+            // 
+            // picCompanyLogo
+            // 
+            this.picCompanyLogo.Image = global::ROMS.Properties.Resources.picture;
+            this.picCompanyLogo.InitialImage = null;
+            this.picCompanyLogo.Location = new System.Drawing.Point(58, 31);
+            this.picCompanyLogo.Name = "picCompanyLogo";
+            this.picCompanyLogo.Size = new System.Drawing.Size(100, 100);
+            this.picCompanyLogo.TabIndex = 247;
+            this.picCompanyLogo.TabStop = false;
+            // 
+            // CP_UPI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(399, 218);
+            this.ClientSize = new System.Drawing.Size(639, 244);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -286,9 +362,9 @@
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_CardMachine";
+            this.Name = "CP_UPI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Card Machine Details";
+            this.Text = "UPI Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Route_FormClosing);
             this.Load += new System.EventHandler(this.CP_Route_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Route_KeyDown);
@@ -298,6 +374,9 @@
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).EndInit();
+            this.grpLogo.ResumeLayout(false);
+            this.grpLogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,5 +399,11 @@
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cmbProvider;
+        private System.Windows.Forms.GroupBox grpLogo;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lblCompanyLogoPath;
+        public System.Windows.Forms.Label lblCompanyLogoFilename;
+        public System.Windows.Forms.Button btncollegeLogoUpload;
+        public System.Windows.Forms.PictureBox picCompanyLogo;
     }
 }

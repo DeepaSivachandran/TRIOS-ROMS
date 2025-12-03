@@ -84,7 +84,7 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 0,"");
+                            varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 0,0);
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -96,7 +96,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objspservice = new SPDataService();
-                                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 1,"");
+                                        varResult = objspservice.udfnCity(2, Convert.ToInt32(grdCityList.SelectedRows[0].Cells["ID"].Value), "", "", 0, "City Delete", varUserID, 1,0);
                                         objspservice.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -142,7 +142,7 @@ namespace ROMS
                         MainForm.objCP_City.PbStateId = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["StateId"].Value);
                         MainForm.objCP_City.PbStateName = Convert.ToString(grdCityList.SelectedRows[0].Cells["State Name"].Value);
                         MainForm.objCP_City.PbCityName = Convert.ToString(grdCityList.SelectedRows[0].Cells["City Name"].Value);
-                        MainForm.objCP_City.pbDistrictName = Convert.ToString(grdCityList.SelectedRows[0].Cells["District"].Value);
+                        MainForm.objCP_City.pbDistrictID = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["DistrictId"].Value);
                         MainForm.objCP_City.PbStatus = Convert.ToInt32(grdCityList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_City.ShowDialog();
                     }
@@ -186,7 +186,7 @@ namespace ROMS
                             grdCityList.Columns["StateId"].Visible = false;
                             grdCityList.Columns["StatusID"].Visible = false;
                             grdCityList.Columns["Status"].Visible = false;
-                            grdCityList.Columns["District"].Visible = false;
+                            grdCityList.Columns["DistrictId"].Visible = false;
                             grdCityList.Columns["S.No."].Width = 50;
                             grdCityList.Columns["State Name"].Width = 120;
                             grdCityList.Columns["City Name"].Width = 200;

@@ -96,7 +96,7 @@
             // 
             this.txtContactNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContactNo.Location = new System.Drawing.Point(134, 52);
-            this.txtContactNo.MaxLength = 20;
+            this.txtContactNo.MaxLength = 15;
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(235, 28);
             this.txtContactNo.TabIndex = 1;

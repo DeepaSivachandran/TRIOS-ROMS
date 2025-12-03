@@ -12,7 +12,7 @@ using ROMS.Model;
 namespace ROMS
 {
     //Created By:-Sathish ; Created On:-11-08-2023
-    public partial class CP_CardMachine : Form
+    public partial class CP_UPI : Form
     {
         DataError objError;
         private ToolTip tpREName = new ToolTip();
@@ -20,7 +20,7 @@ namespace ROMS
         public int varRouteId = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
-        public CP_CardMachine()
+        public CP_UPI()
         {
             InitializeComponent();
         }
@@ -676,6 +676,16 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void txtDProvider_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpLogo_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -33,6 +33,7 @@
             this.txtDCityName = new System.Windows.Forms.TextBox();
             this.txtDStateName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtCityName = new System.Windows.Forms.TextBox();
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -42,8 +43,7 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epCity = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtDistrictName = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cmbDistrict = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epCity)).BeginInit();
@@ -77,7 +77,7 @@
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.txtDistrictName);
+            this.grbform.Controls.Add(this.cmbDistrict);
             this.grbform.Controls.Add(this.textBox2);
             this.grbform.Controls.Add(this.txtCityName);
             this.grbform.Controls.Add(this.cmbState);
@@ -96,6 +96,19 @@
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(37, 74);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(122, 28);
+            this.textBox2.TabIndex = 10;
+            this.textBox2.Text = "District Name";
+            // 
             // txtCityName
             // 
             this.txtCityName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,7 +116,7 @@
             this.txtCityName.MaxLength = 50;
             this.txtCityName.Name = "txtCityName";
             this.txtCityName.Size = new System.Drawing.Size(240, 28);
-            this.txtCityName.TabIndex = 2; 
+            this.txtCityName.TabIndex = 2;
             this.txtCityName.Enter += new System.EventHandler(this.TxtCityName_Enter);
             this.txtCityName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCityName_KeyDown);
             this.txtCityName.Leave += new System.EventHandler(this.TxtCityName_Leave);
@@ -192,7 +205,7 @@
             this.rbActive.TabIndex = 3;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
-            this.rbActive.UseVisualStyleBackColor = true; 
+            this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.RbActive_Enter);
             this.rbActive.Leave += new System.EventHandler(this.RbActive_Leave);
             // 
@@ -213,30 +226,18 @@
             // 
             this.epCity.ContainerControl = this;
             // 
-            // txtDistrictName
+            // cmbDistrict
             // 
-            this.txtDistrictName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDistrictName.Location = new System.Drawing.Point(159, 74);
-            this.txtDistrictName.MaxLength = 20;
-            this.txtDistrictName.Name = "txtDistrictName";
-            this.txtDistrictName.Size = new System.Drawing.Size(240, 28);
-            this.txtDistrictName.TabIndex = 1; 
-            this.txtDistrictName.Enter += new System.EventHandler(this.txtDistrictName_Enter);
-            this.txtDistrictName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDistrictName_KeyDown);
-            this.txtDistrictName.Leave += new System.EventHandler(this.txtDistrictName_Leave);
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(37, 74);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(122, 28);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.Text = "District Name"; 
+            this.cmbDistrict.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDistrict.FormattingEnabled = true;
+            this.cmbDistrict.Location = new System.Drawing.Point(159, 74);
+            this.cmbDistrict.Name = "cmbDistrict";
+            this.cmbDistrict.Size = new System.Drawing.Size(240, 28);
+            this.cmbDistrict.TabIndex = 1;
+            this.cmbDistrict.Enter += new System.EventHandler(this.cmbDistrict_Enter);
+            this.cmbDistrict.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbDistrict_KeyDown);
+            this.cmbDistrict.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDistrict_KeyPress);
+            this.cmbDistrict.Leave += new System.EventHandler(this.cmbDistrict_Leave);
             // 
             // CP_City
             // 
@@ -282,7 +283,7 @@
         private System.Windows.Forms.Panel pnlStatus;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtCityName;
-        private System.Windows.Forms.TextBox txtDistrictName;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox cmbDistrict;
     }
 }
