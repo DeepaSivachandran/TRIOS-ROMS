@@ -71,6 +71,7 @@
             this.txtDPincode = new System.Windows.Forms.TextBox();
             this.txtDArea = new System.Windows.Forms.TextBox();
             this.grbPersonlDetails = new System.Windows.Forms.GroupBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtTotalInvoice = new System.Windows.Forms.TextBox();
             this.lvShipArea = new System.Windows.Forms.ListView();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -118,7 +119,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.textBox15 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epCustomer)).BeginInit();
             this.grbForm.SuspendLayout();
             this.grbShippingAddress.SuspendLayout();
@@ -189,6 +189,7 @@
             // 
             this.grbShippingAddress.Controls.Add(this.lblShipAreaId);
             this.grbShippingAddress.Controls.Add(this.textBox28);
+            this.grbShippingAddress.Controls.Add(this.lvShipArea);
             this.grbShippingAddress.Controls.Add(this.txtShipArea);
             this.grbShippingAddress.Controls.Add(this.chkSameasBilling);
             this.grbShippingAddress.Controls.Add(this.txtShipLandmark);
@@ -419,6 +420,7 @@
             // 
             this.grbBillingAddress.Controls.Add(this.lblAreaId);
             this.grbBillingAddress.Controls.Add(this.textBox26);
+            this.grbBillingAddress.Controls.Add(this.lvArea);
             this.grbBillingAddress.Controls.Add(this.txtArea);
             this.grbBillingAddress.Controls.Add(this.txtLandmark);
             this.grbBillingAddress.Controls.Add(this.textBox14);
@@ -637,8 +639,6 @@
             // 
             this.grbPersonlDetails.Controls.Add(this.textBox15);
             this.grbPersonlDetails.Controls.Add(this.txtTotalInvoice);
-            this.grbPersonlDetails.Controls.Add(this.lvShipArea);
-            this.grbPersonlDetails.Controls.Add(this.lvArea);
             this.grbPersonlDetails.Controls.Add(this.textBox11);
             this.grbPersonlDetails.Controls.Add(this.pnlStatus);
             this.grbPersonlDetails.Controls.Add(this.textBox10);
@@ -673,6 +673,18 @@
             this.grbPersonlDetails.TabStop = false;
             this.grbPersonlDetails.Text = "Personal Details";
             // 
+            // textBox15
+            // 
+            this.textBox15.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox15.Enabled = false;
+            this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
+            this.textBox15.Location = new System.Drawing.Point(122, 191);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.ReadOnly = true;
+            this.textBox15.Size = new System.Drawing.Size(21, 27);
+            this.textBox15.TabIndex = 1111148;
+            this.textBox15.Text = "₹";
+            // 
             // txtTotalInvoice
             // 
             this.txtTotalInvoice.Enabled = false;
@@ -701,9 +713,9 @@
             this.lvShipArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvShipArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvShipArea.HideSelection = false;
-            this.lvShipArea.Location = new System.Drawing.Point(109, 338);
+            this.lvShipArea.Location = new System.Drawing.Point(122, 134);
             this.lvShipArea.Name = "lvShipArea";
-            this.lvShipArea.Size = new System.Drawing.Size(223, 90);
+            this.lvShipArea.Size = new System.Drawing.Size(263, 90);
             this.lvShipArea.TabIndex = 1111147;
             this.lvShipArea.UseCompatibleStateImageBehavior = false;
             this.lvShipArea.View = System.Windows.Forms.View.Details;
@@ -747,9 +759,9 @@
             this.lvArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvArea.HideSelection = false;
-            this.lvArea.Location = new System.Drawing.Point(15, 337);
+            this.lvArea.Location = new System.Drawing.Point(122, 110);
             this.lvArea.Name = "lvArea";
-            this.lvArea.Size = new System.Drawing.Size(223, 90);
+            this.lvArea.Size = new System.Drawing.Size(263, 90);
             this.lvArea.TabIndex = 1111146;
             this.lvArea.UseCompatibleStateImageBehavior = false;
             this.lvArea.View = System.Windows.Forms.View.Details;
@@ -1194,18 +1206,6 @@
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
-            // 
-            // textBox15
-            // 
-            this.textBox15.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox15.Enabled = false;
-            this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
-            this.textBox15.Location = new System.Drawing.Point(122, 191);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(21, 27);
-            this.textBox15.TabIndex = 1111148;
-            this.textBox15.Text = "₹";
             // 
             // CP_Customer
             // 
