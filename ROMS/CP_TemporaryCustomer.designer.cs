@@ -102,6 +102,7 @@
             this.txtContactNo.TabIndex = 1;
             this.txtContactNo.Enter += new System.EventHandler(this.txtRTName_Enter);
             this.txtContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRTName_KeyDown);
+            this.txtContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactNo_KeyPress);
             this.txtContactNo.Leave += new System.EventHandler(this.txtRTName_Leave);
             // 
             // txtTempCustomerName
