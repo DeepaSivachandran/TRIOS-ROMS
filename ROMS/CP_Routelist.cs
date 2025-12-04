@@ -85,7 +85,11 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnRoute(2, Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Route Delete");
+                            MR_Route objMR_Route = new MR_Route();
+                            objMR_Route.ViewType = 2;
+                            objMR_Route.paraRouteId = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["ID"].Value);  
+                            objMR_Route.paraOriginator = "Route Deletion"; 
+                            varResult = objspservice.udfnRoute(objMR_Route);
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -167,14 +171,16 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdRouteList.DataSource = objDs.Tables[0];
                             grdRouteList.Columns["ID"].Visible = false;
-                            grdRouteList.Columns["Order No"].Visible = false;
+                            //grdRouteList.Columns["Order No"].Visible = false;
                             grdRouteList.Columns["StatusID"].Visible = false;
                             grdRouteList.Columns["S.No."].Width = 50;
+                            grdRouteList.Columns["Order No."].Width = 90;
                             grdRouteList.Columns["Route Name in Tamil"].Width = 200;
                             grdRouteList.Columns["Route Name in English"].Width = 200;
                             grdRouteList.Columns["Status"].Width = 80;
                             grdRouteList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdRouteList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdRouteList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdRouteList.Columns["Route Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
@@ -701,5 +707,6 @@ namespace ROMS
             }
 
         }
+         
     }
 }

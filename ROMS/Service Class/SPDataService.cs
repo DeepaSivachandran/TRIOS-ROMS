@@ -4820,41 +4820,7 @@ namespace ROMS
         }
 
         //Created By : Sathish, Created On :-11-11-2025
-
-        //Created By : Sathish, Created On :-11-11-2025
-        public string udfnRoute(int ViewType, int paraRouteId, string paraRouteEName, string paraRouteTName, int paraOrderNo, int paraStatusId, string paraOriginator)
-        {
-            string varResult = "";
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRS_Route]", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteId", paraRouteId);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteEName", paraRouteEName);
-                varSqlCommand.Parameters.AddWithValue("@paraRouteTName", paraRouteTName);
-                varSqlCommand.Parameters.AddWithValue("@paraOrderNo", paraOrderNo);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
-                varSqlCommand.CommandTimeout = 0;
-                varResult = varSqlCommand.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return varResult;
-        }
-
+         
 
         // added by venkat on 17/11/2025 for label print
         public string udfnLabelPrint(MR_Product objMR_Product)

@@ -493,7 +493,7 @@ namespace ROMS
                                 lblCompanyLogoFilename.Text = objDs.Tables[0].Rows[0]["Logo"].ToString();
                                 cmbProvider.Focus();
                                 SPDataService objservice = new SPDataService();
-                                pbLogoPath = objservice.udfnGetPath(0);
+                                pbLogoPath = objservice.udfnGetPath(1);
                                 objservice.CloseConnection();
                                 if (!pbLogoPath.EndsWith("\\"))
                                 {
@@ -837,7 +837,7 @@ namespace ROMS
                          varExtension = Path.GetExtension(objfilelogo.FileName);
 
                         SPDataService objservice = new SPDataService();
-                        varFolderPath = objservice.udfnGetPath(0);
+                        varFolderPath = objservice.udfnGetPath(1);
                         objservice.CloseConnection();
                         if (!varFolderPath.EndsWith("\\"))
                         {
