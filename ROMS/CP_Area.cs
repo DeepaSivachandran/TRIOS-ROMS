@@ -68,7 +68,7 @@ namespace ROMS
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
                     udfnLoadSlNo();
-                    cmbCity.SelectedValue = 27;
+                    cmbCity.SelectedValue = 33;
                 }
                 else
                 {
