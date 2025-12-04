@@ -15,8 +15,11 @@ namespace ROMS
     public partial class CP_CardMachine : Form
     {
         DataError objError;
-        private ToolTip tpREName = new ToolTip();
-        private ToolTip tpRTName = new ToolTip();
+        private ToolTip tpMachineName = new ToolTip();
+        private ToolTip tpProvider = new ToolTip();
+        private ToolTip tpUPIID = new ToolTip();
+        private ToolTip tpConcern = new ToolTip();
+        private ToolTip tpBank = new ToolTip();
         public int varID = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
@@ -116,13 +119,36 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtMachineName.Text).Trim() == "")
                 {
-                    epRoute.SetError(txtMachineName, "Please enter route english name.");
+                    epRoute.SetError(txtMachineName, "Please enter machine name.");
                     txtMachineName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpREName.ShowAlways = true;
-                    tpREName.Show("Please enter route english name.", txtMachineName, 5000);
+                    tpMachineName.ShowAlways = true;
+                    tpMachineName.Show("Please enter machine name.", txtMachineName, 5000);
                     blnErrorFlag = true;
                 }
-                 
+                if (Convert.ToString(cmbConcern.SelectedValue) == "0" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epRoute.SetError(cmbConcern, "Please select concern.");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please select concern.", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbProvider.SelectedValue) == "0" || Convert.ToString(cmbProvider.SelectedValue) == "-1")
+                {
+                    epRoute.SetError(cmbProvider, "Please select provider.");
+                    cmbProvider.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProvider.ShowAlways = true;
+                    tpProvider.Show("Please select concern.", cmbProvider, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbBank.SelectedValue) == "0" || Convert.ToString(cmbBank.SelectedValue) == "-1")
+                {
+                    epRoute.SetError(cmbBank, "Please select bank.");
+                    cmbBank.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpBank.ShowAlways = true;
+                    tpBank.Show("Please select bank.", cmbBank, 5000);
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     epRoute.Clear();
@@ -315,8 +341,7 @@ namespace ROMS
         {
             try
             {
-                tpREName.Active = false;
-                tpRTName.Active = false;
+                
             }
             catch (Exception ex)
             {

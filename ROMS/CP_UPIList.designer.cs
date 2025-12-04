@@ -51,13 +51,13 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
-            this.grdRouteList = new System.Windows.Forms.DataGridView();
+            this.grdUPIList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.tsRouteList.SuspendLayout();
             this.pnlRoute.SuspendLayout();
             this.grbFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdRouteList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUPIList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,8 +178,8 @@
             this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton2.Size = new System.Drawing.Size(132, 24);
-            this.toolStripButton2.Text = "No. of Card Machines :";
+            this.toolStripButton2.Size = new System.Drawing.Size(71, 24);
+            this.toolStripButton2.Text = "No. of UPI :";
             // 
             // pnlRoute
             // 
@@ -187,7 +187,7 @@
             this.pnlRoute.Controls.Add(this.grbFilter);
             this.pnlRoute.Controls.Add(this.DGV_SearchGrid);
             this.pnlRoute.Controls.Add(this.lblNoRecordsFound);
-            this.pnlRoute.Controls.Add(this.grdRouteList);
+            this.pnlRoute.Controls.Add(this.grdUPIList);
             this.pnlRoute.Controls.Add(this.picLoader);
             this.pnlRoute.Location = new System.Drawing.Point(0, 31);
             this.pnlRoute.Name = "pnlRoute";
@@ -303,14 +303,14 @@
             this.lblNoRecordsFound.Text = "No Records Found";
             this.lblNoRecordsFound.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // grdRouteList
+            // grdUPIList
             // 
-            this.grdRouteList.AllowUserToAddRows = false;
-            this.grdRouteList.AllowUserToDeleteRows = false;
-            this.grdRouteList.AllowUserToResizeColumns = false;
-            this.grdRouteList.AllowUserToResizeRows = false;
-            this.grdRouteList.BackgroundColor = System.Drawing.Color.White;
-            this.grdRouteList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.grdUPIList.AllowUserToAddRows = false;
+            this.grdUPIList.AllowUserToDeleteRows = false;
+            this.grdUPIList.AllowUserToResizeColumns = false;
+            this.grdUPIList.AllowUserToResizeRows = false;
+            this.grdUPIList.BackgroundColor = System.Drawing.Color.White;
+            this.grdUPIList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -318,10 +318,10 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdRouteList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.grdRouteList.ColumnHeadersHeight = 30;
-            this.grdRouteList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdRouteList.ColumnHeadersVisible = false;
+            this.grdUPIList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdUPIList.ColumnHeadersHeight = 30;
+            this.grdUPIList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdUPIList.ColumnHeadersVisible = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -329,25 +329,25 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdRouteList.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdRouteList.EnableHeadersVisualStyles = false;
-            this.grdRouteList.GridColor = System.Drawing.Color.White;
-            this.grdRouteList.Location = new System.Drawing.Point(12, 130);
-            this.grdRouteList.Name = "grdRouteList";
-            this.grdRouteList.ReadOnly = true;
-            this.grdRouteList.RowHeadersVisible = false;
-            this.grdRouteList.RowHeadersWidth = 100;
+            this.grdUPIList.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdUPIList.EnableHeadersVisualStyles = false;
+            this.grdUPIList.GridColor = System.Drawing.Color.White;
+            this.grdUPIList.Location = new System.Drawing.Point(12, 130);
+            this.grdUPIList.Name = "grdUPIList";
+            this.grdUPIList.ReadOnly = true;
+            this.grdUPIList.RowHeadersVisible = false;
+            this.grdUPIList.RowHeadersWidth = 100;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdRouteList.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdRouteList.RowTemplate.Height = 25;
-            this.grdRouteList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRouteList.Size = new System.Drawing.Size(1330, 509);
-            this.grdRouteList.TabIndex = 958797;
-            this.grdRouteList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
-            this.grdRouteList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
-            this.grdRouteList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
-            this.grdRouteList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCityList_KeyDown);
+            this.grdUPIList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdUPIList.RowTemplate.Height = 25;
+            this.grdUPIList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdUPIList.Size = new System.Drawing.Size(1330, 509);
+            this.grdUPIList.TabIndex = 958797;
+            this.grdUPIList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
+            this.grdUPIList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
+            this.grdUPIList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
+            this.grdUPIList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCityList_KeyDown);
             // 
             // picLoader
             // 
@@ -389,7 +389,7 @@
             this.grbFilter.ResumeLayout(false);
             this.grbFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdRouteList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUPIList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -408,7 +408,7 @@
         private System.Windows.Forms.Panel pnlRoute;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdRouteList;
+        public System.Windows.Forms.DataGridView grdUPIList;
         public System.Windows.Forms.PictureBox picLoader;
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.ToolStripButton tsbTotalCount;

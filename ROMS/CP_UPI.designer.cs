@@ -70,7 +70,7 @@
             this.txtDProvider.ReadOnly = true;
             this.txtDProvider.Size = new System.Drawing.Size(128, 28);
             this.txtDProvider.TabIndex = 6;
-            this.txtDProvider.Text = "Provider"; 
+            this.txtDProvider.Text = "Provider";
             // 
             // txtDMachineName
             // 
@@ -122,7 +122,7 @@
             this.grpLogo.Size = new System.Drawing.Size(209, 207);
             this.grpLogo.TabIndex = 1111149;
             this.grpLogo.TabStop = false;
-            this.grpLogo.Text = "Logo Details"; 
+            this.grpLogo.Text = "Logo Details";
             // 
             // label1
             // 
@@ -163,6 +163,7 @@
             this.btncollegeLogoUpload.Text = "Browse";
             this.btncollegeLogoUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btncollegeLogoUpload.UseVisualStyleBackColor = true;
+            this.btncollegeLogoUpload.Click += new System.EventHandler(this.btncollegeLogoUpload_Click);
             // 
             // picCompanyLogo
             // 
@@ -182,7 +183,7 @@
             this.cmbProvider.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbProvider.Name = "cmbProvider";
             this.cmbProvider.Size = new System.Drawing.Size(235, 27);
-            this.cmbProvider.TabIndex = 1;
+            this.cmbProvider.TabIndex = 0;
             this.cmbProvider.SelectedIndexChanged += new System.EventHandler(this.cmbProvider_SelectedIndexChanged);
             this.cmbProvider.Enter += new System.EventHandler(this.cmbProvider_Enter);
             this.cmbProvider.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbProvider_KeyDown);
@@ -251,7 +252,7 @@
             this.txtUPIId.MaxLength = 30;
             this.txtUPIId.Name = "txtUPIId";
             this.txtUPIId.Size = new System.Drawing.Size(235, 28);
-            this.txtUPIId.TabIndex = 0;
+            this.txtUPIId.TabIndex = 1;
             this.txtUPIId.Enter += new System.EventHandler(this.txtREName_Enter);
             this.txtUPIId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtREName_KeyDown);
             this.txtUPIId.Leave += new System.EventHandler(this.txtREName_Leave);

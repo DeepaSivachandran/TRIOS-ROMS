@@ -85,7 +85,12 @@ namespace ROMS
                         {
                             SPDataService objspservice = new SPDataService();
                             varResult = "";
-                            varResult = objspservice.udfnRoute(2, Convert.ToInt32(grdTempCustomerList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Route Delete");
+                            SPDataService objspdservice = new SPDataService();
+                            MR_TemporaryCustomer objMR_TemporaryCustomer = new MR_TemporaryCustomer();
+                            objMR_TemporaryCustomer.ViewType = 2;
+                            objMR_TemporaryCustomer.paraTempCusID = Convert.ToInt32(grdTempCustomerList.SelectedRows[0].Cells["ID"].Value);
+                            objMR_TemporaryCustomer.paraOriginator = "Tempory Customer Deletion";
+                            varResult = objspdservice.udfnTemporayCustomer(objMR_TemporaryCustomer);
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {

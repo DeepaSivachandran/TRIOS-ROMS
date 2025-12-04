@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ROMS.Model;
+using System.IO;
 
 namespace ROMS
 {
@@ -15,11 +16,20 @@ namespace ROMS
     public partial class CP_UPI : Form
     {
         DataError objError;
-        private ToolTip tpREName = new ToolTip();
-        private ToolTip tpRTName = new ToolTip();
+        private ToolTip tpProvider = new ToolTip();
+        private ToolTip tpUPIID = new ToolTip();
+        private ToolTip tpConcern = new ToolTip();
+        private ToolTip tpBank = new ToolTip();
         public int varID = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
+        string varFile = "";
+        OpenFileDialog objfilelogo = new OpenFileDialog();
+        string varNewfile = "";
+        public string varExtension = "";
+        public string pbLogoPath = "", pbFilepath="";
+        string varFolderPath = "";
+        int varflag = 0;
         public CP_UPI()
         {
             InitializeComponent();
@@ -43,7 +53,8 @@ namespace ROMS
                 {
                     varoriginator = "UPI Updation";
                     varType = 1;
-                } 
+                }
+               
                 SPDataService objspdservice = new SPDataService();
                 MR_UPI objMR_UPI = new MR_UPI();
                 objMR_UPI.ViewType = varType;
@@ -52,12 +63,12 @@ namespace ROMS
                 objMR_UPI.paraComBankId = Convert.ToInt32(cmbBank.SelectedValue);
                 objMR_UPI.paraStatusId = Convert.ToInt32(PbStatus);
                 objMR_UPI.paraProviderID = Convert.ToInt32(cmbProvider.SelectedValue);
+                objMR_UPI.paraLogoName = lblCompanyLogoFilename.Text;
                 objMR_UPI.paraId = Convert.ToInt32(varID);
                 objMR_UPI.paraOriginator = varoriginator;
                 varResult = objspdservice.udfnUPI(objMR_UPI);
                 objspdservice.CloseConnection();
  
-                objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
@@ -66,13 +77,25 @@ namespace ROMS
                     if (btnSave.Text == "Save")
                     {
                         udfnclear();
+                        varID =Convert.ToInt32(varvalue[2]);
                         MainForm.objCP_UPIList.udfnList();
                     }
                     if (btnSave.Text == "Update")
                     {
                         varUpdate = 1;
                         udfnclose();
+                    } 
+                    if (File.Exists(varNewfile))
+                    {
+                        File.Delete(varNewfile);
                     }
+                    if (varflag == 1 && varNewfile != "")
+                    {
+                        string varFileName = "UPILogoImage" + Convert.ToString(varID) + varExtension;
+                        varNewfile = Path.Combine(varFolderPath, varFileName);
+                        //*********** copy file name & file path **************
+                        File.Copy(objfilelogo.FileName, varNewfile, true);
+                    } 
                 }
                 else
                 {
@@ -116,13 +139,37 @@ namespace ROMS
                 bool blnErrorFlag = false;
                 if (Convert.ToString(txtUPIId.Text).Trim() == "")
                 {
-                    epRoute.SetError(txtUPIId, "Please enter route english name.");
+                    epRoute.SetError(txtUPIId, "Please enter UPPI ID.");
                     txtUPIId.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpREName.ShowAlways = true;
-                    tpREName.Show("Please enter route english name.", txtUPIId, 5000);
+                    tpUPIID.ShowAlways = true;
+                    tpUPIID.Show("Please enter UPPI ID.", txtUPIId, 5000);
                     blnErrorFlag = true;
                 }
-                 
+                if (Convert.ToString(cmbConcern.SelectedValue)=="0" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
+                {
+                    epRoute.SetError(cmbConcern, "Please select concern.");
+                    cmbConcern.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please select concern.", cmbConcern, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbProvider.SelectedValue) == "0" || Convert.ToString(cmbProvider.SelectedValue) == "-1")
+                {
+                    epRoute.SetError(cmbProvider, "Please select provider.");
+                    cmbProvider.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProvider.ShowAlways = true;
+                    tpProvider.Show("Please select concern.", cmbProvider, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbBank.SelectedValue) == "0" || Convert.ToString(cmbBank.SelectedValue) == "-1")
+                {
+                    epRoute.SetError(cmbBank, "Please select bank.");
+                    cmbBank.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpBank.ShowAlways = true;
+                    tpBank.Show("Please select bank.", cmbBank, 5000);
+                    blnErrorFlag = true;
+                }
+
                 if (blnErrorFlag == false)
                 {
                     epRoute.Clear();
@@ -315,8 +362,10 @@ namespace ROMS
         {
             try
             {
-                tpREName.Active = false;
-                tpRTName.Active = false;
+                tpBank.Active = false;
+                tpProvider.Active = false;
+                tpConcern.Active = false;
+                tpUPIID.Active = false;
             }
             catch (Exception ex)
             {
@@ -427,24 +476,84 @@ namespace ROMS
                 {
                     DataSet objDs = new DataSet();  
                     SPDataService objspservice = new SPDataService();
-                    MR_Route objMR_Route = new MR_Route();
-                    objMR_Route.ViewType = 1;
-                    objMR_Route.paraRouteId = varID;
-                    objDs = objspservice.udfnRouteList(objMR_Route); 
+                    MR_UPI objMR_UPI = new MR_UPI();
+                    objMR_UPI.ViewType = 1;
+                    objMR_UPI.paraId = varID;
+                    objDs = objspservice.udfnUPIList(objMR_UPI); 
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtUPIId.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_EName"]); 
-                                cmbConcern.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["R_OrderNo"]);
-                                txtUPIId.Focus();
+                                txtUPIId.Text = Convert.ToString(objDs.Tables[0].Rows[0]["UPI_UPIID"]); 
+                                cmbConcern.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["ComID"]);
+                                cmbBank.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["BankID"]);
+                                cmbProvider.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_ProviderID"]); 
+                                lblCompanyLogoFilename.Text = objDs.Tables[0].Rows[0]["Logo"].ToString();
+                                cmbProvider.Focus();
+                                SPDataService objservice = new SPDataService();
+                                pbLogoPath = objservice.udfnGetPath(0);
+                                objservice.CloseConnection();
+                                if (!pbLogoPath.EndsWith("\\"))
+                                {
+                                    pbLogoPath += "\\";
+                                }
+                                varFolderPath = pbLogoPath;
+                                pbFilepath = pbLogoPath + lblCompanyLogoFilename.Text;  
+                                string[] filename = lblCompanyLogoFilename.Text.Split('.');
+                                varExtension = filename[1];   
+                                lblCompanyLogoPath.Text = pbFilepath;
+                                udfnButtontext(); 
                             }
                               
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnButtontext()
+        {
+            try
+            {
+                if (btnSave.Text == "Update")
+                {
+                    if (lblCompanyLogoFilename.Text == "")
+                    {
+                        picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
+                        picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                        lblCompanyLogoFilename.Text = "";
+                        lblCompanyLogoPath.Text = "";
+                    }
+                    else
+                    {
+                        //**************set college logo to picturebox******************
+                        picCompanyLogo.BackgroundImage = null;
+                        picCompanyLogo.Image = null;
+                        Image objTmpImage = Image.FromFile(pbFilepath);
+                        Image varcurrentimg = new Bitmap(objTmpImage);
+                        objTmpImage.Dispose();
+                        picCompanyLogo.BackgroundImage = varcurrentimg;
+                        picCompanyLogo.Image = new Bitmap(varcurrentimg);
+                        picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                    {
+                        btncollegeLogoUpload.Text = "Browse";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                    }
+                    else
+                    {
+                        btncollegeLogoUpload.Text = "Remove";
+                        btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -471,7 +580,7 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    cmbProvider.Focus();
+                    cmbConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -668,7 +777,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbConcern.Focus();
+                    txtUPIId.Focus();
                 }
             }
             catch (Exception ex)
@@ -709,6 +818,102 @@ namespace ROMS
         {
             udfnBankDropDown();
         }
-         
+
+        private void btncollegeLogoUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //***********  Upload College Logo *********
+                varExtension = "";varFolderPath = "";
+                if (btncollegeLogoUpload.Text == "Browse")
+                {
+                    objfilelogo.Filter = "JPEG files (*.jpg)|*.jpg|GIF files (*.gif)|*.gif|PNG files (*.png)|*.png";
+                    objfilelogo.FilterIndex = 1;
+                    objfilelogo.Multiselect = false;
+                    objfilelogo.ShowDialog();
+
+                    if (objfilelogo.FileName != "")
+                    {
+                         varExtension = Path.GetExtension(objfilelogo.FileName);
+
+                        SPDataService objservice = new SPDataService();
+                        varFolderPath = objservice.udfnGetPath(0);
+                        objservice.CloseConnection();
+                        if (!varFolderPath.EndsWith("\\"))
+                        {
+                            varFolderPath += "\\";
+                        }
+                        Random rnd = new Random();
+                        int number = rnd.Next();
+                        string varFileName = "UPILogo"+Convert.ToString(number)+ varExtension; 
+                        varNewfile = Path.Combine(varFolderPath, varFileName);
+
+                        //File.Copy(objfilelogo.FileName, varNewfile, true);
+                        if (!string.Equals(objfilelogo.FileName, varNewfile, StringComparison.OrdinalIgnoreCase))
+                        {
+                            File.Copy(objfilelogo.FileName, varNewfile, true);
+                        }
+
+                        lblCompanyLogoFilename.Text = varFileName;
+                        lblCompanyLogoPath.Text = varNewfile;
+
+                        picCompanyLogo.BackgroundImage = null;
+                        picCompanyLogo.Image = null;
+
+                        //picCompanyLogo.Image = new Bitmap(objfilelogo.FileName);
+                        using (var tempImage = new Bitmap(objfilelogo.FileName))
+                        {
+                            picCompanyLogo.Image = new Bitmap(tempImage);
+                        }
+                        picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                        {
+                            btncollegeLogoUpload.Text = "Browse";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                        }
+                        else
+                        {
+                            btncollegeLogoUpload.Text = "Remove";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                        }
+
+                        varflag = 1;
+                    }
+                }
+
+                // ******* Remove  Company Logo ********
+                else
+                {
+                    DialogResult objDialogResult = MessageBox.Show("Do you want to remove logo ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (objDialogResult == DialogResult.Yes)
+                    {
+
+                        varFile = lblCompanyLogoPath.Text;
+                        //*********** remove image from picturebox and set default image *********
+                        picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
+                        picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                        lblCompanyLogoPath.Text = "";
+                        lblCompanyLogoFilename.Text = "";
+                        if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                        {
+                            btncollegeLogoUpload.Text = "Browse";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                        }
+                        else
+                        {
+                            btncollegeLogoUpload.Text = "Remove";
+                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                        }
+                    }
+                    varflag = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }
