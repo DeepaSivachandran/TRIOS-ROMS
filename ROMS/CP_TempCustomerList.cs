@@ -174,7 +174,7 @@ namespace ROMS
                             grdTempCustomerList.Columns["ID"].Visible = false; 
                             grdTempCustomerList.Columns["StatusID"].Visible = false;
                             grdTempCustomerList.Columns["S.No."].Width = 50;
-                            grdTempCustomerList.Columns["Customer Name"].Width = 200;
+                            grdTempCustomerList.Columns["Customer Name"].Width = 250;
                             grdTempCustomerList.Columns["Contact No."].Width = 150;
                             grdTempCustomerList.Columns["Status"].Width = 80;
                             grdTempCustomerList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
