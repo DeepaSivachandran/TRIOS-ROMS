@@ -12,15 +12,15 @@ using ROMS.Model;
 namespace ROMS
 {
     //Created By:-Sathish ; Created On:-11-08-2023
-    public partial class CP_Route : Form
+    public partial class CP_TemporaryCustomer : Form
     {
         DataError objError;
         private ToolTip tpREName = new ToolTip();
         private ToolTip tpRTName = new ToolTip();
-        public int varRouteId = 0;
+        public int varTempCustID = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
-        public CP_Route()
+        public CP_TemporaryCustomer()
         {
             InitializeComponent();
         }
@@ -29,9 +29,9 @@ namespace ROMS
             try
             {
                 DataSet objDS;
-                if (varRouteId != 0)
+                if (varTempCustID != 0)
                 {
-                    string varRID = Convert.ToString(varRouteId);
+                    string varRID = Convert.ToString(varTempCustID);
                     SPDataService objspservice = new SPDataService();
                     objDS = objspservice.udfnGetSlNo("MR_Route", "Update", "RID", varRID, "R_OrderNo");
                     objspservice.CloseConnection();
@@ -42,12 +42,7 @@ namespace ROMS
                     objDS = objspservice.udfnGetSlNo("MR_Route ", "Create", "1=1", "", "R_OrderNo");
                     objspservice.CloseConnection();
                 }
-                if (objDS != null)
-                {
-                    cmbRSNo.DataSource = objDS.Tables[0];
-                    cmbRSNo.DisplayMember = "num";
-                    cmbRSNo.ValueMember = "num";
-                }
+                
             }
             catch (Exception ex)
             {
@@ -66,12 +61,12 @@ namespace ROMS
                 varoriginator = "";int varType = 0;
                 if (btnSave.Text == "Save")
                 {
-                    varoriginator = "Route Creation";
+                    varoriginator = "Temporary Customer Creation";
                     varType = 0;
                 }
                 else
                 {
-                    varoriginator = "Route Updation";
+                    varoriginator = "Temporary Customer Updation";
                     varType = 1;
                 }
                  
@@ -80,30 +75,17 @@ namespace ROMS
                 dtArea.Columns.Add("AID", typeof(int));
 
                 // Filter only checked rows and get only AR_AID
-                var ids = grdArea.Rows.Cast<DataGridViewRow>()
-                .Where(r => Convert.ToBoolean(r.Cells["clmCheckBox"].Value) == true)  // Checkbox column name
-                .Select(r => Convert.ToInt32(r.Cells["AID"].Value))               // ID column
-                .ToList();
-
-                if (ids.Any())
-                {
-                    foreach (var id in ids)
-                    {
-                        dtArea.Rows.Add(id);
-                    }
-                }
+                 
 
                 SPDataService objspdservice = new SPDataService();
-                MR_Route objMR_Route = new MR_Route();
-                objMR_Route.ViewType = varType;
-                objMR_Route.paraRouteId = varRouteId;
-                objMR_Route.paraRouteTName = txtRTName.Text.Trim();
-                objMR_Route.paraRouteEName = txtREName.Text.Trim(); 
-                objMR_Route.paraStatusId = PbStatus;
-                objMR_Route.paraAreaRoute = dtArea;
-                objMR_Route.paraOriginator = varoriginator;
-                objMR_Route.paraOrderNo = Convert.ToInt32(cmbRSNo.SelectedValue); 
-                varResult = objspdservice.udfnRoute(objMR_Route);
+                MR_TemporaryCustomer objMR_TemporaryCustomer = new MR_TemporaryCustomer();
+                objMR_TemporaryCustomer.ViewType = varType;
+                objMR_TemporaryCustomer.paraTempCusID = varTempCustID;
+                objMR_TemporaryCustomer.paraTempCusContactNo = txtContactNo.Text.Trim();
+                objMR_TemporaryCustomer.paraTempCustomorName = txtTempCustomerName.Text.Trim();
+                objMR_TemporaryCustomer.paraStatusId = PbStatus; 
+                objMR_TemporaryCustomer.paraOriginator = varoriginator; 
+                varResult = objspdservice.udfnTemporayCustomer(objMR_TemporaryCustomer);
                 objspdservice.CloseConnection();
  
                 objspservice.CloseConnection();
@@ -111,11 +93,11 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_Routelist.udfnList();
+                    MainForm.objCP_TempCustomerList.udfnList();
                     if (btnSave.Text == "Save")
                     {
                         udfnclear();
-                        MainForm.objCP_Routelist.udfnList();
+                        MainForm.objCP_TempCustomerList.udfnList();
                     }
                     if (btnSave.Text == "Update")
                     {
@@ -149,10 +131,10 @@ namespace ROMS
         {
             try
             {
-                txtREName.Text = "";
-                txtRTName.Text = "";
+                txtTempCustomerName.Text = "";
+                txtContactNo.Text = "";
                 udfnLoadSlNo();
-                txtREName.Focus();
+                txtTempCustomerName.Focus();
             }
             catch (Exception ex)
             {
@@ -165,22 +147,14 @@ namespace ROMS
             try
             {
                 bool blnErrorFlag = false;
-                if (Convert.ToString(txtREName.Text).Trim() == "")
+                if (Convert.ToString(txtTempCustomerName.Text).Trim() == "")
                 {
-                    epRoute.SetError(txtREName, "Please enter route english name.");
-                    txtREName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    epRoute.SetError(txtTempCustomerName, "Please enter customer name.");
+                    txtTempCustomerName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpREName.ShowAlways = true;
-                    tpREName.Show("Please enter route english name.", txtREName, 5000);
+                    tpREName.Show("Please enter customer name.", txtTempCustomerName, 5000);
                     blnErrorFlag = true;
-                }
-                if (Convert.ToString(txtRTName.Text).Trim() == "")
-                {
-                    epRoute.SetError(txtRTName, "Please enter route tamil name.");
-                    txtRTName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpRTName.ShowAlways = true;
-                    tpRTName.Show("Please enter route tamil name.", txtRTName, 5000);
-                    blnErrorFlag = true;
-                }
+                } 
                 if (blnErrorFlag == false)
                 {
                     epRoute.Clear();
@@ -391,8 +365,7 @@ namespace ROMS
                 {
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
-                    udfnLoadSlNo();
-                    udfnRoute();
+                    udfnLoadSlNo(); 
                 }
                 else
                 {
@@ -405,15 +378,14 @@ namespace ROMS
                     }
                     else 
                     {
-                        txtREName.Enabled = false;
-                        txtRTName.Enabled = false;
-                        cmbRSNo.Enabled = false;
+                        //txtTempCustomerName.Enabled = false;
+                        //txtContactNo.Enabled = false;  
                         rbInActive.Checked = true;
                     }
                 }
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                MainForm.objCP_Routelist.picLoader.Visible = false;
-                MainForm.objCP_Routelist.picLoader.SendToBack(); 
+                MainForm.objCP_TempCustomerList.picLoader.Visible = false;
+                MainForm.objCP_TempCustomerList.picLoader.SendToBack(); 
             }
             catch (Exception ex)
             {
@@ -421,70 +393,29 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnRoute()
-        {
-            try
-            {
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                MR_Route objMR_Route = new MR_Route();
-                objMR_Route.ViewType = 2; 
-                objDs = objspservice.udfnRouteList(objMR_Route);
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count != 0)
-                    {
-                        if (objDs.Tables[0].Rows.Count != 0)
-                        {
-                            grdArea.DataSource = objDs.Tables[0];
-                        } 
-                    } 
-                    objspservice.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
         public void udfnEdit()
         {
             try
             {
-                if (varRouteId != 0)
+                if (varTempCustID != 0)
                 {
                     DataSet objDs = new DataSet();  
                     SPDataService objspservice = new SPDataService();
-                    MR_Route objMR_Route = new MR_Route();
-                    objMR_Route.ViewType = 1;
-                    objMR_Route.paraRouteId = varRouteId;
-                    objDs = objspservice.udfnRouteList(objMR_Route); 
+                    MR_TemporaryCustomer objMR_TemporaryCustomer = new MR_TemporaryCustomer();
+                    objMR_TemporaryCustomer.ViewType = 1;
+                    objMR_TemporaryCustomer.paraTempCusID = varTempCustID;
+                    objDs = objspservice.udfnTemporayCustomerList(objMR_TemporaryCustomer); 
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
                         {
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
-                                txtREName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_EName"]);
-                                txtRTName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["R_TName"]);
-                                cmbRSNo.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["R_OrderNo"]);
-                                txtREName.Focus();
-                            }
-                            if (objDs.Tables[1].Rows.Count != 0)
-                            {
-                                // dtFlags contains ID + Flag values
-                                grdArea.DataSource = objDs.Tables[1];
-                                var idsToCheck = objDs.Tables[1].AsEnumerable()
-                                    .Where(x => x.Field<int>("Flag") == 1)
-                                    .Select(x => x.Field<int>("AID"))
-                                    .ToList(); 
-                                // Loop through grid rows and check only matching IDs
-                                grdArea.Rows.Cast<DataGridViewRow>()
-                                    .Where(r => idsToCheck.Contains(Convert.ToInt32(r.Cells["AID"].Value)))
-                                    .ToList()
-                                    .ForEach(r => r.Cells["clmCheckBox"].Value = true); 
-                            }
+                                txtTempCustomerName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TEMPCUS_Name"]);
+                                txtContactNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TEMPCUS_ContactNo"]); 
+                                txtTempCustomerName.Focus();
+                            } 
                         }
                     }
                 }
@@ -499,7 +430,7 @@ namespace ROMS
         {
             try
             {
-                txtREName.BackColor = Color.LemonChiffon;
+                txtTempCustomerName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -514,7 +445,7 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    txtRTName.Focus();
+                    txtContactNo.Focus();
                 }
             }
             catch (Exception ex)
@@ -528,7 +459,7 @@ namespace ROMS
         {
             try
             {
-                txtREName.BackColor = Color.White;
+                txtTempCustomerName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -541,7 +472,7 @@ namespace ROMS
         {
             try
             {
-                txtRTName.BackColor = Color.LemonChiffon;
+                txtContactNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -556,7 +487,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbRSNo.Focus();
+                    if(rbActive.Enabled==true)
+                    { rbActive.Focus(); }
+                    else { btnSave.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -570,7 +503,7 @@ namespace ROMS
         {
             try
             {
-                txtRTName.BackColor = Color.White;
+                txtContactNo.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -578,68 +511,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void cmbRSNo_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbRSNo.BackColor = Color.LemonChiffon;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbRSNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (rbActive.Enabled == true)
-                    {
-                        rbActive.Focus();
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbRSNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void cmbRSNo_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                cmbRSNo.BackColor = Color.White;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+            
 
         private void rbInActive_KeyDown(object sender, KeyEventArgs e)
         {
@@ -647,7 +519,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 { 
-                        btnSave.Focus(); 
+                    btnSave.Focus(); 
                 }
             }
             catch (Exception ex)
@@ -663,8 +535,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    
-                        btnSave.Focus(); 
+
+                    btnSave.Focus();
                 }
             }
             catch (Exception ex)
@@ -672,6 +544,11 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void txtTempCustomerName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

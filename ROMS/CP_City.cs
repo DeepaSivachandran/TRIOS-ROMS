@@ -16,6 +16,7 @@ namespace ROMS
         DataError objError;
         private ToolTip tpCityName = new ToolTip();
         private ToolTip tpState = new ToolTip();
+        private ToolTip tpDistrict = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
         public int varstatus;
@@ -23,11 +24,13 @@ namespace ROMS
         public int varCityCode= 0;
         public string varCityName = "";
         public string PbStateName="";
+        public string pbDistrictName="";
         public int PbStateId=0;
         public int PbStatus=0;
         public int varUpdate = 0;
         public int varmastertype = 0;
         public int varflog = 0;
+        public int pbDistrictID = 0;
         public CP_City()
         {
             InitializeComponent();
@@ -53,6 +56,7 @@ namespace ROMS
                 {
                     DataBind objDataBind = new DataBind();
                     objDataBind.BindComboBoxListSelected("DEF_State", " ST_STSID=1 AND STID !=0 Order by STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID");
+                    objDataBind.BindComboBoxListSelected("DEF_District", " DIST_STSID=1 AND DISTID NOT IN (0) Order by DISTID", "DIST_Name,DISTID", cmbDistrict, "", "DIST_Name", "DISTID");
                     objDataBind = null;
                     if (btnSave.Text == "Save")
                     {
@@ -88,6 +92,7 @@ namespace ROMS
             try
             {
                 txtCityName.Text = PbCityName;
+                cmbDistrict.SelectedValue = pbDistrictID;
                 cmbState.SelectedValue = PbStateId;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
             }
@@ -114,9 +119,9 @@ namespace ROMS
                 else
                 {
                     varoriginator = "City Updation";
-                    varType = 1;
+                    varType = 1;    
                 }
-                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator,MainForm.pbUserID,0);
+                varResult = objspservice.udfnCity(varType, varCityCode, Convert.ToString(cmbState.SelectedValue), (txtCityName.Text).Trim(), varstatus, varoriginator,MainForm.pbUserID,0,Convert.ToInt32(cmbDistrict.SelectedValue));
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -157,7 +162,7 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-                SPDataService objDServ = new SPDataService();
+                SPDataService objDServ = new SPDataService();   
                 string varMessage = objDServ.udfnGetMessages(48);
                 objDServ.CloseConnection();
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -173,7 +178,7 @@ namespace ROMS
             try
             {
                 txtCityName.Text = "";
-                txtCityName.Focus();
+                txtCityName.Focus(); 
                 this.ActiveControl = txtCityName;
             }
             catch (Exception ex)
@@ -201,6 +206,14 @@ namespace ROMS
                     cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpState.ShowAlways = true;
                     tpState.Show("Please select state name.", cmbState, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(cmbDistrict.SelectedValue) == "" || Convert.ToString(cmbDistrict.SelectedValue) == "-1")
+                {
+                    epCity.SetError(cmbDistrict, "Please select district name.");
+                    cmbDistrict.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpState.ShowAlways = true;
+                    tpState.Show("Please select district name.", cmbDistrict, 5000);
                     blnErrorFlag = true;
                 }
                 if (blnErrorFlag == false)
@@ -313,7 +326,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCityName.Focus();
+                    cmbDistrict.Focus();
                 }
             }
             catch(Exception ex)
@@ -511,6 +524,72 @@ namespace ROMS
             try
             {
                 BeginInvoke(new Action(() => cmbState.Select(int.MaxValue, 0)));
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }  
+        private void cmbDistrict_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDistrict.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDistrict_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCityName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDistrict_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDistrict_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbDistrict.SelectedValue) == "" || Convert.ToString(cmbDistrict.SelectedValue) == "-1")
+                {
+                    epCity.SetError(cmbDistrict, "Please select district name");
+                    cmbDistrict.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDistrict.ShowAlways = true;
+                    tpDistrict.Show("Please select district name", cmbDistrict, 5000);
+                }
+                else
+                {
+                    epCity.Clear();
+                    cmbDistrict.BackColor = Color.White;
+                }
             }
             catch (Exception ex)
             {

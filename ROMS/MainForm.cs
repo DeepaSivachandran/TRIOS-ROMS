@@ -178,6 +178,15 @@ namespace ROMS
         public static CP_Customerlist objCP_Customerlist;
         public static CP_Vehicle objCP_Vehicle;
         public static CP_Vehiclelist objCP_Vehiclelist;
+        //Added by sivabharathi on 27/11/2025
+        public static CP_AreaList objCP_AreaList;
+        public static CP_Area objCP_Area;
+        public static CP_TempCustomerList objCP_TempCustomerList;
+        public static CP_TemporaryCustomer objCP_TemporaryCustomer;
+        public static CP_CardMachineList objCP_CardMachineList;
+        public static CP_CardMachine objCP_CardMachine;
+        public static CP_UPIList objCP_UPIList;
+        public static CP_UPI objCP_UPI;
         public static CP_DeliveryPerson objCP_DeliveryPerson;
         public static CP_DeliveryPersonlist objCP_DeliveryPersonlist;
         public static CP_Mobile objCP_Mobile;
@@ -186,7 +195,6 @@ namespace ROMS
         public static CP_Transportlist objCP_Transportlist;
         public static CP_MarriageHall objCP_MarriageHall;
         public static CP_MarriageHalllist objCP_MarriageHalllist;
-
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -4339,6 +4347,72 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Vehiclelist, "CP_Vehiclelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmArea_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_AreaList, "CP_AreaList", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmControlPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmReports_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void temporToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_TempCustomerList, "CP_TempCustomerList", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCardMachine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_CardMachineList, "CP_CardMachineList", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmUPI_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_UPIList, "CP_UPIList", 501);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)

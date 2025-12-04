@@ -13,7 +13,7 @@ using ROMS.Model;
 namespace ROMS
 {
     //Created By:Sathish ; Created On:-11/08/2023
-    public partial class CP_Routelist : Form
+    public partial class CP_AreaList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
@@ -25,7 +25,7 @@ namespace ROMS
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
-        public CP_Routelist()
+        public CP_AreaList()
         {
             InitializeComponent();
             windowControl.Initialize(tsRouteList, this);
@@ -36,9 +36,9 @@ namespace ROMS
             {
                 try
                 {
-                    MainForm.objCP_Route = new CP_Route();
-                    MainForm.objCP_Route.FormBorderStyle = FormBorderStyle.FixedSingle;
-                    MainForm.objCP_Route.ShowDialog();
+                    MainForm.objCP_Area = new CP_Area();
+                    MainForm.objCP_Area.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    MainForm.objCP_Area.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -121,11 +121,10 @@ namespace ROMS
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
-                        MainForm.objCP_Route = new CP_Route();
-                        MainForm.objCP_Route.btnSave.Text = "Update";
-                        MainForm.objCP_Route.varRouteId = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["ID"].Value);
-                        MainForm.objCP_Route.PbStatus = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objCP_Route.ShowDialog();
+                        MainForm.objCP_Area = new CP_Area();
+                        MainForm.objCP_Area.btnSave.Text = "Update";
+                        MainForm.objCP_Area.varAreaId = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["ID"].Value); 
+                        MainForm.objCP_Area.ShowDialog();
                     }
                 }
                 catch (Exception ex)
@@ -152,10 +151,10 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                MR_Route objMR_Route = new MR_Route();
-                objMR_Route.ViewType = 0;
-                objMR_Route.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
-                objDs = objspservice.udfnRouteList(objMR_Route);
+                MR_Area objMR_Area = new MR_Area();
+                objMR_Area.ViewType = 0;      
+                objMR_Area.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);  
+                objDs = objspservice.udfnArealist(objMR_Area);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)
@@ -167,15 +166,15 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdRouteList.DataSource = objDs.Tables[0];
                             grdRouteList.Columns["ID"].Visible = false;
-                            grdRouteList.Columns["Order No"].Visible = false;
+                            grdRouteList.Columns["Order No."].Width = 65;
                             grdRouteList.Columns["StatusID"].Visible = false;
                             grdRouteList.Columns["S.No."].Width = 50;
-                            grdRouteList.Columns["Route Name in Tamil"].Width = 200;
-                            grdRouteList.Columns["Route Name in English"].Width = 200;
+                            grdRouteList.Columns["Area Name in Tamil"].Width = 200;
+                            grdRouteList.Columns["Area Name in English"].Width = 200;
                             grdRouteList.Columns["Status"].Width = 80;
                             grdRouteList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdRouteList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdRouteList.Columns["Route Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdRouteList.Columns["Area Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
                         {

@@ -148,6 +148,7 @@ namespace ROMS
                             grdGroupList.Columns["ConcernID"].Visible = false;
                             grdGroupList.Columns["StockLocationID"].Visible = false;
                             grdGroupList.Columns["StatusID"].Visible = false;
+                            grdGroupList.Columns["SalesBillEnable"].Visible = false;
                             grdGroupList.Columns["S.No."].Width = 50;
                             grdGroupList.Columns["Concern"].Width = 100;
                             grdGroupList.Columns["Stock Location"].Width = 200;
@@ -321,7 +322,7 @@ namespace ROMS
                         {
 
                             SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 0);
+                            varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 0,0);
                             objspservice.CloseConnection();
 
                             if (varResult.Split('~')[0] == "3")
@@ -334,7 +335,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objspservice = new SPDataService();
-                                        varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 1);
+                                        varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 1,0);
                                         objspservice.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -386,6 +387,7 @@ namespace ROMS
                         MainForm.objCP_Rack.PbConcern = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Concern"].Value);
                         MainForm.objCP_Rack.PbStockLocation = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
                         MainForm.objCP_Rack.PbStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StatusID"].Value);
+                        MainForm.objCP_Rack.varSalesBillPrint = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["SalesBillEnable"].Value);
                         picLoader.Visible = false;
                         picLoader.SendToBack();
                         MainForm.objCP_Rack.ShowDialog();
