@@ -112,6 +112,7 @@
             this.clmBlockedSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmremove = new System.Windows.Forms.DataGridViewImageColumn();
             this.grbgodown = new System.Windows.Forms.GroupBox();
+            this.chkDamageOtherLoc = new System.Windows.Forms.CheckBox();
             this.QrcodeImg = new Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl();
             this.lblScheduleCode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
@@ -122,6 +123,9 @@
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.lblConcern = new System.Windows.Forms.Label();
             this.grpproductname = new System.Windows.Forms.GroupBox();
+            this.txtYear = new System.Windows.Forms.TextBox();
+            this.txtDay = new System.Windows.Forms.TextBox();
+            this.txtMonth = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbReason = new System.Windows.Forms.ComboBox();
             this.cmbSupplier = new System.Windows.Forms.ComboBox();
@@ -974,6 +978,7 @@
             // 
             // grbgodown
             // 
+            this.grbgodown.Controls.Add(this.chkDamageOtherLoc);
             this.grbgodown.Controls.Add(this.QrcodeImg);
             this.grbgodown.Controls.Add(this.lblScheduleCode);
             this.grbgodown.Controls.Add(this.lblSupplierCode);
@@ -990,6 +995,20 @@
             this.grbgodown.Size = new System.Drawing.Size(1338, 77);
             this.grbgodown.TabIndex = 0;
             this.grbgodown.TabStop = false;
+            // 
+            // chkDamageOtherLoc
+            // 
+            this.chkDamageOtherLoc.AutoSize = true;
+            this.chkDamageOtherLoc.Location = new System.Drawing.Point(438, 36);
+            this.chkDamageOtherLoc.Name = "chkDamageOtherLoc";
+            this.chkDamageOtherLoc.Size = new System.Drawing.Size(213, 24);
+            this.chkDamageOtherLoc.TabIndex = 9587917;
+            this.chkDamageOtherLoc.Text = "Damage Entry from Other Location";
+            this.chkDamageOtherLoc.UseVisualStyleBackColor = true;
+            this.chkDamageOtherLoc.CheckedChanged += new System.EventHandler(this.chkDamageOtherLoc_CheckedChanged);
+            this.chkDamageOtherLoc.Enter += new System.EventHandler(this.chkDamageOtherLoc_Enter);
+            this.chkDamageOtherLoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkDamageOtherLoc_KeyDown);
+            this.chkDamageOtherLoc.Leave += new System.EventHandler(this.chkDamageOtherLoc_Leave);
             // 
             // QrcodeImg
             // 
@@ -1032,6 +1051,7 @@
             this.txtEntryNo.ReadOnly = true;
             this.txtEntryNo.Size = new System.Drawing.Size(171, 27);
             this.txtEntryNo.TabIndex = 2;
+            this.txtEntryNo.TextChanged += new System.EventHandler(this.txtEntryNo_TextChanged);
             // 
             // lbEntryNo
             // 
@@ -1090,6 +1110,9 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.txtYear);
+            this.grpproductname.Controls.Add(this.txtDay);
+            this.grpproductname.Controls.Add(this.txtMonth);
             this.grpproductname.Controls.Add(this.label3);
             this.grpproductname.Controls.Add(this.cmbReason);
             this.grpproductname.Controls.Add(this.cmbSupplier);
@@ -1119,6 +1142,46 @@
             this.grpproductname.Size = new System.Drawing.Size(1339, 77);
             this.grpproductname.TabIndex = 3;
             this.grpproductname.TabStop = false;
+            // 
+            // txtYear
+            // 
+            this.txtYear.Location = new System.Drawing.Point(652, 37);
+            this.txtYear.MaxLength = 2;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(27, 27);
+            this.txtYear.TabIndex = 1111248;
+            this.txtYear.Visible = false;
+            this.txtYear.Enter += new System.EventHandler(this.TxtYear_Enter);
+            this.txtYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtYear_KeyDown);
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtYear_KeyPress);
+            this.txtYear.Leave += new System.EventHandler(this.TxtYear_Leave);
+            // 
+            // txtDay
+            // 
+            this.txtDay.Location = new System.Drawing.Point(598, 37);
+            this.txtDay.MaxLength = 2;
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(27, 27);
+            this.txtDay.TabIndex = 1111246;
+            this.txtDay.Visible = false;
+            this.txtDay.Enter += new System.EventHandler(this.TxtDay_Enter);
+            this.txtDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDay_KeyDown);
+            this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDay_KeyPress_1);
+            this.txtDay.Leave += new System.EventHandler(this.TxtDay_Leave);
+            // 
+            // txtMonth
+            // 
+            this.txtMonth.Location = new System.Drawing.Point(624, 37);
+            this.txtMonth.MaxLength = 2;
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.Size = new System.Drawing.Size(27, 27);
+            this.txtMonth.TabIndex = 1111247;
+            this.txtMonth.Visible = false;
+            this.txtMonth.TextChanged += new System.EventHandler(this.txtMonth_TextChanged);
+            this.txtMonth.Enter += new System.EventHandler(this.TxtMonth_Enter);
+            this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMonth_KeyDown);
+            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMonth_KeyPress);
+            this.txtMonth.Leave += new System.EventHandler(this.TxtMonth_Leave);
             // 
             // label3
             // 
@@ -1524,5 +1587,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBlockedReason;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBlockedSupplier;
         private System.Windows.Forms.DataGridViewImageColumn clmremove;
+        private System.Windows.Forms.CheckBox chkDamageOtherLoc;
+        private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.TextBox txtDay;
+        private System.Windows.Forms.TextBox txtMonth;
     }
 }

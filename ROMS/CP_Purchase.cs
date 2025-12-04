@@ -4051,6 +4051,7 @@ namespace ROMS
                 {
                     string mrp = string.Format("{0:0.00}", Convert.ToDecimal(Math.Round(Convert.ToDecimal(txtMrp.Text.Trim()), 2, MidpointRounding.AwayFromZero)));
                     txtMrp.Text = mrp;
+                    udfnBatchDetails();
                 }
                 if (varPrMRPFlag == "1" && (txtMrp.Text.Trim() == "" || Convert.ToDecimal(txtMrp.Text) == 0))
                 {
@@ -4440,6 +4441,7 @@ namespace ROMS
             try
             {
                 txtDate.BackColor = Color.White;
+                udfnBatchDetails();
             }
             catch (Exception ex)
             {
@@ -4519,6 +4521,7 @@ namespace ROMS
                     {
                         txtMonth.BackColor = Color.White;
                         errPurchaseentry.Clear();
+                        udfnBatchDetails();
                     }
                 }
             }
@@ -4569,6 +4572,7 @@ namespace ROMS
                     {
                         txtYear.BackColor = Color.White;
                         errPurchaseentry.Clear();
+                        udfnBatchDetails();
                     }
                 }
             }
@@ -12929,7 +12933,7 @@ namespace ROMS
                     if (Convert.ToString(cmbPONo.SelectedValue) != "220" && (varGRNProType == "226" || varGRNProType == "264"
                             || varGRNProType == "265" || varGRNProType == "266" || varGRNProType == "26" || varGRNProType == "264") || varGrnType == "214") //226-GRN pro type not received
                     {
-                        if (Convert.ToInt32(varBatchNo) == 73)  //disabled
+                        if(Convert.ToInt32(varBatchNo) == 73)  //disabled
                         {
                             txtBatchno.Text = "";
                             txtBatchno.Enabled = false;
@@ -13005,7 +13009,55 @@ namespace ROMS
                 { btnConditions.Enabled = true; }
             }
         }
-
+        public void udfnBatchDetails()
+        {
+            try
+            {
+                decimal varMRP = 0; string varExpiryDate = ""; int ExpiryDateFlag = 0; int AutoBatchFlag = 0;
+                if (Convert.ToString(txtMrp.Text) != "")
+                {
+                    varMRP = Convert.ToDecimal(txtMrp.Text);
+                }
+                
+                if (txtDate.Text.Trim() != "" && txtMonth.Text.Trim() != "" && txtYear.Text.Trim() != "")
+                {
+                    varExpiryDate = txtDate.Text.Trim() + "/" + txtMonth.Text.Trim() + "/20" + txtYear.Text.Trim();
+                    ExpiryDateFlag = 1;
+                }
+                
+                if (expirydateFlag == 1 && varBatchNoGeneration == "74" && varPrMRPFlag == "1")
+                {
+                    AutoBatchFlag = 1;
+                }
+                if (AutoBatchFlag == 1)
+                {
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 31;
+                    objMR_Master.paraMRP = varMRP;
+                    objMR_Master.ParaExpiryDate = varExpiryDate;
+                    objMR_Master.paraProductId = Convert.ToInt32(lblProductcode.Text);
+                    DataSet objDs = new DataSet();
+                    SPDataService objdserv = new SPDataService();
+                    objDs = objdserv.udfnMaster(objMR_Master);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                txtBatchno.Text = Convert.ToString(objDs.Tables[0].Rows[0]["BatchNo"]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnCheckCondition()
         {
             try
@@ -13362,6 +13414,7 @@ namespace ROMS
                                                 txtBatchno.Enabled = false;
                                             }
                                         }
+                                        udfnBatchDetails();
                                     }
                                 }
                                 if (Convert.ToInt32(varPrcategory) == 16 && varShelflife == 1)

@@ -1371,6 +1371,7 @@ namespace ROMS
                 string mrp = string.Format("{0:0.00}", varMRP);
                 string mrp1 = string.Format("{0:G29}", decimal.Parse(mrp));
                 txtMrp.Text = mrp;
+                udfnBatchDetails();
             }
             catch (Exception ex)
             {
@@ -1980,6 +1981,7 @@ namespace ROMS
             try
             {
                 txtDay.BackColor = Color.White;
+                udfnBatchDetails();
             }
             catch (Exception ex)
             {
@@ -2048,6 +2050,7 @@ namespace ROMS
                     {
                         txtMonth.BackColor = Color.White;
                         epGoodsInward.Clear();
+                        udfnBatchDetails();
                     }
                 }
             }
@@ -2154,6 +2157,7 @@ namespace ROMS
                     {
                         txtYear.BackColor = Color.White;
                         epGoodsInward.Clear();
+                        udfnBatchDetails();
                     }
                 }
             }
@@ -2768,6 +2772,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+         
 
         private void INV_Inward_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -3292,7 +3297,55 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
             }
         }
+        public void udfnBatchDetails()
+        {
+            try
+            {
+                decimal varMRP = 0; string varExpiryDate = ""; int ExpiryDateFlag = 0; int AutoBatchFlag = 0;
+                if (Convert.ToString(txtMrp.Text) != "")
+                {
+                    varMRP = Convert.ToDecimal(txtMrp.Text);
+                }
 
+                if (txtDay.Text.Trim() != "" && txtMonth.Text.Trim() != "" && txtYear.Text.Trim() != "")
+                {
+                    varExpiryDate = txtDay.Text.Trim() + "/" + txtMonth.Text.Trim() + "/20" + txtYear.Text.Trim();
+                    ExpiryDateFlag = 1;
+                }
+
+                if (varBatchNoGeneration == "74" )
+                {
+                    AutoBatchFlag = 1;
+                }
+                if (AutoBatchFlag == 1)
+                {
+                    MR_Master objMR_Master = new MR_Master();
+                    objMR_Master.ViewType = 31;
+                    objMR_Master.paraMRP = varMRP;
+                    objMR_Master.ParaExpiryDate = varExpiryDate;
+                    objMR_Master.paraProductId = Convert.ToInt32(varPRID);
+                    DataSet objDs = new DataSet();
+                    SPDataService objdserv = new SPDataService();
+                    objDs = objdserv.udfnMaster(objMR_Master);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                txtBatchNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["BatchNo"]);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -4197,6 +4250,7 @@ namespace ROMS
                                                 txtBatchNo.Enabled = false;
                                             }
                                         }
+                                        udfnBatchDetails();
                                     }
                                 }
                             }
