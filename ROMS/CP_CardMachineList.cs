@@ -175,6 +175,8 @@ namespace ROMS
                             grdCardMachineList.Columns["StatusID"].Visible = false;
                             grdCardMachineList.Columns["S.No."].Width = 50; 
                             grdCardMachineList.Columns["Status"].Width = 80;
+                            grdCardMachineList.Columns["Card Mahine Name"].Width = 200;
+                            grdCardMachineList.Columns["Bank"].Width = 200;
                             grdCardMachineList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdCardMachineList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                         }
