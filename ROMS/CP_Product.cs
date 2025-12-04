@@ -11166,6 +11166,25 @@ namespace ROMS
                         }
                     }
                 }
+
+
+                //var newRate = grdPrice.Rows[rowIndex].Cells["clmRate"].Value;
+                //// Apply new rate to ALL rows
+                //foreach (DataGridViewRow row in grdPrice.Rows)
+                //{
+
+                //    // Get status of the row where user typed
+                //    var status = row.Cells["clmStatus"].Value?.ToString();
+                //    var typeId = row.Cells["clmTypeId"].Value?.ToString();
+                //    if (status == "453" || typeId == "446")
+                //    {
+                //        if (Convert.ToString(row.Cells["clmStatus"].Value) == "453")
+                //        {
+                //            row.Cells["clmRate"].Value = newRate;
+                //            UpdateRateWithGST(row.Index);
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -11183,15 +11202,18 @@ namespace ROMS
                 double newGst = Convert.ToDouble(grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value); 
                 double NewRate = Rate * (newGst / 100);
                 var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
-                if (status == "454") //no
+                var mainstatus = grdPrice.Rows[rowIndex].Cells["clmstatus"].Value?.ToString();
+                if (mainstatus == "453") //yes
                 {
-                    grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate ;
+                    if (status == "454") //no
+                    {
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
+                    }
+                    else
+                    {
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + NewRate;
+                    } 
                 }
-                else
-                {
-                    grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + NewRate;
-                }
-
 
             }
             catch (Exception ex)
@@ -11208,21 +11230,26 @@ namespace ROMS
                 // Only update all rows if status == 154
 
                 var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
-                if (status == "454") //no
+                var mainstatus = grdPrice.Rows[rowIndex].Cells["clmStatus"].Value?.ToString();
+                if (mainstatus == "453") //yes
                 {
-                    double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
-                    grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
+                    if (status == "454") //no
+                    {
+                        double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
 
-                    grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = true; 
-                    grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = true;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
 
-                }
-                else {
-                    ////selected value is yes  
-                    UpdateRateWithGST(rowIndex);
+                    }
+                    else
+                    {
+                        ////selected value is yes  
+                        UpdateRateWithGST(rowIndex);
 
-                    grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = false;
-                    grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = false;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                    }
                 }
 
             }

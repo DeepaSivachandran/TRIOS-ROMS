@@ -553,6 +553,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PRPM_TYPE"].Visible = false;
                                     DGV_FilterProduct.Columns["PRPM_RATE"].Visible = false;
                                     DGV_FilterProduct.Columns["PRPR_RATE_PREV"].Visible = false;
+                                    DGV_FilterProduct.Columns["R.Rate"].Visible = false;
+                                    DGV_FilterProduct.Columns["W.Rate"].Visible = false;
                                      
 
 

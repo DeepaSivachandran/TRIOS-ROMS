@@ -4265,7 +4265,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 521);
+                OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 525);
             }
             catch (Exception ex)
             {
