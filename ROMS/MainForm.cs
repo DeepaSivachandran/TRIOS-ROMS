@@ -134,6 +134,7 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static CP_GeneralSettings objCP_GeneralSettings;
         public static CP_BulkAttributes objCP_BulkAttributes;
+        public static CP_Spl_Products_Bulk objCP_Spl_Products_Bulk;
         public static CP_BulkAttributeVerify objCP_BulkAttributeVerify;
         public static CP_RepresentativeList objCP_RepresentativeList;
         public static CP_Representative objCP_Representative;
@@ -148,6 +149,7 @@ namespace ROMS
         public static LabelCount objLabelCount;
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
+        public static CP_Rate_ChangeApproval objCP_Rate_ChangeApproval;
         public static CP_StickerPrint objCP_StickerPrint;
         // added by venkat on 09-08-2025
         public static CP_DirectLabelPrint objCP_DirectLabelPrint;
@@ -4233,6 +4235,37 @@ namespace ROMS
             {
                 OpenReportForm(ref MainForm.objREPORT_Stock_Details, "REPORT_Stock_Details", 80413);
                 PbCurrentForm = "7.9.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+        private void tpProductClassification_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_Spl_Products_Bulk = new CP_Spl_Products_Bulk();
+                MainForm.objCP_Spl_Products_Bulk.pbMenuFlag = 1;
+                OpenReportForm(ref MainForm.objCP_Spl_Products_Bulk, "CP_Spl_Products_Bulk", 51901);
+                objCP_Spl_Products_Bulk.Text = "Product Classification";
+                objCP_Spl_Products_Bulk.tspHeader.Text = "Product Classification";
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRateApproval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 525);
             }
             catch (Exception ex)
             {

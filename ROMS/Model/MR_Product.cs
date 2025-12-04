@@ -71,5 +71,7 @@ namespace ROMS.Model
         public string paraOriginator = "";
         public int ParaOrderby = 0;
         public int ParaRate = 0;
+
+        public DataTable paraSplFieldMapped = null; 
     }
 }
