@@ -2382,7 +2382,7 @@ namespace ROMS
                             {
                                 rbCredit.Checked = true;
                             }
-                            if (cusType == 326)
+                            if (cusType == 327)
                             {
                                 txtCreditLimit.Text = dr["CUS_Credit_Limit"].ToString();
                                 txtCreditDays.Text = dr["CUS_CreditDays"].ToString();
