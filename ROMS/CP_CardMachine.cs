@@ -368,12 +368,7 @@ namespace ROMS
                     { 
                         rbActive.Checked = true; 
                     }
-                    else 
-                    {
-                        txtMachineName.Enabled = false; 
-                        cmbConcern.Enabled = false;
-                        rbInActive.Checked = true;
-                    }
+                     
                 }
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 MainForm.objCP_CardMachineList.picLoader.Visible = false;
@@ -434,7 +429,7 @@ namespace ROMS
                     }
                 }
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,17) AND MSTID<>0 ORDER BY MST_DisplayText desc", "MST_DisplayText,MSTID", cmbProvider, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,141) AND MSTID<>0 ORDER BY MSTID  ASC", "MST_DisplayText,MSTID", cmbProvider, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 udfnBankDropDown();
             }
