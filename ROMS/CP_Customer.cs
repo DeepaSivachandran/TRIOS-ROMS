@@ -93,16 +93,18 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MainForm.objCP_Customerlist.udfnList();
-                    if (btnSave.Text == "Save")
-                    {
-                        txtCustomerName.Text = "";
-                        this.ActiveControl = txtCustomerName;
-                    }
-                    if (btnSave.Text == "Update")
-                    {
-                        varUpdate = 1;
-                        udfnclose();
-                    }
+                    //if (btnSave.Text == "Save")
+                    //{
+                    //    txtCustomerName.Text = "";
+                    //    this.ActiveControl = txtCustomerName;
+                    //}
+                    //if (btnSave.Text == "Update")
+                    //{
+                    //    varUpdate = 1;
+                    //    udfnclose();
+                    //}
+                    varUpdate = 1;
+                    udfnclose();
                 }
                 else
                 {
@@ -133,6 +135,7 @@ namespace ROMS
         {
             try
             {
+                epCustomer.Clear();
                 bool blnErrFlag = false;
                 if (string.IsNullOrWhiteSpace(txtCustomerName.Text))
                 {
@@ -158,13 +161,24 @@ namespace ROMS
                     tpCustomer.Show("Please enter contact no.", txtContactNo, 5000);
                     blnErrFlag = true;
                 }
-                else if (!long.TryParse(txtContactNo.Text.Trim(), out _) || txtContactNo.Text.Trim().Length != 15)
+                else if (!long.TryParse(txtContactNo.Text.Trim(), out _) || txtContactNo.Text.Trim().Length < 10)
                 {
                     epCustomer.SetError(txtContactNo, "Please enter valid contact no.");
                     txtContactNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpCustomer.ShowAlways = true;
                     tpCustomer.Show("Please enter valid contact no.", txtContactNo, 5000);
                     blnErrFlag = true;
+                }
+                if (!string.IsNullOrWhiteSpace(txtWhatsappNo.Text))
+                {
+                    if (!long.TryParse(txtWhatsappNo.Text.Trim(), out _) || txtWhatsappNo.Text.Trim().Length < 10)
+                    {
+                        epCustomer.SetError(txtWhatsappNo, "Please enter valid whatsapp no.");
+                        txtWhatsappNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCustomer.ShowAlways = true;
+                        tpCustomer.Show("Please enter valid whatsapp no.", txtWhatsappNo, 5000);
+                        blnErrFlag = true;
+                    }
                 }
                 if (rbCredit.Checked == true)  // Credit
                 {
@@ -276,11 +290,11 @@ namespace ROMS
 
                 if (string.IsNullOrWhiteSpace(txtaddress2.Text))
                 {
-                    epCustomer.SetError(txtaddress2, "Please enter address line 2.");
-                    txtaddress2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpCustomer.ShowAlways = true;
-                    tpCustomer.Show("Please enter address line 2.", txtaddress2, 5000);
-                    blnErrFlag = true;
+                    //epCustomer.SetError(txtaddress2, "Please enter address line 2.");
+                    //txtaddress2.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //tpCustomer.ShowAlways = true;
+                    //tpCustomer.Show("Please enter address line 2.", txtaddress2, 5000);
+                    //blnErrFlag = true;
                 }
 
                 if (cmbState.SelectedValue == null || Convert.ToInt32(cmbState.SelectedValue) == -1)
@@ -857,7 +871,7 @@ namespace ROMS
         {
             try
             {
-
+                /*
                 lvCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -887,6 +901,7 @@ namespace ROMS
                     lvCity.Visible = false;
                     lvCity.Items.Clear();
                 }
+                */
             }
             catch (Exception ex)
             {
@@ -1724,7 +1739,7 @@ namespace ROMS
         {
             try
             {
-
+                /*
                 lvShipCity.Items.Clear();
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -1754,6 +1769,7 @@ namespace ROMS
                     lvShipCity.Visible = false;
                     lvShipCity.Items.Clear();
                 }
+                */
             }
             catch (Exception ex)
             {

@@ -100,6 +100,7 @@ namespace ROMS
         {
             try
             {
+                epMobile.Clear();
                 if (txtMobileName.Text.Trim() == "")
                 {
                     epMobile.SetError(txtMobileName, "Please enter mobile name.");
@@ -127,6 +128,14 @@ namespace ROMS
                     txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMobile.ShowAlways = true;
                     tpMobile.Show("Please enter mobile number.", txtMobileNo, 5000);
+                }
+                else if (!long.TryParse(txtMobileNo.Text.Trim(), out _) || txtMobileNo.Text.Trim().Length < 10)
+                {
+                    epMobile.SetError(txtMobileNo, "Please enter valid mobile no.");
+                    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMobile.ShowAlways = true;
+                    tpMobile.Show("Please enter valid mobile no.", txtMobileNo, 5000);
+                    //blnErrFlag = true;
                 }
                 else
                 {

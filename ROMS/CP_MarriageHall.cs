@@ -106,6 +106,7 @@ namespace ROMS
         {
             try
             {
+                epMarriageHall.Clear();
                 bool blnErrFlag = false;
                 if (txtMarriageHallEName.Text.Trim() == "")
                 {
@@ -158,6 +159,14 @@ namespace ROMS
                         txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpMarriageHall.ShowAlways = true;
                         tpMarriageHall.Show("Please enter teller.", txtTeller, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (txtReason.Text.Trim() == "")
+                    {
+                        epMarriageHall.SetError(txtReason, "Please enter reason.");
+                        txtReason.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMarriageHall.ShowAlways = true;
+                        tpMarriageHall.Show("Please enter reason.", txtReason, 5000);
                         blnErrFlag = true;
                     }
                 }

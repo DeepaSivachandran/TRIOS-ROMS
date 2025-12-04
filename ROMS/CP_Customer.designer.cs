@@ -208,7 +208,7 @@
             this.grbShippingAddress.Location = new System.Drawing.Point(359, 227);
             this.grbShippingAddress.Name = "grbShippingAddress";
             this.grbShippingAddress.Size = new System.Drawing.Size(531, 235);
-            this.grbShippingAddress.TabIndex = 89;
+            this.grbShippingAddress.TabIndex = 21;
             this.grbShippingAddress.TabStop = false;
             this.grbShippingAddress.Text = "Shipping Address";
             // 
@@ -287,7 +287,7 @@
             this.txtShipArea.MaxLength = 50;
             this.txtShipArea.Name = "txtShipArea";
             this.txtShipArea.Size = new System.Drawing.Size(397, 27);
-            this.txtShipArea.TabIndex = 91;
+            this.txtShipArea.TabIndex = 24;
             this.txtShipArea.TextChanged += new System.EventHandler(this.txtShipArea_TextChanged);
             this.txtShipArea.Enter += new System.EventHandler(this.txtShipArea_Enter);
             this.txtShipArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipArea_KeyDown);
@@ -299,7 +299,7 @@
             this.chkSameasBilling.Location = new System.Drawing.Point(15, 23);
             this.chkSameasBilling.Name = "chkSameasBilling";
             this.chkSameasBilling.Size = new System.Drawing.Size(156, 24);
-            this.chkSameasBilling.TabIndex = 89;
+            this.chkSameasBilling.TabIndex = 21;
             this.chkSameasBilling.Text = "Same as Billing Address";
             this.chkSameasBilling.UseVisualStyleBackColor = true;
             this.chkSameasBilling.CheckedChanged += new System.EventHandler(this.chkSameasBilling_CheckedChanged);
@@ -311,7 +311,7 @@
             this.txtShipLandmark.MaxLength = 100;
             this.txtShipLandmark.Name = "txtShipLandmark";
             this.txtShipLandmark.Size = new System.Drawing.Size(397, 27);
-            this.txtShipLandmark.TabIndex = 88;
+            this.txtShipLandmark.TabIndex = 28;
             this.txtShipLandmark.Enter += new System.EventHandler(this.txtShipLandmark_Enter);
             this.txtShipLandmark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipLandmark_KeyDown);
             this.txtShipLandmark.Leave += new System.EventHandler(this.txtShipLandmark_Leave);
@@ -335,7 +335,7 @@
             this.txtShipaddress1.MaxLength = 50;
             this.txtShipaddress1.Name = "txtShipaddress1";
             this.txtShipaddress1.Size = new System.Drawing.Size(397, 27);
-            this.txtShipaddress1.TabIndex = 82;
+            this.txtShipaddress1.TabIndex = 22;
             this.txtShipaddress1.Enter += new System.EventHandler(this.txtShipaddress1_Enter);
             this.txtShipaddress1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipaddress1_KeyDown);
             this.txtShipaddress1.Leave += new System.EventHandler(this.txtShipaddress1_Leave);
@@ -348,7 +348,7 @@
             this.txtShipCity.MaxLength = 50;
             this.txtShipCity.Name = "txtShipCity";
             this.txtShipCity.Size = new System.Drawing.Size(210, 27);
-            this.txtShipCity.TabIndex = 27;
+            this.txtShipCity.TabIndex = 25;
             this.txtShipCity.TextChanged += new System.EventHandler(this.txtShipCity_TextChanged);
             this.txtShipCity.Enter += new System.EventHandler(this.txtShipCity_Enter);
             this.txtShipCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipCity_KeyDown);
@@ -361,7 +361,7 @@
             this.txtShipPincode.MaxLength = 6;
             this.txtShipPincode.Name = "txtShipPincode";
             this.txtShipPincode.Size = new System.Drawing.Size(134, 27);
-            this.txtShipPincode.TabIndex = 28;
+            this.txtShipPincode.TabIndex = 26;
             this.txtShipPincode.Enter += new System.EventHandler(this.txtShipPincode_Enter);
             this.txtShipPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipPincode_KeyDown);
             this.txtShipPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtShipPincode_KeyPress);
@@ -379,12 +379,13 @@
             // 
             // cmbShipState
             // 
+            this.cmbShipState.Enabled = false;
             this.cmbShipState.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.cmbShipState.FormattingEnabled = true;
             this.cmbShipState.Location = new System.Drawing.Point(122, 162);
             this.cmbShipState.Name = "cmbShipState";
             this.cmbShipState.Size = new System.Drawing.Size(210, 28);
-            this.cmbShipState.TabIndex = 26;
+            this.cmbShipState.TabIndex = 27;
             this.cmbShipState.SelectedIndexChanged += new System.EventHandler(this.cmbShipState_SelectedIndexChanged);
             this.cmbShipState.Enter += new System.EventHandler(this.cmbShipState_Enter);
             this.cmbShipState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbShipState_KeyDown);
@@ -422,7 +423,7 @@
             this.txtShipaddress2.MaxLength = 50;
             this.txtShipaddress2.Name = "txtShipaddress2";
             this.txtShipaddress2.Size = new System.Drawing.Size(397, 27);
-            this.txtShipaddress2.TabIndex = 83;
+            this.txtShipaddress2.TabIndex = 23;
             this.txtShipaddress2.Enter += new System.EventHandler(this.txtShipaddress2_Enter);
             this.txtShipaddress2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShipaddress2_KeyDown);
             this.txtShipaddress2.Leave += new System.EventHandler(this.txtShipaddress2_Leave);
@@ -485,7 +486,7 @@
             this.grbBillingAddress.Location = new System.Drawing.Point(359, 12);
             this.grbBillingAddress.Name = "grbBillingAddress";
             this.grbBillingAddress.Size = new System.Drawing.Size(531, 209);
-            this.grbBillingAddress.TabIndex = 88;
+            this.grbBillingAddress.TabIndex = 14;
             this.grbBillingAddress.TabStop = false;
             this.grbBillingAddress.Text = "Billing Address";
             // 
@@ -564,7 +565,7 @@
             this.txtArea.MaxLength = 50;
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(397, 27);
-            this.txtArea.TabIndex = 89;
+            this.txtArea.TabIndex = 16;
             this.txtArea.TextChanged += new System.EventHandler(this.txtArea_TextChanged);
             this.txtArea.Enter += new System.EventHandler(this.txtArea_Enter);
             this.txtArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtArea_KeyDown);
@@ -577,7 +578,7 @@
             this.txtLandmark.MaxLength = 100;
             this.txtLandmark.Name = "txtLandmark";
             this.txtLandmark.Size = new System.Drawing.Size(397, 27);
-            this.txtLandmark.TabIndex = 88;
+            this.txtLandmark.TabIndex = 20;
             this.txtLandmark.Enter += new System.EventHandler(this.txtLandmark_Enter);
             this.txtLandmark.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLandmark_KeyDown);
             this.txtLandmark.Leave += new System.EventHandler(this.txtLandmark_Leave);
@@ -601,7 +602,7 @@
             this.txtaddress1.MaxLength = 50;
             this.txtaddress1.Name = "txtaddress1";
             this.txtaddress1.Size = new System.Drawing.Size(397, 27);
-            this.txtaddress1.TabIndex = 82;
+            this.txtaddress1.TabIndex = 14;
             this.txtaddress1.Enter += new System.EventHandler(this.txtaddress1_Enter);
             this.txtaddress1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtaddress1_KeyDown);
             this.txtaddress1.Leave += new System.EventHandler(this.txtaddress1_Leave);
@@ -614,7 +615,7 @@
             this.txtCity.MaxLength = 50;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(210, 27);
-            this.txtCity.TabIndex = 27;
+            this.txtCity.TabIndex = 17;
             this.txtCity.TextChanged += new System.EventHandler(this.txtCity_TextChanged);
             this.txtCity.Enter += new System.EventHandler(this.txtCity_Enter);
             this.txtCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCity_KeyDown);
@@ -627,7 +628,7 @@
             this.txtPincode.MaxLength = 6;
             this.txtPincode.Name = "txtPincode";
             this.txtPincode.Size = new System.Drawing.Size(134, 27);
-            this.txtPincode.TabIndex = 28;
+            this.txtPincode.TabIndex = 18;
             this.txtPincode.Enter += new System.EventHandler(this.txtPincode_Enter);
             this.txtPincode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPincode_KeyDown);
             this.txtPincode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPincode_KeyPress);
@@ -645,12 +646,13 @@
             // 
             // cmbState
             // 
+            this.cmbState.Enabled = false;
             this.cmbState.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.cmbState.FormattingEnabled = true;
             this.cmbState.Location = new System.Drawing.Point(122, 138);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(210, 28);
-            this.cmbState.TabIndex = 26;
+            this.cmbState.TabIndex = 19;
             this.cmbState.SelectedIndexChanged += new System.EventHandler(this.cmbState_SelectedIndexChanged);
             this.cmbState.Enter += new System.EventHandler(this.cmbState_Enter);
             this.cmbState.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbState_KeyDown);
@@ -688,7 +690,7 @@
             this.txtaddress2.MaxLength = 50;
             this.txtaddress2.Name = "txtaddress2";
             this.txtaddress2.Size = new System.Drawing.Size(397, 27);
-            this.txtaddress2.TabIndex = 83;
+            this.txtaddress2.TabIndex = 15;
             this.txtaddress2.Enter += new System.EventHandler(this.txtaddress2_Enter);
             this.txtaddress2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtaddress2_KeyDown);
             this.txtaddress2.Leave += new System.EventHandler(this.txtaddress2_Leave);
@@ -1186,7 +1188,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 34);
-            this.btnClose.TabIndex = 13;
+            this.btnClose.TabIndex = 30;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1201,7 +1203,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(82, 34);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 29;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
