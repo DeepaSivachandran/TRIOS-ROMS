@@ -201,7 +201,16 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmSalesMasters = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRoute = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCustomerType = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCustomer = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVehicle = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeliveryPerson = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMobile = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1763,7 +1772,8 @@ namespace ROMS
             this.tsmTally,
             this.tsmReports,
             this.tsmMyProfile,
-            this.tsmFYSettings});
+            this.tsmFYSettings,
+            this.tsmSalesMasters});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -1771,6 +1781,65 @@ namespace ROMS
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
+            // 
+            // tsmSalesMasters
+            // 
+            this.tsmSalesMasters.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmRoute,
+            this.tsmCustomerType,
+            this.tsmCustomer,
+            this.tsmVehicle,
+            this.tsmDeliveryPerson,
+            this.tsmMobile,
+            this.tsmTransport,
+            this.tsmMarriageHall});
+            this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.tsmSalesMasters.Name = "tsmSalesMasters";
+            this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
+            this.tsmSalesMasters.Text = "S_Masters";
+            this.tsmSalesMasters.Visible = false;
+            // 
+            // tsmRoute
+            // 
+            this.tsmRoute.Name = "tsmRoute";
+            this.tsmRoute.Size = new System.Drawing.Size(180, 22);
+            this.tsmRoute.Text = "Route";
+            this.tsmRoute.Click += new System.EventHandler(this.tsmRoute_Click);
+            // 
+            // tsmCustomerType
+            // 
+            this.tsmCustomerType.Name = "tsmCustomerType";
+            this.tsmCustomerType.Size = new System.Drawing.Size(180, 22);
+            this.tsmCustomerType.Text = "Customer Type";
+            this.tsmCustomerType.Click += new System.EventHandler(this.tsmCustomerType_Click);
+            // 
+            // tsmCustomer
+            // 
+            this.tsmCustomer.Name = "tsmCustomer";
+            this.tsmCustomer.Size = new System.Drawing.Size(180, 22);
+            this.tsmCustomer.Text = "Customer";
+            this.tsmCustomer.Click += new System.EventHandler(this.tsmCustomer_Click);
+            // 
+            // tsmVehicle
+            // 
+            this.tsmVehicle.Name = "tsmVehicle";
+            this.tsmVehicle.Size = new System.Drawing.Size(180, 22);
+            this.tsmVehicle.Text = "Vehicle";
+            this.tsmVehicle.Click += new System.EventHandler(this.tsmVehicle_Click);
+            // 
+            // tsmDeliveryPerson
+            // 
+            this.tsmDeliveryPerson.Name = "tsmDeliveryPerson";
+            this.tsmDeliveryPerson.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeliveryPerson.Text = "Delivery Person";
+            this.tsmDeliveryPerson.Click += new System.EventHandler(this.tsmDeliveryPerson_Click);
+            // 
+            // tsmMobile
+            // 
+            this.tsmMobile.Name = "tsmMobile";
+            this.tsmMobile.Size = new System.Drawing.Size(180, 22);
+            this.tsmMobile.Text = "Mobile";
+            this.tsmMobile.Click += new System.EventHandler(this.tsmMobile_Click);
             // 
             // statusBar
             // 
@@ -1780,6 +1849,20 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
+            // 
+            // tsmTransport
+            // 
+            this.tsmTransport.Name = "tsmTransport";
+            this.tsmTransport.Size = new System.Drawing.Size(180, 22);
+            this.tsmTransport.Text = "Transport";
+            this.tsmTransport.Click += new System.EventHandler(this.tsmTransport_Click);
+            // 
+            // tsmMarriageHall
+            // 
+            this.tsmMarriageHall.Name = "tsmMarriageHall";
+            this.tsmMarriageHall.Size = new System.Drawing.Size(180, 22);
+            this.tsmMarriageHall.Text = "Marriage Hall";
+            this.tsmMarriageHall.Click += new System.EventHandler(this.tsmMarriageHall_Click);
             // 
             // MainForm
             // 
@@ -1984,6 +2067,15 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockConversionReport;
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournalReport;
         private System.Windows.Forms.ToolStripMenuItem tsmStockDetailsReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesMasters;
+        private System.Windows.Forms.ToolStripMenuItem tsmRoute;
+        private System.Windows.Forms.ToolStripMenuItem tsmCustomerType;
+        private System.Windows.Forms.ToolStripMenuItem tsmCustomer;
+        private System.Windows.Forms.ToolStripMenuItem tsmVehicle;
+        private System.Windows.Forms.ToolStripMenuItem tsmDeliveryPerson;
+        private System.Windows.Forms.ToolStripMenuItem tsmMobile;
+        private System.Windows.Forms.ToolStripMenuItem tsmTransport;
+        private System.Windows.Forms.ToolStripMenuItem tsmMarriageHall;
         private System.Windows.Forms.ToolStripMenuItem tpProductClassification;
         private System.Windows.Forms.ToolStripMenuItem tsmRateApproval;
     }

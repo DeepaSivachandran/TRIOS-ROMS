@@ -169,6 +169,24 @@ namespace ROMS
         public static CP_UserRoleList objCP_UserRoleList;
         public static CP_UserRole_SPL objCP_UserRole_SPL;
 
+        //Added By Sathish ON 11-11-2025
+        public static CP_Route objCP_Route;
+        public static CP_Routelist objCP_Routelist;
+        public static CP_CustomerType objCP_CustomerType;
+        public static CP_CustomerTypelist objCP_CustomerTypelist;
+        public static CP_Customer objCP_Customer;
+        public static CP_Customerlist objCP_Customerlist;
+        public static CP_Vehicle objCP_Vehicle;
+        public static CP_Vehiclelist objCP_Vehiclelist;
+        public static CP_DeliveryPerson objCP_DeliveryPerson;
+        public static CP_DeliveryPersonlist objCP_DeliveryPersonlist;
+        public static CP_Mobile objCP_Mobile;
+        public static CP_Mobilelist objCP_Mobilelist;
+        public static CP_Transport objCP_Transport;
+        public static CP_Transportlist objCP_Transportlist;
+        public static CP_MarriageHall objCP_MarriageHall;
+        public static CP_MarriageHalllist objCP_MarriageHalllist;
+
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -4266,6 +4284,118 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 525);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRoute_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Routelist, "CP_Routelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCustomerType_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_CustomerTypelist, "CP_CustomerTypelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Customerlist, "CP_Customerlist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmVehicle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Vehiclelist, "CP_Vehiclelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDeliveryPerson_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_DeliveryPersonlist, "CP_DeliveryPersonlist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMobile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Mobilelist, "CP_Mobilelist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmTransport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Transportlist, "CP_Transportlist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMarriageHall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_MarriageHalllist, "CP_MarriageHalllist", 501);
+                PbCurrentForm = "5.1";
             }
             catch (Exception ex)
             {
