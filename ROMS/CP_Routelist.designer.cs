@@ -343,7 +343,7 @@
             this.grdRouteList.RowTemplate.Height = 25;
             this.grdRouteList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdRouteList.Size = new System.Drawing.Size(1330, 509);
-            this.grdRouteList.TabIndex = 958797; 
+            this.grdRouteList.TabIndex = 958797;
             this.grdRouteList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
             this.grdRouteList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
             this.grdRouteList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
@@ -378,7 +378,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_Routelist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "City";
+            this.Text = "Route";
             this.Load += new System.EventHandler(this.CP_Citylist_Load);
             this.DoubleClick += new System.EventHandler(this.CP_Citylist_DoubleClick);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Citylist_KeyDown);
