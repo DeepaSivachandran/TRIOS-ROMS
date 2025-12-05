@@ -379,7 +379,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_CardMachineList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "City";
+            this.Text = "Card Machine";
             this.Load += new System.EventHandler(this.CP_Citylist_Load);
             this.DoubleClick += new System.EventHandler(this.CP_Citylist_DoubleClick);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Citylist_KeyDown);

@@ -18,6 +18,7 @@ namespace ROMS
         private ToolTip tpEAreaName = new ToolTip();
         private ToolTip tpTAreaName = new ToolTip();
         private ToolTip tpRouteName = new ToolTip();
+        public int varUpdate = 0;
         public string varSupplierIds;
         public int varUpDownKeyLocation = 0, varAreaId=0;
         public CP_Area()
@@ -28,9 +29,14 @@ namespace ROMS
         {
             try
             {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    udfnclose();
+                }
                 if (e.KeyCode == Keys.F5)
                 {
-
+                    btnSave.Focus();
+                    btnSave_Click(sender, e);
                 }
             }
             catch (Exception ex)
@@ -67,19 +73,19 @@ namespace ROMS
                 {
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
-                    udfnLoadSlNo();
-                    cmbCity.SelectedValue = 33;
+                    udfnLoadSlNo(); 
                 }
                 else
                 {
                     udfnLoadSlNo();
                      udfnEdit();
-                    pnlStatus.Enabled = true; 
+                    varUpdate = 1;
+                    pnlStatus.Enabled = true;   
                 }
 
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                MainForm.objCP_Routelist.picLoader.Visible = false;
-                MainForm.objCP_Routelist.picLoader.SendToBack();
+                MainForm.objCP_AreaList.picLoader.Visible = false;
+                MainForm.objCP_AreaList.picLoader.SendToBack();
               
             }
             catch (Exception ex)
@@ -137,15 +143,15 @@ namespace ROMS
                 DataSet objDS;
                 if (varAreaId != 0)
                 {
-                    string varRID = Convert.ToString(varAreaId);
+                    string varAid = Convert.ToString(varAreaId);
                     SPDataService objspservice = new SPDataService();
-                    objDS = objspservice.udfnGetSlNo("MR_Route", "Update", "RID", varRID, "R_OrderNo");
+                    objDS = objspservice.udfnGetSlNo("MR_Area", "Update", "AID", varAid, "A_OrderNo");
                     objspservice.CloseConnection();
                 }
                 else
                 {
                     SPDataService objspservice = new SPDataService();
-                    objDS = objspservice.udfnGetSlNo("MR_Route ", "Create", "1=1", "", "R_OrderNo");
+                    objDS = objspservice.udfnGetSlNo("MR_Area ", "Create", "1=1", "", "A_OrderNo");
                     objspservice.CloseConnection();
                 }
                 if (objDS != null)
@@ -199,7 +205,7 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                     
-                    MainForm.objCP_Citylist.udfnList();
+                    MainForm.objCP_AreaList.udfnList();
 
                     if (btnSave.Text == "Update")
                     { 
@@ -227,7 +233,16 @@ namespace ROMS
         }
         public void udfnclear()
         {
-
+            DataBind objDataBind = new DataBind();
+            objDataBind.BindComboBoxListSelected("MR_Route", "RID NOT IN (0)   ORDER BY R_OrderNo", "R_EName,RID", cmbRoute, "", "R_EName", "RID");
+            objDataBind = null;
+            varAreaId = 0;
+            txtAEName.Text = "";
+            txtATName.Text = "";
+            txtDistance.Text = "";
+            rbActive.Checked = true;
+            udfnLoadSlNo();
+            
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -723,6 +738,127 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDRouteName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void rbInActive_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOrderNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDAreaTName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grbDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDDistance_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDistance_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlStatus_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmbRoute_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAEName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtATName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CP_Area_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (varUpdate == 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
             catch (Exception ex)
