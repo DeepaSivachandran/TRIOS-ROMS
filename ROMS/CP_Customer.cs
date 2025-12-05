@@ -413,7 +413,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtReferenceName.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -452,7 +455,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtWhatsappNo.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -507,7 +513,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbCustomerType.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -562,7 +571,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbCash.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -621,7 +633,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -673,7 +688,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCreditDays.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -725,7 +743,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtaddress1.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -762,7 +783,18 @@ namespace ROMS
 
         private void cmbState_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLandmark.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void cmbState_KeyPress(object sender, KeyPressEventArgs e)
@@ -829,7 +861,7 @@ namespace ROMS
                 {
                     if (lvCity.Items.Count == 0 || txtCity.Text == "")
                     {
-                        txtCity.Focus();
+                        txtPincode.Focus();
                         lvCity.Visible = false;
                     }
                     else
@@ -926,7 +958,18 @@ namespace ROMS
 
         private void txtPincode_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLandmark.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtPincode_KeyPress(object sender, KeyPressEventArgs e)
@@ -1029,7 +1072,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtContactNo.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1068,7 +1114,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtTotalInvoice.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1185,7 +1234,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtaddress2.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1224,7 +1276,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtArea.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1267,7 +1322,7 @@ namespace ROMS
                 {
                     if (lvArea.Items.Count == 0 || txtArea.Text == "")
                     {
-                        txtCity.Focus();
+                        txtPincode.Focus();
                         lvArea.Visible = false;
                     }
                     else
@@ -1281,7 +1336,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCity.Focus();
+                    txtPincode.Focus();
                 }
             }
             catch (Exception ex)
@@ -1389,7 +1444,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShipaddress1.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1428,7 +1486,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShipaddress2.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1467,7 +1528,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShipArea.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1504,7 +1568,18 @@ namespace ROMS
 
         private void cmbShipState_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShipLandmark.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void cmbShipState_KeyPress(object sender, KeyPressEventArgs e)
@@ -1570,7 +1645,7 @@ namespace ROMS
                 {
                     if (lvShipArea.Items.Count == 0 || txtArea.Text == "")
                     {
-                        txtShipCity.Focus();
+                        txtShipPincode.Focus();
                         lvShipArea.Visible = false;
                     }
                     else
@@ -1584,7 +1659,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtShipCity.Focus();
+                    txtShipPincode.Focus();
                 }
             }
             catch (Exception ex)
@@ -1692,12 +1767,11 @@ namespace ROMS
         {
             try
             {
-
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
                     if (lvShipCity.Items.Count == 0 || txtShipCity.Text == "")
                     {
-                        txtShipCity.Focus();
+                        txtShipPincode.Focus();
                         lvShipCity.Visible = false;
                     }
                     else
@@ -1711,7 +1785,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtPincode.Focus();
+                    txtShipPincode.Focus();
                 }
 
             }
@@ -1794,7 +1868,18 @@ namespace ROMS
 
         private void txtShipPincode_KeyDown(object sender, KeyEventArgs e)
         {
-
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtShipLandmark.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtShipPincode_KeyPress(object sender, KeyPressEventArgs e)
@@ -1830,7 +1915,7 @@ namespace ROMS
         {
             try
             {
-                txtLandmark.BackColor = Color.LemonChiffon;
+                txtShipLandmark.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -1843,7 +1928,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -2027,7 +2115,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtOBAmt.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
@@ -2205,7 +2293,10 @@ namespace ROMS
         {
             try
             {
-
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtOBAmt.Focus();
+                }
             }
             catch (Exception ex)
             {

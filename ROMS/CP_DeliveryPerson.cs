@@ -100,6 +100,7 @@ namespace ROMS
         {
             try
             {
+                epDeliveryPerson.Clear();
                 if (txtDeliveryPersonCode.Text.Trim() == "")
                 {
                     epDeliveryPerson.SetError(txtDeliveryPersonCode, "Please enter delivery person code.");
@@ -120,6 +121,13 @@ namespace ROMS
                     txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpDeliveryPerson.ShowAlways = true;
                     tpDeliveryPerson.Show("Please enter mobile number.", txtMobileNo, 5000);
+                }
+                else if(!long.TryParse(txtMobileNo.Text.Trim(), out _) || txtMobileNo.Text.Trim().Length < 10)
+                {
+                    epDeliveryPerson.SetError(txtMobileNo, "Please enter valid mobile no.");
+                    txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpDeliveryPerson.ShowAlways = true;
+                    tpDeliveryPerson.Show("Please enter valid mobile no.", txtMobileNo, 5000);
                 }
                 else
                 {

@@ -704,7 +704,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtTeller.Focus();
+                    if (txtTeller.Enabled == true)
+                    {
+                        txtTeller.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
                 }
             }
             catch (Exception ex)

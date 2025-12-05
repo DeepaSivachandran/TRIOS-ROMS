@@ -941,7 +941,7 @@
             this.txtOBAmt.Enabled = false;
             this.txtOBAmt.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtOBAmt.Location = new System.Drawing.Point(143, 246);
-            this.txtOBAmt.MaxLength = 10;
+            this.txtOBAmt.MaxLength = 8;
             this.txtOBAmt.Name = "txtOBAmt";
             this.txtOBAmt.ReadOnly = true;
             this.txtOBAmt.Size = new System.Drawing.Size(147, 27);
