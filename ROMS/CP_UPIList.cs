@@ -173,6 +173,7 @@ namespace ROMS
                             grdUPIList.Columns["StatusID"].Visible = false;
                             grdUPIList.Columns["S.No."].Width = 50; 
                             grdUPIList.Columns["Status"].Width = 80;
+                            grdUPIList.Columns["Bank"].Width = 200;
                             grdUPIList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUPIList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                         }

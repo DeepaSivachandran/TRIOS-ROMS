@@ -84,15 +84,17 @@
             this.grbDetails.Size = new System.Drawing.Size(388, 275);
             this.grbDetails.TabIndex = 0;
             this.grbDetails.TabStop = false;
+            this.grbDetails.Enter += new System.EventHandler(this.grbDetails_Enter);
             // 
             // txtDistance
             // 
             this.txtDistance.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F);
-            this.txtDistance.Location = new System.Drawing.Point(136, 139);
+            this.txtDistance.Location = new System.Drawing.Point(136, 137);
             this.txtDistance.MaxLength = 8;
             this.txtDistance.Name = "txtDistance";
             this.txtDistance.Size = new System.Drawing.Size(240, 27);
             this.txtDistance.TabIndex = 4;
+            this.txtDistance.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
             this.txtDistance.Enter += new System.EventHandler(this.txtDistance_Enter);
             this.txtDistance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDistance_KeyDown);
             this.txtDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDistance_KeyPress);
@@ -103,23 +105,25 @@
             this.txtDDistance.BackColor = System.Drawing.SystemColors.Control;
             this.txtDDistance.Enabled = false;
             this.txtDDistance.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDDistance.Location = new System.Drawing.Point(14, 139);
+            this.txtDDistance.Location = new System.Drawing.Point(14, 137);
             this.txtDDistance.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDDistance.Name = "txtDDistance";
             this.txtDDistance.ReadOnly = true;
             this.txtDDistance.Size = new System.Drawing.Size(122, 28);
             this.txtDDistance.TabIndex = 22;
             this.txtDDistance.Text = "Distance";
+            this.txtDDistance.TextChanged += new System.EventHandler(this.txtDDistance_TextChanged);
             // 
             // cmbOrderNo
             // 
             this.cmbOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOrderNo.FormattingEnabled = true;
-            this.cmbOrderNo.Location = new System.Drawing.Point(136, 111);
+            this.cmbOrderNo.Location = new System.Drawing.Point(136, 109);
             this.cmbOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbOrderNo.Name = "cmbOrderNo";
             this.cmbOrderNo.Size = new System.Drawing.Size(240, 27);
             this.cmbOrderNo.TabIndex = 3;
+            this.cmbOrderNo.SelectedIndexChanged += new System.EventHandler(this.cmbOrderNo_SelectedIndexChanged);
             this.cmbOrderNo.Enter += new System.EventHandler(this.cmbOrderNo_Enter);
             this.cmbOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOrderNo_KeyDown);
             this.cmbOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbOrderNo_KeyPress);
@@ -130,11 +134,12 @@
             this.cmbCity.Enabled = false;
             this.cmbCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(136, 168);
+            this.cmbCity.Location = new System.Drawing.Point(136, 164);
             this.cmbCity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(240, 27);
             this.cmbCity.TabIndex = 5;
+            this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
             this.cmbCity.Enter += new System.EventHandler(this.cmbCity_Enter);
             this.cmbCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCity_KeyDown);
             this.cmbCity.Leave += new System.EventHandler(this.cmbCity_Leave);
@@ -144,13 +149,14 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(14, 168);
+            this.textBox2.Location = new System.Drawing.Point(14, 164);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(122, 28);
             this.textBox2.TabIndex = 20;
             this.textBox2.Text = "City";
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox1
             // 
@@ -176,6 +182,7 @@
             this.cmbRoute.Name = "cmbRoute";
             this.cmbRoute.Size = new System.Drawing.Size(240, 27);
             this.cmbRoute.TabIndex = 0;
+            this.cmbRoute.SelectedIndexChanged += new System.EventHandler(this.cmbRoute_SelectedIndexChanged);
             this.cmbRoute.Enter += new System.EventHandler(this.cmbRoute_Enter);
             this.cmbRoute.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRoute_KeyDown);
             this.cmbRoute.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRoute_KeyPress);
@@ -186,7 +193,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(296, 232);
+            this.btnClose.Location = new System.Drawing.Point(296, 228);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
@@ -203,7 +210,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(208, 232);
+            this.btnSave.Location = new System.Drawing.Point(208, 228);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
@@ -220,23 +227,25 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(14, 195);
+            this.txtStatus.Location = new System.Drawing.Point(14, 191);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(122, 28);
             this.txtStatus.TabIndex = 15;
             this.txtStatus.Text = "Status";
+            this.txtStatus.TextChanged += new System.EventHandler(this.txtStatus_TextChanged);
             // 
             // pnlStatus
             // 
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(136, 195);
+            this.pnlStatus.Location = new System.Drawing.Point(136, 191);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(240, 28);
             this.pnlStatus.TabIndex = 6;
+            this.pnlStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStatus_Paint);
             // 
             // rbActive
             // 
@@ -251,6 +260,7 @@
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
             this.rbActive.Enter += new System.EventHandler(this.rbActive_Enter);
+            this.rbActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbActive_KeyDown);
             this.rbActive.Leave += new System.EventHandler(this.rbActive_Leave);
             // 
             // rbInActive
@@ -264,6 +274,7 @@
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.rbInActive_Enter);
+            this.rbInActive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rbInActive_KeyDown);
             this.rbInActive.Leave += new System.EventHandler(this.rbInActive_Leave);
             // 
             // txtDRouteName
@@ -271,13 +282,14 @@
             this.txtDRouteName.BackColor = System.Drawing.SystemColors.Control;
             this.txtDRouteName.Enabled = false;
             this.txtDRouteName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDRouteName.Location = new System.Drawing.Point(14, 111);
+            this.txtDRouteName.Location = new System.Drawing.Point(14, 109);
             this.txtDRouteName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDRouteName.Name = "txtDRouteName";
             this.txtDRouteName.ReadOnly = true;
             this.txtDRouteName.Size = new System.Drawing.Size(122, 28);
             this.txtDRouteName.TabIndex = 12;
             this.txtDRouteName.Text = "Order No.";
+            this.txtDRouteName.TextChanged += new System.EventHandler(this.txtDRouteName_TextChanged);
             // 
             // txtATName
             // 
@@ -287,6 +299,7 @@
             this.txtATName.Name = "txtATName";
             this.txtATName.Size = new System.Drawing.Size(240, 27);
             this.txtATName.TabIndex = 2;
+            this.txtATName.TextChanged += new System.EventHandler(this.txtATName_TextChanged);
             this.txtATName.Enter += new System.EventHandler(this.txtATName_Enter);
             this.txtATName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtATName_KeyDown);
             this.txtATName.Leave += new System.EventHandler(this.txtATName_Leave);
@@ -299,6 +312,7 @@
             this.txtAEName.Name = "txtAEName";
             this.txtAEName.Size = new System.Drawing.Size(240, 28);
             this.txtAEName.TabIndex = 1;
+            this.txtAEName.TextChanged += new System.EventHandler(this.txtAEName_TextChanged);
             this.txtAEName.Enter += new System.EventHandler(this.txtAEName_Enter);
             this.txtAEName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAEName_KeyDown);
             this.txtAEName.Leave += new System.EventHandler(this.txtAEName_Leave);
@@ -315,6 +329,7 @@
             this.txtDAreaTName.Size = new System.Drawing.Size(122, 28);
             this.txtDAreaTName.TabIndex = 10;
             this.txtDAreaTName.Text = "Area Name in Tamil";
+            this.txtDAreaTName.TextChanged += new System.EventHandler(this.txtDAreaTName_TextChanged);
             // 
             // txtDAreaEName
             // 
@@ -346,6 +361,7 @@
             this.Name = "CP_Area";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Area Details";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_Area_FormClosing);
             this.Load += new System.EventHandler(this.CP_Area_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Area_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Area_Leave);

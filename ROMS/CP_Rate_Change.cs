@@ -1171,6 +1171,7 @@ namespace ROMS
                                         txtRRateLast.Text = Convert.ToString(prevRrate);
                                         txtWRatePrev.Text = Convert.ToString(Wrate);
                                         txtWRateLast.Text = Convert.ToString(prevWrate);
+                                        txtWRateLive.BackColor = Color.White;
                                         txtDWSaleRate.Text = "R.Rate";
                                     }
 

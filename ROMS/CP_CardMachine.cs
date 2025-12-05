@@ -612,7 +612,7 @@ namespace ROMS
                 {
                     if (rbActive.Enabled == true)
                     {
-                        cmbBank.Focus();
+                        rbActive.Focus();
                     }
                     else
                     {

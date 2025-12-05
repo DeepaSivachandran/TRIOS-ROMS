@@ -152,6 +152,7 @@ namespace ROMS
                 txtREName.Text = "";
                 txtRTName.Text = "";
                 udfnLoadSlNo();
+                udfnArea();
                 txtREName.Focus();
             }
             catch (Exception ex)
@@ -392,7 +393,7 @@ namespace ROMS
                     pnlStatus.Enabled = false;
                     rbActive.Checked = true;
                     udfnLoadSlNo();
-                    udfnRoute();
+                    udfnArea();
                 }
                 else
                 {
@@ -421,7 +422,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnRoute()
+        public void udfnArea()
         {
             try
             {
@@ -437,6 +438,9 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
                             grdArea.DataSource = objDs.Tables[0];
+                            grdArea.Columns["AID"].Visible = false;
+                            grdArea.Columns["Flag"].Visible = false;
+                            grdArea.Columns["Area"].Width = 250;
                         } 
                     } 
                     objspservice.CloseConnection();
@@ -483,7 +487,10 @@ namespace ROMS
                                 grdArea.Rows.Cast<DataGridViewRow>()
                                     .Where(r => idsToCheck.Contains(Convert.ToInt32(r.Cells["AID"].Value)))
                                     .ToList()
-                                    .ForEach(r => r.Cells["clmCheckBox"].Value = true); 
+                                    .ForEach(r => r.Cells["clmCheckBox"].Value = true);
+                                grdArea.Columns["AID"].Visible = false;
+                                grdArea.Columns["Flag"].Visible = false;
+                                grdArea.Columns["Area"].Width = 250;
                             }
                         }
                     }
@@ -662,8 +669,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                {
-                    
+                { 
                         btnSave.Focus(); 
                 }
             }
