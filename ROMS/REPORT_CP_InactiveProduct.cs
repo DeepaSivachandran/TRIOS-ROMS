@@ -1672,7 +1672,7 @@ namespace ROMS
                     DataSet objDs = new DataSet();
                     if (txtRackgroup.Text.Length > 0)
                     {
-                        objDs = objspdservice.udfnRackGroupList(4, 0, 0, 0, 0, txtRackgroup.Text.Trim(),0);
+                        objDs = objspdservice.udfnRackGroupList(4, 0, 0, 0, 0, txtRackgroup.Text.Trim(),0,0);
                         objspdservice.CloseConnection();
                         if (objDs != null)
                         {

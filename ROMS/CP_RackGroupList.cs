@@ -214,7 +214,7 @@ namespace ROMS
                         }
                     }
                 }
-                objDs = objdserv.udfnRackGroupList(0, varCompanyId, varLocationId, varId, Convert.ToInt32(cmbStatus.SelectedValue), "",0);
+                objDs = objdserv.udfnRackGroupList(0, varCompanyId, varLocationId, varId, Convert.ToInt32(cmbStatus.SelectedValue), "",0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

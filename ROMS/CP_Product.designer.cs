@@ -252,6 +252,8 @@
             this.txtSalesHSNName = new System.Windows.Forms.TextBox();
             this.tbProduct = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.grpstktake = new System.Windows.Forms.GroupBox();
+            this.cmbStockTakken = new System.Windows.Forms.ComboBox();
             this.lvVerified1 = new System.Windows.Forms.ListView();
             this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -319,8 +321,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
-            this.cmbStockTakken = new System.Windows.Forms.ComboBox();
-            this.grpstktake = new System.Windows.Forms.GroupBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -339,6 +339,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSalesHSN)).BeginInit();
             this.tbProduct.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.grpstktake.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterPurLocation)).BeginInit();
             this.gpClassification.SuspendLayout();
@@ -355,7 +356,6 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
-            this.grpstktake.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -2777,6 +2777,30 @@
             this.tabPage1.Text = "Product Details";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // grpstktake
+            // 
+            this.grpstktake.Controls.Add(this.cmbStockTakken);
+            this.grpstktake.Location = new System.Drawing.Point(385, 457);
+            this.grpstktake.Name = "grpstktake";
+            this.grpstktake.Size = new System.Drawing.Size(188, 93);
+            this.grpstktake.TabIndex = 31;
+            this.grpstktake.TabStop = false;
+            this.grpstktake.Text = "Stock Taking Source";
+            // 
+            // cmbStockTakken
+            // 
+            this.cmbStockTakken.Enabled = false;
+            this.cmbStockTakken.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStockTakken.FormattingEnabled = true;
+            this.cmbStockTakken.Location = new System.Drawing.Point(6, 25);
+            this.cmbStockTakken.Name = "cmbStockTakken";
+            this.cmbStockTakken.Size = new System.Drawing.Size(157, 27);
+            this.cmbStockTakken.TabIndex = 31;
+            this.cmbStockTakken.Enter += new System.EventHandler(this.cmbStockTakken_Enter);
+            this.cmbStockTakken.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStockTakken_KeyDown);
+            this.cmbStockTakken.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStockTakken_KeyPress);
+            this.cmbStockTakken.Leave += new System.EventHandler(this.cmbStockTakken_Leave);
+            // 
             // lvVerified1
             // 
             this.lvVerified1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -3623,30 +3647,6 @@
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
             // 
-            // cmbStockTakken
-            // 
-            this.cmbStockTakken.Enabled = false;
-            this.cmbStockTakken.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStockTakken.FormattingEnabled = true;
-            this.cmbStockTakken.Location = new System.Drawing.Point(6, 25);
-            this.cmbStockTakken.Name = "cmbStockTakken";
-            this.cmbStockTakken.Size = new System.Drawing.Size(157, 27);
-            this.cmbStockTakken.TabIndex = 31;
-            this.cmbStockTakken.Enter += new System.EventHandler(this.cmbStockTakken_Enter);
-            this.cmbStockTakken.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStockTakken_KeyDown);
-            this.cmbStockTakken.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStockTakken_KeyPress);
-            this.cmbStockTakken.Leave += new System.EventHandler(this.cmbStockTakken_Leave);
-            // 
-            // grpstktake
-            // 
-            this.grpstktake.Controls.Add(this.cmbStockTakken);
-            this.grpstktake.Location = new System.Drawing.Point(385, 457);
-            this.grpstktake.Name = "grpstktake";
-            this.grpstktake.Size = new System.Drawing.Size(188, 93);
-            this.grpstktake.TabIndex = 31;
-            this.grpstktake.TabStop = false;
-            this.grpstktake.Text = "Stk Taking Location";
-            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -3702,6 +3702,7 @@
             this.tbProduct.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.grpstktake.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterPurLocation)).EndInit();
             this.gpClassification.ResumeLayout(false);
@@ -3723,7 +3724,6 @@
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).EndInit();
             this.pnlProductDetails.ResumeLayout(false);
-            this.grpstktake.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
