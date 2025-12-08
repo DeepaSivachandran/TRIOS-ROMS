@@ -271,7 +271,6 @@ namespace ROMS
                     grdHSN.CurrentRow.Cells["GST%-New"].Value = "";
                 }
             }
-            
             catch (Exception ex)
             {
                 objError = new DataError();
