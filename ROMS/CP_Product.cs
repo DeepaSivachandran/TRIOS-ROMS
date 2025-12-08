@@ -65,6 +65,7 @@ namespace ROMS
         private ToolTip tpgstin = new ToolTip();
         private ToolTip tpfssai = new ToolTip();
         private ToolTip tpIntermediateUnit = new ToolTip();
+        private ToolTip tpStocktaken = new ToolTip();
         private ToolTip tpshortname = new ToolTip();
         private ToolTip tppincode = new ToolTip();
         private ToolTip tpcity = new ToolTip();
@@ -1059,6 +1060,19 @@ namespace ROMS
                         txtProductionMSQ.BackColor = Color.White;
                     }
                 }
+
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && Convert.ToInt32(cmbStockTakken.SelectedValue) == -1)
+                {
+                    errItems.SetError(cmbStockTakken, "Please select stock taken");
+                    cmbStockTakken.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpStocktaken.ShowAlways = true;
+                    tpStocktaken.Show("Please select stock taken", cmbStockTakken, 5000);
+                    blnErrorFlag = true;
+                }
+                else
+                {
+                    cmbStockTakken.BackColor = Color.White;
+                }
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -1355,7 +1369,7 @@ namespace ROMS
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
-                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup
+                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup,Convert.ToInt32(cmbStockTakken.SelectedValue)
                     );
 
                     objspdservice.CloseConnection();
@@ -1652,6 +1666,7 @@ namespace ROMS
                 tpSalesHSN.ShowAlways = false;
                 tpVerifier.ShowAlways = false;
                 tpIntermediateUnit.ShowAlways = false;
+                tpStocktaken.ShowAlways = false;
                 this.Close();
                 //MainForm.objCP_Itemlist.udfnList();
                 MainForm.objCP_Itemlist.grdItemList.ClearSelection();
@@ -3172,12 +3187,14 @@ namespace ROMS
                     cmbIntermediateUnit.Enabled = true;
                     txtIntermediateUPP.Enabled = true;
                     txtProductionMSQ.Enabled = true;
+                    cmbStockTakken.Enabled = true;
                 }
                 else
                 {
                     cmbIntermediateUnit.Enabled = false;
                     txtIntermediateUPP.Enabled = false;
                     txtProductionMSQ.Enabled = false;
+                    cmbStockTakken.Enabled = false;
                     txtIntermediateUPP.Text = "";
                     txtProductionMSQ.Text = "";
                     cmbIntermediateUnit.SelectedValue = -1;
@@ -3997,6 +4014,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_QtyUnit", " QUT_STSID =1", "QUT_Symbol,QUTID", cmbNetQty, "", "QUT_Symbol", "QUTID");
                 objDataBind.BindComboBoxListSelected("DEF_GST", " GSTID  not in (0)", "GST_Text,GSTID", cmbGst, "", "GST_Text", "GSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,143) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockTakken, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 //cmbConcern.SelectedValue = -1;
                 //cmbHSNName.SelectedValue = -1;
@@ -4010,6 +4028,7 @@ namespace ROMS
                 cmbPeriod.SelectedValue = -1;
                 cmbBatchNoEntry.SelectedValue = 72;
                 cmbBatchNoGeneration.SelectedValue = -1;
+                cmbStockTakken.SelectedValue = -1;
                 cbExpiry.Checked = true;
                 if (varProductload == 1)
                 {
@@ -7024,7 +7043,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0,null);
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0,null,0);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8666,7 +8685,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null);
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null,0);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8896,7 +8915,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbBatchNoEntry.Focus();
+                    if (cmbStockTakken.Enabled == true)
+                    {
+                        cmbStockTakken.Focus();
+                    }
+                    else
+                    {
+                        cmbBatchNoEntry.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -9281,6 +9307,62 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void cmbStockTakken_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStockTakken.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStockTakken_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStockTakken.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStockTakken_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                { 
+                    cmbBatchNoEntry.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStockTakken_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnVerified1()
         {
             try
@@ -10264,6 +10346,7 @@ namespace ROMS
 
 
                             cmbIntermediateUnit.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["IntermediateUnit"].ToString());
+                            cmbStockTakken.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Stk_Type"].ToString());
 
                             int FocusFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Focus_Flag"].ToString())
                                 , Priority_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Priority_Flag"].ToString())
@@ -10443,6 +10526,7 @@ namespace ROMS
             grbPurchaseHSN.Enabled = false;
             grbSalesHSN.Enabled = false;
             grbIntermediateDetails.Enabled = false;
+            grpstktake.Enabled = false;
             tsMenu.Enabled = false;
             flowLayoutPanel1.Enabled = false;
             btnImageUpdate.Enabled = false;

@@ -126,7 +126,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtReOrderQty = new System.Windows.Forms.TextBox();
             this.txtDReOrderQty = new System.Windows.Forms.TextBox();
+            this.txtDBarcode = new System.Windows.Forms.TextBox();
             this.txtMinStock = new System.Windows.Forms.TextBox();
+            this.txtBarcode = new System.Windows.Forms.TextBox();
             this.txtDMinStock = new System.Windows.Forms.TextBox();
             this.txtMaxStock = new System.Windows.Forms.TextBox();
             this.txtDMaxStock = new System.Windows.Forms.TextBox();
@@ -137,8 +139,6 @@
             this.txtRMinSaleQty = new System.Windows.Forms.TextBox();
             this.txtDRMinSaleQty = new System.Windows.Forms.TextBox();
             this.cbExpiry = new System.Windows.Forms.CheckBox();
-            this.txtBarcode = new System.Windows.Forms.TextBox();
-            this.txtDBarcode = new System.Windows.Forms.TextBox();
             this.txtWSaleRate = new System.Windows.Forms.TextBox();
             this.txtDWSaleRate = new System.Windows.Forms.TextBox();
             this.txtDRetailRate = new System.Windows.Forms.TextBox();
@@ -319,6 +319,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
+            this.cmbStockTakken = new System.Windows.Forms.ComboBox();
+            this.grpstktake = new System.Windows.Forms.GroupBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -353,6 +355,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
+            this.grpstktake.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -1011,7 +1014,7 @@
             this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterProduct.Size = new System.Drawing.Size(520, 218);
+            this.DGV_FilterProduct.Size = new System.Drawing.Size(581, 218);
             this.DGV_FilterProduct.TabIndex = 111111146;
             this.DGV_FilterProduct.Visible = false;
             this.DGV_FilterProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterProduct_CellContentClick);
@@ -1267,6 +1270,19 @@
             this.txtDReOrderQty.TabStop = false;
             this.txtDReOrderQty.Text = "Reorder Qty (ROQ)";
             // 
+            // txtDBarcode
+            // 
+            this.txtDBarcode.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDBarcode.Enabled = false;
+            this.txtDBarcode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDBarcode.Location = new System.Drawing.Point(286, 71);
+            this.txtDBarcode.Name = "txtDBarcode";
+            this.txtDBarcode.ReadOnly = true;
+            this.txtDBarcode.Size = new System.Drawing.Size(111, 27);
+            this.txtDBarcode.TabIndex = 27;
+            this.txtDBarcode.TabStop = false;
+            this.txtDBarcode.Text = "BarCode";
+            // 
             // txtMinStock
             // 
             this.txtMinStock.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -1280,6 +1296,19 @@
             this.txtMinStock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMinStock_KeyDown);
             this.txtMinStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtMinStock_KeyPress);
             this.txtMinStock.Leave += new System.EventHandler(this.TxtMinStock_Leave);
+            // 
+            // txtBarcode
+            // 
+            this.txtBarcode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtBarcode.Location = new System.Drawing.Point(397, 71);
+            this.txtBarcode.MaxLength = 20;
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(145, 27);
+            this.txtBarcode.TabIndex = 27;
+            this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBarcode.Enter += new System.EventHandler(this.TxtBarcode_Enter);
+            this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode_KeyDown);
+            this.txtBarcode.Leave += new System.EventHandler(this.TxtBarcode_Leave);
             // 
             // txtDMinStock
             // 
@@ -1415,32 +1444,6 @@
             this.cbExpiry.Enter += new System.EventHandler(this.CbExpiry_Enter);
             this.cbExpiry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CbExpiry_KeyDown);
             this.cbExpiry.Leave += new System.EventHandler(this.CbExpiry_Leave);
-            // 
-            // txtBarcode
-            // 
-            this.txtBarcode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBarcode.Location = new System.Drawing.Point(397, 71);
-            this.txtBarcode.MaxLength = 20;
-            this.txtBarcode.Name = "txtBarcode";
-            this.txtBarcode.Size = new System.Drawing.Size(145, 27);
-            this.txtBarcode.TabIndex = 27;
-            this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtBarcode.Enter += new System.EventHandler(this.TxtBarcode_Enter);
-            this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode_KeyDown);
-            this.txtBarcode.Leave += new System.EventHandler(this.TxtBarcode_Leave);
-            // 
-            // txtDBarcode
-            // 
-            this.txtDBarcode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDBarcode.Enabled = false;
-            this.txtDBarcode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBarcode.Location = new System.Drawing.Point(286, 71);
-            this.txtDBarcode.Name = "txtDBarcode";
-            this.txtDBarcode.ReadOnly = true;
-            this.txtDBarcode.Size = new System.Drawing.Size(111, 27);
-            this.txtDBarcode.TabIndex = 27;
-            this.txtDBarcode.TabStop = false;
-            this.txtDBarcode.Text = "BarCode";
             // 
             // txtWSaleRate
             // 
@@ -2053,7 +2056,7 @@
             this.grbBatchNoDetails.Location = new System.Drawing.Point(580, 109);
             this.grbBatchNoDetails.Name = "grbBatchNoDetails";
             this.grbBatchNoDetails.Size = new System.Drawing.Size(278, 84);
-            this.grbBatchNoDetails.TabIndex = 31;
+            this.grbBatchNoDetails.TabIndex = 32;
             this.grbBatchNoDetails.TabStop = false;
             this.grbBatchNoDetails.Text = "Batch No. Details";
             // 
@@ -2742,6 +2745,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.grpstktake);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.lvSaleRack);
             this.tabPage1.Controls.Add(this.lvVerified1);
@@ -3619,6 +3623,30 @@
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
             // 
+            // cmbStockTakken
+            // 
+            this.cmbStockTakken.Enabled = false;
+            this.cmbStockTakken.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStockTakken.FormattingEnabled = true;
+            this.cmbStockTakken.Location = new System.Drawing.Point(6, 25);
+            this.cmbStockTakken.Name = "cmbStockTakken";
+            this.cmbStockTakken.Size = new System.Drawing.Size(157, 27);
+            this.cmbStockTakken.TabIndex = 31;
+            this.cmbStockTakken.Enter += new System.EventHandler(this.cmbStockTakken_Enter);
+            this.cmbStockTakken.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStockTakken_KeyDown);
+            this.cmbStockTakken.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStockTakken_KeyPress);
+            this.cmbStockTakken.Leave += new System.EventHandler(this.cmbStockTakken_Leave);
+            // 
+            // grpstktake
+            // 
+            this.grpstktake.Controls.Add(this.cmbStockTakken);
+            this.grpstktake.Location = new System.Drawing.Point(385, 457);
+            this.grpstktake.Name = "grpstktake";
+            this.grpstktake.Size = new System.Drawing.Size(188, 93);
+            this.grpstktake.TabIndex = 31;
+            this.grpstktake.TabStop = false;
+            this.grpstktake.Text = "Stk Taking Location";
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -3695,6 +3723,7 @@
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).EndInit();
             this.pnlProductDetails.ResumeLayout(false);
+            this.grpstktake.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3970,5 +3999,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMinQty;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmOffset;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOffsetValue;
+        public System.Windows.Forms.ComboBox cmbStockTakken;
+        private System.Windows.Forms.GroupBox grpstktake;
     }
 }
