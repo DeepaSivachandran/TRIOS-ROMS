@@ -2222,9 +2222,7 @@ namespace ROMS
                 }
 
                 if (objRADataTable.Rows.Count > 0)
-                {
-
-
+                { 
                     TRN_RateChange objRateChange = new TRN_RateChange();
                     objRateChange.paraViewType = 1;
                     objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text); 
