@@ -1176,8 +1176,7 @@ namespace ROMS
         {
             try
             {
-                udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 411);  // Type 411 is Logged In
-                timer2_Tick(sender, e);
+                udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 411);  // Type 411 is Logged In 
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
@@ -1212,38 +1211,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void timer2_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                DataService OBJDSERVICE = new DataService(); 
-                varratechangecount = "1"; 
-                OBJDSERVICE.CloseConnection();
-                DataService objDservice = new DataService();
-                string varFlag = objDservice.displaydata("SELECT StatusCode FROM DEF_RATEAPPROVAL_STATUS");
-                objDservice.CloseConnection();
-                if (varFlag == "1")
-                {
-                    if (varratechangecount != "0")
-                    {
-                        tsmGif.Visible = true;
-                    }
-                    else
-                    {
-                        tsmGif.Visible = false;
-                    }
-                }
-                else
-                {
-                    tsmGif.Visible = false;
-                } 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        
         public void CenterChildForm(Form childForm)
         {
             if (mdiClientArea != null && childForm != null)
