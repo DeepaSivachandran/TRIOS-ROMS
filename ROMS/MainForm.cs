@@ -79,6 +79,7 @@ namespace ROMS
         public static string varToken = "";
         public static string varcurrentdate = "";
         public static string pbUserMappedLocationIds = "0";
+        public static  int pbMenucode = 0;
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart; 
@@ -1176,6 +1177,7 @@ namespace ROMS
             try
             {
                 udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 411);  // Type 411 is Logged In
+                timer2_Tick(sender, e);
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
@@ -1207,6 +1209,38 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError(); 
+                objError.WriteFile(ex);
+            }
+        }
+        public void timer2_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                DataService OBJDSERVICE = new DataService(); 
+                varratechangecount = "1"; 
+                OBJDSERVICE.CloseConnection();
+                DataService objDservice = new DataService();
+                string varFlag = objDservice.displaydata("SELECT StatusCode FROM DEF_RATEAPPROVAL_STATUS");
+                objDservice.CloseConnection();
+                if (varFlag == "1")
+                {
+                    if (varratechangecount != "0")
+                    {
+                        tsmGif.Visible = true;
+                    }
+                    else
+                    {
+                        tsmGif.Visible = false;
+                    }
+                }
+                else
+                {
+                    tsmGif.Visible = false;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
@@ -3734,9 +3768,10 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
+                pbMenucode = 51901;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51901);
-                objCP_BulkAttributes.Text = "Stock location, Rack & MSQ";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
+                objCP_BulkAttributes.Text = "Stock location, Rack & MSQ"; 
+                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ"; 
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3752,6 +3787,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
+                pbMenucode = 51902;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51902);
                 objCP_BulkAttributes.Text = "Minsales Qty & Barcode";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
@@ -3770,6 +3806,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
+                pbMenucode = 51903;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51903);
                 objCP_BulkAttributes.Text = "Min, Max stock & Reorder Qty";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
@@ -3788,6 +3825,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
+                pbMenucode = 51904;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51904);
                 objCP_BulkAttributes.Text = "Bulk Unit, UPP & Shelf Life";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
@@ -3806,6 +3844,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
+                pbMenucode = 51905;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51905);
                 objCP_BulkAttributes.Text = "Product Category, RM Flag & Batch";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
@@ -3824,6 +3863,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
+                pbMenucode = 51906;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51906);
                 objCP_BulkAttributes.Text = "Net & Gross Weight";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
@@ -3842,6 +3882,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
+                pbMenucode = 51907;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51907);
                 objCP_BulkAttributes.Text = "Group, Subgroup & Brand";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
@@ -3860,6 +3901,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
+                pbMenucode = 51908;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51908);
                 objCP_BulkAttributes.Text = "HSN Name";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
@@ -3878,6 +3920,7 @@ namespace ROMS
             {
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
+                pbMenucode = 51909;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51909);
                 objCP_BulkAttributes.Text = "Pro. Code, Name & Unit";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
@@ -4470,6 +4513,24 @@ namespace ROMS
             {
                 OpenReportForm(ref MainForm.objCP_MarriageHalllist, "CP_MarriageHalllist", 501);
                 PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMaster_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmGif_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenMainForm(ref MainForm.objCP_Rate_ChangeApproval, "RATE_RateApproval", 301);
             }
             catch (Exception ex)
             {

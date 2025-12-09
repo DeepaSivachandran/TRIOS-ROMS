@@ -81,39 +81,39 @@ namespace ROMS
         {
             try
             {
-                if(pbMenuFlag==1)
+                if(pbMenuFlag== 51901)
                 {
                     TsbLocation_Click(sender, e);
                 }
-                if (pbMenuFlag == 2)
+                if (pbMenuFlag == 51902)
                 {
                     TsbMSQ_Click(sender, e);
                 }
-                if (pbMenuFlag == 3)
+                if (pbMenuFlag == 51903)
                 {
                     TsbStock_Click(sender, e);
                 }
-                if (pbMenuFlag == 4)
+                if (pbMenuFlag == 51904)
                 {
                     TsbShelflife_Click(sender, e);
                 }
-                if (pbMenuFlag == 5)
+                if (pbMenuFlag == 51905)
                 {
                     TsbBatch_Click(sender, e);
                 }
-                if (pbMenuFlag == 6)
+                if (pbMenuFlag == 51906)
                 {
                     TsbWeight_Click(sender, e);
                 }
-                if (pbMenuFlag == 7)
+                if (pbMenuFlag == 51907)
                 {
                     TsbBrand_Click(sender, e);
                 }
-                if (pbMenuFlag == 8)
+                if (pbMenuFlag == 51908)
                 {
                     TsbHsn_Click(sender, e);
                 }
-                if (pbMenuFlag == 9)
+                if (pbMenuFlag == 51909)
                 {
                     TsbName_Click(sender, e);
                 }
@@ -271,7 +271,6 @@ namespace ROMS
                     grdHSN.CurrentRow.Cells["GST%-New"].Value = "";
                 }
             }
-            
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1850,12 +1849,10 @@ namespace ROMS
         {
             try
             {
-                varFormFlag = 1;
-                //TsbLocation_Click(sender,e);
+                varFormFlag = 1; 
+                pbMenuFlag = MainForm.pbMenucode;
                 udfnMenuClick(sender,e);
-                udfnFilterLoad();
-                //varViewType = 4;
-               // udfnList();
+                udfnFilterLoad(); 
                 udfnDefalutDSLoad();
                 
             }
