@@ -103,6 +103,7 @@ namespace ROMS
             this.tsmHSNUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProCodeUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRepresentative = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRateCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRateApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStickerPrint = new System.Windows.Forms.ToolStripMenuItem();
@@ -620,6 +621,7 @@ namespace ROMS
             this.tsmBroker,
             this.tsmBulkUpdate,
             this.tsmRepresentative,
+            this.tsmRateCategory,
             this.tsmRateChange,
             this.tsmRateApproval,
             this.tsmStickerPrint,
@@ -880,6 +882,14 @@ namespace ROMS
             this.tsmRepresentative.Text = "Representative";
             this.tsmRepresentative.Visible = false;
             this.tsmRepresentative.Click += new System.EventHandler(this.TsmRepresentative_Click);
+            // 
+            // tsmRateCategory
+            // 
+            this.tsmRateCategory.Name = "tsmRateCategory";
+            this.tsmRateCategory.Size = new System.Drawing.Size(225, 22);
+            this.tsmRateCategory.Text = "Rate Category";
+            this.tsmRateCategory.Visible = false;
+            this.tsmRateCategory.Click += new System.EventHandler(this.tsmRateCategory_Click);
             // 
             // tsmRateChange
             // 
@@ -2120,5 +2130,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmTemporyCustomer;
         private System.Windows.Forms.ToolStripMenuItem tsmCardMachine;
         private System.Windows.Forms.ToolStripMenuItem tsmUPI;
+        private System.Windows.Forms.ToolStripMenuItem tsmRateCategory;
     }
 }

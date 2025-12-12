@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.VariantTypes;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.VariantTypes;
 using ROMS.Model;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
+using Color = System.Drawing.Color;
+using Control = System.Windows.Forms.Control;
+using Font = System.Drawing.Font;
 
 namespace ROMS
 {
@@ -25,6 +29,8 @@ namespace ROMS
             public Panel ContainerPanel { get; set; }
             public int RotationAngle { get; set; } = 0;
         }
+        bool isLoadingGrid = false;
+
         private List<EditableImage> editableImages = new List<EditableImage>();
         private Image originalImage;
         private float zoom = 1.0f;
@@ -57,6 +63,7 @@ namespace ROMS
         public string vargroupId = "";
         public string varupdate = "0";
         public int varProductload = 0;
+        public decimal varuppValue = 0;
         public int pbProHSNID = 0, pbSalesHSNID = 0;
         //tool tip
         private ToolTip tpContactNo = new ToolTip();
@@ -1320,6 +1327,9 @@ namespace ROMS
                     dtPrice_Markup = null;
                     if (tbProduct.SelectedIndex == 3) {
 
+                        decimal varRAteValue = 0;
+
+
                         dtPrice_Markup = new DataTable();
                         dtPrice_Markup.Columns.Add("PRPM_PRID", typeof(int));
                         dtPrice_Markup.Columns.Add("PRPM_TYPE", typeof(int));
@@ -1328,29 +1338,35 @@ namespace ROMS
                         dtPrice_Markup.Columns.Add("PRPM_MINQTY", typeof(float));
                         dtPrice_Markup.Columns.Add("PRPM_OFFSET", typeof(int));
                         dtPrice_Markup.Columns.Add("PRPM_OFFSET_VALUE", typeof(float));
-
+                        dtPrice_Markup.Columns.Add("PRPM_OFFSET_VALUE_AMT", typeof(float));
+                        dtPrice_Markup.Columns.Add("PRPM_RATE_BULK", typeof(float)); 
                         for (int i = 0; i < grdPrice.Rows.Count ; i++)
-                        {  
-
+                        {
+                            
 
                             dtPrice_Markup.Rows.Add(Convert.ToInt32(varproductcode),
                                 Convert.ToInt32(grdPrice.Rows[i].Cells["clmTypeId"].Value),
                                 //Convert.ToDecimal(grdPrice.Rows[i].Cells["clmMinQty"].Value), 
-                                //Convert.ToDecimal(grdPrice.Rows[i].Cells["clmOffsetValue"].Value) 
+                                //Convert.ToDecimal(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value) 
                                 //Convert.ToInt32(grdPrice.Rows[i].Cells["clmOffset"].Value),
                                 Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmStatus"].Value?.ToString())
                                 ? "0" : grdPrice.Rows[i].Cells["clmStatus"].Value.ToString()),
-
-                                Convert.ToDecimal(grdPrice.Rows[i].Cells["clmRate"].Value),
+                                 Convert.ToDecimal(grdPrice.Rows[i].Cells["clmRate"].Value)
+                               ,
                                 Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmMinQty"].Value?.ToString())
                                 ? "0" : grdPrice.Rows[i].Cells["clmMinQty"].Value.ToString()),
 
                                  Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffset"].Value?.ToString())
-                                ? "0": grdPrice.Rows[i].Cells["clmOffset"].Value.ToString()),
+                                ? "0": grdPrice.Rows[i].Cells["clmOffset"].Value.ToString()), 
 
-
+                                Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value?.ToString())
+                                ? "0" : grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value.ToString()),
                                 Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValue"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[i].Cells["clmOffsetValue"].Value.ToString())
+                                ? "0" : grdPrice.Rows[i].Cells["clmOffsetValue"].Value.ToString()),
+                                Convert.ToDecimal(grdPrice.Rows[i].Cells["clmBulkRate"].Value)
+
+
+
                                 ); 
                         }
                         varorignator = "Price Markup Update";
@@ -9017,21 +9033,36 @@ namespace ROMS
             try
             {
 
-                if (e.RowIndex < 0) return;
+                if (e.RowIndex < 0) return; 
 
                 // When clmStatus changes
-                if (grdPrice.Columns[e.ColumnIndex].Name == "clmStatus")
-                {
-                    udfnRateenable(e.RowIndex);
-                }
-                if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValue")
+                //if (grdPrice.Columns[e.ColumnIndex].Name == "clmStatus")
+                //{
+                //}
+                if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValuePer")
                 {
                     UpdateRateWithGST(e.RowIndex);
                 }
+
+                if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValue")
+                {
+                    UpdateRateWithGSTValue(e.RowIndex);
+                }
+
                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffset")
                 {
                     RemoveRateWithGST(e.RowIndex);
                 }
+
+                if (e.ColumnIndex == grdPrice.Columns["chkColumn"].Index)
+                {
+                    bool isChecked = Convert.ToBoolean(grdPrice.Rows[e.RowIndex].Cells["chkColumn"].Value);
+
+                    grdPrice.Rows[e.RowIndex].Cells["clmStatus"].Value = isChecked ? 453 : 454;
+
+                    udfnRateenable(e.RowIndex);
+                }
+
             }
             catch (Exception ex)
             {
@@ -9147,8 +9178,11 @@ namespace ROMS
         {
             try
             {
-                if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate")
+                if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate")
                 {
+
+                    e.Control.KeyPress -= udfnHandleKeyPress;
+                    e.Control.KeyPress += udfnHandleKeyPress;
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
                 }
@@ -9160,6 +9194,51 @@ namespace ROMS
             }
         }
 
+        private void udfnHandleKeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                int varDecimal = 2;
+                if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate")
+                {
+                    //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    //{
+                    //    e.Handled = true;  // Disallow the character
+                    //}
+                    TextBox textBox = (TextBox)sender;
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                    if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                    {
+                        e.Handled = false;
+                    }
+                    if (varDecimal == 0)
+                    {
+                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        {
+                            e.Handled = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void TxtTeller_TextChanged(object sender, EventArgs e)
         {
             try
@@ -9226,10 +9305,11 @@ namespace ROMS
                         row.Cells["clmTypeid"].Value.ToString() == "446")
                     {
                         row.Cells["clmOffset"].ReadOnly = true;
-                        row.Cells["clmStatus"].ReadOnly = true;
+                        row.Cells["chkColumn"].ReadOnly = true;
+
                         DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
                         print.Value = "";
-                        row.Cells["clmStatus"] = print;
+                        row.Cells["chkColumn"] = print;
                         print.ReadOnly = true;
 
                         DataGridViewTextBoxCell print1 = new DataGridViewTextBoxCell();
@@ -9240,16 +9320,19 @@ namespace ROMS
 
                         // 1. Clear the ComboBox value
                         row.Cells["clmMinQty"].Value = ""; 
+                        row.Cells["clmOffsetValuePer"].Value = ""; 
                         row.Cells["clmOffsetValue"].Value = ""; 
 
                         // 2. Make ComboBox cell readonly
                         row.Cells["clmMinQty"].ReadOnly = true;
+                        row.Cells["clmOffsetValuePer"].ReadOnly = true;
                         row.Cells["clmOffsetValue"].ReadOnly = true;
 
                         // Optional: give a light gray background to show it's disabled
                         row.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
-                        row.Cells["clmStatus"].Style.BackColor = Color.LightGray;
+                        row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
                         row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         row.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
 
                     }
@@ -9257,28 +9340,29 @@ namespace ROMS
                     if (row.Cells["clmTypeid"].Value != null &&
                         row.Cells["clmTypeid"].Value.ToString() == "447" || row.Cells["clmTypeid"].Value.ToString() == "448")
                     {
-                        row.Cells["clmOffset"].ReadOnly = true;
-                        row.Cells["clmStatus"].ReadOnly = true;
+                        //row.Cells["clmOffset"].ReadOnly = true;
 
 
-                        row.Cells["clmOffset"].Value = 454;
-                        row.Cells["clmStatus"].Value = 454;
+                        row.Cells["clmOffset"].Value = 453;
+                        row.Cells["clmStatus"].Value = 453;
 
-                        // 1. Clear the ComboBox value
-                        row.Cells["clmMinQty"].Value = "";
-                        row.Cells["clmOffsetValue"].Value = "";
+                        row.Cells["chkColumn"].ReadOnly = true;
+                        row.Cells["chkColumn"].Value = true;
+                        row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
 
-                        // 2. Make ComboBox cell readonly
-                        row.Cells["clmMinQty"].ReadOnly = true;
-                        row.Cells["clmOffsetValue"].ReadOnly = true;
+                        //// 1. Clear the ComboBox value
+                        //row.Cells["clmMinQty"].Value = "";
+                        //row.Cells["clmOffsetValuePer"].Value = "";
+
+                        //// 2. Make ComboBox cell readonly
+                        //row.Cells["clmMinQty"].ReadOnly = true;
+                        //row.Cells["clmOffsetValuePer"].ReadOnly = true;
 
                         // Optional: give a light gray background to show it's disabled
-                        row.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
-                        row.Cells["clmStatus"].Style.BackColor = Color.LightGray;
-                        row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
-                        row.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
-                        row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
-                        row.Cells["clmStatus"].Style.BackColor = Color.LightGray;
+                        //row.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
+                        //row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
+                        //row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
+                        //row.Cells["clmOffset"].Style.BackColor = Color.LightGray; 
 
                     }
 
@@ -11103,7 +11187,11 @@ namespace ROMS
 
         public void udfnPriceMarkup() {
             try
-            {
+            { 
+                if (txtUpp.Text != "" && txtUpp.Text != "0")
+                {
+                    varuppValue = Convert.ToDecimal(txtUpp.Text);
+                }
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -11114,7 +11202,7 @@ namespace ROMS
                     objMR_Product.ParaProductCode = varproductcode;
                     SPDataService objspservice = new SPDataService();
                     objDs = objdserv.udfnproductmasterlist(objMR_Product);
-                    objdserv.CloseConnection();
+                    objdserv.CloseConnection(); 
                     if (objDs != null)
                     {
                         if (objDs.Tables[0].Rows.Count > 0)
@@ -11124,20 +11212,38 @@ namespace ROMS
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdPrice.Rows.Add();
-                                int row = grdPrice.Rows.Count - 1;
-
+                                int row = grdPrice.Rows.Count - 1; 
                                 grdPrice.Rows[row].Cells["clmTypeId"].Value = objDs.Tables[0].Rows[i]["TYPEID"].ToString();
                                 grdPrice.Rows[row].Cells["clmType"].Value = objDs.Tables[0].Rows[i]["TYPE"].ToString();
                                 grdPrice.Rows[row].Cells["clmRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"].ToString();
 
                                 grdPrice.Rows[row].Cells["clmStatus"].Value = objDs.Tables[0].Rows[i]["PRPM_STSID"];
-                                grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"];
+
+                                if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_STSID"]) == "453")
+                                {
+                                    grdPrice.Rows[row].Cells["chkColumn"].Value = true;
+                                }
+                                else { 
+                                    grdPrice.Rows[row].Cells["chkColumn"].Value = false;
+                                }
+
+                                    grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"];
 
                                 grdPrice.Rows[row].Cells["clmOffset"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_STSID"];
-                                grdPrice.Rows[row].Cells["clmOffsetValue"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"];
+                                grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"];
+                                grdPrice.Rows[row].Cells["clmOffsetValue"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"];
+                                grdPrice.Rows[row].Cells["clmBulkRate"].Value = Convert.ToDecimal( objDs.Tables[0].Rows[i]["PRPM_RATE"]) * varuppValue;
+
                             }
 
-
+                            if (varuppValue == 0)
+                            {
+                                grdPrice.Columns["clmBulkRate"].Visible = false;
+                            }
+                            else
+                            {
+                                grdPrice.Columns["clmBulkRate"].Visible = true;
+                            }
                             //grdPrice.Columns["clmStatus"].DisplayIndex = 2;
                             //grdPrice.Columns["clmOffset"].DisplayIndex = 4;
 
@@ -11168,11 +11274,11 @@ namespace ROMS
                     {
                         if (objDT.Tables[0].Rows.Count > 0)
                         {
-                            var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdPrice.Columns["clmStatus"];
-                            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-                            varComboBoxColoumn.ValueMember = "ID";
-                            varComboBoxColoumn.DisplayMember = "Status";
-                            varComboBoxColoumn.DataSource = objDT.Tables[0];
+                            //var varComboBoxColoumn = (DataGridViewComboBoxColumn)grdPrice.Columns["clmStatus"];
+                            //DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                            //varComboBoxColoumn.ValueMember = "ID";
+                            //varComboBoxColoumn.DisplayMember = "Status";
+                            //varComboBoxColoumn.DataSource = objDT.Tables[0];
 
                             var varComboBoxColoumn2 = (DataGridViewComboBoxColumn)grdPrice.Columns["clmOffset"];
                             DataGridViewComboBoxColumn comboBoxColumn2 = new DataGridViewComboBoxColumn();
@@ -11204,9 +11310,11 @@ namespace ROMS
                         grdPrice.Rows[row].Cells["clmRate"].ReadOnly = true;
                         grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.LightGray; 
 
+                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = false;
+                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
+
                         grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = false;
                         grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
-
 
                         grdPrice.Rows[row].Cells["clmOffset"].Value = 453; 
                     }
@@ -11216,6 +11324,10 @@ namespace ROMS
                         grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.PaleGreen;
 
                         grdPrice.Rows[row].Cells["clmOffset"].Value = 454; 
+                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = true;
+                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = 0;
+                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
+
                         grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = true;
                         grdPrice.Rows[row].Cells["clmOffsetValue"].Value = 0;
                         grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
@@ -11235,7 +11347,7 @@ namespace ROMS
                 // Get status of the row where user typed
                 var status = grdPrice.Rows[rowIndex].Cells["clmStatus"].Value?.ToString();
                 var typeId = grdPrice.Rows[rowIndex].Cells["clmTypeId"].Value?.ToString();
-
+               
                 //   453 displayvalue is yes
                 // typeId = 446 is base rate
                 if (status == "453" || typeId == "446")
@@ -11247,8 +11359,18 @@ namespace ROMS
                         if (Convert.ToString(row.Cells["clmStatus"].Value) == "453") { 
                             row.Cells["clmRate"].Value = newRate;
                             UpdateRateWithGST(row.Index);
+
+                            if (varuppValue != 0) {
+                                row.Cells["clmBulkRate"].Value = Convert.ToDecimal(row.Cells["clmRate"].Value) * varuppValue;
+
+                            }
                         }
-                    }
+                    } 
+                }
+                if (varuppValue != 0)
+                {
+                    grdPrice.Rows[rowIndex].Cells["clmBulkRate"].Value = Convert.ToDecimal(grdPrice.Rows[rowIndex].Cells["clmRate"].Value) * varuppValue;
+
                 }
 
 
@@ -11279,14 +11401,23 @@ namespace ROMS
         private void UpdateRateWithGST(int rowIndex)
         {
             try
-            { 
+            {
                 // Only update all rows if status == 154
-                 
+
+                
+
                 double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
-                double newGst = Convert.ToDouble(grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value); 
+                double newGst = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value?.ToString())
+                                ? "0" : grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value); 
                 double NewRate = Rate * (newGst / 100);
                 var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
                 var mainstatus = grdPrice.Rows[rowIndex].Cells["clmstatus"].Value?.ToString();
+                 
+                NewRate = Math.Round(NewRate, 0, MidpointRounding.AwayFromZero);
+                Rate = Math.Round(Rate, 0, MidpointRounding.AwayFromZero);
+
+
+
                 if (mainstatus == "453") //yes
                 {
                     if (status == "454") //no
@@ -11296,6 +11427,8 @@ namespace ROMS
                     else
                     {
                         grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + NewRate;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value =   NewRate;
+
                     } 
                 }
 
@@ -11307,11 +11440,60 @@ namespace ROMS
             }
         }
 
+        private void UpdateRateWithGSTValue(int rowIndex)
+        {
+            try
+            {
+                // Only update all rows if status == 154
+                 
+
+                double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value); 
+                double NewRate = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value?.ToString())
+                                ? "0" : grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value);
+                var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
+                var mainstatus = grdPrice.Rows[rowIndex].Cells["clmstatus"].Value?.ToString();
+
+                double   newGst = (NewRate / Rate) * 100;
+
+                if (NewRate == 0 && Rate == 0) {
+                    newGst = 0;
+                }
+
+
+                newGst = Math.Round(newGst, 2); 
+
+                if (mainstatus == "453") //yes
+                {
+                    if (status == "454") //no
+                    {
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
+                    }
+                    else
+                    {
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + NewRate;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value = newGst;
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        
+
         private void RemoveRateWithGST(int rowIndex)
         {
             try
             {
                 // Only update all rows if status == 154
+
+
+                 
+
 
                 var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
                 var mainstatus = grdPrice.Rows[rowIndex].Cells["clmStatus"].Value?.ToString();
@@ -11322,6 +11504,8 @@ namespace ROMS
                         double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
                         grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
 
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].ReadOnly = true;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = true;
                         grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
 
@@ -11331,6 +11515,8 @@ namespace ROMS
                         ////selected value is yes  
                         UpdateRateWithGST(rowIndex);
 
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].ReadOnly = false;
+                        grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
                         grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = false;
                         grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
                     }
@@ -11349,7 +11535,7 @@ namespace ROMS
         {
             try
             {
-                if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate")
+                if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate")
                 {
                     if (!(char.IsDigit(e.KeyChar) ||  char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {

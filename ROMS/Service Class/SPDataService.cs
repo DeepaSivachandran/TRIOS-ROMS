@@ -4908,133 +4908,9 @@ namespace ROMS
             }
             return ds;
         }
+         
 
-        //Created By : Sathish, Created On :-11-11-2025
-        public string udfnCustomerType(int ViewType, int paraCusTypeId, string paraCusTypeEName, string paraCusTypeTName, int paraStatusId, string paraOriginator)
-        {
-            string varResult = "";
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRS_CustomerType]", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraCusTypeId", paraCusTypeId);
-                varSqlCommand.Parameters.AddWithValue("@paraCusTypeEName", paraCusTypeEName);
-                varSqlCommand.Parameters.AddWithValue("@paraCusTypeTName", paraCusTypeTName);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
-                varSqlCommand.CommandTimeout = 0;
-                varResult = varSqlCommand.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return varResult;
-        }
-        //Created By : Sathish, Created On :-11-11-2025
-        public DataSet udfnCustomerTypelist(int paraViewType, int paraCustomerTypeID, int paraStatus)
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("MRG_CustomerType", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraCustomerTypeID", paraCustomerTypeID);
-                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-
-                varSqlCommand.CommandTimeout = 0;
-                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
-                sa.Fill(ds);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return ds;
-        }
-        //Created By : Sathish, Created On :-11-11-2025
-        public string udfnVehicle(int ViewType, int paraVehicleId, string paraVehicleName, string paraShortName, string paraRegisterNo, decimal paraCapactiy, int paraStatusId, string paraOriginator)
-        {
-            string varResult = "";
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRS_Vehicle]", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraVehicleId", paraVehicleId);
-                varSqlCommand.Parameters.AddWithValue("@paraVehicleName", paraVehicleName);
-                varSqlCommand.Parameters.AddWithValue("@paraShortName", paraShortName);
-                varSqlCommand.Parameters.AddWithValue("@paraRegisterNo", paraRegisterNo);
-                varSqlCommand.Parameters.AddWithValue("@paraCapactiy", paraCapactiy);
-                varSqlCommand.Parameters.AddWithValue("@paraStatusId", paraStatusId);
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
-                varSqlCommand.CommandTimeout = 0;
-                varResult = varSqlCommand.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return varResult;
-        }
-        //Created By : Sathish, Created On :-11-11-2025
-        public DataSet udfnVehiclelist(int paraViewType, int paraVehicleID, int paraStatus)
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("MRG_Vehicle", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@paraViewType", paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraVehicleID", paraVehicleID);
-                varSqlCommand.Parameters.AddWithValue("@paraStatus", paraStatus);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-
-                varSqlCommand.CommandTimeout = 0;
-                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
-                sa.Fill(ds);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return ds;
-        }
+         
         public string udfnArea(MR_Area objMR_Area)
         {
             string result = "";
@@ -5846,6 +5722,77 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
                 cmd.Parameters.AddWithValue("@paraCustomerId", obj.paraCustomerId);
                 cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(cmd);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+
+        //Created By : venkat, Created On :11/12/2025
+        public string udfnRateCategory(MR_Product objMR_Product )
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRS_RATE_Category]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure; 
+
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Product.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraCode", objMR_Product.paraprefixcode);
+                varSqlCommand.Parameters.AddWithValue("@paraPrefTname", objMR_Product.paraprefixtname);
+                varSqlCommand.Parameters.AddWithValue("@paraPrefEname", objMR_Product.paraprefixename);
+                varSqlCommand.Parameters.AddWithValue("@paraSufTname", objMR_Product.parasuffixtname);
+                varSqlCommand.Parameters.AddWithValue("@paraSufEname", objMR_Product.parasuffixtname);
+                varSqlCommand.Parameters.AddWithValue("@paraDescription", objMR_Product.paradescription);
+                varSqlCommand.Parameters.AddWithValue("@paraId", objMR_Product.paraId); 
+
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Product.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+
+        //Created By : venkat, Created On : 11/12/2025
+        public DataSet udfnRateCategoryList(MR_Product obj)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand cmd = new SqlCommand("MRG_RATE_Category", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraId", obj.paraId); 
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 

@@ -151,6 +151,8 @@ namespace ROMS
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_Rate_ChangeApproval objCP_Rate_ChangeApproval;
+        public static CP_Rate_CategoryList objCP_Rate_CategoryList;
+        public static CP_Rate_Category objCP_Rate_Category;
         public static CP_StickerPrint objCP_StickerPrint;
         // added by venkat on 09-08-2025
         public static CP_DirectLabelPrint objCP_DirectLabelPrint;
@@ -4499,6 +4501,19 @@ namespace ROMS
             try
             {
                 OpenMainForm(ref MainForm.objCP_Rate_ChangeApproval, "RATE_RateApproval", 301);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRateCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Rate_CategoryList, "CP_Rate_CategoryList", 526);
             }
             catch (Exception ex)
             {
