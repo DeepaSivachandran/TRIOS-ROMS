@@ -73,6 +73,18 @@ namespace ROMS.Model
         public int ParaRate = 0;
         public int ParaStockType = 0;
 
-        public DataTable paraSplFieldMapped = null; 
+        public DataTable paraSplFieldMapped = null;
+
+
+        // Params for rate category  
+        public string paraprefixcode = "";
+        public string paraprefixtname = "";
+        public string paraprefixename = "";
+        public string parasuffixtname = "";
+        public string parasuffixename = "";
+        public string paradescription = "";
+        public int paraRateId = 0;
+
+        
     }
 }
