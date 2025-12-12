@@ -2139,6 +2139,20 @@ namespace ROMS
             }
         }
 
+        private void CP_Spl_Products_Bulk_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                //MainForm objMainForm = new MainForm();
+                //objMainForm.udfnCloseChildForms();
+                //MainForm.objStart = new DEF_Start();
+                //MainForm.objStart.MdiParent = this.ParentForm;
+                //MainForm.objStart.Show();
+                //this.Close();
+                udfnClose();
+            }
+        }
+
         public void udfnProductRemove(object sender, EventArgs e) {
 
             try

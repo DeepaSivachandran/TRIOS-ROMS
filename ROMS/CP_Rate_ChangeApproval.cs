@@ -2088,6 +2088,14 @@ namespace ROMS
             }
         }
 
+        private void CP_Rate_ChangeApproval_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                udfnClose();
+            }
+        }
+
         public void udfnGridNull(Control skipControl)
         {
             try
