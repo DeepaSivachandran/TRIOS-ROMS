@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.VariantTypes;
-using ROMS.Model;
+﻿using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,13 +7,10 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms; 
-using Color = System.Drawing.Color;
-using Control = System.Windows.Forms.Control;
-using Font = System.Drawing.Font;
+//using Color = System.Drawing.Color;
+//using Control = System.Windows.Forms.Control;
+//using Font = System.Drawing.Font;
 
 namespace ROMS
 {
