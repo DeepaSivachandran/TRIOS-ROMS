@@ -1468,33 +1468,27 @@ namespace ROMS
                             grdItemList.Columns["P.I Code"].Width = 100;
                             grdItemList.Columns["Product"].Width = 360;
                             grdItemList.Columns["Unit"].Width = 60;
-                            grdItemList.Columns["Last R.Rate"].Width = 100;
-                            grdItemList.Columns["Last W.Rate"].Width = 100;
-                            grdItemList.Columns["Live R.Rate"].Width = 100;
-                            grdItemList.Columns["Live W.Rate"].Width = 100;
+                            grdItemList.Columns["Last Rate"].Width = 100; 
+                            grdItemList.Columns["Live Rate"].Width = 100; 
                             grdItemList.Columns["Teller"].Width = 135;
-                            grdItemList.Columns["Last Updated By"].Width = 220;
+                            grdItemList.Columns["Last Updated By"].Width = 250;
                             grdItemList.Columns["RC_PR_TYPE"].Visible = false;
+                            grdItemList.Columns["PRPM_Source"].Visible = false;
+                            grdItemList.Columns["PRPM_Source_TRNID"].Visible = false;
+                             
                             grdItemList.Columns["PRID"].Visible = false;
                             grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns["Last Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns["Live Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.ForeColor = Color.White;
-                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.BackColor = Color.Red;
-                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.ForeColor = Color.White;
-                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.BackColor = Color.Red;
-                            grdItemList.Columns["Last R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
-                            grdItemList.Columns["Last W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
+                            grdItemList.Columns["Last Rate"].DefaultCellStyle.ForeColor = Color.White;
+                            grdItemList.Columns["Last Rate"].DefaultCellStyle.BackColor = Color.Red;
+                            grdItemList.Columns["Last Rate"].DefaultCellStyle.ForeColor = Color.White;
+                            grdItemList.Columns["Last Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
 
-                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.ForeColor = Color.White;
-                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.BackColor = Color.Green;
-                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.ForeColor = Color.White;
-                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.BackColor = Color.Green;
-                            grdItemList.Columns["Live R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
-                            grdItemList.Columns["Live W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
+                            grdItemList.Columns["Live Rate"].DefaultCellStyle.ForeColor = Color.White;
+                            grdItemList.Columns["Live Rate"].DefaultCellStyle.BackColor = Color.Green;
+                            grdItemList.Columns["Live Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Bold);
 
 
                             grdItemList.Columns["Group Id"].Visible = false;
@@ -1504,23 +1498,18 @@ namespace ROMS
                             grdItemList.Columns["Brand Id"].Visible = false;
                             grdItemList.Columns["Brand Name"].Visible = false;
                             grdItemList.Columns["clmCheck"].Visible = true; 
+                             
 
-                            grdItemList.Columns["Live W.Rate"].Visible = false; 
-                            grdItemList.Columns["Last W.Rate"].Visible = false;
-
-
-                            grdItemList.Columns["Live R.Rate"].HeaderText = "New Rate";
-                            grdItemList.Columns["Last R.Rate"].HeaderText = "Last Rate";
+                            grdItemList.Columns["Live Rate"].HeaderText = "New Rate";
+                            grdItemList.Columns["Last Rate"].HeaderText = "Last Rate";
 
 
                             grdItemList.Columns["S.No."].ReadOnly = true;
                             grdItemList.Columns["P.I Code"].ReadOnly = true;
                             grdItemList.Columns["Product"].ReadOnly = true;
                             grdItemList.Columns["Unit"].ReadOnly = true;
-                            grdItemList.Columns["Last R.Rate"].ReadOnly = true;
-                            grdItemList.Columns["Last W.Rate"].ReadOnly = true;
-                            grdItemList.Columns["Live R.Rate"].ReadOnly = true;
-                            grdItemList.Columns["Live W.Rate"].ReadOnly = true;
+                            grdItemList.Columns["Last Rate"].ReadOnly = true;
+                            grdItemList.Columns["Live Rate"].ReadOnly = true; 
                             grdItemList.Columns["Teller"].ReadOnly = true;
                             grdItemList.Columns["Last Updated By"].ReadOnly = true;
 
@@ -1623,21 +1612,15 @@ namespace ROMS
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
-                    DGV_SearchGrid.Columns["Live R.Rate"].DefaultCellStyle.ForeColor = Color.Black;
-                    DGV_SearchGrid.Columns["Live R.Rate"].DefaultCellStyle.BackColor = Color.White;
-                    DGV_SearchGrid.Columns["Live R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
+                    DGV_SearchGrid.Columns["Live Rate"].DefaultCellStyle.ForeColor = Color.Black;
+                    DGV_SearchGrid.Columns["Live Rate"].DefaultCellStyle.BackColor = Color.White;
+                    DGV_SearchGrid.Columns["Live Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
 
-                    DGV_SearchGrid.Columns["Live W.Rate"].DefaultCellStyle.ForeColor = Color.Black;
-                    DGV_SearchGrid.Columns["Live W.Rate"].DefaultCellStyle.BackColor = Color.White;
-                    DGV_SearchGrid.Columns["Live W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
 
-                    DGV_SearchGrid.Columns["Last R.Rate"].DefaultCellStyle.ForeColor = Color.Black;
-                    DGV_SearchGrid.Columns["Last R.Rate"].DefaultCellStyle.BackColor = Color.White;
-                    DGV_SearchGrid.Columns["Last R.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
+                    DGV_SearchGrid.Columns["Last Rate"].DefaultCellStyle.ForeColor = Color.Black;
+                    DGV_SearchGrid.Columns["Last Rate"].DefaultCellStyle.BackColor = Color.White;
+                    DGV_SearchGrid.Columns["Last Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
 
-                    DGV_SearchGrid.Columns["Last W.Rate"].DefaultCellStyle.ForeColor = Color.Black;
-                    DGV_SearchGrid.Columns["Last W.Rate"].DefaultCellStyle.BackColor = Color.White;
-                    DGV_SearchGrid.Columns["Last W.Rate"].DefaultCellStyle.Font = new Font(grdItemList.Font, FontStyle.Regular);
 
                 }
             }
@@ -1673,6 +1656,9 @@ namespace ROMS
                     DGV_SearchGrid.Columns["PR_PUR_RKID"].Visible = false;
                     DGV_SearchGrid.Columns["PR_PUR_SLID"].Visible = false;
                     DGV_SearchGrid.Columns["RC_PR_TYPE"].Visible = false;
+                    DGV_SearchGrid.Columns["PRPM_Source"].Visible = false;
+                    DGV_SearchGrid.Columns["PRPM_Source_TRNID"].Visible = false;
+                     
                     DGV_SearchGrid.Columns["PRID"].Visible = false;
                     DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 }
@@ -1770,7 +1756,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 12;
                             }
-                            if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                            if (col.Name == "Last Rate" || col.Name == "Live Rate")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 15;
 
@@ -1909,7 +1895,7 @@ namespace ROMS
                                         ExcelSheet.Columns[cIndex].ColumnWidth = 12;
                                     }
                                     object cellValue = row.Cells[col.Index].Value;
-                                    if (col.Name == "Last R.Rate" || col.Name == "Last W.Rate" || col.Name == "Live R.Rate" || col.Name == "Live W.Rate")
+                                    if (col.Name == "Last Rate" || col.Name == "Live Rate" )
                                     {
                                         ExcelSheet.Cells[excelRow, cIndex].Value = cellValue != null && double.TryParse(cellValue.ToString(), out double num) ? num : 0;
                                         ExcelSheet.Cells[excelRow, cIndex].NumberFormat = "0.00";

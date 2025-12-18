@@ -12,7 +12,7 @@ using ROMS.Model;
 
 namespace ROMS
 {
-    //Created By:Sathish ; Created On:-11/08/2023
+    //Created By:Sathish ; Created On:-13/12/2025
     public partial class CP_Rate_CategoryList : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();

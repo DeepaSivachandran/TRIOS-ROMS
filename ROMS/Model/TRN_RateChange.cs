@@ -23,11 +23,13 @@ namespace ROMS.Model
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
         public int paraType { get; set; } = 0;
+        public int paraDeleteFlag { get; set; } = 0;
+        public int paraStatusId { get; set; } = 0;
         public int paraSupplierID { get; set; } = 0;
         public int paraScheduleID { get; set; } = 0;
-        public int paraCompanyCode { get; set; } = 0;
-
+        public int paraCompanyCode { get; set; } = 0; 
         public  DataTable paraApprove { get; set; } = null;
+        public  DataTable paraBulk { get; set; } = null;
 
     }
 }

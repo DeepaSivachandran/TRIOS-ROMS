@@ -317,7 +317,7 @@
             this.Cmb_PaperSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Cmb_PaperSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_PaperSize.FormattingEnabled = true;
-            this.Cmb_PaperSize.Location = new System.Drawing.Point(21, 80);
+            this.Cmb_PaperSize.Location = new System.Drawing.Point(21, 84);
             this.Cmb_PaperSize.Name = "Cmb_PaperSize";
             this.Cmb_PaperSize.Size = new System.Drawing.Size(174, 28);
             this.Cmb_PaperSize.TabIndex = 0;
@@ -427,7 +427,7 @@
             this.Cmb_Printer_Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Cmb_Printer_Name.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_Printer_Name.FormattingEnabled = true;
-            this.Cmb_Printer_Name.Location = new System.Drawing.Point(201, 80);
+            this.Cmb_Printer_Name.Location = new System.Drawing.Point(201, 84);
             this.Cmb_Printer_Name.Name = "Cmb_Printer_Name";
             this.Cmb_Printer_Name.Size = new System.Drawing.Size(391, 28);
             this.Cmb_Printer_Name.TabIndex = 2;
@@ -441,7 +441,7 @@
             this.Cmb_Printer_Type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Cmb_Printer_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cmb_Printer_Type.FormattingEnabled = true;
-            this.Cmb_Printer_Type.Location = new System.Drawing.Point(201, 397);
+            this.Cmb_Printer_Type.Location = new System.Drawing.Point(201, 401);
             this.Cmb_Printer_Type.Name = "Cmb_Printer_Type";
             this.Cmb_Printer_Type.Size = new System.Drawing.Size(391, 28);
             this.Cmb_Printer_Type.TabIndex = 1;

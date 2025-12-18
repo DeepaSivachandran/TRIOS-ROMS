@@ -66,38 +66,38 @@ namespace ROMS
                 if (ratetype == 448)
                 {
 
-                    if ((txtWRateLive.Text.Contains(".") && txtWRateLive.Text.Length < 2) || Convert.ToString(txtWRateLive.Text).Trim() == "")
-                    {
-                        errItems.SetError(txtWRateLive, "Please enter valid rate");
-                        txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                        tpWRate.ShowAlways = true;
-                        tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
-                        blnErrorFlag = true;
-                    }
+                    //if ((txtWRateLive.Text.Contains(".") && txtWRateLive.Text.Length < 2) || Convert.ToString(txtWRateLive.Text).Trim() == "")
+                    //{
+                    //    errItems.SetError(txtWRateLive, "Please enter valid rate");
+                    //    txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    tpWRate.ShowAlways = true;
+                    //    tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
+                    //    blnErrorFlag = true;
+                    //}
 
-                    if (Convert.ToString(txtWRateLive.Text).Trim() != "" && Convert.ToString(txtRRateLive.Text).Trim() != "")
-                    {
-                        if (Convert.ToDecimal(txtRRateLive.Text) < Convert.ToDecimal(txtWRateLive.Text))
-                        {
-                            errItems.SetError(txtWRateLive, "Whole sale rate should be lesser than retail rate!");
-                            txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            tpWRate.ShowAlways = true;
-                            tpWRate.Show("Whole sale rate should be lesser than retail rate!", txtWRateLive, 5000);
-                            blnErrorFlag = true;
-                        }
-                    }
-                    if (Convert.ToString(txtRRateLive.Text).Trim() != "" && Convert.ToString(txtWRateLive.Text).Trim() != "")
-                    {
-                        if (Convert.ToDecimal(txtRRateLive.Text) == 0 && Convert.ToDecimal(txtWRateLive.Text) > 0)
-                        {
-                            txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                            SPDataService objDataService = new SPDataService();
-                            string varMessage = objDataService.udfnGetMessages(157);
-                            objDataService.CloseConnection();
-                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            blnErrorFlag = true;
-                        }
-                    }
+                    //if (Convert.ToString(txtWRateLive.Text).Trim() != "" && Convert.ToString(txtRRateLive.Text).Trim() != "")
+                    //{
+                    //    if (Convert.ToDecimal(txtRRateLive.Text) < Convert.ToDecimal(txtWRateLive.Text))
+                    //    {
+                    //        errItems.SetError(txtWRateLive, "Whole sale rate should be lesser than retail rate!");
+                    //        txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        tpWRate.ShowAlways = true;
+                    //        tpWRate.Show("Whole sale rate should be lesser than retail rate!", txtWRateLive, 5000);
+                    //        blnErrorFlag = true;
+                    //    }
+                    //}
+                    //if (Convert.ToString(txtRRateLive.Text).Trim() != "" && Convert.ToString(txtWRateLive.Text).Trim() != "")
+                    //{
+                    //    if (Convert.ToDecimal(txtRRateLive.Text) == 0 && Convert.ToDecimal(txtWRateLive.Text) > 0)
+                    //    {
+                    //        txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //        SPDataService objDataService = new SPDataService();
+                    //        string varMessage = objDataService.udfnGetMessages(157);
+                    //        objDataService.CloseConnection();
+                    //        MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //        blnErrorFlag = true;
+                    //    }
+                    //}
                 }
                 
                 if (blnErrorFlag == false)
@@ -119,11 +119,11 @@ namespace ROMS
                 double varwrate = 0;
                 prevRrate = 0;
                 prevWrate = 0;
-                if (txtWRateLive.Text != "")
-                {
-                    varwrate = Convert.ToDouble(txtWRateLive.Text);
+                //if (txtWRateLive.Text != "")
+                //{
+                //    varwrate = Convert.ToDouble(txtWRateLive.Text);
 
-                }
+                //}
                 if (txtRRatePrev.Text != "")
                 {
                     prevRrate = Convert.ToDecimal(txtRRatePrev.Text); 
@@ -197,7 +197,7 @@ namespace ROMS
                 txtRRatePrev.Text = "";
                 txtRRateLive.Text = "";
                 txtWRateLast.Text = "";
-                txtWRateLive.Text = "";
+                //txtWRateLive.Text = "";
                 txtWRatePrev.Text = "";
                 txtTeller.Text = ""; 
                 lvVerified1.Visible = false;
@@ -631,20 +631,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void txtWRateLive_Enter(object sender, EventArgs e)
-        {
-            try
-            {
-                txtWRateLive.BackColor = Color.LemonChiffon;
-                udfnHideLists();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void txtTeller_Enter(object sender, EventArgs e)
         {
@@ -666,14 +653,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtWRateLive.Enabled ==true)
-                    {
-                        txtWRateLive.Focus();
-                    }
-                    else
-                    {
-                        txtTeller.Focus();
-                    }
+                    
+                        txtTeller.Focus(); 
                 }
             }
             catch (Exception ex)
@@ -681,23 +662,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void txtWRateLive_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtTeller.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
 
         private void txtRRateLive_Leave(object sender, EventArgs e)
         {
@@ -723,31 +688,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void txtWRateLive_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtWRateLive.Text == "")
-                {
-                    errItems.SetError(txtWRateLive, "Please enter valid rate");
-                    txtWRateLive.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpWRate.ShowAlways = true;
-                    tpWRate.Show("Please enter valid rate", txtWRateLive, 5000);
-                }
-                else
-                {
-                    txtWRateLive.BackColor = Color.White;
-                    errItems.Clear();
-                } 
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
 
         private void txtTeller_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1152,19 +1093,15 @@ namespace ROMS
                                         txtRRatePrev.Text = Convert.ToString(rate);
                                         txtRRateLast.Text = Convert.ToString(prevrate); 
                                         txtWRatePrev.Text = "0";
-                                        txtWRateLast.Text = "0"; 
-                                        txtWRateLive.Enabled = false;
-                                        txtWRateLive.BackColor = System.Drawing.SystemColors.Control;
+                                        txtWRateLast.Text = "0";  
                                         txtDWSaleRate.Text = "Rate";
                                     }
                                     else
-                                    { 
-                                        txtWRateLive.Enabled = true;
+                                    {  
                                         txtRRatePrev.Text = Convert.ToString(Rrate);
                                         txtRRateLast.Text = Convert.ToString(prevRrate);
                                         txtWRatePrev.Text = Convert.ToString(Wrate);
-                                        txtWRateLast.Text = Convert.ToString(prevWrate);
-                                        txtWRateLive.BackColor = Color.White;
+                                        txtWRateLast.Text = Convert.ToString(prevWrate); 
                                         txtDWSaleRate.Text = "R.Rate";
                                     }
 

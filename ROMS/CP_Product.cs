@@ -1334,7 +1334,8 @@ namespace ROMS
                         dtPrice_Markup.Columns.Add("PRPM_OFFSET", typeof(int));
                         dtPrice_Markup.Columns.Add("PRPM_OFFSET_VALUE", typeof(float));
                         dtPrice_Markup.Columns.Add("PRPM_OFFSET_VALUE_AMT", typeof(float));
-                        dtPrice_Markup.Columns.Add("PRPM_RATE_BULK", typeof(float)); 
+                        dtPrice_Markup.Columns.Add("PRPM_RATE_BULK", typeof(float));
+                        dtPrice_Markup.Columns.Add("PRPM_APPROVAL_Flag", typeof(int));
                         for (int i = 0; i < grdPrice.Rows.Count ; i++)
                         {
                             
@@ -1358,7 +1359,7 @@ namespace ROMS
                                 ? "0" : grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value.ToString()),
                                 Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValue"].Value?.ToString())
                                 ? "0" : grdPrice.Rows[i].Cells["clmOffsetValue"].Value.ToString()),
-                                Convert.ToDecimal(grdPrice.Rows[i].Cells["clmBulkRate"].Value)
+                                Convert.ToDecimal(grdPrice.Rows[i].Cells["clmBulkRate"].Value),0
 
 
 
@@ -6949,8 +6950,10 @@ namespace ROMS
                     cbCompleted.Visible = true;
                 }
 
+                btnSave.Enabled = true;
                 if (Convert.ToInt32(tbProduct.SelectedIndex) == 3)
                 {
+                    btnSave.Enabled = false;
                     grdPrice.Rows.Clear();
                     udfnPriceMarkup();
 
@@ -11203,7 +11206,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             udfnGridStatusBind();  // Bind datasource FIRST
-
+                            int ApprovalFlag = 0;
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdPrice.Rows.Add();
@@ -11212,7 +11215,9 @@ namespace ROMS
                                 grdPrice.Rows[row].Cells["clmType"].Value = objDs.Tables[0].Rows[i]["TYPE"].ToString();
                                 grdPrice.Rows[row].Cells["clmRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"].ToString();
 
-                                grdPrice.Rows[row].Cells["clmStatus"].Value = objDs.Tables[0].Rows[i]["PRPM_STSID"];
+                                grdPrice.Rows[row].Cells["clmRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"].ToString();
+                                 
+                                ApprovalFlag =  Convert.ToInt32(objDs.Tables[0].Rows[i]["ApprovalFlag"]);
 
                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_STSID"]) == "453")
                                 {
@@ -11241,7 +11246,15 @@ namespace ROMS
                             }
                             //grdPrice.Columns["clmStatus"].DisplayIndex = 2;
                             //grdPrice.Columns["clmOffset"].DisplayIndex = 4;
-
+                            if (ApprovalFlag == 122)
+                            {
+                                grdPrice.Enabled = true;
+                                btnSave.Enabled = true;
+                            }
+                            else { 
+                                grdPrice.Enabled = false;
+                                btnSave.Enabled = false;
+                            }
                         }
                     }
                 }

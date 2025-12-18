@@ -136,7 +136,10 @@ namespace ROMS
         public static CP_GeneralSettings objCP_GeneralSettings;
         public static CP_BulkAttributes objCP_BulkAttributes;
         public static CP_Spl_Products_Bulk objCP_Spl_Products_Bulk;
-        public static CP_BulkAttributeVerify objCP_BulkAttributeVerify;
+        public static CP_BulkAttributeVerify objCP_BulkAttributeVerify; 
+        public static CP_CostPrice_Update_Bulk objCP_CostPrice_Update_Bulk;
+        public static CP_CostPrice_Update_Bulk_List objCP_CostPrice_Update_Bulk_List;
+        public static CP_CostPrice_Update_Bulk_Approval_List objCP_CostPrice_Update_Bulk_Approval_List;
         public static CP_RepresentativeList objCP_RepresentativeList;
         public static CP_Representative objCP_Representative;
         public static CP_EmployeeList objCP_EmployeeList;
@@ -4514,6 +4517,34 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Rate_CategoryList, "CP_Rate_CategoryList", 526);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmCPBulkUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_List, "CP_CostPrice_Update_Bulk_List", 519);
+                PbCurrentForm = "5.18";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tspCPApproval_Click(object sender, EventArgs e)
+        { 
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_Approval_List, "CP_CostPrice_Update_Bulk_Approval_List", 520);
+                PbCurrentForm = "5.18";
             }
             catch (Exception ex)
             {

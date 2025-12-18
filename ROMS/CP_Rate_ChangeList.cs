@@ -123,9 +123,9 @@ namespace ROMS
                             grdItemList.Columns["Product"].Width = 360;
                             grdItemList.Columns["Unit"].Width = 60;
                             grdItemList.Columns["Last R.Rate"].Width = 100;
-                            grdItemList.Columns["Last W.Rate"].Width = 100;
+                            grdItemList.Columns["Last W.Rate"].Visible = false;
                             grdItemList.Columns["Live R.Rate"].Width = 100;
-                            grdItemList.Columns["Live W.Rate"].Width = 100;
+                            grdItemList.Columns["Live W.Rate"].Visible = false;
                             grdItemList.Columns["Teller"].Width = 135;
                             grdItemList.Columns["Last Updated By"].Width = 220;
                             grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -157,6 +157,9 @@ namespace ROMS
                             grdItemList.Columns["Brand Name"].Visible = false;
                             lblNoRecordsFound.Visible = false;
 
+
+                            grdItemList.Columns["Last R.Rate"].HeaderText = "Last Rate"; 
+                            grdItemList.Columns["Live R.Rate"].HeaderText = "Live Rate";
 
                             //grdItemList.Columns["Live W.Rate"].Visible = false;
                             //grdItemList.Columns["Last W.Rate"].Visible = false;
@@ -360,6 +363,7 @@ namespace ROMS
                     DGV_SearchGrid.Columns["PR_SALE_SLID"].Visible = false;
                     DGV_SearchGrid.Columns["PR_PUR_RKID"].Visible = false;
                     DGV_SearchGrid.Columns["PR_PUR_SLID"].Visible = false;
+                     
                     DGV_SearchGrid.ScrollBars = ScrollBars.Both;
                 }
                 else

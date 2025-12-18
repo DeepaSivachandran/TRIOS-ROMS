@@ -5813,6 +5813,77 @@ namespace ROMS
             return ds;
         }
 
+        //cp bulk update  by venkat on 15/12/2025
+        public string udfnCPBulkUpdate(TRN_RateChange objTrnRateChange)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_CP_BULK]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objTrnRateChange.paraViewType); 
+                varSqlCommand.Parameters.AddWithValue("@paraBulk", objTrnRateChange.paraBulk);
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objTrnRateChange.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraid", objTrnRateChange.paraProductID);
+                varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", objTrnRateChange.paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraStatusId", objTrnRateChange.paraStatusId);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress); 
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+
+
+        //cp bulk update  by venkat on 15/12/2025  
+        public DataSet udfnCPBulkUpdatelIST(MR_Product objMR_Product)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall(); 
+                SqlCommand cmd = new SqlCommand("TRNG_CP_BULK", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@paraViewType", objMR_Product.paraViewType);
+                cmd.Parameters.AddWithValue("@paraBrandID", objMR_Product.paraBrandID);
+                cmd.Parameters.AddWithValue("@paraID", objMR_Product.paraId);
+                cmd.Parameters.AddWithValue("@paraGroup", objMR_Product.paraGroup);
+                cmd.Parameters.AddWithValue("@paraSubgroup", objMR_Product.paraSubgroup);
+                cmd.Parameters.AddWithValue("@paraStatusId", objMR_Product.paraStatusId);
+
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID); 
+                cmd.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName); 
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(cmd);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 

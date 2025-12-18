@@ -92,6 +92,7 @@ namespace ROMS
             this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBroker = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCPBulkUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockLocationUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMinsalesUpdate = new System.Windows.Forms.ToolStripMenuItem();
@@ -216,6 +217,7 @@ namespace ROMS
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tspCPApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -619,6 +621,8 @@ namespace ROMS
             this.tsmUser,
             this.tsmSupplier,
             this.tsmBroker,
+            this.tsmCPBulkUpdate,
+            this.tspCPApproval,
             this.tsmBulkUpdate,
             this.tsmRepresentative,
             this.tsmRateCategory,
@@ -785,6 +789,13 @@ namespace ROMS
             this.tsmBroker.Text = "Broker";
             this.tsmBroker.Visible = false;
             this.tsmBroker.Click += new System.EventHandler(this.Tsmbroker_Click);
+            // 
+            // tsmCPBulkUpdate
+            // 
+            this.tsmCPBulkUpdate.Name = "tsmCPBulkUpdate";
+            this.tsmCPBulkUpdate.Size = new System.Drawing.Size(225, 22);
+            this.tsmCPBulkUpdate.Text = "CP Bulk Update";
+            this.tsmCPBulkUpdate.Click += new System.EventHandler(this.tsmCPBulkUpdate_Click);
             // 
             // tsmBulkUpdate
             // 
@@ -1912,6 +1923,13 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
+            // tspCPApproval
+            // 
+            this.tspCPApproval.Name = "tspCPApproval";
+            this.tspCPApproval.Size = new System.Drawing.Size(225, 22);
+            this.tspCPApproval.Text = "CP Approval";
+            this.tspCPApproval.Click += new System.EventHandler(this.tspCPApproval_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2131,5 +2149,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmCardMachine;
         private System.Windows.Forms.ToolStripMenuItem tsmUPI;
         private System.Windows.Forms.ToolStripMenuItem tsmRateCategory;
+        private System.Windows.Forms.ToolStripMenuItem tsmCPBulkUpdate;
+        private System.Windows.Forms.ToolStripMenuItem tspCPApproval;
     }
 }

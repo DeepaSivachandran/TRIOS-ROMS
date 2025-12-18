@@ -55,7 +55,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.txtTeller = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.txtWRateLive = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblDProduct = new System.Windows.Forms.Label();
@@ -118,7 +117,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(144, 220);
+            this.btnSave.Location = new System.Drawing.Point(144, 192);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(79, 29);
             this.btnSave.TabIndex = 4;
@@ -134,7 +133,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(225, 220);
+            this.btnClose.Location = new System.Drawing.Point(225, 192);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
             this.btnClose.TabIndex = 5;
@@ -192,26 +191,28 @@
             this.txtDBarcode.BackColor = System.Drawing.SystemColors.Control;
             this.txtDBarcode.Enabled = false;
             this.txtDBarcode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBarcode.Location = new System.Drawing.Point(7, 77);
+            this.txtDBarcode.Location = new System.Drawing.Point(505, 373);
             this.txtDBarcode.Name = "txtDBarcode";
             this.txtDBarcode.ReadOnly = true;
             this.txtDBarcode.Size = new System.Drawing.Size(73, 27);
             this.txtDBarcode.TabIndex = 27;
             this.txtDBarcode.TabStop = false;
             this.txtDBarcode.Text = "W. Rate";
+            this.txtDBarcode.Visible = false;
             // 
             // txtWRateLast
             // 
             this.txtWRateLast.Enabled = false;
             this.txtWRateLast.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.txtWRateLast.ForeColor = System.Drawing.Color.Red;
-            this.txtWRateLast.Location = new System.Drawing.Point(80, 77);
+            this.txtWRateLast.Location = new System.Drawing.Point(578, 373);
             this.txtWRateLast.MaxLength = 10;
             this.txtWRateLast.Name = "txtWRateLast";
             this.txtWRateLast.Size = new System.Drawing.Size(73, 27);
             this.txtWRateLast.TabIndex = 30;
             this.txtWRateLast.Text = "9999.99";
             this.txtWRateLast.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWRateLast.Visible = false;
             // 
             // txtDRetailRate
             // 
@@ -232,13 +233,14 @@
             this.txtWRatePrev.Enabled = false;
             this.txtWRatePrev.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.txtWRatePrev.ForeColor = System.Drawing.Color.DarkGreen;
-            this.txtWRatePrev.Location = new System.Drawing.Point(153, 77);
+            this.txtWRatePrev.Location = new System.Drawing.Point(651, 373);
             this.txtWRatePrev.MaxLength = 10;
             this.txtWRatePrev.Name = "txtWRatePrev";
             this.txtWRatePrev.Size = new System.Drawing.Size(73, 27);
             this.txtWRatePrev.TabIndex = 32;
             this.txtWRatePrev.Text = "9999.99";
             this.txtWRatePrev.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWRatePrev.Visible = false;
             // 
             // txtDWSaleRate
             // 
@@ -251,7 +253,7 @@
             this.txtDWSaleRate.Size = new System.Drawing.Size(73, 27);
             this.txtDWSaleRate.TabIndex = 17;
             this.txtDWSaleRate.TabStop = false;
-            this.txtDWSaleRate.Text = "R. Rate";
+            this.txtDWSaleRate.Text = "Rate";
             // 
             // txtDMinSaleQty
             // 
@@ -292,22 +294,18 @@
             this.groupBox2.Controls.Add(this.btnClose);
             this.groupBox2.Controls.Add(this.txtTeller);
             this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.txtWRateLive);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.txtRRatePrev);
             this.groupBox2.Controls.Add(this.txtDMinSaleQty);
             this.groupBox2.Controls.Add(this.txtDWSaleRate);
-            this.groupBox2.Controls.Add(this.txtWRatePrev);
             this.groupBox2.Controls.Add(this.txtDRetailRate);
-            this.groupBox2.Controls.Add(this.txtWRateLast);
-            this.groupBox2.Controls.Add(this.txtDBarcode);
             this.groupBox2.Controls.Add(this.txtRRateLive);
             this.groupBox2.Controls.Add(this.txtRRateLast);
             this.groupBox2.Controls.Add(this.txtDRMinSaleQty);
             this.groupBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(476, 45);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(308, 256);
+            this.groupBox2.Size = new System.Drawing.Size(308, 228);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rate Details";
@@ -317,7 +315,7 @@
             this.txtsystem.Enabled = false;
             this.txtsystem.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.txtsystem.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.txtsystem.Location = new System.Drawing.Point(80, 158);
+            this.txtsystem.Location = new System.Drawing.Point(80, 130);
             this.txtsystem.MaxLength = 20;
             this.txtsystem.Name = "txtsystem";
             this.txtsystem.Size = new System.Drawing.Size(219, 27);
@@ -329,7 +327,7 @@
             this.txtLastTeller.Enabled = false;
             this.txtLastTeller.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
             this.txtLastTeller.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.txtLastTeller.Location = new System.Drawing.Point(80, 131);
+            this.txtLastTeller.Location = new System.Drawing.Point(80, 103);
             this.txtLastTeller.MaxLength = 20;
             this.txtLastTeller.Name = "txtLastTeller";
             this.txtLastTeller.Size = new System.Drawing.Size(219, 27);
@@ -341,7 +339,7 @@
             this.txtLastChanged.Enabled = false;
             this.txtLastChanged.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtLastChanged.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.txtLastChanged.Location = new System.Drawing.Point(80, 105);
+            this.txtLastChanged.Location = new System.Drawing.Point(80, 77);
             this.txtLastChanged.MaxLength = 20;
             this.txtLastChanged.Name = "txtLastChanged";
             this.txtLastChanged.Size = new System.Drawing.Size(219, 25);
@@ -353,7 +351,7 @@
             this.textBox5.BackColor = System.Drawing.SystemColors.Control;
             this.textBox5.Enabled = false;
             this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox5.Location = new System.Drawing.Point(7, 158);
+            this.textBox5.Location = new System.Drawing.Point(7, 130);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(73, 27);
@@ -366,7 +364,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(7, 131);
+            this.textBox4.Location = new System.Drawing.Point(7, 103);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(73, 27);
@@ -379,7 +377,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(7, 104);
+            this.textBox2.Location = new System.Drawing.Point(7, 76);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(73, 27);
@@ -390,7 +388,7 @@
             // txtTeller
             // 
             this.txtTeller.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtTeller.Location = new System.Drawing.Point(80, 187);
+            this.txtTeller.Location = new System.Drawing.Point(80, 159);
             this.txtTeller.MaxLength = 20;
             this.txtTeller.Name = "txtTeller";
             this.txtTeller.Size = new System.Drawing.Size(219, 27);
@@ -406,28 +404,13 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox3.Location = new System.Drawing.Point(7, 187);
+            this.textBox3.Location = new System.Drawing.Point(7, 159);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(73, 27);
             this.textBox3.TabIndex = 42;
             this.textBox3.TabStop = false;
             this.textBox3.Text = "Teller";
-            // 
-            // txtWRateLive
-            // 
-            this.txtWRateLive.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
-            this.txtWRateLive.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.txtWRateLive.Location = new System.Drawing.Point(226, 77);
-            this.txtWRateLive.MaxLength = 20;
-            this.txtWRateLive.Name = "txtWRateLive";
-            this.txtWRateLive.Size = new System.Drawing.Size(73, 27);
-            this.txtWRateLive.TabIndex = 2;
-            this.txtWRateLive.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtWRateLive.Enter += new System.EventHandler(this.txtWRateLive_Enter);
-            this.txtWRateLive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWRateLive_KeyDown);
-            this.txtWRateLive.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWRateLive_KeyPress);
-            this.txtWRateLive.Leave += new System.EventHandler(this.txtWRateLive_Leave);
             // 
             // textBox1
             // 
@@ -854,7 +837,7 @@
             this.lvVerified1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.lvVerified1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvVerified1.HideSelection = false;
-            this.lvVerified1.Location = new System.Drawing.Point(557, 259);
+            this.lvVerified1.Location = new System.Drawing.Point(556, 229);
             this.lvVerified1.Name = "lvVerified1";
             this.lvVerified1.Size = new System.Drawing.Size(222, 164);
             this.lvVerified1.TabIndex = 111111135;
@@ -956,6 +939,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DGV_FilterProduct);
+            this.Controls.Add(this.txtDBarcode);
+            this.Controls.Add(this.txtWRateLast);
+            this.Controls.Add(this.txtWRatePrev);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1012,7 +998,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtWRateLive;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox txtTeller;
