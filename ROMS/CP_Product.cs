@@ -9466,6 +9466,7 @@ namespace ROMS
                 btnSave.Focus();
             }
         }
+
         private void LvVerified1_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -11195,6 +11196,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (varproductcode != 0)
                 {
+                    int ApprovalFlag = 0;
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 87;
                     objMR_Product.ParaProductCode = varproductcode;
@@ -11206,7 +11208,6 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             udfnGridStatusBind();  // Bind datasource FIRST
-                            int ApprovalFlag = 0;
                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                             {
                                 grdPrice.Rows.Add();
@@ -11217,7 +11218,6 @@ namespace ROMS
 
                                 grdPrice.Rows[row].Cells["clmRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"].ToString();
                                  
-                                ApprovalFlag =  Convert.ToInt32(objDs.Tables[0].Rows[i]["ApprovalFlag"]);
 
                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_STSID"]) == "453")
                                 {
@@ -11246,15 +11246,19 @@ namespace ROMS
                             }
                             //grdPrice.Columns["clmStatus"].DisplayIndex = 2;
                             //grdPrice.Columns["clmOffset"].DisplayIndex = 4;
-                            if (ApprovalFlag == 122)
-                            {
-                                grdPrice.Enabled = true;
-                                btnSave.Enabled = true;
-                            }
-                            else { 
-                                grdPrice.Enabled = false;
-                                btnSave.Enabled = false;
-                            }
+
+                           
+                        }
+                        ApprovalFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["ApprovalFlag"]);
+                        if (ApprovalFlag == 122)
+                        {
+                            grdPrice.Enabled = true;
+                            btnSave.Enabled = true;
+                        }
+                        else
+                        {
+                            grdPrice.Enabled = false;
+                            btnSave.Enabled = false; 
                         }
                     }
                 }

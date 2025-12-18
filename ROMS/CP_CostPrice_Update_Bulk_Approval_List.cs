@@ -171,7 +171,7 @@ namespace ROMS
                             grdCPApproval.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdCPApproval.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                            grdCPApproval.Columns["Last Updated By"].Width = 250;
+                            grdCPApproval.Columns["Last Updated By"].Width = 280;
                             grdCPApproval.Columns["S.No."].Width = 50;   
                             grdCPApproval.Columns["Total Products"].Width = 100; 
                             grdCPApproval.Columns["Status"].Width = 140;

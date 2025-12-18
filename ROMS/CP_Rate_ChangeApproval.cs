@@ -1397,6 +1397,7 @@ namespace ROMS
             {
                 dtDefaultGrid = null;
                 chkSelectAll.Visible = true;
+                chkSelectAll.Checked = false;
                 DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -1471,7 +1472,7 @@ namespace ROMS
                             grdItemList.Columns["Last Rate"].Width = 100; 
                             grdItemList.Columns["Live Rate"].Width = 100; 
                             grdItemList.Columns["Teller"].Width = 135;
-                            grdItemList.Columns["Last Updated By"].Width = 250;
+                            grdItemList.Columns["Last Updated By"].Width = 280;
                             grdItemList.Columns["RC_PR_TYPE"].Visible = false;
                             grdItemList.Columns["PRPM_Source"].Visible = false;
                             grdItemList.Columns["PRPM_Source_TRNID"].Visible = false;

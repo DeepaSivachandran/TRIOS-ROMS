@@ -183,7 +183,7 @@ namespace ROMS
                             grdSubGroupList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdSubGroupList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                            grdSubGroupList.Columns["Last Updated By"].Width = 250;
+                            grdSubGroupList.Columns["Last Updated By"].Width = 280;
                             grdSubGroupList.Columns["S.No."].Width = 50;   
                             grdSubGroupList.Columns["Total Products"].Width = 100; 
                             grdSubGroupList.Columns["Status"].Width = 140;
