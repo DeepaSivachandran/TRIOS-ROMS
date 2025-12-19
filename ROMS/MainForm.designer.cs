@@ -93,6 +93,7 @@ namespace ROMS
             this.tsmSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBroker = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCPBulkUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.tspCPApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockLocationUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMinsalesUpdate = new System.Windows.Forms.ToolStripMenuItem();
@@ -217,7 +218,6 @@ namespace ROMS
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tspCPApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -796,6 +796,13 @@ namespace ROMS
             this.tsmCPBulkUpdate.Size = new System.Drawing.Size(225, 22);
             this.tsmCPBulkUpdate.Text = "CP Bulk Update";
             this.tsmCPBulkUpdate.Click += new System.EventHandler(this.tsmCPBulkUpdate_Click);
+            // 
+            // tspCPApproval
+            // 
+            this.tspCPApproval.Name = "tspCPApproval";
+            this.tspCPApproval.Size = new System.Drawing.Size(225, 22);
+            this.tspCPApproval.Text = "CP Approval";
+            this.tspCPApproval.Click += new System.EventHandler(this.tspCPApproval_Click);
             // 
             // tsmBulkUpdate
             // 
@@ -1537,7 +1544,7 @@ namespace ROMS
             // 
             this.tsmStockValuationbyDate.Name = "tsmStockValuationbyDate";
             this.tsmStockValuationbyDate.Size = new System.Drawing.Size(204, 22);
-            this.tsmStockValuationbyDate.Text = "Stock Valuation by Date";
+            this.tsmStockValuationbyDate.Text = "Stock Valuation Summary";
             this.tsmStockValuationbyDate.Visible = false;
             this.tsmStockValuationbyDate.Click += new System.EventHandler(this.tsmStockValuationbyDate_Click);
             // 
@@ -1922,13 +1929,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tspCPApproval
-            // 
-            this.tspCPApproval.Name = "tspCPApproval";
-            this.tspCPApproval.Size = new System.Drawing.Size(225, 22);
-            this.tspCPApproval.Text = "CP Approval";
-            this.tspCPApproval.Click += new System.EventHandler(this.tspCPApproval_Click);
             // 
             // MainForm
             // 
