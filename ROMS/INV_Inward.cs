@@ -2781,6 +2781,24 @@ namespace ROMS
             }
         }
 
+        private void btnProductInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtProductName.Text.Trim() != "" && varPRID != "" && varPRID != "0")
+                {
+                    MainForm.objCP_Product_Info = new CP_Product_Info();
+                    MainForm.objCP_Product_Info.varProductId = Convert.ToInt32(varPRID);
+                    MainForm.objCP_Product_Info.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void GrdInward_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try

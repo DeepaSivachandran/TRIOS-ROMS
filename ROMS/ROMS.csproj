@@ -3788,6 +3788,7 @@
     <None Include="Resources\image-edit.jpg" />
     <None Include="Resources\crop.jpg" />
     <None Include="Resources\left rotate.jpg" />
+    <None Include="Resources\info.png" />
     <Content Include="Resources\minimize_Form.png" />
     <None Include="Resources\Telegram.png" />
     <None Include="Resources\Telegram.jpg" />
