@@ -1402,7 +1402,7 @@ namespace ROMS
                                     objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
                                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
                                     objBillreport.SetParameterValue("paraAmountInWords", lblAmount);
-                                    objBillreport.SetParameterValue("paraAmount", varGrandTotal);
+                                    objBillreport.SetParameterValue("paraAmount", varAmount + " " + "/-");
                                     objBillreport.SetParameterValue("paraChequeDate", chequeDate);
                                     objValidation.CrySqlConnection(objBillreport);
                                     MainForm.objReportLoad = new ReportLoad();
