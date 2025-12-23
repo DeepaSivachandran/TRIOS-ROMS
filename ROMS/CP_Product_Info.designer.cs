@@ -469,7 +469,7 @@
             this.groupBox5.Controls.Add(this.lblSalesRack);
             this.groupBox5.Location = new System.Drawing.Point(282, 300);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(268, 89);
+            this.groupBox5.Size = new System.Drawing.Size(262, 89);
             this.groupBox5.TabIndex = 44;
             this.groupBox5.TabStop = false;
             // 
