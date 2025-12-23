@@ -218,6 +218,7 @@ namespace ROMS
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmRcPriceList = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1338,7 +1339,8 @@ namespace ROMS
             this.tsmRateChangeReport,
             this.tsmPriceList,
             this.tsmPurchaseAdditionValue,
-            this.tsmPurchaseDiscountValue});
+            this.tsmPurchaseDiscountValue,
+            this.tsmRcPriceList});
             this.tsmPurchaseReport.Name = "tsmPurchaseReport";
             this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseReport.Text = "Purchase";
@@ -1930,6 +1932,13 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
+            // tsmRcPriceList
+            // 
+            this.tsmRcPriceList.Name = "tsmRcPriceList";
+            this.tsmRcPriceList.Size = new System.Drawing.Size(280, 22);
+            this.tsmRcPriceList.Text = "RC Price List";
+            this.tsmRcPriceList.Click += new System.EventHandler(this.tsmRcPriceList_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2151,5 +2160,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmRateCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmCPBulkUpdate;
         private System.Windows.Forms.ToolStripMenuItem tspCPApproval;
+        private System.Windows.Forms.ToolStripMenuItem tsmRcPriceList;
     }
 }
