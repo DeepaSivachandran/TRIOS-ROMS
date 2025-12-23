@@ -64,18 +64,20 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label1.Location = new System.Drawing.Point(9, 51);
+            this.label1.Location = new System.Drawing.Point(13, 55);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 20);
@@ -86,7 +88,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label2.Location = new System.Drawing.Point(9, 87);
+            this.label2.Location = new System.Drawing.Point(13, 91);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 20);
@@ -119,7 +121,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label5.Location = new System.Drawing.Point(9, 16);
+            this.label5.Location = new System.Drawing.Point(13, 20);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 20);
@@ -262,7 +264,7 @@
             // 
             this.lblPICode.AutoSize = true;
             this.lblPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblPICode.Location = new System.Drawing.Point(106, 16);
+            this.lblPICode.Location = new System.Drawing.Point(110, 20);
             this.lblPICode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPICode.Name = "lblPICode";
             this.lblPICode.Size = new System.Drawing.Size(81, 20);
@@ -273,7 +275,7 @@
             // 
             this.lblPREName.AutoSize = true;
             this.lblPREName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lblPREName.Location = new System.Drawing.Point(106, 51);
+            this.lblPREName.Location = new System.Drawing.Point(110, 55);
             this.lblPREName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPREName.Name = "lblPREName";
             this.lblPREName.Size = new System.Drawing.Size(403, 20);
@@ -284,7 +286,7 @@
             // 
             this.lblPRTName.AutoSize = true;
             this.lblPRTName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F);
-            this.lblPRTName.Location = new System.Drawing.Point(106, 87);
+            this.lblPRTName.Location = new System.Drawing.Point(110, 91);
             this.lblPRTName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPRTName.MaximumSize = new System.Drawing.Size(375, 0);
             this.lblPRTName.Name = "lblPRTName";
@@ -396,7 +398,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(481, 395);
+            this.btnClose.Location = new System.Drawing.Point(479, 399);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(69, 32);
@@ -414,7 +416,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lblProductCategory);
             this.groupBox1.Controls.Add(this.lblProductType);
-            this.groupBox1.Location = new System.Drawing.Point(13, 130);
+            this.groupBox1.Location = new System.Drawing.Point(17, 134);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -429,7 +431,7 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.lblUPP);
             this.groupBox2.Controls.Add(this.lblUPPUnit);
-            this.groupBox2.Location = new System.Drawing.Point(13, 215);
+            this.groupBox2.Location = new System.Drawing.Point(17, 219);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(262, 84);
             this.groupBox2.TabIndex = 41;
@@ -443,7 +445,7 @@
             this.groupBox3.Controls.Add(this.lblGroup);
             this.groupBox3.Controls.Add(this.lblSubgroup);
             this.groupBox3.Controls.Add(this.lblBrand);
-            this.groupBox3.Location = new System.Drawing.Point(281, 130);
+            this.groupBox3.Location = new System.Drawing.Point(285, 134);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(263, 169);
             this.groupBox3.TabIndex = 42;
@@ -455,7 +457,7 @@
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.lblPurLocation);
             this.groupBox4.Controls.Add(this.lblPurRack);
-            this.groupBox4.Location = new System.Drawing.Point(13, 300);
+            this.groupBox4.Location = new System.Drawing.Point(17, 304);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(262, 89);
             this.groupBox4.TabIndex = 43;
@@ -467,30 +469,39 @@
             this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.lblSalesLocation);
             this.groupBox5.Controls.Add(this.lblSalesRack);
-            this.groupBox5.Location = new System.Drawing.Point(282, 300);
+            this.groupBox5.Location = new System.Drawing.Point(286, 304);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(262, 89);
             this.groupBox5.TabIndex = 44;
             this.groupBox5.TabStop = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnClose);
+            this.groupBox6.Controls.Add(this.groupBox5);
+            this.groupBox6.Controls.Add(this.label1);
+            this.groupBox6.Controls.Add(this.groupBox4);
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Controls.Add(this.groupBox3);
+            this.groupBox6.Controls.Add(this.label5);
+            this.groupBox6.Controls.Add(this.groupBox2);
+            this.groupBox6.Controls.Add(this.lblPICode);
+            this.groupBox6.Controls.Add(this.groupBox1);
+            this.groupBox6.Controls.Add(this.lblPREName);
+            this.groupBox6.Controls.Add(this.lblPRTName);
+            this.groupBox6.Location = new System.Drawing.Point(12, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(565, 450);
+            this.groupBox6.TabIndex = 45;
+            this.groupBox6.TabStop = false;
             // 
             // CP_Product_Info
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(561, 441);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblPRTName);
-            this.Controls.Add(this.lblPREName);
-            this.Controls.Add(this.lblPICode);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(589, 465);
+            this.Controls.Add(this.groupBox6);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -514,8 +525,9 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -555,5 +567,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }

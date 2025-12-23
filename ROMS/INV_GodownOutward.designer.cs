@@ -112,6 +112,7 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnProductInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.epGoodsOutward)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -231,7 +232,7 @@
             this.grdLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -241,7 +242,7 @@
             this.grdLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -832,6 +833,7 @@
             // 
             // grpproductname
             // 
+            this.grpproductname.Controls.Add(this.btnProductInfo);
             this.grpproductname.Controls.Add(this.btnConversion);
             this.grpproductname.Controls.Add(this.label5);
             this.grpproductname.Controls.Add(this.label4);
@@ -1007,7 +1009,7 @@
             this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductName.Location = new System.Drawing.Point(13, 40);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(370, 27);
+            this.txtProductName.Size = new System.Drawing.Size(341, 27);
             this.txtProductName.TabIndex = 0;
             this.txtProductName.TextChanged += new System.EventHandler(this.TxtProduct_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.TxtProduct_Enter);
@@ -1033,6 +1035,17 @@
             this.dataGridViewImageColumn1.ReadOnly = true;
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 125;
+            // 
+            // btnProductInfo
+            // 
+            this.btnProductInfo.Image = global::ROMS.Properties.Resources.info;
+            this.btnProductInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProductInfo.Location = new System.Drawing.Point(358, 41);
+            this.btnProductInfo.Name = "btnProductInfo";
+            this.btnProductInfo.Size = new System.Drawing.Size(25, 25);
+            this.btnProductInfo.TabIndex = 111111175;
+            this.btnProductInfo.UseVisualStyleBackColor = true;
+            this.btnProductInfo.Click += new System.EventHandler(this.btnProductInfo_Click);
             // 
             // INV_GodownOutward
             // 
@@ -1146,5 +1159,6 @@
         public System.Windows.Forms.TextBox txtOutwardQuantity;
         private System.Windows.Forms.GroupBox grbStock;
         public System.Windows.Forms.DataGridView grdLocation;
+        private System.Windows.Forms.Button btnProductInfo;
     }
 }

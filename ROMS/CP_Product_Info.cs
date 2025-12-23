@@ -19,7 +19,6 @@ namespace ROMS
         public CP_Product_Info()
         {
             InitializeComponent();
-            
         }
         private void CP_Product_Info_Leave(object sender, EventArgs e)
         {

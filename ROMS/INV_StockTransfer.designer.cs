@@ -132,6 +132,7 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductNamePICode = new System.Windows.Forms.TextBox();
             this.lblProductNamePICode = new System.Windows.Forms.Label();
+            this.btnProductInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errStockTransfer)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -245,7 +246,6 @@
             this.DGV_FilterDLocation.Size = new System.Drawing.Size(324, 232);
             this.DGV_FilterDLocation.TabIndex = 111111174;
             this.DGV_FilterDLocation.Visible = false;
-            this.DGV_FilterDLocation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterDLocation_CellContentClick);
             this.DGV_FilterDLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterDLocation_CellDoubleClick);
             this.DGV_FilterDLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterDLocation_KeyDown);
             // 
@@ -939,6 +939,7 @@
             // 
             // grbDStockTransfer
             // 
+            this.grbDStockTransfer.Controls.Add(this.btnProductInfo);
             this.grbDStockTransfer.Controls.Add(this.lblDestRack);
             this.grbDStockTransfer.Controls.Add(this.lbltxtSourceRack);
             this.grbDStockTransfer.Controls.Add(this.txtSRack);
@@ -979,7 +980,7 @@
             // lbltxtSourceRack
             // 
             this.lbltxtSourceRack.AutoSize = true;
-            this.lbltxtSourceRack.Location = new System.Drawing.Point(298, 15);
+            this.lbltxtSourceRack.Location = new System.Drawing.Point(322, 15);
             this.lbltxtSourceRack.Name = "lbltxtSourceRack";
             this.lbltxtSourceRack.Size = new System.Drawing.Size(75, 20);
             this.lbltxtSourceRack.TabIndex = 1111240;
@@ -990,11 +991,11 @@
             this.txtSRack.BackColor = System.Drawing.SystemColors.Control;
             this.txtSRack.Enabled = false;
             this.txtSRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSRack.Location = new System.Drawing.Point(298, 40);
+            this.txtSRack.Location = new System.Drawing.Point(322, 40);
             this.txtSRack.MaxLength = 100;
             this.txtSRack.Name = "txtSRack";
             this.txtSRack.ReadOnly = true;
-            this.txtSRack.Size = new System.Drawing.Size(108, 27);
+            this.txtSRack.Size = new System.Drawing.Size(84, 27);
             this.txtSRack.TabIndex = 5;
             // 
             // cmbDRack
@@ -1177,7 +1178,7 @@
             this.txtProductNamePICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtProductNamePICode.Location = new System.Drawing.Point(5, 40);
             this.txtProductNamePICode.Name = "txtProductNamePICode";
-            this.txtProductNamePICode.Size = new System.Drawing.Size(287, 27);
+            this.txtProductNamePICode.Size = new System.Drawing.Size(280, 27);
             this.txtProductNamePICode.TabIndex = 4;
             this.txtProductNamePICode.TextChanged += new System.EventHandler(this.TxtProductNamePICode_TextChanged);
             this.txtProductNamePICode.Enter += new System.EventHandler(this.TxtProductNamePICode_Enter);
@@ -1192,6 +1193,17 @@
             this.lblProductNamePICode.Size = new System.Drawing.Size(139, 20);
             this.lblProductNamePICode.TabIndex = 958809;
             this.lblProductNamePICode.Text = "Search by P.I Code (F11)";
+            // 
+            // btnProductInfo
+            // 
+            this.btnProductInfo.Image = global::ROMS.Properties.Resources.info;
+            this.btnProductInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProductInfo.Location = new System.Drawing.Point(291, 41);
+            this.btnProductInfo.Name = "btnProductInfo";
+            this.btnProductInfo.Size = new System.Drawing.Size(25, 25);
+            this.btnProductInfo.TabIndex = 111111176;
+            this.btnProductInfo.UseVisualStyleBackColor = true;
+            this.btnProductInfo.Click += new System.EventHandler(this.btnProductInfo_Click);
             // 
             // INV_StockTransfer
             // 
@@ -1321,5 +1333,6 @@
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
         public System.Windows.Forms.DataGridView DGV_FilterSLocation;
         public System.Windows.Forms.DataGridView DGV_FilterDLocation;
+        private System.Windows.Forms.Button btnProductInfo;
     }
 }
