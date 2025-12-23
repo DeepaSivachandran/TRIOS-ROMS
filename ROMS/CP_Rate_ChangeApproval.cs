@@ -2308,8 +2308,7 @@ namespace ROMS
                 }
 
                 if (objRADataTable.Rows.Count > 0)
-                {
-                     
+                { 
                     TRN_RateChange objRateChange = new TRN_RateChange();
                     if (flagType == 1)
                     {

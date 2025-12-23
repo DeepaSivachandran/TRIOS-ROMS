@@ -80,6 +80,7 @@ namespace ROMS
         public static string varcurrentdate = "";
         public static string pbUserMappedLocationIds = "0";
         public static  int pbMenucode = 0;
+        public static string varratechangecount = "0";
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart; 
@@ -407,6 +408,7 @@ namespace ROMS
                 InitializeComponent();
                 objValidation.setFontAndFontSize(this);
                 timer1.Start();
+                timer2.Start();
                 //ms.Renderer = new CustomMenuStripRenderer();
             }
             catch (Exception ex)
@@ -1217,7 +1219,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
+        public void timer2_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                DataService OBJDSERVICE = new DataService(); 
+                varratechangecount = "1"; 
+                OBJDSERVICE.CloseConnection();
+                DataService objDservice = new DataService();
+                string varFlag = objDservice.displaydata("SELECT RAS_STSID FROM DEF_RATEAPPROVAL_STATUS");
+                objDservice.CloseConnection();
+                if (varFlag == "1")
+                {
+                    if (varratechangecount != "0")
+                    {
+                        tsmGif.Visible = true;
+                    }
+                    else
+                    {
+                        tsmGif.Visible = false;
+                    }
+                }
+                else
+                {
+                    tsmGif.Visible = false;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void CenterChildForm(Form childForm)
         {
             if (mdiClientArea != null && childForm != null)
@@ -4571,7 +4604,8 @@ namespace ROMS
         private void tsmLock_Click(object sender, EventArgs e)
         {
 
-            try{
+            try
+            {
 
                 DEF_IdleLogin obj = new DEF_IdleLogin();
                 obj.ShowDialog();

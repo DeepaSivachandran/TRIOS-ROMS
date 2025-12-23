@@ -217,6 +217,8 @@ namespace ROMS
             this.tsmMobile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer2 = new System.Windows.Forms.Timer(this.components); 
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.tsmRcPriceList = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
@@ -1837,91 +1839,105 @@ namespace ROMS
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 21);
             this.tsmSalesMasters.Text = "S_Masters";
-            this.tsmSalesMasters.Visible = false;
+            this.tsmSalesMasters.Visible = false; 
             // 
             // tsmRoute
             // 
             this.tsmRoute.Name = "tsmRoute";
-            this.tsmRoute.Size = new System.Drawing.Size(175, 22);
+            this.tsmRoute.Size = new System.Drawing.Size(180, 22);
             this.tsmRoute.Text = "Route";
             this.tsmRoute.Click += new System.EventHandler(this.tsmRoute_Click);
             // 
             // tsmArea
             // 
             this.tsmArea.Name = "tsmArea";
-            this.tsmArea.Size = new System.Drawing.Size(175, 22);
+            this.tsmArea.Size = new System.Drawing.Size(180, 22);
             this.tsmArea.Text = "Area";
             this.tsmArea.Click += new System.EventHandler(this.tsmArea_Click);
             // 
             // tsmCustomerType
             // 
             this.tsmCustomerType.Name = "tsmCustomerType";
-            this.tsmCustomerType.Size = new System.Drawing.Size(175, 22);
+            this.tsmCustomerType.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomerType.Text = "Customer Type";
             this.tsmCustomerType.Click += new System.EventHandler(this.tsmCustomerType_Click);
             // 
             // tsmCustomer
             // 
             this.tsmCustomer.Name = "tsmCustomer";
-            this.tsmCustomer.Size = new System.Drawing.Size(175, 22);
+            this.tsmCustomer.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomer.Text = "Customer";
             this.tsmCustomer.Click += new System.EventHandler(this.tsmCustomer_Click);
             // 
             // tsmTemporyCustomer
             // 
             this.tsmTemporyCustomer.Name = "tsmTemporyCustomer";
-            this.tsmTemporyCustomer.Size = new System.Drawing.Size(175, 22);
+            this.tsmTemporyCustomer.Size = new System.Drawing.Size(180, 22);
             this.tsmTemporyCustomer.Text = "Temporary Customer";
             this.tsmTemporyCustomer.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
             // 
             // tsmCardMachine
             // 
             this.tsmCardMachine.Name = "tsmCardMachine";
-            this.tsmCardMachine.Size = new System.Drawing.Size(175, 22);
+            this.tsmCardMachine.Size = new System.Drawing.Size(180, 22);
             this.tsmCardMachine.Text = "Card Machine";
             this.tsmCardMachine.Click += new System.EventHandler(this.tsmCardMachine_Click);
             // 
             // tsmUPI
             // 
             this.tsmUPI.Name = "tsmUPI";
-            this.tsmUPI.Size = new System.Drawing.Size(175, 22);
+            this.tsmUPI.Size = new System.Drawing.Size(180, 22);
             this.tsmUPI.Text = "UPI";
             this.tsmUPI.Click += new System.EventHandler(this.tsmUPI_Click);
             // 
             // tsmVehicle
             // 
             this.tsmVehicle.Name = "tsmVehicle";
-            this.tsmVehicle.Size = new System.Drawing.Size(175, 22);
+            this.tsmVehicle.Size = new System.Drawing.Size(180, 22);
             this.tsmVehicle.Text = "Vehicle";
             this.tsmVehicle.Click += new System.EventHandler(this.tsmVehicle_Click);
             // 
             // tsmDeliveryPerson
             // 
             this.tsmDeliveryPerson.Name = "tsmDeliveryPerson";
-            this.tsmDeliveryPerson.Size = new System.Drawing.Size(175, 22);
+            this.tsmDeliveryPerson.Size = new System.Drawing.Size(180, 22);
             this.tsmDeliveryPerson.Text = "Delivery Person";
             this.tsmDeliveryPerson.Click += new System.EventHandler(this.tsmDeliveryPerson_Click);
             // 
             // tsmMobile
             // 
             this.tsmMobile.Name = "tsmMobile";
-            this.tsmMobile.Size = new System.Drawing.Size(175, 22);
+            this.tsmMobile.Size = new System.Drawing.Size(180, 22);
             this.tsmMobile.Text = "Mobile";
             this.tsmMobile.Click += new System.EventHandler(this.tsmMobile_Click);
             // 
             // tsmTransport
             // 
             this.tsmTransport.Name = "tsmTransport";
-            this.tsmTransport.Size = new System.Drawing.Size(175, 22);
+            this.tsmTransport.Size = new System.Drawing.Size(180, 22);
             this.tsmTransport.Text = "Transport";
             this.tsmTransport.Click += new System.EventHandler(this.tsmTransport_Click);
             // 
             // tsmMarriageHall
             // 
             this.tsmMarriageHall.Name = "tsmMarriageHall";
-            this.tsmMarriageHall.Size = new System.Drawing.Size(175, 22);
+            this.tsmMarriageHall.Size = new System.Drawing.Size(180, 22);
             this.tsmMarriageHall.Text = "Marriage Hall";
             this.tsmMarriageHall.Click += new System.EventHandler(this.tsmMarriageHall_Click);
+            // 
+            // tsmGif
+            // 
+            this.tsmGif.ForeColor = System.Drawing.Color.Red;
+            this.tsmGif.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsmGif.Name = "tsmGif";
+            this.tsmGif.Size = new System.Drawing.Size(116, 24);
+            this.tsmGif.Text = "Rate Approval";
+            this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
+            // timer2
+            // 
+            this.timer2.Interval = 5000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // 
             // statusBar
             // 
@@ -2157,6 +2173,8 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmTemporyCustomer;
         private System.Windows.Forms.ToolStripMenuItem tsmCardMachine;
         private System.Windows.Forms.ToolStripMenuItem tsmUPI;
+        private System.Windows.Forms.ToolStripMenuItem tsmGif;
+        internal System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.ToolStripMenuItem tsmRateCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmCPBulkUpdate;
         private System.Windows.Forms.ToolStripMenuItem tspCPApproval;
