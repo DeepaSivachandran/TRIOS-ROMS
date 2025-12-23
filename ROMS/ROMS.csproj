@@ -474,6 +474,12 @@
     <Compile Include="CP_CustomerType.designer.cs">
       <DependentUpon>CP_CustomerType.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Product_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product_Info.designer.cs">
+      <DependentUpon>CP_Product_Info.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MR_UPI.cs" />
     <Compile Include="Model\MR_CardMachine.cs" />
     <Compile Include="Model\MR_TemporaryCustomer.cs" />
@@ -3960,6 +3966,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_CustomerType.resx">
       <DependentUpon>CP_CustomerType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product_Info.resx">
+      <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
