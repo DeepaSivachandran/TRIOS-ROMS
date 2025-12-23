@@ -7949,7 +7949,11 @@ namespace ROMS
                                     {
                                         shelfLifeError++;
                                     }
-                                }  
+                                }
+                                else if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmshelfper"].Value.ToString().Trim()) == "")
+                                {
+                                    shelfLifeError = 1;
+                                }
                                 //if (Convert.ToString(grdSupplierList.Rows[i].Cells["clmBatchenable"].Value) == "73") //Disabled
                                 //{
                                 //    grdSupplierList.Rows[i].Cells["clmBatchno"].Style.BackColor = Color.LightGray;

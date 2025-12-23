@@ -370,6 +370,10 @@ namespace ROMS
                                 shelfLifeError++;
                             }
                         }
+                        else if (Convert.ToString(grdInward.Rows[i].Cells["clmshelflifeper"].Value.ToString().Trim()) == "")
+                        {
+                            shelfLifeError = 1;
+                        }
                     }
                     if (Convert.ToString(grdInward.Rows[i].Cells["clmBatchnoEnable"].Value) == "75")
                     {
