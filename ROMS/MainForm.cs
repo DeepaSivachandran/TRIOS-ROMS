@@ -4286,7 +4286,7 @@ namespace ROMS
             }
         }
          
-        private void tpProductClassification_Click(object sender, EventArgs e)
+        private void tsmProductClassification_Click(object sender, EventArgs e)
         {
             try
             {
@@ -4540,7 +4540,7 @@ namespace ROMS
             }
         }
 
-        private void tspCPApproval_Click(object sender, EventArgs e)
+        private void tsmCPApproval_Click(object sender, EventArgs e)
         { 
             try
             {
