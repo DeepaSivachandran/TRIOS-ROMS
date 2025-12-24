@@ -372,6 +372,12 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="IdleManager.cs" />
+    <Compile Include="INV_DamageEntryQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_DamageEntryQueue.designer.cs">
+      <DependentUpon>INV_DamageEntryQueue.cs</DependentUpon>
+    </Compile>
     <Compile Include="INV_StockJournal_Conversion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3919,6 +3925,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV_DamageEntryQueue.resx">
+      <DependentUpon>INV_DamageEntryQueue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockJournal_Conversion.resx">
       <DependentUpon>INV_StockJournal_Conversion.cs</DependentUpon>

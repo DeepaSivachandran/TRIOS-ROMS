@@ -1039,7 +1039,7 @@ namespace ROMS
         public void udfnTransactionData()
         {
             DataBind objDataBind = new DataBind();
-            objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 24", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
+            objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID = 24 AND MSTID <> 71", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
             objDataBind = null;
         }
 
@@ -2085,7 +2085,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    cmbTransactionType.Focus();
                 }
             }
             catch (Exception ex)
@@ -2325,7 +2325,7 @@ namespace ROMS
             finally
             {
                 lvTeller.Visible = false;
-                txtProductName.Focus();
+                cmbTransactionType.Focus();
             }
         }
         private void BtnClose_Leave(object sender, EventArgs e)
@@ -2902,12 +2902,12 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbTransactionType.SelectedValue) != 70) // Regular
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 70) // Regular
                 {
                     grdGoodsOutward.Columns["clmrequestqty"].Width = 100;
                     grdGoodsOutward.Columns["clmrequestqty"].Visible = true;
                 }
-                else // Stock Request
+                else if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 71)  // Stock Request
                 {
                     grdGoodsOutward.Columns["clmrequestqty"].Width = 0;
                     grdGoodsOutward.Columns["clmrequestqty"].Visible = false;
@@ -3305,7 +3305,7 @@ namespace ROMS
                     epGoodsOutward.Clear();
                     udfntooltiphide();
                     txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#f0f0f0");
-                    if (varSTSID == 26)
+                    if (varSTSID == 26 || varSTSID == 22)
                     {
                         txtTeller.Enabled = false;
                         txtProductName.Enabled = false;

@@ -621,6 +621,7 @@ namespace ROMS
                 {
                     udfnFieldAccess();
                 }
+                udfnQueueListCount();
             }
             catch (Exception ex)
             {
@@ -640,7 +641,9 @@ namespace ROMS
                 tsbEdit.Visible = privilege.Contains("3");
                 tssEdit.Visible = privilege.Contains("3");
                 tsbDelete.Visible = privilege.Contains("4"); 
-                btnExport.Visible = privilege.Contains("6"); 
+                btnExport.Visible = privilege.Contains("6");
+                tsbQue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("9"));
+                tsTotalQueue.Visible = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("9"));
                 udfnGridAccess();
             }
             catch (Exception ex)
@@ -1077,7 +1080,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(1, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
+                objDs = objspservice.udfnproductDamage(1, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1242,7 +1245,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
+                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -1380,7 +1383,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(6, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
+                objDs = objspservice.udfnproductDamage(6, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -2138,7 +2141,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
+                objDs = objspservice.udfnproductDamage(5, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -2233,7 +2236,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(7, 0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "");
+                objDs = objspservice.udfnproductDamage(7, 0, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblScheduleCode.Text), Convert.ToInt32(cmbconcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "");
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
@@ -3148,6 +3151,51 @@ namespace ROMS
                     objError = new DataError();
                     objError.WriteFile(ex);
                 }
+            }
+        }
+
+        private void tsbQue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objINV_DamageEntryQueue = new INV_DamageEntryQueue();
+                MainForm.objINV_DamageEntryQueue.MdiParent = this.ParentForm;
+                MainForm.objINV_DamageEntryQueue.EditAccess = SpecialPermissions.Any(sp => sp.MUP_Code == 29 && sp.EditAccess.Split(',').Contains("10")); 
+                MainForm main = (MainForm)this.MdiParent;
+                main.IsEntryFormOpen = true;
+                main.CurrentEntryForm = MainForm.objINV_DamageEntryQueue;
+                main.CurrentParentListForm = this;
+                MainForm.objINV_DamageEntryQueue.Show();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        public void udfnQueueListCount()
+        {
+            try
+            { 
+                SPDataService objspservice = new SPDataService();
+                DataSet objDs = new DataSet();
+
+                objDs = objspservice.udfnproductDamage(10, 0, 0, 0, 0, 0, "", "", "",0, "");
+                objspservice.CloseConnection(); 
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        tsTotalQueue.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Queue Count"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

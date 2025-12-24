@@ -52,6 +52,10 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.pnlinward = new System.Windows.Forms.Panel();
+            this.lvSupplier = new System.Windows.Forms.ListView();
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grdSupDEList = new System.Windows.Forms.DataGridView();
             this.clmSupPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.DGV_SupSearchGrid = new System.Windows.Forms.DataGridView();
@@ -61,10 +65,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvSupplier = new System.Windows.Forms.ListView();
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grbFilterBy = new System.Windows.Forms.GroupBox();
             this.lblShow = new System.Windows.Forms.Label();
             this.cmbDMShow = new System.Windows.Forms.ComboBox();
@@ -93,6 +93,8 @@
             this.grdDamageEntryList = new System.Windows.Forms.DataGridView();
             this.clmPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsTotalQueue = new System.Windows.Forms.ToolStripButton();
+            this.tsbQue = new System.Windows.Forms.ToolStripButton();
             this.tsDamageEntry.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSupDEList)).BeginInit();
@@ -113,6 +115,8 @@
             this.tsDamageEntry.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsDamageEntry.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspHeader,
+            this.tsTotalQueue,
+            this.tsbQue,
             this.tss,
             this.tsbDelete,
             this.tssEdit,
@@ -212,6 +216,38 @@
             this.pnlinward.Name = "pnlinward";
             this.pnlinward.Size = new System.Drawing.Size(1354, 641);
             this.pnlinward.TabIndex = 36;
+            // 
+            // lvSupplier
+            // 
+            this.lvSupplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader21,
+            this.columnHeader22,
+            this.columnHeader23});
+            this.lvSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lvSupplier.FullRowSelect = true;
+            this.lvSupplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSupplier.HideSelection = false;
+            this.lvSupplier.Location = new System.Drawing.Point(698, 78);
+            this.lvSupplier.Name = "lvSupplier";
+            this.lvSupplier.Size = new System.Drawing.Size(452, 219);
+            this.lvSupplier.TabIndex = 111111144;
+            this.lvSupplier.UseCompatibleStateImageBehavior = false;
+            this.lvSupplier.View = System.Windows.Forms.View.Details;
+            this.lvSupplier.Visible = false;
+            this.lvSupplier.DoubleClick += new System.EventHandler(this.LvSupplier_DoubleClick);
+            this.lvSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSupplier_KeyDown);
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Width = 250;
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Width = 0;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Width = 0;
             // 
             // grdSupDEList
             // 
@@ -417,38 +453,6 @@
             // columnHeader3
             // 
             this.columnHeader3.Width = 0;
-            // 
-            // lvSupplier
-            // 
-            this.lvSupplier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader21,
-            this.columnHeader22,
-            this.columnHeader23});
-            this.lvSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.lvSupplier.FullRowSelect = true;
-            this.lvSupplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvSupplier.HideSelection = false;
-            this.lvSupplier.Location = new System.Drawing.Point(698, 78);
-            this.lvSupplier.Name = "lvSupplier";
-            this.lvSupplier.Size = new System.Drawing.Size(452, 219);
-            this.lvSupplier.TabIndex = 111111144;
-            this.lvSupplier.UseCompatibleStateImageBehavior = false;
-            this.lvSupplier.View = System.Windows.Forms.View.Details;
-            this.lvSupplier.Visible = false;
-            this.lvSupplier.DoubleClick += new System.EventHandler(this.LvSupplier_DoubleClick);
-            this.lvSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LvSupplier_KeyDown);
-            // 
-            // columnHeader21
-            // 
-            this.columnHeader21.Width = 250;
-            // 
-            // columnHeader22
-            // 
-            this.columnHeader22.Width = 0;
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Width = 0;
             // 
             // grbFilterBy
             // 
@@ -847,6 +851,32 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // tsTotalQueue
+            // 
+            this.tsTotalQueue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsTotalQueue.Enabled = false;
+            this.tsTotalQueue.ForeColor = System.Drawing.Color.DarkGreen;
+            this.tsTotalQueue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsTotalQueue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsTotalQueue.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.tsTotalQueue.Name = "tsTotalQueue";
+            this.tsTotalQueue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsTotalQueue.Size = new System.Drawing.Size(23, 24);
+            this.tsTotalQueue.Text = "0";
+            // 
+            // tsbQue
+            // 
+            this.tsbQue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbQue.Image = global::ROMS.Properties.Resources.queue;
+            this.tsbQue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbQue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbQue.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.tsbQue.Name = "tsbQue";
+            this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbQue.Size = new System.Drawing.Size(63, 24);
+            this.tsbQue.Text = "Queue";
+            this.tsbQue.Click += new System.EventHandler(this.tsbQue_Click);
+            // 
             // INV_DamageEntryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -935,5 +965,7 @@
         public System.Windows.Forms.DataGridView DGV_SupSearchGrid;
         private System.Windows.Forms.DataGridViewImageColumn clmSupPrint;
         private System.Windows.Forms.ToolStripSeparator tss;
+        public System.Windows.Forms.ToolStripButton tsTotalQueue;
+        public System.Windows.Forms.ToolStripButton tsbQue;
     }
 }

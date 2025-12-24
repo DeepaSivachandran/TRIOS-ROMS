@@ -231,7 +231,7 @@
             this.grdLocation.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Chocolate;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -241,7 +241,7 @@
             this.grdLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 8.75F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -747,15 +747,13 @@
             // 
             // cmbTransactionType
             // 
-            this.cmbTransactionType.Enabled = false;
             this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTransactionType.FormattingEnabled = true;
             this.cmbTransactionType.Location = new System.Drawing.Point(745, 36);
             this.cmbTransactionType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(135, 27);
-            this.cmbTransactionType.TabIndex = 4;
-            this.cmbTransactionType.Visible = false;
+            this.cmbTransactionType.TabIndex = 5;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.cmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.cmbTransactionType_Enter);
             this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
@@ -771,7 +769,6 @@
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 90;
             this.label1.Text = "Transaction Type";
-            this.label1.Visible = false;
             // 
             // txtOutwardNo
             // 
