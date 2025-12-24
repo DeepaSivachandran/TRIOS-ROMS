@@ -78,7 +78,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 509;
+                MenuCode = 50401;
                 cmbConcern.Focus();
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();

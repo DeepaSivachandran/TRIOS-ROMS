@@ -347,7 +347,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 526;
+                MenuCode = 51301;
                 udfnList();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {

@@ -648,7 +648,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 521;
+                MenuCode = 51304;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=106", "MST_DisplayText,MSTID,MST_ShortName", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;

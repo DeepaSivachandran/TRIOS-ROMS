@@ -3542,7 +3542,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_ProductHSNlist, "CP_ProductHSNList", 504);
+                OpenReportForm(ref MainForm.objCP_ProductHSNlist, "CP_ProductHSNList", 50501);
                 PbCurrentForm = "5.3";
             }
             catch (Exception ex)
@@ -3555,7 +3555,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_GroupList, "CP_GroupList", 505);
+                OpenReportForm(ref MainForm.objCP_GroupList, "CP_GroupList", 50502);
                 PbCurrentForm = "5.4";
             }
             catch (Exception ex)
@@ -3568,7 +3568,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_SubGroupList, "CP_SubGroupList", 506);
+                OpenReportForm(ref MainForm.objCP_SubGroupList, "CP_SubGroupList", 50503);
                 PbCurrentForm = "5.5";
             }
             catch (Exception ex)
@@ -3582,7 +3582,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_BrandList, "CP_BrandList", 507);
+                OpenReportForm(ref MainForm.objCP_BrandList, "CP_BrandList", 50504);
                 PbCurrentForm = "5.6";
             }
             catch (Exception ex)
@@ -3595,7 +3595,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Unitlist, "CP_Unitlist", 508);
+                OpenReportForm(ref MainForm.objCP_Unitlist, "CP_Unitlist", 50505);
                 PbCurrentForm = "5.7";
             }
             catch (Exception ex)
@@ -3608,7 +3608,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_LocationList, "CP_LocationList", 509);
+                OpenReportForm(ref MainForm.objCP_LocationList, "CP_LocationList", 50401);
                 PbCurrentForm = "5.8";
             }
             catch (Exception ex)
@@ -3621,7 +3621,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_RackList, "CP_RackList", 510);
+                OpenReportForm(ref MainForm.objCP_RackList, "CP_RackList", 50402);
                 PbCurrentForm = "5.9";
             }
             catch (Exception ex)
@@ -3634,7 +3634,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_RackGroupList, "CP_RackGroupList", 511);
+                OpenReportForm(ref MainForm.objCP_RackGroupList, "CP_RackGroupList", 50403);
                 PbCurrentForm = "5.10";
             }
             catch (Exception ex)
@@ -3647,7 +3647,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Itemlist, "CP_ProductList", 512);
+                OpenReportForm(ref MainForm.objCP_Itemlist, "CP_ProductList", 50506);
                 PbCurrentForm = "5.11";
             }
             catch (Exception ex)
@@ -3660,7 +3660,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_ProductApprovalList, "CP_ProductApprovalList", 513);
+                OpenReportForm(ref MainForm.objCP_ProductApprovalList, "CP_ProductApprovalList", 50508);
                 PbCurrentForm = "5.12";
             }
             catch (Exception ex)
@@ -3674,7 +3674,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_UserCategoryList, "CP_UserCategoryList", 514);
+                OpenReportForm(ref MainForm.objCP_UserCategoryList, "CP_UserCategoryList", 50601);
                 PbCurrentForm = "5.13";
             }
             catch (Exception ex)
@@ -3687,7 +3687,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_EmployeeList, "CP_EmployeeList", 515);
+                OpenReportForm(ref MainForm.objCP_EmployeeList, "CP_EmployeeList", 50602);
                 PbCurrentForm = "5.14";
             }
             catch (Exception ex)
@@ -3743,7 +3743,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 1;
                 pbMenucode = 51901;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51901);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50901);
                 objCP_BulkAttributes.Text = "Stock location, Rack & MSQ"; 
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ"; 
                 PbCurrentForm = "5.18";
@@ -3762,7 +3762,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 2;
                 pbMenucode = 51902;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51902);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50902);
                 objCP_BulkAttributes.Text = "Minsales Qty & Barcode";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
                 PbCurrentForm = "5.18";
@@ -3781,7 +3781,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 3;
                 pbMenucode = 51903;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51903);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50903);
                 objCP_BulkAttributes.Text = "Min, Max stock & Reorder Qty";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                 PbCurrentForm = "5.18";
@@ -3800,7 +3800,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 4;
                 pbMenucode = 51904;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51904);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50904);
                 objCP_BulkAttributes.Text = "Bulk Unit, UPP & Shelf Life";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
                 PbCurrentForm = "5.18";
@@ -3819,7 +3819,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
                 pbMenucode = 51905;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51905);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50905);
                 objCP_BulkAttributes.Text = "Product Category, RM Flag & Batch";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                 PbCurrentForm = "5.18";
@@ -3838,7 +3838,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 6;
                 pbMenucode = 51906;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51906);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50906);
                 objCP_BulkAttributes.Text = "Net & Gross Weight";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
                 PbCurrentForm = "5.18";
@@ -3857,7 +3857,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 7;
                 pbMenucode = 51907;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51907);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50907);
                 objCP_BulkAttributes.Text = "Group, Subgroup & Brand";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                 PbCurrentForm = "5.18";
@@ -3876,7 +3876,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
                 pbMenucode = 51908;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51908);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50908);
                 objCP_BulkAttributes.Text = "HSN Name";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                 PbCurrentForm = "5.18";
@@ -3895,7 +3895,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 9;
                 pbMenucode = 51909;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 51909);
+                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50909);
                 objCP_BulkAttributes.Text = "Pro. Code, Name & Unit";
                 objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
                 PbCurrentForm = "5.18";
@@ -3923,7 +3923,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Rate_ChangeList, "CP_Rate_ChangeList", 521);
+                OpenReportForm(ref MainForm.objCP_Rate_ChangeList, "CP_Rate_ChangeList", 51304);
             }
             catch (Exception ex)
             {
@@ -4292,7 +4292,7 @@ namespace ROMS
             {
                 MainForm.objCP_Spl_Products_Bulk = new CP_Spl_Products_Bulk();
                 MainForm.objCP_Spl_Products_Bulk.pbMenuFlag = 1;
-                OpenReportForm(ref MainForm.objCP_Spl_Products_Bulk, "CP_Spl_Products_Bulk", 51901);
+                OpenReportForm(ref MainForm.objCP_Spl_Products_Bulk, "CP_Spl_Products_Bulk", 50507);
                 objCP_Spl_Products_Bulk.Text = "Product Classification";
                 objCP_Spl_Products_Bulk.tspHeader.Text = "Product Classification";
                 PbCurrentForm = "5.18";
@@ -4308,7 +4308,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 525);
+                OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 51305);
             }
             catch (Exception ex)
             {
@@ -4517,7 +4517,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_Rate_CategoryList, "CP_Rate_CategoryList", 526);
+                OpenReportForm(ref MainForm.objCP_Rate_CategoryList, "CP_Rate_CategoryList", 51301);
             }
             catch (Exception ex)
             {
@@ -4530,7 +4530,7 @@ namespace ROMS
         {
             try
             { 
-                OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_List, "CP_CostPrice_Update_Bulk_List", 519);
+                OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_List, "CP_CostPrice_Update_Bulk_List", 51302);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -4544,7 +4544,7 @@ namespace ROMS
         { 
             try
             {
-                OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_Approval_List, "CP_CostPrice_Update_Bulk_Approval_List", 520);
+                OpenReportForm(ref MainForm.objCP_CostPrice_Update_Bulk_Approval_List, "CP_CostPrice_Update_Bulk_Approval_List", 51303);
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)

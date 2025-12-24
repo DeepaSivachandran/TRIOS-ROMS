@@ -378,7 +378,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 511;
+                MenuCode = 50403;
                 udfnCmbConcern();
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDataBind = new DataBind();

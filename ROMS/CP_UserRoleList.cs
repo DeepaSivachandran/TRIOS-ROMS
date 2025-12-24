@@ -79,7 +79,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 524;
+                MenuCode = 51401;
                 grdUserList.AllowUserToResizeColumns = false; 
                 txtDUserList.Focus();
                 DataBind objDataBind = new DataBind();

@@ -1040,7 +1040,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 512;
+                MenuCode = 50506;
                 this.ActiveControl = cmbConcern;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();

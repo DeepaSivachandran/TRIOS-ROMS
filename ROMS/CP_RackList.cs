@@ -76,7 +76,7 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 510;
+                MenuCode = 50402;
                 cmbGroupType.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
