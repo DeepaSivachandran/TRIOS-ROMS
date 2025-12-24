@@ -76,24 +76,11 @@ namespace ROMS
             this.tsmCity = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBank = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCompany = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmHSN = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSubGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBrand = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmUnit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLocation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRack = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRackGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
-            this.tpProductClassification = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmProductApproval = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEmployeee = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplier = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBroker = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCPBulkUpdate = new System.Windows.Forms.ToolStripMenuItem();
-            this.tspCPApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockLocationUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMinsalesUpdate = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,12 +92,8 @@ namespace ROMS
             this.tsmHSNUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProCodeUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRepresentative = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRateCategory = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRateChange = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRateApproval = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStickerPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDirectLabelPrint = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmUserRole = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmControlPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
@@ -218,6 +201,28 @@ namespace ROMS
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.hSNNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productSubGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rateCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cPBulkUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productCalssificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productApprovalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cPApprovalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rateChangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rateChangeApprovalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rackGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.employeeCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.employeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -605,32 +610,17 @@ namespace ROMS
             this.tsmCity,
             this.tsmBank,
             this.tsmCompany,
-            this.tsmHSN,
-            this.tsmGroup,
-            this.tsmSubGroup,
-            this.tsmBrand,
-            this.tsmUnit,
             this.tsmLocation,
-            this.tsmRack,
-            this.tsmRackGroup,
             this.tsmProduct,
-            this.tpProductClassification,
-            this.tsmProductApproval,
-            this.tsmCategory,
             this.tsmEmployeee,
-            this.tsmUser,
             this.tsmSupplier,
             this.tsmBroker,
-            this.tsmCPBulkUpdate,
-            this.tspCPApproval,
             this.tsmBulkUpdate,
             this.tsmRepresentative,
-            this.tsmRateCategory,
-            this.tsmRateChange,
-            this.tsmRateApproval,
             this.tsmStickerPrint,
             this.tsmDirectLabelPrint,
-            this.tsmUserRole});
+            this.rateToolStripMenuItem,
+            this.usersToolStripMenuItem});
             this.tsmMaster.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMaster.Name = "tsmMaster";
             this.tsmMaster.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
@@ -663,116 +653,45 @@ namespace ROMS
             this.tsmCompany.Visible = false;
             this.tsmCompany.Click += new System.EventHandler(this.TsmCompany_Click);
             // 
-            // tsmHSN
-            // 
-            this.tsmHSN.Name = "tsmHSN";
-            this.tsmHSN.Size = new System.Drawing.Size(225, 22);
-            this.tsmHSN.Text = "HSN Name";
-            this.tsmHSN.Visible = false;
-            this.tsmHSN.Click += new System.EventHandler(this.TsmHSN_Click);
-            // 
-            // tsmGroup
-            // 
-            this.tsmGroup.Name = "tsmGroup";
-            this.tsmGroup.Size = new System.Drawing.Size(225, 22);
-            this.tsmGroup.Text = "Product Group";
-            this.tsmGroup.Visible = false;
-            this.tsmGroup.Click += new System.EventHandler(this.TsmGroup_Click);
-            // 
-            // tsmSubGroup
-            // 
-            this.tsmSubGroup.Name = "tsmSubGroup";
-            this.tsmSubGroup.Size = new System.Drawing.Size(225, 22);
-            this.tsmSubGroup.Text = "Product Sub Group";
-            this.tsmSubGroup.Visible = false;
-            this.tsmSubGroup.Click += new System.EventHandler(this.TsmSubGroup_Click);
-            // 
-            // tsmBrand
-            // 
-            this.tsmBrand.Name = "tsmBrand";
-            this.tsmBrand.Size = new System.Drawing.Size(225, 22);
-            this.tsmBrand.Text = "Brand";
-            this.tsmBrand.Visible = false;
-            this.tsmBrand.Click += new System.EventHandler(this.TsmBrand_Click);
-            // 
-            // tsmUnit
-            // 
-            this.tsmUnit.Name = "tsmUnit";
-            this.tsmUnit.Size = new System.Drawing.Size(225, 22);
-            this.tsmUnit.Text = "Unit";
-            this.tsmUnit.Visible = false;
-            this.tsmUnit.Click += new System.EventHandler(this.TsmUnit_Click);
-            // 
             // tsmLocation
             // 
+            this.tsmLocation.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stockLocationToolStripMenuItem,
+            this.rackToolStripMenuItem,
+            this.rackGroupToolStripMenuItem});
             this.tsmLocation.Name = "tsmLocation";
             this.tsmLocation.Size = new System.Drawing.Size(225, 22);
-            this.tsmLocation.Text = "Stock Location";
+            this.tsmLocation.Text = "Location";
             this.tsmLocation.Visible = false;
             this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
             // 
-            // tsmRack
-            // 
-            this.tsmRack.Name = "tsmRack";
-            this.tsmRack.Size = new System.Drawing.Size(225, 22);
-            this.tsmRack.Text = "Rack";
-            this.tsmRack.Visible = false;
-            this.tsmRack.Click += new System.EventHandler(this.TsmRack_Click);
-            // 
-            // tsmRackGroup
-            // 
-            this.tsmRackGroup.Name = "tsmRackGroup";
-            this.tsmRackGroup.Size = new System.Drawing.Size(225, 22);
-            this.tsmRackGroup.Text = "Rack Group";
-            this.tsmRackGroup.Visible = false;
-            this.tsmRackGroup.Click += new System.EventHandler(this.TsmRackGroup_Click);
-            // 
             // tsmProduct
             // 
+            this.tsmProduct.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hSNNameToolStripMenuItem,
+            this.productGroupToolStripMenuItem,
+            this.productSubGroupToolStripMenuItem,
+            this.brandToolStripMenuItem,
+            this.unitToolStripMenuItem,
+            this.productToolStripMenuItem,
+            this.productCalssificationToolStripMenuItem,
+            this.productApprovalToolStripMenuItem});
             this.tsmProduct.Name = "tsmProduct";
             this.tsmProduct.Size = new System.Drawing.Size(225, 22);
             this.tsmProduct.Text = "Product";
             this.tsmProduct.Visible = false;
             this.tsmProduct.Click += new System.EventHandler(this.Tsmitem_Click);
             // 
-            // tpProductClassification
-            // 
-            this.tpProductClassification.Name = "tpProductClassification";
-            this.tpProductClassification.Size = new System.Drawing.Size(225, 22);
-            this.tpProductClassification.Text = "Product Classification";
-            this.tpProductClassification.Click += new System.EventHandler(this.tpProductClassification_Click);
-            // 
-            // tsmProductApproval
-            // 
-            this.tsmProductApproval.Name = "tsmProductApproval";
-            this.tsmProductApproval.Size = new System.Drawing.Size(225, 22);
-            this.tsmProductApproval.Text = "Product Approval";
-            this.tsmProductApproval.Visible = false;
-            this.tsmProductApproval.Click += new System.EventHandler(this.tsmProductApproval_Click);
-            // 
-            // tsmCategory
-            // 
-            this.tsmCategory.Name = "tsmCategory";
-            this.tsmCategory.Size = new System.Drawing.Size(225, 22);
-            this.tsmCategory.Text = "Employee Category";
-            this.tsmCategory.Visible = false;
-            this.tsmCategory.Click += new System.EventHandler(this.tsmCategory_Click);
-            // 
             // tsmEmployeee
             // 
+            this.tsmEmployeee.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.employeeCategoryToolStripMenuItem,
+            this.employeeToolStripMenuItem});
             this.tsmEmployeee.Name = "tsmEmployeee";
             this.tsmEmployeee.Size = new System.Drawing.Size(225, 22);
             this.tsmEmployeee.Text = "Employee";
             this.tsmEmployeee.Visible = false;
             this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
-            // 
-            // tsmUser
-            // 
-            this.tsmUser.Name = "tsmUser";
-            this.tsmUser.Size = new System.Drawing.Size(225, 22);
-            this.tsmUser.Text = "System User";
-            this.tsmUser.Visible = false;
-            this.tsmUser.Click += new System.EventHandler(this.TsmUser_Click);
             // 
             // tsmSupplier
             // 
@@ -789,20 +708,6 @@ namespace ROMS
             this.tsmBroker.Text = "Broker";
             this.tsmBroker.Visible = false;
             this.tsmBroker.Click += new System.EventHandler(this.Tsmbroker_Click);
-            // 
-            // tsmCPBulkUpdate
-            // 
-            this.tsmCPBulkUpdate.Name = "tsmCPBulkUpdate";
-            this.tsmCPBulkUpdate.Size = new System.Drawing.Size(225, 22);
-            this.tsmCPBulkUpdate.Text = "CP Bulk Update";
-            this.tsmCPBulkUpdate.Click += new System.EventHandler(this.tsmCPBulkUpdate_Click);
-            // 
-            // tspCPApproval
-            // 
-            this.tspCPApproval.Name = "tspCPApproval";
-            this.tspCPApproval.Size = new System.Drawing.Size(225, 22);
-            this.tspCPApproval.Text = "CP Approval";
-            this.tspCPApproval.Click += new System.EventHandler(this.tspCPApproval_Click);
             // 
             // tsmBulkUpdate
             // 
@@ -901,30 +806,6 @@ namespace ROMS
             this.tsmRepresentative.Visible = false;
             this.tsmRepresentative.Click += new System.EventHandler(this.TsmRepresentative_Click);
             // 
-            // tsmRateCategory
-            // 
-            this.tsmRateCategory.Name = "tsmRateCategory";
-            this.tsmRateCategory.Size = new System.Drawing.Size(225, 22);
-            this.tsmRateCategory.Text = "Rate Category";
-            this.tsmRateCategory.Visible = false;
-            this.tsmRateCategory.Click += new System.EventHandler(this.tsmRateCategory_Click);
-            // 
-            // tsmRateChange
-            // 
-            this.tsmRateChange.Name = "tsmRateChange";
-            this.tsmRateChange.Size = new System.Drawing.Size(225, 22);
-            this.tsmRateChange.Text = "Rate Change";
-            this.tsmRateChange.Visible = false;
-            this.tsmRateChange.Click += new System.EventHandler(this.tsmRateChange_Click);
-            // 
-            // tsmRateApproval
-            // 
-            this.tsmRateApproval.Name = "tsmRateApproval";
-            this.tsmRateApproval.Size = new System.Drawing.Size(225, 22);
-            this.tsmRateApproval.Text = "Rate Change Approval";
-            this.tsmRateApproval.Visible = false;
-            this.tsmRateApproval.Click += new System.EventHandler(this.tsmRateApproval_Click);
-            // 
             // tsmStickerPrint
             // 
             this.tsmStickerPrint.Name = "tsmStickerPrint";
@@ -940,14 +821,6 @@ namespace ROMS
             this.tsmDirectLabelPrint.Text = "Direct Label Print";
             this.tsmDirectLabelPrint.Visible = false;
             this.tsmDirectLabelPrint.Click += new System.EventHandler(this.tsmDirectLabelPrint_Click);
-            // 
-            // tsmUserRole
-            // 
-            this.tsmUserRole.Name = "tsmUserRole";
-            this.tsmUserRole.Size = new System.Drawing.Size(225, 22);
-            this.tsmUserRole.Text = "User Role";
-            this.tsmUserRole.Visible = false;
-            this.tsmUserRole.Click += new System.EventHandler(this.tsmUserRole_Click);
             // 
             // tsmControlPanel
             // 
@@ -969,7 +842,7 @@ namespace ROMS
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -977,7 +850,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -985,7 +858,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -993,7 +866,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
@@ -1930,6 +1803,147 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
+            // hSNNameToolStripMenuItem
+            // 
+            this.hSNNameToolStripMenuItem.Name = "hSNNameToolStripMenuItem";
+            this.hSNNameToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.hSNNameToolStripMenuItem.Text = "HSN Name";
+            // 
+            // productGroupToolStripMenuItem
+            // 
+            this.productGroupToolStripMenuItem.Name = "productGroupToolStripMenuItem";
+            this.productGroupToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.productGroupToolStripMenuItem.Text = "Product Group";
+            // 
+            // productSubGroupToolStripMenuItem
+            // 
+            this.productSubGroupToolStripMenuItem.Name = "productSubGroupToolStripMenuItem";
+            this.productSubGroupToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.productSubGroupToolStripMenuItem.Text = "Product Sub Group";
+            // 
+            // brandToolStripMenuItem
+            // 
+            this.brandToolStripMenuItem.Name = "brandToolStripMenuItem";
+            this.brandToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.brandToolStripMenuItem.Text = "Brand";
+            // 
+            // unitToolStripMenuItem
+            // 
+            this.unitToolStripMenuItem.Name = "unitToolStripMenuItem";
+            this.unitToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.unitToolStripMenuItem.Text = "Unit";
+            // 
+            // productToolStripMenuItem
+            // 
+            this.productToolStripMenuItem.Name = "productToolStripMenuItem";
+            this.productToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.productToolStripMenuItem.Text = "Product";
+            // 
+            // rateToolStripMenuItem
+            // 
+            this.rateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rateCategoryToolStripMenuItem,
+            this.cPBulkUpdateToolStripMenuItem,
+            this.cPApprovalToolStripMenuItem,
+            this.rateChangeToolStripMenuItem,
+            this.rateChangeApprovalToolStripMenuItem});
+            this.rateToolStripMenuItem.Name = "rateToolStripMenuItem";
+            this.rateToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.rateToolStripMenuItem.Text = "Rate";
+            // 
+            // rateCategoryToolStripMenuItem
+            // 
+            this.rateCategoryToolStripMenuItem.Name = "rateCategoryToolStripMenuItem";
+            this.rateCategoryToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.rateCategoryToolStripMenuItem.Text = "Rate Category";
+            // 
+            // cPBulkUpdateToolStripMenuItem
+            // 
+            this.cPBulkUpdateToolStripMenuItem.Name = "cPBulkUpdateToolStripMenuItem";
+            this.cPBulkUpdateToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.cPBulkUpdateToolStripMenuItem.Text = "CP Bulk Update";
+            // 
+            // productCalssificationToolStripMenuItem
+            // 
+            this.productCalssificationToolStripMenuItem.Name = "productCalssificationToolStripMenuItem";
+            this.productCalssificationToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.productCalssificationToolStripMenuItem.Text = "Product Calssification";
+            // 
+            // productApprovalToolStripMenuItem
+            // 
+            this.productApprovalToolStripMenuItem.Name = "productApprovalToolStripMenuItem";
+            this.productApprovalToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.productApprovalToolStripMenuItem.Text = "Product Approval";
+            // 
+            // cPApprovalToolStripMenuItem
+            // 
+            this.cPApprovalToolStripMenuItem.Name = "cPApprovalToolStripMenuItem";
+            this.cPApprovalToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.cPApprovalToolStripMenuItem.Text = "CP Approval";
+            // 
+            // rateChangeToolStripMenuItem
+            // 
+            this.rateChangeToolStripMenuItem.Name = "rateChangeToolStripMenuItem";
+            this.rateChangeToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.rateChangeToolStripMenuItem.Text = "Rate Change";
+            // 
+            // rateChangeApprovalToolStripMenuItem
+            // 
+            this.rateChangeApprovalToolStripMenuItem.Name = "rateChangeApprovalToolStripMenuItem";
+            this.rateChangeApprovalToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.rateChangeApprovalToolStripMenuItem.Text = "Rate Change Approval";
+            // 
+            // stockLocationToolStripMenuItem
+            // 
+            this.stockLocationToolStripMenuItem.Name = "stockLocationToolStripMenuItem";
+            this.stockLocationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stockLocationToolStripMenuItem.Text = "Stock Location";
+            // 
+            // rackToolStripMenuItem
+            // 
+            this.rackToolStripMenuItem.Name = "rackToolStripMenuItem";
+            this.rackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rackToolStripMenuItem.Text = "Rack";
+            // 
+            // rackGroupToolStripMenuItem
+            // 
+            this.rackGroupToolStripMenuItem.Name = "rackGroupToolStripMenuItem";
+            this.rackGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rackGroupToolStripMenuItem.Text = "Rack Group";
+            // 
+            // usersToolStripMenuItem
+            // 
+            this.usersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userRoleToolStripMenuItem,
+            this.systemUserToolStripMenuItem});
+            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.usersToolStripMenuItem.Text = "Users";
+            // 
+            // userRoleToolStripMenuItem
+            // 
+            this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
+            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userRoleToolStripMenuItem.Text = "User Role";
+            // 
+            // systemUserToolStripMenuItem
+            // 
+            this.systemUserToolStripMenuItem.Name = "systemUserToolStripMenuItem";
+            this.systemUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.systemUserToolStripMenuItem.Text = "System User";
+            // 
+            // employeeCategoryToolStripMenuItem
+            // 
+            this.employeeCategoryToolStripMenuItem.Name = "employeeCategoryToolStripMenuItem";
+            this.employeeCategoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.employeeCategoryToolStripMenuItem.Text = "Employee Category";
+            // 
+            // employeeToolStripMenuItem
+            // 
+            this.employeeToolStripMenuItem.Name = "employeeToolStripMenuItem";
+            this.employeeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.employeeToolStripMenuItem.Text = "Employee";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2006,19 +2020,9 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmCity;
         private System.Windows.Forms.ToolStripMenuItem tsmBank;
         private System.Windows.Forms.ToolStripMenuItem tsmCompany;
-        private System.Windows.Forms.ToolStripMenuItem tsmHSN;
-        private System.Windows.Forms.ToolStripMenuItem tsmGroup;
-        private System.Windows.Forms.ToolStripMenuItem tsmSubGroup;
-        private System.Windows.Forms.ToolStripMenuItem tsmBrand;
-        private System.Windows.Forms.ToolStripMenuItem tsmUnit;
         private System.Windows.Forms.ToolStripMenuItem tsmLocation;
-        private System.Windows.Forms.ToolStripMenuItem tsmRack;
-        private System.Windows.Forms.ToolStripMenuItem tsmRackGroup;
         private System.Windows.Forms.ToolStripMenuItem tsmProduct;
-        private System.Windows.Forms.ToolStripMenuItem tsmProductApproval;
-        private System.Windows.Forms.ToolStripMenuItem tsmCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmEmployeee;
-        private System.Windows.Forms.ToolStripMenuItem tsmUser;
         private System.Windows.Forms.ToolStripMenuItem tsmSupplier;
         private System.Windows.Forms.ToolStripMenuItem tsmBroker;
         private System.Windows.Forms.ToolStripMenuItem tsmBulkUpdate;
@@ -2032,7 +2036,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmHSNUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmProCodeUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmRepresentative;
-        private System.Windows.Forms.ToolStripMenuItem tsmRateChange;
         private System.Windows.Forms.ToolStripMenuItem tsmStickerPrint;
         private System.Windows.Forms.ToolStripMenuItem tsmDirectLabelPrint;
         private System.Windows.Forms.ToolStripMenuItem tsmControlPanel;
@@ -2120,8 +2123,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tspStockConversion;
         private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmSupplierWiseBlockedProducts;
-        //private System.Windows.Forms.ToolStripMenuItem tsmProductCategory;
-        private System.Windows.Forms.ToolStripMenuItem tsmUserRole;
         private System.Windows.Forms.ToolStripMenuItem tsmPriceList;
         private System.Windows.Forms.ToolStripMenuItem tsmTaxChanges;
         private System.Windows.Forms.ToolStripMenuItem tsmStockJournal;
@@ -2142,14 +2143,31 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmMobile;
         private System.Windows.Forms.ToolStripMenuItem tsmTransport;
         private System.Windows.Forms.ToolStripMenuItem tsmMarriageHall;
-        private System.Windows.Forms.ToolStripMenuItem tpProductClassification;
-        private System.Windows.Forms.ToolStripMenuItem tsmRateApproval;
         private System.Windows.Forms.ToolStripMenuItem tsmArea;
         private System.Windows.Forms.ToolStripMenuItem tsmTemporyCustomer;
         private System.Windows.Forms.ToolStripMenuItem tsmCardMachine;
         private System.Windows.Forms.ToolStripMenuItem tsmUPI;
-        private System.Windows.Forms.ToolStripMenuItem tsmRateCategory;
-        private System.Windows.Forms.ToolStripMenuItem tsmCPBulkUpdate;
-        private System.Windows.Forms.ToolStripMenuItem tspCPApproval;
+        private System.Windows.Forms.ToolStripMenuItem hSNNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productGroupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productSubGroupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rateCategoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cPBulkUpdateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stockLocationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rackGroupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productCalssificationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productApprovalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cPApprovalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rateChangeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rateChangeApprovalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem employeeCategoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem employeeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userRoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemUserToolStripMenuItem;
     }
 }
