@@ -555,7 +555,7 @@ namespace ROMS
                 objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
                 objBillreport.SetParameterValue("paraSupplierName", supplierName[0]);
                 objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                objBillreport.SetParameterValue("paraAmount", totalAmt + " " + "/-");
+                objBillreport.SetParameterValue("paraAmount", totalAmt);
                 objBillreport.SetParameterValue("paraChequeDate", chequeDate);
                 objValidation.CrySqlConnection(objBillreport);
                 RPTViewer.ReportSource = objBillreport;

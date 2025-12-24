@@ -215,6 +215,7 @@
             this.lblUPPUnit.Size = new System.Drawing.Size(29, 20);
             this.lblUPPUnit.TabIndex = 23;
             this.lblUPPUnit.Text = "Box";
+            this.lblUPPUnit.Visible = false;
             // 
             // label14
             // 
