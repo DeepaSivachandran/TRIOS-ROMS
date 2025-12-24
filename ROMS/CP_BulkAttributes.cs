@@ -695,8 +695,8 @@ namespace ROMS
                     for (int i = 0; i < grdWeight.Rows.Count; i++)
                     {
                         varNetQuantity = 0;varGrossWeight = 0; varUnitQtyId = 0; varErrorflag = 0;
-                        var varValue = from r in objDSQTYUnit.Tables[0].AsEnumerable() where (r.Field<string>("QUT_Symbol").ToUpper().Equals(Convert.ToString(grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("QUTID") into g select g.Key;
-                        if (varValue.Count() > 0) { varUnitQtyId = Convert.ToInt32(varValue.ToList()[0]); }
+                        //var varValue = from r in objDSQTYUnit.Tables[0].AsEnumerable() where (r.Field<string>("QUT_Symbol").ToUpper().Equals(Convert.ToString(grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("QUTID") into g select g.Key;
+                        //if (varValue.Count() > 0) { varUnitQtyId = Convert.ToInt32(varValue.ToList()[0]); }
                         if (Convert.ToString(grdWeight.Rows[i].Cells["Net Quantity-Current"].Value) == "")
                         { varNetQuantity = 0; }
                         else { varNetQuantity = Convert.ToDecimal(grdWeight.Rows[i].Cells["Net Quantity-Current"].Value); }
@@ -704,13 +704,13 @@ namespace ROMS
                         { varGrossWeight = 0; }
                         else { varGrossWeight = Convert.ToDecimal(grdWeight.Rows[i].Cells["Gross Weight-Current"].Value); }
 
-                        if (Convert.ToString(grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Value).Trim() != "")
-                        {
-                            if (varUnitQtyId == 0)
-                            {
-                                varErrorflag = 1;
-                            }
-                        }
+                        //if (Convert.ToString(grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Value).Trim() != "")
+                        //{
+                        //    if (varUnitQtyId == 0)
+                        //    {
+                        //        varErrorflag = 1;
+                        //    }
+                        //}
                         if (Convert.ToString(grdWeight.Rows[i].Cells["Net Quantity-New"].Value) != "")
                         {
                             if (Convert.ToDecimal(grdWeight.Rows[i].Cells["Net Quantity-New"].Value) <= 0)
@@ -745,8 +745,8 @@ namespace ROMS
                     {
                         varPR_PRCTID = 0; PR_RMForProductionID = 0; PR_BatchNoID = 0; PR_BatchNoGenerationID = 0;  varErrorflag = 0; 
                        
-                         var varPR_PRCTValue = from r in objDSProductCategory.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
-                        if (varPR_PRCTValue.Count() > 0) { varPR_PRCTID = Convert.ToInt32(varPR_PRCTValue.ToList()[0]); }
+                        // var varPR_PRCTValue = from r in objDSProductCategory.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
+                        //if (varPR_PRCTValue.Count() > 0) { varPR_PRCTID = Convert.ToInt32(varPR_PRCTValue.ToList()[0]); }
                         var varRMForProductionValue = from r in objDSRMPRO.Tables[0].AsEnumerable() where (r.Field<string>("DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varRMForProductionValue.Count() > 0) { PR_RMForProductionID = Convert.ToInt32(varRMForProductionValue.ToList()[0]); }
                         var varBatchNoValue = from r in objDSBatchNo.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Batch No.-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
@@ -754,13 +754,13 @@ namespace ROMS
                         var varBatchNoGenerationValue = from r in objDSBatchNoGeneration.Tables[0].AsEnumerable() where (r.Field<string>("MST_DisplayText").ToUpper().Equals(Convert.ToString(grdBatch.Rows[i].Cells["Batch Generation-New"].Value).Trim().ToUpper())) group r by r.Field<int>("MSTID") into g select g.Key;
                         if (varBatchNoGenerationValue.Count() > 0) { PR_BatchNoGenerationID = Convert.ToInt32(varBatchNoGenerationValue.ToList()[0]); }
 
-                        if (Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim() != "")
-                        {
-                            if (varPR_PRCTID == 0)
-                            {
-                                varErrorflag = 1;
-                            }
-                        }
+                        //if (Convert.ToString(grdBatch.Rows[i].Cells["Product Category-New"].Value).Trim() != "")
+                        //{
+                        //    if (varPR_PRCTID == 0)
+                        //    {
+                        //        varErrorflag = 1;
+                        //    }
+                        //}
                         if (Convert.ToString(grdBatch.Rows[i].Cells["RM Pro-New"].Value).Trim() != "")
                         {
                             if (PR_RMForProductionID == 0)
@@ -791,11 +791,25 @@ namespace ROMS
                                                0, "", 0, "", 0, "",
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
-                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_PRCTID-Current"].Value), varPR_PRCTID, 
+                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_PRCTID-Current"].Value), varPR_PRCTID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
                                                varErrorflag);
+
+                        //objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["PRID"].Value),
+                        //      0, 0, "", "", "", "", "", "",
+                        //      0, 0, 0, 0, 0, 0,
+                        //     0, 0, 0, 0, 0, 0, 0, 0, 0, "",
+                        //     0, "", 0, "",
+                        //      Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-New"].Value).Trim(),
+                        //       0, "", 0, "", 0, "",
+                        //      0, "", 0, "", 0, 0,
+                        //      0, "", 0, "", 0, 0,
+                        //      0, 0,   Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
+                        //       Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
+                        //        Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
+                        //      varErrorflag); 
                     }
                 }
 
@@ -863,7 +877,7 @@ namespace ROMS
                             grdWeight.Rows[i].DefaultCellStyle.BackColor = Color.White;
                             grdWeight.Rows[i].Cells["Net Quantity-New"].Style.BackColor = Color.PaleGreen;
                             grdWeight.Rows[i].Cells["Gross Weight-New"].Style.BackColor = Color.PaleGreen;
-                            grdWeight.Rows[i].Cells["Net Weight-Unit-New"].Style.BackColor = Color.PaleGreen;
+                            grdWeight.Rows[i].Cells["Net Weight-Unit"].Style.BackColor = Color.PaleGreen;
                             grdWeight.Rows[i].Cells["S.No."].Style.BackColor = Color.AliceBlue;
                             grdWeight.Rows[i].Cells["Product Name in Tamil"].Style.BackColor = Color.AliceBlue;
                             grdWeight.Rows[i].Cells["Unit"].Style.BackColor = Color.AliceBlue;
@@ -1369,7 +1383,7 @@ namespace ROMS
                                 grdBatch.DataSource = objDs.Tables[0];
                                 grdBatch.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdBatch.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                ((DataGridViewTextBoxColumn)grdBatch.Columns["Product Category-New"]).MaxInputLength = 20;
+                                ((DataGridViewTextBoxColumn)grdBatch.Columns["Barcode-New"]).MaxInputLength = 20;
                                 ((DataGridViewTextBoxColumn)grdBatch.Columns["RM Pro-New"]).MaxInputLength = 20;
                                 ((DataGridViewTextBoxColumn)grdBatch.Columns["Batch No.-New"]).MaxInputLength = 20;
                                 ((DataGridViewTextBoxColumn)grdBatch.Columns["Batch Generation-New"]).MaxInputLength = 20;
@@ -1398,13 +1412,13 @@ namespace ROMS
                                 grdBatch.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdBatch.Columns["Unit"].ReadOnly = true;
 
-                                grdBatch.Columns["Product Category-Current"].ReadOnly = true;
+                                grdBatch.Columns["Barcode-Current"].ReadOnly = true;
                                 grdBatch.Columns["RM Pro-Current"].ReadOnly = true;
                                 grdBatch.Columns["Batch No.-Current"].ReadOnly = true;
                                 grdBatch.Columns["Batch Generation-Current"].ReadOnly = true;
 
-                                grdBatch.Columns["Product Category-Current"].Width = 150;
-                                grdBatch.Columns["Product Category-New"].Width = 150;
+                                grdBatch.Columns["Barcode-Current"].Width = 150;
+                                grdBatch.Columns["Barcode-New"].Width = 150;
                                 grdBatch.Columns["RM Pro-Current"].Width = 100;
                                 grdBatch.Columns["RM Pro-New"].Width = 100;
                                 grdBatch.Columns["Batch No.-Current"].Width = 130;
@@ -1412,7 +1426,7 @@ namespace ROMS
                                 grdBatch.Columns["Batch Generation-Current"].Width = 150;
                                 grdBatch.Columns["Batch Generation-New"].Width = 150;
 
-                                grdBatch.Columns["Product Category-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdBatch.Columns["Barcode-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdBatch.Columns["RM Pro-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdBatch.Columns["Batch No.-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdBatch.Columns["Batch Generation-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
@@ -1424,8 +1438,7 @@ namespace ROMS
                                 grdWeight.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdWeight.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 ((DataGridViewTextBoxColumn)grdWeight.Columns["Net Quantity-New"]).MaxInputLength = 10;
-                                ((DataGridViewTextBoxColumn)grdWeight.Columns["Gross Weight-New"]).MaxInputLength = 10;
-                                ((DataGridViewTextBoxColumn)grdWeight.Columns["Net Weight-Unit-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdWeight.Columns["Gross Weight-New"]).MaxInputLength = 10; 
                                 grdWeight.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdWeight.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdWeight.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -1449,20 +1462,19 @@ namespace ROMS
 
                                 grdWeight.Columns["Net Quantity-Current"].ReadOnly = true;
                                 grdWeight.Columns["Gross Weight-Current"].ReadOnly = true;
-                                grdWeight.Columns["Net Weight-Unit-Current"].ReadOnly = true;
+                                grdWeight.Columns["Net Weight-Unit"].ReadOnly = true;
                                 grdWeight.Columns["Gross Weight-Unit"].ReadOnly = true;
 
                                 grdWeight.Columns["Net Quantity-Current"].Width = 130;
                                 grdWeight.Columns["Net Quantity-New"].Width = 120;
-                                grdWeight.Columns["Net Weight-Unit-Current"].Width = 130;
-                                grdWeight.Columns["Net Weight-Unit-New"].Width = 130;
+                                grdWeight.Columns["Net Weight-Unit"].Width = 130; 
                                 grdWeight.Columns["Gross Weight-Current"].Width = 130;
                                 grdWeight.Columns["Gross Weight-New"].Width = 130;
                                 grdWeight.Columns["Gross Weight-Unit"].Width = 130;
 
                                 grdWeight.Columns["Net Quantity-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdWeight.Columns["Gross Weight-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdWeight.Columns["Net Weight-Unit-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdWeight.Columns["Net Weight-Unit"].DefaultCellStyle.BackColor = Color.PaleGreen;
                                 grdWeight.Columns["Net Quantity-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdWeight.Columns["Gross Weight-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdWeight.Columns["Net Quantity-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -3311,7 +3323,7 @@ namespace ROMS
         {
             try
             {
-                if (grdWeight.CurrentCell.OwningColumn.Name == "Net Weight-Unit-New")
+                if (grdWeight.CurrentCell.OwningColumn.Name == "Net Weight-Unit")
                 {
                     TextBox txtUnit = e.Control as TextBox;
                     if (txtUnit != null)
