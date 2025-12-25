@@ -1214,9 +1214,9 @@ namespace ROMS
                                 grdMSQ.DataSource = objDs.Tables[0];
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdMSQ.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["R Min Sale Qty-New"]).MaxInputLength = 10;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["W.Min Sale Qty-New"]).MaxInputLength = 10;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["Barcode-New"]).MaxInputLength = 20;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["MSQ-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["UPP-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["Unit-New"]).MaxInputLength = 20;
                                
                                 grdMSQ.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -1237,32 +1237,25 @@ namespace ROMS
                                 grdMSQ.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdMSQ.Columns["Unit"].ReadOnly = true;
 
-                                grdMSQ.Columns["R Min Sale Qty-Current"].ReadOnly = true;
-                                grdMSQ.Columns["R.Rate"].ReadOnly = true;
-                                grdMSQ.Columns["W.Min Sale Qty-Current"].ReadOnly = true;
-                                grdMSQ.Columns["W.Sale Rate"].ReadOnly = true;
-                                grdMSQ.Columns["Barcode-Current"].ReadOnly = true;
+                                grdMSQ.Columns["MSQ-Current"].ReadOnly = true; 
+                                grdMSQ.Columns["UPP-Current"].ReadOnly = true;
+                                grdMSQ.Columns["Unit-Current"].ReadOnly = true; 
+                                    
+                                grdMSQ.Columns["MSQ-Current"].Width = 100;
+                                grdMSQ.Columns["MSQ-New"].Width = 100;
+                                grdMSQ.Columns["UPP-Current"].Width = 100; 
+                                grdMSQ.Columns["UPP-New"].Width = 100;
+                                grdMSQ.Columns["Unit-Current"].Width = 120;
+                                grdMSQ.Columns["Unit-New"].Width = 120; 
 
-                                grdMSQ.Columns["R Min Sale Qty-Current"].Width = 150;
-                                grdMSQ.Columns["R Min Sale Qty-New"].Width = 120;
-                                grdMSQ.Columns["R.Rate"].Width = 100; 
-                                grdMSQ.Columns["W.Min Sale Qty-Current"].Width = 150;
-                                grdMSQ.Columns["W.Min Sale Qty-New"].Width = 150;
-                                grdMSQ.Columns["W.Sale Rate"].Width = 120;
-                                grdMSQ.Columns["Barcode-Current"].Width = 150;
-                                grdMSQ.Columns["Barcode-New"].Width = 120;
+                                grdMSQ.Columns["MSQ-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdMSQ.Columns["UPP-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdMSQ.Columns["Unit-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
 
-                                grdMSQ.Columns["R Min Sale Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdMSQ.Columns["W.Min Sale Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdMSQ.Columns["Barcode-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdMSQ.Columns["R Min Sale Qty-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["W.Min Sale Qty-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["Barcode-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["R Min Sale Qty-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["W.Min Sale Qty-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["Barcode-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["W.Sale Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["MSQ-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["UPP-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["UPP-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["MSQ-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             }
                             else if(grdStock.Visible==true)
                             {
@@ -3339,20 +3332,25 @@ namespace ROMS
         {
             try
             {
-                if (grdMSQ.CurrentCell.OwningColumn.Name == "R Min Sale Qty-New")
+                if (grdMSQ.CurrentCell.OwningColumn.Name == "MSQ-New")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
                 }
-                else if (grdMSQ.CurrentCell.OwningColumn.Name == "W.Min Sale Qty-New")
+                else if (grdMSQ.CurrentCell.OwningColumn.Name == "UPP-New")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
                 }
-                else if (grdMSQ.CurrentCell.OwningColumn.Name == "Barcode-New")
+                else if (grdMSQ.CurrentCell.OwningColumn.Name == "Unit-New")
                 {
-                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
-                    return;
+                    TextBox txtUnit = e.Control as TextBox;
+                    if (txtUnit != null)
+                    {
+                        txtUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtUnit.AutoCompleteCustomSource = AutoCompleteUnit();
+                        txtUnit.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
                 }
             }
             catch (Exception ex)
