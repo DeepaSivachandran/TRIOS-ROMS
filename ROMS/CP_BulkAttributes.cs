@@ -787,29 +787,14 @@ namespace ROMS
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBatch.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
-                                               0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "",
+                                               0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", Convert.ToString(grdBatch.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdBatch.Rows[i].Cells["Barcode-New"].Value).Trim(),
                                                0, "", 0, "", 0, "",
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
-                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_PRCTID-Current"].Value), varPR_PRCTID,
-                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
+                                               0, 0,   Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
-                                               varErrorflag);
-
-                        //objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["PRID"].Value),
-                        //      0, 0, "", "", "", "", "", "",
-                        //      0, 0, 0, 0, 0, 0,
-                        //     0, 0, 0, 0, 0, 0, 0, 0, 0, "",
-                        //     0, "", 0, "",
-                        //      Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-New"].Value).Trim(),
-                        //       0, "", 0, "", 0, "",
-                        //      0, "", 0, "", 0, 0,
-                        //      0, "", 0, "", 0, 0,
-                        //      0, 0,   Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
-                        //       Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
-                        //        Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
-                        //      varErrorflag); 
+                                               varErrorflag); 
                     }
                 }
 
@@ -907,7 +892,7 @@ namespace ROMS
                         else if (grdBatch.Visible == true)
                         {
                             grdBatch.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                            grdBatch.Rows[i].Cells["Product Category-New"].Style.BackColor = Color.PaleGreen;
+                            grdBatch.Rows[i].Cells["Barcode-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["RM Pro-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["Batch No.-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["Batch Generation-New"].Style.BackColor = Color.PaleGreen;
