@@ -486,6 +486,10 @@ namespace ROMS
                                     shelfLifeError++;
                                 }
                             }
+                            else if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmshelflifeper"].Value.ToString().Trim()) == "")
+                            {
+                                shelfLifeError = 1;
+                            }
                         }
                         if (Convert.ToString(grdProductExchage.Rows[i].Cells["clmMRPflag"].Value) == "1" && Convert.ToString(grdProductExchage.Rows[i].Cells["clmDuplicateErr"].Value).Trim() == "1"|| Convert.ToString(grdProductExchage.Rows[i].Cells["clmMRP"].Value).Trim() == "") 
                         {

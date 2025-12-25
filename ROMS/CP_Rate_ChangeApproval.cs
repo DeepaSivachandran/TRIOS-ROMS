@@ -1397,6 +1397,7 @@ namespace ROMS
             {
                 dtDefaultGrid = null;
                 chkSelectAll.Visible = true;
+                chkSelectAll.Checked = false;
                 DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
@@ -1471,7 +1472,7 @@ namespace ROMS
                             grdItemList.Columns["Last Rate"].Width = 100; 
                             grdItemList.Columns["Live Rate"].Width = 100; 
                             grdItemList.Columns["Teller"].Width = 135;
-                            grdItemList.Columns["Last Updated By"].Width = 250;
+                            grdItemList.Columns["Last Updated By"].Width = 280;
                             grdItemList.Columns["RC_PR_TYPE"].Visible = false;
                             grdItemList.Columns["PRPM_Source"].Visible = false;
                             grdItemList.Columns["PRPM_Source_TRNID"].Visible = false;
@@ -1972,7 +1973,7 @@ namespace ROMS
         {
             try
             {
-                udfnSaveRateApproval();
+                udfnSaveRateApproval(1);
             }
             catch (Exception ex)
             {
@@ -2079,6 +2080,97 @@ namespace ROMS
             if (e.KeyCode == Keys.Escape)
             {
                 udfnClose();
+            }
+        }
+
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnSaveRateApproval(2);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnMappingsave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnMappingsave.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnMappingsave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnMappingsave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnMappingClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnMappingClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnMappingClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnMappingClose.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnReject_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnReject.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnReject_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnReject.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
@@ -2199,7 +2291,7 @@ namespace ROMS
             }
         }
 
-        private void udfnSaveRateApproval()
+        private void udfnSaveRateApproval(int flagType)
         {
             try
             {
@@ -2216,11 +2308,16 @@ namespace ROMS
                 }
 
                 if (objRADataTable.Rows.Count > 0)
-                {
-
-
+                { 
                     TRN_RateChange objRateChange = new TRN_RateChange();
-                    objRateChange.paraViewType = 1;
+                    if (flagType == 1)
+                    {
+                        objRateChange.paraViewType = 1;
+                    }
+                    else
+                    {
+                        objRateChange.paraViewType = 2;
+                    }
                     objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text); 
                     objRateChange.paraApprove = objRADataTable; 
                     objRateChange.paraOriginator = "Rate Change Approval";

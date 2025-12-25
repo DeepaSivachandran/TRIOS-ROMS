@@ -1189,6 +1189,10 @@ namespace ROMS
                         {
                             shelfLifeError++;
                         } 
+                        else if (Convert.ToString(varShelflifeper[0]) == "")
+                        {
+                            shelfLifeError = 1;
+                        }
 
                         if (Convert.ToString(varProShelfLife[0]) != "")
                         {

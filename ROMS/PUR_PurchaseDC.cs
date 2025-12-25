@@ -2734,6 +2734,10 @@ namespace ROMS
                                     {
                                         shelfLifeError++;
                                     }
+                                } 
+                                else if (Convert.ToString(grdPurchaseDC.Rows[i].Cells["clmshelfper"].Value.ToString().Trim()) == "")
+                                {
+                                    shelfLifeError = 1;
                                 }
 
                             }

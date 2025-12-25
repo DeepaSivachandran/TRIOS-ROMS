@@ -127,7 +127,7 @@ namespace ROMS
                             grdItemList.Columns["Live R.Rate"].Width = 100;
                             grdItemList.Columns["Live W.Rate"].Visible = false;
                             grdItemList.Columns["Teller"].Width = 135;
-                            grdItemList.Columns["Last Updated By"].Width = 220;
+                            grdItemList.Columns["Last Updated By"].Width = 280;
                             grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns["Last R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdItemList.Columns["Last W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

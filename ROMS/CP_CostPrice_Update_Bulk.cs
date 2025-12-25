@@ -38,7 +38,7 @@ namespace ROMS
                 if (varId != 0)
                 { 
                     udfnList();
-                    if (grid_flag == 122 || grid_flag == 123)
+                    if (grid_flag == 122 || grid_flag == 123 || grid_flag == 124)
                     {
                         btnMappingsave.Enabled = false;
                     }

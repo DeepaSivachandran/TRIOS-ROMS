@@ -80,6 +80,7 @@ namespace ROMS
         public static string varcurrentdate = "";
         public static string pbUserMappedLocationIds = "0";
         public static  int pbMenucode = 0;
+        public static string varratechangecount = "0";
         //------- Form object declaration
         public static MainForm objMainForm;
         public static DEF_Start objStart; 
@@ -373,6 +374,7 @@ namespace ROMS
         public static REPORT_Tax_Changes objREPORT_Tax_Changes;
         public static REPORT_Pur_PO_Blocked_Products objREPORT_Pur_PO_Blocked_Products;
         public static REPORT_PriceList objREPORT_PriceList;
+        public static REPORT_RC_PriceList objREPORT_RC_PriceList;
         public static REPORT_PUR_TCSValue objREPORT_PUR_TCSValue;
         public static REPORT_PUR_AllTax objREPORT_PUR_AllTax;
 
@@ -407,6 +409,7 @@ namespace ROMS
                 InitializeComponent();
                 objValidation.setFontAndFontSize(this);
                 timer1.Start();
+                timer2.Start();
                 //ms.Renderer = new CustomMenuStripRenderer();
             }
             catch (Exception ex)
@@ -1217,7 +1220,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        
+        public void timer2_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                DataService OBJDSERVICE = new DataService(); 
+                varratechangecount = "1"; 
+                OBJDSERVICE.CloseConnection();
+                DataService objDservice = new DataService();
+                string varFlag = objDservice.displaydata("SELECT RAS_STSID FROM DEF_RATEAPPROVAL_STATUS");
+                objDservice.CloseConnection();
+                if (varFlag == "1")
+                {
+                    if (varratechangecount != "0")
+                    {
+                        tsmGif.Visible = true;
+                    }
+                    else
+                    {
+                        tsmGif.Visible = false;
+                    }
+                }
+                else
+                {
+                    tsmGif.Visible = false;
+                } 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void CenterChildForm(Form childForm)
         {
             if (mdiClientArea != null && childForm != null)
@@ -2873,7 +2907,7 @@ namespace ROMS
         }
 
         private void tsmPriceList_Click(object sender, EventArgs e)
-        {
+        { 
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_PriceList, "REPORT_PriceList", 80315);
@@ -4554,10 +4588,25 @@ namespace ROMS
             }
         }
 
+        private void tsmRcPriceList_Click(object sender, EventArgs e)
+        { 
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_RC_PriceList, "REPORT_RC_PriceList", 80315);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 
-            try{
+            try
+            {
 
                 DEF_IdleLogin obj = new DEF_IdleLogin();
                 obj.ShowDialog();
