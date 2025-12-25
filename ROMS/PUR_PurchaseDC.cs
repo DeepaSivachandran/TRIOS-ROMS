@@ -3265,6 +3265,18 @@ namespace ROMS
                         e.Handled = true;
                     }
                 }
+                if (grdPurchaseDC.CurrentCell.OwningColumn.Name == "clmMRP")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
+                    {
+                        e.Handled = true;
+                    }
+                    //only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                    {
+                        e.Handled = true;
+                    }
+                }
             }
             catch (Exception ex)
             {

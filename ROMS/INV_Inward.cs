@@ -2454,12 +2454,12 @@ namespace ROMS
                 }
                 if (grdInward.CurrentCell.OwningColumn.Name == "clmmrp")
                 {
-                    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {
                         e.Handled = true;
                     }
-                    // Allow only one decimal point
-                    if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                    //only allow one decimal point
+                    if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
                     {
                         e.Handled = true;
                     }
@@ -2623,7 +2623,7 @@ namespace ROMS
             try
             {
                 int varDecimal = Convert.ToInt32(grdInward.CurrentRow.Cells["clmUnitDecimal"].Value);
-                if (grdInward.CurrentCell.OwningColumn.Name == "clmactualqty" || grdInward.CurrentCell.OwningColumn.Name == "clmmrp")
+                if (grdInward.CurrentCell.OwningColumn.Name == "clmactualqty")
                 {
                     //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     //{
