@@ -793,7 +793,7 @@ namespace ROMS
                         objMR_Product.paraProductName = txtProductName.Text;
                         //objMR_Product.ParaFromDate = dtpOutwardDate.Text;
                         //objMR_Product.ParaToDate = dtpOutwardToDate.Text;
-                        objMR_Product.paraId = 1;
+                        objMR_Product.paraId = 11;
                         SPDataService objspdservice = new SPDataService();
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         objspdservice.CloseConnection();
