@@ -967,6 +967,7 @@ namespace ROMS
                 }
 
                 udfnDefaultHeader();
+                
             }
             catch (Exception ex)
             {
@@ -2902,6 +2903,7 @@ namespace ROMS
         {
             try
             {
+                btnConversion.Enabled = true;
                 if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 70) // Regular
                 {
                     grdGoodsOutward.Columns["clmrequestqty"].Width = 100;
@@ -2912,6 +2914,10 @@ namespace ROMS
                     grdGoodsOutward.Columns["clmrequestqty"].Width = 0;
                     grdGoodsOutward.Columns["clmrequestqty"].Visible = false;
                 }
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 462) // AGAINST DAMAGE
+                {
+                    btnConversion.Enabled = false;
+                } 
             }
             catch (Exception ex)
             {

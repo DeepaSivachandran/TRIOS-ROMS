@@ -945,7 +945,7 @@ namespace ROMS
                     ExcelSheet = ExcelBook.Sheets["Sheet1"];
                     ExcelSheet = ExcelBook.ActiveSheet;
                     // changing the name of active sheet  
-                    ExcelSheet.Name = "Inward list Queue";
+                    ExcelSheet.Name = "Damage Entry Queue";
                     int cIndex = 0;
                     int count = 0;
                     foreach (DataGridViewColumn col in grdInwardQueueList.Columns)
@@ -955,7 +955,7 @@ namespace ROMS
                             count += 1;
                         }
                     }
-                    ExcelSheet.Cells[1, 1].Value = "Inward list Queue";
+                    ExcelSheet.Cells[1, 1].Value = "Damage Entry Queue";
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Merge();
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].HorizontalAlignment = Excel.Constants.xlCenter;
                     ExcelSheet.Range[ExcelSheet.Cells[1, 1], ExcelSheet.Cells[1, count]].Interior.Color = Color.LightGray;
@@ -970,7 +970,7 @@ namespace ROMS
                             cIndex += 1;
                             ExcelSheet.Cells[2, cIndex] = col.HeaderText;
                             ExcelSheet.Columns[cIndex].NumberFormat = "@";
-                            if (col.Name == "Concern" || col.Name == "Destination Location" || col.Name == "Transfer No" || col.Name == "Transfer Date")
+                            if (col.Name == "Concern" || col.Name == "Stock Location" || col.Name == "Outward No." || col.Name == "Outward Date")
                             {
                                 ExcelSheet.Columns[cIndex].ColumnWidth = 20;
                             }
@@ -986,11 +986,11 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
                             }
-                            if (col.Name == "Total Qty")
-                            {
-                                ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
-                            }
-                            if (col.Name == "Transfer Date")
+                            //if (col.Name == "Total Qty")
+                            //{
+                            //    ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlRight;
+                            //}
+                            if (col.Name == "Outward Date")
                             {
                                 ExcelSheet.Columns[cIndex].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
