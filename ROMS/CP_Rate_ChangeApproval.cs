@@ -44,7 +44,18 @@ namespace ROMS
 
         private void CP_Rate_ChangeApproval_Load(object sender, EventArgs e)
         {
-            try {
+            try
+            {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 51305;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 udfnRateApprovalList();
             }
             catch (Exception ex)
