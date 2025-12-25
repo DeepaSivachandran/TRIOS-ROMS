@@ -80,6 +80,7 @@ namespace ROMS
             this.tsmLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRack = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRackGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRackgroupProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmHSN = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGroup = new System.Windows.Forms.ToolStripMenuItem();
@@ -659,7 +660,8 @@ namespace ROMS
             this.tsmLocationMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmLocation,
             this.tsmRack,
-            this.tsmRackGroup});
+            this.tsmRackGroup,
+            this.tsmRackgroupProduct});
             this.tsmLocationMenu.Name = "tsmLocationMenu";
             this.tsmLocationMenu.Size = new System.Drawing.Size(225, 22);
             this.tsmLocationMenu.Text = "Location";
@@ -668,7 +670,7 @@ namespace ROMS
             // tsmLocation
             // 
             this.tsmLocation.Name = "tsmLocation";
-            this.tsmLocation.Size = new System.Drawing.Size(147, 22);
+            this.tsmLocation.Size = new System.Drawing.Size(180, 22);
             this.tsmLocation.Text = "Stock Location";
             this.tsmLocation.Visible = false;
             this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
@@ -676,7 +678,7 @@ namespace ROMS
             // tsmRack
             // 
             this.tsmRack.Name = "tsmRack";
-            this.tsmRack.Size = new System.Drawing.Size(147, 22);
+            this.tsmRack.Size = new System.Drawing.Size(180, 22);
             this.tsmRack.Text = "Rack";
             this.tsmRack.Visible = false;
             this.tsmRack.Click += new System.EventHandler(this.TsmRack_Click);
@@ -684,10 +686,17 @@ namespace ROMS
             // tsmRackGroup
             // 
             this.tsmRackGroup.Name = "tsmRackGroup";
-            this.tsmRackGroup.Size = new System.Drawing.Size(147, 22);
+            this.tsmRackGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmRackGroup.Text = "Rack Group";
             this.tsmRackGroup.Visible = false;
             this.tsmRackGroup.Click += new System.EventHandler(this.TsmRackGroup_Click);
+            // 
+            // tsmRackgroupProduct
+            // 
+            this.tsmRackgroupProduct.Name = "tsmRackgroupProduct";
+            this.tsmRackgroupProduct.Size = new System.Drawing.Size(180, 22);
+            this.tsmRackgroupProduct.Text = "Rack Group Product";
+            this.tsmRackgroupProduct.Click += new System.EventHandler(this.tsmRackgroupProduct_Click);
             // 
             // tsmProductMenu
             // 
@@ -2218,5 +2227,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmUserRole;
         private System.Windows.Forms.ToolStripMenuItem tsmUser;
         private System.Windows.Forms.ToolStripMenuItem tsmRcPriceList;
+        private System.Windows.Forms.ToolStripMenuItem tsmRackgroupProduct;
     }
 }

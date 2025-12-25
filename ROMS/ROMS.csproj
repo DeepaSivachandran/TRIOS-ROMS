@@ -161,6 +161,12 @@
     <Compile Include="CP_CostPrice_Update_Bulk_Approval_List.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Rackgroup_Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Rackgroup_Product.designer.cs">
+      <DependentUpon>CP_Rackgroup_Product.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Rate_Category.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3837,6 +3843,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk_Approval_List.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Rackgroup_Product.resx">
+      <DependentUpon>CP_Rackgroup_Product.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_Category.resx">
       <DependentUpon>CP_Rate_Category.cs</DependentUpon>

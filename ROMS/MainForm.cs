@@ -390,6 +390,7 @@ namespace ROMS
         public static REPORT_Stock_Conversion objREPORT_Stock_Conversion;
         public static REPORT_Stock_Journal objREPORT_Stock_Journal;
         public static REPORT_Stock_Details objREPORT_Stock_Details;
+        public static CP_Rackgroup_Product objCP_Rackgroup_Product;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -4594,6 +4595,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_RC_PriceList, "REPORT_RC_PriceList", 80315);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmRackgroupProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Rackgroup_Product, "CP_Rackgroup_Product", 80315);
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
