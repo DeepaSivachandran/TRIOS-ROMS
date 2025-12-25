@@ -1493,6 +1493,11 @@ namespace ROMS
                         grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+                    else if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 22)
+                    {
+                        grdOutwardList.Rows[i].Cells["Status"].Style.BackColor = Color.Orange;
+                        grdOutwardList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
                     if (Convert.ToInt32(grdOutwardList.Rows[i].Cells["STSID"].Value) == 35)
                     {
                         grdOutwardList.Rows[i].Cells["clmPrint"].ReadOnly = true;

@@ -152,6 +152,16 @@
             this.lblMrp = new System.Windows.Forms.Label();
             this.lblEdit = new System.Windows.Forms.Label();
             this.epDamageEntry = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tsbRemaining = new System.Windows.Forms.ToolStripButton();
+            this.tsbRemainingValue = new System.Windows.Forms.ToolStripButton();
+            this.tps2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsttotalValue = new System.Windows.Forms.ToolStripButton();
+            this.tsttotal = new System.Windows.Forms.ToolStripButton();
+            this.tps3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tstaddedvalue = new System.Windows.Forms.ToolStripButton();
+            this.tstadded = new System.Windows.Forms.ToolStripButton();
+            this.tps1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tst1 = new System.Windows.Forms.ToolStripButton();
             this.tsInwardList.SuspendLayout();
             this.pnlinward.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -175,7 +185,7 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(100, 22);
+            this.tspHeader.Size = new System.Drawing.Size(100, 24);
             this.tspHeader.Text = "Damage Entry";
             // 
             // tsInwardList
@@ -185,10 +195,20 @@
             this.tsInwardList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsInwardList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsInwardList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader});
+            this.tspHeader,
+            this.tsbRemainingValue,
+            this.tsbRemaining,
+            this.tps3,
+            this.tstaddedvalue,
+            this.tstadded,
+            this.tps2,
+            this.tsttotalValue,
+            this.tsttotal,
+            this.tps1,
+            this.tst1});
             this.tsInwardList.Location = new System.Drawing.Point(0, 0);
             this.tsInwardList.Name = "tsInwardList";
-            this.tsInwardList.Size = new System.Drawing.Size(1354, 25);
+            this.tsInwardList.Size = new System.Drawing.Size(1354, 27);
             this.tsInwardList.TabIndex = 35;
             this.tsInwardList.Text = "Inward";
             // 
@@ -1447,6 +1467,125 @@
             // 
             this.epDamageEntry.ContainerControl = this;
             // 
+            // tsbRemaining
+            // 
+            this.tsbRemaining.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbRemaining.BackColor = System.Drawing.Color.White;
+            this.tsbRemaining.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRemaining.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRemaining.Margin = new System.Windows.Forms.Padding(0, 1, 1, 2);
+            this.tsbRemaining.Name = "tsbRemaining";
+            this.tsbRemaining.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbRemaining.Size = new System.Drawing.Size(121, 24);
+            this.tsbRemaining.Text = "Remaing Products : ";
+            this.tsbRemaining.ToolTipText = "Remaing Products :";
+            // 
+            // tsbRemainingValue
+            // 
+            this.tsbRemainingValue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbRemainingValue.BackColor = System.Drawing.Color.White;
+            this.tsbRemainingValue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbRemainingValue.ForeColor = System.Drawing.Color.Red;
+            this.tsbRemainingValue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRemainingValue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRemainingValue.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.tsbRemainingValue.Name = "tsbRemainingValue";
+            this.tsbRemainingValue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbRemainingValue.Size = new System.Drawing.Size(23, 24);
+            this.tsbRemainingValue.Text = "0";
+            this.tsbRemainingValue.ToolTipText = "Remaing Products :";
+            // 
+            // tps2
+            // 
+            this.tps2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tps2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tps2.Name = "tps2";
+            this.tps2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsttotalValue
+            // 
+            this.tsttotalValue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsttotalValue.BackColor = System.Drawing.Color.White;
+            this.tsttotalValue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsttotalValue.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.tsttotalValue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsttotalValue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsttotalValue.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.tsttotalValue.Name = "tsttotalValue";
+            this.tsttotalValue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsttotalValue.Size = new System.Drawing.Size(23, 24);
+            this.tsttotalValue.Text = "0";
+            this.tsttotalValue.ToolTipText = "Remaing Products :";
+            // 
+            // tsttotal
+            // 
+            this.tsttotal.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsttotal.BackColor = System.Drawing.Color.White;
+            this.tsttotal.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsttotal.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsttotal.Margin = new System.Windows.Forms.Padding(0, 1, 1, 2);
+            this.tsttotal.Name = "tsttotal";
+            this.tsttotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsttotal.Size = new System.Drawing.Size(97, 24);
+            this.tsttotal.Text = "Total Products :";
+            this.tsttotal.ToolTipText = "PO Products :      ";
+            // 
+            // tps3
+            // 
+            this.tps3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tps3.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tps3.Name = "tps3";
+            this.tps3.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tstaddedvalue
+            // 
+            this.tstaddedvalue.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tstaddedvalue.BackColor = System.Drawing.Color.White;
+            this.tstaddedvalue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tstaddedvalue.ForeColor = System.Drawing.Color.Green;
+            this.tstaddedvalue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tstaddedvalue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tstaddedvalue.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.tstaddedvalue.Name = "tstaddedvalue";
+            this.tstaddedvalue.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tstaddedvalue.Size = new System.Drawing.Size(23, 24);
+            this.tstaddedvalue.Text = "0";
+            this.tstaddedvalue.ToolTipText = "Remaing Products :";
+            // 
+            // tstadded
+            // 
+            this.tstadded.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tstadded.BackColor = System.Drawing.Color.White;
+            this.tstadded.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tstadded.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tstadded.Margin = new System.Windows.Forms.Padding(0, 1, 1, 2);
+            this.tstadded.Name = "tstadded";
+            this.tstadded.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tstadded.Size = new System.Drawing.Size(105, 24);
+            this.tstadded.Text = "Added Products :";
+            this.tstadded.ToolTipText = "Remaing Products :";
+            // 
+            // tps1
+            // 
+            this.tps1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tps1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tps1.Name = "tps1";
+            this.tps1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tst1
+            // 
+            this.tst1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tst1.BackColor = System.Drawing.Color.Maroon;
+            this.tst1.ForeColor = System.Drawing.Color.White;
+            this.tst1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tst1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tst1.Margin = new System.Windows.Forms.Padding(0, 1, 1, 2);
+            this.tst1.Name = "tst1";
+            this.tst1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tst1.Size = new System.Drawing.Size(104, 24);
+            this.tst1.Text = "Against Outward";
+            this.tst1.ToolTipText = "PO Products :      ";
+            // 
             // INV_DamageEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -1591,5 +1730,15 @@
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtDay;
         private System.Windows.Forms.TextBox txtMonth;
+        public System.Windows.Forms.ToolStripButton tsbRemaining;
+        public System.Windows.Forms.ToolStripButton tsbRemainingValue;
+        public System.Windows.Forms.ToolStripSeparator tps3;
+        public System.Windows.Forms.ToolStripButton tstaddedvalue;
+        public System.Windows.Forms.ToolStripButton tstadded;
+        public System.Windows.Forms.ToolStripSeparator tps2;
+        public System.Windows.Forms.ToolStripButton tsttotalValue;
+        public System.Windows.Forms.ToolStripButton tsttotal;
+        public System.Windows.Forms.ToolStripSeparator tps1;
+        public System.Windows.Forms.ToolStripButton tst1;
     }
 }

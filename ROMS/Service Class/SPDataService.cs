@@ -739,6 +739,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSHID", objTRN_Damage.paraSHID);
                 varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRN_Damage.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraDMFromOtherLoc", objTRN_Damage.paraDMFromOtherLoc);
+                varSqlCommand.Parameters.AddWithValue("@paraQueid", objTRN_Damage.paraQueid);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -916,7 +917,7 @@ namespace ROMS
             return ds;
         }
         // added by venkat on 16/10/2023 for purchase damage list
-        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername)
+        public DataSet udfnproductDamage(int paraViewType, int paraDamageEntryID, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraStatus, string ParaDMFromDate, string ParaDMToDate, string paraSuppliername,int paraPRID, string paraUserLocations)
         {
             DataSet ds = new DataSet();
             try
@@ -933,6 +934,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaDMFromDate", ParaDMFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaDMToDate", ParaDMToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraSuppliername", paraSuppliername);
+                varSqlCommand.Parameters.AddWithValue("@paraPRID", paraPRID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserLocations", paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

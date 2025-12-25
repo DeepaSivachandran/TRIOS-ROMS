@@ -748,15 +748,13 @@
             // 
             // cmbTransactionType
             // 
-            this.cmbTransactionType.Enabled = false;
             this.cmbTransactionType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTransactionType.FormattingEnabled = true;
             this.cmbTransactionType.Location = new System.Drawing.Point(745, 36);
             this.cmbTransactionType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(135, 27);
-            this.cmbTransactionType.TabIndex = 4;
-            this.cmbTransactionType.Visible = false;
+            this.cmbTransactionType.TabIndex = 5;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.cmbTransactionType_SelectedIndexChanged);
             this.cmbTransactionType.Enter += new System.EventHandler(this.cmbTransactionType_Enter);
             this.cmbTransactionType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbTransactionType_KeyDown);
@@ -766,13 +764,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Enabled = false;
             this.label1.Location = new System.Drawing.Point(745, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 90;
             this.label1.Text = "Transaction Type";
-            this.label1.Visible = false;
             // 
             // txtOutwardNo
             // 

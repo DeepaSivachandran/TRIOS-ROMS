@@ -221,6 +221,7 @@ namespace ROMS
         public static PUR_MismatchApprovedList objPUR_MismatchApprovedList;
         public static INV_StockTransferList objINV_StockTransferList;
         public static INV_DamageEntryList objINV_DamageEntryList;
+        public static INV_DamageEntryQueue objINV_DamageEntryQueue;
         public static INV_DamageEntry objINV_DamageEntry;
         public static INV_InwardPurchaseList objINV_InwardPurchaseList;
         public static INV_InwardPurchase objINV_InwardPurchase;
