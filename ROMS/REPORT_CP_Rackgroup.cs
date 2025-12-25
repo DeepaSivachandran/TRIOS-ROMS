@@ -886,7 +886,16 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
-                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    string varCategoryName = "";
+                    if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16)
+                    {
+                        objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text) + "-" + Convert.ToString(cmbStockTakken.Text));
+                    }
+                    else
+                    {
+                        objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    }
+
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
                     objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
                     objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
