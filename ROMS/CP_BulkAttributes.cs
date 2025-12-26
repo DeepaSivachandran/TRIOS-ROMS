@@ -585,24 +585,51 @@ namespace ROMS
                     varUpdateViewType = 7; varViewType = 5; varOriginator = "Product Bulk Update-MSQ";
                     for (int i = 0; i < grdMSQ.Rows.Count; i++)
                     {
-                        varRMinSaleQty = 0;  varWMinSaleQty = 0;
-                        if(Convert.ToString(grdMSQ.Rows[i].Cells["R Min Sale Qty-Current"].Value)=="")
-                        { varRMinSaleQty = 0; }
-                        else { varRMinSaleQty = Convert.ToDecimal(grdMSQ.Rows[i].Cells["R Min Sale Qty-Current"].Value); }
-                        if(Convert.ToString(grdMSQ.Rows[i].Cells["W.Min Sale Qty-Current"].Value)=="")
-                        { varWMinSaleQty = 0; }
-                        else { varWMinSaleQty = Convert.ToDecimal(grdMSQ.Rows[i].Cells["W.Min Sale Qty-Current"].Value); }
+                        varUnitId = 0;varUpp = 0;
+
+                        if (Convert.ToString(grdMSQ.Rows[i].Cells["UPP-Current"].Value) == "")
+                        { varUpp = 0; }
+                        else { varUpp = Convert.ToInt32(grdMSQ.Rows[i].Cells["UPP-Current"].Value); }
+                         
+                            //var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").Trim().ToUpper().Equals(Convert.ToString(grdMSQ.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+
+                            int varValue = objDSUnit.Tables[0].AsEnumerable() .Where(r => string.Equals(   r.Field<string>("Unit")?.Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Unit-New"].Value)?.Trim(),  StringComparison.OrdinalIgnoreCase))   .Select(r => r.Field<int>("ID"))
+                                 .FirstOrDefault();   // returns 0 if no match 
+                            if (varValue > 0) { varUnitId = varValue; } 
+                        
+
+                        if (Convert.ToString(grdMSQ.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper() != "" &&
+                            (Convert.ToString(grdMSQ.Rows[i].Cells["MSQ-New"].Value).Trim().ToUpper() !="" || Convert.ToString(grdMSQ.Rows[i].Cells["MSQ-Current"].Value).Trim().ToUpper() != "")
+                            &&
+                            (  Convert.ToString(grdMSQ.Rows[i].Cells["UPP-New"].Value).Trim().ToUpper() != "") || Convert.ToString(grdMSQ.Rows[i].Cells["UPP-Current"].Value).Trim().ToUpper() != "")
+                        {
+                            if (varUnitId == 0)
+                            {
+                                varErrorflag = 4;   
+                            }
+                        } 
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["PRID"].Value),
-                                               0, 0, "", "", "", "", "", "",
+                                               Convert.ToInt16(grdMSQ.Rows[i].Cells["UTID-OLD"].Value), varUnitId, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
-                                              0, 0, 0, 0, 0, 0, 0, 0, 0, "",
-                                              varRMinSaleQty, Convert.ToString(grdMSQ.Rows[i].Cells["R Min Sale Qty-New"].Value).Trim(),varWMinSaleQty, Convert.ToString(grdMSQ.Rows[i].Cells["W.Min Sale Qty-New"].Value).Trim(), 
-                                               Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-New"].Value).Trim(),
+                                              0, 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["MSQ-Current"].Value), Convert.ToString(grdMSQ.Rows[i].Cells["MSQ-New"].Value).Trim(),
+                                              0, "",0, "",
+                                             0, "",
                                                 0, "", 0, "", 0, "",
-                                               0, "", 0, "", 0, 0,
+                                               varUpp, Convert.ToString(grdMSQ.Rows[i].Cells["UPP-New"].Value).Trim(), 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
                                                varErrorflag);
+
+                        //objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdShelfLife.Rows[i].Cells["PRID"].Value),
+                        //                  0, 0, "", "", "", "", "", "",
+                        //                  0, 0, 0, 0, 0, 0,
+                        //                 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "",
+                        //                 0, "", 0, "", 0, "",
+                        //                 varUpp, Convert.ToString(grdShelfLife.Rows[i].Cells["UPP-New"].Value).Trim(), varShelfLifeValue, Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life-New"].Value).Trim(),
+                        //                  Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life Type ID-OLD"].Value), varShelfLifeTypeID,
+                        //                  0, "", 0, "", 0, 0,
+                        //                  0, 0, 0, 0, 0, 0, 0, 0,
+                        //                  varErrorflag);
 
                     }
                 }
@@ -1030,7 +1057,7 @@ namespace ROMS
                 }
                 else if (grdMSQ.Visible == true)
                 {
-                    if (grdMSQ.CurrentCell.OwningColumn.Name == "R Min Sale Qty-New" || grdMSQ.CurrentCell.OwningColumn.Name == "W.Min Sale Qty-New" || grdMSQ.CurrentCell.OwningColumn.Name == "Barcode-New")
+                    if (grdMSQ.CurrentCell.OwningColumn.Name == "MSQ-New" || grdMSQ.CurrentCell.OwningColumn.Name == "UPP-New"  )
                     {
                         if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.' ))
                         {
@@ -1224,6 +1251,7 @@ namespace ROMS
                                 grdMSQ.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdMSQ.Columns["Product Name in English"].Visible = false;
                                 grdMSQ.Columns["PRID"].Visible = false;
+                                grdMSQ.Columns["UTID-OLD"].Visible = false;
                                 grdMSQ.Columns["S.No."].Width = 50;
                                 grdMSQ.Columns["Product Name in Tamil"].Width = 270;
                                 grdMSQ.Columns["P.I Code"].Width = 80;
@@ -3597,7 +3625,7 @@ namespace ROMS
                             int i = irow;
                             int intsection = 0, intlvariant = 0;
                             intsection = grdMSQ.Columns.Count - 1;
-                            intlvariant = grdMSQ.Columns.Count - 3;
+                            intlvariant = grdMSQ.Columns.Count - 2;
                             //if (intsection == icolumn)
                             //{
                             //    grdMSQ.CurrentCell = grdMSQ[intsection, irow + 1];
