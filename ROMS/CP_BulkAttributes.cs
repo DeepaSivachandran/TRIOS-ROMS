@@ -585,24 +585,51 @@ namespace ROMS
                     varUpdateViewType = 7; varViewType = 5; varOriginator = "Product Bulk Update-MSQ";
                     for (int i = 0; i < grdMSQ.Rows.Count; i++)
                     {
-                        varRMinSaleQty = 0;  varWMinSaleQty = 0;
-                        if(Convert.ToString(grdMSQ.Rows[i].Cells["R Min Sale Qty-Current"].Value)=="")
-                        { varRMinSaleQty = 0; }
-                        else { varRMinSaleQty = Convert.ToDecimal(grdMSQ.Rows[i].Cells["R Min Sale Qty-Current"].Value); }
-                        if(Convert.ToString(grdMSQ.Rows[i].Cells["W.Min Sale Qty-Current"].Value)=="")
-                        { varWMinSaleQty = 0; }
-                        else { varWMinSaleQty = Convert.ToDecimal(grdMSQ.Rows[i].Cells["W.Min Sale Qty-Current"].Value); }
+                        varUnitId = 0;varUpp = 0;
+
+                        if (Convert.ToString(grdMSQ.Rows[i].Cells["UPP-Current"].Value) == "")
+                        { varUpp = 0; }
+                        else { varUpp = Convert.ToInt32(grdMSQ.Rows[i].Cells["UPP-Current"].Value); }
+                         
+                            //var varValue = from r in objDSUnit.Tables[0].AsEnumerable() where (r.Field<string>("Unit").Trim().ToUpper().Equals(Convert.ToString(grdMSQ.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
+
+                            int varValue = objDSUnit.Tables[0].AsEnumerable() .Where(r => string.Equals(   r.Field<string>("Unit")?.Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Unit-New"].Value)?.Trim(),  StringComparison.OrdinalIgnoreCase))   .Select(r => r.Field<int>("ID"))
+                                 .FirstOrDefault();   // returns 0 if no match 
+                            if (varValue > 0) { varUnitId = varValue; } 
+                        
+
+                        if (Convert.ToString(grdMSQ.Rows[i].Cells["Unit-New"].Value).Trim().ToUpper() != "" &&
+                            (Convert.ToString(grdMSQ.Rows[i].Cells["MSQ-New"].Value).Trim().ToUpper() !="" || Convert.ToString(grdMSQ.Rows[i].Cells["MSQ-Current"].Value).Trim().ToUpper() != "")
+                            &&
+                            (  Convert.ToString(grdMSQ.Rows[i].Cells["UPP-New"].Value).Trim().ToUpper() != "") || Convert.ToString(grdMSQ.Rows[i].Cells["UPP-Current"].Value).Trim().ToUpper() != "")
+                        {
+                            if (varUnitId == 0)
+                            {
+                                varErrorflag = 4;   
+                            }
+                        } 
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["PRID"].Value),
-                                               0, 0, "", "", "", "", "", "",
+                                               Convert.ToInt16(grdMSQ.Rows[i].Cells["UTID-OLD"].Value), varUnitId, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
-                                              0, 0, 0, 0, 0, 0, 0, 0, 0, "",
-                                              varRMinSaleQty, Convert.ToString(grdMSQ.Rows[i].Cells["R Min Sale Qty-New"].Value).Trim(),varWMinSaleQty, Convert.ToString(grdMSQ.Rows[i].Cells["W.Min Sale Qty-New"].Value).Trim(), 
-                                               Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-New"].Value).Trim(),
+                                              0, 0, 0, 0, 0, 0, 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["MSQ-Current"].Value), Convert.ToString(grdMSQ.Rows[i].Cells["MSQ-New"].Value).Trim(),
+                                              0, "",0, "",
+                                             0, "",
                                                 0, "", 0, "", 0, "",
-                                               0, "", 0, "", 0, 0,
+                                               varUpp, Convert.ToString(grdMSQ.Rows[i].Cells["UPP-New"].Value).Trim(), 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
                                                0, 0, 0, 0, 0, 0, 0, 0,
                                                varErrorflag);
+
+                        //objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdShelfLife.Rows[i].Cells["PRID"].Value),
+                        //                  0, 0, "", "", "", "", "", "",
+                        //                  0, 0, 0, 0, 0, 0,
+                        //                 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "",
+                        //                 0, "", 0, "", 0, "",
+                        //                 varUpp, Convert.ToString(grdShelfLife.Rows[i].Cells["UPP-New"].Value).Trim(), varShelfLifeValue, Convert.ToString(grdShelfLife.Rows[i].Cells["Shelf Life-New"].Value).Trim(),
+                        //                  Convert.ToInt32(grdShelfLife.Rows[i].Cells["Shelf Life Type ID-OLD"].Value), varShelfLifeTypeID,
+                        //                  0, "", 0, "", 0, 0,
+                        //                  0, 0, 0, 0, 0, 0, 0, 0,
+                        //                  varErrorflag);
 
                     }
                 }
@@ -787,29 +814,14 @@ namespace ROMS
                         objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBatch.Rows[i].Cells["PRID"].Value),
                                                0, 0, "", "", "", "", "", "",
                                                0, 0, 0, 0, 0, 0,
-                                               0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "",
+                                               0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, "", 0, "", Convert.ToString(grdBatch.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdBatch.Rows[i].Cells["Barcode-New"].Value).Trim(),
                                                0, "", 0, "", 0, "",
                                                0, "", 0, "", 0, 0,
                                                0, "", 0, "", 0, 0,
-                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_PRCTID-Current"].Value), varPR_PRCTID,
-                                               Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
+                                               0, 0,   Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
                                                Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
-                                               varErrorflag);
-
-                        //objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdMSQ.Rows[i].Cells["PRID"].Value),
-                        //      0, 0, "", "", "", "", "", "",
-                        //      0, 0, 0, 0, 0, 0,
-                        //     0, 0, 0, 0, 0, 0, 0, 0, 0, "",
-                        //     0, "", 0, "",
-                        //      Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-Current"].Value).Trim(), Convert.ToString(grdMSQ.Rows[i].Cells["Barcode-New"].Value).Trim(),
-                        //       0, "", 0, "", 0, "",
-                        //      0, "", 0, "", 0, 0,
-                        //      0, "", 0, "", 0, 0,
-                        //      0, 0,   Convert.ToInt32(grdBatch.Rows[i].Cells["PR_RMForProductionID-Current"].Value), PR_RMForProductionID,
-                        //       Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoID-Current"].Value), PR_BatchNoID,
-                        //        Convert.ToInt32(grdBatch.Rows[i].Cells["PR_BatchNoGenerationID-Current"].Value), PR_BatchNoGenerationID,
-                        //      varErrorflag); 
+                                               varErrorflag); 
                     }
                 }
 
@@ -907,7 +919,7 @@ namespace ROMS
                         else if (grdBatch.Visible == true)
                         {
                             grdBatch.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                            grdBatch.Rows[i].Cells["Product Category-New"].Style.BackColor = Color.PaleGreen;
+                            grdBatch.Rows[i].Cells["Barcode-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["RM Pro-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["Batch No.-New"].Style.BackColor = Color.PaleGreen;
                             grdBatch.Rows[i].Cells["Batch Generation-New"].Style.BackColor = Color.PaleGreen;
@@ -1045,7 +1057,7 @@ namespace ROMS
                 }
                 else if (grdMSQ.Visible == true)
                 {
-                    if (grdMSQ.CurrentCell.OwningColumn.Name == "R Min Sale Qty-New" || grdMSQ.CurrentCell.OwningColumn.Name == "W.Min Sale Qty-New" || grdMSQ.CurrentCell.OwningColumn.Name == "Barcode-New")
+                    if (grdMSQ.CurrentCell.OwningColumn.Name == "MSQ-New" || grdMSQ.CurrentCell.OwningColumn.Name == "UPP-New"  )
                     {
                         if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.' ))
                         {
@@ -1229,9 +1241,9 @@ namespace ROMS
                                 grdMSQ.DataSource = objDs.Tables[0];
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdMSQ.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["R Min Sale Qty-New"]).MaxInputLength = 10;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["W.Min Sale Qty-New"]).MaxInputLength = 10;
-                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["Barcode-New"]).MaxInputLength = 20;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["MSQ-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["UPP-New"]).MaxInputLength = 10;
+                                ((DataGridViewTextBoxColumn)grdMSQ.Columns["Unit-New"]).MaxInputLength = 20;
                                
                                 grdMSQ.Columns["S.No."].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdMSQ.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
@@ -1239,6 +1251,7 @@ namespace ROMS
                                 grdMSQ.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdMSQ.Columns["Product Name in English"].Visible = false;
                                 grdMSQ.Columns["PRID"].Visible = false;
+                                grdMSQ.Columns["UTID-OLD"].Visible = false;
                                 grdMSQ.Columns["S.No."].Width = 50;
                                 grdMSQ.Columns["Product Name in Tamil"].Width = 270;
                                 grdMSQ.Columns["P.I Code"].Width = 80;
@@ -1252,32 +1265,25 @@ namespace ROMS
                                 grdMSQ.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdMSQ.Columns["Unit"].ReadOnly = true;
 
-                                grdMSQ.Columns["R Min Sale Qty-Current"].ReadOnly = true;
-                                grdMSQ.Columns["R.Rate"].ReadOnly = true;
-                                grdMSQ.Columns["W.Min Sale Qty-Current"].ReadOnly = true;
-                                grdMSQ.Columns["W.Sale Rate"].ReadOnly = true;
-                                grdMSQ.Columns["Barcode-Current"].ReadOnly = true;
+                                grdMSQ.Columns["MSQ-Current"].ReadOnly = true; 
+                                grdMSQ.Columns["UPP-Current"].ReadOnly = true;
+                                grdMSQ.Columns["Unit-Current"].ReadOnly = true; 
+                                    
+                                grdMSQ.Columns["MSQ-Current"].Width = 100;
+                                grdMSQ.Columns["MSQ-New"].Width = 100;
+                                grdMSQ.Columns["UPP-Current"].Width = 100; 
+                                grdMSQ.Columns["UPP-New"].Width = 100;
+                                grdMSQ.Columns["Unit-Current"].Width = 120;
+                                grdMSQ.Columns["Unit-New"].Width = 120; 
 
-                                grdMSQ.Columns["R Min Sale Qty-Current"].Width = 150;
-                                grdMSQ.Columns["R Min Sale Qty-New"].Width = 120;
-                                grdMSQ.Columns["R.Rate"].Width = 100; 
-                                grdMSQ.Columns["W.Min Sale Qty-Current"].Width = 150;
-                                grdMSQ.Columns["W.Min Sale Qty-New"].Width = 150;
-                                grdMSQ.Columns["W.Sale Rate"].Width = 120;
-                                grdMSQ.Columns["Barcode-Current"].Width = 150;
-                                grdMSQ.Columns["Barcode-New"].Width = 120;
+                                grdMSQ.Columns["MSQ-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdMSQ.Columns["UPP-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                                grdMSQ.Columns["Unit-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
 
-                                grdMSQ.Columns["R Min Sale Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdMSQ.Columns["W.Min Sale Qty-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdMSQ.Columns["Barcode-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                                grdMSQ.Columns["R Min Sale Qty-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["W.Min Sale Qty-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["Barcode-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["R Min Sale Qty-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["W.Min Sale Qty-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["Barcode-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                                grdMSQ.Columns["W.Sale Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["MSQ-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["UPP-New"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["UPP-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMSQ.Columns["MSQ-Current"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
                             }
                             else if(grdStock.Visible==true)
                             {
@@ -3354,20 +3360,25 @@ namespace ROMS
         {
             try
             {
-                if (grdMSQ.CurrentCell.OwningColumn.Name == "R Min Sale Qty-New")
+                if (grdMSQ.CurrentCell.OwningColumn.Name == "MSQ-New")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
                 }
-                else if (grdMSQ.CurrentCell.OwningColumn.Name == "W.Min Sale Qty-New")
+                else if (grdMSQ.CurrentCell.OwningColumn.Name == "UPP-New")
                 {
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
                     return;
                 }
-                else if (grdMSQ.CurrentCell.OwningColumn.Name == "Barcode-New")
+                else if (grdMSQ.CurrentCell.OwningColumn.Name == "Unit-New")
                 {
-                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
-                    return;
+                    TextBox txtUnit = e.Control as TextBox;
+                    if (txtUnit != null)
+                    {
+                        txtUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                        txtUnit.AutoCompleteCustomSource = AutoCompleteUnit();
+                        txtUnit.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    }
                 }
             }
             catch (Exception ex)
@@ -3614,7 +3625,7 @@ namespace ROMS
                             int i = irow;
                             int intsection = 0, intlvariant = 0;
                             intsection = grdMSQ.Columns.Count - 1;
-                            intlvariant = grdMSQ.Columns.Count - 3;
+                            intlvariant = grdMSQ.Columns.Count - 2;
                             //if (intsection == icolumn)
                             //{
                             //    grdMSQ.CurrentCell = grdMSQ[intsection, irow + 1];
