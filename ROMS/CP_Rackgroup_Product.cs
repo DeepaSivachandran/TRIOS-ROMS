@@ -587,26 +587,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void grdGroupList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            try
-            {
-                //if (refreshFlag == 0)
-                //{
-                //    if (e.RowIndex < 0 || grdGroupList.Rows[e.RowIndex].IsNewRow)
-                //        return;
-                //    if (grdGroupList.Columns.Contains("S.No."))
-                //    {
-                //        grdGroupList.Rows[e.RowIndex].Cells["S.No."].Value = e.RowIndex + 1;
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void grdGroupList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             try
@@ -615,14 +595,7 @@ namespace ROMS
                     return;
 
                 var val = grdGroupList.Rows[e.RowIndex].Cells["Order No."].Value;
-                if (val != null && int.TryParse(val.ToString(), out int oldOrder))
-                {
-                    _oldOrderNo = oldOrder;
-                }
-                else
-                {
-                    _oldOrderNo = 0;
-                }
+                _oldOrderNo = (val != null && int.TryParse(val.ToString(), out int v)) ? v : 0;
             }
             catch (Exception ex)
             {
@@ -634,37 +607,6 @@ namespace ROMS
         {
             try
             {
-                /*
-                if (e.RowIndex < 0)
-                    return;
-
-                if (!grdGroupList.Columns[e.ColumnIndex].Name.Equals("Order No."))
-                    return;
-
-                var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
-
-                if (cell.Value == null || cell.Value.ToString() == "")
-                    return;
-
-                if (!int.TryParse(cell.Value.ToString(), out int editedOrder))
-                    return;
-
-                int nextOrder = editedOrder + 1;
-                for (int i = e.RowIndex + 1; i < grdGroupList.Rows.Count; i++)
-                {
-                    if (grdGroupList.Rows[i].IsNewRow)
-                        continue;
-
-                    var nextCell = grdGroupList.Rows[i].Cells["Order No."];
-
-                    if (nextCell.Value != null && nextCell.Value.ToString() != "")
-                    {
-                        nextCell.Value = nextOrder;
-                        nextOrder++;
-                    }
-                }
-                */
-
                 if (e.RowIndex < 0)
                     return;
 
@@ -672,75 +614,38 @@ namespace ROMS
                     return;
 
                 var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
+                string newValue = cell.Value?.ToString().Trim();
 
-                if (cell.Value == null || cell.Value.ToString() == "")
+                if (string.IsNullOrEmpty(newValue))
                     return;
 
-                if (!int.TryParse(cell.Value.ToString(), out int editedOrder))
+                if (!int.TryParse(newValue, out int editedOrder))
                 {
-                    cell.Value = _oldOrderNo;
-                    return;
-                }
-
-                // ✅ Find MAX Order No from ABOVE rows
-                int minAllowed = 1;
-
-                //for (int i = 0; i < e.RowIndex; i++)
-                //{
-                //    var prevCell = grdGroupList.Rows[i].Cells["Order No."];
-
-                //    if (prevCell.Value != null && prevCell.Value.ToString() != "")
-                //    {
-                //        int prevOrder = Convert.ToInt32(prevCell.Value);
-                //        if (prevOrder >= minAllowed)
-                //            minAllowed = prevOrder + 1;
-                //    }
-                //}
-
-                foreach (DataGridViewRow row in grdGroupList.Rows)
-                {
-                    if (row.IsNewRow)
-                        continue;
-
-                    var otherCell = row.Cells["Order No."];
-
-                    if (otherCell.Value != null && otherCell.Value.ToString() != "")
-                    {
-                        int otherOrder = Convert.ToInt32(otherCell.Value);
-
-                        // only consider rows BEFORE the original position
-                        if (otherOrder < _oldOrderNo && otherOrder >= minAllowed)
-                        {
-                            minAllowed = otherOrder + 1;
-                        }
-                    }
-                }
-
-                // ❌ Validation
-                if (editedOrder < minAllowed)
-                {
-                    MessageBox.Show(
-                        $"Order No. must be greater.",
-                        "Invalid Order No",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    cell.Value = _oldOrderNo;
+                    RestoreOldValue(cell);
                     return;
                 }
 
-                // ✅ Your existing resequencing logic
+                var dt = (DataTable)grdGroupList.DataSource;
+                var currentRow =
+                    ((DataRowView)grdGroupList.Rows[e.RowIndex].DataBoundItem).Row;
+
+                bool invalid = dt.AsEnumerable().TakeWhile(r => r != currentRow).Any(r =>r["Order No."] != DBNull.Value && int.TryParse(r["Order No."].ToString(), out int v) && editedOrder <= v);
+
+                if (invalid)
+                {
+                    MessageBox.Show("Order No must be greater.","Invalid Order No",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+
+                    RestoreOldValue(cell);
+                    return;
+                }
+
                 int nextOrder = editedOrder + 1;
-                for (int i = e.RowIndex + 1; i < grdGroupList.Rows.Count; i++)
+
+                foreach (var row in dt.AsEnumerable().SkipWhile(r => r != currentRow).Skip(1))
                 {
-                    if (grdGroupList.Rows[i].IsNewRow)
-                        continue;
-
-                    var nextCell = grdGroupList.Rows[i].Cells["Order No."];
-
-                    if (nextCell.Value != null && nextCell.Value.ToString() != "")
+                    if (row["Order No."] != DBNull.Value && int.TryParse(row["Order No."].ToString(), out _))
                     {
-                        nextCell.Value = nextOrder;
+                        row["Order No."] = nextOrder.ToString();
                         nextOrder++;
                     }
                 }
@@ -751,6 +656,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void RestoreOldValue(DataGridViewCell cell)
+        {
+            cell.Value = _oldOrderNo == 0 ? "" : _oldOrderNo.ToString();
+        }
+
         private void grdGroupList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

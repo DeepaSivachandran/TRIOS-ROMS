@@ -243,7 +243,6 @@
             this.grdGroupList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdGroupList_CellEndEdit);
             this.grdGroupList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdGroupList_DataBindingComplete);
             this.grdGroupList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdGroupList_EditingControlShowing);
-            this.grdGroupList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.grdGroupList_RowPostPaint);
             this.grdGroupList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdGroupList_Scroll);
             // 
             // picLoader
