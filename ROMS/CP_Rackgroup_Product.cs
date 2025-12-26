@@ -49,30 +49,6 @@ namespace ROMS
                 }
             }
         }
-        private void tsbEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        private void tsbDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfndelete();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         private void CP_RackList_Load(object sender, EventArgs e)
         {
             try
@@ -133,6 +109,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdGroupList.DataSource = objDs.Tables[0];
 
+                            grdGroupList.Columns["S.No."].ReadOnly = true;
                             grdGroupList.Columns["RKGID"].Visible = false;
                             grdGroupList.Columns["RKID"].Visible = false;
                             grdGroupList.Columns["PRID"].Visible = false;
@@ -141,7 +118,9 @@ namespace ROMS
                             grdGroupList.Columns["Product Name"].Width = 350;
                             grdGroupList.Columns["Order No."].Width = 80;
                             grdGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGroupList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdGroupList.Columns["Order No."].DefaultCellStyle.BackColor = Color.PaleGreen;
+                            ((DataGridViewTextBoxColumn)grdGroupList.Columns["Order No."]).MaxInputLength = 4;
                         }
                         else
                         {
@@ -161,6 +140,8 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                grdGroupList.Columns["PI Code"].ReadOnly = true;
+                grdGroupList.Columns["Product Name"].ReadOnly = true;
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -262,156 +243,13 @@ namespace ROMS
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
 
-        public void udfndelete()
-        {
-            if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
-            {
-                try
-                {
-                    if (grdGroupList.SelectedRows.Count > 0)
-                    {
-                        string varResult = "";
-                        DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-
-                            SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 0,0);
-                            objspservice.CloseConnection();
-
-                            if (varResult.Split('~')[0] == "3")
-                            {
-                                if (varResult.Split('~')[1] == "1")
-                                {
-                                    MainForm.objCP_Verify = new CP_Verify();
-                                    MainForm.objCP_Verify.ShowDialog();
-                                    varUserID = MainForm.objCP_Verify.varUserId;
-                                    if (MainForm.objCP_Verify.flag == 1)
-                                    {
-                                        objspservice = new SPDataService();
-                                        varResult = objspservice.udfnRack(2, Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value), 0, 0, "", "", "", 0, "Rack Delete", 1,0);
-                                        objspservice.CloseConnection();
-                                        if (varResult.Split('~')[0] == "3")
-                                        {
-                                            MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            udfnList();
-                                        }
-                                        else { MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(48);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
-        private void udfnEdit()
-        {
-            if (privilege.Contains("3") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
-            {
-                try
-                {
-                    if (grdGroupList.SelectedRows.Count > 0)
-                    {
-                        picLoader.Visible = true;
-                        picLoader.BringToFront();
-                        Application.DoEvents();
-                        MainForm.objCP_Rack = new CP_Rack();
-                        MainForm.objCP_Rack.btnSave.Text = "Update";
-                        MainForm.objCP_Rack.varRackcode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
-                        MainForm.objCP_Rack.PbConcernID = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ConcernID"].Value);
-                        MainForm.objCP_Rack.varLocationCode = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StockLocationID"].Value);
-                        MainForm.objCP_Rack.PbLocationName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
-                        MainForm.objCP_Rack.PbRackName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Rack Name"].Value);
-                        MainForm.objCP_Rack.PbShortName = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Short Name"].Value);
-                        MainForm.objCP_Rack.PbDescription = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Description"].Value);
-                        MainForm.objCP_Rack.PbConcern = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Concern"].Value);
-                        MainForm.objCP_Rack.PbStockLocation = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Stock Location"].Value);
-                        MainForm.objCP_Rack.PbStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objCP_Rack.varSalesBillPrint = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["SalesBillEnable"].Value);
-                        picLoader.Visible = false;
-                        picLoader.SendToBack();
-                        MainForm.objCP_Rack.ShowDialog();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    objError = new DataError();
-                    objError.WriteFile(ex);
-                }
-            }
-        }    
         private void CP_RackList_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.N))
-                {
-                    tsbNew_Click(sender, e);
-                }
-                if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.E))
-                {
-                    tsbEdit_Click(sender, e);
-                }
-                //if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.D))
-                //{
-                //    tsbDelete_Click(sender, e);
-                //}
                 if (e.KeyCode == Keys.Escape)
                 {
-                    //MainForm objMainForm = new MainForm();
-                    //objMainForm.udfnCloseChildForms();
-                    //MainForm.objStart = new DEF_Start();
-                    //MainForm.objStart.MdiParent = this.ParentForm;
-                    //MainForm.objStart.Show();
-                    //this.Close();
                     windowControl?.TriggerClose();
-                }
-                //if (e.KeyCode == Keys.Delete)
-                //{
-                //    udfndelete();
-                //}
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdGroupList_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnEdit();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void GrdGroupList_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    udfnEdit();
                 }
             }
             catch (Exception ex)
@@ -425,20 +263,20 @@ namespace ROMS
         {
             try
             {
-                for (int i = 0; i < grdGroupList.Rows.Count; i++)
-                {
-                    if (Convert.ToString(grdGroupList.Rows[i].Cells["StatusID"].Value) == "1")
-                    {
-                        grdGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
-                        grdGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        grdGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
-                        grdGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
-                    }
-                    grdGroupList.ClearSelection();
-                }
+                //for (int i = 0; i < grdGroupList.Rows.Count; i++)
+                //{
+                //    if (Convert.ToString(grdGroupList.Rows[i].Cells["StatusID"].Value) == "1")
+                //    {
+                //        grdGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
+                //        grdGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //    else
+                //    {
+                //        grdGroupList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
+                //        grdGroupList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                //    }
+                //    grdGroupList.ClearSelection();
+                //}
             }
             catch (Exception ex)
             {
@@ -740,6 +578,178 @@ namespace ROMS
             try
             {
                 e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void grdGroupList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || grdGroupList.Rows[e.RowIndex].IsNewRow)
+                    return;
+                if (grdGroupList.Columns.Contains("S.No."))
+                {
+                    grdGroupList.Rows[e.RowIndex].Cells["S.No."].Value = e.RowIndex + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdGroupList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0)
+                    return;
+
+                if (!grdGroupList.Columns[e.ColumnIndex].Name.Equals("Order No."))
+                    return;
+
+                var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
+
+                if (cell.Value == null || cell.Value.ToString() == "")
+                    return;
+
+                if (!int.TryParse(cell.Value.ToString(), out int editedOrder))
+                    return;
+
+                int nextOrder = editedOrder + 1;
+                for (int i = e.RowIndex + 1; i < grdGroupList.Rows.Count; i++)
+                {
+                    if (grdGroupList.Rows[i].IsNewRow)
+                        continue;
+
+                    var nextCell = grdGroupList.Rows[i].Cells["Order No."];
+
+                    if (nextCell.Value != null && nextCell.Value.ToString() != "")
+                    {
+                        nextCell.Value = nextOrder;
+                        nextOrder++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+
+        private void grdGroupList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            try
+            {
+                if (grdGroupList.CurrentCell.OwningColumn.Name == "Order No.")
+                {
+                    e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void allowonlynumber(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (grdGroupList.CurrentCell.OwningColumn.Name == "Order No.")
+                {
+                    if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnSave_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnSave_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnSave.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                windowControl?.TriggerClose();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.Transparent; 
             }
             catch (Exception ex)
             {
