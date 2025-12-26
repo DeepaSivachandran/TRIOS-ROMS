@@ -3388,6 +3388,7 @@ namespace ROMS
                     //    e.Handled = true;  // Disallow the character
                     //}
                     TextBox textBox = (TextBox)sender;
+                    textBox.SelectionStart = 0;
                     if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))

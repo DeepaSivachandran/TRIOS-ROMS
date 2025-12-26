@@ -71,7 +71,7 @@ namespace ROMS
         {
             try
             {
-                if (varDMFromOther == 0 &&  fromQueueFlag == 1)
+                if (varDMFromOther == 0 ||  fromQueueFlag == 1)
                 {
                     varExpiryDate = txtExpiryDate.Text;
                 }
@@ -84,7 +84,7 @@ namespace ROMS
                 }
                 if (varExpiryDate != "")
                 {
-                    if (varDMFromOther == 0 &&  fromQueueFlag == 1)
+                    if (varDMFromOther == 0 ||  fromQueueFlag == 1)
                     {
                         string varExpiryDate = "";
                         varExpiryDate = txtExpiryDate.Text.Trim();
@@ -133,12 +133,15 @@ namespace ROMS
                 {
                     grdDamageEntry.Rows[Rowcount].Cells["clmSupplier"].Style.BackColor = Color.LightPink;
                 }
-                if (fromQueueFlag == 1)
-                {
-                    int totalQueueValue = Convert.ToInt32(tsttotalValue.Text);
-                    tstaddedvalue.Text = Convert.ToString(grdDamageEntry.Rows.Count);
-                    tsbRemainingValue.Text = Convert.ToString(totalQueueValue - grdDamageEntry.Rows.Count);
-                }
+                //if (fromQueueFlag == 1)
+                //{
+                //    grdDamageEntry.Columns["clmQuantity"].ReadOnly = true;
+                //    grdDamageEntry.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.White;
+                //}
+
+                int totalQueueValue = Convert.ToInt32(tsttotalValue.Text);
+                tstaddedvalue.Text = Convert.ToString(grdDamageEntry.Rows.Count);
+                tsbRemainingValue.Text = Convert.ToString(totalQueueValue - grdDamageEntry.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -655,6 +658,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -800,6 +804,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtProductName.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -839,7 +844,7 @@ namespace ROMS
         {
             try
             {
-                DGV_FilterProduct.Visible = false;
+                udfnGridNull((Control)sender);
                 txtMrp.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -876,6 +881,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 dpEntryDate.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1231,8 +1237,8 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtDay.BackColor = Color.LemonChiffon;
-                DGV_FilterProduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1256,8 +1262,8 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtMonth.BackColor = Color.LemonChiffon;
-                DGV_FilterProduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1357,8 +1363,8 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtYear.BackColor = Color.LemonChiffon;
-                DGV_FilterProduct.Visible = false;
             }
             catch (Exception ex)
             {
@@ -1430,6 +1436,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtBatchNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1480,8 +1487,7 @@ namespace ROMS
         {
             try
             {
-                DGV_FilterProduct.Visible = false;
-                DGV_FilterProduct.DataSource = null;
+                udfnGridNull((Control)sender);
                 varUpDownKey = 0;
                 lvProduct.Visible = false;
                 txtQuantity.BackColor = Color.LemonChiffon;
@@ -1536,7 +1542,7 @@ namespace ROMS
         {
             try
             {
-                lvProduct.Visible = false;
+                udfnGridNull((Control)sender);
                 btnAdd.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1550,6 +1556,23 @@ namespace ROMS
             try
             {
                 btnAdd.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnGridNull(Control skipControl)
+        {
+            try
+            {
+                if (skipControl != txtProductName)
+                {
+                    varUpDownKey = 0;
+                    DGV_FilterProduct.DataSource = null;
+                    DGV_FilterProduct.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1760,8 +1783,11 @@ namespace ROMS
                             txtQuantity.Text = Qty;
                         }
                         udfnAdd();
-                        grdDamageEntry.Columns["clmQuantity"].ReadOnly = true;
-                        grdDamageEntry.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.White;
+                        if (fromQueueFlag == 1)
+                        {
+                            grdDamageEntry.Columns["clmQuantity"].ReadOnly = true;
+                            grdDamageEntry.Columns["clmQuantity"].DefaultCellStyle.BackColor = Color.White;
+                        }
                     }
                     else
                     {
@@ -1978,6 +2004,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtRemark.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2017,6 +2044,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2380,6 +2408,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnClose.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2859,7 +2888,7 @@ namespace ROMS
                 {
                     varMRP = Convert.ToDecimal(txtMrp.Text);
                 }
-                if (varDMFromOther == 0 &&  fromQueueFlag == 1)
+                if (varDMFromOther == 0 ||  fromQueueFlag == 1)
                 {
                     varExpiryDate = txtExpiryDate.Text;
                     ExpiryDateFlag = 1;
@@ -3205,6 +3234,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 chkStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -3267,6 +3297,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbSupplier.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -3823,7 +3854,7 @@ namespace ROMS
         {
             try
             {
-                DGV_FilterProduct.Visible = false;
+                udfnGridNull((Control)sender);
                 cmbReason.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -4076,6 +4107,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 chkDamageOtherLoc.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)

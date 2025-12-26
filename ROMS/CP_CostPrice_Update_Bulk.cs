@@ -470,6 +470,8 @@ namespace ROMS
                             , objDs.Tables[0].Rows[i]["Unit"]
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["Last Rate"])
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["Live Rate"])
+                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["Parent Rate"])
+                            , Convert.ToDecimal(objDs.Tables[0].Rows[i]["UPP"]) 
                             , Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRODUCTID"]));
                     }
 
@@ -486,6 +488,8 @@ namespace ROMS
 
                     grdProducts.Columns["S.No."].ReadOnly = true;
                     grdProducts.Columns["Last Rate"].ReadOnly = true;
+                    grdProducts.Columns["Parent Rate"].ReadOnly = true;
+                    grdProducts.Columns["UPP"].ReadOnly = true;
                     grdProducts.Columns["P.I Code"].ReadOnly = true;
                     grdProducts.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdProducts.Columns["Unit"].ReadOnly = true;
@@ -493,6 +497,8 @@ namespace ROMS
                     grdProducts.Columns["Live Rate"].DefaultCellStyle.BackColor = Color.PaleGreen;
                     grdProducts.Columns["Live Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdProducts.Columns["Last Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdProducts.Columns["Parent Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    grdProducts.Columns["UPP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     grdProducts.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
                 else
@@ -1200,6 +1206,8 @@ namespace ROMS
                 objdtProducts.Columns.Add("Unit", typeof(string));
                 objdtProducts.Columns.Add("Last Rate", typeof(decimal));
                 objdtProducts.Columns.Add("Live Rate", typeof(decimal));
+                objdtProducts.Columns.Add("Parent Rate", typeof(decimal));
+                objdtProducts.Columns.Add("UPP", typeof(decimal));
                 objdtProducts.Columns.Add("PRODUCTID", typeof(int));
 
             }
@@ -1295,6 +1303,26 @@ namespace ROMS
                 }
             }
             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdProducts_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (grdProducts.Columns[e.ColumnIndex].Name == "UPP" || grdProducts.Columns[e.ColumnIndex].Name == "Parent Rate")
+                {
+                    if (e.Value != null && Convert.ToInt32(e.Value) == 0)
+                    {
+                        e.Value = "";
+                        e.FormattingApplied = true;
+                    }
+                }
+            }
+            catch (Exception ex) 
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
