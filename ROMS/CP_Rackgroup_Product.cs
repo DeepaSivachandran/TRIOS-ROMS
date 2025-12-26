@@ -693,6 +693,10 @@ namespace ROMS
         {
             try
             {
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
                 udfnSave();
             }   
             catch (Exception ex)
