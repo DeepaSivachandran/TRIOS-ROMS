@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,9 +25,11 @@ namespace ROMS
         DataTable objDtExcel = new DataTable();
         DataTable dtDefaultGrid = new DataTable();
         public string varUserID = "";
-        public int MenuCode = 0;
+        public int MenuCode = 0,refreshFlag = 0;
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+
+        DataTable dtRackgroupProduct = new DataTable();
         public CP_Rackgroup_Product()
         {
             InitializeComponent();
@@ -53,6 +56,12 @@ namespace ROMS
         {
             try
             {
+                dtRackgroupProduct.TableName = "MR_Rackgroup_Product";
+                dtRackgroupProduct.Columns.Add("RKGID", typeof(int));
+                dtRackgroupProduct.Columns.Add("RKID", typeof(int));
+                dtRackgroupProduct.Columns.Add("PRID", typeof(int));
+                dtRackgroupProduct.Columns.Add("OrderNo", typeof(int));
+
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 50402;
                 string ReportTypeIDs = string.Join(",",
@@ -119,7 +128,6 @@ namespace ROMS
                             grdGroupList.Columns["Order No."].Width = 80;
                             grdGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGroupList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdGroupList.Columns["Order No."].DefaultCellStyle.BackColor = Color.PaleGreen;
                             ((DataGridViewTextBoxColumn)grdGroupList.Columns["Order No."]).MaxInputLength = 4;
                         }
                         else
@@ -142,6 +150,7 @@ namespace ROMS
                 udfnSearchGridHead();
                 grdGroupList.Columns["PI Code"].ReadOnly = true;
                 grdGroupList.Columns["Product Name"].ReadOnly = true;
+                grdGroupList.Columns["Order No."].DefaultCellStyle.BackColor = Color.PaleGreen;
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -589,11 +598,14 @@ namespace ROMS
         {
             try
             {
-                if (e.RowIndex < 0 || grdGroupList.Rows[e.RowIndex].IsNewRow)
-                    return;
-                if (grdGroupList.Columns.Contains("S.No."))
+                if (refreshFlag == 0)
                 {
-                    grdGroupList.Rows[e.RowIndex].Cells["S.No."].Value = e.RowIndex + 1;
+                    if (e.RowIndex < 0 || grdGroupList.Rows[e.RowIndex].IsNewRow)
+                        return;
+                    if (grdGroupList.Columns.Contains("S.No."))
+                    {
+                        grdGroupList.Rows[e.RowIndex].Cells["S.No."].Value = e.RowIndex + 1;
+                    }
                 }
             }
             catch (Exception ex)
@@ -642,9 +654,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-
-
         private void grdGroupList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -684,7 +693,56 @@ namespace ROMS
         {
             try
             {
+                udfnSave();
+            }   
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnSave()
+        {
+            try
+            {
+                dtRackgroupProduct.Rows.Clear();
 
+                foreach (DataGridViewRow row in grdGroupList.Rows)
+                {
+                    if (row.IsNewRow)
+                        continue;
+
+                    var orderCell = row.Cells["Order No."];
+                    if (orderCell.Value != null && orderCell.Value.ToString().Trim() != "")
+                    {
+                        DataRow dr = dtRackgroupProduct.NewRow();
+
+                        dr["RKGID"] = Convert.ToInt32(row.Cells["RKGID"].Value);
+                        dr["RKID"] = Convert.ToInt32(row.Cells["RKID"].Value);
+                        dr["PRID"] = Convert.ToInt32(row.Cells["PRID"].Value);
+                        dr["OrderNo"] = Convert.ToInt32(orderCell.Value);
+
+                        dtRackgroupProduct.Rows.Add(dr);
+                    }
+                }
+                string varResult = "";
+                SPDataService objDser = new SPDataService();
+                varResult = objDser.udfnRackGroup(3, 0, 0, "", "", "", 0, "Rackgroup Product Mapping", MainForm.pbUserID, 0, 0, dtRackgroupProduct);
+                objDser.CloseConnection();
+                btnSave.Enabled = true;
+                if (varResult.Split('~')[0] == "3")
+                {
+                    refreshFlag = 1;
+                    MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnList();
+
+                    refreshFlag = 0;
+                }
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSave.Focus();
+                }
             }
             catch (Exception ex)
             {

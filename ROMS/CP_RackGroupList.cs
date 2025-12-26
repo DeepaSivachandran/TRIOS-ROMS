@@ -92,7 +92,7 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objDser = new SPDataService();
-                            string varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 0, 0);
+                            string varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 0, 0, null);
                             objDser.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -104,7 +104,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objDser = new SPDataService();
-                                        varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 1, 0);
+                                        varResult = objDser.udfnRackGroup(2, Convert.ToInt16(grdRackGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, "", "", "", 0, "Rack Group Deletion", varUserID, 1, 0, null);
                                         objDser.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
