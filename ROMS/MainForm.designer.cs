@@ -841,7 +841,7 @@ namespace ROMS
             // tsmStockLocationUpdate
             // 
             this.tsmStockLocationUpdate.Name = "tsmStockLocationUpdate";
-            this.tsmStockLocationUpdate.Size = new System.Drawing.Size(245, 22);
+            this.tsmStockLocationUpdate.Size = new System.Drawing.Size(218, 22);
             this.tsmStockLocationUpdate.Text = "Stock location, Rack && MSQ";
             this.tsmStockLocationUpdate.Visible = false;
             this.tsmStockLocationUpdate.Click += new System.EventHandler(this.tsmStockLocationUpdate_Click);
@@ -849,15 +849,15 @@ namespace ROMS
             // tsmMinsalesUpdate
             // 
             this.tsmMinsalesUpdate.Name = "tsmMinsalesUpdate";
-            this.tsmMinsalesUpdate.Size = new System.Drawing.Size(245, 22);
-            this.tsmMinsalesUpdate.Text = "Minsales Qty && Barcode";
+            this.tsmMinsalesUpdate.Size = new System.Drawing.Size(218, 22);
+            this.tsmMinsalesUpdate.Text = "Production Upp,MSQ && Unit";
             this.tsmMinsalesUpdate.Visible = false;
             this.tsmMinsalesUpdate.Click += new System.EventHandler(this.tsmMinsalesUpdate_Click);
             // 
             // tsmMinMaxUpdate
             // 
             this.tsmMinMaxUpdate.Name = "tsmMinMaxUpdate";
-            this.tsmMinMaxUpdate.Size = new System.Drawing.Size(245, 22);
+            this.tsmMinMaxUpdate.Size = new System.Drawing.Size(218, 22);
             this.tsmMinMaxUpdate.Text = "Min, Max stock && Reorder Qty";
             this.tsmMinMaxUpdate.Visible = false;
             this.tsmMinMaxUpdate.Click += new System.EventHandler(this.tsmMinMaxUpdate_Click);
@@ -865,7 +865,7 @@ namespace ROMS
             // tsmUnitUppUpdate
             // 
             this.tsmUnitUppUpdate.Name = "tsmUnitUppUpdate";
-            this.tsmUnitUppUpdate.Size = new System.Drawing.Size(245, 22);
+            this.tsmUnitUppUpdate.Size = new System.Drawing.Size(218, 22);
             this.tsmUnitUppUpdate.Text = "Bulk Unit, UPP && Shelf Life";
             this.tsmUnitUppUpdate.Visible = false;
             this.tsmUnitUppUpdate.Click += new System.EventHandler(this.tsmUnitUppUpdate_Click);
@@ -873,15 +873,15 @@ namespace ROMS
             // tsmProductUpdate
             // 
             this.tsmProductUpdate.Name = "tsmProductUpdate";
-            this.tsmProductUpdate.Size = new System.Drawing.Size(245, 22);
-            this.tsmProductUpdate.Text = "Product Category, RM Flag && Batch";
+            this.tsmProductUpdate.Size = new System.Drawing.Size(218, 22);
+            this.tsmProductUpdate.Text = "Barcode, RM Flag && Batch";
             this.tsmProductUpdate.Visible = false;
             this.tsmProductUpdate.Click += new System.EventHandler(this.tsmProductUpdate_Click);
             // 
             // tsmNetGrossUpdate
             // 
             this.tsmNetGrossUpdate.Name = "tsmNetGrossUpdate";
-            this.tsmNetGrossUpdate.Size = new System.Drawing.Size(245, 22);
+            this.tsmNetGrossUpdate.Size = new System.Drawing.Size(218, 22);
             this.tsmNetGrossUpdate.Text = "Net && Gross Weight";
             this.tsmNetGrossUpdate.Visible = false;
             this.tsmNetGrossUpdate.Click += new System.EventHandler(this.tsmNetGrossUpdate_Click);
@@ -889,7 +889,7 @@ namespace ROMS
             // tsmSubgrupBrandUpdate
             // 
             this.tsmSubgrupBrandUpdate.Name = "tsmSubgrupBrandUpdate";
-            this.tsmSubgrupBrandUpdate.Size = new System.Drawing.Size(245, 22);
+            this.tsmSubgrupBrandUpdate.Size = new System.Drawing.Size(218, 22);
             this.tsmSubgrupBrandUpdate.Text = "Group, Subgroup && Brand";
             this.tsmSubgrupBrandUpdate.Visible = false;
             this.tsmSubgrupBrandUpdate.Click += new System.EventHandler(this.tsmSubgrupBrandUpdate_Click);
@@ -897,7 +897,7 @@ namespace ROMS
             // tsmHSNUpdate
             // 
             this.tsmHSNUpdate.Name = "tsmHSNUpdate";
-            this.tsmHSNUpdate.Size = new System.Drawing.Size(245, 22);
+            this.tsmHSNUpdate.Size = new System.Drawing.Size(218, 22);
             this.tsmHSNUpdate.Text = "HSN Name";
             this.tsmHSNUpdate.Visible = false;
             this.tsmHSNUpdate.Click += new System.EventHandler(this.tsmHSNUpdate_Click);
@@ -905,7 +905,7 @@ namespace ROMS
             // tsmProCodeUpdate
             // 
             this.tsmProCodeUpdate.Name = "tsmProCodeUpdate";
-            this.tsmProCodeUpdate.Size = new System.Drawing.Size(245, 22);
+            this.tsmProCodeUpdate.Size = new System.Drawing.Size(218, 22);
             this.tsmProCodeUpdate.Text = "Pro. Code, Name && Unit";
             this.tsmProCodeUpdate.Click += new System.EventHandler(this.tsmProCodeUpdate_Click);
             // 
@@ -1032,7 +1032,7 @@ namespace ROMS
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -1040,7 +1040,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -1048,7 +1048,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -1056,7 +1056,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);

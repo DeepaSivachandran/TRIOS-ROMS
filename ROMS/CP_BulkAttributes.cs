@@ -82,39 +82,39 @@ namespace ROMS
         {
             try
             {
-                if (pbMenuFlag == 51901)
+                if (pbMenuFlag == 50901)
                 {
                     TsbLocation_Click(sender, e);
                 }
-                if (pbMenuFlag == 51902)
+                if (pbMenuFlag == 50902)
                 {
                     TsbMSQ_Click(sender, e);
                 }
-                if (pbMenuFlag == 51903)
+                if (pbMenuFlag == 50903)
                 {
                     TsbStock_Click(sender, e);
                 }
-                if (pbMenuFlag == 51904)
+                if (pbMenuFlag == 50904)
                 {
                     TsbShelflife_Click(sender, e);
                 }
-                if (pbMenuFlag == 51905)
+                if (pbMenuFlag == 50905)
                 {
                     TsbBatch_Click(sender, e);
                 }
-                if (pbMenuFlag == 51906)
+                if (pbMenuFlag == 50906)
                 {
                     TsbWeight_Click(sender, e);
                 }
-                if (pbMenuFlag == 51907)
+                if (pbMenuFlag == 50907)
                 {
                     TsbBrand_Click(sender, e);
                 }
-                if (pbMenuFlag == 51908)
+                if (pbMenuFlag == 50908)
                 {
                     TsbHsn_Click(sender, e);
                 }
-                if (pbMenuFlag == 51909)
+                if (pbMenuFlag == 50909)
                 {
                     TsbName_Click(sender, e);
                 }
