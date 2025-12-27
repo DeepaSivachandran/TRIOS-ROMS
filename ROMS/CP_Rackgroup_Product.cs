@@ -33,6 +33,8 @@ namespace ROMS
 
         private int _oldOrderNo = 0;
 
+        private ToolTip tbRackgroup = new ToolTip();
+
         public CP_Rackgroup_Product()
         {
             InitializeComponent();
@@ -62,8 +64,9 @@ namespace ROMS
                 MenuCode = 50402;
                 cmbGroupType.Focus();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
+                objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 AND RKGID !=0 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
                 objDataBind = null;
+                cmbGroupType.SelectedValue = -1;
                 udfnList();
             }
             catch (Exception ex)
@@ -76,6 +79,8 @@ namespace ROMS
         {
             try
             {
+                cmbGroupType.BackColor = Color.White;
+                epRackgroup.Clear();
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 btnView.Enabled = false;
@@ -291,6 +296,15 @@ namespace ROMS
         {
             try
             {
+                epRackgroup.Clear();
+                if (Convert.ToInt32(cmbGroupType.SelectedValue) == -1)
+                {
+                    epRackgroup.SetError(cmbGroupType, "Please select rackgroup");
+                    cmbGroupType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tbRackgroup.ShowAlways = true;
+                    tbRackgroup.Show("Please select rackgroup", cmbGroupType, 5000);
+                    return;
+                }
                 udfnList();
             }
             catch (Exception ex)
