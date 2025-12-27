@@ -411,7 +411,7 @@ namespace ROMS
                 InitializeComponent();
                 objValidation.setFontAndFontSize(this);
                 timer1.Start();
-                //timer2.Start();
+                timer2.Start();
                 //ms.Renderer = new CustomMenuStripRenderer();
             }
             catch (Exception ex)
@@ -1187,7 +1187,8 @@ namespace ROMS
         {
             try
             {
-                udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 411);  // Type 411 is Logged In 
+                udfnUserLoginProcess(Convert.ToInt32(MainForm.pbUserID), 411);  // Type 411 is Logged In  
+                timer2_Tick(sender, e);
                 GetLocalIPAddress();
                 udfnGetDefaultCompany();
                 udfnShelflifeLevel();
@@ -1222,38 +1223,38 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        //public void timer2_Tick(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        DataService OBJDSERVICE = new DataService(); 
-        //        varratechangecount = "1"; 
-        //        OBJDSERVICE.CloseConnection();
-        //        DataService objDservice = new DataService();
-        //        string varFlag = objDservice.displaydata("SELECT RAS_STSID FROM DEF_RATEAPPROVAL_STATUS");
-        //        objDservice.CloseConnection();
-        //        if (varFlag == "1")
-        //        {
-        //            if (varratechangecount != "0")
-        //            {
-        //                tsmGif.Visible = true;
-        //            }
-        //            else
-        //            {
-        //                tsmGif.Visible = false;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            tsmGif.Visible = false;
-        //        } 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        objError = new DataError();
-        //        objError.WriteFile(ex);
-        //    }
-        //}
+        public void timer2_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                DataService OBJDSERVICE = new DataService();
+                varratechangecount = "1";
+                OBJDSERVICE.CloseConnection();
+                DataService objDservice = new DataService();
+                string varFlag = objDservice.displaydata("SELECT RAS_STSID FROM DEF_RATEAPPROVAL_STATUS");
+                objDservice.CloseConnection();
+                if (varFlag == "1")
+                {
+                    if (varratechangecount != "0")
+                    {
+                        tsmGif.Visible = true;
+                    }
+                    else
+                    {
+                        tsmGif.Visible = false;
+                    }
+                }
+                else
+                {
+                    tsmGif.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void CenterChildForm(Form childForm)
         {
             if (mdiClientArea != null && childForm != null)
@@ -4540,7 +4541,7 @@ namespace ROMS
         {
             try
             {
-                OpenMainForm(ref MainForm.objCP_Rate_ChangeApproval, "RATE_RateApproval", 301);
+                OpenReportForm(ref MainForm.objCP_Rate_ChangeApproval, "CP_Rate_ChangeApproval", 51305);
             }
             catch (Exception ex)
             {
@@ -4617,7 +4618,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+         
         private void tsmLock_Click(object sender, EventArgs e)
         {
 
