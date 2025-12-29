@@ -115,11 +115,14 @@ namespace ROMS
                             grdGroupList.Columns["RKGID"].Visible = false;
                             grdGroupList.Columns["RKID"].Visible = false;
                             grdGroupList.Columns["PRID"].Visible = false;
+                            grdGroupList.Columns["Rack Group"].Visible = false;
                             grdGroupList.Columns["S.No."].Width = 50;
                             grdGroupList.Columns["PI Code"].Width = 150;
                             grdGroupList.Columns["Product Name"].Width = 350;
                             grdGroupList.Columns["Order No."].Width = 80;
+                            grdGroupList.Columns["Unit"].Width = 50;
                             grdGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGroupList.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGroupList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             ((DataGridViewTextBoxColumn)grdGroupList.Columns["Order No."]).MaxInputLength = 4;
                             
