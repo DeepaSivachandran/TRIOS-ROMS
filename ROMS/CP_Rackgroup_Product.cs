@@ -52,7 +52,7 @@ namespace ROMS
                 dtRackgroupProduct.Columns.Add("OrderNo", typeof(string));
 
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 50402;
+                int currentMUCode = 50404;
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
