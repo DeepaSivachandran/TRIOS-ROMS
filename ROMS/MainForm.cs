@@ -136,6 +136,7 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static CP_GeneralSettings objCP_GeneralSettings;
         public static CP_BulkAttributes objCP_BulkAttributes;
+        public static CP_HSNBulkUpdate objCP_HSNBulkUpdate;
         public static CP_Spl_Products_Bulk objCP_Spl_Products_Bulk;
         public static CP_BulkAttributeVerify objCP_BulkAttributeVerify; 
         public static CP_CostPrice_Update_Bulk objCP_CostPrice_Update_Bulk;
@@ -3910,12 +3911,12 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
+                MainForm.objCP_HSNBulkUpdate = new CP_HSNBulkUpdate();
+                MainForm.objCP_HSNBulkUpdate.pbMenuFlag = 8;
                 pbMenucode = 50908;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50908);
-                objCP_BulkAttributes.Text = "HSN Name";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
+                OpenReportForm(ref MainForm.objCP_HSNBulkUpdate, "CP_HSNBulkUpdate", 50908);
+                objCP_HSNBulkUpdate.Text = "HSN Name";
+                objCP_HSNBulkUpdate.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
