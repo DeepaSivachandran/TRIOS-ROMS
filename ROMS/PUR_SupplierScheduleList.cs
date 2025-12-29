@@ -171,7 +171,7 @@ namespace ROMS
                 btnExport.Visible = privilege.Contains("6");
                 tsbList.Visible=SpecialPermissions.Any (sp => sp.MUP_Code == 13 && sp.EditAccess.Split(',').Contains("9")); 
                 //for new supplier 
-                var supplierResult = UserAccessHelper.LoadUserAccess(517);
+                var supplierResult = UserAccessHelper.LoadUserAccess(507);
                 string SupPrivilege = supplierResult.PrivilegeCode;
                 List<(int MUP_Code, string EditAccess)> SupSpecial = supplierResult.SpecialPermissions;
                 tsbNew.Visible = SupPrivilege.Contains("2");

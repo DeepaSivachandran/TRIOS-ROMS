@@ -151,15 +151,15 @@ namespace ROMS
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 { 
                     //Group
-                    var groupresult = UserAccessHelper.LoadUserAccess(505);
+                    var groupresult = UserAccessHelper.LoadUserAccess(50502);
                     GroupPrivilege = groupresult.PrivilegeCode;
                     btnAdd.Visible = GroupPrivilege.Contains("2");
                     //Brand
-                    var Locationresult = UserAccessHelper.LoadUserAccess(509);
+                    var Locationresult = UserAccessHelper.LoadUserAccess(50401);
                     LocationPrivilege = Locationresult.PrivilegeCode;
                     btnewlocation.Visible = LocationPrivilege.Contains("2");
                     //Unit
-                    var Rackresult = UserAccessHelper.LoadUserAccess(510);
+                    var Rackresult = UserAccessHelper.LoadUserAccess(50402);
                     RackPrivilege = Rackresult.PrivilegeCode;
                     btnNewRack.Visible = RackPrivilege.Contains("2");
                 }

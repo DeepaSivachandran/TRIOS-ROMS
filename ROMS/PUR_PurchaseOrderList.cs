@@ -3535,8 +3535,12 @@ namespace ROMS
             {
                 try
                 {
-                    if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) != "12")
-                    { tsbDelete.Visible = false; }
+                    tsbDelete.Visible = true;
+                    if (grdPurchaseorderlist.SelectedRows.Count > 0)
+                    {
+                        if (Convert.ToString(grdPurchaseorderlist.Rows[grdPurchaseorderlist.CurrentCell.RowIndex].Cells["PO_CurrentSTSID"].Value) != "12")
+                        { tsbDelete.Visible = false; }
+                    }
                 }
                 catch (Exception ex)
                 {
