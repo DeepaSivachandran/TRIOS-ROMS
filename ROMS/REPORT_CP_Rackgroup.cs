@@ -122,7 +122,30 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-      
+        private void ApplyReportType465Rule()
+        {
+            try
+            {
+                bool is465 = Convert.ToInt32(cmbReportType.SelectedValue) == 465;
+
+                cmbRackGroup.Enabled = is465;
+
+                cmbConcern.Enabled = !is465;
+                cmbProductCategory.Enabled = !is465;
+                cmbFormat.Enabled = !is465;
+                cmbStatus.Enabled = !is465;
+                cmbproductStatus.Enabled = !is465;
+                cmbType.Enabled = !is465;
+                cmbRetailRate.Enabled = !is465;
+                cmbStockTakken.Enabled = !is465;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -182,6 +205,7 @@ namespace ROMS
                 {
                     cmbType.Enabled = false;
                 }
+                //ApplyReportType465Rule();
             }
             catch (Exception ex)
             {
@@ -1134,9 +1158,8 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Mapping_Product.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Mapping.rpt");
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
-                    objBillreport.SetParameterValue("paraRKGName", RKGName);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);

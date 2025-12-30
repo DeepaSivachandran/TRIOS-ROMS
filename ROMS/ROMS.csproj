@@ -559,6 +559,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Rackgroup_Product_Mapping.cs">
+      <DependentUpon>RPT_CP_Rackgroup_Product_Mapping.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_UserNamewise.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4731,6 +4738,11 @@
       <LastGenOutput>RPT_CP_Rackgroup_ShelfLife.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_CP_Rackgroup_Product_Mapping.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rackgroup_Product_Mapping.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_CP_UserNamewise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_UserNamewise.cs</LastGenOutput>

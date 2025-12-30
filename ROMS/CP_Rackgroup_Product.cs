@@ -97,6 +97,7 @@ namespace ROMS
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 91;
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbGroupType.SelectedValue);
+                objMR_Product.paraType =0;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
