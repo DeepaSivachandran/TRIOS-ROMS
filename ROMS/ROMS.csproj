@@ -492,11 +492,11 @@
     <Compile Include="CP_Product_Info.designer.cs">
       <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportFormat.cs">
+    <Compile Include="PrintFormat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportFormat.designer.cs">
-      <DependentUpon>ReportFormat.cs</DependentUpon>
+    <Compile Include="PrintFormat.designer.cs">
+      <DependentUpon>PrintFormat.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\MR_UPI.cs" />
     <Compile Include="Model\MR_CardMachine.cs" />
@@ -4036,8 +4036,8 @@
     <EmbeddedResource Include="CP_Product_Info.resx">
       <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportFormat.resx">
-      <DependentUpon>ReportFormat.cs</DependentUpon>
+    <EmbeddedResource Include="PrintFormat.resx">
+      <DependentUpon>PrintFormat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>

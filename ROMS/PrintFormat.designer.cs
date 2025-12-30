@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class ReportFormat
+    partial class PrintFormat
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportFormat));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrintFormat));
             this.label1 = new System.Windows.Forms.Label();
             this.errBrand = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSave = new System.Windows.Forms.Button();
@@ -43,9 +43,9 @@
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.label1.Location = new System.Drawing.Point(7, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 20);
+            this.label1.Size = new System.Drawing.Size(77, 20);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Report Format";
+            this.label1.Text = "Print Format";
             // 
             // errBrand
             // 
@@ -101,7 +101,7 @@
             this.MinimizeBox = false;
             this.Name = "PrintFormat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Report Format";
+            this.Text = "Print Format";
             this.Load += new System.EventHandler(this.CancelReason_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Brand_KeyDown);
             this.Leave += new System.EventHandler(this.CP_Brand_Leave);

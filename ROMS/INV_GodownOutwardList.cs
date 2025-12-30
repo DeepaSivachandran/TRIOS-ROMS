@@ -1821,7 +1821,7 @@ namespace ROMS
                             {
                                 string GOID = "0";
                                 GOID = Convert.ToString(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
-                                MainForm.objReportFormat = new ReportFormat();
+                                MainForm.objReportFormat = new PrintFormat();
                                 MainForm.objReportFormat.varTransactionId = GOID;
                                 MainForm.objReportFormat.ShowDialog();
                             }

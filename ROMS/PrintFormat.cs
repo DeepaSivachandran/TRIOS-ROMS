@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class ReportFormat : Form
+    public partial class PrintFormat : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpCancel = new ToolTip();
         public string varTransactionId = "0";
         public int varFormType = 0;
-        public ReportFormat()
+        public PrintFormat()
         {
             InitializeComponent();
             
