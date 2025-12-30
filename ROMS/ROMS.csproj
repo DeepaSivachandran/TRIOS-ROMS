@@ -869,6 +869,13 @@
     </Compile>
     <Compile Include="Model\TRN_Stock_Converstion.cs" />
     <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
+    <Compile Include="Reports\RPT_TP_INV_GoodsOutward.cs">
+      <DependentUpon>RPT_TP_INV_GoodsOutward.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="REPORT_CP_UserRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5071,6 +5078,11 @@
     <EmbeddedResource Include="Reports\RPT_Stock_Summary_Location.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_Summary_Location.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsOutward.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_GoodsOutward.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Unapproved_Purchase_Details.rpt">
