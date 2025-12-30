@@ -875,6 +875,20 @@
     </Compile>
     <Compile Include="Model\TRN_Stock_Converstion.cs" />
     <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
+    <Compile Include="Reports\RPT_TP_INV_GoodsInward_Slip.cs">
+      <DependentUpon>RPT_TP_INV_GoodsInward_Slip.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_INV_GoodsInward.cs">
+      <DependentUpon>RPT_TP_INV_GoodsInward.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_TP_INV_GoodsOutward_Slip.cs">
       <DependentUpon>RPT_TP_INV_GoodsOutward_Slip.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5094,6 +5108,16 @@
     <EmbeddedResource Include="Reports\RPT_Stock_Summary_Location.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_Summary_Location.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsInward_Slip.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_GoodsInward_Slip.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsInward.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_GoodsInward.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsOutward_Slip.rpt">
