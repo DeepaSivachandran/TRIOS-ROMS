@@ -34,6 +34,7 @@ namespace ROMS
         private int _oldOrderNo = 0;
 
         private ToolTip tbRackgroup = new ToolTip();
+        public int varExistFlag = 0;
 
         public CP_Rackgroup_Product()
         {
@@ -136,6 +137,13 @@ namespace ROMS
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                        }
+                        if (objDs.Tables.Count > 1)
+                        {
+                            if (objDs.Tables[1].Rows.Count != 0)
+                            {
+                                varExistFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["existFlag"]);
+                            }
                         }
                     }
                     else
@@ -627,10 +635,10 @@ namespace ROMS
             {
                 if (e.RowIndex < 0)
                     return;
-
                 if (grdGroupList.Columns[e.ColumnIndex].Name != "Order No.")
                     return;
-
+                if (varExistFlag == 0)
+                    return;
                 var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
                 string newValue = cell.Value?.ToString().Trim();
 
