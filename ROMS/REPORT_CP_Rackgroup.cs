@@ -206,6 +206,10 @@ namespace ROMS
                     cmbType.Enabled = false;
                 }
                 //ApplyReportType465Rule();
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 465)
+                {
+                    cmbType.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1116,34 +1120,19 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
-                int RKGCode = 0, RKCode = 0, EMPCode = 0;
-                string RKGName = "", RKName = "", RKInchargeName = "";
+                int RKGCode = 0;
+                string RKGName = "";
 
                 RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 RKGName = Convert.ToString(cmbRackGroup.Name);
-                if (txtEmployeeName.Text == "")
-                {
-                    EMPCode = 0;
-                    RKInchargeName = "-All-";
-                }
-                else
-                {
-                    EMPCode = Convert.ToInt32(lblEmpCode.Text);
-                    RKInchargeName = Convert.ToString(txtEmployeeName.Text);
-                }
-                if (txtRack.Text == "")
-                {
-                    RKCode = 0;
-                    RKName = "-All";
-                }
-                else
-                {
-                    RKCode = Convert.ToInt32(lblRackCode.Text);
-                    RKName = Convert.ToString(txtRack.Text);
-                }
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 91;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraRKGId = RKGCode;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -1159,7 +1148,12 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Mapping.rpt");
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -2513,7 +2507,7 @@ namespace ROMS
             {
                 cmbStockTakken.Enabled = false;
 
-                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16)
+                if (Convert.ToInt32(cmbProductCategory.SelectedValue) == 16 && Convert.ToInt32(cmbReportType.SelectedValue) != 465)
                 {
                     cmbStockTakken.Enabled = true;
                 }
