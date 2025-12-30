@@ -1823,6 +1823,7 @@ namespace ROMS
                                 GOID = Convert.ToString(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
                                 MainForm.objReportFormat = new PrintFormat();
                                 MainForm.objReportFormat.varTransactionId = GOID;
+                                MainForm.objReportFormat.varFormType = 2;
                                 MainForm.objReportFormat.ShowDialog();
                             }
                             catch (Exception ex)

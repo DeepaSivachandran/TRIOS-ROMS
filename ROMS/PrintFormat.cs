@@ -27,13 +27,26 @@ namespace ROMS
         {
             try
             {
+                string varHeader = "";
+                if (varFormType == 1)
+                {
+                    varHeader="Goods Inward Report";
+                }
+                if (varFormType == 2)
+                {
+                    varHeader = "Goods Outward Report";
+                } 
+                else if (varFormType == 3)
+                {
+                    varHeader = "Stock Transfer Report";
+                }
                 if (Convert.ToInt32(cmbReportFormat.SelectedValue) == 468)
                 {
-                    udfnTPPrint(varTransactionId,"Goods Outward Report");
+                    udfnTPPrint(varTransactionId, varHeader);
                 }
                 else
                 {
-                    udfnDirectPrint(varTransactionId,"Goods Outward Report");
+                    udfnDirectPrint(varTransactionId, varHeader);
                 }
                 this.Close();
             }
@@ -49,12 +62,26 @@ namespace ROMS
             {
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_GoodsOutward.rpt");
-
-                objBillreport.SetParameterValue("paraGOID", varTransactionId);
+                if (varFormType == 1)
+                {
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_GoodsInward.rpt");
+                }
+                else if (varFormType == 2)
+                {
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_GoodsOutward.rpt");
+                }
+                if (varFormType == 1)
+                {
+                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varTransactionId));
+                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varTransactionId), objBillreport.Subreports[0].Name);
+                }
+                else if (varFormType == 2)
+                {
+                    objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(varTransactionId));
+                    objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(varTransactionId), objBillreport.Subreports[0].Name);
+                }
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                 objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                objBillreport.SetParameterValue("paraGOID", varTransactionId, objBillreport.Subreports[0].Name);
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name);
                 objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name);
                 objValidation.CrySqlConnection(objBillreport);
@@ -75,9 +102,22 @@ namespace ROMS
             {
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsOutward.rpt");
-
-                objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(varTransactionId));
+                if (varFormType == 1)
+                {
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsInward.rpt");
+                }
+                else if (varFormType == 2)
+                {
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsOutward.rpt");
+                }
+                if (varFormType == 1)
+                {
+                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(varTransactionId));
+                }
+                else if (varFormType == 2)
+                {
+                    objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(varTransactionId));
+                }
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                 objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                 objValidation.CrySqlConnection(objBillreport);

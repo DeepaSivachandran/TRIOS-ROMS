@@ -463,6 +463,7 @@ namespace ROMS
                             {
                                 InwardId = Convert.ToString(varGIId);
                             }
+                            udfnInwardTP(InwardId);
                             udfnInwardReport(InwardId);
                         }
                         if (varGIId == 0) {
@@ -558,8 +559,6 @@ namespace ROMS
                     MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                     MainForm.objReportLoad.Text = varHeader;
                     MainForm.objReportLoad.ShowDialog();
-
-                    
                 }
             }
             catch (Exception ex)
@@ -568,7 +567,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnInwardTP(string varInwardId)
+        {
+            try
+            {
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_GoodsInward.rpt");
 
+                objBillreport.SetParameterValue("paraGIID", varInwardId);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objBillreport.SetParameterValue("paraGIID", varInwardId, objBillreport.Subreports[0].Name);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name);
+                objValidation.CrySqlConnection(objBillreport);
+                string varHeader = "Goods Inward Report";
+
+                MainForm.objReportLoad = new ReportLoad();
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                MainForm.objReportLoad.Text = varHeader;
+                MainForm.objReportLoad.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnStickerPrint(string varInwardId)
         {
             try
