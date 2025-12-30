@@ -1030,13 +1030,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         public void udfnTransactionData()
         {
             DataBind objDataBind = new DataBind();
@@ -2709,6 +2702,7 @@ namespace ROMS
                                     {
                                         OutwardId = Convert.ToString(varGOId);
                                     }
+                                    udfnOutwardTP(OutwardId);
                                     udfnOutwardReport(OutwardId);
                                     udfnClear();
                                     this.Close();
@@ -2871,6 +2865,34 @@ namespace ROMS
                     MainForm.objReportLoad.Text = varHeader;
                     MainForm.objReportLoad.ShowDialog();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnOutwardTP(string OutwardId)
+        {
+            try
+            {
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TP_INV_GoodsOutward.rpt");
+
+                objBillreport.SetParameterValue("paraGOID", OutwardId);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objBillreport.SetParameterValue("paraGOID", OutwardId, objBillreport.Subreports[0].Name);
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name);
+                objValidation.CrySqlConnection(objBillreport);
+                string varHeader = "Goods Outward Report";
+
+                MainForm.objReportLoad = new ReportLoad();
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                MainForm.objReportLoad.Text = varHeader;
+                MainForm.objReportLoad.ShowDialog();
             }
             catch (Exception ex)
             {

@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_TP_INV_GoodsOutward : ReportClass {
+    public class RPT_TP_INV_GoodsOutward_Slip : ReportClass {
         
-        public RPT_TP_INV_GoodsOutward() {
+        public RPT_TP_INV_GoodsOutward_Slip() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_TP_INV_GoodsOutward.rpt";
+                return "RPT_TP_INV_GoodsOutward_Slip.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_TP_INV_GoodsOutward.rpt";
+                return "ROMS.Reports.RPT_TP_INV_GoodsOutward_Slip.rpt";
             }
             set {
                 // Do nothing
@@ -175,52 +175,12 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_GoodsOutward_Sliprpt_paraUserName {
-            get {
-                return this.DataDefinition.ParameterFields[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_GoodsOutward_Sliprpt_paraHostName {
-            get {
-                return this.DataDefinition.ParameterFields[6];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_GoodsOutward_Sliprpt_paraUserID {
-            get {
-                return this.DataDefinition.ParameterFields[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_GoodsOutward_Sliprpt_paraIPAddress {
-            get {
-                return this.DataDefinition.ParameterFields[8];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_GoodsOutward_Sliprpt_paraGOID {
-            get {
-                return this.DataDefinition.ParameterFields[9];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_TP_INV_GoodsOutward : Component, ICachedReport {
+    public class CachedRPT_TP_INV_GoodsOutward_Slip : Component, ICachedReport {
         
-        public CachedRPT_TP_INV_GoodsOutward() {
+        public CachedRPT_TP_INV_GoodsOutward_Slip() {
         }
         
         [Browsable(false)]
@@ -257,7 +217,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_TP_INV_GoodsOutward rpt = new RPT_TP_INV_GoodsOutward();
+            RPT_TP_INV_GoodsOutward_Slip rpt = new RPT_TP_INV_GoodsOutward_Slip();
             rpt.Site = this.Site;
             return rpt;
         }

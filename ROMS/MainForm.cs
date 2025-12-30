@@ -391,6 +391,7 @@ namespace ROMS
         public static REPORT_Stock_Journal objREPORT_Stock_Journal;
         public static REPORT_Stock_Details objREPORT_Stock_Details;
         public static CP_Rackgroup_Product objCP_Rackgroup_Product;
+        public static ReportFormat objReportFormat;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
