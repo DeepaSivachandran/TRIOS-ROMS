@@ -26,7 +26,8 @@ namespace ROMS
         public int varBrandId = 0;
         public int varViewType = 0;
         public int varStatusId = 0, varErrorflag = 0, Varupdateflag = 0;
-        public int   varUpDownKeySubgroup = 0, varUpDownKeyProduct = 0, varUpDownKeyBrand = 0, varUpDownKeyOldHSN=0;
+        public int   varUpDownKeySubgroup = 0, varUpDownKeyProduct = 0, varUpDownKeyBrand = 0, varUpDownKeyOldHSN=0,
+            varUpDownKeyNewHSN=0;
         private ToolTip tpType = new ToolTip();
         private ToolTip tpSubgroup = new ToolTip();
         private ToolTip tpOldHSN = new ToolTip();
@@ -106,180 +107,9 @@ namespace ROMS
             try
             {
                 Varupdateflag = 0; string varOriginator = "";
-                int varHsnId = 0, varUnitId = 0; int varUpdateViewType = 0;
-                int varGroupId = 0, varSubGroupId = 0, varBrandId = 0;
-                int varPurSLID = 0, varSalesSLID = 0, varPurRKID = 0, varSalesRKID = 0;
-                decimal varRMinSaleQty = 0, varWMinSaleQty = 0;
-                decimal varMinStock = 0, varMaxStock = 0, varReOrderQty = 0;
-                int varUpp = 0, varShelfLifeValue = 0, varShelfLifeTypeID = 0;
-                decimal varNetQuantity = 0, varGrossWeight = 0; int varUnitQtyId = 0;
-                int varPR_PRCTID = 0, PR_RMForProductionID = 0, PR_BatchNoID = 0, PR_BatchNoGenerationID = 0;
-                decimal varCheckMinStock = 0, varCheckMaxStock = 0;
-                SPDataService objspdservice = new SPDataService();
-                DataTable objBulkUpdate = new DataTable();
-                objBulkUpdate.TableName = "[MR_Product_BulkUpdate]";
-                //HSN
-                objBulkUpdate.Columns.Add("HSN Name-New", typeof(string));
-                objBulkUpdate.Columns.Add("HSNIDOLD", typeof(int));
-                objBulkUpdate.Columns.Add("HSNIDNEW", typeof(int));
-                objBulkUpdate.Columns.Add("PRID", typeof(int));
-                //Product
-                objBulkUpdate.Columns.Add("UTID-OLD", typeof(int));
-                objBulkUpdate.Columns.Add("UTID-NEW", typeof(int));
-                objBulkUpdate.Columns.Add("PR_EName-Current", typeof(string));
-                objBulkUpdate.Columns.Add("PR_TName-Current", typeof(string));
-                objBulkUpdate.Columns.Add("PR_EName-New", typeof(string));
-                objBulkUpdate.Columns.Add("PR_TName-New", typeof(string));
-                objBulkUpdate.Columns.Add("PR_PICode-Current", typeof(string));
-                objBulkUpdate.Columns.Add("PR_PICode-New", typeof(string));
-                //Brand
-                objBulkUpdate.Columns.Add("PRGID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("PRGID-New", typeof(int));
-                objBulkUpdate.Columns.Add("PRSGID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("PRSGID-New", typeof(int));
-                objBulkUpdate.Columns.Add("BDID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("BDID-New", typeof(int));
-                //Location
-                objBulkUpdate.Columns.Add("Pur_SLID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("Pur_SLID-NEW", typeof(int));
-                objBulkUpdate.Columns.Add("Sales_SLID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("Sales_SLID-NEW", typeof(int));
-                objBulkUpdate.Columns.Add("Pur_RKID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("Pur_RKID-New", typeof(int));
-                objBulkUpdate.Columns.Add("Sales_RKID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("Sales_RKID-New", typeof(int));
-                objBulkUpdate.Columns.Add("RackMOQ-Current", typeof(int));
-                objBulkUpdate.Columns.Add("RackMOQ-New", typeof(string));
-                //Min sales qty
-                objBulkUpdate.Columns.Add("RMinSaleQty-Old", typeof(decimal));
-                objBulkUpdate.Columns.Add("RMinSaleQty-New", typeof(string));
-                objBulkUpdate.Columns.Add("WMinSaleQty-Old", typeof(decimal));
-                objBulkUpdate.Columns.Add("WMinSaleQty-New", typeof(string));
-                objBulkUpdate.Columns.Add("Barcode-Old", typeof(string));
-                objBulkUpdate.Columns.Add("Barcode-New", typeof(string));
-                //Stock
-                objBulkUpdate.Columns.Add("PR_MinStock-Old", typeof(decimal));
-                objBulkUpdate.Columns.Add("PR_MinStock-New", typeof(string));
-                objBulkUpdate.Columns.Add("PR_MaxStock-Old", typeof(decimal));
-                objBulkUpdate.Columns.Add("PR_MaxStock-New", typeof(string));
-                objBulkUpdate.Columns.Add("PR_ReOrderQty-Old", typeof(decimal));
-                objBulkUpdate.Columns.Add("PR_ReOrderQty-New", typeof(string));
-                //Shelflife
-                objBulkUpdate.Columns.Add("Upp-Old", typeof(int));
-                objBulkUpdate.Columns.Add("Upp-New", typeof(string));
-                objBulkUpdate.Columns.Add("ShelfLifeValue-Old", typeof(int));
-                objBulkUpdate.Columns.Add("ShelfLifeValue-New", typeof(string));
-                objBulkUpdate.Columns.Add("ShelfLifeTypeID-Old", typeof(int));
-                objBulkUpdate.Columns.Add("ShelfLifeTypeID-New", typeof(int));
-                //Weight
-                objBulkUpdate.Columns.Add("Net Quantity-Current", typeof(decimal));
-                objBulkUpdate.Columns.Add("Net Quantity-New", typeof(string));
-                objBulkUpdate.Columns.Add("Gross Weight-Current", typeof(decimal));
-                objBulkUpdate.Columns.Add("Gross Weight-New", typeof(string));
-                objBulkUpdate.Columns.Add("Net-QUTID-Current", typeof(int));
-                objBulkUpdate.Columns.Add("Net-QUTID-New", typeof(int));
-                //Batch
-                objBulkUpdate.Columns.Add("PR_PRCTID-Current", typeof(int));
-                objBulkUpdate.Columns.Add("PR_PRCTID-New", typeof(int));
-                objBulkUpdate.Columns.Add("PR_RMForProductionID-Current", typeof(int));
-                objBulkUpdate.Columns.Add("PR_RMForProductionID-New", typeof(int));
-                objBulkUpdate.Columns.Add("PR_BatchNoID-Current", typeof(int));
-                objBulkUpdate.Columns.Add("PR_BatchNoID-New", typeof(int));
-                objBulkUpdate.Columns.Add("PR_BatchNoGenerationID-Current", typeof(int));
-                objBulkUpdate.Columns.Add("PR_BatchNoGenerationID-New", typeof(int));
-
-                objBulkUpdate.Columns.Add("ErrorFlag", typeof(int));
-
-                if (grdHSN.Visible == true)
-                {
-                    varUpdateViewType = 3; varViewType = 11; varOriginator = "Product Bulk Update-HSN";
-                    for (int i = 0; i < grdHSN.Rows.Count; i++)
-                    {
-                        varHsnId = 0; varErrorflag = 0;
-                        //var varValue = from r in objDSHSN.Tables[0].AsEnumerable() where (r.Field<string>("HSN Name").ToUpper().Equals(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim().ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
-                        //if (varValue.Count() > 0) { varHsnId = Convert.ToInt32(varValue.ToList()[0]); }
-                        //if (Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim() != "")
-                        //{
-                        //    if (varHsnId == 0)
-                        //    {
-                        //        varErrorflag = 1;
-                        //    }
-                        //}
-                        //objBulkUpdate.Rows.Add(Convert.ToString(grdHSN.Rows[i].Cells["HSN Name-New"].Value).Trim(), Convert.ToInt32(grdHSN.Rows[i].Cells["HSNOLDID"].Value), varHsnId, grdHSN.Rows[i].Cells["PRID"].Value,
-                        //    0, 0, "", "", "", "", "", "",
-                        //    0, 0, 0, 0, 0, 0,
-                        //    0, 0, 0, 0, 0, 0, 0, 0, 0, "",
-                        //    0, "", 0, "", "", "",
-                        //    0, "", 0, "", 0, "",
-                        //    0, "", 0, "", 0, 0,
-                        //    0, "", 0, "", 0, 0,
-                        //    0, 0, 0, 0, 0, 0, 0, 0,
-                        //    varErrorflag);
-                    }
-                }
                
-                else if (grdHSN.Visible == true)
-                {
-                    //varUpdateViewType = 5; varViewType = 10; varOriginator = "Product Bulk Update-Brand";
-                    //for (int i = 0; i < grdBrand.Rows.Count; i++)
-                    //{
-                    //    varGroupId = 0; varSubGroupId = 0; varBrandId = 0; varErrorflag = 0;
-                    //    string varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim();
-                    //    if (varSubGroupName == "") { varSubGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-Current"].Value).Trim(); }
-                    //    string varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim();
-                    //    if (varGroupName == "") { varGroupName = Convert.ToString(grdBrand.Rows[i].Cells["Group-Current"].Value).Trim(); }
-
-                    //    var varGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Group Name").ToUpper().Equals(Convert.ToString(varGroupName).Trim().ToUpper()) && r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(varSubGroupName.ToUpper())) group r by r.Field<int>("Product Group Id") into g select g.Key;
-                    //    if (varGroup.Count() > 0)
-                    //    { varGroupId = Convert.ToInt32(varGroup.ToList()[0]); }
-
-                    //    var varSubGroup = from r in objDSSubGroup.Tables[0].AsEnumerable() where (r.Field<string>("Product Sub Group Name in English").ToUpper().Equals(Convert.ToString(varSubGroupName).Trim().ToUpper()) && r.Field<string>("Product Group Name").ToUpper().Equals(varGroupName.ToUpper())) group r by r.Field<int>("ID") into g select g.Key;
-                    //    if (varSubGroup.Count() > 0)
-                    //    { varSubGroupId = Convert.ToInt32(varSubGroup.ToList()[0]); }
-
-                    //    var varBrand = from r in objDSSubgroupBrand.Tables[0].AsEnumerable() where (r.Field<string>("BD_EName").Trim().ToUpper().Equals(Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim().ToUpper()) && r.Field<string>("Sub Group Name in English").Trim().ToUpper().Equals(varSubGroupName.Trim().ToUpper())) group r by r.Field<int>("BDID") into g select g.Key;
-                    //    if (varBrand.Count() > 0)
-                    //    { varBrandId = Convert.ToInt32(varBrand.ToList()[0]); }
-
-                    //    if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
-                    //    {
-                    //        if (varGroupId == 0)
-                    //        {
-                    //            varErrorflag = 1;
-                    //        }
-                    //    }
-                    //    if (Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != "")
-                    //    {
-                    //        if (varSubGroupId == 0)
-                    //        {
-                    //            varErrorflag = 2;
-                    //        }
-                    //    }
-                    //    if (Convert.ToString(grdBrand.Rows[i].Cells["Brand-New"].Value).Trim() != "")
-                    //    {
-                    //        if (varBrandId == 0)
-                    //        {
-                    //            varErrorflag = 3;
-                    //        }
-                    //    }
-                    //    if (Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "" && Convert.ToString(grdBrand.Rows[i].Cells["Sub Group-New"].Value).Trim() != "" && varBrandId == 0)
-                    //    {
-                    //        varErrorflag = 4;
-                    //    }
-                    //    if (varSubGroupId == 0 && Convert.ToString(grdBrand.Rows[i].Cells["Group-New"].Value).Trim() != "")
-                    //    { varErrorflag = 5; }
-                    //    objBulkUpdate.Rows.Add("", 0, 0, Convert.ToInt32(grdBrand.Rows[i].Cells["PRID"].Value),
-                    //        0, 0, "", "", "", "", "", "",
-                    //        Convert.ToInt32(grdBrand.Rows[i].Cells["PRGID-Old"].Value), varGroupId, Convert.ToInt32(grdBrand.Rows[i].Cells["PRSGID-Old"].Value), varSubGroupId, Convert.ToInt32(grdBrand.Rows[i].Cells["BDID-Old"].Value), varBrandId,
-                    //         0, 0, 0, 0, 0, 0, 0, 0, 0, "",
-                    //        0, "", 0, "", "", "",
-                    //        0, "", 0, "", 0, "",
-                    //        0, "", 0, "", 0, 0,
-                    //        0, "", 0, "", 0, 0,
-                    //        0, 0, 0, 0, 0, 0, 0, 0,
-                    //        varErrorflag);
-                    //}
-                } 
+                SPDataService objspdservice = new SPDataService();
+                
                 if (Varupdateflag == 0)
                 {
                     MainForm.objCP_BulkAttributeVerify = new CP_BulkAttributeVerify();
@@ -289,13 +119,13 @@ namespace ROMS
                     {
                         varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, objBulkUpdate, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0);
+                        result = objDSer.udfnProductMaster(3, Convert.ToInt16(lblNewHSNId.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, null, 0, "", 0, 0, 0, 0, 0, dtPurHSN, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, Convert.ToInt16(cmbType.SelectedValue), null, 0,Convert.ToString(dpEffFrom.Text));
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
                         {
                             MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //udfnList();
+                            udfnClear();
                         }
                         else
                         {
@@ -321,7 +151,29 @@ namespace ROMS
                 btnUpdate.Focus();
             }
         } 
-         
+        public void udfnClear()
+        {
+            try
+            {
+                cmbType.SelectedValue = -1;
+                txtSubgroup.Text = "";
+                lblSubGroupCode.Text = "0";
+                txtProductName.Text = "";
+                lblProductcode.Text = "0";
+                txtOldHSN.Text = "";
+                lblOldHSNId.Text = "0";
+                txtNewHSN.Text = "";
+                lblNewHSNId.Text = "0";
+                dpEffFrom.Text = Convert.ToString(MainForm.pbCurrentDate);
+                grdHSN.DataSource = null;
+                dtPurHSN.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnTotalCount()
         {
             try
@@ -389,6 +241,7 @@ namespace ROMS
                                 grdHSN.Columns["Product Name in Tamil"].ReadOnly = true;
                                 grdHSN.Columns["Unit"].ReadOnly = true;
                                 grdHSN.Columns["PRID"].Visible = false;
+                                grdHSN.Columns["HSNID"].Visible = false;
                                  
                             }
                              
@@ -545,7 +398,7 @@ namespace ROMS
                 {
                     epHSNBulkupdate.SetError(txtSubgroup, "Please enter subgroup.");
                     txtSubgroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSubgroup.ShowAlways = true;
+                    tpSubgroup.ShowAlways = true;  
                     tpSubgroup.Show("Please enter subgroup.", txtSubgroup, 5000);
                     blnErrorFlag = false;
                 }
@@ -654,6 +507,23 @@ namespace ROMS
         {
             try
             {
+                if(grdHSN.Rows.Count==0)
+                { 
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(80);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnUpdate.Focus();
+                    return;
+                }
+                if (Convert.ToInt64(lblNewHSNId.Text) == 0)
+                {
+                    epHSNBulkupdate.SetError(txtNewHSN, "Please enter new HSN code.");
+                    txtNewHSN.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpNewHSN.ShowAlways = true;
+                    tpNewHSN.Show("Please enter new HSN code.", txtNewHSN, 5000);
+                    return;
+                }
                 udfnUpdate();
             }
             catch (Exception ex)
@@ -1274,7 +1144,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    txtProductName.Focus();
+                    txtOldHSN.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1382,10 +1252,28 @@ namespace ROMS
             {
                 if (txtOldHSN.Text.Trim() != "")
                 {
-                    lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSNID"].Value.ToString();
-                    txtOldHSN.Text = DGV_FilterProduct.SelectedRows[0].Cells["HSNName"].Value.ToString();
+                    lblOldHSNId.Text = DGV_OldHSN.SelectedRows[0].Cells["HSNID"].Value.ToString();
+                    txtOldHSN.Text = DGV_OldHSN.SelectedRows[0].Cells["HSNName"].Value.ToString();
                 }
                 btnView.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        public void udfnListviewNewHSN()
+        {
+            try
+            {
+                if (txtNewHSN.Text.Trim() != "")
+                {
+                    lblNewHSNId.Text = DGV_NewHSN.SelectedRows[0].Cells["HSNID"].Value.ToString();
+                    txtNewHSN.Text = DGV_NewHSN.SelectedRows[0].Cells["HSNName"].Value.ToString();
+                }
+                dpEffFrom.Focus();
             }
             catch (Exception ex)
             {
@@ -1394,7 +1282,6 @@ namespace ROMS
             }
 
         }
-
         private void txtProductName_Leave(object sender, EventArgs e)
         {
             try
@@ -1601,6 +1488,8 @@ namespace ROMS
                 dtPurHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtPurHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
                 dtPurHSN.Columns.Add("PRHSN_MakerID", typeof(int));
+                DateTime varmindate = MainForm.pbCurrentDate; 
+                dpEffFrom.Text = Convert.ToString(MainForm.pbCurrentDate);
             }
             catch (Exception ex)
             {
@@ -1734,6 +1623,27 @@ namespace ROMS
                 DGV_OldHSN.DataSource = null; 
             }
         }
+        public void udfnNewHSNAutocomplete()
+        {
+            try
+            {
+                if (txtNewHSN.Text.Trim() != "")
+                {
+                    txtNewHSN.Text = DGV_NewHSN.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
+                    lblNewHSNId.Text = DGV_NewHSN.SelectedRows[0].Cells["HSNID"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                DGV_NewHSN.Visible = false;
+                DGV_NewHSN.DataSource = null;
+            }
+        }
 
         private void DGV_OldHSN_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1808,6 +1718,361 @@ namespace ROMS
             }
         }
 
+        private void tsBulkAttribute_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void DGV_OldHSN_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtNewHSN_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                txtNewHSN.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtNewHSN_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (varUpDownKeyNewHSN == 0)
+                {
+                    //lvHsnName.Items.Clear();
+                    SPDataService objspdservice = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    if (txtNewHSN.Text.Length > 0)
+                    {
+                        objDs = objspdservice.udfnHsnList(6, Convert.ToInt16(lblOldHSNId.Text), 0, 0, txtNewHSN.Text.Trim(), "");
+                        objspdservice.CloseConnection();
+                        if (objDs != null)
+                        {
+                            if (objDs.Tables.Count != 0)
+                            {
+                                if (objDs.Tables[0].Rows.Count != 0)
+                                {
+                                    DGV_NewHSN.Visible = true;
+                                    DGV_NewHSN.DataSource = objDs.Tables[0];
+                                    DGV_NewHSN.Columns["HSNID"].Visible = false;
+                                    DGV_NewHSN.Columns["HSN_GSTID"].Visible = false;
+                                    DGV_NewHSN.Columns["GST_Text"].Visible = false;
+                                    DGV_NewHSN.Columns["HSN_Name"].HeaderText = "HSN Name";
+                                    DGV_NewHSN.Columns["HSN_Code"].HeaderText = "HSN Code";
+                                    DGV_NewHSN.Columns["HSN_Name"].Width = 160;
+                                    DGV_NewHSN.Columns["HSN_Code"].Width = 140;
+                                    DGV_NewHSN.Columns["HSN_Code"].DisplayIndex = 0;
+                                    DGV_NewHSN.Columns["HSN_Name"].DisplayIndex = 1;
+                                    DGV_NewHSN.BringToFront();
+                                }
+                                else
+                                {
+                                    DGV_NewHSN.Visible = false;
+                                    DGV_NewHSN.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                DGV_NewHSN.Visible = false;
+                                DGV_NewHSN.DataSource = null;
+                            }
+                        }
+                        else
+                        {
+                            DGV_NewHSN.Visible = false;
+                            DGV_NewHSN.DataSource = null;
+                        }
+                    }
+                    else
+                    {
+                        DGV_NewHSN.Visible = false;
+                        DGV_NewHSN.DataSource = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtNewHSN_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtNewHSN.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_NewHSN_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyNewHSN = 1;
+                udfnNewHSNAutocomplete();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_NewHSN_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Enter)
+                {
+                    int RowIndex = DGV_NewHSN.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_NewHSN.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyNewHSN = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyNewHSN = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0) DGV_NewHSN.CurrentCell = DGV_NewHSN.Rows[RowIndex].Cells[ClmIndex];
+
+                            txtNewHSN.Text = DGV_NewHSN.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
+
+                            txtNewHSN.Focus();
+                            txtNewHSN.SelectionStart = txtNewHSN.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_NewHSN.Rows.Count) DGV_NewHSN.CurrentCell = DGV_NewHSN.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_NewHSN.Rows.Count))
+                            {
+                                txtNewHSN.Text = DGV_NewHSN.Rows[RowIndex].Cells["HSN_Code"].Value.ToString();
+                            }
+
+                            txtNewHSN.Focus();
+                            txtNewHSN.SelectionStart = txtNewHSN.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_NewHSN.Rows.Count > 0)
+                                {
+                                    varUpDownKeyNewHSN = 1;
+                                    udfnNewHSNAutocomplete();
+                                    DGV_NewHSN.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        dpEffFrom.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSubgroup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_Leave(object sender, EventArgs e)
+        { 
+            try
+            {
+                cmbType.BackColor = Color.White;
+            }
+            catch (Exception ex) 
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpEffFrom_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                   btnUpdate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtNewHSN_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                varUpDownKeyNewHSN = 0;
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                {
+                    DGV_NewHSN.Focus();
+                }
+                if (e.KeyCode == Keys.Enter && DGV_NewHSN.Visible == false)
+                {
+                    txtNewHSN.Focus();
+                }
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    DGV_NewHSN.Focus();
+                }
+                if (DGV_NewHSN.CurrentCell == null && DGV_NewHSN.RowCount == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    DGV_NewHSN.Focus();
+                    int RowIndex = DGV_NewHSN.CurrentCell.RowIndex;
+                    int ClmIndex = DGV_NewHSN.CurrentCell.ColumnIndex;
+                    if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                    {
+                        varUpDownKeyNewHSN = 1;
+                    }
+                    else
+                    {
+                        varUpDownKeyNewHSN = 0;
+                    }
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Up:
+                            RowIndex--;
+                            if (RowIndex >= 0)  DGV_NewHSN.CurrentCell = DGV_NewHSN.Rows[RowIndex].Cells[ClmIndex];
+                            if (RowIndex != (-1))
+                            {
+                                txtNewHSN.Text = DGV_NewHSN.Rows[RowIndex].Cells["HSNName"].Value.ToString();
+                            }
+                            txtNewHSN.Focus();
+                            txtNewHSN.SelectionStart = txtNewHSN.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Down:
+                            RowIndex++;
+                            if (RowIndex < DGV_NewHSN.Rows.Count) DGV_NewHSN.CurrentCell = DGV_NewHSN.Rows[RowIndex].Cells[ClmIndex];
+
+                            if (RowIndex != (DGV_NewHSN.Rows.Count))
+                            {
+                                txtNewHSN.Text = DGV_NewHSN.Rows[RowIndex].Cells["HSNName"].Value.ToString();
+                            }
+                            txtNewHSN.Focus();
+                            txtNewHSN.SelectionStart = txtNewHSN.Text.Length;
+                            e.Handled = true;
+                            break;
+                        case Keys.Enter:
+                            {
+                                if (DGV_NewHSN.Rows.Count > 0)
+                                {
+                                    varUpDownKeyNewHSN = 1;
+                                    udfnListviewNewHSN();
+                                    DGV_NewHSN.Visible = false;
+                                }
+                                e.Handled = e.SuppressKeyPress = true;
+                                break;
+                            }
+                    }
+                    txtNewHSN.Focus();
+                    //txtProductName.SelectionStart = txtProductName.Text.Length;
+                    e.Handled = true;
+                    if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
+                    {
+                        //txtProductName.SelectedText = true;
+                        TextBox txtProductName = sender as TextBox;
+                        txtProductName.SelectAll();
+                        e.Handled = true;
+                    }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        txtNewHSN.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void txtOldHSN_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1819,7 +2084,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_OldHSN.Visible == false)
                 {
-                    txtProductName.Focus();
+                    btnView.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1891,7 +2156,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtOldHSN.Focus();
+                        btnView.Focus();
                     }
                 }
             }
@@ -1991,7 +2256,12 @@ namespace ROMS
                     DGV_FilterProduct.DataSource = null;
                     DGV_FilterProduct.Visible = false;
                 }
-               
+                if (skipControl != txtOldHSN)
+                {
+                    varUpDownKeyOldHSN = 0;
+                    DGV_OldHSN.DataSource = null;
+                    DGV_OldHSN.Visible = false;
+                } 
             }
             catch (Exception ex)
             {

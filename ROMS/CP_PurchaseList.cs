@@ -1809,5 +1809,10 @@ namespace ROMS
                 e.Value = null;
             }
         }
+
+        private void tsPurchaseList_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }
