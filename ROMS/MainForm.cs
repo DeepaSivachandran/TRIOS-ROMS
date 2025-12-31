@@ -3859,7 +3859,7 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
                 pbMenucode = 50905;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50905);
-                objCP_BulkAttributes.Text = "Product Category, RM Flag & Batch";
+                objCP_BulkAttributes.Text = "Barcode, RM Flag & Batch";
                // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                 PbCurrentForm = "5.18";
             }
