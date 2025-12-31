@@ -1821,29 +1821,10 @@ namespace ROMS
                             {
                                 string GOID = "0";
                                 GOID = Convert.ToString(grdOutwardList.SelectedRows[0].Cells["GOID"].Value.ToString());
-                                DialogResult result1;
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(87);
-                                objDServ.CloseConnection();
-                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (result1 == DialogResult.Yes)
-                                {
-                                    string varHeader = "";
-                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsOutward.rpt");
-                                    varHeader = "Goods Outward Report";
-
-                                    objBillreport.SetParameterValue("paraGOID", Convert.ToInt32(GOID));
-                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                    objValidation.CrySqlConnection(objBillreport);
-
-                                    MainForm.objReportLoad = new ReportLoad();
-                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                    MainForm.objReportLoad.Text = varHeader;
-                                    MainForm.objReportLoad.ShowDialog();
-                                }
+                                MainForm.objReportFormat = new PrintFormat();
+                                MainForm.objReportFormat.varTransactionId = GOID;
+                                MainForm.objReportFormat.varFormType = 2;
+                                MainForm.objReportFormat.ShowDialog();
                             }
                             catch (Exception ex)
                             {

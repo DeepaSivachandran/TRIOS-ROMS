@@ -1434,13 +1434,16 @@ namespace ROMS
             {
                 if (privilege.Contains("4") || Convert.ToInt32(MainForm.pbUserRoleId) == 1)
                 {
-                    if (Convert.ToInt32(grdPurchaseDCList.SelectedRows[0].Cells["Status ID"].Value) != 18)
+                    if (grdPurchaseDCList.SelectedRows.Count > 0)
                     {
-                        tsbDelete.Visible = false; 
-                    }
-                    else
-                    {
-                        tsbDelete.Visible = true; 
+                        if (Convert.ToInt32(grdPurchaseDCList.Rows[grdPurchaseDCList.CurrentCell.RowIndex].Cells["Status ID"].Value) != 18)
+                        {
+                            tsbDelete.Visible = false;
+                        }
+                        else
+                        {
+                            tsbDelete.Visible = true;
+                        }
                     }
                 }
             }

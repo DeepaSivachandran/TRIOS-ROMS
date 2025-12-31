@@ -498,6 +498,12 @@
     <Compile Include="CP_Product_Info.designer.cs">
       <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintFormat.designer.cs">
+      <DependentUpon>PrintFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MR_UPI.cs" />
     <Compile Include="Model\MR_CardMachine.cs" />
     <Compile Include="Model\MR_TemporaryCustomer.cs" />
@@ -564,6 +570,13 @@
       <DependentUpon>RPT_CP_Rackgroup_ShelfLife.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Rackgroup_Product_Mapping.cs">
+      <DependentUpon>RPT_CP_Rackgroup_Product_Mapping.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_CP_UserNamewise.cs">
       <AutoGen>True</AutoGen>
@@ -868,6 +881,34 @@
     </Compile>
     <Compile Include="Model\TRN_Stock_Converstion.cs" />
     <Compile Include="Model\TRN_Stock_Reconciliation_Products.cs" />
+    <Compile Include="Reports\RPT_TP_INV_GoodsInward_Slip.cs">
+      <DependentUpon>RPT_TP_INV_GoodsInward_Slip.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_INV_GoodsInward.cs">
+      <DependentUpon>RPT_TP_INV_GoodsInward.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_INV_GoodsOutward_Slip.cs">
+      <DependentUpon>RPT_TP_INV_GoodsOutward_Slip.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_INV_GoodsOutward.cs">
+      <DependentUpon>RPT_TP_INV_GoodsOutward.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="REPORT_CP_UserRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4018,6 +4059,9 @@
     <EmbeddedResource Include="CP_Product_Info.resx">
       <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PrintFormat.resx">
+      <DependentUpon>PrintFormat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -4740,6 +4784,11 @@
       <LastGenOutput>RPT_CP_Rackgroup_ShelfLife.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_CP_Rackgroup_Product_Mapping.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rackgroup_Product_Mapping.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_CP_UserNamewise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_UserNamewise.cs</LastGenOutput>
@@ -5068,6 +5117,26 @@
     <EmbeddedResource Include="Reports\RPT_Stock_Summary_Location.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_Summary_Location.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsInward_Slip.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_GoodsInward_Slip.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsInward.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_GoodsInward.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsOutward_Slip.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_GoodsOutward_Slip.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_GoodsOutward.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_GoodsOutward.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Unapproved_Purchase_Details.rpt">

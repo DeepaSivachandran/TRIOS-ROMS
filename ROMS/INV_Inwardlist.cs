@@ -1914,29 +1914,10 @@ namespace ROMS
                             {
                                 string GIID = "0";
                                 GIID = Convert.ToString(grdInwardList.SelectedRows[0].Cells["GIID"].Value.ToString());
-                                DialogResult result1;
-                                SPDataService objDServ = new SPDataService();
-                                string varMessage = objDServ.udfnGetMessages(87);
-                                objDServ.CloseConnection();
-                                result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (result1 == DialogResult.Yes)
-                                {
-                                    string varHeader = "";
-                                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_GoodsInward.rpt");
-                                    varHeader = "Goods Inward Report";
-
-                                    objBillreport.SetParameterValue("paraGIID", Convert.ToInt32(GIID));
-                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                    objValidation.CrySqlConnection(objBillreport);
-
-                                    MainForm.objReportLoad = new ReportLoad();
-                                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                                    MainForm.objReportLoad.Text = varHeader;
-                                    MainForm.objReportLoad.ShowDialog();
-                                }
+                                MainForm.objReportFormat = new PrintFormat();
+                                MainForm.objReportFormat.varTransactionId = GIID;
+                                MainForm.objReportFormat.varFormType = 1;
+                                MainForm.objReportFormat.ShowDialog();
                             }
                             catch (Exception ex)
                             {

@@ -4168,19 +4168,19 @@ namespace ROMS
                     }
 
                     //Subgroup
-                    var Subgroupresult = UserAccessHelper.LoadUserAccess(506);
+                    var Subgroupresult = UserAccessHelper.LoadUserAccess(50503);
                     Subgroupprivilege = Subgroupresult.PrivilegeCode;
                     btnSubgroup.Visible = Subgroupprivilege.Contains("2");
                     //Group
-                    var groupresult = UserAccessHelper.LoadUserAccess(505);
+                    var groupresult = UserAccessHelper.LoadUserAccess(50502);
                     Groupprivilege = groupresult.PrivilegeCode;
                     btnGroup.Visible = Groupprivilege.Contains("2");
                     //Brand
-                    var Brandresult = UserAccessHelper.LoadUserAccess(507);
+                    var Brandresult = UserAccessHelper.LoadUserAccess(50504);
                     Brandprivilege = Brandresult.PrivilegeCode;
                     btnBrand.Visible = Brandprivilege.Contains("2");
                     //Unit
-                    var Unitresult = UserAccessHelper.LoadUserAccess(508);
+                    var Unitresult = UserAccessHelper.LoadUserAccess(50505);
                     Unitprivilege = Unitresult.PrivilegeCode;
                     btnUnit.Visible = Unitprivilege.Contains("2");
                 }

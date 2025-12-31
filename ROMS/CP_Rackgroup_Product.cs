@@ -33,6 +33,9 @@ namespace ROMS
 
         private int _oldOrderNo = 0;
 
+        private ToolTip tbRackgroup = new ToolTip();
+        public int varExistFlag = 0;
+
         public CP_Rackgroup_Product()
         {
             InitializeComponent();
@@ -47,10 +50,10 @@ namespace ROMS
                 dtRackgroupProduct.Columns.Add("RKGID", typeof(int));
                 dtRackgroupProduct.Columns.Add("RKID", typeof(int));
                 dtRackgroupProduct.Columns.Add("PRID", typeof(int));
-                dtRackgroupProduct.Columns.Add("OrderNo", typeof(int));
+                dtRackgroupProduct.Columns.Add("OrderNo", typeof(string));
 
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 50402;
+                int currentMUCode = 50404;
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
@@ -62,8 +65,9 @@ namespace ROMS
                 MenuCode = 50402;
                 cmbGroupType.Focus();
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 and RKGID !=-1 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
+                objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 AND RKGID !=0 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
                 objDataBind = null;
+                cmbGroupType.SelectedValue = -1;
                 udfnList();
             }
             catch (Exception ex)
@@ -76,6 +80,8 @@ namespace ROMS
         {
             try
             {
+                cmbGroupType.BackColor = Color.White;
+                epRackgroup.Clear();
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 btnView.Enabled = false;
@@ -92,6 +98,7 @@ namespace ROMS
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 91;
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbGroupType.SelectedValue);
+                objMR_Product.paraType =0;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -110,18 +117,33 @@ namespace ROMS
                             grdGroupList.Columns["RKGID"].Visible = false;
                             grdGroupList.Columns["RKID"].Visible = false;
                             grdGroupList.Columns["PRID"].Visible = false;
+                            grdGroupList.Columns["Rack Group"].Visible = false;
                             grdGroupList.Columns["S.No."].Width = 50;
                             grdGroupList.Columns["PI Code"].Width = 150;
                             grdGroupList.Columns["Product Name"].Width = 350;
                             grdGroupList.Columns["Order No."].Width = 80;
+                            grdGroupList.Columns["Unit"].Width = 50;
                             grdGroupList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdGroupList.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdGroupList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             ((DataGridViewTextBoxColumn)grdGroupList.Columns["Order No."]).MaxInputLength = 4;
+                            
+                            grdGroupList.Columns["PI Code"].SortMode= DataGridViewColumnSortMode.NotSortable;
+                            grdGroupList.Columns["Product Name"].SortMode= DataGridViewColumnSortMode.NotSortable;
+                            grdGroupList.Columns["Rack"].SortMode= DataGridViewColumnSortMode.NotSortable;
+                            grdGroupList.Columns["Order No."].SortMode= DataGridViewColumnSortMode.NotSortable;
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
+                        }
+                        if (objDs.Tables.Count > 1)
+                        {
+                            if (objDs.Tables[1].Rows.Count != 0)
+                            {
+                                varExistFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["existFlag"]);
+                            }
                         }
                     }
                     else
@@ -286,6 +308,15 @@ namespace ROMS
         {
             try
             {
+                epRackgroup.Clear();
+                if (Convert.ToInt32(cmbGroupType.SelectedValue) == -1)
+                {
+                    epRackgroup.SetError(cmbGroupType, "Please select rackgroup");
+                    cmbGroupType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tbRackgroup.ShowAlways = true;
+                    tbRackgroup.Show("Please select rackgroup", cmbGroupType, 5000);
+                    return;
+                }
                 udfnList();
             }
             catch (Exception ex)
@@ -582,145 +613,65 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void grdGroupList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void grdGroupList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             try
             {
-                //if (refreshFlag == 0)
-                //{
-                //    if (e.RowIndex < 0 || grdGroupList.Rows[e.RowIndex].IsNewRow)
-                //        return;
-                //    if (grdGroupList.Columns.Contains("S.No."))
-                //    {
-                //        grdGroupList.Rows[e.RowIndex].Cells["S.No."].Value = e.RowIndex + 1;
-                //    }
-                //}
+                if (grdGroupList.Columns[e.ColumnIndex].Name != "Order No.")
+                    return;
+
+                var val = grdGroupList.Rows[e.RowIndex].Cells["Order No."].Value;
+                _oldOrderNo = (val != null && int.TryParse(val.ToString(), out int v)) ? v : 0;
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-        }
-        private void grdGroupList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (grdGroupList.Columns[e.ColumnIndex].Name == "Order No.")
-            {
-                var val = grdGroupList.Rows[e.RowIndex].Cells["Order No."].Value;
-                _oldOrderNo = val != null ? Convert.ToInt32(val) : 0;
             }
         }
         private void grdGroupList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                /*
                 if (e.RowIndex < 0)
                     return;
-
-                if (!grdGroupList.Columns[e.ColumnIndex].Name.Equals("Order No."))
-                    return;
-
-                var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
-
-                if (cell.Value == null || cell.Value.ToString() == "")
-                    return;
-
-                if (!int.TryParse(cell.Value.ToString(), out int editedOrder))
-                    return;
-
-                int nextOrder = editedOrder + 1;
-                for (int i = e.RowIndex + 1; i < grdGroupList.Rows.Count; i++)
-                {
-                    if (grdGroupList.Rows[i].IsNewRow)
-                        continue;
-
-                    var nextCell = grdGroupList.Rows[i].Cells["Order No."];
-
-                    if (nextCell.Value != null && nextCell.Value.ToString() != "")
-                    {
-                        nextCell.Value = nextOrder;
-                        nextOrder++;
-                    }
-                }
-                */
-
-                if (e.RowIndex < 0)
-                    return;
-
                 if (grdGroupList.Columns[e.ColumnIndex].Name != "Order No.")
                     return;
-
+                if (varExistFlag == 0)
+                    return;
                 var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
+                string newValue = cell.Value?.ToString().Trim();
 
-                if (cell.Value == null || cell.Value.ToString() == "")
+                if (string.IsNullOrEmpty(newValue))
                     return;
 
-                if (!int.TryParse(cell.Value.ToString(), out int editedOrder))
+                if (!int.TryParse(newValue, out int editedOrder))
                 {
-                    cell.Value = _oldOrderNo;
-                    return;
-                }
-
-                // ✅ Find MAX Order No from ABOVE rows
-                int minAllowed = 1;
-
-                //for (int i = 0; i < e.RowIndex; i++)
-                //{
-                //    var prevCell = grdGroupList.Rows[i].Cells["Order No."];
-
-                //    if (prevCell.Value != null && prevCell.Value.ToString() != "")
-                //    {
-                //        int prevOrder = Convert.ToInt32(prevCell.Value);
-                //        if (prevOrder >= minAllowed)
-                //            minAllowed = prevOrder + 1;
-                //    }
-                //}
-
-                foreach (DataGridViewRow row in grdGroupList.Rows)
-                {
-                    if (row.IsNewRow)
-                        continue;
-
-                    var otherCell = row.Cells["Order No."];
-
-                    if (otherCell.Value != null && otherCell.Value.ToString() != "")
-                    {
-                        int otherOrder = Convert.ToInt32(otherCell.Value);
-
-                        // only consider rows BEFORE the original position
-                        if (otherOrder < _oldOrderNo && otherOrder >= minAllowed)
-                        {
-                            minAllowed = otherOrder + 1;
-                        }
-                    }
-                }
-
-                // ❌ Validation
-                if (editedOrder < minAllowed)
-                {
-                    MessageBox.Show(
-                        $"Order No. must be greater.",
-                        "Invalid Order No",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    cell.Value = _oldOrderNo;
+                    RestoreOldValue(cell);
                     return;
                 }
 
-                // ✅ Your existing resequencing logic
+                var dt = (DataTable)grdGroupList.DataSource;
+                var currentRow =
+                    ((DataRowView)grdGroupList.Rows[e.RowIndex].DataBoundItem).Row;
+
+                bool invalid = dt.AsEnumerable().TakeWhile(r => r != currentRow).Any(r =>r["Order No."] != DBNull.Value && int.TryParse(r["Order No."].ToString(), out int v) && editedOrder <= v);
+
+                if (invalid)
+                {
+                    MessageBox.Show("Order No must be greater.","Invalid Order No",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+
+                    RestoreOldValue(cell);
+                    return;
+                }
+
                 int nextOrder = editedOrder + 1;
-                for (int i = e.RowIndex + 1; i < grdGroupList.Rows.Count; i++)
+
+                foreach (var row in dt.AsEnumerable().SkipWhile(r => r != currentRow).Skip(1))
                 {
-                    if (grdGroupList.Rows[i].IsNewRow)
-                        continue;
-
-                    var nextCell = grdGroupList.Rows[i].Cells["Order No."];
-
-                    if (nextCell.Value != null && nextCell.Value.ToString() != "")
+                    if (row["Order No."] != DBNull.Value && int.TryParse(row["Order No."].ToString(), out _))
                     {
-                        nextCell.Value = nextOrder;
+                        row["Order No."] = nextOrder.ToString();
                         nextOrder++;
                     }
                 }
@@ -731,6 +682,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void RestoreOldValue(DataGridViewCell cell)
+        {
+            cell.Value = _oldOrderNo == 0 ? "" : _oldOrderNo.ToString();
+        }
+
         private void grdGroupList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try
@@ -770,10 +726,10 @@ namespace ROMS
         {
             try
             {
-                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
-                {
-                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
-                }
+                //for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                //{
+                //    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                //}
                 udfnSave();
             }   
             catch (Exception ex)
@@ -793,19 +749,22 @@ namespace ROMS
                     if (row.IsNewRow)
                         continue;
 
+                    DataRow dr = dtRackgroupProduct.NewRow();
+
+                    dr["RKGID"] = Convert.ToInt32(row.Cells["RKGID"].Value);
+                    dr["RKID"] = Convert.ToInt32(row.Cells["RKID"].Value);
+                    dr["PRID"] = Convert.ToInt32(row.Cells["PRID"].Value);
+
                     var orderCell = row.Cells["Order No."];
-                    if (orderCell.Value != null && orderCell.Value.ToString().Trim() != "")
-                    {
-                        DataRow dr = dtRackgroupProduct.NewRow();
 
-                        dr["RKGID"] = Convert.ToInt32(row.Cells["RKGID"].Value);
-                        dr["RKID"] = Convert.ToInt32(row.Cells["RKID"].Value);
-                        dr["PRID"] = Convert.ToInt32(row.Cells["PRID"].Value);
-                        dr["OrderNo"] = Convert.ToInt32(orderCell.Value);
+                    dr["OrderNo"] = (orderCell.Value == null)
+                                        ? ""
+                                        : orderCell.Value.ToString().Trim();
 
-                        dtRackgroupProduct.Rows.Add(dr);
-                    }
+                    dtRackgroupProduct.Rows.Add(dr);
                 }
+
+
                 string varResult = "";
                 SPDataService objDser = new SPDataService();
                 varResult = objDser.udfnRackGroup(3, 0, 0, "", "", "", 0, "Rackgroup Product Mapping", MainForm.pbUserID, 0, 0, dtRackgroupProduct);
