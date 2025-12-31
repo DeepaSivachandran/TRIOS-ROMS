@@ -200,6 +200,11 @@ namespace ROMS
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Min.rpt");
                             varReportName = "Min_Stock_Report";
                         }
+                        else if (Convert.ToInt32(cmbStockType.SelectedValue) == 472)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Max.rpt");
+                            varReportName = "Max_Stock_Report";
+                        }
                     }   
                     objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue)); 
                     objBillreport.SetParameterValue("paraSLID",Convert.ToInt32(cmbStockLocation.SelectedValue));

@@ -655,15 +655,15 @@ namespace ROMS
                 var currentRow =
                     ((DataRowView)grdGroupList.Rows[e.RowIndex].DataBoundItem).Row;
 
-                bool invalid = dt.AsEnumerable().TakeWhile(r => r != currentRow).Any(r =>r["Order No."] != DBNull.Value && int.TryParse(r["Order No."].ToString(), out int v) && editedOrder <= v);
+                //bool invalid = dt.AsEnumerable().TakeWhile(r => r != currentRow).Any(r =>r["Order No."] != DBNull.Value && int.TryParse(r["Order No."].ToString(), out int v) && editedOrder <= v);
 
-                if (invalid)
-                {
-                    MessageBox.Show("Order No must be greater.","Invalid Order No",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                //if (invalid)
+                //{
+                //    MessageBox.Show("Order No must be greater.","Invalid Order No",MessageBoxButtons.OK,MessageBoxIcon.Warning);
 
-                    RestoreOldValue(cell);
-                    return;
-                }
+                //    RestoreOldValue(cell);
+                //    return;
+                //}
 
                 int nextOrder = editedOrder + 1;
 
