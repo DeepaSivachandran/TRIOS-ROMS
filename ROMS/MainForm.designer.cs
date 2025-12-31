@@ -1988,7 +1988,7 @@ namespace ROMS
             this.tsmTransport.Text = "Transport";
             this.tsmTransport.Click += new System.EventHandler(this.tsmTransport_Click);
             // 
-            // tsmGif
+            // tsmMarriageHall
             // 
             this.tsmMarriageHall.Name = "tsmMarriageHall";
             this.tsmMarriageHall.Size = new System.Drawing.Size(175, 22);
@@ -2002,13 +2002,14 @@ namespace ROMS
             this.tsmGif.Image = global::ROMS.Properties.Resources.right_arrow;
             this.tsmGif.Name = "tsmGif";
             this.tsmGif.Size = new System.Drawing.Size(107, 24);
-            this.tsmGif.Text = "Rate Approval"; 
+            this.tsmGif.Text = "Rate Approval";
+            this.tsmGif.Visible = false;
             this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
+            // 
             // timer2
             // 
             this.timer2.Interval = 5000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
             // 
             // statusBar
             // 
