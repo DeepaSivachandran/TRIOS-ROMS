@@ -133,6 +133,10 @@ namespace ROMS
                 {
                     objTRNG_Stock.paraReportType = 3;
                 }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 470)
+                {
+                    objTRNG_Stock.paraReportType = 4;
+                }
 
                 objTRNG_Stock.paraPRID = Convert.ToInt32(lblProduct.Text.Trim());
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -188,6 +192,14 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Summary_Location.rpt");
                         varReportName = "Stock_Summary_Location";
+                    }   
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 470)
+                    {
+                        if (Convert.ToInt32(cmbStockType.SelectedValue) == 471)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Min.rpt");
+                            varReportName = "Min_Stock_Report";
+                        }
                     }   
                     objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue)); 
                     objBillreport.SetParameterValue("paraSLID",Convert.ToInt32(cmbStockLocation.SelectedValue));
@@ -2686,6 +2698,29 @@ namespace ROMS
         private void DGV_FilterLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 470)
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=146 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,130) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         public void udfnGroupAutocomplete()
