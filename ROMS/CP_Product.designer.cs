@@ -326,6 +326,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
+            this.lblMarkupProd = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -3467,6 +3468,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.lblMarkupProd);
             this.tabPage4.Controls.Add(this.grdPrice);
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
@@ -3515,7 +3517,7 @@
             this.grdPrice.DefaultCellStyle = dataGridViewCellStyle22;
             this.grdPrice.EnableHeadersVisualStyles = false;
             this.grdPrice.GridColor = System.Drawing.Color.White;
-            this.grdPrice.Location = new System.Drawing.Point(6, 7);
+            this.grdPrice.Location = new System.Drawing.Point(10, 34);
             this.grdPrice.Name = "grdPrice";
             this.grdPrice.RowHeadersVisible = false;
             dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -3685,6 +3687,17 @@
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
             // 
+            // lblMarkupProd
+            // 
+            this.lblMarkupProd.AutoSize = true;
+            this.lblMarkupProd.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
+            this.lblMarkupProd.Location = new System.Drawing.Point(10, 9);
+            this.lblMarkupProd.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblMarkupProd.Name = "lblMarkupProd";
+            this.lblMarkupProd.Size = new System.Drawing.Size(127, 21);
+            this.lblMarkupProd.TabIndex = 1111146;
+            this.lblMarkupProd.Text = "Product Name";
+            // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -3760,6 +3773,7 @@
             this.tsMenu.ResumeLayout(false);
             this.tsMenu.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).EndInit();
             this.pnlProductDetails.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -4042,5 +4056,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBulkRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.Label lblMarkupProd;
     }
 }

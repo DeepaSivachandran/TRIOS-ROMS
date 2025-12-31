@@ -49,7 +49,7 @@ namespace ROMS
         public string varPICode = "", varPEname = "", varPTname = "", varPID = "", varUTID = "", varPRID = "", varRKID = "", varTotalItem = "", varUnit = "", varTransType = "";
        
         bool varVoucherSkip = false;
-        public int varClose = 0, varDateChange = 0, expirydateFlag = 0, pbDateflag = 0;
+        public int varClose = 0, varDateChange = 0, expirydateFlag = 0, pbDateflag = 0,editflag = 0;
         public string varUserID = "";
         DataTable dtStockReconciliation = new DataTable();
 
@@ -1310,6 +1310,8 @@ namespace ROMS
 
                 //    dtStockReconciliation.Rows[e.RowIndex]["STKRCPR_TranactionQty"] = varEditQty;
                 //}
+                editflag = 1;
+                btnView.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -1772,28 +1774,26 @@ namespace ROMS
                         varStockLocationId = Convert.ToString(DGV_FilterLocation.SelectedRows[0].Cells["SLID"].Value.ToString());
                         txtStockLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
                     }
-                    udfnRackcheck(); 
-                    udfnProBind();
+                    udfnRackcheck();  
                 }
-                else
-                {
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(78);
-                    objDServ.CloseConnection();
+                //else
+                //{
+                //    SPDataService objDServ = new SPDataService();
+                //    string varMessage = objDServ.udfnGetMessages(78);
+                //    objDServ.CloseConnection();
 
-                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        if (txtStockLocation.Text != "")
-                        {
-                            varStockLocationId = Convert.ToString(DGV_FilterLocation.SelectedRows[0].Cells["SLID"].Value.ToString());
-                            txtStockLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
-                        }
-                        udfnRackcheck();
-                        udfnProBind();
-                    } 
-                }
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        if (txtStockLocation.Text != "")
+                //        {
+                //            varStockLocationId = Convert.ToString(DGV_FilterLocation.SelectedRows[0].Cells["SLID"].Value.ToString());
+                //            txtStockLocation.Text = DGV_FilterLocation.SelectedRows[0].Cells["SL_EName"].Value.ToString();
+                //        }
+                //        udfnRackcheck();
+                //    } 
+                //}
             }
             catch (Exception ex)
             {
@@ -2459,10 +2459,12 @@ namespace ROMS
                             }
                         }
                     }
+                    btnReset.Enabled = true;
                 }
                 else {
                     cmbSubGroup.DataSource = null;
                     cmbSubGroup.Enabled = false;
+                    btnReset.Enabled = false;
                 } 
             }
             catch (Exception ex)
@@ -2531,7 +2533,7 @@ namespace ROMS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtBatchNo.Focus();
+                txtBrand.Focus();
             }
         }
 
@@ -2601,7 +2603,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    txtProductName.Focus();
+                    btnView.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -2674,7 +2676,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtProductName.Focus();
+                        btnView.Focus();
                     }
                 }
             }
@@ -2771,7 +2773,7 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                txtProductName.Focus();
+                btnView.Focus();
             }
             catch (Exception ex)
             {
@@ -2841,7 +2843,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        txtProductName.Focus();
+                        btnView.Focus();
                     }
                 }
             }
@@ -2864,6 +2866,71 @@ namespace ROMS
                     else
                     {
                         txtBatchNo.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(varStockLocationId) == 0)
+                {
+                    epStockReconciliation.SetError(txtStockLocation, "Please select loaction");
+                    txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpConcern.ShowAlways = true;
+                    tpConcern.Show("Please select loaction", txtStockLocation, 5000);
+                    return;
+                }
+                if (Convert.ToInt32(cmbGroup.SelectedValue) ==  -1)
+                {
+                    epStockReconciliation.SetError(cmbGroup, "Please select group");
+                    cmbGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProduct.ShowAlways = true;
+                    tpProduct.Show("Please select group", cmbGroup, 5000);
+                    return;
+                }
+
+                epStockReconciliation.Clear();
+                cmbGroup.BackColor = Color.White;
+                txtStockLocation.BackColor = Color.White;
+                udfnProBind();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            try {
+                if (editflag == 1)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(78);
+                    objDServ.CloseConnection();
+
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        varStockLocationId = "0";
+                        txtStockLocation.Text = "";
+                        cmbGroup.SelectedIndex = 0;
+                        btnView.Enabled = true;
+                        txtBrand.Text = "";
+                        lblBrandCode.Text = "0";
+                        editflag = 0;
+                        grdStockadjustment.Rows.Clear();
+                        this.ActiveControl = txtStockLocation;
+                        txtTotalItem.Text = "0";
                     }
                 }
             }
@@ -3816,6 +3883,8 @@ namespace ROMS
             {
                 if (varAJId != 0)
                 {
+                    grpproductname.Enabled = false;
+                    grbgodownoutward.Enabled = false;
                     grdStockadjustment.Columns["clmQty"].Visible = false;
                     grdStockadjustment.Columns["clmModifyQty"].Visible = false;
                     Application.DoEvents();
@@ -4163,6 +4232,9 @@ namespace ROMS
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraStockAdjustment = dtStock;
                 objMR_Product.paraLocationId = Convert.ToInt32(varStockLocationId);
+                objMR_Product.paraSubgroup = Convert.ToInt32(cmbSubGroup.SelectedValue);
+                objMR_Product.paraGroup = Convert.ToInt32(cmbGroup.SelectedValue);
+                objMR_Product.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
                 objMR_Product.paraId = varEntry;
                 objMR_Product.paraProductName = " ";
                 objDs = objspdservice.udfnproductmasterlist(objMR_Product);
