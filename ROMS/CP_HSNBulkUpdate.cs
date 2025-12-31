@@ -288,7 +288,7 @@ namespace ROMS
                 grdHSN.Visible = true;
                 varViewType = 11;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
+              //  tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                 tsbHsn.BackColor = Color.SkyBlue;
                 //}
             }
@@ -1479,6 +1479,9 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 50908; 
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID  IN (144,0) AND MSTID NOT IN (0) ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
