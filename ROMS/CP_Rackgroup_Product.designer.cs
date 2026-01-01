@@ -316,7 +316,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_Rackgroup_Product";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rack";
+            this.Text = "Rack Group Product";
             this.Load += new System.EventHandler(this.CP_RackList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_RackList_KeyDown);
             this.tsRackList.ResumeLayout(false);
