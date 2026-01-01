@@ -8741,6 +8741,17 @@ namespace ROMS
                 {
                     e.Cancel = false;
                 }
+                if (e.TabPage == tabPage4) // Replace with your TabPage name
+                {
+                    if (chkSalesProduct.Checked == true)
+                    {
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        e.Cancel = true; // Prevents the user from selecting this tab
+                    }
+                }
             }
             catch (Exception ex)
             {
