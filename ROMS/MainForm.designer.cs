@@ -250,7 +250,7 @@ namespace ROMS
             this.tsbLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbLogo.Name = "tsbLogo";
-            this.tsbLogo.Size = new System.Drawing.Size(12, 24);
+            this.tsbLogo.Size = new System.Drawing.Size(12, 21);
             this.tsbLogo.Text = "Logo";
             // 
             // tsmpurchase
@@ -568,7 +568,7 @@ namespace ROMS
             this.lblDb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblDb.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblDb.ShowShortcutKeys = false;
-            this.lblDb.Size = new System.Drawing.Size(12, 24);
+            this.lblDb.Size = new System.Drawing.Size(12, 21);
             this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -580,7 +580,7 @@ namespace ROMS
             this.tsDLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsDLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsDLogo.Name = "tsDLogo";
-            this.tsDLogo.Size = new System.Drawing.Size(12, 24);
+            this.tsDLogo.Size = new System.Drawing.Size(12, 21);
             this.tsDLogo.Text = "Logo";
             // 
             // lblTimeValue
@@ -591,7 +591,7 @@ namespace ROMS
             this.lblTimeValue.Name = "lblTimeValue";
             this.lblTimeValue.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblTimeValue.ShowShortcutKeys = false;
-            this.lblTimeValue.Size = new System.Drawing.Size(12, 24);
+            this.lblTimeValue.Size = new System.Drawing.Size(12, 21);
             this.lblTimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTimeValue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -604,7 +604,7 @@ namespace ROMS
             this.lblTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblTime.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblTime.ShowShortcutKeys = false;
-            this.lblTime.Size = new System.Drawing.Size(12, 24);
+            this.lblTime.Size = new System.Drawing.Size(12, 21);
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTime.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -1034,7 +1034,7 @@ namespace ROMS
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -1042,7 +1042,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -1050,7 +1050,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -1058,7 +1058,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
@@ -1785,7 +1785,7 @@ namespace ROMS
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmMyProfile.Name = "tsmMyProfile";
             this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
-            this.tsmMyProfile.Size = new System.Drawing.Size(68, 24);
+            this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
             this.tsmMyProfile.Text = "&My Profile";
             this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
@@ -1885,7 +1885,7 @@ namespace ROMS
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.ms.Size = new System.Drawing.Size(1275, 28);
+            this.ms.Size = new System.Drawing.Size(1275, 25);
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
@@ -1914,84 +1914,85 @@ namespace ROMS
             // tsmRoute
             // 
             this.tsmRoute.Name = "tsmRoute";
-            this.tsmRoute.Size = new System.Drawing.Size(175, 22);
+            this.tsmRoute.Size = new System.Drawing.Size(180, 22);
             this.tsmRoute.Text = "Route";
             this.tsmRoute.Click += new System.EventHandler(this.tsmRoute_Click);
             // 
             // tsmArea
             // 
             this.tsmArea.Name = "tsmArea";
-            this.tsmArea.Size = new System.Drawing.Size(175, 22);
+            this.tsmArea.Size = new System.Drawing.Size(180, 22);
             this.tsmArea.Text = "Area";
             this.tsmArea.Click += new System.EventHandler(this.tsmArea_Click);
             // 
             // tsmCustomerType
             // 
             this.tsmCustomerType.Name = "tsmCustomerType";
-            this.tsmCustomerType.Size = new System.Drawing.Size(175, 22);
+            this.tsmCustomerType.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomerType.Text = "Customer Type";
             this.tsmCustomerType.Click += new System.EventHandler(this.tsmCustomerType_Click);
             // 
             // tsmCustomer
             // 
             this.tsmCustomer.Name = "tsmCustomer";
-            this.tsmCustomer.Size = new System.Drawing.Size(175, 22);
+            this.tsmCustomer.Size = new System.Drawing.Size(180, 22);
             this.tsmCustomer.Text = "Customer";
+            this.tsmCustomer.Visible = false;
             this.tsmCustomer.Click += new System.EventHandler(this.tsmCustomer_Click);
             // 
             // tsmTemporyCustomer
             // 
             this.tsmTemporyCustomer.Name = "tsmTemporyCustomer";
-            this.tsmTemporyCustomer.Size = new System.Drawing.Size(175, 22);
+            this.tsmTemporyCustomer.Size = new System.Drawing.Size(180, 22);
             this.tsmTemporyCustomer.Text = "Temporary Customer";
             this.tsmTemporyCustomer.Click += new System.EventHandler(this.temporToolStripMenuItem_Click);
             // 
             // tsmCardMachine
             // 
             this.tsmCardMachine.Name = "tsmCardMachine";
-            this.tsmCardMachine.Size = new System.Drawing.Size(175, 22);
+            this.tsmCardMachine.Size = new System.Drawing.Size(180, 22);
             this.tsmCardMachine.Text = "Card Machine";
             this.tsmCardMachine.Click += new System.EventHandler(this.tsmCardMachine_Click);
             // 
             // tsmUPI
             // 
             this.tsmUPI.Name = "tsmUPI";
-            this.tsmUPI.Size = new System.Drawing.Size(175, 22);
+            this.tsmUPI.Size = new System.Drawing.Size(180, 22);
             this.tsmUPI.Text = "UPI";
             this.tsmUPI.Click += new System.EventHandler(this.tsmUPI_Click);
             // 
             // tsmVehicle
             // 
             this.tsmVehicle.Name = "tsmVehicle";
-            this.tsmVehicle.Size = new System.Drawing.Size(175, 22);
+            this.tsmVehicle.Size = new System.Drawing.Size(180, 22);
             this.tsmVehicle.Text = "Vehicle";
             this.tsmVehicle.Click += new System.EventHandler(this.tsmVehicle_Click);
             // 
             // tsmDeliveryPerson
             // 
             this.tsmDeliveryPerson.Name = "tsmDeliveryPerson";
-            this.tsmDeliveryPerson.Size = new System.Drawing.Size(175, 22);
+            this.tsmDeliveryPerson.Size = new System.Drawing.Size(180, 22);
             this.tsmDeliveryPerson.Text = "Delivery Person";
             this.tsmDeliveryPerson.Click += new System.EventHandler(this.tsmDeliveryPerson_Click);
             // 
             // tsmMobile
             // 
             this.tsmMobile.Name = "tsmMobile";
-            this.tsmMobile.Size = new System.Drawing.Size(175, 22);
+            this.tsmMobile.Size = new System.Drawing.Size(180, 22);
             this.tsmMobile.Text = "Mobile";
             this.tsmMobile.Click += new System.EventHandler(this.tsmMobile_Click);
             // 
             // tsmTransport
             // 
             this.tsmTransport.Name = "tsmTransport";
-            this.tsmTransport.Size = new System.Drawing.Size(175, 22);
+            this.tsmTransport.Size = new System.Drawing.Size(180, 22);
             this.tsmTransport.Text = "Transport";
             this.tsmTransport.Click += new System.EventHandler(this.tsmTransport_Click);
             // 
             // tsmMarriageHall
             // 
             this.tsmMarriageHall.Name = "tsmMarriageHall";
-            this.tsmMarriageHall.Size = new System.Drawing.Size(175, 22);
+            this.tsmMarriageHall.Size = new System.Drawing.Size(180, 22);
             this.tsmMarriageHall.Text = "Marriage Hall";
             this.tsmMarriageHall.Click += new System.EventHandler(this.tsmMarriageHall_Click);
             // 
