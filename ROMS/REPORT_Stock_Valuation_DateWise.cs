@@ -137,6 +137,7 @@ namespace ROMS
                 objTRNG_Stock.paraSubGroupID = varSubgroupCode;
                 objTRNG_Stock.paraFlag = varFlag;
                 objTRNG_Stock.paraDate = dpFromDate.Text;
+                objTRNG_Stock.paraCategoryID = Convert.ToInt32(cmbRateCategory.SelectedValue);
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -168,6 +169,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
                     }
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbRateCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
@@ -265,6 +267,7 @@ namespace ROMS
                 //Transaction id 	131
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=139", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
             }
@@ -660,7 +663,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterSubgroup.Visible == false)
                 {
-                    btnView.Focus();
+                    cmbRateCategory.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -733,7 +736,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbRateCategory.Focus();
                     }
                 }
             }
@@ -847,7 +850,7 @@ namespace ROMS
             {
                 varUpDownKeySubgroup = 1;
                 udfnSubGroupAutocomplete();
-                btnView.Focus();
+                cmbRateCategory.Focus();
             }
             catch (Exception ex)
             {
@@ -918,7 +921,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbRateCategory.Focus();
                     }
                 }
             }
@@ -999,6 +1002,61 @@ namespace ROMS
         private void btnTelegram_Click(object sender, EventArgs e)
         {
             udfnStockValuationReport(1);
+        }
+
+        private void cmbRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void DGV_FilterGroup_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
