@@ -14,7 +14,7 @@ namespace ROMS
     // Name  : Sivabharathi    Date : 02/09/2023
     public partial class CP_BulkAttributes : Form
     {
-        DynamicWindowControl windowControl = new DynamicWindowControl();
+        //DynamicWindowControl windowControl = new DynamicWindowControl();
 
         DataValidation objValidation = new DataValidation();
         DataError objError;
@@ -47,7 +47,7 @@ namespace ROMS
         public CP_BulkAttributes()
         {
             InitializeComponent();
-            windowControl.Initialize(tsBulkAttribute, this);
+            //windowControl.Initialize(tsBulkAttribute, this);
         }
         public void udfnHideGrids()
         {
@@ -166,13 +166,13 @@ namespace ROMS
                 DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    //MainForm objMainForm = new MainForm();
-                    //objMainForm.udfnCloseChildForms();
-                    //MainForm.objStart = new DEF_Start();
-                    //MainForm.objStart.MdiParent = this.ParentForm;
-                    //MainForm.objStart.Show();
-                    //this.Close();
-                    windowControl?.TriggerClose();
+                    MainForm objMainForm = new MainForm();
+                    objMainForm.udfnCloseChildForms();
+                    MainForm.objStart = new DEF_Start();
+                    MainForm.objStart.MdiParent = this.ParentForm;
+                    MainForm.objStart.Show();
+                    this.Close();
+                    //windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)

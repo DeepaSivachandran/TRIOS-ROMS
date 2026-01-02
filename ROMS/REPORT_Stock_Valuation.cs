@@ -143,6 +143,7 @@ namespace ROMS
                 objTRNG_Stock.paraSLID = varLocationId;
                 objTRNG_Stock.paraPICode = txtSearchByPICode.Text.Trim();
                 objTRNG_Stock.paraFilterType = Convert.ToInt32(cmbFilterType.SelectedValue);
+                objTRNG_Stock.paraCategoryID = Convert.ToInt32(cmbRateCategory.SelectedValue);
                 objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
@@ -179,6 +180,7 @@ namespace ROMS
                         varReportName = "Godown_Valuation_Summary";
                     }
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbRateCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSLID", varLocationId);
                     objBillreport.SetParameterValue("paraPRID", varProductId);
                     objBillreport.SetParameterValue("paraPICode", txtSearchByPICode.Text.Trim());
@@ -266,6 +268,7 @@ namespace ROMS
                 //Transaction id 	121
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,120) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=139", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
@@ -1013,7 +1016,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbRateCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -1125,6 +1128,61 @@ namespace ROMS
         private void btnTelegram_Click(object sender, EventArgs e)
         {
             udfnList(1);
+        }
+
+        private void cmbRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateCategory.BackColor= Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode== Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtLocation_TextChanged(object sender, EventArgs e)
