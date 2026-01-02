@@ -268,6 +268,17 @@ namespace ROMS
             {
                 if (string.IsNullOrWhiteSpace(formClass)) return;
 
+                MainForm varMainForm = Application.OpenForms.OfType<MainForm>().FirstOrDefault();
+                if (varMainForm == null)
+                    return;
+
+                // Bulk attribute screen then toolstrip click to open specific bulk attribute form
+                if (formClass.Equals("CP_BulkAttributes", StringComparison.OrdinalIgnoreCase))
+                {
+                    OpenBulkAttributeByMenuCode(varMainForm, menucode);
+                    return;
+                }
+
                 Type formType = AppDomain.CurrentDomain.GetAssemblies()
                     .SelectMany(a => a.GetTypes())
                     .FirstOrDefault(t => t.Name.Equals(formClass, StringComparison.OrdinalIgnoreCase));
@@ -305,6 +316,43 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+        private void OpenBulkAttributeByMenuCode(MainForm mainForm, int menuCode)
+        {
+            switch (menuCode)
+            {
+                case 50901:
+                    mainForm.tsmStockLocationUpdate_Click(this, EventArgs.Empty);
+                    break;
+
+                case 50902:
+                    mainForm.tsmMinsalesUpdate_Click(this, EventArgs.Empty);
+                    break;
+
+                case 50903:
+                    mainForm.tsmMinMaxUpdate_Click(this, EventArgs.Empty);
+                    break;
+
+                case 50904:
+                    mainForm.tsmUnitUppUpdate_Click(this, EventArgs.Empty);
+                    break;
+
+                case 50905:
+                    mainForm.tsmProductUpdate_Click(this, EventArgs.Empty);
+                    break;
+
+                case 50906:
+                    mainForm.tsmNetGrossUpdate_Click(this, EventArgs.Empty);
+                    break;
+
+                case 50907:
+                    mainForm.tsmSubgrupBrandUpdate_Click(this, EventArgs.Empty);
+                    break;
+
+                case 50909:
+                    mainForm.tsmProCodeUpdate_Click(this, EventArgs.Empty);
+                    break;
             }
         }
 

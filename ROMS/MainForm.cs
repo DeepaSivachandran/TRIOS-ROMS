@@ -3775,7 +3775,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void tsmStockLocationUpdate_Click(object sender, EventArgs e)
+        public void tsmStockLocationUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3794,7 +3794,7 @@ namespace ROMS
             }
         }
 
-        private void tsmMinsalesUpdate_Click(object sender, EventArgs e)
+        public void tsmMinsalesUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3813,7 +3813,7 @@ namespace ROMS
             }
         }
 
-        private void tsmMinMaxUpdate_Click(object sender, EventArgs e)
+        public void tsmMinMaxUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3832,7 +3832,7 @@ namespace ROMS
             }
         }
 
-        private void tsmUnitUppUpdate_Click(object sender, EventArgs e)
+        public void tsmUnitUppUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3851,7 +3851,7 @@ namespace ROMS
             }
         }
 
-        private void tsmProductUpdate_Click(object sender, EventArgs e)
+        public void tsmProductUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3870,7 +3870,7 @@ namespace ROMS
             }
         }
 
-        private void tsmNetGrossUpdate_Click(object sender, EventArgs e)
+        public void tsmNetGrossUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3889,7 +3889,7 @@ namespace ROMS
             }
         }
 
-        private void tsmSubgrupBrandUpdate_Click(object sender, EventArgs e)
+        public void tsmSubgrupBrandUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -3927,7 +3927,7 @@ namespace ROMS
             }
         }
 
-        private void tsmProCodeUpdate_Click(object sender, EventArgs e)
+        public void tsmProCodeUpdate_Click(object sender, EventArgs e)
         {
             try
             {
