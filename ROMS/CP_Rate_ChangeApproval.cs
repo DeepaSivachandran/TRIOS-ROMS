@@ -1516,15 +1516,6 @@ namespace ROMS
                             grdItemList.Columns["Last Rate"].HeaderText = "Last Rate";
 
 
-                            grdItemList.Columns["S.No."].ReadOnly = true;
-                            grdItemList.Columns["P.I Code"].ReadOnly = true;
-                            grdItemList.Columns["Product"].ReadOnly = true;
-                            grdItemList.Columns["Unit"].ReadOnly = true;
-                            grdItemList.Columns["Last Rate"].ReadOnly = true;
-                            grdItemList.Columns["Live Rate"].ReadOnly = true; 
-                            grdItemList.Columns["Teller"].ReadOnly = true;
-                            grdItemList.Columns["Last Updated By"].ReadOnly = true;
-
 
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
@@ -1552,6 +1543,18 @@ namespace ROMS
                     chkSelectAll.Visible = false;
                 }
                 udfnSearchGridHead();
+
+                if (grdItemList.Rows.Count > 0)
+                {
+                    grdItemList.Columns["S.No."].ReadOnly = true;
+                    grdItemList.Columns["P.I Code"].ReadOnly = true;
+                    grdItemList.Columns["Product"].ReadOnly = true;
+                    grdItemList.Columns["Unit"].ReadOnly = true;
+                    grdItemList.Columns["Last Rate"].ReadOnly = true;
+                    grdItemList.Columns["Live Rate"].ReadOnly = true;
+                    grdItemList.Columns["Teller"].ReadOnly = true;
+                    grdItemList.Columns["Last Updated By"].ReadOnly = true;
+                }
                 if (lblNoRecordsFound.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -2098,7 +2101,14 @@ namespace ROMS
         {
             try
             {
-                udfnSaveRateApproval(2);
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(197);
+                objDServ.CloseConnection();
+                DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                { 
+                    udfnSaveRateApproval(2);
+                }
             }
             catch (Exception ex)
             {
