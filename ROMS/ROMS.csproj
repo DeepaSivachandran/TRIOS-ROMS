@@ -620,6 +620,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_Product_Label_Print_Plain_GI_100x70.cs">
+      <DependentUpon>RPT_Product_Label_Print_Plain_GI_100x70.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Purchase_Summary_Portrait.cs">
       <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4863,6 +4870,11 @@
     <EmbeddedResource Include="Reports\RPT_PriceList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PriceList.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_GI_100x70.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Product_Label_Print_Plain_GI_100x70.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_Plain_50x25.rpt">
