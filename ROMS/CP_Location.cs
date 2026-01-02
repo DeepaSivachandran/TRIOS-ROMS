@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +24,7 @@ namespace ROMS
         private ToolTip tpStoctApplicable = new ToolTip();
         public int varlocationcode=0;
         public int varstatus;
+
         public int varGodownType;
         public string PbConcern="";
         public string PbLocationType = "";
@@ -256,9 +258,32 @@ namespace ROMS
                     chkRKCreation.Enabled = false;
                     chkRKGCreation.Enabled = false;
                 }
-                if(PbStatus==2)
+                if (PbStatus == 2)
                 {
                     udfnDisable();
+                }
+                else
+                {
+                    if (PbStockApplicableID == 11)
+                    {
+                        DataSet objDS;
+                        SPDataService objdserv = new SPDataService();
+                        MR_Location objMR_Location = new MR_Location();
+                        objMR_Location.paraViewType = 34;
+                        objMR_Location.paraLocationId = varlocationcode;
+                        objDS = objdserv.udfnStockLocationList(objMR_Location);
+                        objdserv.CloseConnection();
+                        if (objDS != null)
+                        {
+                            if (objDS.Tables[0].Rows.Count > 0)
+                            {
+                                if (Convert.ToInt16(objDS.Tables[0].Rows[0]["Flag"]) == 0)
+                                { cmbStockApplicable.Enabled = true; }
+                                else
+                                { cmbStockApplicable.Enabled = false; }
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
