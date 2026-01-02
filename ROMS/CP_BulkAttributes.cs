@@ -116,7 +116,7 @@ namespace ROMS
                 }
                 if (pbMenuFlag == 50909)
                 {
-                    TsbName_Click(sender, e);
+                    TsbName_Click(sender, e); 
                 }
             }
             catch (Exception ex)
@@ -180,23 +180,7 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-        public void udfnLoadLocation()
-        {
-            try
-            {
-                udfnHideGrids();
-                grdLoction.Visible = true;
-
-                tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
-                tsbLocation.BackColor = Color.SkyBlue;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+        } 
         public void udfnDefalutDSLoad()
         {
             try
@@ -978,7 +962,7 @@ namespace ROMS
                     {
                         varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, objBulkUpdate, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0);
+                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, objBulkUpdate, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"");
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -1661,23 +1645,8 @@ namespace ROMS
                 grdLoction.Visible = true;
                 varViewType = 4;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
-                tsbMSQ.BackColor = Color.SkyBlue;
-                //varViewType = 4;
-                //if (varFormFlag == 0)
-                //{
-                //    //DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //    //if (dialogResult == DialogResult.Yes)
-                //    //{
-                //    //    udfnFilterLoad();
-                //    //    udfnLoadLocation();
-                //    //    udfnList();
-                //    //}
-                //}
-                //else
-                //{
-                //    udfnLoadLocation();
-                // }
+               // tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ";
+                tsbMSQ.BackColor = Color.SkyBlue; 
             }
             catch (Exception ex)
             {
@@ -1701,7 +1670,7 @@ namespace ROMS
                 grdMSQ.Visible = true;
                 varViewType = 5;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
+                //tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
                 tsbMSQ.BackColor = Color.SkyBlue;
                 // }
             }
@@ -1723,7 +1692,7 @@ namespace ROMS
                 grdStock.Visible = true;
                 varViewType = 6;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
+                //tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                 tsbStock.BackColor = Color.SkyBlue;
                 //}
             }
@@ -1745,7 +1714,7 @@ namespace ROMS
                 grdShelfLife.Visible = true;
                 varViewType = 7;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
+                //tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
                 tsbShelflife.BackColor = Color.SkyBlue;
                 // }
             }
@@ -1767,7 +1736,7 @@ namespace ROMS
                 grdBatch.Visible = true;
                 varViewType = 8;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
+                //tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                 tsbBatch.BackColor = Color.SkyBlue;
                 //}
             }
@@ -1790,7 +1759,7 @@ namespace ROMS
                 grdWeight.Visible = true;
                 varViewType = 9;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
+                //tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
                 tsbWeight.BackColor = Color.SkyBlue;
                 //}
             }
@@ -1812,7 +1781,7 @@ namespace ROMS
                 grdBrand.Visible = true;
                 varViewType = 10;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
+                //tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                 tsbBrand.BackColor = Color.SkyBlue;
                 //}
             }
@@ -1834,7 +1803,7 @@ namespace ROMS
                 grdHSN.Visible = true;
                 varViewType = 11;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
+                //tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                 tsbHsn.BackColor = Color.SkyBlue;
                 //}
             }
@@ -1856,7 +1825,7 @@ namespace ROMS
                 grdBulkAttributes.Visible = true;
                 varViewType = 12;
                 udfnList();
-                tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
+                //tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
                 tsbName.BackColor = Color.SkyBlue;
                 //  }
             }
@@ -1872,6 +1841,8 @@ namespace ROMS
             {
                 varFormFlag = 1;
                 pbMenuFlag = MainForm.pbMenucode;
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder; 
+                dynamicLabelControl.BindMenuHierarchy(MainForm.pbMenucode); 
                 udfnMenuClick(sender, e);
                 udfnFilterLoad();
                 udfnDefalutDSLoad();

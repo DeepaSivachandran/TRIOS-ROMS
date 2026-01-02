@@ -136,6 +136,7 @@ namespace ROMS
         public static CP_SupplierOrderDetails objCP_SupplierOrderDetails;
         public static CP_GeneralSettings objCP_GeneralSettings;
         public static CP_BulkAttributes objCP_BulkAttributes;
+        public static CP_HSNBulkUpdate objCP_HSNBulkUpdate;
         public static CP_Spl_Products_Bulk objCP_Spl_Products_Bulk;
         public static CP_BulkAttributeVerify objCP_BulkAttributeVerify; 
         public static CP_CostPrice_Update_Bulk objCP_CostPrice_Update_Bulk;
@@ -3783,7 +3784,7 @@ namespace ROMS
                 pbMenucode = 50901;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50901);
                 objCP_BulkAttributes.Text = "Stock location, Rack & MSQ"; 
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ"; 
+                //objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Stock location, Rack & MSQ"; 
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3802,7 +3803,7 @@ namespace ROMS
                 pbMenucode = 50902;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50902);
                 objCP_BulkAttributes.Text = "Minsales Qty & Barcode";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
+                //objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Minsales Qty & Barcode";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3821,7 +3822,7 @@ namespace ROMS
                 pbMenucode = 50903;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50903);
                 objCP_BulkAttributes.Text = "Min, Max stock & Reorder Qty";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
+               // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Min, Max stock & Reorder Qty";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3840,7 +3841,7 @@ namespace ROMS
                 pbMenucode = 50904;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50904);
                 objCP_BulkAttributes.Text = "Bulk Unit, UPP & Shelf Life";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
+                //objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Bulk Unit, UPP & Shelf Life";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3858,8 +3859,8 @@ namespace ROMS
                 MainForm.objCP_BulkAttributes.pbMenuFlag = 5;
                 pbMenucode = 50905;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50905);
-                objCP_BulkAttributes.Text = "Product Category, RM Flag & Batch";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
+                objCP_BulkAttributes.Text = "Barcode, RM Flag & Batch";
+               // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Product Category, RM Flag & Batch";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3878,7 +3879,7 @@ namespace ROMS
                 pbMenucode = 50906;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50906);
                 objCP_BulkAttributes.Text = "Net & Gross Weight";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
+                //objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Net & Gross Weight";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3897,7 +3898,7 @@ namespace ROMS
                 pbMenucode = 50907;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50907);
                 objCP_BulkAttributes.Text = "Group, Subgroup & Brand";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
+               // objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Group, Subgroup & Brand";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3911,12 +3912,12 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_BulkAttributes = new CP_BulkAttributes();
-                MainForm.objCP_BulkAttributes.pbMenuFlag = 8;
+                MainForm.objCP_HSNBulkUpdate = new CP_HSNBulkUpdate();
+                MainForm.objCP_HSNBulkUpdate.pbMenuFlag = 8;
                 pbMenucode = 50908;
-                OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50908);
-                objCP_BulkAttributes.Text = "HSN Name";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
+                OpenReportForm(ref MainForm.objCP_HSNBulkUpdate, "CP_HSNBulkUpdate", 50908);
+                objCP_HSNBulkUpdate.Text = "HSN Name";
+               // objCP_HSNBulkUpdate.tspHeader.Text = "Product Attributes Bulk Update : HSN Name";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
@@ -3935,7 +3936,7 @@ namespace ROMS
                 pbMenucode = 50909;
                 OpenReportForm(ref MainForm.objCP_BulkAttributes, "CP_BulkAttributes", 50909);
                 objCP_BulkAttributes.Text = "Pro. Code, Name & Unit";
-                objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
+                //objCP_BulkAttributes.tspHeader.Text = "Product Attributes Bulk Update : Pro. Code, Name & Unit";
                 PbCurrentForm = "5.18";
             }
             catch (Exception ex)
