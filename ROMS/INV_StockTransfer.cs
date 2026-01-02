@@ -2488,10 +2488,11 @@ namespace ROMS
                                     varHeader = "Shop Stock Issued";
 
                                     objBillreport.SetParameterValue("paraStockTransferID", Convert.ToInt32(STID));
+                                    objBillreport.SetParameterValue("paraStockTransferID", Convert.ToInt32(STID), objBillreport.Subreports[0].Name);
                                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName, objBillreport.Subreports[0].Name);
+                                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName, objBillreport.Subreports[0].Name);
                                     objValidation.CrySqlConnection(objBillreport);
 
                                     MainForm.objReportLoad = new ReportLoad();

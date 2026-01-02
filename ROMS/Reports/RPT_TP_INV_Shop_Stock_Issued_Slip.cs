@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_TP_INV_Shop_Stock_Issued : ReportClass {
+    public class RPT_TP_INV_Shop_Stock_Issued_Slip : ReportClass {
         
-        public RPT_TP_INV_Shop_Stock_Issued() {
+        public RPT_TP_INV_Shop_Stock_Issued_Slip() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_TP_INV_Shop_Stock_Issued.rpt";
+                return "RPT_TP_INV_Shop_Stock_Issued_Slip.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_TP_INV_Shop_Stock_Issued.rpt";
+                return "ROMS.Reports.RPT_TP_INV_Shop_Stock_Issued_Slip.rpt";
             }
             set {
                 // Do nothing
@@ -138,7 +138,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection4 {
             get {
                 return this.ReportDefinition.Sections[11];
             }
@@ -146,7 +146,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection3 {
+        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection2 {
             get {
                 return this.ReportDefinition.Sections[12];
             }
@@ -154,9 +154,17 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section ReportFooterSection3 {
             get {
                 return this.ReportDefinition.Sections[13];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[14];
             }
         }
         
@@ -183,36 +191,12 @@ namespace ROMS.Reports {
                 return this.DataDefinition.ParameterFields[2];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_Shop_Stock_Issued_Sliprpt_paraUserName {
-            get {
-                return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_Shop_Stock_Issued_Sliprpt_paraHostName {
-            get {
-                return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_TP_INV_Shop_Stock_Issued_Sliprpt_paraStockTransferID {
-            get {
-                return this.DataDefinition.ParameterFields[5];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_TP_INV_Shop_Stock_Issued : Component, ICachedReport {
+    public class CachedRPT_TP_INV_Shop_Stock_Issued_Slip : Component, ICachedReport {
         
-        public CachedRPT_TP_INV_Shop_Stock_Issued() {
+        public CachedRPT_TP_INV_Shop_Stock_Issued_Slip() {
         }
         
         [Browsable(false)]
@@ -249,7 +233,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_TP_INV_Shop_Stock_Issued rpt = new RPT_TP_INV_Shop_Stock_Issued();
+            RPT_TP_INV_Shop_Stock_Issued_Slip rpt = new RPT_TP_INV_Shop_Stock_Issued_Slip();
             rpt.Site = this.Site;
             return rpt;
         }
