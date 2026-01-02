@@ -180,6 +180,7 @@ namespace ROMS
                         varReportName = "Godown_Valuation_Summary";
                     }
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbRateCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraSLID", varLocationId);
                     objBillreport.SetParameterValue("paraPRID", varProductId);
                     objBillreport.SetParameterValue("paraPICode", txtSearchByPICode.Text.Trim());
@@ -267,6 +268,7 @@ namespace ROMS
                 //Transaction id 	121
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,120) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=139", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
