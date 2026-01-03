@@ -66,6 +66,7 @@ namespace ROMS
                 cmbGroupType.Focus();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 AND RKGID !=0 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=95 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintLanguage, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbGroupType.SelectedValue = -1;
                 udfnList();
@@ -98,7 +99,7 @@ namespace ROMS
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 91;
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbGroupType.SelectedValue);
-                objMR_Product.paraType =0;
+                objMR_Product.paraType =Convert.ToInt32(cmbPrintLanguage.SelectedValue);
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -113,6 +114,10 @@ namespace ROMS
                             grdGroupList.ClearSelection();
                             grdGroupList.DataSource = objDs.Tables[0];
 
+                            if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 323)
+                            {
+                                grdGroupList.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            }
                             grdGroupList.Columns["S.No."].ReadOnly = true;
                             grdGroupList.Columns["RKGID"].Visible = false;
                             grdGroupList.Columns["RKID"].Visible = false;
@@ -557,7 +562,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbPrintLanguage.Focus();
                 }
             }
             catch (Exception ex)
@@ -835,6 +840,61 @@ namespace ROMS
             try
             {
                 btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintLanguage_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintLanguage.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintLanguage_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintLanguage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPrintLanguage_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPrintLanguage.BackColor = Color.White;
             }
             catch (Exception ex)
             {
