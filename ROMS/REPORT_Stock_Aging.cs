@@ -690,7 +690,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbOrderBy.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -819,11 +819,11 @@ namespace ROMS
                 {
                     //txtMonths.Text = "";
                     //txtMonths.Enabled = false;
-                    lblMonths.Text = "Days";
+                    //lblMonths.Text = "Days";
                 }
                 else
                 {
-                    lblMonths.Text = "Months";
+                    //lblMonths.Text = "Months";
                     //txtMonths.Enabled = true;
                 }
                 if (cmbReportType.SelectedItem is DataRowView drv)
@@ -1433,7 +1433,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    btnView.Focus();
+                    txtMonths.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1506,7 +1506,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        txtMonths.Focus();
                     }
                 }
             }
@@ -1605,7 +1605,7 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                btnView.Focus();
+                txtMonths.Focus();
             }
             catch (Exception ex)
             {
@@ -1675,7 +1675,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        txtMonths.Focus();
                     }
                 }
             }
