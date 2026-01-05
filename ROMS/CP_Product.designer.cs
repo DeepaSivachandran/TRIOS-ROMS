@@ -45,13 +45,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Product));
             this.txtDPICode = new System.Windows.Forms.TextBox();
             this.txtPICode = new System.Windows.Forms.TextBox();
@@ -309,7 +310,14 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColour = new System.Windows.Forms.ToolStripButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lblMarkupProd = new System.Windows.Forms.Label();
             this.grdPrice = new System.Windows.Forms.DataGridView();
+            this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnImageUpdate = new System.Windows.Forms.Button();
             this.chkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -319,14 +327,8 @@
             this.clmOffsetValuePer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBulkRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNewRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnImageUpdate = new System.Windows.Forms.Button();
-            this.lblMarkupProd = new System.Windows.Forms.Label();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -3478,6 +3480,17 @@
             this.tabPage4.Text = "Price Markup";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // lblMarkupProd
+            // 
+            this.lblMarkupProd.AutoSize = true;
+            this.lblMarkupProd.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
+            this.lblMarkupProd.Location = new System.Drawing.Point(10, 9);
+            this.lblMarkupProd.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblMarkupProd.Name = "lblMarkupProd";
+            this.lblMarkupProd.Size = new System.Drawing.Size(127, 21);
+            this.lblMarkupProd.TabIndex = 1111146;
+            this.lblMarkupProd.Text = "Product Name";
+            // 
             // grdPrice
             // 
             this.grdPrice.AllowUserToAddRows = false;
@@ -3506,26 +3519,27 @@
             this.clmOffsetValuePer,
             this.clmRate,
             this.clmBulkRate,
+            this.clmNewRate,
             this.clmStatus});
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPrice.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPrice.DefaultCellStyle = dataGridViewCellStyle23;
             this.grdPrice.EnableHeadersVisualStyles = false;
             this.grdPrice.GridColor = System.Drawing.Color.White;
             this.grdPrice.Location = new System.Drawing.Point(10, 34);
             this.grdPrice.Name = "grdPrice";
             this.grdPrice.RowHeadersVisible = false;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPrice.RowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPrice.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.grdPrice.RowTemplate.Height = 25;
             this.grdPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdPrice.Size = new System.Drawing.Size(763, 361);
+            this.grdPrice.Size = new System.Drawing.Size(861, 361);
             this.grdPrice.TabIndex = 9;
             this.grdPrice.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellEndEdit);
             this.grdPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellValueChanged);
@@ -3533,82 +3547,6 @@
             this.grdPrice.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdPrice_DataBindingComplete);
             this.grdPrice.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grdPrice_DataError);
             this.grdPrice.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdPrice_EditingControlShowing);
-            // 
-            // chkColumn
-            // 
-            this.chkColumn.HeaderText = "Status";
-            this.chkColumn.Name = "chkColumn";
-            this.chkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkColumn.Width = 60;
-            // 
-            // clmTypeId
-            // 
-            this.clmTypeId.HeaderText = "TypeId";
-            this.clmTypeId.Name = "clmTypeId";
-            this.clmTypeId.Visible = false;
-            // 
-            // clmType
-            // 
-            this.clmType.HeaderText = "Type";
-            this.clmType.Name = "clmType";
-            this.clmType.ReadOnly = true;
-            // 
-            // clmMinQty
-            // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmMinQty.DefaultCellStyle = dataGridViewCellStyle17;
-            this.clmMinQty.HeaderText = "Min Qty";
-            this.clmMinQty.MaxInputLength = 7;
-            this.clmMinQty.Name = "clmMinQty";
-            // 
-            // clmOffset
-            // 
-            this.clmOffset.HeaderText = "Off Set Status";
-            this.clmOffset.Name = "clmOffset";
-            // 
-            // clmOffsetValue
-            // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmOffsetValue.DefaultCellStyle = dataGridViewCellStyle18;
-            this.clmOffsetValue.HeaderText = "Off Set Value";
-            this.clmOffsetValue.MaxInputLength = 7;
-            this.clmOffsetValue.Name = "clmOffsetValue";
-            // 
-            // clmOffsetValuePer
-            // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmOffsetValuePer.DefaultCellStyle = dataGridViewCellStyle19;
-            this.clmOffsetValuePer.HeaderText = "Off Set %";
-            this.clmOffsetValuePer.MaxInputLength = 7;
-            this.clmOffsetValuePer.Name = "clmOffsetValuePer";
-            this.clmOffsetValuePer.Width = 80;
-            // 
-            // clmRate
-            // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmRate.DefaultCellStyle = dataGridViewCellStyle20;
-            this.clmRate.HeaderText = "Rate";
-            this.clmRate.MaxInputLength = 7;
-            this.clmRate.Name = "clmRate";
-            // 
-            // clmBulkRate
-            // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.LightGray;
-            this.clmBulkRate.DefaultCellStyle = dataGridViewCellStyle21;
-            this.clmBulkRate.HeaderText = "Bulk Rate";
-            this.clmBulkRate.Name = "clmBulkRate";
-            this.clmBulkRate.ReadOnly = true;
-            // 
-            // clmStatus
-            // 
-            this.clmStatus.HeaderText = "StatusValue";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.Visible = false;
             // 
             // pnlProductDetails
             // 
@@ -3687,16 +3625,89 @@
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
             // 
-            // lblMarkupProd
+            // chkColumn
             // 
-            this.lblMarkupProd.AutoSize = true;
-            this.lblMarkupProd.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
-            this.lblMarkupProd.Location = new System.Drawing.Point(10, 9);
-            this.lblMarkupProd.MaximumSize = new System.Drawing.Size(500, 0);
-            this.lblMarkupProd.Name = "lblMarkupProd";
-            this.lblMarkupProd.Size = new System.Drawing.Size(127, 21);
-            this.lblMarkupProd.TabIndex = 1111146;
-            this.lblMarkupProd.Text = "Product Name";
+            this.chkColumn.HeaderText = "Status";
+            this.chkColumn.Name = "chkColumn";
+            this.chkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkColumn.Width = 60;
+            // 
+            // clmTypeId
+            // 
+            this.clmTypeId.HeaderText = "TypeId";
+            this.clmTypeId.Name = "clmTypeId";
+            this.clmTypeId.Visible = false;
+            // 
+            // clmType
+            // 
+            this.clmType.HeaderText = "Type";
+            this.clmType.Name = "clmType";
+            this.clmType.ReadOnly = true;
+            // 
+            // clmMinQty
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmMinQty.DefaultCellStyle = dataGridViewCellStyle17;
+            this.clmMinQty.HeaderText = "Min Qty";
+            this.clmMinQty.MaxInputLength = 7;
+            this.clmMinQty.Name = "clmMinQty";
+            // 
+            // clmOffset
+            // 
+            this.clmOffset.HeaderText = "Off Set Status";
+            this.clmOffset.Name = "clmOffset";
+            // 
+            // clmOffsetValue
+            // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmOffsetValue.DefaultCellStyle = dataGridViewCellStyle18;
+            this.clmOffsetValue.HeaderText = "Off Set Value";
+            this.clmOffsetValue.MaxInputLength = 7;
+            this.clmOffsetValue.Name = "clmOffsetValue";
+            // 
+            // clmOffsetValuePer
+            // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmOffsetValuePer.DefaultCellStyle = dataGridViewCellStyle19;
+            this.clmOffsetValuePer.HeaderText = "Off Set %";
+            this.clmOffsetValuePer.MaxInputLength = 7;
+            this.clmOffsetValuePer.Name = "clmOffsetValuePer";
+            this.clmOffsetValuePer.Width = 80;
+            // 
+            // clmRate
+            // 
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmRate.DefaultCellStyle = dataGridViewCellStyle20;
+            this.clmRate.HeaderText = "Rate";
+            this.clmRate.MaxInputLength = 7;
+            this.clmRate.Name = "clmRate";
+            // 
+            // clmBulkRate
+            // 
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.LightGray;
+            this.clmBulkRate.DefaultCellStyle = dataGridViewCellStyle21;
+            this.clmBulkRate.HeaderText = "Bulk Rate";
+            this.clmBulkRate.Name = "clmBulkRate";
+            this.clmBulkRate.ReadOnly = true;
+            // 
+            // clmNewRate
+            // 
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmNewRate.DefaultCellStyle = dataGridViewCellStyle22;
+            this.clmNewRate.HeaderText = "New Rate";
+            this.clmNewRate.Name = "clmNewRate";
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "StatusValue";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.Visible = false;
             // 
             // CP_Product
             // 
@@ -4046,6 +4057,7 @@
         public System.Windows.Forms.DataGridView grdPrice;
         public System.Windows.Forms.ComboBox cmbStockTakken;
         private System.Windows.Forms.GroupBox grpstktake;
+        private System.Windows.Forms.Label lblMarkupProd;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
@@ -4055,7 +4067,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOffsetValuePer;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBulkRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNewRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.Label lblMarkupProd;
     }
 }

@@ -33,6 +33,8 @@
             this.txtDCityName = new System.Windows.Forms.TextBox();
             this.txtDStateName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.cmbRatecategoryOrderNo = new System.Windows.Forms.ComboBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtReason = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtSufEng = new System.Windows.Forms.TextBox();
@@ -78,6 +80,8 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.cmbRatecategoryOrderNo);
+            this.grbform.Controls.Add(this.textBox3);
             this.grbform.Controls.Add(this.txtReason);
             this.grbform.Controls.Add(this.textBox1);
             this.grbform.Controls.Add(this.txtSufEng);
@@ -97,20 +101,47 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(328, 301);
+            this.grbform.Size = new System.Drawing.Size(328, 330);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            // 
+            // cmbRatecategoryOrderNo
+            // 
+            this.cmbRatecategoryOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRatecategoryOrderNo.FormattingEnabled = true;
+            this.cmbRatecategoryOrderNo.Location = new System.Drawing.Point(134, 171);
+            this.cmbRatecategoryOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbRatecategoryOrderNo.Name = "cmbRatecategoryOrderNo";
+            this.cmbRatecategoryOrderNo.Size = new System.Drawing.Size(180, 27);
+            this.cmbRatecategoryOrderNo.TabIndex = 5;
+            this.cmbRatecategoryOrderNo.Enter += new System.EventHandler(this.cmbRatecategoryOrderNo_Enter);
+            this.cmbRatecategoryOrderNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRatecategoryOrderNo_KeyDown);
+            this.cmbRatecategoryOrderNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRatecategoryOrderNo_KeyPress);
+            this.cmbRatecategoryOrderNo.Leave += new System.EventHandler(this.cmbRatecategoryOrderNo_Leave);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox3.Location = new System.Drawing.Point(12, 171);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(122, 27);
+            this.textBox3.TabIndex = 23;
+            this.textBox3.Text = "Rate Category Order";
             // 
             // txtReason
             // 
             this.txtReason.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtReason.Location = new System.Drawing.Point(134, 172);
+            this.txtReason.Location = new System.Drawing.Point(134, 199);
             this.txtReason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtReason.MaxLength = 200;
             this.txtReason.Multiline = true;
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(180, 72);
-            this.txtReason.TabIndex = 5;
+            this.txtReason.TabIndex = 6;
             this.txtReason.Enter += new System.EventHandler(this.txtReason_Enter);
             this.txtReason.Leave += new System.EventHandler(this.txtReason_Leave);
             // 
@@ -119,7 +150,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(12, 172);
+            this.textBox1.Location = new System.Drawing.Point(12, 199);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -232,11 +263,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(234, 253);
+            this.btnClose.Location = new System.Drawing.Point(234, 283);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -249,11 +280,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(148, 253);
+            this.btnSave.Location = new System.Drawing.Point(148, 283);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -270,7 +301,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(354, 316);
+            this.ClientSize = new System.Drawing.Size(354, 345);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -310,5 +341,7 @@
         private System.Windows.Forms.TextBox textBox6;
         public System.Windows.Forms.TextBox txtReason;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox cmbRatecategoryOrderNo;
     }
 }
