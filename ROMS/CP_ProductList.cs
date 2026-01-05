@@ -354,7 +354,7 @@ namespace ROMS
             {
                 picLoader.Visible = false;
                 picLoader.SendToBack();
-                lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
+                tsTotPro.Text = Convert.ToString(grdItemList.Rows.Count);
             }
         }
         public void udfnDefaultSearchGrid()
@@ -1736,7 +1736,7 @@ namespace ROMS
             }
             finally
             {
-                lblPC.Text = Convert.ToString(grdItemList.Rows.Count);
+                tsTotPro.Text = Convert.ToString(grdItemList.Rows.Count);
             }
         }
 
