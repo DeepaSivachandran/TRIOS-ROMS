@@ -254,6 +254,11 @@ namespace ROMS
                 {
                     varBrandId = Convert.ToInt32(lblBrandId.Text);
                 }
+                int varLocationId = 0;
+                if (txtLocation.Text.Trim() != "")
+                {
+                    varLocationId = Convert.ToInt32(lblLocationId.Text);
+                }
                 int varImageType = 0;
                 if (Convert.ToInt32(cmbImage.SelectedValue) == 11)
                 {
@@ -270,10 +275,12 @@ namespace ROMS
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.paraBrandID = varBrandId;
+                objMR_Product.paraLocationId = varLocationId;
                 objMR_Product.paraUnitId = Convert.ToInt32(cmbUnit.SelectedValue);
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraImageType = varImageType;
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
                 objMR_Product.paraCreatedON = dtCreatedOn.Text;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
@@ -734,6 +741,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbConcern.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -837,6 +845,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbCategory.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -895,6 +904,7 @@ namespace ROMS
 
             try
             {
+                udfnGridNull((Control)sender);
                 btnView.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -918,6 +928,12 @@ namespace ROMS
                     varUpDownKeySubgroup = 0;
                     DGV_FilterSubgroup.DataSource = null;
                     DGV_FilterSubgroup.Visible = false;
+                }
+                if (skipControl != txtBrand)
+                {
+                    varUpDownKeyBrand = 0;
+                    DGV_FilterBrand.DataSource = null;
+                    DGV_FilterBrand.Visible = false;
                 }
                 if (skipControl != txtLocation)
                 {
@@ -1082,6 +1098,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnExport.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1300,6 +1317,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtProductSubGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1499,6 +1517,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtProductGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1668,6 +1687,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2158,6 +2178,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 txtBrand.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2366,6 +2387,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbUnit.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2421,6 +2443,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbLocationType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2476,6 +2499,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2531,6 +2555,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbProClassification.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2586,6 +2611,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbImage.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
