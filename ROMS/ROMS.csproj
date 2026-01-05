@@ -557,6 +557,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Rackgroup_Rack_Product_Unassigned.cs">
+      <DependentUpon>RPT_CP_Rackgroup_Rack_Product_Unassigned.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Rack_Product_Assigned.cs">
       <DependentUpon>RPT_CP_Rackgroup_Rack_Product_Assigned.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4817,6 +4824,11 @@
     <Content Include="Reports\RPT_CP_Rackgroup_Rack_Product_Assigned.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Rackgroup_Rack_Product_Assigned.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Rackgroup_Rack_Product_Unassigned.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Rackgroup_Rack_Product_Unassigned.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_ShelfLife.rpt">
