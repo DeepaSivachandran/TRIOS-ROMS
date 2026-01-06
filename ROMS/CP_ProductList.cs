@@ -835,7 +835,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductGroup.Focus();
+                    if (cmbType.Enabled == true)
+                    {
+                        cmbType.Focus();
+                    }
+                    else
+                    {
+                        cmbProClassification.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1732,7 +1739,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dtCreatedOn.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -1871,7 +1878,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -2656,7 +2663,7 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    cmbRateCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -2909,7 +2916,7 @@ namespace ROMS
             {
                 if (e.KeyCode==Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }
             }
             catch (Exception ex)
