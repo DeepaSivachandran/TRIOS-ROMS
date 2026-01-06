@@ -281,6 +281,10 @@ namespace ROMS
                 objMR_Product.paraImageType = varImageType;
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
+                objMR_Product.paraFlag = Convert.ToInt32(cmbProClassification.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
+                objMR_Product.paraRateCategory = Convert.ToInt32(cmbRateCategory.SelectedValue);
+                objMR_Product.paraProductType = Convert.ToInt32(cmbOthers.SelectedValue);
                 objMR_Product.paraCreatedON = dtCreatedOn.Text;
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
@@ -1205,12 +1209,35 @@ namespace ROMS
                     }
                 }
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 32;
+                DataSet objDTable = new DataSet();
+                SPDataService objdSer = new SPDataService();
+                objDTable = objdSer.udfnMaster(objMR_Master);
+                objdSer.CloseConnection();
+                if (objDTable != null)
+                {
+                    if (objDTable.Tables.Count > 0)
+                    {
+                        if (objDTable.Tables[0].Rows.Count > 0)
+                        {
+                            cmbRateCategory.ValueMember = "MSTID";
+                            cmbRateCategory.DisplayMember = "MST_DisplayText";
+                            cmbRateCategory.DataSource = objDTable.Tables[0];
+                        }
+                    }
+                }
+
+                cmbRateCategory.SelectedValue = 0;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (4,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbImage, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (136,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProClassification, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,144) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,120) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbRetailRate, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,147) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbOthers, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Unit", "UTID<>-1 ORDER BY UTID", "UT_Symbol,UTID", cmbUnit, "", "UT_Symbol", "UTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1,16) OR STSID=0", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
@@ -1221,9 +1248,11 @@ namespace ROMS
                 cmbProClassification.SelectedValue = 0;
                 cmbImage.SelectedValue = 0;
                 cmbStatus.SelectedValue = 0;
+                cmbRateCategory.SelectedValue = 0;
+                cmbRetailRate.SelectedValue = 0;
+                cmbOthers.SelectedValue = 0;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -2743,6 +2772,171 @@ namespace ROMS
                         cmbCategory.Focus();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    cmbRetailRate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled= true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRetailRate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    cmbOthers.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRetailRate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRetailRate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOthers_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOthers.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOthers_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOthers_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOthers_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbOthers.BackColor = Color.White;
             }
             catch (Exception ex)
             {

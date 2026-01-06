@@ -86,7 +86,6 @@ namespace ROMS.Model
         public string parasuffixename = "";
         public string paradescription = "";
         public int paraRateId = 0;
-
-        
+        public int paraRateCategory = 0;        
     }
 }

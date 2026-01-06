@@ -10617,6 +10617,7 @@ namespace ROMS
             grplocation.Enabled = false;
             grbSalesStockLocation.Enabled = false;
             grbBatchNoDetails.Enabled = false;
+            gpClassification.Enabled = false;
             rbActive.Enabled = false;
             grpExpire.Enabled = false;
             grpHsndetail.Enabled = false;
