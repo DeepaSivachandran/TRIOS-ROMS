@@ -1313,7 +1313,7 @@ namespace ROMS
                 RKGName = Convert.ToString(cmbRackGroup.Name);
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 92;
-                objMR_Product.paraFlag = 0;
+                objMR_Product.paraFlag = 1;
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraGroup = 0;
                 objMR_Product.paraSubgroup = 0;
@@ -1340,7 +1340,7 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Rack_Product_Assigned.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Rack_Product_Unassigned.rpt");
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
