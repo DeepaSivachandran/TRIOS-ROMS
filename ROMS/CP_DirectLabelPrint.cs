@@ -797,11 +797,47 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnExpiryDateBind()
+        {
+            try
+            {
+                if (txtDay.Text.Length == 1)
+                { txtDay.Text = 0 + txtDay.Text.Trim(); }
+                if (txtMonth.Text.Length == 1)
+                { txtMonth.Text = 0 + txtMonth.Text.Trim(); }
+                string varMfdDate = Convert.ToString(txtDay.Text + "" + txtMonth.Text + "" + "20" + txtYear.Text);
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 15;
+                objMR_Master.paraDate = varMfdDate;
+                objMR_Master.paraProductId = Convert.ToInt32(lblProduct.Text);
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                objDs = objspdservice.udfnMaster(objMR_Master);
+                objspdservice.CloseConnection();
+                if (objDs.Tables[0] != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        txtDay.Text = objDs.Tables[0].Rows[0][0].ToString();
+                        txtMonth.Text = objDs.Tables[0].Rows[1][0].ToString();
+                        txtYear.Text = objDs.Tables[0].Rows[2][0].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnpreview_Enter(object sender, EventArgs e)
         {
             try
             {
+                if (Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
+                {
+                    udfnExpiryDateBind();
+                }
                 btnpreview.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1112,7 +1148,13 @@ namespace ROMS
                         int templateType = Convert.ToInt32(cmbLabelsize.SelectedValue);
                         if (templateType == 316 || templateType == 317 || templateType == 318 || templateType == 319)
                         {
-
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
+                        {
+                            objBillreport.SetParameterValue("paraExpiryDate", "07/07/2080");
+                            objBillreport.SetParameterValue("paraMfdDate", "01/01/2025");
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
@@ -1888,6 +1930,30 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDay_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDay.Text.Length == 2)
+            {
+                txtMonth.Focus();
+            }
+        }
+
+        private void txtMonth_TextChanged(object sender, EventArgs e)
+        {
+            if (txtMonth.Text.Length == 2)
+            {
+                txtYear.Focus();
+            }
+        }
+
+        private void txtYear_TextChanged(object sender, EventArgs e)
+        {
+            if (txtYear.Text.Length == 2)
+            {
+                btnpreview.Focus();
             }
         }
 

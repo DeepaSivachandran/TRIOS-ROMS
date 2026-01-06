@@ -104,6 +104,14 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtYear = new System.Windows.Forms.TextBox();
+            this.txtDay = new System.Windows.Forms.TextBox();
+            this.txtMonth = new System.Windows.Forms.TextBox();
+            this.txtEYear = new System.Windows.Forms.TextBox();
+            this.txtEDay = new System.Windows.Forms.TextBox();
+            this.txtEMonth = new System.Windows.Forms.TextBox();
             this.tsDirectLabelPrint.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -174,6 +182,14 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.txtEYear);
+            this.grbGrid.Controls.Add(this.txtEDay);
+            this.grbGrid.Controls.Add(this.txtEMonth);
+            this.grbGrid.Controls.Add(this.txtYear);
+            this.grbGrid.Controls.Add(this.txtDay);
+            this.grbGrid.Controls.Add(this.txtMonth);
+            this.grbGrid.Controls.Add(this.textBox11);
+            this.grbGrid.Controls.Add(this.textBox10);
             this.grbGrid.Controls.Add(this.btnClose);
             this.grbGrid.Controls.Add(this.chkNone);
             this.grbGrid.Controls.Add(this.lblDesc);
@@ -225,7 +241,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(321, 589);
+            this.btnClose.Location = new System.Drawing.Point(321, 594);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(78, 29);
             this.btnClose.TabIndex = 111111179;
@@ -708,7 +724,7 @@
             this.btnDirectPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDirectPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnDirectPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDirectPrint.Location = new System.Drawing.Point(292, 502);
+            this.btnDirectPrint.Location = new System.Drawing.Point(292, 558);
             this.btnDirectPrint.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnDirectPrint.Name = "btnDirectPrint";
             this.btnDirectPrint.Size = new System.Drawing.Size(107, 33);
@@ -725,7 +741,7 @@
             this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::ROMS.Properties.Resources.print_label;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(149, 502);
+            this.btnPrint.Location = new System.Drawing.Point(149, 558);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(107, 33);
@@ -740,7 +756,7 @@
             this.btnReset.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Image = global::ROMS.Properties.Resources.refresh;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(7, 502);
+            this.btnReset.Location = new System.Drawing.Point(7, 558);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(107, 33);
             this.btnReset.TabIndex = 111111156;
@@ -895,7 +911,7 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(280, 462);
+            this.btnpreview.Location = new System.Drawing.Point(280, 521);
             this.btnpreview.Name = "btnpreview";
             this.btnpreview.Size = new System.Drawing.Size(119, 33);
             this.btnpreview.TabIndex = 10;
@@ -994,6 +1010,95 @@
             this.lblProduct.TabIndex = 111111161;
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox10.Location = new System.Drawing.Point(215, 456);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(64, 28);
+            this.textBox10.TabIndex = 111111180;
+            this.textBox10.TabStop = false;
+            this.textBox10.Text = "Mfd Date";
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox11.Enabled = false;
+            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox11.Location = new System.Drawing.Point(215, 485);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(64, 28);
+            this.textBox11.TabIndex = 111111181;
+            this.textBox11.TabStop = false;
+            this.textBox11.Text = "Exp Date";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Location = new System.Drawing.Point(347, 456);
+            this.txtYear.MaxLength = 2;
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(52, 28);
+            this.txtYear.TabIndex = 111111184;
+            this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtYear.TextChanged += new System.EventHandler(this.txtYear_TextChanged);
+            // 
+            // txtDay
+            // 
+            this.txtDay.Location = new System.Drawing.Point(280, 456);
+            this.txtDay.MaxLength = 2;
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(33, 28);
+            this.txtDay.TabIndex = 111111182;
+            this.txtDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDay.TextChanged += new System.EventHandler(this.txtDay_TextChanged);
+            // 
+            // txtMonth
+            // 
+            this.txtMonth.Location = new System.Drawing.Point(313, 456);
+            this.txtMonth.MaxLength = 2;
+            this.txtMonth.Name = "txtMonth";
+            this.txtMonth.Size = new System.Drawing.Size(34, 28);
+            this.txtMonth.TabIndex = 111111183;
+            this.txtMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMonth.TextChanged += new System.EventHandler(this.txtMonth_TextChanged);
+            // 
+            // txtEYear
+            // 
+            this.txtEYear.Enabled = false;
+            this.txtEYear.Location = new System.Drawing.Point(347, 485);
+            this.txtEYear.MaxLength = 2;
+            this.txtEYear.Name = "txtEYear";
+            this.txtEYear.ReadOnly = true;
+            this.txtEYear.Size = new System.Drawing.Size(52, 28);
+            this.txtEYear.TabIndex = 111111187;
+            this.txtEYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtEDay
+            // 
+            this.txtEDay.Enabled = false;
+            this.txtEDay.Location = new System.Drawing.Point(280, 485);
+            this.txtEDay.MaxLength = 2;
+            this.txtEDay.Name = "txtEDay";
+            this.txtEDay.ReadOnly = true;
+            this.txtEDay.Size = new System.Drawing.Size(33, 28);
+            this.txtEDay.TabIndex = 111111185;
+            this.txtEDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtEMonth
+            // 
+            this.txtEMonth.Enabled = false;
+            this.txtEMonth.Location = new System.Drawing.Point(313, 485);
+            this.txtEMonth.MaxLength = 2;
+            this.txtEMonth.Name = "txtEMonth";
+            this.txtEMonth.ReadOnly = true;
+            this.txtEMonth.Size = new System.Drawing.Size(34, 28);
+            this.txtEMonth.TabIndex = 111111186;
+            this.txtEMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // CP_DirectLabelPrint
             // 
@@ -1102,5 +1207,13 @@
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.CheckBox chkNone;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.TextBox txtDay;
+        private System.Windows.Forms.TextBox txtMonth;
+        private System.Windows.Forms.TextBox txtEYear;
+        private System.Windows.Forms.TextBox txtEDay;
+        private System.Windows.Forms.TextBox txtEMonth;
     }
 }
