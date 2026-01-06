@@ -102,7 +102,7 @@ namespace ROMS
                     {
                         udfnRKGProductOrderNo(varFlag,itemType);
                     }
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 465)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 473)
                     {
                         udfnRKGProductStockTaking(varFlag,itemType);
                     }
@@ -126,30 +126,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void ApplyReportType465Rule()
-        {
-            try
-            {
-                bool is465 = Convert.ToInt32(cmbReportType.SelectedValue) == 465;
-
-                cmbRackGroup.Enabled = is465;
-
-                cmbConcern.Enabled = !is465;
-                cmbProductCategory.Enabled = !is465;
-                cmbFormat.Enabled = !is465;
-                cmbStatus.Enabled = !is465;
-                cmbproductStatus.Enabled = !is465;
-                cmbType.Enabled = !is465;
-                cmbRetailRate.Enabled = !is465;
-                cmbStockTakken.Enabled = !is465;
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
         private void CmbReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -209,8 +185,7 @@ namespace ROMS
                 {
                     cmbType.Enabled = false;
                 }
-                //ApplyReportType465Rule();
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 465)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 465 || Convert.ToInt32(cmbReportType.SelectedValue) == 473)
                 {
                     cmbType.Enabled = false;
                 }
@@ -1228,6 +1203,10 @@ namespace ROMS
                 objMR_Product.paraLocationId = 0;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
                 objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
                 objMR_Product.paraPicode ="";
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
@@ -1247,6 +1226,15 @@ namespace ROMS
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
+                    objBillreport.SetParameterValue("paraRKGId", Convert.ToInt32(cmbRackGroup.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
+
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    objBillreport.SetParameterValue("paraStockTaking", Convert.ToString(cmbStockTakken.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbproductStatus.Text));
                     objBillreport.SetParameterValue("paraGroup", 0);
                     objBillreport.SetParameterValue("paraSubgroup", 0);
                     objBillreport.SetParameterValue("paraBrandID", 0);
