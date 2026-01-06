@@ -253,39 +253,39 @@ namespace ROMS
                     tpcode.Show("Please enter prefix Code.", txtPrefixCode, 5000);
                     ErrorFlag = true;
                 }
-                else if (txtPreTam.Text.Trim() == "")
-                {
-                    epRateChange.SetError(txtPreTam, "Please enter prefix text tamil.");
-                    txtPreTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tppreftname.ShowAlways = true;
-                    tppreftname.Show("Please enter prefix text tamil.", txtPreTam, 5000);
-                    ErrorFlag = true;
-                }
-                else if (txtPreEng.Text.Trim() == "")
-                {
-                    epRateChange.SetError(txtPreEng, "Please enter prefix text english.");
-                    txtPreEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpprefename.ShowAlways = true;
-                    tpprefename.Show("Please enter prefix text english.", txtPreEng, 5000);
-                    ErrorFlag = true;
-                }
+                //else if (txtPreTam.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtPreTam, "Please enter prefix text tamil.");
+                //    txtPreTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tppreftname.ShowAlways = true;
+                //    tppreftname.Show("Please enter prefix text tamil.", txtPreTam, 5000);
+                //    ErrorFlag = true;
+                //}
+                //else if (txtPreEng.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtPreEng, "Please enter prefix text english.");
+                //    txtPreEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpprefename.ShowAlways = true;
+                //    tpprefename.Show("Please enter prefix text english.", txtPreEng, 5000);
+                //    ErrorFlag = true;
+                //}
 
-                else if (txtSufTam.Text.Trim() == "")
-                {
-                    epRateChange.SetError(txtSufTam, "Please enter suffix text tamil.");
-                    txtSufTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsuftname.ShowAlways = true;
-                    tpsuftname.Show("Please enter suffix text tamil.", txtSufTam, 5000);
-                    ErrorFlag = true;
-                }
-                else if (txtSufEng.Text.Trim() == "")
-                {
-                    epRateChange.SetError(txtSufEng, "Please enter suffix text english.");
-                    txtSufEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsufename.ShowAlways = true;
-                    tpsufename.Show("Please enter prefix text english.", txtSufEng, 5000);
-                    ErrorFlag = true;
-                }
+                //else if (txtSufTam.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtSufTam, "Please enter suffix text tamil.");
+                //    txtSufTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpsuftname.ShowAlways = true;
+                //    tpsuftname.Show("Please enter suffix text tamil.", txtSufTam, 5000);
+                //    ErrorFlag = true;
+                //}
+                //else if (txtSufEng.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtSufEng, "Please enter suffix text english.");
+                //    txtSufEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpsufename.ShowAlways = true;
+                //    tpsufename.Show("Please enter prefix text english.", txtSufEng, 5000);
+                //    ErrorFlag = true;
+                //}
 
 
 

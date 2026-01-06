@@ -156,7 +156,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(122, 27);
             this.textBox1.TabIndex = 22;
-            this.textBox1.Text = "Reason";
+            this.textBox1.Text = "Description";
             // 
             // txtSufEng
             // 

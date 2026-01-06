@@ -5767,6 +5767,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDescription", objMR_Product.paradescription);
                 varSqlCommand.Parameters.AddWithValue("@paraId", objMR_Product.paraId); 
                 varSqlCommand.Parameters.AddWithValue("@paraRateSno", objMR_Product.paraRateSno);
+                varSqlCommand.Parameters.AddWithValue("@paraBulkStatus", objMR_Product.paraBulkStatus);
 
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Product.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -5798,6 +5799,9 @@ namespace ROMS
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraGroup", obj.paraGroup);
+                cmd.Parameters.AddWithValue("@paraSubgroup", obj.paraSubgroup);
+                cmd.Parameters.AddWithValue("@paraBrandID", obj.paraBrandID);
                 cmd.Parameters.AddWithValue("@paraId", obj.paraId); 
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);

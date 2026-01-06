@@ -3539,7 +3539,7 @@
             this.grdPrice.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.grdPrice.RowTemplate.Height = 25;
             this.grdPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdPrice.Size = new System.Drawing.Size(861, 361);
+            this.grdPrice.Size = new System.Drawing.Size(918, 361);
             this.grdPrice.TabIndex = 9;
             this.grdPrice.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellEndEdit);
             this.grdPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellValueChanged);
@@ -3627,10 +3627,10 @@
             // 
             // chkColumn
             // 
-            this.chkColumn.HeaderText = "Status";
+            this.chkColumn.HeaderText = "Margin Calculation";
             this.chkColumn.Name = "chkColumn";
             this.chkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkColumn.Width = 60;
+            this.chkColumn.Width = 120;
             // 
             // clmTypeId
             // 
@@ -3655,7 +3655,7 @@
             // 
             // clmOffset
             // 
-            this.clmOffset.HeaderText = "Off Set Status";
+            this.clmOffset.HeaderText = "Margin Status";
             this.clmOffset.Name = "clmOffset";
             // 
             // clmOffsetValue
@@ -3663,7 +3663,7 @@
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle18.BackColor = System.Drawing.Color.PaleGreen;
             this.clmOffsetValue.DefaultCellStyle = dataGridViewCellStyle18;
-            this.clmOffsetValue.HeaderText = "Off Set Value";
+            this.clmOffsetValue.HeaderText = "Margin Value";
             this.clmOffsetValue.MaxInputLength = 7;
             this.clmOffsetValue.Name = "clmOffsetValue";
             // 
@@ -3672,7 +3672,7 @@
             dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle19.BackColor = System.Drawing.Color.PaleGreen;
             this.clmOffsetValuePer.DefaultCellStyle = dataGridViewCellStyle19;
-            this.clmOffsetValuePer.HeaderText = "Off Set %";
+            this.clmOffsetValuePer.HeaderText = "Margin %";
             this.clmOffsetValuePer.MaxInputLength = 7;
             this.clmOffsetValuePer.Name = "clmOffsetValuePer";
             this.clmOffsetValuePer.Width = 80;
