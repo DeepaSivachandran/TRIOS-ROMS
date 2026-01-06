@@ -67,8 +67,10 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKG_STSID=1 AND RKGID !=0 Order by RKGID", "RKG_Name,RKGID", cmbGroupType, "", "RKG_Name", "RKGID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=95 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbPrintLanguage, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (0,16,369)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbGroupType.SelectedValue = -1;
+                cmbCategory.SelectedValue = 0;
                 udfnList();
             }
             catch (Exception ex)
@@ -100,6 +102,7 @@ namespace ROMS
                 objMR_Product.paraViewType = 91;
                 objMR_Product.paraRKGId = Convert.ToInt32(cmbGroupType.SelectedValue);
                 objMR_Product.paraType =Convert.ToInt32(cmbPrintLanguage.SelectedValue);
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
