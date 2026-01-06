@@ -106,6 +106,14 @@ namespace ROMS
                     {
                         udfnRKGProductStockTaking(varFlag,itemType);
                     }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 474)
+                    {
+                        udfnRKGProductAssigned(varFlag,itemType);
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 475)
+                    {
+                        udfnRKGProductUnassigned(varFlag,itemType);
+                    }
                 }
             }
             catch (Exception ex)
@@ -185,7 +193,7 @@ namespace ROMS
                 {
                     cmbType.Enabled = false;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 465 || Convert.ToInt32(cmbReportType.SelectedValue) == 473)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 465 || Convert.ToInt32(cmbReportType.SelectedValue) == 473 || Convert.ToInt32(cmbReportType.SelectedValue) == 474 || Convert.ToInt32(cmbReportType.SelectedValue) == 475)
                 {
                     cmbType.Enabled = false;
                 }
@@ -1174,6 +1182,224 @@ namespace ROMS
                 GC.Collect();
             }
         }
+        public void udfnRKGProductAssigned(int varFlag, int itemType)
+        {
+            try
+            {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
+                btnListPrint.Enabled = false;
+                lblReportType.Focus();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0;
+                string RKGName = "";
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 92;
+                objMR_Product.paraFlag = 0;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraGroup = 0;
+                objMR_Product.paraSubgroup = 0;
+                objMR_Product.paraBrandID = 0;
+                objMR_Product.paraLocationId = 0;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
+                objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraPicode ="";
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Rack_Product_Assigned.rpt");
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
+                    objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
+                    objBillreport.SetParameterValue("paraRKGId", Convert.ToInt32(cmbRackGroup.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
+
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    objBillreport.SetParameterValue("paraStockTaking", Convert.ToString(cmbStockTakken.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbproductStatus.Text));
+                    objBillreport.SetParameterValue("paraGroup", 0);
+                    objBillreport.SetParameterValue("paraSubgroup", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraType", 0);
+                    objBillreport.SetParameterValue("paraUnitId", 0);
+                    objBillreport.SetParameterValue("paraPicode", "");
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "Rackgroup_Rack_Product_Assigned";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
+            }
+        }
+        public void udfnRKGProductUnassigned(int varFlag, int itemType)
+        {
+            try
+            {
+                udfnRackValid();
+                udfnRackGroupValid();
+                udfnRackInchargeValid();
+                btnListPrint.Enabled = false;
+                lblReportType.Focus();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varPrint = 0;
+                int RKGCode = 0;
+                string RKGName = "";
+
+                RKGCode = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                RKGName = Convert.ToString(cmbRackGroup.Name);
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 92;
+                objMR_Product.paraFlag = 0;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraGroup = 0;
+                objMR_Product.paraSubgroup = 0;
+                objMR_Product.paraBrandID = 0;
+                objMR_Product.paraLocationId = 0;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
+                objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
+                objMR_Product.paraRackStatusID = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbproductStatus.SelectedValue);
+                objMR_Product.paraPicode ="";
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterlist(objMR_Product);
+                objspservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Rack_Product_Assigned.rpt");
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
+                    objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
+                    objBillreport.SetParameterValue("paraRKGId", Convert.ToInt32(cmbRackGroup.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue));
+
+                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    objBillreport.SetParameterValue("paraStockTaking", Convert.ToString(cmbStockTakken.Text));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbproductStatus.Text));
+                    objBillreport.SetParameterValue("paraGroup", 0);
+                    objBillreport.SetParameterValue("paraSubgroup", 0);
+                    objBillreport.SetParameterValue("paraBrandID", 0);
+                    objBillreport.SetParameterValue("paraType", 0);
+                    objBillreport.SetParameterValue("paraUnitId", 0);
+                    objBillreport.SetParameterValue("paraPicode", "");
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    /* 0 - from view, 1- from telegram*/
+                    if (varFlag == 0)
+                    {
+                        RPTViewer.ReportSource = objBillreport;
+                        RPTViewer.Refresh();
+                        //Btn_Print.Enabled = true;
+                    }
+                    else
+                    {
+                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+                        string varReportName = "Rackgroup_Rack_Product_Assigned";
+                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                        objMainForm.udfnSendToTelegram(varfilePath);
+                        btnTelegram.Enabled = true;
+                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                btnListPrint.Enabled = true;
+                btnListPrint.Focus();
+                GC.Collect();
+            }
+        }
         public void udfnRKGProductStockTaking(int varFlag, int itemType)
         {
             try
@@ -1253,7 +1479,7 @@ namespace ROMS
                     else
                     {
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        string varReportName = "Rackgroup_Product_RackMin_Qty";
+                        string varReportName = "Rackgroup_Rack_Product_StockTaking";
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
