@@ -20,5 +20,8 @@ namespace ROMS.Model
         public string paraIPAddress = "";
         public string paraOriginator = "";
         public string paraHostName = "";     
+        public string paraBrandName = "";
+        public string paraMCNo = "";     
+        public string paraPIDNo = "";     
     }
 }

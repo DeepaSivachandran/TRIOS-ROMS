@@ -51,7 +51,7 @@
             this.txtMCNo = new System.Windows.Forms.TextBox();
             this.txtPIDNo = new System.Windows.Forms.TextBox();
             this.txtDEBrand = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtBrandName = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
@@ -67,7 +67,7 @@
             this.txtDProvider.Name = "txtDProvider";
             this.txtDProvider.ReadOnly = true;
             this.txtDProvider.Size = new System.Drawing.Size(128, 28);
-            this.txtDProvider.TabIndex = 6;
+            this.txtDProvider.TabIndex = 6678;
             this.txtDProvider.Text = "Provider";
             // 
             // txtDMachineName
@@ -80,12 +80,12 @@
             this.txtDMachineName.Name = "txtDMachineName";
             this.txtDMachineName.ReadOnly = true;
             this.txtDMachineName.Size = new System.Drawing.Size(128, 28);
-            this.txtDMachineName.TabIndex = 7;
+            this.txtDMachineName.TabIndex = 7876;
             this.txtDMachineName.Text = "Machine Name";
             // 
             // grbform
             // 
-            this.grbform.Controls.Add(this.textBox2);
+            this.grbform.Controls.Add(this.txtBrandName);
             this.grbform.Controls.Add(this.txtDEBrand);
             this.grbform.Controls.Add(this.txtPIDNo);
             this.grbform.Controls.Add(this.txtMCNo);
@@ -120,7 +120,7 @@
             this.cmbProvider.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbProvider.Name = "cmbProvider";
             this.cmbProvider.Size = new System.Drawing.Size(235, 27);
-            this.cmbProvider.TabIndex = 1;
+            this.cmbProvider.TabIndex = 4;
             this.cmbProvider.SelectedIndexChanged += new System.EventHandler(this.cmbProvider_SelectedIndexChanged);
             this.cmbProvider.Enter += new System.EventHandler(this.cmbProvider_Enter);
             this.cmbProvider.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbProvider_KeyDown);
@@ -135,7 +135,7 @@
             this.cmbBank.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(235, 27);
-            this.cmbBank.TabIndex = 3;
+            this.cmbBank.TabIndex = 6;
             this.cmbBank.Enter += new System.EventHandler(this.cmbBank_Enter);
             this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBank_KeyDown);
             this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbBank_KeyPress);
@@ -146,7 +146,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(8, 195);
+            this.textBox1.Location = new System.Drawing.Point(6, 195);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -162,7 +162,7 @@
             this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(235, 27);
-            this.cmbConcern.TabIndex = 2;
+            this.cmbConcern.TabIndex = 5;
             this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.cmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.cmbRSNo_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRSNo_KeyDown);
@@ -203,7 +203,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -220,7 +220,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -238,7 +238,7 @@
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(128, 28);
-            this.txtStatus.TabIndex = 8;
+            this.txtStatus.TabIndex = 88907;
             this.txtStatus.Text = "Status";
             // 
             // pnlStatus
@@ -249,7 +249,7 @@
             this.pnlStatus.Location = new System.Drawing.Point(134, 222);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(235, 28);
-            this.pnlStatus.TabIndex = 4;
+            this.pnlStatus.TabIndex = 7;
             // 
             // rbActive
             // 
@@ -259,7 +259,7 @@
             this.rbActive.Location = new System.Drawing.Point(39, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 4;
+            this.rbActive.TabIndex = 8;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -274,7 +274,7 @@
             this.rbInActive.Location = new System.Drawing.Point(117, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
-            this.rbInActive.TabIndex = 5;
+            this.rbInActive.TabIndex = 9;
             this.rbInActive.Text = "Inactive";
             this.rbInActive.UseVisualStyleBackColor = true;
             this.rbInActive.Enter += new System.EventHandler(this.RbInActive_Enter);
@@ -290,7 +290,7 @@
             this.txtDEMCNo.BackColor = System.Drawing.SystemColors.Control;
             this.txtDEMCNo.Enabled = false;
             this.txtDEMCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEMCNo.Location = new System.Drawing.Point(6, 53);
+            this.txtDEMCNo.Location = new System.Drawing.Point(6, 82);
             this.txtDEMCNo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDEMCNo.Name = "txtDEMCNo";
             this.txtDEMCNo.ReadOnly = true;
@@ -303,7 +303,7 @@
             this.txtDEPIDNo.BackColor = System.Drawing.SystemColors.Control;
             this.txtDEPIDNo.Enabled = false;
             this.txtDEPIDNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEPIDNo.Location = new System.Drawing.Point(6, 82);
+            this.txtDEPIDNo.Location = new System.Drawing.Point(6, 111);
             this.txtDEPIDNo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDEPIDNo.Name = "txtDEPIDNo";
             this.txtDEPIDNo.ReadOnly = true;
@@ -314,27 +314,33 @@
             // txtMCNo
             // 
             this.txtMCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMCNo.Location = new System.Drawing.Point(134, 53);
-            this.txtMCNo.MaxLength = 50;
+            this.txtMCNo.Location = new System.Drawing.Point(134, 82);
+            this.txtMCNo.MaxLength = 30;
             this.txtMCNo.Name = "txtMCNo";
             this.txtMCNo.Size = new System.Drawing.Size(235, 28);
-            this.txtMCNo.TabIndex = 1111151;
+            this.txtMCNo.TabIndex = 2;
+            this.txtMCNo.Enter += new System.EventHandler(this.txtMCNo_Enter);
+            this.txtMCNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMCNo_KeyDown);
+            this.txtMCNo.Leave += new System.EventHandler(this.txtMCNo_Leave);
             // 
             // txtPIDNo
             // 
             this.txtPIDNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPIDNo.Location = new System.Drawing.Point(134, 82);
-            this.txtPIDNo.MaxLength = 50;
+            this.txtPIDNo.Location = new System.Drawing.Point(134, 111);
+            this.txtPIDNo.MaxLength = 30;
             this.txtPIDNo.Name = "txtPIDNo";
             this.txtPIDNo.Size = new System.Drawing.Size(235, 28);
-            this.txtPIDNo.TabIndex = 1111152;
+            this.txtPIDNo.TabIndex = 3;
+            this.txtPIDNo.Enter += new System.EventHandler(this.txtPIDNo_Enter);
+            this.txtPIDNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPIDNo_KeyDown);
+            this.txtPIDNo.Leave += new System.EventHandler(this.txtPIDNo_Leave);
             // 
             // txtDEBrand
             // 
             this.txtDEBrand.BackColor = System.Drawing.SystemColors.Control;
             this.txtDEBrand.Enabled = false;
             this.txtDEBrand.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDEBrand.Location = new System.Drawing.Point(6, 111);
+            this.txtDEBrand.Location = new System.Drawing.Point(6, 53);
             this.txtDEBrand.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDEBrand.Name = "txtDEBrand";
             this.txtDEBrand.ReadOnly = true;
@@ -342,14 +348,17 @@
             this.txtDEBrand.TabIndex = 1111153;
             this.txtDEBrand.Text = "Brand Name";
             // 
-            // textBox2
+            // txtBrandName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(134, 111);
-            this.textBox2.MaxLength = 50;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(235, 28);
-            this.textBox2.TabIndex = 1111154;
+            this.txtBrandName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBrandName.Location = new System.Drawing.Point(134, 53);
+            this.txtBrandName.MaxLength = 30;
+            this.txtBrandName.Name = "txtBrandName";
+            this.txtBrandName.Size = new System.Drawing.Size(235, 28);
+            this.txtBrandName.TabIndex = 1;
+            this.txtBrandName.Enter += new System.EventHandler(this.txtBrandName_Enter);
+            this.txtBrandName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBrandName_KeyDown);
+            this.txtBrandName.Leave += new System.EventHandler(this.txtBrandName_Leave);
             // 
             // CP_CardMachine
             // 
@@ -404,6 +413,6 @@
         private System.Windows.Forms.TextBox txtPIDNo;
         private System.Windows.Forms.TextBox txtMCNo;
         private System.Windows.Forms.TextBox txtDEBrand;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtBrandName;
     }
 }
