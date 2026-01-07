@@ -178,9 +178,11 @@ namespace ROMS
                             grdRouteList.Columns["Route Name in Tamil"].Width = 200;
                             grdRouteList.Columns["Route Name in English"].Width = 200;
                             grdRouteList.Columns["Status"].Width = 80;
+                            grdRouteList.Columns["No. of Areas"].Width = 80;
                             grdRouteList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdRouteList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdRouteList.Columns["Order No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdRouteList.Columns["No. of Areas"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdRouteList.Columns["Route Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
