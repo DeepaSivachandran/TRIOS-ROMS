@@ -46,6 +46,12 @@
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.epRoute = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtDEMCNo = new System.Windows.Forms.TextBox();
+            this.txtDEPIDNo = new System.Windows.Forms.TextBox();
+            this.txtMCNo = new System.Windows.Forms.TextBox();
+            this.txtPIDNo = new System.Windows.Forms.TextBox();
+            this.txtDEBrand = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
@@ -56,7 +62,7 @@
             this.txtDProvider.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProvider.Enabled = false;
             this.txtDProvider.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDProvider.Location = new System.Drawing.Point(6, 52);
+            this.txtDProvider.Location = new System.Drawing.Point(6, 140);
             this.txtDProvider.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDProvider.Name = "txtDProvider";
             this.txtDProvider.ReadOnly = true;
@@ -79,6 +85,12 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.textBox2);
+            this.grbform.Controls.Add(this.txtDEBrand);
+            this.grbform.Controls.Add(this.txtPIDNo);
+            this.grbform.Controls.Add(this.txtMCNo);
+            this.grbform.Controls.Add(this.txtDEPIDNo);
+            this.grbform.Controls.Add(this.txtDEMCNo);
             this.grbform.Controls.Add(this.cmbProvider);
             this.grbform.Controls.Add(this.cmbBank);
             this.grbform.Controls.Add(this.textBox1);
@@ -96,7 +108,7 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(379, 208);
+            this.grbform.Size = new System.Drawing.Size(379, 305);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
@@ -104,7 +116,7 @@
             // 
             this.cmbProvider.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProvider.FormattingEnabled = true;
-            this.cmbProvider.Location = new System.Drawing.Point(134, 52);
+            this.cmbProvider.Location = new System.Drawing.Point(134, 140);
             this.cmbProvider.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbProvider.Name = "cmbProvider";
             this.cmbProvider.Size = new System.Drawing.Size(235, 27);
@@ -119,7 +131,7 @@
             // 
             this.cmbBank.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(134, 107);
+            this.cmbBank.Location = new System.Drawing.Point(134, 195);
             this.cmbBank.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(235, 27);
@@ -134,7 +146,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(8, 107);
+            this.textBox1.Location = new System.Drawing.Point(8, 195);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -146,7 +158,7 @@
             // 
             this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(134, 80);
+            this.cmbConcern.Location = new System.Drawing.Point(134, 168);
             this.cmbConcern.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(235, 27);
@@ -162,7 +174,7 @@
             this.txtDRouteOrderNo.BackColor = System.Drawing.SystemColors.Control;
             this.txtDRouteOrderNo.Enabled = false;
             this.txtDRouteOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDRouteOrderNo.Location = new System.Drawing.Point(6, 80);
+            this.txtDRouteOrderNo.Location = new System.Drawing.Point(6, 168);
             this.txtDRouteOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDRouteOrderNo.Name = "txtDRouteOrderNo";
             this.txtDRouteOrderNo.ReadOnly = true;
@@ -187,7 +199,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(288, 168);
+            this.btnClose.Location = new System.Drawing.Point(288, 258);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
@@ -204,7 +216,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(202, 168);
+            this.btnSave.Location = new System.Drawing.Point(202, 258);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
@@ -221,7 +233,7 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(6, 134);
+            this.txtStatus.Location = new System.Drawing.Point(6, 222);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -234,7 +246,7 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(134, 134);
+            this.pnlStatus.Location = new System.Drawing.Point(134, 222);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(235, 28);
             this.pnlStatus.TabIndex = 4;
@@ -273,12 +285,78 @@
             // 
             this.epRoute.ContainerControl = this;
             // 
+            // txtDEMCNo
+            // 
+            this.txtDEMCNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDEMCNo.Enabled = false;
+            this.txtDEMCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDEMCNo.Location = new System.Drawing.Point(6, 53);
+            this.txtDEMCNo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDEMCNo.Name = "txtDEMCNo";
+            this.txtDEMCNo.ReadOnly = true;
+            this.txtDEMCNo.Size = new System.Drawing.Size(128, 28);
+            this.txtDEMCNo.TabIndex = 1111149;
+            this.txtDEMCNo.Text = "M/C No.";
+            // 
+            // txtDEPIDNo
+            // 
+            this.txtDEPIDNo.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDEPIDNo.Enabled = false;
+            this.txtDEPIDNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDEPIDNo.Location = new System.Drawing.Point(6, 82);
+            this.txtDEPIDNo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDEPIDNo.Name = "txtDEPIDNo";
+            this.txtDEPIDNo.ReadOnly = true;
+            this.txtDEPIDNo.Size = new System.Drawing.Size(128, 28);
+            this.txtDEPIDNo.TabIndex = 1111150;
+            this.txtDEPIDNo.Text = "PID No.";
+            // 
+            // txtMCNo
+            // 
+            this.txtMCNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMCNo.Location = new System.Drawing.Point(134, 53);
+            this.txtMCNo.MaxLength = 50;
+            this.txtMCNo.Name = "txtMCNo";
+            this.txtMCNo.Size = new System.Drawing.Size(235, 28);
+            this.txtMCNo.TabIndex = 1111151;
+            // 
+            // txtPIDNo
+            // 
+            this.txtPIDNo.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPIDNo.Location = new System.Drawing.Point(134, 82);
+            this.txtPIDNo.MaxLength = 50;
+            this.txtPIDNo.Name = "txtPIDNo";
+            this.txtPIDNo.Size = new System.Drawing.Size(235, 28);
+            this.txtPIDNo.TabIndex = 1111152;
+            // 
+            // txtDEBrand
+            // 
+            this.txtDEBrand.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDEBrand.Enabled = false;
+            this.txtDEBrand.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDEBrand.Location = new System.Drawing.Point(6, 111);
+            this.txtDEBrand.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDEBrand.Name = "txtDEBrand";
+            this.txtDEBrand.ReadOnly = true;
+            this.txtDEBrand.Size = new System.Drawing.Size(128, 28);
+            this.txtDEBrand.TabIndex = 1111153;
+            this.txtDEBrand.Text = "Brand Name";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(134, 111);
+            this.textBox2.MaxLength = 50;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(235, 28);
+            this.textBox2.TabIndex = 1111154;
+            // 
             // CP_CardMachine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(399, 218);
+            this.ClientSize = new System.Drawing.Size(399, 320);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -321,5 +399,11 @@
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cmbProvider;
+        private System.Windows.Forms.TextBox txtDEPIDNo;
+        private System.Windows.Forms.TextBox txtDEMCNo;
+        private System.Windows.Forms.TextBox txtPIDNo;
+        private System.Windows.Forms.TextBox txtMCNo;
+        private System.Windows.Forms.TextBox txtDEBrand;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
