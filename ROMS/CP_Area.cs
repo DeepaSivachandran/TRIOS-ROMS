@@ -560,7 +560,7 @@ namespace ROMS
         {
             try
             {
-                cmbRoute.BackColor = Color.LemonChiffon;
+                cmbOrderNo.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
