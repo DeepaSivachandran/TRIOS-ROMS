@@ -664,6 +664,10 @@ namespace ROMS
                     {
                         cmbTitle.Focus();
                     }
+                    else if (txtDay.Enabled==true)
+                    {
+                        txtDay.Focus();
+                    }
                     else
                     {
                         btnpreview.Focus();
@@ -805,7 +809,7 @@ namespace ROMS
                 { txtDay.Text = 0 + txtDay.Text.Trim(); }
                 if (txtMonth.Text.Length == 1)
                 { txtMonth.Text = 0 + txtMonth.Text.Trim(); }
-                string varMfdDate = Convert.ToString(txtDay.Text + "" + txtMonth.Text + "" + "20" + txtYear.Text);
+                string varMfdDate = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
                 MR_Master objMR_Master = new MR_Master();
                 objMR_Master.ViewType = 15;
                 objMR_Master.paraDate = varMfdDate;
@@ -818,9 +822,9 @@ namespace ROMS
                 {
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        txtDay.Text = objDs.Tables[0].Rows[0][0].ToString();
-                        txtMonth.Text = objDs.Tables[0].Rows[1][0].ToString();
-                        txtYear.Text = objDs.Tables[0].Rows[2][0].ToString();
+                        txtEDay.Text = objDs.Tables[0].Rows[0][0].ToString();
+                        txtEMonth.Text = objDs.Tables[0].Rows[1][0].ToString();
+                        txtEYear.Text = objDs.Tables[0].Rows[2][0].ToString();
                     }
                 }
             }
@@ -834,7 +838,7 @@ namespace ROMS
         {
             try
             {
-                if (Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
+                if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
                 {
                     udfnExpiryDateBind();
                 }
@@ -1122,6 +1126,12 @@ namespace ROMS
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
+                    string varMfdDateValue = "", varExpiryDateValue = "";
+                    if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
+                    {
+                        varMfdDateValue = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
+                        varExpiryDateValue = Convert.ToString(txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text);
+                    }
                     //Title Name Pass only Used Reports
                     int varLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
                     int varTemplateIndex = cmbTemplate.SelectedIndex;
@@ -1151,10 +1161,11 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
+                        //Goods Inward Direct Label Print
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
                         {
-                            objBillreport.SetParameterValue("paraExpiryDate", "07/07/2080");
-                            objBillreport.SetParameterValue("paraMfdDate", "01/01/2025");
+                            objBillreport.SetParameterValue("paraExpiryDate", varExpiryDateValue);
+                            objBillreport.SetParameterValue("paraMfdDate", varMfdDateValue);
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
@@ -1281,7 +1292,14 @@ namespace ROMS
                                 objBillreportTestPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
                             }
                         }
-
+                        //Goods Inward Direct Label Print
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
+                        {
+                            objBillreportTestPrint.SetParameterValue("paraExpiryDate", varExpiryDateValue);
+                            objBillreportTestPrint.SetParameterValue("paraMfdDate", varMfdDateValue);
+                            objBillreportTestPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
                         objValidation.CrySqlConnection(objBillreportTestPrint);
                         System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                         printerSettings.PrinterName = varPrintName;
@@ -1350,13 +1368,20 @@ namespace ROMS
                             }
                         }
 
+                        //Goods Inward Direct Label Print
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
+                        {
+                            objBillreportDirectPrint.SetParameterValue("paraExpiryDate", varExpiryDateValue);
+                            objBillreportDirectPrint.SetParameterValue("paraMfdDate", varMfdDateValue);
+                            objBillreportDirectPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
                         objValidation.CrySqlConnection(objBillreportDirectPrint);
                         System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
                         printerSettings.PrinterName = varPrintName;
                         objBillreportDirectPrint.PrintToPrinter(printerSettings, new System.Drawing.Printing.PageSettings(), false);
 
                     }
-
                 }
                 else
                 {
@@ -1785,6 +1810,21 @@ namespace ROMS
                     //chkNone.Checked = false;
                     //chkNone.Enabled = false;
                 }
+                if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
+                {
+                    txtDay.Enabled = true;
+                    txtMonth.Enabled = true;
+                    txtYear.Enabled = true;
+                }
+                else
+                {
+                    txtDay.Text = "";
+                    txtMonth.Text = "";
+                    txtYear.Text = "";
+                    txtDay.Enabled = false;
+                    txtMonth.Enabled = false;
+                    txtYear.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1954,6 +1994,169 @@ namespace ROMS
             if (txtYear.Text.Length == 2)
             {
                 btnpreview.Focus();
+            }
+        }
+
+        private void txtDay_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDay.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtDay_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtMonth.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtDay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtDay_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDay.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtMonth_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMonth.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtMonth_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtYear.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtMonth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtMonth_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMonth.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtYear_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtYear.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtYear_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnpreview.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void txtYear_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtYear.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
