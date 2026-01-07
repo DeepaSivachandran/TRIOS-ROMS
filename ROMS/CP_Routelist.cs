@@ -37,8 +37,12 @@ namespace ROMS
                 try
                 {
                     MainForm.objCP_Route = new CP_Route();
-                    MainForm.objCP_Route.FormBorderStyle = FormBorderStyle.FixedSingle;
-                    MainForm.objCP_Route.ShowDialog();
+                    MainForm.objCP_Route.MdiParent = this.ParentForm;
+                    MainForm main = (MainForm)this.MdiParent;
+                    main.IsEntryFormOpen = true;
+                    main.CurrentEntryForm = MainForm.objCP_Route;
+                    main.CurrentParentListForm = this;
+                    MainForm.objCP_Route.Show();
                 }
                 catch (Exception ex)
                 {
@@ -126,10 +130,16 @@ namespace ROMS
                         picLoader.BringToFront();
                         Application.DoEvents();
                         MainForm.objCP_Route = new CP_Route();
+                        MainForm.objCP_Route.MdiParent = this.ParentForm;
                         MainForm.objCP_Route.btnSave.Text = "Update";
                         MainForm.objCP_Route.varRouteId = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["ID"].Value);
                         MainForm.objCP_Route.PbStatus = Convert.ToInt32(grdRouteList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objCP_Route.ShowDialog();
+
+                        MainForm main = (MainForm)this.MdiParent;
+                        main.IsEntryFormOpen = true;
+                        main.CurrentEntryForm = MainForm.objCP_Route;
+                        main.CurrentParentListForm = this;
+                        MainForm.objCP_Route.Show();
                     }
                 }
                 catch (Exception ex)

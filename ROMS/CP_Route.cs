@@ -20,6 +20,11 @@ namespace ROMS
         public int varRouteId = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
+        public DataTable dtAvailableArea=new DataTable();
+        public DataTable dtMappedArea = new DataTable();
+
+        Boolean BlnSearchImageYN = false;
+
         public CP_Route()
         {
             InitializeComponent();
@@ -74,7 +79,7 @@ namespace ROMS
                     varoriginator = "Route Updation";
                     varType = 1;
                 }
-                 
+                /*
                 // Create a new DataTable with only ID column
                 DataTable dtArea = new DataTable();
                 dtArea.Columns.Add("AID", typeof(int));
@@ -91,6 +96,14 @@ namespace ROMS
                     {
                         dtArea.Rows.Add(id);
                     }
+                }
+                */
+                DataTable dtArea = new DataTable();
+                dtArea.Columns.Add("AID", typeof(int));
+
+                foreach (DataRow row in dtMappedArea.Rows)
+                {
+                    dtArea.Rows.Add(Convert.ToInt32(row["AID"]));
                 }
 
                 SPDataService objspdservice = new SPDataService();
@@ -412,7 +425,6 @@ namespace ROMS
                         rbInActive.Checked = true;
                     }
                 }
-                this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 MainForm.objCP_Routelist.picLoader.Visible = false;
                 MainForm.objCP_Routelist.picLoader.SendToBack(); 
             }
@@ -426,6 +438,10 @@ namespace ROMS
         {
             try
             {
+                dtAvailableArea.Columns.Add("", typeof(Boolean));
+                dtAvailableArea.Columns.Add("AID", typeof(int));
+                dtAvailableArea.Columns.Add("Flag", typeof(int));
+                dtAvailableArea.Columns.Add("Area", typeof(string));
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 MR_Route objMR_Route = new MR_Route();
@@ -437,10 +453,29 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            grdArea.DataSource = objDs.Tables[0];
+                            //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            //{
+                            //    dtAvailableArea.Rows.Add(false, Convert.ToInt32(objDs.Tables[0].Rows[i]["AID"].ToString()), Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"].ToString()), Convert.ToString(objDs.Tables[0].Rows[i]["Area"].ToString()) );
+                            //}
+
+                            dtAvailableArea = objDs.Tables[0];
+                            dtMappedArea = dtAvailableArea.Clone();
+
+                            grdArea.DataSource = dtAvailableArea;
+                            //grdArea.DataSource = objDs.Tables[0];
+                            grdMappedArea.DataSource = dtMappedArea;
+
                             grdArea.Columns["AID"].Visible = false;
                             grdArea.Columns["Flag"].Visible = false;
                             grdArea.Columns["Area"].Width = 250;
+                            grdMappedArea.Columns["AID"].Visible = false;
+                            grdMappedArea.Columns["Flag"].Visible = false;
+                            grdMappedArea.Columns["Area"].Width = 250;
+
+                            udfnPursearchgridHead();
+                            udfnPurMappedsearchgridHead();
+                            grdArea.Columns["Area"].ReadOnly = true;
+                            grdMappedArea.Columns["Area"].ReadOnly = true;
                         } 
                     } 
                     objspservice.CloseConnection();
@@ -451,6 +486,110 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        private void udfnPursearchgridHead()
+        {
+            try
+            {
+                udfnGridSearchHeading(grdArea, DGV_PurSearchGrid);
+                DGV_PurSearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdArea.Columns)
+                {
+                    DGV_PurSearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
+                }
+                if (DGV_PurSearchGrid.ColumnCount > 1)
+                {
+                    int rowIndex = 0;
+                    DGV_PurSearchGrid.Rows.Clear();
+                    DGV_PurSearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        if (i == 0)
+                        { DGV_PurSearchGrid.Rows[0].Cells[i].ReadOnly = true; }
+                        else
+                        { DGV_PurSearchGrid.Rows[0].Cells[i].ReadOnly = false; }
+                    }
+                    DGV_PurSearchGrid.Columns[0].ReadOnly = true;
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
+        {
+            try
+            {
+                //dgv2.DataSource = null;
+                dgv2.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in dgv1.Columns)
+                {
+                    if (col.Visible)
+                    {
+                        dgv2.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                }
+                int rowIndex = 0;
+                int ColIndex = 0;
+                dgv2.Rows.Clear();
+                dgv2.Rows.Add();
+                BlnSearchImageYN = false;
+                for (int i = 0; i < visibleColumns.Count; i++)
+                {
+                    //dgv2.Rows[rowIndex].Cells[i].Value = ""; 
+                    if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                    {
+                        //dgv2.Rows[rowIndex].Visible = false;
+                        BlnSearchImageYN = true;
+                        ColIndex = i;
+                        dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                        dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                        ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                    }
+                    else if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Boolean")
+                    {
+                        BlnSearchImageYN = true;
+                        dgv2.Rows[rowIndex].Cells[i].Value = false;
+                    }
+                    else
+                    {
+                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void udfnPurMappedsearchgridHead()
+        {
+            try
+            {
+                udfnGridSearchHeading(grdMappedArea, DGV_PurMappedSearchGrid);
+                DGV_PurMappedSearchGrid.Columns.Clear();
+                List<int> visibleColumns = new List<int>();
+                foreach (DataGridViewColumn col in grdMappedArea.Columns)
+                {
+                    DGV_PurMappedSearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                    visibleColumns.Add(col.Index);
+                }
+                if (DGV_PurMappedSearchGrid.ColumnCount > 1)
+                {
+                    int rowIndex = 0;
+                    DGV_PurMappedSearchGrid.Rows.Clear();
+                    DGV_PurMappedSearchGrid.Rows.Add();
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        if (i == 0)
+                        { DGV_PurMappedSearchGrid.Rows[0].Cells[i].ReadOnly = true; }
+                        else
+                        { DGV_PurMappedSearchGrid.Rows[0].Cells[i].ReadOnly = false; }
+                    }
+                    DGV_PurMappedSearchGrid.Columns[0].ReadOnly = true;
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
         public void udfnEdit()
         {
@@ -477,20 +616,41 @@ namespace ROMS
                             }
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
-                                // dtFlags contains ID + Flag values
-                                grdArea.DataSource = objDs.Tables[1];
-                                var idsToCheck = objDs.Tables[1].AsEnumerable()
-                                    .Where(x => x.Field<int>("Flag") == 1)
-                                    .Select(x => x.Field<int>("AID"))
-                                    .ToList(); 
-                                // Loop through grid rows and check only matching IDs
-                                grdArea.Rows.Cast<DataGridViewRow>()
-                                    .Where(r => idsToCheck.Contains(Convert.ToInt32(r.Cells["AID"].Value)))
-                                    .ToList()
-                                    .ForEach(r => r.Cells["clmCheckBox"].Value = true);
+                                DataTable dtAreaTable = objDs.Tables[1];
+                                dtAvailableArea = dtAreaTable.Clone();
+                                dtMappedArea = dtAreaTable.Clone();
+
+                                foreach (DataRow row in dtAreaTable.Rows)
+                                {
+                                    if (Convert.ToInt32(row["Flag"]) == 1)
+                                    {
+                                        dtMappedArea.ImportRow(row);      // already mapped
+                                    }
+                                    else
+                                    {
+                                        dtAvailableArea.ImportRow(row);   // not mapped
+                                    }
+                                }
+                                grdArea.DataSource = dtAvailableArea;
+                                grdMappedArea.DataSource = dtMappedArea;
+
+                                // Available grid
                                 grdArea.Columns["AID"].Visible = false;
                                 grdArea.Columns["Flag"].Visible = false;
                                 grdArea.Columns["Area"].Width = 250;
+
+                                // Mapped grid
+                                grdMappedArea.Columns["AID"].Visible = false;
+                                grdMappedArea.Columns["Flag"].Visible = false;
+                                grdMappedArea.Columns["Area"].Width = 250;
+
+                                udfnPursearchgridHead();
+                                udfnPurMappedsearchgridHead();
+                                grdArea.Columns["Area"].ReadOnly = true;
+                                grdMappedArea.Columns["Area"].ReadOnly = true;
+                                //ResetCheckBoxes(grdArea, "clmCheckBox");
+                                //ResetCheckBoxes(grdMappedArea, "clmCheck");
+                                //UpdateButtonState();
                             }
                         }
                     }
@@ -670,8 +830,509 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 { 
-                        btnSave.Focus(); 
+                    btnSave.Focus(); 
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void BtnPuraddMove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var checkedRows = grdArea.Rows.Cast<DataGridViewRow>()
+        .Where(r => Convert.ToBoolean(r.Cells["clmCheckBox"].Value) == true)
+        .ToList();
+
+                if (!checkedRows.Any())
+                {
+                    ShowWarning();
+                    return;
+                }
+
+                foreach (var row in checkedRows)
+                {
+                    DataRow dr = ((DataRowView)row.DataBoundItem).Row;
+
+                    dtMappedArea.ImportRow(dr);   // add to mapped
+                    dtAvailableArea.Rows.Remove(dr); // remove from available
+                }
+
+                ResetCheckBoxes(grdArea, "clmCheckBox");
+                UpdateButtonState();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnPurRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var checkedRows = grdMappedArea.Rows.Cast<DataGridViewRow>()
+        .Where(r => Convert.ToBoolean(r.Cells["clmCheck"].Value) == true)
+        .ToList();
+
+                if (!checkedRows.Any())
+                {
+                    ShowWarning();
+                    return;
+                }
+
+                foreach (var row in checkedRows)
+                {
+                    DataRow dr = ((DataRowView)row.DataBoundItem).Row;
+
+                    dtAvailableArea.ImportRow(dr);
+                    dtMappedArea.Rows.Remove(dr);
+                }
+
+                ResetCheckBoxes(grdMappedArea, "clmCheck");
+                UpdateButtonState();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void ResetCheckBoxes(DataGridView grid, string checkColumnName)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in grid.Rows)
+                {
+                    row.Cells[checkColumnName].Value = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void UpdateButtonState()
+        {
+            try
+            {
+                bool anyCheckedInArea = HasChecked(grdArea, "clmCheckBox");
+                bool anyCheckedInMapped = HasChecked(grdMappedArea, "clmCheck");
+
+                if (anyCheckedInArea)
+                {
+                    BtnPuraddMove.Enabled = true;
+                    btnPurRemove.Enabled = false;
+                }
+                else if (anyCheckedInMapped)
+                {
+                    BtnPuraddMove.Enabled = false;
+                    btnPurRemove.Enabled = true;
+                }
+                else
+                {
+                    BtnPuraddMove.Enabled = true;
+                    btnPurRemove.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private bool HasChecked(DataGridView grid,string varColumName)
+        {
+            return grid.Rows.Cast<DataGridViewRow>()
+                .Any(r => Convert.ToBoolean(r.Cells[varColumName].Value) == true);
+        }
+
+        private void grdArea_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                UpdateButtonState();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdArea_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var grid = sender as DataGridView;
+                if (grid.IsCurrentCellDirty)
+                    grid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void ShowWarning()
+        {
+            try
+            {
+                SPDataService objDServ = new SPDataService();
+                string varMessage = objDServ.udfnGetMessages(198);
+                objDServ.CloseConnection();
+
+                MessageBox.Show(varMessage, "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdMappedArea_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                UpdateButtonState();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void grdMappedArea_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var grid = sender as DataGridView;
+                if (grid.IsCurrentCellDirty)
+                    grid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurSearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdArea.DataSource = objDser.udfnGridSearchFilter(DGV_PurSearchGrid, grdArea);
+                objDser.CloseConnection();
+                grdArea.HorizontalScrollingOffset = DGV_PurSearchGrid.HorizontalScrollingOffset;
+                //DGV_PurSearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurSearchGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DGV_PurSearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                e.Value = null;
+            }
+        }
+
+        private void DGV_PurSearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
+
+                        e.Handled = true;
+                    }
+
+                DGV_PurSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_PurSearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurSearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex != 0)
+                {
+                    DataGridViewColumn newColumn = grdArea.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdArea.SortedColumn;
+                    ListSortDirection direction;
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn &&
+                            grdArea.SortOrder == SortOrder.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
+                    }
+                    else
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    grdArea.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_PurSearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_PurSearchGrid.HorizontalScrollingOffset = grdArea.HorizontalScrollingOffset;
+                    DGV_PurSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurSearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdArea.ColumnCount > 0)
+                {
+                    grdArea.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_PurSearchGrid.HorizontalScrollingOffset = grdArea.HorizontalScrollingOffset;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurSearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_PurSearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_PurSearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdArea.DataSource = objDser.udfnGridSearchFilter(DGV_PurSearchGrid, grdArea);
+                objDser.CloseConnection();
+                grdArea.HorizontalScrollingOffset = DGV_PurSearchGrid.HorizontalScrollingOffset;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurSearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdArea.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_PurSearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdArea.Width > grdArea.HorizontalScrollingOffset && grdArea.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_PurSearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_PurSearchGrid.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurMappedSearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //udfnGridSearchFilter();
+                DataService objDser = new DataService();
+                grdMappedArea.DataSource = objDser.udfnGridSearchFilter(DGV_PurMappedSearchGrid, grdMappedArea);
+                objDser.CloseConnection();
+                grdMappedArea.HorizontalScrollingOffset = DGV_PurMappedSearchGrid.HorizontalScrollingOffset;
+                //DGV_SearchGrid_CellPainting(sender,e);
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurMappedSearchGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && DGV_PurMappedSearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+            {
+                e.Value = null;
+            }
+        }
+
+        private void DGV_PurMappedSearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                    return;
+                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                    {
+                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                            & ~(DataGridViewPaintParts.ContentForeground));
+
+                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                        e.Handled = true;
+                    }
+
+                DGV_PurMappedSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_PurMappedSearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                {
+                    if (e.Value == null || !(bool)e.Value)
+                    {
+                        e.PaintBackground(e.CellBounds, false);
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void DGV_PurMappedSearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex != 0)
+                {
+                    DataGridViewColumn newColumn = grdMappedArea.Columns[e.ColumnIndex];
+                    DataGridViewColumn oldColumn = grdMappedArea.SortedColumn;
+                    ListSortDirection direction;
+                    // If oldColumn is null, then the DataGridView is not sorted.
+                    if (oldColumn != null)
+                    {
+                        // Sort the same column again, reversing the SortOrder.
+                        if (oldColumn == newColumn
+                            &&
+                            grdMappedArea.SortOrder == SortOrder.Ascending
+                            )
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            // Sort a new column and remove the old SortGlyph.
+                            direction = ListSortDirection.Ascending;
+                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                        }
+                    }
+                    else
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    grdMappedArea.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
+                    DataGridViewColumn DGV = DGV_PurMappedSearchGrid.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DGV_PurMappedSearchGrid.HorizontalScrollingOffset = grdMappedArea.HorizontalScrollingOffset;
+                    DGV_PurMappedSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurMappedSearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (grdMappedArea.ColumnCount > 0)
+                {
+                    grdMappedArea.Columns[e.Column.Index].Width = e.Column.Width;
+                    DGV_PurMappedSearchGrid.HorizontalScrollingOffset = grdMappedArea.HorizontalScrollingOffset;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DGV_PurMappedSearchGrid.IsCurrentCellDirty)
+                {
+                    // Commit the changes immediately
+                    DGV_PurMappedSearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                DataService objDser = new DataService();
+                grdMappedArea.DataSource = objDser.udfnGridSearchFilter(DGV_PurMappedSearchGrid, grdMappedArea);
+                objDser.CloseConnection();
+                grdMappedArea.HorizontalScrollingOffset = DGV_PurMappedSearchGrid.HorizontalScrollingOffset;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_PurMappedSearchGrid_Scroll(object sender, ScrollEventArgs e)
+        {
+            try
+            {
+                int totalWidth = 0;
+                int offSetValue = grdMappedArea.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_PurMappedSearchGrid.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdMappedArea.Width > grdMappedArea.HorizontalScrollingOffset && grdMappedArea.HorizontalScrollingOffset > 0)
+                {
+                    offSetValue = offSetValue;
+                }
+                DGV_PurMappedSearchGrid.HorizontalScrollingOffset = offSetValue;
+                DGV_PurMappedSearchGrid.Invalidate();
             }
             catch (Exception ex)
             {
