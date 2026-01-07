@@ -271,6 +271,7 @@
             // 
             // txtYear
             // 
+            this.txtYear.Enabled = false;
             this.txtYear.Location = new System.Drawing.Point(347, 456);
             this.txtYear.MaxLength = 2;
             this.txtYear.Name = "txtYear";
@@ -285,6 +286,7 @@
             // 
             // txtDay
             // 
+            this.txtDay.Enabled = false;
             this.txtDay.Location = new System.Drawing.Point(280, 456);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
@@ -299,6 +301,7 @@
             // 
             // txtMonth
             // 
+            this.txtMonth.Enabled = false;
             this.txtMonth.Location = new System.Drawing.Point(313, 456);
             this.txtMonth.MaxLength = 2;
             this.txtMonth.Name = "txtMonth";

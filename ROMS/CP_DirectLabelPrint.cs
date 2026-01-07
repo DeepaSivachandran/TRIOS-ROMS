@@ -1821,6 +1821,9 @@ namespace ROMS
                     txtDay.Text = "";
                     txtMonth.Text = "";
                     txtYear.Text = "";
+                    txtEDay.Text = "";
+                    txtEMonth.Text = "";
+                    txtEYear.Text = "";
                     txtDay.Enabled = false;
                     txtMonth.Enabled = false;
                     txtYear.Enabled = false;
