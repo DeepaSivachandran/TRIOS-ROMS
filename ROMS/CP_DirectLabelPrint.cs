@@ -455,9 +455,9 @@ namespace ROMS
                             DGV_FilterProduct.Visible = false;
                             cmbPrintLanguage.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LanguageType"].ToString());
                             cmbPrintType.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["PrintType"].ToString());
+                            cmbLabelsize.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LabelSize"].ToString());
                             cmbTemplate.SelectedValue = Convert.ToString(objDS.Tables[0].Rows[0]["Template"].ToString());
                             cmbTitle.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["Title"].ToString());
-                            cmbLabelsize.SelectedValue = Convert.ToInt32(objDS.Tables[0].Rows[0]["LabelSize"].ToString());
                             lblProduct.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PRID"].ToString());
                             txtMrp.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MRP"].ToString());
                             txtSalesRate.Text = Convert.ToString(objDS.Tables[0].Rows[0]["S.Rate"].ToString());
@@ -465,6 +465,29 @@ namespace ROMS
                             txtLabelProduct.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Label Name"].ToString());
                             lblProductName.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ProductTName"].ToString());
 
+                            if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
+                            {
+                                string mfdDateStr = objDS.Tables[0].Rows[0]["MfdDate"]?.ToString();
+                                string expDateStr = objDS.Tables[0].Rows[0]["ExpiryDate"]?.ToString();
+
+                                if (!string.IsNullOrWhiteSpace(mfdDateStr))
+                                {
+                                    string[] mfdParts = mfdDateStr.Split('/');
+
+                                    txtDay.Text = mfdParts[0];
+                                    txtMonth.Text = mfdParts[1];
+                                    txtYear.Text = mfdParts[2];
+                                }
+
+                                if (!string.IsNullOrWhiteSpace(expDateStr))
+                                {
+                                    string[] expParts = expDateStr.Split('/');
+
+                                    txtEDay.Text = expParts[0];
+                                    txtEMonth.Text = expParts[1];
+                                    txtEYear.Text = expParts[2];
+                                }
+                            }
 
                             lblPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PI Code"]);
                             lblUnit.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Unit"]);
@@ -2390,13 +2413,18 @@ namespace ROMS
 
         public void udfnSave()
         {
-            try {
+            try 
+            {
 
                 string result = "";
                 SPDataService objspdservice = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
-
-                
+                string varExpiryDate = "", varMfdDate = "";
+                if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
+                {
+                    varMfdDate= txtDay.Text + "/" + txtMonth.Text + "/" + txtYear.Text;
+                    varExpiryDate= txtEDay.Text + "/" + txtEMonth.Text + "/" + txtEYear.Text;
+                }
                 objMR_Product.paraViewType = 0;
                 objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
                 objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
@@ -2410,6 +2438,8 @@ namespace ROMS
                 objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue); ;
                 objMR_Product.paraLabelTitle = Convert.ToInt32(cmbTitle.SelectedValue);     
                 objMR_Product.paraProductLabelNameEng = txtLabelProduct.Text;
+                objMR_Product.ParaFromDate = varMfdDate;
+                objMR_Product.ParaToDate = varExpiryDate;
                 objMR_Product.paraOriginator = "Label Print Save"; 
                 result = objspdservice.udfnLabelPrint(objMR_Product);
                 objspdservice.CloseConnection();
