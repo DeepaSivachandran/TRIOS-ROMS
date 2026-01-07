@@ -152,7 +152,7 @@ namespace ROMS
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOSummary = new System.Windows.Forms.ToolStripMenuItem();
-            this.zeroVsPOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZeroVsPOGenerated = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMGRNSummary = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMGRNDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGRNBatchDetail = new System.Windows.Forms.ToolStripMenuItem();
@@ -1312,7 +1312,7 @@ namespace ROMS
             this.tsmPOProductWiseReport,
             this.tsmPOStatusWise,
             this.tsmPOSummary,
-            this.zeroVsPOToolStripMenuItem,
+            this.tsmZeroVsPOGenerated,
             this.TSMGRNSummary,
             this.TSMGRNDetails,
             this.tsmGRNBatchDetail,
@@ -1347,12 +1347,12 @@ namespace ROMS
             this.tsmPOSummary.Visible = false;
             this.tsmPOSummary.Click += new System.EventHandler(this.tsmPOSummary_Click);
             // 
-            // zeroVsPOToolStripMenuItem
+            // tsmZeroVsPOGenerated
             // 
-            this.zeroVsPOToolStripMenuItem.Name = "zeroVsPOToolStripMenuItem";
-            this.zeroVsPOToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.zeroVsPOToolStripMenuItem.Text = "Zero Vs PO";
-            this.zeroVsPOToolStripMenuItem.Click += new System.EventHandler(this.zeroVsPOToolStripMenuItem_Click);
+            this.tsmZeroVsPOGenerated.Name = "tsmZeroVsPOGenerated";
+            this.tsmZeroVsPOGenerated.Size = new System.Drawing.Size(180, 22);
+            this.tsmZeroVsPOGenerated.Text = "Zero Vs PO";
+            this.tsmZeroVsPOGenerated.Click += new System.EventHandler(this.tsmZeroVsPOGenerated_Click);
             // 
             // TSMGRNSummary
             // 
@@ -2248,6 +2248,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmRackgroupProduct;
         private System.Windows.Forms.ToolStripMenuItem tsmGif;
         internal System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.ToolStripMenuItem zeroVsPOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmZeroVsPOGenerated;
     }
 }

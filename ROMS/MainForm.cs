@@ -4622,11 +4622,11 @@ namespace ROMS
             }
         }
 
-        private void zeroVsPOToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmZeroVsPOGenerated_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_ZeroVsPOGenerated, "REPORT_ZeroVsPOGenerated", 80203);
+                OpenReportForm(ref MainForm.objREPORT_ZeroVsPOGenerated, "REPORT_ZeroVsPOGenerated", 80209);
                 PbCurrentForm = "7.3.2";
             }
             catch (Exception ex)

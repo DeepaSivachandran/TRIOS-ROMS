@@ -198,13 +198,17 @@ namespace ROMS
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
+                if (txtDays.Text.Trim() != "")
+                {
+                    varDays =Convert.ToInt16(txtDays.Text.Trim()); 
+                }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 478)
                 {
-                    varViewType = 12;
+                    varViewType = 13;
                 }
                 else if (Convert.ToInt32(cmbReportType.SelectedValue) == 479)
                 {
-                    varViewType = 13;
+                    varViewType = 12;
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -217,7 +221,7 @@ namespace ROMS
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();  
                 objDs = objdserv.udfnPOEntry(varViewType,varSupplierCode, varScheduleCode, 0, 0, 0, 0, 
-                    varGroupCode, varSubgroupCode, "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", 0, varProductCode, 0, 0, 0, 0, 0, varBrandCode);
+                    varGroupCode, varSubgroupCode, "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", 0, varProductCode, 0, 0, varDays, 0, 0, varBrandCode);
                 objdserv.CloseConnection(); 
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
 
@@ -316,7 +320,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80118;
+                int currentMUCode = 80209;
 
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
@@ -332,9 +336,8 @@ namespace ROMS
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
 
-                //Transaction id 	148
-                //objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (479,478)", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                //Transaction id  148
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID IN (11,12,27,0) Order by STSID", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null; 
@@ -1830,18 +1833,21 @@ namespace ROMS
             {
                 txtSupplier.Text = "";
                 txtProductName.Text = "";
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 370)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 478)
                 {
-                    lblAlphaProduct.Text = "Supplier Name";
-                    txtSupplier.Visible = true;
-                    txtProductName.Visible = false;
+                    txtDays.Text = "";  
+                    txtDays.Enabled = false;
+                    txtDays.ReadOnly = true;
+                    cmbStatus.SelectedValue = 0;
+                    cmbStatus.Enabled = false; 
                 }
-                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 371)
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 479)
                 {
-                    lblAlphaProduct.Text = "Alpha Product";
-                    txtProductName.Visible = true;
-                    txtSupplier.Visible = false;
-                    DGV_FilterSupplier.Visible = false;
+                    txtDays.Text = "";
+                    txtDays.Enabled = true;
+                    txtDays.ReadOnly =false;
+                    cmbStatus.SelectedValue = 0;
+                    cmbStatus.Enabled = true; 
                 }
 
                 if (cmbReportType.SelectedItem is DataRowView drv)
