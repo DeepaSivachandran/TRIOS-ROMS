@@ -65,12 +65,22 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblRackgroup = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblShelfLife = new System.Windows.Forms.Label();
+            this.lblMinStk = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.lblMaxStk = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -143,7 +153,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label7.Location = new System.Drawing.Point(11, 54);
+            this.label7.Location = new System.Drawing.Point(11, 55);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 20);
@@ -154,7 +164,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.label8.Location = new System.Drawing.Point(11, 85);
+            this.label8.Location = new System.Drawing.Point(11, 87);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 20);
@@ -399,7 +409,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(479, 399);
+            this.btnClose.Location = new System.Drawing.Point(479, 454);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(69, 32);
@@ -440,6 +450,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.lblRackgroup);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label8);
@@ -478,6 +490,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.groupBox7);
             this.groupBox6.Controls.Add(this.btnClose);
             this.groupBox6.Controls.Add(this.groupBox5);
             this.groupBox6.Controls.Add(this.label1);
@@ -492,16 +505,118 @@
             this.groupBox6.Controls.Add(this.lblPRTName);
             this.groupBox6.Location = new System.Drawing.Point(12, 3);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(565, 450);
+            this.groupBox6.Size = new System.Drawing.Size(565, 492);
             this.groupBox6.TabIndex = 45;
             this.groupBox6.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label10.Location = new System.Drawing.Point(11, 119);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(92, 20);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "Rack Group      :";
+            // 
+            // lblRackgroup
+            // 
+            this.lblRackgroup.AutoSize = true;
+            this.lblRackgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblRackgroup.Location = new System.Drawing.Point(109, 119);
+            this.lblRackgroup.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRackgroup.Name = "lblRackgroup";
+            this.lblRackgroup.Size = new System.Drawing.Size(46, 20);
+            this.lblRackgroup.TabIndex = 37;
+            this.lblRackgroup.Text = "Sec - A";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label20);
+            this.groupBox7.Controls.Add(this.lblMaxStk);
+            this.groupBox7.Controls.Add(this.label12);
+            this.groupBox7.Controls.Add(this.label13);
+            this.groupBox7.Controls.Add(this.lblShelfLife);
+            this.groupBox7.Controls.Add(this.lblMinStk);
+            this.groupBox7.Location = new System.Drawing.Point(17, 393);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(531, 55);
+            this.groupBox7.TabIndex = 45;
+            this.groupBox7.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label12.Location = new System.Drawing.Point(6, 23);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(118, 20);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "Shelf Life                   :";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label13.Location = new System.Drawing.Point(206, 23);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 20);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Min Stock    :";
+            // 
+            // lblShelfLife
+            // 
+            this.lblShelfLife.AutoSize = true;
+            this.lblShelfLife.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblShelfLife.Location = new System.Drawing.Point(124, 23);
+            this.lblShelfLife.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblShelfLife.Name = "lblShelfLife";
+            this.lblShelfLife.Size = new System.Drawing.Size(78, 20);
+            this.lblShelfLife.TabIndex = 36;
+            this.lblShelfLife.Text = "Trail Godown";
+            // 
+            // lblMinStk
+            // 
+            this.lblMinStk.AutoSize = true;
+            this.lblMinStk.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblMinStk.Location = new System.Drawing.Point(285, 23);
+            this.lblMinStk.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMinStk.Name = "lblMinStk";
+            this.lblMinStk.Size = new System.Drawing.Size(30, 20);
+            this.lblMinStk.TabIndex = 37;
+            this.lblMinStk.Text = "150";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label20.Location = new System.Drawing.Point(346, 23);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 20);
+            this.label20.TabIndex = 38;
+            this.label20.Text = "Max Stock    :";
+            // 
+            // lblMaxStk
+            // 
+            this.lblMaxStk.AutoSize = true;
+            this.lblMaxStk.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.lblMaxStk.Location = new System.Drawing.Point(425, 23);
+            this.lblMaxStk.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMaxStk.Name = "lblMaxStk";
+            this.lblMaxStk.Size = new System.Drawing.Size(30, 20);
+            this.lblMaxStk.TabIndex = 39;
+            this.lblMaxStk.Text = "300";
             // 
             // CP_Product_Info
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(589, 465);
+            this.ClientSize = new System.Drawing.Size(589, 507);
             this.Controls.Add(this.groupBox6);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -528,6 +643,8 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -569,5 +686,14 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblRackgroup;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblShelfLife;
+        private System.Windows.Forms.Label lblMinStk;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblMaxStk;
     }
 }
