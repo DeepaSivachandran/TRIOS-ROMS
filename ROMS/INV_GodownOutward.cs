@@ -1292,8 +1292,8 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 4;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 5;
-                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 6;
-                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 7;
+                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 6;
+                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 7;
 
                                     DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 8;
                                     DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 9;
