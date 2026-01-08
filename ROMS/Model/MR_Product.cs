@@ -72,6 +72,8 @@ namespace ROMS.Model
         public int ParaOrderby = 0;
         public int ParaRate = 0;
         public int ParaStockType = 0;
+        public int paraImageType = 0;
+        public int paraUnitId = 0;
 
         public DataTable paraSplFieldMapped = null;
 
@@ -89,5 +91,6 @@ namespace ROMS.Model
         public DataTable paraBulkMinqty = null;
         
 
+        public int paraRateCategory = 0;        
     }
 }

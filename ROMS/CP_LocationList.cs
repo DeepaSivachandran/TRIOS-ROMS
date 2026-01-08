@@ -118,15 +118,15 @@ namespace ROMS
                 objdserv.CloseConnection();
                 objDServ.CloseConnection();
                 cmbLocationType.DataSource = null;
-                if (objDS != null)
+                if (objDs != null)
                 {
-                    if (objDS.Tables.Count > 0)
+                    if (objDs.Tables.Count > 0)
                     {
-                        if (objDS.Tables[0].Rows.Count > 0)
+                        if (objDs.Tables[0].Rows.Count > 0)
                         {
                             cmbLocationType.ValueMember = "MSTID";
                             cmbLocationType.DisplayMember = "MST_DisplayText";
-                            cmbLocationType.DataSource = objDS.Tables[0];
+                            cmbLocationType.DataSource = objDs.Tables[0];
                         }
                     }
                 }

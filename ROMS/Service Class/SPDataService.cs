@@ -1754,6 +1754,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaOrderby", objMR_Product.ParaOrderby);
                 varSqlCommand.Parameters.AddWithValue("@ParaRate", objMR_Product.ParaRate);
                 varSqlCommand.Parameters.AddWithValue("@ParaStockType", objMR_Product.ParaStockType);
+                varSqlCommand.Parameters.AddWithValue("@paraImageType", objMR_Product.paraImageType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitId", objMR_Product.paraUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraRateCategory", objMR_Product.paraRateCategory);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -4866,6 +4869,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraProductLabelNameEng", objMR_Product.paraProductLabelNameEng);
                 varSqlCommand.Parameters.AddWithValue("@paraRetail", objMR_Product.ParaRetail);
                 varSqlCommand.Parameters.AddWithValue("@parawholesale_rate", objMR_Product.parawholesale_rate);
+                varSqlCommand.Parameters.AddWithValue("@paraMfdDate", objMR_Product.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@paraExpDate", objMR_Product.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

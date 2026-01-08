@@ -123,8 +123,38 @@ namespace ROMS
         {
             try
             {
-                txtUPIId.Text = "";  
+                txtUPIId.Text = "";
+                cmbProvider.SelectedValue = -1;
+                cmbConcern.SelectedValue = -1;
+                cmbBank.SelectedValue = -1;
+                udfnRemoveImage();
                 txtUPIId.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnRemoveImage()
+        {
+            try
+            {
+                //*********** remove image from picturebox and set default image *********
+                picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
+                picCompanyLogo.Image = ROMS.Properties.Resources.picture;
+                lblCompanyLogoPath.Text = "";
+                lblCompanyLogoFilename.Text = "";
+                if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
+                {
+                    btncollegeLogoUpload.Text = "Browse";
+                    btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
+                }
+                else
+                {
+                    btncollegeLogoUpload.Text = "Remove";
+                    btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
+                }
             }
             catch (Exception ex)
             {
@@ -890,21 +920,7 @@ namespace ROMS
                     {
 
                         varFile = lblCompanyLogoPath.Text;
-                        //*********** remove image from picturebox and set default image *********
-                        picCompanyLogo.BackgroundImage = ROMS.Properties.Resources.picture;
-                        picCompanyLogo.Image = ROMS.Properties.Resources.picture;
-                        lblCompanyLogoPath.Text = "";
-                        lblCompanyLogoFilename.Text = "";
-                        if (lblCompanyLogoFilename.Text == "" && lblCompanyLogoPath.Text == "")
-                        {
-                            btncollegeLogoUpload.Text = "Browse";
-                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.browse1;
-                        }
-                        else
-                        {
-                            btncollegeLogoUpload.Text = "Remove";
-                            btncollegeLogoUpload.Image = ROMS.Properties.Resources.remove;
-                        }
+                        udfnRemoveImage();
                     }
                     varflag = 0;
                 }
