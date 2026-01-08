@@ -971,7 +971,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnView_Leave(object sender, EventArgs e)
         {
             try
