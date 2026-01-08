@@ -92,5 +92,6 @@ namespace ROMS.Model
         
 
         public int paraRateCategory = 0;        
+        public string paraRateCategorys = "0";
     }
 }

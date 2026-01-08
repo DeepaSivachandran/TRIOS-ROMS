@@ -119,8 +119,8 @@
             this.clmdstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            //this.label1 = new System.Windows.Forms.Label();
-            //this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tsProductList.SuspendLayout();
             this.pnlItemList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
@@ -475,6 +475,8 @@
             // 
             // grpFilterby
             // 
+            this.grpFilterby.Controls.Add(this.cmbConcern);
+            this.grpFilterby.Controls.Add(this.label1);
             this.grpFilterby.Controls.Add(this.cmbOthers);
             this.grpFilterby.Controls.Add(this.label14);
             this.grpFilterby.Controls.Add(this.cmbRetailRate);
@@ -512,10 +514,8 @@
             this.grpFilterby.Controls.Add(this.btnExport);
             this.grpFilterby.Controls.Add(this.label3);
             this.grpFilterby.Controls.Add(this.btnView);
-            //this.grpFilterby.Controls.Add(this.cmbConcern);
             this.grpFilterby.Controls.Add(this.lblProductSubGroup);
             this.grpFilterby.Controls.Add(this.lblProductgroup);
-            //this.grpFilterby.Controls.Add(this.label1);
             this.grpFilterby.Location = new System.Drawing.Point(3, 2);
             this.grpFilterby.Name = "grpFilterby";
             this.grpFilterby.Size = new System.Drawing.Size(1347, 142);
@@ -931,19 +931,6 @@
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
             // 
-            // cmbConcern
-            // 
-            this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(10, 43);
-            this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(70, 27);
-            this.cmbConcern.TabIndex = 0;
-            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
-            this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
-            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
-            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
-            this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
-            // 
             // lblProductSubGroup
             // 
             this.lblProductSubGroup.AutoSize = true;
@@ -961,15 +948,6 @@
             this.lblProductgroup.Size = new System.Drawing.Size(88, 20);
             this.lblProductgroup.TabIndex = 2;
             this.lblProductgroup.Text = "Product Group";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Concern";
             // 
             // DGV_SearchGrid
             // 
@@ -1135,81 +1113,28 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // label12
+            // dynamicLabelControl
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(257, 73);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 20);
-            this.label12.TabIndex = 111111221;
-            this.label12.Text = "Rate Type";
-            // 
-            // cmbRateCategory
-            // 
-            this.cmbRateCategory.FormattingEnabled = true;
-            this.cmbRateCategory.Location = new System.Drawing.Point(257, 96);
-            this.cmbRateCategory.Name = "cmbRateCategory";
-            this.cmbRateCategory.Size = new System.Drawing.Size(70, 27);
-            this.cmbRateCategory.TabIndex = 12;
-            this.cmbRateCategory.Enter += new System.EventHandler(this.cmbRateCategory_Enter);
-            this.cmbRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRateCategory_KeyDown);
-            this.cmbRateCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRateCategory_KeyPress);
-            this.cmbRateCategory.Leave += new System.EventHandler(this.cmbRateCategory_Leave);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(333, 73);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(73, 20);
-            this.label13.TabIndex = 111111223;
-            this.label13.Text = "Rate Status";
-            // 
-            // cmbRetailRate
-            // 
-            this.cmbRetailRate.FormattingEnabled = true;
-            this.cmbRetailRate.Location = new System.Drawing.Point(333, 96);
-            this.cmbRetailRate.Name = "cmbRetailRate";
-            this.cmbRetailRate.Size = new System.Drawing.Size(134, 27);
-            this.cmbRetailRate.TabIndex = 13;
-            this.cmbRetailRate.Enter += new System.EventHandler(this.cmbRetailRate_Enter);
-            this.cmbRetailRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRetailRate_KeyDown);
-            this.cmbRetailRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbRetailRate_KeyPress);
-            this.cmbRetailRate.Leave += new System.EventHandler(this.cmbRetailRate_Leave);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(473, 73);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(46, 20);
-            this.label14.TabIndex = 111111225;
-            this.label14.Text = "Others";
-            // 
-            // cmbOthers
-            // 
-            this.cmbOthers.FormattingEnabled = true;
-            this.cmbOthers.Location = new System.Drawing.Point(473, 96);
-            this.cmbOthers.Name = "cmbOthers";
-            this.cmbOthers.Size = new System.Drawing.Size(108, 27);
-            this.cmbOthers.TabIndex = 14;
-            this.cmbOthers.Enter += new System.EventHandler(this.cmbOthers_Enter);
-            this.cmbOthers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOthers_KeyDown);
-            this.cmbOthers.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbOthers_KeyPress);
-            this.cmbOthers.Leave += new System.EventHandler(this.cmbOthers_Leave);
+            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // cmbConcern
             // 
-            //this.cmbConcern.FormattingEnabled = true;
-            //this.cmbConcern.Location = new System.Drawing.Point(10, 43);
-            //this.cmbConcern.Name = "cmbConcern";
-            //this.cmbConcern.Size = new System.Drawing.Size(117, 27);
-            //this.cmbConcern.TabIndex = 0;
-            //this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.CmbConcern_SelectedIndexChanged);
-            //this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
-            //this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
-            //this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
-            //this.cmbConcern.Leave += new System.EventHandler(this.CmbConcern_Leave);
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(9, 43);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(70, 27);
+            this.cmbConcern.TabIndex = 111111223;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.label1.Location = new System.Drawing.Point(9, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.TabIndex = 111111224;
+            this.label1.Text = "Concern";
             // 
             // CP_ProductList
             // 
@@ -1324,5 +1249,7 @@
         private System.Windows.Forms.ComboBox cmbRetailRate;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cmbOthers;
+        private System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label label1;
     }
 }

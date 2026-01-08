@@ -5812,6 +5812,16 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 
+                cmd.Parameters.AddWithValue("@ParaProductCode", obj.ParaProductCode);
+                cmd.Parameters.AddWithValue("@paraProductCategory", obj.paraProductCategory);
+                cmd.Parameters.AddWithValue("@paraRateCategorys", obj.paraRateCategorys);
+                cmd.Parameters.AddWithValue("@paraPrintType", obj.paraPrintType);
+                cmd.Parameters.AddWithValue("@ParaCompanycode", obj.ParaCompanycode);
+                 
+
+
+
+
                 cmd.CommandTimeout = 0;
 
                 SqlDataAdapter sa = new SqlDataAdapter(cmd);
