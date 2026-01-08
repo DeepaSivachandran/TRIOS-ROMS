@@ -624,6 +624,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_HDFC.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_Inward_FPurchase_Sticker_Print_100x70.cs">
       <AutoGen>True</AutoGen>
