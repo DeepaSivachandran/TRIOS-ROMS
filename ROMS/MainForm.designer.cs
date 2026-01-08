@@ -90,6 +90,7 @@ namespace ROMS
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductClassification = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductApproval = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBulkRateCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEmployeeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEmployeee = new System.Windows.Forms.ToolStripMenuItem();
@@ -226,7 +227,7 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmBulkRateCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBulkupdateProductminbulk = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -672,7 +673,7 @@ namespace ROMS
             // tsmLocation
             // 
             this.tsmLocation.Name = "tsmLocation";
-            this.tsmLocation.Size = new System.Drawing.Size(172, 22);
+            this.tsmLocation.Size = new System.Drawing.Size(180, 22);
             this.tsmLocation.Text = "Stock Location";
             this.tsmLocation.Visible = false;
             this.tsmLocation.Click += new System.EventHandler(this.TsmLocation_Click);
@@ -680,7 +681,7 @@ namespace ROMS
             // tsmRack
             // 
             this.tsmRack.Name = "tsmRack";
-            this.tsmRack.Size = new System.Drawing.Size(172, 22);
+            this.tsmRack.Size = new System.Drawing.Size(180, 22);
             this.tsmRack.Text = "Rack";
             this.tsmRack.Visible = false;
             this.tsmRack.Click += new System.EventHandler(this.TsmRack_Click);
@@ -688,7 +689,7 @@ namespace ROMS
             // tsmRackGroup
             // 
             this.tsmRackGroup.Name = "tsmRackGroup";
-            this.tsmRackGroup.Size = new System.Drawing.Size(172, 22);
+            this.tsmRackGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmRackGroup.Text = "Rack Group";
             this.tsmRackGroup.Visible = false;
             this.tsmRackGroup.Click += new System.EventHandler(this.TsmRackGroup_Click);
@@ -696,7 +697,7 @@ namespace ROMS
             // tsmRackgroupProduct
             // 
             this.tsmRackgroupProduct.Name = "tsmRackgroupProduct";
-            this.tsmRackgroupProduct.Size = new System.Drawing.Size(172, 22);
+            this.tsmRackgroupProduct.Size = new System.Drawing.Size(180, 22);
             this.tsmRackgroupProduct.Text = "Rack Group Product";
             this.tsmRackgroupProduct.Click += new System.EventHandler(this.tsmRackgroupProduct_Click);
             // 
@@ -711,7 +712,8 @@ namespace ROMS
             this.tsmProduct,
             this.tsmProductClassification,
             this.tsmProductApproval,
-            this.tsmBulkRateCategory});
+            this.tsmBulkRateCategory,
+            this.tsmBulkupdateProductminbulk});
             this.tsmProductMenu.Name = "tsmProductMenu";
             this.tsmProductMenu.Size = new System.Drawing.Size(225, 22);
             this.tsmProductMenu.Text = "Product";
@@ -720,7 +722,7 @@ namespace ROMS
             // tsmHSN
             // 
             this.tsmHSN.Name = "tsmHSN";
-            this.tsmHSN.Size = new System.Drawing.Size(206, 22);
+            this.tsmHSN.Size = new System.Drawing.Size(215, 22);
             this.tsmHSN.Text = "HSN Name";
             this.tsmHSN.Visible = false;
             this.tsmHSN.Click += new System.EventHandler(this.TsmHSN_Click);
@@ -728,7 +730,7 @@ namespace ROMS
             // tsmGroup
             // 
             this.tsmGroup.Name = "tsmGroup";
-            this.tsmGroup.Size = new System.Drawing.Size(206, 22);
+            this.tsmGroup.Size = new System.Drawing.Size(215, 22);
             this.tsmGroup.Text = "Product Group";
             this.tsmGroup.Visible = false;
             this.tsmGroup.Click += new System.EventHandler(this.TsmGroup_Click);
@@ -736,7 +738,7 @@ namespace ROMS
             // tsmSubGroup
             // 
             this.tsmSubGroup.Name = "tsmSubGroup";
-            this.tsmSubGroup.Size = new System.Drawing.Size(206, 22);
+            this.tsmSubGroup.Size = new System.Drawing.Size(215, 22);
             this.tsmSubGroup.Text = "Product Sub Group";
             this.tsmSubGroup.Visible = false;
             this.tsmSubGroup.Click += new System.EventHandler(this.TsmSubGroup_Click);
@@ -744,7 +746,7 @@ namespace ROMS
             // tsmBrand
             // 
             this.tsmBrand.Name = "tsmBrand";
-            this.tsmBrand.Size = new System.Drawing.Size(206, 22);
+            this.tsmBrand.Size = new System.Drawing.Size(215, 22);
             this.tsmBrand.Text = "Brand";
             this.tsmBrand.Visible = false;
             this.tsmBrand.Click += new System.EventHandler(this.TsmBrand_Click);
@@ -752,7 +754,7 @@ namespace ROMS
             // tsmUnit
             // 
             this.tsmUnit.Name = "tsmUnit";
-            this.tsmUnit.Size = new System.Drawing.Size(206, 22);
+            this.tsmUnit.Size = new System.Drawing.Size(215, 22);
             this.tsmUnit.Text = "Unit";
             this.tsmUnit.Visible = false;
             this.tsmUnit.Click += new System.EventHandler(this.TsmUnit_Click);
@@ -760,7 +762,7 @@ namespace ROMS
             // tsmProduct
             // 
             this.tsmProduct.Name = "tsmProduct";
-            this.tsmProduct.Size = new System.Drawing.Size(206, 22);
+            this.tsmProduct.Size = new System.Drawing.Size(215, 22);
             this.tsmProduct.Text = "Product";
             this.tsmProduct.Visible = false;
             this.tsmProduct.Click += new System.EventHandler(this.Tsmitem_Click);
@@ -768,7 +770,7 @@ namespace ROMS
             // tsmProductClassification
             // 
             this.tsmProductClassification.Name = "tsmProductClassification";
-            this.tsmProductClassification.Size = new System.Drawing.Size(206, 22);
+            this.tsmProductClassification.Size = new System.Drawing.Size(215, 22);
             this.tsmProductClassification.Text = "Product Classification";
             this.tsmProductClassification.Visible = false;
             this.tsmProductClassification.Click += new System.EventHandler(this.tsmProductClassification_Click);
@@ -776,10 +778,17 @@ namespace ROMS
             // tsmProductApproval
             // 
             this.tsmProductApproval.Name = "tsmProductApproval";
-            this.tsmProductApproval.Size = new System.Drawing.Size(206, 22);
+            this.tsmProductApproval.Size = new System.Drawing.Size(215, 22);
             this.tsmProductApproval.Text = "Product Approval";
             this.tsmProductApproval.Visible = false;
             this.tsmProductApproval.Click += new System.EventHandler(this.tsmProductApproval_Click);
+            // 
+            // tsmBulkRateCategory
+            // 
+            this.tsmBulkRateCategory.Name = "tsmBulkRateCategory";
+            this.tsmBulkRateCategory.Size = new System.Drawing.Size(215, 22);
+            this.tsmBulkRateCategory.Text = "Bulk Update Rate Category";
+            this.tsmBulkRateCategory.Click += new System.EventHandler(this.tsmBulkRateCategory_Click);
             // 
             // tsmEmployeeMenu
             // 
@@ -794,7 +803,7 @@ namespace ROMS
             // tsmCategory
             // 
             this.tsmCategory.Name = "tsmCategory";
-            this.tsmCategory.Size = new System.Drawing.Size(166, 22);
+            this.tsmCategory.Size = new System.Drawing.Size(180, 22);
             this.tsmCategory.Text = "Employee Category";
             this.tsmCategory.Visible = false;
             this.tsmCategory.Click += new System.EventHandler(this.tsmCategory_Click);
@@ -802,7 +811,7 @@ namespace ROMS
             // tsmEmployeee
             // 
             this.tsmEmployeee.Name = "tsmEmployeee";
-            this.tsmEmployeee.Size = new System.Drawing.Size(166, 22);
+            this.tsmEmployeee.Size = new System.Drawing.Size(180, 22);
             this.tsmEmployeee.Text = "Employee";
             this.tsmEmployeee.Visible = false;
             this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
@@ -1078,7 +1087,7 @@ namespace ROMS
             // tsmExportTally
             // 
             this.tsmExportTally.Name = "tsmExportTally";
-            this.tsmExportTally.Size = new System.Drawing.Size(131, 22);
+            this.tsmExportTally.Size = new System.Drawing.Size(180, 22);
             this.tsmExportTally.Text = "Export Tally";
             this.tsmExportTally.Visible = false;
             this.tsmExportTally.Click += new System.EventHandler(this.tsmExportTally_Click);
@@ -2013,12 +2022,12 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmBulkRateCategory
+            // tsmBulkupdateProductminbulk
             // 
-            this.tsmBulkRateCategory.Name = "tsmBulkRateCategory";
-            this.tsmBulkRateCategory.Size = new System.Drawing.Size(206, 22);
-            this.tsmBulkRateCategory.Text = "Bulk Update Rate Category";
-            this.tsmBulkRateCategory.Click += new System.EventHandler(this.tsmBulkRateCategory_Click);
+            this.tsmBulkupdateProductminbulk.Name = "tsmBulkupdateProductminbulk";
+            this.tsmBulkupdateProductminbulk.Size = new System.Drawing.Size(215, 22);
+            this.tsmBulkupdateProductminbulk.Text = "Bulk Update Product Min Qty";
+            this.tsmBulkupdateProductminbulk.Click += new System.EventHandler(this.tsmBulkupdateProductminbulk_Click);
             // 
             // MainForm
             // 
@@ -2249,5 +2258,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmGif;
         internal System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.ToolStripMenuItem tsmBulkRateCategory;
+        private System.Windows.Forms.ToolStripMenuItem tsmBulkupdateProductminbulk;
     }
 }

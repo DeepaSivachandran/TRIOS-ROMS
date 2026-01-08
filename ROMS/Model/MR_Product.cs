@@ -86,6 +86,7 @@ namespace ROMS.Model
         public int paraRateId = 0;
         public int paraRateSno = 0;
         public DataTable paraBulkStatus = null;
+        public DataTable paraBulkMinqty = null;
         
 
     }

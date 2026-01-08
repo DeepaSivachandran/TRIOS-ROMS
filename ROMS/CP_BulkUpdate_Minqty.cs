@@ -1,4 +1,5 @@
-﻿ 
+﻿
+using DocumentFormat.OpenXml.Bibliography;
 using ROMS.Model;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,10 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    // Name  : venkat    Date : 06/01/2026
-    public partial class CP_BulkUpdate_RateCategory : Form
+    // Name  : venkat    Date : 07/01/2026
+    public partial class CP_BulkUpdate_Minqty : Form
     {
-
         DynamicWindowControl windowControl = new DynamicWindowControl();
-
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
@@ -51,7 +50,7 @@ namespace ROMS
         DataSet objDSProduct = new DataSet();
         public int pbMenuFlag = 0;
 
-        public CP_BulkUpdate_RateCategory()
+        public CP_BulkUpdate_Minqty()
         {
             InitializeComponent();
             windowControl.Initialize(tsBulkAttribute, this);
@@ -231,15 +230,15 @@ namespace ROMS
             {
                 int totalWidth = 0;
                 int offSetValue = grdProducts.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                foreach (DataGridViewColumn col in grdHeaderview.Columns)
                     totalWidth += col.Width;
                 if (totalWidth - grdProducts.Width > grdProducts.HorizontalScrollingOffset && grdProducts.HorizontalScrollingOffset > 0)
                 {
                     offSetValue = offSetValue;
                 }
-                DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchGrid.Invalidate();
-                udfnscrollVisible(DGV_SearchGrid, grdProducts);
+                grdHeaderview.HorizontalScrollingOffset = offSetValue;
+                grdHeaderview.Invalidate();
+                udfnscrollVisible(grdHeaderview, grdProducts);
             }
             catch (Exception ex)
             {
@@ -460,8 +459,7 @@ namespace ROMS
 
 
         public void udfnList()
-        {
-
+        { 
             try
             {
                 txtMappingGroup.ReadOnly = false;
@@ -470,8 +468,7 @@ namespace ROMS
                 btnMappingView.Enabled = true;
                 txtMappingGroup.Enabled = true;
                 txtMappingSubGroup.Enabled = true;
-                txtBrand.Enabled = true; 
-
+                txtBrand.Enabled = true;  
                 if (varId != 0) { 
                     txtMappingGroup.ReadOnly = true;
                     txtMappingSubGroup.ReadOnly = true;
@@ -491,8 +488,9 @@ namespace ROMS
                 }
                 lblNoRecordsFound.Visible = false;
                 grdProducts.DataSource = null;
+                grdHeaderview.DataSource = null;
                 MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 2;
+                objMR_Product.paraViewType = 3;
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.paraBrandID = varBrandId;
@@ -503,8 +501,27 @@ namespace ROMS
                 udfnInitProduct();
                 SPDataService objspservice = new SPDataService(); 
                 objDs = objspservice.udfnRateCategoryList(objMR_Product);
-                 
                 if (objDs.Tables[0].Rows.Count != 0)
+                {
+                    grdHeaderview.DataSource = objDs.Tables[0];
+                    foreach (DataGridViewColumn column in grdHeaderview.Columns)
+                    {
+                        column.Width = 100;
+                    }
+
+                    grdHeaderview.Columns[1].Width = 30;
+                    grdHeaderview.Columns["S.No."].Width = 50;
+                    grdHeaderview.Columns["P.I Code"].Width = 140;
+                    grdHeaderview.Columns["Unit"].Width = 60;
+                    grdHeaderview.Columns["Product Name in Tamil"].Width = 450;
+
+
+                    grdHeaderview.Columns["S.No."].HeaderText = "";
+                    grdHeaderview.Columns["P.I Code"].HeaderText = "";
+                    grdHeaderview.Columns["Unit"].HeaderText = "";
+                    grdHeaderview.Columns["Product Name in Tamil"].HeaderText = "";
+                }
+                if (objDs.Tables[1].Rows.Count != 0)
                 {
                     //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                     //{
@@ -516,17 +533,40 @@ namespace ROMS
                     //        , Convert.ToDecimal(objDs.Tables[0].Rows[i]["UPP"]) 
                     //        , Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRODUCTID"]));
                     //}
+                    grdProducts.DataSource = objDs.Tables[1];
+                    foreach (DataGridViewColumn column in grdProducts.Columns)
+                    {
 
+                        string[] parts = column.HeaderText.Split('-');
 
-                    grdProducts.DataSource = objDs.Tables[0];
+                        if (parts.Length > 1)
+                        {
+                            column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            column.HeaderText = parts[parts.Length - 1];
+
+                            if ((column.Index % 2) == 1)
+                            {
+                                column.ReadOnly = true; 
+                            }
+                            else {
+                                column.ReadOnly = false;
+                                column.DefaultCellStyle.BackColor = Color.PaleGreen; 
+                            }
+                            column.Width = 50;
+                        }
+                    }
+
                     //  grdProducts.Columns[0].Frozen = true;
-                    grdProducts.Columns[0].HeaderText = "";
-                    grdProducts.Columns[0].Width = 30;
+                    grdProducts.Columns[1].HeaderText = "";
+                    grdProducts.Columns[1].Width = 30;
                     grdProducts.Columns["S.No."].Width = 50;
                     grdProducts.Columns["P.I Code"].Width = 140;
                     grdProducts.Columns["Unit"].Width = 60;
-                    grdProducts.Columns["PRODUCTID"].Visible = false;
                     grdProducts.Columns["Product Name in Tamil"].Width = 450;
+                    grdProducts.Columns["Product Name in Tamil"].Frozen=true;
+
+                    grdProducts.Columns["PRODUCTID"].Visible = false;
 
                     grdProducts.Columns["S.No."].ReadOnly = true; 
                     grdProducts.Columns["P.I Code"].ReadOnly = true;
@@ -1296,14 +1336,14 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    int I = grdCityList.Rows.Count - 1;
                     if (I == 0)
                     {
                         int rowIndex = 1;
-                        DGV_SearchGrid.Rows.Add();
+                        grdCityList.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            grdCityList.Rows[rowIndex].Cells[i].Value = "";
                         }
                     }
                 }
@@ -1379,15 +1419,11 @@ namespace ROMS
         {
 
             try
-            {
-                if (grdProducts.CurrentCell.OwningColumn.Name == "Last Rate" || grdProducts.CurrentCell.OwningColumn.Name == "Live Rate")
-                {
-
+            {  
                     e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
-                    return;
-                }
+                    return; 
             }
             catch (Exception ex)
             {
@@ -1470,12 +1506,25 @@ namespace ROMS
         {
             try
             {
-                if (grdProducts.Columns[e.ColumnIndex].Name == "UPP" || grdProducts.Columns[e.ColumnIndex].Name == "Parent Rate")
+                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+                var col = grdProducts.Columns[e.ColumnIndex];
+
+                // Only for Live / New columns
+                if (col.HeaderText.Trim() == "New")
                 {
-                    if (e.Value != null && Convert.ToInt32(e.Value) == 0)
+                    if (e.Value != null && e.Value.ToString() == "-1")
                     {
+                        e.CellStyle.BackColor = Color.LightGray;
+                        e.CellStyle.ForeColor = Color.LightGray;
                         e.Value = "";
-                        e.FormattingApplied = true;
+                        e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
+                    }
+                    else
+                    {
+                        e.CellStyle.BackColor = Color.PaleGreen;
+                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
                 }
             }
@@ -1593,53 +1642,40 @@ namespace ROMS
 
 
                 //DataTable saveobjDtProducts = objdtProducts.DefaultView.ToTable(false, "PRODUCTID", "Last Rate", "Live Rate");
-                //DataTable rowTable = (DataTable)grdProducts.DataSource;
-                DataTable saveobjDtProducts= null;
-                DataTable dt = grdProducts.DataSource as DataTable;
-                if (dt != null)
+                DataTable rowTable = (DataTable)grdProducts.DataSource; 
+
+                DataTable saveobjDtProducts = ConvertColumnToRowFast(rowTable);
+
+                string varoriginator = ""; int varType = 0; 
+                varoriginator = "Rate Category Min Qty Bulk update"; 
+
+
+                MR_Product obj = new MR_Product();
+                obj.paraViewType = 4;  
+                obj.paraOriginator = varoriginator;
+                obj.paraBulkMinqty = saveobjDtProducts; 
+
+                SPDataService objspservice = new SPDataService();  
+                string varResult = objspservice.udfnRateCategory(obj);
+                objspservice.CloseConnection(); 
+                string[] varvalue = varResult.Split('~');
+                if (varvalue[0] == "3")
                 {
-                    dt.DefaultView.RowFilter = string.Empty;  //  unfilter
-                    DataTable rowTable = dt;                  // original data restored
-                    saveobjDtProducts = ConvertColumnToRowFast(rowTable);
-
-
-                    string varoriginator = ""; int varType = 0;
-                    varoriginator = "Rate Category Status Bulk update";
-
-
-                    MR_Product obj = new MR_Product();
-                    obj.paraViewType = 3;
-                    obj.paraOriginator = varoriginator;
-                    obj.paraBulkStatus = saveobjDtProducts;
-
-                    SPDataService objspservice = new SPDataService();
-                    string varResult = objspservice.udfnRateCategory(obj);
-                    objspservice.CloseConnection();
-                    string[] varvalue = varResult.Split('~');
-                    if (varvalue[0] == "3")
-                    {
-                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        udfnClear();
-                        Varupdateflag = 1;
-                        grdProducts.DataSource = null;
-                        this.ActiveControl = txtMappingGroup;
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
-                        //udfnClose();
-                    }
-                    else
-                    {
-                        MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        btnMappingsave.Enabled = true;
-                        btnMappingsave.Focus();
-                    }
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);  
+                    udfnClear();
+                    Varupdateflag = 1;
+                    grdProducts.DataSource = null;
+                    grdHeaderview.DataSource = null;
+                    this.ActiveControl = txtMappingGroup;
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                    //udfnClose();
                 }
-                else {
-
-                    SPDataService objDServ = new SPDataService();
-                    string varMessage = objDServ.udfnGetMessages(48);
-                    objDServ.CloseConnection();
-                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    MessageBox.Show(varResult.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnMappingsave.Enabled = true;
+                    btnMappingsave.Focus();
                 }
 
             }
@@ -1736,19 +1772,45 @@ namespace ROMS
 
         private void CP_Spl_Products_Bulk_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            try
             {
-                //MainForm objMainForm = new MainForm();
-                //objMainForm.udfnCloseChildForms();
-                //MainForm.objStart = new DEF_Start();
-                //MainForm.objStart.MdiParent = this.ParentForm;
-                //MainForm.objStart.Show();
-                //this.Close();
-                udfnClose();
+                if (e.KeyCode == Keys.Escape)
+                {
+                    //MainForm objMainForm = new MainForm();
+                    //objMainForm.udfnCloseChildForms();
+                    //MainForm.objStart = new DEF_Start();
+                    //MainForm.objStart.MdiParent = this.ParentForm;
+                    //MainForm.objStart.Show();
+                    //this.Close();
+                    udfnClose();
+                }
+            }
+           catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 
+        private void grdProducts_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
+                var cell = grdProducts.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                if (cell.Value != null && cell.Value.ToString() == "-1")
+                {
+                    e.Cancel = true; // disable edit
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void DGV_FilterBrand_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1894,7 +1956,7 @@ namespace ROMS
 
             result.Columns.Add("PRID", typeof(int));
             result.Columns.Add("Type", typeof(string));
-            result.Columns.Add("Status", typeof(int));
+            result.Columns.Add("QTY", typeof(float));
 
             result.BeginLoadData();
 
@@ -1913,12 +1975,28 @@ namespace ROMS
                         sourceTable.Columns[i].ColumnName != "Product Name in Tamil" &&
                         sourceTable.Columns[i].ColumnName != "PRODUCTID"
                         ) {
-                        DataRow newRow = result.NewRow();
-                        newRow[0] = prid;
-                        newRow[1] = sourceTable.Columns[i].ColumnName;
-                        newRow[2] = row[i] == DBNull.Value ? 454 : (Convert.ToInt32(row[i]) == 1 ? 453 : 454);
 
-                        result.Rows.Add(newRow);
+                        string colName = sourceTable.Columns[i].ColumnName;
+
+                        // split by both '-' and '_'
+                        string[] parts = colName.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+                        if (parts.Length == 2)
+                        {
+                            string leftPart = parts[0].Trim();   // pp / rr
+                            string rightPart = parts[1].Trim();   // old / new
+
+                            if (rightPart == "New")
+                            {
+
+                                DataRow newRow = result.NewRow();
+                                newRow[0] = prid;
+                                newRow[1] = leftPart;
+                                newRow[2] = row[i] == DBNull.Value ? 0 : (row[i] == "" ? 0 : row[i]);
+                                result.Rows.Add(newRow);
+                            } 
+                        }
+                         
                     }
                 }
             }

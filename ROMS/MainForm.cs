@@ -393,6 +393,7 @@ namespace ROMS
         public static REPORT_Stock_Details objREPORT_Stock_Details;
         public static CP_Rackgroup_Product objCP_Rackgroup_Product;
         public static CP_BulkUpdate_RateCategory objCP_BulkUpdate_RateCategory;
+        public static CP_BulkUpdate_Minqty objCP_BulkUpdate_Minqty;
         public static PrintFormat objReportFormat;
 
 
@@ -4634,6 +4635,20 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void tsmBulkupdateProductminbulk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_BulkUpdate_Minqty, "CP_BulkUpdate_Minqty", 80315);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
         }
 
         private void tsmLock_Click(object sender, EventArgs e)
