@@ -195,6 +195,11 @@ namespace ROMS
                     tpRTName.Show("Please enter route tamil name.", txtRTName, 5000);
                     blnErrorFlag = true;
                 }
+                if (grdMappedArea.Rows.Count < 1)
+                {
+                    udfnShowWarning();
+                    blnErrorFlag = true;
+                }
                 if (blnErrorFlag == false)
                 {
                     epRoute.Clear();
@@ -425,6 +430,8 @@ namespace ROMS
                         rbInActive.Checked = true;
                     }
                 }
+                grdArea.ClearSelection();
+                grdMappedArea.ClearSelection();
                 MainForm.objCP_Routelist.picLoader.Visible = false;
                 MainForm.objCP_Routelist.picLoader.SendToBack(); 
             }
@@ -438,10 +445,13 @@ namespace ROMS
         {
             try
             {
+                dtAvailableArea.Rows.Clear();
+                dtMappedArea.Rows.Clear();
                 dtAvailableArea.Columns.Add("", typeof(Boolean));
                 dtAvailableArea.Columns.Add("AID", typeof(int));
                 dtAvailableArea.Columns.Add("Flag", typeof(int));
                 dtAvailableArea.Columns.Add("Area", typeof(string));
+
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 MR_Route objMR_Route = new MR_Route();
@@ -453,24 +463,31 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
-                            //{
-                            //    dtAvailableArea.Rows.Add(false, Convert.ToInt32(objDs.Tables[0].Rows[i]["AID"].ToString()), Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"].ToString()), Convert.ToString(objDs.Tables[0].Rows[i]["Area"].ToString()) );
-                            //}
+                            for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                            {
+                                dtAvailableArea.Rows.Add(false, Convert.ToInt32(objDs.Tables[0].Rows[i]["AID"].ToString()), Convert.ToInt32(objDs.Tables[0].Rows[i]["Flag"].ToString()), Convert.ToString(objDs.Tables[0].Rows[i]["Area"].ToString()));
+                            }
 
-                            dtAvailableArea = objDs.Tables[0];
+                            //dtAvailableArea = objDs.Tables[0];
+                            dtAvailableArea.Columns[0].ColumnName = "clmCheckBox";
                             dtMappedArea = dtAvailableArea.Clone();
+                            dtMappedArea.Columns[0].ColumnName = "clmCheck";
 
                             grdArea.DataSource = dtAvailableArea;
                             //grdArea.DataSource = objDs.Tables[0];
                             grdMappedArea.DataSource = dtMappedArea;
 
+                            grdArea.Columns["clmCheckBox"].Width = 50;
                             grdArea.Columns["AID"].Visible = false;
                             grdArea.Columns["Flag"].Visible = false;
                             grdArea.Columns["Area"].Width = 250;
+                            ((DataGridViewCheckBoxColumn)grdArea.Columns["clmCheckBox"]).HeaderText = "";
+
+                            grdMappedArea.Columns["clmCheck"].Width = 50;
                             grdMappedArea.Columns["AID"].Visible = false;
                             grdMappedArea.Columns["Flag"].Visible = false;
                             grdMappedArea.Columns["Area"].Width = 250;
+                            ((DataGridViewCheckBoxColumn)grdMappedArea.Columns["clmCheck"]).HeaderText = "";
 
                             udfnPursearchgridHead();
                             udfnPurMappedsearchgridHead();
@@ -617,32 +634,57 @@ namespace ROMS
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
                                 DataTable dtAreaTable = objDs.Tables[1];
-                                dtAvailableArea = dtAreaTable.Clone();
-                                dtMappedArea = dtAreaTable.Clone();
+
+                                dtAvailableArea = new DataTable();
+                                dtAvailableArea.Columns.Add("clmCheckBox", typeof(bool));
+                                dtAvailableArea.Columns.Add("AID", typeof(int));
+                                dtAvailableArea.Columns.Add("Flag", typeof(int));
+                                dtAvailableArea.Columns.Add("Area", typeof(string));
+
+                                dtMappedArea = new DataTable();
+                                dtMappedArea.Columns.Add("clmCheck", typeof(bool));
+                                dtMappedArea.Columns.Add("AID", typeof(int));
+                                dtMappedArea.Columns.Add("Flag", typeof(int));
+                                dtMappedArea.Columns.Add("Area", typeof(string));
 
                                 foreach (DataRow row in dtAreaTable.Rows)
                                 {
-                                    if (Convert.ToInt32(row["Flag"]) == 1)
+                                    bool isMapped = Convert.ToInt32(row["Flag"]) == 1;
+                                    if (isMapped)
                                     {
-                                        dtMappedArea.ImportRow(row);      // already mapped
+                                        dtMappedArea.Rows.Add(
+                                            false,
+                                            Convert.ToInt32(row["AID"]),
+                                            Convert.ToInt32(row["Flag"]),
+                                            row["Area"].ToString()
+                                        );
                                     }
                                     else
                                     {
-                                        dtAvailableArea.ImportRow(row);   // not mapped
+                                        dtAvailableArea.Rows.Add(
+                                            false,
+                                            Convert.ToInt32(row["AID"]),
+                                            Convert.ToInt32(row["Flag"]),
+                                            row["Area"].ToString()
+                                        );
                                     }
                                 }
                                 grdArea.DataSource = dtAvailableArea;
                                 grdMappedArea.DataSource = dtMappedArea;
 
                                 // Available grid
+                                grdArea.Columns["clmCheckBox"].Width = 50;
                                 grdArea.Columns["AID"].Visible = false;
                                 grdArea.Columns["Flag"].Visible = false;
                                 grdArea.Columns["Area"].Width = 250;
+                                ((DataGridViewCheckBoxColumn)grdArea.Columns["clmCheckBox"]).HeaderText = "";
 
                                 // Mapped grid
+                                grdMappedArea.Columns["clmCheck"].Width = 50;
                                 grdMappedArea.Columns["AID"].Visible = false;
                                 grdMappedArea.Columns["Flag"].Visible = false;
                                 grdMappedArea.Columns["Area"].Width = 250;
+                                ((DataGridViewCheckBoxColumn)grdMappedArea.Columns["clmCheck"]).HeaderText = "";
 
                                 udfnPursearchgridHead();
                                 udfnPurMappedsearchgridHead();
@@ -850,7 +892,7 @@ namespace ROMS
 
                 if (!checkedRows.Any())
                 {
-                    ShowWarning();
+                    udfnShowWarning();
                     return;
                 }
 
@@ -882,7 +924,7 @@ namespace ROMS
 
                 if (!checkedRows.Any())
                 {
-                    ShowWarning();
+                    udfnShowWarning();
                     return;
                 }
 
@@ -981,7 +1023,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void ShowWarning()
+        private void udfnShowWarning()
         {
             try
             {
@@ -1339,6 +1381,26 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void grdArea_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            DGV_PurSearchGrid.ClearSelection();
+        }
+
+        private void grdMappedArea_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            DGV_PurMappedSearchGrid.ClearSelection();
+        }
+
+        private void DGV_PurSearchGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            grdArea.ClearSelection();
+        }
+
+        private void DGV_PurMappedSearchGrid_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            grdMappedArea.ClearSelection(); 
         }
     }
 }

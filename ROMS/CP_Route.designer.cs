@@ -29,24 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Route));
             this.txtDRouteTName = new System.Windows.Forms.TextBox();
             this.txtDRouteEName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.DGV_PurSearchGrid = new System.Windows.Forms.DataGridView();
+            this.btnPurRemove = new System.Windows.Forms.Button();
+            this.BtnPuraddMove = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.DGV_PurMappedSearchGrid = new System.Windows.Forms.DataGridView();
+            this.grdMappedArea = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdArea = new System.Windows.Forms.DataGridView();
-            this.clmCheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cmbRSNo = new System.Windows.Forms.ComboBox();
             this.txtDRouteOrderNo = new System.Windows.Forms.TextBox();
             this.txtRTName = new System.Windows.Forms.TextBox();
@@ -61,24 +67,16 @@
             this.tsRoute = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlRoute = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnPurRemove = new System.Windows.Forms.Button();
-            this.BtnPuraddMove = new System.Windows.Forms.Button();
-            this.grdMappedArea = new System.Windows.Forms.DataGridView();
-            this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.DGV_PurSearchGrid = new System.Windows.Forms.DataGridView();
-            this.DGV_PurMappedSearchGrid = new System.Windows.Forms.DataGridView();
             this.grbform.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurSearchGrid)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMappedArea)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdArea)).BeginInit();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
             this.tsRoute.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdMappedArea)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurSearchGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDRouteTName
@@ -134,6 +132,193 @@
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
+            // DGV_PurSearchGrid
+            // 
+            this.DGV_PurSearchGrid.AllowUserToAddRows = false;
+            this.DGV_PurSearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_PurSearchGrid.AllowUserToResizeRows = false;
+            this.DGV_PurSearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_PurSearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_PurSearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_PurSearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_PurSearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_PurSearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGV_PurSearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_PurSearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_PurSearchGrid.Location = new System.Drawing.Point(20, 114);
+            this.DGV_PurSearchGrid.Name = "DGV_PurSearchGrid";
+            this.DGV_PurSearchGrid.RowHeadersVisible = false;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_PurSearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_PurSearchGrid.RowTemplate.Height = 25;
+            this.DGV_PurSearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_PurSearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_PurSearchGrid.ShowRowErrors = false;
+            this.DGV_PurSearchGrid.Size = new System.Drawing.Size(311, 56);
+            this.DGV_PurSearchGrid.TabIndex = 1111148;
+            this.DGV_PurSearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_PurSearchGrid_CellEndEdit);
+            this.DGV_PurSearchGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_PurSearchGrid_CellEnter);
+            this.DGV_PurSearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_PurSearchGrid_CellFormatting);
+            this.DGV_PurSearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_PurSearchGrid_CellPainting);
+            this.DGV_PurSearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_PurSearchGrid_ColumnHeaderMouseClick);
+            this.DGV_PurSearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_PurSearchGrid_ColumnWidthChanged);
+            this.DGV_PurSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_PurSearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_PurSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_PurSearchGrid_Scroll);
+            // 
+            // btnPurRemove
+            // 
+            this.btnPurRemove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnPurRemove.Image = global::ROMS.Properties.Resources.add___left;
+            this.btnPurRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPurRemove.Location = new System.Drawing.Point(351, 330);
+            this.btnPurRemove.Name = "btnPurRemove";
+            this.btnPurRemove.Size = new System.Drawing.Size(31, 29);
+            this.btnPurRemove.TabIndex = 1111151;
+            this.btnPurRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPurRemove.UseVisualStyleBackColor = true;
+            this.btnPurRemove.Click += new System.EventHandler(this.btnPurRemove_Click);
+            // 
+            // BtnPuraddMove
+            // 
+            this.BtnPuraddMove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.BtnPuraddMove.Image = global::ROMS.Properties.Resources.add;
+            this.BtnPuraddMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnPuraddMove.Location = new System.Drawing.Point(351, 295);
+            this.BtnPuraddMove.Name = "BtnPuraddMove";
+            this.BtnPuraddMove.Size = new System.Drawing.Size(31, 29);
+            this.BtnPuraddMove.TabIndex = 1111150;
+            this.BtnPuraddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnPuraddMove.UseVisualStyleBackColor = true;
+            this.BtnPuraddMove.Click += new System.EventHandler(this.BtnPuraddMove_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.DGV_PurMappedSearchGrid);
+            this.groupBox2.Controls.Add(this.grdMappedArea);
+            this.groupBox2.Location = new System.Drawing.Point(388, 88);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(338, 494);
+            this.groupBox2.TabIndex = 1111149;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Mapped Areas";
+            // 
+            // DGV_PurMappedSearchGrid
+            // 
+            this.DGV_PurMappedSearchGrid.AllowUserToAddRows = false;
+            this.DGV_PurMappedSearchGrid.AllowUserToDeleteRows = false;
+            this.DGV_PurMappedSearchGrid.AllowUserToResizeRows = false;
+            this.DGV_PurMappedSearchGrid.BackgroundColor = System.Drawing.Color.White;
+            this.DGV_PurMappedSearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_PurMappedSearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DGV_PurMappedSearchGrid.ColumnHeadersHeight = 30;
+            this.DGV_PurMappedSearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_PurMappedSearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DGV_PurMappedSearchGrid.EnableHeadersVisualStyles = false;
+            this.DGV_PurMappedSearchGrid.GridColor = System.Drawing.Color.White;
+            this.DGV_PurMappedSearchGrid.Location = new System.Drawing.Point(14, 26);
+            this.DGV_PurMappedSearchGrid.Name = "DGV_PurMappedSearchGrid";
+            this.DGV_PurMappedSearchGrid.RowHeadersVisible = false;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_PurMappedSearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.DGV_PurMappedSearchGrid.RowTemplate.Height = 25;
+            this.DGV_PurMappedSearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DGV_PurMappedSearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_PurMappedSearchGrid.ShowRowErrors = false;
+            this.DGV_PurMappedSearchGrid.Size = new System.Drawing.Size(311, 56);
+            this.DGV_PurMappedSearchGrid.TabIndex = 1111149;
+            this.DGV_PurMappedSearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_PurMappedSearchGrid_CellEndEdit);
+            this.DGV_PurMappedSearchGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_PurMappedSearchGrid_CellEnter);
+            this.DGV_PurMappedSearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_PurMappedSearchGrid_CellFormatting);
+            this.DGV_PurMappedSearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_PurMappedSearchGrid_CellPainting);
+            this.DGV_PurMappedSearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_PurMappedSearchGrid_ColumnHeaderMouseClick);
+            this.DGV_PurMappedSearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_PurMappedSearchGrid_ColumnWidthChanged);
+            this.DGV_PurMappedSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged);
+            this.DGV_PurMappedSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_PurMappedSearchGrid_Scroll);
+            // 
+            // grdMappedArea
+            // 
+            this.grdMappedArea.AllowUserToAddRows = false;
+            this.grdMappedArea.AllowUserToDeleteRows = false;
+            this.grdMappedArea.AllowUserToResizeColumns = false;
+            this.grdMappedArea.AllowUserToResizeRows = false;
+            this.grdMappedArea.BackgroundColor = System.Drawing.Color.White;
+            this.grdMappedArea.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdMappedArea.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.grdMappedArea.ColumnHeadersHeight = 30;
+            this.grdMappedArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdMappedArea.ColumnHeadersVisible = false;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdMappedArea.DefaultCellStyle = dataGridViewCellStyle8;
+            this.grdMappedArea.EnableHeadersVisualStyles = false;
+            this.grdMappedArea.GridColor = System.Drawing.Color.White;
+            this.grdMappedArea.Location = new System.Drawing.Point(14, 82);
+            this.grdMappedArea.Name = "grdMappedArea";
+            this.grdMappedArea.RowHeadersVisible = false;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.grdMappedArea.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.grdMappedArea.RowTemplate.Height = 25;
+            this.grdMappedArea.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.grdMappedArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.grdMappedArea.Size = new System.Drawing.Size(311, 406);
+            this.grdMappedArea.TabIndex = 1111148;
+            this.grdMappedArea.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMappedArea_CellEnter);
+            this.grdMappedArea.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMappedArea_CellValueChanged);
+            this.grdMappedArea.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdMappedArea_CurrentCellDirtyStateChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.grdArea);
+            this.groupBox1.Location = new System.Drawing.Point(7, 88);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(338, 494);
+            this.groupBox1.TabIndex = 1111148;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Un Mapped Areas";
+            // 
             // grdArea
             // 
             this.grdArea.AllowUserToAddRows = false;
@@ -153,8 +338,6 @@
             this.grdArea.ColumnHeadersHeight = 30;
             this.grdArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdArea.ColumnHeadersVisible = false;
-            this.grdArea.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmCheckBox});
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -176,16 +359,9 @@
             this.grdArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdArea.Size = new System.Drawing.Size(311, 406);
             this.grdArea.TabIndex = 1111147;
+            this.grdArea.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdArea_CellEnter);
             this.grdArea.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdArea_CellValueChanged);
             this.grdArea.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdArea_CurrentCellDirtyStateChanged);
-            // 
-            // clmCheckBox
-            // 
-            this.clmCheckBox.HeaderText = "";
-            this.clmCheckBox.Name = "clmCheckBox";
-            this.clmCheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCheckBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmCheckBox.Width = 50;
             // 
             // cmbRSNo
             // 
@@ -362,200 +538,6 @@
             this.pnlRoute.Size = new System.Drawing.Size(1354, 645);
             this.pnlRoute.TabIndex = 37;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.grdArea);
-            this.groupBox1.Location = new System.Drawing.Point(7, 88);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(338, 494);
-            this.groupBox1.TabIndex = 1111148;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Un Mapped Areas";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.DGV_PurMappedSearchGrid);
-            this.groupBox2.Controls.Add(this.grdMappedArea);
-            this.groupBox2.Location = new System.Drawing.Point(388, 88);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(338, 494);
-            this.groupBox2.TabIndex = 1111149;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Mapped Areas";
-            // 
-            // btnPurRemove
-            // 
-            this.btnPurRemove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnPurRemove.Image = global::ROMS.Properties.Resources.add___left;
-            this.btnPurRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPurRemove.Location = new System.Drawing.Point(351, 330);
-            this.btnPurRemove.Name = "btnPurRemove";
-            this.btnPurRemove.Size = new System.Drawing.Size(31, 29);
-            this.btnPurRemove.TabIndex = 1111151;
-            this.btnPurRemove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPurRemove.UseVisualStyleBackColor = true;
-            this.btnPurRemove.Click += new System.EventHandler(this.btnPurRemove_Click);
-            // 
-            // BtnPuraddMove
-            // 
-            this.BtnPuraddMove.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.BtnPuraddMove.Image = global::ROMS.Properties.Resources.add;
-            this.BtnPuraddMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnPuraddMove.Location = new System.Drawing.Point(351, 295);
-            this.BtnPuraddMove.Name = "BtnPuraddMove";
-            this.BtnPuraddMove.Size = new System.Drawing.Size(31, 29);
-            this.BtnPuraddMove.TabIndex = 1111150;
-            this.BtnPuraddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnPuraddMove.UseVisualStyleBackColor = true;
-            this.BtnPuraddMove.Click += new System.EventHandler(this.BtnPuraddMove_Click);
-            // 
-            // grdMappedArea
-            // 
-            this.grdMappedArea.AllowUserToAddRows = false;
-            this.grdMappedArea.AllowUserToDeleteRows = false;
-            this.grdMappedArea.AllowUserToResizeColumns = false;
-            this.grdMappedArea.AllowUserToResizeRows = false;
-            this.grdMappedArea.BackgroundColor = System.Drawing.Color.White;
-            this.grdMappedArea.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdMappedArea.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.grdMappedArea.ColumnHeadersHeight = 30;
-            this.grdMappedArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdMappedArea.ColumnHeadersVisible = false;
-            this.grdMappedArea.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmCheck});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdMappedArea.DefaultCellStyle = dataGridViewCellStyle8;
-            this.grdMappedArea.EnableHeadersVisualStyles = false;
-            this.grdMappedArea.GridColor = System.Drawing.Color.White;
-            this.grdMappedArea.Location = new System.Drawing.Point(14, 82);
-            this.grdMappedArea.Name = "grdMappedArea";
-            this.grdMappedArea.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.grdMappedArea.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.grdMappedArea.RowTemplate.Height = 25;
-            this.grdMappedArea.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.grdMappedArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdMappedArea.Size = new System.Drawing.Size(311, 406);
-            this.grdMappedArea.TabIndex = 1111148;
-            this.grdMappedArea.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMappedArea_CellValueChanged);
-            this.grdMappedArea.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdMappedArea_CurrentCellDirtyStateChanged);
-            // 
-            // clmCheck
-            // 
-            this.clmCheck.HeaderText = "";
-            this.clmCheck.Name = "clmCheck";
-            this.clmCheck.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmCheck.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmCheck.Width = 50;
-            // 
-            // DGV_PurSearchGrid
-            // 
-            this.DGV_PurSearchGrid.AllowUserToAddRows = false;
-            this.DGV_PurSearchGrid.AllowUserToDeleteRows = false;
-            this.DGV_PurSearchGrid.AllowUserToResizeRows = false;
-            this.DGV_PurSearchGrid.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_PurSearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_PurSearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGV_PurSearchGrid.ColumnHeadersHeight = 30;
-            this.DGV_PurSearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_PurSearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DGV_PurSearchGrid.EnableHeadersVisualStyles = false;
-            this.DGV_PurSearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_PurSearchGrid.Location = new System.Drawing.Point(20, 114);
-            this.DGV_PurSearchGrid.Name = "DGV_PurSearchGrid";
-            this.DGV_PurSearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_PurSearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_PurSearchGrid.RowTemplate.Height = 25;
-            this.DGV_PurSearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_PurSearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_PurSearchGrid.ShowRowErrors = false;
-            this.DGV_PurSearchGrid.Size = new System.Drawing.Size(311, 56);
-            this.DGV_PurSearchGrid.TabIndex = 1111148;
-            this.DGV_PurSearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_PurSearchGrid_CellEndEdit);
-            this.DGV_PurSearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_PurSearchGrid_CellFormatting);
-            this.DGV_PurSearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_PurSearchGrid_CellPainting);
-            this.DGV_PurSearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_PurSearchGrid_ColumnHeaderMouseClick);
-            this.DGV_PurSearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_PurSearchGrid_ColumnWidthChanged);
-            this.DGV_PurSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_PurSearchGrid_CurrentCellDirtyStateChanged);
-            this.DGV_PurSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_PurSearchGrid_Scroll);
-            // 
-            // DGV_PurMappedSearchGrid
-            // 
-            this.DGV_PurMappedSearchGrid.AllowUserToAddRows = false;
-            this.DGV_PurMappedSearchGrid.AllowUserToDeleteRows = false;
-            this.DGV_PurMappedSearchGrid.AllowUserToResizeRows = false;
-            this.DGV_PurMappedSearchGrid.BackgroundColor = System.Drawing.Color.White;
-            this.DGV_PurMappedSearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_PurMappedSearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DGV_PurMappedSearchGrid.ColumnHeadersHeight = 30;
-            this.DGV_PurMappedSearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_PurMappedSearchGrid.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DGV_PurMappedSearchGrid.EnableHeadersVisualStyles = false;
-            this.DGV_PurMappedSearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_PurMappedSearchGrid.Location = new System.Drawing.Point(14, 26);
-            this.DGV_PurMappedSearchGrid.Name = "DGV_PurMappedSearchGrid";
-            this.DGV_PurMappedSearchGrid.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_PurMappedSearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.DGV_PurMappedSearchGrid.RowTemplate.Height = 25;
-            this.DGV_PurMappedSearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DGV_PurMappedSearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_PurMappedSearchGrid.ShowRowErrors = false;
-            this.DGV_PurMappedSearchGrid.Size = new System.Drawing.Size(311, 56);
-            this.DGV_PurMappedSearchGrid.TabIndex = 1111149;
-            this.DGV_PurMappedSearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_PurMappedSearchGrid_CellEndEdit);
-            this.DGV_PurMappedSearchGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_PurMappedSearchGrid_CellFormatting);
-            this.DGV_PurMappedSearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_PurMappedSearchGrid_CellPainting);
-            this.DGV_PurMappedSearchGrid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV_PurMappedSearchGrid_ColumnHeaderMouseClick);
-            this.DGV_PurMappedSearchGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DGV_PurMappedSearchGrid_ColumnWidthChanged);
-            this.DGV_PurMappedSearchGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.DGV_PurMappedSearchGrid_CurrentCellDirtyStateChanged);
-            this.DGV_PurMappedSearchGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DGV_PurMappedSearchGrid_Scroll);
-            // 
             // CP_Route
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -579,17 +561,17 @@
             this.Leave += new System.EventHandler(this.CP_Route_Leave);
             this.grbform.ResumeLayout(false);
             this.grbform.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurSearchGrid)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMappedArea)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdArea)).EndInit();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRoute)).EndInit();
             this.tsRoute.ResumeLayout(false);
             this.tsRoute.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdMappedArea)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurSearchGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_PurMappedSearchGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -612,7 +594,6 @@
         private System.Windows.Forms.ComboBox cmbRSNo;
         private System.Windows.Forms.TextBox txtDRouteOrderNo;
         public System.Windows.Forms.DataGridView grdArea;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheckBox;
         private System.Windows.Forms.ToolStrip tsRoute;
         private System.Windows.Forms.ToolStripLabel tspHeader;
         private System.Windows.Forms.Panel pnlRoute;
@@ -621,7 +602,6 @@
         private System.Windows.Forms.Button btnPurRemove;
         private System.Windows.Forms.Button BtnPuraddMove;
         public System.Windows.Forms.DataGridView grdMappedArea;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
         public System.Windows.Forms.DataGridView DGV_PurSearchGrid;
         public System.Windows.Forms.DataGridView DGV_PurMappedSearchGrid;
     }
