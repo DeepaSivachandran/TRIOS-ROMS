@@ -667,6 +667,13 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Product_RateCategory_Enable.cs">
+      <DependentUpon>RPT_CP_Product_RateCategory_Enable.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_ZeroVsPOGenerated.cs">
       <DependentUpon>RPT_ZeroVsPOGenerated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5035,6 +5042,11 @@
     <Content Include="Reports\RPT_Purchase_PO_Blocked_Products.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Purchase_PO_Blocked_Products.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Product_RateCategory_Enable.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_RateCategory_Enable.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_ZeroVsPOGenerated.rpt">
