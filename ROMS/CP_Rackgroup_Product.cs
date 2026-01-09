@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace ROMS
 
         DataTable dtRackgroupProduct = new DataTable();
 
-        private int _oldOrderNo = 0;
+        private int _oldOrderNo = 0, varFlag=0;
 
         private ToolTip tbRackgroup = new ToolTip();
         public int varExistFlag = 0;
@@ -154,6 +155,7 @@ namespace ROMS
                             if (objDs.Tables[1].Rows.Count != 0)
                             {
                                 varExistFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["existFlag"]);
+                                varFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["existFlag"]);
                             }
                         }
                     }
@@ -642,15 +644,68 @@ namespace ROMS
         }
         private void grdGroupList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            //try
+            //{
+            //    if (e.RowIndex < 0)
+            //        return;
+            //    if (grdGroupList.Columns[e.ColumnIndex].Name != "Order No.")
+            //        return;
+            //    if (varExistFlag == 0)
+            //        return;
+            //    var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
+            //    string newValue = cell.Value?.ToString().Trim();
+
+            //    if (string.IsNullOrEmpty(newValue))
+            //        return;
+
+            //    if (!int.TryParse(newValue, out int editedOrder))
+            //    {
+            //        RestoreOldValue(cell);
+            //        return;
+            //    }
+
+            //    var dt = (DataTable)grdGroupList.DataSource;
+            //    var currentRow =
+            //        ((DataRowView)grdGroupList.Rows[e.RowIndex].DataBoundItem).Row;
+
+            //    //bool invalid = dt.AsEnumerable().TakeWhile(r => r != currentRow).Any(r =>r["Order No."] != DBNull.Value && int.TryParse(r["Order No."].ToString(), out int v) && editedOrder <= v);
+
+            //    //if (invalid)
+            //    //{
+            //    //    MessageBox.Show("Order No must be greater.","Invalid Order No",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+
+            //    //    RestoreOldValue(cell);
+            //    //    return;
+            //    //}
+
+            //    int nextOrder = editedOrder + 1;
+
+            //    foreach (var row in dt.AsEnumerable().SkipWhile(r => r != currentRow).Skip(1))
+            //    {
+            //        if (row["Order No."] != DBNull.Value && int.TryParse(row["Order No."].ToString(), out _))
+            //        {
+            //            row["Order No."] = nextOrder.ToString();
+            //            nextOrder++;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
             try
             {
+                int varChangeValue = 0; bool isInvalidSequence = false;
+
                 if (e.RowIndex < 0)
                     return;
                 if (grdGroupList.Columns[e.ColumnIndex].Name != "Order No.")
                     return;
-                if (varExistFlag == 0)
-                    return;
+                //if (varFlag == 0)
+                //    return;
                 var cell = grdGroupList.Rows[e.RowIndex].Cells["Order No."];
+
                 string newValue = cell.Value?.ToString().Trim();
 
                 if (string.IsNullOrEmpty(newValue))
@@ -665,26 +720,123 @@ namespace ROMS
                 var dt = (DataTable)grdGroupList.DataSource;
                 var currentRow =
                     ((DataRowView)grdGroupList.Rows[e.RowIndex].DataBoundItem).Row;
+                bool isDuplicate = false;
+                // get current row value
+                string currentValue = currentRow["Order No."]?.ToString().Trim();
 
-                //bool invalid = dt.AsEnumerable().TakeWhile(r => r != currentRow).Any(r =>r["Order No."] != DBNull.Value && int.TryParse(r["Order No."].ToString(), out int v) && editedOrder <= v);
-
-                //if (invalid)
-                //{
-                //    MessageBox.Show("Order No must be greater.","Invalid Order No",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-
-                //    RestoreOldValue(cell);
-                //    return;
-                //}
-
-                int nextOrder = editedOrder + 1;
-
-                foreach (var row in dt.AsEnumerable().SkipWhile(r => r != currentRow).Skip(1))
+                // skip check if current value is empty
+                if (!string.IsNullOrEmpty(currentValue))
                 {
-                    if (row["Order No."] != DBNull.Value && int.TryParse(row["Order No."].ToString(), out _))
+                    isDuplicate = dt.AsEnumerable()
+                        .Any(r =>
+                            r != currentRow &&                                // exclude current row
+                            r["Order No."] != DBNull.Value &&
+                            r["Order No."].ToString().Trim() == currentValue
+                        );
+                }
+                if (varFlag != 0)
+                {
+                    if (isDuplicate == true)
                     {
-                        row["Order No."] = nextOrder.ToString();
-                        nextOrder++;
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(199);
+                        objDServ.CloseConnection(); 
+                        DialogResult response = MessageBox.Show(varMessage, "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if ((response == DialogResult.Yes))
+                        { varChangeValue = 1; }
+                        else
+                        { cell.Value = ""; return; }
                     }
+                    else
+                    { varChangeValue = 1; }
+                }
+                else
+                {
+                    if (isDuplicate == true)
+                    {
+                        DialogResult response = MessageBox.Show("Order No. already exists!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        cell.Value = "";
+                    }
+                }
+
+                if (int.TryParse(currentValue, out int enteredSeq))
+                {
+                    // Get all valid existing sequence numbers (excluding current row)
+                    var existingSeqs = dt.AsEnumerable()
+                        .Where(r =>
+                            r != currentRow &&
+                            int.TryParse(r["Order No."]?.ToString(), out _))
+                        .Select(r => int.Parse(r["Order No."].ToString()))
+                        .ToList();
+                    if (existingSeqs.Any())
+                    {
+                        existingSeqs.Sort();
+                        // Find the FIRST missing sequence
+                        int expectedSeq = 1;
+                        foreach (int seq in existingSeqs)
+                        {
+                            if (seq == expectedSeq)
+                                expectedSeq++;
+                            else if (seq > expectedSeq)
+                                break;
+                        }
+                        // enteredSeq is invalid ONLY if it skips the missing number
+                        if (enteredSeq > expectedSeq)
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(200);
+                            objDServ.CloseConnection();
+                            DialogResult response = MessageBox.Show(varMessage,   "Alert",   MessageBoxButtons.YesNo, MessageBoxIcon.Warning,   MessageBoxDefaultButton.Button2
+                            );
+                            if (response == DialogResult.Yes)
+                            {
+                                varChangeValue = 1;
+                            }
+                            else
+                            {
+                                cell.Value = "";
+                                return;
+                            }
+                        }
+                    }
+
+                }
+
+                if (varChangeValue == 1 && int.TryParse(editedOrder.ToString(), out int newSeq) && varFlag != 0)
+                {
+                    // Get ALL rows (except current row) with valid sequence numbers
+                    var allRows = dt.AsEnumerable()
+                        .Where(r =>
+                            r != currentRow &&
+                            int.TryParse(r["Order No."]?.ToString(), out _))
+                        .Select(r => new
+                        {
+                            Row = r,
+                            Seq = int.Parse(r["Order No."].ToString())
+                        })
+                        .OrderBy(x => x.Seq)   // IMPORTANT: order by sequence
+                        .ToList();
+
+                    int expected = newSeq;
+
+                    foreach (var item in allRows)
+                    {
+                        if (item.Seq == expected)
+                        {
+                            // shift only continuous numbers
+                            item.Row["Order No."] = (item.Seq + 1).ToString();
+                            expected++;
+                        }
+                        else if (item.Seq > expected)
+                        {
+                            // GAP FOUND → stop shifting
+                            break;
+                        }
+                        // if item.Seq < expected → ignore and continue
+                    }
+
+                    // assign new sequence to current row
+                    currentRow["Order No."] = newSeq.ToString();
                 }
             }
             catch (Exception ex)
