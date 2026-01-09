@@ -655,6 +655,12 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_ZeroVsNonPOGenerated.cs">
+      <DependentUpon>RPT_ZeroVsNonPOGenerated.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_ZeroVsPOGenerated.cs">
       <DependentUpon>RPT_ZeroVsPOGenerated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1035,6 +1041,12 @@
     </Compile>
     <Compile Include="REPORT_CP_Product_Category.designer.cs">
       <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_ZeroVsPOGenerated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_ZeroVsPOGenerated.designer.cs">
+      <DependentUpon>REPORT_ZeroVsPOGenerated.cs</DependentUpon>
     </Compile>
     <Compile Include="Service Class\UserAccessHelper.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
@@ -5019,6 +5031,11 @@
       <LastGenOutput>RPT_Purchase_PO_Blocked_Products.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_ZeroVsNonPOGenerated.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_ZeroVsNonPOGenerated.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_ZeroVsPOGenerated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_ZeroVsPOGenerated.cs</LastGenOutput>
@@ -6093,6 +6110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_InactiveProduct.resx">
       <DependentUpon>REPORT_CP_InactiveProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_ZeroVsPOGenerated.resx">
+      <DependentUpon>REPORT_ZeroVsPOGenerated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_ZeroRate.resx">
       <DependentUpon>REPORT_ZeroRate.cs</DependentUpon>

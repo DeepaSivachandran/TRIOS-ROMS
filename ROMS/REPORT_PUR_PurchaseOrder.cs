@@ -274,7 +274,7 @@ namespace ROMS
                 }
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, 0, 0);
+                objDs = objdserv.udfnPOEntry(7, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, Convert.ToInt32(lblProductcode.Text), 0, 0, 0, 0, 0,0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 string varReportName = "";

@@ -180,7 +180,7 @@ namespace ROMS
                 int varsupplier = 0, varpono = 0, varFilter = 0; 
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(9, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono,0, 0, "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), 0,0);
+                objDs = objdserv.udfnPOEntry(9, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono,0, 0, "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), 0,0,0);
                 objdserv.CloseConnection();
                 if (objDs != null)
                 {

@@ -225,12 +225,12 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 if (Convert.ToInt32(cmbReporttype.SelectedValue) == 162)
                 {
-                    objDs = objdserv.udfnPOEntry(8, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), Convert.ToInt32(cmbGrnstatus.SelectedValue),0);
+                    objDs = objdserv.udfnPOEntry(8, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), Convert.ToInt32(cmbGrnstatus.SelectedValue),0,0);
                     objdserv.CloseConnection();
                 }
                 else if (Convert.ToInt32(cmbReporttype.SelectedValue) == 163)
                 {
-                    objDs = objdserv.udfnPOEntry(9, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), Convert.ToInt32(cmbGrnstatus.SelectedValue),0);
+                    objDs = objdserv.udfnPOEntry(9, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, varsupplier, varpono, Convert.ToInt32(lblGroupCode.Text), Convert.ToInt32(lblSubGroupCode.Text), "", "", 0, Convert.ToInt32(cmbStatus.SelectedValue), "0", varFilter, 0, Convert.ToInt32(cmbOrdertype.SelectedValue), Convert.ToInt32(lblcityid.Text), Convert.ToInt32(varFilterTat), Convert.ToInt32(cmbGrnstatus.SelectedValue),0,0);
                     objdserv.CloseConnection();
                 }
                 if (objDs != null)

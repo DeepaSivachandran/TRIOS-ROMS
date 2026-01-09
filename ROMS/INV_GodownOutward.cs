@@ -979,21 +979,32 @@ namespace ROMS
         {
             try
             {
-                grdLocation.RowTemplate.Height = 20;
-                grdLocation.ColumnHeadersHeight = 25;
-                grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-                grdLocation.DataSource = null;
+                grdParentStock.RowTemplate.Height = 20;
+                grdParentStock.ColumnHeadersHeight = 25;
+                grdParentStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                grdParentStock.DataSource = null;
+                grdChildStock.DataSource = null;
                 DataTable dt = new DataTable();
                 dt.Columns.Add("S.No.");
                 dt.Columns.Add("Location");
                 dt.Columns.Add("Quantity");
-                grdLocation.DataSource = dt;
-                grdLocation.Columns["S.No."].Width = 60;
-                grdLocation.Columns["Location"].Width = 250;
-                grdLocation.Columns["Quantity"].Width = 90;
-                grdLocation.Columns["S.No."].Width = 50;
-                grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataTable dtch = new DataTable();
+                dtch.Columns.Add("S.No.");
+                dtch.Columns.Add("Product");
+                dtch.Columns.Add("Location");
+                dtch.Columns.Add("Quantity");
+                grdParentStock.DataSource = dt;
+                grdChildStock.DataSource = dtch;
+                grdParentStock.Columns["S.No."].Width = 50;
+                grdParentStock.Columns["Location"].Width = 150;
+                grdParentStock.Columns["Quantity"].Width = 70;
+                grdParentStock.Columns["S.No."].Width = 50;
+                grdParentStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                grdChildStock.Columns["Location"].Width = 130;
+                grdChildStock.Columns["Quantity"].Width = 70;
+                grdChildStock.Columns["S.No."].Width = 40;
+                grdChildStock.Columns["Product"].Width = 200;
             }
             catch (Exception ex)
             {
@@ -1459,16 +1470,24 @@ namespace ROMS
                 {
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        grdLocation.RowTemplate.Height = 20;
-                        grdLocation.ColumnHeadersHeight = 25;
-                        grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                        grdParentStock.RowTemplate.Height = 20;
+                        grdParentStock.ColumnHeadersHeight = 25;
+                        grdParentStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
-                        grdLocation.DataSource = objDs.Tables[0];
-                        grdLocation.Columns["Location"].Width = 250;
-                        grdLocation.Columns["Quantity"].Width = 90;
-                        grdLocation.Columns["S.No."].Width = 50;
-                        grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdParentStock.DataSource = objDs.Tables[0]; 
+                        grdParentStock.Columns["Location"].Width = 100;
+                        grdParentStock.Columns["Quantity"].Width = 100;
+                        grdParentStock.Columns["S.No."].Width = 50;
+                        grdParentStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                        grdChildStock.DataSource = objDs.Tables[1];
+                        grdChildStock.Columns["Location"].Width = 100;
+                        grdChildStock.Columns["Quantity"].Width = 70;
+                        grdChildStock.Columns["S.No."].Width = 40;
+                        grdChildStock.Columns["Product"].Width = 250;
+                        grdChildStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdChildStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
                     else
                     {
@@ -2340,6 +2359,12 @@ namespace ROMS
                 cmbTransactionType.Focus();
             }
         }
+
+        private void grbStock_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         private void BtnClose_Leave(object sender, EventArgs e)
         {
             try

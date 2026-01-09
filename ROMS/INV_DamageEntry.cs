@@ -2321,6 +2321,10 @@ namespace ROMS
                                 objTRN_Damage.paraQrimg = (varobjBarCodeByte);
                                 varResult = objspservice.udfnDamageEntry(objTRN_Damage);
                                 objspservice.CloseConnection();
+                                if(fromQueueFlag == 1)
+                                {
+                                    MainForm.objINV_DamageEntryQueue.udfnList();
+                                }
                             }
                             else
                             {
