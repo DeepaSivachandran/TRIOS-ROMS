@@ -889,6 +889,25 @@ namespace ROMS
                                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Staff_50x35.rpt");
                             }
                         }
+                        else if (Convert.ToInt32(cmbRKTemplates.SelectedValue) == 480)
+                        {
+                            if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Description_50x60.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Description_100x70.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 301)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Description_50x25.rpt");
+                            }
+                            else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                            {
+                                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Rack_Description_50x35.rpt");
+                            }
+                        }
                     }
                     else if (Convert.ToInt32(cmbType.SelectedIndex) == 5)
                     {

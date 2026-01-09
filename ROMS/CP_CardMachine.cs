@@ -50,6 +50,9 @@ namespace ROMS
                 MR_CardMachine objMR_CardMachine = new MR_CardMachine();
                 objMR_CardMachine.ViewType = varType;
                 objMR_CardMachine.paraCardMachineName = txtMachineName.Text.Trim();
+                objMR_CardMachine.paraBrandName = txtBrandName.Text.Trim();
+                objMR_CardMachine.paraMCNo = txtMCNo.Text.Trim();
+                objMR_CardMachine.paraPIDNo = txtPIDNo.Text.Trim();
                 objMR_CardMachine.paraConcernID = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_CardMachine.paraComBankId = Convert.ToInt32(cmbBank.SelectedValue);
                 objMR_CardMachine.paraStatusId = Convert.ToInt32(PbStatus);
@@ -102,6 +105,9 @@ namespace ROMS
             try
             {
                 txtMachineName.Text = "";
+                txtBrandName.Text = "";
+                txtMCNo.Text = "";
+                txtPIDNo.Text = "";
                 cmbConcern.SelectedValue = -1;
                 cmbProvider.SelectedValue = -1;
                 txtMachineName.Focus();
@@ -458,6 +464,9 @@ namespace ROMS
                             if (objDs.Tables[0].Rows.Count != 0)
                             {
                                 txtMachineName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["MachineName"]); 
+                                txtBrandName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["BrandName"]); 
+                                txtMCNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["MCNo"]); 
+                                txtPIDNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["PIDNo"]); 
                                 cmbConcern.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["ComID"]);
                                 cmbBank.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["BankID"]);
                                 cmbProvider.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_ProviderID"]);
@@ -493,7 +502,7 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    cmbProvider.Focus();
+                    txtBrandName.Focus();
                 }
             }
             catch (Exception ex)
@@ -729,6 +738,132 @@ namespace ROMS
         private void cmbConcern_SelectedIndexChanged(object sender, EventArgs e)
         {
             udfnBankDropDown();
+        }
+
+        private void txtBrandName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrandName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBrandName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtMCNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtBrandName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBrandName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtMCNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMCNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtMCNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPIDNo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtMCNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMCNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPIDNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPIDNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPIDNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbProvider.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPIDNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPIDNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

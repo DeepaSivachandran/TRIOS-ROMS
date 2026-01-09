@@ -64,6 +64,10 @@ namespace ROMS
                 lblPurRack.Text = "";
                 lblSalesLocation.Text = "";
                 lblSalesRack.Text = "";
+                lblRackgroup.Text = "";
+                lblShelfLife.Text = "";
+                lblMinStk.Text = "";
+                lblMaxStk.Text = "";
                 if (varProductId != 0)
                 {
                     DataSet objDs = new DataSet();
@@ -94,6 +98,10 @@ namespace ROMS
                             lblPurRack.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Pur_Rack"].ToString());
                             lblSalesLocation.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Sales_Location"].ToString());
                             lblSalesRack.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Sales_Rack"].ToString());
+                            lblRackgroup.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Rackgroup"].ToString());
+                            lblShelfLife.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Shelf Life"].ToString());
+                            lblMaxStk.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MaxStock"].ToString());
+                            lblMinStk.Text = Convert.ToString(objDS.Tables[0].Rows[0]["MinStock"].ToString());
                         }
                     }
                 }
