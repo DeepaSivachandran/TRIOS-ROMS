@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Area));
             this.errArea = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.txtDistanceKM = new System.Windows.Forms.TextBox();
             this.txtDistance = new System.Windows.Forms.TextBox();
             this.txtDDistance = new System.Windows.Forms.TextBox();
             this.cmbOrderNo = new System.Windows.Forms.ComboBox();
@@ -50,7 +51,6 @@
             this.txtAEName = new System.Windows.Forms.TextBox();
             this.txtDAreaTName = new System.Windows.Forms.TextBox();
             this.txtDAreaEName = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errArea)).BeginInit();
             this.grbDetails.SuspendLayout();
             this.pnlStatus.SuspendLayout();
@@ -62,7 +62,7 @@
             // 
             // grbDetails
             // 
-            this.grbDetails.Controls.Add(this.textBox3);
+            this.grbDetails.Controls.Add(this.txtDistanceKM);
             this.grbDetails.Controls.Add(this.txtDistance);
             this.grbDetails.Controls.Add(this.txtDDistance);
             this.grbDetails.Controls.Add(this.cmbOrderNo);
@@ -87,6 +87,18 @@
             this.grbDetails.TabIndex = 0;
             this.grbDetails.TabStop = false;
             this.grbDetails.Enter += new System.EventHandler(this.grbDetails_Enter);
+            // 
+            // txtDistanceKM
+            // 
+            this.txtDistanceKM.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDistanceKM.Enabled = false;
+            this.txtDistanceKM.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDistanceKM.Location = new System.Drawing.Point(343, 109);
+            this.txtDistanceKM.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDistanceKM.Name = "txtDistanceKM";
+            this.txtDistanceKM.ReadOnly = true;
+            this.txtDistanceKM.Size = new System.Drawing.Size(27, 28);
+            this.txtDistanceKM.TabIndex = 23;
             // 
             // txtDistance
             // 
@@ -347,19 +359,6 @@
             this.txtDAreaEName.TabIndex = 11;
             this.txtDAreaEName.Text = "Area Name in English";
             // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(343, 109);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(27, 28);
-            this.textBox3.TabIndex = 23;
-            this.textBox3.Text = "Km";
-            // 
             // CP_Area
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -411,6 +410,6 @@
         private System.Windows.Forms.ComboBox cmbOrderNo;
         private System.Windows.Forms.TextBox txtDistance;
         private System.Windows.Forms.TextBox txtDDistance;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtDistanceKM;
     }
 }

@@ -69,6 +69,10 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Route", "RID NOT IN (0)   ORDER BY R_OrderNo", "R_EName,RID", cmbRoute, "", "R_EName", "RID");
                 objDataBind.BindComboBoxListSelected("MR_City", "CTYID NOT IN (0,-1) AND ISNULL(CTY_DispatchEnable,0)=1 ORDER BY CTYID", "CTY_Name,CTYID", cmbCity, "", "CTY_Name", "CTYID");
                 objDataBind = null;
+                DataService objDservice = new DataService();
+                string varKMText = objDservice.displaydata("SELECT MST_DisplayText FROM DEF_Master WHERE MSTID=445");
+                objDservice.CloseConnection();
+                txtDistanceKM.Text = varKMText;
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
