@@ -393,7 +393,8 @@ namespace ROMS
         private void txtMappingGroup_Enter(object sender, EventArgs e)
         {
             try
-            { 
+            {
+                udfnGridNull((Control)sender);
                 txtMappingGroup.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -756,6 +757,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 DGV_FilterGroup.Visible = false;
                 txtMappingSubGroup.BackColor = Color.LemonChiffon;
             }
@@ -1042,6 +1044,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 DGV_FilterSubgroup.Visible = false;
                 txtBrand.BackColor = Color.LemonChiffon;
             }
@@ -1830,6 +1833,10 @@ namespace ROMS
                 //this.Close();
                 udfnClose();
             }
+            if (e.KeyCode == Keys.F5)
+            {
+                btnMappingsave_Click(sender, e);
+            }
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -1943,6 +1950,7 @@ namespace ROMS
         private void cmbConcern_Enter(object sender, EventArgs e)
         {
 
+            udfnGridNull((Control)sender);
             try { cmbConcern.BackColor = Color.LemonChiffon; }
             catch (Exception ex)
             {

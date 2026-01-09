@@ -1461,6 +1461,10 @@ namespace ROMS
                 //MainForm.objStart.Show();
                 //this.Close();
                 udfnClose();
+            } 
+            if (e.KeyCode == Keys.F5)
+            {
+                btnMappingsave_Click(sender, e);
             }
         }
 

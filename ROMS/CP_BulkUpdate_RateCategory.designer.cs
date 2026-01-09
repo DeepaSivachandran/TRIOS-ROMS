@@ -148,8 +148,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(162, 24);
-            this.tspHeader.Text = "Bulk Update Rate Category";
+            this.tspHeader.Size = new System.Drawing.Size(220, 24);
+            this.tspHeader.Text = "Bulk Update Rate Category Enablement";
             // 
             // pnlMenu
             // 
@@ -1074,7 +1074,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_BulkUpdate_RateCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CP Bulk Update";
+            this.Text = "Bulk Update Rate Category Enablement";
             this.Load += new System.EventHandler(this.CP_Spl_Products_Bulk_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_Spl_Products_Bulk_KeyDown);
             this.tsBulkAttribute.ResumeLayout(false);
