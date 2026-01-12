@@ -63,6 +63,8 @@
             this.txtDSubGroup = new System.Windows.Forms.TextBox();
             this.txtDUnit = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.txtSalesPICode = new System.Windows.Forms.TextBox();
+            this.txtDSalesPICode = new System.Windows.Forms.TextBox();
             this.chkSalesProduct = new System.Windows.Forms.CheckBox();
             this.txtSubgroupType = new System.Windows.Forms.TextBox();
             this.cmbChildUnit = new System.Windows.Forms.ComboBox();
@@ -327,8 +329,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
-            this.txtSalesPICode = new System.Windows.Forms.TextBox();
-            this.txtDSalesPICode = new System.Windows.Forms.TextBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -539,6 +539,29 @@
             this.grbform.TabIndex = 0;
             this.grbform.TabStop = false;
             // 
+            // txtSalesPICode
+            // 
+            this.txtSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSalesPICode.Location = new System.Drawing.Point(160, 130);
+            this.txtSalesPICode.MaxLength = 20;
+            this.txtSalesPICode.Name = "txtSalesPICode";
+            this.txtSalesPICode.Size = new System.Drawing.Size(381, 27);
+            this.txtSalesPICode.TabIndex = 7;
+            this.txtSalesPICode.Enter += new System.EventHandler(this.txtSalesPICode_Enter);
+            // 
+            // txtDSalesPICode
+            // 
+            this.txtDSalesPICode.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDSalesPICode.Enabled = false;
+            this.txtDSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtDSalesPICode.Location = new System.Drawing.Point(15, 130);
+            this.txtDSalesPICode.Name = "txtDSalesPICode";
+            this.txtDSalesPICode.ReadOnly = true;
+            this.txtDSalesPICode.Size = new System.Drawing.Size(145, 27);
+            this.txtDSalesPICode.TabIndex = 111111164;
+            this.txtDSalesPICode.TabStop = false;
+            this.txtDSalesPICode.Text = "Sales P.I Code";
+            // 
             // chkSalesProduct
             // 
             this.chkSalesProduct.AutoSize = true;
@@ -548,6 +571,7 @@
             this.chkSalesProduct.TabIndex = 1;
             this.chkSalesProduct.Text = "Is a Sales Item";
             this.chkSalesProduct.UseVisualStyleBackColor = true;
+            this.chkSalesProduct.CheckedChanged += new System.EventHandler(this.chkSalesProduct_CheckedChanged);
             this.chkSalesProduct.Enter += new System.EventHandler(this.ChkSalesProduct_Enter);
             this.chkSalesProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChkSalesProduct_KeyDown);
             this.chkSalesProduct.Leave += new System.EventHandler(this.ChkSalesProduct_Leave);
@@ -3705,28 +3729,6 @@
             this.btnImageUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
-            // 
-            // txtSalesPICode
-            // 
-            this.txtSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSalesPICode.Location = new System.Drawing.Point(160, 130);
-            this.txtSalesPICode.MaxLength = 100;
-            this.txtSalesPICode.Name = "txtSalesPICode";
-            this.txtSalesPICode.Size = new System.Drawing.Size(381, 27);
-            this.txtSalesPICode.TabIndex = 7;
-            // 
-            // txtDSalesPICode
-            // 
-            this.txtDSalesPICode.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDSalesPICode.Enabled = false;
-            this.txtDSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSalesPICode.Location = new System.Drawing.Point(15, 130);
-            this.txtDSalesPICode.Name = "txtDSalesPICode";
-            this.txtDSalesPICode.ReadOnly = true;
-            this.txtDSalesPICode.Size = new System.Drawing.Size(145, 27);
-            this.txtDSalesPICode.TabIndex = 111111164;
-            this.txtDSalesPICode.TabStop = false;
-            this.txtDSalesPICode.Text = "Sales P.I Code";
             // 
             // CP_Product
             // 
