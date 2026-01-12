@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_CP_Product_RateCategory_Enable : ReportClass {
+    public class RPT_CP_Product_RateCategory_MinQty : ReportClass {
         
-        public RPT_CP_Product_RateCategory_Enable() {
+        public RPT_CP_Product_RateCategory_MinQty() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_CP_Product_RateCategory_Enable.rpt";
+                return "RPT_CP_Product_RateCategory_MinQty.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_CP_Product_RateCategory_Enable.rpt";
+                return "ROMS.Reports.RPT_CP_Product_RateCategory_MinQty.rpt";
             }
             set {
                 // Do nothing
@@ -290,9 +290,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_CP_Product_RateCategory_Enable : Component, ICachedReport {
+    public class CachedRPT_CP_Product_RateCategory_MinQty : Component, ICachedReport {
         
-        public CachedRPT_CP_Product_RateCategory_Enable() {
+        public CachedRPT_CP_Product_RateCategory_MinQty() {
         }
         
         [Browsable(false)]
@@ -329,7 +329,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_CP_Product_RateCategory_Enable rpt = new RPT_CP_Product_RateCategory_Enable();
+            RPT_CP_Product_RateCategory_MinQty rpt = new RPT_CP_Product_RateCategory_MinQty();
             rpt.Site = this.Site;
             return rpt;
         }

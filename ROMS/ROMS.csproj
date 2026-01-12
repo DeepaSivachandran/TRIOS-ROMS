@@ -155,6 +155,12 @@
     <Compile Include="Authentication.designer.cs">
       <DependentUpon>Authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_BulkUpdate_Offset_Value.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_BulkUpdate_Offset_Value.designer.cs">
+      <DependentUpon>CP_BulkUpdate_Offset_Value.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_BulkUpdate_Minqty.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -557,6 +563,13 @@
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Category_Location.cs">
       <DependentUpon>RPT_CP_Product_Category_Location.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Product_RateCategory_MinQty.cs">
+      <DependentUpon>RPT_CP_Product_RateCategory_MinQty.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -3962,6 +3975,9 @@
     <EmbeddedResource Include="Authentication.resx">
       <DependentUpon>Authentication.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_BulkUpdate_Offset_Value.resx">
+      <DependentUpon>CP_BulkUpdate_Offset_Value.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_BulkUpdate_Minqty.resx">
       <DependentUpon>CP_BulkUpdate_Minqty.cs</DependentUpon>
     </EmbeddedResource>
@@ -4872,6 +4888,11 @@
     <Content Include="Reports\RPT_CP_Rackgroup_Rack_Product_StockTaking.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Rackgroup_Rack_Product_StockTaking.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Product_RateCategory_MinQty.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_RateCategory_MinQty.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_ShelfLife.rpt">

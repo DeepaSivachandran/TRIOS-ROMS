@@ -228,6 +228,7 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmBulkOffsetUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -713,7 +714,8 @@ namespace ROMS
             this.tsmProductClassification,
             this.tsmProductApproval,
             this.tsmBulkRateCategory,
-            this.tsmBulkupdateProductminbulk});
+            this.tsmBulkupdateProductminbulk,
+            this.tsmBulkOffsetUpdate});
             this.tsmProductMenu.Name = "tsmProductMenu";
             this.tsmProductMenu.Size = new System.Drawing.Size(225, 22);
             this.tsmProductMenu.Text = "Product";
@@ -810,7 +812,7 @@ namespace ROMS
             // tsmCategory
             // 
             this.tsmCategory.Name = "tsmCategory";
-            this.tsmCategory.Size = new System.Drawing.Size(180, 22);
+            this.tsmCategory.Size = new System.Drawing.Size(166, 22);
             this.tsmCategory.Text = "Employee Category";
             this.tsmCategory.Visible = false;
             this.tsmCategory.Click += new System.EventHandler(this.tsmCategory_Click);
@@ -818,7 +820,7 @@ namespace ROMS
             // tsmEmployeee
             // 
             this.tsmEmployeee.Name = "tsmEmployeee";
-            this.tsmEmployeee.Size = new System.Drawing.Size(180, 22);
+            this.tsmEmployeee.Size = new System.Drawing.Size(166, 22);
             this.tsmEmployeee.Text = "Employee";
             this.tsmEmployeee.Visible = false;
             this.tsmEmployeee.Click += new System.EventHandler(this.TsmEmployee_Click);
@@ -2029,6 +2031,13 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
+            // tsmBulkOffsetUpdate
+            // 
+            this.tsmBulkOffsetUpdate.Name = "tsmBulkOffsetUpdate";
+            this.tsmBulkOffsetUpdate.Size = new System.Drawing.Size(264, 22);
+            this.tsmBulkOffsetUpdate.Text = "Bulk Update Offset";
+            this.tsmBulkOffsetUpdate.Click += new System.EventHandler(this.tsmBulkOffsetUpdate_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2259,5 +2268,6 @@ namespace ROMS
         internal System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.ToolStripMenuItem tsmBulkRateCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmBulkupdateProductminbulk;
+        private System.Windows.Forms.ToolStripMenuItem tsmBulkOffsetUpdate;
     }
 }

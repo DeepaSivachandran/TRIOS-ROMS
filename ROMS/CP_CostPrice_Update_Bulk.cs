@@ -1224,8 +1224,7 @@ namespace ROMS
             try
             {
                 if (grdProducts.CurrentCell.OwningColumn.Name == "Last Rate" || grdProducts.CurrentCell.OwningColumn.Name == "Live Rate")
-                {
-
+                { 
                     e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);

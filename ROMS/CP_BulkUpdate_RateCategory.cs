@@ -30,7 +30,7 @@ namespace ROMS
         public int varUpDownKeyProduct = 0, varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyLocation = 0, varUpDownKeySupplier = 0, varUpDownKeyBrand = 0;
 
         Boolean BlnSearchImageYN = false;
-         
+
         DataTable objdtProducts = new DataTable();
         DataTable objdtProductsMapping = new DataTable();
         private ToolTip tpFiledtype = new ToolTip();
@@ -41,8 +41,8 @@ namespace ROMS
             {
                 chkboxRatelist.DrawMode = DrawMode.Normal;
 
-                udfnList(); 
-                udfnDropdownbind(); 
+                udfnList();
+                udfnDropdownbind();
 
                 pnlRateCategory.Visible = false;
             }
@@ -127,7 +127,7 @@ namespace ROMS
                             chkboxRatelist.DisplayMember = "MST_DisplayText";
                             chkboxRatelist.ValueMember = "MSTID";
                             chkboxRatelist.DataSource = objDTable.Tables[0];
-                             
+
                             DataView dv = objDTable.Tables[0].DefaultView;
                             dv.RowFilter = "MSTID <> 0";
 
@@ -143,12 +143,12 @@ namespace ROMS
                         }
                     }
                 }
-                 
+
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbprinttype, "", "MST_DisplayText", "MSTID");
-                objDataBind = null; 
-                cmbCategory.SelectedIndex = 0; 
+                objDataBind = null;
+                cmbCategory.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -583,9 +583,10 @@ namespace ROMS
                 btnMappingView.Enabled = true;
                 txtMappingGroup.Enabled = true;
                 txtMappingSubGroup.Enabled = true;
-                txtBrand.Enabled = true; 
+                txtBrand.Enabled = true;
 
-                if (varId != 0) { 
+                if (varId != 0)
+                {
                     txtMappingGroup.ReadOnly = true;
                     txtMappingSubGroup.ReadOnly = true;
                     txtBrand.ReadOnly = true;
@@ -595,8 +596,9 @@ namespace ROMS
                     txtBrand.Enabled = false;
                 }
 
-                if (varViewType == 2) { 
-                 btnMappingsave.Text= "Approve";
+                if (varViewType == 2)
+                {
+                    btnMappingsave.Text = "Approve";
                 }
                 else
                 {
@@ -620,9 +622,9 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 objdtProducts = null;
                 udfnInitProduct();
-                SPDataService objspservice = new SPDataService(); 
+                SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnRateCategoryList(objMR_Product);
-                 
+
                 if (objDs.Tables[0].Rows.Count != 0)
                 {
                     //for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
@@ -647,11 +649,11 @@ namespace ROMS
                     grdProducts.Columns["PRODUCTID"].Visible = false;
                     grdProducts.Columns["Product Name in Tamil"].Width = 450;
 
-                    grdProducts.Columns["S.No."].ReadOnly = true; 
+                    grdProducts.Columns["S.No."].ReadOnly = true;
                     grdProducts.Columns["P.I Code"].ReadOnly = true;
                     grdProducts.Columns["Product Name in Tamil"].ReadOnly = true;
                     grdProducts.Columns["Unit"].ReadOnly = true;
-                    grdProducts.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F); 
+                    grdProducts.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                     grdProducts.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
                 else
@@ -750,7 +752,7 @@ namespace ROMS
             //    objError.WriteFile(ex);
             //}
         }
-         
+
 
 
         private void txtMappingSubGroup_Enter(object sender, EventArgs e)
@@ -1165,7 +1167,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-          
+
 
         private void btnMappingView_Click(object sender, EventArgs e)
         {
@@ -1425,12 +1427,12 @@ namespace ROMS
         public void udfnClose()
         {
             try
-            { 
+            {
                 DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     windowControl?.TriggerClose();
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -1566,7 +1568,7 @@ namespace ROMS
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -1576,8 +1578,8 @@ namespace ROMS
         private void btnMappingsave_Click(object sender, EventArgs e)
         {
             try
-            { 
-                    udfnSave();  
+            {
+                udfnSave();
                 //if (saveFlag == 0)
                 //{
                 //    SPDataService objDataService = new SPDataService();
@@ -1598,7 +1600,7 @@ namespace ROMS
             }
         }
 
-         
+
 
 
         private void DGV_FilterGroup_KeyDown(object sender, KeyEventArgs e)
@@ -1681,7 +1683,7 @@ namespace ROMS
 
                 //DataTable saveobjDtProducts = objdtProducts.DefaultView.ToTable(false, "PRODUCTID", "Last Rate", "Live Rate");
                 //DataTable rowTable = (DataTable)grdProducts.DataSource;
-                DataTable saveobjDtProducts= null;
+                DataTable saveobjDtProducts = null;
                 DataTable dt = grdProducts.DataSource as DataTable;
                 if (dt != null)
                 {
@@ -1721,7 +1723,8 @@ namespace ROMS
                         btnMappingsave.Focus();
                     }
                 }
-                else {
+                else
+                {
 
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(48);
@@ -1746,7 +1749,7 @@ namespace ROMS
             }
         }
 
-          
+
 
         private void DGV_FilterSubgroup_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1843,7 +1846,7 @@ namespace ROMS
         {
 
         }
-         
+
 
         private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -1894,7 +1897,8 @@ namespace ROMS
 
         private void btnConditionClear_Click(object sender, EventArgs e)
         {
-            try { 
+            try
+            {
                 for (int i = 0; i < chkboxRatelist.Items.Count; i++)
                 {
                     chkboxRatelist.SetItemChecked(i, false);
@@ -1926,7 +1930,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                { 
+                {
                     txtMappingGroup.Focus();
                 }
             }
@@ -1962,7 +1966,9 @@ namespace ROMS
         private void cmbCategory_Enter(object sender, EventArgs e)
         {
 
-            try { cmbCategory.BackColor = Color.LemonChiffon;
+            try
+            {
+                cmbCategory.BackColor = Color.LemonChiffon;
 
                 pnlRateCategory.Visible = false;
             }
@@ -1989,7 +1995,8 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                { txtRateCategory.Focus();  
+                {
+                    txtRateCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -2055,7 +2062,7 @@ namespace ROMS
                     varUpDownKeyBrand = 0;
                     DGV_FilterBrand.DataSource = null;
                     DGV_FilterBrand.Visible = false;
-                } 
+                }
                 if (skipControl != txtProductName)
                 {
                     varUpDownKeyProduct = 0;
@@ -2297,7 +2304,8 @@ namespace ROMS
                 {
                     btnMappingView.Focus();
                 }
-            }    catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
@@ -2321,11 +2329,11 @@ namespace ROMS
         {
             try
             {
-                if ( e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    btnMappingView.Focus(); 
+                    btnMappingView.Focus();
                 }
-             }
+            }
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -2476,6 +2484,19 @@ namespace ROMS
             }
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnPrint();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterBrand_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -2606,7 +2627,7 @@ namespace ROMS
                 varGroupId = 0;
                 varSubGroupId = 0;
                 varBrandId = 0;
-                lblProductcode.Text="0";        
+                lblProductcode.Text = "0";
                 cmbCategory.SelectedIndex = 0;
                 txtRateCategory.Text = "";
                 lblRateId.Text = "0";
@@ -2614,7 +2635,7 @@ namespace ROMS
                 {
                     chkboxRatelist.SetItemChecked(i, false);
                 }
-                cmbprinttype.SelectedIndex = 0; 
+                cmbprinttype.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -2640,14 +2661,15 @@ namespace ROMS
                 int prid = (int)row["PRODUCTID"];
 
                 for (int i = 1; i < colCount; i++)
-                { 
+                {
 
                     if (sourceTable.Columns[i].ColumnName != "S.No." &&
                         sourceTable.Columns[i].ColumnName != "P.I Code" &&
                         sourceTable.Columns[i].ColumnName != "Unit" &&
                         sourceTable.Columns[i].ColumnName != "Product Name in Tamil" &&
                         sourceTable.Columns[i].ColumnName != "PRODUCTID"
-                        ) {
+                        )
+                    {
                         DataRow newRow = result.NewRow();
                         newRow[0] = prid;
                         newRow[1] = sourceTable.Columns[i].ColumnName;
@@ -2720,6 +2742,87 @@ namespace ROMS
             finally
             {
                 txtProductName.Focus();
+            }
+        }
+
+        public void udfnPrint()
+        {
+            try
+            {
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                string varConcernName = "--All--", varGroupName = "--All--",
+                varSubGroupName = "--All--", varProductCategoryName = "--All--", varBrandName = "--All--", varRateCategoryName = "--All--",
+                varPrintTypeName = "--All--", varProductName = "--All--";
+
+                if (cmbConcern.SelectedIndex > 0)
+                {
+                    varConcernName = cmbConcern.Text;
+                }
+                if (txtMappingGroup.Text.Trim() != "")
+                {
+                    varGroupName = txtMappingGroup.Text.Trim();
+                }
+                if (txtMappingSubGroup.Text.Trim() != "")
+                {
+                    varSubGroupName = txtMappingSubGroup.Text.Trim();
+                }
+                if (cmbCategory.SelectedIndex > 0)
+                {
+                    varProductCategoryName = cmbCategory.Text;
+                }
+                if (txtBrand.Text.Trim() != "")
+                {
+                    varBrandName = txtBrand.Text.Trim();
+                }
+                if (txtRateCategory.Text.Trim() != "")
+                {
+                    varRateCategoryName = txtRateCategory.Text.Trim();
+                }
+                varPrintTypeName = cmbprinttype.Text;
+
+                if (txtProductName.Text.Trim() != "")
+                {
+                    varProductName = txtProductName.Text.Trim();
+                }
+
+
+
+
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_RateCategory_Enable.rpt");
+
+                objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                objBillreport.SetParameterValue("paragroup", varGroupId);
+                objBillreport.SetParameterValue("paraSubgroup", varSubGroupId);
+                objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProductcode.Text));
+                objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                objBillreport.SetParameterValue("paraRateCategorys", Convert.ToInt32(cmbCategory.SelectedValue));
+                objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbprinttype.SelectedValue));
+
+                objBillreport.SetParameterValue("paraConcernName", varConcernName);
+                objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                objBillreport.SetParameterValue("paraSubGroupName", varSubGroupName);
+                objBillreport.SetParameterValue("paraProductCategoryName", varProductCategoryName);
+                objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                objBillreport.SetParameterValue("paraRateCategoryName", varRateCategoryName);
+                objBillreport.SetParameterValue("paraPrintTypeName", varPrintTypeName);
+                objBillreport.SetParameterValue("paraProductName", varProductName);
+
+
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+
+                MainForm.objReportLoad = new ReportLoad();
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                MainForm.objReportLoad.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }

@@ -11,8 +11,8 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    // Name  : venkat    Date : 07/01/2026
-    public partial class CP_BulkUpdate_Minqty : Form
+    // Name  : venkat    Date : 12/01/2026
+    public partial class CP_BulkUpdate_Offset_Value : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
@@ -54,7 +54,7 @@ namespace ROMS
         DataSet objDSProduct = new DataSet();
         public int pbMenuFlag = 0;
 
-        public CP_BulkUpdate_Minqty()
+        public CP_BulkUpdate_Offset_Value()
         {
             InitializeComponent();
             windowControl.Initialize(tsBulkAttribute, this);
@@ -253,7 +253,23 @@ namespace ROMS
 
         private void grdProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            try
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    int vscroll = grdProducts.FirstDisplayedScrollingRowIndex;
+                    int hscroll = grdProducts.FirstDisplayedScrollingColumnIndex;
+                    int varProId = Convert.ToInt16(grdProducts.SelectedRows[0].Cells["PRODUCTID"].Value);
+                    udfnGetProductCount(varProId);
+                    grdProducts.FirstDisplayedScrollingRowIndex = vscroll;
+                    grdProducts.FirstDisplayedScrollingColumnIndex = hscroll;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void grdProducts_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -502,7 +518,7 @@ namespace ROMS
                 grdProducts.DataSource = null;
                 grdHeaderview.DataSource = null;
                 MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 3;
+                objMR_Product.paraViewType = 6;
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubGroupId;
                 objMR_Product.paraBrandID = varBrandId;
@@ -512,9 +528,8 @@ namespace ROMS
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 objMR_Product.paraRateCategorys = lblRateId.Text;
                 objMR_Product.paraPrintType = Convert.ToInt32(cmbprinttype.SelectedValue);
-
+                objMR_Product.paraOffSetType = Convert.ToInt32(cmbOffsetType.SelectedValue);
                 objMR_Product.paraId = varId;
-
                 DataSet objDs = new DataSet();
                 objdtProducts = null;
                 udfnInitProduct();
@@ -527,14 +542,11 @@ namespace ROMS
                     {
                         column.Width = 100;
                     }
-
                     grdHeaderview.Columns[1].Width = 30;
                     grdHeaderview.Columns["S.No."].Width = 50;
                     grdHeaderview.Columns["P.I Code"].Width = 140;
                     grdHeaderview.Columns["Unit"].Width = 60;
                     grdHeaderview.Columns["Product Name in Tamil"].Width = 450;
-
-
                     grdHeaderview.Columns["S.No."].HeaderText = "";
                     grdHeaderview.Columns["P.I Code"].HeaderText = "";
                     grdHeaderview.Columns["Unit"].HeaderText = "";
@@ -1439,7 +1451,8 @@ namespace ROMS
         }
 
         private void grdProducts_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        { 
+        {
+
             try
             {  
                     e.Control.KeyPress -= udfnHandleKeyPress;
@@ -1457,8 +1470,7 @@ namespace ROMS
         {
             try
             {
-                //if (grdProducts.CurrentCell.OwningColumn.Name == "Last Rate" || grdProducts.CurrentCell.OwningColumn.Name == "Live Rate")
-                //{
+                 
                     if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {
                         e.Handled = true;
@@ -1468,8 +1480,7 @@ namespace ROMS
                     //if ((e.KeyChar == '.'))
                     {
                         e.Handled = true;
-                    }
-                //}
+                    } 
             }
             catch (Exception ex)
             {
@@ -1483,8 +1494,7 @@ namespace ROMS
             try
             {
                 int varDecimal = 2;
-               
-
+                
                     //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     //{
                     //    e.Handled = true;  // Disallow the character
@@ -1514,8 +1524,7 @@ namespace ROMS
                         {
                             e.Handled = true;
                         }
-                    }
-
+                    } 
             }
             catch (Exception ex)
             {
@@ -1673,9 +1682,10 @@ namespace ROMS
 
 
                 MR_Product obj = new MR_Product();
-                obj.paraViewType = 4;  
+                obj.paraViewType = 5;  
                 obj.paraOriginator = varoriginator;
                 obj.paraBulkMinqty = saveobjDtProducts; 
+                obj.paraOffSetType = Convert.ToInt32(cmbOffsetType.SelectedValue); 
 
                 SPDataService objspservice = new SPDataService();  
                 string varResult = objspservice.udfnRateCategory(obj);
@@ -2534,11 +2544,19 @@ namespace ROMS
 
         }
 
-        private void grdProducts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void grdProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
+         
         private void DGV_FilterSubgroup_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -2771,6 +2789,7 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbprinttype, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=149 ", "MST_DisplayText,MSTID", cmbOffsetType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbCategory.SelectedIndex = 0;
             }
