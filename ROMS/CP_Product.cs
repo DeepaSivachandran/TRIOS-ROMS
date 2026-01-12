@@ -9484,6 +9484,26 @@ namespace ROMS
             }
         }
 
+        private void txtDSubGroup_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSubgroupType_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDGroup_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDBrand_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void LvVerified1_DoubleClick(object sender, EventArgs e)
         {
             try
