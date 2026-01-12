@@ -3144,11 +3144,13 @@ namespace ROMS
                 {
                     cmbConcern.Enabled = false;
                     txtStockLocation.Enabled = false;
+                    cmbTransactionType.Enabled = false;
                 }
                 else
                 {
                     cmbConcern.Enabled = true;
                     txtStockLocation.Enabled = true;
+                    cmbTransactionType.Enabled = true;
                     txtStockLocation.BackColor = Color.White;
                     cmbConcern.BackColor = Color.White;
 
@@ -3319,6 +3321,7 @@ namespace ROMS
                 {
                     txtStockLocation.Enabled = false;
                     cmbConcern.Enabled = false;
+                    cmbTransactionType.Enabled = false;
                     txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
                 }
                 else
@@ -3326,6 +3329,7 @@ namespace ROMS
                     //txtStockLocation.BackColor =Color.White;
                     cmbConcern.Enabled = true;
                     txtStockLocation.Enabled = true;
+                    cmbTransactionType.Enabled = true;
                 }
                 //DGV_inward.Sort(DGV_inward.Columns["clmpicode"], ListSortDirection.Ascending);
 
