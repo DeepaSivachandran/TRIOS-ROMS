@@ -1204,7 +1204,11 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    cmbStatus.Focus();
+                    if (cmbStatus.Enabled == true)
+                    {
+                        cmbStatus.Focus();
+                    }
+                    else { btnView.Focus(); }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1277,7 +1281,11 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        if (cmbStatus.Enabled == true)
+                        {
+                            cmbStatus.Focus();
+                        }
+                        else { btnView.Focus(); }
                     }
                 }
             }
