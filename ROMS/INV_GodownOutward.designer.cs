@@ -146,7 +146,7 @@
             this.btnAdd.Location = new System.Drawing.Point(1258, 41);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(25, 24);
-            this.btnAdd.TabIndex = 7;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             this.btnAdd.Enter += new System.EventHandler(this.btnAdd_Enter);
@@ -159,7 +159,7 @@
             this.btnConversion.Location = new System.Drawing.Point(1217, 36);
             this.btnConversion.Name = "btnConversion";
             this.btnConversion.Size = new System.Drawing.Size(35, 35);
-            this.btnConversion.TabIndex = 6;
+            this.btnConversion.TabIndex = 7;
             this.btnConversion.UseVisualStyleBackColor = true;
             this.btnConversion.Click += new System.EventHandler(this.btnConversion_Click);
             this.btnConversion.Enter += new System.EventHandler(this.btnConversion_Enter);
@@ -945,7 +945,7 @@
             this.cmbReason.Location = new System.Drawing.Point(1063, 40);
             this.cmbReason.Name = "cmbReason";
             this.cmbReason.Size = new System.Drawing.Size(148, 27);
-            this.cmbReason.TabIndex = 111111176;
+            this.cmbReason.TabIndex = 6;
             this.cmbReason.Enter += new System.EventHandler(this.cmbReason_Enter);
             this.cmbReason.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReason_KeyDown);
             this.cmbReason.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReason_KeyPress);
