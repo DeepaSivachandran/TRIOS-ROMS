@@ -832,10 +832,10 @@ namespace ROMS
                 { txtDay.Text = 0 + txtDay.Text.Trim(); }
                 if (txtMonth.Text.Length == 1)
                 { txtMonth.Text = 0 + txtMonth.Text.Trim(); }
-                string varMfdDate = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
+                string varExpDate = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
                 MR_Master objMR_Master = new MR_Master();
-                objMR_Master.ViewType = 15;
-                objMR_Master.paraDate = varMfdDate;
+                objMR_Master.ViewType = 33;
+                objMR_Master.paraDate = varExpDate;
                 objMR_Master.paraProductId = Convert.ToInt32(lblProduct.Text);
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
