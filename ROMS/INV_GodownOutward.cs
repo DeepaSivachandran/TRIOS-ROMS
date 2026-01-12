@@ -1117,6 +1117,7 @@ namespace ROMS
                     txtStockQuantity.Text = "";
                     txtOutwardQuantity.Text = "";
                     lblQuantity.Text = "";
+                    udfnDefaultHeader(); 
                     udfnSLocationValid();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();

@@ -805,6 +805,8 @@ namespace ROMS
             {
                 if (varUpDownKeySLocation == 0)
                 {
+                    if (txtDLocation.Text == "")
+                    { udfnDefaultHeader(); }
                     if (txtDLocation.Text != "" || txtProductNamePICode.Text != "")
                     {
                         txtProductNamePICode.Text = "";
@@ -816,6 +818,7 @@ namespace ROMS
                         txtQuantity.Text = "";
                         txtDLocation.Text = "";
                         cmbDRack.Text = "None"; cmbDRack.Enabled = false;
+                        udfnDefaultHeader();
                     }
                     if (txtSLocation.Text.Length > 0)
                     {
@@ -3290,10 +3293,10 @@ namespace ROMS
                         grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         grdChildStock.DataSource = objDs.Tables[1];
-                        grdChildStock.Columns["Location"].Width = 80;
-                        grdChildStock.Columns["Quantity"].Width = 70;
-                        grdChildStock.Columns["S.No."].Width = 30;
-                        grdChildStock.Columns["Product"].Width = 250;
+                        grdChildStock.Columns["Location"].Width = 90;
+                        grdChildStock.Columns["Quantity"].Width = 90;
+                        grdChildStock.Columns["S.No."].Width = 50;
+                        grdChildStock.Columns["Product"].Width = 200;
                         grdChildStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdChildStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
@@ -3330,14 +3333,14 @@ namespace ROMS
                 grdParentStock.DataSource = dt;
                 grdChildStock.DataSource = dtch;
                 grdParentStock.Columns["S.No."].Width = 50;
-                grdParentStock.Columns["Location"].Width = 150;
+                grdParentStock.Columns["Location"].Width = 100;
                 grdParentStock.Columns["Quantity"].Width = 70;
                 grdParentStock.Columns["S.No."].Width = 50;
                 grdParentStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                grdChildStock.Columns["Location"].Width = 130;
+                grdChildStock.Columns["Location"].Width = 100;
                 grdChildStock.Columns["Quantity"].Width = 70;
-                grdChildStock.Columns["S.No."].Width = 40;
+                grdChildStock.Columns["S.No."].Width = 50;
                 grdChildStock.Columns["Product"].Width = 200;
             }
             catch (Exception ex)

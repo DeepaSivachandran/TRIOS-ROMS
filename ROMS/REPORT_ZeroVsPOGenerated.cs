@@ -1725,7 +1725,14 @@ namespace ROMS
             {
                 varUpDownKeyBrand = 1;
                 udfnBrandAutocomplete();
-                cmbStatus.Focus();
+                if (cmbStatus.Enabled == true)
+                {
+                    cmbStatus.Focus();
+                }
+                else
+                {
+                    btnView.Focus();
+                }
             }
             catch (Exception ex)
             {
