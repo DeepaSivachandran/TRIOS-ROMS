@@ -319,7 +319,7 @@
             this.textBox11.BackColor = System.Drawing.SystemColors.Control;
             this.textBox11.Enabled = false;
             this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox11.Location = new System.Drawing.Point(215, 485);
+            this.textBox11.Location = new System.Drawing.Point(215, 456);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(64, 28);
@@ -332,7 +332,7 @@
             this.textBox10.BackColor = System.Drawing.SystemColors.Control;
             this.textBox10.Enabled = false;
             this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox10.Location = new System.Drawing.Point(215, 456);
+            this.textBox10.Location = new System.Drawing.Point(215, 485);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(64, 28);
