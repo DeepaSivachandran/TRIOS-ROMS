@@ -1152,8 +1152,8 @@ namespace ROMS
                     string varMfdDateValue = "", varExpiryDateValue = "";
                     if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
                     {
-                        varMfdDateValue = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
-                        varExpiryDateValue = Convert.ToString(txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text);
+                        varExpiryDateValue = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
+                        varMfdDateValue = Convert.ToString(txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text);
                     }
                     //Title Name Pass only Used Reports
                     int varLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
