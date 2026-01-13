@@ -569,11 +569,18 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_RateCategory_MinQty.cs">
-      <DependentUpon>RPT_CP_Product_RateCategory_MinQty.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_Product_RateCategory_MinQty.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_Product_RateCategory_Offset.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_Product_RateCategory_Offset.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_CP_Rackgroup_Product_Barcode_PICode.cs">
       <DependentUpon>RPT_CP_Rackgroup_Product_Barcode_PICode.rpt</DependentUpon>
@@ -4890,11 +4897,16 @@
       <LastGenOutput>RPT_CP_Rackgroup_Rack_Product_StockTaking.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Reports\RPT_CP_Product_RateCategory_MinQty.rpt">
+    <EmbeddedResource Include="Reports\RPT_CP_Product_RateCategory_MinQty.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Product_RateCategory_MinQty.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_CP_Product_RateCategory_Offset.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Product_RateCategory_Offset.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_ShelfLife.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Rackgroup_ShelfLife.cs</LastGenOutput>

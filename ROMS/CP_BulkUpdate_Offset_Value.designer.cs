@@ -54,6 +54,8 @@
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbOffsetType = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblProductcode = new System.Windows.Forms.Label();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
@@ -117,8 +119,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errSpl = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cmbOffsetType = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.tsBulkAttribute.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -205,6 +205,29 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
+            // cmbOffsetType
+            // 
+            this.cmbOffsetType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.cmbOffsetType.FormattingEnabled = true;
+            this.cmbOffsetType.Location = new System.Drawing.Point(4, 35);
+            this.cmbOffsetType.Name = "cmbOffsetType";
+            this.cmbOffsetType.Size = new System.Drawing.Size(102, 27);
+            this.cmbOffsetType.TabIndex = 0;
+            this.cmbOffsetType.Enter += new System.EventHandler(this.cmbOffsetType_Enter);
+            this.cmbOffsetType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOffsetType_KeyDown);
+            this.cmbOffsetType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbOffsetType_KeyPress);
+            this.cmbOffsetType.Leave += new System.EventHandler(this.cmbOffsetType_Leave);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.label7.Location = new System.Drawing.Point(4, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 20);
+            this.label7.TabIndex = 111111238;
+            this.label7.Text = "Offset";
+            // 
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -213,7 +236,7 @@
             this.btnPrint.Location = new System.Drawing.Point(1285, 34);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(33, 29);
-            this.btnPrint.TabIndex = 111111233;
+            this.btnPrint.TabIndex = 10;
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -236,7 +259,7 @@
             this.cmbConcern.Location = new System.Drawing.Point(117, 35);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(87, 27);
-            this.cmbConcern.TabIndex = 0;
+            this.cmbConcern.TabIndex = 1;
             this.cmbConcern.Enter += new System.EventHandler(this.cmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbConcern_KeyPress);
@@ -269,7 +292,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.label1.Location = new System.Drawing.Point(111, 11);
+            this.label1.Location = new System.Drawing.Point(117, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 20);
             this.label1.TabIndex = 111111229;
@@ -293,7 +316,7 @@
             this.txtBrand.MaxLength = 50;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(122, 27);
-            this.txtBrand.TabIndex = 3;
+            this.txtBrand.TabIndex = 4;
             this.txtBrand.TextChanged += new System.EventHandler(this.txtBrand_TextChanged);
             this.txtBrand.Enter += new System.EventHandler(this.txtBrand_Enter);
             this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBrand_KeyDown);
@@ -630,7 +653,6 @@
             this.grdProducts.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.grdProducts_CellBeginEdit);
             this.grdProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProducts_CellContentClick);
             this.grdProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.grdProducts_CellFormatting);
-            this.grdProducts.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProducts_CellValueChanged);
             this.grdProducts.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdProducts_CurrentCellDirtyStateChanged);
             this.grdProducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdProducts_DataBindingComplete);
             this.grdProducts.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdProducts_EditingControlShowing);
@@ -706,7 +728,7 @@
             this.txtRateCategory.Name = "txtRateCategory";
             this.txtRateCategory.ReadOnly = true;
             this.txtRateCategory.Size = new System.Drawing.Size(122, 27);
-            this.txtRateCategory.TabIndex = 6;
+            this.txtRateCategory.TabIndex = 7;
             this.txtRateCategory.Enter += new System.EventHandler(this.txtRateCategory_Enter);
             this.txtRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRateCategory_KeyDown);
             this.txtRateCategory.Leave += new System.EventHandler(this.txtRateCategory_Leave);
@@ -729,7 +751,7 @@
             // 
             this.lblDESubGroup.AutoSize = true;
             this.lblDESubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDESubGroup.Location = new System.Drawing.Point(330, 11);
+            this.lblDESubGroup.Location = new System.Drawing.Point(334, 11);
             this.lblDESubGroup.Name = "lblDESubGroup";
             this.lblDESubGroup.Size = new System.Drawing.Size(112, 20);
             this.lblDESubGroup.TabIndex = 29;
@@ -766,7 +788,7 @@
             this.cmbprinttype.Location = new System.Drawing.Point(1171, 34);
             this.cmbprinttype.Name = "cmbprinttype";
             this.cmbprinttype.Size = new System.Drawing.Size(102, 27);
-            this.cmbprinttype.TabIndex = 7;
+            this.cmbprinttype.TabIndex = 9;
             this.cmbprinttype.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbprinttype_KeyDown);
             this.cmbprinttype.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbprinttype_KeyPress);
             this.cmbprinttype.Leave += new System.EventHandler(this.cmbprinttype_Leave);
@@ -785,7 +807,7 @@
             // 
             this.lblDEGroup.AutoSize = true;
             this.lblDEGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDEGroup.Location = new System.Drawing.Point(210, 12);
+            this.lblDEGroup.Location = new System.Drawing.Point(215, 12);
             this.lblDEGroup.Name = "lblDEGroup";
             this.lblDEGroup.Size = new System.Drawing.Size(88, 20);
             this.lblDEGroup.TabIndex = 27;
@@ -798,7 +820,7 @@
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(280, 27);
-            this.txtProductName.TabIndex = 4;
+            this.txtProductName.TabIndex = 5;
             this.txtProductName.TextChanged += new System.EventHandler(this.txtProductName_TextChanged);
             this.txtProductName.Enter += new System.EventHandler(this.txtProductName_Enter);
             this.txtProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProductName_KeyDown);
@@ -808,7 +830,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(450, 12);
+            this.label4.Location = new System.Drawing.Point(453, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 20);
             this.label4.TabIndex = 958804;
@@ -818,7 +840,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.label2.Location = new System.Drawing.Point(584, 12);
+            this.label2.Location = new System.Drawing.Point(586, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 20);
             this.label2.TabIndex = 111111231;
@@ -831,7 +853,7 @@
             this.txtMappingSubGroup.MaxLength = 50;
             this.txtMappingSubGroup.Name = "txtMappingSubGroup";
             this.txtMappingSubGroup.Size = new System.Drawing.Size(108, 27);
-            this.txtMappingSubGroup.TabIndex = 2;
+            this.txtMappingSubGroup.TabIndex = 3;
             this.txtMappingSubGroup.TextChanged += new System.EventHandler(this.txtMappingSubGroup_TextChanged);
             this.txtMappingSubGroup.Enter += new System.EventHandler(this.txtMappingSubGroup_Enter);
             this.txtMappingSubGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMappingSubGroup_KeyDown);
@@ -844,7 +866,7 @@
             this.cmbCategory.Location = new System.Drawing.Point(877, 35);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(102, 27);
-            this.cmbCategory.TabIndex = 5;
+            this.cmbCategory.TabIndex = 6;
             this.cmbCategory.Enter += new System.EventHandler(this.cmbCategory_Enter);
             this.cmbCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCategory_KeyDown);
             this.cmbCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCategory_KeyPress);
@@ -868,7 +890,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.label3.Location = new System.Drawing.Point(876, 12);
+            this.label3.Location = new System.Drawing.Point(877, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 20);
             this.label3.TabIndex = 111111230;
@@ -881,7 +903,7 @@
             this.txtMappingGroup.MaxLength = 50;
             this.txtMappingGroup.Name = "txtMappingGroup";
             this.txtMappingGroup.Size = new System.Drawing.Size(108, 27);
-            this.txtMappingGroup.TabIndex = 1;
+            this.txtMappingGroup.TabIndex = 2;
             this.txtMappingGroup.TextChanged += new System.EventHandler(this.txtMappingGroup_TextChanged);
             this.txtMappingGroup.Enter += new System.EventHandler(this.txtMappingGroup_Enter);
             this.txtMappingGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMappingGroup_KeyDown);
@@ -1124,25 +1146,6 @@
             // errSpl
             // 
             this.errSpl.ContainerControl = this;
-            // 
-            // cmbOffsetType
-            // 
-            this.cmbOffsetType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.cmbOffsetType.FormattingEnabled = true;
-            this.cmbOffsetType.Location = new System.Drawing.Point(4, 35);
-            this.cmbOffsetType.Name = "cmbOffsetType";
-            this.cmbOffsetType.Size = new System.Drawing.Size(102, 27);
-            this.cmbOffsetType.TabIndex = 111111237;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.label7.Location = new System.Drawing.Point(4, 11);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 20);
-            this.label7.TabIndex = 111111238;
-            this.label7.Text = "Offset";
             // 
             // CP_BulkUpdate_Offset_Value
             // 

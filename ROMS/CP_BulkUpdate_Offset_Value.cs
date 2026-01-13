@@ -43,6 +43,7 @@ namespace ROMS
                 udfnDropdownbind();
 
                 pnlRateCategory.Visible = false;
+                this.ActiveControl = cmbOffsetType;
             }
             catch (Exception ex)
             {
@@ -2541,14 +2542,9 @@ namespace ROMS
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void grdProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
             try
             {
-                
+                udfnPrint();
             }
             catch (Exception ex)
             {
@@ -2557,6 +2553,45 @@ namespace ROMS
             }
         }
          
+
+        private void cmbOffsetType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try { e.Handled = true; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOffsetType_Leave(object sender, EventArgs e)
+        {
+            try { cmbOffsetType.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOffsetType_Enter(object sender, EventArgs e)
+        {
+            try { cmbOffsetType.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbOffsetType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter )
+            {
+                cmbConcern.Focus();
+            }
+        }
+
         private void DGV_FilterSubgroup_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -2847,6 +2882,88 @@ namespace ROMS
                 }
 
                 pnlRateCategory.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void udfnPrint()
+        {
+            try
+            {
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                string varConcernName = "--All--", varGroupName = "--All--",
+                varSubGroupName = "--All--", varProductCategoryName = "--All--", varBrandName = "--All--", varRateCategoryName = "--All--",
+                varPrintTypeName = "--All--", varProductName = "--All--";
+
+                if (cmbConcern.SelectedIndex > 0)
+                {
+                    varConcernName = cmbConcern.Text;
+                }
+                if (txtMappingGroup.Text.Trim() != "")
+                {
+                    varGroupName = txtMappingGroup.Text.Trim();
+                }
+                if (txtMappingSubGroup.Text.Trim() != "")
+                {
+                    varSubGroupName = txtMappingSubGroup.Text.Trim();
+                }
+                if (cmbCategory.SelectedIndex > 0)
+                {
+                    varProductCategoryName = cmbCategory.Text;
+                }
+                if (txtBrand.Text.Trim() != "")
+                {
+                    varBrandName = txtBrand.Text.Trim();
+                }
+                if (txtRateCategory.Text.Trim() != "")
+                {
+                    varRateCategoryName = txtRateCategory.Text.Trim();
+                }
+                varPrintTypeName = cmbprinttype.Text;
+
+                if (txtProductName.Text.Trim() != "")
+                {
+                    varProductName = txtProductName.Text.Trim();
+                }
+
+
+
+
+                objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_RateCategory_Offset.rpt");
+
+                objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                objBillreport.SetParameterValue("paragroup", varGroupId);
+                objBillreport.SetParameterValue("paraSubgroup", varSubGroupId);
+                objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProductcode.Text));
+                objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                objBillreport.SetParameterValue("paraRateCategorys", Convert.ToInt32(cmbCategory.SelectedValue));
+                objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbprinttype.SelectedValue));
+                objBillreport.SetParameterValue("paraOffSetType", Convert.ToInt32(cmbOffsetType.SelectedValue));
+
+                objBillreport.SetParameterValue("paraConcernName", varConcernName);
+                objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                objBillreport.SetParameterValue("paraSubGroupName", varSubGroupName);
+                objBillreport.SetParameterValue("paraProductCategoryName", varProductCategoryName);
+                objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                objBillreport.SetParameterValue("paraRateCategoryName", varRateCategoryName);
+                objBillreport.SetParameterValue("paraPrintTypeName", varPrintTypeName);
+                objBillreport.SetParameterValue("paraProductName", varProductName);
+
+
+                objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                objValidation.CrySqlConnection(objBillreport);
+
+                MainForm.objReportLoad = new ReportLoad();
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                MainForm.objReportLoad.ShowDialog();
             }
             catch (Exception ex)
             {
