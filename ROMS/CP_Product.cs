@@ -95,6 +95,7 @@ namespace ROMS
         private ToolTip tpPurHSN = new ToolTip();
         private ToolTip tpSalesHSN = new ToolTip();
         private ToolTip tpVerifier = new ToolTip();
+        private ToolTip tpSalesPICode = new ToolTip();
         private List<string> imagePaths = new List<string>();
 
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
@@ -1076,6 +1077,17 @@ namespace ROMS
                 {
                     cmbStockTakken.BackColor = Color.White;
                 }
+                if (chkSalesProduct.Checked == true)
+                {
+                    if (txtSalesPICode.Text.Trim() == "")
+                    {
+                        errItems.SetError(txtSalesPICode, "Please enter sales pi code");
+                        txtSalesPICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSalesPICode.ShowAlways = true;
+                        tpSalesPICode.Show("Please enter sales pi code", txtSalesPICode, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -1383,7 +1395,7 @@ namespace ROMS
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
-                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue),"",""
+                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim()
                     );
 
                     objspdservice.CloseConnection();
@@ -10367,6 +10379,7 @@ namespace ROMS
                             varcompanyid = Convert.ToInt32(objDS.Tables[0].Rows[0]["COMPANY"].ToString());
                             //cmbConcern.Enabled = false;//
                             txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
+                            txtSalesPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SalesPICODE"].ToString().Replace("''", "'"));
                             txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
                             txtLabelNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"].ToString().Replace("''", "'"));
