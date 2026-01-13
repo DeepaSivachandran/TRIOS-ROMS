@@ -1745,7 +1745,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtItemNameEnglish.Focus();
+                    if (txtSalesPICode.Enabled == true)
+                    {
+                        txtSalesPICode.Focus();
+                    }
+                    else
+                    {
+                        txtItemNameEnglish.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -9535,9 +9542,44 @@ namespace ROMS
                 }
                 else
                 {
+                    txtSalesPICode.Text="";
                     txtSalesPICode.Enabled = false;
                     txtSalesPICode.ReadOnly = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtSalesPICode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtItemNameEnglish.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtSalesPICode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSalesPICode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
 

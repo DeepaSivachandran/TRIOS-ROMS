@@ -548,6 +548,8 @@
             this.txtSalesPICode.Size = new System.Drawing.Size(381, 27);
             this.txtSalesPICode.TabIndex = 7;
             this.txtSalesPICode.Enter += new System.EventHandler(this.txtSalesPICode_Enter);
+            this.txtSalesPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSalesPICode_KeyDown);
+            this.txtSalesPICode.Leave += new System.EventHandler(this.txtSalesPICode_Leave);
             // 
             // txtDSalesPICode
             // 
