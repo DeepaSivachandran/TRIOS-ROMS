@@ -62,6 +62,7 @@ namespace ROMS
         private ToolTip tpPicode = new ToolTip();
         private ToolTip tpPurHSN = new ToolTip();
         private ToolTip tpSalesHSN = new ToolTip();
+        private ToolTip tpSalesPICode = new ToolTip();
 
         public CP_ProductApproval()
         {
@@ -1946,7 +1947,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductEname.Focus();
+                    if (txtSalesPICode.Enabled == true)
+                    {
+                        txtSalesPICode.Focus();
+                    }
+                    else
+                    {
+                        txtProductEname.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -4820,7 +4828,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0,null, 0, 0, 0, 0, null,0,"");
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0,null, 0, 0, 0, 0, null,0,"","");
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -4879,6 +4887,48 @@ namespace ROMS
                         removeCell.ReadOnly = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtSalesPICode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSalesPICode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtSalesPICode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtProductEname.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtSalesPICode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSalesPICode.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -5676,6 +5726,7 @@ namespace ROMS
                             varComId = Convert.ToInt32(objDS.Tables[0].Rows[0]["COMPANY"]);
                             //cmbConcern.Enabled = false;
                             txtpicode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
+                            txtSalesPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SalesPICODE"].ToString().Replace("''", "'"));
                             txtProductEname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtProductTname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
                             cmbProductCategory.SelectedValue = objDS.Tables[0].Rows[0]["PRODUCTCATEGORY"].ToString();
@@ -5703,7 +5754,14 @@ namespace ROMS
                             txtHsnname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
                             txtHsncode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
                             lvHsnCode.Visible = false;
-
+                            if (Convert.ToInt32(objDS.Tables[0].Rows[0]["SalesProduct"].ToString()) == 1)
+                            {
+                                txtSalesPICode.Enabled = true;
+                            }
+                            else
+                            {
+                                txtSalesPICode.Enabled = false;
+                            }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbShelflife.Checked = true; } else { cbShelflife.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["PR_MRPflag"]) == "1") { chkMrp.Checked = true; } else { chkMrp.Checked = false; }
                             //if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
@@ -6361,7 +6419,19 @@ namespace ROMS
                     }
                 }
                 */
-                if(txtPurRack.Text.Trim()=="")
+
+                if (txtSalesPICode.Enabled == true)
+                {
+                    if (txtSalesPICode.Text.Trim() == "")
+                    {
+                        epProductApproval.SetError(txtSalesPICode, "Please enter sales pi code");
+                        txtSalesPICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSalesPICode.ShowAlways = true;
+                        tpSalesPICode.Show("Please enter sales pi code", txtSalesPICode, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (txtPurRack.Text.Trim()=="")
                 {
                     varPurRackCode = "0";
                 }
@@ -6378,7 +6448,7 @@ namespace ROMS
                     0, Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupCode), Convert.ToInt32(varBrand),
                     Convert.ToInt32(cmbUnit.SelectedValue), 0, "", Convert.ToInt32(varPurLocationCode), Convert.ToInt32(varSalesLocationCode)
                     , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), Convert.ToInt32(cmbBatchGen.SelectedValue), varshelflife, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(varHsnCode), 0, shelflife,
-                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "", 0, 0, 0, 0, varMRPflag, dtProductHSN, "", "","",0,"", "", 0, 0, 0,null, 0, 0, 0, 0, null,0,"");
+                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "", 0, 0, 0, 0, varMRPflag, dtProductHSN, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", txtSalesPICode.Text.Trim());
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
