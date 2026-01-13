@@ -204,6 +204,7 @@ namespace ROMS
         public static CP_Transportlist objCP_Transportlist;
         public static CP_MarriageHall objCP_MarriageHall;
         public static CP_MarriageHalllist objCP_MarriageHalllist;
+        public static CP_LockItems objCP_LockItems;
 
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
@@ -4627,6 +4628,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_ZeroVsPOGenerated, "REPORT_ZeroVsPOGenerated", 80209);
+                PbCurrentForm = "7.3.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmLockItems_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_LockItems, "CP_LockItems", 80209);
                 PbCurrentForm = "7.3.2";
             }
             catch (Exception ex)
