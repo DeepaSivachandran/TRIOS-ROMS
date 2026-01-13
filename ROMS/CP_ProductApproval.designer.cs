@@ -177,18 +177,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dpPurEffectiveFrom = new System.Windows.Forms.DateTimePicker();
             this.txtPURHSNName = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCategory = new System.Windows.Forms.Button();
-            this.grdCategory = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.grdBrand = new System.Windows.Forms.DataGridView();
-            this.btnBrand = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.grdSubgroup = new System.Windows.Forms.DataGridView();
-            this.btnSubgroup = new System.Windows.Forms.Button();
-            this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnImgClose = new System.Windows.Forms.Button();
+            this.btnImageUpdate = new System.Windows.Forms.Button();
+            this.pnlImageContainer = new System.Windows.Forms.Panel();
+            this.pnlControls = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbSaturation = new System.Windows.Forms.TrackBar();
+            this.tbBrightness = new System.Windows.Forms.TrackBar();
+            this.tbContrast = new System.Windows.Forms.TrackBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tsMenu = new System.Windows.Forms.ToolStrip();
             this.tsbReset = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
@@ -206,18 +207,19 @@
             this.tsbBrowse = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColour = new System.Windows.Forms.ToolStripButton();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlImageContainer = new System.Windows.Forms.Panel();
-            this.pnlControls = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbSaturation = new System.Windows.Forms.TrackBar();
-            this.tbBrightness = new System.Windows.Forms.TrackBar();
-            this.tbContrast = new System.Windows.Forms.TrackBar();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnImageUpdate = new System.Windows.Forms.Button();
-            this.btnImgClose = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCategory = new System.Windows.Forms.Button();
+            this.grdCategory = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grdBrand = new System.Windows.Forms.DataGridView();
+            this.btnBrand = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grdSubgroup = new System.Windows.Forms.DataGridView();
+            this.btnSubgroup = new System.Windows.Forms.Button();
+            this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtSalesPICode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -231,6 +233,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSalesHSN)).BeginInit();
             this.grbPurchaseHSN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurHSN)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.pnlImageContainer.SuspendLayout();
+            this.pnlControls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSaturation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbBrightness)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbContrast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tsMenu.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCategory)).BeginInit();
@@ -238,14 +248,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdBrand)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubgroup)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            this.tsMenu.SuspendLayout();
-            this.pnlImageContainer.SuspendLayout();
-            this.pnlControls.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbSaturation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbBrightness)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbContrast)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // epProductApproval
@@ -324,7 +326,7 @@
             this.columnHeader25});
             this.lvSalesRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSalesRack.HideSelection = false;
-            this.lvSalesRack.Location = new System.Drawing.Point(403, 210);
+            this.lvSalesRack.Location = new System.Drawing.Point(403, 249);
             this.lvSalesRack.Name = "lvSalesRack";
             this.lvSalesRack.Size = new System.Drawing.Size(276, 108);
             this.lvSalesRack.TabIndex = 166;
@@ -359,7 +361,7 @@
             this.columnHeader21});
             this.lvPurRack.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvPurRack.HideSelection = false;
-            this.lvPurRack.Location = new System.Drawing.Point(403, 183);
+            this.lvPurRack.Location = new System.Drawing.Point(404, 222);
             this.lvPurRack.Name = "lvPurRack";
             this.lvPurRack.Size = new System.Drawing.Size(275, 106);
             this.lvPurRack.TabIndex = 165;
@@ -398,7 +400,7 @@
             this.columnHeader9});
             this.lvSubGroup.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSubGroup.HideSelection = false;
-            this.lvSubGroup.Location = new System.Drawing.Point(403, 135);
+            this.lvSubGroup.Location = new System.Drawing.Point(404, 168);
             this.lvSubGroup.Name = "lvSubGroup";
             this.lvSubGroup.Size = new System.Drawing.Size(389, 112);
             this.lvSubGroup.TabIndex = 162;
@@ -442,6 +444,8 @@
             // 
             // grplocation
             // 
+            this.grplocation.Controls.Add(this.txtSalesPICode);
+            this.grplocation.Controls.Add(this.textBox8);
             this.grplocation.Controls.Add(this.DGV_FilterSalesLocation);
             this.grplocation.Controls.Add(this.DGV_FilterPurLocation);
             this.grplocation.Controls.Add(this.txtSubgroup);
@@ -519,7 +523,7 @@
             this.DGV_FilterSalesLocation.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterSalesLocation.EnableHeadersVisualStyles = false;
             this.DGV_FilterSalesLocation.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSalesLocation.Location = new System.Drawing.Point(134, 210);
+            this.DGV_FilterSalesLocation.Location = new System.Drawing.Point(135, 244);
             this.DGV_FilterSalesLocation.Name = "DGV_FilterSalesLocation";
             this.DGV_FilterSalesLocation.ReadOnly = true;
             this.DGV_FilterSalesLocation.RowHeadersVisible = false;
@@ -563,7 +567,7 @@
             this.DGV_FilterPurLocation.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FilterPurLocation.EnableHeadersVisualStyles = false;
             this.DGV_FilterPurLocation.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterPurLocation.Location = new System.Drawing.Point(135, 183);
+            this.DGV_FilterPurLocation.Location = new System.Drawing.Point(135, 216);
             this.DGV_FilterPurLocation.Name = "DGV_FilterPurLocation";
             this.DGV_FilterPurLocation.ReadOnly = true;
             this.DGV_FilterPurLocation.RowHeadersVisible = false;
@@ -582,11 +586,11 @@
             // txtSubgroup
             // 
             this.txtSubgroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubgroup.Location = new System.Drawing.Point(398, 102);
+            this.txtSubgroup.Location = new System.Drawing.Point(398, 135);
             this.txtSubgroup.MaxLength = 100;
             this.txtSubgroup.Name = "txtSubgroup";
             this.txtSubgroup.Size = new System.Drawing.Size(164, 27);
-            this.txtSubgroup.TabIndex = 4;
+            this.txtSubgroup.TabIndex = 5;
             this.txtSubgroup.TextChanged += new System.EventHandler(this.TxtSubgroup_TextChanged);
             this.txtSubgroup.Enter += new System.EventHandler(this.TxtSubgroup_Enter);
             this.txtSubgroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSubgroup_KeyDown);
@@ -595,10 +599,10 @@
             // chkMrp
             // 
             this.chkMrp.AutoSize = true;
-            this.chkMrp.Location = new System.Drawing.Point(4, 240);
+            this.chkMrp.Location = new System.Drawing.Point(4, 273);
             this.chkMrp.Name = "chkMrp";
             this.chkMrp.Size = new System.Drawing.Size(53, 24);
-            this.chkMrp.TabIndex = 13;
+            this.chkMrp.TabIndex = 14;
             this.chkMrp.Text = "MRP";
             this.chkMrp.UseVisualStyleBackColor = true;
             this.chkMrp.Enter += new System.EventHandler(this.ChkMrp_Enter);
@@ -613,7 +617,7 @@
             this.columnHeader3});
             this.lvBrand.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvBrand.HideSelection = false;
-            this.lvBrand.Location = new System.Drawing.Point(134, 156);
+            this.lvBrand.Location = new System.Drawing.Point(135, 189);
             this.lvBrand.Name = "lvBrand";
             this.lvBrand.Size = new System.Drawing.Size(295, 84);
             this.lvBrand.TabIndex = 162;
@@ -638,7 +642,7 @@
             // textBox5
             // 
             this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(286, 210);
+            this.textBox5.Location = new System.Drawing.Point(286, 243);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(111, 27);
@@ -650,7 +654,7 @@
             this.cmbGst.Enabled = false;
             this.cmbGst.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGst.FormattingEnabled = true;
-            this.cmbGst.Location = new System.Drawing.Point(276, 325);
+            this.cmbGst.Location = new System.Drawing.Point(276, 474);
             this.cmbGst.Name = "cmbGst";
             this.cmbGst.Size = new System.Drawing.Size(74, 27);
             this.cmbGst.TabIndex = 16;
@@ -664,7 +668,7 @@
             // txtHsnname
             // 
             this.txtHsnname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsnname.Location = new System.Drawing.Point(96, 324);
+            this.txtHsnname.Location = new System.Drawing.Point(96, 473);
             this.txtHsnname.MaxLength = 100;
             this.txtHsnname.Name = "txtHsnname";
             this.txtHsnname.Size = new System.Drawing.Size(114, 27);
@@ -680,7 +684,7 @@
             this.textBox12.BackColor = System.Drawing.SystemColors.Control;
             this.textBox12.Enabled = false;
             this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox12.Location = new System.Drawing.Point(31, 351);
+            this.textBox12.Location = new System.Drawing.Point(31, 500);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(64, 27);
@@ -694,7 +698,7 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.Enabled = false;
             this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox3.Location = new System.Drawing.Point(31, 324);
+            this.textBox3.Location = new System.Drawing.Point(31, 473);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(65, 27);
@@ -706,10 +710,10 @@
             // cmbBatchGen
             // 
             this.cmbBatchGen.FormattingEnabled = true;
-            this.cmbBatchGen.Location = new System.Drawing.Point(398, 210);
+            this.cmbBatchGen.Location = new System.Drawing.Point(398, 243);
             this.cmbBatchGen.Name = "cmbBatchGen";
             this.cmbBatchGen.Size = new System.Drawing.Size(164, 27);
-            this.cmbBatchGen.TabIndex = 12;
+            this.cmbBatchGen.TabIndex = 13;
             this.cmbBatchGen.Enter += new System.EventHandler(this.CmbBatchGen_Enter);
             this.cmbBatchGen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchGen_KeyDown);
             this.cmbBatchGen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBatchGen_KeyPress);
@@ -720,7 +724,7 @@
             this.textBox18.BackColor = System.Drawing.SystemColors.Control;
             this.textBox18.Enabled = false;
             this.textBox18.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox18.Location = new System.Drawing.Point(211, 325);
+            this.textBox18.Location = new System.Drawing.Point(211, 474);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
             this.textBox18.Size = new System.Drawing.Size(65, 27);
@@ -733,7 +737,7 @@
             // 
             this.txtHsncode.Enabled = false;
             this.txtHsncode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtHsncode.Location = new System.Drawing.Point(95, 351);
+            this.txtHsncode.Location = new System.Drawing.Point(95, 500);
             this.txtHsncode.MaxLength = 100;
             this.txtHsncode.Name = "txtHsncode";
             this.txtHsncode.ReadOnly = true;
@@ -753,7 +757,7 @@
             this.columnHeader31});
             this.lvHsnCode.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvHsnCode.HideSelection = false;
-            this.lvHsnCode.Location = new System.Drawing.Point(6, 302);
+            this.lvHsnCode.Location = new System.Drawing.Point(6, 451);
             this.lvHsnCode.Name = "lvHsnCode";
             this.lvHsnCode.Size = new System.Drawing.Size(373, 100);
             this.lvHsnCode.TabIndex = 167;
@@ -780,7 +784,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDStatus.Location = new System.Drawing.Point(286, 237);
+            this.txtDStatus.Location = new System.Drawing.Point(286, 270);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(111, 27);
@@ -793,10 +797,10 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInactive);
-            this.pnlStatus.Location = new System.Drawing.Point(398, 237);
+            this.pnlStatus.Location = new System.Drawing.Point(398, 270);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(164, 27);
-            this.pnlStatus.TabIndex = 17;
+            this.pnlStatus.TabIndex = 18;
             this.pnlStatus.TabStop = true;
             this.pnlStatus.Enter += new System.EventHandler(this.PnlStatus_Enter);
             // 
@@ -835,10 +839,10 @@
             // 
             this.txtSalesLocation.BackColor = System.Drawing.SystemColors.Window;
             this.txtSalesLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSalesLocation.Location = new System.Drawing.Point(135, 183);
+            this.txtSalesLocation.Location = new System.Drawing.Point(135, 216);
             this.txtSalesLocation.Name = "txtSalesLocation";
             this.txtSalesLocation.Size = new System.Drawing.Size(151, 27);
-            this.txtSalesLocation.TabIndex = 9;
+            this.txtSalesLocation.TabIndex = 10;
             this.txtSalesLocation.TextChanged += new System.EventHandler(this.TxtSalesLocation_TextChanged);
             this.txtSalesLocation.Enter += new System.EventHandler(this.TxtSalesLocation_Enter);
             this.txtSalesLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesLocation_KeyDown);
@@ -849,7 +853,7 @@
             this.textBox13.BackColor = System.Drawing.SystemColors.Control;
             this.textBox13.Enabled = false;
             this.textBox13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox13.Location = new System.Drawing.Point(4, 183);
+            this.textBox13.Location = new System.Drawing.Point(4, 216);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(131, 27);
@@ -862,7 +866,7 @@
             this.textBox4.BackColor = System.Drawing.SystemColors.Control;
             this.textBox4.Enabled = false;
             this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox4.Location = new System.Drawing.Point(286, 183);
+            this.textBox4.Location = new System.Drawing.Point(286, 216);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(111, 27);
@@ -873,10 +877,10 @@
             // cbShelflife
             // 
             this.cbShelflife.AutoSize = true;
-            this.cbShelflife.Location = new System.Drawing.Point(58, 240);
+            this.cbShelflife.Location = new System.Drawing.Point(58, 273);
             this.cbShelflife.Name = "cbShelflife";
             this.cbShelflife.Size = new System.Drawing.Size(77, 24);
-            this.cbShelflife.TabIndex = 14;
+            this.cbShelflife.TabIndex = 15;
             this.cbShelflife.Text = "Shelf Life";
             this.cbShelflife.UseVisualStyleBackColor = true;
             this.cbShelflife.CheckedChanged += new System.EventHandler(this.CbShelflife_CheckedChanged);
@@ -886,11 +890,11 @@
             // 
             // txtSelfLife
             // 
-            this.txtSelfLife.Location = new System.Drawing.Point(135, 237);
+            this.txtSelfLife.Location = new System.Drawing.Point(135, 270);
             this.txtSelfLife.MaxLength = 3;
             this.txtSelfLife.Name = "txtSelfLife";
             this.txtSelfLife.Size = new System.Drawing.Size(58, 27);
-            this.txtSelfLife.TabIndex = 15;
+            this.txtSelfLife.TabIndex = 16;
             this.txtSelfLife.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSelfLife.Visible = false;
             this.txtSelfLife.Enter += new System.EventHandler(this.TxtSelfLife_Enter);
@@ -901,10 +905,10 @@
             // cmbPeriod
             // 
             this.cmbPeriod.FormattingEnabled = true;
-            this.cmbPeriod.Location = new System.Drawing.Point(193, 237);
+            this.cmbPeriod.Location = new System.Drawing.Point(193, 270);
             this.cmbPeriod.Name = "cmbPeriod";
             this.cmbPeriod.Size = new System.Drawing.Size(92, 27);
-            this.cmbPeriod.TabIndex = 16;
+            this.cmbPeriod.TabIndex = 17;
             this.cmbPeriod.Visible = false;
             this.cmbPeriod.Enter += new System.EventHandler(this.CmbPeriod_Enter);
             this.cmbPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPeriod_KeyDown);
@@ -916,7 +920,7 @@
             this.textBox16.BackColor = System.Drawing.SystemColors.Control;
             this.textBox16.Enabled = false;
             this.textBox16.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox16.Location = new System.Drawing.Point(286, 102);
+            this.textBox16.Location = new System.Drawing.Point(286, 135);
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
             this.textBox16.Size = new System.Drawing.Size(111, 27);
@@ -928,7 +932,7 @@
             // 
             this.txtpicode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpicode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtpicode.Location = new System.Drawing.Point(135, 21);
+            this.txtpicode.Location = new System.Drawing.Point(135, 26);
             this.txtpicode.MaxLength = 100;
             this.txtpicode.Name = "txtpicode";
             this.txtpicode.Size = new System.Drawing.Size(427, 27);
@@ -940,11 +944,11 @@
             // txtBrand
             // 
             this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBrand.Location = new System.Drawing.Point(135, 129);
+            this.txtBrand.Location = new System.Drawing.Point(135, 162);
             this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(151, 27);
-            this.txtBrand.TabIndex = 5;
+            this.txtBrand.TabIndex = 6;
             this.txtBrand.TextChanged += new System.EventHandler(this.TxtBrand_TextChanged);
             this.txtBrand.Enter += new System.EventHandler(this.TxtBrand_Enter);
             this.txtBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBrand_KeyDown_1);
@@ -954,10 +958,10 @@
             // 
             this.cmbBatchno.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBatchno.FormattingEnabled = true;
-            this.cmbBatchno.Location = new System.Drawing.Point(135, 210);
+            this.cmbBatchno.Location = new System.Drawing.Point(135, 243);
             this.cmbBatchno.Name = "cmbBatchno";
             this.cmbBatchno.Size = new System.Drawing.Size(151, 27);
-            this.cmbBatchno.TabIndex = 11;
+            this.cmbBatchno.TabIndex = 12;
             this.cmbBatchno.SelectedIndexChanged += new System.EventHandler(this.CmbBatchno_SelectedIndexChanged);
             this.cmbBatchno.Enter += new System.EventHandler(this.CmbBatchno_Enter);
             this.cmbBatchno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBatchno_KeyDown);
@@ -968,10 +972,10 @@
             // 
             this.txtPurRack.BackColor = System.Drawing.SystemColors.Window;
             this.txtPurRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPurRack.Location = new System.Drawing.Point(398, 156);
+            this.txtPurRack.Location = new System.Drawing.Point(398, 189);
             this.txtPurRack.Name = "txtPurRack";
             this.txtPurRack.Size = new System.Drawing.Size(164, 27);
-            this.txtPurRack.TabIndex = 8;
+            this.txtPurRack.TabIndex = 9;
             this.txtPurRack.TextChanged += new System.EventHandler(this.TxtPurRack_TextChanged);
             this.txtPurRack.Enter += new System.EventHandler(this.TxtPurRack_Enter);
             this.txtPurRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurRack_KeyDown);
@@ -981,10 +985,10 @@
             // 
             this.txtPurLocation.BackColor = System.Drawing.SystemColors.Window;
             this.txtPurLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtPurLocation.Location = new System.Drawing.Point(135, 156);
+            this.txtPurLocation.Location = new System.Drawing.Point(135, 189);
             this.txtPurLocation.Name = "txtPurLocation";
             this.txtPurLocation.Size = new System.Drawing.Size(151, 27);
-            this.txtPurLocation.TabIndex = 7;
+            this.txtPurLocation.TabIndex = 8;
             this.txtPurLocation.TextChanged += new System.EventHandler(this.TxtPurLocation_TextChanged);
             this.txtPurLocation.Enter += new System.EventHandler(this.TxtPurLocation_Enter);
             this.txtPurLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPurLocation_KeyDown);
@@ -995,7 +999,7 @@
             this.txtDBrand.BackColor = System.Drawing.SystemColors.Control;
             this.txtDBrand.Enabled = false;
             this.txtDBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDBrand.Location = new System.Drawing.Point(286, 129);
+            this.txtDBrand.Location = new System.Drawing.Point(286, 162);
             this.txtDBrand.Name = "txtDBrand";
             this.txtDBrand.ReadOnly = true;
             this.txtDBrand.Size = new System.Drawing.Size(111, 27);
@@ -1008,7 +1012,7 @@
             this.textBox7.BackColor = System.Drawing.SystemColors.Control;
             this.textBox7.Enabled = false;
             this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox7.Location = new System.Drawing.Point(286, 156);
+            this.textBox7.Location = new System.Drawing.Point(286, 189);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(111, 27);
@@ -1021,7 +1025,7 @@
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(4, 211);
+            this.textBox6.Location = new System.Drawing.Point(4, 244);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(131, 27);
@@ -1034,7 +1038,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox2.Location = new System.Drawing.Point(4, 156);
+            this.textBox2.Location = new System.Drawing.Point(4, 189);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(131, 27);
@@ -1047,7 +1051,7 @@
             this.txtDSubGroup.BackColor = System.Drawing.SystemColors.Control;
             this.txtDSubGroup.Enabled = false;
             this.txtDSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDSubGroup.Location = new System.Drawing.Point(4, 129);
+            this.txtDSubGroup.Location = new System.Drawing.Point(4, 162);
             this.txtDSubGroup.Name = "txtDSubGroup";
             this.txtDSubGroup.ReadOnly = true;
             this.txtDSubGroup.Size = new System.Drawing.Size(131, 27);
@@ -1059,10 +1063,10 @@
             // 
             this.cmbProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductCategory.FormattingEnabled = true;
-            this.cmbProductCategory.Location = new System.Drawing.Point(135, 102);
+            this.cmbProductCategory.Location = new System.Drawing.Point(135, 135);
             this.cmbProductCategory.Name = "cmbProductCategory";
             this.cmbProductCategory.Size = new System.Drawing.Size(151, 27);
-            this.cmbProductCategory.TabIndex = 3;
+            this.cmbProductCategory.TabIndex = 4;
             this.cmbProductCategory.SelectedIndexChanged += new System.EventHandler(this.CmbProductCategory_SelectedIndexChanged);
             this.cmbProductCategory.Enter += new System.EventHandler(this.CmbProductCategory_Enter);
             this.cmbProductCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbProductCategory_KeyDown);
@@ -1074,7 +1078,7 @@
             this.txtDProductCategory.BackColor = System.Drawing.SystemColors.Control;
             this.txtDProductCategory.Enabled = false;
             this.txtDProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDProductCategory.Location = new System.Drawing.Point(4, 102);
+            this.txtDProductCategory.Location = new System.Drawing.Point(4, 135);
             this.txtDProductCategory.Name = "txtDProductCategory";
             this.txtDProductCategory.ReadOnly = true;
             this.txtDProductCategory.Size = new System.Drawing.Size(131, 27);
@@ -1085,11 +1089,11 @@
             // txtProductEname
             // 
             this.txtProductEname.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductEname.Location = new System.Drawing.Point(135, 48);
+            this.txtProductEname.Location = new System.Drawing.Point(135, 81);
             this.txtProductEname.MaxLength = 100;
             this.txtProductEname.Name = "txtProductEname";
             this.txtProductEname.Size = new System.Drawing.Size(427, 27);
-            this.txtProductEname.TabIndex = 1;
+            this.txtProductEname.TabIndex = 2;
             this.txtProductEname.Enter += new System.EventHandler(this.TxtProductEname_Enter);
             this.txtProductEname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductEname_KeyDown);
             this.txtProductEname.Leave += new System.EventHandler(this.TxtProductEname_Leave);
@@ -1098,10 +1102,10 @@
             // 
             this.txtProductTname.BackColor = System.Drawing.SystemColors.Window;
             this.txtProductTname.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductTname.Location = new System.Drawing.Point(135, 75);
+            this.txtProductTname.Location = new System.Drawing.Point(135, 108);
             this.txtProductTname.Name = "txtProductTname";
             this.txtProductTname.Size = new System.Drawing.Size(427, 27);
-            this.txtProductTname.TabIndex = 2;
+            this.txtProductTname.TabIndex = 3;
             this.txtProductTname.Enter += new System.EventHandler(this.TxtProductTname_Enter);
             this.txtProductTname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProductTname_KeyDown);
             this.txtProductTname.Leave += new System.EventHandler(this.TxtProductTname_Leave);
@@ -1111,7 +1115,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox1.Location = new System.Drawing.Point(4, 75);
+            this.textBox1.Location = new System.Drawing.Point(4, 108);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(131, 27);
@@ -1124,7 +1128,7 @@
             this.txtDPurchaseLocation.BackColor = System.Drawing.SystemColors.Control;
             this.txtDPurchaseLocation.Enabled = false;
             this.txtDPurchaseLocation.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDPurchaseLocation.Location = new System.Drawing.Point(4, 21);
+            this.txtDPurchaseLocation.Location = new System.Drawing.Point(4, 26);
             this.txtDPurchaseLocation.Name = "txtDPurchaseLocation";
             this.txtDPurchaseLocation.ReadOnly = true;
             this.txtDPurchaseLocation.Size = new System.Drawing.Size(131, 27);
@@ -1137,7 +1141,7 @@
             this.txtDShop.BackColor = System.Drawing.SystemColors.Control;
             this.txtDShop.Enabled = false;
             this.txtDShop.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtDShop.Location = new System.Drawing.Point(4, 48);
+            this.txtDShop.Location = new System.Drawing.Point(4, 81);
             this.txtDShop.Name = "txtDShop";
             this.txtDShop.ReadOnly = true;
             this.txtDShop.Size = new System.Drawing.Size(131, 27);
@@ -1149,10 +1153,10 @@
             // 
             this.txtSalesRack.BackColor = System.Drawing.SystemColors.Window;
             this.txtSalesRack.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSalesRack.Location = new System.Drawing.Point(398, 183);
+            this.txtSalesRack.Location = new System.Drawing.Point(398, 216);
             this.txtSalesRack.Name = "txtSalesRack";
             this.txtSalesRack.Size = new System.Drawing.Size(164, 27);
-            this.txtSalesRack.TabIndex = 10;
+            this.txtSalesRack.TabIndex = 11;
             this.txtSalesRack.TextChanged += new System.EventHandler(this.TxtSalesRack_TextChanged);
             this.txtSalesRack.Enter += new System.EventHandler(this.TxtSalesRack_Enter);
             this.txtSalesRack.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSalesRack_KeyDown);
@@ -1162,10 +1166,10 @@
             // 
             this.cmbUnit.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(398, 129);
+            this.cmbUnit.Location = new System.Drawing.Point(398, 162);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(164, 27);
-            this.cmbUnit.TabIndex = 6;
+            this.cmbUnit.TabIndex = 7;
             this.cmbUnit.SelectedIndexChanged += new System.EventHandler(this.CmbUnit_SelectedIndexChanged);
             this.cmbUnit.Enter += new System.EventHandler(this.CmbUnit_Enter);
             this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbUnit_KeyDown);
@@ -1682,6 +1686,336 @@
             this.txtPURHSNName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPURHSNName_KeyDown);
             this.txtPURHSNName.Leave += new System.EventHandler(this.TxtPURHSNName_Leave);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnImgClose);
+            this.tabPage3.Controls.Add(this.btnImageUpdate);
+            this.tabPage3.Controls.Add(this.pnlImageContainer);
+            this.tabPage3.Controls.Add(this.flowLayoutPanel1);
+            this.tabPage3.Controls.Add(this.tsMenu);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1334, 607);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Product Image";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnImgClose
+            // 
+            this.btnImgClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnImgClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnImgClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImgClose.Location = new System.Drawing.Point(1251, 576);
+            this.btnImgClose.Name = "btnImgClose";
+            this.btnImgClose.Size = new System.Drawing.Size(74, 29);
+            this.btnImgClose.TabIndex = 42;
+            this.btnImgClose.Text = "Close";
+            this.btnImgClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImgClose.UseVisualStyleBackColor = true;
+            this.btnImgClose.Click += new System.EventHandler(this.btnImgClose_Click);
+            // 
+            // btnImageUpdate
+            // 
+            this.btnImageUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnImageUpdate.Image = global::ROMS.Properties.Resources.save;
+            this.btnImageUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImageUpdate.Location = new System.Drawing.Point(1132, 576);
+            this.btnImageUpdate.Name = "btnImageUpdate";
+            this.btnImageUpdate.Size = new System.Drawing.Size(113, 29);
+            this.btnImageUpdate.TabIndex = 19;
+            this.btnImageUpdate.Text = "Update";
+            this.btnImageUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImageUpdate.UseVisualStyleBackColor = true;
+            this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
+            // 
+            // pnlImageContainer
+            // 
+            this.pnlImageContainer.AutoScroll = true;
+            this.pnlImageContainer.Controls.Add(this.pnlControls);
+            this.pnlImageContainer.Controls.Add(this.pictureBox1);
+            this.pnlImageContainer.Location = new System.Drawing.Point(442, 33);
+            this.pnlImageContainer.Name = "pnlImageContainer";
+            this.pnlImageContainer.Size = new System.Drawing.Size(756, 540);
+            this.pnlImageContainer.TabIndex = 18;
+            // 
+            // pnlControls
+            // 
+            this.pnlControls.Controls.Add(this.label5);
+            this.pnlControls.Controls.Add(this.label6);
+            this.pnlControls.Controls.Add(this.label7);
+            this.pnlControls.Controls.Add(this.tbSaturation);
+            this.pnlControls.Controls.Add(this.tbBrightness);
+            this.pnlControls.Controls.Add(this.tbContrast);
+            this.pnlControls.Location = new System.Drawing.Point(3, 3);
+            this.pnlControls.Name = "pnlControls";
+            this.pnlControls.Size = new System.Drawing.Size(750, 74);
+            this.pnlControls.TabIndex = 5;
+            this.pnlControls.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(564, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 20);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Saturation";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(350, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Contrast";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(121, 48);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Brightness";
+            // 
+            // tbSaturation
+            // 
+            this.tbSaturation.Location = new System.Drawing.Point(499, 3);
+            this.tbSaturation.Maximum = 50;
+            this.tbSaturation.Minimum = -50;
+            this.tbSaturation.Name = "tbSaturation";
+            this.tbSaturation.Size = new System.Drawing.Size(197, 45);
+            this.tbSaturation.TabIndex = 4;
+            this.tbSaturation.Scroll += new System.EventHandler(this.tbSaturation_Scroll);
+            // 
+            // tbBrightness
+            // 
+            this.tbBrightness.Location = new System.Drawing.Point(57, 3);
+            this.tbBrightness.Maximum = 50;
+            this.tbBrightness.Minimum = -50;
+            this.tbBrightness.Name = "tbBrightness";
+            this.tbBrightness.Size = new System.Drawing.Size(197, 45);
+            this.tbBrightness.TabIndex = 2;
+            this.tbBrightness.Scroll += new System.EventHandler(this.tbBrightness_Scroll);
+            // 
+            // tbContrast
+            // 
+            this.tbContrast.Location = new System.Drawing.Point(280, 3);
+            this.tbContrast.Maximum = 50;
+            this.tbContrast.Minimum = -50;
+            this.tbContrast.Name = "tbContrast";
+            this.tbContrast.Size = new System.Drawing.Size(197, 45);
+            this.tbContrast.TabIndex = 3;
+            this.tbContrast.Scroll += new System.EventHandler(this.tbContrast_Scroll);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(750, 534);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 37);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 540);
+            this.flowLayoutPanel1.TabIndex = 15;
+            // 
+            // tsMenu
+            // 
+            this.tsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbReset,
+            this.tssEdit,
+            this.tsbRotateR,
+            this.toolStripSeparator1,
+            this.tsbRotateL,
+            this.toolStripSeparator2,
+            this.tsbZoomOut,
+            this.toolStripSeparator3,
+            this.tsbZoomIn,
+            this.toolStripSeparator4,
+            this.tsbCropImage,
+            this.toolStripSeparator5,
+            this.tsbCrop,
+            this.tsbBrowse,
+            this.toolStripSeparator6,
+            this.tsbColour});
+            this.tsMenu.Location = new System.Drawing.Point(3, 3);
+            this.tsMenu.Name = "tsMenu";
+            this.tsMenu.Size = new System.Drawing.Size(1328, 31);
+            this.tsMenu.TabIndex = 14;
+            this.tsMenu.Text = "toolStrip1";
+            // 
+            // tsbReset
+            // 
+            this.tsbReset.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbReset.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.tsbReset.Image = global::ROMS.Properties.Resources.reset;
+            this.tsbReset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbReset.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbReset.Name = "tsbReset";
+            this.tsbReset.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbReset.Size = new System.Drawing.Size(68, 28);
+            this.tsbReset.Text = "&Reset";
+            this.tsbReset.Click += new System.EventHandler(this.tsbReset_Click);
+            // 
+            // tssEdit
+            // 
+            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tssEdit.Name = "tssEdit";
+            this.tssEdit.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbRotateR
+            // 
+            this.tsbRotateR.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbRotateR.Image = global::ROMS.Properties.Resources.right_rotate;
+            this.tsbRotateR.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRotateR.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRotateR.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbRotateR.Name = "tsbRotateR";
+            this.tsbRotateR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbRotateR.Size = new System.Drawing.Size(23, 28);
+            this.tsbRotateR.Click += new System.EventHandler(this.tsbRotateR_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbRotateL
+            // 
+            this.tsbRotateL.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbRotateL.Image = global::ROMS.Properties.Resources.left_rotate;
+            this.tsbRotateL.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRotateL.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRotateL.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbRotateL.Name = "tsbRotateL";
+            this.tsbRotateL.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbRotateL.Size = new System.Drawing.Size(23, 28);
+            this.tsbRotateL.Click += new System.EventHandler(this.tsbRotateL_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbZoomOut
+            // 
+            this.tsbZoomOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbZoomOut.Image = global::ROMS.Properties.Resources.zoom_out;
+            this.tsbZoomOut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbZoomOut.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbZoomOut.Name = "tsbZoomOut";
+            this.tsbZoomOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbZoomOut.Size = new System.Drawing.Size(23, 28);
+            this.tsbZoomOut.Click += new System.EventHandler(this.tsbZoomOut_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbZoomIn
+            // 
+            this.tsbZoomIn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbZoomIn.Image = global::ROMS.Properties.Resources.zoom_in;
+            this.tsbZoomIn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbZoomIn.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbZoomIn.Name = "tsbZoomIn";
+            this.tsbZoomIn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbZoomIn.Size = new System.Drawing.Size(23, 28);
+            this.tsbZoomIn.Click += new System.EventHandler(this.tsbZoomIn_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbCropImage
+            // 
+            this.tsbCropImage.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbCropImage.Image = global::ROMS.Properties.Resources.crop;
+            this.tsbCropImage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCropImage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCropImage.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbCropImage.Name = "tsbCropImage";
+            this.tsbCropImage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbCropImage.Size = new System.Drawing.Size(23, 28);
+            this.tsbCropImage.Click += new System.EventHandler(this.tsbCropImage_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator5.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbCrop
+            // 
+            this.tsbCrop.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbCrop.Image = global::ROMS.Properties.Resources.image_edit;
+            this.tsbCrop.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCrop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCrop.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbCrop.Name = "tsbCrop";
+            this.tsbCrop.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbCrop.Size = new System.Drawing.Size(23, 28);
+            this.tsbCrop.Click += new System.EventHandler(this.tsbCrop_Click);
+            // 
+            // tsbBrowse
+            // 
+            this.tsbBrowse.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.tsbBrowse.Image = global::ROMS.Properties.Resources.folder;
+            this.tsbBrowse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbBrowse.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbBrowse.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbBrowse.Name = "tsbBrowse";
+            this.tsbBrowse.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbBrowse.Size = new System.Drawing.Size(69, 28);
+            this.tsbBrowse.Text = "Browse";
+            this.tsbBrowse.Click += new System.EventHandler(this.tsbBrowse_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator6.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbColour
+            // 
+            this.tsbColour.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbColour.Image = global::ROMS.Properties.Resources.Brightness;
+            this.tsbColour.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbColour.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbColour.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.tsbColour.Name = "tsbColour";
+            this.tsbColour.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbColour.Size = new System.Drawing.Size(24, 28);
+            this.tsbColour.Click += new System.EventHandler(this.tsbColour_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox3);
@@ -1893,335 +2227,31 @@
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
             // 
-            // tabPage3
+            // textBox8
             // 
-            this.tabPage3.Controls.Add(this.btnImgClose);
-            this.tabPage3.Controls.Add(this.btnImageUpdate);
-            this.tabPage3.Controls.Add(this.pnlImageContainer);
-            this.tabPage3.Controls.Add(this.flowLayoutPanel1);
-            this.tabPage3.Controls.Add(this.tsMenu);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1334, 607);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Product Image";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(4, 54);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(131, 27);
+            this.textBox8.TabIndex = 111111170;
+            this.textBox8.TabStop = false;
+            this.textBox8.Text = "Sales P.I Code";
             // 
-            // tsMenu
+            // txtSalesPICode
             // 
-            this.tsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbReset,
-            this.tssEdit,
-            this.tsbRotateR,
-            this.toolStripSeparator1,
-            this.tsbRotateL,
-            this.toolStripSeparator2,
-            this.tsbZoomOut,
-            this.toolStripSeparator3,
-            this.tsbZoomIn,
-            this.toolStripSeparator4,
-            this.tsbCropImage,
-            this.toolStripSeparator5,
-            this.tsbCrop,
-            this.tsbBrowse,
-            this.toolStripSeparator6,
-            this.tsbColour});
-            this.tsMenu.Location = new System.Drawing.Point(3, 3);
-            this.tsMenu.Name = "tsMenu";
-            this.tsMenu.Size = new System.Drawing.Size(1328, 31);
-            this.tsMenu.TabIndex = 14;
-            this.tsMenu.Text = "toolStrip1";
-            // 
-            // tsbReset
-            // 
-            this.tsbReset.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbReset.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.tsbReset.Image = global::ROMS.Properties.Resources.reset;
-            this.tsbReset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbReset.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbReset.Name = "tsbReset";
-            this.tsbReset.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbReset.Size = new System.Drawing.Size(68, 28);
-            this.tsbReset.Text = "&Reset";
-            this.tsbReset.Click += new System.EventHandler(this.tsbReset_Click);
-            // 
-            // tssEdit
-            // 
-            this.tssEdit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tssEdit.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.tssEdit.Name = "tssEdit";
-            this.tssEdit.Size = new System.Drawing.Size(6, 31);
-            // 
-            // tsbRotateR
-            // 
-            this.tsbRotateR.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbRotateR.Image = global::ROMS.Properties.Resources.right_rotate;
-            this.tsbRotateR.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbRotateR.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRotateR.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbRotateR.Name = "tsbRotateR";
-            this.tsbRotateR.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbRotateR.Size = new System.Drawing.Size(23, 28);
-            this.tsbRotateR.Click += new System.EventHandler(this.tsbRotateR_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
-            // 
-            // tsbRotateL
-            // 
-            this.tsbRotateL.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbRotateL.Image = global::ROMS.Properties.Resources.left_rotate;
-            this.tsbRotateL.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbRotateL.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRotateL.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbRotateL.Name = "tsbRotateL";
-            this.tsbRotateL.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbRotateL.Size = new System.Drawing.Size(23, 28);
-            this.tsbRotateL.Click += new System.EventHandler(this.tsbRotateL_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // tsbZoomOut
-            // 
-            this.tsbZoomOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbZoomOut.Image = global::ROMS.Properties.Resources.zoom_out;
-            this.tsbZoomOut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbZoomOut.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbZoomOut.Name = "tsbZoomOut";
-            this.tsbZoomOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbZoomOut.Size = new System.Drawing.Size(23, 28);
-            this.tsbZoomOut.Click += new System.EventHandler(this.tsbZoomOut_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
-            // 
-            // tsbZoomIn
-            // 
-            this.tsbZoomIn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbZoomIn.Image = global::ROMS.Properties.Resources.zoom_in;
-            this.tsbZoomIn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbZoomIn.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbZoomIn.Name = "tsbZoomIn";
-            this.tsbZoomIn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbZoomIn.Size = new System.Drawing.Size(23, 28);
-            this.tsbZoomIn.Click += new System.EventHandler(this.tsbZoomIn_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
-            // 
-            // tsbCropImage
-            // 
-            this.tsbCropImage.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbCropImage.Image = global::ROMS.Properties.Resources.crop;
-            this.tsbCropImage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbCropImage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbCropImage.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbCropImage.Name = "tsbCropImage";
-            this.tsbCropImage.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbCropImage.Size = new System.Drawing.Size(23, 28);
-            this.tsbCropImage.Click += new System.EventHandler(this.tsbCropImage_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator5.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
-            // 
-            // tsbCrop
-            // 
-            this.tsbCrop.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbCrop.Image = global::ROMS.Properties.Resources.image_edit;
-            this.tsbCrop.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbCrop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbCrop.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbCrop.Name = "tsbCrop";
-            this.tsbCrop.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbCrop.Size = new System.Drawing.Size(23, 28);
-            this.tsbCrop.Click += new System.EventHandler(this.tsbCrop_Click);
-            // 
-            // tsbBrowse
-            // 
-            this.tsbBrowse.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.tsbBrowse.Image = global::ROMS.Properties.Resources.folder;
-            this.tsbBrowse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbBrowse.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbBrowse.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbBrowse.Name = "tsbBrowse";
-            this.tsbBrowse.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbBrowse.Size = new System.Drawing.Size(69, 28);
-            this.tsbBrowse.Text = "Browse";
-            this.tsbBrowse.Click += new System.EventHandler(this.tsbBrowse_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator6.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
-            // 
-            // tsbColour
-            // 
-            this.tsbColour.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbColour.Image = global::ROMS.Properties.Resources.Brightness;
-            this.tsbColour.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbColour.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbColour.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.tsbColour.Name = "tsbColour";
-            this.tsbColour.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbColour.Size = new System.Drawing.Size(24, 28);
-            this.tsbColour.Click += new System.EventHandler(this.tsbColour_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 37);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(191, 540);
-            this.flowLayoutPanel1.TabIndex = 15;
-            // 
-            // pnlImageContainer
-            // 
-            this.pnlImageContainer.AutoScroll = true;
-            this.pnlImageContainer.Controls.Add(this.pnlControls);
-            this.pnlImageContainer.Controls.Add(this.pictureBox1);
-            this.pnlImageContainer.Location = new System.Drawing.Point(442, 33);
-            this.pnlImageContainer.Name = "pnlImageContainer";
-            this.pnlImageContainer.Size = new System.Drawing.Size(756, 540);
-            this.pnlImageContainer.TabIndex = 18;
-            // 
-            // pnlControls
-            // 
-            this.pnlControls.Controls.Add(this.label5);
-            this.pnlControls.Controls.Add(this.label6);
-            this.pnlControls.Controls.Add(this.label7);
-            this.pnlControls.Controls.Add(this.tbSaturation);
-            this.pnlControls.Controls.Add(this.tbBrightness);
-            this.pnlControls.Controls.Add(this.tbContrast);
-            this.pnlControls.Location = new System.Drawing.Point(3, 3);
-            this.pnlControls.Name = "pnlControls";
-            this.pnlControls.Size = new System.Drawing.Size(750, 74);
-            this.pnlControls.TabIndex = 5;
-            this.pnlControls.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(564, 48);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 20);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Saturation";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(350, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Contrast";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(121, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Brightness";
-            // 
-            // tbSaturation
-            // 
-            this.tbSaturation.Location = new System.Drawing.Point(499, 3);
-            this.tbSaturation.Maximum = 50;
-            this.tbSaturation.Minimum = -50;
-            this.tbSaturation.Name = "tbSaturation";
-            this.tbSaturation.Size = new System.Drawing.Size(197, 45);
-            this.tbSaturation.TabIndex = 4;
-            this.tbSaturation.Scroll += new System.EventHandler(this.tbSaturation_Scroll);
-            // 
-            // tbBrightness
-            // 
-            this.tbBrightness.Location = new System.Drawing.Point(57, 3);
-            this.tbBrightness.Maximum = 50;
-            this.tbBrightness.Minimum = -50;
-            this.tbBrightness.Name = "tbBrightness";
-            this.tbBrightness.Size = new System.Drawing.Size(197, 45);
-            this.tbBrightness.TabIndex = 2;
-            this.tbBrightness.Scroll += new System.EventHandler(this.tbBrightness_Scroll);
-            // 
-            // tbContrast
-            // 
-            this.tbContrast.Location = new System.Drawing.Point(280, 3);
-            this.tbContrast.Maximum = 50;
-            this.tbContrast.Minimum = -50;
-            this.tbContrast.Name = "tbContrast";
-            this.tbContrast.Size = new System.Drawing.Size(197, 45);
-            this.tbContrast.TabIndex = 3;
-            this.tbContrast.Scroll += new System.EventHandler(this.tbContrast_Scroll);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(750, 534);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
-            // btnImageUpdate
-            // 
-            this.btnImageUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnImageUpdate.Image = global::ROMS.Properties.Resources.save;
-            this.btnImageUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImageUpdate.Location = new System.Drawing.Point(1132, 576);
-            this.btnImageUpdate.Name = "btnImageUpdate";
-            this.btnImageUpdate.Size = new System.Drawing.Size(113, 29);
-            this.btnImageUpdate.TabIndex = 19;
-            this.btnImageUpdate.Text = "Update";
-            this.btnImageUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImageUpdate.UseVisualStyleBackColor = true;
-            this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
-            // 
-            // btnImgClose
-            // 
-            this.btnImgClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnImgClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnImgClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImgClose.Location = new System.Drawing.Point(1251, 576);
-            this.btnImgClose.Name = "btnImgClose";
-            this.btnImgClose.Size = new System.Drawing.Size(74, 29);
-            this.btnImgClose.TabIndex = 42;
-            this.btnImgClose.Text = "Close";
-            this.btnImgClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImgClose.UseVisualStyleBackColor = true;
-            this.btnImgClose.Click += new System.EventHandler(this.btnImgClose_Click);
+            this.txtSalesPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSalesPICode.Location = new System.Drawing.Point(135, 54);
+            this.txtSalesPICode.MaxLength = 100;
+            this.txtSalesPICode.Name = "txtSalesPICode";
+            this.txtSalesPICode.Size = new System.Drawing.Size(427, 27);
+            this.txtSalesPICode.TabIndex = 1;
+            this.txtSalesPICode.Enter += new System.EventHandler(this.txtSalesPICode_Enter);
+            this.txtSalesPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSalesPICode_KeyDown);
+            this.txtSalesPICode.Leave += new System.EventHandler(this.txtSalesPICode_Leave);
             // 
             // CP_ProductApproval
             // 
@@ -2261,17 +2291,8 @@
             this.grbPurchaseHSN.ResumeLayout(false);
             this.grbPurchaseHSN.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurHSN)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdCategory)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdBrand)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdSubgroup)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.tsMenu.ResumeLayout(false);
-            this.tsMenu.PerformLayout();
             this.pnlImageContainer.ResumeLayout(false);
             this.pnlControls.ResumeLayout(false);
             this.pnlControls.PerformLayout();
@@ -2279,6 +2300,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbBrightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbContrast)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tsMenu.ResumeLayout(false);
+            this.tsMenu.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdCategory)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdBrand)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdSubgroup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2452,5 +2482,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnImageUpdate;
         private System.Windows.Forms.Button btnImgClose;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtSalesPICode;
     }
 }
