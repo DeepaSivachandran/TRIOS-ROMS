@@ -962,7 +962,7 @@ namespace ROMS
                     {
                         varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, objBulkUpdate, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"");
+                        result = objDSer.udfnProductMaster(varUpdateViewType, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, objBulkUpdate, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","");
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
@@ -1558,8 +1558,7 @@ namespace ROMS
                                 grdHSN.Columns["HSN Name-Current"].Width = 150;
                                 grdHSN.Columns["HSN Name-New"].Width = 150;
                                 grdHSN.Columns["HSN"].Width = 100;
-                                grdHSN.Columns["GST%"].Width = 100;
-
+                                grdHSN.Columns["GST%"].Width = 100; 
                                 grdHSN.Columns["HSN Name-New"].DefaultCellStyle.BackColor = Color.PaleGreen;
                             }
                             else if (grdBulkAttributes.Visible == true)
@@ -1577,7 +1576,8 @@ namespace ROMS
                                 grdBulkAttributes.Columns["Product Name in Tamil"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBulkAttributes.Columns["Unit"].DefaultCellStyle.BackColor = Color.AliceBlue;
                                 grdBulkAttributes.Columns["P.I Code"].DefaultCellStyle.BackColor = Color.AliceBlue;
-                                grdBulkAttributes.Columns["Product Name in English"].Visible = false;
+                                //grdBulkAttributes.Columns["Product Name in English"].Visible = false;
+                                grdBulkAttributes.Columns["Product Name in English-Current"].Visible = false;
                                 grdBulkAttributes.Columns["PRID"].Visible = false;
                                 grdBulkAttributes.Columns["UTID-OLD"].Visible = false;
 
@@ -1585,10 +1585,10 @@ namespace ROMS
                                 grdBulkAttributes.Columns["Product Name in Tamil"].Width = 270;
                                 grdBulkAttributes.Columns["P.I Code"].Width = 80;
                                 grdBulkAttributes.Columns["Unit"].Width = 80;
-                                grdBulkAttributes.Columns["S.No."].Frozen = true;
-                                grdBulkAttributes.Columns["P.I Code"].Frozen = true;
-                                grdBulkAttributes.Columns["Product Name in Tamil"].Frozen = true;
-                                grdBulkAttributes.Columns["Unit"].Frozen = true;
+                                //grdBulkAttributes.Columns["S.No."].Frozen = true;
+                                //grdBulkAttributes.Columns["P.I Code"].Frozen = true;
+                                //grdBulkAttributes.Columns["Product Name in Tamil"].Frozen = true;
+                                //grdBulkAttributes.Columns["Unit"].Frozen = true;
                                 grdBulkAttributes.Columns["S.No."].ReadOnly = true;
                                 grdBulkAttributes.Columns["P.I Code"].ReadOnly = true;
                                 grdBulkAttributes.Columns["Product Name in Tamil"].ReadOnly = true;
@@ -1600,6 +1600,7 @@ namespace ROMS
                                 grdBulkAttributes.Columns["Product Name in Tamil-New"].Width = 250;
                                 grdBulkAttributes.Columns["Product Name in English-New"].Width = 250;
                                 grdBulkAttributes.Columns["Product Name in English-Current"].Width = 280;
+                                grdBulkAttributes.Columns["Product Name in English"].Width = 280;
                                 grdBulkAttributes.Columns["Unit-New"].Width = 100;
 
                                 grdBulkAttributes.Columns["Product Code-New"].DefaultCellStyle.BackColor = Color.PaleGreen;

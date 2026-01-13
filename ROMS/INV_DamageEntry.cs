@@ -1110,7 +1110,7 @@ namespace ROMS
                     }
                     else if (fromQueueFlag == 1)
                     {
-                        cmbReason.Focus();
+                        cmbSupplier.Focus();
                     }
                     else
                     {
@@ -1212,7 +1212,7 @@ namespace ROMS
                         }
                         else if (fromQueueFlag == 1)
                         {
-                            cmbReason.Focus();
+                            cmbSupplier.Focus();
                         }
                         else
                         {
@@ -2321,6 +2321,10 @@ namespace ROMS
                                 objTRN_Damage.paraQrimg = (varobjBarCodeByte);
                                 varResult = objspservice.udfnDamageEntry(objTRN_Damage);
                                 objspservice.CloseConnection();
+                                if(fromQueueFlag == 1)
+                                {
+                                    MainForm.objINV_DamageEntryQueue.udfnList();
+                                }
                             }
                             else
                             {
@@ -2612,7 +2616,7 @@ namespace ROMS
                                     {
                                         lvProduct.Columns[2].Width = 0;
                                         lvProduct.Columns[3].Width = 320;
-                                    }
+                                    } 
                                     */
                                     DGV_FilterProduct.Visible = true;
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
@@ -2643,6 +2647,10 @@ namespace ROMS
                                         DGV_FilterProduct.Columns["SL_ShortName"].HeaderText = "Location";
                                         DGV_FilterProduct.Columns["MFD Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                         DGV_FilterProduct.Columns["Retail Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    }
+                                    if (fromQueueFlag == 1)
+                                    {
+                                        DGV_FilterProduct.Columns["DamageReason"].Visible = false;
                                     }
 
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;
@@ -2835,6 +2843,8 @@ namespace ROMS
                         varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
                         txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                         txtQuantity.Text = DGV_FilterProduct.SelectedRows[0].Cells["QTY"].Value.ToString();
+                        cmbReason.SelectedValue= Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["DamageReason"].Value.ToString());
+                        cmbReason.Enabled = false;
                         txtQuantity.Enabled = false;
                     }
                     else
@@ -4211,7 +4221,7 @@ namespace ROMS
                 }
                 else if (fromQueueFlag == 1)
                 {
-                    cmbReason.Focus();
+                    cmbSupplier.Focus();
                 }
                 else
                 {
@@ -4308,7 +4318,7 @@ namespace ROMS
                                     }
                                     else if (fromQueueFlag == 1)
                                     {
-                                        cmbReason.Focus();
+                                        cmbSupplier.Focus();
                                     }
                                     else
                                     {
@@ -4342,7 +4352,7 @@ namespace ROMS
                         }
                         else if (fromQueueFlag == 1)
                         {
-                            cmbReason.Focus();
+                            cmbSupplier.Focus();
                         }
                         else
                         {

@@ -29,6 +29,7 @@ namespace ROMS
         private ToolTip tpTeller = new ToolTip();
         private ToolTip tpConcern = new ToolTip();
         private ToolTip tpTransactionType = new ToolTip();
+        private ToolTip tpReason = new ToolTip();
         public int varCompleteFlag = 0;
         public string varStockLocationId = "", varTamilname = "";
         public string varStockApplicable = "";
@@ -727,13 +728,20 @@ namespace ROMS
                             btnConversion.Enabled = false;
                         }
                     }
-                    if (btnConversion.Enabled == true)
+                    if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 462) // AGAINST DAMAGE
                     {
-                        btnConversion.Focus();
+                        cmbReason.Focus();
                     }
                     else
                     {
-                        btnAdd.Focus();
+                        if (btnConversion.Enabled == true)
+                        {
+                            btnConversion.Focus();
+                        }
+                        else
+                        {
+                            btnAdd.Focus();
+                        }
                     }
                 }
             }
@@ -939,6 +947,9 @@ namespace ROMS
                 dtConvertedProduct.Columns.Add("STKCONPR_SLID", typeof(int));
 
                 udfnCmbConcern();
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0,52) AND MSTID !=0", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 dtpOutwardDate.MinDate = MainForm.pbFYStartDate;
                 dtpOutwardDate.MaxDate = MainForm.pbCurrentDate;
@@ -979,21 +990,32 @@ namespace ROMS
         {
             try
             {
-                grdLocation.RowTemplate.Height = 20;
-                grdLocation.ColumnHeadersHeight = 25;
-                grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-                grdLocation.DataSource = null;
+                grdParentStock.RowTemplate.Height = 20;
+                grdParentStock.ColumnHeadersHeight = 25;
+                grdParentStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                grdParentStock.DataSource = null;
+                grdChildStock.DataSource = null;
                 DataTable dt = new DataTable();
                 dt.Columns.Add("S.No.");
                 dt.Columns.Add("Location");
                 dt.Columns.Add("Quantity");
-                grdLocation.DataSource = dt;
-                grdLocation.Columns["S.No."].Width = 60;
-                grdLocation.Columns["Location"].Width = 250;
-                grdLocation.Columns["Quantity"].Width = 90;
-                grdLocation.Columns["S.No."].Width = 50;
-                grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataTable dtch = new DataTable();
+                dtch.Columns.Add("S.No.");
+                dtch.Columns.Add("Product");
+                dtch.Columns.Add("Location");
+                dtch.Columns.Add("Quantity");
+                grdParentStock.DataSource = dt;
+                grdChildStock.DataSource = dtch;
+                grdParentStock.Columns["S.No."].Width = 50;
+                grdParentStock.Columns["Location"].Width = 150;
+                grdParentStock.Columns["Quantity"].Width = 70;
+                grdParentStock.Columns["S.No."].Width = 50;
+                grdParentStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                grdChildStock.Columns["Location"].Width = 130;
+                grdChildStock.Columns["Quantity"].Width = 70;
+                grdChildStock.Columns["S.No."].Width = 40;
+                grdChildStock.Columns["Product"].Width = 200;
             }
             catch (Exception ex)
             {
@@ -1106,6 +1128,7 @@ namespace ROMS
                     txtStockQuantity.Text = "";
                     txtOutwardQuantity.Text = "";
                     lblQuantity.Text = "";
+                    udfnDefaultHeader(); 
                     udfnSLocationValid();
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
@@ -1292,12 +1315,13 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["RK_ShortName"].DisplayIndex = 3;
                                     DGV_FilterProduct.Columns["STK_MRP"].DisplayIndex = 4;
                                     DGV_FilterProduct.Columns["STK_ExpiryDate"].DisplayIndex = 5;
-                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 6;
-                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 7;
+                                    DGV_FilterProduct.Columns["Expires In"].DisplayIndex = 6;
+                                    DGV_FilterProduct.Columns["Shelf Life"].DisplayIndex = 7;
+                                    DGV_FilterProduct.Columns["MFD Date"].DisplayIndex = 8;
 
-                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 8;
-                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 9;
-                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 10;
+                                    DGV_FilterProduct.Columns["STK_BatchNo"].DisplayIndex = 9;
+                                    DGV_FilterProduct.Columns["STK_Qty"].DisplayIndex = 10;
+                                    DGV_FilterProduct.Columns["UT_Symbol"].DisplayIndex = 11;
 
                                     DGV_FilterProduct.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_FilterProduct.Columns["PR_TName"].HeaderText = "Product Name";
@@ -1459,16 +1483,24 @@ namespace ROMS
                 {
                     if (objDs.Tables[0].Rows.Count != 0)
                     {
-                        grdLocation.RowTemplate.Height = 20;
-                        grdLocation.ColumnHeadersHeight = 25;
-                        grdLocation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                        grdParentStock.RowTemplate.Height = 20;
+                        grdParentStock.ColumnHeadersHeight = 25;
+                        grdParentStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
-                        grdLocation.DataSource = objDs.Tables[0];
-                        grdLocation.Columns["Location"].Width = 250;
-                        grdLocation.Columns["Quantity"].Width = 90;
-                        grdLocation.Columns["S.No."].Width = 50;
-                        grdLocation.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                        grdLocation.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdParentStock.DataSource = objDs.Tables[0]; 
+                        grdParentStock.Columns["Location"].Width = 100;
+                        grdParentStock.Columns["Quantity"].Width = 100;
+                        grdParentStock.Columns["S.No."].Width = 50;
+                        grdParentStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                        grdChildStock.DataSource = objDs.Tables[1];
+                        grdChildStock.Columns["Location"].Width = 100;
+                        grdChildStock.Columns["Quantity"].Width = 70;
+                        grdChildStock.Columns["S.No."].Width = 40;
+                        grdChildStock.Columns["Product"].Width = 250;
+                        grdChildStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdChildStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
                     else
                     {
@@ -2340,6 +2372,68 @@ namespace ROMS
                 cmbTransactionType.Focus();
             }
         }
+        private void cmbReason_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReason.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReason_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (btnConversion.Enabled == true)
+                    {
+                        btnConversion.Focus();
+                    }
+                    else
+                    {
+                        btnAdd.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReason_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReason_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReason.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void BtnClose_Leave(object sender, EventArgs e)
         {
             try
@@ -2943,6 +3037,8 @@ namespace ROMS
         {
             try
             {
+                cmbReason.Enabled = false;
+                cmbReason.SelectedValue = -1;
                 btnConversion.Enabled = true;
                 if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 70) // Regular
                 {
@@ -2956,6 +3052,7 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 462) // AGAINST DAMAGE
                 {
+                    cmbReason.Enabled = true;
                     btnConversion.Enabled = false;
                 } 
             }
@@ -2984,6 +3081,7 @@ namespace ROMS
                 lblQuantity.Text = "";
                 varChildStockFlag = 0;
                 btnConversion.Enabled = false;
+                cmbReason.SelectedValue = -1;
                 udfnDefaultHeader();
             }
             catch (Exception ex)
@@ -3046,11 +3144,13 @@ namespace ROMS
                 {
                     cmbConcern.Enabled = false;
                     txtStockLocation.Enabled = false;
+                    cmbTransactionType.Enabled = false;
                 }
                 else
                 {
                     cmbConcern.Enabled = true;
                     txtStockLocation.Enabled = true;
+                    cmbTransactionType.Enabled = true;
                     txtStockLocation.BackColor = Color.White;
                     cmbConcern.BackColor = Color.White;
 
@@ -3165,6 +3265,17 @@ namespace ROMS
                     tpOutwardQuantity.Show("Please enter outward quantity", txtOutwardQuantity, 5000);
                     varErrorFlag = false;
                 }
+                if (Convert.ToInt32(cmbTransactionType.SelectedValue) == 462) // AGAINST DAMAGE
+                {
+                    if (Convert.ToInt32(cmbReason.SelectedValue) == -1)
+                    {
+                        epGoodsOutward.SetError(cmbReason, "Please select reason");
+                        cmbReason.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpReason.ShowAlways = true;
+                        tpReason.Show("Please select reason", cmbReason, 5000);
+                        varErrorFlag = false;
+                    }
+                }
 
                 if (varErrorFlag == true)
                 {
@@ -3210,6 +3321,7 @@ namespace ROMS
                 {
                     txtStockLocation.Enabled = false;
                     cmbConcern.Enabled = false;
+                    cmbTransactionType.Enabled = false;
                     txtStockLocation.BackColor = System.Drawing.ColorTranslator.FromHtml("#F0F0F0");
                 }
                 else
@@ -3217,6 +3329,7 @@ namespace ROMS
                     //txtStockLocation.BackColor =Color.White;
                     cmbConcern.Enabled = true;
                     txtStockLocation.Enabled = true;
+                    cmbTransactionType.Enabled = true;
                 }
                 //DGV_inward.Sort(DGV_inward.Columns["clmpicode"], ListSortDirection.Ascending);
 
@@ -3234,7 +3347,7 @@ namespace ROMS
                 }
                 grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                 grdGoodsOutward.Rows.Add(grdGoodsOutward.Rows.Count + 1, varPRID, varPICode, (varTamilname), varRKID, (txtRack.Text).Trim(), (txtMrp.Text).Trim(), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), (txtStockQuantity.Text).Trim(), 0, (txtOutwardQuantity.Text), varUnit, varUTID, varDecimal);
-                dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text), varRKID, varDestSLID, varDestRKID, 0);
+                dtStock.Rows.Add(varPRID, string.Format("{0:G29}", decimal.Parse(Convert.ToString(txtMrp.Text.Trim()))), (txtExpiryDate.Text).Trim(), (txtBatchNo.Text).Trim(), varUTID, (txtOutwardQuantity.Text), varRKID, varDestSLID, varDestRKID, Convert.ToInt32(cmbReason.SelectedValue), 0);
                 txtTotalItem.Text = Convert.ToString(grdGoodsOutward.Rows.Count);
                 //varTotalItem = Convert.ToString(DGV_inward.Rows.Count);
                 grdGoodsOutward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -3326,7 +3439,7 @@ namespace ROMS
                                 grdGoodsOutward.Columns["clmproductname"].DefaultCellStyle.Font = new Font("Uni Ila.Sundaram-03", 11.75F);
                                 grdGoodsOutward.Rows.Add(Convert.ToString(objDs.Tables[1].Rows[i]["S.No"]), Convert.ToString(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_PICode"]), Convert.ToString(objDs.Tables[1].Rows[i]["PR_TName"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), Convert.ToString(objDs.Tables[1].Rows[i]["RK_ShortName"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]),
                                 Convert.ToString(objDs.Tables[1].Rows[i]["STKQTY"]), Convert.ToInt32(objDs.Tables[1].Rows[i]["GOPR_ReqQty"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["UT_Symbol"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]));
-                                dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), 0, 0, 0);
+                                dtStock.Rows.Add(Convert.ToInt32(objDs.Tables[1].Rows[i]["PRID"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_MRP"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_ExpiryDate"]), Convert.ToString(objDs.Tables[1].Rows[i]["STK_BatchNo"]), Convert.ToString(objDs.Tables[1].Rows[i]["UTID"]), Convert.ToDecimal(objDs.Tables[1].Rows[i]["GOPR_OutwardQty"]), Convert.ToString(objDs.Tables[1].Rows[i]["RKID"]), 0,0, Convert.ToInt32(objDs.Tables[1].Rows[i]["DamageReason"]), 0);
 
                                 grdGoodsOutward.Columns["clmmrp"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdGoodsOutward.Columns["clmQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

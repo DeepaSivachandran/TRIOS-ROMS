@@ -832,10 +832,10 @@ namespace ROMS
                 { txtDay.Text = 0 + txtDay.Text.Trim(); }
                 if (txtMonth.Text.Length == 1)
                 { txtMonth.Text = 0 + txtMonth.Text.Trim(); }
-                string varMfdDate = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
+                string varExpDate = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
                 MR_Master objMR_Master = new MR_Master();
-                objMR_Master.ViewType = 15;
-                objMR_Master.paraDate = varMfdDate;
+                objMR_Master.ViewType = 33;
+                objMR_Master.paraDate = varExpDate;
                 objMR_Master.paraProductId = Convert.ToInt32(lblProduct.Text);
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
@@ -1152,8 +1152,8 @@ namespace ROMS
                     string varMfdDateValue = "", varExpiryDateValue = "";
                     if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
                     {
-                        varMfdDateValue = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
-                        varExpiryDateValue = Convert.ToString(txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text);
+                        varExpiryDateValue = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
+                        varMfdDateValue = Convert.ToString(txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text);
                     }
                     //Title Name Pass only Used Reports
                     int varLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
@@ -1580,7 +1580,7 @@ namespace ROMS
                     }
 
 
-                    result = objspdservice.udfnProductMaster(15, Convert.ToInt32(lblProduct.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, itemEname, itemTname, "", 0, "", "", 0, 0, 0,null, 0, 0, 0, 0, null,0,"");
+                    result = objspdservice.udfnProductMaster(15, Convert.ToInt32(lblProduct.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, itemEname, itemTname, "", 0, "", "", 0, 0, 0,null, 0, 0, 0, 0, null,0,"","");
 
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")

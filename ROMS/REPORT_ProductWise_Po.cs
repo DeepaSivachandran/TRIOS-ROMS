@@ -190,7 +190,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPOEntry(11, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, 0, 0,varGroupId ,varSubgroupId , dpFromDate.Text, dpToDate.Text, 0, varStatusID, "0",0, varProductId, 0, 0,0, 0, varFlag);
+                objDs = objdserv.udfnPOEntry(11, Convert.ToInt32(lblSupplierCode.Text), Convert.ToInt32(lblschedleCode.Text), 0, 0, 0, 0,varGroupId ,varSubgroupId , dpFromDate.Text, dpToDate.Text, 0, varStatusID, "0",0, varProductId, 0, 0,0, 0, varFlag,0);
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)

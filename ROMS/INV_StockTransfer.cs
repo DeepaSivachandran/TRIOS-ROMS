@@ -299,6 +299,7 @@ namespace ROMS
                 {
                     grdStockTransfer.Columns["Status"].Visible = false;
                 }
+                udfnDefaultHeader();
             }
             catch (Exception ex)
             {
@@ -804,6 +805,8 @@ namespace ROMS
             {
                 if (varUpDownKeySLocation == 0)
                 {
+                    if (txtDLocation.Text == "")
+                    { udfnDefaultHeader(); }
                     if (txtDLocation.Text != "" || txtProductNamePICode.Text != "")
                     {
                         txtProductNamePICode.Text = "";
@@ -815,6 +818,7 @@ namespace ROMS
                         txtQuantity.Text = "";
                         txtDLocation.Text = "";
                         cmbDRack.Text = "None"; cmbDRack.Enabled = false;
+                        udfnDefaultHeader();
                     }
                     if (txtSLocation.Text.Length > 0)
                     {
@@ -2004,6 +2008,7 @@ namespace ROMS
             txtDLocation.Text = "";
             cmbDRack.Text = "";
             txtQuantity.Text = "";
+            udfnDefaultHeader();
         }
         public void udfnClear()
         {
@@ -2118,6 +2123,8 @@ namespace ROMS
                     varDecimal = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["UT_Decimal"].Value.ToString());
                     txtSRack.Text = DGV_FilterProduct.SelectedRows[0].Cells["RK_ShortName"].Value.ToString();
                     txtProductNamePICode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+
+                    udfnProductBasedStkLocation(Convert.ToInt32(varProductCode));
                 }
             }
             catch (Exception ex)
@@ -3250,6 +3257,106 @@ namespace ROMS
                     MainForm.objCP_Product_Info = new CP_Product_Info();
                     MainForm.objCP_Product_Info.varProductId = Convert.ToInt32(lblProduct.Text);
                     MainForm.objCP_Product_Info.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
+        public void udfnProductBasedStkLocation(int varProductID)
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                TRN_GoodsOutward objTRNG_GoodsOutward = new TRN_GoodsOutward();
+                objTRNG_GoodsOutward.ViewType = 3;
+                objTRNG_GoodsOutward.paraPRID = Convert.ToInt32(varProductID);
+                objDs = objdserv.udfnGOList(objTRNG_GoodsOutward);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables[0].Rows.Count != 0)
+                    {
+                        grdParentStock.RowTemplate.Height = 20;
+                        grdParentStock.ColumnHeadersHeight = 25;
+                        grdParentStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+                        grdParentStock.DataSource = objDs.Tables[0];
+                        grdParentStock.Columns["Location"].Width = 100;
+                        grdParentStock.Columns["Quantity"].Width = 90;
+                        grdParentStock.Columns["S.No."].Width = 50;
+                        grdParentStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                        grdChildStock.DataSource = objDs.Tables[1];
+                        grdChildStock.Columns["Location"].Width = 90;
+                        grdChildStock.Columns["Quantity"].Width = 90;
+                        grdChildStock.Columns["S.No."].Width = 50;
+                        grdChildStock.Columns["Product"].Width = 200;
+                        grdChildStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                        grdChildStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    else
+                    {
+                        udfnDefaultHeader();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDefaultHeader()
+        {
+            try
+            {
+                grdParentStock.RowTemplate.Height = 20;
+                grdParentStock.ColumnHeadersHeight = 25;
+                grdParentStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                grdParentStock.DataSource = null;
+                grdChildStock.DataSource = null;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("S.No.");
+                dt.Columns.Add("Location");
+                dt.Columns.Add("Quantity");
+                DataTable dtch = new DataTable();
+                dtch.Columns.Add("S.No.");
+                dtch.Columns.Add("Product");
+                dtch.Columns.Add("Location");
+                dtch.Columns.Add("Quantity");
+                grdParentStock.DataSource = dt;
+                grdChildStock.DataSource = dtch;
+                grdParentStock.Columns["S.No."].Width = 50;
+                grdParentStock.Columns["Location"].Width = 100;
+                grdParentStock.Columns["Quantity"].Width = 70;
+                grdParentStock.Columns["S.No."].Width = 50;
+                grdParentStock.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdParentStock.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                grdChildStock.Columns["Location"].Width = 100;
+                grdChildStock.Columns["Quantity"].Width = 70;
+                grdChildStock.Columns["S.No."].Width = 50;
+                grdChildStock.Columns["Product"].Width = 200;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void grdStockTransfer_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdStockTransfer.SelectedRows.Count > 0)
+                {
+                    int varProductId = Convert.ToInt32(grdStockTransfer.CurrentRow.Cells["clmPRID"].Value);
+                    udfnProductBasedStkLocation(varProductId);
                 }
             }
             catch (Exception ex)

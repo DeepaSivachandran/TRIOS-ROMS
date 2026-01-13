@@ -1597,7 +1597,7 @@ namespace ROMS
              , int paraRMPROD, int paraShelflifeValue, int paraShelflifeType, string paraStatusId, string paraUserID, string paraIPAddress, string paraOriginator,
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
               int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames,int paraIntermediateUPP,int paraIntermediateUnit,decimal paraProductionMSQ, DataTable paraMR_SPl_Bulk,
-             int FocusFlag , int Priority_Flag  , int Spl_Flag  , int OwnFlag ,DataTable ParaPrice_Markup,int parastockTaken,string  paraEffectiveFrom)
+             int FocusFlag , int Priority_Flag  , int Spl_Flag  , int OwnFlag ,DataTable ParaPrice_Markup,int parastockTaken,string  paraEffectiveFrom,string paraSalesPICode)
         {
             string result = "";  
             try
@@ -1673,6 +1673,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@ParaPrice_Markup", ParaPrice_Markup);
                 varSqlCommand.Parameters.AddWithValue("@parastockTaken", parastockTaken);
                 varSqlCommand.Parameters.AddWithValue("@paraEffectiveFrom", paraEffectiveFrom);
+                varSqlCommand.Parameters.AddWithValue("@paraSalesPICode", paraSalesPICode);
 
 
                 varSqlCommand.CommandTimeout = 0;
@@ -2573,7 +2574,7 @@ namespace ROMS
         //}
         // added by venkat on 17/10/2023 for PO list
         public DataSet udfnPOEntry(int paraViewType, int ParaSupplierId, int ParaScheduleId, int paraCompanyID, int paraDcID, int ParaSupplier, int ParaPO, int ParaGroupID, int ParaSubGroupID, string ParaPOFromDate,
-            string ParaPOToDate, int paraPOID, int paraStatus, string paraPendingPOIDs, int parafilter, int paraProductCode, int paraOrdertype, int paraCityid, int paraDTAT, int paraGRNstatus, int paraFlag)
+            string ParaPOToDate, int paraPOID, int paraStatus, string paraPendingPOIDs, int parafilter, int paraProductCode, int paraOrdertype, int paraCityid, int paraDTAT, int paraGRNstatus, int paraFlag,int paraBrandId)
         {
             DataSet ds = new DataSet();
             try
@@ -2604,6 +2605,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDTAT", paraDTAT);
                 varSqlCommand.Parameters.AddWithValue("@paraGRNstatus", paraGRNstatus);
                 varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandId", paraBrandId);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);
@@ -5123,7 +5125,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraConcernID", objMR_CardMachine.paraConcernID); 
                 varSqlCommand.Parameters.AddWithValue("@paraComBankId", objMR_CardMachine.paraComBankId); 
                 varSqlCommand.Parameters.AddWithValue("@paraStatusId", objMR_CardMachine.paraStatusId); 
-                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_CardMachine.paraOriginator);  
+                varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_CardMachine.paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandName", objMR_CardMachine.paraBrandName);
+                varSqlCommand.Parameters.AddWithValue("@paraMCNo", objMR_CardMachine.paraMCNo);
+                varSqlCommand.Parameters.AddWithValue("@paraPIDNo", objMR_CardMachine.paraPIDNo);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

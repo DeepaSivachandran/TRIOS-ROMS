@@ -150,10 +150,11 @@ namespace ROMS
             this.tsmUnassignedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPO_GRNReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZeroVsPo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOSummary = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmZeroVsPOGenerated = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMGRNSummary = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMGRNDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGRNBatchDetail = new System.Windows.Forms.ToolStripMenuItem();
@@ -228,6 +229,7 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmLockItems = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBulkOffsetUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
@@ -716,6 +718,7 @@ namespace ROMS
             this.tsmBulkRateCategory,
             this.tsmBulkupdateProductminbulk,
             this.tsmBulkOffsetUpdate});
+            this.tsmLockItems});
             this.tsmProductMenu.Name = "tsmProductMenu";
             this.tsmProductMenu.Size = new System.Drawing.Size(225, 22);
             this.tsmProductMenu.Text = "Product";
@@ -1105,7 +1108,7 @@ namespace ROMS
             // 
             this.tsmReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmMastersReport,
-            this.tsmPO_GRNReport,
+            this.tsmZeroVsPo,
             this.tsmPurchaseReport,
             this.tsmInwardStockReport,
             this.tsmFinanceReport,
@@ -1325,21 +1328,22 @@ namespace ROMS
             this.tsmReportUserRole.Visible = false;
             this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
             // 
-            // tsmPO_GRNReport
+            // tsmZeroVsPo
             // 
-            this.tsmPO_GRNReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmZeroVsPo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmPOProductWiseReport,
             this.tsmPOStatusWise,
             this.tsmPOSummary,
+            this.tsmZeroVsPOGenerated,
             this.TSMGRNSummary,
             this.TSMGRNDetails,
             this.tsmGRNBatchDetail,
             this.tsmGRNSupplierDetail,
             this.tsmGRNDefectPRoduct});
-            this.tsmPO_GRNReport.Name = "tsmPO_GRNReport";
-            this.tsmPO_GRNReport.Size = new System.Drawing.Size(191, 22);
-            this.tsmPO_GRNReport.Text = "PO && GRN";
-            this.tsmPO_GRNReport.Visible = false;
+            this.tsmZeroVsPo.Name = "tsmZeroVsPo";
+            this.tsmZeroVsPo.Size = new System.Drawing.Size(191, 22);
+            this.tsmZeroVsPo.Text = "PO && GRN";
+            this.tsmZeroVsPo.Visible = false;
             // 
             // tsmPOProductWiseReport
             // 
@@ -1364,6 +1368,13 @@ namespace ROMS
             this.tsmPOSummary.Text = "PO Summary && Detail";
             this.tsmPOSummary.Visible = false;
             this.tsmPOSummary.Click += new System.EventHandler(this.tsmPOSummary_Click);
+            // 
+            // tsmZeroVsPOGenerated
+            // 
+            this.tsmZeroVsPOGenerated.Name = "tsmZeroVsPOGenerated";
+            this.tsmZeroVsPOGenerated.Size = new System.Drawing.Size(179, 22);
+            this.tsmZeroVsPOGenerated.Text = "Zero Vs PO";
+            this.tsmZeroVsPOGenerated.Click += new System.EventHandler(this.tsmZeroVsPOGenerated_Click);
             // 
             // TSMGRNSummary
             // 
@@ -2038,6 +2049,13 @@ namespace ROMS
             this.tsmBulkOffsetUpdate.Text = "Bulk Update Offset";
             this.tsmBulkOffsetUpdate.Click += new System.EventHandler(this.tsmBulkOffsetUpdate_Click);
             // 
+            // tsmLockItems
+            // 
+            this.tsmLockItems.Name = "tsmLockItems";
+            this.tsmLockItems.Size = new System.Drawing.Size(182, 22);
+            this.tsmLockItems.Text = "Lock Items";
+            this.tsmLockItems.Click += new System.EventHandler(this.tsmLockItems_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 17F);
@@ -2159,7 +2177,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmAssigned;
         private System.Windows.Forms.ToolStripMenuItem tsmUnassignedProducts;
         private System.Windows.Forms.ToolStripMenuItem tsmZeroRate;
-        private System.Windows.Forms.ToolStripMenuItem tsmPO_GRNReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmZeroVsPo;
         private System.Windows.Forms.ToolStripMenuItem tsmPOProductWiseReport;
         private System.Windows.Forms.ToolStripMenuItem tsmPOStatusWise;
         private System.Windows.Forms.ToolStripMenuItem tsmPOSummary;
@@ -2269,5 +2287,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmBulkRateCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmBulkupdateProductminbulk;
         private System.Windows.Forms.ToolStripMenuItem tsmBulkOffsetUpdate;
+        private System.Windows.Forms.ToolStripMenuItem tsmZeroVsPOGenerated;
+        private System.Windows.Forms.ToolStripMenuItem tsmLockItems;
     }
 }

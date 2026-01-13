@@ -46,6 +46,7 @@ namespace ROMS
                     main.IsEntryFormOpen = true;
                     main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
                     main.CurrentParentListForm = this;
+                    isRunning = false;
                     MainForm.objCP_DirectLabelPrint.Show();
 
                 }
@@ -145,6 +146,7 @@ namespace ROMS
                         main.IsEntryFormOpen = true;
                         main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
                         main.CurrentParentListForm = this;
+                        isRunning = false;
                         MainForm.objCP_DirectLabelPrint.Show();
                     }
                 }

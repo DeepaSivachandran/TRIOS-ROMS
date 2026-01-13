@@ -195,7 +195,7 @@ namespace ROMS
                 DataSet objDT = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDT = null;
-                objDT = objdserv.udfnPOEntry(10, 0, 0, 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0", 0, 0, 0, 0, 0, Convert.ToInt32(pbGRNId),0);
+                objDT = objdserv.udfnPOEntry(10, 0, 0, 0, 0, 0, 0, 0, 0, "", "", 0, 0, "0", 0, 0, 0, 0, 0, Convert.ToInt32(pbGRNId),0,0);
                 objdserv.CloseConnection();
                 cmbProType.DataSource = null;
                 if (objDT != null)

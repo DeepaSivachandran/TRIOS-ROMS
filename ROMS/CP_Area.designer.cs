@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Area));
             this.errArea = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.txtDistanceKM = new System.Windows.Forms.TextBox();
             this.txtDistance = new System.Windows.Forms.TextBox();
             this.txtDDistance = new System.Windows.Forms.TextBox();
             this.cmbOrderNo = new System.Windows.Forms.ComboBox();
@@ -61,6 +62,7 @@
             // 
             // grbDetails
             // 
+            this.grbDetails.Controls.Add(this.txtDistanceKM);
             this.grbDetails.Controls.Add(this.txtDistance);
             this.grbDetails.Controls.Add(this.txtDDistance);
             this.grbDetails.Controls.Add(this.cmbOrderNo);
@@ -81,19 +83,32 @@
             this.grbDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbDetails.Name = "grbDetails";
             this.grbDetails.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbDetails.Size = new System.Drawing.Size(388, 275);
+            this.grbDetails.Size = new System.Drawing.Size(386, 248);
             this.grbDetails.TabIndex = 0;
             this.grbDetails.TabStop = false;
             this.grbDetails.Enter += new System.EventHandler(this.grbDetails_Enter);
             // 
+            // txtDistanceKM
+            // 
+            this.txtDistanceKM.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDistanceKM.Enabled = false;
+            this.txtDistanceKM.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDistanceKM.Location = new System.Drawing.Point(343, 109);
+            this.txtDistanceKM.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtDistanceKM.Name = "txtDistanceKM";
+            this.txtDistanceKM.ReadOnly = true;
+            this.txtDistanceKM.Size = new System.Drawing.Size(27, 28);
+            this.txtDistanceKM.TabIndex = 23;
+            // 
             // txtDistance
             // 
-            this.txtDistance.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 12F);
-            this.txtDistance.Location = new System.Drawing.Point(136, 137);
-            this.txtDistance.MaxLength = 8;
+            this.txtDistance.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.txtDistance.Location = new System.Drawing.Point(310, 109);
+            this.txtDistance.MaxLength = 3;
             this.txtDistance.Name = "txtDistance";
-            this.txtDistance.Size = new System.Drawing.Size(240, 27);
+            this.txtDistance.Size = new System.Drawing.Size(33, 28);
             this.txtDistance.TabIndex = 4;
+            this.txtDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDistance.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
             this.txtDistance.Enter += new System.EventHandler(this.txtDistance_Enter);
             this.txtDistance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDistance_KeyDown);
@@ -105,23 +120,23 @@
             this.txtDDistance.BackColor = System.Drawing.SystemColors.Control;
             this.txtDDistance.Enabled = false;
             this.txtDDistance.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDDistance.Location = new System.Drawing.Point(14, 137);
+            this.txtDDistance.Location = new System.Drawing.Point(188, 109);
             this.txtDDistance.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtDDistance.Name = "txtDDistance";
             this.txtDDistance.ReadOnly = true;
             this.txtDDistance.Size = new System.Drawing.Size(122, 28);
             this.txtDDistance.TabIndex = 22;
-            this.txtDDistance.Text = "Distance";
+            this.txtDDistance.Text = "Distance from Shop";
             this.txtDDistance.TextChanged += new System.EventHandler(this.txtDDistance_TextChanged);
             // 
             // cmbOrderNo
             // 
             this.cmbOrderNo.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOrderNo.FormattingEnabled = true;
-            this.cmbOrderNo.Location = new System.Drawing.Point(136, 109);
+            this.cmbOrderNo.Location = new System.Drawing.Point(136, 110);
             this.cmbOrderNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbOrderNo.Name = "cmbOrderNo";
-            this.cmbOrderNo.Size = new System.Drawing.Size(240, 27);
+            this.cmbOrderNo.Size = new System.Drawing.Size(52, 27);
             this.cmbOrderNo.TabIndex = 3;
             this.cmbOrderNo.SelectedIndexChanged += new System.EventHandler(this.cmbOrderNo_SelectedIndexChanged);
             this.cmbOrderNo.Enter += new System.EventHandler(this.cmbOrderNo_Enter);
@@ -134,10 +149,10 @@
             this.cmbCity.Enabled = false;
             this.cmbCity.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(136, 164);
+            this.cmbCity.Location = new System.Drawing.Point(136, 138);
             this.cmbCity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbCity.Name = "cmbCity";
-            this.cmbCity.Size = new System.Drawing.Size(240, 27);
+            this.cmbCity.Size = new System.Drawing.Size(234, 27);
             this.cmbCity.TabIndex = 5;
             this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
             this.cmbCity.Enter += new System.EventHandler(this.cmbCity_Enter);
@@ -149,7 +164,7 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(14, 164);
+            this.textBox2.Location = new System.Drawing.Point(14, 138);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -180,7 +195,7 @@
             this.cmbRoute.Location = new System.Drawing.Point(136, 27);
             this.cmbRoute.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbRoute.Name = "cmbRoute";
-            this.cmbRoute.Size = new System.Drawing.Size(240, 27);
+            this.cmbRoute.Size = new System.Drawing.Size(234, 27);
             this.cmbRoute.TabIndex = 0;
             this.cmbRoute.SelectedIndexChanged += new System.EventHandler(this.cmbRoute_SelectedIndexChanged);
             this.cmbRoute.Enter += new System.EventHandler(this.cmbRoute_Enter);
@@ -193,7 +208,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(296, 228);
+            this.btnClose.Location = new System.Drawing.Point(290, 201);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
@@ -210,7 +225,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(208, 228);
+            this.btnSave.Location = new System.Drawing.Point(204, 201);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
@@ -227,7 +242,7 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(14, 191);
+            this.txtStatus.Location = new System.Drawing.Point(14, 165);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -241,9 +256,9 @@
             this.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
-            this.pnlStatus.Location = new System.Drawing.Point(136, 191);
+            this.pnlStatus.Location = new System.Drawing.Point(136, 165);
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(240, 28);
+            this.pnlStatus.Size = new System.Drawing.Size(234, 28);
             this.pnlStatus.TabIndex = 6;
             this.pnlStatus.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlStatus_Paint);
             // 
@@ -252,7 +267,7 @@
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActive.Location = new System.Drawing.Point(39, 1);
+            this.rbActive.Location = new System.Drawing.Point(56, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
             this.rbActive.TabIndex = 6;
@@ -267,7 +282,7 @@
             // 
             this.rbInActive.AutoSize = true;
             this.rbInActive.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbInActive.Location = new System.Drawing.Point(117, 1);
+            this.rbInActive.Location = new System.Drawing.Point(134, 1);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(70, 24);
             this.rbInActive.TabIndex = 7;
@@ -297,7 +312,7 @@
             this.txtATName.Location = new System.Drawing.Point(136, 82);
             this.txtATName.MaxLength = 100;
             this.txtATName.Name = "txtATName";
-            this.txtATName.Size = new System.Drawing.Size(240, 27);
+            this.txtATName.Size = new System.Drawing.Size(234, 27);
             this.txtATName.TabIndex = 2;
             this.txtATName.TextChanged += new System.EventHandler(this.txtATName_TextChanged);
             this.txtATName.Enter += new System.EventHandler(this.txtATName_Enter);
@@ -310,7 +325,7 @@
             this.txtAEName.Location = new System.Drawing.Point(136, 54);
             this.txtAEName.MaxLength = 100;
             this.txtAEName.Name = "txtAEName";
-            this.txtAEName.Size = new System.Drawing.Size(240, 28);
+            this.txtAEName.Size = new System.Drawing.Size(234, 28);
             this.txtAEName.TabIndex = 1;
             this.txtAEName.TextChanged += new System.EventHandler(this.txtAEName_TextChanged);
             this.txtAEName.Enter += new System.EventHandler(this.txtAEName_Enter);
@@ -349,7 +364,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(418, 289);
+            this.ClientSize = new System.Drawing.Size(410, 262);
             this.Controls.Add(this.grbDetails);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -395,5 +410,6 @@
         private System.Windows.Forms.ComboBox cmbOrderNo;
         private System.Windows.Forms.TextBox txtDistance;
         private System.Windows.Forms.TextBox txtDDistance;
+        private System.Windows.Forms.TextBox txtDistanceKM;
     }
 }

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Windows.Forms;
 //using Color = System.Drawing.Color;
 //using Control = System.Windows.Forms.Control;
@@ -94,6 +95,7 @@ namespace ROMS
         private ToolTip tpPurHSN = new ToolTip();
         private ToolTip tpSalesHSN = new ToolTip();
         private ToolTip tpVerifier = new ToolTip();
+        private ToolTip tpSalesPICode = new ToolTip();
         private List<string> imagePaths = new List<string>();
 
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
@@ -1075,6 +1077,17 @@ namespace ROMS
                 {
                     cmbStockTakken.BackColor = Color.White;
                 }
+                if (chkSalesProduct.Checked == true)
+                {
+                    if (txtSalesPICode.Text.Trim() == "")
+                    {
+                        errItems.SetError(txtSalesPICode, "Please enter sales pi code");
+                        txtSalesPICode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSalesPICode.ShowAlways = true;
+                        tpSalesPICode.Show("Please enter sales pi code", txtSalesPICode, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
                 if (blnErrorFlag == false)
                 {
                     SPDataService objspdservice = new SPDataService();
@@ -1383,7 +1396,7 @@ namespace ROMS
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
-                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue),""
+                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim()
                     );
 
                     objspdservice.CloseConnection();
@@ -1745,7 +1758,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtItemNameEnglish.Focus();
+                    if (txtSalesPICode.Enabled == true)
+                    {
+                        txtSalesPICode.Focus();
+                    }
+                    else
+                    {
+                        txtItemNameEnglish.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -7058,7 +7078,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"");
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","");
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8700,7 +8720,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0,"");
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","");
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -9521,6 +9541,97 @@ namespace ROMS
             }
         }
 
+        private void txtDSubGroup_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSubgroupType_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDGroup_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDBrand_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSalesPICode_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterPurLocation.DataSource = null;
+                DGV_FilterPurLocation.Visible = false;
+                DGV_FilterSalesLocation.DataSource = null;
+                DGV_FilterSalesLocation.Visible = false;
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                txtSalesPICode.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesProduct_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(chkSalesProduct.Checked==true)
+                {
+                    txtSalesPICode.Enabled = true;
+                    txtSalesPICode.ReadOnly = false;
+                }
+                else
+                {
+                    txtSalesPICode.Text="";
+                    txtSalesPICode.Enabled = false;
+                    txtSalesPICode.ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtSalesPICode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtItemNameEnglish.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtSalesPICode_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSalesPICode.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void LvVerified1_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -10305,6 +10416,7 @@ namespace ROMS
                             varcompanyid = Convert.ToInt32(objDS.Tables[0].Rows[0]["COMPANY"].ToString());
                             //cmbConcern.Enabled = false;//
                             txtPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PICODE"].ToString().Replace("''", "'"));
+                            txtSalesPICode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["SalesPICODE"].ToString().Replace("''", "'"));
                             txtItemNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["ENAME"].ToString().Replace("''", "'"));
                             txtItemNameTamil.Text = Convert.ToString(objDS.Tables[0].Rows[0]["TNAME"].ToString().Replace("''", "'"));
                             txtLabelNameEnglish.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"].ToString().Replace("''", "'"));

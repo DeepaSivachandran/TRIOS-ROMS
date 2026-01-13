@@ -173,6 +173,12 @@
     <Compile Include="CP_BulkUpdate_RateCategory.designer.cs">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_LockItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_LockItems.designer.cs">
+      <DependentUpon>CP_LockItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_HSNBulkUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -694,6 +700,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_ZeroVsNonPOGenerated.cs">
+      <DependentUpon>RPT_ZeroVsNonPOGenerated.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_ZeroVsPOGenerated.cs">
       <DependentUpon>RPT_ZeroVsPOGenerated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1074,6 +1086,12 @@
     </Compile>
     <Compile Include="REPORT_CP_Product_Category.designer.cs">
       <DependentUpon>REPORT_CP_Product_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_ZeroVsPOGenerated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_ZeroVsPOGenerated.designer.cs">
+      <DependentUpon>REPORT_ZeroVsPOGenerated.cs</DependentUpon>
     </Compile>
     <Compile Include="Service Class\UserAccessHelper.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
@@ -3991,6 +4009,9 @@
     <EmbeddedResource Include="CP_BulkUpdate_RateCategory.resx">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_LockItems.resx">
+      <DependentUpon>CP_LockItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_HSNBulkUpdate.resx">
       <DependentUpon>CP_HSNBulkUpdate.cs</DependentUpon>
     </EmbeddedResource>
@@ -5082,6 +5103,11 @@
       <LastGenOutput>RPT_CP_Product_RateCategory_Enable.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_ZeroVsNonPOGenerated.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_ZeroVsNonPOGenerated.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_ZeroVsPOGenerated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_ZeroVsPOGenerated.cs</LastGenOutput>
@@ -6156,6 +6182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_InactiveProduct.resx">
       <DependentUpon>REPORT_CP_InactiveProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_ZeroVsPOGenerated.resx">
+      <DependentUpon>REPORT_ZeroVsPOGenerated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_ZeroRate.resx">
       <DependentUpon>REPORT_ZeroRate.cs</DependentUpon>
