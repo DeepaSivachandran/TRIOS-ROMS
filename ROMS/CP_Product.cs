@@ -6955,10 +6955,9 @@ namespace ROMS
                 btnSave.Enabled = true;
                 if (Convert.ToInt32(tbProduct.SelectedIndex) == 3)
                 {
-                    btnSave.Enabled = false;
+                    //btnSave.Enabled = false;
                     grdPrice.Rows.Clear();
                     udfnPriceMarkup();
-
                     DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
                     grdPrice_DataBindingComplete(grdPrice, args);
                 }
@@ -11307,16 +11306,16 @@ namespace ROMS
 
                         }
                         ApprovalFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["ApprovalFlag"]);
-                        if (ApprovalFlag == 122)
-                        {
-                            grdPrice.Enabled = true;
-                            btnSave.Enabled = true;
-                        }
-                        else
-                        {
-                            grdPrice.Enabled = false;
-                            btnSave.Enabled = false;
-                        }
+                        //if (ApprovalFlag == 122)
+                        //{
+                        //    grdPrice.Enabled = true;
+                        //    btnSave.Enabled = true;
+                        //}
+                        //else
+                        //{
+                        //    grdPrice.Enabled = false;
+                        //    btnSave.Enabled = false;
+                        //}
 
 
                         if (varStatusID == 71)

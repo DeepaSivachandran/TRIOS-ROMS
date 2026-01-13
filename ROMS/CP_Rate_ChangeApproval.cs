@@ -15,6 +15,7 @@ namespace ROMS
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
+        private ToolTip tpTransactionType = new ToolTip();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -1406,6 +1407,7 @@ namespace ROMS
         {
             try
             {
+                txtRemark.Text = "";
                 dtDefaultGrid = null;
                 chkSelectAll.Visible = true;
                 chkSelectAll.Checked = false;
@@ -2106,8 +2108,25 @@ namespace ROMS
                 objDServ.CloseConnection();
                 DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
-                { 
-                    udfnSaveRateApproval(2);
+                {
+
+                    if (txtRemark.Text == "")
+                    {
+                        epGoodsInward.SetError(txtRemark, "Please enter remarks");
+                        txtRemark.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpTransactionType.ShowAlways = true;
+                        tpTransactionType.Show("Please enter remarks", txtRemark, 5000);
+                        return;
+                    }
+                    else
+                    {
+                        epGoodsInward.Clear();
+                        epGoodsInward.SetError(txtRemark, "");
+                        txtRemark.BackColor = Color.White;
+                    }
+
+                        udfnSaveRateApproval(2);
+                    txtRemark.Text = "";
                 }
             }
             catch (Exception ex)
@@ -2187,6 +2206,33 @@ namespace ROMS
             try
             {
                 btnReject.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRemark_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtRemark.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void txtRemark_Leave(object sender, EventArgs e)
+        { 
+            try
+            {
+                txtRemark.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -2339,9 +2385,10 @@ namespace ROMS
                     {
                         objRateChange.paraViewType = 2;
                     }
-                    objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text); 
+                    objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text);
+                    objRateChange.paraRemarks = txtRemark.Text;
                     objRateChange.paraApprove = objRADataTable; 
-                    objRateChange.paraOriginator = "Rate Change Approval";
+                    objRateChange.paraOriginator = "Rate Change Reject";
 
                     SPDataService objspservice = new SPDataService();
                     string varResult = objspservice.udfnRateChange(objRateChange);
