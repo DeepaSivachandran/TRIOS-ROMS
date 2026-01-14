@@ -1386,6 +1386,7 @@ namespace ROMS
                         txtItemNameEnglish.Text = txtItemNameEnglish.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                         txtItemNameTamil.Text = txtItemNameTamil.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                         txtPICode.Text = txtPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
+                        txtSalesPICode.Text = txtSalesPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                     }
 
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
@@ -3316,12 +3317,10 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void cmbChildUnit_KeyDown(object sender, KeyEventArgs e)
@@ -4100,6 +4099,7 @@ namespace ROMS
                 //txtUpp.Enabled = true;
                 btnSave.Visible = true;
                 btnImageUpdate.Visible = false;
+                UpdateSalesProductUI();
             }
             catch (Exception ex)
             {
@@ -9547,17 +9547,7 @@ namespace ROMS
         {
             try
             {
-                if(chkSalesProduct.Checked==true)
-                {
-                    txtSalesPICode.Enabled = true;
-                    txtSalesPICode.ReadOnly = false;
-                }
-                else
-                {
-                    txtSalesPICode.Text="";
-                    txtSalesPICode.Enabled = false;
-                    txtSalesPICode.ReadOnly = true;
-                }
+                UpdateSalesProductUI();
             }
             catch (Exception ex)
             {
@@ -9565,7 +9555,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void UpdateSalesProductUI()
+        {
+            if (chkSalesProduct.Checked)
+            {
+                txtSalesPICode.Enabled = true;
+                txtSalesPICode.ReadOnly = false;
+            }
+            else
+            {
+                txtSalesPICode.Text = "";
+                txtSalesPICode.Enabled = false;
+                txtSalesPICode.ReadOnly = true;
+            }
+        }
         private void txtSalesPICode_KeyDown(object sender, KeyEventArgs e)
         {
             try

@@ -77,6 +77,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grplocation = new System.Windows.Forms.GroupBox();
+            this.chkSalesProduct = new System.Windows.Forms.CheckBox();
             this.txtSalesPICode = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.DGV_FilterSalesLocation = new System.Windows.Forms.DataGridView();
@@ -220,7 +221,6 @@
             this.grdSubgroup = new System.Windows.Forms.DataGridView();
             this.btnSubgroup = new System.Windows.Forms.Button();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
-            this.chkSalesProduct = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -497,12 +497,26 @@
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Product Details";
             // 
+            // chkSalesProduct
+            // 
+            this.chkSalesProduct.AutoSize = true;
+            this.chkSalesProduct.Location = new System.Drawing.Point(456, 27);
+            this.chkSalesProduct.Name = "chkSalesProduct";
+            this.chkSalesProduct.Size = new System.Drawing.Size(106, 24);
+            this.chkSalesProduct.TabIndex = 1;
+            this.chkSalesProduct.Text = "Is a Sales Item";
+            this.chkSalesProduct.UseVisualStyleBackColor = true;
+            this.chkSalesProduct.CheckedChanged += new System.EventHandler(this.chkSalesProduct_CheckedChanged);
+            this.chkSalesProduct.Enter += new System.EventHandler(this.chkSalesProduct_Enter);
+            this.chkSalesProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkSalesProduct_KeyDown);
+            this.chkSalesProduct.Leave += new System.EventHandler(this.chkSalesProduct_Leave);
+            // 
             // txtSalesPICode
             // 
             this.txtSalesPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSalesPICode.Location = new System.Drawing.Point(135, 54);
-            this.txtSalesPICode.MaxLength = 20;
+            this.txtSalesPICode.MaxLength = 30;
             this.txtSalesPICode.Name = "txtSalesPICode";
             this.txtSalesPICode.Size = new System.Drawing.Size(427, 27);
             this.txtSalesPICode.TabIndex = 1;
@@ -2254,20 +2268,6 @@
             this.grpGoodsOutward.Size = new System.Drawing.Size(1331, 638);
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
-            // 
-            // chkSalesProduct
-            // 
-            this.chkSalesProduct.AutoSize = true;
-            this.chkSalesProduct.Location = new System.Drawing.Point(456, 27);
-            this.chkSalesProduct.Name = "chkSalesProduct";
-            this.chkSalesProduct.Size = new System.Drawing.Size(106, 24);
-            this.chkSalesProduct.TabIndex = 1;
-            this.chkSalesProduct.Text = "Is a Sales Item";
-            this.chkSalesProduct.UseVisualStyleBackColor = true;
-            this.chkSalesProduct.CheckedChanged += new System.EventHandler(this.chkSalesProduct_CheckedChanged);
-            this.chkSalesProduct.Enter += new System.EventHandler(this.chkSalesProduct_Enter);
-            this.chkSalesProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkSalesProduct_KeyDown);
-            this.chkSalesProduct.Leave += new System.EventHandler(this.chkSalesProduct_Leave);
             // 
             // CP_ProductApproval
             // 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.ViewerObjectModel;
+using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using ROMS.Model;
 
 namespace ROMS
 {
@@ -610,7 +611,7 @@ namespace ROMS
         {
             try
             {
-
+                udfnLockUnLock();
             }
             catch (Exception ex)
             {
@@ -906,6 +907,124 @@ namespace ROMS
                     {
                         btnLock.Focus();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objStart = new DEF_Start();
+                MainForm.objStart.MdiParent = this.ParentForm;
+                MainForm.objStart.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                btnClose.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnProductSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdLockItems.Rows.Count) > 0)
+                {
+                    for (int i = 0; i < grdLockItems.Rows.Count; i++)
+                    {
+                        grdLockItems.Rows[i].Cells[0].Value = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnProductUnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(grdLockItems.Rows.Count) > 0)
+                {
+                    for (int i = 0; i < grdLockItems.Rows.Count; i++)
+                    {
+                        grdLockItems.Rows[i].Cells[0].Value = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnUnLock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnLockUnLock();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLockUnLock()
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                string result = "";
+                result = objspdservice.udfnProductMaster(15, Convert.ToInt32(0), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "");
+                string[] varvalue = result.Split('~');
+                objspdservice.CloseConnection();
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
