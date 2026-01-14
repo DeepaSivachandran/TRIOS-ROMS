@@ -2893,7 +2893,7 @@ namespace ROMS
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnList();
+                    udfnLockList();
                 }
                 else
                 {
@@ -3014,8 +3014,8 @@ namespace ROMS
             {
                 dtDefaultGrid = null;
                 DGV_LockSearchGrid.DataSource = null;
-                picLoader.Visible = true;
-                picLoader.BringToFront();
+                picLoaderLock.Visible = true;
+                picLoaderLock.BringToFront();
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdLockItems.DataSource = null;
@@ -3030,11 +3030,11 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count != 0)
                     {
-                        lblNoRecordsFound.Visible = false;
+                        lblNoRecordsFoundLock.Visible = false;
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
+                            lblNoRecordsFoundLock.Visible = false;
+                            lblNoRecordsFoundLock.SendToBack();
                             grdLockItems.DataSource = objDs.Tables[0];
                             grdLockItems.Columns["PRID"].Visible = false;
                             grdLockItems.Columns["Product Name"].Visible = false;
@@ -3050,20 +3050,20 @@ namespace ROMS
                         }
                         else
                         {
-                            lblNoRecordsFound.Visible = true;
-                            lblNoRecordsFound.BringToFront();
+                            lblNoRecordsFoundLock.Visible = true;
+                            lblNoRecordsFoundLock.BringToFront();
                         }
                     }
                     else
                     {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
+                        lblNoRecordsFoundLock.Visible = true;
+                        lblNoRecordsFoundLock.BringToFront();
                     }
                 }
                 udfnLockSearchGridHead();
                 grdLockItems.Columns["Sales P.I Code"].ReadOnly = true;
                 grdLockItems.Columns["Product Name"].ReadOnly = true;
-                if (lblNoRecordsFound.Visible == true)
+                if (lblNoRecordsFoundLock.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
                     udfnDefaultLockSearchGrid();
@@ -3080,8 +3080,8 @@ namespace ROMS
             }
             finally
             {
-                picLoader.Visible = false;
-                picLoader.SendToBack();
+                picLoaderLock.Visible = false;
+                picLoaderLock.SendToBack();
             }
         }
         public void udfnDefaultLockSearchGrid()

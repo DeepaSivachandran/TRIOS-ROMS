@@ -110,10 +110,10 @@
             this.btnUnLock = new System.Windows.Forms.Button();
             this.btnProductUnSelect = new System.Windows.Forms.Button();
             this.btnProductSelect = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblNoRecordsFoundLock = new System.Windows.Forms.Label();
             this.grdLockItems = new System.Windows.Forms.DataGridView();
             this.clmCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picLoaderLock = new System.Windows.Forms.PictureBox();
             this.DGV_LockSearchGrid = new System.Windows.Forms.DataGridView();
             this.grbFilter = new System.Windows.Forms.GroupBox();
             this.lblProductId = new System.Windows.Forms.Label();
@@ -138,7 +138,7 @@
             this.pnlLockItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Product)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLockItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoaderLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_LockSearchGrid)).BeginInit();
             this.grbFilter.SuspendLayout();
             this.pnlForm.SuspendLayout();
@@ -886,9 +886,9 @@
             this.pnlLockItems.Controls.Add(this.btnUnLock);
             this.pnlLockItems.Controls.Add(this.btnProductUnSelect);
             this.pnlLockItems.Controls.Add(this.btnProductSelect);
-            this.pnlLockItems.Controls.Add(this.label7);
+            this.pnlLockItems.Controls.Add(this.lblNoRecordsFoundLock);
             this.pnlLockItems.Controls.Add(this.grdLockItems);
-            this.pnlLockItems.Controls.Add(this.pictureBox1);
+            this.pnlLockItems.Controls.Add(this.picLoaderLock);
             this.pnlLockItems.Controls.Add(this.DGV_LockSearchGrid);
             this.pnlLockItems.Controls.Add(this.grbFilter);
             this.pnlLockItems.Location = new System.Drawing.Point(6, 6);
@@ -998,17 +998,17 @@
             this.btnProductSelect.UseVisualStyleBackColor = true;
             this.btnProductSelect.Click += new System.EventHandler(this.btnProductSelect_Click);
             // 
-            // label7
+            // lblNoRecordsFoundLock
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(608, 329);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 20);
-            this.label7.TabIndex = 958806;
-            this.label7.Text = "No Records Found";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblNoRecordsFoundLock.AutoSize = true;
+            this.lblNoRecordsFoundLock.BackColor = System.Drawing.Color.White;
+            this.lblNoRecordsFoundLock.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoRecordsFoundLock.Location = new System.Drawing.Point(608, 329);
+            this.lblNoRecordsFoundLock.Name = "lblNoRecordsFoundLock";
+            this.lblNoRecordsFoundLock.Size = new System.Drawing.Size(106, 20);
+            this.lblNoRecordsFoundLock.TabIndex = 958806;
+            this.lblNoRecordsFoundLock.Text = "No Records Found";
+            this.lblNoRecordsFoundLock.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grdLockItems
             // 
@@ -1061,19 +1061,19 @@
             this.clmCheck.ReadOnly = true;
             this.clmCheck.Width = 50;
             // 
-            // pictureBox1
+            // picLoaderLock
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(14, 130);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1295, 399);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 958805;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
+            this.picLoaderLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.picLoaderLock.ErrorImage = null;
+            this.picLoaderLock.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
+            this.picLoaderLock.InitialImage = null;
+            this.picLoaderLock.Location = new System.Drawing.Point(14, 130);
+            this.picLoaderLock.Name = "picLoaderLock";
+            this.picLoaderLock.Size = new System.Drawing.Size(1295, 399);
+            this.picLoaderLock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoaderLock.TabIndex = 958805;
+            this.picLoaderLock.TabStop = false;
+            this.picLoaderLock.Visible = false;
             // 
             // DGV_LockSearchGrid
             // 
@@ -1234,7 +1234,7 @@
             this.pnlLockItems.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Product)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLockItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoaderLock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_LockSearchGrid)).EndInit();
             this.grbFilter.ResumeLayout(false);
             this.grbFilter.PerformLayout();
@@ -1306,8 +1306,8 @@
         public System.Windows.Forms.DataGridView DGV_LockSearchGrid;
         public System.Windows.Forms.DataGridView grdLockItems;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCheck;
-        public System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.PictureBox picLoaderLock;
+        private System.Windows.Forms.Label lblNoRecordsFoundLock;
         public System.Windows.Forms.Button btnProductUnSelect;
         public System.Windows.Forms.Button btnProductSelect;
         public System.Windows.Forms.Button btnClose;
