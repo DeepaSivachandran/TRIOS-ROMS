@@ -147,7 +147,7 @@ namespace ROMS
             try
             {
                 dtDefaultGrid = null;
-                DGV_SearchGrid.DataSource = null;
+                DGV_LockSearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -204,7 +204,7 @@ namespace ROMS
                 }
                 else
                 {
-                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
+                    DGV_LockSearchGrid.ScrollBars = ScrollBars.Vertical;
                 }
             }
             catch (Exception ex)
@@ -222,12 +222,12 @@ namespace ROMS
         {
             try
             {
-                DGV_SearchGrid.DataSource = dtDefaultGrid;
-                DGV_SearchGrid.Columns["PRID"].Visible = false;
-                DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Product Name"].Width = 200;
-                DGV_SearchGrid.Columns["Sales P.I Code"].Width = 110;
-                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_LockSearchGrid.DataSource = dtDefaultGrid;
+                DGV_LockSearchGrid.Columns["PRID"].Visible = false;
+                DGV_LockSearchGrid.Columns["S.No."].Width = 50;
+                DGV_LockSearchGrid.Columns["Product Name in Tamil"].Width = 350;
+                DGV_LockSearchGrid.Columns["Sales P.I Code"].Width = 110;
+                DGV_LockSearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -241,26 +241,26 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
-                    udfnGridSearchHeading(grdLockItems, DGV_SearchGrid);
-                    DGV_SearchGrid.Columns.Clear();
+                    udfnGridSearchHeading(grdLockItems, DGV_LockSearchGrid);
+                    DGV_LockSearchGrid.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
                     foreach (DataGridViewColumn col in grdLockItems.Columns)
                     {
-                        DGV_SearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
+                        DGV_LockSearchGrid.Columns.Add((DataGridViewColumn)col.Clone());
                         visibleColumns.Add(col.Index);
                     }
                     int rowIndex = 0;
-                    DGV_SearchGrid.Rows.Clear();
-                    DGV_SearchGrid.Rows.Add();
-                    //DGV_SearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
-                    DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
-                    DGV_SearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
+                    DGV_LockSearchGrid.Rows.Clear();
+                    DGV_LockSearchGrid.Rows.Add();
+                    //DGV_LockSearchGrid.Columns[0].DefaultCellStyle.NullValue = null;
+                    DGV_LockSearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
+                    DGV_LockSearchGrid.Columns[2].DefaultCellStyle.NullValue = null;
                     for (int i = 1; i < visibleColumns.Count; i++)
                     {
-                        DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                        DGV_LockSearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
-                    DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
-                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_LockSearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_LockSearchGrid.Columns[0].ReadOnly = true;
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -382,15 +382,15 @@ namespace ROMS
                 {
                     int totalWidth = 0;
                     int offSetValue = grdLockItems.HorizontalScrollingOffset;
-                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    foreach (DataGridViewColumn col in DGV_LockSearchGrid.Columns)
                         totalWidth += col.Width;
                     if (totalWidth - grdLockItems.Width > grdLockItems.HorizontalScrollingOffset && grdLockItems.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
-                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                    DGV_SearchGrid.Invalidate();
-                    udfnscrollVisible(DGV_SearchGrid, grdLockItems);
+                    DGV_LockSearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_LockSearchGrid.Invalidate();
+                    udfnscrollVisible(DGV_LockSearchGrid, grdLockItems);
                 }
             }
             catch (Exception ex)
@@ -411,14 +411,14 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-                    int I = DGV_SearchGrid.Rows.Count - 1;
+                    int I = DGV_LockSearchGrid.Rows.Count - 1;
                     if (I == 0) 
                     {
                         int rowIndex = 1;
-                        DGV_SearchGrid.Rows.Add();
+                        DGV_LockSearchGrid.Rows.Add();
                         for (int i = 0; i < visibleColumns.Count; i++)
                         {
-                            DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
+                            DGV_LockSearchGrid.Rows[rowIndex].Cells[i].Value = "";
                         }
                     }
                 }
@@ -429,20 +429,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void DGV_LockSearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdLockItems.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdLockItems);
+                grdLockItems.DataSource = objDser.udfnGridSearchFilter(DGV_LockSearchGrid, grdLockItems);
                 objDser.CloseConnection();
-                grdLockItems.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
+                grdLockItems.HorizontalScrollingOffset = DGV_LockSearchGrid.HorizontalScrollingOffset;
+                //DGV_LockSearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void DGV_SearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void DGV_LockSearchGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
             {
@@ -463,8 +463,8 @@ namespace ROMS
                         e.Handled = true;
                     }
 
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
-                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
+                DGV_LockSearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_LockSearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
                 {
                     if (e.Value == null || !(bool)e.Value)
                     {
@@ -475,14 +475,14 @@ namespace ROMS
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
-        private void DGV_SearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        private void DGV_LockSearchGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             try
             {
                 if (grdLockItems.ColumnCount > 0)
                 {
                     grdLockItems.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdLockItems.HorizontalScrollingOffset;
+                    DGV_LockSearchGrid.HorizontalScrollingOffset = grdLockItems.HorizontalScrollingOffset;
                 }
             }
             catch (Exception ex)
@@ -491,7 +491,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void DGV_SearchGrid_Scroll(object sender, ScrollEventArgs e)
+        private void DGV_LockSearchGrid_Scroll(object sender, ScrollEventArgs e)
         {
             try
             {
@@ -499,14 +499,14 @@ namespace ROMS
                 {
                     int totalWidth = 0;
                     int offSetValue = grdLockItems.HorizontalScrollingOffset;
-                    foreach (DataGridViewColumn col in DGV_SearchGrid.Columns)
+                    foreach (DataGridViewColumn col in DGV_LockSearchGrid.Columns)
                         totalWidth += col.Width;
                     if (totalWidth - grdLockItems.Width > grdLockItems.HorizontalScrollingOffset && grdLockItems.HorizontalScrollingOffset > 0)
                     {
                         offSetValue = offSetValue;
                     }
-                    DGV_SearchGrid.HorizontalScrollingOffset = offSetValue;
-                    DGV_SearchGrid.Invalidate();
+                    DGV_LockSearchGrid.HorizontalScrollingOffset = offSetValue;
+                    DGV_LockSearchGrid.Invalidate();
                 }
             }
             catch (Exception ex)
@@ -528,7 +528,7 @@ namespace ROMS
             }
         }
 
-        private void DGV_SearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DGV_LockSearchGrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (lblNoRecordsFound.Visible == false)
             {
@@ -559,32 +559,32 @@ namespace ROMS
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
                     SortOrder.Ascending : SortOrder.Descending;
-                DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                DataGridViewColumn DGV = DGV_LockSearchGrid.Columns[e.ColumnIndex];
                 DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                DGV_SearchGrid.HorizontalScrollingOffset = grdLockItems.HorizontalScrollingOffset;
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                DGV_LockSearchGrid.HorizontalScrollingOffset = grdLockItems.HorizontalScrollingOffset;
+                DGV_LockSearchGrid.FirstDisplayedScrollingRowIndex = 0;
             }
         }
 
-        private void DGV_SearchGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void DGV_LockSearchGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
         }
 
-        private void DGV_SearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        private void DGV_LockSearchGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             try
             {
-                if (DGV_SearchGrid.IsCurrentCellDirty)
+                if (DGV_LockSearchGrid.IsCurrentCellDirty)
                 {
                     // Commit the changes immediately
-                    DGV_SearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    DGV_LockSearchGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
                 }
                 //udfnGridSearchFilter();
                 DataService objDser = new DataService();
-                grdLockItems.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdLockItems);
+                grdLockItems.DataSource = objDser.udfnGridSearchFilter(DGV_LockSearchGrid, grdLockItems);
                 objDser.CloseConnection();
-                grdLockItems.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                //DGV_SearchGrid_CellPainting(sender,e);
+                grdLockItems.HorizontalScrollingOffset = DGV_LockSearchGrid.HorizontalScrollingOffset;
+                //DGV_LockSearchGrid_CellPainting(sender,e);
             }
             catch (Exception ex)
             {
@@ -596,7 +596,7 @@ namespace ROMS
         {
             try
             {
-                if (skipControl != txtProductName)
+                if (skipControl != txtProduct)
                 {
                     varUpDownKeyProduct = 0;
                     DGV_FilterProduct.DataSource = null;
@@ -614,7 +614,7 @@ namespace ROMS
             try
             {
                 SPDataService objDServ = new SPDataService();
-                if (txtProductName.Text.Trim() == "")
+                if (txtProduct.Text.Trim() == "")
                 {
                     string varMessage = objDServ.udfnGetMessages(100);
                     objDServ.CloseConnection();
@@ -738,12 +738,12 @@ namespace ROMS
 
         }
 
-        private void txtProductName_Enter(object sender, EventArgs e)
+        private void txtProduct_Enter(object sender, EventArgs e)
         {
             try
             {
                 udfnGridNull((Control)sender);
-                txtProductName.BackColor = Color.LemonChiffon;
+                txtProduct.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -752,7 +752,7 @@ namespace ROMS
             }
         }
 
-        private void txtProductName_KeyDown(object sender, KeyEventArgs e)
+        private void txtProduct_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -794,10 +794,10 @@ namespace ROMS
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
+                                txtProduct.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
                             }
-                            txtProductName.Focus();
-                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            txtProduct.Focus();
+                            txtProduct.SelectionStart = txtProduct.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
@@ -806,11 +806,11 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
+                                txtProduct.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
                             }
 
-                            txtProductName.Focus();
-                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            txtProduct.Focus();
+                            txtProduct.SelectionStart = txtProduct.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Enter:
@@ -825,14 +825,14 @@ namespace ROMS
                                 break;
                             }
                     }
-                    txtProductName.Focus();
-                    //txtProductName.SelectionStart = txtProductName.Text.Length;
+                    txtProduct.Focus();
+                    //txtProduct.SelectionStart = txtProduct.Text.Length;
                     e.Handled = true;
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
-                        //txtProductName.SelectedText = true;
-                        TextBox txtProductName = sender as TextBox;
-                        txtProductName.SelectAll();
+                        //txtProduct.SelectedText = true;
+                        TextBox txtProduct = sender as TextBox;
+                        txtProduct.SelectAll();
                         e.Handled = true;
                     }
                     if (e.KeyCode == Keys.Enter)
@@ -848,11 +848,11 @@ namespace ROMS
             }
         }
 
-        private void txtProductName_Leave(object sender, EventArgs e)
+        private void txtProduct_Leave(object sender, EventArgs e)
         {
             try
             {
-                txtProductName.BackColor = Color.White;
+                txtProduct.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -861,7 +861,7 @@ namespace ROMS
             }
         }
 
-        private void txtProductName_TextChanged(object sender, EventArgs e)
+        private void txtProduct_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -870,11 +870,11 @@ namespace ROMS
                     lblProductcode.Text = "0";
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
-                    if (txtProductName.Text.Length > 0)
+                    if (txtProduct.Text.Length > 0)
                     {
                         MR_Product objMR_Product = new MR_Product();
                         objMR_Product.paraViewType = 94;
-                        objMR_Product.paraProductName = txtProductName.Text;
+                        objMR_Product.paraProductName = txtProduct.Text;
                         objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                         if (objDs != null)
                         {
@@ -957,10 +957,10 @@ namespace ROMS
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
 
-                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["Product Name"].Value.ToString();
+                            txtProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["Product Name"].Value.ToString();
 
-                            txtProductName.Focus();
-                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            txtProduct.Focus();
+                            txtProduct.SelectionStart = txtProduct.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Down:
@@ -969,11 +969,11 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
+                                txtProduct.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
                             }
 
-                            txtProductName.Focus();
-                            txtProductName.SelectionStart = txtProductName.Text.Length;
+                            txtProduct.Focus();
+                            txtProduct.SelectionStart = txtProduct.Text.Length;
                             e.Handled = true;
                             break;
                         case Keys.Enter:
@@ -990,8 +990,8 @@ namespace ROMS
                     }
                     if (((Control.ModifierKeys & Keys.Control) == Keys.Control) && (e.KeyCode == Keys.A))
                     {
-                        TextBox txtProductName = sender as TextBox;
-                        txtProductName.SelectAll();
+                        TextBox txtProduct = sender as TextBox;
+                        txtProduct.SelectAll();
                         e.Handled = true;
                     }
                     if (e.KeyCode == Keys.Enter)
@@ -1090,9 +1090,9 @@ namespace ROMS
         {
             try
             {
-                if (txtProductName.Text.Trim() != "")
+                if (txtProduct.Text.Trim() != "")
                 {
-                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["Product Name"].Value.ToString();
+                    txtProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["Product Name"].Value.ToString();
                     lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                 }
                 btnLock.Focus();
