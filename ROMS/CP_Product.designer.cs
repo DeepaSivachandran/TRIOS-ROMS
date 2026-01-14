@@ -314,15 +314,16 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblMarkupProd = new System.Windows.Forms.Label();
             this.grdPrice = new System.Windows.Forms.DataGridView();
-            this.pnlProductDetails = new System.Windows.Forms.Panel();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
+            this.pnlProductDetails = new System.Windows.Forms.Panel();
             this.chkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesPiCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMinQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmOffset = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.clmOffsetValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -331,12 +332,6 @@
             this.clmBulkRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNewRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnImageUpdate = new System.Windows.Forms.Button();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -3553,6 +3548,7 @@
             this.chkColumn,
             this.clmTypeId,
             this.clmType,
+            this.clmSalesPiCode,
             this.clmMinQty,
             this.clmOffset,
             this.clmOffsetValue,
@@ -3579,7 +3575,7 @@
             this.grdPrice.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.grdPrice.RowTemplate.Height = 25;
             this.grdPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdPrice.Size = new System.Drawing.Size(918, 361);
+            this.grdPrice.Size = new System.Drawing.Size(1029, 361);
             this.grdPrice.TabIndex = 9;
             this.grdPrice.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellEndEdit);
             this.grdPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellValueChanged);
@@ -3587,14 +3583,6 @@
             this.grdPrice.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdPrice_DataBindingComplete);
             this.grdPrice.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grdPrice_DataError);
             this.grdPrice.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdPrice_EditingControlShowing);
-            // 
-            // pnlProductDetails
-            // 
-            this.pnlProductDetails.Controls.Add(this.tbProduct);
-            this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
-            this.pnlProductDetails.Name = "pnlProductDetails";
-            this.pnlProductDetails.Size = new System.Drawing.Size(1178, 655);
-            this.pnlProductDetails.TabIndex = 1111144;
             // 
             // dataGridViewImageColumn1
             // 
@@ -3665,6 +3653,14 @@
             this.btnImageUpdate.UseVisualStyleBackColor = true;
             this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
             // 
+            // pnlProductDetails
+            // 
+            this.pnlProductDetails.Controls.Add(this.tbProduct);
+            this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
+            this.pnlProductDetails.Name = "pnlProductDetails";
+            this.pnlProductDetails.Size = new System.Drawing.Size(1178, 655);
+            this.pnlProductDetails.TabIndex = 1111144;
+            // 
             // chkColumn
             // 
             this.chkColumn.HeaderText = "Margin Calculation";
@@ -3683,6 +3679,13 @@
             this.clmType.HeaderText = "Type";
             this.clmType.Name = "clmType";
             this.clmType.ReadOnly = true;
+            // 
+            // clmSalesPiCode
+            // 
+            this.clmSalesPiCode.HeaderText = "Sales P.I Code";
+            this.clmSalesPiCode.Name = "clmSalesPiCode";
+            this.clmSalesPiCode.ReadOnly = true;
+            this.clmSalesPiCode.Width = 110;
             // 
             // clmMinQty
             // 
@@ -4089,6 +4092,7 @@
         private System.Windows.Forms.TextBox txtProductionUnit;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.GroupBox gpClassification;
+
         private System.Windows.Forms.CheckBox chkPrioirty;
         private System.Windows.Forms.CheckBox chkFocus;
         private System.Windows.Forms.CheckBox chkSpl;
@@ -4098,9 +4102,12 @@
         public System.Windows.Forms.ComboBox cmbStockTakken;
         private System.Windows.Forms.GroupBox grpstktake;
         private System.Windows.Forms.Label lblMarkupProd;
+        private System.Windows.Forms.TextBox txtSalesPICode;
+        private System.Windows.Forms.TextBox txtDSalesPICode;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesPiCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMinQty;
         private System.Windows.Forms.DataGridViewComboBoxColumn clmOffset;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmOffsetValue;
@@ -4109,8 +4116,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBulkRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNewRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.Label lblMarkupProd;
-        private System.Windows.Forms.TextBox txtSalesPICode;
-        private System.Windows.Forms.TextBox txtDSalesPICode;
     }
 }

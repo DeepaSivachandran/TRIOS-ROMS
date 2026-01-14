@@ -101,7 +101,7 @@ namespace ROMS
         public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
-        int varStatusFlag = 0, varStatusID = 0;
+        int varStatusFlag = 0, varStatusID = 0, varParentEnable = 0;
         public bool PurStkLocViewAcess = false, PurStkLocEditAcess = false,
             SalesStkLocViewAcess = false, SalesStkLocEditAcess = false,
             RetailRateViewAcess = false, RetailRateEditAcess = false,
@@ -7078,7 +7078,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","");
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "");
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8720,7 +8720,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","");
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "");
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -9108,21 +9108,21 @@ namespace ROMS
                         //grdPrice.Columns["clmBulkRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
                     }
                     else
-                    { 
+                    {
                         grdPrice.Columns["clmNewRate"].ReadOnly = false;
                         grdPrice.Columns["clmNewRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
                         grdPrice.Rows[0].Cells["clmNewRate"].ReadOnly = true;
-                        grdPrice.Rows[0].Cells["clmNewRate"].Style.BackColor = Color.LightGray; 
+                        grdPrice.Rows[0].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
                         grdPrice.Columns["clmOffset"].DefaultCellStyle.BackColor = Color.LightGray;
                         grdPrice.Columns["clmOffsetValue"].DefaultCellStyle.BackColor = Color.LightGray;
                         grdPrice.Columns["clmOffsetValuePer"].DefaultCellStyle.BackColor = Color.LightGray;
                         grdPrice.Columns["clmRate"].DefaultCellStyle.BackColor = Color.LightGray;
-                        grdPrice.Columns["clmBulkRate"].DefaultCellStyle.BackColor = Color.LightGray; 
+                        grdPrice.Columns["clmBulkRate"].DefaultCellStyle.BackColor = Color.LightGray;
                         grdPrice.Columns["clmOffset"].ReadOnly = true;
                         grdPrice.Columns["clmOffsetValue"].ReadOnly = true;
                         grdPrice.Columns["clmOffsetValuePer"].ReadOnly = true;
                         grdPrice.Columns["clmRate"].ReadOnly = true;
-                        grdPrice.Columns["clmBulkRate"].ReadOnly = true;  
+                        grdPrice.Columns["clmBulkRate"].ReadOnly = true;
                         grdPrice.Rows[0].Cells["clmRate"].ReadOnly = true;
                         grdPrice.Rows[0].Cells["clmRate"].Style.BackColor = Color.LightGray;
 
@@ -9268,13 +9268,13 @@ namespace ROMS
                 int varDecimal = 2;
                 if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate" || grdPrice.CurrentCell.OwningColumn.Name == "clmNewRate")
                 {
-                    
+
 
                     //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                     //{
                     //    e.Handled = true;  // Disallow the character
                     //}
-                    TextBox textBox = (TextBox)sender; 
+                    TextBox textBox = (TextBox)sender;
                     if (varDecimal == 0)
                     {
                         if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -9407,6 +9407,19 @@ namespace ROMS
                         row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         row.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
 
+                        if (Convert.ToInt32(cmbProductType.SelectedValue) == 342) //Child
+                        {
+                            if (varParentEnable == 453)
+                            {
+                                row.Cells["chkColumn"].Value = true;
+                            }
+                            else
+                            {
+                                row.Cells["chkColumn"].Value = false;
+                            }
+                            row.Cells["chkColumn"].ReadOnly = true;
+                            row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
+                        }
                     }
 
                     if (row.Cells["clmTypeid"].Value != null &&
@@ -9584,14 +9597,14 @@ namespace ROMS
         {
             try
             {
-                if(chkSalesProduct.Checked==true)
+                if (chkSalesProduct.Checked == true)
                 {
                     txtSalesPICode.Enabled = true;
                     txtSalesPICode.ReadOnly = false;
                 }
                 else
                 {
-                    txtSalesPICode.Text="";
+                    txtSalesPICode.Text = "";
                     txtSalesPICode.Enabled = false;
                     txtSalesPICode.ReadOnly = true;
                 }
@@ -11355,7 +11368,7 @@ namespace ROMS
         {
             try
             {
-                lblMarkupProd.Text =   txtItemNameTamil.Text.Trim();
+                lblMarkupProd.Text = txtItemNameTamil.Text.Trim();
                 if (txtUpp.Text != "" && txtUpp.Text != "0")
                 {
                     varuppValue = Convert.ToDecimal(txtUpp.Text);
@@ -11383,8 +11396,9 @@ namespace ROMS
                                 int row = grdPrice.Rows.Count - 1;
                                 grdPrice.Rows[row].Cells["clmTypeId"].Value = objDs.Tables[0].Rows[i]["TYPEID"].ToString();
                                 grdPrice.Rows[row].Cells["clmType"].Value = objDs.Tables[0].Rows[i]["TYPE"].ToString();
-                                grdPrice.Rows[row].Cells["clmRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"].ToString(); 
+                                grdPrice.Rows[row].Cells["clmRate"].Value = objDs.Tables[0].Rows[i]["PRPM_RATE"].ToString();
                                 grdPrice.Rows[row].Cells["clmNewRate"].Value = objDs.Tables[0].Rows[i]["PRPM_NEW_RATE"].ToString();
+                                grdPrice.Rows[row].Cells["clmSalesPiCode"].Value = objDs.Tables[0].Rows[i]["SalesPiCode"].ToString();
 
 
                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_STSID"]) == "453")
@@ -11396,7 +11410,7 @@ namespace ROMS
                                     grdPrice.Rows[row].Cells["chkColumn"].Value = false;
                                 }
 
-                                grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"]; 
+                                grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"];
                                 grdPrice.Rows[row].Cells["clmOffset"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_STSID"];
                                 grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE"];
                                 grdPrice.Rows[row].Cells["clmOffsetValue"].Value = objDs.Tables[0].Rows[i]["PRPM_OFFSET_VALUE_AMT"];
@@ -11418,6 +11432,13 @@ namespace ROMS
 
                         }
                         ApprovalFlag = Convert.ToInt32(objDs.Tables[1].Rows[0]["ApprovalFlag"]);
+                        if (objDs.Tables[2].Rows.Count > 0)
+                        {
+                            if (Convert.ToString(objDs.Tables[2].Rows[0]["ParentCPEnable"]) != "")
+                            {
+                                varParentEnable = Convert.ToInt32(objDs.Tables[2].Rows[0]["ParentCPEnable"]);
+                            }
+                        }
                         //if (ApprovalFlag == 122)
                         //{
                         //    grdPrice.Enabled = true;

@@ -717,7 +717,7 @@ namespace ROMS
             this.tsmProductApproval,
             this.tsmBulkRateCategory,
             this.tsmBulkupdateProductminbulk,
-            this.tsmBulkOffsetUpdate});
+            this.tsmBulkOffsetUpdate,
             this.tsmLockItems});
             this.tsmProductMenu.Name = "tsmProductMenu";
             this.tsmProductMenu.Size = new System.Drawing.Size(225, 22);
