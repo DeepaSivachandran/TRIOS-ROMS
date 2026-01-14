@@ -171,11 +171,13 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdLockItems.DataSource = objDs.Tables[0];
                             grdLockItems.Columns["PRID"].Visible = false;
+                            grdLockItems.Columns["Product Name"].Visible = false;
                             grdLockItems.Columns["S.No."].Width = 50;
-                            grdLockItems.Columns["Product Name"].Width = 300;
+                            //grdLockItems.Columns["Product Name"].Width = 350;
+                            grdLockItems.Columns["Product Name in Tamil"].Width = 350;
                             grdLockItems.Columns["Sales P.I Code"].Width = 110;
                             grdLockItems.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            //grdLockItems.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdLockItems.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdLockItems.Columns["clmCheck"].Visible = true;
                             grdLockItems.Columns["clmCheck"].ReadOnly = false;
                             grdLockItems.Columns["S.No."].ReadOnly = true;
@@ -611,7 +613,22 @@ namespace ROMS
         {
             try
             {
-                udfnLockUnLock();
+                SPDataService objDServ = new SPDataService();
+                if (txtProductName.Text.Trim() == "")
+                {
+                    string varMessage = objDServ.udfnGetMessages(100);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else if (Convert.ToInt32(lblProductcode.Text) == 0)
+                {
+                    string varMessage = objDServ.udfnGetMessages(91);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                udfnLockUnLock(1, lblProductcode.Text);
             }
             catch (Exception ex)
             {
@@ -619,7 +636,80 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private string GetCheckedProductCodes()
+        {
+            List<string> selectedProducts = new List<string>();
+            try
+            {
+                foreach (DataGridViewRow row in grdLockItems.Rows)
+                {
+                    var chkCell = row.Cells["clmCheck"];
+                    bool isChecked = chkCell.Value != null && (bool)chkCell.Value;
 
+                    if (!isChecked)
+                        continue;
+                    var codeCell = row.Cells["PRID"];
+                    if (codeCell.Value != null)
+                    {
+                        selectedProducts.Add(codeCell.Value.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            return string.Join(",", selectedProducts);
+        }
+
+        private void btnUnLock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string productCodeString = GetCheckedProductCodes();
+
+                SPDataService objDServ = new SPDataService();
+                if (string.IsNullOrEmpty(productCodeString))
+                {
+                    string varMessage = objDServ.udfnGetMessages(80);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                udfnLockUnLock(2, productCodeString);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnLockUnLock(int varFlag,string varProductCodes)
+        {
+            try
+            {
+                SPDataService objspdservice = new SPDataService();
+                string result = "";
+                result = objspdservice.udfnProductMaster(19, Convert.ToInt32(0), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, varFlag, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "");
+                string[] varvalue = result.Split('~');
+                objspdservice.CloseConnection();
+                if (varvalue[0] == "3")
+                {
+                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnList();
+                }
+                else
+                {
+                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnLock_Enter(object sender, EventArgs e)
         {
             try
@@ -704,7 +794,7 @@ namespace ROMS
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
                             if (RowIndex != (-1))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
                             }
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
@@ -716,7 +806,7 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
                             }
 
                             txtProductName.Focus();
@@ -777,6 +867,7 @@ namespace ROMS
             {
                 if (varUpDownKeyProduct == 0)
                 {
+                    lblProductcode.Text = "0";
                     SPDataService objspdservice = new SPDataService();
                     DataSet objDs = new DataSet();
                     if (txtProductName.Text.Length > 0)
@@ -866,7 +957,7 @@ namespace ROMS
                             RowIndex--;
                             if (RowIndex >= 0) DGV_FilterProduct.CurrentCell = DGV_FilterProduct.Rows[RowIndex].Cells[ClmIndex];
 
-                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                            txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["Product Name"].Value.ToString();
 
                             txtProductName.Focus();
                             txtProductName.SelectionStart = txtProductName.Text.Length;
@@ -878,7 +969,7 @@ namespace ROMS
 
                             if (RowIndex != (DGV_FilterProduct.Rows.Count))
                             {
-                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["PR_EName"].Value.ToString();
+                                txtProductName.Text = DGV_FilterProduct.Rows[RowIndex].Cells["Product Name"].Value.ToString();
                             }
 
                             txtProductName.Focus();
@@ -995,52 +1086,14 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void btnUnLock_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnLockUnLock();
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnLockUnLock()
-        {
-            try
-            {
-                SPDataService objspdservice = new SPDataService();
-                string result = "";
-                result = objspdservice.udfnProductMaster(15, Convert.ToInt32(0), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "");
-                string[] varvalue = result.Split('~');
-                objspdservice.CloseConnection();
-                if (varvalue[0] == "3")
-                {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    udfnList();
-                }
-                else
-                {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
         public void udfnListviewProduct()
         {
             try
             {
                 if (txtProductName.Text.Trim() != "")
                 {
+                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["Product Name"].Value.ToString();
                     lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
                 }
                 btnLock.Focus();
             }
