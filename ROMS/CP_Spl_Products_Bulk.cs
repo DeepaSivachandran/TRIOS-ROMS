@@ -2045,7 +2045,7 @@ namespace ROMS
 
                     DataTable saveobjDtProductsMapping = objdtProductsMapping.DefaultView.ToTable(false, "PRODUCTID", "P.I Code");
 
-                    result = objDSer.udfnProductMaster(18, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID , MainForm.pbIpAddress, varOriginator, 0, null, flag, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, saveobjDtProductsMapping, 0, 0, 0, 0, null,0,"","");
+                    result = objDSer.udfnProductMaster(18, 0, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID , MainForm.pbIpAddress, varOriginator, 0, null, flag, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, saveobjDtProductsMapping, 0, 0, 0, 0, null,0,"","", "", "");
                     objDSer.CloseConnection();
                     string[] varvalue = result.Split('~');
                     if (varvalue[0] == "3")

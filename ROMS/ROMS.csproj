@@ -537,6 +537,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="CP_ProductLockTeller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ProductLockTeller.designer.cs">
+      <DependentUpon>CP_ProductLockTeller.cs</DependentUpon>
+    </Compile>
     <Compile Include="PUR_MismatchApprovedList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4162,6 +4168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_User_ResetPassword.resx">
       <DependentUpon>CP_User_ResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ProductLockTeller.resx">
+      <DependentUpon>CP_ProductLockTeller.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_MismatchApprovedList.resx">
       <DependentUpon>PUR_MismatchApprovedList.cs</DependentUpon>

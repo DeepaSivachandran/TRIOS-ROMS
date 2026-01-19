@@ -25,6 +25,8 @@ namespace ROMS
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         Boolean BlnSearchImageYN = false;
+        private ToolTip tpVerifier = new ToolTip();
+        public string pbUnLockTellerName = "";
         public CP_Rate_ChangeList()
         {
             InitializeComponent();
@@ -2359,7 +2361,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_Product.Visible == false)
                 {
-                    btnLock.Focus();
+                    txtTeller.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -2432,7 +2434,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnLock.Focus();
+                        txtTeller.Focus();
                     }
                 }
             }
@@ -2480,8 +2482,17 @@ namespace ROMS
                                     DGV_Product.Visible = true;
                                     DGV_Product.DataSource = objDs.Tables[0];
                                     DGV_Product.Columns["PRID"].Visible = false;
+                                    DGV_Product.Columns["R.Rate"].Visible = false;
+                                    DGV_Product.Columns["W.Rate"].Visible = false;
+                                    DGV_Product.Columns["Location"].Visible = false;
+                                    DGV_Product.Columns["Stock"].Visible = false;
+                                    DGV_Product.Columns["Unit"].Visible = false;
                                     DGV_Product.Columns["Sales P.I Code"].Width = 120;
                                     DGV_Product.Columns["Product Name"].Width = 350;
+                                    //DGV_Product.Columns["R.Rate"].Width = 80;
+                                    //DGV_Product.Columns["W.Rate"].Width = 80;
+                                    //DGV_Product.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                    //DGV_Product.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                     //DGV_Product.Columns["PR_TName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                                     DGV_Product.BringToFront();
                                 }
@@ -2523,7 +2534,7 @@ namespace ROMS
             {
                 varUpDownKeyLockProduct = 1;
                 udfnListviewLockProduct();
-                btnLock.Focus();
+                txtTeller.Focus();
             }
             catch (Exception ex)
             {
@@ -2594,7 +2605,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnLock.Focus();
+                        txtTeller.Focus();
                     }
                 }
             }
@@ -2609,6 +2620,8 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
+                lvVerified1.Visible = false;
                 btnLock.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -2815,14 +2828,21 @@ namespace ROMS
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                else if (Convert.ToInt32(lblProductcode.Text) == 0)
+                else if (Convert.ToInt32(lblProductId.Text) == 0)
                 {
                     string varMessage = objDServ.udfnGetMessages(91);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }else if(Convert.ToString(txtTeller.Text).Trim() == "")
+                {
+                    epRateChange.SetError(txtTeller, "Please enter valid teller name");
+                    txtTeller.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVerifier.ShowAlways = true;
+                    tpVerifier.Show("Please enter valid teller name", txtTeller, 5000);
+                    return;
                 }
-                udfnLockUnLock(1, lblProductcode.Text);
+                udfnLockUnLock(1, lblProductId.Text);
             }
             catch (Exception ex)
             {
@@ -2843,6 +2863,13 @@ namespace ROMS
                     string varMessage = objDServ.udfnGetMessages(80);
                     objDServ.CloseConnection();
                     MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                pbUnLockTellerName = "";
+                MainForm.objCP_ProductLockTeller = new CP_ProductLockTeller();
+                MainForm.objCP_ProductLockTeller.ShowDialog();
+                if (pbUnLockTellerName == "")
+                {
                     return;
                 }
                 udfnLockUnLock(2, productCodeString);
@@ -2887,18 +2914,38 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(19, Convert.ToInt32(0), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, varFlag, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "");
+                result = objspdservice.udfnProductMaster(19, Convert.ToInt32(lblProductId.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, varFlag, varProductCodes, 0, 0, 0, 0, 0, null, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", txtTeller.Text.Trim(), pbUnLockTellerName);
                 string[] varvalue = result.Split('~');
                 objspdservice.CloseConnection();
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    udfnClear();
                     udfnLockList();
                 }
                 else
                 {
                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnClear()
+        {
+            try
+            {
+                lblProductId.Text = "0";
+                txtProduct.Text="";
+                txtRRate.Text = "";
+                txtWRate.Text = "";
+                txtLocation.Text = "";
+                txtStock.Text = "";
+                txtUnit.Text = "";
+                txtTeller.Text = "";
             }
             catch (Exception ex)
             {
@@ -3042,6 +3089,7 @@ namespace ROMS
                             //grdLockItems.Columns["Product Name"].Width = 350;
                             grdLockItems.Columns["Product Name in Tamil"].Width = 350;
                             grdLockItems.Columns["Sales P.I Code"].Width = 110;
+                            grdLockItems.Columns["Teller"].Width = 130;
                             grdLockItems.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdLockItems.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdLockItems.Columns["clmCheck"].Visible = true;
@@ -3062,7 +3110,8 @@ namespace ROMS
                 }
                 udfnLockSearchGridHead();
                 grdLockItems.Columns["Sales P.I Code"].ReadOnly = true;
-                grdLockItems.Columns["Product Name"].ReadOnly = true;
+                grdLockItems.Columns["Product Name in Tamil"].ReadOnly = true;
+                grdLockItems.Columns["Teller"].ReadOnly = true;
                 if (lblNoRecordsFoundLock.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -3178,6 +3227,169 @@ namespace ROMS
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void txtTeller_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.LemonChiffon;
+                udfnGridNull((Control)sender);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
+                {
+                    if (lvVerified1.Items.Count == 0 || txtTeller.Text == "")
+                    {
+                        lvVerified1.Visible = false;
+                    }
+                    else
+                    {
+                        lvVerified1.Focus();
+                    }
+                    if (lvVerified1.Items.Count > 0)
+                    {
+                        lvVerified1.Items[0].Selected = true;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnLock.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtTeller.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtTeller_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtTeller.Text.Length > 0)
+                {
+                    lvVerified1.Items.Clear();
+                    SPDataService objdserv = new SPDataService();
+                    DataSet objDs = new DataSet();
+                    objDs = objdserv.udfnEmployeeList(14, txtTeller.Text.Trim(), 0, "", 1, 0, 0);
+                    objdserv.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
+                                {
+                                    string[] row = { objDs.Tables[0].Rows[i]["EMP_Name"].ToString(), objDs.Tables[0].Rows[i]["EMPID"].ToString() };
+                                    ListViewItem objList = new ListViewItem(row);
+                                    lvVerified1.Columns[1].Width = 0;
+                                    lvVerified1.Items.Add(objList);
+                                }
+                                lvVerified1.BringToFront();
+                                lvVerified1.Visible = true;
+                            }
+                            else
+                            {
+                                lvVerified1.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            lvVerified1.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        lvVerified1.Visible = false;
+                    }
+                }
+                else
+                {
+                    lvVerified1.Visible = false;
+                    lvVerified1.Items.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvVerified1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnVerified1();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvVerified1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnVerified1();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnVerified1()
+        {
+            try
+            {
+                if (txtTeller.Text.Trim() != "")
+                {
+                    ListViewItem selectedItem = lvVerified1.SelectedItems[0];
+                    txtTeller.Text = selectedItem.SubItems[0].Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                lvVerified1.Visible = false;
+                txtTeller.Focus();
+            }
         }
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -3342,10 +3554,15 @@ namespace ROMS
             {
                 if (txtProduct.Text.Trim() != "")
                 {
-                    txtProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["Product Name"].Value.ToString();
-                    lblProductId.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
+                    txtProduct.Text = DGV_Product.SelectedRows[0].Cells["Product Name"].Value.ToString();
+                    txtRRate.Text = DGV_Product.SelectedRows[0].Cells["R.Rate"].Value.ToString();
+                    txtWRate.Text = DGV_Product.SelectedRows[0].Cells["W.Rate"].Value.ToString();
+                    txtLocation.Text = DGV_Product.SelectedRows[0].Cells["Location"].Value.ToString();
+                    txtStock.Text = DGV_Product.SelectedRows[0].Cells["Stock"].Value.ToString();
+                    txtUnit.Text = DGV_Product.SelectedRows[0].Cells["Unit"].Value.ToString();
+                    lblProductId.Text = DGV_Product.SelectedRows[0].Cells["PRID"].Value.ToString();
                 }
-                btnView.Focus();
+                txtTeller.Focus();
             }
             catch (Exception ex)
             {
