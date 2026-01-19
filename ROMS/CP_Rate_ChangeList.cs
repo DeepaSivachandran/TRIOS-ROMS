@@ -3066,6 +3066,7 @@ namespace ROMS
                 Application.DoEvents();
                 //********** To display a data in a grid  ******************
                 grdLockItems.DataSource = null;
+                grdLockItems.ClearSelection();
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
@@ -3090,7 +3091,12 @@ namespace ROMS
                             grdLockItems.Columns["Product Name in Tamil"].Width = 350;
                             grdLockItems.Columns["Sales P.I Code"].Width = 110;
                             grdLockItems.Columns["Teller"].Width = 130;
+                            grdLockItems.Columns["Location"].Width = 140;
+                            grdLockItems.Columns["Unit"].Width = 50;
                             grdLockItems.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdLockItems.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdLockItems.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdLockItems.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdLockItems.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdLockItems.Columns["clmCheck"].Visible = true;
                             grdLockItems.Columns["clmCheck"].ReadOnly = false;
@@ -3112,6 +3118,10 @@ namespace ROMS
                 grdLockItems.Columns["Sales P.I Code"].ReadOnly = true;
                 grdLockItems.Columns["Product Name in Tamil"].ReadOnly = true;
                 grdLockItems.Columns["Teller"].ReadOnly = true;
+                grdLockItems.Columns["Unit"].ReadOnly = true;
+                grdLockItems.Columns["Location"].ReadOnly = true;
+                grdLockItems.Columns["R.Rate"].ReadOnly = true;
+                grdLockItems.Columns["W.Rate"].ReadOnly = true;
                 if (lblNoRecordsFoundLock.Visible == true)
                 {
                     dtDefaultGrid = objDs.Tables[0];
@@ -3391,6 +3401,20 @@ namespace ROMS
                 txtTeller.Focus();
             }
         }
+
+        private void grdLockItems_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdLockItems.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_SearchGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             try

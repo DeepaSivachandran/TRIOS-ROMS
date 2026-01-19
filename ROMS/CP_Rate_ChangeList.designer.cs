@@ -1097,6 +1097,7 @@
             this.grdLockItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdLockItems.Size = new System.Drawing.Size(1305, 396);
             this.grdLockItems.TabIndex = 958804;
+            this.grdLockItems.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdLockItems_DataBindingComplete);
             this.grdLockItems.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdLockItems_Scroll);
             // 
             // clmCheck
