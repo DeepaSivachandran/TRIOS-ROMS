@@ -1227,6 +1227,10 @@ namespace ROMS
                         }
                     }
                 }
+                if (txtProductName.Text == "")
+                {
+                    lblProductcode.Text = "0";
+                }
 
                 //if (varBrandId == 0 && varSubGroupId == 0 && varGroupId == 0)
                 //{
@@ -1968,6 +1972,7 @@ namespace ROMS
 
             try
             {
+                udfnGridNull((Control)sender);
                 cmbCategory.BackColor = Color.LemonChiffon;
 
                 pnlRateCategory.Visible = false;

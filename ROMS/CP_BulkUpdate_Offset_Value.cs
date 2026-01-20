@@ -19,6 +19,7 @@ namespace ROMS
         DataError objError;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
         public int varFormFlag = 0;
+        bool _isBindingCompleteHandled = false;
 
         public int varId = 0, varGroupId = 0, grid_flag = 0;
         public int varSubGroupId = 0;
@@ -293,7 +294,47 @@ namespace ROMS
         {
             try
             {
+
                 grdProducts.ClearSelection();
+                if (_isBindingCompleteHandled) return;
+                _isBindingCompleteHandled = true;
+
+                //try
+                //{
+                //    foreach (DataGridViewRow row in grdProducts.Rows)
+                //    {
+                //        if (row.IsNewRow) continue;
+
+                //        foreach (DataGridViewColumn col in grdProducts.Columns)
+                //        {
+                //            if (col.HeaderText.Trim().EndsWith(" - New", StringComparison.OrdinalIgnoreCase))
+                //            {
+                //                var cell = row.Cells[col.Index];
+
+                //                if (cell.Value != null && cell.Value.ToString() == "-1")
+                //                {
+                //                    cell.Style.BackColor = Color.LightGray;
+                //                    cell.Style.ForeColor = Color.LightGray;
+                //                    cell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //                    cell.Value = "";
+                //                    cell.ReadOnly = true;
+                //                    // cell.Value = "";
+                //                }
+                //                else
+                //                {
+                //                    cell.Style.BackColor = Color.Red;
+                //                    cell.Style.ForeColor = Color.Black;
+                //                    cell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                //                }
+                                 
+                //            }
+                //        }
+                //    }
+                //}
+                //finally
+                //{
+                //    _isBindingCompleteHandled = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -552,6 +593,7 @@ namespace ROMS
                     grdHeaderview.Columns["P.I Code"].HeaderText = "";
                     grdHeaderview.Columns["Unit"].HeaderText = "";
                     grdHeaderview.Columns["Product Name in Tamil"].HeaderText = "";
+                    grdHeaderview.Columns["Product Name in Tamil"].Frozen = true;
                 }
                 if (objDs.Tables[1].Rows.Count != 0)
                 {
@@ -579,11 +621,12 @@ namespace ROMS
 
                             if ((column.Index % 2) == 1)
                             {
-                                column.ReadOnly = true; 
+                                column.ReadOnly = true;
                             }
-                            else {
+                            else
+                            {
                                 column.ReadOnly = false;
-                                column.DefaultCellStyle.BackColor = Color.PaleGreen; 
+                                column.DefaultCellStyle.BackColor = Color.PaleGreen;
                             }
                             column.Width = 50;
                         }
@@ -619,6 +662,9 @@ namespace ROMS
                 objspservice.CloseConnection();
                 udfnSearchGridHead(); //grid 1
                 udfnsearchgridHead(); //grid 2
+
+                //DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
+                //grdProducts_DataBindingComplete(grdProducts, args);
             }
             catch (Exception ex)
             {
@@ -1214,7 +1260,10 @@ namespace ROMS
                         }
                     }
                 }
-
+                if (txtProductName.Text == "")
+                {
+                    lblProductcode.Text = "0";
+                }
                 //if (varBrandId == 0 && varSubGroupId == 0 && varGroupId == 0)
                 //{
 
@@ -1256,25 +1305,7 @@ namespace ROMS
                 lblTotalProducts.Text = grdProducts.Rows.Count.ToString();
             }
         }
-
-
-        private void DGV_SearchGrid1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-
-        private void grdFinalSupplierMapping_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-
-        }
-
+         
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
             try
@@ -1550,13 +1581,32 @@ namespace ROMS
                         e.CellStyle.BackColor = Color.LightGray;
                         e.CellStyle.ForeColor = Color.LightGray;
                         e.Value = "";
-                        e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
+                        e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
                     else
                     {
                         e.CellStyle.BackColor = Color.PaleGreen;
                         e.CellStyle.ForeColor = Color.Black;
                         e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+                }
+
+                if (e.Value == null) return;
+                 
+
+                // Format only specific columns
+                if (col.HeaderText.EndsWith("Live", StringComparison.OrdinalIgnoreCase) ||
+                    col.HeaderText.EndsWith("New", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (decimal.TryParse(e.Value.ToString(), out decimal val))
+                    {
+                        decimal truncated = Math.Truncate(val * 100) / 100;
+
+                        e.Value = truncated % 1 == 0
+                            ? truncated.ToString("0")
+                            : truncated.ToString("0.##");
+
+                        e.FormattingApplied = true;
                     }
                 }
             }
@@ -2210,6 +2260,7 @@ namespace ROMS
 
             try
             {
+                udfnGridNull((Control)sender);
                 cmbCategory.BackColor = Color.LemonChiffon;
 
                 pnlRateCategory.Visible = false;
@@ -2607,6 +2658,29 @@ namespace ROMS
             }
         }
 
+        private void grdProducts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.RowIndex < 0) return;
+
+
+            //    var col = grdProducts.Columns[e.ColumnIndex];
+
+            //    // Only for Live / New columns
+            //    if (col.HeaderText.Trim() == "New")
+            //    {
+                     
+            //    } 
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    objError = new DataError();
+            //    objError.WriteFile(ex);
+            //}
+        }
+
         public void udfnClear()
         {
             try
@@ -2930,13 +3004,8 @@ namespace ROMS
                 if (txtProductName.Text.Trim() != "")
                 {
                     varProductName = txtProductName.Text.Trim();
-                }
-
-
-
-
+                } 
                 objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_RateCategory_Offset.rpt");
-
                 objBillreport.SetParameterValue("paraBrandID", varBrandId);
                 objBillreport.SetParameterValue("paragroup", varGroupId);
                 objBillreport.SetParameterValue("paraSubgroup", varSubGroupId);
@@ -2946,7 +3015,6 @@ namespace ROMS
                 objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                 objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbprinttype.SelectedValue));
                 objBillreport.SetParameterValue("paraOffSetType", Convert.ToInt32(cmbOffsetType.SelectedValue));
-
                 objBillreport.SetParameterValue("paraConcernName", varConcernName);
                 objBillreport.SetParameterValue("paraGroupName", varGroupName);
                 objBillreport.SetParameterValue("paraSubGroupName", varSubGroupName);
@@ -2955,12 +3023,9 @@ namespace ROMS
                 objBillreport.SetParameterValue("paraRateCategoryName", varRateCategoryName);
                 objBillreport.SetParameterValue("paraPrintTypeName", varPrintTypeName);
                 objBillreport.SetParameterValue("paraProductName", varProductName);
-
-
                 objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                 objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                 objValidation.CrySqlConnection(objBillreport);
-
                 MainForm.objReportLoad = new ReportLoad();
                 MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
                 MainForm.objReportLoad.ShowDialog();

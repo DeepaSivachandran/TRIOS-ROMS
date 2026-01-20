@@ -539,6 +539,7 @@ namespace ROMS
                     grdHeaderview.Columns["P.I Code"].HeaderText = "";
                     grdHeaderview.Columns["Unit"].HeaderText = "";
                     grdHeaderview.Columns["Product Name in Tamil"].HeaderText = "";
+                    grdHeaderview.Columns["Product Name in Tamil"].Frozen = true;
                 }
                 if (objDs.Tables[1].Rows.Count != 0)
                 {
@@ -1201,7 +1202,10 @@ namespace ROMS
                         }
                     }
                 }
-
+                if (txtProductName.Text == "")
+                {
+                    lblProductcode.Text = "0";
+                }
                 //if (varBrandId == 0 && varSubGroupId == 0 && varGroupId == 0)
                 //{
 
@@ -2199,6 +2203,7 @@ namespace ROMS
 
             try
             {
+                udfnGridNull((Control)sender);
                 cmbCategory.BackColor = Color.LemonChiffon;
 
                 pnlRateCategory.Visible = false;
