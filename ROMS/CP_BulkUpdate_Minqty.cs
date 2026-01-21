@@ -2901,7 +2901,7 @@ namespace ROMS
                 objBillreport.SetParameterValue("paraSubgroup", varSubGroupId);
                 objBillreport.SetParameterValue("ParaProductCode", Convert.ToInt32(lblProductcode.Text));
                 objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
-                objBillreport.SetParameterValue("paraRateCategorys", Convert.ToInt32(cmbCategory.SelectedValue));
+                objBillreport.SetParameterValue("paraRateCategorys", lblRateId.Text);
                 objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                 objBillreport.SetParameterValue("paraPrintType", Convert.ToInt32(cmbprinttype.SelectedValue)); 
 

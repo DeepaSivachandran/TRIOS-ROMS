@@ -117,22 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="tsProductCategoryReport.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>21, 4</value>
+  <metadata name="tsBulkAttribute.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 3</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tsLabelPlaceholder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        dQAAAHUB48IHZQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFOSURBVDhPrZPL
-        SsNQEIZTXIi3p/ABfIxC9y50rwt33tInKIKKC0FqGwo68YJ5ANFMpCixCxVUbIomXWVKEeumrkoXHjnR
-        2NxONvovz/zfzzkzcyTprwJ0s1r1bTx6HhTolNNqNBI99wRIbRVds2J2JqI1LsZYBpC6gC4mhuwjbQAS
-        A52uRSGAbpF7VIMu4fx1LFTcu3AnAekzLUQ9a015dVEIIFV9gygEkG6FIaruzvwGcENCTwBpLujhPSnd
-        tUe94vapMwxInaChcGRfSYxl/AA+KUD6CHkOXozEgE2t2c+XrIe0gPWTZk9WLNO/3uwAdvqy0niSK8+h
-        J6hGa34AOz25XL9fgcfvPvhNFME/Hq+JMdgfYxrsjzEGc/FFSoO5+CIlwlxrx/b7qmIJ4WmNDRUO7W6+
-        bN0sbtXiq7xcrGcXdqzUz7S028glwv+hLzRhY95zMpROAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="btnTelegram.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEABAAEAAD/2wBDAAQDAwQDAwQEAwQFBAQFBgoHBgYGBg0JCggKDw0QEA8NDw4R
@@ -148,13 +136,19 @@
         9Y8/Z/aiU0LqmWvJnsXWu79haPtrB7QFXInj5p8hSlKmZMdnPF53rsPrFcCCxlrAYYH42Tvv1x//2Q==
 </value>
   </data>
-  <metadata name="epReport.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>315, 4</value>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>233, 3</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataGridViewTextBoxColumn4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="errSpl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>150, 3</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
-  </metadata>
-  <metadata name="dynamicLabelControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>443, 4</value>
   </metadata>
 </root>

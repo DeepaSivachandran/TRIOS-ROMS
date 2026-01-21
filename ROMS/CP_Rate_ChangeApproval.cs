@@ -2380,15 +2380,16 @@ namespace ROMS
                     if (flagType == 1)
                     {
                         objRateChange.paraViewType = 1;
+                        objRateChange.paraOriginator = "Rate Change Approval";
                     }
                     else
                     {
                         objRateChange.paraViewType = 2;
+                        objRateChange.paraOriginator = "Rate Change Reject";
                     }
                     objRateChange.paraProductID = Convert.ToInt32(lblProductcode.Text);
                     objRateChange.paraRemarks = txtRemark.Text;
-                    objRateChange.paraApprove = objRADataTable; 
-                    objRateChange.paraOriginator = "Rate Change Reject";
+                    objRateChange.paraApprove = objRADataTable;  
 
                     SPDataService objspservice = new SPDataService();
                     string varResult = objspservice.udfnRateChange(objRateChange);

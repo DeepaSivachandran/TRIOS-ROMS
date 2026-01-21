@@ -206,6 +206,9 @@ namespace ROMS
         public static CP_MarriageHalllist objCP_MarriageHalllist;
         public static CP_LockItems objCP_LockItems;
 
+        //added by venkat on 21/01/2026 for report rate category 
+        public static REPORT_CP_Product_RC objREPORT_CP_Product_RC;
+
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -4695,6 +4698,21 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void tsmProductReportRateCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_RC, "REPORT_CP_Product_RC", 80209);
+                PbCurrentForm = "7.3.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void tsmLock_Click(object sender, EventArgs e)
