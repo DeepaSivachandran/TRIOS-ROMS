@@ -36,5 +36,6 @@ namespace ROMS.Model
         public string paraSupplierIds = "";
         public int paraStickerCount = 0;
         public int paraPayID = 0;
+        public int paraProductCategory = 0;
     }
 }

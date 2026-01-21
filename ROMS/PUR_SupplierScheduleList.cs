@@ -2266,5 +2266,26 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void tsbDayWisePOSchedule_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                MainForm.objPUR_POScheduledaywise = new PUR_POScheduledaywise();
+                MainForm.objPUR_POScheduledaywise.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
+            finally
+            {
+                picLoader.Visible = false;
+            }
+        }
     }
 }

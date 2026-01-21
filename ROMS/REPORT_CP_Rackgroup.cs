@@ -1709,10 +1709,28 @@ namespace ROMS
                         }
                     }
                 }
+
+                DataSet objDsPro = new DataSet();
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 34;
+                objDsPro = objdserv.udfnMaster(objMR_Master);
+
+                if (objDsPro != null)
+                {
+                    if (objDsPro.Tables.Count > 0)
+                    {
+                        if (objDsPro.Tables[0].Rows.Count > 0)
+                        {
+                            cmbProductCategory.ValueMember = "MSTID";
+                            cmbProductCategory.DisplayMember = "MST_DisplayText";
+                            cmbProductCategory.DataSource = objDsPro.Tables[0];
+                        }
+                    }
+                } 
                 DataBind objDataBind = new DataBind(); //Transaction id 	41
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                //objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (124)  ", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (1)   Order by STSID,STS_Name", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");

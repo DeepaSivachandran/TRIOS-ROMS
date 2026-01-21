@@ -38,6 +38,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POScheduledaywise));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpPOScheduledaywise = new System.Windows.Forms.GroupBox();
+            this.btnSchedulePopup = new System.Windows.Forms.Button();
+            this.cmbCmbReportType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbProductCategory = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlLanguage = new System.Windows.Forms.Panel();
             this.rbEnglish = new System.Windows.Forms.RadioButton();
             this.rbTamil = new System.Windows.Forms.RadioButton();
@@ -76,6 +83,13 @@
             // 
             // grpPOScheduledaywise
             // 
+            this.grpPOScheduledaywise.Controls.Add(this.btnSchedulePopup);
+            this.grpPOScheduledaywise.Controls.Add(this.cmbCmbReportType);
+            this.grpPOScheduledaywise.Controls.Add(this.label3);
+            this.grpPOScheduledaywise.Controls.Add(this.cmbProductCategory);
+            this.grpPOScheduledaywise.Controls.Add(this.label2);
+            this.grpPOScheduledaywise.Controls.Add(this.cmbConcern);
+            this.grpPOScheduledaywise.Controls.Add(this.label1);
             this.grpPOScheduledaywise.Controls.Add(this.pnlLanguage);
             this.grpPOScheduledaywise.Controls.Add(this.lblPrintLanguage);
             this.grpPOScheduledaywise.Controls.Add(this.btnPrintdaywise);
@@ -86,6 +100,92 @@
             this.grpPOScheduledaywise.Size = new System.Drawing.Size(1273, 341);
             this.grpPOScheduledaywise.TabIndex = 0;
             this.grpPOScheduledaywise.TabStop = false;
+            // 
+            // btnSchedulePopup
+            // 
+            this.btnSchedulePopup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSchedulePopup.Image = global::ROMS.Properties.Resources.view;
+            this.btnSchedulePopup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSchedulePopup.Location = new System.Drawing.Point(904, 18);
+            this.btnSchedulePopup.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnSchedulePopup.Name = "btnSchedulePopup";
+            this.btnSchedulePopup.Size = new System.Drawing.Size(65, 33);
+            this.btnSchedulePopup.TabIndex = 5;
+            this.btnSchedulePopup.Text = "View";
+            this.btnSchedulePopup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSchedulePopup.UseVisualStyleBackColor = true;
+            this.btnSchedulePopup.Click += new System.EventHandler(this.btnSchedulePopup_Click);
+            // 
+            // cmbCmbReportType
+            // 
+            this.cmbCmbReportType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCmbReportType.FormattingEnabled = true;
+            this.cmbCmbReportType.Location = new System.Drawing.Point(744, 21);
+            this.cmbCmbReportType.Name = "cmbCmbReportType";
+            this.cmbCmbReportType.Size = new System.Drawing.Size(154, 27);
+            this.cmbCmbReportType.TabIndex = 4;
+            this.cmbCmbReportType.Enter += new System.EventHandler(this.cmbCmbReportType_Enter);
+            this.cmbCmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCmbReportType_KeyDown);
+            this.cmbCmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCmbReportType_KeyPress);
+            this.cmbCmbReportType.Leave += new System.EventHandler(this.cmbCmbReportType_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(663, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 20);
+            this.label3.TabIndex = 1111187;
+            this.label3.Text = "Report Type";
+            // 
+            // cmbProductCategory
+            // 
+            this.cmbProductCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbProductCategory.FormattingEnabled = true;
+            this.cmbProductCategory.Location = new System.Drawing.Point(505, 21);
+            this.cmbProductCategory.Name = "cmbProductCategory";
+            this.cmbProductCategory.Size = new System.Drawing.Size(154, 27);
+            this.cmbProductCategory.TabIndex = 3;
+            this.cmbProductCategory.SelectedIndexChanged += new System.EventHandler(this.cmbProductCategory_SelectedIndexChanged);
+            this.cmbProductCategory.Enter += new System.EventHandler(this.cmbProductCategory_Enter);
+            this.cmbProductCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbProductCategory_KeyDown);
+            this.cmbProductCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProductCategory_KeyPress);
+            this.cmbProductCategory.Leave += new System.EventHandler(this.cmbProductCategory_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(396, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 20);
+            this.label2.TabIndex = 1111185;
+            this.label2.Text = "Product Category";
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(290, 21);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(101, 27);
+            this.cmbConcern.TabIndex = 2;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.cmbConcern_SelectedIndexChanged);
+            this.cmbConcern.Enter += new System.EventHandler(this.cmbConcern_Enter);
+            this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbConcern_KeyDown);
+            this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbConcern_KeyPress);
+            this.cmbConcern.Leave += new System.EventHandler(this.cmbConcern_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(229, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 20);
+            this.label1.TabIndex = 1111183;
+            this.label1.Text = "Concern ";
             // 
             // pnlLanguage
             // 
@@ -105,7 +205,7 @@
             this.rbEnglish.Location = new System.Drawing.Point(56, 1);
             this.rbEnglish.Name = "rbEnglish";
             this.rbEnglish.Size = new System.Drawing.Size(60, 21);
-            this.rbEnglish.TabIndex = 8;
+            this.rbEnglish.TabIndex = 1;
             this.rbEnglish.Text = "English";
             this.rbEnglish.UseVisualStyleBackColor = true;
             // 
@@ -117,7 +217,7 @@
             this.rbTamil.Location = new System.Drawing.Point(4, 3);
             this.rbTamil.Name = "rbTamil";
             this.rbTamil.Size = new System.Drawing.Size(51, 19);
-            this.rbTamil.TabIndex = 7;
+            this.rbTamil.TabIndex = 0;
             this.rbTamil.TabStop = true;
             this.rbTamil.Text = "தமிழ்";
             this.rbTamil.UseVisualStyleBackColor = true;
@@ -437,5 +537,12 @@
         private System.Windows.Forms.DataGridViewImageColumn clmPrint6;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint7;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.ComboBox cmbConcern;
+        public System.Windows.Forms.ComboBox cmbProductCategory;
+        public System.Windows.Forms.ComboBox cmbCmbReportType;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSchedulePopup;
     }
 }
