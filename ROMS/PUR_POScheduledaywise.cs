@@ -65,7 +65,7 @@ namespace ROMS
                 grdHeaderview.DataSource = null;
                 MR_Supplier objMR_Supplier = new MR_Supplier();
                 objMR_Supplier.ViewType = 9;
-                objMR_Supplier.paraCompanycode = Convert.ToInt32( cmbConcern.SelectedValue);
+                objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Supplier.paraProductCategory = Convert.ToInt32( cmbProductCategory.SelectedValue);
                 objMR_Supplier.paraFlag = Convert.ToInt32( cmbCmbReportType.SelectedValue);
                 DataSet objDs = new DataSet();
@@ -223,7 +223,9 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt"); 
                     varHeader = "Day Wise Supplier List";
-                    objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue)); 
+                    objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("@paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
+                    objBillreport.SetParameterValue("@paraFlag", Convert.ToInt32(cmbCmbReportType.SelectedValue)); 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -386,7 +388,9 @@ namespace ROMS
                             CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierProductList.rpt");
-                            objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("@paracompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                            objBillreport.SetParameterValue("paraProductCategory", Convert.ToString(cmbProductCategory.SelectedValue));
+                            objBillreport.SetParameterValue("paraFlag", Convert.ToInt32(cmbCmbReportType.SelectedValue));
                             objBillreport.SetParameterValue("@paraOrderID", varOrderId);
                             objBillreport.SetParameterValue("@parascheduleid", 0);
                             objBillreport.SetParameterValue("@parasupplierid", 0);

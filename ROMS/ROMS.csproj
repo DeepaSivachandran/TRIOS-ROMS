@@ -498,6 +498,7 @@
     <Compile Include="CP_Product_Info.designer.cs">
       <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_ProductReport.cs" />
     <Compile Include="PrintFormat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -542,6 +543,34 @@
     </Compile>
     <Compile Include="INV_GoodsOutward_AutoConversion.designer.cs">
       <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_ProductWeight_LocationWiseProductDetail.cs">
+      <DependentUpon>RPT_CP_ProductWeight_LocationWiseProductDetail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_ProductWeight_LocationWiseSubgroup.cs">
+      <DependentUpon>RPT_CP_ProductWeight_LocationWiseSubgroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_ProductWeight_LocationWiseGroup.cs">
+      <DependentUpon>RPT_CP_ProductWeight_LocationWiseGroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_CP_ProductWeight_LocationWise.cs">
+      <DependentUpon>RPT_CP_ProductWeight_LocationWise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_CP_Product_Category_Location.cs">
       <DependentUpon>RPT_CP_Product_Category_Location.rpt</DependentUpon>
@@ -969,6 +998,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Weight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_CP_Product_Weight.designer.cs">
+      <DependentUpon>REPORT_CP_Product_Weight.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_CP_UserRole.cs">
       <SubType>Form</SubType>
@@ -4861,6 +4896,26 @@
       <LastGenOutput>RPT_CP_Rackgroup_Rack_Product_StockTaking.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\RPT_CP_ProductWeight_LocationWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_ProductWeight_LocationWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_ProductWeight_LocationWiseGroup.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_ProductWeight_LocationWiseGroup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_ProductWeight_LocationWiseSubgroup.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_ProductWeight_LocationWiseSubgroup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_ProductWeight_LocationWiseProductDetail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_ProductWeight_LocationWiseProductDetail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_ShelfLife.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Rackgroup_ShelfLife.cs</LastGenOutput>
@@ -6006,6 +6061,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_CP_Product_Weight.resx">
+      <DependentUpon>REPORT_CP_Product_Weight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_UserRole.resx">
       <DependentUpon>REPORT_CP_UserRole.cs</DependentUpon>
     </EmbeddedResource>

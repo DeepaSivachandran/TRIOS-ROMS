@@ -31,6 +31,7 @@ namespace ROMS
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
         DataTable dtRackgroupProduct = new DataTable();
+        public bool VarSearchFlag = true;
 
         private int _oldOrderNo = 0, varFlag=0;
 
@@ -1158,6 +1159,100 @@ namespace ROMS
             }
         }
 
+        private void txtProductSearch_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductSearch.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductSearch_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductSearch.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtProductSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            { 
+                if (e.KeyCode == Keys.F11)
+                {
+                    if (VarSearchFlag == false)
+                    {
+                        VarSearchFlag = true;
+                        lblDProduct.Text = "Search by P.I Code (F11)";
+                        txtProductSearch.CharacterCasing = CharacterCasing.Upper;
+                    }
+                    else
+                    {
+                        VarSearchFlag = false;
+                        lblDProduct.Text = "Search by Product Name (F11)";
+                        txtProductSearch.CharacterCasing = CharacterCasing.Normal;
+                    }
+                }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    FindNext();
+                }
+                if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+                {
+                    grdGroupList.CurrentCell = grdGroupList.Rows[0].Cells["Order No."];
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        public void FindNext()
+        {
+            string text = txtProductSearch.Text;
+            if (string.IsNullOrWhiteSpace(text)) return;
+
+            int startRow = grdGroupList.CurrentCell?.RowIndex + 1 ?? 0;
+
+            if (VarSearchFlag == true) //search by picode
+            {
+                var row = grdGroupList.Rows
+                    .Cast<DataGridViewRow>().Skip(startRow)
+                 .FirstOrDefault(r => r.Cells["PI Code"].Value != null && r.Cells["PI Code"].Value.ToString()
+                 .IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+                if (row != null)
+                {
+                    grdGroupList.CurrentCell = row.Cells["Order No."];
+                    grdGroupList.FirstDisplayedScrollingRowIndex = row.Index;
+                }
+            }
+            if (VarSearchFlag == false) //search by product
+            {
+                var row = grdGroupList.Rows
+                    .Cast<DataGridViewRow>().Skip(startRow)
+                 .FirstOrDefault(r => r.Cells["Product"].Value != null && r.Cells["Product"].Value.ToString()
+                 .IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0);
+                if (row != null)
+                {
+                    grdGroupList.CurrentCell = row.Cells["Order No."];
+                    grdGroupList.FirstDisplayedScrollingRowIndex = row.Index;
+                }
+            } 
+        }
         private void cmbType_Leave(object sender, EventArgs e)
         {
             try

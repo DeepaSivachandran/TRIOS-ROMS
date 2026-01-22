@@ -1743,8 +1743,7 @@ namespace ROMS
                             if (RowIndex != (DGV_FilterLocation.Rows.Count))
                             {
                                 txtLocation.Text = DGV_FilterLocation.Rows[RowIndex].Cells["SL_EName"].Value.ToString();
-                            }
-
+                            } 
                             txtLocation.Focus();
                             txtLocation.SelectionStart = txtLocation.Text.Length;
                             e.Handled = true;

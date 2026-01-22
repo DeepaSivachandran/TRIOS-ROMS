@@ -394,6 +394,7 @@ namespace ROMS
         public static CP_Rackgroup_Product objCP_Rackgroup_Product;
         public static REPORT_ZeroVsPOGenerated objREPORT_ZeroVsPOGenerated;
         public static PrintFormat objReportFormat;
+        public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -4628,6 +4629,20 @@ namespace ROMS
             {
                 OpenReportForm(ref MainForm.objREPORT_ZeroVsPOGenerated, "REPORT_ZeroVsPOGenerated", 80209);
                 PbCurrentForm = "7.3.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductWeight_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //PbCurrentForm = "7.8.1";
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_Weight, "REPORT_CP_Product_Weight", 80119);
             }
             catch (Exception ex)
             {

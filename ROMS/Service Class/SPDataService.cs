@@ -1773,6 +1773,39 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnproductmasterReport(MR_ProductReport objMR_ProductReport)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("MRG_ProductReport", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_ProductReport.paraViewType); 
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_ProductReport.paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_ProductReport.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_ProductReport.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationId", objMR_ProductReport.paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_ProductReport.paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_ProductReport.paraProductType);
+                varSqlCommand.Parameters.AddWithValue("@ParaDate", objMR_ProductReport.ParaDate); 
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);  
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
 
 
         public string udfnBrand(int ViewType, int paraBDID, string paraBD_EName, string paraBD_TName, int paraStatusId, string paraPRSGID, string paraOriginator, string paraUserID, int paraDeleteflag)
