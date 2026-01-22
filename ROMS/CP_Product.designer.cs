@@ -546,7 +546,7 @@
             // 
             this.txtSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSalesPICode.Location = new System.Drawing.Point(160, 130);
-            this.txtSalesPICode.MaxLength = 20;
+            this.txtSalesPICode.MaxLength = 30;
             this.txtSalesPICode.Name = "txtSalesPICode";
             this.txtSalesPICode.Size = new System.Drawing.Size(381, 27);
             this.txtSalesPICode.TabIndex = 7;
@@ -606,6 +606,7 @@
             this.cmbChildUnit.SelectedIndexChanged += new System.EventHandler(this.cmbChildUnit_SelectedIndexChanged);
             this.cmbChildUnit.Enter += new System.EventHandler(this.cmbChildUnit_Enter);
             this.cmbChildUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbChildUnit_KeyDown);
+            this.cmbChildUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbChildUnit_KeyPress);
             this.cmbChildUnit.Leave += new System.EventHandler(this.cmbChildUnit_Leave);
             // 
             // lblParentcode

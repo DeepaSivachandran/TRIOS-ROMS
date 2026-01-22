@@ -171,6 +171,7 @@ namespace ROMS
         public static CP_ChequePrint_Setting objCP_ChequePrint_Setting;
         public static GRN_ADV objGRN_ADV;
         public static CP_Product_Info objCP_Product_Info;
+        public static CP_ProductLockTeller objCP_ProductLockTeller;
 
         // added by venkat on 30-09-2025
         public static CP_UserRole objCP_UserRole;

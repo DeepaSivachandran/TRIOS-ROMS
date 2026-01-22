@@ -1947,14 +1947,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (txtSalesPICode.Enabled == true)
-                    {
-                        txtSalesPICode.Focus();
-                    }
-                    else
-                    {
-                        txtProductEname.Focus();
-                    }
+                    chkSalesProduct.Focus();
                 }
             }
             catch (Exception ex)
@@ -4828,7 +4821,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0,null, 0, 0, 0, 0, null,0,"","");
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0,null, 0, 0, 0, 0, null,0,"","", "", "");
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -4934,6 +4927,82 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesProduct_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesProduct.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    if (txtSalesPICode.Enabled == true)
+                    {
+                        txtSalesPICode.Focus();
+                    }
+                    else
+                    {
+                        txtProductEname.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesProduct_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                chkSalesProduct.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkSalesProduct_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                UpdateSalesProductUI();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void UpdateSalesProductUI()
+        {
+            if (chkSalesProduct.Checked)
+            {
+                txtSalesPICode.Enabled = true;
+                txtSalesPICode.ReadOnly = false;
+            }
+            else
+            {
+                txtSalesPICode.Text = "";
+                txtSalesPICode.Enabled = false;
+                txtSalesPICode.ReadOnly = true;
             }
         }
 
@@ -5754,14 +5823,18 @@ namespace ROMS
                             txtHsnname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Name"].ToString().Replace("''", "'"));
                             txtHsncode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["HSN_Code"].ToString().Replace("''", "'"));
                             lvHsnCode.Visible = false;
-                            if (Convert.ToInt32(objDS.Tables[0].Rows[0]["SalesProduct"].ToString()) == 1)
-                            {
-                                txtSalesPICode.Enabled = true;
-                            }
-                            else
-                            {
-                                txtSalesPICode.Enabled = false;
-                            }
+
+                            if (Convert.ToString(objDS.Tables[0].Rows[0]["SalesProduct"]) == "1") { chkSalesProduct.Checked = true; } else { chkSalesProduct.Checked = false; }
+
+                            UpdateSalesProductUI();
+                            //if (Convert.ToInt32(objDS.Tables[0].Rows[0]["SalesProduct"].ToString()) == 1)
+                            //{
+                            //    txtSalesPICode.Enabled = true;
+                            //}
+                            //else
+                            //{
+                            //    txtSalesPICode.Enabled = false;
+                            //}
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["SHELFLIFE"]) == "1") { cbShelflife.Checked = true; } else { cbShelflife.Checked = false; }
                             if (Convert.ToString(objDS.Tables[0].Rows[0]["PR_MRPflag"]) == "1") { chkMrp.Checked = true; } else { chkMrp.Checked = false; }
                             //if (Convert.ToString(objDS.Tables[0].Rows[0]["RM PRODUCTION"]) == "1") { cbRMFromProduction.Checked = true; } else { cbRMFromProduction.Checked = false; }
@@ -6420,7 +6493,7 @@ namespace ROMS
                 }
                 */
 
-                if (txtSalesPICode.Enabled == true)
+                if (chkSalesProduct.Checked == true)
                 {
                     if (txtSalesPICode.Text.Trim() == "")
                     {
@@ -6439,6 +6512,11 @@ namespace ROMS
                 {
                     varSalesRackCode = "0";
                 }
+                int varSalesProduct = 0;
+                if (chkSalesProduct.Checked == true)
+                {
+                    varSalesProduct = 1;
+                }
                 if (blnErrorFlag == false)
                 {
                     udfnClear();
@@ -6448,7 +6526,7 @@ namespace ROMS
                     0, Convert.ToInt32(cmbProductCategory.SelectedValue), Convert.ToInt32(varGroupId), Convert.ToInt32(varSubgroupCode), Convert.ToInt32(varBrand),
                     Convert.ToInt32(cmbUnit.SelectedValue), 0, "", Convert.ToInt32(varPurLocationCode), Convert.ToInt32(varSalesLocationCode)
                     , Convert.ToInt32(varPurRackCode), Convert.ToInt32(varSalesRackCode), 0, Convert.ToInt32(cmbBatchno.SelectedValue), Convert.ToInt32(cmbBatchGen.SelectedValue), varshelflife, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", Convert.ToInt32(varHsnCode), 0, shelflife,
-                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "", 0, 0, 0, 0, varMRPflag, dtProductHSN, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", txtSalesPICode.Text.Trim());
+                    Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, 0, null, 0, "", 0, 0, 0, 0, varMRPflag, dtProductHSN, "", "", "", varSalesProduct, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", txtSalesPICode.Text.Trim(), "", "");
 
                     objspdservice.CloseConnection();
                     string[] varvalue = result.Split('~');
