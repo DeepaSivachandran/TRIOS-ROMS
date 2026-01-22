@@ -41,8 +41,24 @@ namespace ROMS
         {
             try
             {
+                MainForm objMainForm = new MainForm();
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 80123;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 chkboxRatelist.DrawMode = DrawMode.Normal; 
                 udfnDropdownbind();
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+
 
                 pnlRateCategory.Visible = false;
                 this.ActiveControl = cmbConcern;
@@ -60,7 +76,7 @@ namespace ROMS
         public REPORT_CP_Product_RC()
         {
             InitializeComponent();
-            windowControl.Initialize(tsBulkAttribute, this);
+            windowControl.Initialize(tsReportRateCategory, this);
         }
            
          
@@ -2197,8 +2213,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
-                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=150 ", "MST_DisplayText,MSTID", cmbReportType, "", "MST_DisplayText", "MSTID"); 
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbprinttype, "", "MST_DisplayText", "MSTID");
+                  objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbprinttype, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbCategory.SelectedIndex = 0;
             }

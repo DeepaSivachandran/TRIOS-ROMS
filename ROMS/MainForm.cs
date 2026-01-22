@@ -4633,7 +4633,7 @@ namespace ROMS
         { 
             try
             {
-                OpenReportForm(ref MainForm.objCP_BulkUpdate_RateCategory, "CP_BulkUpdate_RateCategory", 80315);
+                OpenReportForm(ref MainForm.objCP_BulkUpdate_RateCategory, "CP_BulkUpdate_RateCategory", 50509);
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
@@ -4647,7 +4647,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_BulkUpdate_Minqty, "CP_BulkUpdate_Minqty", 80315);
+                OpenReportForm(ref MainForm.objCP_BulkUpdate_Minqty, "CP_BulkUpdate_Minqty", 50510);
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
@@ -4661,7 +4661,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCP_BulkUpdate_Offset_Value, "CP_BulkUpdate_Offset_Value", 80315);
+                OpenReportForm(ref MainForm.objCP_BulkUpdate_Offset_Value, "CP_BulkUpdate_Offset_Value", 50511);
                 PbCurrentForm = "7.8.1";
             }
             catch (Exception ex)
@@ -4704,7 +4704,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_CP_Product_RC, "REPORT_CP_Product_RC", 80209);
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_RC, "REPORT_CP_Product_RC", 80123);
                 PbCurrentForm = "7.3.2";
             }
             catch (Exception ex)

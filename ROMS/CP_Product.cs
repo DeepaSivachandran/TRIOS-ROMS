@@ -1095,25 +1095,34 @@ namespace ROMS
                 //    objDServ.CloseConnection();
                 //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //}
-                bool isChecked = Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value);
-                if (isChecked)
+                if (tbProduct.SelectedIndex == 3)
                 {
-                    string cp_value = grdPrice.Rows[0].Cells["clmRate"].Value?.ToString();
-                    if (cp_value == "" || cp_value == "0" || cp_value.StartsWith("0", StringComparison.OrdinalIgnoreCase))
+                    bool isChecked = Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value);
+                    if (isChecked)
                     {
-                        varCpValFlag = 1;
-                        MessageBox.Show("CP Value is not empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string cp_value = grdPrice.Rows[0].Cells["clmRate"].Value?.ToString();
+                        if (cp_value == "" || cp_value == "0" || cp_value.StartsWith("0", StringComparison.OrdinalIgnoreCase))
+                        {
+                            varCpValFlag = 1;
+                            //MessageBox.Show("CP Value is not empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                        //this.BeginInvoke(new Action(() =>
-                        //{
-                        //    grdPrice.CurrentCell = grdPrice.Rows[e.RowIndex].Cells["clmRate"];
-                        //    grdPrice.BeginEdit(true);
-                        //}));
-                        return;
-                    }
-                    else
-                    {
-                        varCpValFlag = 0;
+                            //this.BeginInvoke(new Action(() =>
+                            //{
+                            //    grdPrice.CurrentCell = grdPrice.Rows[e.RowIndex].Cells["clmRate"];
+                            //    grdPrice.BeginEdit(true);
+                            //}));
+
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(202);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            return;
+                        }
+                        else
+                        {
+                            varCpValFlag = 0;
+                        }
                     }
                 }
 
@@ -9219,13 +9228,18 @@ namespace ROMS
                         if (cp_value == "" || cp_value == "0" || cp_value.StartsWith("0", StringComparison.OrdinalIgnoreCase))
                         {
                             varCpValFlag = 1;
-                            MessageBox.Show("CP Value is not empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            //MessageBox.Show("CP Value is not empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                             //this.BeginInvoke(new Action(() =>
                             //{
                             //    grdPrice.CurrentCell = grdPrice.Rows[e.RowIndex].Cells["clmRate"];
                             //    grdPrice.BeginEdit(true);
                             //}));
+
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(202);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         else
