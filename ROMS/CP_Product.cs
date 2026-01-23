@@ -1386,6 +1386,7 @@ namespace ROMS
                         txtItemNameEnglish.Text = txtItemNameEnglish.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                         txtItemNameTamil.Text = txtItemNameTamil.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                         txtPICode.Text = txtPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
+                        txtSalesPICode.Text = txtSalesPICode.Text + " (" + txtUpp.Text + " " + cmbChildUnit.Text + ") ";
                     }
 
                     result = objspdservice.udfnProductMaster(varviewtype, varupdateproductcode, txtItemNameEnglish.Text, txtItemNameTamil.Text, txtPICode.Text.Trim().ToUpper(), Convert.ToInt32(cmbConcern.SelectedValue),
@@ -1395,7 +1396,7 @@ namespace ROMS
                     varshelflife, netweight, maxstk, grossweight, minstk, reorderqty, rminsale, retailrate, wminsaleqty, wsalesrate, txtBarcode.Text, Convert.ToInt32(lblHsnName.Text), varrmproduction,
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
-                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(),
+                     , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "" 
                     Convert.ToString(txtProductUsage.Text).Trim()
                     );
 
@@ -3317,12 +3318,10 @@ namespace ROMS
                 e.Handled = true;
             }
             catch (Exception ex)
-
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void cmbChildUnit_KeyDown(object sender, KeyEventArgs e)
@@ -4087,6 +4086,7 @@ namespace ROMS
                 //txtUpp.Enabled = true;
                 btnSave.Visible = true;
                 btnImageUpdate.Visible = false;
+                UpdateSalesProductUI();
             }
             catch (Exception ex)
             {
@@ -7065,7 +7065,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","","");
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","", "", "");
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8707,7 +8707,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","","");
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0,"","", "", "");
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -9534,17 +9534,7 @@ namespace ROMS
         {
             try
             {
-                if(chkSalesProduct.Checked==true)
-                {
-                    txtSalesPICode.Enabled = true;
-                    txtSalesPICode.ReadOnly = false;
-                }
-                else
-                {
-                    txtSalesPICode.Text="";
-                    txtSalesPICode.Enabled = false;
-                    txtSalesPICode.ReadOnly = true;
-                }
+                UpdateSalesProductUI();
             }
             catch (Exception ex)
             {
@@ -9552,7 +9542,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        private void UpdateSalesProductUI()
+        {
+            if (chkSalesProduct.Checked)
+            {
+                txtSalesPICode.Enabled = true;
+                txtSalesPICode.ReadOnly = false;
+            }
+            else
+            {
+                txtSalesPICode.Text = "";
+                txtSalesPICode.Enabled = false;
+                txtSalesPICode.ReadOnly = true;
+            }
+        }
         private void txtSalesPICode_KeyDown(object sender, KeyEventArgs e)
         {
             try

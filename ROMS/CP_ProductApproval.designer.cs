@@ -77,6 +77,9 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grplocation = new System.Windows.Forms.GroupBox();
+            this.chkSalesProduct = new System.Windows.Forms.CheckBox();
+            this.txtSalesPICode = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.DGV_FilterSalesLocation = new System.Windows.Forms.DataGridView();
             this.DGV_FilterPurLocation = new System.Windows.Forms.DataGridView();
             this.txtSubgroup = new System.Windows.Forms.TextBox();
@@ -218,8 +221,6 @@
             this.grdSubgroup = new System.Windows.Forms.DataGridView();
             this.btnSubgroup = new System.Windows.Forms.Button();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.txtSalesPICode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -444,6 +445,7 @@
             // 
             // grplocation
             // 
+            this.grplocation.Controls.Add(this.chkSalesProduct);
             this.grplocation.Controls.Add(this.txtSalesPICode);
             this.grplocation.Controls.Add(this.textBox8);
             this.grplocation.Controls.Add(this.DGV_FilterSalesLocation);
@@ -494,6 +496,46 @@
             this.grplocation.TabIndex = 14;
             this.grplocation.TabStop = false;
             this.grplocation.Text = "Product Details";
+            // 
+            // chkSalesProduct
+            // 
+            this.chkSalesProduct.AutoSize = true;
+            this.chkSalesProduct.Location = new System.Drawing.Point(456, 27);
+            this.chkSalesProduct.Name = "chkSalesProduct";
+            this.chkSalesProduct.Size = new System.Drawing.Size(106, 24);
+            this.chkSalesProduct.TabIndex = 1;
+            this.chkSalesProduct.Text = "Is a Sales Item";
+            this.chkSalesProduct.UseVisualStyleBackColor = true;
+            this.chkSalesProduct.CheckedChanged += new System.EventHandler(this.chkSalesProduct_CheckedChanged);
+            this.chkSalesProduct.Enter += new System.EventHandler(this.chkSalesProduct_Enter);
+            this.chkSalesProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkSalesProduct_KeyDown);
+            this.chkSalesProduct.Leave += new System.EventHandler(this.chkSalesProduct_Leave);
+            // 
+            // txtSalesPICode
+            // 
+            this.txtSalesPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtSalesPICode.Location = new System.Drawing.Point(135, 54);
+            this.txtSalesPICode.MaxLength = 30;
+            this.txtSalesPICode.Name = "txtSalesPICode";
+            this.txtSalesPICode.Size = new System.Drawing.Size(427, 27);
+            this.txtSalesPICode.TabIndex = 1;
+            this.txtSalesPICode.Enter += new System.EventHandler(this.txtSalesPICode_Enter);
+            this.txtSalesPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSalesPICode_KeyDown);
+            this.txtSalesPICode.Leave += new System.EventHandler(this.txtSalesPICode_Leave);
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(4, 54);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(131, 27);
+            this.textBox8.TabIndex = 111111170;
+            this.textBox8.TabStop = false;
+            this.textBox8.Text = "Sales P.I Code";
             // 
             // DGV_FilterSalesLocation
             // 
@@ -933,9 +975,9 @@
             this.txtpicode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpicode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtpicode.Location = new System.Drawing.Point(135, 26);
-            this.txtpicode.MaxLength = 100;
+            this.txtpicode.MaxLength = 20;
             this.txtpicode.Name = "txtpicode";
-            this.txtpicode.Size = new System.Drawing.Size(427, 27);
+            this.txtpicode.Size = new System.Drawing.Size(315, 27);
             this.txtpicode.TabIndex = 0;
             this.txtpicode.Enter += new System.EventHandler(this.Txtpicode_Enter);
             this.txtpicode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtpicode_KeyDown);
@@ -2227,32 +2269,6 @@
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
             // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox8.Location = new System.Drawing.Point(4, 54);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(131, 27);
-            this.textBox8.TabIndex = 111111170;
-            this.textBox8.TabStop = false;
-            this.textBox8.Text = "Sales P.I Code";
-            // 
-            // txtSalesPICode
-            // 
-            this.txtSalesPICode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSalesPICode.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSalesPICode.Location = new System.Drawing.Point(135, 54);
-            this.txtSalesPICode.MaxLength = 100;
-            this.txtSalesPICode.Name = "txtSalesPICode";
-            this.txtSalesPICode.Size = new System.Drawing.Size(427, 27);
-            this.txtSalesPICode.TabIndex = 1;
-            this.txtSalesPICode.Enter += new System.EventHandler(this.txtSalesPICode_Enter);
-            this.txtSalesPICode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSalesPICode_KeyDown);
-            this.txtSalesPICode.Leave += new System.EventHandler(this.txtSalesPICode_Leave);
-            // 
             // CP_ProductApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -2484,5 +2500,6 @@
         private System.Windows.Forms.Button btnImgClose;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox txtSalesPICode;
+        private System.Windows.Forms.CheckBox chkSalesProduct;
     }
 }

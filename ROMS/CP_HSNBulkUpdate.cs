@@ -119,7 +119,7 @@ namespace ROMS
                     {
                         varUserID = MainForm.objCP_BulkAttributeVerify.varUserId;
                         SPDataService objDSer = new SPDataService();
-                        result = objDSer.udfnProductMaster(3, Convert.ToInt16(lblNewHSNId.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, null, 0, "", 0, 0, 0, 0, 0, dtPurHSN, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, Convert.ToInt16(cmbType.SelectedValue), null, 0,Convert.ToString(dpEffFrom.Text),"","");
+                        result = objDSer.udfnProductMaster(3, Convert.ToInt16(lblNewHSNId.Text), "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", varUserID, MainForm.pbIpAddress, varOriginator, 0, null, 0, "", 0, 0, 0, 0, 0, dtPurHSN, "", "", "", 0, "", "", 0, 0, 0, null, 0, 0, 0, Convert.ToInt16(cmbType.SelectedValue), null, 0,Convert.ToString(dpEffFrom.Text),"", "", "");
                         objDSer.CloseConnection();
                         string[] varvalue = result.Split('~');
                         if (varvalue[0] == "3")
