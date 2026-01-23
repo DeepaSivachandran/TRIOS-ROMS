@@ -131,6 +131,7 @@ namespace ROMS
                             grdGroupList.Columns["RKID"].Visible = false;
                             grdGroupList.Columns["PRID"].Visible = false;
                             grdGroupList.Columns["Rack Group"].Visible = false;
+                            grdGroupList.Columns["Product"].Visible = false;
                             grdGroupList.Columns["S.No."].Width = 50;
                             grdGroupList.Columns["PI Code"].Width = 150;
                             grdGroupList.Columns["Product Name"].Width = 350;
