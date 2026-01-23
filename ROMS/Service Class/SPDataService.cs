@@ -1782,9 +1782,9 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("MRG_ProductReport", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_ProductReport.paraViewType); 
-                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_ProductReport.paraProductCategory);
-                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_ProductReport.paraGroup);
-                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_ProductReport.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_ProductReport.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_ProductReport.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_ProductReport.ParaCompanycode);
                 varSqlCommand.Parameters.AddWithValue("@paraLocationId", objMR_ProductReport.paraLocationId);
                 varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_ProductReport.paraProductCategory);
                 varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_ProductReport.paraProductType);
