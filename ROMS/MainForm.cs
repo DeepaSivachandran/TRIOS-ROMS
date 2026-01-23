@@ -4642,7 +4642,7 @@ namespace ROMS
             try
             {
                 //PbCurrentForm = "7.8.1";
-                OpenReportForm(ref MainForm.objREPORT_CP_Product_Weight, "REPORT_CP_Product_Weight", 80119);
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_Weight, "REPORT_CP_Product_Weight", 80124);
             }
             catch (Exception ex)
             {
