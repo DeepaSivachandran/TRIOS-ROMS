@@ -330,7 +330,9 @@ namespace ROMS
                             objBillreport1 = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                             objBillreport1.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleProductDayWise.rpt");
                             varHeader = "Day Wise Supplier List";
-                            objBillreport1.SetParameterValue("@paracompanycode", Convert.ToInt32(MainForm.objPUR_SupplierScheduleList.cmbConcern.SelectedValue));
+                            objBillreport1.SetParameterValue("@paracompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                            objBillreport1.SetParameterValue("paraProductCategory", Convert.ToString(cmbProductCategory.SelectedValue));
+                            objBillreport1.SetParameterValue("paraFlag", Convert.ToInt32(cmbCmbReportType.SelectedValue));
                             objBillreport1.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport1.SetParameterValue("paraUserName", MainForm.pbUserName);
                             objBillreport1.SetParameterValue("@pardayid", varDYID);
