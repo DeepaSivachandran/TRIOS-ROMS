@@ -14,6 +14,7 @@ namespace ROMS
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
+        DataTable dtDefaultGrid = new DataTable();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         Boolean BlnSearchImageYN = false;
@@ -106,6 +107,7 @@ namespace ROMS
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 12;
                     objMR_Master.paraID = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Master.paraFlag = 1;
                     DataSet objDs = new DataSet();
                     SPDataService objdserv = new SPDataService();
                     objDs = objdserv.udfnMaster(objMR_Master);
@@ -184,6 +186,7 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -261,6 +264,15 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDS.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
+                else
+                {
+                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
+                }
             }
             catch (Exception ex)
             {
@@ -272,6 +284,27 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 grdSettings.ClearSelection();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Sample Transaction No."].Width = 150;
+                DGV_SearchGrid.Columns["Transaction Type"].Width = 230;
+                DGV_SearchGrid.Columns["Concern ID"].Visible = false;
+                DGV_SearchGrid.Columns["No.of Digits"].Visible = false;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Transaction TypeID"].Visible = false;
+                DGV_SearchGrid.Columns["Reset OnID"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void CP_Settings_Load(object sender, EventArgs e)

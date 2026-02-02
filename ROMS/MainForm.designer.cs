@@ -122,6 +122,7 @@ namespace ROMS
             this.tsmGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPrinterSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChequePrintSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTally = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExportTally = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReports = new System.Windows.Forms.ToolStripMenuItem();
@@ -228,7 +229,6 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmSalesVoucherSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -252,7 +252,7 @@ namespace ROMS
             this.tsbLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbLogo.Name = "tsbLogo";
-            this.tsbLogo.Size = new System.Drawing.Size(12, 24);
+            this.tsbLogo.Size = new System.Drawing.Size(12, 21);
             this.tsbLogo.Text = "Logo";
             // 
             // tsmpurchase
@@ -570,7 +570,7 @@ namespace ROMS
             this.lblDb.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblDb.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblDb.ShowShortcutKeys = false;
-            this.lblDb.Size = new System.Drawing.Size(12, 24);
+            this.lblDb.Size = new System.Drawing.Size(12, 21);
             this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -582,7 +582,7 @@ namespace ROMS
             this.tsDLogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsDLogo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsDLogo.Name = "tsDLogo";
-            this.tsDLogo.Size = new System.Drawing.Size(12, 24);
+            this.tsDLogo.Size = new System.Drawing.Size(12, 21);
             this.tsDLogo.Text = "Logo";
             // 
             // lblTimeValue
@@ -593,7 +593,7 @@ namespace ROMS
             this.lblTimeValue.Name = "lblTimeValue";
             this.lblTimeValue.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblTimeValue.ShowShortcutKeys = false;
-            this.lblTimeValue.Size = new System.Drawing.Size(12, 24);
+            this.lblTimeValue.Size = new System.Drawing.Size(12, 21);
             this.lblTimeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTimeValue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -606,7 +606,7 @@ namespace ROMS
             this.lblTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lblTime.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             this.lblTime.ShowShortcutKeys = false;
-            this.lblTime.Size = new System.Drawing.Size(12, 24);
+            this.lblTime.Size = new System.Drawing.Size(12, 21);
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTime.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -1020,10 +1020,10 @@ namespace ROMS
             // 
             this.tsmControlPanel.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmVoucherSettings,
+            this.tsmSalesVoucherSettings,
             this.tsmGeneralSettings,
             this.tsmPrinterSettings,
-            this.tsmChequePrintSettings,
-            this.tsmSalesVoucherSettings});
+            this.tsmChequePrintSettings});
             this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmControlPanel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmControlPanel.Name = "tsmControlPanel";
@@ -1065,6 +1065,13 @@ namespace ROMS
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
+            // 
+            // tsmSalesVoucherSettings
+            // 
+            this.tsmSalesVoucherSettings.Name = "tsmSalesVoucherSettings";
+            this.tsmSalesVoucherSettings.Size = new System.Drawing.Size(203, 22);
+            this.tsmSalesVoucherSettings.Text = "Sales Voucher Settings";
+            this.tsmSalesVoucherSettings.Click += new System.EventHandler(this.tsmSalesVoucherSettings_Click);
             // 
             // tsmTally
             // 
@@ -1804,7 +1811,7 @@ namespace ROMS
             this.tsmMyProfile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsmMyProfile.Name = "tsmMyProfile";
             this.tsmMyProfile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
-            this.tsmMyProfile.Size = new System.Drawing.Size(68, 24);
+            this.tsmMyProfile.Size = new System.Drawing.Size(68, 21);
             this.tsmMyProfile.Text = "&My Profile";
             this.tsmMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsmMyProfile.Click += new System.EventHandler(this.tsbLogout_Click);
@@ -1904,7 +1911,7 @@ namespace ROMS
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
             this.ms.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.ms.Size = new System.Drawing.Size(1275, 28);
+            this.ms.Size = new System.Drawing.Size(1275, 25);
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
@@ -2030,13 +2037,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmSalesVoucherSettings
-            // 
-            this.tsmSalesVoucherSettings.Name = "tsmSalesVoucherSettings";
-            this.tsmSalesVoucherSettings.Size = new System.Drawing.Size(203, 22);
-            this.tsmSalesVoucherSettings.Text = "Sales Voucher Settings";
-            this.tsmSalesVoucherSettings.Click += new System.EventHandler(this.tsmSalesVoucherSettings_Click);
             // 
             // MainForm
             // 
