@@ -175,7 +175,7 @@ namespace ROMS
         }
         // Sivabharathi    Create date: 26/09/2023    Description: Voucher Settings
         public string udfnVoucherSettings(int ViewType, int paraConcernId, int paraTransactionId, string paraPrefix, string paraSufix, int ParaNoOfDigit, string paraStartingNo,
-           string ParaSampleTransaction, int ParaResetOn, int paraVoucherSettingId, string paraOriginator)
+           string ParaSampleTransaction, int ParaResetOn, int paraVoucherSettingId, string paraOriginator,int paraFlag)
         {
             string varResult = "";
             try
@@ -196,6 +196,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -300,7 +301,7 @@ namespace ROMS
             return ds;
         }
         // Sivabharathi    Create date: 27/09/2023    Description: Voucher Settings list
-        public DataSet udfnVoucherSettingList(int ViewType)
+        public DataSet udfnVoucherSettingList(int ViewType,int paraFlag)
         {
             DataSet ds = new DataSet();
             try
@@ -309,6 +310,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[MRG_VoucherSettings]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@ViewType", ViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

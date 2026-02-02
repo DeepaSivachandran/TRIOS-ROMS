@@ -9,8 +9,8 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    //Sivabharathi  Created On :25/09/2023
-    public partial class CP_Settings : Form
+    //Sathish  Created On :02/02/2026
+    public partial class CP_Sales_Settings : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
@@ -31,7 +31,7 @@ namespace ROMS
         public int MenuCode = 0;
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
-        public CP_Settings()
+        public CP_Sales_Settings()
         {
             InitializeComponent();
             windowControl.Initialize(tsVoucherSettings, this);
@@ -192,7 +192,7 @@ namespace ROMS
                 DataSet objDS = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnVoucherSettingList(0, 0);
+                objDS = objdserv.udfnVoucherSettingList(0, 1);
                 objdserv.CloseConnection();
                 //cmbConcern.SelectedValue = varconcernvalue;
                 //cmbTransactionType.SelectedValue = varValues;
@@ -1117,7 +1117,7 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
                 varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
-                if (btnUpdate.Text=="Save")
+                if (btnUpdate.Text == "Save")
                 {
                     varOriginator = "VoucherSettings Save";
                     viewType = 0; varId = 0;
@@ -1143,7 +1143,7 @@ namespace ROMS
                     lblResetOn.Focus();
                     SPDataService objDSer = new SPDataService();
                     varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + txtStartingNo.Text.Trim() + Convert.ToString(txtSuffix.Text.Trim());
-                    result = objDSer.udfnVoucherSettings(viewType, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToString(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varId, varOriginator, 0);
+                    result = objDSer.udfnVoucherSettings(viewType, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToString(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varId, varOriginator, 1);
                     objDSer.CloseConnection();
                     btnUpdate.Enabled = true;
                     string[] varvalue = result.Split('~');
