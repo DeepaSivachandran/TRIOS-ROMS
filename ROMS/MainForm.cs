@@ -4673,7 +4673,7 @@ namespace ROMS
 
             try
             {
-                OpenReportForm(ref MainForm.objCP_Sales_Settings, "CP_Sales_Settings", 601);
+                OpenReportForm(ref MainForm.objCP_Sales_Settings, "CP_Sales_Settings", 605);
                 PbCurrentForm = "6.1";
             }
             catch (Exception ex)
