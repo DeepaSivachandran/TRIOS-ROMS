@@ -4148,9 +4148,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBulkRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNewRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
-        private System.Windows.Forms.Label lblMarkupProd;
-        private System.Windows.Forms.TextBox txtSalesPICode;
-        private System.Windows.Forms.TextBox txtDSalesPICode;
         private System.Windows.Forms.TextBox txtProductUsage;
         private System.Windows.Forms.TextBox textBox16;
     }
