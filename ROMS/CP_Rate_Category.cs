@@ -2,7 +2,8 @@
 using System;
 using System.Data;
 using System.Drawing;
-using System.Windows.Forms; 
+using System.Runtime.InteropServices.ComTypes;
+using System.Windows.Forms;
 
 
 namespace ROMS
@@ -12,14 +13,14 @@ namespace ROMS
     {
         DataError objError;
         private ToolTip tpcode = new ToolTip();
-        private ToolTip tppreftname = new ToolTip(); 
-        private ToolTip tpprefename = new ToolTip(); 
-        private ToolTip tpsuftname = new ToolTip(); 
-        private ToolTip tpsufename = new ToolTip(); 
-        public string pbFormStatus; 
-        public string pbBankName = ""; 
-        public string pbBankShortName = ""; 
-        public int PbId=0; 
+        private ToolTip tppreftname = new ToolTip();
+        private ToolTip tpprefename = new ToolTip();
+        private ToolTip tpsuftname = new ToolTip();
+        private ToolTip tpsufename = new ToolTip();
+        public string pbFormStatus;
+        public string pbBankName = "";
+        public string pbBankShortName = "";
+        public int PbId = 0;
         public int varUpdate = 0;
         public int varmastertype = 0;
         public int varflag = 0;
@@ -216,7 +217,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtReason.Focus();
+                    cmbRatecategoryOrderNo.Focus();
                 }
             }
             catch (Exception ex)
@@ -252,43 +253,44 @@ namespace ROMS
                     tpcode.Show("Please enter prefix Code.", txtPrefixCode, 5000);
                     ErrorFlag = true;
                 }
-                else if (txtPreTam.Text.Trim() == "")
-                {
-                    epRateChange.SetError(txtPreTam, "Please enter prefix text tamil.");
-                    txtPreTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tppreftname.ShowAlways = true;
-                    tppreftname.Show("Please enter prefix text tamil.", txtPreTam, 5000);
-                    ErrorFlag = true;
-                }
-                else if (txtPreEng.Text.Trim() == "")
-                {
-                    epRateChange.SetError(txtPreEng, "Please enter prefix text english.");
-                    txtPreEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpprefename.ShowAlways = true;
-                    tpprefename.Show("Please enter prefix text english.", txtPreEng, 5000);
-                    ErrorFlag = true;
-                }
+                //else if (txtPreTam.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtPreTam, "Please enter prefix text tamil.");
+                //    txtPreTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tppreftname.ShowAlways = true;
+                //    tppreftname.Show("Please enter prefix text tamil.", txtPreTam, 5000);
+                //    ErrorFlag = true;
+                //}
+                //else if (txtPreEng.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtPreEng, "Please enter prefix text english.");
+                //    txtPreEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpprefename.ShowAlways = true;
+                //    tpprefename.Show("Please enter prefix text english.", txtPreEng, 5000);
+                //    ErrorFlag = true;
+                //}
 
-                else if (txtSufTam.Text.Trim() == "")
+                //else if (txtSufTam.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtSufTam, "Please enter suffix text tamil.");
+                //    txtSufTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpsuftname.ShowAlways = true;
+                //    tpsuftname.Show("Please enter suffix text tamil.", txtSufTam, 5000);
+                //    ErrorFlag = true;
+                //}
+                //else if (txtSufEng.Text.Trim() == "")
+                //{
+                //    epRateChange.SetError(txtSufEng, "Please enter suffix text english.");
+                //    txtSufEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpsufename.ShowAlways = true;
+                //    tpsufename.Show("Please enter prefix text english.", txtSufEng, 5000);
+                //    ErrorFlag = true;
+                //}
+
+
+
+                if (ErrorFlag == false)
                 {
-                    epRateChange.SetError(txtSufTam, "Please enter suffix text tamil.");
-                    txtSufTam.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsuftname.ShowAlways = true;
-                    tpsuftname.Show("Please enter suffix text tamil.", txtSufTam, 5000);
-                    ErrorFlag = true;
-                }
-                else if (txtSufEng.Text.Trim() == "")
-                {
-                    epRateChange.SetError(txtSufEng, "Please enter suffix text english.");
-                    txtSufEng.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpsufename.ShowAlways = true;
-                    tpsufename.Show("Please enter prefix text english.", txtSufEng, 5000);
-                    ErrorFlag = true;
-                }
-
-
-
-                if (ErrorFlag == false) {
 
                     txtPrefixCode.BackColor = Color.White;
                     txtPreTam.BackColor = Color.White;
@@ -341,7 +343,7 @@ namespace ROMS
         public void udfnSave()
         {
             try
-            { 
+            {
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
                 varoriginator = ""; int varType = 0;
@@ -355,7 +357,7 @@ namespace ROMS
                     varoriginator = "Rate Category Updation";
                     varType = 1;
                 }
-                 
+
 
                 MR_Product obj = new MR_Product();
                 obj.paraViewType = varType;
@@ -366,6 +368,7 @@ namespace ROMS
                 obj.parasuffixename = txtSufEng.Text.Trim();
                 obj.paradescription = txtReason.Text.Trim();
                 obj.paraId = PbId;
+                obj.paraRateSno = Convert.ToInt32(cmbRatecategoryOrderNo.Text);
                 obj.paraOriginator = varoriginator;
 
                 varResult = objspservice.udfnRateCategory(obj);
@@ -379,7 +382,8 @@ namespace ROMS
                     if (btnSave.Text == "Save")
                     {
                         ClearFields();
-                        this.ActiveControl = txtPrefixCode;
+                        this.ActiveControl = txtPrefixCode; 
+                        udfnLoadSlNo();
                     }
                     if (btnSave.Text == "Update")
                     {
@@ -453,6 +457,7 @@ namespace ROMS
                 {
                     udfnedit();
                 }
+                udfnLoadSlNo();
             }
             catch (Exception ex)
             {
@@ -536,8 +541,9 @@ namespace ROMS
 
         private void btnSave_Enter(object sender, EventArgs e)
         {
-            try {
-            btnSave.BackColor = Color.LemonChiffon;
+            try
+            {
+                btnSave.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -583,6 +589,87 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+        public void udfnLoadSlNo()
+        {
+            try
+            {
+                DataSet objDS;
+                if (PbId != 0)
+                {
+                    string varID = Convert.ToString(PbId);
+                    SPDataService objspservice = new SPDataService();
+                    objDS = objspservice.udfnGetSlNo("MR_Product_Rate_Category", "Update", "RCYID", varID, "RCY_Sno");
+                    objspservice.CloseConnection();
+                }
+                else
+                {
+                    SPDataService objspservice = new SPDataService();
+                    objDS = objspservice.udfnGetSlNo("MR_Product_Rate_Category ", "Create", "1=1", "", "RCY_Sno");
+                    objspservice.CloseConnection();
+                }
+                if (objDS != null)
+                {
+                    cmbRatecategoryOrderNo.DataSource = objDS.Tables[0];
+                    cmbRatecategoryOrderNo.DisplayMember = "num";
+                    cmbRatecategoryOrderNo.ValueMember = "num";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRatecategoryOrderNo_Enter(object sender, EventArgs e)
+        {
+            try { cmbRatecategoryOrderNo.BackColor = Color.LemonChiffon; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRatecategoryOrderNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtReason.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRatecategoryOrderNo_Leave(object sender, EventArgs e)
+        {
+            try { cmbRatecategoryOrderNo.BackColor = Color.White; }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void cmbRatecategoryOrderNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
     }
 }

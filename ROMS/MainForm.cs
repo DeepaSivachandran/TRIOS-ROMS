@@ -207,6 +207,9 @@ namespace ROMS
         public static CP_MarriageHalllist objCP_MarriageHalllist;
         public static CP_LockItems objCP_LockItems;
 
+        //added by venkat on 21/01/2026 for report rate category 
+        public static REPORT_CP_Product_RC objREPORT_CP_Product_RC;
+
         public static PUR_ReturnDCList objINV_SalesInvoiceList;
         public static PUR_ReturnDCApprovedList objPUR_ReturnApprovedList;
         public static INV_SalesInvoice objINV_SalesInvoice;
@@ -394,6 +397,9 @@ namespace ROMS
         public static REPORT_Stock_Journal objREPORT_Stock_Journal;
         public static REPORT_Stock_Details objREPORT_Stock_Details;
         public static CP_Rackgroup_Product objCP_Rackgroup_Product;
+        public static CP_BulkUpdate_RateCategory objCP_BulkUpdate_RateCategory;
+        public static CP_BulkUpdate_Minqty objCP_BulkUpdate_Minqty;
+        public static CP_BulkUpdate_Offset_Value objCP_BulkUpdate_Offset_Value;
         public static REPORT_ZeroVsPOGenerated objREPORT_ZeroVsPOGenerated;
         public static PrintFormat objReportFormat;
         public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
@@ -4625,6 +4631,49 @@ namespace ROMS
             }
         }
 
+        private void tsmBulkRateCategory_Click(object sender, EventArgs e)
+        { 
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_BulkUpdate_RateCategory, "CP_BulkUpdate_RateCategory", 50509);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmBulkupdateProductminbulk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_BulkUpdate_Minqty, "CP_BulkUpdate_Minqty", 50510);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void tsmBulkOffsetUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_BulkUpdate_Offset_Value, "CP_BulkUpdate_Offset_Value", 50511);
+                PbCurrentForm = "7.8.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            
+        }
+
         private void tsmZeroVsPOGenerated_Click(object sender, EventArgs e)
         {
             try
@@ -4651,6 +4700,21 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void tsmProductReportRateCategory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_RC, "REPORT_CP_Product_RC", 80123);
+                PbCurrentForm = "7.3.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void tsmProductWeight_Click(object sender, EventArgs e)

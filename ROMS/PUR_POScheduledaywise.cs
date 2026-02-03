@@ -126,7 +126,7 @@ namespace ROMS
                                 grdPOSchedule.Columns["clmPrint1"].DisplayIndex = grdPOSchedule.Columns.Count - 17;
                                 grdPOSchedule.Columns["clmPrint1"].Width = 30;
                                 grdPOSchedule.Columns["S.No."].Width = 50;
-                               grdPOSchedule.Columns["Order Day"].Width = 100;
+                                grdPOSchedule.Columns["Order Day"].Width = 100;
                                 //grdPOSchedule.Columns["clmPrint1"].DisplayIndex = 4;
                                 //grdPOSchedule.Columns["clmPrint2"].DisplayIndex = 5;
                                 //grdPOSchedule.Columns["clmPrint3"].DisplayIndex = 8;

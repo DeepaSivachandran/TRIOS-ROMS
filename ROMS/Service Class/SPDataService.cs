@@ -4121,6 +4121,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRRatePrev", objTrnRateChange.RRate_Prev);
                 varSqlCommand.Parameters.AddWithValue("@paraWRatePrev", objTrnRateChange.WRate_Prev);
                 varSqlCommand.Parameters.AddWithValue("@paraApprove", objTrnRateChange.paraApprove);
+                varSqlCommand.Parameters.AddWithValue("@paraRemarks", objTrnRateChange.paraRemarks);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -5814,6 +5815,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraSufEname", objMR_Product.parasuffixtname);
                 varSqlCommand.Parameters.AddWithValue("@paraDescription", objMR_Product.paradescription);
                 varSqlCommand.Parameters.AddWithValue("@paraId", objMR_Product.paraId); 
+                varSqlCommand.Parameters.AddWithValue("@paraRateSno", objMR_Product.paraRateSno);
+                varSqlCommand.Parameters.AddWithValue("@paraBulkStatus", objMR_Product.paraBulkStatus);
+                varSqlCommand.Parameters.AddWithValue("@paraBulkMinqty", objMR_Product.paraBulkMinqty);
+                varSqlCommand.Parameters.AddWithValue("@paraOffSetType", objMR_Product.paraOffSetType);
 
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Product.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
@@ -5845,9 +5850,23 @@ namespace ROMS
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraGroup", obj.paraGroup);
+                cmd.Parameters.AddWithValue("@paraSubgroup", obj.paraSubgroup);
+                cmd.Parameters.AddWithValue("@paraBrandID", obj.paraBrandID);
                 cmd.Parameters.AddWithValue("@paraId", obj.paraId); 
+                cmd.Parameters.AddWithValue("@paraOffSetType", obj.paraOffSetType); 
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+
+                cmd.Parameters.AddWithValue("@ParaProductCode", obj.ParaProductCode);
+                cmd.Parameters.AddWithValue("@paraProductCategory", obj.paraProductCategory);
+                cmd.Parameters.AddWithValue("@paraRateCategorys", obj.paraRateCategorys);
+                cmd.Parameters.AddWithValue("@paraPrintType", obj.paraPrintType);
+                cmd.Parameters.AddWithValue("@ParaCompanycode", obj.ParaCompanycode);
+                 
+
+
+
 
                 cmd.CommandTimeout = 0;
 

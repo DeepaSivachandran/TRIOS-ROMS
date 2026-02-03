@@ -1224,8 +1224,7 @@ namespace ROMS
             try
             {
                 if (grdProducts.CurrentCell.OwningColumn.Name == "Last Rate" || grdProducts.CurrentCell.OwningColumn.Name == "Live Rate")
-                {
-
+                { 
                     e.Control.KeyPress -= udfnHandleKeyPress;
                     e.Control.KeyPress += udfnHandleKeyPress;
                     e.Control.KeyPress += new KeyPressEventHandler(allowonlynumber);
@@ -1433,7 +1432,6 @@ namespace ROMS
                     btnMappingsave.Enabled = true;
                     btnMappingsave.Focus();
                 }
-
             }
             catch (Exception ex)
             {
@@ -1461,6 +1459,10 @@ namespace ROMS
                 //MainForm.objStart.Show();
                 //this.Close();
                 udfnClose();
+            } 
+            if (e.KeyCode == Keys.F5)
+            {
+                btnMappingsave_Click(sender, e);
             }
         }
 

@@ -524,7 +524,7 @@
             this.grdRack.DefaultCellStyle = dataGridViewCellStyle13;
             this.grdRack.EnableHeadersVisualStyles = false;
             this.grdRack.GridColor = System.Drawing.Color.White;
-            this.grdRack.Location = new System.Drawing.Point(18, 143);
+            this.grdRack.Location = new System.Drawing.Point(20, 143);
             this.grdRack.Name = "grdRack";
             this.grdRack.RowHeadersVisible = false;
             this.grdRack.RowHeadersWidth = 70;
@@ -544,11 +544,11 @@
             // 
             // txtRackGroupName
             // 
-            this.txtRackGroupName.Location = new System.Drawing.Point(427, 18);
+            this.txtRackGroupName.Location = new System.Drawing.Point(426, 18);
             this.txtRackGroupName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRackGroupName.MaxLength = 20;
             this.txtRackGroupName.Name = "txtRackGroupName";
-            this.txtRackGroupName.Size = new System.Drawing.Size(221, 27);
+            this.txtRackGroupName.Size = new System.Drawing.Size(222, 27);
             this.txtRackGroupName.TabIndex = 1;
             this.txtRackGroupName.Enter += new System.EventHandler(this.TxtRackGroupName_Enter);
             this.txtRackGroupName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtRackGroupName_KeyDown);

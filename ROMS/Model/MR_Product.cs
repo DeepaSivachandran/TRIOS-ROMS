@@ -86,6 +86,13 @@ namespace ROMS.Model
         public string parasuffixename = "";
         public string paradescription = "";
         public int paraRateId = 0;
+        public int paraRateSno = 0;
+        public DataTable paraBulkStatus = null;
+        public DataTable paraBulkMinqty = null; 
         public int paraRateCategory = 0;        
+        public int paraOffSetType = 0;        
+        public string paraRateCategorys = "0"; 
+        public int paraProductCategoryType = 0;
+
     }
 }

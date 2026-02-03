@@ -90,6 +90,9 @@ namespace ROMS
             this.tsmProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductClassification = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductApproval = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBulkRateCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBulkupdateProductminbulk = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmBulkOffsetUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEmployeeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEmployeee = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,6 +151,7 @@ namespace ROMS
             this.tsmUnassignedProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroRate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReportUserRole = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProductReportRateCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmZeroVsPo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPOStatusWise = new System.Windows.Forms.ToolStripMenuItem();
@@ -711,7 +715,10 @@ namespace ROMS
             this.tsmUnit,
             this.tsmProduct,
             this.tsmProductClassification,
-            this.tsmProductApproval});
+            this.tsmProductApproval,
+            this.tsmBulkRateCategory,
+            this.tsmBulkupdateProductminbulk,
+            this.tsmBulkOffsetUpdate});
             this.tsmProductMenu.Name = "tsmProductMenu";
             this.tsmProductMenu.Size = new System.Drawing.Size(225, 22);
             this.tsmProductMenu.Text = "Product";
@@ -720,7 +727,7 @@ namespace ROMS
             // tsmHSN
             // 
             this.tsmHSN.Name = "tsmHSN";
-            this.tsmHSN.Size = new System.Drawing.Size(182, 22);
+            this.tsmHSN.Size = new System.Drawing.Size(264, 22);
             this.tsmHSN.Text = "HSN Name";
             this.tsmHSN.Visible = false;
             this.tsmHSN.Click += new System.EventHandler(this.TsmHSN_Click);
@@ -728,7 +735,7 @@ namespace ROMS
             // tsmGroup
             // 
             this.tsmGroup.Name = "tsmGroup";
-            this.tsmGroup.Size = new System.Drawing.Size(182, 22);
+            this.tsmGroup.Size = new System.Drawing.Size(264, 22);
             this.tsmGroup.Text = "Product Group";
             this.tsmGroup.Visible = false;
             this.tsmGroup.Click += new System.EventHandler(this.TsmGroup_Click);
@@ -736,7 +743,7 @@ namespace ROMS
             // tsmSubGroup
             // 
             this.tsmSubGroup.Name = "tsmSubGroup";
-            this.tsmSubGroup.Size = new System.Drawing.Size(182, 22);
+            this.tsmSubGroup.Size = new System.Drawing.Size(264, 22);
             this.tsmSubGroup.Text = "Product Sub Group";
             this.tsmSubGroup.Visible = false;
             this.tsmSubGroup.Click += new System.EventHandler(this.TsmSubGroup_Click);
@@ -744,7 +751,7 @@ namespace ROMS
             // tsmBrand
             // 
             this.tsmBrand.Name = "tsmBrand";
-            this.tsmBrand.Size = new System.Drawing.Size(182, 22);
+            this.tsmBrand.Size = new System.Drawing.Size(264, 22);
             this.tsmBrand.Text = "Brand";
             this.tsmBrand.Visible = false;
             this.tsmBrand.Click += new System.EventHandler(this.TsmBrand_Click);
@@ -752,7 +759,7 @@ namespace ROMS
             // tsmUnit
             // 
             this.tsmUnit.Name = "tsmUnit";
-            this.tsmUnit.Size = new System.Drawing.Size(182, 22);
+            this.tsmUnit.Size = new System.Drawing.Size(264, 22);
             this.tsmUnit.Text = "Unit";
             this.tsmUnit.Visible = false;
             this.tsmUnit.Click += new System.EventHandler(this.TsmUnit_Click);
@@ -760,7 +767,7 @@ namespace ROMS
             // tsmProduct
             // 
             this.tsmProduct.Name = "tsmProduct";
-            this.tsmProduct.Size = new System.Drawing.Size(182, 22);
+            this.tsmProduct.Size = new System.Drawing.Size(264, 22);
             this.tsmProduct.Text = "Product";
             this.tsmProduct.Visible = false;
             this.tsmProduct.Click += new System.EventHandler(this.Tsmitem_Click);
@@ -768,7 +775,7 @@ namespace ROMS
             // tsmProductClassification
             // 
             this.tsmProductClassification.Name = "tsmProductClassification";
-            this.tsmProductClassification.Size = new System.Drawing.Size(182, 22);
+            this.tsmProductClassification.Size = new System.Drawing.Size(264, 22);
             this.tsmProductClassification.Text = "Product Classification";
             this.tsmProductClassification.Visible = false;
             this.tsmProductClassification.Click += new System.EventHandler(this.tsmProductClassification_Click);
@@ -776,10 +783,34 @@ namespace ROMS
             // tsmProductApproval
             // 
             this.tsmProductApproval.Name = "tsmProductApproval";
-            this.tsmProductApproval.Size = new System.Drawing.Size(182, 22);
+            this.tsmProductApproval.Size = new System.Drawing.Size(264, 22);
             this.tsmProductApproval.Text = "Product Approval";
             this.tsmProductApproval.Visible = false;
             this.tsmProductApproval.Click += new System.EventHandler(this.tsmProductApproval_Click);
+            // 
+            // tsmBulkRateCategory
+            // 
+            this.tsmBulkRateCategory.Name = "tsmBulkRateCategory";
+            this.tsmBulkRateCategory.Size = new System.Drawing.Size(264, 22);
+            this.tsmBulkRateCategory.Text = "Bulk Update Rate Category Enablement";
+            this.tsmBulkRateCategory.Visible = false;
+            this.tsmBulkRateCategory.Click += new System.EventHandler(this.tsmBulkRateCategory_Click);
+            // 
+            // tsmBulkupdateProductminbulk
+            // 
+            this.tsmBulkupdateProductminbulk.Name = "tsmBulkupdateProductminbulk";
+            this.tsmBulkupdateProductminbulk.Size = new System.Drawing.Size(264, 22);
+            this.tsmBulkupdateProductminbulk.Text = "Bulk Update Product Min Qty";
+            this.tsmBulkupdateProductminbulk.Visible = false;
+            this.tsmBulkupdateProductminbulk.Click += new System.EventHandler(this.tsmBulkupdateProductminbulk_Click);
+            // 
+            // tsmBulkOffsetUpdate
+            // 
+            this.tsmBulkOffsetUpdate.Name = "tsmBulkOffsetUpdate";
+            this.tsmBulkOffsetUpdate.Size = new System.Drawing.Size(264, 22);
+            this.tsmBulkOffsetUpdate.Text = "Bulk Update Offset";
+            this.tsmBulkOffsetUpdate.Visible = false;
+            this.tsmBulkOffsetUpdate.Click += new System.EventHandler(this.tsmBulkOffsetUpdate_Click);
             // 
             // tsmEmployeeMenu
             // 
@@ -1002,7 +1033,7 @@ namespace ROMS
             // tsmUserRole
             // 
             this.tsmUserRole.Name = "tsmUserRole";
-            this.tsmUserRole.Size = new System.Drawing.Size(134, 22);
+            this.tsmUserRole.Size = new System.Drawing.Size(180, 22);
             this.tsmUserRole.Text = "User Role";
             this.tsmUserRole.Visible = false;
             this.tsmUserRole.Click += new System.EventHandler(this.tsmUserRole_Click);
@@ -1010,7 +1041,7 @@ namespace ROMS
             // tsmUser
             // 
             this.tsmUser.Name = "tsmUser";
-            this.tsmUser.Size = new System.Drawing.Size(134, 22);
+            this.tsmUser.Size = new System.Drawing.Size(180, 22);
             this.tsmUser.Text = "System User";
             this.tsmUser.Visible = false;
             this.tsmUser.Click += new System.EventHandler(this.TsmUser_Click);
@@ -1035,7 +1066,7 @@ namespace ROMS
             // tsmVoucherSettings
             // 
             this.tsmVoucherSettings.Name = "tsmVoucherSettings";
-            this.tsmVoucherSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmVoucherSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmVoucherSettings.Text = "Voucher Settings";
             this.tsmVoucherSettings.Visible = false;
             this.tsmVoucherSettings.Click += new System.EventHandler(this.tsmVoucherSettings_Click);
@@ -1043,7 +1074,7 @@ namespace ROMS
             // tsmGeneralSettings
             // 
             this.tsmGeneralSettings.Name = "tsmGeneralSettings";
-            this.tsmGeneralSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmGeneralSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmGeneralSettings.Text = "General Settings";
             this.tsmGeneralSettings.Visible = false;
             this.tsmGeneralSettings.Click += new System.EventHandler(this.TsmgenralSettings_Click);
@@ -1051,7 +1082,7 @@ namespace ROMS
             // tsmPrinterSettings
             // 
             this.tsmPrinterSettings.Name = "tsmPrinterSettings";
-            this.tsmPrinterSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmPrinterSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmPrinterSettings.Text = "Printer Settings";
             this.tsmPrinterSettings.Visible = false;
             this.tsmPrinterSettings.Click += new System.EventHandler(this.tsmPrinterSettings_Click);
@@ -1059,7 +1090,7 @@ namespace ROMS
             // tsmChequePrintSettings
             // 
             this.tsmChequePrintSettings.Name = "tsmChequePrintSettings";
-            this.tsmChequePrintSettings.Size = new System.Drawing.Size(179, 22);
+            this.tsmChequePrintSettings.Size = new System.Drawing.Size(180, 22);
             this.tsmChequePrintSettings.Text = "Cheque Print Settings";
             this.tsmChequePrintSettings.Visible = false;
             this.tsmChequePrintSettings.Click += new System.EventHandler(this.TsmChequePrintSettings_Click);
@@ -1125,6 +1156,7 @@ namespace ROMS
             this.tsmAssigned,
             this.tsmUnassignedProducts,
             this.tsmZeroRate,
+            this.tsmProductReportRateCategory,
             this.tsmReportUserRole,
             this.tsmProductWeight});
             this.tsmMastersReport.Name = "tsmMastersReport";
@@ -1307,6 +1339,14 @@ namespace ROMS
             this.tsmReportUserRole.Text = "User Role";
             this.tsmReportUserRole.Visible = false;
             this.tsmReportUserRole.Click += new System.EventHandler(this.tsmReportUserRole_Click);
+            // 
+            // tsmProductReportRateCategory
+            // 
+            this.tsmProductReportRateCategory.Name = "tsmProductReportRateCategory";
+            this.tsmProductReportRateCategory.Size = new System.Drawing.Size(225, 22);
+            this.tsmProductReportRateCategory.Text = "Product Rate Category";
+            this.tsmProductReportRateCategory.Visible = false;
+            this.tsmProductReportRateCategory.Click += new System.EventHandler(this.tsmProductReportRateCategory_Click);
             // 
             // tsmZeroVsPo
             // 
@@ -2257,7 +2297,11 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmRackgroupProduct;
         private System.Windows.Forms.ToolStripMenuItem tsmGif;
         internal System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.ToolStripMenuItem tsmBulkRateCategory;
+        private System.Windows.Forms.ToolStripMenuItem tsmBulkupdateProductminbulk;
+        private System.Windows.Forms.ToolStripMenuItem tsmBulkOffsetUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmZeroVsPOGenerated;
         private System.Windows.Forms.ToolStripMenuItem tsmProductWeight;
+        private System.Windows.Forms.ToolStripMenuItem tsmProductReportRateCategory;
     }
 }
