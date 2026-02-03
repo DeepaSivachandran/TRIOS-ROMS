@@ -1,13 +1,14 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ROMS.Model;
 
 namespace ROMS
 {
@@ -23,6 +24,11 @@ namespace ROMS
         public int varID = 0;
         public int PbStatus = 0;
         public int varUpdate = 0;
+
+        private ToolTip tpMachineStatus = new ToolTip(); /*newly added*/
+        private ToolTip tpMachineType = new ToolTip();   /*newly added*/
+        private ToolTip tpSNo = new ToolTip();           /*newly added*/
+
         public CP_CardMachine()
         {
             InitializeComponent();
@@ -58,6 +64,11 @@ namespace ROMS
                 objMR_CardMachine.paraStatusId = Convert.ToInt32(PbStatus);
                 objMR_CardMachine.paraProviderID = Convert.ToInt32(cmbProvider.SelectedValue);
                 objMR_CardMachine.paraCardMachineId = Convert.ToInt32(varID);
+
+                objMR_CardMachine.paraMachineStatus = Convert.ToInt32(cmbMachineStatus.SelectedValue);   /*newly added*/
+                objMR_CardMachine.paraMachineType = Convert.ToInt32(cmbMachineType.SelectedValue);        /*newly added*/
+                objMR_CardMachine.paraSNo = Convert.ToInt32(cmbSNo.SelectedValue);                      /*newly added*/
+
                 objMR_CardMachine.paraOriginator = varoriginator; 
                 varResult = objspdservice.udfnCardMachine(objMR_CardMachine);
                 objspdservice.CloseConnection();
@@ -110,7 +121,12 @@ namespace ROMS
                 txtPIDNo.Text = "";
                 cmbConcern.SelectedValue = -1;
                 cmbProvider.SelectedValue = -1;
+                cmbMachineStatus.SelectedValue = -1;
+                cmbMachineType.SelectedValue = -1;
+                cmbSNo.SelectedIndex = 0;
+
                 txtMachineName.Focus();
+                udfnSlNo();
             }
             catch (Exception ex)
             {
@@ -155,6 +171,38 @@ namespace ROMS
                     tpBank.Show("Please select bank.", cmbBank, 5000);
                     blnErrorFlag = true;
                 }
+
+                //newly added cmbMachineStatus
+                if (cmbMachineStatus.SelectedValue == null || Convert.ToInt32(cmbMachineStatus.SelectedValue) == -1)
+                {
+                    epRoute.SetError(cmbMachineStatus, "Please select Machine Status");
+                    cmbMachineStatus.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbe");
+                    tpMachineStatus.ShowAlways = true;
+                    tpMachineStatus.Show("Please select Machne Status,", cmbMachineStatus, 5000);
+                    blnErrorFlag = true;
+                }
+
+                //newly added cmbMachinetype
+                if (cmbMachineType.SelectedValue == null || Convert.ToInt32(cmbMachineType.SelectedValue) == -1)
+                {
+                    epRoute.SetError(cmbMachineType, "Please select Machine Status");
+                    cmbMachineType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbe");
+                    tpMachineType.ShowAlways = true;
+                    tpMachineType.Show("Please select Machne Status,", cmbMachineType, 5000);
+                    blnErrorFlag = true;
+                }
+
+                //newly added cmbSno
+                if (cmbSNo.SelectedValue == null)
+                {
+                    epRoute.SetError(cmbSNo, "Please select Machine Status");
+                    cmbSNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbe");
+                    tpSNo.ShowAlways = true;
+                    tpSNo.Show("Please select Machne Status,", cmbMachineType, 5000);
+                    blnErrorFlag = true;
+                }
+
+
                 if (blnErrorFlag == false)
                 {
                     epRoute.Clear();
@@ -378,7 +426,9 @@ namespace ROMS
                 }
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 MainForm.objCP_CardMachineList.picLoader.Visible = false;
-                MainForm.objCP_CardMachineList.picLoader.SendToBack(); 
+                MainForm.objCP_CardMachineList.picLoader.SendToBack();
+
+                udfnSlNo();
             }
             catch (Exception ex)
             {
@@ -436,8 +486,16 @@ namespace ROMS
                 }
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,141) AND MSTID<>0 ORDER BY MSTID  ASC", "MST_DisplayText,MSTID", cmbProvider, "", "MST_DisplayText", "MSTID");
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (153) OR MSTID IN (-1) ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbMachineStatus, "", "MST_DisplayText", "MSTID");  /*cmbMachineStatus*/
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (154) OR MSTID IN (-1) ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbMachineType, "", "MST_DisplayText", "MSTID");   /*cmbMachineType*/
+
                 objDataBind = null;
                 udfnBankDropDown();
+                cmbMachineStatus.SelectedValue = -1;
+                cmbMachineType.SelectedValue = -1;
+
             }
             catch (Exception ex)
             {
@@ -445,6 +503,44 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        //slno
+        public void udfnSlNo()
+        {
+            try
+            {
+                
+
+                DataSet objDs;
+                if (varID != 0 )
+                {
+                    string varCMID = Convert.ToString(varID);
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnGetSlNo("MR_CardMachine", "Update", "CRDMHID", varCMID, "CRDMH_SINO");
+                    objspservice.CloseConnection();
+                }
+                else
+                {
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnGetSlNo("MR_CardMachine", "Create", "1=1", "", "CRDMH_SINO");
+                    objspservice.CloseConnection();
+                }
+                if (objDs != null)
+                {
+                    cmbSNo.DataSource = objDs.Tables[0];
+                    cmbSNo.DisplayMember = "num";
+                    cmbSNo.ValueMember = "num";
+                }
+
+
+            }
+            catch(Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         public void udfnEdit()
         {
             try
@@ -470,7 +566,15 @@ namespace ROMS
                                 cmbConcern.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["ComID"]);
                                 cmbBank.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["BankID"]);
                                 cmbProvider.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_ProviderID"]);
+
+                                cmbMachineStatus.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_MachineSTSID"]); /*newly added*/
+                                cmbMachineType.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_TYPEID"]); /*newly added*/
+                                cmbSNo.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_SINO"]); /*newly added*/
+
                                 txtMachineName.Focus();
+
+
+                                udfnSlNo();
                             }
                               
                         }
@@ -585,8 +689,8 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Enter)
-                { 
-                        btnSave.Focus(); 
+                {
+                    btnSave.Focus(); 
                 }
             }
             catch (Exception ex)
@@ -619,15 +723,20 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (rbActive.Enabled == true)
-                    {
-                        rbActive.Focus();
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    cmbMachineStatus.Focus();
                 }
+
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    if (rbActive.Enabled == true)
+                //    {
+                //        rbActive.Focus();
+                //    }
+                //    else
+                //    {
+                //        btnSave.Focus();
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -858,6 +967,171 @@ namespace ROMS
             try
             {
                 txtPIDNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMachineStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMachineStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMachineStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbMachineType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMachineStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMachineStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMachineType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMachineType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbMachineType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmbSNo.Focus();
+            }
+        }
+
+        private void CmbMachineType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMachineType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSNo_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSNo.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void CmbSNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (rbActive.Enabled == true)
+                    {
+                        rbActive.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            
+        }
+
+        private void CmbSNo_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbSNo.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMachineStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMachineType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbSNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled |= true;  
             }
             catch (Exception ex)
             {

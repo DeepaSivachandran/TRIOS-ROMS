@@ -172,6 +172,8 @@ namespace ROMS
         public static GRN_ADV objGRN_ADV;
         public static CP_Product_Info objCP_Product_Info;
         public static CP_ProductLockTeller objCP_ProductLockTeller;
+        public static CP_Sales_Settings objCP_Sales_Settings;
+        public static CP_Sales_GeneralSettings objCP_Sales_GeneralSettings;
 
         // added by venkat on 30-09-2025
         public static CP_UserRole objCP_UserRole;
@@ -4723,6 +4725,36 @@ namespace ROMS
             {
                 //PbCurrentForm = "7.8.1";
                 OpenReportForm(ref MainForm.objREPORT_CP_Product_Weight, "REPORT_CP_Product_Weight", 80124);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesVoucherSettings_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Sales_Settings, "CP_Sales_Settings", 605);
+                PbCurrentForm = "6.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesGeneralSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Sales_GeneralSettings, "CP_Sales_GeneralSettings", 606);
+                PbCurrentForm = "7";
+                 
             }
             catch (Exception ex)
             {

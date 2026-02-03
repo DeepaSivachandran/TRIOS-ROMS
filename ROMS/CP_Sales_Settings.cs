@@ -9,11 +9,12 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    //Sivabharathi  Created On :25/09/2023
-    public partial class CP_Settings : Form
+    //Sathish  Created On :02/02/2026
+    public partial class CP_Sales_Settings : Form
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
 
+        DataTable dtDefaultGrid = new DataTable();
         DataValidation objValidation = new DataValidation();
         DataError objError;
         Boolean BlnSearchImageYN = false;
@@ -31,7 +32,7 @@ namespace ROMS
         public int MenuCode = 0;
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
-        public CP_Settings()
+        public CP_Sales_Settings()
         {
             InitializeComponent();
             windowControl.Initialize(tsVoucherSettings, this);
@@ -106,6 +107,7 @@ namespace ROMS
                     MR_Master objMR_Master = new MR_Master();
                     objMR_Master.ViewType = 12;
                     objMR_Master.paraID = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_Master.paraFlag = 1;
                     DataSet objDs = new DataSet();
                     SPDataService objdserv = new SPDataService();
                     objDs = objdserv.udfnMaster(objMR_Master);
@@ -184,6 +186,7 @@ namespace ROMS
         {
             try
             {
+                dtDefaultGrid = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 Application.DoEvents();
@@ -192,7 +195,7 @@ namespace ROMS
                 DataSet objDS = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objdserv = new SPDataService();
-                objDS = objdserv.udfnVoucherSettingList(0, 0);
+                objDS = objdserv.udfnVoucherSettingList(0, 1);
                 objdserv.CloseConnection();
                 //cmbConcern.SelectedValue = varconcernvalue;
                 //cmbTransactionType.SelectedValue = varValues;
@@ -261,6 +264,15 @@ namespace ROMS
                     lblNoRecordsFound.BringToFront();
                 }
                 udfnSearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultGrid = objDS.Tables[0];
+                    udfnDefaultSearchGrid();
+                }
+                else
+                {
+                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
+                }
             }
             catch (Exception ex)
             {
@@ -272,6 +284,27 @@ namespace ROMS
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 grdSettings.ClearSelection();
+            }
+        }
+        public void udfnDefaultSearchGrid()
+        {
+            try
+            {
+                DGV_SearchGrid.DataSource = dtDefaultGrid;
+                DGV_SearchGrid.Columns["S.No."].Width = 50;
+                DGV_SearchGrid.Columns["Sample Transaction No."].Width = 150;
+                DGV_SearchGrid.Columns["Transaction Type"].Width = 230;
+                DGV_SearchGrid.Columns["Concern ID"].Visible = false;
+                DGV_SearchGrid.Columns["No.of Digits"].Visible = false;
+                DGV_SearchGrid.Columns["ID"].Visible = false;
+                DGV_SearchGrid.Columns["Transaction TypeID"].Visible = false;
+                DGV_SearchGrid.Columns["Reset OnID"].Visible = false;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
         private void CP_Settings_Load(object sender, EventArgs e)
@@ -1117,7 +1150,7 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 varConcern = Convert.ToInt32(cmbConcern.SelectedValue);
                 varTransactionType = Convert.ToInt32(cmbTransactionType.SelectedValue);
-                if (btnUpdate.Text=="Save")
+                if (btnUpdate.Text == "Save")
                 {
                     varOriginator = "VoucherSettings Save";
                     viewType = 0; varId = 0;
@@ -1143,7 +1176,7 @@ namespace ROMS
                     lblResetOn.Focus();
                     SPDataService objDSer = new SPDataService();
                     varSampleTransation = Convert.ToString(txtPrefix.Text.Trim()) + txtStartingNo.Text.Trim() + Convert.ToString(txtSuffix.Text.Trim());
-                    result = objDSer.udfnVoucherSettings(viewType, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToString(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varId, varOriginator, 0);
+                    result = objDSer.udfnVoucherSettings(viewType, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbTransactionType.SelectedValue), Convert.ToString(txtPrefix.Text.Trim()), txtSuffix.Text.Trim(), 0, Convert.ToString(txtStartingNo.Text.Trim()), varSampleTransation, Convert.ToInt32(cmbResetOn.SelectedValue), varId, varOriginator, 1);
                     objDSer.CloseConnection();
                     btnUpdate.Enabled = true;
                     string[] varvalue = result.Split('~');

@@ -49,6 +49,7 @@ namespace ROMS
                 obj.paraShortName = txtShortName.Text.Trim();
                 obj.paraContactPersonName = txtContactPersonName.Text.Trim();
                 obj.paraMobileNo = txtMobileNo.Text.Trim();
+                obj.paraLandlineNo = txtLandline.Text.Trim();
                 obj.paraStatusId = PbStatus;
                 obj.paraOriginator = varoriginator;
 
@@ -67,6 +68,7 @@ namespace ROMS
                         txtShortName.Text = "";
                         txtContactPersonName.Text = "";
                         txtMobileNo.Text = "";
+                        txtLandline.Text = "";
                         this.ActiveControl = txtTransportEName;
                     }
                     if (btnSave.Text == "Update")
@@ -137,14 +139,24 @@ namespace ROMS
                     tpTransport.Show("Please enter contact person name.", txtContactPersonName, 5000);
                     blnErrFlag = true;
                 }
-                if (txtMobileNo.Text.Trim() == "")
+                if (txtMobileNo.Text.Trim() == "" || txtMobileNo.TextLength < 10)
                 {
-                    epTransport.SetError(txtMobileNo, "Please enter mobile no.");
+                    epTransport.SetError(txtMobileNo, "Please enter valid mobile no.");
                     txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpTransport.ShowAlways = true;
-                    tpTransport.Show("Please enter mobile no.", txtMobileNo, 5000);
+                    tpTransport.Show("Please enter valid mobile no.", txtMobileNo, 5000);
                     blnErrFlag = true;
                 }
+                if (txtLandline.Text.Trim() == "" || txtLandline.TextLength < 10)
+                {
+                    epTransport.SetError(txtLandline, "Please enter valid Landline no.");
+                    txtLandline.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpTransport.ShowAlways = true;
+                    tpTransport.Show("Please enter valid Landline no.", txtLandline, 5000);
+                    blnErrFlag = true;
+                }
+
+
                 if (blnErrFlag == false)
                 {
                     txtTransportEName.BackColor = Color.White;
@@ -152,6 +164,7 @@ namespace ROMS
                     txtShortName.BackColor = Color.White;
                     txtContactPersonName.BackColor = Color.White;
                     txtMobileNo.BackColor = Color.White;
+                    txtLandline.BackColor = Color.White;
                     epTransport.Clear();
                     btnSave.Enabled = false;
                     udfnSave();
@@ -229,6 +242,7 @@ namespace ROMS
                         txtShortName.Enabled = false;
                         txtContactPersonName.Enabled = false;
                         txtMobileNo.Enabled = false;
+                        txtLandline.Enabled = false;    
                         rbInActive.Checked = true;
                         rbInActive.Focus();
                     }
@@ -263,6 +277,9 @@ namespace ROMS
                             txtShortName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TR_ShortName"]);
                             txtContactPersonName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TR_ContactPerson"]);
                             txtMobileNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TR_MobileNo"]);
+
+                            txtLandline.Text = Convert.ToString(objDs.Tables[0].Rows[0]["TR_LandlineNo"]);
+
                             txtTransportEName.Focus();
                         }
                     }
@@ -579,22 +596,9 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        if (rbActive.Checked == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInActive.Focus();
-                        }
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    txtLandline.Focus();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -631,6 +635,81 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+
+        //landline
+        private void txtLandline_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLandline.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLandline_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLandline_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLandline.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtLandline_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CP_Transport_KeyDown(object sender, KeyEventArgs e)
         {
             try

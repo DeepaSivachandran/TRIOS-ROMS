@@ -29,6 +29,9 @@ namespace ROMS.Model
         public int paraDeliveryPersonId { get; set; } = 0;
         public string paraName { get; set; } = "";
         public string paraMobileNo { get; set; } = "";
+        public string paraLandlineNo { get; set; } = "";
+        public int paraVehicleTypeId { get; set; } = 0;
+        public int paraUnitId { get; set; } = 0;
         public string paraCode { get; set; } = "";
 
         // -------------------- Mobile --------------------

@@ -11,17 +11,20 @@ namespace ROMS.Model
     {
         public int ViewType = 0;
         public int paraCardMachineId = 0;
-        public string paraCardMachineName = ""; 
+        public string paraCardMachineName = "";
         public int paraProviderID = 0;
         public int paraConcernID = 0;
         public int paraComBankId = 0;
         public int paraStatusId = 0;
         public int paraUserID = 0;
+        public int paraSNo = 0;
+        public int paraMachineType = 0;
+        public int paraMachineStatus = 0;
         public string paraIPAddress = "";
         public string paraOriginator = "";
-        public string paraHostName = "";     
+        public string paraHostName = "";
         public string paraBrandName = "";
-        public string paraMCNo = "";     
-        public string paraPIDNo = "";     
+        public string paraMCNo = "";
+        public string paraPIDNo = "";
     }
 }

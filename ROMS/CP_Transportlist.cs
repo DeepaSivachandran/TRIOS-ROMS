@@ -182,6 +182,7 @@ namespace ROMS
                             grdTransportList.Columns["Short Name"].Width = 120;
                             grdTransportList.Columns["Contact Person"].Width = 150;
                             grdTransportList.Columns["Mobile No."].Width = 120;
+                            grdTransportList.Columns["Landline No."].Width = 120;
                             grdTransportList.Columns["Status"].Width = 80;
                             grdTransportList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdTransportList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -236,6 +237,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Short Name"].Width = 120;
                 DGV_SearchGrid.Columns["Contact Person"].Width = 150;
                 DGV_SearchGrid.Columns["Mobile No."].Width = 120;
+                DGV_SearchGrid.Columns["Landline No."].Width = 120;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

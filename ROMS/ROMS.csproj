@@ -221,6 +221,20 @@
     <Compile Include="CP_CostPrice_Update_Bulk.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Sales_GeneralSettings.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="CP_Sales_GeneralSettings.designer.cs">
+      <DependentUpon>CP_Sales_GeneralSettings.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="CP_Sales_Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Sales_Settings.designer.cs">
+      <DependentUpon>CP_Sales_Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_UPI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4114,6 +4128,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Sales_GeneralSettings.resx">
+      <DependentUpon>CP_Sales_GeneralSettings.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Sales_Settings.resx">
+      <DependentUpon>CP_Sales_Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UPI.resx">
       <DependentUpon>CP_UPI.cs</DependentUpon>

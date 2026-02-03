@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_Settings
+    partial class CP_Sales_Settings
     {
         /// <summary>
         /// Required designer variable.
@@ -520,10 +520,10 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(172, 22);
-            this.tspHeader.Text = "Purchase Voucher Settings";
+            this.tspHeader.Size = new System.Drawing.Size(150, 22);
+            this.tspHeader.Text = "Sales Voucher Settings";
             // 
-            // CP_Settings
+            // CP_Sales_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -536,7 +536,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "CP_Settings";
+            this.Name = "CP_Sales_Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Voucher Settings";
             this.Load += new System.EventHandler(this.CP_Settings_Load);

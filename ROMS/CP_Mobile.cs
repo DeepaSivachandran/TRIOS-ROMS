@@ -121,12 +121,12 @@ namespace ROMS
                     tpMobile.ShowAlways = true;
                     tpMobile.Show("Please select vendor.", cmbVendor, 5000);
                 }
-                else if (txtMobileNo.Text.Trim() == "")
+                else if (txtMobileNo.Text.Trim() == "" || txtMobileNo.TextLength < 10)
                 {
-                    epMobile.SetError(txtMobileNo, "Please enter mobile number.");
+                    epMobile.SetError(txtMobileNo, "Please enter valid mobile number.");
                     txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpMobile.ShowAlways = true;
-                    tpMobile.Show("Please enter mobile number.", txtMobileNo, 5000);
+                    tpMobile.Show("Please enter valid mobile number.", txtMobileNo, 5000);
                 }
                 else
                 {

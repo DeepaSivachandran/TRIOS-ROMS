@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿using CrystalDecisions.CrystalReports.ViewerObjectModel;
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpVehicle = new ToolTip();
-        public int pbVehicleId = 0, PbStatus = 0, varUpdate = 0;
+        public int pbVehicleId = 0, PbStatus = 0, varUpdate = 0, varUnitid = 0;
         public CP_Vehicle()
         {
             InitializeComponent();
@@ -48,6 +49,10 @@ namespace ROMS
                 obj.paraShortName = txtShortName.Text.Trim();
                 obj.paraRegisterNo = txtRegisterNo.Text.Trim();
                 obj.paraCapacity = txtCapacity.Text.Trim();
+
+                obj.paraVehicleTypeId = Convert.ToInt32(cmbVechicleType.SelectedValue); /*newly added*/
+                obj.paraUnitId = Convert.ToInt32(cmbCapacity.SelectedValue);        /*newly added*/
+
                 obj.paraStatusId = PbStatus;
                 obj.paraOriginator = varoriginator;
 
@@ -65,6 +70,10 @@ namespace ROMS
                         txtVehicleName.Text = "";
                         txtShortName.Text = "";
                         txtCapacity.Text = "";
+
+                        cmbVechicleType.SelectedValue = -1;
+                        cmbCapacity.SelectedValue = 2; 
+
                         this.ActiveControl = txtRegisterNo;
                     }
                     if (btnSave.Text == "Update")
@@ -135,6 +144,23 @@ namespace ROMS
                     tpVehicle.Show("Please enter capacity.", txtCapacity, 5000);
                     blnErrFlag = true;
                 }
+                if (cmbVechicleType.SelectedValue == null || Convert.ToInt32(cmbVechicleType.SelectedValue) == -1)
+                {
+                    epVehicle.SetError(cmbVechicleType, "Please Select Vechicle Type.");
+                    cmbVechicleType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVehicle.ShowAlways = true;
+                    tpVehicle.Show("Please Select Vechicle Type.", cmbVechicleType, 5000);
+                    blnErrFlag = true;
+                }
+                if (cmbCapacity.SelectedValue == null || Convert.ToInt32(cmbCapacity.SelectedValue) == -1)
+                {
+                    epVehicle.SetError(cmbCapacity, "Please Select Capacity Unit");
+                    cmbCapacity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpVehicle.ShowAlways = true;
+                    tpVehicle.Show("Please Select Capacity Unit.", cmbCapacity, 5000);
+                    blnErrFlag = true;
+                }
+
                 if (blnErrFlag == false)
                 {
                     txtRegisterNo.BackColor = Color.White;
@@ -196,6 +222,18 @@ namespace ROMS
             {
                 MainForm.objCP_Vehiclelist.picLoader.Visible = false;
                 MainForm.objCP_Vehiclelist.picLoader.SendToBack();
+
+                DataBind objDataBind = new DataBind();
+
+                objDataBind.BindComboBoxListSelected("Def_Master", "MST_TransactionID IN (155) OR MSTID IN (-1) ORDER BY MSTID ASC", "MST_DisplayText, MSTID", cmbVechicleType, "", "MST_DisplayText", "MSTID"); /*cmbVechicleType*/
+
+                objDataBind = null;
+                cmbVechicleType.SelectedValue = -1;
+                cmbCapacity.SelectedValue = 2;
+
+
+                udfnUnitLoad();
+
                 if (pbVehicleId == 0)
                 {
                     this.ActiveControl = txtRegisterNo;
@@ -217,6 +255,9 @@ namespace ROMS
                         txtVehicleName.Enabled = false;
                         txtShortName.Enabled = false;
                         txtCapacity.Enabled = false;
+
+                        cmbVechicleType.Enabled = false;
+
                         rbInActive.Checked = true;
                         rbInActive.Focus();
                     }
@@ -251,6 +292,10 @@ namespace ROMS
                             txtVehicleName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Vehicle Name"]);
                             txtShortName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["V Short Name"]);
                             txtCapacity.Text = Convert.ToString(objDs.Tables[0].Rows[0]["Capacity"]);
+                            //cmbMachineStatus.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["CRDMH_MachineSTSID"]); /*newly added*/
+                            cmbVechicleType.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Vehicle Type"]);
+                            cmbCapacity.SelectedValue = Convert.ToInt32(objDs.Tables[0].Rows[0]["Unit"]);
+
                             txtRegisterNo.Focus();
                         }
                     }
@@ -262,6 +307,45 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+
+        public void udfnUnitLoad()
+        {
+            try
+            {
+                int varViewType = 2, varBulkViewType = 6;
+                
+                DataSet objDT = new DataSet();
+                DataSet objDTBulkUnit = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDT = objdserv.udfnUnitList(varViewType, varUnitid, 0);
+                objdserv.CloseConnection();
+                cmbCapacity.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbCapacity.ValueMember = "UTID";
+                            cmbCapacity.DisplayMember = "UT_Symbol";
+                            cmbCapacity.DataSource = objDT.Tables[0];
+                            cmbCapacity.SelectedValue = 2;
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+
+
         private void txtVehicleName_Enter(object sender, EventArgs e)
         {
             try
@@ -404,7 +488,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtCapacity.Focus();
+                    cmbVechicleType.Focus();
                 }
             }
             catch (Exception ex)
@@ -504,6 +588,7 @@ namespace ROMS
                         btnSave.Focus();
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -589,6 +674,8 @@ namespace ROMS
             }
         }
 
+        
+
         private void CP_Vehicle_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -615,6 +702,135 @@ namespace ROMS
             try
             {
                 tpVehicle.Active = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        private void cmbVechicleType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbVechicleType.BackColor = Color.LemonChiffon; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        
+
+        private void cmbVechicleType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    txtCapacity.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVechicleType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbVechicleType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbVechicleType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        
+
+        private void cmbCapacity_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCapacity.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCapacity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                //if (e.KeyCode == Keys.Enter)
+                //{
+                //    if (pnlStatus.Enabled == true)
+                //    {
+                //        if (rbActive.Checked == true)
+                //        {
+                //            rbActive.Focus();
+                //        }
+                //        else
+                //        {
+                //            rbInActive.Focus();
+                //        }
+                //    }
+                //    else
+                //    {
+                //        btnSave.Focus();
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCapacity_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCapacity.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCapacity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
             }
             catch (Exception ex)
             {

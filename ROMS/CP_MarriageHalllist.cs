@@ -227,8 +227,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Marriage Hall Name"].Width = 200;
-                DGV_SearchGrid.Columns["Marriage Hall Name"].Width = 250;
+                DGV_SearchGrid.Columns["Marriage Hall English Name"].Width = 200;
+                DGV_SearchGrid.Columns["Marriage Hall Tamil Name"].Width = 250;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

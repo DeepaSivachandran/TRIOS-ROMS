@@ -182,6 +182,10 @@ namespace ROMS
                             grdVehicleList.Columns["Vehicle Number"].Width = 130;
                             grdVehicleList.Columns["Capacity"].Width = 120;
                             grdVehicleList.Columns["Status"].Width = 80;
+
+                            grdVehicleList.Columns["Vehicle Type"].Width = 100;
+                            //grdVehicleList.Columns["Unit"].Width = 80;
+
                             grdVehicleList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdVehicleList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
@@ -228,10 +232,14 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                grdVehicleList.Columns["Vehicle Name"].Width = 200;
-                grdVehicleList.Columns["V Short Name"].Width = 120;
-                grdVehicleList.Columns["Vehicle Number"].Width = 100;
-                grdVehicleList.Columns["Capacity"].Width = 120;
+                DGV_SearchGrid.Columns["Vehicle Name"].Width = 200;
+                DGV_SearchGrid.Columns["V Short Name"].Width = 120;
+                DGV_SearchGrid.Columns["Vehicle Number"].Width = 100;
+                DGV_SearchGrid.Columns["Capacity"].Width = 120;
+
+                DGV_SearchGrid.Columns["Vehicle Type"].Width = 100;
+                //DGV_SearchGrid.Columns["Unit"].Width = 80;
+
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

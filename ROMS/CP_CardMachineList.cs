@@ -177,8 +177,10 @@ namespace ROMS
                             grdCardMachineList.Columns["Status"].Width = 80;
                             grdCardMachineList.Columns["Card Mahine Name"].Width = 200;
                             grdCardMachineList.Columns["Bank"].Width = 200;
+                            grdCardMachineList.Columns["Machine Status"].Width = 150;
+                            grdCardMachineList.Columns["Machine Type"].Width = 150;
                             grdCardMachineList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdCardMachineList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdCardMachineList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         }
                         else
                         {
@@ -227,6 +229,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Route Name in Tamil"].Width = 200;
                 DGV_SearchGrid.Columns["Route Name in English"].Width = 200;
+                DGV_SearchGrid.Columns["Machine Status"].Width = 150;
+                DGV_SearchGrid.Columns["Machine Type"].Width = 150;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

@@ -38,6 +38,8 @@
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.cmbVechicleType = new System.Windows.Forms.ComboBox();
+            this.txtVehicleType = new System.Windows.Forms.TextBox();
             this.txtCapacity = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.txtRegisterNo = new System.Windows.Forms.TextBox();
@@ -46,6 +48,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.cmbCapacity = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.epVehicle)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
@@ -73,7 +76,7 @@
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.Enabled = false;
             this.txtStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtStatus.Location = new System.Drawing.Point(6, 130);
+            this.txtStatus.Location = new System.Drawing.Point(6, 159);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -87,11 +90,11 @@
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Controls.Add(this.rbInActive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.pnlStatus.Location = new System.Drawing.Point(144, 130);
+            this.pnlStatus.Location = new System.Drawing.Point(144, 159);
             this.pnlStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(299, 27);
-            this.pnlStatus.TabIndex = 4;
+            this.pnlStatus.TabIndex = 5;
             // 
             // rbActive
             // 
@@ -102,7 +105,7 @@
             this.rbActive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(60, 24);
-            this.rbActive.TabIndex = 4;
+            this.rbActive.TabIndex = 5;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -140,6 +143,9 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.cmbCapacity);
+            this.grbForm.Controls.Add(this.cmbVechicleType);
+            this.grbForm.Controls.Add(this.txtVehicleType);
             this.grbForm.Controls.Add(this.txtCapacity);
             this.grbForm.Controls.Add(this.textBox6);
             this.grbForm.Controls.Add(this.txtRegisterNo);
@@ -156,18 +162,43 @@
             this.grbForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbForm.Name = "grbForm";
             this.grbForm.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbForm.Size = new System.Drawing.Size(460, 214);
+            this.grbForm.Size = new System.Drawing.Size(460, 265);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
+            // 
+            // cmbVechicleType
+            // 
+            this.cmbVechicleType.FormattingEnabled = true;
+            this.cmbVechicleType.Location = new System.Drawing.Point(144, 102);
+            this.cmbVechicleType.Name = "cmbVechicleType";
+            this.cmbVechicleType.Size = new System.Drawing.Size(299, 28);
+            this.cmbVechicleType.TabIndex = 3;
+            this.cmbVechicleType.Enter += new System.EventHandler(this.cmbVechicleType_Enter);
+            this.cmbVechicleType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbVechicleType_KeyDown);
+            this.cmbVechicleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbVechicleType_KeyPress);
+            this.cmbVechicleType.Leave += new System.EventHandler(this.cmbVechicleType_Leave);
+            // 
+            // txtVehicleType
+            // 
+            this.txtVehicleType.BackColor = System.Drawing.SystemColors.Control;
+            this.txtVehicleType.Enabled = false;
+            this.txtVehicleType.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtVehicleType.Location = new System.Drawing.Point(6, 104);
+            this.txtVehicleType.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.txtVehicleType.Name = "txtVehicleType";
+            this.txtVehicleType.ReadOnly = true;
+            this.txtVehicleType.Size = new System.Drawing.Size(138, 27);
+            this.txtVehicleType.TabIndex = 18;
+            this.txtVehicleType.Text = "Vehicle Type";
             // 
             // txtCapacity
             // 
             this.txtCapacity.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtCapacity.Location = new System.Drawing.Point(144, 103);
+            this.txtCapacity.Location = new System.Drawing.Point(144, 132);
             this.txtCapacity.MaxLength = 30;
             this.txtCapacity.Name = "txtCapacity";
-            this.txtCapacity.Size = new System.Drawing.Size(299, 27);
-            this.txtCapacity.TabIndex = 3;
+            this.txtCapacity.Size = new System.Drawing.Size(190, 27);
+            this.txtCapacity.TabIndex = 4;
             this.txtCapacity.Enter += new System.EventHandler(this.txtCapacity_Enter);
             this.txtCapacity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCapacity_KeyDown);
             this.txtCapacity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapacity_KeyPress);
@@ -178,7 +209,7 @@
             this.textBox6.BackColor = System.Drawing.SystemColors.Control;
             this.textBox6.Enabled = false;
             this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.textBox6.Location = new System.Drawing.Point(6, 103);
+            this.textBox6.Location = new System.Drawing.Point(6, 132);
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
@@ -244,7 +275,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(370, 165);
+            this.btnClose.Location = new System.Drawing.Point(370, 221);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 34);
@@ -259,7 +290,7 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(282, 165);
+            this.btnSave.Location = new System.Drawing.Point(282, 221);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(82, 34);
@@ -271,12 +302,25 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
+            // cmbCapacity
+            // 
+            this.cmbCapacity.Enabled = false;
+            this.cmbCapacity.FormattingEnabled = true;
+            this.cmbCapacity.Location = new System.Drawing.Point(333, 131);
+            this.cmbCapacity.Name = "cmbCapacity";
+            this.cmbCapacity.Size = new System.Drawing.Size(109, 28);
+            this.cmbCapacity.TabIndex = 5;
+            this.cmbCapacity.Enter += new System.EventHandler(this.cmbCapacity_Enter);
+            this.cmbCapacity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCapacity_KeyDown);
+            this.cmbCapacity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCapacity_KeyPress);
+            this.cmbCapacity.Leave += new System.EventHandler(this.cmbCapacity_Leave);
+            // 
             // CP_Vehicle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(484, 240);
+            this.ClientSize = new System.Drawing.Size(484, 291);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -318,5 +362,8 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox txtCapacity;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ComboBox cmbVechicleType;
+        private System.Windows.Forms.TextBox txtVehicleType;
+        private System.Windows.Forms.ComboBox cmbCapacity;
     }
 }
