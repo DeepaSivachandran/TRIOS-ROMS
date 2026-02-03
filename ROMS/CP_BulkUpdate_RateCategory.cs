@@ -39,8 +39,18 @@ namespace ROMS
         {
             try
             {
-                chkboxRatelist.DrawMode = DrawMode.Normal;
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 50509;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
 
+                chkboxRatelist.DrawMode = DrawMode.Normal;
                 udfnList();
                 udfnDropdownbind();
 
@@ -2074,6 +2084,8 @@ namespace ROMS
                     DGV_FilterProduct.DataSource = null;
                     DGV_FilterProduct.Visible = false;
                 }
+
+                pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
