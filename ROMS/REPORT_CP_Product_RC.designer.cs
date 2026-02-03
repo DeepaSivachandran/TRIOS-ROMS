@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Product_RC));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,8 +42,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_CP_Product_RC));
             this.tsReportRateCategory = new System.Windows.Forms.ToolStrip();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlRateCategory = new System.Windows.Forms.Panel();
@@ -106,7 +107,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errSpl = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
-            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.tsReportRateCategory.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -133,6 +133,16 @@
             this.tsReportRateCategory.Size = new System.Drawing.Size(1354, 25);
             this.tsReportRateCategory.TabIndex = 35;
             this.tsReportRateCategory.Text = "Product Rate Category Report";
+            // 
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
+            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 22);
+            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // pnlMenu
             // 
@@ -165,7 +175,7 @@
             // 
             this.pnlRateCategory.Controls.Add(this.btnConditionClear);
             this.pnlRateCategory.Controls.Add(this.chkboxRatelist);
-            this.pnlRateCategory.Location = new System.Drawing.Point(790, 79);
+            this.pnlRateCategory.Location = new System.Drawing.Point(790, 82);
             this.pnlRateCategory.Name = "pnlRateCategory";
             this.pnlRateCategory.Size = new System.Drawing.Size(125, 139);
             this.pnlRateCategory.TabIndex = 111111235;
@@ -961,16 +971,6 @@
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
-            // 
-            // tsLabelPlaceholder
-            // 
-            this.tsLabelPlaceholder.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsLabelPlaceholder.Image = ((System.Drawing.Image)(resources.GetObject("tsLabelPlaceholder.Image")));
-            this.tsLabelPlaceholder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsLabelPlaceholder.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
-            this.tsLabelPlaceholder.Size = new System.Drawing.Size(58, 22);
-            this.tsLabelPlaceholder.Text = "Levels";
             // 
             // REPORT_CP_Product_RC
             // 

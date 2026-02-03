@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsSalesGeneralSettings = new System.Windows.Forms.ToolStrip();
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
@@ -106,7 +106,7 @@
             // 
             this.lblDays.AutoSize = true;
             this.lblDays.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDays.Location = new System.Drawing.Point(469, 23);
+            this.lblDays.Location = new System.Drawing.Point(377, 24);
             this.lblDays.Name = "lblDays";
             this.lblDays.Size = new System.Drawing.Size(35, 20);
             this.lblDays.TabIndex = 1111196;
@@ -116,7 +116,7 @@
             // 
             this.lblConsiderProducts.AutoSize = true;
             this.lblConsiderProducts.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsiderProducts.Location = new System.Drawing.Point(15, 23);
+            this.lblConsiderProducts.Location = new System.Drawing.Point(15, 24);
             this.lblConsiderProducts.Name = "lblConsiderProducts";
             this.lblConsiderProducts.Size = new System.Drawing.Size(260, 20);
             this.lblConsiderProducts.TabIndex = 1111195;
@@ -125,7 +125,7 @@
             // txtConsiderProducts
             // 
             this.txtConsiderProducts.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsiderProducts.Location = new System.Drawing.Point(355, 20);
+            this.txtConsiderProducts.Location = new System.Drawing.Point(281, 21);
             this.txtConsiderProducts.MaxLength = 3;
             this.txtConsiderProducts.Name = "txtConsiderProducts";
             this.txtConsiderProducts.Size = new System.Drawing.Size(94, 27);
@@ -155,33 +155,33 @@
             this.grdOrderType.AllowUserToResizeRows = false;
             this.grdOrderType.BackgroundColor = System.Drawing.Color.White;
             this.grdOrderType.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdOrderType.ColumnHeadersHeight = 30;
             this.grdOrderType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdOrderType.EnableHeadersVisualStyles = false;
             this.grdOrderType.GridColor = System.Drawing.Color.White;
             this.grdOrderType.Location = new System.Drawing.Point(6, 26);
             this.grdOrderType.Name = "grdOrderType";
             this.grdOrderType.RowHeadersVisible = false;
             this.grdOrderType.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdOrderType.RowTemplate.Height = 25;
             this.grdOrderType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdOrderType.Size = new System.Drawing.Size(157, 188);

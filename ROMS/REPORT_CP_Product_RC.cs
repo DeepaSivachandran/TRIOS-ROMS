@@ -893,6 +893,17 @@ namespace ROMS
                 //    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //    return;
                 //}
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    errSpl.SetError(cmbReportType, "Please select report type");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpFiledtype.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpFiledtype.ShowAlways = true;
+                    tpFiledtype.Show("Please enter machine name.", cmbReportType, 5000);
+                    return;
+                }
+                cmbReportType.BackColor = Color.White;
+                errSpl.Clear();
                 udfnList(0);
             }
             catch (Exception ex)
