@@ -1,4 +1,5 @@
-﻿using ROMS.Model;
+﻿ 
+using ROMS.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1388,7 +1389,7 @@ namespace ROMS
                         dtPrice_Markup.Columns.Add("PRPM_OFFSET_VALUE_AMT", typeof(float));
                         dtPrice_Markup.Columns.Add("PRPM_RATE_BULK", typeof(float));
                         dtPrice_Markup.Columns.Add("PRPM_APPROVAL_Flag", typeof(int));
-                        dtPrice_Markup.Columns.Add("PRPM_NEW_RATE", typeof(int));
+                        dtPrice_Markup.Columns.Add("PRPM_NEW_RATE", typeof(float));
                         for (int i = 0; i < grdPrice.Rows.Count; i++)
                         {
                             dtPrice_Markup.Rows.Add(Convert.ToInt32(varproductcode),
@@ -1422,8 +1423,24 @@ namespace ROMS
 
 
                                 );
+                            if (
+                                Convert.ToDecimal(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value?.ToString())
+                                ? "0" : grdPrice.Rows[i].Cells["clmOffsetValuePer"].Value.ToString()) == 0 &&
+                                 Convert.ToInt32(string.IsNullOrWhiteSpace(grdPrice.Rows[i].Cells["clmOffset"].Value?.ToString())
+                                ? "0" : grdPrice.Rows[i].Cells["clmOffset"].Value.ToString()) == 453) {
+                                varRAteValue = 1;
+                            }
                         }
                         varorignator = "Price Markup Update";
+
+                        if (varRAteValue == 1)
+                        {
+                            SPDataService objDServ = new SPDataService();
+                            string varMessage = objDServ.udfnGetMessages(202);
+                            objDServ.CloseConnection();
+                            MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                     if (lblParentcode.Text != "0" && lblParentcode.Text != "" && varupdateproductcode == 0)
                     {
@@ -9121,41 +9138,29 @@ namespace ROMS
                     if (Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true)
                     {
                         udfnRateenable(e.RowIndex);
-                        grdPrice.Columns["clmNewRate"].ReadOnly = true;
-                        grdPrice.Columns["clmNewRate"].DefaultCellStyle.BackColor = Color.LightGray;
+                        //grdPrice.Columns["clmNewRate"].ReadOnly = true;
+                        //grdPrice.Columns["clmNewRate"].DefaultCellStyle.BackColor = Color.LightGray; 
+                        //grdPrice.Columns["clmOffsetValue"].ReadOnly = false;
+                        //grdPrice.Columns["clmOffsetValuePer"].ReadOnly = false;
+                        //grdPrice.Columns["clmRate"].ReadOnly = false;
+                        //grdPrice.Columns["clmBulkRate"].ReadOnly = false;
+                        //grdPrice.Columns["clmOffset"].ReadOnly = false;
 
 
-                        grdPrice.Columns["clmOffset"].ReadOnly = false;
-                        grdPrice.Columns["clmOffsetValue"].ReadOnly = false;
-                        grdPrice.Columns["clmOffsetValuePer"].ReadOnly = false;
-                        grdPrice.Columns["clmRate"].ReadOnly = false;
-                        grdPrice.Columns["clmBulkRate"].ReadOnly = false;
-
-                        grdPrice.Columns["clmOffset"].DefaultCellStyle.BackColor = Color.White;
-                        grdPrice.Columns["clmOffsetValue"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                        grdPrice.Columns["clmOffsetValuePer"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                        grdPrice.Columns["clmRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                        grdPrice.Columns["clmBulkRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
+                        //grdPrice.Rows[e.RowIndex].Cells["clmMinQty"].ReadOnly = false;
+                        //grdPrice.Rows[e.RowIndex].Cells["clmMinQty"].Style.BackColor = Color.PaleGreen;
                     }
                     else
                     {
-                        grdPrice.Columns["clmNewRate"].ReadOnly = false;
-                        grdPrice.Columns["clmNewRate"].DefaultCellStyle.BackColor = Color.PaleGreen;
-                        grdPrice.Rows[0].Cells["clmNewRate"].ReadOnly = true;
-                        grdPrice.Rows[0].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
-                        grdPrice.Columns["clmOffset"].DefaultCellStyle.BackColor = Color.LightGray;
-                        grdPrice.Columns["clmOffsetValue"].DefaultCellStyle.BackColor = Color.LightGray;
-                        grdPrice.Columns["clmOffsetValuePer"].DefaultCellStyle.BackColor = Color.LightGray;
-                        grdPrice.Columns["clmRate"].DefaultCellStyle.BackColor = Color.LightGray;
-                        grdPrice.Columns["clmBulkRate"].DefaultCellStyle.BackColor = Color.LightGray;
-                        grdPrice.Columns["clmOffset"].ReadOnly = true;
-                        grdPrice.Columns["clmOffsetValue"].ReadOnly = true;
-                        grdPrice.Columns["clmOffsetValuePer"].ReadOnly = true;
-                        grdPrice.Columns["clmRate"].ReadOnly = true;
-                        grdPrice.Columns["clmBulkRate"].ReadOnly = true;
                         grdPrice.Rows[0].Cells["clmRate"].ReadOnly = true;
+                        grdPrice.Rows[0].Cells["clmRate"].Value = 0;
                         grdPrice.Rows[0].Cells["clmRate"].Style.BackColor = Color.LightGray;
 
+
+                        grdPrice.Rows[e.RowIndex].Cells["clmMinQty"].ReadOnly = true;
+                        grdPrice.Rows[e.RowIndex].Cells["clmMinQty"].Style.BackColor = Color.LightGray;
+
+                        udfnRateDisable();
                     }
                 }
 
@@ -9482,13 +9487,13 @@ namespace ROMS
                     }
 
                     if (row.Cells["clmTypeid"].Value != null &&
-                        row.Cells["clmTypeid"].Value.ToString() == "447" || row.Cells["clmTypeid"].Value.ToString() == "448")
+                        row.Cells["clmTypeid"].Value.ToString() == "447")
                     {
                         //row.Cells["clmOffset"].ReadOnly = true;
 
 
-                        row.Cells["clmOffset"].Value = 453;
-                        row.Cells["clmStatus"].Value = 453;
+                        //row.Cells["clmOffset"].Value = 453;
+                        //row.Cells["clmStatus"].Value = 453;
 
                         row.Cells["chkColumn"].ReadOnly = true;
                         row.Cells["chkColumn"].Value = true;
@@ -11647,48 +11652,149 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void udfnRateDisable()
+        {
+            try
+            { 
+
+                foreach (DataGridViewRow rowvalue in grdPrice.Rows)
+                {
+                    if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) != "")
+                    {
+                        if (Convert.ToBoolean(rowvalue.Cells["chkColumn"].Value) == true)
+                        {
+                             
+                            rowvalue.Cells["clmNewRate"].ReadOnly = false;
+                            rowvalue.Cells["clmNewRate"].Style.BackColor = Color.PaleGreen; 
+                            rowvalue.Cells["clmMinQty"].ReadOnly = false;
+                            rowvalue.Cells["clmMinQty"].Style.BackColor = Color.PaleGreen;
+                        }
+                        else
+                        {
+                            rowvalue.Cells["clmNewRate"].ReadOnly = true;
+                            rowvalue.Cells["clmNewRate"].Style.BackColor = Color.LightGray;
+                            rowvalue.Cells["clmMinQty"].ReadOnly = true;
+                            rowvalue.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
+                        } 
+
+                        rowvalue.Cells["clmRate"].ReadOnly = true;
+                        rowvalue.Cells["clmRate"].Style.BackColor = Color.LightGray;
+                        rowvalue.Cells["clmBulkRate"].ReadOnly = true;
+                        rowvalue.Cells["clmBulkRate"].Style.BackColor = Color.LightGray;
+                        rowvalue.Cells["clmOffset"].Value = 454;
+                        rowvalue.Cells["clmOffset"].ReadOnly = true;
+                        rowvalue.Cells["clmOffsetValuePer"].ReadOnly = true; 
+                        rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
+                        rowvalue.Cells["clmOffsetValue"].ReadOnly = true; 
+                        rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
+                    }
+                    else {
+                        /////cp value
+                        rowvalue.Cells["clmOffset"].Value = "";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
         private void udfnRateenable(int row)
         {
             try
             {
                 var status = grdPrice.Rows[row].Cells["clmStatus"].Value?.ToString();
+                var marginStatus = grdPrice.Rows[row].Cells["clmOffset"].Value?.ToString();
                 var typeId = grdPrice.Rows[row].Cells["clmTypeId"].Value?.ToString();
 
                 // If status = 453 → disable clmRate
                 if (typeId != "446")
                 {
-                    if (status == "453")
+                    if (status == "453"  ) //sts true
                     {
+                        grdPrice.Rows[row].Cells["clmOffset"].ReadOnly = false;
                         grdPrice.Rows[row].Cells["clmRate"].ReadOnly = true;
                         grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.LightGray;
+                        if (marginStatus == "453")
+                        {
+                            ///// margin percentage and value 
+                            grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = false;
+                            grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
 
-                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = false;
-                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
+                            grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = false;
+                            grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                        }
 
-                        grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = false;
-                        grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                        grdPrice.Rows[row].Cells["clmMinQty"].ReadOnly = false;
+                        grdPrice.Rows[row].Cells["clmMinQty"].Style.BackColor = Color.PaleGreen;
 
-                        grdPrice.Rows[row].Cells["clmOffset"].Value = 453;
+                        grdPrice.Rows[row].Cells["clmRate"].Value = grdPrice.Rows[0].Cells["clmRate"].Value;
+                        //grdPrice.Rows[row].Cells["clmOffset"].Value = 453;
                     }
                     else
-                    {
-                        grdPrice.Rows[row].Cells["clmRate"].ReadOnly = false;
-                        grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.PaleGreen;
+                    { 
+                        //grdPrice.Rows[row].Cells["clmRate"].ReadOnly = false;
+                        //grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.PaleGreen;
 
                         grdPrice.Rows[row].Cells["clmOffset"].Value = 454;
+                        grdPrice.Rows[row].Cells["clmOffset"].ReadOnly = true;
                         grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = true;
-                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = 0;
+                        grdPrice.Rows[row].Cells["clmOffsetValuePer"].Value = "";
                         grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
 
                         grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = true;
-                        grdPrice.Rows[row].Cells["clmOffsetValue"].Value = 0;
+                        grdPrice.Rows[row].Cells["clmOffsetValue"].Value = "";
                         grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
+
+                         
+                        grdPrice.Rows[row].Cells["clmMinQty"].ReadOnly = true; 
+                        grdPrice.Rows[row].Cells["clmMinQty"].Style.BackColor = Color.LightGray;
+
                     }
                 }
                 else
                 {
+                    //// cp wise enable bulk enable
                     grdPrice.Rows[row].Cells["clmRate"].ReadOnly = false;
                     grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.PaleGreen;
+
+                    foreach (DataGridViewRow rowvalue in grdPrice.Rows)
+                    {
+                        rowvalue.Cells["clmNewRate"].ReadOnly = true;
+                        rowvalue.Cells["clmNewRate"].Style.BackColor = Color.LightGray;
+                        if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) != "")
+                        {  
+                            if (Convert.ToString(rowvalue.Cells["clmStatus"].Value) == "453"   )
+                            {
+                                rowvalue.Cells["clmRate"].ReadOnly = true;
+                                rowvalue.Cells["clmRate"].Style.BackColor = Color.LightGray;
+                                if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) == "453")
+                                {
+                                    rowvalue.Cells["clmOffsetValuePer"].ReadOnly = false;
+                                    rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
+                                    rowvalue.Cells["clmOffsetValue"].ReadOnly = false;
+                                    rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                                }
+                                rowvalue.Cells["clmOffset"].ReadOnly = false;
+                            }
+                            else
+                            {
+
+                                //rowvalue.Cells["clmRate"].ReadOnly = false;
+                                //rowvalue.Cells["clmRate"].Style.BackColor = Color.PaleGreen;
+                                rowvalue.Cells["clmOffset"].Value = 454;
+                                rowvalue.Cells["clmOffset"].ReadOnly = true; 
+                                rowvalue.Cells["clmOffsetValuePer"].ReadOnly = true; 
+                                rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
+                                rowvalue.Cells["clmOffsetValue"].ReadOnly = true; 
+                                rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -11775,7 +11881,7 @@ namespace ROMS
                 NewRate = Math.Round(NewRate, 0, MidpointRounding.AwayFromZero);
                 Rate = Math.Round(Rate, 0, MidpointRounding.AwayFromZero);
 
-
+                int vartype = Convert.ToInt32(grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Value); 
 
                 if (mainstatus == "453") //yes
                 {
@@ -11786,7 +11892,10 @@ namespace ROMS
                     else
                     {
                         grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + NewRate;
-                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value = NewRate;
+                        if (vartype != 0) {
+                            grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value = NewRate;
+
+                        }
 
                     }
                 }
@@ -11861,7 +11970,9 @@ namespace ROMS
                 {
                     if (status == "454") //no
                     {
-                        double Rate = Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
+                        double Rate = string.IsNullOrEmpty(grdPrice.Rows[0].Cells["clmRate"].Value.ToString()) ? 0 :
+                            Convert.ToDouble(grdPrice.Rows[0].Cells["clmRate"].Value);
+
                         grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate;
 
                         grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].ReadOnly = true;
@@ -11895,7 +12006,7 @@ namespace ROMS
         {
             try
             {
-                if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate")
+                if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate" || grdPrice.CurrentCell.OwningColumn.Name == "clmNewRate")
                 {
                     if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || e.KeyChar == '.'))
                     {
