@@ -3609,6 +3609,7 @@
             this.grdPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdPrice.Size = new System.Drawing.Size(1029, 361);
             this.grdPrice.TabIndex = 9;
+            this.grdPrice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellContentClick);
             this.grdPrice.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellEndEdit);
             this.grdPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellValueChanged);
             this.grdPrice.CurrentCellDirtyStateChanged += new System.EventHandler(this.grdPrice_CurrentCellDirtyStateChanged);
@@ -3734,7 +3735,7 @@
             // 
             // clmOffset
             // 
-            this.clmOffset.HeaderText = "Margin Status";
+            this.clmOffset.HeaderText = "Margin Calc";
             this.clmOffset.Name = "clmOffset";
             // 
             // clmOffsetValue
