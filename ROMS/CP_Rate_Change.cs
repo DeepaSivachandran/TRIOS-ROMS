@@ -922,8 +922,6 @@ namespace ROMS
             {
                 if (txtProductName.Text != "")
                 {
-                    lblProductcode.Text =  DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
-                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
 
                     Rrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["R.Rate"].Value);
                     prevRrate = Convert.ToDecimal( DGV_FilterProduct.SelectedRows[0].Cells["PREV R.Rate"].Value); 
@@ -935,8 +933,11 @@ namespace ROMS
 
 
                     lblPICode.Text = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value);
+                    txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
 
+                    lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                     udfnListviewProduct();
+
                 } 
             }
             catch (Exception ex)

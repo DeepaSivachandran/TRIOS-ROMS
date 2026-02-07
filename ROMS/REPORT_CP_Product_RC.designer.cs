@@ -175,7 +175,7 @@
             // 
             this.pnlRateCategory.Controls.Add(this.btnConditionClear);
             this.pnlRateCategory.Controls.Add(this.chkboxRatelist);
-            this.pnlRateCategory.Location = new System.Drawing.Point(790, 82);
+            this.pnlRateCategory.Location = new System.Drawing.Point(790, 84);
             this.pnlRateCategory.Name = "pnlRateCategory";
             this.pnlRateCategory.Size = new System.Drawing.Size(125, 139);
             this.pnlRateCategory.TabIndex = 111111235;

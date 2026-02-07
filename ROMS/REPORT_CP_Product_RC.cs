@@ -899,7 +899,7 @@ namespace ROMS
                     cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpFiledtype.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpFiledtype.ShowAlways = true;
-                    tpFiledtype.Show("Please enter machine name.", cmbReportType, 5000);
+                    tpFiledtype.Show("Please select report type", cmbReportType, 5000);
                     return;
                 }
                 cmbReportType.BackColor = Color.White;
@@ -1564,6 +1564,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 pnlRateCategory.Visible = true;
             }
             catch (Exception ex)
