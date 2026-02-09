@@ -9405,43 +9405,81 @@ namespace ROMS
             try
             {
                 int varDecimal = 2;
+                int varQty = 3;
                 if (grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValuePer" || grdPrice.CurrentCell.OwningColumn.Name == "clmOffsetValue" || grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty" || grdPrice.CurrentCell.OwningColumn.Name == "clmRate" || grdPrice.CurrentCell.OwningColumn.Name == "clmNewRate")
                 {
 
-
-                    //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                    //{
-                    //    e.Handled = true;  // Disallow the character
-                    //}
-                    TextBox textBox = (TextBox)sender;
-                    if (varDecimal == 0)
+                    if (grdPrice.CurrentCell.OwningColumn.Name == "clmMinQty")
                     {
-                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        //{
+                        //    e.Handled = true;  // Disallow the character
+                        //}
+                        TextBox textBox = (TextBox)sender;
+                        if (varQty == 0)
                         {
-                            e.Handled = true;
+                            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                            {
+                                e.Handled = true;
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (textBox.SelectionLength != textBox.TextLength)
+                        else
                         {
-                            if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                            if (textBox.SelectionLength != textBox.TextLength)
+                            {
+                                if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varQty + 1)
+                                {
+                                    e.Handled = true;
+                                }
+                            }
+                        }
+                        if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                        {
+                            e.Handled = false;
+                        }
+                        if (varQty == 0)
+                        {
+                            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                             {
                                 e.Handled = true;
                             }
                         }
                     }
-                    if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
-                    {
-                        e.Handled = false;
-                    }
-                    if (varDecimal == 0)
-                    {
-                        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    else {
+                        //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                        //{
+                        //    e.Handled = true;  // Disallow the character
+                        //}
+                        TextBox textBox = (TextBox)sender;
+                        if (varDecimal == 0)
                         {
-                            e.Handled = true;
+                            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                            {
+                                e.Handled = true;
+                            }
                         }
-                    }
+                        else
+                        {
+                            if (textBox.SelectionLength != textBox.TextLength)
+                            {
+                                if (textBox.Text.IndexOf('.') > -1 && textBox.Text.Substring(textBox.Text.IndexOf('.')).Length >= varDecimal + 1)
+                                {
+                                    e.Handled = true;
+                                }
+                            }
+                        }
+                        if (!(char.IsLetter(e.KeyChar)) && !(char.IsNumber(e.KeyChar)) && !(char.IsWhiteSpace(e.KeyChar)))
+                        {
+                            e.Handled = false;
+                        }
+                        if (varDecimal == 0)
+                        {
+                            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                            {
+                                e.Handled = true;
+                            }
+                        }
+                    } 
                 }
             }
             catch (Exception ex)
@@ -9536,11 +9574,13 @@ namespace ROMS
 
                         // 2. Make ComboBox cell readonly
                         row.Cells["clmMinQty"].ReadOnly = true;
+                        row.Cells["clmRate"].ReadOnly = true;
                         row.Cells["clmOffsetValuePer"].ReadOnly = true;
                         row.Cells["clmOffsetValue"].ReadOnly = true;
 
                         // Optional: give a light gray background to show it's disabled
                         row.Cells["clmMinQty"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmRate"].Style.BackColor = Color.LightGray;
                         //row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
                         row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
                         row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
@@ -11858,6 +11898,9 @@ namespace ROMS
 
                         grdPrice.Rows[row].Cells["clmMinQty"].ReadOnly = true;
                         grdPrice.Rows[row].Cells["clmMinQty"].Style.BackColor = Color.LightGray;
+
+                        grdPrice.Rows[row].Cells["clmRate"].ReadOnly = true;
+                        grdPrice.Rows[row].Cells["clmRate"].Style.BackColor = Color.LightGray;
 
                     }
                 }
