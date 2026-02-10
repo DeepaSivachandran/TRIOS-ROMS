@@ -313,7 +313,7 @@ namespace ROMS
         {
             try
             {
-                int varViewType = 2, varBulkViewType = 6;
+                int varViewType = 5, varBulkViewType = 6;
                 
                 DataSet objDT = new DataSet();
                 DataSet objDTBulkUnit = new DataSet();

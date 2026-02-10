@@ -114,12 +114,12 @@ namespace ROMS
                     tpDeliveryPerson.ShowAlways = true;
                     tpDeliveryPerson.Show("Please enter delivery person name.", txtDeliveryPersonName, 5000);
                 }
-                else if (txtMobileNo.Text.Trim() == "")
+                else if (txtMobileNo.Text.Trim() == "" || txtMobileNo.TextLength < 9)
                 {
-                    epDeliveryPerson.SetError(txtMobileNo, "Please enter mobile number.");
+                    epDeliveryPerson.SetError(txtMobileNo, "Please enter valid mobile number.");
                     txtMobileNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpDeliveryPerson.ShowAlways = true;
-                    tpDeliveryPerson.Show("Please enter mobile number.", txtMobileNo, 5000);
+                    tpDeliveryPerson.Show("Please enter valid mobile number.", txtMobileNo, 5000);
                 }
                 else
                 {

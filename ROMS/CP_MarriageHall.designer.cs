@@ -35,6 +35,11 @@
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.lvArea = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtReason = new System.Windows.Forms.TextBox();
             this.txtTeller = new System.Windows.Forms.TextBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
@@ -50,13 +55,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.lvArea = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblAreaId = new System.Windows.Forms.Label();
             this.lblRouteId = new System.Windows.Forms.Label();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox8 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epMarriageHall)).BeginInit();
             this.grbForm.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +108,7 @@
             // grbForm
             // 
             this.grbForm.Controls.Add(this.lvArea);
+            this.grbForm.Controls.Add(this.textBox8);
             this.grbForm.Controls.Add(this.txtReason);
             this.grbForm.Controls.Add(this.txtTeller);
             this.grbForm.Controls.Add(this.cmbStatus);
@@ -132,6 +134,42 @@
             this.grbForm.Size = new System.Drawing.Size(394, 339);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
+            // 
+            // lvArea
+            // 
+            this.lvArea.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader3,
+            this.columnHeader2,
+            this.columnHeader4});
+            this.lvArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvArea.HideSelection = false;
+            this.lvArea.Location = new System.Drawing.Point(162, 104);
+            this.lvArea.Name = "lvArea";
+            this.lvArea.Size = new System.Drawing.Size(219, 90);
+            this.lvArea.TabIndex = 1111145;
+            this.lvArea.UseCompatibleStateImageBehavior = false;
+            this.lvArea.View = System.Windows.Forms.View.Details;
+            this.lvArea.Visible = false;
+            this.lvArea.DoubleClick += new System.EventHandler(this.lvArea_DoubleClick);
+            this.lvArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvArea_KeyDown);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 0;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 0;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Width = 0;
             // 
             // txtReason
             // 
@@ -207,12 +245,13 @@
             this.txtDistance.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtDistance.Location = new System.Drawing.Point(162, 133);
             this.txtDistance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtDistance.MaxLength = 30;
+            this.txtDistance.MaxLength = 10;
             this.txtDistance.Name = "txtDistance";
-            this.txtDistance.Size = new System.Drawing.Size(219, 27);
+            this.txtDistance.Size = new System.Drawing.Size(185, 27);
             this.txtDistance.TabIndex = 4;
             this.txtDistance.Enter += new System.EventHandler(this.txtDistance_Enter);
             this.txtDistance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDistance_KeyDown);
+            this.txtDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDistance_KeyPress);
             this.txtDistance.Leave += new System.EventHandler(this.txtDistance_Leave);
             // 
             // textBox5
@@ -337,34 +376,6 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // lvArea
-            // 
-            this.lvArea.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader3,
-            this.columnHeader2,
-            this.columnHeader4});
-            this.lvArea.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvArea.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvArea.HideSelection = false;
-            this.lvArea.Location = new System.Drawing.Point(162, 104);
-            this.lvArea.Name = "lvArea";
-            this.lvArea.Size = new System.Drawing.Size(223, 90);
-            this.lvArea.TabIndex = 1111145;
-            this.lvArea.UseCompatibleStateImageBehavior = false;
-            this.lvArea.View = System.Windows.Forms.View.Details;
-            this.lvArea.Visible = false;
-            this.lvArea.DoubleClick += new System.EventHandler(this.lvArea_DoubleClick);
-            this.lvArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvArea_KeyDown);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 200;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 0;
-            // 
             // lblAreaId
             // 
             this.lblAreaId.AutoSize = true;
@@ -385,13 +396,19 @@
             this.lblRouteId.Text = "0";
             this.lblRouteId.Visible = false;
             // 
-            // columnHeader2
+            // textBox8
             // 
-            this.columnHeader2.Width = 0;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Width = 0;
+            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox8.Enabled = false;
+            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox8.Location = new System.Drawing.Point(346, 133);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(35, 27);
+            this.textBox8.TabIndex = 1111146;
+            this.textBox8.Text = "Km";
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // CP_MarriageHall
             // 
@@ -452,5 +469,6 @@
         private System.Windows.Forms.Label lblRouteId;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.TextBox textBox8;
     }
 }

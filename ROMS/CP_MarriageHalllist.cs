@@ -178,9 +178,12 @@ namespace ROMS
                             grdMarriageHallList.Columns["S.No."].Width = 50;
                             grdMarriageHallList.Columns["Marriage Hall English Name"].Width = 200;
                             grdMarriageHallList.Columns["Marriage Hall Tamil Name"].Width = 250;
+                            grdMarriageHallList.Columns["Area"].Width = 150;
+                            grdMarriageHallList.Columns["Route"].Width = 150;
                             grdMarriageHallList.Columns["Status"].Width = 80;
                             grdMarriageHallList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdMarriageHallList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdMarriageHallList.Columns["Distance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdMarriageHallList.Columns["Marriage Hall Tamil Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
@@ -229,6 +232,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Marriage Hall English Name"].Width = 200;
                 DGV_SearchGrid.Columns["Marriage Hall Tamil Name"].Width = 250;
+                DGV_SearchGrid.Columns["Area"].Width = 150;
+                DGV_SearchGrid.Columns["Route"].Width = 150;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }

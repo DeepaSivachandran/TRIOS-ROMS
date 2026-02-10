@@ -809,6 +809,21 @@ namespace ROMS
             }
         }
 
+        private void txtDistance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void CP_MarriageHall_KeyDown(object sender, KeyEventArgs e)
         {
