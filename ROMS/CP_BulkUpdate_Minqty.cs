@@ -2594,6 +2594,7 @@ namespace ROMS
                 cmbCategory.SelectedIndex = 0;
                 txtRateCategory.Text = "";
                 lblRateId.Text = "0";
+                txtProductName.Text = ""; 
                 for (int i = 0; i < chkboxRatelist.Items.Count; i++)
                 {
                     chkboxRatelist.SetItemChecked(i, false);
