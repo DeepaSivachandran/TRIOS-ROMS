@@ -134,9 +134,9 @@ namespace ROMS
 
                             chkboxRatelist.DrawMode = DrawMode.Normal;
                             chkboxRatelist.FormattingEnabled = true;
-                            chkboxRatelist.DisplayMember = "MST_DisplayText";
-                            chkboxRatelist.ValueMember = "MSTID";
-                            chkboxRatelist.DataSource = objDTable.Tables[0];
+                            //chkboxRatelist.DisplayMember = "MST_DisplayText";
+                            //chkboxRatelist.ValueMember = "MSTID";
+                            //chkboxRatelist.DataSource = objDTable.Tables[0];
 
                             DataView dv = objDTable.Tables[0].DefaultView;
                             dv.RowFilter = "MSTID <> 0";

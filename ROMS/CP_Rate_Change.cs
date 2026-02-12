@@ -1089,21 +1089,22 @@ namespace ROMS
                                     txtWRatePrev.Enabled = false;
                                     txtWRateLast.Enabled = false;
 
-                                    if (ratetype != 448)
+                                    if (ratetype == 447)
                                     { 
-                                        txtRRatePrev.Text = Convert.ToString(rate);
-                                        txtRRateLast.Text = Convert.ToString(prevrate); 
-                                        txtWRatePrev.Text = "0";
-                                        txtWRateLast.Text = "0";  
-                                        txtDWSaleRate.Text = "Rate";
-                                    }
-                                    else
-                                    {  
+
                                         txtRRatePrev.Text = Convert.ToString(Rrate);
                                         txtRRateLast.Text = Convert.ToString(prevRrate);
                                         txtWRatePrev.Text = Convert.ToString(Wrate);
-                                        txtWRateLast.Text = Convert.ToString(prevWrate); 
+                                        txtWRateLast.Text = Convert.ToString(prevWrate);
                                         txtDWSaleRate.Text = "R.Rate";
+                                    }
+                                    else
+                                    {
+                                        txtRRatePrev.Text = Convert.ToString(rate);
+                                        txtRRateLast.Text = Convert.ToString(prevrate);
+                                        txtWRatePrev.Text = "0";
+                                        txtWRateLast.Text = "0";
+                                        txtDWSaleRate.Text = "Rate";
                                     }
 
 

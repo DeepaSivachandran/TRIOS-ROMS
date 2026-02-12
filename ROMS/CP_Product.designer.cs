@@ -3559,7 +3559,7 @@
             this.lblMarkupProd.AutoSize = true;
             this.lblMarkupProd.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 13F);
             this.lblMarkupProd.Location = new System.Drawing.Point(10, 9);
-            this.lblMarkupProd.MaximumSize = new System.Drawing.Size(500, 0);
+            this.lblMarkupProd.MaximumSize = new System.Drawing.Size(1500, 0);
             this.lblMarkupProd.Name = "lblMarkupProd";
             this.lblMarkupProd.Size = new System.Drawing.Size(127, 21);
             this.lblMarkupProd.TabIndex = 1111146;
