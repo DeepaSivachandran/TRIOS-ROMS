@@ -1600,7 +1600,7 @@ namespace ROMS
               int paraNetQtyUnit, DataTable paraMR_Product_BulkUpdate, int paraDeleteflag, string paraIDs, int paraSupplierId, int paraScheduleId, int paraGRNId,
               int paraNewPRID, int paraMRPFlag,DataTable ParaProduct_HSN,string paraProductLabelNameEng,string paraProductLabelNameTam,string paraParentId,int paraSalesProduct,string paraInactiveTeller,string paraImageNames,int paraIntermediateUPP,int paraIntermediateUnit,decimal paraProductionMSQ, DataTable paraMR_SPl_Bulk,
              int FocusFlag , int Priority_Flag  , int Spl_Flag  , int OwnFlag ,DataTable ParaPrice_Markup,int parastockTaken,string  paraEffectiveFrom,string paraSalesPICode,string paraLockTeller,string paraUnLockTeller,
-             string paraProductUsage)
+             string paraProductUsage,int paraProductSchemeEligible, int paraProductBillSchemeEligible)
         {
             string result = "";  
             try
@@ -1680,6 +1680,10 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraLockTeller", paraLockTeller);
                 varSqlCommand.Parameters.AddWithValue("@paraUnLockTeller", paraUnLockTeller);
                 varSqlCommand.Parameters.AddWithValue("@paraProductUsage", paraProductUsage);
+                varSqlCommand.Parameters.AddWithValue("@paraProductSchemeEligible", paraProductSchemeEligible);
+                varSqlCommand.Parameters.AddWithValue("@paraProductBillSchemeEligible", paraProductBillSchemeEligible);
+
+                
 
 
                 varSqlCommand.CommandTimeout = 0;

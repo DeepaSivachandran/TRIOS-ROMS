@@ -47,12 +47,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Product));
             this.txtDPICode = new System.Windows.Forms.TextBox();
             this.txtPICode = new System.Windows.Forms.TextBox();
@@ -316,26 +316,29 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblMarkupProd = new System.Windows.Forms.Label();
             this.grdPrice = new System.Windows.Forms.DataGridView();
+            this.chkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSalesPiCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMinQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOffset = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.clmOffsetValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmOffsetValuePer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAutoCalc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmBulkRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNewRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAutoSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnImageUpdate = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.clmAutoSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNewRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmBulkRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAutoCalc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmOffsetValuePer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOffsetValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOffset = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.clmMinQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesPiCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkBillScheme = new System.Windows.Forms.CheckBox();
+            this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -371,6 +374,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -2802,7 +2806,6 @@
             this.tabPage1.Controls.Add(this.lvVerified1);
             this.tabPage1.Controls.Add(this.lvPurRack);
             this.tabPage1.Controls.Add(this.DGV_FilterPurLocation);
-            this.tabPage1.Controls.Add(this.gpClassification);
             this.tabPage1.Controls.Add(this.lvBrand);
             this.tabPage1.Controls.Add(this.lvGroup);
             this.tabPage1.Controls.Add(this.grbIntermediateDetails);
@@ -2820,6 +2823,8 @@
             this.tabPage1.Controls.Add(this.grplocation);
             this.tabPage1.Controls.Add(this.DGV_FilterProduct);
             this.tabPage1.Controls.Add(this.DGV_FilterSalesLocation);
+            this.tabPage1.Controls.Add(this.gpClassification);
+            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -2834,8 +2839,8 @@
             this.txtProductUsage.Location = new System.Drawing.Point(721, 522);
             this.txtProductUsage.MaxLength = 100;
             this.txtProductUsage.Name = "txtProductUsage";
-            this.txtProductUsage.Size = new System.Drawing.Size(426, 27);
-            this.txtProductUsage.TabIndex = 38;
+            this.txtProductUsage.Size = new System.Drawing.Size(422, 27);
+            this.txtProductUsage.TabIndex = 40;
             this.txtProductUsage.Enter += new System.EventHandler(this.txtProductUsage_Enter);
             this.txtProductUsage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProductUsage_KeyDown);
             this.txtProductUsage.Leave += new System.EventHandler(this.txtProductUsage_Leave);
@@ -2956,7 +2961,7 @@
             this.gpClassification.Controls.Add(this.chkFocus);
             this.gpClassification.Location = new System.Drawing.Point(579, 448);
             this.gpClassification.Name = "gpClassification";
-            this.gpClassification.Size = new System.Drawing.Size(564, 65);
+            this.gpClassification.Size = new System.Drawing.Size(343, 65);
             this.gpClassification.TabIndex = 111111168;
             this.gpClassification.TabStop = false;
             this.gpClassification.Text = "Product Classification";
@@ -3131,8 +3136,8 @@
             this.txtTeller.MaxLength = 100;
             this.txtTeller.Name = "txtTeller";
             this.txtTeller.ReadOnly = true;
-            this.txtTeller.Size = new System.Drawing.Size(202, 27);
-            this.txtTeller.TabIndex = 39;
+            this.txtTeller.Size = new System.Drawing.Size(198, 27);
+            this.txtTeller.TabIndex = 41;
             this.txtTeller.TextChanged += new System.EventHandler(this.TxtTeller_TextChanged);
             this.txtTeller.Enter += new System.EventHandler(this.TxtTeller_Enter);
             this.txtTeller.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTeller_KeyDown);
@@ -3621,6 +3626,119 @@
             this.grdPrice.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grdPrice_DataError);
             this.grdPrice.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdPrice_EditingControlShowing);
             // 
+            // chkColumn
+            // 
+            this.chkColumn.HeaderText = "Enable Price Type";
+            this.chkColumn.Name = "chkColumn";
+            this.chkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chkColumn.Width = 120;
+            // 
+            // clmTypeId
+            // 
+            this.clmTypeId.HeaderText = "TypeId";
+            this.clmTypeId.Name = "clmTypeId";
+            this.clmTypeId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmTypeId.Visible = false;
+            // 
+            // clmType
+            // 
+            this.clmType.HeaderText = "Type";
+            this.clmType.Name = "clmType";
+            this.clmType.ReadOnly = true;
+            this.clmType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmSalesPiCode
+            // 
+            this.clmSalesPiCode.HeaderText = "Sales P.I Code";
+            this.clmSalesPiCode.Name = "clmSalesPiCode";
+            this.clmSalesPiCode.ReadOnly = true;
+            this.clmSalesPiCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmSalesPiCode.Width = 110;
+            // 
+            // clmMinQty
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmMinQty.DefaultCellStyle = dataGridViewCellStyle17;
+            this.clmMinQty.HeaderText = "Min Qty";
+            this.clmMinQty.MaxInputLength = 7;
+            this.clmMinQty.Name = "clmMinQty";
+            this.clmMinQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmOffset
+            // 
+            this.clmOffset.HeaderText = "Margin Calc";
+            this.clmOffset.Name = "clmOffset";
+            // 
+            // clmOffsetValue
+            // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmOffsetValue.DefaultCellStyle = dataGridViewCellStyle18;
+            this.clmOffsetValue.HeaderText = "Margin Value";
+            this.clmOffsetValue.MaxInputLength = 7;
+            this.clmOffsetValue.Name = "clmOffsetValue";
+            this.clmOffsetValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmOffsetValuePer
+            // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmOffsetValuePer.DefaultCellStyle = dataGridViewCellStyle19;
+            this.clmOffsetValuePer.HeaderText = "Margin %";
+            this.clmOffsetValuePer.MaxInputLength = 7;
+            this.clmOffsetValuePer.Name = "clmOffsetValuePer";
+            this.clmOffsetValuePer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmOffsetValuePer.Width = 80;
+            // 
+            // clmAutoCalc
+            // 
+            this.clmAutoCalc.HeaderText = "Auto Update";
+            this.clmAutoCalc.Name = "clmAutoCalc";
+            this.clmAutoCalc.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmAutoCalc.Width = 90;
+            // 
+            // clmRate
+            // 
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            this.clmRate.DefaultCellStyle = dataGridViewCellStyle20;
+            this.clmRate.HeaderText = "Rate";
+            this.clmRate.MaxInputLength = 7;
+            this.clmRate.Name = "clmRate";
+            this.clmRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmBulkRate
+            // 
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.LightGray;
+            this.clmBulkRate.DefaultCellStyle = dataGridViewCellStyle21;
+            this.clmBulkRate.HeaderText = "Bulk Rate";
+            this.clmBulkRate.Name = "clmBulkRate";
+            this.clmBulkRate.ReadOnly = true;
+            this.clmBulkRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmNewRate
+            // 
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.PaleGreen;
+            this.clmNewRate.DefaultCellStyle = dataGridViewCellStyle22;
+            this.clmNewRate.HeaderText = "New Rate";
+            this.clmNewRate.Name = "clmNewRate";
+            this.clmNewRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.HeaderText = "StatusValue";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.Visible = false;
+            // 
+            // clmAutoSts
+            // 
+            this.clmAutoSts.HeaderText = "AutoSts";
+            this.clmAutoSts.Name = "clmAutoSts";
+            this.clmAutoSts.Visible = false;
+            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.HeaderText = "Remove";
@@ -3698,125 +3816,43 @@
             this.pnlProductDetails.Size = new System.Drawing.Size(1178, 655);
             this.pnlProductDetails.TabIndex = 1111144;
             // 
-            // clmAutoSts
+            // groupBox4
             // 
-            this.clmAutoSts.HeaderText = "AutoSts";
-            this.clmAutoSts.Name = "clmAutoSts";
-            this.clmAutoSts.Visible = false;
+            this.groupBox4.Controls.Add(this.chkBillScheme);
+            this.groupBox4.Controls.Add(this.chkProductScheme);
+            this.groupBox4.Location = new System.Drawing.Point(924, 448);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(219, 65);
+            this.groupBox4.TabIndex = 111111169;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Scheme Eligibility";
             // 
-            // clmStatus
+            // chkBillScheme
             // 
-            this.clmStatus.HeaderText = "StatusValue";
-            this.clmStatus.Name = "clmStatus";
-            this.clmStatus.Visible = false;
+            this.chkBillScheme.AutoSize = true;
+            this.chkBillScheme.Location = new System.Drawing.Point(130, 27);
+            this.chkBillScheme.Name = "chkBillScheme";
+            this.chkBillScheme.Size = new System.Drawing.Size(90, 24);
+            this.chkBillScheme.TabIndex = 38;
+            this.chkBillScheme.Text = "Bill Scheme";
+            this.chkBillScheme.UseVisualStyleBackColor = true;
             // 
-            // clmNewRate
+            // chkProductScheme
             // 
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmNewRate.DefaultCellStyle = dataGridViewCellStyle22;
-            this.clmNewRate.HeaderText = "New Rate";
-            this.clmNewRate.Name = "clmNewRate";
-            this.clmNewRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmBulkRate
-            // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.LightGray;
-            this.clmBulkRate.DefaultCellStyle = dataGridViewCellStyle21;
-            this.clmBulkRate.HeaderText = "Bulk Rate";
-            this.clmBulkRate.Name = "clmBulkRate";
-            this.clmBulkRate.ReadOnly = true;
-            this.clmBulkRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmRate
-            // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            this.clmRate.DefaultCellStyle = dataGridViewCellStyle20;
-            this.clmRate.HeaderText = "Rate";
-            this.clmRate.MaxInputLength = 7;
-            this.clmRate.Name = "clmRate";
-            this.clmRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmAutoCalc
-            // 
-            this.clmAutoCalc.HeaderText = "Auto Update";
-            this.clmAutoCalc.Name = "clmAutoCalc";
-            this.clmAutoCalc.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmAutoCalc.Width = 90;
-            // 
-            // clmOffsetValuePer
-            // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmOffsetValuePer.DefaultCellStyle = dataGridViewCellStyle19;
-            this.clmOffsetValuePer.HeaderText = "Margin %";
-            this.clmOffsetValuePer.MaxInputLength = 7;
-            this.clmOffsetValuePer.Name = "clmOffsetValuePer";
-            this.clmOffsetValuePer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmOffsetValuePer.Width = 80;
-            // 
-            // clmOffsetValue
-            // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmOffsetValue.DefaultCellStyle = dataGridViewCellStyle18;
-            this.clmOffsetValue.HeaderText = "Margin Value";
-            this.clmOffsetValue.MaxInputLength = 7;
-            this.clmOffsetValue.Name = "clmOffsetValue";
-            this.clmOffsetValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmOffset
-            // 
-            this.clmOffset.HeaderText = "Margin Calc";
-            this.clmOffset.Name = "clmOffset";
-            // 
-            // clmMinQty
-            // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.PaleGreen;
-            this.clmMinQty.DefaultCellStyle = dataGridViewCellStyle17;
-            this.clmMinQty.HeaderText = "Min Qty";
-            this.clmMinQty.MaxInputLength = 7;
-            this.clmMinQty.Name = "clmMinQty";
-            this.clmMinQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmSalesPiCode
-            // 
-            this.clmSalesPiCode.HeaderText = "Sales P.I Code";
-            this.clmSalesPiCode.Name = "clmSalesPiCode";
-            this.clmSalesPiCode.ReadOnly = true;
-            this.clmSalesPiCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmSalesPiCode.Width = 110;
-            // 
-            // clmType
-            // 
-            this.clmType.HeaderText = "Type";
-            this.clmType.Name = "clmType";
-            this.clmType.ReadOnly = true;
-            this.clmType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // clmTypeId
-            // 
-            this.clmTypeId.HeaderText = "TypeId";
-            this.clmTypeId.Name = "clmTypeId";
-            this.clmTypeId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmTypeId.Visible = false;
-            // 
-            // chkColumn
-            // 
-            this.chkColumn.HeaderText = "Enable Price Type";
-            this.chkColumn.Name = "chkColumn";
-            this.chkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.chkColumn.Width = 120;
+            this.chkProductScheme.AutoSize = true;
+            this.chkProductScheme.Location = new System.Drawing.Point(6, 27);
+            this.chkProductScheme.Name = "chkProductScheme";
+            this.chkProductScheme.Size = new System.Drawing.Size(116, 24);
+            this.chkProductScheme.TabIndex = 38;
+            this.chkProductScheme.Text = "Product Scheme";
+            this.chkProductScheme.UseVisualStyleBackColor = true;
             // 
             // CP_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1194, 691);
+            this.ClientSize = new System.Drawing.Size(1194, 692);
             this.Controls.Add(this.pnlProductDetails);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -3889,6 +3925,8 @@
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).EndInit();
             this.pnlProductDetails.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4179,5 +4217,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNewRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAutoSts;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkBillScheme;
+        private System.Windows.Forms.CheckBox chkProductScheme;
     }
 }

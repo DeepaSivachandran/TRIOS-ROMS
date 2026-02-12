@@ -1353,7 +1353,7 @@ namespace ROMS
                         varProductionMSQ = Convert.ToDecimal(txtProductionMSQ.Text);
                     }
 
-                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0;
+                    int FocusFlag = 0, Priority_Flag = 0, Spl_Flag = 0, OwnFlag = 0,ProductSchemeApplicable = 0 , BillSchemeApplicable = 0;
 
                     if (chkFocus.Checked == true)
                     {
@@ -1370,6 +1370,14 @@ namespace ROMS
                     if (chkOwn.Checked == true)
                     {
                         OwnFlag = 1;
+                    }
+                    if (chkProductScheme.Checked == true)
+                    {
+                        ProductSchemeApplicable = 1;
+                    }
+                    if (chkBillScheme.Checked == true)
+                    {
+                        BillSchemeApplicable = 1;
                     }
                     dtPrice_Markup = null;
                     if (tbProduct.SelectedIndex == 3)
@@ -1542,7 +1550,7 @@ namespace ROMS
                     shelflife, Convert.ToInt32(cmbPeriod.SelectedValue), varStatus, MainForm.pbUserID, MainForm.pbIpAddress, varorignator, Convert.ToInt32(cmbNetQty.SelectedValue), null, 0, "",
                     varSupplierId, varScheduleid, varGRNID, varNewPRoid, varMRPflag, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), lblParentcode.Text, varSalesProduct, txtTeller.Text.Trim(), "", varIntermediateUPP, Convert.ToInt32(cmbIntermediateUnit.SelectedValue), varProductionMSQ, null
                      , FocusFlag, Priority_Flag, Spl_Flag, OwnFlag, dtPrice_Markup, Convert.ToInt32(cmbStockTakken.SelectedValue), "", txtSalesPICode.Text.Trim(), "", "",
-                    Convert.ToString(txtProductUsage.Text).Trim()
+                    Convert.ToString(txtProductUsage.Text).Trim(), ProductSchemeApplicable,BillSchemeApplicable
                     );
 
                     objspdservice.CloseConnection();
@@ -7209,7 +7217,7 @@ namespace ROMS
             {
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
-                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "");
+                result = objspdservice.udfnProductMaster(15, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", "", 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
                 objspdservice.CloseConnection();
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -8851,7 +8859,7 @@ namespace ROMS
                         varImagePath += "," + imageName;
                 }
 
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "");
+                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, dtProductHSN, txtLabelNameEnglish.Text.Trim(), txtLabelNameTamil.Text.Trim(), "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "",0,0);
 
                 string[] varvalue = result.Split('~');
                 if (varvalue[0] == "3")
@@ -9233,27 +9241,38 @@ namespace ROMS
                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmAutoCalc")
                 {
                     bool isChecked = Convert.ToBoolean(grdPrice.Rows[e.RowIndex].Cells["clmAutoCalc"].Value);
-                    grdPrice.Rows[e.RowIndex].Cells["clmAutoSts"].Value = isChecked ? 453 : 454; 
+                    grdPrice.Rows[e.RowIndex].Cells["clmAutoSts"].Value = isChecked ? 453 : 454;
 
-                    if (Convert.ToString(grdPrice.Rows[e.RowIndex].Cells["clmAutoSts"].Value) == "454")
-                    { 
-                        RemoveRateWithGST(e.RowIndex, 2);
 
-                        grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = false;
-                        grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
+                    var typeId = grdPrice.Rows[e.RowIndex].Cells["clmTypeId"].Value?.ToString();
+                    var mainstatusid = grdPrice.Rows[e.RowIndex].Cells["clmStatus"].Value?.ToString();
+                    if (mainstatusid == "453") //-- yes
+                    {
+                        if (typeId != "446") // remove cp
+                        {
+                            if (Convert.ToString(grdPrice.Rows[e.RowIndex].Cells["clmAutoSts"].Value) == "454")
+                            {
+                                RemoveRateWithGST(e.RowIndex, 2);
+
+                                grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = false;
+                                grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
+                            }
+                            else
+                            {
+
+                                grdPrice.Rows[e.RowIndex].Cells["clmRate"].Value = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[0].Cells["clmRate"].Value?.ToString()) ? "0" : grdPrice.Rows[0].Cells["clmRate"].Value) +
+                                Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value?.ToString())
+                                        ? "0" : grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value);
+                                grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = true;
+                                grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
+
+                                UpdateRateWithGST(e.RowIndex);
+
+                                UpdateRateWithGSTValue(e.RowIndex);
+                            }
+                        }
                     }
-                    else {
-
-                        grdPrice.Rows[e.RowIndex].Cells["clmRate"].Value = Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[0].Cells["clmRate"].Value?.ToString()) ? "0" : grdPrice.Rows[0].Cells["clmRate"].Value) + 
-                        Convert.ToDouble(string.IsNullOrWhiteSpace(grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value?.ToString())
-                                ? "0" : grdPrice.Rows[e.RowIndex].Cells["clmOffsetValue"].Value);
-                        grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = true;
-                        grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
-
-                        UpdateRateWithGST(e.RowIndex);
-
-                        UpdateRateWithGSTValue(e.RowIndex);
-                    }
+                    
 
                 }
 
@@ -9591,6 +9610,15 @@ namespace ROMS
             {
                 foreach (DataGridViewRow row in grdPrice.Rows)
                 {
+                    if (Convert.ToString(row.Cells["clmStatus"].Value) == "453" && Convert.ToString(row.Cells["clmOffset"].Value) == "453" && Convert.ToString(row.Cells["clmAutoSts"].Value) == "454")
+                    {
+                        row.Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
+                    }
+                    else
+                    {
+                        row.Cells["clmNewRate"].Style.BackColor = Color.LightGray;
+                    }
+
 
                     if (row.Cells["clmTypeid"].Value != null &&
                         row.Cells["clmTypeid"].Value.ToString() == "446")
@@ -9605,7 +9633,7 @@ namespace ROMS
 
                         DataGridViewTextBoxCell print1 = new DataGridViewTextBoxCell();
                         print1.Value = "";
-                        row.Cells["clmOffset"] = print1; 
+                        row.Cells["clmOffset"] = print1;
                         print1.ReadOnly = true;
 
 
@@ -9627,11 +9655,12 @@ namespace ROMS
                             row.Cells["clmRate"].ReadOnly = true;
                             row.Cells["clmRate"].Style.BackColor = Color.LightGray;
                         }
-                        else { 
-                        
+                        else
+                        {
+
                         }
-                            //row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
-                            row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
+                        //row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmOffset"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
                         row.Cells["clmAutoCalc"].Style.BackColor = Color.LightGray;
@@ -9657,13 +9686,14 @@ namespace ROMS
                         //row.Cells["clmOffset"].ReadOnly = true;
 
 
-                        //row.Cells["clmOffset"].Value = 453;
+                        //row.Cells["clmOffset"].Value = 453; 
                         //row.Cells["clmStatus"].Value = 453;
 
                         row.Cells["chkColumn"].ReadOnly = true;
                         row.Cells["chkColumn"].Value = true;
                         row.Cells["chkColumn"].Style.BackColor = Color.LightGray;
 
+                         
                         //// 1. Clear the ComboBox value
                         //row.Cells["clmMinQty"].Value = "";
                         //row.Cells["clmOffsetValuePer"].Value = "";
@@ -10917,7 +10947,9 @@ namespace ROMS
                             int FocusFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Focus_Flag"].ToString())
                                 , Priority_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Priority_Flag"].ToString())
                                 , Spl_Flag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Spl_Flag"].ToString())
-                                , OwnFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_OwnFlag"].ToString());
+                                , OwnFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_OwnFlag"].ToString())
+                                , ProductSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Product_Scheme_Eligible"].ToString())
+                                , BillSchemeApplicable = Convert.ToInt32(objDS.Tables[0].Rows[0]["PR_Bill_Scheme_Eligible"].ToString());
 
 
 
@@ -10937,7 +10969,14 @@ namespace ROMS
                             {
                                 chkOwn.Checked = true;
                             }
-
+                            if (ProductSchemeApplicable == 1)
+                            {
+                                chkProductScheme.Checked = true;
+                            }
+                            if (BillSchemeApplicable == 1)
+                            {
+                                chkBillScheme.Checked = true;
+                            }
 
 
                             btnSave.Text = "Update";

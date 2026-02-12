@@ -2740,6 +2740,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B8C31789F42B4F8896186548C495BAB6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2807,12 +2813,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_01F666E07DFC5190211F9CC9A241A3E9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ECEF8AA50F7DC7A54184967A097A2688"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3501,7 +3501,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\ROMS v2.5.1.msi"
+        "OutputFilename" = "8:Debug\\ROMS v2.5.2.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -13847,15 +13847,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ROMS"
-        "ProductCode" = "8:{F6339F66-EF1B-4728-A964-C3FF41BEBA14}"
-        "PackageCode" = "8:{F990F2B5-46B2-441C-AB32-84AB93C8E822}"
+        "ProductCode" = "8:{53D919D0-6A45-4CA4-AA85-EBA74D946338}"
+        "PackageCode" = "8:{8D65C264-5C66-4C55-BC94-0C3A1101067B}"
         "UpgradeCode" = "8:{FC2AE767-A3BF-4189-A07F-0B601778A960}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.5.1"
+        "ProductVersion" = "8:2.5.2"
         "Manufacturer" = "8:Trio-S"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://trio-s.com/"

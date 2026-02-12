@@ -39,6 +39,7 @@ namespace ROMS
         {
             try
             {
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 50511;
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
@@ -50,7 +51,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
 
                 chkboxRatelist.DrawMode = DrawMode.Normal;
-                udfnList();
+                //udfnList();
                 udfnDropdownbind();
 
                 pnlRateCategory.Visible = false;
@@ -542,6 +543,8 @@ namespace ROMS
         { 
             try
             {
+                picLoader.Visible = true;
+                picLoader.BringToFront();
                 txtMappingGroup.ReadOnly = false;
                 txtMappingSubGroup.ReadOnly = false;
                 txtBrand.ReadOnly = false;
@@ -685,6 +688,7 @@ namespace ROMS
             {
                 SearchFlag = 0;
                 lblTotalProducts.Text = grdProducts.Rows.Count.ToString();
+                picLoader.Visible = false;
             }
         }
 
@@ -2704,6 +2708,7 @@ namespace ROMS
                 varBrandId = 0;
                 lblProductcode.Text = "0";
                 cmbCategory.SelectedIndex = 0;
+                txtProductName.Text = "";
                 txtRateCategory.Text = "";
                 lblRateId.Text = "0";
                 for (int i = 0; i < chkboxRatelist.Items.Count; i++)
@@ -2890,11 +2895,8 @@ namespace ROMS
                             DataView dv = objDTable.Tables[0].DefaultView;
                             dv.RowFilter = "MSTID <> 0";
 
-                            DataTable dt = dv.ToTable();
-
-
+                            DataTable dt = dv.ToTable(); 
                             dt = objDTable.Tables[0];
-
                             chkboxRatelist.DataSource = dt;
                             chkboxRatelist.DisplayMember = "MST_DisplayText";   // text
                             chkboxRatelist.ValueMember = "MSTID";       // value
