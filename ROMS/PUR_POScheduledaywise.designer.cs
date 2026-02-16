@@ -38,8 +38,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PUR_POScheduledaywise));
             this.errUnit = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpPOScheduledaywise = new System.Windows.Forms.GroupBox();
+            this.lblReportTypeId = new System.Windows.Forms.Label();
+            this.txtReportType = new System.Windows.Forms.TextBox();
+            this.pnlRateCategory = new System.Windows.Forms.Panel();
+            this.btnConditionClear = new System.Windows.Forms.Button();
+            this.chkReportType = new System.Windows.Forms.CheckedListBox();
             this.btnSchedulePopup = new System.Windows.Forms.Button();
-            this.cmbCmbReportType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbProductCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,6 +76,7 @@
             this.dataGridViewImageColumn8 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).BeginInit();
             this.grpPOScheduledaywise.SuspendLayout();
+            this.pnlRateCategory.SuspendLayout();
             this.pnlLanguage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPOSchedule)).BeginInit();
@@ -83,8 +88,10 @@
             // 
             // grpPOScheduledaywise
             // 
+            this.grpPOScheduledaywise.Controls.Add(this.lblReportTypeId);
+            this.grpPOScheduledaywise.Controls.Add(this.txtReportType);
+            this.grpPOScheduledaywise.Controls.Add(this.pnlRateCategory);
             this.grpPOScheduledaywise.Controls.Add(this.btnSchedulePopup);
-            this.grpPOScheduledaywise.Controls.Add(this.cmbCmbReportType);
             this.grpPOScheduledaywise.Controls.Add(this.label3);
             this.grpPOScheduledaywise.Controls.Add(this.cmbProductCategory);
             this.grpPOScheduledaywise.Controls.Add(this.label2);
@@ -101,12 +108,68 @@
             this.grpPOScheduledaywise.TabIndex = 0;
             this.grpPOScheduledaywise.TabStop = false;
             // 
+            // lblReportTypeId
+            // 
+            this.lblReportTypeId.AutoSize = true;
+            this.lblReportTypeId.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.lblReportTypeId.Location = new System.Drawing.Point(1251, 24);
+            this.lblReportTypeId.Name = "lblReportTypeId";
+            this.lblReportTypeId.Size = new System.Drawing.Size(16, 20);
+            this.lblReportTypeId.TabIndex = 111111238;
+            this.lblReportTypeId.Text = "0";
+            this.lblReportTypeId.Visible = false;
+            // 
+            // txtReportType
+            // 
+            this.txtReportType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReportType.Location = new System.Drawing.Point(743, 21);
+            this.txtReportType.MaxLength = 50;
+            this.txtReportType.Name = "txtReportType";
+            this.txtReportType.ReadOnly = true;
+            this.txtReportType.Size = new System.Drawing.Size(379, 27);
+            this.txtReportType.TabIndex = 111111237;
+            this.txtReportType.Enter += new System.EventHandler(this.txtReportType_Enter);
+            this.txtReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtReportType_KeyDown);
+            this.txtReportType.Leave += new System.EventHandler(this.txtReportType_Leave);
+            // 
+            // pnlRateCategory
+            // 
+            this.pnlRateCategory.Controls.Add(this.btnConditionClear);
+            this.pnlRateCategory.Controls.Add(this.chkReportType);
+            this.pnlRateCategory.Location = new System.Drawing.Point(743, 45);
+            this.pnlRateCategory.Name = "pnlRateCategory";
+            this.pnlRateCategory.Size = new System.Drawing.Size(125, 139);
+            this.pnlRateCategory.TabIndex = 111111236;
+            // 
+            // btnConditionClear
+            // 
+            this.btnConditionClear.Image = global::ROMS.Properties.Resources.Cleared;
+            this.btnConditionClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConditionClear.Location = new System.Drawing.Point(3, 109);
+            this.btnConditionClear.Name = "btnConditionClear";
+            this.btnConditionClear.Size = new System.Drawing.Size(57, 24);
+            this.btnConditionClear.TabIndex = 111111224;
+            this.btnConditionClear.Text = "Clear";
+            this.btnConditionClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnConditionClear.UseVisualStyleBackColor = true;
+            this.btnConditionClear.Click += new System.EventHandler(this.btnConditionClear_Click);
+            // 
+            // chkReportType
+            // 
+            this.chkReportType.FormattingEnabled = true;
+            this.chkReportType.Location = new System.Drawing.Point(3, 3);
+            this.chkReportType.Name = "chkReportType";
+            this.chkReportType.Size = new System.Drawing.Size(120, 96);
+            this.chkReportType.TabIndex = 111111221;
+            this.chkReportType.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkboxRatelist_ItemCheck);
+            this.chkReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkboxRatelist_KeyDown);
+            // 
             // btnSchedulePopup
             // 
             this.btnSchedulePopup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSchedulePopup.Image = global::ROMS.Properties.Resources.view;
             this.btnSchedulePopup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSchedulePopup.Location = new System.Drawing.Point(904, 18);
+            this.btnSchedulePopup.Location = new System.Drawing.Point(1128, 18);
             this.btnSchedulePopup.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSchedulePopup.Name = "btnSchedulePopup";
             this.btnSchedulePopup.Size = new System.Drawing.Size(65, 33);
@@ -115,19 +178,6 @@
             this.btnSchedulePopup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSchedulePopup.UseVisualStyleBackColor = true;
             this.btnSchedulePopup.Click += new System.EventHandler(this.btnSchedulePopup_Click);
-            // 
-            // cmbCmbReportType
-            // 
-            this.cmbCmbReportType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCmbReportType.FormattingEnabled = true;
-            this.cmbCmbReportType.Location = new System.Drawing.Point(744, 21);
-            this.cmbCmbReportType.Name = "cmbCmbReportType";
-            this.cmbCmbReportType.Size = new System.Drawing.Size(154, 27);
-            this.cmbCmbReportType.TabIndex = 4;
-            this.cmbCmbReportType.Enter += new System.EventHandler(this.cmbCmbReportType_Enter);
-            this.cmbCmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbCmbReportType_KeyDown);
-            this.cmbCmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbCmbReportType_KeyPress);
-            this.cmbCmbReportType.Leave += new System.EventHandler(this.cmbCmbReportType_Leave);
             // 
             // label3
             // 
@@ -501,6 +551,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errUnit)).EndInit();
             this.grpPOScheduledaywise.ResumeLayout(false);
             this.grpPOScheduledaywise.PerformLayout();
+            this.pnlRateCategory.ResumeLayout(false);
             this.pnlLanguage.ResumeLayout(false);
             this.pnlLanguage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdHeaderview)).EndInit();
@@ -541,8 +592,12 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.ComboBox cmbConcern;
         public System.Windows.Forms.ComboBox cmbProductCategory;
-        public System.Windows.Forms.ComboBox cmbCmbReportType;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSchedulePopup;
+        private System.Windows.Forms.Panel pnlRateCategory;
+        private System.Windows.Forms.Button btnConditionClear;
+        private System.Windows.Forms.CheckedListBox chkReportType;
+        private System.Windows.Forms.TextBox txtReportType;
+        private System.Windows.Forms.Label lblReportTypeId;
     }
 }
