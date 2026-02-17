@@ -210,7 +210,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraFlag {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraProductCategory {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -218,7 +218,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraProductCategory {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraReportFlag {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
