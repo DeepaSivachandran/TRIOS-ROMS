@@ -66,6 +66,7 @@ namespace ROMS
             try
             {
                 txtReportType.Text = "";
+                lblReportTypeId.Text = "0";
                 if (Convert.ToInt32(cmbProductCategory.SelectedValue) != 0 && Convert.ToInt32(cmbProductCategory.SelectedValue) != 13 && Convert.ToInt32(cmbProductCategory.SelectedValue) != 15)
                 {
                     txtReportType.Enabled = true;
@@ -125,6 +126,10 @@ namespace ROMS
         {
             try
             {
+                if (txtReportType.Text.Trim() == "")
+                {
+                    lblReportTypeId.Text = "0";
+                }
                 string varReportTypes = "0";
                 if (chkReportType.CheckedItems.Count == chkReportType.Items.Count)
                 {
