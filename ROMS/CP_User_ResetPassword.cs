@@ -21,8 +21,9 @@ namespace ROMS
         private ToolTip tpNewPassword = new ToolTip();
         private ToolTip tpConfirmPassword = new ToolTip();
         public string pbvarUserLoginID = "0";
-        public int pbvarUserID = 0;
+        public int pbvarUserID = 0, pbflag =0 ;
         private SecurityController _security;
+
         public CP_User_ResetPassword()
         {
             InitializeComponent();

@@ -221,19 +221,47 @@
     <Compile Include="CP_CostPrice_Update_Bulk.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_SalesUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SalesUser.designer.cs">
+      <DependentUpon>CP_SalesUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_SalesUserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_SalesUserList.designer.cs">
+      <DependentUpon>CP_SalesUserList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Sales_GeneralSettings.cs">
       <SubType>Form</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_Sales_GeneralSettings.designer.cs">
       <DependentUpon>CP_Sales_GeneralSettings.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_Sales_Settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CP_Sales_Settings.designer.cs">
       <DependentUpon>CP_Sales_Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Sales_UserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Sales_UserRole.designer.cs">
+      <DependentUpon>CP_Sales_UserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Sales_UserRoleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Sales_UserRoleList.designer.cs">
+      <DependentUpon>CP_Sales_UserRoleList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Sales_UserRole_SPL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Sales_UserRole_SPL.designer.cs">
+      <DependentUpon>CP_Sales_UserRole_SPL.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_UPI.cs">
       <SubType>Form</SubType>
@@ -1194,12 +1222,10 @@
     <Compile Include="User Controls\DynamicWindowControl.cs" />
     <Compile Include="User Controls\MultiSelectComboBox.cs" />
     <Compile Include="PAY_ChequeTransaction.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAY_ChequeTransaction.designer.cs">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_Rate_Change.cs">
       <SubType>Form</SubType>
@@ -1287,12 +1313,10 @@
     <Compile Include="Model\MR_Master.cs" />
     <Compile Include="Model\MR_Status.cs" />
     <Compile Include="PAY_Advance.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PAY_Advance.designer.cs">
       <DependentUpon>PAY_Advance.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PAY_AdvanceList.cs">
       <SubType>Form</SubType>
@@ -3531,12 +3555,10 @@
       <DependentUpon>CP_UserCategoryList.cs</DependentUpon>
     </Compile>
     <Compile Include="INV_DamageEntryList.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="INV_DamageEntryList.designer.cs">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="INV_DamageEntry.cs">
       <SubType>Form</SubType>
@@ -3569,12 +3591,10 @@
       <DependentUpon>INV_InwardPurchase.cs</DependentUpon>
     </Compile>
     <Compile Include="PUR_GRNEntry.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PUR_GRNEntry.designer.cs">
       <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PUR_GSTIN.cs">
       <SubType>Form</SubType>
@@ -3895,12 +3915,10 @@
       <DependentUpon>CP_ProductHSNList.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_ProductHSN.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CP_ProductHSN.designer.cs">
       <DependentUpon>CP_ProductHSN.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CP_Companylist.cs">
       <SubType>Form</SubType>
@@ -4129,12 +4147,26 @@
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_SalesUser.resx">
+      <DependentUpon>CP_SalesUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_SalesUserList.resx">
+      <DependentUpon>CP_SalesUserList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Sales_GeneralSettings.resx">
       <DependentUpon>CP_Sales_GeneralSettings.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Sales_Settings.resx">
       <DependentUpon>CP_Sales_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Sales_UserRole.resx">
+      <DependentUpon>CP_Sales_UserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Sales_UserRoleList.resx">
+      <DependentUpon>CP_Sales_UserRoleList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Sales_UserRole_SPL.resx">
+      <DependentUpon>CP_Sales_UserRole_SPL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UPI.resx">
       <DependentUpon>CP_UPI.cs</DependentUpon>
@@ -4291,7 +4323,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_ChequeTransaction.resx">
       <DependentUpon>PAY_ChequeTransaction.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Rate_Change.resx">
       <DependentUpon>CP_Rate_Change.cs</DependentUpon>
@@ -4343,7 +4374,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_Advance.resx">
       <DependentUpon>PAY_Advance.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="PAY_AdvanceList.resx">
       <DependentUpon>PAY_AdvanceList.cs</DependentUpon>
@@ -4530,7 +4560,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntryList.resx">
       <DependentUpon>INV_DamageEntryList.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="INV_DamageEntry.resx">
       <DependentUpon>INV_DamageEntry.cs</DependentUpon>
@@ -4549,7 +4578,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GRNEntry.resx">
       <DependentUpon>PUR_GRNEntry.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="PUR_GSTIN.resx">
       <DependentUpon>PUR_GSTIN.cs</DependentUpon>
@@ -4721,7 +4749,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_ProductHSN.resx">
       <DependentUpon>CP_ProductHSN.cs</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Companylist.resx">
       <DependentUpon>CP_Companylist.cs</DependentUpon>

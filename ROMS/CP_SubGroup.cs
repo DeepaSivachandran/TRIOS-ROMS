@@ -19,6 +19,7 @@ namespace ROMS
         private ToolTip tpGroupName = new ToolTip();
         private ToolTip tpSubGroupNameInEnglish = new ToolTip();
         private ToolTip tpSubGroupNameInTamil = new ToolTip();
+        private ToolTip tpMarginCalc = new ToolTip();
         private ToolTip tpBatchNo = new ToolTip();
         private ToolTip tpShopLocation = new ToolTip();
         private ToolTip tpRack = new ToolTip();
@@ -46,6 +47,8 @@ namespace ROMS
         public string varRackCodes = "";
         public int varSortFlag = 0;
         public int varSubgroupType = 0;
+        public int varMarginTypeId = 0;
+
         public string VarRackCreation = "0";
         public string GroupPrivilege = "", LocationPrivilege="",RackPrivilege="";
         public CP_SubGroup()
@@ -90,7 +93,9 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=25 ", "MST_DisplayText,MSTID", cmbBatchNo, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=92 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=92 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");              
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=149  OR MSTID = -1 ORDER BY MSTID ASC",  "MST_DisplayText,MSTID", cmbMarginCalc, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
             }
             catch (Exception ex)
@@ -235,6 +240,9 @@ namespace ROMS
                 lblGroupCode.Text = Convert.ToString(varGroupCode);
                 txtESubGroupNameEnglish.Text = varSubGroupNameinEnglish;
                 txtESubGroupNameTamil.Text = varSubGroupNameinTamil;
+
+                cmbMarginCalc.SelectedValue = varMarginTypeId;
+
                 cmbBatchNo.SelectedValue = varBatchId;
                 cmbSubgroupType.SelectedValue = varSubgroupType;
                 txtLocation.Text = varStockLocationName;
@@ -315,6 +323,7 @@ namespace ROMS
                 txtESubGroupNameEnglish.Text = "";
                 txtESubGroupNameTamil.Text = "";
                 cmbBatchNo.SelectedValue = -1;
+                cmbMarginCalc.SelectedValue = -1;
                 cmbSubgroupType.SelectedValue = 312;
                 txtLocation.Text = "";
                 grdRackList.DataSource = null;
@@ -377,7 +386,7 @@ namespace ROMS
                 }
                 else
                 {
-                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue));
+                    varResult = objDser.udfnSubGroup(varViewType, varId, Convert.ToInt32(lblGroupCode.Text), Convert.ToString(txtESubGroupNameEnglish.Text).Trim(), Convert.ToString(txtESubGroupNameTamil.Text).Trim(), varStatusid, Convert.ToInt16(cmbBatchNo.SelectedValue), Convert.ToInt32(lblLocation.Text), 0, varOriginator, varRackId, MainForm.pbUserID, 0, Convert.ToInt32(cmbSubgroupType.SelectedValue),Convert.ToInt32(cmbMarginCalc.SelectedValue));
                     objDser.CloseConnection();
                     btnSave.Enabled = true;
                     if (varResult.Split('~')[0] == "3")
@@ -517,6 +526,18 @@ namespace ROMS
                 //    tpBatchNo.Show("Please select batch No. status", cmbBatchNo, 5000);
                 //    blnErrorFlag = true;
                 //}
+
+                if(Convert.ToInt32(cmbMarginCalc.SelectedValue) == -1)
+                {
+                    epSubGroup.SetError(cmbMarginCalc, "Please Select Margin type");
+                    cmbMarginCalc.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpMarginCalc.ShowAlways = true;
+                    tpMarginCalc.Show("Please Select Margin type", cmbMarginCalc, 5000);
+                    blnErrorFlag = true;    
+
+                }
+
+
                 if (txtLocation.Text.Trim() != "")
                 {
                     string varLocation = "0";
@@ -859,6 +880,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+
+        
         private void CmbBatchNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -914,7 +938,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtLocation.Focus();
+                    cmbMarginCalc.Focus();
                 }
             }
             catch (Exception ex)
@@ -936,6 +960,9 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        
+
         private void RbActive_Enter(object sender, EventArgs e)
         {
             try
@@ -1714,7 +1741,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtLocation.Focus();
+                    cmbMarginCalc.Focus();
                 }
             }
             catch (Exception ex)
@@ -1736,6 +1763,8 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        
 
         private void DGV_FilterLocation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1864,6 +1893,67 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+
+        //margin calc
+        private void cmbMarginCalc_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMarginCalc.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMarginCalc_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtLocation.Focus();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMarginCalc_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMarginCalc.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMarginCalc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+
 
         /*added by deepa on 15-09-2023*/
         private void Btnewlocation_Click(object sender, EventArgs e)

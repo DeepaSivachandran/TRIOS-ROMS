@@ -230,10 +230,11 @@ namespace ROMS
             this.tsmMobile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSalesGeneralSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesUserRole = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesSystemUser = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1026,7 +1027,9 @@ namespace ROMS
             // 
             this.tsmUsersMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmUserRole,
-            this.tsmUser});
+            this.tsmUser,
+            this.tsmSalesUserRole,
+            this.tsmSalesSystemUser});
             this.tsmUsersMenu.Name = "tsmUsersMenu";
             this.tsmUsersMenu.Size = new System.Drawing.Size(225, 22);
             this.tsmUsersMenu.Text = "Users";
@@ -1035,7 +1038,7 @@ namespace ROMS
             // tsmUserRole
             // 
             this.tsmUserRole.Name = "tsmUserRole";
-            this.tsmUserRole.Size = new System.Drawing.Size(134, 22);
+            this.tsmUserRole.Size = new System.Drawing.Size(180, 22);
             this.tsmUserRole.Text = "User Role";
             this.tsmUserRole.Visible = false;
             this.tsmUserRole.Click += new System.EventHandler(this.tsmUserRole_Click);
@@ -1043,7 +1046,7 @@ namespace ROMS
             // tsmUser
             // 
             this.tsmUser.Name = "tsmUser";
-            this.tsmUser.Size = new System.Drawing.Size(134, 22);
+            this.tsmUser.Size = new System.Drawing.Size(180, 22);
             this.tsmUser.Text = "System User";
             this.tsmUser.Visible = false;
             this.tsmUser.Click += new System.EventHandler(this.TsmUser_Click);
@@ -1054,7 +1057,6 @@ namespace ROMS
             this.tsmVoucherSettings,
             this.tsmSalesVoucherSettings,
             this.tsmGeneralSettings,
-            this.tsmSalesGeneralSettings,
             this.tsmPrinterSettings,
             this.tsmChequePrintSettings});
             this.tsmControlPanel.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2055,6 +2057,17 @@ namespace ROMS
             this.tsmMarriageHall.Text = "Marriage Hall";
             this.tsmMarriageHall.Click += new System.EventHandler(this.tsmMarriageHall_Click);
             // 
+            // tsmGif
+            // 
+            this.tsmGif.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmGif.ForeColor = System.Drawing.Color.Red;
+            this.tsmGif.Image = global::ROMS.Properties.Resources.right_arrow;
+            this.tsmGif.Name = "tsmGif";
+            this.tsmGif.Size = new System.Drawing.Size(107, 24);
+            this.tsmGif.Text = "Rate Approval";
+            this.tsmGif.Visible = false;
+            this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
+            // 
             // timer2
             // 
             this.timer2.Interval = 5000;
@@ -2069,24 +2082,19 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmGif
+            // tsmSalesUserRole
             // 
-            this.tsmGif.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmGif.ForeColor = System.Drawing.Color.Red;
-            this.tsmGif.Image = global::ROMS.Properties.Resources.right_arrow;
-            this.tsmGif.Name = "tsmGif";
-            this.tsmGif.Size = new System.Drawing.Size(107, 24);
-            this.tsmGif.Text = "Rate Approval";
-            this.tsmGif.Visible = false;
-            this.tsmGif.Click += new System.EventHandler(this.tsmGif_Click);
+            this.tsmSalesUserRole.Name = "tsmSalesUserRole";
+            this.tsmSalesUserRole.Size = new System.Drawing.Size(180, 22);
+            this.tsmSalesUserRole.Text = "Sales User Role";
+            this.tsmSalesUserRole.Click += new System.EventHandler(this.tsmSalesUserRole_Click);
             // 
-            // tsmSalesGeneralSettings
+            // tsmSalesSystemUser
             // 
-            this.tsmSalesGeneralSettings.Name = "tsmSalesGeneralSettings";
-            this.tsmSalesGeneralSettings.Size = new System.Drawing.Size(203, 22);
-            this.tsmSalesGeneralSettings.Text = "Sales General Settings";
-            this.tsmSalesGeneralSettings.Visible = false;
-            this.tsmSalesGeneralSettings.Click += new System.EventHandler(this.tsmSalesGeneralSettings_Click);
+            this.tsmSalesSystemUser.Name = "tsmSalesSystemUser";
+            this.tsmSalesSystemUser.Size = new System.Drawing.Size(180, 22);
+            this.tsmSalesSystemUser.Text = "Sales System User";
+            this.tsmSalesSystemUser.Click += new System.EventHandler(this.tsmSalesSystemUser_Click);
             // 
             // MainForm
             // 
@@ -2323,6 +2331,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmProductWeight;
         private System.Windows.Forms.ToolStripMenuItem tsmProductReportRateCategory;
         private System.Windows.Forms.ToolStripMenuItem tsmSalesVoucherSettings;
-        private System.Windows.Forms.ToolStripMenuItem tsmSalesGeneralSettings;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesUserRole;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesSystemUser;
     }
 }

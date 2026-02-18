@@ -416,8 +416,16 @@ namespace ROMS
 
         public static DataTable objDtMenuDetailsUser;
         public static DataTable objDtMenuSplPermissionUser;
-
-
+        public static DataTable objDtSales_MenuDetails;
+        public static DataTable objDtSales_MenuSplPermission;
+        public static DataTable objDtSales_MenuDetailsUser;
+        public static DataTable objDtSales_MenuSplPermissionUser;
+        // added by sivanathan on 04-02-2026
+        public static CP_Sales_UserRole obj_Sales_UserRole;
+        public static CP_Sales_UserRoleList objCP_Sales_UserRoleList;
+        public static CP_Sales_UserRole_SPL objCP_Sales_UserRole_SPL;
+        public static CP_SalesUserList objCp_SalesUserList;
+        public static CP_SalesUser objCP_SalesUser;
         public MainForm()
         {
             try
@@ -1211,6 +1219,9 @@ namespace ROMS
                 udfnGetMenuDetails();
                 udfnGetMenuSplPermissionDetails();
                 udfnGetMenuDetailsForUser();
+                udfnGetSalesMenuDetails();
+                udfnGetSalesMenuSplPermissionDetails();
+                udfnGetSalesMenuDetailsForUser();
                 BindMenu(sender, e);
                 CountToolStripMenuItems(ms);
                 udfnGetTelegramToken();
@@ -1234,6 +1245,99 @@ namespace ROMS
             catch (Exception ex)
             {
                 objError = new DataError(); 
+                objError.WriteFile(ex);
+            }
+        }
+
+
+        //take all  menu for sales user role master
+        public void udfnGetSalesMenuDetails()
+        {
+            try
+            {
+                MR_Menu objMR_Menu = new MR_Menu();
+                objMR_Menu.ViewType = 0;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnSalesMenu(objMR_Menu);
+                objdserv.CloseConnection();
+
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            objDtSales_MenuDetails = objDs.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        //take all splfield  menu for sales user role master
+        public void udfnGetSalesMenuSplPermissionDetails()
+        {
+            try
+            {
+                MR_Menu objMR_Menu = new MR_Menu();
+                objMR_Menu.ViewType = 1;
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnSalesMenu(objMR_Menu);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            objDtSales_MenuSplPermission = objDs.Tables[0];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        //take a particular sales user 
+        public void udfnGetSalesMenuDetailsForUser()
+        {
+            try
+            {
+                MR_Menu objMR_Menu = new MR_Menu();
+                objMR_Menu.ViewType = 2;
+                objMR_Menu.paraUserRoleId = Convert.ToInt32(pbUserRoleId);
+                DataSet objDs = new DataSet();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnSalesMenu(objMR_Menu);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            objDtSales_MenuDetailsUser = objDs.Tables[0];
+                        }
+                        if (objDs.Tables[1].Rows.Count != 0)
+                        {
+                            objDtSales_MenuSplPermissionUser = objDs.Tables[1];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
                 objError.WriteFile(ex);
             }
         }
@@ -4755,6 +4859,32 @@ namespace ROMS
                 OpenReportForm(ref MainForm.objCP_Sales_GeneralSettings, "CP_Sales_GeneralSettings", 606);
                 PbCurrentForm = "7";
                  
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesUserRole_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Sales_UserRoleList, "CP_Sales_UserRoleList", 51403);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesSystemUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCp_SalesUserList, "CP_SalesUserList", 51402);
             }
             catch (Exception ex)
             {
