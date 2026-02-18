@@ -1,4 +1,4 @@
-﻿
+﻿ 
 using ROMS.Model;
 using System;
 using System.Collections.Generic;
@@ -98,7 +98,7 @@ namespace ROMS
         private ToolTip tpSalesPICode = new ToolTip();
         private List<string> imagePaths = new List<string>();
 
-        public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0;
+        public int varGroupCode = 0, varSubgroupCode = 0, varUnitCode = 0, varbrandcode = 0, varGroupId = 0, varSubGroupId = 0, varHsnId = 0, varUnitid = 0, varcompanyid = 0, varBrandId = 0, varBatchCode = 0, varPURSLID = 0, varPURRKID = 0, varSALESLID = 0, varSALERKID = 0, pbCloneFlag = 0, varPurHSNID = 0, varSalesHSNID = 0, varPurEffectiveFromErr = 0, varSalesEffectiveFromErr = 0,varMarginType = 0;
         public string varSubGroupName = "", varGroupName = "", varPurchaseLocation = "", varSalesLocation = "", varPurchaseRack = "", varMasterType = "0", varSalesRack = "", varBrandName = "", varRackDescription = "", varEname = "", varGRNid = "0", varNewproid = "0", varPurHSNCode = "", varPurGST = "", varSalesHSNCode = "", varSalesGST = "", varSubgroupType = "";
         int varF5Flag = 0;
         int varStatusFlag = 0, varStatusID = 0, varParentEnable = 0;
@@ -9210,12 +9210,18 @@ namespace ROMS
                 //}
                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValuePer")
                 {
-                    UpdateRateWithGST(e.RowIndex);
+                    if (Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true) /////CP ENABLE
+                    { 
+                        UpdateRateWithGST(e.RowIndex);
+                    }
                 }
 
                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValue")
                 {
-                    UpdateRateWithGSTValue(e.RowIndex);
+                    if (Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true) /////CP ENABLE
+                    {
+                        UpdateRateWithGST(e.RowIndex);
+                    }
                 }
 
                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffset")
@@ -9266,9 +9272,15 @@ namespace ROMS
                                 grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].ReadOnly = true;
                                 grdPrice.Rows[e.RowIndex].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
 
-                                UpdateRateWithGST(e.RowIndex);
+                                if (varMarginType == 482)  ////percentage
+                                {
+                                    UpdateRateWithGST(e.RowIndex); //// value change function
+                                }
+                                else ////value
+                                {
+                                    UpdateRateWithGSTValue(e.RowIndex); ////percentage change function
 
-                                UpdateRateWithGSTValue(e.RowIndex);
+                                }
                             }
                         }
                     }
@@ -9725,6 +9737,19 @@ namespace ROMS
                         //row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                         //row.Cells["clmOffset"].Style.BackColor = Color.LightGray; 
 
+                    }
+
+                    if (varMarginType == 482)
+                    {
+                        //gst comes then values disable
+                        row.Cells["clmOffsetValue"].ReadOnly = true;
+                        row.Cells["clmOffsetValue"].Style.BackColor = Color.LightGray;
+                    }
+                    else
+                    {
+                        //value comes then gst disable 
+                        row.Cells["clmOffsetValuePer"].ReadOnly = true;
+                        row.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                     }
 
                 }
@@ -10816,6 +10841,7 @@ namespace ROMS
                             txtTeller.Text = Convert.ToString(objDS.Tables[0].Rows[0]["PR_Inactive_Teller"]);
                             pbProHSNID = Convert.ToInt32(objDS.Tables[0].Rows[0]["HSN"]);
                             pbSalesHSNID = Convert.ToInt32(objDS.Tables[0].Rows[0]["SalesHSN"]);
+                            varMarginType = Convert.ToInt32(objDS.Tables[0].Rows[0]["Margintype"]);
                             lvVerified1.Visible = false;
                             if (pbCloneFlag == 0)
                             {
@@ -11906,7 +11932,6 @@ namespace ROMS
                             rowvalue.Cells["clmOffset"].ReadOnly = false; 
                             if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) == "454" || Convert.ToString(rowvalue.Cells["clmOffset"].Value) == "0")
                             {
-
                                 rowvalue.Cells["clmOffsetValuePer"].ReadOnly = true;
                                 rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.LightGray;
                                 rowvalue.Cells["clmOffsetValue"].ReadOnly = true;
@@ -11914,11 +11939,15 @@ namespace ROMS
                             } 
                             else
                             {
-
-                                rowvalue.Cells["clmOffsetValuePer"].ReadOnly = false;
-                                rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
-                                rowvalue.Cells["clmOffsetValue"].ReadOnly = false;
-                                rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                                if (varMarginType == 482)
+                                { 
+                                    rowvalue.Cells["clmOffsetValuePer"].ReadOnly = false;
+                                    rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
+                                }
+                                else { 
+                                    rowvalue.Cells["clmOffsetValue"].ReadOnly = false;
+                                    rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                                }
 
                             } 
                         }
@@ -11998,11 +12027,18 @@ namespace ROMS
                             }
 
                                 ///// margin percentage and value 
-                                grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = false;
-                            grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
 
-                            grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = false;
-                            grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                            if (varMarginType == 482)
+                            {
+                                grdPrice.Rows[row].Cells["clmOffsetValuePer"].ReadOnly = false;
+                                grdPrice.Rows[row].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
+                            }
+                            else
+                            {
+                                grdPrice.Rows[row].Cells["clmOffsetValue"].ReadOnly = false;
+                                grdPrice.Rows[row].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+
+                            }
 
                         }
                         else
@@ -12049,10 +12085,20 @@ namespace ROMS
 
                                 if (Convert.ToString(rowvalue.Cells["clmOffset"].Value) == "453")
                                 {
-                                    rowvalue.Cells["clmOffsetValuePer"].ReadOnly = false;
-                                    rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
-                                    rowvalue.Cells["clmOffsetValue"].ReadOnly = false;
-                                    rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+
+                                    if (varMarginType == 482)
+                                    {
+                                        rowvalue.Cells["clmOffsetValuePer"].ReadOnly = false;
+                                        rowvalue.Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
+                                    }
+                                    else
+                                    {
+                                        rowvalue.Cells["clmOffsetValue"].ReadOnly = false;
+                                        rowvalue.Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+
+                                    }
+
+
                                     rowvalue.Cells["clmAutoCalc"].ReadOnly = false;
                                     rowvalue.Cells["clmAutoCalc"].Style.BackColor = Color.White;
 
@@ -12119,7 +12165,16 @@ namespace ROMS
                         if (Convert.ToString(row.Cells["clmStatus"].Value) == "453" && Convert.ToString(row.Cells["clmoffset"].Value) == "453")
                         {
                             row.Cells["clmRate"].Value = newRate;
-                            UpdateRateWithGST(row.Index);
+
+                            if (varMarginType == 482)  ///percentage
+                            {
+                                UpdateRateWithGST(rowIndex); // value change function
+                            }
+                            else ////value
+                            {
+                                UpdateRateWithGSTValue(rowIndex); //percentage change function
+
+                            }
 
                             if (varuppValue != 0)
                             {
@@ -12281,22 +12336,39 @@ namespace ROMS
                         ///
                         if (type == 2) //from  autocalc
                         {
-                            UpdateRateWithGST(rowIndex);
-                             
+
+                            if (varMarginType == 482)  ///percentage
+                            {
+                                UpdateRateWithGST(rowIndex); // value change function
+                            }
+                            else ////value
+                            {
+                                UpdateRateWithGSTValue(rowIndex); //percentage change function
+
+                            }
+
 
                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = true;
                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].Style.BackColor = Color.LightGray;
                         }
+
                         else {
 
                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].ReadOnly = false;
                             grdPrice.Rows[rowIndex].Cells["clmNewRate"].Style.BackColor = Color.PaleGreen;
                         }
-
+                        if (varMarginType == 482)
+                        {
                             grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].ReadOnly = false;
-                        grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
-                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = false;
-                        grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+                            grdPrice.Rows[rowIndex].Cells["clmOffsetValuePer"].Style.BackColor = Color.PaleGreen;
+                        }
+                        else
+                        {
+                            grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].ReadOnly = false;
+                            grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Style.BackColor = Color.PaleGreen;
+
+                        }
+
 
                     }
                     else
