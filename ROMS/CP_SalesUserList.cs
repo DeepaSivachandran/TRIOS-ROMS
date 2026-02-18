@@ -178,13 +178,13 @@ namespace ROMS
                             grdSalesUserList.Columns["clmForceLogout"].Visible = true;
                             grdSalesUserList.Columns["ID"].Visible = false;
                             grdSalesUserList.Columns["UserRoleID"].Visible = false;
-                            grdSalesUserList.Columns["PassKeyID"].Visible = false;
+                            //grdSalesUserList.Columns["PassKeyID"].Visible = false;
                             grdSalesUserList.Columns["StatusID"].Visible = false;
-                            grdSalesUserList.Columns["LogType"].Visible = false;
+                            //grdSalesUserList.Columns["LogType"].Visible = false;
                             grdSalesUserList.Columns["S.No."].Width = 50;
                             grdSalesUserList.Columns["Name of the System User"].Width = 200;
                             grdSalesUserList.Columns["Status"].Width = 80;
-                            grdSalesUserList.Columns["Login Time"].Width = 120;
+                            //grdSalesUserList.Columns["Login Time"].Width = 120;
                             grdSalesUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSalesUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdSalesUserList.ClearSelection();
@@ -243,10 +243,10 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["UserRoleID"].Visible = false;
-                DGV_SearchGrid.Columns["PassKeyID"].Visible = false;
+                //DGV_SearchGrid.Columns["PassKeyID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Name of the System User"].Width = 200;
+                //DGV_SearchGrid.Columns["Name of the System User"].Width = 200;
                 DGV_SearchGrid.Columns["Status"].Width = 80; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
@@ -622,24 +622,24 @@ namespace ROMS
                         grdSalesUserList.Rows[i].Cells["Status"].Style.BackColor = Color.Tomato;
                         grdSalesUserList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
-                    if (Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value) == "412" || Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value).Trim() == "")
-                    {
-                        grdSalesUserList.Rows[i].Cells["clmForceLogout"].ReadOnly = true;
-                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
-                        print.Value = "";
-                        grdSalesUserList.Rows[i].Cells["clmForceLogout"] = print;
-                        print.ReadOnly = true;
-                    }
-                    if(Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value) == "411")   //Login
-                    {
-                        grdSalesUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.MediumSeaGreen;
-                        grdSalesUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
-                    }
-                    else if (Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value) == "412")   //Logout
-                    {
-                        //grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
-                        //grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
-                    }
+                    //if (Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value) == "412" || Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value).Trim() == "")
+                    //{
+                    //    grdSalesUserList.Rows[i].Cells["clmForceLogout"].ReadOnly = true;
+                    //    DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                    //    print.Value = "";
+                    //    grdSalesUserList.Rows[i].Cells["clmForceLogout"] = print;
+                    //    print.ReadOnly = true;
+                    //}
+                    //if(Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value) == "411")   //Login
+                    //{
+                    //    grdSalesUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.MediumSeaGreen;
+                    //    grdSalesUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
+                    //}
+                    //else if (Convert.ToString(grdSalesUserList.Rows[i].Cells["LogType"].Value) == "412")   //Logout
+                    //{
+                    //    //grdUserList.Rows[i].Cells["Login Status"].Style.BackColor = Color.Salmon;
+                    //    //grdUserList.Rows[i].Cells["Login Status"].Style.ForeColor = Color.White;
+                    //}
                     grdSalesUserList.ClearSelection();
                 }
             }

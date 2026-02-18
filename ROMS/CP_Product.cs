@@ -9211,8 +9211,12 @@ namespace ROMS
                 if (grdPrice.Columns[e.ColumnIndex].Name == "clmOffsetValuePer")
                 {
                     if (Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true) /////CP ENABLE
-                    { 
-                        UpdateRateWithGST(e.RowIndex);
+                    {   
+                        if (varMarginType == 482)  ////percentage
+                        {
+                            UpdateRateWithGST(e.RowIndex); //// value change function
+                        } 
+
                     }
                 }
 
@@ -9220,7 +9224,10 @@ namespace ROMS
                 {
                     if (Convert.ToBoolean(grdPrice.Rows[0].Cells["chkColumn"].Value) == true) /////CP ENABLE
                     {
-                        UpdateRateWithGST(e.RowIndex);
+                        if (varMarginType == 481)  ////percentage
+                        {
+                            UpdateRateWithGSTValue(e.RowIndex); ////percentage change function
+                        } 
                     }
                 }
 
@@ -12168,11 +12175,11 @@ namespace ROMS
 
                             if (varMarginType == 482)  ///percentage
                             {
-                                UpdateRateWithGST(rowIndex); // value change function
+                                UpdateRateWithGST(row.Index); // value change function
                             }
                             else ////value
                             {
-                                UpdateRateWithGSTValue(rowIndex); //percentage change function
+                                UpdateRateWithGSTValue(row.Index); //percentage change function
 
                             }
 

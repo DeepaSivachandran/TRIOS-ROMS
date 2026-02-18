@@ -173,7 +173,8 @@ namespace ROMS
                             grdSalesUserList.Columns["Created On"].Width = 120;
                             grdSalesUserList.Columns["Updated On"].Width = 120;
                             grdSalesUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSalesUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdSalesUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
+                            grdSalesUserList.Columns["Total Sales User"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
