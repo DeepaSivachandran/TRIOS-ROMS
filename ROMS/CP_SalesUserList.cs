@@ -326,11 +326,11 @@ namespace ROMS
 
 
                         MainForm.objCP_SalesUser.PbUserRoleID = Convert.ToInt32(grdSalesUserList.SelectedRows[0].Cells["UserRoleID"].Value);
-                        MainForm.objCP_SalesUser.PbPasskeyID = Convert.ToInt32(grdSalesUserList.SelectedRows[0].Cells["PassKeyID"].Value);
-                        MainForm.objCP_SalesUser.PbNameoftheUser = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["Name of the System User"].Value); 
+                        //MainForm.objCP_SalesUser.PbPasskeyID = Convert.ToInt32(grdSalesUserList.SelectedRows[0].Cells["PassKeyID"].Value);
+                        MainForm.objCP_SalesUser.PbNameoftheUser = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["Name of the System User"].Value);
                         MainForm.objCP_SalesUser.PbLoginid = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["Login ID"].Value);
                         MainForm.objCP_SalesUser.PbUserRole = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["User Role"].Value);
-                        MainForm.objCP_SalesUser.PbPasskey = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["Pass Key"].Value);
+                        //MainForm.objCP_SalesUser.PbPasskey = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["Pass Key"].Value);
                         MainForm.objCP_SalesUser.PbStatus = Convert.ToInt32(grdSalesUserList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_SalesUser.ShowDialog();
                     }
