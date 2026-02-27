@@ -212,21 +212,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled == true)
-                    {
-                        if (rbActive.Checked == true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInactive.Focus();
-                        }
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    cmbPasskey.Focus();
                 }
             }
             catch (Exception ex)
@@ -378,7 +364,7 @@ namespace ROMS
                         }
                     }
                 }
-                varResult = objspservice.udfnSalesUser(varType, Convert.ToInt32(varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, 0, varstatus, "", varoriginator, MainForm.pbUserID, 0, dtCheckedLocations, 0);
+                varResult = objspservice.udfnSalesUser(varType, Convert.ToInt32(varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, "", varoriginator, MainForm.pbUserID, 0, dtCheckedLocations, 0);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -471,14 +457,14 @@ namespace ROMS
                     txtCPassword.Text = "";
                     blnErrorFlag = true;
                 }
-                //if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
-                //{
-                //    epUser.SetError(cmbPasskey, "Please select pass key");
-                //    cmbPasskey.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                //    tppassword.ShowAlways = true;
-                //    tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
-                //    blnErrorFlag = true;
-                //}
+                if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
+                {
+                    epUser.SetError(cmbPasskey, "Please select pass key");
+                    cmbPasskey.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tppassword.ShowAlways = true;
+                    tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
+                    blnErrorFlag = true;
+                }
                 if (oldUsername != null && oldUsername != "")
                 {
                     if (oldUsername.Trim() == txtLoginID.Text.Trim())
@@ -544,7 +530,7 @@ namespace ROMS
             txtPassword.Text = "";
             txtCPassword.Text = "";
             cmbUserRole.SelectedIndex = 0;
-            //cmbPasskey.SelectedIndex = 0;
+            cmbPasskey.SelectedIndex = 0;
             rbActive.Checked = true;
             btnSave.Text = "Save";
             txtUserName.Focus();
@@ -665,7 +651,7 @@ namespace ROMS
                 this.ActiveControl = txtUserName;
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Sales_UserRole", "SUR_STSID=1 and SURID !=0 Order by SURID", "SUR_Name,SURID", cmbUserRole, "", "SUR_Name", "SURID");
-                //objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
@@ -819,7 +805,7 @@ namespace ROMS
                 txtUserName.Text = PbNameoftheUser;
                 txtLoginID.Text = PbLoginid;
                 cmbUserRole.SelectedValue = PbUserRoleID;
-                //cmbPasskey.SelectedValue = PbPasskeyID;
+                cmbPasskey.SelectedValue = PbPasskeyID;
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInactive.Checked = true; }
                 if(PbStatus==2)
                 {
@@ -945,6 +931,87 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void cmbPasskey_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbPasskey.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPasskey_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInactive.Focus();
+                        }
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPasskey_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPasskey_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbPasskey.SelectedValue) == "" || Convert.ToString(cmbPasskey.SelectedValue) == "-1")
+                {
+                    epUser.SetError(cmbPasskey, "Please select pass key");
+                    cmbPasskey.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tppassword.ShowAlways = true;
+                    tpPassKey.Show("Please select pass key", cmbPasskey, 5000);
+                }
+                else
+                {
+                    epUser.Clear();
+                    cmbPasskey.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbUserRole_KeyDown(object sender, KeyEventArgs e)
         {
             try
