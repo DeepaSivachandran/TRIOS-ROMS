@@ -175,7 +175,7 @@ namespace ROMS
                             grdSalesUserList.DataSource = objDs.Tables[0];
                             grdSalesUserList.Columns["clmReset"].Visible = true;
                             grdSalesUserList.Columns["clmReset"].Width = 110;
-                            grdSalesUserList.Columns["clmForceLogout"].Visible = true;
+                            grdSalesUserList.Columns["clmForceLogout"].Visible = false;
                             grdSalesUserList.Columns["ID"].Visible = false;
                             grdSalesUserList.Columns["UserRoleID"].Visible = false;
                             grdSalesUserList.Columns["PassKeyID"].Visible = false;
