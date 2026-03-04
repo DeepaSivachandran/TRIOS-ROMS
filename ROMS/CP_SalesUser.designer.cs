@@ -51,6 +51,8 @@
             this.txtDUserRole = new System.Windows.Forms.TextBox();
             this.epUser = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdLocation = new System.Windows.Forms.DataGridView();
+            this.cmbPasskey = new System.Windows.Forms.ComboBox();
+            this.txtDPassKey = new System.Windows.Forms.TextBox();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).BeginInit();
@@ -161,10 +163,10 @@
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(204, 158);
+            this.pnlStatus.Location = new System.Drawing.Point(204, 186);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(288, 27);
-            this.pnlStatus.TabIndex = 6;
+            this.pnlStatus.TabIndex = 7;
             // 
             // rbInactive
             // 
@@ -188,7 +190,7 @@
             this.rbActive.Location = new System.Drawing.Point(62, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
-            this.rbActive.TabIndex = 6;
+            this.rbActive.TabIndex = 7;
             this.rbActive.TabStop = true;
             this.rbActive.Text = "Active";
             this.rbActive.UseVisualStyleBackColor = true;
@@ -201,7 +203,7 @@
             this.txtDStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtDStatus.Enabled = false;
             this.txtDStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDStatus.Location = new System.Drawing.Point(24, 158);
+            this.txtDStatus.Location = new System.Drawing.Point(24, 186);
             this.txtDStatus.Name = "txtDStatus";
             this.txtDStatus.ReadOnly = true;
             this.txtDStatus.Size = new System.Drawing.Size(181, 27);
@@ -213,10 +215,10 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(327, 226);
+            this.btnSave.Location = new System.Drawing.Point(327, 219);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -230,7 +232,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(417, 226);
+            this.btnClose.Location = new System.Drawing.Point(417, 219);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
             this.btnClose.TabIndex = 10;
@@ -244,6 +246,8 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.cmbPasskey);
+            this.grbForm.Controls.Add(this.txtDPassKey);
             this.grbForm.Controls.Add(this.cmbUserRole);
             this.grbForm.Controls.Add(this.txtDUserRole);
             this.grbForm.Controls.Add(this.txtDPassword);
@@ -260,7 +264,7 @@
             this.grbForm.Controls.Add(this.txtUserName);
             this.grbForm.Location = new System.Drawing.Point(17, 4);
             this.grbForm.Name = "grbForm";
-            this.grbForm.Size = new System.Drawing.Size(518, 261);
+            this.grbForm.Size = new System.Drawing.Size(517, 258);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
@@ -328,12 +332,40 @@
             this.grdLocation.TabIndex = 9;
             this.grdLocation.Visible = false;
             // 
+            // cmbPasskey
+            // 
+            this.cmbPasskey.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPasskey.FormattingEnabled = true;
+            this.cmbPasskey.Items.AddRange(new object[] {
+            "Required",
+            "Not  Required"});
+            this.cmbPasskey.Location = new System.Drawing.Point(204, 158);
+            this.cmbPasskey.Name = "cmbPasskey";
+            this.cmbPasskey.Size = new System.Drawing.Size(288, 27);
+            this.cmbPasskey.TabIndex = 6;
+            this.cmbPasskey.Enter += new System.EventHandler(this.cmbPasskey_Enter);
+            this.cmbPasskey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbPasskey_KeyDown);
+            this.cmbPasskey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbPasskey_KeyPress);
+            this.cmbPasskey.Leave += new System.EventHandler(this.cmbPasskey_Leave);
+            // 
+            // txtDPassKey
+            // 
+            this.txtDPassKey.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDPassKey.Enabled = false;
+            this.txtDPassKey.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDPassKey.Location = new System.Drawing.Point(24, 159);
+            this.txtDPassKey.Name = "txtDPassKey";
+            this.txtDPassKey.ReadOnly = true;
+            this.txtDPassKey.Size = new System.Drawing.Size(181, 27);
+            this.txtDPassKey.TabIndex = 22;
+            this.txtDPassKey.Text = "Pass Key";
+            // 
             // CP_SalesUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(554, 274);
+            this.ClientSize = new System.Drawing.Size(546, 274);
             this.Controls.Add(this.grdLocation);
             this.Controls.Add(this.grbForm);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -381,5 +413,7 @@
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtUserName;
         public System.Windows.Forms.DataGridView grdLocation;
+        private System.Windows.Forms.ComboBox cmbPasskey;
+        private System.Windows.Forms.TextBox txtDPassKey;
     }
 }

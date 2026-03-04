@@ -43,8 +43,9 @@ namespace ROMS
                         string[] words = lines.Split(',');
                         // string pwd = Decrypt(words[3], "sblw-3hn8-sqoy19");
                         string pwd = _security.Decrypt(words[2], words[3]);
-                        connectstring = "Data Source=" + words[0] + ";Initial Catalog=" + words[1] + ";User ID=" + words[2] + "; pwd=" + pwd + ";pooling=false";
-                    }
+                        connectstring = "Data Source=" + words[0] + ";Initial Catalog=" + words[1] + ";User ID=" + words[2] + "; pwd=" + pwd + ";pooling=false" +
+                        ";Encrypt=False;" + "Pooling=False;";
+                        }
                 }
                 //  connectstring = System.Configuration.ConfigurationManager.AppSettings["ConnStr"];
             }

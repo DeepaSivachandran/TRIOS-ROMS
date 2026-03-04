@@ -75,7 +75,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 51402;
+                int currentMUCode = 51404;
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
@@ -175,10 +175,10 @@ namespace ROMS
                             grdSalesUserList.DataSource = objDs.Tables[0];
                             grdSalesUserList.Columns["clmReset"].Visible = true;
                             grdSalesUserList.Columns["clmReset"].Width = 110;
-                            grdSalesUserList.Columns["clmForceLogout"].Visible = true;
+                            grdSalesUserList.Columns["clmForceLogout"].Visible = false;
                             grdSalesUserList.Columns["ID"].Visible = false;
                             grdSalesUserList.Columns["UserRoleID"].Visible = false;
-                            //grdSalesUserList.Columns["PassKeyID"].Visible = false;
+                            grdSalesUserList.Columns["PassKeyID"].Visible = false;
                             grdSalesUserList.Columns["StatusID"].Visible = false;
                             //grdSalesUserList.Columns["LogType"].Visible = false;
                             grdSalesUserList.Columns["S.No."].Width = 50;
@@ -326,7 +326,7 @@ namespace ROMS
 
 
                         MainForm.objCP_SalesUser.PbUserRoleID = Convert.ToInt32(grdSalesUserList.SelectedRows[0].Cells["UserRoleID"].Value);
-                        //MainForm.objCP_SalesUser.PbPasskeyID = Convert.ToInt32(grdSalesUserList.SelectedRows[0].Cells["PassKeyID"].Value);
+                        MainForm.objCP_SalesUser.PbPasskeyID = Convert.ToInt32(grdSalesUserList.SelectedRows[0].Cells["PassKeyID"].Value);
                         MainForm.objCP_SalesUser.PbNameoftheUser = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["Name of the System User"].Value);
                         MainForm.objCP_SalesUser.PbLoginid = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["Login ID"].Value);
                         MainForm.objCP_SalesUser.PbUserRole = Convert.ToString(grdSalesUserList.SelectedRows[0].Cells["User Role"].Value);

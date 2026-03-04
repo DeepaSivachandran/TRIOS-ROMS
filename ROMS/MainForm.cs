@@ -4884,7 +4884,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objCp_SalesUserList, "CP_SalesUserList", 51402);
+                OpenReportForm(ref MainForm.objCp_SalesUserList, "CP_SalesUserList", 51404);
             }
             catch (Exception ex)
             {
