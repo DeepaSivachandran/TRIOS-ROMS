@@ -742,11 +742,6 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RPT_Godown_Valuation_Summary1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
-    </Compile>
     <Compile Include="Reports\RPT_INV_Supplierwise_Damage_Detail.cs">
       <DependentUpon>RPT_INV_Supplierwise_Damage_Detail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
