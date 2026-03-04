@@ -742,6 +742,11 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_Godown_Valuation_Summary1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Godown_Valuation_Summary.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_INV_Supplierwise_Damage_Detail.cs">
       <DependentUpon>RPT_INV_Supplierwise_Damage_Detail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5039,8 +5044,8 @@
     </Content>
     <Content Include="Reports\RPT_Godown_Valuation_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Godown_Valuation_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_Godown_Valuation_Summary1.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\RPT_CP_Product_Category_Location.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
