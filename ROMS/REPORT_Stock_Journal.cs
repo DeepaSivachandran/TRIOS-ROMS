@@ -281,7 +281,7 @@ namespace ROMS
 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID DESC", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {

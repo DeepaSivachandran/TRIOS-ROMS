@@ -7568,9 +7568,10 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["UT_Symbol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                                     DGV_FilterProduct.Columns["PR_RetailRate"].Visible = false;
 
-                                    DGV_FilterProduct.Columns["PR_EName"].Visible = true;
-                                    DGV_FilterProduct.Columns["PR_TName"].Visible = false;
-                                    DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
+                                    DGV_FilterProduct.Columns["PR_EName"].Visible = false;
+                                    DGV_FilterProduct.Columns["PR_TName"].Visible = true;
+                                    DGV_FilterProduct.Columns["PR_TName"].DisplayIndex = 2;
+                                    //DGV_FilterProduct.Columns["PR_EName"].DisplayIndex = 2;
 
                                 }
                                 else
