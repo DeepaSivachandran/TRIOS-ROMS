@@ -124,15 +124,9 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 50;
-                objMR_Supplier.paraSupplierid = varSupplierCode;
-                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraProductCode = varProductCode;
-                objMR_Supplier.paraCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                objspdservice.CloseConnection();
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductDamage(1, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0);
+                objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -1067,7 +1061,7 @@ namespace ROMS
                     }
                     else
                     {
-                        btnView.Focus();
+                        cmbStatus.Focus();
                     }
                 }
             }
@@ -1139,13 +1133,68 @@ namespace ROMS
             }
         }
 
+        private void cmbStatus_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbStatus_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbStatus.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void cmbReason_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if(e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbStatus.Focus();
                 }   
             }
             catch (Exception ex)
@@ -1172,7 +1221,7 @@ namespace ROMS
         {
             try
             {
-                cmbReportType.BackColor = Color.White;  
+                cmbReason.BackColor = Color.White;  
             }
             catch (Exception ex)
             {
