@@ -932,6 +932,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnTelegram.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1122,6 +1123,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbReason.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1171,6 +1173,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbStatus.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
