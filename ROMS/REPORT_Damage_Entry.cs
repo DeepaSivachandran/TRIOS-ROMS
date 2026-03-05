@@ -102,7 +102,7 @@ namespace ROMS
             try
             {
                 string varSupplierName = "-All-", varProductName = "-All-";
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0;
+                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varViewType = 11;
 
                 if (txtSupplier.Text.Trim() != "")
                 {
@@ -115,6 +115,18 @@ namespace ROMS
                     varProductName = txtProductName.Text.Trim();
                     varProductCode = Convert.ToInt32(lblProductcode.Text);
                 }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 520)
+                {
+                    varViewType = 12;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 521)
+                {
+                    varViewType = 13;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 522)
+                {
+                    varViewType = 14;
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -125,7 +137,7 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductDamage(1, 0, Convert.ToInt32(lblSupplierCode.Text), 0, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", 0, "", 0);
+                objDs = objspservice.udfnproductDamage(varViewType, 0, varSupplierCode, varScheduleCode, Convert.ToInt32(cmbConcern.SelectedValue), Convert.ToInt32(cmbStatus.SelectedValue), dpFromDate.Text, dpToDate.Text, "", varProductCode, "", Convert.ToInt32(cmbReason.SelectedValue));
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
@@ -137,14 +149,35 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_PO_Blocked_Products.rpt");
-                    objBillreport.SetParameterValue("paraCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraProductName", varProductName);
-                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 519)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Summary.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 520)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Damage_Detail.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 521)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Supplierwise_Damage_Detail.rpt");
+                        objBillreport.SetParameterValue("ParaSupplierId", varSupplierCode);
+                        objBillreport.SetParameterValue("ParaScheduleId", varScheduleCode);
+                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                        objBillreport.SetParameterValue("paraPRID", varProductCode);
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                        objBillreport.SetParameterValue("ParaReasonId", Convert.ToInt32(cmbReason.SelectedValue));
+                        objBillreport.SetParameterValue("paraReasonName", Convert.ToString(cmbReason.Text));
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 522)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_INV_Supplierwise_Damage_Summary.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraCompanyID", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraStatus", Convert.ToInt32(cmbStatus.SelectedValue));
+                    objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
+                    objBillreport.SetParameterValue("ParaDMFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("ParaDMToDate", dpToDate.Text);
 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -159,7 +192,7 @@ namespace ROMS
                     else
                     {
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        string varReportName = "Purchase_PO_Blocked_Products";
+                        string varReportName = "Damage_Entry";
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
@@ -226,8 +259,9 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID In (0,52) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (3,0) AND STSID NOT IN(-1,36)", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind = null;
-
+                cmbStatus.SelectedValue = 0;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;

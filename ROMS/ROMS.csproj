@@ -768,6 +768,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_INV_Supplierwise_Damage_Detail.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_Inward_FPurchase_Sticker_Print_100x70.cs">
       <AutoGen>True</AutoGen>
@@ -4130,6 +4131,7 @@
     <Content Include="Reports\RPT_INV_Supplierwise_Damage_Detail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_INV_Supplierwise_Damage_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\minimize_Form.png" />
     <None Include="Resources\Telegram.png" />
