@@ -336,6 +336,7 @@ namespace ROMS
 
         public static REPORT_Stock objREPORT_Stock;
         public static REPORT_Stock_Hold objREPORT_Stock_Hold;
+        public static REPORT_Damage_Entry objREPORT_Damage_Entry;
         public static INV_StockHold_Entry objINV_StockHold_Entry;
         public static REPORT_Stock_Aging objREPORT_Stock_Aging;
         public static REPORT_Stock_Valuation objREPORT_Stock_Valuation;
@@ -4885,6 +4886,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCp_SalesUserList, "CP_SalesUserList", 51404);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDamageEntryReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Damage_Entry, "REPORT_Damage_Entry", 80414);
+                PbCurrentForm = "7.2.2";
             }
             catch (Exception ex)
             {
