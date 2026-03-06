@@ -2140,6 +2140,7 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
                         objBillreport.SetParameterValue("paraSLID", varLocationId);
                         objBillreport.SetParameterValue("paraPRID", varProductId);
+                        objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                         objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         objValidation.CrySqlConnection(objBillreport);
