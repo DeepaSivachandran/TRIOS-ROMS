@@ -922,6 +922,7 @@ namespace ROMS
             {
                 if (txtProductName.Text != "")
                 {
+                    lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
 
                     Rrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["R.Rate"].Value);
                     prevRrate = Convert.ToDecimal( DGV_FilterProduct.SelectedRows[0].Cells["PREV R.Rate"].Value); 
@@ -930,12 +931,8 @@ namespace ROMS
                     ratetype = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PRPM_TYPE"].Value);
                     rate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PRPM_RATE"].Value);
                     prevrate = Convert.ToDecimal(DGV_FilterProduct.SelectedRows[0].Cells["PRPR_RATE_PREV"].Value);
-
-
                     lblPICode.Text = Convert.ToString(DGV_FilterProduct.SelectedRows[0].Cells["PR_PICode"].Value);
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
-
-                    lblProductcode.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                     udfnListviewProduct();
 
                 } 

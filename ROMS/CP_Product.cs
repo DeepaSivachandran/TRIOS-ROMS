@@ -9632,6 +9632,8 @@ namespace ROMS
                     if (Convert.ToString(row.Cells["clmStatus"].Value) == "454" )
                     {
                         row.Cells["clmNewRate"].Style.BackColor = Color.LightGray;
+                        row.Cells["clmRCFrom"].Value = "";
+                        row.Cells["clmRateStatus"].Value = "";
                     } 
                     else
                     {
@@ -11798,6 +11800,14 @@ namespace ROMS
                                 Convert.ToDecimal(objDs.Tables[0].Rows[i]["PRPM_NEW_RATE"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_NEW_RATE"].ToString();
                                 grdPrice.Rows[row].Cells["clmMinQty"].Value = objDs.Tables[0].Rows[i]["PRPM_MINQTY"] == DBNull.Value ||
                                 Convert.ToInt32(objDs.Tables[0].Rows[i]["PRPM_MINQTY"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPM_MINQTY"].ToString();
+
+
+                                grdPrice.Rows[row].Cells["clmLastRate"].Value = objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"] == DBNull.Value ||
+                                Convert.ToInt32(objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"]) == 0 ? "" : objDs.Tables[0].Rows[i]["PRPR_RATE_PREV"].ToString();
+
+                                grdPrice.Rows[row].Cells["clmRCFrom"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["RC From"]);
+
+                                grdPrice.Rows[row].Cells["clmRateStatus"].Value = Convert.ToString(objDs.Tables[0].Rows[i]["STS_Name"]);
 
 
                                 if (Convert.ToString(objDs.Tables[0].Rows[i]["PRPM_STSID"]) == "453")

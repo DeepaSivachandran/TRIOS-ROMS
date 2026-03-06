@@ -45,14 +45,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_Product));
             this.txtDPICode = new System.Windows.Forms.TextBox();
             this.txtPICode = new System.Windows.Forms.TextBox();
@@ -265,11 +268,6 @@
             this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DGV_FilterPurLocation = new System.Windows.Forms.DataGridView();
-            this.gpClassification = new System.Windows.Forms.GroupBox();
-            this.chkOwn = new System.Windows.Forms.CheckBox();
-            this.chkSpl = new System.Windows.Forms.CheckBox();
-            this.chkPrioirty = new System.Windows.Forms.CheckBox();
-            this.chkFocus = new System.Windows.Forms.CheckBox();
             this.grbIntermediateDetails = new System.Windows.Forms.GroupBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.txtProductionUnit = new System.Windows.Forms.TextBox();
@@ -282,6 +280,14 @@
             this.txtTeller = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.DGV_FilterSalesLocation = new System.Windows.Forms.DataGridView();
+            this.gpClassification = new System.Windows.Forms.GroupBox();
+            this.chkOwn = new System.Windows.Forms.CheckBox();
+            this.chkSpl = new System.Windows.Forms.CheckBox();
+            this.chkPrioirty = new System.Windows.Forms.CheckBox();
+            this.chkFocus = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkBillScheme = new System.Windows.Forms.CheckBox();
+            this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pnlImageContainer = new System.Windows.Forms.Panel();
@@ -316,6 +322,12 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblMarkupProd = new System.Windows.Forms.Label();
             this.grdPrice = new System.Windows.Forms.DataGridView();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnImageUpdate = new System.Windows.Forms.Button();
+            this.pnlProductDetails = new System.Windows.Forms.Panel();
             this.chkColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -328,17 +340,11 @@
             this.clmRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmBulkRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNewRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmLastRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRateStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRCFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmAutoSts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnImageUpdate = new System.Windows.Forms.Button();
-            this.pnlProductDetails = new System.Windows.Forms.Panel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.chkBillScheme = new System.Windows.Forms.CheckBox();
-            this.chkProductScheme = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errItems)).BeginInit();
@@ -359,9 +365,10 @@
             this.tabPage1.SuspendLayout();
             this.grpstktake.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterPurLocation)).BeginInit();
-            this.gpClassification.SuspendLayout();
             this.grbIntermediateDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).BeginInit();
+            this.gpClassification.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.pnlImageContainer.SuspendLayout();
@@ -374,7 +381,6 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDPICode
@@ -2953,59 +2959,6 @@
             this.DGV_FilterPurLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterPurLocation_CellDoubleClick);
             this.DGV_FilterPurLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterPurLocation_KeyDown);
             // 
-            // gpClassification
-            // 
-            this.gpClassification.Controls.Add(this.chkOwn);
-            this.gpClassification.Controls.Add(this.chkSpl);
-            this.gpClassification.Controls.Add(this.chkPrioirty);
-            this.gpClassification.Controls.Add(this.chkFocus);
-            this.gpClassification.Location = new System.Drawing.Point(579, 448);
-            this.gpClassification.Name = "gpClassification";
-            this.gpClassification.Size = new System.Drawing.Size(343, 65);
-            this.gpClassification.TabIndex = 111111168;
-            this.gpClassification.TabStop = false;
-            this.gpClassification.Text = "Product Classification";
-            // 
-            // chkOwn
-            // 
-            this.chkOwn.AutoSize = true;
-            this.chkOwn.Location = new System.Drawing.Point(286, 26);
-            this.chkOwn.Name = "chkOwn";
-            this.chkOwn.Size = new System.Drawing.Size(52, 24);
-            this.chkOwn.TabIndex = 37;
-            this.chkOwn.Text = "Own";
-            this.chkOwn.UseVisualStyleBackColor = true;
-            // 
-            // chkSpl
-            // 
-            this.chkSpl.AutoSize = true;
-            this.chkSpl.Location = new System.Drawing.Point(191, 26);
-            this.chkSpl.Name = "chkSpl";
-            this.chkSpl.Size = new System.Drawing.Size(66, 24);
-            this.chkSpl.TabIndex = 36;
-            this.chkSpl.Text = "Special";
-            this.chkSpl.UseVisualStyleBackColor = true;
-            // 
-            // chkPrioirty
-            // 
-            this.chkPrioirty.AutoSize = true;
-            this.chkPrioirty.Location = new System.Drawing.Point(94, 26);
-            this.chkPrioirty.Name = "chkPrioirty";
-            this.chkPrioirty.Size = new System.Drawing.Size(68, 24);
-            this.chkPrioirty.TabIndex = 35;
-            this.chkPrioirty.Text = "Priority";
-            this.chkPrioirty.UseVisualStyleBackColor = true;
-            // 
-            // chkFocus
-            // 
-            this.chkFocus.AutoSize = true;
-            this.chkFocus.Location = new System.Drawing.Point(6, 26);
-            this.chkFocus.Name = "chkFocus";
-            this.chkFocus.Size = new System.Drawing.Size(59, 24);
-            this.chkFocus.TabIndex = 34;
-            this.chkFocus.Text = "Focus";
-            this.chkFocus.UseVisualStyleBackColor = true;
-            // 
             // grbIntermediateDetails
             // 
             this.grbIntermediateDetails.Controls.Add(this.textBox15);
@@ -3199,6 +3152,90 @@
             this.DGV_FilterSalesLocation.Visible = false;
             this.DGV_FilterSalesLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSalesLocation_CellDoubleClick);
             this.DGV_FilterSalesLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterSalesLocation_KeyDown);
+            // 
+            // gpClassification
+            // 
+            this.gpClassification.Controls.Add(this.chkOwn);
+            this.gpClassification.Controls.Add(this.chkSpl);
+            this.gpClassification.Controls.Add(this.chkPrioirty);
+            this.gpClassification.Controls.Add(this.chkFocus);
+            this.gpClassification.Location = new System.Drawing.Point(579, 448);
+            this.gpClassification.Name = "gpClassification";
+            this.gpClassification.Size = new System.Drawing.Size(343, 65);
+            this.gpClassification.TabIndex = 111111168;
+            this.gpClassification.TabStop = false;
+            this.gpClassification.Text = "Product Classification";
+            // 
+            // chkOwn
+            // 
+            this.chkOwn.AutoSize = true;
+            this.chkOwn.Location = new System.Drawing.Point(286, 26);
+            this.chkOwn.Name = "chkOwn";
+            this.chkOwn.Size = new System.Drawing.Size(52, 24);
+            this.chkOwn.TabIndex = 37;
+            this.chkOwn.Text = "Own";
+            this.chkOwn.UseVisualStyleBackColor = true;
+            // 
+            // chkSpl
+            // 
+            this.chkSpl.AutoSize = true;
+            this.chkSpl.Location = new System.Drawing.Point(191, 26);
+            this.chkSpl.Name = "chkSpl";
+            this.chkSpl.Size = new System.Drawing.Size(66, 24);
+            this.chkSpl.TabIndex = 36;
+            this.chkSpl.Text = "Special";
+            this.chkSpl.UseVisualStyleBackColor = true;
+            // 
+            // chkPrioirty
+            // 
+            this.chkPrioirty.AutoSize = true;
+            this.chkPrioirty.Location = new System.Drawing.Point(94, 26);
+            this.chkPrioirty.Name = "chkPrioirty";
+            this.chkPrioirty.Size = new System.Drawing.Size(68, 24);
+            this.chkPrioirty.TabIndex = 35;
+            this.chkPrioirty.Text = "Priority";
+            this.chkPrioirty.UseVisualStyleBackColor = true;
+            // 
+            // chkFocus
+            // 
+            this.chkFocus.AutoSize = true;
+            this.chkFocus.Location = new System.Drawing.Point(6, 26);
+            this.chkFocus.Name = "chkFocus";
+            this.chkFocus.Size = new System.Drawing.Size(59, 24);
+            this.chkFocus.TabIndex = 34;
+            this.chkFocus.Text = "Focus";
+            this.chkFocus.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkBillScheme);
+            this.groupBox4.Controls.Add(this.chkProductScheme);
+            this.groupBox4.Location = new System.Drawing.Point(924, 448);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(219, 65);
+            this.groupBox4.TabIndex = 111111169;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Scheme Eligibility";
+            // 
+            // chkBillScheme
+            // 
+            this.chkBillScheme.AutoSize = true;
+            this.chkBillScheme.Location = new System.Drawing.Point(130, 27);
+            this.chkBillScheme.Name = "chkBillScheme";
+            this.chkBillScheme.Size = new System.Drawing.Size(90, 24);
+            this.chkBillScheme.TabIndex = 38;
+            this.chkBillScheme.Text = "Bill Scheme";
+            this.chkBillScheme.UseVisualStyleBackColor = true;
+            // 
+            // chkProductScheme
+            // 
+            this.chkProductScheme.AutoSize = true;
+            this.chkProductScheme.Location = new System.Drawing.Point(6, 27);
+            this.chkProductScheme.Name = "chkProductScheme";
+            this.chkProductScheme.Size = new System.Drawing.Size(116, 24);
+            this.chkProductScheme.TabIndex = 38;
+            this.chkProductScheme.Text = "Product Scheme";
+            this.chkProductScheme.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -3596,27 +3633,30 @@
             this.clmRate,
             this.clmBulkRate,
             this.clmNewRate,
+            this.clmLastRate,
+            this.clmRateStatus,
+            this.clmRCFrom,
             this.clmStatus,
             this.clmAutoSts});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdPrice.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdPrice.DefaultCellStyle = dataGridViewCellStyle26;
             this.grdPrice.EnableHeadersVisualStyles = false;
             this.grdPrice.GridColor = System.Drawing.Color.White;
             this.grdPrice.Location = new System.Drawing.Point(10, 34);
             this.grdPrice.Name = "grdPrice";
             this.grdPrice.RowHeadersVisible = false;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
-            this.grdPrice.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.White;
+            this.grdPrice.RowsDefaultCellStyle = dataGridViewCellStyle27;
             this.grdPrice.RowTemplate.Height = 25;
             this.grdPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdPrice.Size = new System.Drawing.Size(1133, 361);
+            this.grdPrice.Size = new System.Drawing.Size(1133, 578);
             this.grdPrice.TabIndex = 9;
             this.grdPrice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellContentClick);
             this.grdPrice.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrice_CellEndEdit);
@@ -3625,6 +3665,83 @@
             this.grdPrice.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdPrice_DataBindingComplete);
             this.grdPrice.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.grdPrice_DataError);
             this.grdPrice.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grdPrice_EditingControlShowing);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Remove";
+            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Remove";
+            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
+            this.dataGridViewImageColumn2.MinimumWidth = 6;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.ReadOnly = true;
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn2.Width = 50;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1086, 659);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(74, 29);
+            this.btnClose.TabIndex = 47;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
+            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(967, 659);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(113, 29);
+            this.btnSave.TabIndex = 46;
+            this.btnSave.Text = "Save as Draft";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
+            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
+            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
+            // 
+            // btnImageUpdate
+            // 
+            this.btnImageUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnImageUpdate.Image = global::ROMS.Properties.Resources.save;
+            this.btnImageUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImageUpdate.Location = new System.Drawing.Point(967, 659);
+            this.btnImageUpdate.Name = "btnImageUpdate";
+            this.btnImageUpdate.Size = new System.Drawing.Size(113, 29);
+            this.btnImageUpdate.TabIndex = 18;
+            this.btnImageUpdate.Text = "Update";
+            this.btnImageUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImageUpdate.UseVisualStyleBackColor = true;
+            this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
+            // 
+            // pnlProductDetails
+            // 
+            this.pnlProductDetails.Controls.Add(this.tbProduct);
+            this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
+            this.pnlProductDetails.Name = "pnlProductDetails";
+            this.pnlProductDetails.Size = new System.Drawing.Size(1178, 655);
+            this.pnlProductDetails.TabIndex = 1111144;
             // 
             // chkColumn
             // 
@@ -3727,6 +3844,31 @@
             this.clmNewRate.Name = "clmNewRate";
             this.clmNewRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // clmLastRate
+            // 
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.LightGray;
+            this.clmLastRate.DefaultCellStyle = dataGridViewCellStyle23;
+            this.clmLastRate.HeaderText = "Last Rate";
+            this.clmLastRate.Name = "clmLastRate";
+            this.clmLastRate.ReadOnly = true;
+            // 
+            // clmRateStatus
+            // 
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.LightGray;
+            this.clmRateStatus.DefaultCellStyle = dataGridViewCellStyle24;
+            this.clmRateStatus.HeaderText = "Status";
+            this.clmRateStatus.Name = "clmRateStatus";
+            this.clmRateStatus.ReadOnly = true;
+            this.clmRateStatus.Width = 130;
+            // 
+            // clmRCFrom
+            // 
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.LightGray;
+            this.clmRCFrom.DefaultCellStyle = dataGridViewCellStyle25;
+            this.clmRCFrom.HeaderText = "RC From";
+            this.clmRCFrom.Name = "clmRCFrom";
+            // 
             // clmStatus
             // 
             this.clmStatus.HeaderText = "StatusValue";
@@ -3738,114 +3880,6 @@
             this.clmAutoSts.HeaderText = "AutoSts";
             this.clmAutoSts.Name = "clmAutoSts";
             this.clmAutoSts.Visible = false;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "Remove";
-            this.dataGridViewImageColumn1.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn1.MinimumWidth = 6;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 50;
-            // 
-            // dataGridViewImageColumn2
-            // 
-            this.dataGridViewImageColumn2.HeaderText = "Remove";
-            this.dataGridViewImageColumn2.Image = global::ROMS.Properties.Resources.remove;
-            this.dataGridViewImageColumn2.MinimumWidth = 6;
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            this.dataGridViewImageColumn2.ReadOnly = true;
-            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn2.Width = 50;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1086, 659);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(74, 29);
-            this.btnClose.TabIndex = 47;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
-            this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(967, 659);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(113, 29);
-            this.btnSave.TabIndex = 46;
-            this.btnSave.Text = "Save as Draft";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
-            this.btnSave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnSave_KeyDown);
-            this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
-            // 
-            // btnImageUpdate
-            // 
-            this.btnImageUpdate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnImageUpdate.Image = global::ROMS.Properties.Resources.save;
-            this.btnImageUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImageUpdate.Location = new System.Drawing.Point(967, 659);
-            this.btnImageUpdate.Name = "btnImageUpdate";
-            this.btnImageUpdate.Size = new System.Drawing.Size(113, 29);
-            this.btnImageUpdate.TabIndex = 18;
-            this.btnImageUpdate.Text = "Update";
-            this.btnImageUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImageUpdate.UseVisualStyleBackColor = true;
-            this.btnImageUpdate.Click += new System.EventHandler(this.btnImageUpdate_Click);
-            // 
-            // pnlProductDetails
-            // 
-            this.pnlProductDetails.Controls.Add(this.tbProduct);
-            this.pnlProductDetails.Location = new System.Drawing.Point(8, 0);
-            this.pnlProductDetails.Name = "pnlProductDetails";
-            this.pnlProductDetails.Size = new System.Drawing.Size(1178, 655);
-            this.pnlProductDetails.TabIndex = 1111144;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.chkBillScheme);
-            this.groupBox4.Controls.Add(this.chkProductScheme);
-            this.groupBox4.Location = new System.Drawing.Point(924, 448);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(219, 65);
-            this.groupBox4.TabIndex = 111111169;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Scheme Eligibility";
-            // 
-            // chkBillScheme
-            // 
-            this.chkBillScheme.AutoSize = true;
-            this.chkBillScheme.Location = new System.Drawing.Point(130, 27);
-            this.chkBillScheme.Name = "chkBillScheme";
-            this.chkBillScheme.Size = new System.Drawing.Size(90, 24);
-            this.chkBillScheme.TabIndex = 38;
-            this.chkBillScheme.Text = "Bill Scheme";
-            this.chkBillScheme.UseVisualStyleBackColor = true;
-            // 
-            // chkProductScheme
-            // 
-            this.chkProductScheme.AutoSize = true;
-            this.chkProductScheme.Location = new System.Drawing.Point(6, 27);
-            this.chkProductScheme.Name = "chkProductScheme";
-            this.chkProductScheme.Size = new System.Drawing.Size(116, 24);
-            this.chkProductScheme.TabIndex = 38;
-            this.chkProductScheme.Text = "Product Scheme";
-            this.chkProductScheme.UseVisualStyleBackColor = true;
             // 
             // CP_Product
             // 
@@ -3904,11 +3938,13 @@
             this.tabPage1.PerformLayout();
             this.grpstktake.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterPurLocation)).EndInit();
-            this.gpClassification.ResumeLayout(false);
-            this.gpClassification.PerformLayout();
             this.grbIntermediateDetails.ResumeLayout(false);
             this.grbIntermediateDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSalesLocation)).EndInit();
+            this.gpClassification.ResumeLayout(false);
+            this.gpClassification.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -3925,8 +3961,6 @@
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPrice)).EndInit();
             this.pnlProductDetails.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4203,6 +4237,9 @@
         private System.Windows.Forms.TextBox txtDSalesPICode;
         private System.Windows.Forms.TextBox txtProductUsage;
         private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkBillScheme;
+        private System.Windows.Forms.CheckBox chkProductScheme;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
@@ -4215,10 +4252,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmBulkRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNewRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmLastRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRateStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRCFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAutoSts;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox chkBillScheme;
-        private System.Windows.Forms.CheckBox chkProductScheme;
     }
 }
