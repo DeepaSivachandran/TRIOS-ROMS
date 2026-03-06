@@ -742,6 +742,34 @@
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_INV_Damage_Detail.cs">
+      <DependentUpon>RPT_INV_Damage_Detail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_INV_Supplierwise_Damage_Summary.cs">
+      <DependentUpon>RPT_INV_Supplierwise_Damage_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_INV_Damage_Summary.cs">
+      <DependentUpon>RPT_INV_Damage_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_INV_Supplierwise_Damage_Detail.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_INV_Supplierwise_Damage_Detail.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\RPT_Inward_FPurchase_Sticker_Print_100x70.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1144,6 +1172,12 @@
     </Compile>
     <Compile Include="REPORT_CP_UserRole.designer.cs">
       <DependentUpon>REPORT_CP_UserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_Damage_Entry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_Damage_Entry.designer.cs">
+      <DependentUpon>REPORT_Damage_Entry.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_RC_PriceList.cs">
       <SubType>Form</SubType>
@@ -4094,6 +4128,11 @@
     <None Include="Resources\crop.jpg" />
     <None Include="Resources\left rotate.jpg" />
     <None Include="Resources\info.png" />
+    <Content Include="Reports\RPT_INV_Supplierwise_Damage_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_INV_Supplierwise_Damage_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\minimize_Form.png" />
     <None Include="Resources\Telegram.png" />
     <None Include="Resources\Telegram.jpg" />
@@ -5018,8 +5057,8 @@
     </Content>
     <Content Include="Reports\RPT_Godown_Valuation_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Godown_Valuation_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_Godown_Valuation_Summary1.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\RPT_CP_Product_Category_Location.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -5106,6 +5145,21 @@
       <LastGenOutput>RPT_CP_User_Role.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_INV_Damage_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_INV_Damage_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_INV_Damage_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_INV_Damage_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_INV_Supplierwise_Damage_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_INV_Supplierwise_Damage_Summary.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_Inward_FPurchase_Sticker_Print_100x70.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Inward_FPurchase_Sticker_Print_100x70.cs</LastGenOutput>
@@ -6264,6 +6318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_UserRole.resx">
       <DependentUpon>REPORT_CP_UserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_Damage_Entry.resx">
+      <DependentUpon>REPORT_Damage_Entry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_RC_PriceList.resx">
       <DependentUpon>REPORT_RC_PriceList.cs</DependentUpon>
