@@ -12247,8 +12247,7 @@ namespace ROMS
                 double NewRate = Rate * (newGst / 100);
                 var status = grdPrice.Rows[rowIndex].Cells["clmoffset"].Value?.ToString();
                 var statusAutoUpdate = grdPrice.Rows[rowIndex].Cells["clmAutoSts"].Value?.ToString();
-                var mainstatus = grdPrice.Rows[rowIndex].Cells["clmstatus"].Value?.ToString();
-
+                var mainstatus = grdPrice.Rows[rowIndex].Cells["clmstatus"].Value?.ToString();  
                 NewRate = Math.Round(NewRate, 2, MidpointRounding.AwayFromZero);
                 Rate = Math.Round(Rate, 2, MidpointRounding.AwayFromZero);
 
@@ -12258,12 +12257,12 @@ namespace ROMS
                 {
                     if (status == "453" && statusAutoUpdate == "453") //yes
                     {
-
-                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + NewRate;
+                        grdPrice.Columns["clmRate"].DefaultCellStyle.Format = "0.00";
+                        grdPrice.Rows[rowIndex].Cells["clmRate"].Value = Rate + Convert.ToDouble(NewRate.ToString("0.00"));
                         if (vartype != 0)
                         {
-                            grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value = NewRate;
-
+                            grdPrice.Columns["clmOffsetValue"].DefaultCellStyle.Format = "0.00";
+                            grdPrice.Rows[rowIndex].Cells["clmOffsetValue"].Value = Convert.ToDouble(NewRate.ToString("0.00"));
                         }
 
                     }
