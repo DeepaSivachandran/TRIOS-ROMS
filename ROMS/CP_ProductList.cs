@@ -17,6 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
+        DataTable dtDefaultCategoryGrid = new DataTable();
         public int varconcern = 0, vargroup = 0, varsubgroup = 0, varcategory = 0;
         public string varUserID = "";
         Boolean BlnSearchImageYN = false;
@@ -368,6 +369,187 @@ namespace ROMS
                 tsTotPro.Text = Convert.ToString(grdItemList.Rows.Count);
             }
         }
+
+        public void udfnCategoryWiseList()
+        {
+            try
+            {
+                dtDefaultCategoryGrid = null;
+                DGV_SearchGridPro.DataSource = null;
+                picLoader.Visible = true;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                //********** To display a data in a grid  ******************
+                grdProDetails.DataSource = null;
+
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objdserv = new SPDataService();
+
+                int varGroupId = 0;
+                if (txtProductGroup.Text == "")
+                {
+                    varGroupId = 0;
+                }
+                else
+                {
+                    DataSet objDsGroup = new DataSet();
+                    SPDataService objDServ1 = new SPDataService();
+                    objDsGroup = objDServ1.udfnGroupList(9, 0, 0, txtProductGroup.Text.Trim(), 0);
+                    objDServ1.CloseConnection();
+                    if (objDsGroup != null)
+                    {
+                        if (objDsGroup.Tables.Count > 0)
+                        {
+                            if (objDsGroup.Tables[0].Rows.Count > 0)
+                            {
+                                varGroupId = Convert.ToInt32(objDsGroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+
+                int varSubGroupId = 0;
+                if (txtProductSubGroup.Text == "")
+                {
+                    varSubGroupId = 0;
+                }
+                else
+                {
+                    DataSet objDssubgroup = new DataSet();
+                    SPDataService objDserv = new SPDataService();
+                    objDssubgroup = objDserv.udfnSubGroupList(11, 0, "", 0, 0, txtProductSubGroup.Text.Trim(), 0, 0, 0, 0, 0);
+                    objDserv.CloseConnection();
+                    if (objDssubgroup != null)
+                    {
+                        if (objDssubgroup.Tables.Count > 0)
+                        {
+                            if (objDssubgroup.Tables[0].Rows.Count > 0)
+                            {
+                                varSubGroupId = Convert.ToInt32(objDssubgroup.Tables[0].Rows[0][0]);
+                            }
+                        }
+                    }
+                }
+                int varBrandId = 0;
+                if (txtBrand.Text.Trim() != "")
+                {
+                    varBrandId = Convert.ToInt32(lblBrandId.Text);
+                }
+                int varLocationId = 0;
+                if (txtLocation.Text.Trim() != "")
+                {
+                    varLocationId = Convert.ToInt32(lblLocationId.Text);
+                }
+                int varImageType = 0;
+                if (Convert.ToInt32(cmbImage.SelectedValue) == 11)
+                {
+                    varImageType = 1;   //Yes
+                }
+                else if (Convert.ToInt32(cmbImage.SelectedValue) == 12)
+                {
+                    varImageType = 2;   //No
+                }
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 0;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
+                objMR_Product.paraType = Convert.ToInt32(cmbType.SelectedValue);
+                objMR_Product.paraGroup = varGroupId;
+                objMR_Product.paraSubgroup = varSubGroupId;
+                objMR_Product.paraBrandID = varBrandId;
+                objMR_Product.paraLocationId = varLocationId;
+                objMR_Product.paraUnitId = Convert.ToInt32(cmbUnit.SelectedValue);
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.paraImageType = varImageType;
+                objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
+                objMR_Product.paraFlag = Convert.ToInt32(cmbProClassification.SelectedValue);
+                objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
+                objMR_Product.paraRateCategory = Convert.ToInt32(cmbRateCategory.SelectedValue);
+                objMR_Product.paraProductType = Convert.ToInt32(cmbOthers.SelectedValue);
+                objMR_Product.paraCreatedON = dtCreatedOn.Text;
+                objDs = objdserv.udfnproductmasterlist(objMR_Product);
+                objdserv.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblNoRecordsFound.Visible = false;
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblNoRecordsFound.Visible = false;
+                            lblNoRecordsFound.SendToBack();
+                            grdProDetails.DataSource = objDs.Tables[0];
+                            grdProDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDetails.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDetails.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdProDetails.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdProDetails.Columns["GST %"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdProDetails.Columns["clmClone"].Frozen = true;
+                            grdProDetails.Columns["S.No."].Frozen = true;
+                            grdProDetails.Columns["Concern"].Frozen = true; 
+                            grdProDetails.Columns["P.I Code"].Frozen = true;
+                            grdProDetails.Columns["Product Name in Tamil"].Frozen = true;
+                            grdProDetails.Columns["S.No."].Width = 50;
+                            grdProDetails.Columns["Product Name in English"].Width = 300;
+                            grdProDetails.Columns["P.I Code"].Width = 100;
+                            grdProDetails.Columns["Product Name in Tamil"].Width = 300;
+                            grdProDetails.Columns["Product Subgroup"].Width = 150;
+                            grdProDetails.Columns["Purchase Location"].Width = 150;
+                            grdProDetails.Columns["Product Group"].Width = 150;
+                            grdProDetails.Columns["Status"].Width = 80;
+                            grdProDetails.Columns["HSN Name"].Width = 230;
+                            grdProDetails.Columns["ID"].Visible = false;
+                            grdProDetails.Columns["STSID"].Visible = false;
+                            grdProDetails.Columns["PRGID"].Visible = false;
+                            grdProDetails.Columns["PR_PRSGID"].Visible = false;
+                            grdProDetails.Columns["PR_HSNID"].Visible = false;
+                            grdProDetails.Columns["PR_UTID"].Visible = false;
+                            grdProDetails.Columns["PR_COMID"].Visible = false;
+                            grdProDetails.Columns["PR_BDID"].Visible = false;
+                            grdProDetails.Columns["PR_SALE_RKID"].Visible = false;
+                            grdProDetails.Columns["PR_SALE_SLID"].Visible = false;
+                            grdProDetails.Columns["PR_PUR_RKID"].Visible = false;
+                            grdProDetails.Columns["PR_PUR_SLID"].Visible = false;
+                            grdProDetails.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                        }
+                        else
+                        {
+                            lblNoRecordsFound.Visible = true;
+                            lblNoRecordsFound.BringToFront();
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                        lblNoRecordsFound.BringToFront();
+                    }
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+                udfnCategorySearchGridHead();
+                if (lblNoRecordsFound.Visible == true)
+                {
+                    dtDefaultCategoryGrid = objDs.Tables[0];
+                    udfnDefaultCategorySearchGrid();
+                }
+                else { DGV_SearchGridPro.ScrollBars = ScrollBars.Vertical; }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+                tsTotPro.Text = Convert.ToString(grdProDetails.Rows.Count);
+            }
+        }
         public void udfnDefaultSearchGrid()
         {
             try
@@ -394,6 +576,39 @@ namespace ROMS
                 DGV_SearchGrid.Columns["PR_PUR_RKID"].Visible = false;
                 DGV_SearchGrid.Columns["PR_PUR_SLID"].Visible = false;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDefaultCategorySearchGrid()
+        {
+            try
+            {
+                DGV_SearchGridPro.DataSource = dtDefaultCategoryGrid;
+                DGV_SearchGridPro.Columns["S.No."].Width = 50;
+                DGV_SearchGridPro.Columns["Product Name in English"].Width = 300;
+                DGV_SearchGridPro.Columns["P.I Code"].Width = 100;
+                DGV_SearchGridPro.Columns["Product Name in Tamil"].Width = 300;
+                DGV_SearchGridPro.Columns["Product Subgroup"].Width = 150;
+                DGV_SearchGridPro.Columns["Product Group"].Width = 150;
+                DGV_SearchGridPro.Columns["Status"].Width = 80;
+                DGV_SearchGridPro.Columns["HSN Name"].Width = 230;
+                DGV_SearchGridPro.Columns["ID"].Visible = false;
+                DGV_SearchGridPro.Columns["STSID"].Visible = false;
+                DGV_SearchGridPro.Columns["PRGID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_PRSGID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_HSNID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_UTID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_COMID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_BDID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_SALE_RKID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_SALE_SLID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_PUR_RKID"].Visible = false;
+                DGV_SearchGridPro.Columns["PR_PUR_SLID"].Visible = false;
+                DGV_SearchGridPro.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -505,6 +720,35 @@ namespace ROMS
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
                     DGV_SearchGrid.Columns[0].ReadOnly = true;
                     DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
+                }
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+        private void udfnCategorySearchGridHead()
+        {
+            try
+            {
+                if (lblNoRecordsFound.Visible == false)
+                {
+                    udfnGridSearchHeading(grdProDetails, DGV_SearchGridPro);
+                    DGV_SearchGridPro.Columns.Clear();
+                    List<int> visibleColumns = new List<int>();
+                    foreach (DataGridViewColumn col in grdProDetails.Columns)
+                    {
+                        DGV_SearchGridPro.Columns.Add((DataGridViewColumn)col.Clone());
+                        visibleColumns.Add(col.Index);
+                    }
+                    int rowIndex = 0;
+                    DGV_SearchGridPro.Rows.Clear();
+                    DGV_SearchGridPro.Rows.Add();
+                    DGV_SearchGridPro.Columns[0].DefaultCellStyle.NullValue = null;
+                    for (int i = 0; i < visibleColumns.Count; i++)
+                    {
+                        DGV_SearchGridPro.Rows[rowIndex].Cells[i].Value = "";
+                    }
+                    DGV_SearchGridPro.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGridPro.Columns[0].ReadOnly = true;
+                    DGV_SearchGridPro.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -983,7 +1227,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-
         }
 
         private void BtnExport_Click(object sender, EventArgs e)
