@@ -93,6 +93,7 @@ namespace ROMS.Model
         public int paraOffSetType = 0;        
         public string paraRateCategorys = "0"; 
         public int paraProductCategoryType = 0;
+        public int paraListType = 0;
 
     }
 }
