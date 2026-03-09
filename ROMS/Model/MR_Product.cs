@@ -74,6 +74,7 @@ namespace ROMS.Model
         public int ParaStockType = 0;
         public int paraImageType = 0;
         public int paraUnitId = 0;
+        public string paraDate = "";
 
         public DataTable paraSplFieldMapped = null;
 

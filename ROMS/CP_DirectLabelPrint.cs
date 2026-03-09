@@ -1053,6 +1053,7 @@ namespace ROMS
         {
             try
             {
+                //udfnPrintSave();
                 udfnPreview();
             }
             catch (Exception ex)
@@ -1061,7 +1062,58 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        public void udfnPrintSave()
+        {
+            try
+            {
+                string result = "";
+                SPDataService objspdservice = new SPDataService();
+                MR_Product objMR_Product = new MR_Product();
+                string varExpiryDate = "", varMfdDate = "";
+                if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
+                {
+                    varMfdDate = txtDay.Text + "/" + txtMonth.Text + "/" + txtYear.Text;
+                    varExpiryDate = txtEDay.Text + "/" + txtEMonth.Text + "/" + txtEYear.Text;
+                }
+                objMR_Product.paraViewType = 1;
+                objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
+                objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
+                objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text);
+                objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
+                objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
+                objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
+                objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
+                objMR_Product.paraCopies = Convert.ToInt32(txtNoofcopy.Text);
+                objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);
+                objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue); ;
+                objMR_Product.paraLabelTitle = Convert.ToInt32(cmbTitle.SelectedValue);
+                objMR_Product.paraProductLabelNameEng = txtLabelProduct.Text;
+                objMR_Product.ParaFromDate = varMfdDate;
+                objMR_Product.ParaToDate = varExpiryDate;
+                objMR_Product.paraOriginator = "Direct Label Print Save";
+                result = objspdservice.udfnLabelPrint(objMR_Product);
+                objspdservice.CloseConnection();
+                string[] varvalue = result.Split('~');
+                if (result.Split('~')[0] == "3")
+                {
+                    if (result.Split('~')[0] != "1")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainForm.objCP_DirectLabelList.udfnList();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
         private void btnReset_Click(object sender, EventArgs e)
         {

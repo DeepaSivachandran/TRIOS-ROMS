@@ -1015,11 +1015,11 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(280, 521);
+            this.btnpreview.Location = new System.Drawing.Point(271, 521);
             this.btnpreview.Name = "btnpreview";
-            this.btnpreview.Size = new System.Drawing.Size(119, 33);
+            this.btnpreview.Size = new System.Drawing.Size(128, 33);
             this.btnpreview.TabIndex = 13;
-            this.btnpreview.Text = "Preview";
+            this.btnpreview.Text = "Save && Preview";
             this.btnpreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnpreview.UseVisualStyleBackColor = true;
             this.btnpreview.Click += new System.EventHandler(this.btnpreview_Click);
