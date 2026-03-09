@@ -24,6 +24,7 @@ namespace ROMS
         public int MenuCode = 0; public int varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0, varUpDownKeyLocation = 0;
         string privilege = "";
         public List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+        public bool varListTypeView = false, varListTypeEdit = false;
         public CP_ProductList()
         {
             InitializeComponent();
@@ -351,6 +352,8 @@ namespace ROMS
                             grdItemList.Columns["PR_SALE_SLID"].Visible = false;
                             grdItemList.Columns["PR_PUR_RKID"].Visible = false;
                             grdItemList.Columns["PR_PUR_SLID"].Visible = false;
+                            grdItemList.Columns["Rate"].Visible = false;
+                            grdItemList.Columns["Old Price"].Visible = false;
                             grdItemList.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
@@ -514,6 +517,8 @@ namespace ROMS
                             grdProDetails.DataSource = objDs.Tables[0];
                             grdProDetails.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdProDetails.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdProDetails.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdProDetails.Columns["Old Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDetails.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDetails.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdProDetails.Columns["GST %"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -542,6 +547,9 @@ namespace ROMS
                             grdProDetails.Columns["PR_SALE_SLID"].Visible = false;
                             grdProDetails.Columns["PR_PUR_RKID"].Visible = false;
                             grdProDetails.Columns["PR_PUR_SLID"].Visible = false;
+                            grdProDetails.Columns["R.Rate"].Visible = false;
+                            grdProDetails.Columns["W.Rate"].Visible = false;
+                            grdProDetails.Columns["Old Price"].Visible = false;
                             grdProDetails.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
@@ -1497,7 +1505,23 @@ namespace ROMS
                 tsbEdit.Visible = privilege.Contains("3");
                 tssEdit.Visible = privilege.Contains("3");
                 tsbDelete.Visible = privilege.Contains("4");  
-                btnExport.Visible = privilege.Contains("6"); 
+                btnExport.Visible = privilege.Contains("6");
+
+                if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
+                {
+                    varListTypeView = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 47 && sp.EditAccess.Split(',').Contains("9"));
+                    varListTypeEdit = MainForm.objCP_Itemlist.SpecialPermissions.Any(sp => sp.MUP_Code == 47 && sp.EditAccess.Split(',').Contains("10"));
+
+                    if (varListTypeView == true && varListTypeEdit == true)
+                    {
+                        cmbListType.Enabled= true;
+                    }
+                    else
+                    {
+                        cmbListType.SelectedValue = 542;    
+                        cmbListType.Enabled = false;
+                    }
+                }
             }
             catch (Exception ex)
             {
