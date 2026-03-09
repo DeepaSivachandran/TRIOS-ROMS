@@ -840,6 +840,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_Stock_Valuation_Groupwise_Subgroup.cs">
+      <DependentUpon>RPT_Stock_Valuation_Groupwise_Subgroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_ZeroVsNonPOGenerated.cs">
       <DependentUpon>RPT_ZeroVsNonPOGenerated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5335,6 +5342,11 @@
       <LastGenOutput>RPT_Sticker_Print_Rack_Description_50x60.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="Reports\RPT_Stock_Valuation_Groupwise_Subgroup.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Stock_Valuation_Groupwise_Subgroup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\RPT_ZeroVsNonPOGenerated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_ZeroVsNonPOGenerated.cs</LastGenOutput>

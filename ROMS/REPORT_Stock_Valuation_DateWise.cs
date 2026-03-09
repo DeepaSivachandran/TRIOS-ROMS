@@ -168,8 +168,15 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraSubGroupID", varSubgroupCode);
                         objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
                     }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 545)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Valuation_Groupwise_Subgroup.rpt");
+                        objBillreport.SetParameterValue("paraGroupID", varGroupCode);
+                        objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    }
                     objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbRateCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbRateCategory.Text));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraDate", dpFromDate.Text);
                     objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
@@ -265,7 +272,7 @@ namespace ROMS
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 DataBind objDataBind = new DataBind();
                 //Transaction id 	131
-                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=139", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
