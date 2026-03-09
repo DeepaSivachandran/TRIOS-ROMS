@@ -120,6 +120,10 @@ namespace ROMS
                 {
                     varFlag = 2;
                 }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 545)
+                {
+                    varFlag = 3;
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
