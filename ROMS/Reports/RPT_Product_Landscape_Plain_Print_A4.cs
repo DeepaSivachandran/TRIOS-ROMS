@@ -194,41 +194,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaFlag {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraId {
             get {
                 return this.DataDefinition.ParameterFields[10];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraLabelCount {
-            get {
-                return this.DataDefinition.ParameterFields[11];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaMRP {
-            get {
-                return this.DataDefinition.ParameterFields[12];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaProductCode {
-            get {
-                return this.DataDefinition.ParameterFields[13];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaRetail {
-            get {
-                return this.DataDefinition.ParameterFields[14];
             }
         }
     }

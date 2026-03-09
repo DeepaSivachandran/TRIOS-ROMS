@@ -41,6 +41,7 @@ namespace ROMS
         public int varClose = 0;
 
         public int pbLPID = 0;
+        public string varDirectLablPrintId = "0";
         public CP_DirectLabelPrint()
         {
             InitializeComponent();
@@ -495,7 +496,7 @@ namespace ROMS
                             lblWholesale.Text = Convert.ToString(objDS.Tables[0].Rows[0]["W.Rate"]);
                             lbdname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"]);
                             lbltname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"]);
-                            udfnReportView("Preview");
+                            udfnReportView("Preview", varDirectLablPrintId);
                         }
                     }
                 }
@@ -1053,7 +1054,6 @@ namespace ROMS
         {
             try
             {
-                //udfnPrintSave();
                 udfnPreview();
             }
             catch (Exception ex)
@@ -1066,6 +1066,7 @@ namespace ROMS
         {
             try
             {
+                varDirectLablPrintId = "0";
                 string result = "";
                 SPDataService objspdservice = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
@@ -1099,7 +1100,8 @@ namespace ROMS
                     if (result.Split('~')[0] != "1")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MainForm.objCP_DirectLabelList.udfnList();
+                        varDirectLablPrintId = varvalue[2];
+                        udfnReportView("Preview", varDirectLablPrintId);
                     }
                 }
                 else
@@ -1160,42 +1162,43 @@ namespace ROMS
         }
 
 
-        public void udfnReportView(string type)
+        public void udfnReportView(string type,string varPrintId)
         {
             try
             {
-                int flag = 1, varProductId = -1;
+                //int flag = 1, varProductId = -1;
 
-                if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
-                {
-                    flag = 2;
-                }
-                decimal varMRP = 0, varSalesRate = 0;
-                if (txtMrp.Text.Trim() != "")
-                {
-                    varMRP = Convert.ToDecimal(txtMrp.Text);
-                }
-                if (txtSalesRate.Text.Trim() != "")
-                {
-                    varSalesRate = Convert.ToDecimal(txtSalesRate.Text);
-                }
-                if (txtProductName.Text.Trim() != "")
-                {
-                    varProductId = Convert.ToInt32(lblProduct.Text);
-                }
-
+                //if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
+                //{
+                //    flag = 2;
+                //}
+                //decimal varMRP = 0, varSalesRate = 0;
+                //if (txtMrp.Text.Trim() != "")
+                //{
+                //    varMRP = Convert.ToDecimal(txtMrp.Text);
+                //}
+                //if (txtSalesRate.Text.Trim() != "")
+                //{
+                //    varSalesRate = Convert.ToDecimal(txtSalesRate.Text);
+                //}
+                //if (txtProductName.Text.Trim() != "")
+                //{
+                //    varProductId = Convert.ToInt32(lblProduct.Text);
+                //}
+                varPrintId = "2";
                 picLoader4.Visible = true;
                 errRack.Clear();
                 int varPrint = 0;
                 SPDataService objSPdataservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 70;  
-                objMR_Product.paraFlag = flag;
-                objMR_Product.ParaMRP = Convert.ToDouble(varMRP);
-                objMR_Product.ParaProductCode = varProductId;
-                objMR_Product.ParaRetail = Convert.ToDouble(varSalesRate);
-                objMR_Product.paraLabelCount = Convert.ToInt32(txtNoofcopy.Text); 
+                objMR_Product.paraViewType = 70;
+                objMR_Product.paraId = Convert.ToInt32(varPrintId);
+                //objMR_Product.paraFlag = flag;
+                //objMR_Product.ParaMRP = Convert.ToDouble(varMRP);
+                //objMR_Product.ParaProductCode = varProductId;
+                //objMR_Product.ParaRetail = Convert.ToDouble(varSalesRate);
+                //objMR_Product.paraLabelCount = Convert.ToInt32(txtNoofcopy.Text); 
                 objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
                 objSPdataservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
@@ -1244,11 +1247,12 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
-                        objBillreport.SetParameterValue("paraFlag", flag);
-                        objBillreport.SetParameterValue("ParaMRP", varMRP);
-                        objBillreport.SetParameterValue("ParaProductCode", varProductId);
-                        objBillreport.SetParameterValue("ParaRetail", varSalesRate);
-                        objBillreport.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
+                        objBillreport.SetParameterValue("paraId", varPrintId);
+                        //objBillreport.SetParameterValue("paraFlag", flag);
+                        //objBillreport.SetParameterValue("ParaMRP", varMRP);
+                        //objBillreport.SetParameterValue("ParaProductCode", varProductId);
+                        //objBillreport.SetParameterValue("ParaRetail", varSalesRate);
+                        //objBillreport.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
 
                         //Title Name Only pass used Reports
                         if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
@@ -1262,7 +1266,7 @@ namespace ROMS
                             {
                                 if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
                                 {
-                                    objBillreport.SetParameterValue("paraType", varTypeId);
+                                    //objBillreport.SetParameterValue("paraType", varTypeId);
                                 }
                                 objBillreport.SetParameterValue("paraTitleName", cmbTitle.Text);
                             }
@@ -1327,8 +1331,6 @@ namespace ROMS
                             objBillreportTestPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
-                        objBillreportTestPrint.SetParameterValue("paraFlag", flag);
-                        objBillreportTestPrint.SetParameterValue("ParaMRP", varMRP);
                         if (templateType == "A4" || templateType == "100*70" )
                         {
                             objBillreportTestPrint.SetParameterValue("paraLabelCount", 1);
@@ -1346,9 +1348,6 @@ namespace ROMS
                             objBillreportTestPrint.SetParameterValue("paraLabelCount", 8);
                         }
 
-                        objBillreportTestPrint.SetParameterValue("ParaRetail", varSalesRate);
-
-                        objBillreportTestPrint.SetParameterValue("ParaProductCode", varProductId);
 
                         //Title Name Only pass used Reports
                         if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
@@ -1419,11 +1418,11 @@ namespace ROMS
                             objBillreportDirectPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
-                        objBillreportDirectPrint.SetParameterValue("paraFlag", flag);
-                        objBillreportDirectPrint.SetParameterValue("ParaMRP", varMRP);
-                        objBillreportDirectPrint.SetParameterValue("ParaProductCode", varProductId);
-                        objBillreportDirectPrint.SetParameterValue("ParaRetail", varSalesRate);
-                        objBillreportDirectPrint.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
+                        //objBillreportDirectPrint.SetParameterValue("paraFlag", flag);
+                        //objBillreportDirectPrint.SetParameterValue("ParaMRP", varMRP);
+                        //objBillreportDirectPrint.SetParameterValue("ParaProductCode", varProductId);
+                        //objBillreportDirectPrint.SetParameterValue("ParaRetail", varSalesRate);
+                        //objBillreportDirectPrint.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
 
                         //Title Name Only pass used Reports
                         if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
@@ -1488,7 +1487,7 @@ namespace ROMS
 
             try
             {
-                udfnReportView("Test Print");
+                udfnReportView("Test Print", varDirectLablPrintId);
             }
             catch (Exception ex)
             {
@@ -1501,7 +1500,7 @@ namespace ROMS
         {
             try
             {
-                udfnReportView("Direct Print");
+                udfnReportView("Direct Print", varDirectLablPrintId);
                 udfnSave();
             }
             catch (Exception ex)
@@ -2453,7 +2452,8 @@ namespace ROMS
                 if (blnErrFlag == false)
                 {
                     errRack.Clear();
-                    udfnReportView("Preview");
+                    //udfnReportView("Preview", varDirectLablPrintId);
+                    udfnPrintSave();
                 }
             }
             catch (Exception ex)

@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraLabelCount {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraMfdDate {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +98,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaFlag {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraExpiryDate {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,7 +106,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaMRP {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraUserName {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -114,7 +114,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaProductCode {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraHostName {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,41 +122,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaRetail {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraId {
             get {
                 return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraMfdDate {
-            get {
-                return this.DataDefinition.ParameterFields[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraExpiryDate {
-            get {
-                return this.DataDefinition.ParameterFields[6];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraUserName {
-            get {
-                return this.DataDefinition.ParameterFields[7];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraHostName {
-            get {
-                return this.DataDefinition.ParameterFields[8];
             }
         }
     }

@@ -90,7 +90,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraLabelCount {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraTitleName {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,41 +98,9 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaFlag {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraId {
             get {
                 return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaMRP {
-            get {
-                return this.DataDefinition.ParameterFields[2];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaProductCode {
-            get {
-                return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ParaRetail {
-            get {
-                return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_paraTitleName {
-            get {
-                return this.DataDefinition.ParameterFields[5];
             }
         }
     }

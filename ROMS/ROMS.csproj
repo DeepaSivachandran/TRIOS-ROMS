@@ -5664,8 +5664,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_50x35.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_Product_Label_Print_50x35.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_Product_Label_Print_50x351.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Product_Label_Print_50x60.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
