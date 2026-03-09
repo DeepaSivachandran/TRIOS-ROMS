@@ -305,6 +305,8 @@ namespace ROMS
                             grdItemList.Columns["PR_SALE_SLID"].Visible = false;
                             grdItemList.Columns["PR_PUR_RKID"].Visible = false;
                             grdItemList.Columns["PR_PUR_SLID"].Visible = false;
+                            grdItemList.Columns["Rate"].Visible = false;
+                            grdItemList.Columns["Old Price"].Visible = false;
                             grdItemList.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
