@@ -75,6 +75,7 @@ namespace ROMS.Model
         public int paraImageType = 0;
         public int paraUnitId = 0;
         public string paraDate = "";
+        public int paraDirectPrintId = 0;
 
         public DataTable paraSplFieldMapped = null;
 
