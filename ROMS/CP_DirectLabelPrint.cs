@@ -424,6 +424,7 @@ namespace ROMS
                 lblWholesale.Text = "";
                 if (pbLPID != 0)
                 {
+                    varDirectLablPrintId = Convert.ToString(pbLPID);
                     udfnEdit();
                 }
             }
@@ -496,6 +497,8 @@ namespace ROMS
                             lblWholesale.Text = Convert.ToString(objDS.Tables[0].Rows[0]["W.Rate"]);
                             lbdname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"]);
                             lbltname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"]);
+
+                            varDirectLablPrintId = Convert.ToString(pbLPID);
                             udfnReportView("Preview", varDirectLablPrintId);
                         }
                     }

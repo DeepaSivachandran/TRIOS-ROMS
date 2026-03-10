@@ -162,6 +162,7 @@ namespace ROMS
         // added by venkat on 09-08-2025
         public static CP_DirectLabelPrint objCP_DirectLabelPrint;
         public static CP_DirectLabelList objCP_DirectLabelList;
+        public static CP_DirectLabelPrint_Products objCP_DirectLabelPrint_Products;
         public static CP_Printer_Setting objCP_PrinterSetting;
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;

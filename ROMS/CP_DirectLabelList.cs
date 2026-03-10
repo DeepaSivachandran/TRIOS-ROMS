@@ -322,6 +322,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
+                    isRunning = false;
                     windowControl?.TriggerClose();
                 }
                 if(e.KeyCode==Keys.Delete)
