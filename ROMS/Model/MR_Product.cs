@@ -66,6 +66,7 @@ namespace ROMS.Model
         public int paraPrintType = 0;
         public int paraLabelSize = 0;
         public string paraLabelTemplate ="";
+        public string paraTemplateText = "";
         public int paraLabelTitle = 0; 
         public string paraProductLabelNameEng = "";
         public string paraOriginator = "";
@@ -76,6 +77,7 @@ namespace ROMS.Model
         public int paraUnitId = 0;
         public string paraDate = "";
         public int paraDirectPrintId = 0;
+        public int paraTestPrintFlag = 0;
 
         public DataTable paraSplFieldMapped = null;
 

@@ -1069,7 +1069,7 @@ namespace ROMS
                 int varPrintCount = 0;
                 if (varFromFlag == 0)
                 {
-                    varDirectLablPrintId = "0";
+                    //varDirectLablPrintId = "0";
                     varPrintCount = Convert.ToInt32(txtNoofcopy.Text);
                 }
                 else
@@ -1092,6 +1092,7 @@ namespace ROMS
                         varPrintCount = 8;
                     }
                 }
+                //int varTempleteValue = Convert.ToInt32(cmbTemplate.Text);
                 string result = "";
                 int varFlag = 0;
                 if (chkNone.Checked == true)
@@ -1119,13 +1120,15 @@ namespace ROMS
                 objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
                 objMR_Product.paraCopies = varPrintCount;
                 objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);
-                objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue); ;
+                objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue);
+                objMR_Product.paraTemplateText = Convert.ToString(cmbTemplate.Text);
                 objMR_Product.paraLabelTitle = Convert.ToInt32(cmbTitle.SelectedValue);
                 objMR_Product.paraProductLabelNameEng = txtLabelProduct.Text;
                 objMR_Product.ParaFromDate = varMfdDate;
                 objMR_Product.ParaToDate = varExpiryDate;
                 objMR_Product.paraFlag = varFlag;
                 objMR_Product.paraDirectPrintId = Convert.ToInt32(varDirectLablPrintId);
+                objMR_Product.paraTestPrintFlag = varFromFlag;
                 objMR_Product.paraOriginator = "Direct Label Print Save";
                 result = objspdservice.udfnLabelPrint(objMR_Product);
                 objspdservice.CloseConnection();
@@ -1136,7 +1139,10 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varDirectLablPrintId = varvalue[2];
-                        udfnReportView("Preview", varDirectLablPrintId);
+                        if (varFromFlag == 0)
+                        {
+                            udfnReportView("Preview", varDirectLablPrintId);
+                        }
                     }
                 }
                 else
@@ -1200,7 +1206,6 @@ namespace ROMS
         {
             try
             {
-                //varPrintId = "8";
                 picLoader4.Visible = true;
                 errRack.Clear();
                 int varPrint = 0;
@@ -1214,15 +1219,16 @@ namespace ROMS
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
-                    string varReportName = "";
+                    string varReportName = "", varTemplateText = "";
                     if (objDs.Tables.Count > 1)
                     {
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
                             varReportName = Convert.ToString(objDs.Tables[1].Rows[0]["ReportName"].ToString());
+                            varTemplateText = Convert.ToString(objDs.Tables[1].Rows[0]["TemplateText"].ToString());
                         }
                     }
-                    int varTemplateIndex = cmbTemplate.SelectedIndex;
+                    //int varTemplateIndex = cmbTemplate.SelectedIndex;
                     if (type == "Preview")
                     {
                         RPTViewer.ReportSource = null;
@@ -1242,7 +1248,7 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
                         //Goods Inward Direct Label Print
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateText == "100*70 WOHGI")
                         {
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -1305,28 +1311,8 @@ namespace ROMS
                             objBillreportTestPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
-
-
-                        if (templateType == "A4" || templateType == "100*70" )
-                        {
-                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 1);
-                        }
-                        else if ( templateType == "A5" ||  templateType == "50*35" || templateType == "50*25" || templateType == "50*60")
-                        {
-                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 2);
-                        }
-                        else if (templateType == "A6" )
-                        {
-                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 4);
-                        }
-                        else if (templateType == "A7")
-                        {
-                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 8);
-                        }
-
-
                         //Goods Inward Direct Label Print
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateText == "100*70 WOHGI")
                         {
                             objBillreportTestPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -1375,7 +1361,7 @@ namespace ROMS
                             objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
                         //Goods Inward Direct Label Print
-                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateText == "100*70 WOHGI")
                         {
                             objBillreportDirectPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -2383,7 +2369,7 @@ namespace ROMS
                 if (blnErrFlag == false)
                 {
                     errRack.Clear();
-                   // udfnReportView("Preview", varDirectLablPrintId);
+                    //udfnReportView("Preview", varDirectLablPrintId);
                     udfnPrintSave(0);
                 }
             }
