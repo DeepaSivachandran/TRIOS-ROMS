@@ -4923,6 +4923,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraMfdDate", objMR_Product.ParaFromDate);
                 varSqlCommand.Parameters.AddWithValue("@paraExpDate", objMR_Product.ParaToDate);
                 varSqlCommand.Parameters.AddWithValue("@paraDLPDate", objMR_Product.paraDate);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Product.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);

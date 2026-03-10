@@ -1068,6 +1068,11 @@ namespace ROMS
             {
                 varDirectLablPrintId = "0";
                 string result = "";
+                int varFlag = 0;
+                if (chkNone.Checked == true)
+                {
+                    varFlag = 1;
+                }
                 SPDataService objspdservice = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
                 string varExpiryDate = "", varMfdDate = "";
@@ -1079,10 +1084,13 @@ namespace ROMS
                 objMR_Product.paraViewType = 1;
                 objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
                 objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
-                objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text);
-                objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
-                objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
-                objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
+                if (chkNone.Checked == false)
+                {
+                    objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text);
+                    objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
+                    objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
+                    objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
+                }
                 objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
                 objMR_Product.paraCopies = Convert.ToInt32(txtNoofcopy.Text);
                 objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);
@@ -1091,6 +1099,7 @@ namespace ROMS
                 objMR_Product.paraProductLabelNameEng = txtLabelProduct.Text;
                 objMR_Product.ParaFromDate = varMfdDate;
                 objMR_Product.ParaToDate = varExpiryDate;
+                objMR_Product.paraFlag = varFlag;
                 objMR_Product.paraOriginator = "Direct Label Print Save";
                 result = objspdservice.udfnLabelPrint(objMR_Product);
                 objspdservice.CloseConnection();
@@ -1101,7 +1110,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varDirectLablPrintId = varvalue[2];
-                        udfnReportView("Preview", varDirectLablPrintId);
+                        //udfnReportView("Preview", varDirectLablPrintId);
                     }
                 }
                 else
@@ -1185,7 +1194,7 @@ namespace ROMS
                 //{
                 //    varProductId = Convert.ToInt32(lblProduct.Text);
                 //}
-                varPrintId = "2";
+                varPrintId = "3";
                 picLoader4.Visible = true;
                 errRack.Clear();
                 int varPrint = 0;
@@ -1248,36 +1257,11 @@ namespace ROMS
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
                         objBillreport.SetParameterValue("paraId", varPrintId);
-                        //objBillreport.SetParameterValue("paraFlag", flag);
-                        //objBillreport.SetParameterValue("ParaMRP", varMRP);
-                        //objBillreport.SetParameterValue("ParaProductCode", varProductId);
-                        //objBillreport.SetParameterValue("ParaRetail", varSalesRate);
-                        //objBillreport.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
-
-                        //Title Name Only pass used Reports
-                        if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
-                            (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
-                        {
-                            if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
-                            {
-                                objBillreport.SetParameterValue("paraTitleName", "");
-                            }
-                            else
-                            {
-                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
-                                {
-                                    //objBillreport.SetParameterValue("paraType", varTypeId);
-                                }
-                                objBillreport.SetParameterValue("paraTitleName", cmbTitle.Text);
-                            }
-                        }
-
                         objValidation.CrySqlConnection(objBillreport);
                         RPTViewer.ReportSource = objBillreport;
                         if (templateType == 316 || templateType == 317 || templateType == 318 || templateType == 319)
                         {
                             RPTViewer.Zoom(100);
-                            // 1 =  Page Width , 2 = Whole Page, or use percentage
                         }
                         else
                         {
@@ -1333,39 +1317,39 @@ namespace ROMS
                         }
                         if (templateType == "A4" || templateType == "100*70" )
                         {
-                            objBillreportTestPrint.SetParameterValue("paraLabelCount", 1);
+                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 1);
                         }
                         else if ( templateType == "A5" ||  templateType == "50*35" || templateType == "50*25" || templateType == "50*60")
                         {
-                            objBillreportTestPrint.SetParameterValue("paraLabelCount", 2);
+                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 2);
                         }
                         else if (templateType == "A6" )
                         {
-                            objBillreportTestPrint.SetParameterValue("paraLabelCount", 4);
+                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 4);
                         }
                         else if (templateType == "A7")
                         {
-                            objBillreportTestPrint.SetParameterValue("paraLabelCount", 8);
+                            //objBillreportTestPrint.SetParameterValue("paraLabelCount", 8);
                         }
 
 
                         //Title Name Only pass used Reports
-                        if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
-                            (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
-                        {
-                            if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
-                            {
-                                objBillreportTestPrint.SetParameterValue("paraTitleName", "");
-                            }
-                            else
-                            {
-                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
-                                {
-                                    objBillreportTestPrint.SetParameterValue("paraType", varTypeId);
-                                }
-                                objBillreportTestPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
-                            }
-                        }
+                        //if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
+                        //    (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                        //{
+                        //    if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
+                        //    {
+                        //        objBillreportTestPrint.SetParameterValue("paraTitleName", "");
+                        //    }
+                        //    else
+                        //    {
+                        //        if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
+                        //        {
+                        //            objBillreportTestPrint.SetParameterValue("paraType", varTypeId);
+                        //        }
+                        //        objBillreportTestPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                        //    }
+                        //}
                         //Goods Inward Direct Label Print
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
                         {
@@ -1425,22 +1409,22 @@ namespace ROMS
                         //objBillreportDirectPrint.SetParameterValue("paraLabelCount", Convert.ToDouble(txtNoofcopy.Text));
 
                         //Title Name Only pass used Reports
-                        if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
-                            (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
-                        {
-                            if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
-                            {
-                                objBillreportDirectPrint.SetParameterValue("paraTitleName", "");
-                            }
-                            else
-                            {
-                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
-                                {
-                                    objBillreportDirectPrint.SetParameterValue("paraType", varTypeId);
-                                }
-                                objBillreportDirectPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
-                            }
-                        }
+                        //if ((varSticker.Contains(varLabelSize) && varTemplateIndex == 0) ||
+                        //    (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
+                        //{
+                        //    if (Convert.ToInt32(cmbTitle.SelectedValue) == 388)
+                        //    {
+                        //        objBillreportDirectPrint.SetParameterValue("paraTitleName", "");
+                        //    }
+                        //    else
+                        //    {
+                        //        if (Convert.ToInt32(cmbLabelsize.SelectedValue) != 268 && Convert.ToInt32(cmbLabelsize.SelectedValue) != 269)
+                        //        {
+                        //            objBillreportDirectPrint.SetParameterValue("paraType", varTypeId);
+                        //        }
+                        //        objBillreportDirectPrint.SetParameterValue("paraTitleName", cmbTitle.Text);
+                        //    }
+                        //}
 
                         //Goods Inward Direct Label Print
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
@@ -2452,7 +2436,7 @@ namespace ROMS
                 if (blnErrFlag == false)
                 {
                     errRack.Clear();
-                    //udfnReportView("Preview", varDirectLablPrintId);
+                    //udfnReportView("Preview", "1");
                     udfnPrintSave();
                 }
             }
