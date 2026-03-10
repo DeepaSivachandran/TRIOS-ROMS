@@ -1078,8 +1078,8 @@ namespace ROMS
                 string varExpiryDate = "", varMfdDate = "";
                 if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
                 {
-                    varMfdDate = txtDay.Text + "/" + txtMonth.Text + "/" + txtYear.Text;
-                    varExpiryDate = txtEDay.Text + "/" + txtEMonth.Text + "/" + txtEYear.Text;
+                    varMfdDate = txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text;
+                    varExpiryDate = txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text;
                 }
                 objMR_Product.paraViewType = 1;
                 objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
@@ -1110,7 +1110,7 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varDirectLablPrintId = varvalue[2];
-                        //udfnReportView("Preview", varDirectLablPrintId);
+                        udfnReportView("Preview", varDirectLablPrintId);
                     }
                 }
                 else
@@ -1194,7 +1194,7 @@ namespace ROMS
                 //{
                 //    varProductId = Convert.ToInt32(lblProduct.Text);
                 //}
-                varPrintId = "3";
+                varPrintId = "6";
                 picLoader4.Visible = true;
                 errRack.Clear();
                 int varPrint = 0;
@@ -1213,12 +1213,6 @@ namespace ROMS
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
-                    string varMfdDateValue = "", varExpiryDateValue = "";
-                    if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
-                    {
-                        varExpiryDateValue = Convert.ToString(txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text);
-                        varMfdDateValue = Convert.ToString(txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text);
-                    }
                     //Title Name Pass only Used Reports
                     int varLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
                     int varTemplateIndex = cmbTemplate.SelectedIndex;
@@ -1251,8 +1245,6 @@ namespace ROMS
                         //Goods Inward Direct Label Print
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
                         {
-                            objBillreport.SetParameterValue("paraExpiryDate", varExpiryDateValue);
-                            objBillreport.SetParameterValue("paraMfdDate", varMfdDateValue);
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
@@ -1353,8 +1345,6 @@ namespace ROMS
                         //Goods Inward Direct Label Print
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
                         {
-                            objBillreportTestPrint.SetParameterValue("paraExpiryDate", varExpiryDateValue);
-                            objBillreportTestPrint.SetParameterValue("paraMfdDate", varMfdDateValue);
                             objBillreportTestPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
@@ -1429,8 +1419,6 @@ namespace ROMS
                         //Goods Inward Direct Label Print
                         if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateIndex == 2)
                         {
-                            objBillreportDirectPrint.SetParameterValue("paraExpiryDate", varExpiryDateValue);
-                            objBillreportDirectPrint.SetParameterValue("paraMfdDate", varMfdDateValue);
                             objBillreportDirectPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
@@ -2436,8 +2424,8 @@ namespace ROMS
                 if (blnErrFlag == false)
                 {
                     errRack.Clear();
-                    //udfnReportView("Preview", "1");
-                    udfnPrintSave();
+                    udfnReportView("Preview", varDirectLablPrintId);
+                    //udfnPrintSave();
                 }
             }
             catch (Exception ex)
