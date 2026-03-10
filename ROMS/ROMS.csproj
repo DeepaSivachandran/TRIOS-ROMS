@@ -173,6 +173,12 @@
     <Compile Include="CP_BulkUpdate_RateCategory.designer.cs">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_DirectLabelPrint_Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_DirectLabelPrint_Products.designer.cs">
+      <DependentUpon>CP_DirectLabelPrint_Products.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_LockItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4168,6 +4174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BulkUpdate_RateCategory.resx">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_DirectLabelPrint_Products.resx">
+      <DependentUpon>CP_DirectLabelPrint_Products.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_LockItems.resx">
       <DependentUpon>CP_LockItems.cs</DependentUpon>
