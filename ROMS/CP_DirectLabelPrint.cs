@@ -764,12 +764,7 @@ namespace ROMS
         {
             try
             {
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
-                {
-                    e.Handled = true;
-                }
-                // Allow only one decimal point
-                if (e.KeyChar == '.' && ((TextBox)sender).Text.Contains("."))
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 {
                     e.Handled = true;
                 }
@@ -1667,6 +1662,7 @@ namespace ROMS
                 cmbTemplate.Enabled = false;
                 lblDescription.Text = "";
                 lblDesc.Text = "";
+                varDirectLablPrintId = "0";
             }
             catch (Exception ex)
             {
@@ -1779,6 +1775,7 @@ namespace ROMS
         {
             try
             {
+                varDirectLablPrintId = "0";
                 int varLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
                 int varTemplateIndex = cmbTemplate.SelectedIndex;
                 var varSticker = new[] { 268, 269 };
@@ -2319,6 +2316,17 @@ namespace ROMS
                     tpLabelCount.ShowAlways = true;
                     tpLabelCount.Show("Please enter No.of copy", txtNoofcopy, 5000);
                     blnErrFlag = true;
+                }
+                else
+                {
+                    if (Convert.ToInt32(txtNoofcopy.Text) < 1)
+                    {
+                        errRack.SetError(txtNoofcopy, "Please enter valid No.of copy.");
+                        txtNoofcopy.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpLabelCount.ShowAlways = true;
+                        tpLabelCount.Show("Please enter valid No.of copy", txtNoofcopy, 5000);
+                        blnErrFlag = true;
+                    }
                 }
                 if (chkNone.Checked == false)
                 {
