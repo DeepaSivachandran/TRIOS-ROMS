@@ -44,43 +44,17 @@
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtDay = new System.Windows.Forms.TextBox();
             this.txtMonth = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.chkNone = new System.Windows.Forms.CheckBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
             this.cmbTitle = new System.Windows.Forms.ComboBox();
             this.DGV_FilterProduct = new System.Windows.Forms.DataGridView();
             this.cmbPrintType = new System.Windows.Forms.ComboBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.lbltname = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtdcompany = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.txtLabelProduct = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblWholesale = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblUnit = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.lblPICode = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.lblProductName = new System.Windows.Forms.Label();
-            this.lblRetail = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.lbdname = new System.Windows.Forms.Label();
             this.btnDirectPrint = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -96,17 +70,48 @@
             this.lblDProduct = new System.Windows.Forms.Label();
             this.btnpreview = new System.Windows.Forms.Button();
             this.txtNoofcopy = new System.Windows.Forms.TextBox();
+            this.lbltname = new System.Windows.Forms.Label();
             this.errRack = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.lblRetail = new System.Windows.Forms.Label();
+            this.lblProductName = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lblPICode = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblWholesale = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtdcompany = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             this.tsDirectLabelPrint.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errRack)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsDirectLabelPrint
@@ -137,7 +142,7 @@
             // 
             this.cmbLabelsize.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLabelsize.FormattingEnabled = true;
-            this.cmbLabelsize.Location = new System.Drawing.Point(76, 55);
+            this.cmbLabelsize.Location = new System.Drawing.Point(137, 48);
             this.cmbLabelsize.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbLabelsize.Name = "cmbLabelsize";
             this.cmbLabelsize.Size = new System.Drawing.Size(119, 28);
@@ -160,6 +165,10 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.groupBox2);
+            this.grbGrid.Controls.Add(this.label5);
+            this.grbGrid.Controls.Add(this.label4);
+            this.grbGrid.Controls.Add(this.label2);
             this.grbGrid.Controls.Add(this.txtEYear);
             this.grbGrid.Controls.Add(this.txtEDay);
             this.grbGrid.Controls.Add(this.txtEMonth);
@@ -169,17 +178,13 @@
             this.grbGrid.Controls.Add(this.textBox11);
             this.grbGrid.Controls.Add(this.textBox10);
             this.grbGrid.Controls.Add(this.btnClose);
-            this.grbGrid.Controls.Add(this.chkNone);
             this.grbGrid.Controls.Add(this.lblDesc);
             this.grbGrid.Controls.Add(this.lblDescription);
             this.grbGrid.Controls.Add(this.textBox9);
             this.grbGrid.Controls.Add(this.cmbTitle);
             this.grbGrid.Controls.Add(this.DGV_FilterProduct);
             this.grbGrid.Controls.Add(this.cmbPrintType);
-            this.grbGrid.Controls.Add(this.textBox8);
-            this.grbGrid.Controls.Add(this.textBox7);
             this.grbGrid.Controls.Add(this.textBox6);
-            this.grbGrid.Controls.Add(this.textBox5);
             this.grbGrid.Controls.Add(this.textBox4);
             this.grbGrid.Controls.Add(this.textBox3);
             this.grbGrid.Controls.Add(this.textBox2);
@@ -191,15 +196,8 @@
             this.grbGrid.Controls.Add(this.btnDirectPrint);
             this.grbGrid.Controls.Add(this.btnPrint);
             this.grbGrid.Controls.Add(this.btnReset);
-            this.grbGrid.Controls.Add(this.textBox1);
-            this.grbGrid.Controls.Add(this.txtrupee);
             this.grbGrid.Controls.Add(this.cmbTemplate);
-            this.grbGrid.Controls.Add(this.txtSalesRate);
-            this.grbGrid.Controls.Add(this.txtMrp);
             this.grbGrid.Controls.Add(this.cmbPrintLanguage);
-            this.grbGrid.Controls.Add(this.label3);
-            this.grbGrid.Controls.Add(this.txtProductName);
-            this.grbGrid.Controls.Add(this.lblDProduct);
             this.grbGrid.Controls.Add(this.btnpreview);
             this.grbGrid.Controls.Add(this.txtNoofcopy);
             this.grbGrid.Controls.Add(this.cmbLabelsize);
@@ -212,7 +210,7 @@
             // txtEYear
             // 
             this.txtEYear.Enabled = false;
-            this.txtEYear.Location = new System.Drawing.Point(347, 485);
+            this.txtEYear.Location = new System.Drawing.Point(684, 542);
             this.txtEYear.MaxLength = 2;
             this.txtEYear.Name = "txtEYear";
             this.txtEYear.ReadOnly = true;
@@ -223,7 +221,7 @@
             // txtEDay
             // 
             this.txtEDay.Enabled = false;
-            this.txtEDay.Location = new System.Drawing.Point(280, 485);
+            this.txtEDay.Location = new System.Drawing.Point(617, 542);
             this.txtEDay.MaxLength = 2;
             this.txtEDay.Name = "txtEDay";
             this.txtEDay.ReadOnly = true;
@@ -234,7 +232,7 @@
             // txtEMonth
             // 
             this.txtEMonth.Enabled = false;
-            this.txtEMonth.Location = new System.Drawing.Point(313, 485);
+            this.txtEMonth.Location = new System.Drawing.Point(650, 542);
             this.txtEMonth.MaxLength = 2;
             this.txtEMonth.Name = "txtEMonth";
             this.txtEMonth.ReadOnly = true;
@@ -245,7 +243,7 @@
             // txtYear
             // 
             this.txtYear.Enabled = false;
-            this.txtYear.Location = new System.Drawing.Point(347, 456);
+            this.txtYear.Location = new System.Drawing.Point(684, 513);
             this.txtYear.MaxLength = 2;
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(52, 28);
@@ -260,7 +258,7 @@
             // txtDay
             // 
             this.txtDay.Enabled = false;
-            this.txtDay.Location = new System.Drawing.Point(280, 456);
+            this.txtDay.Location = new System.Drawing.Point(617, 513);
             this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
             this.txtDay.Size = new System.Drawing.Size(33, 28);
@@ -275,7 +273,7 @@
             // txtMonth
             // 
             this.txtMonth.Enabled = false;
-            this.txtMonth.Location = new System.Drawing.Point(313, 456);
+            this.txtMonth.Location = new System.Drawing.Point(650, 513);
             this.txtMonth.MaxLength = 2;
             this.txtMonth.Name = "txtMonth";
             this.txtMonth.Size = new System.Drawing.Size(34, 28);
@@ -286,32 +284,6 @@
             this.txtMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMonth_KeyDown);
             this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonth_KeyPress);
             this.txtMonth.Leave += new System.EventHandler(this.txtMonth_Leave);
-            // 
-            // textBox11
-            // 
-            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox11.Enabled = false;
-            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox11.Location = new System.Drawing.Point(215, 456);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(64, 28);
-            this.textBox11.TabIndex = 111111181;
-            this.textBox11.TabStop = false;
-            this.textBox11.Text = "Exp Date";
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox10.Location = new System.Drawing.Point(215, 485);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(64, 28);
-            this.textBox10.TabIndex = 111111180;
-            this.textBox10.TabStop = false;
-            this.textBox10.Text = "Mfd Date";
             // 
             // btnClose
             // 
@@ -328,17 +300,6 @@
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.Enter += new System.EventHandler(this.btnClose_Enter);
             this.btnClose.Leave += new System.EventHandler(this.btnClose_Leave);
-            // 
-            // chkNone
-            // 
-            this.chkNone.AutoSize = true;
-            this.chkNone.Location = new System.Drawing.Point(700, 23);
-            this.chkNone.Name = "chkNone";
-            this.chkNone.Size = new System.Drawing.Size(158, 24);
-            this.chkNone.TabIndex = 111111178;
-            this.chkNone.Text = "Disable Item Name Print";
-            this.chkNone.UseVisualStyleBackColor = true;
-            this.chkNone.CheckedChanged += new System.EventHandler(this.chkNone_CheckedChanged);
             // 
             // lblDesc
             // 
@@ -361,24 +322,11 @@
             this.lblDescription.TabIndex = 111111176;
             this.lblDescription.Text = "Description";
             // 
-            // textBox9
-            // 
-            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox9.Location = new System.Drawing.Point(215, 427);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(64, 28);
-            this.textBox9.TabIndex = 111111174;
-            this.textBox9.TabStop = false;
-            this.textBox9.Text = "Title";
-            // 
             // cmbTitle
             // 
             this.cmbTitle.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTitle.FormattingEnabled = true;
-            this.cmbTitle.Location = new System.Drawing.Point(280, 427);
+            this.cmbTitle.Location = new System.Drawing.Point(617, 484);
             this.cmbTitle.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbTitle.Name = "cmbTitle";
             this.cmbTitle.Size = new System.Drawing.Size(119, 28);
@@ -416,7 +364,7 @@
             this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(700, 73);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(753, 27);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
@@ -435,7 +383,7 @@
             // 
             this.cmbPrintType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPrintType.FormattingEnabled = true;
-            this.cmbPrintType.Location = new System.Drawing.Point(76, 27);
+            this.cmbPrintType.Location = new System.Drawing.Point(11, 48);
             this.cmbPrintType.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbPrintType.Name = "cmbPrintType";
             this.cmbPrintType.Size = new System.Drawing.Size(119, 28);
@@ -445,120 +393,6 @@
             this.cmbPrintType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbPrintType_KeyDown);
             this.cmbPrintType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbPrintType_KeyPress);
             this.cmbPrintType.Leave += new System.EventHandler(this.CmbPrintType_Leave);
-            // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox8.Location = new System.Drawing.Point(11, 27);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(64, 28);
-            this.textBox8.TabIndex = 111111172;
-            this.textBox8.TabStop = false;
-            this.textBox8.Text = "Print Type";
-            // 
-            // lbltname
-            // 
-            this.lbltname.AutoSize = true;
-            this.lbltname.Location = new System.Drawing.Point(649, 9);
-            this.lbltname.Name = "lbltname";
-            this.lbltname.Size = new System.Drawing.Size(16, 20);
-            this.lbltname.TabIndex = 111111162;
-            this.lbltname.Text = "0";
-            this.lbltname.Visible = false;
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox7.Location = new System.Drawing.Point(11, 55);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(64, 28);
-            this.textBox7.TabIndex = 111111171;
-            this.textBox7.TabStop = false;
-            this.textBox7.Text = "Size";
-            // 
-            // textBox6
-            // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox6.Location = new System.Drawing.Point(6, 371);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(108, 28);
-            this.textBox6.TabIndex = 111111170;
-            this.textBox6.TabStop = false;
-            this.textBox6.Text = "Sales Rate";
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox5.Location = new System.Drawing.Point(11, 83);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(64, 28);
-            this.textBox5.TabIndex = 111111169;
-            this.textBox5.TabStop = false;
-            this.textBox5.Text = "Template";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox4.Location = new System.Drawing.Point(6, 399);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(108, 28);
-            this.textBox4.TabIndex = 111111168;
-            this.textBox4.TabStop = false;
-            this.textBox4.Text = "No.of Copies";
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox3.Location = new System.Drawing.Point(6, 343);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(108, 28);
-            this.textBox3.TabIndex = 111111167;
-            this.textBox3.TabStop = false;
-            this.textBox3.Text = "MRP";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.textBox2.Location = new System.Drawing.Point(6, 315);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(108, 28);
-            this.textBox2.TabIndex = 111111166;
-            this.textBox2.TabStop = false;
-            this.textBox2.Text = "Label Name";
-            // 
-            // txtdcompany
-            // 
-            this.txtdcompany.BackColor = System.Drawing.SystemColors.Control;
-            this.txtdcompany.Enabled = false;
-            this.txtdcompany.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
-            this.txtdcompany.Location = new System.Drawing.Point(6, 287);
-            this.txtdcompany.Name = "txtdcompany";
-            this.txtdcompany.ReadOnly = true;
-            this.txtdcompany.Size = new System.Drawing.Size(108, 28);
-            this.txtdcompany.TabIndex = 111111165;
-            this.txtdcompany.TabStop = false;
-            this.txtdcompany.Text = "Print Language";
             // 
             // btnUpdate
             // 
@@ -588,48 +422,6 @@
             this.txtLabelProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLabelProduct_KeyDown);
             this.txtLabelProduct.Leave += new System.EventHandler(this.txtLabelProduct_Leave);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblWholesale);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.lblUnit);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label25);
-            this.groupBox1.Controls.Add(this.lblPICode);
-            this.groupBox1.Controls.Add(this.label26);
-            this.groupBox1.Controls.Add(this.lblProductName);
-            this.groupBox1.Controls.Add(this.lblRetail);
-            this.groupBox1.Controls.Add(this.label27);
-            this.groupBox1.Controls.Add(this.label28);
-            this.groupBox1.Controls.Add(this.label29);
-            this.groupBox1.Controls.Add(this.label30);
-            this.groupBox1.Controls.Add(this.label31);
-            this.groupBox1.Location = new System.Drawing.Point(463, 361);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(453, 178);
-            this.groupBox1.TabIndex = 111111161;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Product Details";
-            // 
-            // lblWholesale
-            // 
-            this.lblWholesale.AutoSize = true;
-            this.lblWholesale.Location = new System.Drawing.Point(114, 149);
-            this.lblWholesale.Name = "lblWholesale";
-            this.lblWholesale.Size = new System.Drawing.Size(47, 20);
-            this.lblWholesale.TabIndex = 1111275;
-            this.lblWholesale.Text = "label17";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 56);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(85, 20);
-            this.label11.TabIndex = 1111254;
-            this.label11.Text = "Product Name";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -642,20 +434,11 @@
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(114, 88);
+            this.lblUnit.Location = new System.Drawing.Point(313, 47);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(48, 20);
             this.lblUnit.TabIndex = 1111274;
             this.lblUnit.Text = "label20";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 26);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 20);
-            this.label13.TabIndex = 1111256;
-            this.label13.Text = "PI Code";
             // 
             // label25
             // 
@@ -666,95 +449,12 @@
             this.label25.TabIndex = 1111257;
             this.label25.Text = "W.Rate";
             // 
-            // lblPICode
-            // 
-            this.lblPICode.AutoSize = true;
-            this.lblPICode.Location = new System.Drawing.Point(114, 26);
-            this.lblPICode.Name = "lblPICode";
-            this.lblPICode.Size = new System.Drawing.Size(48, 20);
-            this.lblPICode.TabIndex = 1111272;
-            this.lblPICode.Text = "label18";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(6, 88);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(32, 20);
-            this.label26.TabIndex = 1111258;
-            this.label26.Text = "Unit";
-            // 
-            // lblProductName
-            // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.ForeColor = System.Drawing.Color.Green;
-            this.lblProductName.Location = new System.Drawing.Point(113, 53);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(124, 23);
-            this.lblProductName.TabIndex = 1111271;
-            this.lblProductName.Text = "ProductName";
-            // 
-            // lblRetail
-            // 
-            this.lblRetail.AutoSize = true;
-            this.lblRetail.Location = new System.Drawing.Point(114, 119);
-            this.lblRetail.Name = "lblRetail";
-            this.lblRetail.Size = new System.Drawing.Size(47, 20);
-            this.lblRetail.TabIndex = 1111270;
-            this.lblRetail.Text = "label17";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(95, 56);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(12, 20);
-            this.label27.TabIndex = 1111262;
-            this.label27.Text = ":";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(95, 88);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(12, 20);
-            this.label28.TabIndex = 1111263;
-            this.label28.Text = ":";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(95, 149);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(12, 20);
-            this.label29.TabIndex = 1111266;
-            this.label29.Text = ":";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(95, 26);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(12, 20);
-            this.label30.TabIndex = 1111264;
-            this.label30.Text = ":";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(95, 119);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(12, 20);
-            this.label31.TabIndex = 1111265;
-            this.label31.Text = ":";
-            // 
             // lbdname
             // 
             this.lbdname.AutoSize = true;
             this.lbdname.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbdname.ForeColor = System.Drawing.Color.Green;
-            this.lbdname.Location = new System.Drawing.Point(440, 46);
+            this.lbdname.Location = new System.Drawing.Point(353, 158);
             this.lbdname.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbdname.Name = "lbdname";
             this.lbdname.Size = new System.Drawing.Size(0, 25);
@@ -814,7 +514,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
-            this.textBox1.Location = new System.Drawing.Point(115, 372);
+            this.textBox1.Location = new System.Drawing.Point(651, 40);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(21, 27);
@@ -826,7 +526,7 @@
             this.txtrupee.BackColor = System.Drawing.SystemColors.Control;
             this.txtrupee.Enabled = false;
             this.txtrupee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
-            this.txtrupee.Location = new System.Drawing.Point(115, 343);
+            this.txtrupee.Location = new System.Drawing.Point(543, 39);
             this.txtrupee.Name = "txtrupee";
             this.txtrupee.ReadOnly = true;
             this.txtrupee.Size = new System.Drawing.Size(21, 27);
@@ -837,7 +537,7 @@
             // 
             this.cmbTemplate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTemplate.FormattingEnabled = true;
-            this.cmbTemplate.Location = new System.Drawing.Point(76, 83);
+            this.cmbTemplate.Location = new System.Drawing.Point(260, 48);
             this.cmbTemplate.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbTemplate.Name = "cmbTemplate";
             this.cmbTemplate.Size = new System.Drawing.Size(119, 28);
@@ -851,7 +551,7 @@
             // txtSalesRate
             // 
             this.txtSalesRate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSalesRate.Location = new System.Drawing.Point(137, 372);
+            this.txtSalesRate.Location = new System.Drawing.Point(673, 40);
             this.txtSalesRate.MaxLength = 10;
             this.txtSalesRate.Name = "txtSalesRate";
             this.txtSalesRate.Size = new System.Drawing.Size(78, 27);
@@ -865,7 +565,7 @@
             // txtMrp
             // 
             this.txtMrp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtMrp.Location = new System.Drawing.Point(137, 344);
+            this.txtMrp.Location = new System.Drawing.Point(564, 39);
             this.txtMrp.MaxLength = 10;
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(78, 27);
@@ -896,17 +596,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(343, 23);
+            this.label3.Location = new System.Drawing.Point(10, 19);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 20);
+            this.label3.Size = new System.Drawing.Size(52, 20);
             this.label3.TabIndex = 1111204;
-            this.label3.Text = "Product ";
+            this.label3.Text = "Product";
             // 
             // txtProductName
             // 
             this.txtProductName.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtProductName.Location = new System.Drawing.Point(415, 46);
+            this.txtProductName.Location = new System.Drawing.Point(10, 44);
             this.txtProductName.MaxLength = 50;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(297, 27);
@@ -920,7 +620,7 @@
             // 
             this.lblDProduct.AutoSize = true;
             this.lblDProduct.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDProduct.Location = new System.Drawing.Point(415, 27);
+            this.lblDProduct.Location = new System.Drawing.Point(186, 21);
             this.lblDProduct.Name = "lblDProduct";
             this.lblDProduct.Size = new System.Drawing.Size(121, 17);
             this.lblDProduct.TabIndex = 1111203;
@@ -931,7 +631,7 @@
             this.btnpreview.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnpreview.Image = global::ROMS.Properties.Resources.view__1_;
             this.btnpreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnpreview.Location = new System.Drawing.Point(271, 521);
+            this.btnpreview.Location = new System.Drawing.Point(404, 558);
             this.btnpreview.Name = "btnpreview";
             this.btnpreview.Size = new System.Drawing.Size(128, 33);
             this.btnpreview.TabIndex = 13;
@@ -955,6 +655,16 @@
             this.txtNoofcopy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoofcopy_KeyDown);
             this.txtNoofcopy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNoofcopy_KeyPress);
             this.txtNoofcopy.Leave += new System.EventHandler(this.txtNoofcopy_Leave);
+            // 
+            // lbltname
+            // 
+            this.lbltname.AutoSize = true;
+            this.lbltname.Location = new System.Drawing.Point(649, 9);
+            this.lbltname.Name = "lbltname";
+            this.lbltname.Size = new System.Drawing.Size(16, 20);
+            this.lbltname.TabIndex = 111111162;
+            this.lbltname.Text = "0";
+            this.lbltname.Visible = false;
             // 
             // errRack
             // 
@@ -1010,6 +720,340 @@
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(7, 24);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 20);
+            this.label2.TabIndex = 111111188;
+            this.label2.Text = "Print Type";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(137, 24);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 20);
+            this.label4.TabIndex = 111111189;
+            this.label4.Text = "Size";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(260, 24);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 20);
+            this.label5.TabIndex = 111111190;
+            this.label5.Text = "Template";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.textBox7);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.txtProductName);
+            this.groupBox2.Controls.Add(this.lblUnit);
+            this.groupBox2.Controls.Add(this.lblDProduct);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.txtMrp);
+            this.groupBox2.Controls.Add(this.txtrupee);
+            this.groupBox2.Controls.Add(this.txtSalesRate);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Location = new System.Drawing.Point(11, 83);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1205, 78);
+            this.groupBox2.TabIndex = 111111191;
+            this.groupBox2.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(484, 18);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 20);
+            this.label6.TabIndex = 111111156;
+            this.label6.Text = "MRP";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(584, 18);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 20);
+            this.label7.TabIndex = 111111157;
+            this.label7.Text = "Sales Rate";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.textBox5.Location = new System.Drawing.Point(393, 41);
+            this.textBox5.MaxLength = 10;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(78, 27);
+            this.textBox5.TabIndex = 111111158;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox7.Enabled = false;
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
+            this.textBox7.Location = new System.Drawing.Point(372, 41);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(21, 27);
+            this.textBox7.TabIndex = 111111159;
+            this.textBox7.Text = "₹";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(95, 119);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(12, 20);
+            this.label31.TabIndex = 1111265;
+            this.label31.Text = ":";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(95, 26);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(12, 20);
+            this.label30.TabIndex = 1111264;
+            this.label30.Text = ":";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(95, 149);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(12, 20);
+            this.label29.TabIndex = 1111266;
+            this.label29.Text = ":";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(95, 88);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(12, 20);
+            this.label28.TabIndex = 1111263;
+            this.label28.Text = ":";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(95, 56);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(12, 20);
+            this.label27.TabIndex = 1111262;
+            this.label27.Text = ":";
+            // 
+            // lblRetail
+            // 
+            this.lblRetail.AutoSize = true;
+            this.lblRetail.Location = new System.Drawing.Point(114, 119);
+            this.lblRetail.Name = "lblRetail";
+            this.lblRetail.Size = new System.Drawing.Size(47, 20);
+            this.lblRetail.TabIndex = 1111270;
+            this.lblRetail.Text = "label17";
+            // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.ForeColor = System.Drawing.Color.Green;
+            this.lblProductName.Location = new System.Drawing.Point(113, 53);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(124, 23);
+            this.lblProductName.TabIndex = 1111271;
+            this.lblProductName.Text = "ProductName";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 88);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(32, 20);
+            this.label26.TabIndex = 1111258;
+            this.label26.Text = "Unit";
+            // 
+            // lblPICode
+            // 
+            this.lblPICode.AutoSize = true;
+            this.lblPICode.Location = new System.Drawing.Point(114, 26);
+            this.lblPICode.Name = "lblPICode";
+            this.lblPICode.Size = new System.Drawing.Size(48, 20);
+            this.lblPICode.TabIndex = 1111272;
+            this.lblPICode.Text = "label18";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 26);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(50, 20);
+            this.label13.TabIndex = 1111256;
+            this.label13.Text = "PI Code";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(85, 20);
+            this.label11.TabIndex = 1111254;
+            this.label11.Text = "Product Name";
+            // 
+            // lblWholesale
+            // 
+            this.lblWholesale.AutoSize = true;
+            this.lblWholesale.Location = new System.Drawing.Point(114, 149);
+            this.lblWholesale.Name = "lblWholesale";
+            this.lblWholesale.Size = new System.Drawing.Size(47, 20);
+            this.lblWholesale.TabIndex = 1111275;
+            this.lblWholesale.Text = "label17";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblWholesale);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.lblPICode);
+            this.groupBox1.Controls.Add(this.label26);
+            this.groupBox1.Controls.Add(this.lblProductName);
+            this.groupBox1.Controls.Add(this.lblRetail);
+            this.groupBox1.Controls.Add(this.label27);
+            this.groupBox1.Controls.Add(this.label28);
+            this.groupBox1.Controls.Add(this.label29);
+            this.groupBox1.Controls.Add(this.label30);
+            this.groupBox1.Controls.Add(this.label31);
+            this.groupBox1.Location = new System.Drawing.Point(780, 392);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(453, 178);
+            this.groupBox1.TabIndex = 111111161;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Product Details";
+            // 
+            // txtdcompany
+            // 
+            this.txtdcompany.BackColor = System.Drawing.SystemColors.Control;
+            this.txtdcompany.Enabled = false;
+            this.txtdcompany.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.txtdcompany.Location = new System.Drawing.Point(6, 287);
+            this.txtdcompany.Name = "txtdcompany";
+            this.txtdcompany.ReadOnly = true;
+            this.txtdcompany.Size = new System.Drawing.Size(108, 28);
+            this.txtdcompany.TabIndex = 111111165;
+            this.txtdcompany.TabStop = false;
+            this.txtdcompany.Text = "Print Language";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox2.Location = new System.Drawing.Point(6, 315);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(108, 28);
+            this.textBox2.TabIndex = 111111166;
+            this.textBox2.TabStop = false;
+            this.textBox2.Text = "Label Name";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox3.Location = new System.Drawing.Point(6, 343);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(108, 28);
+            this.textBox3.TabIndex = 111111167;
+            this.textBox3.TabStop = false;
+            this.textBox3.Text = "MRP";
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox4.Location = new System.Drawing.Point(6, 399);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(108, 28);
+            this.textBox4.TabIndex = 111111168;
+            this.textBox4.TabStop = false;
+            this.textBox4.Text = "No.of Copies";
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox6.Enabled = false;
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox6.Location = new System.Drawing.Point(6, 371);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(108, 28);
+            this.textBox6.TabIndex = 111111170;
+            this.textBox6.TabStop = false;
+            this.textBox6.Text = "Sales Rate";
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox9.Location = new System.Drawing.Point(552, 484);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(64, 28);
+            this.textBox9.TabIndex = 111111174;
+            this.textBox9.TabStop = false;
+            this.textBox9.Text = "Title";
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox10.Location = new System.Drawing.Point(552, 542);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(64, 28);
+            this.textBox10.TabIndex = 111111180;
+            this.textBox10.TabStop = false;
+            this.textBox10.Text = "Mfd Date";
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox11.Enabled = false;
+            this.textBox11.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox11.Location = new System.Drawing.Point(552, 513);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(64, 28);
+            this.textBox11.TabIndex = 111111181;
+            this.textBox11.TabStop = false;
+            this.textBox11.Text = "Exp Date";
+            // 
             // CP_DirectLabelPrint_Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1036,9 +1080,11 @@
             this.grbGrid.ResumeLayout(false);
             this.grbGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errRack)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errRack)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1071,48 +1117,52 @@
         public System.Windows.Forms.Button btnPrint;
         public System.Windows.Forms.Button btnDirectPrint;
         private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label11;
         public System.Windows.Forms.Label lblUnit;
-        private System.Windows.Forms.Label label13;
-        public System.Windows.Forms.Label lblPICode;
-        private System.Windows.Forms.Label label26;
-        public System.Windows.Forms.Label lblProductName;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label30;
-        public System.Windows.Forms.Label lblWholesale;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label25;
-        public System.Windows.Forms.Label lblRetail;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label31;
         public System.Windows.Forms.TextBox txtLabelProduct;
         public System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox txtdcompany;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
         public System.Windows.Forms.Label lbdname;
         private System.Windows.Forms.Label lbltname;
-        private System.Windows.Forms.TextBox textBox8;
         public System.Windows.Forms.ComboBox cmbPrintType;
         public System.Windows.Forms.ComboBox cmbTitle;
-        private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblDesc;
-        private System.Windows.Forms.CheckBox chkNone;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtDay;
         private System.Windows.Forms.TextBox txtMonth;
         private System.Windows.Forms.TextBox txtEYear;
         private System.Windows.Forms.TextBox txtEDay;
         private System.Windows.Forms.TextBox txtEMonth;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox7;
+        public System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtdcompany;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Label lblWholesale;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        public System.Windows.Forms.Label lblPICode;
+        private System.Windows.Forms.Label label26;
+        public System.Windows.Forms.Label lblProductName;
+        public System.Windows.Forms.Label lblRetail;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
     }
 }
