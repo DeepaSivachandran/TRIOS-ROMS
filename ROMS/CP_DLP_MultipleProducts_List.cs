@@ -13,7 +13,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace ROMS
 {
     //Created By:Sathish ; Created On:-17/11/2025
-    public partial class CP_DirectLabelList : Form
+    public partial class CP_DLP_MultipleProducts_List : Form
     {
         private HashSet<int> changedLPIDs = new HashSet<int>(); private bool isRunning = true;
 
@@ -28,7 +28,7 @@ namespace ROMS
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
 
-        public CP_DirectLabelList()
+        public CP_DLP_MultipleProducts_List()
         {
             InitializeComponent();
             windowControl.Initialize(tsDirectLabelList, this);
@@ -39,15 +39,15 @@ namespace ROMS
             {
                 try
                 {
-                    MainForm.objCP_DirectLabelPrint = new CP_DirectLabelPrint();
-                    //objMainForm.CenterEntryForm(this, MainForm.objCP_DirectLabelPrint);
-                    MainForm.objCP_DirectLabelPrint.MdiParent = this.ParentForm;
+                    MainForm.objCP_DLP_MultipleProducts = new CP_DLP_MultipleProducts();
+                    //objMainForm.CenterEntryForm(this, MainForm.objCP_DLP_MultipleProducts);
+                    MainForm.objCP_DLP_MultipleProducts.MdiParent = this.ParentForm;
                     MainForm main = (MainForm)this.MdiParent;
                     main.IsEntryFormOpen = true;
-                    main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
+                    main.CurrentEntryForm = MainForm.objCP_DLP_MultipleProducts_List;
                     main.CurrentParentListForm = this;
                     isRunning = false;
-                    MainForm.objCP_DirectLabelPrint.Show();
+                    MainForm.objCP_DLP_MultipleProducts.Show();
 
                 }
                 catch (Exception ex)
@@ -137,17 +137,17 @@ namespace ROMS
                         picLoader.Visible = true;
                         picLoader.BringToFront();
                         Application.DoEvents();
-                        MainForm.objCP_DirectLabelPrint = new CP_DirectLabelPrint();
-                        MainForm.objCP_DirectLabelPrint.pbLPID = Convert.ToInt32(grdDirectLabelList.SelectedRows[0].Cells["ID"].Value.ToString());
-                        //objMainForm.CenterEntryForm(this, MainForm.objCP_DirectLabelPrint);
+                        MainForm.objCP_DLP_MultipleProducts = new CP_DLP_MultipleProducts();
+                        MainForm.objCP_DLP_MultipleProducts.pbLPID = Convert.ToInt32(grdDirectLabelList.SelectedRows[0].Cells["ID"].Value.ToString());
+                        //objMainForm.CenterEntryForm(this, MainForm.objCP_DLP_MultipleProducts);
                         picLoader.Visible = false;
-                        MainForm.objCP_DirectLabelPrint.MdiParent = this.ParentForm;
+                        MainForm.objCP_DLP_MultipleProducts.MdiParent = this.ParentForm;
                         MainForm main = (MainForm)this.MdiParent;
                         main.IsEntryFormOpen = true;
-                        main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
+                        main.CurrentEntryForm = MainForm.objCP_DLP_MultipleProducts_List;
                         main.CurrentParentListForm = this;
                         isRunning = false;
-                        MainForm.objCP_DirectLabelPrint.Show();
+                        MainForm.objCP_DLP_MultipleProducts.Show();
                     }
                 }
                 catch (Exception ex)
@@ -340,7 +340,17 @@ namespace ROMS
         {
             try
             {
-                MenuCode = 512;
+                dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
+                int currentMUCode = 51202;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
+                dynamicLabelControl.BindMenuHierarchy(currentMUCode);
+                MenuCode = 51202;
                 udfnList(); udfnLoad();//udfnRateChanged();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {

@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_DirectLabelList
+    partial class CP_DLP_MultipleProducts_List
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsDirectLabelList = new System.Windows.Forms.ToolStrip();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tssEdit = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
@@ -46,6 +45,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdDirectLabelList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsDirectLabelList.SuspendLayout();
             this.pnlDirectLabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
@@ -60,27 +61,17 @@
             this.tsDirectLabelList.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsDirectLabelList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.tsDirectLabelList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspHeader,
             this.tsbDelete,
             this.tssEdit,
             this.tsbEdit,
             this.tssNew,
-            this.tsbNew});
+            this.tsbNew,
+            this.tsLabelPlaceholder});
             this.tsDirectLabelList.Location = new System.Drawing.Point(0, 0);
             this.tsDirectLabelList.Name = "tsDirectLabelList";
             this.tsDirectLabelList.Size = new System.Drawing.Size(1354, 27);
             this.tsDirectLabelList.TabIndex = 35;
             this.tsDirectLabelList.Text = "City";
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(119, 24);
-            this.tspHeader.Text = "Direct Label Print";
             // 
             // tsbDelete
             // 
@@ -273,7 +264,17 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
-            // CP_DirectLabelList
+            // tsLabelPlaceholder
+            // 
+            this.tsLabelPlaceholder.Name = "tsLabelPlaceholder";
+            this.tsLabelPlaceholder.Size = new System.Drawing.Size(42, 24);
+            this.tsLabelPlaceholder.Text = "Levels";
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // CP_DLP_MultipleProducts_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -285,7 +286,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "CP_DirectLabelList";
+            this.Name = "CP_DLP_MultipleProducts_List";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Direct Label Print";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_DirectLabelList_FormClosing);
@@ -307,7 +308,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip tsDirectLabelList;
-        private System.Windows.Forms.ToolStripLabel tspHeader;
         public System.Windows.Forms.ToolStripButton tsbDelete;
         public System.Windows.Forms.ToolStripSeparator tssEdit;
         public System.Windows.Forms.ToolStripButton tsbEdit;
@@ -318,5 +318,7 @@
         private System.Windows.Forms.Label lblNoRecordsFound;
         public System.Windows.Forms.DataGridView grdDirectLabelList;
         public System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
+        private DynamicToolStripLabelControl dynamicLabelControl;
     }
 }

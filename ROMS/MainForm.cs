@@ -160,9 +160,10 @@ namespace ROMS
         public static CP_Rate_Category objCP_Rate_Category;
         public static CP_StickerPrint objCP_StickerPrint;
         // added by venkat on 09-08-2025
-        public static CP_DirectLabelPrint objCP_DirectLabelPrint;
-        public static CP_DirectLabelList objCP_DirectLabelList;
-        public static CP_DirectLabelPrint_Products objCP_DirectLabelPrint_Products;
+        public static CP_DLP_SingleProduct objCP_DLP_SingleProduct;
+        public static CP_DLP_SingleProduct_List objCP_DLP_SingleProduct_List;
+        public static CP_DLP_MultipleProducts objCP_DLP_MultipleProducts;
+        public static CP_DLP_MultipleProducts_List objCP_DLP_MultipleProducts_List;
         public static CP_Printer_Setting objCP_PrinterSetting;
         //Added by sivabharathi on 14/08/2025
         public static CP_BankList objCP_BankList;
@@ -4104,15 +4105,7 @@ namespace ROMS
 
         private void tsmDirectLabelPrint_Click(object sender, EventArgs e)
         {
-            try
-            {
-                OpenReportForm(ref MainForm.objCP_DirectLabelList, "CP_DirectLabelList", 512);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
+            
         }
 
         private void tsmUserRole_Click(object sender, EventArgs e)
@@ -4901,6 +4894,32 @@ namespace ROMS
             {
                 OpenReportForm(ref MainForm.objREPORT_Damage_Entry, "REPORT_Damage_Entry", 80414);
                 PbCurrentForm = "7.2.2";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDLPSingleProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_DLP_SingleProduct_List, "CP_DLP_SingleProduct_List", 51201);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmDLPMultipleProducts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_DLP_MultipleProducts_List, "CP_DLP_MultipleProducts_List", 51202);
             }
             catch (Exception ex)
             {

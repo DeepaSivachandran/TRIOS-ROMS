@@ -290,7 +290,7 @@ namespace ROMS
                         //objMainForm.CenterEntryForm(this, MainForm.objCP_UserRole);
                         MainForm main = (MainForm)this.MdiParent;
                         main.IsEntryFormOpen = true;
-                        main.CurrentEntryForm = MainForm.objCP_DirectLabelList;
+                        main.CurrentEntryForm = MainForm.objCP_Sales_UserRoleList;
                         main.CurrentParentListForm = this;
                         MainForm.obj_Sales_UserRole.Show();
                     }

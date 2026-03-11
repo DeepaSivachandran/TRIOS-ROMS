@@ -173,11 +173,17 @@
     <Compile Include="CP_BulkUpdate_RateCategory.designer.cs">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_DirectLabelPrint_Products.cs">
+    <Compile Include="CP_DLP_MultipleProducts_List.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_DirectLabelPrint_Products.designer.cs">
-      <DependentUpon>CP_DirectLabelPrint_Products.cs</DependentUpon>
+    <Compile Include="CP_DLP_MultipleProducts_List.designer.cs">
+      <DependentUpon>CP_DLP_MultipleProducts_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_DLP_MultipleProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_DLP_MultipleProducts.designer.cs">
+      <DependentUpon>CP_DLP_MultipleProducts.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_LockItems.cs">
       <SubType>Form</SubType>
@@ -395,11 +401,11 @@
     <Compile Include="CP_Spl_Products_Bulk.designer.cs">
       <DependentUpon>CP_Spl_Products_Bulk.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_DirectLabelList.cs">
+    <Compile Include="CP_DLP_SingleProduct_List.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_DirectLabelList.designer.cs">
-      <DependentUpon>CP_DirectLabelList.cs</DependentUpon>
+    <Compile Include="CP_DLP_SingleProduct_List.designer.cs">
+      <DependentUpon>CP_DLP_SingleProduct_List.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_CustomerTypelist.cs">
       <SubType>Form</SubType>
@@ -528,11 +534,11 @@
     <Compile Include="CP_Bank.designer.cs">
       <DependentUpon>CP_Bank.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_DirectLabelPrint.cs">
+    <Compile Include="CP_DLP_SingleProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_DirectLabelPrint.designer.cs">
-      <DependentUpon>CP_DirectLabelPrint.cs</DependentUpon>
+    <Compile Include="CP_DLP_SingleProduct.designer.cs">
+      <DependentUpon>CP_DLP_SingleProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_Printer_Setting.cs">
       <SubType>Form</SubType>
@@ -4175,8 +4181,11 @@
     <EmbeddedResource Include="CP_BulkUpdate_RateCategory.resx">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_DirectLabelPrint_Products.resx">
-      <DependentUpon>CP_DirectLabelPrint_Products.cs</DependentUpon>
+    <EmbeddedResource Include="CP_DLP_MultipleProducts_List.resx">
+      <DependentUpon>CP_DLP_MultipleProducts_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_DLP_MultipleProducts.resx">
+      <DependentUpon>CP_DLP_MultipleProducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_LockItems.resx">
       <DependentUpon>CP_LockItems.cs</DependentUpon>
@@ -4286,8 +4295,8 @@
     <EmbeddedResource Include="CP_Spl_Products_Bulk.resx">
       <DependentUpon>CP_Spl_Products_Bulk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_DirectLabelList.resx">
-      <DependentUpon>CP_DirectLabelList.cs</DependentUpon>
+    <EmbeddedResource Include="CP_DLP_SingleProduct_List.resx">
+      <DependentUpon>CP_DLP_SingleProduct_List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_CustomerTypelist.resx">
       <DependentUpon>CP_CustomerTypelist.cs</DependentUpon>
@@ -4349,8 +4358,8 @@
     <EmbeddedResource Include="CP_Bank.resx">
       <DependentUpon>CP_Bank.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_DirectLabelPrint.resx">
-      <DependentUpon>CP_DirectLabelPrint.cs</DependentUpon>
+    <EmbeddedResource Include="CP_DLP_SingleProduct.resx">
+      <DependentUpon>CP_DLP_SingleProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Printer_Setting.resx">
       <DependentUpon>CP_Printer_Setting.cs</DependentUpon>

@@ -13,7 +13,7 @@ namespace ROMS
 {
     //Author : Sathish
     //Created On : 20-02-2025
-    public partial class CP_DirectLabelPrint_Products : Form
+    public partial class CP_DLP_SingleProduct : Form
     {
         //DynamicWindowControl windowControl = new DynamicWindowControl();
 
@@ -42,7 +42,7 @@ namespace ROMS
 
         public int pbLPID = 0;
         public string varDirectLablPrintId = "0";
-        public CP_DirectLabelPrint_Products()
+        public CP_DLP_SingleProduct()
         {
             InitializeComponent();
             //windowControl.Initialize(tsDirectLabelPrint, this);
@@ -63,6 +63,72 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbType_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbType_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void CmbType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void CmbType_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbCompany_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbConcern_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void CmbConcern_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void CmbCompany_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnView_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnView_Leave(object sender, EventArgs e)
+        {
+
+        }
+
         private void txtProductName_Enter(object sender, EventArgs e)
         {
             try
@@ -326,6 +392,9 @@ namespace ROMS
             }
             finally
             {
+                lblNoRecordsFound.Visible = true;
+                lblNoRecordsFound.BringToFront();
+                RPTViewer.ReportSource = null;
                 txtProductName.Focus();
                 lblPICode.Text = "";
                 lblProductName.Text = "";
@@ -355,6 +424,7 @@ namespace ROMS
                 lblWholesale.Text = "";
                 if (pbLPID != 0)
                 {
+                    varDirectLablPrintId = Convert.ToString(pbLPID);
                     udfnEdit();
                 }
             }
@@ -427,6 +497,9 @@ namespace ROMS
                             lblWholesale.Text = Convert.ToString(objDS.Tables[0].Rows[0]["W.Rate"]);
                             lbdname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LENAME"]);
                             lbltname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["LTNAME"]);
+
+                            varDirectLablPrintId = Convert.ToString(pbLPID);
+                            udfnReportView("Preview", varDirectLablPrintId);
                         }
                     }
                 }
@@ -1020,6 +1093,10 @@ namespace ROMS
                 //int varTempleteValue = Convert.ToInt32(cmbTemplate.Text);
                 string result = "";
                 int varFlag = 0;
+                if (chkNone.Checked == true)
+                {
+                    varFlag = 1;
+                }
                 SPDataService objspdservice = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
                 string varExpiryDate = "", varMfdDate = "";
@@ -1031,10 +1108,13 @@ namespace ROMS
                 objMR_Product.paraViewType = 1;
                 objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
                 objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
-                objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text);
-                objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
-                objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
-                objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
+                if (chkNone.Checked == false)
+                {
+                    objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text);
+                    objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
+                    objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
+                    objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
+                }
                 objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
                 objMR_Product.paraCopies = varPrintCount;
                 objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);
@@ -1059,7 +1139,7 @@ namespace ROMS
                         varDirectLablPrintId = varvalue[2];
                         if (varFromFlag == 0)
                         {
-                            //udfnReportView("Preview", varDirectLablPrintId);
+                            udfnReportView("Preview", varDirectLablPrintId);
                         }
                     }
                 }
@@ -1106,7 +1186,10 @@ namespace ROMS
                 lblUnit.Text = "";
                 lblRetail.Text = "";
                 lblWholesale.Text = "";
+                RPTViewer.ReportSource = null;
+                lblNoRecordsFound.Visible = true;
                 txtLabelProduct.Text = "";
+                lblNoRecordsFound.BringToFront();
                 cmbTemplate.Text = "-Select-";
             }
             catch (Exception ex)
@@ -1116,12 +1199,210 @@ namespace ROMS
             } 
         }
 
+
+        public void udfnReportView(string type,string varPrintId)
+        {
+            try
+            {
+                picLoader4.Visible = true;
+                errRack.Clear();
+                int varPrint = 0;
+                SPDataService objSPdataservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 70;
+                objMR_Product.paraId = Convert.ToInt32(varPrintId);
+                objDs = objSPdataservice.udfnproductmasterlist(objMR_Product);
+                objSPdataservice.CloseConnection();
+                if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
+                if (varPrint == 1)
+                {
+                    string varReportName = "", varTemplateText = "";
+                    if (objDs.Tables.Count > 1)
+                    {
+                        if (objDs.Tables[1].Rows.Count > 0)
+                        {
+                            varReportName = Convert.ToString(objDs.Tables[1].Rows[0]["ReportName"].ToString());
+                            varTemplateText = Convert.ToString(objDs.Tables[1].Rows[0]["TemplateText"].ToString());
+                        }
+                    }
+                    //int varTemplateIndex = cmbTemplate.SelectedIndex;
+                    if (type == "Preview")
+                    {
+                        RPTViewer.ReportSource = null;
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        RPTViewer.ReuseParameterValuesOnRefresh = true;
+                        RPTViewer.RefreshReport();
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                        string rptPath = Application.StartupPath + "\\Reports\\" + varReportName + "";
+                        objBillreport.Load(rptPath);
+                        int templateType = Convert.ToInt32(cmbLabelsize.SelectedValue);
+                        if (templateType == 316 || templateType == 317 || templateType == 318 || templateType == 319)
+                        {
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
+                        //Goods Inward Direct Label Print
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateText == "100*70 WOHGI")
+                        {
+                            objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
+                        objBillreport.SetParameterValue("paraId", varPrintId);
+                        objValidation.CrySqlConnection(objBillreport);
+                        RPTViewer.ReportSource = objBillreport;
+                        if (templateType == 316 || templateType == 317 || templateType == 318 || templateType == 319)
+                        {
+                            RPTViewer.Zoom(100);
+                        }
+                        else
+                        {
+                            RPTViewer.Zoom(2);
+                        }
+                        //Restrict test print for Sheet
+                        if (Convert.ToInt32(cmbPrintType.SelectedValue) == 363)
+                        {
+                            btnPrint.Enabled = true;
+                        }
+                        btnDirectPrint.Enabled = true;
+                        RPTViewer.Refresh();
+                        picLoader4.Visible = false;
+                        lblNoRecordsFound.Visible = false;
+                    }
+                    else if (type == "Test Print")
+                    {
+                        ManagementScope scope = new ManagementScope(@"\root\cimv2");
+                        scope.Connect();
+
+                        // Select Printers from WMI Object Collections
+                        ManagementObjectSearcher searcher = new
+                         ManagementObjectSearcher("SELECT * FROM Win32_Printer");
+
+                        DataValidation dserv = new DataValidation();
+                        string varPrintName = dserv.DefPrinterName(Convert.ToString(cmbLabelsize.Text));
+                        //lbl_Pro_PrnName.Text = dserv.DefPrinterName(lblPLCode.Text);
+                        string printerName = "";
+                        foreach (ManagementObject printer in searcher.Get())
+                        {
+                            printerName = printer["Name"].ToString();
+                            if (printerName.Equals(@varPrintName.Trim()))
+                            {
+                                if (printer["WorkOffline"].ToString().ToLower().Equals("true"))
+                                {
+                                    MessageBox.Show("Printer is not connected.");
+                                    varPrintName = "";
+                                    //return;
+                                }
+                            }
+                        }
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreportTestPrint = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreportTestPrint = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                        string rptPath = Application.StartupPath + "\\Reports\\" + varReportName + "";
+                        objBillreportTestPrint.Load(rptPath);
+                        string templateType = Convert.ToString(cmbLabelsize.Text);
+                        if (templateType == "A4" || templateType == "A5" || templateType == "A6" || templateType == "A7")
+                        {
+                            objBillreportTestPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
+                        //Goods Inward Direct Label Print
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateText == "100*70 WOHGI")
+                        {
+                            objBillreportTestPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreportTestPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
+                        objValidation.CrySqlConnection(objBillreportTestPrint);
+                        System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                        printerSettings.PrinterName = varPrintName;
+                        objBillreportTestPrint.PrintToPrinter(printerSettings, new System.Drawing.Printing.PageSettings(), false);
+
+                    }
+                    else
+                    {
+                        ManagementScope scope = new ManagementScope(@"\root\cimv2");
+                        scope.Connect();
+
+                        // Select Printers from WMI Object Collections
+                        ManagementObjectSearcher searcher = new
+                         ManagementObjectSearcher("SELECT * FROM Win32_Printer");
+
+                        DataValidation dserv = new DataValidation();
+                        string varPrintName = dserv.DefPrinterName(Convert.ToString(cmbLabelsize.Text));
+                        //lbl_Pro_PrnName.Text = dserv.DefPrinterName(lblPLCode.Text);
+                        string printerName = "";
+                        foreach (ManagementObject printer in searcher.Get())
+                        {
+                            printerName = printer["Name"].ToString();
+                            if (printerName.Equals(@varPrintName.Trim()))
+                            {
+                                if (printer["WorkOffline"].ToString().ToLower().Equals("true"))
+                                {
+                                    MessageBox.Show("Printer is not connected.");
+                                    varPrintName = "";
+                                    //return;
+                                }
+                            }
+                        }
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreportDirectPrint = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreportDirectPrint = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                        string rptPath = Application.StartupPath + "\\Reports\\" + varReportName + "";
+                        objBillreportDirectPrint.Load(rptPath);
+                        string templateType = Convert.ToString(cmbLabelsize.Text);
+                        if (templateType == "A4" || templateType == "A5" || templateType == "A6" || templateType == "A7")
+                        {
+                            objBillreportDirectPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
+                        //Goods Inward Direct Label Print
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && varTemplateText == "100*70 WOHGI")
+                        {
+                            objBillreportDirectPrint.SetParameterValue("paraHostName", MainForm.pbHostName);
+                            objBillreportDirectPrint.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        }
+                        objValidation.CrySqlConnection(objBillreportDirectPrint);
+                        System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                        printerSettings.PrinterName = varPrintName;
+                        objBillreportDirectPrint.PrintToPrinter(printerSettings, new System.Drawing.Printing.PageSettings(), false);
+
+                    }
+                }
+                else
+                {
+
+                    btnPrint.Enabled = false;
+                    btnDirectPrint.Enabled = false;
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront(); 
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+                btnPrint.Enabled = false;
+                btnDirectPrint.Enabled = false;
+                lblNoRecordsFound.Visible = true;
+                RPTViewer.ReportSource = null;
+                lblNoRecordsFound.BringToFront(); 
+            }
+            finally
+            {
+                picLoader4.Visible = false;
+            }
+        }
+
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
             try
             {
                 udfnPrintSave(1);
+                udfnReportView("Test Print", varDirectLablPrintId);
             }
             catch (Exception ex)
             {
@@ -1134,6 +1415,7 @@ namespace ROMS
         {
             try
             {
+                udfnReportView("Direct Print", varDirectLablPrintId);
                 udfnSave();
             }
             catch (Exception ex)
@@ -1143,6 +1425,10 @@ namespace ROMS
             }
         }
 
+        private void lblSubGroup_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void txtMrp_TextChanged(object sender, EventArgs e)
         {
@@ -1501,6 +1787,7 @@ namespace ROMS
                     (varSheet.Contains(varLabelSize) && (varTemplateIndex == 0 || varTemplateIndex == 1)))
                 {
                     cmbTitle.Enabled = true;
+                    chkNone.Enabled = true;
                 }
                 else
                 {
@@ -1556,29 +1843,65 @@ namespace ROMS
         {
             try
             {
-                txtProductName.Focus();
-                txtProductName.Text = "";
-                lblPICode.Text = "";
-                lblProductName.Text = "";
-                lblUnit.Text = "";
-                lblRetail.Text = "";
-                lblWholesale.Text = "";
-                txtLabelProduct.Text = "";
-                txtMrp.Text = "";
-                txtSalesRate.Text = "";
-                txtNoofcopy.Text = "";
-                cmbPrintType.SelectedValue = 363;
-                cmbPrintLanguage.SelectedValue = 322;
-                cmbLabelsize.SelectedValue = -1;
+                if (chkNone.Checked == true)
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                    RPTViewer.ReportSource = null;
+                    txtProductName.Text = "";
+                    lblPICode.Text = "";
+                    lblProductName.Text = "";
+                    lblUnit.Text = "";
+                    lblRetail.Text = "";
+                    lblWholesale.Text = "";
+                    txtLabelProduct.Text = "";
+                    txtMrp.Text = "";
+                    txtSalesRate.Text = "";
+                    txtNoofcopy.Text = "";
+                    cmbPrintType.SelectedValue = 364;
+                    cmbPrintLanguage.SelectedValue = 322;
+                    cmbLabelsize.SelectedValue = -1;
 
-                cmbTemplate.Text = "-Select";
-                txtProductName.Enabled = true;
-                cmbPrintLanguage.Enabled = true;
-                txtLabelProduct.Enabled = true;
-                btnUpdate.Enabled = true;
-                txtMrp.Enabled = true;
-                txtSalesRate.Enabled = true;
-                cmbPrintType.Enabled = true;
+                    cmbTemplate.Text = "-Select";
+                    cmbTemplate.Enabled = false;
+                    txtProductName.Enabled = false;
+                    cmbPrintLanguage.Enabled = false;
+                    txtLabelProduct.Enabled = false;
+                    btnUpdate.Enabled = false;
+                    txtMrp.Enabled = false;
+                    txtSalesRate.Enabled = false;
+                    cmbPrintType.Enabled = false;
+                    txtNoofcopy.Focus();
+                }
+                else
+                {
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                    RPTViewer.ReportSource = null;
+                    txtProductName.Focus();
+                    txtProductName.Text = "";
+                    lblPICode.Text = "";
+                    lblProductName.Text = "";
+                    lblUnit.Text = "";
+                    lblRetail.Text = "";
+                    lblWholesale.Text = "";
+                    txtLabelProduct.Text = "";
+                    txtMrp.Text = "";
+                    txtSalesRate.Text = "";
+                    txtNoofcopy.Text = "";
+                    cmbPrintType.SelectedValue = 363;
+                    cmbPrintLanguage.SelectedValue = 322;
+                    cmbLabelsize.SelectedValue = -1;
+
+                    cmbTemplate.Text = "-Select";
+                    txtProductName.Enabled = true;
+                    cmbPrintLanguage.Enabled = true;
+                    txtLabelProduct.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    txtMrp.Enabled = true;
+                    txtSalesRate.Enabled = true;
+                    cmbPrintType.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -1608,7 +1931,7 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         this.Close();
-                        MainForm.objCP_DirectLabelList.udfnList();
+                        MainForm.objCP_DLP_SingleProduct_List.udfnList();
                     }
                 }
             }
@@ -1912,6 +2235,10 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+            finally
+            {
+                lvProduct.Visible = false;
+            }
         }
 
         public void udfnListviewProduct()
@@ -2004,37 +2331,39 @@ namespace ROMS
                         blnErrFlag = true;
                     }
                 }
-
-                if (Convert.ToString(txtProductName.Text.Trim()) == "")
+                if (chkNone.Checked == false)
                 {
-                    errRack.SetError(txtProductName, "Please enter productname.");
-                    txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpProdtctname.ShowAlways = true;
-                    tpProdtctname.Show("Please enter productname", txtProductName, 5000);
-                    blnErrFlag = true;
-                }
-                if (Convert.ToString(txtMrp.Text.Trim()) == "")
-                {
-                    errRack.SetError(txtMrp, "Please enter MRP.");
-                    txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpMRP.ShowAlways = true;
-                    tpMRP.Show("Please enter MRP", txtMrp, 5000);
-                    blnErrFlag = true;
-                }
-                if (Convert.ToString(txtSalesRate.Text.Trim()) == "")
-                {
-                    errRack.SetError(txtSalesRate, "Please enter salesrate.");
-                    txtSalesRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSalesRate.ShowAlways = true;
-                    tpSalesRate.Show("Please enter salesrate", txtSalesRate, 5000);
-                    blnErrFlag = true;
-                }
-                if (Convert.ToString(txtMrp.Text.Trim()) != "")
-                {
-                    if (Convert.ToDecimal(txtMrp.Text) < Convert.ToDecimal(txtSalesRate.Text))
+                    if (Convert.ToString(txtProductName.Text.Trim()) == "")
                     {
-                        MessageBox.Show("MRP amount is less then retail sales amount...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        errRack.SetError(txtProductName, "Please enter productname.");
+                        txtProductName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpProdtctname.ShowAlways = true;
+                        tpProdtctname.Show("Please enter productname", txtProductName, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (Convert.ToString(txtMrp.Text.Trim()) == "")
+                    {
+                        errRack.SetError(txtMrp, "Please enter MRP.");
+                        txtMrp.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpMRP.ShowAlways = true;
+                        tpMRP.Show("Please enter MRP", txtMrp, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (Convert.ToString(txtSalesRate.Text.Trim()) == "")
+                    {
+                        errRack.SetError(txtSalesRate, "Please enter salesrate.");
+                        txtSalesRate.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSalesRate.ShowAlways = true;
+                        tpSalesRate.Show("Please enter salesrate", txtSalesRate, 5000);
+                        blnErrFlag = true;
+                    }
+                    if (Convert.ToString(txtMrp.Text.Trim()) != "")
+                    {
+                        if (Convert.ToDecimal(txtMrp.Text) < Convert.ToDecimal(txtSalesRate.Text))
+                        {
+                            MessageBox.Show("MRP amount is less then retail sales amount...", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
                 }
                 if (cmbTitle.Enabled == true)
@@ -2100,7 +2429,7 @@ namespace ROMS
                     if (result.Split('~')[0] != "1")
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MainForm.objCP_DirectLabelList.udfnList();
+                        MainForm.objCP_DLP_SingleProduct_List.udfnList();
                     }
                 } 
                 else
