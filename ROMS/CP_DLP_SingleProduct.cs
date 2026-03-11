@@ -1060,7 +1060,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPrintSave(int varFromFlag)
+        public void udfnPrintSave(int varFromFlag,string varType)
         {
             try
             {
@@ -1139,7 +1139,7 @@ namespace ROMS
                         varDirectLablPrintId = varvalue[2];
                         if (varFromFlag == 0)
                         {
-                            udfnReportView("Preview", varDirectLablPrintId);
+                            udfnReportView(varType, varDirectLablPrintId);
                         }
                     }
                 }
@@ -1398,10 +1398,9 @@ namespace ROMS
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
             try
             {
-                udfnPrintSave(1);
+                udfnPrintSave(1,"Preview");
                 udfnReportView("Test Print", varDirectLablPrintId);
             }
             catch (Exception ex)
@@ -1415,8 +1414,7 @@ namespace ROMS
         {
             try
             {
-                udfnReportView("Direct Print", varDirectLablPrintId);
-                udfnSave();
+                udfnPrintSave(0, "Direct Print");
             }
             catch (Exception ex)
             {
@@ -2380,8 +2378,7 @@ namespace ROMS
                 if (blnErrFlag == false)
                 {
                     errRack.Clear();
-                    //udfnReportView("Preview", varDirectLablPrintId);
-                    udfnPrintSave(0);
+                    udfnPrintSave(0,"Preview");
                 }
             }
             catch (Exception ex)
@@ -2395,7 +2392,6 @@ namespace ROMS
         {
             try 
             {
-
                 string result = "";
                 SPDataService objspdservice = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
