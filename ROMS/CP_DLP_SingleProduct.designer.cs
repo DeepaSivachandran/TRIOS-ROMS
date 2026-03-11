@@ -520,7 +520,7 @@
             this.textBox6.Size = new System.Drawing.Size(108, 28);
             this.textBox6.TabIndex = 111111170;
             this.textBox6.TabStop = false;
-            this.textBox6.Text = "Sales Rate";
+            this.textBox6.Text = "Selling Rate";
             // 
             // textBox5
             // 
@@ -1115,7 +1115,7 @@
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
             // 
-            // CP_DirectLabelPrint
+            // CP_DLP_SingleProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1131,7 +1131,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
-            this.Name = "CP_DirectLabelPrint";
+            this.Name = "CP_DLP_SingleProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Direct Label Print";
             this.Load += new System.EventHandler(this.CP_DiectLabelPrint_Load);
