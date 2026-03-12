@@ -2211,12 +2211,14 @@ namespace ROMS
         {
             try
             {
+                int varShelfLifeFlag = 0;
                 if (txtProductName.Text.Trim() != "")
                 {
                     lblProduct.Text = DGV_FilterProduct.SelectedRows[0].Cells["PRID"].Value.ToString();
                     txtProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString(); 
                     lblProductName.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_TName"].Value.ToString();
                     lbdname.Text = DGV_FilterProduct.SelectedRows[0].Cells["PR_EName"].Value.ToString();
+                    varShelfLifeFlag = Convert.ToInt32(DGV_FilterProduct.SelectedRows[0].Cells["PR_ShelfLife"].Value.ToString());
                     udfnListviewProduct();
 
                     if (Convert.ToInt32(cmbPrintLanguage.SelectedValue) == 322)
@@ -2226,6 +2228,27 @@ namespace ROMS
                     else
                     {
                         txtLabelProduct.Text = lbltname.Text;
+                    }
+                    if (varShelfLifeFlag == 0)
+                    {
+                        txtDay.Text = "";
+                        txtMonth.Text = "";
+                        txtYear.Text = "";
+                        txtEDay.Text = "";
+                        txtEMonth.Text = "";
+                        txtEYear.Text = "";
+                        txtDay.Enabled = false;
+                        txtMonth.Enabled = false;
+                        txtYear.Enabled = false;
+                    }
+                    else
+                    {
+                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269 && Convert.ToInt32(cmbTemplate.SelectedIndex) == 2)
+                        {
+                            txtDay.Enabled = true;
+                            txtMonth.Enabled = true;
+                            txtYear.Enabled = true;
+                        }
                     }
                 }
             }
