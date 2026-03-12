@@ -358,7 +358,7 @@
             // 
             this.txtNoofcopy.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtNoofcopy.Location = new System.Drawing.Point(119, 370);
-            this.txtNoofcopy.MaxLength = 5;
+            this.txtNoofcopy.MaxLength = 3;
             this.txtNoofcopy.Name = "txtNoofcopy";
             this.txtNoofcopy.Size = new System.Drawing.Size(122, 27);
             this.txtNoofcopy.TabIndex = 9;
@@ -408,7 +408,7 @@
             // 
             this.txtMrp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtMrp.Location = new System.Drawing.Point(141, 314);
-            this.txtMrp.MaxLength = 10;
+            this.txtMrp.MaxLength = 7;
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(100, 27);
             this.txtMrp.TabIndex = 7;
@@ -423,7 +423,7 @@
             // 
             this.txtSalesRate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSalesRate.Location = new System.Drawing.Point(141, 342);
-            this.txtSalesRate.MaxLength = 10;
+            this.txtSalesRate.MaxLength = 7;
             this.txtSalesRate.Name = "txtSalesRate";
             this.txtSalesRate.Size = new System.Drawing.Size(100, 27);
             this.txtSalesRate.TabIndex = 8;
@@ -1000,6 +1000,7 @@
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
+            this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
             this.DGV_SearchGrid.Size = new System.Drawing.Size(808, 57);
@@ -1129,7 +1130,6 @@
             // btnDirectPrint
             // 
             this.btnDirectPrint.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnDirectPrint.Enabled = false;
             this.btnDirectPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDirectPrint.Image = global::ROMS.Properties.Resources.print;
             this.btnDirectPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

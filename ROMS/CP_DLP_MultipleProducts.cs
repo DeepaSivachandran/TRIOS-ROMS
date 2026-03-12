@@ -1087,7 +1087,15 @@ namespace ROMS
             {
                 if (grdPrintProuducts.Rows.Count > 0)
                 {
-                    udfnPrintSave(0);
+                    udfnPrintSave(0, "Preview");
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbPrintType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1096,7 +1104,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnPrintSave(int varFromFlag)
+        public void udfnPrintSave(int varFromFlag,string varPrintType)
         {
             try
             {
@@ -1111,31 +1119,6 @@ namespace ROMS
                     varMfdDate = txtDay.Text + "/" + txtMonth.Text + "/" + "20" + txtYear.Text;
                     varExpiryDate = txtEDay.Text + "/" + txtEMonth.Text + "/" + "20" + txtEYear.Text;
                 }
-                /*
-                objMR_Product.paraViewType = 2;
-                objMR_Product.paraId = Convert.ToInt32(lblProduct.Text);
-                objMR_Product.paraLanguage = Convert.ToInt32(cmbPrintLanguage.SelectedValue);
-                objMR_Product.paraLPMRP = (float)Convert.ToDecimal(txtMrp.Text);
-                objMR_Product.parasales_rate = (float)Convert.ToDecimal(txtSalesRate.Text);
-                objMR_Product.ParaRetail = (float)Convert.ToDecimal(lblRetail.Text);
-                objMR_Product.parawholesale_rate = (float)Convert.ToDecimal(lblWholesale.Text);
-                objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
-                objMR_Product.paraCopies = varPrintCount;
-                objMR_Product.paraPrintType = Convert.ToInt32(cmbPrintType.SelectedValue);
-                objMR_Product.paraLabelTemplate = Convert.ToString(cmbTemplate.SelectedValue);
-                objMR_Product.paraTemplateText = Convert.ToString(cmbTemplate.Text);
-                objMR_Product.paraLabelTitle = Convert.ToInt32(cmbTitle.SelectedValue);
-                objMR_Product.paraProductLabelNameEng = txtLabelProduct.Text;
-                objMR_Product.ParaFromDate = varMfdDate;
-                objMR_Product.ParaToDate = varExpiryDate;
-                objMR_Product.paraFlag = varFlag;
-                objMR_Product.paraDirectPrintId = Convert.ToInt32(varDirectLablPrintId);
-                objMR_Product.paraTestPrintFlag = varFromFlag;
-                objMR_Product.paraStockTransfer = dtProduct;
-                objMR_Product.paraOriginator = "Direct Label Print Save";
-                result = objspdservice.udfnLabelPrint(objMR_Product);
-                objspdservice.CloseConnection();
-                */
                 objMR_Product.paraViewType = 2;
 
                 objMR_Product.paraLabelSize = Convert.ToInt32(cmbLabelsize.SelectedValue);
@@ -1163,9 +1146,9 @@ namespace ROMS
                     {
                         MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         varDirectLablPrintId = varvalue[2];
-                        if (varFromFlag == 0)
+                        if (varFromFlag == 0 || varFromFlag == 2)
                         {
-                            udfnReportView("Preview", varDirectLablPrintId);
+                            udfnReportView(varPrintType, varDirectLablPrintId);
                             this.Close();
                             MainForm.objCP_DLP_MultipleProducts_List.udfnList();
                         }
@@ -1208,6 +1191,7 @@ namespace ROMS
                 txtNoofcopy.Text = "";
                 lblProduct.Text ="0";   
                 lbdname.Text = "";
+                lbltname.Text = "";
                 lblPICode.Text = "";
                 lblProductName.Text = "";
                 lblUnit.Text = "";
@@ -1364,7 +1348,6 @@ namespace ROMS
                 else
                 {
                     btnPrint.Enabled = false;
-                    btnDirectPrint.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -1372,7 +1355,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
                 btnPrint.Enabled = false;
-                btnDirectPrint.Enabled = false;
             }
         }
 
@@ -1381,8 +1363,8 @@ namespace ROMS
 
             try
             {
-                udfnPrintSave(1);
-                udfnReportView("Test Print", varDirectLablPrintId);
+                udfnPrintSave(1, "Test Print");
+               // udfnReportView("Test Print", varDirectLablPrintId);
             }
             catch (Exception ex)
             {
@@ -1395,8 +1377,18 @@ namespace ROMS
         {
             try
             {
-                udfnReportView("Direct Print", varDirectLablPrintId);
-                udfnSave();
+                if (grdPrintProuducts.Rows.Count > 0)
+                {
+                    udfnPrintSave(2, "Direct Print");
+                }
+                else
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(38);
+                    objDServ.CloseConnection();
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbPrintType.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1436,7 +1428,6 @@ namespace ROMS
                     btnUpdate.Enabled = true;
                     btnpreview.Enabled = false;
                     btnPrint.Enabled = false;
-                    btnDirectPrint.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -2408,13 +2399,27 @@ namespace ROMS
             try
             {
                 varErrorFlag = 0;
-                udfnPreview(1);
+                udfnPreview(1); 
+                int varPRID = string.IsNullOrWhiteSpace(lblProduct.Text) ? 0 : Convert.ToInt32(lblProduct.Text);
+
+                // Check if PRID already exists
+                bool varExist = dtProduct.AsEnumerable().Any(row => row.Field<int>("DLPP_PRID") == varPRID);
+
+                if (varExist)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(70);
+                    objDServ.CloseConnection();
+
+                    MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    varErrorFlag = 1;
+                }
                 if (varErrorFlag == 0)
                 {
                     errRack.Clear();
                     udfnAdd();
+                    udfnClear();
                 }
-                udfnClear();
             }
             catch (Exception ex)
             {

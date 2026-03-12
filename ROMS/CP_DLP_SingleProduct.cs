@@ -1181,6 +1181,7 @@ namespace ROMS
                 cmbTemplate.SelectedIndex = 0;
                 lblProduct.Text ="0";   
                 lbdname.Text = "";
+                lbltname.Text = "";
                 lblPICode.Text = "";
                 lblProductName.Text = "";
                 lblUnit.Text = "";

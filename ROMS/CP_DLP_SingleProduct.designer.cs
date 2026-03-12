@@ -912,7 +912,7 @@
             // 
             this.txtSalesRate.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtSalesRate.Location = new System.Drawing.Point(137, 372);
-            this.txtSalesRate.MaxLength = 10;
+            this.txtSalesRate.MaxLength = 7;
             this.txtSalesRate.Name = "txtSalesRate";
             this.txtSalesRate.Size = new System.Drawing.Size(78, 27);
             this.txtSalesRate.TabIndex = 4;
@@ -926,7 +926,7 @@
             // 
             this.txtMrp.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtMrp.Location = new System.Drawing.Point(137, 344);
-            this.txtMrp.MaxLength = 10;
+            this.txtMrp.MaxLength = 7;
             this.txtMrp.Name = "txtMrp";
             this.txtMrp.Size = new System.Drawing.Size(78, 27);
             this.txtMrp.TabIndex = 3;
@@ -1051,7 +1051,7 @@
             // 
             this.txtNoofcopy.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.txtNoofcopy.Location = new System.Drawing.Point(115, 400);
-            this.txtNoofcopy.MaxLength = 5;
+            this.txtNoofcopy.MaxLength = 3;
             this.txtNoofcopy.Name = "txtNoofcopy";
             this.txtNoofcopy.Size = new System.Drawing.Size(100, 27);
             this.txtNoofcopy.TabIndex = 5;
