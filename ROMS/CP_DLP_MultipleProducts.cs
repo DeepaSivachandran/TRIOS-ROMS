@@ -1166,6 +1166,7 @@ namespace ROMS
                         if (varFromFlag == 0)
                         {
                             udfnReportView("Preview", varDirectLablPrintId);
+                            this.Close();
                             MainForm.objCP_DLP_MultipleProducts_List.udfnList();
                         }
                     }
