@@ -4927,6 +4927,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraDirectPrintId", objMR_Product.paraDirectPrintId);
                 varSqlCommand.Parameters.AddWithValue("@paraTemplateText", objMR_Product.paraTemplateText);
                 varSqlCommand.Parameters.AddWithValue("@paraTestPrintFlag", objMR_Product.paraTestPrintFlag);
+                varSqlCommand.Parameters.AddWithValue("@ProductList", objMR_Product.paraStockTransfer);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
@@ -4955,7 +4956,8 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("MRG_Label_Print", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Product.paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraLPID", objMR_Product.ParaProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraLPID", objMR_Product.paraDirectPrintId);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_Product.paraFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", objMR_Product.paraStatusId);

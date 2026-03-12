@@ -177,6 +177,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 0;
+                objMR_Product.paraFlag = 0;
                 objDs = objdserv.udfnLabelPrintList(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)

@@ -444,7 +444,7 @@ namespace ROMS
                 {
                     MR_Product objMR_Product = new MR_Product();
                     objMR_Product.paraViewType = 1;
-                    objMR_Product.ParaProductCode = pbLPID;
+                    objMR_Product.paraDirectPrintId = pbLPID;
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     objDS = objdserv.udfnLabelPrintList(objMR_Product);

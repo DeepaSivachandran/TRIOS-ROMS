@@ -177,6 +177,7 @@ namespace ROMS
                 SPDataService objdserv = new SPDataService();
                 MR_Product objMR_Product = new MR_Product();
                 objMR_Product.paraViewType = 0;
+                objMR_Product.paraFlag = 1;
                 objDs = objdserv.udfnLabelPrintList(objMR_Product);
                 objdserv.CloseConnection();
                 if (objDs != null)
@@ -191,14 +192,10 @@ namespace ROMS
                             grdDirectLabelList.DataSource = objDs.Tables[0];
                             grdDirectLabelList.Columns["ID"].Visible = false;
                             grdDirectLabelList.Columns["S.No."].Width = 50;
-                            grdDirectLabelList.Columns["P.I Code"].Width = 150;
-                            grdDirectLabelList.Columns["Product Name"].Width = 400;
+                            grdDirectLabelList.Columns["Template"].Width = 300;
+                            grdDirectLabelList.Columns["Created By"].Width = 300;
                             grdDirectLabelList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdDirectLabelList.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDirectLabelList.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDirectLabelList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDirectLabelList.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdDirectLabelList.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                            grdDirectLabelList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdDirectLabelList.ClearSelection();
                         }
                         else
@@ -242,7 +239,8 @@ namespace ROMS
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
-                DGV_SearchGrid.Columns["Product Name"].Width = 200;
+                DGV_SearchGrid.Columns["Template"].Width = 300;
+                DGV_SearchGrid.Columns["Created By"].Width = 300;
                 DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
