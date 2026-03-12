@@ -295,6 +295,7 @@
             this.grdPrintProuducts.Size = new System.Drawing.Size(808, 434);
             this.grdPrintProuducts.TabIndex = 111111199;
             this.grdPrintProuducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPrintProuducts_CellContentClick);
+            this.grdPrintProuducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdPrintProuducts_DataBindingComplete);
             this.grdPrintProuducts.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdPrintProuducts_Scroll);
             // 
             // clmRemove

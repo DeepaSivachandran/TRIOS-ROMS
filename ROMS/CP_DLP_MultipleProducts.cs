@@ -512,7 +512,7 @@ namespace ROMS
                         /* BIND GRID */
 
                         grdPrintProuducts.DataSource = null;
-                        grdPrintProuducts.DataSource = dtGrid;
+                        grdPrintProuducts.DataSource = dtGrid.Copy();
 
                         udfnGridAlignment();
                         udfnSearchGridHead();
@@ -554,12 +554,12 @@ namespace ROMS
                 dtProduct.Columns.Add("DLPP_Title", typeof(int));
 
                 dtGrid.Columns.Add("SNo", typeof(int));
-                dtGrid.Columns.Add("PICode", typeof(string));
-                dtGrid.Columns.Add("ProductName", typeof(string));
+                dtGrid.Columns.Add("PI Code", typeof(string));
+                dtGrid.Columns.Add("Product Name", typeof(string));
                 dtGrid.Columns.Add("Unit", typeof(string));
                 dtGrid.Columns.Add("MRP", typeof(decimal));
-                dtGrid.Columns.Add("SalesRate", typeof(decimal));
-                dtGrid.Columns.Add("NoOfCopies", typeof(int));
+                dtGrid.Columns.Add("S.Rate", typeof(decimal));
+                dtGrid.Columns.Add("No.of Copies", typeof(int));
                 dtGrid.Columns.Add("ProductID", typeof(int));
             }
             catch (Exception ex)
@@ -2760,26 +2760,21 @@ namespace ROMS
             try
             {
                 grdPrintProuducts.Columns["SNo"].Width = 50;
-                grdPrintProuducts.Columns["ProductName"].Width = 280;
+                grdPrintProuducts.Columns["Product Name"].Width = 280;
                 grdPrintProuducts.Columns["Unit"].Width = 50;
                 grdPrintProuducts.Columns["MRP"].Width = 80;
-                grdPrintProuducts.Columns["SalesRate"].Width = 70;
-                grdPrintProuducts.Columns["NoOfCopies"].Width = 90;
+                grdPrintProuducts.Columns["S.Rate"].Width = 70;
+                grdPrintProuducts.Columns["No.of Copies"].Width = 90;
 
                 grdPrintProuducts.Columns["SNo"].HeaderText = "S.No.";
                 grdPrintProuducts.Columns["SNo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                grdPrintProuducts.Columns["PICode"].HeaderText = "PI Code";
-                grdPrintProuducts.Columns["ProductName"].HeaderText = "Product Name";
-                grdPrintProuducts.Columns["ProductName"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                grdPrintProuducts.Columns["Unit"].HeaderText = "Unit";
+                grdPrintProuducts.Columns["Product Name"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                 grdPrintProuducts.Columns["Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                grdPrintProuducts.Columns["MRP"].HeaderText = "MRP";
                 grdPrintProuducts.Columns["MRP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdPrintProuducts.Columns["SalesRate"].HeaderText = "S.Rate";
-                grdPrintProuducts.Columns["SalesRate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdPrintProuducts.Columns["NoOfCopies"].HeaderText = "No.of Copies";
-                grdPrintProuducts.Columns["NoOfCopies"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdPrintProuducts.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdPrintProuducts.Columns["No.of Copies"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdPrintProuducts.Columns["ProductID"].Visible = false;
+                grdPrintProuducts.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -2839,6 +2834,20 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void grdPrintProuducts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                grdPrintProuducts.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void udfnGridSearchHeading(DataGridView dgv1, DataGridView dgv2)
         {
             try
