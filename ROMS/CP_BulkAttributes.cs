@@ -1843,7 +1843,11 @@ namespace ROMS
                 varFormFlag = 1;
                 pbMenuFlag = MainForm.pbMenucode;
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder; 
-                dynamicLabelControl.BindMenuHierarchy(MainForm.pbMenucode); 
+                dynamicLabelControl.BindMenuHierarchy(MainForm.pbMenucode);
+
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 udfnMenuClick(sender, e);
                 udfnFilterLoad();
                 udfnDefalutDSLoad();
@@ -1976,7 +1980,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbCategory.Focus();
                 }
             }
             catch (Exception ex)
@@ -3394,6 +3398,62 @@ namespace ROMS
                 {
                     grdLoction.CurrentRow.Cells["Pur.Rack-New"].Value = "";
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.White;
             }
             catch (Exception ex)
             {
