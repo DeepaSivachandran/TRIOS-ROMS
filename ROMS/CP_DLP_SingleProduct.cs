@@ -651,7 +651,11 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbPrintType.Enabled == true)
+                    if (txtFontSize.Enabled == true)
+                    {
+                        txtFontSize.Focus();
+                    }
+                    else if (cmbPrintType.Enabled == true)
                     {
                         cmbPrintType.Focus();
                     }
@@ -687,11 +691,15 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbTitle.Enabled == true)
+                    if (txtFontSize.Enabled == true)
+                    {
+                        txtFontSize.Focus();
+                    }
+                    else if (cmbTitle.Enabled == true)
                     {
                         cmbTitle.Focus();
                     }
-                    else if (txtDay.Enabled==true)
+                    else if (txtDay.Enabled == true)
                     {
                         txtDay.Focus();
                     }
@@ -1821,8 +1829,16 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbPrintType.SelectedValue) == 364)
                 {
-                    txtFontSize.Enabled = true; 
                     udfnFontSize();
+                    if (Convert.ToInt32(cmbLabelsize.SelectedValue) == -1)
+                    {
+                        txtFontSize.Text = "";
+                        txtFontSize.Enabled = false;
+                    }
+                    else
+                    {
+                        txtFontSize.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -2270,7 +2286,14 @@ namespace ROMS
             {
                 if(e.KeyCode== Keys.Enter)
                 {
-                    btnpreview.Focus();
+                    if (cmbTitle.Enabled == true)
+                    {
+                        cmbTitle.Focus();   
+                    }
+                    else
+                    {
+                        btnpreview.Focus();
+                    }
                 }
             }
             catch (Exception ex)

@@ -192,7 +192,7 @@ namespace ROMS
                             grdDirectLabelList.DataSource = objDs.Tables[0];
                             grdDirectLabelList.Columns["ID"].Visible = false;
                             grdDirectLabelList.Columns["S.No."].Width = 50;
-                            grdDirectLabelList.Columns["Template"].Width = 300;
+                            grdDirectLabelList.Columns["Description"].Width = 300;
                             grdDirectLabelList.Columns["Created By"].Width = 300;
                             grdDirectLabelList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdDirectLabelList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

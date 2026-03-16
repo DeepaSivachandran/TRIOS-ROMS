@@ -113,6 +113,7 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
             this.tsDirectLabelPrint.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -183,6 +184,7 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.textBox12);
             this.grbGrid.Controls.Add(this.txtFontSize);
             this.grbGrid.Controls.Add(this.txtEYear);
             this.grbGrid.Controls.Add(this.txtEDay);
@@ -245,7 +247,7 @@
             this.txtFontSize.MaxLength = 2;
             this.txtFontSize.Name = "txtFontSize";
             this.txtFontSize.Size = new System.Drawing.Size(100, 27);
-            this.txtFontSize.TabIndex = 111111188;
+            this.txtFontSize.TabIndex = 9;
             this.txtFontSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtFontSize.Enter += new System.EventHandler(this.txtFontSize_Enter);
             this.txtFontSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFontSize_KeyDown);
@@ -1131,6 +1133,19 @@
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
             // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox12.Enabled = false;
+            this.textBox12.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.textBox12.Location = new System.Drawing.Point(6, 427);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
+            this.textBox12.Size = new System.Drawing.Size(108, 28);
+            this.textBox12.TabIndex = 111111189;
+            this.textBox12.TabStop = false;
+            this.textBox12.Text = "Font Size";
+            // 
             // CP_DLP_SingleProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1247,5 +1262,6 @@
         private System.Windows.Forms.TextBox txtEDay;
         private System.Windows.Forms.TextBox txtEMonth;
         private System.Windows.Forms.TextBox txtFontSize;
+        private System.Windows.Forms.TextBox textBox12;
     }
 }

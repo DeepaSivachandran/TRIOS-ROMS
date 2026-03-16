@@ -731,7 +731,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtProductName.Focus();
+                    txtFontSize.Focus();
                 }
             }
             catch (Exception ex)
@@ -1029,7 +1029,7 @@ namespace ROMS
                         value = "";
                     }
                     cmbTemplate.Enabled = true;
-                    objDataBind.BindComboBoxListSelected("DEF_Templates", "TEMP_Labelcode IN ('" + varSelectedValue + "') AND TEMP_Statuscode = 1", "TEMP_ShortCode,TEMP_RptName,TEMP_Description",
+                    objDataBind.BindComboBoxListSelected("DEF_Templates", "TEMP_Labelcode IN ('" + varSelectedValue + "') AND TEMP_Statuscode = 1", "TEMP_ShortCode,TEMP_RptName,TEMP_Description,TEMPID",
                         cmbTemplate, "", "TEMP_ShortCode", "TEMP_RptName");
                     objDataBind = null;
                 }
@@ -1218,6 +1218,7 @@ namespace ROMS
                     cmbPrintType.Enabled=false;
                     cmbLabelsize.Enabled = false;
                     cmbTemplate.Enabled = false;
+                    txtFontSize.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -1264,6 +1265,7 @@ namespace ROMS
                         int templateType = Convert.ToInt32(cmbLabelsize.SelectedValue);
                         if (templateType == 316 || templateType == 317 || templateType == 318 || templateType == 319)
                         {
+                            objBillreport.SetParameterValue("paraSize", txtFontSize.Text);
                             objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                             objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                         }
@@ -1791,8 +1793,16 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbPrintType.SelectedValue) == 364)
                 {
-                    txtFontSize.Enabled = true;
                     udfnFontSize();
+                    if (Convert.ToInt32(cmbLabelsize.SelectedValue) == -1)
+                    {
+                        txtFontSize.Text = "";
+                        txtFontSize.Enabled = false;
+                    }
+                    else
+                    {
+                        txtFontSize.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -2835,6 +2845,7 @@ namespace ROMS
                 if (grdPrintProuducts.Rows.Count == 0)
                 {
                     cmbPrintType.Enabled = true;
+                    txtFontSize.Enabled = true;
                     cmbLabelsize.Enabled = true;
                     cmbTemplate.Enabled = true;
                 }
@@ -2843,6 +2854,7 @@ namespace ROMS
                     cmbPrintType.Enabled = false;
                     cmbLabelsize.Enabled = false;
                     cmbTemplate.Enabled = false;
+                    txtFontSize.Enabled = false;
                 }
             }
         }
@@ -2958,7 +2970,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnpreview.Focus();
+                    txtProductName.Focus();
                 }
             }
             catch (Exception ex)
