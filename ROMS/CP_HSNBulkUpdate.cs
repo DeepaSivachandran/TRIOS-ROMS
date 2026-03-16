@@ -199,7 +199,8 @@ namespace ROMS
                 objMR_Product.paraSubgroup = Convert.ToInt16(lblSubGroupCode.Text);
                 objMR_Product.paraType = Convert.ToInt32(cmbType.SelectedValue);
                 objMR_Product.ParaProductCode = Convert.ToInt32(lblProductcode.Text); 
-                objMR_Product.paraHsnId = Convert.ToInt32(lblOldHSNId.Text); 
+                objMR_Product.paraHsnId = Convert.ToInt32(lblOldHSNId.Text);
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 objMR_Product.paraUserID = Convert.ToInt32(MainForm.pbUserID);
                 objMR_Product.paraIPAddress = MainForm.pbIpAddress;  
                 DataSet objDs = new DataSet();
@@ -1484,7 +1485,9 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID  IN (144,0) AND MSTID NOT IN (0) ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbCategory.SelectedValue = 0;
                 dtPurHSN.Columns.Add("HSN_Type", typeof(int));
                 dtPurHSN.Columns.Add("HSNID", typeof(int));
                 dtPurHSN.Columns.Add("HSN_EffectiveFrom", typeof(string));
@@ -1623,7 +1626,8 @@ namespace ROMS
             finally
             {
                 DGV_OldHSN.Visible = false;
-                DGV_OldHSN.DataSource = null; 
+                DGV_OldHSN.DataSource = null;
+                cmbCategory.Focus();
             }
         }
         public void udfnNewHSNAutocomplete()
@@ -1710,7 +1714,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbCategory.Focus();
                     }
                 }
             }
@@ -1982,6 +1986,62 @@ namespace ROMS
             }
         }
 
+        private void cmbCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void txtNewHSN_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2087,7 +2147,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_OldHSN.Visible == false)
                 {
-                    btnView.Focus();
+                    cmbCategory.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -2159,7 +2219,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbCategory.Focus();
                     }
                 }
             }

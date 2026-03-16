@@ -1147,6 +1147,7 @@ namespace ROMS
                 objMR_Product.paraIPAddress = MainForm.pbIpAddress;
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objMR_Product.paraBrandID = varBrandId;
+                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
                 objDs = objdserv.udfnproductmasterlist(objMR_Product);
@@ -1848,10 +1849,15 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbCategory.SelectedValue=0;
                 udfnMenuClick(sender, e);
                 udfnFilterLoad();
                 udfnDefalutDSLoad();
-
+                if (varViewType == 5)   //Production Upp,MSQ && Unit Disable the Product Category Filter
+                {
+                    cmbCategory.SelectedValue = 16;
+                    cmbCategory.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1980,7 +1986,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbCategory.Focus();
+                    if (cmbCategory.Enabled == true)
+                    {
+                        cmbCategory.Focus();
+                    }
+                    else
+                    {
+                        btnView.Focus();
+                    }
                 }
             }
             catch (Exception ex)
