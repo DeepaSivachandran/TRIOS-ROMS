@@ -39,6 +39,7 @@
             this.lblRawCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbGrid = new System.Windows.Forms.GroupBox();
+            this.txtFontSize = new System.Windows.Forms.TextBox();
             this.txtEYear = new System.Windows.Forms.TextBox();
             this.txtEDay = new System.Windows.Forms.TextBox();
             this.txtEMonth = new System.Windows.Forms.TextBox();
@@ -182,6 +183,7 @@
             // 
             // grbGrid
             // 
+            this.grbGrid.Controls.Add(this.txtFontSize);
             this.grbGrid.Controls.Add(this.txtEYear);
             this.grbGrid.Controls.Add(this.txtEDay);
             this.grbGrid.Controls.Add(this.txtEMonth);
@@ -235,6 +237,20 @@
             this.grbGrid.Size = new System.Drawing.Size(1341, 629);
             this.grbGrid.TabIndex = 3;
             this.grbGrid.TabStop = false;
+            // 
+            // txtFontSize
+            // 
+            this.txtFontSize.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtFontSize.Location = new System.Drawing.Point(115, 428);
+            this.txtFontSize.MaxLength = 2;
+            this.txtFontSize.Name = "txtFontSize";
+            this.txtFontSize.Size = new System.Drawing.Size(100, 27);
+            this.txtFontSize.TabIndex = 111111188;
+            this.txtFontSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFontSize.Enter += new System.EventHandler(this.txtFontSize_Enter);
+            this.txtFontSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFontSize_KeyDown);
+            this.txtFontSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFontSize_KeyPress);
+            this.txtFontSize.Leave += new System.EventHandler(this.txtFontSize_Leave);
             // 
             // txtEYear
             // 
@@ -1230,5 +1246,6 @@
         private System.Windows.Forms.TextBox txtEYear;
         private System.Windows.Forms.TextBox txtEDay;
         private System.Windows.Forms.TextBox txtEMonth;
+        private System.Windows.Forms.TextBox txtFontSize;
     }
 }
