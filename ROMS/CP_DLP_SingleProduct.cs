@@ -1820,84 +1820,8 @@ namespace ROMS
                 }
                 if (Convert.ToInt32(cmbPrintType.SelectedValue) == 364)
                 {
-                    txtFontSize.Enabled = true;
-                    int varTempID = 0;
-                    if (cmbTemplate.SelectedItem is DataRowView drv)
-                    {
-                        if (drv.Row.Table.Columns.Contains("TEMPID") && drv["TEMPID"] != DBNull.Value)
-                        {
-                            string varTemplateID = drv["TEMPID"]?.ToString() ?? string.Empty;
-                            varTempID = Convert.ToInt32(varTemplateID);
-                        }
-                    }
-                    if (varTempID == 11)    // A4 PWH
-                    {
-                        txtFontSize.Text = "50";
-                    }
-                    else if (varTempID == 13)   // A5 PWH
-                    {
-                        txtFontSize.Text = "32";
-                    }
-                    else if (varTempID == 15)   // A6 PWH
-                    {
-                        txtFontSize.Text = "23";
-                    }
-                    else if (varTempID == 17)   // A7 PWH
-                    {
-                        txtFontSize.Text = "20";
-                    }
-                    else if (varTempID == 19)   // A4 LWH
-                    {
-                        txtFontSize.Text = "48";
-                    }
-                    else if (varTempID == 21)   // A5 LWH
-                    {
-                        txtFontSize.Text = "34";
-                    }
-                    else if (varTempID == 23)   // A6 LWH
-                    {
-                        txtFontSize.Text = "21";
-                    }
-                    else if (varTempID == 25)   // A7 LWH
-                    {
-                        txtFontSize.Text = "16";
-                    }
-                    else if (varTempID == 27)   // A4 LWOH
-                    {
-                        txtFontSize.Text = "70";
-                    }
-                    else if (varTempID == 28)   // A5 LWOH
-                    {
-                        txtFontSize.Text = "48";
-                    }
-                    else if (varTempID == 29)   // A6 LWOH
-                    {
-                        txtFontSize.Text = "35";
-                    }
-                    else if (varTempID == 30)   // A7 LWOH
-                    {
-                        txtFontSize.Text = "25";
-                    }
-                    else if (varTempID == 31)   // A4 PWOH
-                    {
-                        txtFontSize.Text = "65";
-                    }
-                    else if (varTempID == 32)   // A5 PWOH
-                    {
-                        txtFontSize.Text = "50";
-                    }
-                    else if (varTempID == 33)   // A6 PWOH
-                    {
-                        txtFontSize.Text = "32";
-                    }
-                    else if (varTempID == 34)   // A7 PWOH
-                    {
-                        txtFontSize.Text = "24";
-                    }
-                    else if (varTempID == 0)
-                    {
-                        txtFontSize.Text = "0";
-                    }
+                    txtFontSize.Enabled = true; 
+                    udfnFontSize();
                 }
                 else
                 {
@@ -1911,7 +1835,94 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
+        public void udfnFontSize()
+        {
+            try
+            {
+                int varTempID = 0;
+                if (cmbTemplate.SelectedItem is DataRowView drv)
+                {
+                    if (drv.Row.Table.Columns.Contains("TEMPID") && drv["TEMPID"] != DBNull.Value)
+                    {
+                        string varTemplateID = drv["TEMPID"]?.ToString() ?? string.Empty;
+                        varTempID = Convert.ToInt32(varTemplateID);
+                    }
+                }
+                if (varTempID == 11)    // A4 PWH
+                {
+                    txtFontSize.Text = "50";
+                }
+                else if (varTempID == 13)   // A5 PWH
+                {
+                    txtFontSize.Text = "32";
+                }
+                else if (varTempID == 15)   // A6 PWH
+                {
+                    txtFontSize.Text = "23";
+                }
+                else if (varTempID == 17)   // A7 PWH
+                {
+                    txtFontSize.Text = "20";
+                }
+                else if (varTempID == 19)   // A4 LWH
+                {
+                    txtFontSize.Text = "48";
+                }
+                else if (varTempID == 21)   // A5 LWH
+                {
+                    txtFontSize.Text = "34";
+                }
+                else if (varTempID == 23)   // A6 LWH
+                {
+                    txtFontSize.Text = "21";
+                }
+                else if (varTempID == 25)   // A7 LWH
+                {
+                    txtFontSize.Text = "16";
+                }
+                else if (varTempID == 27)   // A4 LWOH
+                {
+                    txtFontSize.Text = "70";
+                }
+                else if (varTempID == 28)   // A5 LWOH
+                {
+                    txtFontSize.Text = "48";
+                }
+                else if (varTempID == 29)   // A6 LWOH
+                {
+                    txtFontSize.Text = "35";
+                }
+                else if (varTempID == 30)   // A7 LWOH
+                {
+                    txtFontSize.Text = "25";
+                }
+                else if (varTempID == 31)   // A4 PWOH
+                {
+                    txtFontSize.Text = "65";
+                }
+                else if (varTempID == 32)   // A5 PWOH
+                {
+                    txtFontSize.Text = "50";
+                }
+                else if (varTempID == 33)   // A6 PWOH
+                {
+                    txtFontSize.Text = "32";
+                }
+                else if (varTempID == 34)   // A7 PWOH
+                {
+                    txtFontSize.Text = "24";
+                }
+                else if (varTempID == 0)
+                {
+                    txtFontSize.Text = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void chkNone_CheckedChanged(object sender, EventArgs e)
         {
             try

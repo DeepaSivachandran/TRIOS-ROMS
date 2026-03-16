@@ -124,6 +124,8 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblProduct = new System.Windows.Forms.Label();
+            this.txtFontSize = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tsDirectLabelPrint.SuspendLayout();
             this.grbGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -844,6 +846,8 @@
             // 
             // grdDetails
             // 
+            this.grdDetails.Controls.Add(this.label7);
+            this.grdDetails.Controls.Add(this.txtFontSize);
             this.grdDetails.Controls.Add(this.cmbPrintType);
             this.grdDetails.Controls.Add(this.cmbLabelsize);
             this.grdDetails.Controls.Add(this.cmbTemplate);
@@ -1255,6 +1259,31 @@
             this.lblProduct.Text = "0";
             this.lblProduct.Visible = false;
             // 
+            // txtFontSize
+            // 
+            this.txtFontSize.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.txtFontSize.Location = new System.Drawing.Point(383, 39);
+            this.txtFontSize.MaxLength = 2;
+            this.txtFontSize.Name = "txtFontSize";
+            this.txtFontSize.Size = new System.Drawing.Size(100, 27);
+            this.txtFontSize.TabIndex = 111111191;
+            this.txtFontSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFontSize.Enter += new System.EventHandler(this.txtFontSize_Enter);
+            this.txtFontSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFontSize_KeyDown);
+            this.txtFontSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFontSize_KeyPress);
+            this.txtFontSize.Leave += new System.EventHandler(this.txtFontSize_Leave);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(383, 14);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(109, 20);
+            this.label7.TabIndex = 111111192;
+            this.label7.Text = "Product Name Size";
+            // 
             // CP_DLP_MultipleProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -1380,5 +1409,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCopies;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPRID;
         private System.Windows.Forms.DataGridViewImageColumn clmRemove;
+        private System.Windows.Forms.TextBox txtFontSize;
+        public System.Windows.Forms.Label label7;
     }
 }
