@@ -18,6 +18,19 @@ namespace ROMS
         private ToolTip tpblename = new ToolTip();
         public string varbrandcode;
         public string pbFormStatus;
+
+        Dictionary<string, string> printColumnName = new Dictionary<string, string>()
+        {
+            { "clmPrint1", "Phone - T.Suppliers" },
+            { "clmPrint2", "Phone - T.Products" },
+            { "clmPrint3", "Visit - T.Suppliers" },
+            { "clmPrint4", "Visit - T.Products" },
+            { "clmPrint5", "Mobile App - T.Suppliers" },
+            { "clmPrint6", "Mobile App - T.Products" },
+            { "clmPrint7", "Unscheduled - T.Suppliers" },
+            { "clmPrint8", "Unscheduled - T.Products" }
+        };
+
         public PUR_POScheduledaywise()
         {
             InitializeComponent();
@@ -220,6 +233,19 @@ namespace ROMS
                                 grdPOSchedule.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                 grdPOSchedule.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             }
+                            for (int r = 0; r < grdPOSchedule.Rows.Count; r++)
+                            {
+                                DataGridViewRow row = grdPOSchedule.Rows[r];
+
+                                foreach (var item in printColumnName)
+                                {
+                                    DisablePrint(row, item.Value, item.Key);
+                                }
+                            }
+                            //foreach (DataGridViewColumn col in grdPOSchedule.Columns)
+                            //{
+                            //    Console.WriteLine(col.Name);
+                            //}
                         }
                         if (objDs.Tables[2].Rows.Count != 0)
                         {
@@ -258,7 +284,29 @@ namespace ROMS
                 grdPOSchedule.ClearSelection();
             }
         }
+        private void DisablePrint(DataGridViewRow row, string valueColumn, string printColumn)
+        {
+            try
+            {
+                if (!row.DataGridView.Columns.Contains(valueColumn) || !row.DataGridView.Columns.Contains(printColumn))
+                    return;
 
+                int value = 0;
+
+                if (row.Cells[valueColumn].Value != DBNull.Value)
+                    int.TryParse(row.Cells[valueColumn].Value.ToString(), out value);
+
+                if (value == 0)
+                {
+                    row.Cells[printColumn].Style.BackColor = Color.LightGray;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void BtnPrintdaywise_Enter(object sender, EventArgs e)
         {
             try
@@ -350,6 +398,21 @@ namespace ROMS
             {
                 if (e.RowIndex != -1)
                 {
+                    string clickedColumn = grdPOSchedule.Columns[e.ColumnIndex].Name;
+
+                    if (printColumnName.ContainsKey(clickedColumn))
+                    {
+                        string valueColumn = printColumnName[clickedColumn];
+
+                        int value = 0;
+
+                        if (grdPOSchedule.Rows[e.RowIndex].Cells[valueColumn].Value != DBNull.Value)
+                            int.TryParse(grdPOSchedule.Rows[e.RowIndex].Cells[valueColumn].Value.ToString(), out value);
+
+                        if (value == 0)
+                            return;
+                    }
+
                     int varDYID = 0;
                     //if (e.ColumnIndex == grdPOSchedule.Rows.Count - 1)
                     //{
