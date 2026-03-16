@@ -731,7 +731,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtFontSize.Focus();
+                    if (txtFontSize.Enabled == true)
+                    {
+                        txtFontSize.Focus();
+                    }
+                    else
+                    {
+                        txtProductName.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1087,7 +1094,52 @@ namespace ROMS
             {
                 if (grdPrintProuducts.Rows.Count > 0)
                 {
-                    udfnPrintSave(0, "Preview");
+                    int totalCopies = dtProduct.AsEnumerable()
+                           .Sum(row => Convert.ToInt32(row[5]));
+                    int varPrintCount = 0;
+                    string templateType = Convert.ToString(cmbLabelsize.Text);
+                    if (templateType == "A4" || templateType == "100*70")
+                    {
+                        varPrintCount = 1;
+                    }
+                    else if (templateType == "A5" || templateType == "50*35" || templateType == "50*25" || templateType == "50*60")
+                    {
+                        varPrintCount = 2;
+                    }
+                    else if (templateType == "A6")
+                    {
+                        varPrintCount = 4;
+                    }
+                    else if (templateType == "A7")
+                    {
+                        varPrintCount = 8;
+                    }
+
+                    if (totalCopies % varPrintCount != 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(206);
+                        objDServ.CloseConnection();
+
+                        DialogResult dialogResult = MessageBox.Show(
+                            varMessage,
+                            "Confirmation",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            udfnPrintSave(0, "Preview");
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        udfnPrintSave(0, "Preview");
+                    }
                 }
                 else
                 {
@@ -1381,7 +1433,52 @@ namespace ROMS
             {
                 if (grdPrintProuducts.Rows.Count > 0)
                 {
-                    udfnPrintSave(2, "Direct Print");
+                    int totalCopies = dtProduct.AsEnumerable()
+                           .Sum(row => Convert.ToInt32(row[5]));
+                    int varPrintCount = 0;
+                    string templateType = Convert.ToString(cmbLabelsize.Text);
+                    if (templateType == "A4" || templateType == "100*70")
+                    {
+                        varPrintCount = 1;
+                    }
+                    else if (templateType == "A5" || templateType == "50*35" || templateType == "50*25" || templateType == "50*60")
+                    {
+                        varPrintCount = 2;
+                    }
+                    else if (templateType == "A6")
+                    {
+                        varPrintCount = 4;
+                    }
+                    else if (templateType == "A7")
+                    {
+                        varPrintCount = 8;
+                    }
+
+                    if (totalCopies % varPrintCount != 0)
+                    {
+                        SPDataService objDServ = new SPDataService();
+                        string varMessage = objDServ.udfnGetMessages(206);
+                        objDServ.CloseConnection();
+
+                        DialogResult dialogResult = MessageBox.Show(
+                            varMessage,
+                            "Confirmation",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            udfnPrintSave(2, "Direct Print");
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        udfnPrintSave(2, "Direct Print");
+                    }
                 }
                 else
                 {
