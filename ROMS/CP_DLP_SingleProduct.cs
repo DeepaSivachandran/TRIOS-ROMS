@@ -1449,7 +1449,45 @@ namespace ROMS
             try
             {
                 udfnPrintSave(1,"Preview");
-                udfnReportView("Test Print", varDirectLablPrintId);
+                int varPrintCount = 0;
+                string templateType = Convert.ToString(cmbLabelsize.Text);
+                if (templateType == "A4" || templateType == "100*70")
+                {
+                    varPrintCount = 1;
+                }
+                else if (templateType == "A5" || templateType == "50*35" || templateType == "50*25" || templateType == "50*60")
+                {
+                    varPrintCount = 2;
+                }
+                else if (templateType == "A6")
+                {
+                    varPrintCount = 4;
+                }
+                else if (templateType == "A7")
+                {
+                    varPrintCount = 8;
+                }
+                int varNoOfCopies = Convert.ToInt32(txtNoofcopy.Text);
+
+                if (varNoOfCopies % varPrintCount != 0)
+                {
+                    SPDataService objDServ = new SPDataService();
+                    string varMessage = objDServ.udfnGetMessages(206);
+                    objDServ.CloseConnection();
+                    DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        udfnReportView("Test Print", varDirectLablPrintId);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    udfnReportView("Test Print", varDirectLablPrintId);
+                }
             }
             catch (Exception ex)
             {
