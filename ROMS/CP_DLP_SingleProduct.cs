@@ -1482,7 +1482,7 @@ namespace ROMS
                 }
                 int varNoOfCopies = Convert.ToInt32(txtNoofcopy.Text);
 
-                if (varNoOfCopies < varPrintCount)
+                if (varNoOfCopies % varPrintCount != 0)
                 {
                     SPDataService objDServ = new SPDataService();
                     string varMessage = objDServ.udfnGetMessages(206);
