@@ -346,7 +346,7 @@ namespace ROMS
             {
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
-                varoriginator = ""; int varType = 0;
+                varoriginator = ""; int varType = 0,varSchemeApplicable=0;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "Rate Category Creation";
@@ -357,9 +357,11 @@ namespace ROMS
                     varoriginator = "Rate Category Updation";
                     varType = 1;
                 }
+                if(chSchemeApplicable.Checked==true)
+                { varSchemeApplicable = 1; }
+                else { varSchemeApplicable=0; }
 
-
-                MR_Product obj = new MR_Product();
+                    MR_Product obj = new MR_Product();
                 obj.paraViewType = varType;
                 obj.paraprefixcode = txtPrefixCode.Text.Trim();
                 obj.paraprefixtname = txtPreTam.Text.Trim();
@@ -370,7 +372,7 @@ namespace ROMS
                 obj.paraId = PbId;
                 obj.paraRateSno = Convert.ToInt32(cmbRatecategoryOrderNo.Text);
                 obj.paraOriginator = varoriginator;
-
+                obj.paraSchemeApplicable = varSchemeApplicable;
                 varResult = objspservice.udfnRateCategory(obj);
                 objspservice.CloseConnection();
 
@@ -484,6 +486,9 @@ namespace ROMS
                     txtSufTam.Text = ds.Tables[0].Rows[0]["SuffixTName"].ToString();
                     txtSufEng.Text = ds.Tables[0].Rows[0]["SuffixEName"].ToString();
                     txtReason.Text = ds.Tables[0].Rows[0]["Description"].ToString();
+                    if(Convert.ToInt16(ds.Tables[0].Rows[0]["SchemeApplicable"])==0)
+                    { chSchemeApplicable.Checked = false; }
+                    else { chSchemeApplicable.Checked = true; }
                 }
                 objspservice.CloseConnection();
             }

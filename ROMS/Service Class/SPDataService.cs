@@ -5843,6 +5843,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBulkStatus", objMR_Product.paraBulkStatus);
                 varSqlCommand.Parameters.AddWithValue("@paraBulkMinqty", objMR_Product.paraBulkMinqty);
                 varSqlCommand.Parameters.AddWithValue("@paraOffSetType", objMR_Product.paraOffSetType);
+                varSqlCommand.Parameters.AddWithValue("@paraSchemeApplicable", objMR_Product.paraSchemeApplicable);
 
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", objMR_Product.paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
