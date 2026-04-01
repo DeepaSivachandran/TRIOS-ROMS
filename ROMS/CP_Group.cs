@@ -25,6 +25,7 @@ namespace ROMS
         public int varCloseFlag = 0;
         public string varGroupNameinTamil = "";
         public string varGroupNameinEnglish = "";
+        public string varDescription = "";
         public int varGroupCode =0;
         public string varProductGroupName = "";
         public int varId = 0;
@@ -210,18 +211,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (pnlStatus.Enabled==true)
-                    {
-                        if(rbActive.Checked==true)
-                        {
-                            rbActive.Focus();
-                        }
-                        else
-                        {
-                            rbInActive.Focus();
-                        }
-                    }
-                    else { btnSave.Focus(); }
+                    txtDescription.Focus();
                 }
             }
             catch (Exception ex)
@@ -261,6 +251,7 @@ namespace ROMS
             {
                 txtEGroupNameEnglish.Text = "";
                 txtEGroupNameTamil.Text = "";
+                txtDescription.Text = "";
                 txtEGroupNameEnglish.Focus();
             }
             catch (Exception ex)
@@ -275,6 +266,7 @@ namespace ROMS
             {
                 txtEGroupNameEnglish.Text = varGroupNameinEnglish;
                 txtEGroupNameTamil.Text = varGroupNameinTamil;
+                txtDescription.Text = varDescription;
                 varStatusid = varStatus;
                 if (varStatusid == 1)
                 {
@@ -299,6 +291,7 @@ namespace ROMS
         {
             txtEGroupNameEnglish.Enabled = false;
             txtEGroupNameTamil.Enabled = false;
+            txtDescription.Enabled = false;
             this.ActiveControl = rbInActive;
         }
         public void udfnSave(object sender, EventArgs e)
@@ -322,7 +315,7 @@ namespace ROMS
                     varViewType=1;
                     varOriginator = "Product Group Updation";
                 }
-                varResult = objDser.udfnGroup(varViewType,varId, Convert.ToString(txtEGroupNameEnglish.Text).Trim(), Convert.ToString(txtEGroupNameTamil.Text).Trim(), varStatusid,varOriginator,MainForm.pbUserID,0);
+                varResult = objDser.udfnGroup(varViewType, varId, Convert.ToString(txtEGroupNameEnglish.Text).Trim(), Convert.ToString(txtEGroupNameTamil.Text).Trim(), varStatusid, varOriginator, MainForm.pbUserID, 0, txtDescription.Text.Trim());
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -560,6 +553,59 @@ namespace ROMS
             try
             {
                 rbInActive.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDescription_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDescription.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDescription_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else { btnSave.Focus(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtDescription_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDescription.BackColor = Color.White;
             }
             catch (Exception ex)
             {
