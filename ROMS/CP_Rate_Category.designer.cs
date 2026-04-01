@@ -48,6 +48,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.epRateChange = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chSchemeApplicable = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRateChange)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +81,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.chSchemeApplicable);
             this.grbform.Controls.Add(this.cmbRatecategoryOrderNo);
             this.grbform.Controls.Add(this.textBox3);
             this.grbform.Controls.Add(this.txtReason);
@@ -101,7 +103,7 @@
             this.grbform.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.grbform.Name = "grbform";
             this.grbform.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.grbform.Size = new System.Drawing.Size(328, 330);
+            this.grbform.Size = new System.Drawing.Size(328, 353);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
             // 
@@ -263,11 +265,11 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(234, 283);
+            this.btnClose.Location = new System.Drawing.Point(234, 310);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 8;
+            this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -280,11 +282,11 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(148, 283);
+            this.btnSave.Location = new System.Drawing.Point(148, 310);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -296,12 +298,22 @@
             // 
             this.epRateChange.ContainerControl = this;
             // 
+            // chSchemeApplicable
+            // 
+            this.chSchemeApplicable.AutoSize = true;
+            this.chSchemeApplicable.Location = new System.Drawing.Point(134, 283);
+            this.chSchemeApplicable.Name = "chSchemeApplicable";
+            this.chSchemeApplicable.Size = new System.Drawing.Size(128, 24);
+            this.chSchemeApplicable.TabIndex = 7;
+            this.chSchemeApplicable.Text = "Scheme Applicable";
+            this.chSchemeApplicable.UseVisualStyleBackColor = true;
+            // 
             // CP_Rate_Category
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(354, 345);
+            this.ClientSize = new System.Drawing.Size(354, 370);
             this.Controls.Add(this.grbform);
             this.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -343,5 +355,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox cmbRatecategoryOrderNo;
+        private System.Windows.Forms.CheckBox chSchemeApplicable;
     }
 }
