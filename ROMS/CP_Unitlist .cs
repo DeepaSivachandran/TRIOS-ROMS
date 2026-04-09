@@ -82,7 +82,7 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 0);
+                            varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 0,0,0);
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -94,7 +94,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objspservice = new SPDataService();
-                                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 1);
+                                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 1,0,0);
                                         objspservice.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -144,6 +144,8 @@ namespace ROMS
                         MainForm.objCP_Unit.PbStatus = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_Unit.pbInvoiceUnit = Convert.ToString(grdUnitList.SelectedRows[0].Cells["E-Invoice Unit"].Value);
                         MainForm.objCP_Unit.varBulkUnitId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["BulkUnitId"].Value);
+                        MainForm.objCP_Unit.pbUnitValue = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["UT_Value"].Value);
+                        MainForm.objCP_Unit.pbUnitValueType = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["UT_ValueType"].Value);
                         MainForm.objCP_Unit.ShowDialog();
                     }
                 }
@@ -192,6 +194,10 @@ namespace ROMS
                             grdUnitList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUnitList.Columns["No.of Decimals"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdUnitList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                            grdUnitList.Columns["UT_Value"].Visible = false;
+                            grdUnitList.Columns["UT_ValueType"].Visible = false;
+
                         }
                         else
                         {

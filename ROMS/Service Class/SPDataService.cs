@@ -511,7 +511,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish
-        public string udfnUnit(int paraviewType, int paraUnitId, string paraUnitName, string paraUnitSymbol, int paraUnitDecimal, int paraUnitStatusId, string paraOriginator, string paraInvoiceUnit, string paraUserID, int paraBulkUnit, int paraDeleteFlag)
+        public string udfnUnit(int paraviewType, int paraUnitId, string paraUnitName, string paraUnitSymbol, int paraUnitDecimal, int paraUnitStatusId, string paraOriginator, string paraInvoiceUnit, string paraUserID, int paraBulkUnit, int paraDeleteFlag,int paraUnitValueType,int paraUnitValue)
         {
             string varResult = "";
             try
@@ -526,6 +526,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUnitDecimal", paraUnitDecimal);
                 varSqlCommand.Parameters.AddWithValue("@paraUnitStatusId", paraUnitStatusId);
                 varSqlCommand.Parameters.AddWithValue("@paraInvoiceUnit", paraInvoiceUnit);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitValueType", paraUnitValueType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitValue", paraUnitValue);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
