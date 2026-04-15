@@ -225,7 +225,7 @@ namespace ROMS
             {
                 DGV_SearchGrid.DataSource = dtDefaultGrid;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
-                DGV_SearchGrid.Columns["Order No"].Visible = false;
+                DGV_SearchGrid.Columns["Order No."].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Route Name in Tamil"].Width = 200;

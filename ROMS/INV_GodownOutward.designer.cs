@@ -575,7 +575,6 @@
             dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdGoodsOutward.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdGoodsOutward.RowTemplate.Height = 25;
-            this.grdGoodsOutward.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.grdGoodsOutward.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdGoodsOutward.ShowRowErrors = false;
             this.grdGoodsOutward.Size = new System.Drawing.Size(1314, 323);
