@@ -33,6 +33,9 @@
             this.txtDUnitName = new System.Windows.Forms.TextBox();
             this.txtEUnitName = new System.Windows.Forms.TextBox();
             this.grbform = new System.Windows.Forms.GroupBox();
+            this.cmbUnitValue = new System.Windows.Forms.ComboBox();
+            this.txtUnitValue = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.chkBulkUnit = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtInvoiceUnit = new System.Windows.Forms.TextBox();
@@ -47,9 +50,6 @@
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.epUnit = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtUnitValue = new System.Windows.Forms.TextBox();
-            this.cmbUnitValue = new System.Windows.Forms.ComboBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUnit)).BeginInit();
@@ -106,6 +106,49 @@
             this.grbform.Size = new System.Drawing.Size(558, 314);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            // 
+            // cmbUnitValue
+            // 
+            this.cmbUnitValue.Enabled = false;
+            this.cmbUnitValue.FormattingEnabled = true;
+            this.cmbUnitValue.Location = new System.Drawing.Point(417, 136);
+            this.cmbUnitValue.Name = "cmbUnitValue";
+            this.cmbUnitValue.Size = new System.Drawing.Size(103, 28);
+            this.cmbUnitValue.TabIndex = 5;
+            this.cmbUnitValue.Enter += new System.EventHandler(this.cmbUnitValue_Enter);
+            this.cmbUnitValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbUnitValue_KeyDown);
+            this.cmbUnitValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbUnitValue_KeyPress);
+            this.cmbUnitValue.Leave += new System.EventHandler(this.cmbUnitValue_Leave);
+            // 
+            // txtUnitValue
+            // 
+            this.txtUnitValue.Enabled = false;
+            this.txtUnitValue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUnitValue.Location = new System.Drawing.Point(159, 136);
+            this.txtUnitValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.txtUnitValue.MaxLength = 10;
+            this.txtUnitValue.Name = "txtUnitValue";
+            this.txtUnitValue.ReadOnly = true;
+            this.txtUnitValue.Size = new System.Drawing.Size(258, 28);
+            this.txtUnitValue.TabIndex = 4;
+            this.txtUnitValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtUnitValue.Enter += new System.EventHandler(this.txtUnitValue_Enter);
+            this.txtUnitValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUnitValue_KeyDown);
+            this.txtUnitValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnitValue_KeyPress);
+            this.txtUnitValue.Leave += new System.EventHandler(this.txtUnitValue_Leave);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(37, 136);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(122, 28);
+            this.textBox2.TabIndex = 15;
+            this.textBox2.Text = "Conversion Factor";
             // 
             // chkBulkUnit
             // 
@@ -289,45 +332,6 @@
             // epUnit
             // 
             this.epUnit.ContainerControl = this;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(37, 136);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(122, 28);
-            this.textBox2.TabIndex = 15;
-            this.textBox2.Text = "Unit Value";
-            // 
-            // txtUnitValue
-            // 
-            this.txtUnitValue.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUnitValue.Location = new System.Drawing.Point(159, 136);
-            this.txtUnitValue.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.txtUnitValue.MaxLength = 10;
-            this.txtUnitValue.Name = "txtUnitValue";
-            this.txtUnitValue.Size = new System.Drawing.Size(258, 28);
-            this.txtUnitValue.TabIndex = 4;
-            this.txtUnitValue.Enter += new System.EventHandler(this.txtUnitValue_Enter);
-            this.txtUnitValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUnitValue_KeyDown);
-            this.txtUnitValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnitValue_KeyPress);
-            this.txtUnitValue.Leave += new System.EventHandler(this.txtUnitValue_Leave);
-            // 
-            // cmbUnitValue
-            // 
-            this.cmbUnitValue.FormattingEnabled = true;
-            this.cmbUnitValue.Location = new System.Drawing.Point(417, 136);
-            this.cmbUnitValue.Name = "cmbUnitValue";
-            this.cmbUnitValue.Size = new System.Drawing.Size(103, 28);
-            this.cmbUnitValue.TabIndex = 5;
-            this.cmbUnitValue.Enter += new System.EventHandler(this.cmbUnitValue_Enter);
-            this.cmbUnitValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbUnitValue_KeyDown);
-            this.cmbUnitValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbUnitValue_KeyPress);
-            this.cmbUnitValue.Leave += new System.EventHandler(this.cmbUnitValue_Leave);
             // 
             // CP_Unit
             // 

@@ -274,14 +274,14 @@ using System.Windows.Forms;
                     tpNoOfDecimals.Show("Please select No.of decimals", cmbNoOfDecimals, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToInt32(cmbUnitValue.SelectedValue) == -1)
-                {
-                    epUnit.SetError(cmbUnitValue, "Please select unit value");
-                    cmbUnitValue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpNoOfDecimals.ShowAlways = true;
-                    tpNoOfDecimals.Show("Please select unit value", cmbUnitValue, 5000);
-                    blnErrorFlag = true;
-                }
+                //if (Convert.ToInt32(cmbUnitValue.SelectedValue) == -1)
+                //{
+                //    epUnit.SetError(cmbUnitValue, "Please select unit value");
+                //    cmbUnitValue.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    tpNoOfDecimals.ShowAlways = true;
+                //    tpNoOfDecimals.Show("Please select unit value", cmbUnitValue, 5000);
+                //    blnErrorFlag = true;
+                //}
                 if (blnErrorFlag == false)
                 {
                     btnSave.Enabled = false;
@@ -590,9 +590,21 @@ using System.Windows.Forms;
         {
             try
             {
+
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtUnitValue.Focus();
+                    if (pnlStatus.Enabled == true)
+                    {
+                        if (rbActive.Checked == true)
+                        {
+                            rbActive.Focus();
+                        }
+                        else
+                        {
+                            rbInActive.Focus();
+                        }
+                    }
+                    else { chkBulkUnit.Focus(); }
                 }
             }
             catch (Exception ex)
