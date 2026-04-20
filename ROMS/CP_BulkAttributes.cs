@@ -266,7 +266,8 @@ namespace ROMS
         public void udfnUpdate()
         {
             try
-            {
+            { 
+                txtProductName.Text = "";
                 Varupdateflag = 0; string varOriginator = "";
                 int varHsnId = 0, varUnitId = 0; int varUpdateViewType = 0;
                 int varGroupId = 0, varSubGroupId = 0, varBrandId = 0;
