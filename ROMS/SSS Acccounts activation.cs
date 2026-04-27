@@ -88,9 +88,9 @@ namespace ROMS
                     }
                     else
                     {
-                        ActivationService.ActivationService activser = new ActivationService.ActivationService();
-                        activser.udfngetOTPForProduct(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, "1.1.1","30");
-                        MessageBox.Show("OTP sent successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //ActivationService.ActivationService activser = new ActivationService.ActivationService();
+                        //activser.udfngetOTPForProduct(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, "1.1.1","30");
+                        //MessageBox.Show("OTP sent successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                        
                     }
                 }
@@ -191,43 +191,43 @@ namespace ROMS
                 }
                 else
                 {
-                    ActivationService.ActivationService activser = new ActivationService.ActivationService();
-                    DataService dser = new DataService();
-                    // string version = dser.displaydata("select Versionno from tblVersionDetails where status='Active'");
-                    string version = "1.1.1";
-                    dser.CloseConnection();
-                    result = activser.udfnAuthenticate(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, version, txtotp.Text,"30");
-                   // result = "Success";
+                   // ActivationService.ActivationService activser = new ActivationService.ActivationService();
+                   // DataService dser = new DataService();
+                   // // string version = dser.displaydata("select Versionno from tblVersionDetails where status='Active'");
+                   // string version = "1.1.1";
+                   // dser.CloseConnection();
+                   // result = activser.udfnAuthenticate(txtName.Text, txtMobile.Text, txtEmail.Text, txtAddress.Text, txtRegistration.Text, version, txtotp.Text,"30");
+                   //// result = "Success";
 
-                    if (result == "Success")
-                    {
-                    //    spservice.udfnExecuteQuery(" insert into tblSSSProductUserDetails(Username, Address, mobileno, emailid, registrationkey,    versionno,Activationcode,Status) values('" + spservice.ReplaceQuotes(txtName.Text) + "', '" + spservice.ReplaceQuotes(txtAddress.Text) + "','" + txtMobile.Text + "','" + txtEmail.Text + "', '" + txtRegistration.Text + "', '1.1','" + txtotp.Text + "','Activated') ");
-                        string foldername = obj.Encrypt("Activation");
-                        string path = Application.StartupPath + "\\"+ foldername;
-                        if (!Directory.Exists(path))
-                        { Directory.CreateDirectory(path); }
-                        string filename = obj.Encrypt("Activation");
-                        string filepath = path +"\\" + filename + ".sss";
-                        string encriptedtext = _security.Encrypt("Activation", string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(varSerialNumber)).Select(s => s.ToString("x2"))).ToUpper());
-                        CreateFile(filepath, txtName.Text, txtMobile.Text,txtEmail.Text, txtAddress.Text, txtotp.Text, encriptedtext);
-                        this.Hide();
-                        objauth.Show();
-                    }
-                    if (result == "Blocked")
-                    {
-                        MessageBox.Show("You are a blocked user, cant access this Product", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        this.Close();
-                    }
-                    if (result == "Activated")
-                    {
-                        this.Hide();
-                        objauth.Show();
+                   // if (result == "Success")
+                   // {
+                   // //    spservice.udfnExecuteQuery(" insert into tblSSSProductUserDetails(Username, Address, mobileno, emailid, registrationkey,    versionno,Activationcode,Status) values('" + spservice.ReplaceQuotes(txtName.Text) + "', '" + spservice.ReplaceQuotes(txtAddress.Text) + "','" + txtMobile.Text + "','" + txtEmail.Text + "', '" + txtRegistration.Text + "', '1.1','" + txtotp.Text + "','Activated') ");
+                   //     string foldername = obj.Encrypt("Activation");
+                   //     string path = Application.StartupPath + "\\"+ foldername;
+                   //     if (!Directory.Exists(path))
+                   //     { Directory.CreateDirectory(path); }
+                   //     string filename = obj.Encrypt("Activation");
+                   //     string filepath = path +"\\" + filename + ".sss";
+                   //     string encriptedtext = _security.Encrypt("Activation", string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(varSerialNumber)).Select(s => s.ToString("x2"))).ToUpper());
+                   //     CreateFile(filepath, txtName.Text, txtMobile.Text,txtEmail.Text, txtAddress.Text, txtotp.Text, encriptedtext);
+                   //     this.Hide();
+                   //     objauth.Show();
+                   // }
+                   // if (result == "Blocked")
+                   // {
+                   //     MessageBox.Show("You are a blocked user, cant access this Product", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                   //     this.Close();
+                   // }
+                   // if (result == "Activated")
+                   // {
+                   //     this.Hide();
+                   //     objauth.Show();
 
-                        //Application.EnableVisualStyles();
-                        //Application.SetCompatibleTextRenderingDefault(false);
-                        //Application.Run(new Authentication());
+                   //     //Application.EnableVisualStyles();
+                   //     //Application.SetCompatibleTextRenderingDefault(false);
+                   //     //Application.Run(new Authentication());
 
-                    }
+                   // }
                 }
             }
             catch (Exception ex )

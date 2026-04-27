@@ -406,6 +406,7 @@ namespace ROMS
         public static PrintFormat objReportFormat;
         public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
 
+        public static ChatForm objChatForm;
 
         public static Financial_Year_Process objFinancial_Year_Process;
         //public static CP_SL_Verify objCP_SL_Verify;
@@ -4761,6 +4762,22 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void chatBotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objChatForm, "ChatForm", 606);
+                PbCurrentForm = "7";
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

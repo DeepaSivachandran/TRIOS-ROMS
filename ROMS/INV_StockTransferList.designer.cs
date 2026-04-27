@@ -84,7 +84,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
-            this.activationService1 = new ROMS.ActivationService.ActivationService();
+            //this.activationService1 = new ROMS.ActivationService.ActivationService();
             this.tsStockTransferList.SuspendLayout();
             this.pnlStockTransferList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterLocation)).BeginInit();
@@ -720,9 +720,9 @@
             // 
             // activationService1
             // 
-            this.activationService1.Credentials = null;
-            this.activationService1.Url = "http://cloud.shivasoftwares.com/activation/ActivationService.svc";
-            this.activationService1.UseDefaultCredentials = false;
+            //this.activationService1.Credentials = null;
+            //this.activationService1.Url = "http://cloud.shivasoftwares.com/activation/ActivationService.svc";
+            //this.activationService1.UseDefaultCredentials = false;
             // 
             // INV_StockTransferList
             // 
@@ -795,7 +795,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblTransferToDate;
         public System.Windows.Forms.DataGridView grdStockTransfer;
-        private ActivationService.ActivationService activationService1;
+        //private ActivationService.ActivationService activationService1;
         public System.Windows.Forms.ToolStripButton tsbQue;
         public System.Windows.Forms.ToolStripSeparator tssDelete;
         private System.Windows.Forms.DataGridViewImageColumn clmPrint;

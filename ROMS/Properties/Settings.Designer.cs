@@ -22,15 +22,5 @@ namespace ROMS.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://cloud.shivasoftwares.com/activation/ActivationService.svc")]
-        public string ROMS_ActivationService_ActivationService {
-            get {
-                return ((string)(this["ROMS_ActivationService_ActivationService"]));
-            }
-        }
     }
 }
