@@ -246,6 +246,8 @@ namespace ROMS
                 cmbReportType.SelectedValue = -1;
                 cmbLPDates.SelectedIndex = 0;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;

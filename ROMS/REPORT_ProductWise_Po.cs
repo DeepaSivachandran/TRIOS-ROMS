@@ -2,8 +2,9 @@
 using System;
 using System.Data;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Globalization;
 using System.IO;
+using System.Windows.Forms;
 
 namespace ROMS
 {
@@ -289,7 +290,10 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STSID  IN (11,13,12,27) AND STS_ModuleID=4 OR STSID=0  ", "STS_Name,STSID", cmbStatus, "", "STS_Name", "STSID");
                 objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,4) AND STSID IN (0,9,14)", "STS_Name,STSID", cmbCompletedStatus, "", "STS_Name", "STSID");
-                objDataBind = null;
+                objDataBind = null; 
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
+                dpToDate.MaxDate = MainForm.pbCurrentDate;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 lblNoRecordsFound.Visible = true;
@@ -1806,7 +1810,22 @@ namespace ROMS
         private void btnTelegram_Click(object sender, EventArgs e)
         {
             udfnProductWisePO(1);
-        } 
+        }
+
+        private void dpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime varmindate = DateTime.ParseExact(dpFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                dpToDate.MinDate = varmindate;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbCompletedStatus_Leave(object sender, EventArgs e)
         {
             try

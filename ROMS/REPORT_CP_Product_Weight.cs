@@ -287,6 +287,8 @@ namespace ROMS
 
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId; 
+                dpFromDate.MinDate = MainForm.pbFYStartDate;
+                dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0; 
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)

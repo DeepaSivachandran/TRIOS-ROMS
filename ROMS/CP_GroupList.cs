@@ -137,6 +137,7 @@ namespace ROMS
                             grdGroupList.Columns["Status"].Width = 80;
                             grdGroupList.Columns["ID"].Visible = false;
                             grdGroupList.Columns["Status ID"].Visible = false;
+                            grdGroupList.Columns["Product Group Description"].Visible = false;
                             grdGroupList.Columns["Product Group Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
 
                         }
@@ -269,7 +270,7 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objDser = new SPDataService();
-                            string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, "Product Group Deletion", varUserID, 0);
+                            string varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, "Product Group Deletion", varUserID, 0, "");
                             objDser.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -281,7 +282,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objDser = new SPDataService();
-                                        varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, "Product Group Deletion", varUserID, 1);
+                                        varResult = objDser.udfnGroup(2, Convert.ToInt16(grdGroupList.SelectedRows[0].Cells["ID"].Value.ToString()), "", "", 0, "Product Group Deletion", varUserID, 1, "");
                                         objDser.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -327,6 +328,7 @@ namespace ROMS
                         MainForm.objCP_Group.varId = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["ID"].Value);
                         MainForm.objCP_Group.varGroupNameinEnglish = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in English"].Value);
                         MainForm.objCP_Group.varGroupNameinTamil = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Name in Tamil"].Value);
+                        MainForm.objCP_Group.varDescription = Convert.ToString(grdGroupList.SelectedRows[0].Cells["Product Group Description"].Value);
                         MainForm.objCP_Group.varStatus = Convert.ToInt32(grdGroupList.SelectedRows[0].Cells["Status ID"].Value);
                         picLoader.Visible = false;
                         picLoader.SendToBack();
