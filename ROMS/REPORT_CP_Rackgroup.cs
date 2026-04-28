@@ -924,6 +924,19 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objBillreport.SetParameterValue("paraWithCode", itemType);
+                    /*Subreport parameter pass*/
+                    objBillreport.SetParameterValue("paraEMPID", EMPCode, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraRKGID", RKGCode, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraRKID", RKCode, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("ParaRate", Convert.ToInt32(cmbRetailRate.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue), objBillreport.Subreports[0].Name.ToString());
+
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
                     if (varFlag == 0)
