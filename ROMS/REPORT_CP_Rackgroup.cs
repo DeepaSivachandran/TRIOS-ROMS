@@ -2846,7 +2846,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    chkLocBreakup.Focus();
                 }
             }
             catch (Exception ex)
@@ -2868,6 +2868,22 @@ namespace ROMS
                     cmbStockTakken.Enabled = true;
                 }
                 cmbStockTakken.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkLocBreakup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
             }
             catch (Exception ex)
             {

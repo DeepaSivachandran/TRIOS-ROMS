@@ -83,8 +83,8 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.chkLocBreakup = new System.Windows.Forms.CheckBox();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsRackGroupReport.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -335,7 +335,7 @@
             this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Location = new System.Drawing.Point(12, 2);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1339, 84);
+            this.grpfilter.Size = new System.Drawing.Size(1339, 117);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -448,11 +448,11 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1296, 43);
+            this.btnTelegram.Location = new System.Drawing.Point(1296, 78);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(35, 30);
-            this.btnTelegram.TabIndex = 13;
+            this.btnTelegram.TabIndex = 14;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -533,11 +533,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1257, 44);
+            this.btnListPrint.Location = new System.Drawing.Point(1257, 79);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
             this.btnListPrint.Size = new System.Drawing.Size(36, 29);
-            this.btnListPrint.TabIndex = 12;
+            this.btnListPrint.TabIndex = 13;
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -698,9 +698,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(12, 92);
+            this.picLoader.Location = new System.Drawing.Point(12, 125);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1339, 550);
+            this.picLoader.Size = new System.Drawing.Size(1339, 517);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;
@@ -711,27 +711,28 @@
             this.RPTViewer.ActiveViewIndex = -1;
             this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(12, 92);
+            this.RPTViewer.Location = new System.Drawing.Point(12, 125);
             this.RPTViewer.Name = "RPTViewer";
             this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1339, 547);
+            this.RPTViewer.Size = new System.Drawing.Size(1339, 514);
             this.RPTViewer.TabIndex = 1111227;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
-            // dynamicLabelControl
-            // 
-            this.dynamicLabelControl.PlaceholderLabel = null;
-            // 
             // chkLocBreakup
             // 
             this.chkLocBreakup.AutoSize = true;
-            this.chkLocBreakup.Location = new System.Drawing.Point(131, 19);
+            this.chkLocBreakup.Location = new System.Drawing.Point(1104, 81);
             this.chkLocBreakup.Name = "chkLocBreakup";
             this.chkLocBreakup.Size = new System.Drawing.Size(150, 24);
-            this.chkLocBreakup.TabIndex = 1111254;
+            this.chkLocBreakup.TabIndex = 12;
             this.chkLocBreakup.Text = "Location Wise Breakup";
             this.chkLocBreakup.UseVisualStyleBackColor = true;
+            this.chkLocBreakup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkLocBreakup_KeyDown);
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // REPORT_CP_Rackgroup
             // 
