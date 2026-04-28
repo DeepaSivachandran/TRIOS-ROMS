@@ -84,6 +84,7 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.chkLocBreakup = new System.Windows.Forms.CheckBox();
             this.tsRackGroupReport.SuspendLayout();
             this.pnlReportRackgroup.SuspendLayout();
             this.grpfilter.SuspendLayout();
@@ -302,6 +303,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.chkLocBreakup);
             this.grpfilter.Controls.Add(this.label9);
             this.grpfilter.Controls.Add(this.cmbStockTakken);
             this.grpfilter.Controls.Add(this.label8);
@@ -721,6 +723,16 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
+            // chkLocBreakup
+            // 
+            this.chkLocBreakup.AutoSize = true;
+            this.chkLocBreakup.Location = new System.Drawing.Point(131, 19);
+            this.chkLocBreakup.Name = "chkLocBreakup";
+            this.chkLocBreakup.Size = new System.Drawing.Size(150, 24);
+            this.chkLocBreakup.TabIndex = 1111254;
+            this.chkLocBreakup.Text = "Location Wise Breakup";
+            this.chkLocBreakup.UseVisualStyleBackColor = true;
+            // 
             // REPORT_CP_Rackgroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -807,5 +819,6 @@
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.ComboBox cmbStockTakken;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox chkLocBreakup;
     }
 }

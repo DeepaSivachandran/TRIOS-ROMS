@@ -106,7 +106,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection3 {
             get {
                 return this.ReportDefinition.Sections[7];
             }
@@ -114,7 +114,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection3 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[8];
             }
@@ -122,7 +122,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection3 {
             get {
                 return this.ReportDefinition.Sections[9];
             }
@@ -130,7 +130,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection3 {
             get {
                 return this.ReportDefinition.Sections[10];
             }
@@ -138,7 +138,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection4 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
             get {
                 return this.ReportDefinition.Sections[11];
             }
@@ -146,7 +146,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection2 {
             get {
                 return this.ReportDefinition.Sections[12];
             }
@@ -154,9 +154,25 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection4 {
             get {
                 return this.ReportDefinition.Sections[13];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+            get {
+                return this.ReportDefinition.Sections[14];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[15];
             }
         }
         
@@ -338,7 +354,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraEMPID {
+        public CrystalDecisions.Shared.IParameterField Parameter_paraLocationGroupingFlag {
             get {
                 return this.DataDefinition.ParameterFields[22];
             }
@@ -346,7 +362,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKGID {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraEMPID {
             get {
                 return this.DataDefinition.ParameterFields[23];
             }
@@ -354,7 +370,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKID {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKGID {
             get {
                 return this.DataDefinition.ParameterFields[24];
             }
@@ -362,7 +378,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaCompanycode {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRKID {
             get {
                 return this.DataDefinition.ParameterFields[25];
             }
@@ -370,7 +386,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraProductCategory {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaCompanycode {
             get {
                 return this.DataDefinition.ParameterFields[26];
             }
@@ -378,7 +394,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraSubgroupType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraProductCategory {
             get {
                 return this.DataDefinition.ParameterFields[27];
             }
@@ -386,7 +402,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraStatusId {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraSubgroupType {
             get {
                 return this.DataDefinition.ParameterFields[28];
             }
@@ -394,7 +410,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRackStatusID {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraStatusId {
             get {
                 return this.DataDefinition.ParameterFields[29];
             }
@@ -402,7 +418,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaOrderby {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_paraRackStatusID {
             get {
                 return this.DataDefinition.ParameterFields[30];
             }
@@ -410,7 +426,7 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaRate {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaOrderby {
             get {
                 return this.DataDefinition.ParameterFields[31];
             }
@@ -418,9 +434,17 @@ namespace ROMS.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaStockType {
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaRate {
             get {
                 return this.DataDefinition.ParameterFields[32];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_RPT_CP_Rackgroup_Product_RackMin_Qty_Locationrpt_ParaStockType {
+            get {
+                return this.DataDefinition.ParameterFields[33];
             }
         }
     }

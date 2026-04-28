@@ -891,7 +891,14 @@ namespace ROMS
                     }
                     else
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
+                        if (chkLocBreakup.Checked == true)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt");
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
+                        }
                     }
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
@@ -914,6 +921,12 @@ namespace ROMS
                     {
                         objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
                     }
+                    int varChkLocationBreakupFlag = 0;
+                    if(chkLocBreakup.Checked==true)
+                    {
+                        varChkLocationBreakupFlag = 1;
+                    }
+                    objBillreport.SetParameterValue("paraLocationGroupingFlag", varChkLocationBreakupFlag);
 
                     objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
                     objBillreport.SetParameterValue("ParaOrderby", Convert.ToInt32(cmbOrderBy.SelectedValue));
