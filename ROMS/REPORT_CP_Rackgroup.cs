@@ -197,6 +197,19 @@ namespace ROMS
                 {
                     cmbType.Enabled = false;
                 }
+                if(cmbReportType.SelectedValue != null)
+                {
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 122)
+                    {
+                        cmbLocationType.Enabled=true;
+                        chkLocBreakup.Enabled = true;
+                    }
+                    else
+                    {
+                        cmbLocationType.Enabled = false;
+                        chkLocBreakup.Enabled = false;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -864,6 +877,7 @@ namespace ROMS
                 objMR_Product.ParaOrderby = Convert.ToInt32(cmbOrderBy.SelectedValue);
                 objMR_Product.ParaRate = Convert.ToInt32(cmbRetailRate.SelectedValue);
                 objMR_Product.ParaStockType = Convert.ToInt32(cmbStockTakken.SelectedValue);
+                objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -907,6 +921,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
                     objBillreport.SetParameterValue("paraRKName", RKName);
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbproductStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraRackStatusID", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
@@ -941,6 +956,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraEMPID", EMPCode, objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("paraRKGID", RKGCode, objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("paraRKID", RKCode, objBillreport.Subreports[0].Name.ToString());
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue), objBillreport.Subreports[0].Name.ToString());
                     objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue), objBillreport.Subreports[0].Name.ToString());
@@ -1764,6 +1780,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=133 ", "MST_DisplayText,MSTID", cmbOrderBy, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,120) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbRetailRate, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,143) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbStockTakken, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=144", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
                 cmbProductCategory.SelectedValue = 0;
@@ -2846,7 +2863,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkLocBreakup.Focus();
+                    if(cmbLocationType.Enabled == true)
+                    {
+                        cmbLocationType.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2884,6 +2908,61 @@ namespace ROMS
                 {
                     btnListPrint.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbLocationType.BackColor = Color.LemonChiffon; 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    chkLocBreakup.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbLocationType.BackColor = Color.White;    
             }
             catch (Exception ex)
             {
