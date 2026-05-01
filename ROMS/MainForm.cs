@@ -429,6 +429,9 @@ namespace ROMS
         public static CP_Sales_UserRole_SPL objCP_Sales_UserRole_SPL;
         public static CP_SalesUserList objCp_SalesUserList;
         public static CP_SalesUser objCP_SalesUser;
+
+        public static INV_StockRequestQueueList objINV_StockRequestQueueList;
+
         public MainForm()
         {
             try
@@ -4920,6 +4923,21 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_DLP_MultipleProducts_List, "CP_DLP_MultipleProducts_List", 51202);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockReqQueue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGetDefaultCompany();
+                OpenReportForm(ref MainForm.objINV_StockRequestQueueList, "INV_StockRequestQueueList", 312);
+                PbCurrentForm = "3.4";
             }
             catch (Exception ex)
             {

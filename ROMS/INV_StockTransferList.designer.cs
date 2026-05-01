@@ -133,6 +133,7 @@
             this.tss.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tss.Name = "tss";
             this.tss.Size = new System.Drawing.Size(6, 24);
+            this.tss.Visible = false;
             // 
             // tsbQueueCount
             // 
@@ -147,6 +148,7 @@
             this.tsbQueueCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbQueueCount.Size = new System.Drawing.Size(23, 24);
             this.tsbQueueCount.Text = "0";
+            this.tsbQueueCount.Visible = false;
             // 
             // tsbQue
             // 
@@ -159,6 +161,7 @@
             this.tsbQue.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbQue.Size = new System.Drawing.Size(63, 24);
             this.tsbQue.Text = "Queue";
+            this.tsbQue.Visible = false;
             this.tsbQue.Click += new System.EventHandler(this.TsbQue_Click);
             // 
             // tssDelete

@@ -576,6 +576,12 @@
     <Compile Include="CP_Product_Info.designer.cs">
       <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV_StockRequestQueueList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV_StockRequestQueueList.designer.cs">
+      <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MR_ProductReport.cs" />
     <Compile Include="PrintFormat.cs">
       <SubType>Form</SubType>
@@ -868,6 +874,13 @@
     </Compile>
     <Compile Include="Reports\RPT_Stock_Valuation_Groupwise_Subgroup.cs">
       <DependentUpon>RPT_Stock_Valuation_Groupwise_Subgroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_TP_INV_Shop_Stock_Request_Queue.cs">
+      <DependentUpon>RPT_TP_INV_Shop_Stock_Request_Queue.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -4396,6 +4409,9 @@
     <EmbeddedResource Include="CP_Product_Info.resx">
       <DependentUpon>CP_Product_Info.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV_StockRequestQueueList.resx">
+      <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintFormat.resx">
       <DependentUpon>PrintFormat.cs</DependentUpon>
     </EmbeddedResource>
@@ -5389,6 +5405,11 @@
       <LastGenOutput>RPT_Stock_Valuation_Groupwise_Subgroup.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Request_Queue.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_INV_Shop_Stock_Request_Queue.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_ZeroVsNonPOGenerated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_ZeroVsNonPOGenerated.cs</LastGenOutput>

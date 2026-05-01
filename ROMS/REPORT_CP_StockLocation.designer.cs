@@ -531,7 +531,7 @@
             this.pnlLocation.Controls.Add(this.txtSubgroup);
             this.pnlLocation.Controls.Add(this.txtGroup);
             this.pnlLocation.Controls.Add(this.txtProduct);
-            this.pnlLocation.Location = new System.Drawing.Point(432, 11);
+            this.pnlLocation.Location = new System.Drawing.Point(523, 44);
             this.pnlLocation.Name = "pnlLocation";
             this.pnlLocation.Size = new System.Drawing.Size(677, 65);
             this.pnlLocation.TabIndex = 1111229;
@@ -750,6 +750,7 @@
             this.lblLocationName.Size = new System.Drawing.Size(87, 20);
             this.lblLocationName.TabIndex = 1111178;
             this.lblLocationName.Text = "Location Name";
+            this.lblLocationName.Click += new System.EventHandler(this.lblLocationName_Click);
             // 
             // btnListPrint
             // 

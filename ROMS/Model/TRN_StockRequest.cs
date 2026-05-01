@@ -24,5 +24,14 @@ namespace ROMS.Model
         public DataTable paraStockRequest { get; set; } = null;
         public byte[] paraQrimg { get; set; } = null;
         public string paraUserLocations { get; set; } = "";
+        public int paraRackGroupID { get; set; } = 0;
+        public int paraProTypeID { get; set; } = 0;
+        public int paraRequestTypeID { get; set; } = 0;
+        public string paraBillNo { get; set; } = "";
+        public int paraLoadByRackGroup { get; set; } = 0;
+        public int paraRKGID { get; set; } = 0;
+        public int paraProductTypeID { get; set; } = 0; 
+        public int paraTellerID { get; set; } = 0; 
+        public int paraFlag { get; set; } = 0; 
     }
 }

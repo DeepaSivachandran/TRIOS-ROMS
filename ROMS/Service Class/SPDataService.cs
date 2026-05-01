@@ -781,6 +781,12 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStockRequest", objTRNS_StockRequest.paraStockRequest);
                 varSqlCommand.Parameters.AddWithValue("@paraQrimg", objTRNS_StockRequest.paraQrimg);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraRequestTypeID", objTRNS_StockRequest.paraRequestTypeID); 
+                varSqlCommand.Parameters.AddWithValue("@paraBillNo", objTRNS_StockRequest.paraBillNo); 
+                varSqlCommand.Parameters.AddWithValue("@paraLoadByRackGroup", objTRNS_StockRequest.paraLoadByRackGroup); 
+                varSqlCommand.Parameters.AddWithValue("@paraRKGID", objTRNS_StockRequest.paraRKGID); 
+                varSqlCommand.Parameters.AddWithValue("@paraProductTypeID", objTRNS_StockRequest.paraProductTypeID);  
+                varSqlCommand.Parameters.AddWithValue("@paraTellerID", objTRNS_StockRequest.paraTellerID);  
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -811,9 +817,12 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraStatus", objTRNG_StockRequest.paraStatusId);
                 varSqlCommand.Parameters.AddWithValue("@ParaSTFromDate", objTRNG_StockRequest.ParaSTFromDate);
                 varSqlCommand.Parameters.AddWithValue("@ParaSTToDate", objTRNG_StockRequest.ParaSTToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraProTypeID", objTRNG_StockRequest.paraProTypeID);
+                varSqlCommand.Parameters.AddWithValue("@paraRackGroupID", objTRNG_StockRequest.paraRackGroupID);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objTRNG_StockRequest.paraUserLocations);
+                varSqlCommand.Parameters.AddWithValue("@paraUserLocations", MainForm.pbUserMappedLocationIds);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objTRNG_StockRequest.paraFlag);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

@@ -2070,7 +2070,11 @@ namespace ROMS
         {
             udfnList(1);
         }
-         
+
+        private void lblLocationName_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void TxtGroup_TextChanged(object sender, EventArgs e)
         {

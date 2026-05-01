@@ -78,10 +78,10 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdStockRequestList = new System.Windows.Forms.DataGridView();
-            this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
+            this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequestList.SuspendLayout();
             this.pnlStockRequestList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -613,16 +613,6 @@
             this.grdStockRequestList.SelectionChanged += new System.EventHandler(this.GrdStockRequestList_SelectionChanged);
             this.grdStockRequestList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdStockRequestList_KeyDown);
             // 
-            // clmprint
-            // 
-            this.clmprint.HeaderText = "Print";
-            this.clmprint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmprint.Name = "clmprint";
-            this.clmprint.ReadOnly = true;
-            this.clmprint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmprint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmprint.Width = 70;
-            // 
             // picLoader
             // 
             this.picLoader.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -720,6 +710,17 @@
             this.grdProDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdProDetails_DataBindingComplete);
             this.grdProDetails.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdProDetails_Scroll);
             // 
+            // clmprint
+            // 
+            this.clmprint.HeaderText = "Print";
+            this.clmprint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmprint.Name = "clmprint";
+            this.clmprint.ReadOnly = true;
+            this.clmprint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmprint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmprint.Visible = false;
+            this.clmprint.Width = 70;
+            // 
             // INV_StockRequestList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -791,11 +792,11 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label lblStatus;
         public System.Windows.Forms.DataGridView DGV_FilterProduct;
-        private System.Windows.Forms.DataGridViewImageColumn clmprint;
         private System.Windows.Forms.ComboBox cmbShow;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataGridView grdProDetails;
         public System.Windows.Forms.DataGridView DGV_SearchGridPro;
         public System.Windows.Forms.ToolStripSeparator tss;
+        private System.Windows.Forms.DataGridViewImageColumn clmprint;
     }
 }
