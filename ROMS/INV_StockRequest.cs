@@ -1609,6 +1609,7 @@ namespace ROMS
                 objTRNS_StockRequest.paraRKGID = Convert.ToInt32(cmbRackGroup.SelectedValue);
                 objTRNS_StockRequest.paraProductTypeID = Convert.ToInt32(cmbProductType.SelectedValue); 
                 objTRNS_StockRequest.paraTellerID = varTellerID;
+                objTRNS_StockRequest.paraQrimg = (varobjBarCodeByte);
                 varResult = objspservice.udfnStockRequest(objTRNS_StockRequest);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
