@@ -431,6 +431,8 @@ namespace ROMS
         public static CP_SalesUser objCP_SalesUser;
 
         public static INV_StockRequestQueueList objINV_StockRequestQueueList;
+        public static CP_Basketlist objCP_Basketlist;
+        public static CP_Basket objCP_Basket;
 
         public MainForm()
         {
@@ -4938,6 +4940,20 @@ namespace ROMS
                 udfnGetDefaultCompany();
                 OpenReportForm(ref MainForm.objINV_StockRequestQueueList, "INV_StockRequestQueueList", 312);
                 PbCurrentForm = "3.4";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmBasket_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_Basketlist, "CP_Basketlist", 501);
+                PbCurrentForm = "5.1";
             }
             catch (Exception ex)
             {

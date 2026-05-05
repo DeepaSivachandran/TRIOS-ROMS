@@ -173,6 +173,18 @@
     <Compile Include="CP_BulkUpdate_RateCategory.designer.cs">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Basket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Basket.designer.cs">
+      <DependentUpon>CP_Basket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_Basketlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Basketlist.designer.cs">
+      <DependentUpon>CP_Basketlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_DLP_MultipleProducts_List.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -582,6 +594,7 @@
     <Compile Include="INV_StockRequestQueueList.designer.cs">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\MR_Basket.cs" />
     <Compile Include="Model\MR_ProductReport.cs" />
     <Compile Include="PrintFormat.cs">
       <SubType>Form</SubType>
@@ -4213,6 +4226,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_BulkUpdate_RateCategory.resx">
       <DependentUpon>CP_BulkUpdate_RateCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Basket.resx">
+      <DependentUpon>CP_Basket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_Basketlist.resx">
+      <DependentUpon>CP_Basketlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DLP_MultipleProducts_List.resx">
       <DependentUpon>CP_DLP_MultipleProducts_List.cs</DependentUpon>
