@@ -53,11 +53,13 @@
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.epReportError = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsCostPriceReport.SuspendLayout();
             this.pnlReportCity.SuspendLayout();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReportError)).BeginInit();
             this.SuspendLayout();
             // 
             // tsCostPriceReport
@@ -185,6 +187,7 @@
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(72, 27);
             this.cmbConcern.TabIndex = 1;
+            this.cmbConcern.SelectedIndexChanged += new System.EventHandler(this.cmbConcern_SelectedIndexChanged);
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
             this.cmbConcern.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbConcern_KeyPress);
@@ -199,6 +202,7 @@
             this.label10.Size = new System.Drawing.Size(54, 20);
             this.label10.TabIndex = 111111169;
             this.label10.Text = "Concern";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // cmbLPDates
             // 
@@ -349,6 +353,10 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
+            // epReportError
+            // 
+            this.epReportError.ContainerControl = this;
+            // 
             // REPORT_PUR_CostPrice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -374,6 +382,7 @@
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReportError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,5 +413,6 @@
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         private DynamicToolStripLabelControl dynamicLabelControl;
         private System.Windows.Forms.Button btnTelegram;
+        private System.Windows.Forms.ErrorProvider epReportError;
     }
 }

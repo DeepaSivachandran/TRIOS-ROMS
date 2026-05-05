@@ -830,11 +830,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RPT_Purchase_Summary_Portrait.cs">
-      <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_Daywise_Purchase_Summary_Portrait.cs">
+      <DependentUpon>RPT_Daywise_Purchase_Summary_Portrait.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_Purchase_Summary_Portrait.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_REPORT_Product_RC.cs">
@@ -5355,10 +5361,14 @@
       <LastGenOutput>RPT_Purchase_Details_SupplierType.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_Daywise_Purchase_Summary_Portrait.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_Daywise_Purchase_Summary_Portrait.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Purchase_Summary_Portrait.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Purchase_Summary_Portrait.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

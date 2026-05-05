@@ -3,8 +3,9 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace ROMS
 {
@@ -18,6 +19,7 @@ namespace ROMS
         DataError objError;
         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
         public int varUpDownKey = 0;
+        private ToolTip tpReportType = new ToolTip();
         public REPORT_Purchase_Summary()
         {
             InitializeComponent(); 
@@ -92,6 +94,15 @@ namespace ROMS
                     }
                 }
                 LV_Supplier.Visible = false;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
+                {
+                    epReportError.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                    cmbReportType.Focus();
+                    return;
+                }
                 udfnPurchaseSummary(varFlag);
             }
             catch (Exception ex)
@@ -116,7 +127,7 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "";int varInvType = 2;
+                string varSupplierName = "", varConcern="--All--"; int varInvType = 2; int varViewType = 0; 
                 if (txtSupplier.Text.Trim()=="")
                 {
                     varSupplierName = "-All-";
@@ -135,7 +146,16 @@ namespace ROMS
                 {
                     varInvType = 0;
                 }
-                btnView.Enabled = false;
+
+                if(Convert.ToInt16(cmbReportType.SelectedValue)== 567) //Supplierwise summary
+                {
+                    varViewType = 19;
+                }
+                else if (Convert.ToInt16(cmbReportType.SelectedValue) == 568) //Daywise summary
+                {
+                    varViewType = 27;
+                }
+                    btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
                 RPTViewer.Visible = false;
@@ -145,7 +165,7 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 DataSet objDs = new DataSet();
                 TRN_PurchaseEntry objTRN_PurchaseEntry = new TRN_PurchaseEntry();
-                objTRN_PurchaseEntry.ViewType = 19;
+                objTRN_PurchaseEntry.ViewType = varViewType;
                 objTRN_PurchaseEntry.paraSupplierType = Convert.ToInt32(cmbSupplierType.SelectedValue);
                 objTRN_PurchaseEntry.paraEntryType = varInvType;
                 objTRN_PurchaseEntry.paraSupplierID = Convert.ToInt32(lblSupplierCode.Text);
@@ -166,18 +186,28 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbFormat.SelectedValue) == 359)
-                    {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Summary_Portrait.rpt");
-                        varReportName = "Purchase_Summary_Portrait";
 
+                    if (Convert.ToInt16(cmbReportType.SelectedValue) == 567) //Supplierwise summary
+                    {
+                        if (Convert.ToInt32(cmbFormat.SelectedValue) == 359)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Summary_Portrait.rpt");
+                            varReportName = "Purchase_Summary_Portrait";
+
+                        }
+                        else
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Summary.rpt");
+                            varReportName = "Purchase_SupplierwiseSummary";
+                        }
                     }
                     else
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Purchase_Summary.rpt");
-                        varReportName = "Purchase_Summary";
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Daywise_Purchase_Summary_Portrait.rpt");
+                        varReportName = "Purchase_DaywiseSummary";
+                        objBillreport.SetParameterValue("paraConcern", cmbConcern.Text);
                     }
-                    objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
+                        objBillreport.SetParameterValue("ParaSupplierId", Convert.ToInt32(lblSupplierCode.Text));
                     objBillreport.SetParameterValue("paraScheduleID", Convert.ToInt32(lblschedleCode.Text));
                     objBillreport.SetParameterValue("paraFromDate", Convert.ToString(dpFromDate.Text));
                     objBillreport.SetParameterValue("paraToDate", Convert.ToString(dpToDate.Text));
@@ -580,7 +610,7 @@ namespace ROMS
                 DGV_FilterProduct.Visible = false;
                 DGV_FilterProduct.DataSource = null;
                 varUpDownKey = 0;
-                cmbSupplierType.BackColor = Color.LemonChiffon;
+                cmbReportType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
             {
@@ -652,12 +682,23 @@ namespace ROMS
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
                 int currentMUCode = 80301;
+                string ReportTypeIDs = string.Join(",",
+                 MainForm.objDtMenuDetailsUser?.AsEnumerable()
+                  .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
+                  .Select(r => r.Field<int?>("MU_EQID"))
+                  .Where(q => q.HasValue)
+                  .Select(q => q.Value.ToString())
+                  ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,11) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbSupplierType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,78) AND MSTID<>-1", "MST_DisplayText,MSTID", cmbInvType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (108)", "MST_DisplayText,MSTID", cmbFormat, "", "MST_DisplayText", "MSTID");
+                //Transaction id 	174
+                objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                cmbReportType.SelectedValue = -1;
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpToDate.MaxDate = MainForm.pbCurrentDate;
@@ -933,6 +974,88 @@ namespace ROMS
         private void btnTelegram_Click(object sender, EventArgs e)
         {
             udfnList(1);
+        }
+
+        private void cmbReportType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                DGV_FilterProduct.Visible = false;
+                DGV_FilterProduct.DataSource = null;
+                varUpDownKey = 0;
+                cmbReportType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbConcern.SelectedValue = 0;
+                cmbFormat.SelectedValue = 359;
+                if (Convert.ToInt16(cmbReportType.SelectedValue) == 567) //Supplierwise summary
+                {
+                    cmbConcern.Enabled = false;
+                    cmbFormat.Enabled = true;  
+                }
+                else if (Convert.ToInt16(cmbReportType.SelectedValue) == 568) //Daywise summary
+                {
+                    cmbConcern.Enabled = true;
+                    cmbFormat.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }

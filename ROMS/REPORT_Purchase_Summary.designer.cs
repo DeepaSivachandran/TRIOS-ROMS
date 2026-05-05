@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_Purchase_Summary));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsPurchaseSummaryReport = new System.Windows.Forms.ToolStrip();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -62,12 +63,18 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.cmbReportType = new System.Windows.Forms.ComboBox();
+            this.lblReportType = new System.Windows.Forms.Label();
+            this.epReportError = new System.Windows.Forms.ErrorProvider(this.components);
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.cmbConcern = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tsPurchaseSummaryReport.SuspendLayout();
             this.pnlReportStockLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReportError)).BeginInit();
             this.SuspendLayout();
             // 
             // tsPurchaseSummaryReport
@@ -145,34 +152,34 @@
             this.DGV_FilterProduct.AllowUserToResizeRows = false;
             this.DGV_FilterProduct.BackgroundColor = System.Drawing.Color.White;
             this.DGV_FilterProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Chocolate;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Chocolate;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_FilterProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.DGV_FilterProduct.ColumnHeadersHeight = 30;
             this.DGV_FilterProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_FilterProduct.DefaultCellStyle = dataGridViewCellStyle14;
             this.DGV_FilterProduct.EnableHeadersVisualStyles = false;
             this.DGV_FilterProduct.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterProduct.Location = new System.Drawing.Point(238, 72);
+            this.DGV_FilterProduct.Location = new System.Drawing.Point(464, 72);
             this.DGV_FilterProduct.Name = "DGV_FilterProduct";
             this.DGV_FilterProduct.ReadOnly = true;
             this.DGV_FilterProduct.RowHeadersVisible = false;
             this.DGV_FilterProduct.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.DGV_FilterProduct.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.DGV_FilterProduct.RowTemplate.Height = 25;
             this.DGV_FilterProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_FilterProduct.Size = new System.Drawing.Size(273, 226);
@@ -185,7 +192,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(235, 22);
+            this.label2.Location = new System.Drawing.Point(571, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 20);
             this.label2.TabIndex = 1111187;
@@ -223,6 +230,10 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.cmbConcern);
+            this.grpfilter.Controls.Add(this.label10);
+            this.grpfilter.Controls.Add(this.cmbReportType);
+            this.grpfilter.Controls.Add(this.lblReportType);
             this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.label11);
             this.grpfilter.Controls.Add(this.cmbFormat);
@@ -249,11 +260,11 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(969, 41);
+            this.btnTelegram.Location = new System.Drawing.Point(1305, 41);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
-            this.btnTelegram.TabIndex = 7;
+            this.btnTelegram.TabIndex = 8;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -264,7 +275,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(798, 22);
+            this.label11.Location = new System.Drawing.Point(1134, 22);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(47, 20);
             this.label11.TabIndex = 111111173;
@@ -276,10 +287,10 @@
             this.cmbFormat.Items.AddRange(new object[] {
             "Portrait",
             "Landscape"});
-            this.cmbFormat.Location = new System.Drawing.Point(798, 43);
+            this.cmbFormat.Location = new System.Drawing.Point(1134, 43);
             this.cmbFormat.Name = "cmbFormat";
             this.cmbFormat.Size = new System.Drawing.Size(85, 27);
-            this.cmbFormat.TabIndex = 5;
+            this.cmbFormat.TabIndex = 6;
             this.cmbFormat.SelectedIndexChanged += new System.EventHandler(this.cmbFormat_SelectedIndexChanged);
             this.cmbFormat.Enter += new System.EventHandler(this.cmbFormat_Enter);
             this.cmbFormat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFormat_KeyDown);
@@ -290,7 +301,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(656, 22);
+            this.label5.Location = new System.Drawing.Point(992, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 20);
             this.label5.TabIndex = 1111197;
@@ -300,10 +311,10 @@
             // 
             this.cmbInvType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbInvType.FormattingEnabled = true;
-            this.cmbInvType.Location = new System.Drawing.Point(656, 43);
+            this.cmbInvType.Location = new System.Drawing.Point(992, 43);
             this.cmbInvType.Name = "cmbInvType";
             this.cmbInvType.Size = new System.Drawing.Size(136, 27);
-            this.cmbInvType.TabIndex = 4;
+            this.cmbInvType.TabIndex = 5;
             this.cmbInvType.Enter += new System.EventHandler(this.CmbInvType_Enter);
             this.cmbInvType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbInvType_KeyDown);
             this.cmbInvType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbInvType_KeyPress);
@@ -313,10 +324,10 @@
             // 
             this.cmbSupplierType.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSupplierType.FormattingEnabled = true;
-            this.cmbSupplierType.Location = new System.Drawing.Point(514, 43);
+            this.cmbSupplierType.Location = new System.Drawing.Point(850, 43);
             this.cmbSupplierType.Name = "cmbSupplierType";
             this.cmbSupplierType.Size = new System.Drawing.Size(136, 27);
-            this.cmbSupplierType.TabIndex = 3;
+            this.cmbSupplierType.TabIndex = 4;
             this.cmbSupplierType.Enter += new System.EventHandler(this.CmbSupplierType_Enter);
             this.cmbSupplierType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbSupplierType_KeyDown);
             this.cmbSupplierType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbSupplierType_KeyPress);
@@ -326,7 +337,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(514, 22);
+            this.label4.Location = new System.Drawing.Point(850, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 20);
             this.label4.TabIndex = 1111194;
@@ -336,7 +347,7 @@
             // 
             this.lblSupplierCode.AutoSize = true;
             this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
-            this.lblSupplierCode.Location = new System.Drawing.Point(395, 23);
+            this.lblSupplierCode.Location = new System.Drawing.Point(731, 23);
             this.lblSupplierCode.Name = "lblSupplierCode";
             this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 1111192;
@@ -347,10 +358,10 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(122, 43);
+            this.dpToDate.Location = new System.Drawing.Point(458, 43);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(107, 27);
-            this.dpToDate.TabIndex = 1;
+            this.dpToDate.TabIndex = 2;
             this.dpToDate.Enter += new System.EventHandler(this.DpToDate_Enter);
             this.dpToDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpToDate_KeyDown);
             this.dpToDate.Leave += new System.EventHandler(this.DpToDate_Leave);
@@ -358,11 +369,11 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(235, 43);
+            this.txtSupplier.Location = new System.Drawing.Point(571, 43);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(273, 27);
-            this.txtSupplier.TabIndex = 2;
+            this.txtSupplier.TabIndex = 3;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.TxtSupplier_Enter);
             this.txtSupplier.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSupplier_KeyDown);
@@ -372,7 +383,7 @@
             // 
             this.lblschedleCode.AutoSize = true;
             this.lblschedleCode.BackColor = System.Drawing.Color.LimeGreen;
-            this.lblschedleCode.Location = new System.Drawing.Point(341, 23);
+            this.lblschedleCode.Location = new System.Drawing.Point(677, 23);
             this.lblschedleCode.Name = "lblschedleCode";
             this.lblschedleCode.Size = new System.Drawing.Size(16, 20);
             this.lblschedleCode.TabIndex = 1111191;
@@ -383,10 +394,10 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(9, 43);
+            this.dpFromDate.Location = new System.Drawing.Point(345, 43);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
-            this.dpFromDate.TabIndex = 0;
+            this.dpFromDate.TabIndex = 1;
             this.dpFromDate.ValueChanged += new System.EventHandler(this.DpFromDate_ValueChanged);
             this.dpFromDate.Enter += new System.EventHandler(this.DpFromDate_Enter);
             this.dpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpFromDate_KeyDown);
@@ -396,7 +407,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(122, 22);
+            this.label3.Location = new System.Drawing.Point(458, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 20);
             this.label3.TabIndex = 1111190;
@@ -406,7 +417,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 22);
+            this.label1.Location = new System.Drawing.Point(345, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 1111189;
@@ -417,11 +428,11 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(889, 41);
+            this.btnView.Location = new System.Drawing.Point(1225, 41);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 29);
-            this.btnView.TabIndex = 6;
+            this.btnView.TabIndex = 7;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
@@ -469,9 +480,54 @@
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             this.RPTViewer.Visible = false;
             // 
+            // cmbReportType
+            // 
+            this.cmbReportType.FormattingEnabled = true;
+            this.cmbReportType.Location = new System.Drawing.Point(6, 43);
+            this.cmbReportType.Name = "cmbReportType";
+            this.cmbReportType.Size = new System.Drawing.Size(225, 27);
+            this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.cmbReportType_SelectedIndexChanged);
+            this.cmbReportType.Enter += new System.EventHandler(this.cmbReportType_Enter);
+            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReportType_KeyDown);
+            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReportType_KeyPress);
+            this.cmbReportType.Leave += new System.EventHandler(this.cmbReportType_Leave);
+            // 
+            // lblReportType
+            // 
+            this.lblReportType.AutoSize = true;
+            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportType.Location = new System.Drawing.Point(6, 22);
+            this.lblReportType.Name = "lblReportType";
+            this.lblReportType.Size = new System.Drawing.Size(73, 20);
+            this.lblReportType.TabIndex = 111111184;
+            this.lblReportType.Text = "Report type";
+            // 
+            // epReportError
+            // 
+            this.epReportError.ContainerControl = this;
+            // 
             // dynamicLabelControl
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // cmbConcern
+            // 
+            this.cmbConcern.FormattingEnabled = true;
+            this.cmbConcern.Location = new System.Drawing.Point(237, 43);
+            this.cmbConcern.Name = "cmbConcern";
+            this.cmbConcern.Size = new System.Drawing.Size(99, 27);
+            this.cmbConcern.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(237, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 20);
+            this.label10.TabIndex = 111111186;
+            this.label10.Text = "Concern";
             // 
             // REPORT_Purchase_Summary
             // 
@@ -498,6 +554,7 @@
             this.grpfilter.ResumeLayout(false);
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epReportError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,5 +593,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbFormat;
         private System.Windows.Forms.Button btnTelegram;
+        private System.Windows.Forms.ComboBox cmbReportType;
+        private System.Windows.Forms.Label lblReportType;
+        private System.Windows.Forms.ErrorProvider epReportError;
+        private System.Windows.Forms.ComboBox cmbConcern;
+        private System.Windows.Forms.Label label10;
     }
 }
