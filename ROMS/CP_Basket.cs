@@ -89,19 +89,16 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void udfnDropDownLoad()
+        public void udfnGetBasketNextNo()
         {
             try
             {
-                DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,175) AND MSTID<>0  ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbBasketType, "", "MST_DisplayText", "MSTID");
-                objDataBind = null;
                 cmbBasketType.SelectedValue = -1;
                 //Load next basket No
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 MR_Basket objMR_Basket = new MR_Basket();
-                objMR_Basket.paraViewType =2; 
+                objMR_Basket.paraViewType = 2;
                 objDs = objspservice.udfnBasketList(objMR_Basket);
                 if (objDs != null)
                 {
@@ -109,10 +106,25 @@ namespace ROMS
                     {
                         if (objDs.Tables[0].Rows.Count != 0)
                         {
-                            txtBasketNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["BasketNo"]); 
+                            txtBasketNo.Text = Convert.ToString(objDs.Tables[0].Rows[0]["BasketNo"]);
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnDropDownLoad()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,175) AND MSTID<>0  ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbBasketType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
+                udfnGetBasketNextNo();
             }
             catch (Exception ex)
             {
@@ -175,18 +187,14 @@ namespace ROMS
                 objDServ.CloseConnection();
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnSave.Focus();
-            }
-            finally
-            {
-                btnSave.Enabled = true;
-                btnSave.Focus();
-            }
+            } 
         }
         private void udfnclear()
         {
             try
             {
                 txtBasketNo.Text = "";
+                udfnGetBasketNextNo();
                 cmbBasketType.SelectedValue = -1;
                 this.ActiveControl = cmbBasketType;
             }
