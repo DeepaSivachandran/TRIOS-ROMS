@@ -104,7 +104,6 @@
             this.clmPICode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProductnameInEnglish = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPurLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSalesLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRackGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRack = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmIncharge = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -755,7 +754,6 @@
             this.clmPICode,
             this.clmProductnameInEnglish,
             this.clmPurLocation,
-            this.clmSalesLocation,
             this.clmRackGroup,
             this.clmRack,
             this.clmIncharge,
@@ -939,15 +937,9 @@
             // 
             // clmPurLocation
             // 
-            this.clmPurLocation.HeaderText = "Purchase Location";
+            this.clmPurLocation.HeaderText = "Location";
             this.clmPurLocation.Name = "clmPurLocation";
             this.clmPurLocation.ReadOnly = true;
-            // 
-            // clmSalesLocation
-            // 
-            this.clmSalesLocation.HeaderText = "Sales Location";
-            this.clmSalesLocation.Name = "clmSalesLocation";
-            this.clmSalesLocation.ReadOnly = true;
             // 
             // clmRackGroup
             // 
@@ -1160,7 +1152,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPICode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProductnameInEnglish;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPurLocation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmSalesLocation;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRackGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRack;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmIncharge;

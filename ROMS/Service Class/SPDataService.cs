@@ -6268,6 +6268,7 @@ namespace ROMS
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_Basket.paraViewType); 
                 varSqlCommand.Parameters.AddWithValue("@paraBasketId", objMR_Basket.paraBasketId); 
+                varSqlCommand.Parameters.AddWithValue("@paraTypeId", objMR_Basket.paraTypeId); 
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
