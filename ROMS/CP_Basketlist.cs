@@ -23,7 +23,9 @@ namespace ROMS
         public string varUserID = "";
         public int MenuCode = 0;
         string privilege = "";
+        Boolean BlnSearchImageYN = false;
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
+        private ToolTip tpSize = new ToolTip();
 
         public CP_Basketlist()
         {
@@ -142,6 +144,8 @@ namespace ROMS
         {
             try
             {
+                RPTViewer.Visible = false;
+                RPTViewer.SendToBack();
                 dtDefaultGrid = null;
                 DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
@@ -166,7 +170,9 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdBasketList.DataSource = objDs.Tables[0];
+                            grdBasketList.Columns["clmPrint"].Visible = true;
                             grdBasketList.Columns["ID"].Visible = false; 
+                            grdBasketList.Columns["TypeId"].Visible = false; 
                             grdBasketList.Columns["S.No."].Width = 50; 
                             grdBasketList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; 
                             grdBasketList.Columns["Basket No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight; 
@@ -174,12 +180,14 @@ namespace ROMS
                         else
                         {
                             lblNoRecordsFound.Visible = true;
+                            grdBasketList.Columns["clmPrint"].Visible = false;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
                         lblNoRecordsFound.Visible = true;
+                        grdBasketList.Columns["clmPrint"].Visible = false;
                         lblNoRecordsFound.BringToFront();
                     }
                     objspservice.CloseConnection();
@@ -240,12 +248,15 @@ namespace ROMS
                     }
                     int rowIndex = 0;
                     DGV_SearchGrid.Rows.Clear();
-                    DGV_SearchGrid.Rows.Add();
+                    DGV_SearchGrid.Rows.Add(); 
+                    DGV_SearchGrid.Columns[1].DefaultCellStyle.NullValue = null;
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
                         DGV_SearchGrid.Rows[rowIndex].Cells[i].Value = "";
                     }
                     DGV_SearchGrid.Columns["S.No."].ReadOnly = true;
+                    DGV_SearchGrid.Columns[0].ReadOnly = true;
+                    DGV_SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -256,6 +267,7 @@ namespace ROMS
             {
                 if (lblNoRecordsFound.Visible == false)
                 {
+                    //dgv2.DataSource = null;
                     dgv2.Columns.Clear();
                     List<int> visibleColumns = new List<int>();
                     foreach (DataGridViewColumn col in dgv1.Columns)
@@ -267,11 +279,24 @@ namespace ROMS
                         }
                     }
                     int rowIndex = 0;
+                    int ColIndex = 0;
                     dgv2.Rows.Clear();
                     dgv2.Rows.Add();
                     for (int i = 0; i < visibleColumns.Count; i++)
                     {
-                        dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        if (dgv2.Rows[rowIndex].Cells[i].ValueType.Name == "Image")
+                        {
+                            //dgv2.Rows[rowIndex].Visible = false;
+                            BlnSearchImageYN = true;
+                            ColIndex = i;
+                            dgv2.Columns[i].DisplayIndex = dgv2.ColumnCount - 1;
+                            dgv2.Rows[rowIndex].Cells[i].Value = new Bitmap(1, 1);
+                            ((DataGridViewImageColumn)dgv2.Columns[i]).DefaultCellStyle.NullValue = null;
+                        }
+                        else
+                        {
+                            dgv2.Rows[rowIndex].Cells[i].Value = "";
+                        }
                     }
                 }
             }
@@ -338,6 +363,7 @@ namespace ROMS
             {
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,175) AND MSTID<>-1  ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbBasketType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79) AND MSTID NOT IN (0,301) ORDER BY ISNULL(MST_OrderID,0) ASC", "MST_DisplayText,MSTID", cmbLabelsize, "", "MST_DisplayText", "MSTID");
                 objDataBind = null; 
             }
             catch (Exception ex)
@@ -481,21 +507,45 @@ namespace ROMS
         {
             try
             {
-                if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
-                    return;
-                if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
-                    if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                if (lblNoRecordsFound.Visible == false)
+                {
+
+                    if (e.RowIndex < 0 || e.ColumnIndex < 0)        /*If a header cell*/
+                        return;
+                    if (!(e.ColumnIndex == 0))   /*If not our desired columns*/ //return;
+                        if (Convert.ToString(e.Value) == "" || e.Value == DBNull.Value)  /*If value is null*/
+                        {
+                            e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                                & ~(DataGridViewPaintParts.ContentForeground));
+
+                            //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
+                            //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
+
+                            e.Handled = true;
+                        }
+
+                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    if (e.ColumnIndex > -1 && e.RowIndex > -1 && DGV_SearchGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn)
                     {
-                        e.Paint(e.CellBounds, DataGridViewPaintParts.All
-                            & ~(DataGridViewPaintParts.ContentForeground));
+                        if (e.Value == null || !(bool)e.Value)
+                        {
+                            e.PaintBackground(e.CellBounds, false);
+                            e.Handled = true;
+                        }
+                    }
+                    if (DGV_SearchGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].ValueType.Name != "Boolean")
+                    {
+                        if (e.ColumnIndex == 1)
+                        {
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = null;
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3] = new DataGridViewTextBoxCell();
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3].Value = "";
+                            DGV_SearchGrid.Rows[e.RowIndex].Cells[3].ReadOnly = true;
 
-                        //TextRenderer.DrawText(e.Graphics, "Enter a value", e.CellStyle.Font,
-                        //    e.CellBounds, SystemColors.GrayText, TextFormatFlags.Left);
-
-                        e.Handled = true;
+                        }
                     }
 
-                DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
@@ -705,7 +755,78 @@ namespace ROMS
 
         private void grdBasketList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                if (e.RowIndex != -1)
+                {
+                    switch (grdBasketList.Columns[e.ColumnIndex].Name)
+                    {
+                        case "clmPrint":
+                            try
+                            {
+                                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != -1)
+                                {
+                                    epBasket.Clear();
+                                    string BSKID = "0", TypeID = "0";
+                                    BSKID = Convert.ToString(grdBasketList.SelectedRows[0].Cells["ID"].Value.ToString());
+                                    TypeID = Convert.ToString(grdBasketList.SelectedRows[0].Cells["TypeId"].Value.ToString());
+                                    DialogResult result1;
+                                    SPDataService objDServ = new SPDataService();
+                                    string varMessage = objDServ.udfnGetMessages(87);
+                                    objDServ.CloseConnection();
+                                    result1 = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (result1 == DialogResult.Yes)
+                                    {
+                                        string varHeader = "";
+                                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                                        if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                                        {
+                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Basket_50x35.rpt");
+                                        }
+                                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                                        {
+                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Basket_50x60.rpt");
+                                        }
+                                        else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                                        {
+                                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Basket_100x70.rpt");
+                                        }
+                                        varHeader = "Basket";
+                                        objBillreport.SetParameterValue("paraBasketId", Convert.ToInt32(BSKID));
+                                        objBillreport.SetParameterValue("paraTypeId", Convert.ToInt32(TypeID));
+                                        objValidation.CrySqlConnection(objBillreport);
+                                        MainForm.objReportLoad = new ReportLoad();
+                                        MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                                        MainForm.objReportLoad.Text = varHeader;
+                                        MainForm.objReportLoad.ShowDialog();
+                                    }
+                                }
+                                else
+                                {
+                                    epBasket.SetError(cmbLabelsize, "Please select size.");
+                                    cmbLabelsize.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                                    tpSize.ShowAlways = true;
+                                    tpSize.Show("Please select size.", cmbLabelsize, 5000);
+                                    cmbLabelsize.Focus();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
+                    }
+                }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+
+            }
         }
 
         private void btnView_Enter(object sender, EventArgs e)
@@ -726,6 +847,163 @@ namespace ROMS
             try
             {
                 btnView.BackColor = Color.White ;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(cmbLabelsize.SelectedValue) != -1)
+                {
+                    udfnPrint();
+                }
+                else
+                {
+                    epBasket.SetError(cmbLabelsize, "Please select size.");
+                    cmbLabelsize.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSize.ShowAlways = true;
+                    tpSize.Show("Please select size.", cmbLabelsize, 5000);
+                    cmbLabelsize.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPrint()
+        {
+            try
+            {
+                epBasket.Clear();
+                lblNoRecordsFound.Visible = false;
+                picLoader.Visible = true;
+                RPTViewer.Visible = false;
+                picLoader.BringToFront();
+                Application.DoEvents();
+                int varprint = 0;
+                DataSet objDs = new DataSet();
+                //**** To call the function from SP ***************
+                SPDataService objspservice = new SPDataService();
+                MR_Basket objMR_Basket = new MR_Basket();
+                objMR_Basket.paraViewType = 3;
+                objMR_Basket.paraTypeId = Convert.ToInt16(cmbBasketType.SelectedValue);
+                objDs = objspservice.udfnBasketList(objMR_Basket);
+                objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            varprint = 1;
+                        }
+                    }
+                }
+                if (varprint == 1)
+                {
+                    btnPrint.Enabled = false;
+                    label1.Focus();
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    RPTViewer.RefreshReport();
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+
+                    if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 302)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Basket_50x35.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 268)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Basket_50x60.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbLabelsize.SelectedValue) == 269)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Sticker_Print_Basket_100x70.rpt");
+                    }
+                    objBillreport.SetParameterValue("paraBasketId", 0);
+                    objBillreport.SetParameterValue("paraTypeId", Convert.ToInt32(cmbBasketType.SelectedValue));
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
+                else
+                {
+                    DGV_SearchGrid.Columns.Clear();
+                    grdBasketList.DataSource = null;
+                    lblNoRecordsFound.Visible = true;
+                    lblNoRecordsFound.BringToFront();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                btnPrint.Enabled = true;
+                picLoader.Visible = false;
+                picLoader.SendToBack();
+            }
+        }
+
+        private void cmbLabelsize_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbLabelsize.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLabelsize_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLabelsize_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLabelsize_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbLabelsize.BackColor = Color.White;
             }
             catch (Exception ex)
             {
