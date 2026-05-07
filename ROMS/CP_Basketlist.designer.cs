@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBasketList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
@@ -42,18 +42,23 @@
             this.tssNew = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbTotalCount = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.pnlCity = new System.Windows.Forms.Panel();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdBasketList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.grbFilterByUser = new System.Windows.Forms.GroupBox();
+            this.lblBasketType = new System.Windows.Forms.Label();
+            this.cmbBasketType = new System.Windows.Forms.ComboBox();
+            this.btnView = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             this.tsBasketList.SuspendLayout();
             this.pnlCity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdBasketList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
+            this.grbFilterByUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBasketList
@@ -69,9 +74,7 @@
             this.tsbEdit,
             this.tssNew,
             this.tsbNew,
-            this.toolStripSeparator1,
-            this.tsbTotalCount,
-            this.toolStripButton2});
+            this.toolStripSeparator1});
             this.tsBasketList.Location = new System.Drawing.Point(0, 0);
             this.tsBasketList.Name = "tsBasketList";
             this.tsBasketList.Size = new System.Drawing.Size(1354, 27);
@@ -151,31 +154,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsbTotalCount
-            // 
-            this.tsbTotalCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbTotalCount.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbTotalCount.ForeColor = System.Drawing.Color.Crimson;
-            this.tsbTotalCount.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbTotalCount.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbTotalCount.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.tsbTotalCount.Name = "tsbTotalCount";
-            this.tsbTotalCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tsbTotalCount.Size = new System.Drawing.Size(41, 24);
-            this.tsbTotalCount.Text = "0000";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton2.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton2.Size = new System.Drawing.Size(89, 24);
-            this.toolStripButton2.Text = "No. of Basket :";
-            // 
             // pnlCity
             // 
             this.pnlCity.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -195,33 +173,33 @@
             this.DGV_SearchGrid.AllowUserToResizeRows = false;
             this.DGV_SearchGrid.BackgroundColor = System.Drawing.Color.White;
             this.DGV_SearchGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SearchGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.DGV_SearchGrid.ColumnHeadersHeight = 30;
             this.DGV_SearchGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle26;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 2);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 70);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LemonChiffon;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.LemonChiffon;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_SearchGrid.RowsDefaultCellStyle = dataGridViewCellStyle27;
             this.DGV_SearchGrid.RowTemplate.Height = 25;
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -256,39 +234,40 @@
             this.grdBasketList.AllowUserToResizeRows = false;
             this.grdBasketList.BackgroundColor = System.Drawing.Color.White;
             this.grdBasketList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdBasketList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(242)))), ((int)(((byte)(213)))));
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdBasketList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.grdBasketList.ColumnHeadersHeight = 30;
             this.grdBasketList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdBasketList.ColumnHeadersVisible = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdBasketList.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdBasketList.DefaultCellStyle = dataGridViewCellStyle29;
             this.grdBasketList.EnableHeadersVisualStyles = false;
             this.grdBasketList.GridColor = System.Drawing.Color.White;
-            this.grdBasketList.Location = new System.Drawing.Point(3, 58);
+            this.grdBasketList.Location = new System.Drawing.Point(3, 126);
             this.grdBasketList.Name = "grdBasketList";
             this.grdBasketList.ReadOnly = true;
             this.grdBasketList.RowHeadersVisible = false;
             this.grdBasketList.RowHeadersWidth = 100;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.grdBasketList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.White;
+            this.grdBasketList.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.grdBasketList.RowTemplate.Height = 25;
             this.grdBasketList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdBasketList.Size = new System.Drawing.Size(1348, 581);
+            this.grdBasketList.Size = new System.Drawing.Size(1348, 514);
             this.grdBasketList.TabIndex = 958797;
+            this.grdBasketList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdBasketList_CellContentClick);
             this.grdBasketList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdCityList_DataBindingComplete);
             this.grdBasketList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdCityList_Scroll);
             this.grdBasketList.DoubleClick += new System.EventHandler(this.GrdCityList_DoubleClick);
@@ -301,13 +280,92 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(0, 0);
+            this.picLoader.Location = new System.Drawing.Point(0, 71);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1353, 644);
+            this.picLoader.Size = new System.Drawing.Size(1353, 570);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958799;
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
+            // 
+            // grbFilterByUser
+            // 
+            this.grbFilterByUser.BackColor = System.Drawing.Color.White;
+            this.grbFilterByUser.Controls.Add(this.label2);
+            this.grbFilterByUser.Controls.Add(this.lblTotalCount);
+            this.grbFilterByUser.Controls.Add(this.lblBasketType);
+            this.grbFilterByUser.Controls.Add(this.cmbBasketType);
+            this.grbFilterByUser.Controls.Add(this.btnView);
+            this.grbFilterByUser.Location = new System.Drawing.Point(3, 33);
+            this.grbFilterByUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterByUser.Name = "grbFilterByUser";
+            this.grbFilterByUser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grbFilterByUser.Size = new System.Drawing.Size(1348, 67);
+            this.grbFilterByUser.TabIndex = 958804;
+            this.grbFilterByUser.TabStop = false;
+            this.grbFilterByUser.Text = "Filter By";
+            this.grbFilterByUser.Enter += new System.EventHandler(this.grbFilterByUser_Enter);
+            // 
+            // lblBasketType
+            // 
+            this.lblBasketType.AutoSize = true;
+            this.lblBasketType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBasketType.Location = new System.Drawing.Point(8, 30);
+            this.lblBasketType.Name = "lblBasketType";
+            this.lblBasketType.Size = new System.Drawing.Size(74, 20);
+            this.lblBasketType.TabIndex = 958820;
+            this.lblBasketType.Text = "Basket Type";
+            // 
+            // cmbBasketType
+            // 
+            this.cmbBasketType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBasketType.FormattingEnabled = true;
+            this.cmbBasketType.Location = new System.Drawing.Point(86, 26);
+            this.cmbBasketType.Name = "cmbBasketType";
+            this.cmbBasketType.Size = new System.Drawing.Size(155, 28);
+            this.cmbBasketType.TabIndex = 0;
+            this.cmbBasketType.SelectedIndexChanged += new System.EventHandler(this.cmbBasketType_SelectedIndexChanged);
+            this.cmbBasketType.Enter += new System.EventHandler(this.cmbBasketType_Enter);
+            this.cmbBasketType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBasketType_KeyDown);
+            this.cmbBasketType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbBasketType_KeyPress);
+            this.cmbBasketType.Leave += new System.EventHandler(this.cmbBasketType_Leave);
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::ROMS.Properties.Resources.view;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(244, 26);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 29);
+            this.btnView.TabIndex = 1;
+            this.btnView.Text = "View";
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.btnView.Enter += new System.EventHandler(this.btnView_Enter);
+            this.btnView.Leave += new System.EventHandler(this.btnView_Leave_1);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(327, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 20);
+            this.label2.TabIndex = 958826;
+            this.label2.Text = "No.of Baskets :";
+            // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblTotalCount.ForeColor = System.Drawing.Color.Crimson;
+            this.lblTotalCount.Location = new System.Drawing.Point(413, 30);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(41, 20);
+            this.lblTotalCount.TabIndex = 958827;
+            this.lblTotalCount.Text = "0000";
             // 
             // CP_Basketlist
             // 
@@ -315,6 +373,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
+            this.Controls.Add(this.grbFilterByUser);
             this.Controls.Add(this.pnlCity);
             this.Controls.Add(this.tsBasketList);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -334,6 +393,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SearchGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdBasketList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
+            this.grbFilterByUser.ResumeLayout(false);
+            this.grbFilterByUser.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,10 +412,14 @@
         private System.Windows.Forms.Panel pnlCity;
         public System.Windows.Forms.DataGridView DGV_SearchGrid;
         private System.Windows.Forms.Label lblNoRecordsFound;
-        public System.Windows.Forms.DataGridView grdBasketList;
         public System.Windows.Forms.PictureBox picLoader;
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        public System.Windows.Forms.ToolStripButton tsbTotalCount;
-        public System.Windows.Forms.ToolStripButton toolStripButton2;
+        public System.Windows.Forms.DataGridView grdBasketList;
+        private System.Windows.Forms.GroupBox grbFilterByUser;
+        private System.Windows.Forms.ComboBox cmbBasketType;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Label lblBasketType;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalCount;
     }
 }

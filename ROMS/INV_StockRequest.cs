@@ -1028,8 +1028,7 @@ namespace ROMS
                         if (objDs.Tables[0].Rows.Count > 0)
                         {
                             grdStockRequest.Rows.Add(grdStockRequest.Rows.Count + 1, Convert.ToString(objDs.Tables[0].Rows[0]["PR_PICode"]),
-                                Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[0]["PurLocation"]),
-                                Convert.ToString(objDs.Tables[0].Rows[0]["SalesLocation"]), 
+                                Convert.ToString(objDs.Tables[0].Rows[0]["PR_TName"]), Convert.ToString(objDs.Tables[0].Rows[0]["PurLocation"]), 
                                 Convert.ToString(objDs.Tables[0].Rows[0]["RKG_Name"]), Convert.ToString(objDs.Tables[0].Rows[0]["RK_ShortName"]), 
                                 Convert.ToString(objDs.Tables[0].Rows[0]["EMP_Name"]), Convert.ToString(txtStockQty.Text),
                                 Convert.ToString(txtRequiredQty.Text), Convert.ToString(objDs.Tables[0].Rows[0]["UT_Symbol"]),"", Convert.ToString(objDs.Tables[0].Rows[0]["UT_Decimal"]), Convert.ToString(lblProduct.Text),0, Convert.ToString(objDs.Tables[0].Rows[0]["SLID"]));

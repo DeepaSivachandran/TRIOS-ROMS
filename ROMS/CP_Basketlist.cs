@@ -154,6 +154,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 MR_Basket objMR_Basket = new MR_Basket();
                 objMR_Basket.paraViewType = 0; 
+                objMR_Basket.paraTypeId =Convert.ToInt16(cmbBasketType.SelectedValue); 
                 objDs = objspservice.udfnBasketList(objMR_Basket); 
                 if (objDs != null)
                 {
@@ -201,7 +202,7 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdBasketList.Rows.Count);
+                lblTotalCount.Text = Convert.ToString(grdBasketList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
             }
@@ -318,11 +319,26 @@ namespace ROMS
             try
             {
                 MenuCode = 501;
-                udfnList();
+                udfnDropDownLoad();
+                udfnList(); 
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     udfnFieldAccess();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void udfnDropDownLoad()
+        {
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,175) AND MSTID<>-1  ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbBasketType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null; 
             }
             catch (Exception ex)
             {
@@ -601,7 +617,120 @@ namespace ROMS
             }
             finally
             {
-                tsbTotalCount.Text = Convert.ToString(grdBasketList.Rows.Count);
+                lblTotalCount.Text = Convert.ToString(grdBasketList.Rows.Count);
+            }
+        }
+
+        private void cmbBasketType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grbFilterByUser_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbBasketType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBasketType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBasketType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbBasketType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
+        private void cmbBasketType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbBasketType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList();
+            } 
+             catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grdBasketList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnView_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnView_Leave_1(object sender, EventArgs e)
+        {
+            try
+            {
+                btnView.BackColor = Color.White ;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
             }
         }
     }
