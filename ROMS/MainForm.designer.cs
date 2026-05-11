@@ -381,8 +381,7 @@ namespace ROMS
             this.tsmInventory.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.I)));
             this.tsmInventory.Size = new System.Drawing.Size(64, 24);
             this.tsmInventory.Text = "&Inventory";
-            this.tsmInventory.Visible = false;
-            this.tsmInventory.Click += new System.EventHandler(this.tsmInventory_Click);
+            this.tsmInventory.Visible = false; 
             // 
             // tsminward
             // 
