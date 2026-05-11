@@ -382,6 +382,7 @@ namespace ROMS
             this.tsmInventory.Size = new System.Drawing.Size(64, 24);
             this.tsmInventory.Text = "&Inventory";
             this.tsmInventory.Visible = false;
+            this.tsmInventory.Click += new System.EventHandler(this.tsmInventory_Click);
             // 
             // tsminward
             // 

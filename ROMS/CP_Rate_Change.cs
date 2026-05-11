@@ -494,11 +494,8 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-
-        }
-
-
+            } 
+        } 
         private void txtProductName_TextChanged(object sender, EventArgs e)
         {
             try
@@ -546,7 +543,7 @@ namespace ROMS
                                     DGV_FilterProduct.Columns["PRPM_TYPE"].Visible = false;
                                     DGV_FilterProduct.Columns["PRPM_RATE"].Visible = false;
                                     DGV_FilterProduct.Columns["PRPR_RATE_PREV"].Visible = false;
-                                    DGV_FilterProduct.Columns["R.Rate"].Visible = false;
+                                    DGV_FilterProduct.Columns["R.Rate"].Visible = true;
                                     DGV_FilterProduct.Columns["W.Rate"].Visible = false;
                                      
 
