@@ -56,6 +56,7 @@ namespace ROMS
             this.tsmStockHold = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDamageEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockReq = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockReqQueue = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRackTransfer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockConversion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockJournal = new System.Windows.Forms.ToolStripMenuItem();
@@ -238,7 +239,6 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmStockReqQueue = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -381,6 +381,7 @@ namespace ROMS
             this.tsmInventory.Size = new System.Drawing.Size(64, 24);
             this.tsmInventory.Text = "&Inventory";
             this.tsmInventory.Visible = false;
+            this.tsmInventory.Click += new System.EventHandler(this.tsmInventory_Click);
             // 
             // tsminward
             // 
@@ -464,6 +465,13 @@ namespace ROMS
             this.tsmStockReq.Text = "Shop Stock Request";
             this.tsmStockReq.Visible = false;
             this.tsmStockReq.Click += new System.EventHandler(this.TsmStockRequest_Click);
+            // 
+            // tsmStockReqQueue
+            // 
+            this.tsmStockReqQueue.Name = "tsmStockReqQueue";
+            this.tsmStockReqQueue.Size = new System.Drawing.Size(203, 22);
+            this.tsmStockReqQueue.Text = "Shop Stock Request Queue";
+            this.tsmStockReqQueue.Click += new System.EventHandler(this.tsmStockReqQueue_Click);
             // 
             // tsmRackTransfer
             // 
@@ -2125,13 +2133,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmStockReqQueue
-            // 
-            this.tsmStockReqQueue.Name = "tsmStockReqQueue";
-            this.tsmStockReqQueue.Size = new System.Drawing.Size(203, 22);
-            this.tsmStockReqQueue.Text = "Shop Stock Request Queue";
-            this.tsmStockReqQueue.Click += new System.EventHandler(this.tsmStockReqQueue_Click);
             // 
             // MainForm
             // 

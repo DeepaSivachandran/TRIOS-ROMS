@@ -4946,6 +4946,11 @@ namespace ROMS
             }
         }
 
+        private void tsmInventory_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 

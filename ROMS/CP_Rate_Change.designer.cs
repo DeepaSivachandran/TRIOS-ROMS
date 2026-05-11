@@ -930,6 +930,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(809, 438);
+            this.Controls.Add(this.DGV_FilterProduct);
             this.Controls.Add(this.lblStockQty);
             this.Controls.Add(this.lblCurrentStock);
             this.Controls.Add(this.lvVerified1);
@@ -938,7 +939,6 @@
             this.Controls.Add(this.lblDProduct);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.DGV_FilterProduct);
             this.Controls.Add(this.txtDBarcode);
             this.Controls.Add(this.txtWRateLast);
             this.Controls.Add(this.txtWRatePrev);
