@@ -1870,7 +1870,7 @@ namespace ROMS
         public void udfnRackGroupEnable()
         {
             try
-            { 
+            {
                 if (chkRackGroup.Checked == false)
                 { 
                     lblDEProductName.Visible = true;
@@ -1905,7 +1905,13 @@ namespace ROMS
                     cmbRackGroup.Visible = true;
                     lblProductType.Visible = true;
                     cmbProductType.Visible = true;
+                    grdStockRequest.SendToBack();
+                    picLoader.BringToFront();
+                    picLoader.Visible = true;
                     LoadProductByRackGroup();
+                    picLoader.Visible = false;
+                    picLoader.SendToBack();
+                    grdStockRequest.BringToFront();
                     grdStockRequest.Columns["clmRemove"].Visible = false;
                 }
                 cmbRackGroup.SelectedValue = 0;
