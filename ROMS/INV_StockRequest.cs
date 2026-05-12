@@ -92,6 +92,7 @@ namespace ROMS
                         dpDate.Value = MainForm.pbCurrentDate;
                         cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                         grdStockRequest.Columns["clmStatus"].Visible = false;
+                        udfnProductCount();
                     }
                     else
                     {
@@ -130,6 +131,32 @@ namespace ROMS
                 {
                     btnPrint.Visible = false;
                     chbCompleted.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnProductCount()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                MR_Product objMR_Product = new MR_Product();
+                objMR_Product.paraViewType = 45;
+                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_Product.ParaProductsCode = "0";
+                SPDataService objspdservice = new SPDataService();
+                objDs = objspdservice.udfnproductmasterlist(objMR_Product);
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        lblProductCount.Text = Convert.ToString(objDs.Tables[0].Rows.Count);
+                    }
                 }
             }
             catch (Exception ex)
