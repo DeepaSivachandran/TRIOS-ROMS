@@ -1633,7 +1633,7 @@ namespace ROMS
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 RPTViewer.ReuseParameterValuesOnRefresh = true;
-                RPTViewer.RefreshReport();
+                /////RPTViewer.RefreshReport();
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 int varlanguage = 0;string varlblsupplierprint = "0";
                 if (rbEnglish.Checked == true)
@@ -2165,7 +2165,7 @@ namespace ROMS
                         RPTViewer.Visible = true;
                         RPTViewer.BringToFront();
                         RPTViewer.ReuseParameterValuesOnRefresh = true;
-                        RPTViewer.RefreshReport();
+                        /////RPTViewer.RefreshReport();
                         objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_SupplierScheduleList.rpt");
                         objBillreport.SetParameterValue("paraSupplierid", Convert.ToInt32(lblSupplierCode.Text));

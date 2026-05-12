@@ -246,11 +246,11 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbStatus.SelectedValue));
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
@@ -362,11 +362,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
@@ -491,17 +492,19 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     if (Convert.ToInt32(cmbType.SelectedValue) == 405)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode_PICode.rpt");
+                        objBillreport.PrintOptions.NoPrinter = true;
                     }
                     else
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Barcode.rpt");
+                        objBillreport.PrintOptions.NoPrinter = true;
                     }
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
@@ -629,11 +632,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Msq.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
@@ -757,12 +761,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Weight.rpt");
-                    objBillreport.SetParameterValue("paraRKGID", RKGCode);
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
                     objBillreport.SetParameterValue("paraRKGName", RKGName);
@@ -887,8 +891,7 @@ namespace ROMS
                 {
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true; 
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     //int varType = Convert.ToInt32(cmbType.SelectedValue);
@@ -902,16 +905,19 @@ namespace ROMS
                     if (Convert.ToInt32(cmbType.SelectedValue) == 405)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_PICode.rpt");
+                        objBillreport.PrintOptions.NoPrinter = true;
                     }
                     else
                     {
                         if (chkLocBreakup.Checked == true)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt");
+                            objBillreport.PrintOptions.NoPrinter = true;
                         }
                         else
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_RackMin_Qty.rpt");
+                            objBillreport.PrintOptions.NoPrinter = true;
                         }
                     }
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
@@ -1068,11 +1074,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                   ////  //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_ShelfLife.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
@@ -1172,11 +1179,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Product_Mapping.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraRKGID", RKGCode);
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
@@ -1269,11 +1277,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Rack_Product_Assigned.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
@@ -1378,11 +1387,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Rack_Product_Unassigned.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
@@ -1486,11 +1496,12 @@ namespace ROMS
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    RPTViewer.RefreshReport();
+                     //// /////RPTViewer.RefreshReport();
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Rackgroup_Rack_Product_StockTaking.rpt");
+                    objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
                     objBillreport.SetParameterValue("ParaStockType", Convert.ToInt32(cmbStockTakken.SelectedValue));
