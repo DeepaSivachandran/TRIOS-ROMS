@@ -155,7 +155,7 @@ namespace ROMS
                 {
                     if (objDs.Tables.Count != 0)
                     {
-                        lblProductCount.Text = Convert.ToString(objDs.Tables[0].Rows.Count);
+                        lblProductCount.Text ="(" + Convert.ToString(objDs.Tables[0].Rows.Count) + ")";
                     }
                 }
             }
@@ -1581,7 +1581,7 @@ namespace ROMS
                 }
                 else if (pbscreenflag == 1)
                 {
-                    udfnSaveFromQueue();
+                    udfnSaveFromQueue("Save");
                 }
             }
             catch (Exception ex)
@@ -1908,6 +1908,7 @@ namespace ROMS
                     lblRequiredQty.Visible = true;
                     txtRequiredQty.Visible = true;
                     btnAdd.Visible = true;
+                    lblProductCount.Visible = true;
 
                     lblRackGroup.Visible = false;
                     cmbRackGroup.Visible = false;
@@ -1927,6 +1928,7 @@ namespace ROMS
                     lblRequiredQty.Visible = false;
                     txtRequiredQty.Visible = false;
                     btnAdd.Visible = false;
+                    lblProductCount.Visible = false;
 
                     lblRackGroup.Visible = true;
                     cmbRackGroup.Visible = true;
@@ -1997,7 +1999,7 @@ namespace ROMS
             try
             {
                 txtGeneralBillNo.Text = "";
-                if (Convert.ToInt32(cmbRequestType.SelectedValue) == 563) //General Bill
+                if (Convert.ToInt32(cmbRequestType.SelectedValue) == 562) //General Bill
                 {
                     txtGeneralBillNo.Enabled = true;
                     txtGeneralBillNo.ReadOnly=false;
@@ -2400,7 +2402,7 @@ namespace ROMS
         {
             LoadProductByRackGroup();
         }
-        public void udfnSaveFromQueue()
+        public void udfnSaveFromQueue(string varSaveType)
         {
             try
             { 
@@ -2427,7 +2429,10 @@ namespace ROMS
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 { 
-                    udfnPrint();  
+                    if (varSaveType == "SavePrint")
+                    {
+                        udfnPrint();
+                    }
                     MainForm.objINV_StockRequestQueueList.udfnList();
                     this.Close();
                 }
@@ -2484,7 +2489,7 @@ namespace ROMS
             try
             {
                 btnPrint.Enabled = false;
-                udfnPrint();
+                udfnSaveFromQueue("SavePrint");
                 MainForm.objINV_StockRequestQueueList.udfnList();
                 this.Close();
                 btnPrint.Enabled = true;

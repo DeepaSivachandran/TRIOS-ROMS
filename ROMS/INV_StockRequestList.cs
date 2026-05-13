@@ -331,7 +331,7 @@ namespace ROMS
                     DGV__SearchGrid.Columns[0].ReadOnly = true;
                     //DGV__SearchGrid.Columns[1].ReadOnly = true;
                     DGV__SearchGrid.Rows[0].Cells[0].Value = new Bitmap(1, 1);
-                    //DGV__SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
+                    DGV__SearchGrid.Rows[0].Cells[1].Value = new Bitmap(1, 1);
                 }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
@@ -881,18 +881,22 @@ namespace ROMS
                             lblNoRecordsFound.Visible = false;
                             lblNoRecordsFound.SendToBack();
                             grdStockRequestList.DataSource = objDs.Tables[0];
+                            grdStockRequestList.Columns["clmDelete"].Visible = true;
                             grdStockRequestList.Columns["ConcernID"].Visible = false;
                             grdStockRequestList.Columns["StatusID"].Visible = false;
                             grdStockRequestList.Columns["SRQID"].Visible = false;
                             grdStockRequestList.Columns["Received Qty"].Visible = false;
                             grdStockRequestList.Columns["S.No."].Width = 50;
                             grdStockRequestList.Columns["Status"].Width = 120;
-                            grdStockRequestList.Columns["Created By"].Width = 100;
-                            grdStockRequestList.Columns["Created On"].Width = 150;
+                            grdStockRequestList.Columns["Teller"].Width = 150;
+                            grdStockRequestList.Columns["Created By"].Width = 220;
+                            grdStockRequestList.Columns["Verified By"].Width = 220;
+                            grdStockRequestList.Columns["Issued By"].Width = 220;
                             grdStockRequestList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Request Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdStockRequestList.Columns["Total Units"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequestList.BringToFront();
                             DGV__SearchGrid.BringToFront();
                             grdProDetails.SendToBack();
@@ -900,12 +904,14 @@ namespace ROMS
                         }
                         else
                         {
+                            grdStockRequestList.Columns["clmDelete"].Visible = false;
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
                     }
                     else
                     {
+                        grdStockRequestList.Columns["clmDelete"].Visible = false;
                         lblNoRecordsFound.Visible = true;
                         lblNoRecordsFound.BringToFront();
                     }
@@ -913,6 +919,7 @@ namespace ROMS
                 }
                 else
                 {
+                    grdStockRequestList.Columns["clmDelete"].Visible = false;
                     lblNoRecordsFound.Visible = true;
                     lblNoRecordsFound.BringToFront();
                 }
@@ -1596,6 +1603,9 @@ namespace ROMS
             {
                 for (int i = 0; i < grdStockRequestList.Rows.Count; i++)
                 {
+                    DataGridView dataGridView = (DataGridView)sender;
+                    DataGridViewCell cell = dataGridView.Rows[i].Cells["Status"];
+
                     if (Convert.ToString(grdStockRequestList.Rows[i].Cells["StatusID"].Value) == "28")
                     {
                         grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = ColorTranslator.FromHtml("255, 128, 0");
@@ -1610,6 +1620,14 @@ namespace ROMS
                     {
                         grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdStockRequestList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
+                    }
+                    if(Convert.ToString(grdStockRequestList.Rows[i].Cells["StatusID"].Value) != "48")
+                    {
+                        grdStockRequestList.Rows[i].Cells["clmDelete"].ReadOnly = true;
+                        DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                        print.Value = "";
+                        grdStockRequestList.Rows[i].Cells["clmDelete"] = print;
+                        print.ReadOnly = true;
                     }
                 }
                 grdStockRequestList.Columns["clmprint"].Resizable = DataGridViewTriState.False;
@@ -1753,7 +1771,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex - 1].ColumnWidth = 10;
                             }
-                            else if (col.Name == "Request Date" || col.Name == "Request No." || col.Name == "Created By" || col.Name == "Status" || col.Name == "Created On")
+                            else if (col.Name == "Request Date" || col.Name == "Request No." || col.Name == "Created By" || col.Name == "Status" || col.Name == "Verified By" || col.Name == "Issued By")
                             {
                                 ExcelSheet.Columns[cIndex - 1].ColumnWidth = 20;
                             }
@@ -1765,7 +1783,7 @@ namespace ROMS
                             {
                                 ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlCenter;
                             }
-                            if (col.Name == "Total Products")
+                            if (col.Name == "Total Products" || col.Name == "Total Units")
                             {
                                 ExcelSheet.Columns[cIndex - 1].HorizontalAlignment = Excel.Constants.xlRight;
                             }
@@ -2036,7 +2054,64 @@ namespace ROMS
                                 objError.WriteFile(ex);
                             }
                             break;
+                        case "clmDelete":
+                            try
+                            {
+                                if (grdStockRequestList.SelectedRows.Count > 0)
+                                {
+                                    string result = "";
+                                    DialogResult dialogResult = MessageBox.Show("Do you want to delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (dialogResult == DialogResult.Yes)
+                                    {
+
+                                        SPDataService objspdservice = new SPDataService();
+                                        result = "";
+                                        Model.TRN_StockRequest objTRNS_StockRequest = new Model.TRN_StockRequest();
+                                        objTRNS_StockRequest.ViewType = 2;
+                                        objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                                        objTRNS_StockRequest.paraOriginator = "Stock Request Issued Delete";
+                                        result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
+                                        objspdservice.CloseConnection();
+
+                                        string[] varvalue = result.Split('~');
+                                        if (varvalue[0] == "3")
+                                        {
+                                            if (result.Split('~')[1] == "1")
+                                            {
+                                                MainForm.objCP_Verify = new CP_Verify();
+                                                MainForm.objCP_Verify.ShowDialog();
+                                                varUserID = MainForm.objCP_Verify.varUserId;
+                                                if (MainForm.objCP_Verify.flag == 1)
+                                                {
+                                                    objTRNS_StockRequest.ViewType = 2;
+                                                    objTRNS_StockRequest.paraStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value.ToString());
+                                                    objTRNS_StockRequest.paraOriginator = "Stock Request Issued Delete";
+                                                    objTRNS_StockRequest.paraDeleteFlag = 1;
+                                                    result = objspdservice.udfnStockRequest(objTRNS_StockRequest);
+                                                    if (result.Split('~')[0] == "3")
+                                                    {
+                                                        MessageBox.Show(result.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                        udfnList();
+                                                    }
+                                                    else { MessageBox.Show(result.Split('~')[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                objError = new DataError();
+                                objError.WriteFile(ex);
+                            }
+                            break;
                     }
+
                 }
             }
             catch (Exception ex)

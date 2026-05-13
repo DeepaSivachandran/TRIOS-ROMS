@@ -82,6 +82,7 @@
             this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
             this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequestList.SuspendLayout();
             this.pnlStockRequestList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -583,7 +584,8 @@
             this.grdStockRequestList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdStockRequestList.ColumnHeadersVisible = false;
             this.grdStockRequestList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmprint});
+            this.clmprint,
+            this.clmDelete});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
@@ -721,6 +723,14 @@
             this.clmprint.Visible = false;
             this.clmprint.Width = 70;
             // 
+            // clmDelete
+            // 
+            this.clmDelete.HeaderText = "";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.ReadOnly = true;
+            this.clmDelete.Width = 50;
+            // 
             // INV_StockRequestList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -798,5 +808,6 @@
         public System.Windows.Forms.DataGridView DGV_SearchGridPro;
         public System.Windows.Forms.ToolStripSeparator tss;
         private System.Windows.Forms.DataGridViewImageColumn clmprint;
+        private System.Windows.Forms.DataGridViewImageColumn clmDelete;
     }
 }
