@@ -92,7 +92,6 @@ namespace ROMS
                         dpDate.Value = MainForm.pbCurrentDate;
                         cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                         grdStockRequest.Columns["clmStatus"].Visible = false;
-                        udfnProductCount();
                     }
                     else
                     {
@@ -133,7 +132,8 @@ namespace ROMS
                     btnPrint.Visible = false;
                     chbCompleted.Visible = false;
                 }
-                udfnAddDuplicateSNoColumn();
+                udfnProductCount();
+                //udfnAddDuplicateSNoColumn();
                 udfnStockRequestSearchGridHead();
             }
             catch (Exception ex)
@@ -315,6 +315,7 @@ namespace ROMS
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdStockRequest.Columns["clmSnoDup"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                             if (varStatus != 28)
                             {
@@ -1124,6 +1125,7 @@ namespace ROMS
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdStockRequest.Columns["clmSnoDup"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 
                             //grdStockRequest.Rows[rowIndex]
@@ -1480,6 +1482,7 @@ namespace ROMS
                                 for (int i = 0; i < grdStockRequest.RowCount; i++)
                                 {
                                     grdStockRequest.Rows[i].Cells["clmSno"].Value = i + 1;
+                                    grdStockRequest.Rows[i].Cells["clmSnoDup"].Value = i + 1;
                                 }
                                varModifiedFlag = 1;
                                 for (int i = 0; i < dtStock.Rows.Count; i++)
@@ -2775,6 +2778,7 @@ namespace ROMS
                         grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdStockRequest.Columns["clmSno"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        grdStockRequest.Columns["clmSnoDup"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         grdStockRequest.Columns["clmRemove"].Visible = false;
                         udfnStockRequestSearchGridHead();
                     }
@@ -2824,6 +2828,7 @@ namespace ROMS
 
                 // Optional specific readonly columns
                 DGV_SearchStock.Columns["clmSno"].ReadOnly = true;
+                DGV_SearchStock.Columns["clmSnoDup"].ReadOnly = true;
 
                 // Last image column
                 int lastCol = DGV_SearchStock.Columns.Count - 1;
