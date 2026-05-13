@@ -6287,7 +6287,36 @@ namespace ROMS
             }
             return ds;
         }
+        public DataSet udfnAddresBookList(MR_Sales objMR_Sales)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[MRG_AddressBook]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Sales.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraABID", objMR_Sales.paraABID);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objMR_Sales.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraCTYID", objMR_Sales.paraCTYID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
-
 
 }

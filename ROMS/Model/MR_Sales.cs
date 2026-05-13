@@ -86,6 +86,10 @@ namespace ROMS.Model
         public string para_Shipping_Pincode { get; set; } = "";
         public string para_Shipping_Landmark { get; set; } = "";
 
+        // -------------------- Transport --------------------
+        public int paraABID { get; set; } = 0;
+        public int paraType { get; set; } = 0;
+        public int paraCTYID { get; set; } = 0;
 
     }
 }

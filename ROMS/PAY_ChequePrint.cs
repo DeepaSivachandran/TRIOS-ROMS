@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ROMS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpSuppliername = new ToolTip();
+        private ToolTip tpAmount = new ToolTip();
         DataTable dtChequeTemplateDetails = new DataTable();
         public PAY_ChequePrint()
         {
@@ -29,12 +31,19 @@ namespace ROMS
         {
             try
             {
+                LV_Supplier.BringToFront();
                 LV_Supplier.Items.Clear();
                 if (txtsuppliername.Text.Length > 0)
                 {
+                    int varTypeId = 0;
+                    if (Convert.ToInt32(cmbType.SelectedValue) == 566)
+                    {
+                        varTypeId = 1;
+                    }
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
                     objMR_Supplier.ViewType = 43;
                     objMR_Supplier.paraSupplierName = txtsuppliername.Text;
+                    objMR_Supplier.paraordertype = varTypeId;
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -178,7 +187,14 @@ namespace ROMS
                     //        }
                     //    }
                     //}
-                    udfnsupplierLoad();
+                    if (Convert.ToInt32(cmbType.SelectedValue) == 565)
+                    {
+                        udfnsupplierLoad();
+                    }
+                    else
+                    {
+                        udfnOthersLoad();
+                    }
                 }
                 //if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
                 //{
@@ -244,7 +260,36 @@ namespace ROMS
 
             }
         }
-
+        public void udfnOthersLoad()
+        {
+            try
+            {
+                DataSet objDs = new DataSet();
+                SPDataService objspservice = new SPDataService();
+                MR_Sales objMR_Sales = new MR_Sales();
+                objMR_Sales.paraViewType = 3;
+                objMR_Sales.paraABID = Convert.ToInt32(lblSupplierCode.Text);
+                objDs = objspservice.udfnAddresBookList(objMR_Sales);
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count != 0)
+                        {
+                            lblSuppliername.Text = objDs.Tables[0].Rows[0]["NAME"].ToString();
+                            lblSupplierCity.Text = objDs.Tables[0].Rows[0]["CITY"].ToString();
+                            lblsupplierGST.Text = objDs.Tables[0].Rows[0]["MobileNo"].ToString();
+                            lblsupplierScheduletype.Text = objDs.Tables[0].Rows[0]["State"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void LV_Supplier_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -298,7 +343,11 @@ namespace ROMS
                 //DataBind objDataBind = new DataBind();
                 //objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,72) AND MSTID IN (-1,224,225)", "MST_DisplayText,MSTID", cmbBank, "", "MST_DisplayText", "MSTID");
                 //objDataBind = null;
+                DataBind objDataBind = new DataBind();
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (173) AND MSTID<>564 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                objDataBind = null;
                 udfnBankDropDown();
+                this.ActiveControl = cmbType;
             }
             catch (Exception ex)
             {
@@ -439,8 +488,8 @@ namespace ROMS
                 {
                     epCheque.SetError(txtAmount, "Please enter the amount");
                     txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSuppliername.ShowAlways = true;
-                    tpSuppliername.Show("Please enter the amount", txtAmount, 5000);
+                    tpAmount.ShowAlways = true;
+                    tpAmount.Show("Please enter the amount", txtAmount, 5000);
                 }
                 else
                 {
@@ -534,7 +583,58 @@ namespace ROMS
         {
             try
             {
-                DateTime ChequeDateTime =DateTime.ParseExact(dpDate.Text, "dd/MM/yyyy", null);
+                bool varErrFlag = false;
+                if (txtsuppliername.Text.Trim() == "")
+                {
+                    epCheque.SetError(txtsuppliername, "Please enter supplier name");
+                    txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSuppliername.ShowAlways = true;
+                    tpSuppliername.Show("Please enter supplier name", txtsuppliername, 5000);
+                    varErrFlag = true;
+                }
+                if (lblSupplierCode.Text == "0" || lblSupplierCode.Text == "")
+                {
+                    epCheque.SetError(txtsuppliername, "Please enter valid supplier name");
+                    txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpSuppliername.ShowAlways = true;
+                    tpSuppliername.Show("Please enter valid supplier name", txtsuppliername, 5000);
+                    varErrFlag = true;
+                }
+                if (txtAmount.Text.Trim() == "")
+                {
+                    epCheque.SetError(txtAmount, "Please enter amount");
+                    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAmount.ShowAlways = true;
+                    tpAmount.Show("Please enter amount", txtAmount, 5000);
+                    varErrFlag = true;
+                }
+                else if (Convert.ToInt32(txtAmount.Text) < 1)
+                {
+                    epCheque.SetError(txtAmount, "Please enter valid amount");
+                    txtAmount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpAmount.ShowAlways = true;
+                    tpAmount.Show("Please enter valid amount", txtAmount, 5000);
+                    varErrFlag = true;
+                }
+                if (varErrFlag == false)
+                {
+                    epCheque.Clear();
+                    txtsuppliername.BackColor = Color.White;
+                    txtAmount.BackColor = Color.White;
+                    udfnPrint();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPrint()
+        {
+            try
+            {
+                DateTime ChequeDateTime = DateTime.ParseExact(dpDate.Text, "dd/MM/yyyy", null);
                 string chequeDate = ChequeDateTime.ToString("ddMMyyyy");
                 int totalAmt = Convert.ToInt32(txtAmount.Text);
                 string FinalAmnt = totalAmt.ToString("#,##,##,##,##0");
@@ -609,7 +709,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
         private void BtnClear_Click(object sender, EventArgs e)
         {
             try
@@ -671,6 +770,87 @@ namespace ROMS
             try
             {
                 udfnTooltipHide();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtsuppliername.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled=true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblSupplierCode.Text = "0";
+                lblschedule.Text = "0";
+                txtsuppliername.Text = "";
+                lblSuppliername.Text = "";
+                lblSupplierCity.Text = "";
+                lblsupplierGST.Text = "";
+                lblsupplierScheduletype.Text = "";
+                lblsupplierpayment.Text = "";
+                lblSupplierOrderpolicy.Text = "";
+                lblReturn.Text = "";
+                lblAmount.Text = "";
+                txtAmount.Text = "";
+                RPTViewer.Visible = false;
+                dpDate.Value = MainForm.pbCurrentDate;
             }
             catch (Exception ex)
             {

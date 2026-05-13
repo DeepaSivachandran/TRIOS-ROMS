@@ -235,7 +235,6 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID in (0,171) AND MSTID<>-1 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_RackGroup", "RKGID NOT IN(-1) ORDER BY RKG_SINO", "RKG_Name,RKGID", cmbRackGroup, "", "RKG_Name", "RKGID"); 
                 objDataBind = null;
-                objDataBind = null;
                 udfnRackGroupEnable();
             }
             catch (Exception ex)
@@ -910,6 +909,7 @@ namespace ROMS
                                     lvProduct.Columns[2].Width = 320;
                                 }
                                 */
+                                    DGV_FilterProduct.BringToFront();
                                     DGV_FilterProduct.Visible = true;
                                     DGV_FilterProduct.DataSource = objDs.Tables[0];
                                     DGV_FilterProduct.Columns["PRID"].Visible = false;

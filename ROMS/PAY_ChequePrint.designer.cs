@@ -53,6 +53,8 @@
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.grbgodown = new System.Windows.Forms.GroupBox();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.btnPreview = new System.Windows.Forms.Button();
@@ -144,7 +146,7 @@
             this.columnHeader1});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(18, 76);
+            this.LV_Supplier.Location = new System.Drawing.Point(131, 76);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(374, 164);
             this.LV_Supplier.TabIndex = 1111223;
@@ -316,6 +318,8 @@
             // 
             // grbgodown
             // 
+            this.grbgodown.Controls.Add(this.cmbType);
+            this.grbgodown.Controls.Add(this.label1);
             this.grbgodown.Controls.Add(this.btnClear);
             this.grbgodown.Controls.Add(this.cmbBank);
             this.grbgodown.Controls.Add(this.btnPreview);
@@ -330,27 +334,49 @@
             this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbgodown.Name = "grbgodown";
             this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grbgodown.Size = new System.Drawing.Size(718, 72);
+            this.grbgodown.Size = new System.Drawing.Size(718, 122);
             this.grbgodown.TabIndex = 958806;
             this.grbgodown.TabStop = false;
+            // 
+            // cmbType
+            // 
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Location = new System.Drawing.Point(11, 36);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(108, 27);
+            this.cmbType.TabIndex = 0;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
+            this.cmbType.Enter += new System.EventHandler(this.cmbType_Enter);
+            this.cmbType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbType_KeyDown);
+            this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
+            this.cmbType.Leave += new System.EventHandler(this.cmbType_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 20);
+            this.label1.TabIndex = 92;
+            this.label1.Text = "Type";
             // 
             // btnClear
             // 
             this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
-            this.btnClear.Location = new System.Drawing.Point(671, 35);
+            this.btnClear.Location = new System.Drawing.Point(299, 89);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(34, 29);
-            this.btnClear.TabIndex = 91;
+            this.btnClear.TabIndex = 6;
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // cmbBank
             // 
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(268, 36);
+            this.cmbBank.Location = new System.Drawing.Point(381, 36);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(107, 27);
-            this.cmbBank.TabIndex = 1;
+            this.cmbBank.TabIndex = 2;
             this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
             this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
             this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
@@ -360,21 +386,21 @@
             // 
             this.btnPreview.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnPreview.Image = global::ROMS.Properties.Resources.view;
-            this.btnPreview.Location = new System.Drawing.Point(631, 35);
+            this.btnPreview.Location = new System.Drawing.Point(259, 89);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(34, 29);
-            this.btnPreview.TabIndex = 4;
+            this.btnPreview.TabIndex = 5;
             this.btnPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.BtnPreview_Click);
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(497, 36);
+            this.txtAmount.Location = new System.Drawing.Point(125, 90);
             this.txtAmount.MaxLength = 10;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(128, 27);
-            this.txtAmount.TabIndex = 3;
+            this.txtAmount.TabIndex = 4;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.TextChanged += new System.EventHandler(this.TxtAmount_TextChanged);
             this.txtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
@@ -385,7 +411,7 @@
             // lblDAmount
             // 
             this.lblDAmount.AutoSize = true;
-            this.lblDAmount.Location = new System.Drawing.Point(495, 14);
+            this.lblDAmount.Location = new System.Drawing.Point(125, 68);
             this.lblDAmount.Name = "lblDAmount";
             this.lblDAmount.Size = new System.Drawing.Size(95, 20);
             this.lblDAmount.TabIndex = 90;
@@ -394,7 +420,7 @@
             // lblDBank
             // 
             this.lblDBank.AutoSize = true;
-            this.lblDBank.Location = new System.Drawing.Point(267, 14);
+            this.lblDBank.Location = new System.Drawing.Point(381, 14);
             this.lblDBank.Name = "lblDBank";
             this.lblDBank.Size = new System.Drawing.Size(36, 20);
             this.lblDBank.TabIndex = 87;
@@ -404,20 +430,20 @@
             // 
             this.dpDate.CustomFormat = "dd/MM/yyyy";
             this.dpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpDate.Location = new System.Drawing.Point(382, 36);
+            this.dpDate.Location = new System.Drawing.Point(11, 90);
             this.dpDate.Name = "dpDate";
             this.dpDate.Size = new System.Drawing.Size(108, 27);
-            this.dpDate.TabIndex = 2;
+            this.dpDate.TabIndex = 3;
             this.dpDate.Enter += new System.EventHandler(this.DpDate_Enter);
             this.dpDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpDate_KeyDown);
             this.dpDate.Leave += new System.EventHandler(this.DpDate_Leave);
             // 
             // txtsuppliername
             // 
-            this.txtsuppliername.Location = new System.Drawing.Point(11, 36);
+            this.txtsuppliername.Location = new System.Drawing.Point(125, 36);
             this.txtsuppliername.Name = "txtsuppliername";
             this.txtsuppliername.Size = new System.Drawing.Size(250, 27);
-            this.txtsuppliername.TabIndex = 0;
+            this.txtsuppliername.TabIndex = 1;
             this.txtsuppliername.TextChanged += new System.EventHandler(this.Txtsuppliername_TextChanged);
             this.txtsuppliername.Enter += new System.EventHandler(this.Txtsuppliername_Enter);
             this.txtsuppliername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsuppliername_KeyDown);
@@ -426,7 +452,7 @@
             // lblSupplier
             // 
             this.lblSupplier.AutoSize = true;
-            this.lblSupplier.Location = new System.Drawing.Point(11, 14);
+            this.lblSupplier.Location = new System.Drawing.Point(125, 14);
             this.lblSupplier.Name = "lblSupplier";
             this.lblSupplier.Size = new System.Drawing.Size(57, 20);
             this.lblSupplier.TabIndex = 27;
@@ -435,7 +461,7 @@
             // lblChequeDate
             // 
             this.lblChequeDate.AutoSize = true;
-            this.lblChequeDate.Location = new System.Drawing.Point(380, 14);
+            this.lblChequeDate.Location = new System.Drawing.Point(11, 68);
             this.lblChequeDate.Name = "lblChequeDate";
             this.lblChequeDate.Size = new System.Drawing.Size(78, 20);
             this.lblChequeDate.TabIndex = 70;
@@ -516,5 +542,7 @@
         private System.Windows.Forms.Label lblAmount;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbType;
     }
 }
