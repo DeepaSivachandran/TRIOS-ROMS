@@ -351,7 +351,15 @@ namespace ROMS
             {
                 grdStockRequest.ClearSelection();
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
-                if(varMainStatus==48 || varMainStatus==29)
+                txttotalUnits.Text = grdStockRequest.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["clmRequiredQty"].Value != null
+                             && decimal.TryParse(
+                                    r.Cells["clmRequiredQty"].Value.ToString(),
+                                    out _))
+                    .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
+                    .ToString();
+                if (varMainStatus==48 || varMainStatus==29)
                 {
                     btnSave.Enabled = false;
                     txtTeller.Enabled = false;
@@ -572,12 +580,21 @@ namespace ROMS
                 dtStock.Rows.Clear();
                 varProducts = "";
                 txttotalitem.Text = "";
+                txttotalUnits.Text = "";
                 grdGodownStock.Rows.Clear();
                 if (btnSave.Text == "Save")
                 {
                     txtProductNamePICode.Text = "";
                     txtRequiredQty.Text = "";
                     txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                    txttotalUnits.Text = grdStockRequest.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["clmRequiredQty"].Value != null
+                             && decimal.TryParse(
+                                    r.Cells["clmRequiredQty"].Value.ToString(),
+                                    out _))
+                    .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
+                    .ToString();
                 }
                 varDateChange = 0;
                 udfnTransferNo();
@@ -1137,6 +1154,14 @@ namespace ROMS
                     }
                     VarAdd = "0";
                     txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                    txttotalUnits.Text = grdStockRequest.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["clmRequiredQty"].Value != null
+                             && decimal.TryParse(
+                                    r.Cells["clmRequiredQty"].Value.ToString(),
+                                    out _))
+                    .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
+                    .ToString();
                     errStockRequest.Clear();
                     txtProductNamePICode.Text = "";
                     txtStockQty.Text = "";
@@ -1506,6 +1531,14 @@ namespace ROMS
             finally
             {
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                txttotalUnits.Text = grdStockRequest.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["clmRequiredQty"].Value != null
+                             && decimal.TryParse(
+                                    r.Cells["clmRequiredQty"].Value.ToString(),
+                                    out _))
+                    .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
+                    .ToString();
                 if (grdStockRequest.Rows.Count > 0)
                 {
                     cmbConcern.Enabled = false;
@@ -2786,6 +2819,14 @@ namespace ROMS
                 
                 VarAdd = "0";
                 txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+                txttotalUnits.Text = grdStockRequest.Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["clmRequiredQty"].Value != null
+                             && decimal.TryParse(
+                                    r.Cells["clmRequiredQty"].Value.ToString(),
+                                    out _))
+                    .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
+                    .ToString();
                 errStockRequest.Clear();
                 txtProductNamePICode.Text = "";
                 txtStockQty.Text = "";
