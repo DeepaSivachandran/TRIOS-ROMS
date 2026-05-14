@@ -22,6 +22,7 @@ namespace ROMS
         ToolTip tpinvamt = new ToolTip();
         ToolTip tpInvNo = new ToolTip();
         ToolTip tpEntryType = new ToolTip();
+        ToolTip tpEInvoice = new ToolTip();
         int flag = 0;
         public bool skipValidation = false;
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
@@ -900,13 +901,15 @@ namespace ROMS
                                 lblPercentage.Text = "< " + Convert.ToString(objDs.Tables[0].Rows[0]["Level2"]) + "%";
                                 varShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["Level2"]);
 
-                                if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Einvoice"]) == "0")
+                                if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Einvoice"]) == "1")
                                 {
-                                    chkInvoice.Checked = false;
+                                    //chkInvoice.Checked = true;
+                                    cmbEInvoice.SelectedValue = 11;
                                 }
                                 else
                                 {
-                                    chkInvoice.Checked = true;
+                                    //chkInvoice.Checked = false;
+                                    cmbEInvoice.SelectedValue = 12;
                                 }
                                 if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_PurchaseType"]) == "1")
                                 {
@@ -1193,6 +1196,7 @@ namespace ROMS
                 txtBroker.Enabled = false;
                 tbDetails.TabPages[0].Enabled = true;
                 chkInvoice.Enabled = false;
+                cmbEInvoice.Enabled = false;
                 if (PbSTS == "50" || varPurEditFlag==1)  
                 {
                     tbDetails.TabPages[0].Enabled = true;
@@ -1272,7 +1276,9 @@ namespace ROMS
             DataBind objDataBind = new DataBind();
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,17) AND MSTID<>0 ORDER BY MST_DisplayText desc", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
             objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID in (18) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
+            objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (228,11,12) ORDER BY MST_OrderID DESC", "MST_DisplayText,MSTID", cmbEInvoice, "", "MST_DisplayText", "MSTID");
             objDataBind = null; //id
+            cmbEntryType.SelectedValue = 228;//None
             if (PbFlag == "1")
             {
                 cmbEntryType.SelectedValue = "54"; //grn
@@ -4396,6 +4402,63 @@ namespace ROMS
             }
         }
 
+        private void cmbEInvoice_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEInvoice.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbEInvoice_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    rbPurchaseCash.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbEInvoice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbEInvoice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEInvoice.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+
+
         private void TxtTcsamt_Leave(object sender, EventArgs e)
         {
             try
@@ -5531,8 +5594,17 @@ namespace ROMS
                         Txtdiscount.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         varErrorFlag = true;
                     }
+                    if (Convert.ToInt32(cmbEInvoice.SelectedValue) == 228)
+                    {
+                        errPurchaseentry.SetError(cmbEInvoice, "Please select e-invoice");
+                        cmbEInvoice.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpEInvoice.ShowAlways = true;
+                        tpEInvoice.Show("Please select e-invoice", cmbEInvoice, 5000);
+                        varErrorFlag = true;
+                    }
                     if (varErrorFlag == false)
                     {
+                        errPurchaseentry.Clear();
                         udfnApprove();
                     }
                 }
@@ -5730,10 +5802,19 @@ namespace ROMS
                         objTRN_PurchaseEntryApproval.paraRemarks = txtRemarks.Text.Trim();
                         objTRN_PurchaseEntryApproval.ParaInvAmt = varInvoiceAmt;
                         objTRN_PurchaseEntryApproval.paraBrokerID = varBrokerid;
-                        if (chkInvoice.Checked == true)
-                        { objTRN_PurchaseEntryApproval.paraEinvoice = "1"; }
+                        //if (chkInvoice.Checked == true)
+                        //{ objTRN_PurchaseEntryApproval.paraEinvoice = "1"; }
+                        //else
+                        //{ objTRN_PurchaseEntryApproval.paraEinvoice = "0"; }
+
+                        if (Convert.ToInt32(cmbEInvoice.SelectedValue) == 11)
+                        {
+                            objTRN_PurchaseEntryApproval.paraEinvoice = "1";
+                        }
                         else
-                        { objTRN_PurchaseEntryApproval.paraEinvoice = "0"; }
+                        {
+                            objTRN_PurchaseEntryApproval.paraEinvoice = "0";
+                        }
                         if (rbPurchaseCash.Checked == true)
                         {
                             objTRN_PurchaseEntryApproval.paraPurchaseType = 1;

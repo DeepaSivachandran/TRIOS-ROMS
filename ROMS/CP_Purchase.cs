@@ -30,6 +30,7 @@ namespace ROMS
         ToolTip tpSuppliername = new ToolTip();
         ToolTip tpQRCode = new ToolTip();
         ToolTip tpinvamt = new ToolTip();
+        ToolTip tpEInvoice = new ToolTip();
         ToolTip tpInvNo = new ToolTip();
         ToolTip tpEntryType = new ToolTip();
         ToolTip tpmrp = new ToolTip();
@@ -1540,13 +1541,15 @@ namespace ROMS
                                 varShelflifeLevel2 = Convert.ToInt32(objDs.Tables[0].Rows[0]["Level2"]);
                                 PbSTS = Convert.ToString(objDs.Tables[0].Rows[0]["PUR_STSID"]);
 
-                                if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Einvoice"]) == "0")
+                                if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_Einvoice"]) == "1")
                                 {
-                                    chkInvoice.Checked = false;
+                                    //chkInvoice.Checked = true;
+                                    cmbEInvoice.SelectedValue = 11;
                                 }
                                 else
                                 {
-                                    chkInvoice.Checked = true;
+                                    //chkInvoice.Checked = false;
+                                    cmbEInvoice.SelectedValue = 12;
                                 }
                                 if (Convert.ToString(objDs.Tables[0].Rows[0]["PUR_PurchaseType"]) == "1")
                                 {
@@ -2005,6 +2008,7 @@ namespace ROMS
                 txtBroker.Enabled = false;
                 tbDetails.TabPages[0].Enabled = true;
                 chkInvoice.Enabled = false;
+                cmbEInvoice.Enabled = false;
                 if (PbSTS == "50" || varPurEditFlag == 1 || pbPurchaseEntryUnapprovedFlag == 1)
                 {
                     tbDetails.TabPages[0].Enabled = true;
@@ -2129,9 +2133,10 @@ namespace ROMS
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (0,17) AND MSTID<>0 ORDER BY MST_DisplayText desc", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
             objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID in (18) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbTransactionType, "", "MST_DisplayText", "MSTID");
             objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (83) ORDER BY MST_OrderID", "MST_DisplayText,MSTID", cmbReason, "", "MST_DisplayText", "MSTID");
-            udfnLoadConditions();
-            objDataBind = null;
+            objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (228,11,12) ORDER BY MST_OrderID DESC", "MST_DisplayText,MSTID", cmbEInvoice, "", "MST_DisplayText", "MSTID");
             objDataBind = null; //id
+            cmbEntryType.SelectedValue = 228;//None
+            udfnLoadConditions();
             if (PbFlag == "1")
             {
                 cmbEntryType.SelectedValue = "54"; //grn
@@ -3264,7 +3269,10 @@ namespace ROMS
                     if (txtGstin.Enabled == true)
                     { txtGstin.Focus(); }
                     else
-                    { chkInvoice.Focus(); }
+                    {
+                        //chkInvoice.Focus();
+                        cmbEInvoice.Focus();
+                    }
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 {
@@ -3319,7 +3327,8 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkInvoice.Focus();
+                    //chkInvoice.Focus();
+                    cmbEInvoice.Focus();
                 }
             }
             catch (Exception ex)
@@ -6655,6 +6664,14 @@ namespace ROMS
                         tpinvamt.Show("Please enter invoice amount", txtInvoiceamt, 5000);
                         varErrorFlag = true;
                     }
+                    if (Convert.ToInt32(cmbEInvoice.SelectedValue) == 228)
+                    {
+                        errPurchaseentry.SetError(cmbEInvoice, "Please select e-invoice");
+                        cmbEInvoice.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpEInvoice.ShowAlways = true;
+                        tpEInvoice.Show("Please select e-invoice", cmbEInvoice, 5000);
+                        varErrorFlag = true;
+                    }
                     int varVerifiedErr = 0;
                     if (chkCompleted.Checked == true && (pbVerifiedBy1 == 0 || PbVerified1 == 0) && (Convert.ToString(cmbEntryType.SelectedValue) == "55" || Convert.ToString(cmbEntryType.SelectedValue) == "56"))
                     {
@@ -7012,7 +7029,15 @@ namespace ROMS
                                 objTRN_PurchaseEntry.paraBrokerID = varBrokerid;
                                 objTRN_PurchaseEntry.paraGSTIN = txtGstin.Text;
                                 objTRN_PurchaseEntry.paraSaveFlag = varSaveFlag;
-                                if (chkInvoice.Checked == true)
+                                //if (chkInvoice.Checked == true)
+                                //{
+                                //    objTRN_PurchaseEntry.paraEinvoice = "1";
+                                //}
+                                //else
+                                //{
+                                //    objTRN_PurchaseEntry.paraEinvoice = "0";
+                                //}
+                                if (Convert.ToInt32(cmbEInvoice.SelectedValue) == 11)
                                 {
                                     objTRN_PurchaseEntry.paraEinvoice = "1";
                                 }
@@ -9281,6 +9306,68 @@ namespace ROMS
                         else { btnAdd.Focus(); }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbEInvoice_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEInvoice.BackColor= Color.LemonChiffon;  
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbEInvoice_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (gpPurchase.Enabled == true)
+                    { rbPurchaseCash.Focus(); }
+                    else
+                    {
+                        if (gpPayment.Enabled == true)
+                        { rbPaymentCash.Focus(); }
+                        else { rbDiscountBefore.Focus(); }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbEInvoice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbEInvoice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbEInvoice.BackColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -13746,7 +13833,10 @@ namespace ROMS
                 if (txtGstin.Enabled == true)
                 { txtGstin.Focus(); }
                 else
-                { chkInvoice.Focus(); }
+                {
+                    //chkInvoice.Focus();
+                    cmbEInvoice.Focus();
+                }
             }
             catch (Exception ex)
             {
