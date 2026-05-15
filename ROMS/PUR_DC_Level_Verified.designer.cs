@@ -89,6 +89,7 @@
             this.cmbFormat.Name = "cmbFormat";
             this.cmbFormat.Size = new System.Drawing.Size(41, 28);
             this.cmbFormat.TabIndex = 3;
+            this.cmbFormat.SelectedIndexChanged += new System.EventHandler(this.cmbFormat_SelectedIndexChanged);
             this.cmbFormat.Enter += new System.EventHandler(this.CmbFormat1_Enter);
             this.cmbFormat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbFormat1_KeyDown);
             this.cmbFormat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbFormat1_KeyPress);
@@ -102,6 +103,7 @@
             this.mtbTime.Size = new System.Drawing.Size(42, 28);
             this.mtbTime.TabIndex = 2;
             this.mtbTime.ValidatingType = typeof(System.DateTime);
+            this.mtbTime.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtbTime_MaskInputRejected);
             this.mtbTime.Enter += new System.EventHandler(this.MtbTime1_Enter);
             this.mtbTime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MtbTime1_KeyDown);
             this.mtbTime.Leave += new System.EventHandler(this.MtbTime1_Leave);

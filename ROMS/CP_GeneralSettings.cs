@@ -130,6 +130,8 @@ namespace ROMS
                             txtCashLimit.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_CashPaymentLimit"]);
                             txtLoggofftime.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_LogoffTime"]);
                             txtInactiveuserday.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_UserInactivedays"]);
+                            mtbTime.Text =Convert.ToString(objDs.Tables[0].Rows[0]["GS_AutoLogoutTime"]);
+                            cmbFormat.Text = Convert.ToString(objDs.Tables[0].Rows[0]["GS_AutoLogoutFormat"]);
 
                             if (Convert.ToString(objDs.Tables[0].Rows[0]["GS_POStockenable"]) == "1")
                             {
@@ -245,13 +247,11 @@ namespace ROMS
                 objGeneralSettings.TableName = "[MR_GeneralSettings_TAT]";
                 objGeneralSettings.Columns.Add("GSTAT_GSID", typeof(int));
                 objGeneralSettings.Columns.Add("GSTAT_OrderType", typeof(int));
-                objGeneralSettings.Columns.Add("GSTAT_OrderDays", typeof(int));
-
+                objGeneralSettings.Columns.Add("GSTAT_OrderDays", typeof(int)); 
                 objGeneralSettingsRPT.TableName = "[MR_GeneralSettings_RPTText]";
                 objGeneralSettingsRPT.Columns.Add("GSRPT_GSID", typeof(int));
                 objGeneralSettingsRPT.Columns.Add("GSRPT_MSTID", typeof(int));
-                objGeneralSettingsRPT.Columns.Add("GSRPT_Text", typeof(string));
-
+                objGeneralSettingsRPT.Columns.Add("GSRPT_Text", typeof(string)); 
                 if (rbYes.Checked==true)
                 {
                     Varflagstock = 1;
@@ -303,7 +303,7 @@ namespace ROMS
                     varMultiUserSameSystem = 1;
                 }
 
-                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtInactiveuserday.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit, varlogoffEnable, Convert.ToInt32(txtLoggofftime.Text), Convert.ToInt32(txtInactiveuserday.Text), varMultiUserSameSystem, varSameUserSameSystem, varSameUserMultipleSystem); 
+                varResult = objDser.udfnGeneralSettings(0, varSettingID, Convert.ToDecimal(txtcashpurchase.Text), Convert.ToDecimal(txtBillAmount.Text), Convert.ToInt32(txtGRNQty.Text), Convert.ToInt32(txtReturnAlertDays.Text), Convert.ToInt32(txtInvoiceEditDays.Text), objGeneralSettings, objGeneralSettingsRPT, varOriginator, Varflagstock, txtbackuppath.Text, varGRNCheck, varDCCheck, Convert.ToInt32(txtPerLevel1.Text), Convert.ToInt32(txtPerLevel2.Text), Convert.ToInt32(txtInactiveuserday.Text),Convert.ToInt32(txtMonths.Text),Convert.ToDecimal(txtLPRate.Text), varRTGSMinLimit, varRCCheck, varCashLimit, varlogoffEnable, Convert.ToInt32(txtLoggofftime.Text), Convert.ToInt32(txtInactiveuserday.Text), varMultiUserSameSystem, varSameUserSameSystem, varSameUserMultipleSystem, Convert.ToString(mtbTime.Text), Convert.ToString(cmbFormat.Text)); 
 
                 objDser.CloseConnection();
                 btnUpdate.Enabled = true;
@@ -714,6 +714,7 @@ namespace ROMS
                     tpInvoiceEditDays.Show("Please enter days.", txtInvoiceEditDays, 5000);
                     blnErrorFlag = true;
                 }
+                 
                 string path = txtbackuppath.Text;
                 if (!Directory.Exists(path) && path!="")
                 {
@@ -848,7 +849,23 @@ namespace ROMS
                         blnErrorFlag = true;
                     }
                 }
+                 
+                string[] varTime = mtbTime.Text.Split(':');
+                int Hour = varTime[0].Trim().Length;
+                int Min = varTime[1].Trim().Length; 
+                if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
+                {
 
+                    epGeneralSettings.SetError(mtbTime, "Please enter valid hour");
+                    mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    blnErrorFlag = true;
+                } 
+                if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
+                {
+                    epGeneralSettings.SetError(mtbTime, "Please enter valid minute");
+                    mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    blnErrorFlag = true;
+                } 
                 if (blnErrorFlag == false)
                 {
                     epGeneralSettings.Clear();
@@ -2046,6 +2063,183 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void mtbTime_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                mtbTime.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void mtbTime_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFormat.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void mtbTime_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                int error = 0;
+                 
+                    string[] varTime = mtbTime.Text.Split(':');
+                    int Hour = varTime[0].Trim().Length;
+                    int Min = varTime[1].Trim().Length;
+                    if (varTime[0].Trim() == "" || Convert.ToInt32(varTime[0]) > 12 || Hour == 1 || varTime[0].Trim() == "0" || varTime[0].Trim() == "00")
+                    {
+                        epGeneralSettings.SetError(mtbTime, "Please enter valid hour");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
+                    }
+                    if (varTime[1].Trim() == "" || Convert.ToInt32(varTime[1]) > 59 || Min == 1 || varTime[1].Trim() == "0")
+                    {
+                        epGeneralSettings.SetError(mtbTime, "Please enter valid minute");
+                        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        error = 1;
+                    }
+                    //MR_Master objMR_Master = new MR_Master();
+                    //objMR_Master.ViewType = 21; 
+                    //objMR_Master.paraTime = mtbTime.Text;
+                    //objMR_Master.paraTimeFormat = cmbFormat.Text;
+                    //SPDataService objDServ = new SPDataService();
+                    //DataSet objd = new DataSet();
+                    //objd = objDServ.udfnMaster(objMR_Master);
+                    //if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                    //{
+                    //    errVerified.SetError(mtbTime, "Please enter valid Time");
+                    //    mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    errVerified.SetError(cmbFormat, "Please enter valid Format");
+                    //    cmbFormat.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    //    error = 1;
+                    //}
+ 
+                if (error == 0)
+                {
+                    epGeneralSettings.Clear();
+                    mtbTime.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbTransactionType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbFormat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbFormat_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbFormat.BackColor = Color.White;
+                //if (mtbTime.Text != "")
+                //{
+                //    MR_Master objMR_Master = new MR_Master();
+                //    objMR_Master.ViewType = 21;
+                //    objMR_Master.paraDate = dpVerified.Text;
+                //    objMR_Master.paraTime = mtbTime.Text;
+                //    objMR_Master.paraTimeFormat = cmbFormat.Text;
+                //    SPDataService objDServ = new SPDataService();
+                //    DataSet objd = new DataSet();
+                //    objd = objDServ.udfnMaster(objMR_Master);
+                //    if (Convert.ToInt32(objd.Tables[0].Rows[0]["TimeFlag"]) == 0)
+                //    {
+                //        errVerified.SetError(mtbTime, "Please enter valid Time");
+                //        mtbTime.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //        errVerified.SetError(cmbFormat, "Please enter valid Format");
+                //        cmbFormat.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpGeneralsettings_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

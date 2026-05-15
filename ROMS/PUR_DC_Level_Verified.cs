@@ -646,6 +646,16 @@ namespace ROMS
             }
         }
 
+        private void mtbTime_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void cmbFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void PUR_GRN_Level_Verified_KeyDown(object sender, KeyEventArgs e)
         {
             try

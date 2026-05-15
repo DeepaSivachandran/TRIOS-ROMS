@@ -216,7 +216,7 @@ namespace ROMS
             int paraGS_IED, DataTable ParaMR_GeneralSettings_TAT, DataTable paraMR_GeneralSettings_RPTText, string paraOriginator, int paraStockenable,
             string paraDBPath, int paraGRNPrint, int paraDCPrint, int paraLevel1, int paraLevel2, int paraVerificationDays, int paraAgingMonths, decimal paraLPRatePer,
             decimal paraRTGSMinLimit, int paraRCStockShow, decimal paraCashPaymentLimit, int paralogoffenable, int paralogofftime, int paraInactivedays, int
-                paraMultiUserSameSystem, int paraSameUserSameSystem, int paraSameUserMultiSystem)
+                paraMultiUserSameSystem, int paraSameUserSameSystem, int paraSameUserMultiSystem,string paraLogoutTime, string paraLogoutFormat)
         {
             string varResult = "";
             try
@@ -257,6 +257,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraMultiUserSameSystem", paraMultiUserSameSystem);
                 varSqlCommand.Parameters.AddWithValue("@paraSameUserSameSystem", paraSameUserSameSystem);
                 varSqlCommand.Parameters.AddWithValue("@paraSameUserMultiSystem", paraSameUserMultiSystem);
+                varSqlCommand.Parameters.AddWithValue("@paraLogoutTime", paraLogoutTime);
+                varSqlCommand.Parameters.AddWithValue("@paraLogoutFormat", paraLogoutFormat);
 
 
                 varSqlCommand.CommandTimeout = 0;
