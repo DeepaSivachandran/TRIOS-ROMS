@@ -124,7 +124,7 @@ namespace ROMS
                     cmbStatus.Visible = false;
                     btnPrint.Visible = true;
                     chbCompleted.Visible = true;
-                    btnSave.Enabled = true;
+                    btnSave.Enabled = false;
                     btnSave.Text = "Save";
                 }
                 else
@@ -2759,6 +2759,22 @@ namespace ROMS
                         e.Handled = true;
                     }
                 DGV_SearchStock.FirstDisplayedScrollingRowIndex = 0;
+            }
+            catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void chbCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(chbCompleted.Checked==true)
+                {
+                    btnSave.Enabled = true;
+                }
+                else
+                {
+                    btnSave.Enabled = false;
+                }
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
         }
