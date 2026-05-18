@@ -609,7 +609,7 @@ namespace ROMS
         {
             if (varStockRequestID == 0)
             {
-                if (btnSave.Text == "Save && Print")
+                if (btnSave.Text == "Save")
                 {
                     if (Convert.ToInt32(cmbConcern.SelectedValue) != -1)
                     {
