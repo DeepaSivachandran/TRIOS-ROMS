@@ -387,7 +387,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_SearchStock.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_SearchStock.RowTemplate.Height = 25;
-            this.DGV_SearchStock.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.DGV_SearchStock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchStock.ShowRowErrors = false;
             this.DGV_SearchStock.Size = new System.Drawing.Size(1305, 56);
@@ -888,6 +888,7 @@
             this.grdStockRequest.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrdStockRequest_CellEndEdit);
             this.grdStockRequest.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.grdStockRequest_CellPainting);
             this.grdStockRequest.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdStockRequest_ColumnHeaderMouseDoubleClick);
+            this.grdStockRequest.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.grdStockRequest_ColumnWidthChanged);
             this.grdStockRequest.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdStockRequest_DataBindingComplete);
             this.grdStockRequest.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.GrdStockRequest_EditingControlShowing);
             this.grdStockRequest.Scroll += new System.Windows.Forms.ScrollEventHandler(this.grdStockRequest_Scroll);
@@ -1108,6 +1109,7 @@
             dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
             this.clmRequiredQty.DefaultCellStyle = dataGridViewCellStyle13;
             this.clmRequiredQty.HeaderText = "Required Qty";
+            this.clmRequiredQty.MaxInputLength = 8;
             this.clmRequiredQty.MinimumWidth = 6;
             this.clmRequiredQty.Name = "clmRequiredQty";
             this.clmRequiredQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
