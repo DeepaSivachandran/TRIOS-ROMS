@@ -135,6 +135,7 @@ namespace ROMS
                 udfnProductCount();
                 //udfnAddDuplicateSNoColumn();
                 udfnStockRequestSearchGridHead();
+                DGV_SearchStock.ScrollBars = ScrollBars.Vertical;
             }
             catch (Exception ex)
             {
@@ -289,10 +290,17 @@ namespace ROMS
                             dtStock.Rows.Clear();
                             for (int i = 0; i < objDS.Tables[0].Rows.Count; i++)
                             {
+                                decimal requestedQty = 0;
+
+                                decimal.TryParse(
+                                    Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]),
+                                    out requestedQty
+                                );
                                 grdStockRequest.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_PICode"]), Convert.ToString(objDS.Tables[0].Rows[i]["PR_TName"]), Convert.ToString(objDS.Tables[0].Rows[i]["Location"]), Convert.ToString(objDS.Tables[0].Rows[i]["RKG_Name"]), Convert.ToString(objDS.Tables[0].Rows[i]["RK_ShortName"]), 
-                                    Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status"]),
+                                    Convert.ToString(objDS.Tables[0].Rows[i]["EMP_Name"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["STOCK"]), Convert.ToString(objDS.Tables[0].Rows[i]["S.No."]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]), Convert.ToString(objDS.Tables[0].Rows[i]["UT_Symbol"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status"]),
                                     Convert.ToString(objDS.Tables[0].Rows[i]["UT_Decimal"]), Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToString(objDS.Tables[0].Rows[i]["Status ID"]),Convert.ToString(objDS.Tables[0].Rows[i]["Location"]));
-                                dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_SLID"]),  Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_RKID"]), Convert.ToDecimal(objDS.Tables[0].Rows[i]["SRQD_RequestedQty"]),0);
+                                
+                                dtStock.Rows.Add(Convert.ToString(objDS.Tables[0].Rows[i]["SRQD_PRID"]), Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_SLID"]),  Convert.ToInt16(objDS.Tables[0].Rows[i]["SRQD_RKID"]), requestedQty, 0);
 
                                 varProductsIDs.Add(Convert.ToInt32(objDS.Tables[0].Rows[i]["SRQD_PRID"]));
                             }
@@ -310,6 +318,7 @@ namespace ROMS
                             ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                            grdStockRequest.Columns["clmIncharge"].Width = 250;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1136,6 +1145,7 @@ namespace ROMS
                             ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
                             //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                            grdStockRequest.Columns["clmIncharge"].Width = 250;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2852,6 +2862,7 @@ namespace ROMS
                         ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                         grdStockRequest.Columns["clmSno"].Width = 50;
                         //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                        grdStockRequest.Columns["clmIncharge"].Width = 250;
                         grdStockRequest.Columns["clmStockQty"].Width = 100;
                         grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2900,14 +2911,14 @@ namespace ROMS
                     {
                         DGV_SearchStock.Columns.Add((DataGridViewColumn)col.Clone());
                     }
-                    DataGridViewColumn newCol = DGV_SearchStock.Columns[DGV_SearchStock.Columns.Count - 1];
+                    //DataGridViewColumn newCol = DGV_SearchStock.Columns[DGV_SearchStock.Columns.Count - 1];
 
-                    newCol.Width = col.Width;
-                    newCol.AutoSizeMode = col.AutoSizeMode;
-                    newCol.MinimumWidth = col.MinimumWidth;
-                    newCol.FillWeight = col.FillWeight;
-                    newCol.Resizable = col.Resizable;
-                    newCol.Frozen = col.Frozen;
+                    //newCol.Width = col.Width;
+                    //newCol.AutoSizeMode = col.AutoSizeMode;
+                    //newCol.MinimumWidth = col.MinimumWidth;
+                    //newCol.FillWeight = col.FillWeight;
+                    //newCol.Resizable = col.Resizable;
+                    //newCol.Frozen = col.Frozen;
                 }
 
                 DGV_SearchStock.Rows.Clear();
