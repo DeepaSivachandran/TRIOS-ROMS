@@ -309,7 +309,7 @@ namespace ROMS
                             }
                             ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
-                            grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                            //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -451,8 +451,6 @@ namespace ROMS
                     {
                         visibleColumns.Add(col.Index);
                     }
-
-                     
                 }
             }
             catch (Exception ex)
@@ -1137,7 +1135,7 @@ namespace ROMS
                             //}
                             ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                             grdStockRequest.Columns["clmSno"].Width = 50;
-                            grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                            //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                             grdStockRequest.Columns["clmStockQty"].Width = 100;
                             grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1628,7 +1626,7 @@ namespace ROMS
                     tpType.Show("Please select request type.", cmbRequestType, 5000);
                     blnErrorFlag = true;
                 }
-                if (Convert.ToInt32(cmbRequestType.SelectedValue) == 563 && txtGeneralBillNo.Text.Trim() == "")
+                if (Convert.ToInt32(cmbRequestType.SelectedValue) == 562 && txtGeneralBillNo.Text.Trim() == "")
                 {
                     errStockRequest.SetError(txtGeneralBillNo, "Please enter Bill No.");
                     txtGeneralBillNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
@@ -1830,6 +1828,17 @@ namespace ROMS
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
+            }
+            finally
+            {
+                txttotalUnits.Text = grdStockRequest.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells["clmRequiredQty"].Value != null
+                         && decimal.TryParse(
+                                r.Cells["clmRequiredQty"].Value.ToString(),
+                                out _))
+                .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
+                .ToString();
             }
         }
         private void CmbStatus_Enter(object sender, EventArgs e)
@@ -2045,6 +2054,15 @@ namespace ROMS
             DataGridViewBindingCompleteEventArgs args = new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset);
             GrdStockRequest_DataBindingComplete(grdStockRequest, args);
             udfnRackGroupEnable();
+            txttotalitem.Text = Convert.ToString(grdStockRequest.Rows.Count);
+            txttotalUnits.Text = grdStockRequest.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Cells["clmRequiredQty"].Value != null
+                         && decimal.TryParse(
+                                r.Cells["clmRequiredQty"].Value.ToString(),
+                                out _))
+                .Sum(r => Convert.ToDecimal(r.Cells["clmRequiredQty"].Value))
+                .ToString();
         }
 
         private void cmbType_Enter(object sender, EventArgs e)
@@ -2157,12 +2175,19 @@ namespace ROMS
         {
             try
             {
-                if (txtGeneralBillNo.Enabled == true && txtGeneralBillNo.Text.Trim() == "")
+                if (Convert.ToInt32(cmbRequestType.SelectedValue) == 562)
                 {
-                    errStockRequest.SetError(txtGeneralBillNo, "Please enter Bill No.");
-                    txtGeneralBillNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpBillNo.ShowAlways = true;
-                    tpBillNo.Show("Please enter Bill No.", txtGeneralBillNo, 5000);
+                    if (txtGeneralBillNo.Enabled == true && txtGeneralBillNo.Text.Trim() == "")
+                    {
+                        errStockRequest.SetError(txtGeneralBillNo, "Please enter Bill No.");
+                        txtGeneralBillNo.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpBillNo.ShowAlways = true;
+                        tpBillNo.Show("Please enter Bill No.", txtGeneralBillNo, 5000);
+                    }
+                    else
+                    {
+                        txtGeneralBillNo.BackColor = Color.White;
+                    }
                 }
                 else
                 {
@@ -2625,19 +2650,16 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
+                int totalWidth = 0;
+                int offSetValue = grdStockRequest.HorizontalScrollingOffset;
+                foreach (DataGridViewColumn col in DGV_SearchStock.Columns)
+                    totalWidth += col.Width;
+                if (totalWidth - grdStockRequest.Width > grdStockRequest.HorizontalScrollingOffset && grdStockRequest.HorizontalScrollingOffset > 0)
                 {
-                    int totalWidth = 0;
-                    int offSetValue = grdStockRequest.HorizontalScrollingOffset;
-                    foreach (DataGridViewColumn col in DGV_SearchStock.Columns)
-                        totalWidth += col.Width;
-                    if (totalWidth - grdStockRequest.Width > grdStockRequest.HorizontalScrollingOffset && grdStockRequest.HorizontalScrollingOffset > 0)
-                    {
-                        offSetValue = offSetValue;
-                    }
-                    DGV_SearchStock.HorizontalScrollingOffset = offSetValue;
-                    DGV_SearchStock.Invalidate();
+                    offSetValue = offSetValue;
                 }
+                DGV_SearchStock.HorizontalScrollingOffset = offSetValue;
+                DGV_SearchStock.Invalidate();
             }
             catch (Exception ex)
             {
@@ -2648,22 +2670,17 @@ namespace ROMS
 
         private void grdStockRequest_Scroll(object sender, ScrollEventArgs e)
         {
+
             try
             {
-                int totalWidth = 0;
-                int cl = grdStockRequest.ColumnCount;
-                int cls = DGV_SearchStock.ColumnCount;
-                int offSetValue = grdStockRequest.HorizontalScrollingOffset;
-                foreach (DataGridViewColumn col in DGV_SearchStock.Columns)
-                    totalWidth += col.Width;
-
-                if (totalWidth - grdStockRequest.Width > grdStockRequest.HorizontalScrollingOffset && grdStockRequest.HorizontalScrollingOffset > 0)
+                if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
                 {
-                    //offSetValue = offSetValue ;
-                    offSetValue = offSetValue;
+                    DGV_SearchStock.HorizontalScrollingOffset =
+                        grdStockRequest.HorizontalScrollingOffset;
+
+                    DGV_SearchStock.Invalidate();
                 }
-                DGV_SearchStock.HorizontalScrollingOffset = offSetValue;
-                DGV_SearchStock.Invalidate();
+
                 udfnscrollVisible(DGV_SearchStock, grdStockRequest);
             }
             catch (Exception ex)
@@ -2677,12 +2694,11 @@ namespace ROMS
         {
             try
             {
-                if (grdStockRequest.ColumnCount > 0)
+                if (grdStockRequest.Columns.Contains(e.Column.Name))
                 {
-                    grdStockRequest.Columns[e.Column.Index].Width = e.Column.Width;
-                    DGV_SearchStock.HorizontalScrollingOffset = grdStockRequest.HorizontalScrollingOffset;
-                    //grdBrandList.HorizontalScrollingOffset = 0;
+                    grdStockRequest.Columns[e.Column.Name].Width = e.Column.Width;
                 }
+                DGV_SearchStock.HorizontalScrollingOffset = grdStockRequest.HorizontalScrollingOffset;
             }
             catch (Exception ex)
             {
@@ -2695,44 +2711,41 @@ namespace ROMS
         {
             try
             {
-                if (lblNoRecordsFound.Visible == false)
-                {
-                    DataGridViewColumn newColumn = grdStockRequest.Columns[e.ColumnIndex];
-                    DataGridViewColumn oldColumn = grdStockRequest.SortedColumn;
-                    ListSortDirection direction;
+                DataGridViewColumn newColumn = grdStockRequest.Columns[e.ColumnIndex];
+                DataGridViewColumn oldColumn = grdStockRequest.SortedColumn;
+                ListSortDirection direction;
 
-                    // If oldColumn is null, then the DataGridView is not sorted.
-                    if (oldColumn != null)
+                // If oldColumn is null, then the DataGridView is not sorted.
+                if (oldColumn != null)
+                {
+                    // Sort the same column again, reversing the SortOrder.
+                    if (oldColumn == newColumn && grdStockRequest.SortOrder == SortOrder.Ascending)
                     {
-                        // Sort the same column again, reversing the SortOrder.
-                        if (oldColumn == newColumn && grdStockRequest.SortOrder == SortOrder.Ascending)
-                        {
-                            direction = ListSortDirection.Descending;
-                        }
-                        else
-                        {
-                            // Sort a new column and remove the old SortGlyph.
-                            direction = ListSortDirection.Ascending;
-                            oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                        }
+                        direction = ListSortDirection.Descending;
                     }
                     else
                     {
+                        // Sort a new column and remove the old SortGlyph.
                         direction = ListSortDirection.Ascending;
+                        oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                     }
-                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
-                    {
-                        grdStockRequest.Sort(newColumn, direction);
-                        newColumn.HeaderCell.SortGlyphDirection =
-                            direction == ListSortDirection.Ascending ?
-                            SortOrder.Ascending : SortOrder.Descending;
+                }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                }
+                if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                {
+                    grdStockRequest.Sort(newColumn, direction);
+                    newColumn.HeaderCell.SortGlyphDirection =
+                        direction == ListSortDirection.Ascending ?
+                        SortOrder.Ascending : SortOrder.Descending;
 
-                        DataGridViewColumn DGV = DGV_SearchStock.Columns[e.ColumnIndex];
-                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+                    DataGridViewColumn DGV = DGV_SearchStock.Columns[e.ColumnIndex];
+                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
 
-                        DGV_SearchStock.HorizontalScrollingOffset = grdStockRequest.HorizontalScrollingOffset;
-                        DGV_SearchStock.FirstDisplayedScrollingRowIndex = 0;
-                    }
+                    DGV_SearchStock.HorizontalScrollingOffset = grdStockRequest.HorizontalScrollingOffset;
+                    DGV_SearchStock.FirstDisplayedScrollingRowIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -2761,6 +2774,22 @@ namespace ROMS
                 DGV_SearchStock.FirstDisplayedScrollingRowIndex = 0;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void grdStockRequest_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                if (DGV_SearchStock.Columns.Contains(e.Column.Name))
+                {
+                    DGV_SearchStock.Columns[e.Column.Name].Width = e.Column.Width;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void chkRackGroup_KeyDown(object sender, KeyEventArgs e)
@@ -2806,7 +2835,7 @@ namespace ROMS
                         } 
                         ((DataGridViewTextBoxColumn)grdStockRequest.Columns["clmRequiredQty"]).MaxInputLength = 8;
                         grdStockRequest.Columns["clmSno"].Width = 50;
-                        grdStockRequest.Columns["clmRequiredQty"].Width = 100;
+                        //grdStockRequest.Columns["clmRequiredQty"].Width = 100;
                         grdStockRequest.Columns["clmStockQty"].Width = 100;
                         grdStockRequest.Columns["clmRequiredQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         grdStockRequest.Columns["clmStockQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -2855,6 +2884,14 @@ namespace ROMS
                     {
                         DGV_SearchStock.Columns.Add((DataGridViewColumn)col.Clone());
                     }
+                    DataGridViewColumn newCol = DGV_SearchStock.Columns[DGV_SearchStock.Columns.Count - 1];
+
+                    newCol.Width = col.Width;
+                    newCol.AutoSizeMode = col.AutoSizeMode;
+                    newCol.MinimumWidth = col.MinimumWidth;
+                    newCol.FillWeight = col.FillWeight;
+                    newCol.Resizable = col.Resizable;
+                    newCol.Frozen = col.Frozen;
                 }
 
                 DGV_SearchStock.Rows.Clear();
