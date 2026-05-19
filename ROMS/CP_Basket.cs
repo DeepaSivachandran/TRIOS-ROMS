@@ -240,6 +240,10 @@ namespace ROMS
                 objDServ.CloseConnection();
                 MessageBox.Show(varMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            finally
+            {
+                btnSave.Enabled = true;
+            }
         }
         private void btnSave_Enter(object sender, EventArgs e)
         {
