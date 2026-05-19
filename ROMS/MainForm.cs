@@ -361,6 +361,7 @@ namespace ROMS
         public static REPORT_Assigned_Products objREPORT_Assigned_Products;
         public static REPORT_ZeroRate objREPORT_ZeroRate;
         public static REPORT_CP_Product_Category objREPORT_CP_Product_Category;
+        public static REPORT_CP_ProductCount objREPORT_CP_ProductCount;
         public static REPORT_CP_InactiveProduct objREPORT_CP_InactiveProduct;
         public static REPORT_Suppllier_Ledger objREPORT_Suppllier_Ledger;
         public static REPORT_PurchaseOrder_Summary objREPORT_PurchaseOrder_Summary;
@@ -2328,7 +2329,7 @@ namespace ROMS
             try
             {
                 //PbCurrentForm = "7.8.1";
-                OpenReportForm(ref MainForm.objREPORT_CP_Product_Category, "REPORT_CP_Product_Category", 80119);
+                OpenReportForm(ref MainForm.objREPORT_CP_Product_Category, "REPORT_CP_Product_Category", 80125);
             }
             catch (Exception ex)
             {
@@ -4953,6 +4954,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objCP_Basketlist, "CP_Basketlist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmProductCount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_CP_ProductCount, "REPORT_CP_ProductCount", 50501);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
