@@ -1813,6 +1813,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_ProductReport.paraBrandID);
                 varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_ProductReport.ParaCompanycode);
                 varSqlCommand.Parameters.AddWithValue("@paraLocationId", objMR_ProductReport.paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationType", objMR_ProductReport.paraLocationType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_ProductReport.paraProductCategory);
                 varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_ProductReport.paraProductType);
                 varSqlCommand.Parameters.AddWithValue("@ParaDate", objMR_ProductReport.ParaDate);
