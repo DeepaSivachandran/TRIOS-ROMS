@@ -158,7 +158,7 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "-All-",varLocationName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = ""; int varDelayMin = 0;
+                string varSupplierName = "-All-",varLocationName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-";
                 int varSupplierCode = 0, varScheduleCode = 0, varLocationCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
 
                 if(txtSupplier.Text.Trim()!="")
@@ -197,16 +197,25 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 41;
-                objMR_Supplier.paraSupplierid = varSupplierCode;
-                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraGroupCode = varGroupCode;
-                objMR_Supplier.paraSubgroupCode = varSubgroupCode;
-                objMR_Supplier.paraBrandCode = varBrandCode;
-                SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                objspdservice.CloseConnection();
+
+                MR_Product objMR_ProductReport = new MR_Product();
+                objMR_ProductReport.paraViewType = 5;
+                objMR_ProductReport.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_ProductReport.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                objMR_ProductReport.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
+                objMR_ProductReport.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_ProductReport.paraGroup = varGroupCode;
+                objMR_ProductReport.paraSubgroup = varSubgroupCode;
+                objMR_ProductReport.paraBrandID = varBrandCode;
+                objMR_ProductReport.paraLocationId = varLocationCode;
+                objMR_ProductReport.ParaSupplierId = varSupplierCode;
+                objMR_ProductReport.ParaScheduleid = Convert.ToString(varScheduleCode);
+                objMR_ProductReport.paraFlag = 0;
+                objMR_ProductReport.ParaProductCode = 0;
+                objMR_ProductReport.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterReport(objMR_ProductReport);
+                objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -218,19 +227,30 @@ namespace ROMS
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_LocationWise.rpt");
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraLocationCode", varLocationCode);
-                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
-                    objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraRKGId", Convert.ToInt32(cmbRackGroup.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroup", varGroupCode);
+                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode);
+                    objBillreport.SetParameterValue("paraBrandID", varBrandCode);
+                    objBillreport.SetParameterValue("paraLocationId", varLocationCode);
+                    objBillreport.SetParameterValue("ParaSupplierId", varSupplierCode);
+                    objBillreport.SetParameterValue("ParaScheduleid", varScheduleCode);
+                    objBillreport.SetParameterValue("paraFlag", 0);
+                    objBillreport.SetParameterValue("ParaProductCode", 0);
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraRKGName", Convert.ToString(cmbRackGroup.Text));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraBrandCode", varBrandCode);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -244,7 +264,7 @@ namespace ROMS
                     else
                     {
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        string varReportName = "SupplierWise_Products";
+                        string varReportName = "Products Count";
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
