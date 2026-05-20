@@ -158,8 +158,8 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "-All-",varlocationName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = ""; int varDelayMin = 0;
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+                string varSupplierName = "-All-",varLocationName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = ""; int varDelayMin = 0;
+                int varSupplierCode = 0, varScheduleCode = 0, varLocationCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
 
                 if(txtSupplier.Text.Trim()!="")
                 {
@@ -182,6 +182,11 @@ namespace ROMS
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
+                if(txtLocation.Text.Trim()!="")
+                {
+                    varLocationName = txtLocation.Text.Trim();
+                    varLocationCode = Convert.ToInt32(lblLocationCode.Text);
+                }
 
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -196,7 +201,6 @@ namespace ROMS
                 objMR_Supplier.ViewType = 41;
                 objMR_Supplier.paraSupplierid = varSupplierCode;
                 objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraProductCode = varProductCode;
                 objMR_Supplier.paraGroupCode = varGroupCode;
                 objMR_Supplier.paraSubgroupCode = varSubgroupCode;
                 objMR_Supplier.paraBrandCode = varBrandCode;
@@ -213,12 +217,12 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Products.rpt");
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_LocationWise.rpt");
                     objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
                     objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
                     objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraProductName", varlocationName);
+                    objBillreport.SetParameterValue("paraLocationCode", varLocationCode);
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
                     objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
                     objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);

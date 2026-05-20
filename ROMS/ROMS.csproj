@@ -912,6 +912,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_Count_RGWise_LocationWise.cs">
+      <DependentUpon>RPT_CP_Pro_Count_RGWise_LocationWise.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_Valuation_Groupwise_Subgroup.cs">
       <DependentUpon>RPT_Stock_Valuation_Groupwise_Subgroup.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5474,6 +5481,11 @@
     <Content Include="Reports\RPT_Stock_Valuation_Groupwise_Subgroup.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Stock_Valuation_Groupwise_Subgroup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Pro_Count_RGWise_LocationWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Pro_Count_RGWise_LocationWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Request_Queue.rpt">
