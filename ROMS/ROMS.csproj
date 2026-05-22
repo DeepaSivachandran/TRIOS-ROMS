@@ -709,6 +709,13 @@
       <DependentUpon>RPT_CP_Pro_Count_GodownWise.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Pro_Count_RGWise_RackSummary.cs">
+      <DependentUpon>RPT_CP_Pro_Count_RGWise_RackSummary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_Pro_Count_RGWise_RackDetails.cs">
       <DependentUpon>RPT_CP_Pro_Count_RGWise_RackDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5264,6 +5271,11 @@
     <Content Include="Reports\RPT_CP_Pro_Count_RGWise_RackDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Pro_Count_RGWise_RackDetails.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Pro_Count_RGWise_RackSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Pro_Count_RGWise_RackSummary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_CP_Rackgroup_Product_RackMin_Qty_Loc_Split.rpt">
