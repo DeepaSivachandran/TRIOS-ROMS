@@ -226,7 +226,14 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_LocationWise.rpt");
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 572)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_LocationWise.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 573)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_GodownWise.rpt");
+                    }
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraRKGId", Convert.ToInt32(cmbRackGroup.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
