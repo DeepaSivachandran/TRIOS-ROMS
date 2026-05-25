@@ -4738,7 +4738,7 @@ namespace ROMS
         }
 
         //Created By:- venkat Created On:-22/08/2023
-        public string udfnUserRole(int paraviewType, int paraUserRoleID, string paraNameoftheUser, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable paraUserRoleDetails, DataTable paraUserRole_Menu_Access, DataTable paraUserRole_Menu_SPL_Access)
+        public string udfnUserRole(int paraviewType, int paraUserRoleID, string paraNameoftheUser, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable paraUserRoleDetails, DataTable paraUserRole_Menu_Access, DataTable paraUserRole_Menu_SPL_Access,int paraFlag,int paraCurrentUserId)
         {
             string varResult = "";
             try
@@ -4758,9 +4758,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserRoleDetails", paraUserRoleDetails);
                 varSqlCommand.Parameters.AddWithValue("@paraUserRole_Menu_Access", paraUserRole_Menu_Access);
                 varSqlCommand.Parameters.AddWithValue("@paraUserRole_Menu_SPL_Access", paraUserRole_Menu_SPL_Access);
-
-
-
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraCurrentUserId", paraCurrentUserId);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

@@ -53,6 +53,7 @@
             this.txtDPassKey = new System.Windows.Forms.TextBox();
             this.epUser = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdLocation = new System.Windows.Forms.DataGridView();
+            this.btnUserRoleMapped = new System.Windows.Forms.Button();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).BeginInit();
@@ -246,6 +247,7 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.btnUserRoleMapped);
             this.grbForm.Controls.Add(this.cmbPasskey);
             this.grbForm.Controls.Add(this.cmbUserRole);
             this.grbForm.Controls.Add(this.txtDUserRole);
@@ -359,6 +361,20 @@
             this.grdLocation.StandardTab = true;
             this.grdLocation.TabIndex = 9;
             // 
+            // btnUserRoleMapped
+            // 
+            this.btnUserRoleMapped.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUserRoleMapped.Image = global::ROMS.Properties.Resources.save;
+            this.btnUserRoleMapped.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUserRoleMapped.Location = new System.Drawing.Point(507, 223);
+            this.btnUserRoleMapped.Name = "btnUserRoleMapped";
+            this.btnUserRoleMapped.Size = new System.Drawing.Size(84, 29);
+            this.btnUserRoleMapped.TabIndex = 21;
+            this.btnUserRoleMapped.Text = "Save";
+            this.btnUserRoleMapped.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUserRoleMapped.UseVisualStyleBackColor = true;
+            this.btnUserRoleMapped.Click += new System.EventHandler(this.btnUserRoleMapped_Click);
+            // 
             // CP_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -414,5 +430,6 @@
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtUserName;
         public System.Windows.Forms.DataGridView grdLocation;
+        public System.Windows.Forms.Button btnUserRoleMapped;
     }
 }

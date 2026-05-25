@@ -30,8 +30,9 @@ namespace ROMS
         public DataTable objDtSplPermission = new DataTable();
         public DataTable objDtSplPermissionFilterTable = new DataTable();
         public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
-        
 
+        public int varFormFlag = 0, varCurrentUserId = 0;
+        public MainForm MainObj { get; set; }
         public CP_UserRole()
         {
             InitializeComponent();
@@ -69,6 +70,12 @@ namespace ROMS
                 LoadTreeViewFromDataTable(tvMainmenu, objDtMainMenu);
                 txtUserRole.Focus();
                 this.ActiveControl = txtUserRole;
+                if(varFormFlag== 1)
+                {
+                    pnlUserRole.Visible = false;
+                    tbFirst.Location=new Point(12, 29);
+                    tbFirst.Size = new Size(1330, 566);
+                }
             }
             catch (Exception ex)
             {
@@ -291,6 +298,7 @@ namespace ROMS
         {
             try
             {
+                string varUserRoleName = "";
                 udfntooltiphide();
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
@@ -307,6 +315,16 @@ namespace ROMS
                 {
                     varoriginator = "UserRole Updation";
                     varType = 1;
+                }
+                if (varFormFlag == 1)
+                {
+                    varoriginator = "UserRole Duplicate Creation";
+                    varType = 0;
+                    varUserRoleName = txtUserRole.Text.Trim() + "_" + "1";
+                }
+                else
+                {
+                    varUserRoleName = txtUserRole.Text.Trim();
                 }
                 DataTable objdtUserRole_Menu_Access = new DataTable();
                 objdtUserRole_Menu_Access.TableName = "MR_UserRole_Menu_Access";
@@ -340,7 +358,7 @@ namespace ROMS
 
                 DataTable saveobjDtSplPermission = objDtSplPermission.DefaultView.ToTable(false, "MUP_MU_Code", "ViewAccess", "EditAccess", "MUP_CODE" );
 
-                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), (txtUserRole.Text).Trim(), varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access, saveobjDtSplPermission);
+                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), varUserRoleName, varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access, saveobjDtSplPermission, varFormFlag, varCurrentUserId);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")

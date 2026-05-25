@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
             this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
@@ -73,6 +73,7 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pnlUserRole = new System.Windows.Forms.Panel();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.pnlStatus.SuspendLayout();
@@ -85,6 +86,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserPermission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).BeginInit();
+            this.pnlUserRole.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBrandList
@@ -113,12 +115,9 @@
             // pnlCompany
             // 
             this.pnlCompany.BackColor = System.Drawing.Color.White;
-            this.pnlCompany.Controls.Add(this.label2);
-            this.pnlCompany.Controls.Add(this.pnlStatus);
+            this.pnlCompany.Controls.Add(this.pnlUserRole);
             this.pnlCompany.Controls.Add(this.btnSave);
             this.pnlCompany.Controls.Add(this.btnClose);
-            this.pnlCompany.Controls.Add(this.txtUserRole);
-            this.pnlCompany.Controls.Add(this.label1);
             this.pnlCompany.Controls.Add(this.tbFirst);
             this.pnlCompany.Location = new System.Drawing.Point(0, 29);
             this.pnlCompany.Name = "pnlCompany";
@@ -128,7 +127,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(300, 22);
+            this.label2.Location = new System.Drawing.Point(378, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 20);
             this.label2.TabIndex = 19;
@@ -140,7 +139,7 @@
             this.pnlStatus.Controls.Add(this.rbInactive);
             this.pnlStatus.Controls.Add(this.rbActive);
             this.pnlStatus.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlStatus.Location = new System.Drawing.Point(350, 19);
+            this.pnlStatus.Location = new System.Drawing.Point(429, 13);
             this.pnlStatus.Name = "pnlStatus";
             this.pnlStatus.Size = new System.Drawing.Size(158, 27);
             this.pnlStatus.TabIndex = 18;
@@ -149,7 +148,7 @@
             // 
             this.rbInactive.AutoSize = true;
             this.rbInactive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbInactive.Location = new System.Drawing.Point(91, 1);
+            this.rbInactive.Location = new System.Drawing.Point(83, 1);
             this.rbInactive.Name = "rbInactive";
             this.rbInactive.Size = new System.Drawing.Size(63, 21);
             this.rbInactive.TabIndex = 8;
@@ -161,7 +160,7 @@
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
-            this.rbActive.Location = new System.Drawing.Point(3, 1);
+            this.rbActive.Location = new System.Drawing.Point(13, 1);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(54, 21);
             this.rbActive.TabIndex = 7;
@@ -200,7 +199,7 @@
             // txtUserRole
             // 
             this.txtUserRole.BackColor = System.Drawing.Color.White;
-            this.txtUserRole.Location = new System.Drawing.Point(77, 19);
+            this.txtUserRole.Location = new System.Drawing.Point(69, 13);
             this.txtUserRole.Name = "txtUserRole";
             this.txtUserRole.Size = new System.Drawing.Size(218, 27);
             this.txtUserRole.TabIndex = 4;
@@ -211,7 +210,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Location = new System.Drawing.Point(4, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 20);
             this.label1.TabIndex = 1;
@@ -333,14 +332,14 @@
             this.grdUserPermission.AllowUserToResizeRows = false;
             this.grdUserPermission.BackgroundColor = System.Drawing.Color.White;
             this.grdUserPermission.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.grdUserPermission.ColumnHeadersHeight = 30;
             this.grdUserPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdUserPermission.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -358,23 +357,23 @@
             this.clmPrivilegeCode,
             this.clmsplflag,
             this.Action});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle29;
             this.grdUserPermission.EnableHeadersVisualStyles = false;
             this.grdUserPermission.GridColor = System.Drawing.Color.White;
             this.grdUserPermission.Location = new System.Drawing.Point(6, 20);
             this.grdUserPermission.Name = "grdUserPermission";
             this.grdUserPermission.RowHeadersVisible = false;
             this.grdUserPermission.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.grdUserPermission.RowTemplate.Height = 25;
             this.grdUserPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUserPermission.ShowRowErrors = false;
@@ -507,6 +506,17 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // pnlUserRole
+            // 
+            this.pnlUserRole.Controls.Add(this.label2);
+            this.pnlUserRole.Controls.Add(this.pnlStatus);
+            this.pnlUserRole.Controls.Add(this.txtUserRole);
+            this.pnlUserRole.Controls.Add(this.label1);
+            this.pnlUserRole.Location = new System.Drawing.Point(12, 3);
+            this.pnlUserRole.Name = "pnlUserRole";
+            this.pnlUserRole.Size = new System.Drawing.Size(621, 53);
+            this.pnlUserRole.TabIndex = 4;
+            // 
             // CP_UserRole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -521,13 +531,12 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CP_UserRole";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Company";
+            this.Text = "User Role";
             this.Load += new System.EventHandler(this.CP_UserRole_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CP_UserRole_KeyDown);
             this.tsBrandList.ResumeLayout(false);
             this.tsBrandList.PerformLayout();
             this.pnlCompany.ResumeLayout(false);
-            this.pnlCompany.PerformLayout();
             this.pnlStatus.ResumeLayout(false);
             this.pnlStatus.PerformLayout();
             this.tbFirst.ResumeLayout(false);
@@ -539,6 +548,8 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUserPermission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epCompany)).EndInit();
+            this.pnlUserRole.ResumeLayout(false);
+            this.pnlUserRole.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -587,5 +598,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrivilegeCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmsplflag;
         private System.Windows.Forms.DataGridViewImageColumn Action;
+        private System.Windows.Forms.Panel pnlUserRole;
     }
 }

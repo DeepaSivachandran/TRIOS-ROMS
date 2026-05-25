@@ -240,7 +240,8 @@ namespace ROMS
                             SPDataService objspservice = new SPDataService();
                             DataService objDs = new DataService();
 
-                            varResult = objspservice.udfnUserRole(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value), "", 0, "User Role Delete", MainForm.pbUserID, 0, null, null, null); objspservice.CloseConnection();
+                            varResult = objspservice.udfnUserRole(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value), "", 0, "User Role Delete", MainForm.pbUserID, 0, null, null, null, 0, 0);
+                            objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
                                 MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
