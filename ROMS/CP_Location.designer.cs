@@ -56,6 +56,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.cmbConcern = new System.Windows.Forms.ComboBox();
             this.txtConcern = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtPGBMins = new System.Windows.Forms.TextBox();
+            this.txtPOBMins = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epLocation)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.pnlGodownType.SuspendLayout();
@@ -113,10 +119,10 @@
             this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnSave.Image = global::ROMS.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(329, 266);
+            this.btnSave.Location = new System.Drawing.Point(327, 303);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(84, 29);
-            this.btnSave.TabIndex = 12;
+            this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -141,10 +147,10 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(417, 266);
+            this.btnClose.Location = new System.Drawing.Point(417, 303);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 29);
-            this.btnClose.TabIndex = 13;
+            this.btnClose.TabIndex = 15;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -232,6 +238,12 @@
             // 
             // grbGodown
             // 
+            this.grbGodown.Controls.Add(this.textBox10);
+            this.grbGodown.Controls.Add(this.textBox9);
+            this.grbGodown.Controls.Add(this.txtPOBMins);
+            this.grbGodown.Controls.Add(this.txtPGBMins);
+            this.grbGodown.Controls.Add(this.textBox6);
+            this.grbGodown.Controls.Add(this.textBox5);
             this.grbGodown.Controls.Add(this.btnSave);
             this.grbGodown.Controls.Add(this.chkRKGCreation);
             this.grbGodown.Controls.Add(this.chkRKCreation);
@@ -255,17 +267,17 @@
             this.grbGodown.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbGodown.Location = new System.Drawing.Point(12, 3);
             this.grbGodown.Name = "grbGodown";
-            this.grbGodown.Size = new System.Drawing.Size(511, 307);
+            this.grbGodown.Size = new System.Drawing.Size(511, 345);
             this.grbGodown.TabIndex = 1;
             this.grbGodown.TabStop = false;
             // 
             // chkRKGCreation
             // 
             this.chkRKGCreation.AutoSize = true;
-            this.chkRKGCreation.Location = new System.Drawing.Point(203, 246);
+            this.chkRKGCreation.Location = new System.Drawing.Point(203, 273);
             this.chkRKGCreation.Name = "chkRKGCreation";
             this.chkRKGCreation.Size = new System.Drawing.Size(139, 24);
-            this.chkRKGCreation.TabIndex = 11;
+            this.chkRKGCreation.TabIndex = 13;
             this.chkRKGCreation.Text = "Rack Group Creation";
             this.chkRKGCreation.UseVisualStyleBackColor = true;
             this.chkRKGCreation.Enter += new System.EventHandler(this.ChkRKGCreation_Enter);
@@ -275,10 +287,10 @@
             // chkRKCreation
             // 
             this.chkRKCreation.AutoSize = true;
-            this.chkRKCreation.Location = new System.Drawing.Point(22, 246);
+            this.chkRKCreation.Location = new System.Drawing.Point(22, 273);
             this.chkRKCreation.Name = "chkRKCreation";
             this.chkRKCreation.Size = new System.Drawing.Size(103, 24);
-            this.chkRKCreation.TabIndex = 10;
+            this.chkRKCreation.TabIndex = 12;
             this.chkRKCreation.Text = "Rack Creation";
             this.chkRKCreation.UseVisualStyleBackColor = true;
             this.chkRKCreation.CheckedChanged += new System.EventHandler(this.ChkRKCreation_CheckedChanged);
@@ -412,12 +424,93 @@
             this.txtConcern.TabIndex = 49;
             this.txtConcern.Text = "Concern";
             // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(22, 240);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(181, 27);
+            this.textBox5.TabIndex = 58;
+            this.textBox5.Text = "Pickup time for General Bill";
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox6.Enabled = false;
+            this.textBox6.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(265, 240);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(163, 27);
+            this.textBox6.TabIndex = 59;
+            this.textBox6.Text = "Pickup time for Order Bill";
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtPGBMins
+            // 
+            this.txtPGBMins.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPGBMins.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPGBMins.Location = new System.Drawing.Point(203, 240);
+            this.txtPGBMins.MaxLength = 2;
+            this.txtPGBMins.Name = "txtPGBMins";
+            this.txtPGBMins.Size = new System.Drawing.Size(28, 27);
+            this.txtPGBMins.TabIndex = 10;
+            this.txtPGBMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPGBMins.Enter += new System.EventHandler(this.txtPGBMins_Enter);
+            this.txtPGBMins.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPGBMins_KeyDown);
+            this.txtPGBMins.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPGBMins_KeyPress);
+            this.txtPGBMins.Leave += new System.EventHandler(this.txtPGBMins_Leave);
+            // 
+            // txtPOBMins
+            // 
+            this.txtPOBMins.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPOBMins.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPOBMins.Location = new System.Drawing.Point(429, 240);
+            this.txtPOBMins.MaxLength = 2;
+            this.txtPOBMins.Name = "txtPOBMins";
+            this.txtPOBMins.Size = new System.Drawing.Size(28, 27);
+            this.txtPOBMins.TabIndex = 11;
+            this.txtPOBMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPOBMins.Enter += new System.EventHandler(this.txtPOBMins_Enter);
+            this.txtPOBMins.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPOBMins_KeyDown);
+            this.txtPOBMins.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPOBMins_KeyPress);
+            this.txtPOBMins.Leave += new System.EventHandler(this.txtPOBMins_Leave);
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox9.Enabled = false;
+            this.textBox9.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(231, 240);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(34, 27);
+            this.textBox9.TabIndex = 62;
+            this.textBox9.Text = "Mins";
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox10
+            // 
+            this.textBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox10.Enabled = false;
+            this.textBox10.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.Location = new System.Drawing.Point(457, 240);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(34, 27);
+            this.textBox10.TabIndex = 63;
+            this.textBox10.Text = "Mins";
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // CP_Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(539, 318);
+            this.ClientSize = new System.Drawing.Size(539, 359);
             this.Controls.Add(this.grbGodown);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -471,5 +564,11 @@
         public System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.CheckBox chkRKCreation;
         private System.Windows.Forms.CheckBox chkRKGCreation;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.TextBox txtPGBMins;
+        public System.Windows.Forms.TextBox txtPOBMins;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }
