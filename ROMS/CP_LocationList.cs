@@ -209,6 +209,8 @@ namespace ROMS
                             grdGodownList.Columns["DefaultID"].Visible = false;
                             grdGodownList.Columns["RKCreationID"].Visible = false;
                             grdGodownList.Columns["RKGCreationID"].Visible = false;
+                            grdGodownList.Columns["PickupGBMins"].Visible = false;
+                            grdGodownList.Columns["PickupOBMins"].Visible = false;
                             grdGodownList.Columns["S.No."].Width = 50;
                             grdGodownList.Columns["Concern"].Width = 70;
                             grdGodownList.Columns["Location Type"].Width = 90;
@@ -363,7 +365,7 @@ namespace ROMS
                             if (dialogResult == DialogResult.Yes)
                             {
                                 SPDataService objspservice = new SPDataService();
-                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0, 0);
+                                varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0, 0, 0, 0);
                                 objspservice.CloseConnection();
                                 if (varResult.Split('~')[0] == "3")
                                 {
@@ -375,7 +377,7 @@ namespace ROMS
                                         if (MainForm.objCP_Verify.flag == 1)
                                         {
                                             objspservice = new SPDataService();
-                                            varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0, 1);
+                                            varResult = objspservice.udfnStockLocation(2, Convert.ToInt32(grdGodownList.SelectedRows[0].Cells["ID"].Value.ToString()), 0, 0, "", "", "", 0, 0, 0, "Stock Delete", varUserID, 0, 0, 1, 0, 0);
                                             objspservice.CloseConnection();
                                             if (varResult.Split('~')[0] == "3")
                                             {
@@ -451,6 +453,8 @@ namespace ROMS
                         MainForm.objCP_Location.PbDefault = Convert.ToString(grdGodownList.SelectedRows[0].Cells["DefaultID"].Value);
                         MainForm.objCP_Location.PbRKCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKCreationID"].Value);
                         MainForm.objCP_Location.PbRKGCreationID = Convert.ToString(grdGodownList.SelectedRows[0].Cells["RKGCreationID"].Value);
+                        MainForm.objCP_Location.pbPickupGBMins = Convert.ToString(grdGodownList.SelectedRows[0].Cells["PickupGBMins"].Value);
+                        MainForm.objCP_Location.pbPickupOBMins = Convert.ToString(grdGodownList.SelectedRows[0].Cells["PickupOBMins"].Value);
                         MainForm.objCP_Location.PbLocationEName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in English"].Value);
                         MainForm.objCP_Location.PbLocationTName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Location Name in Tamil"].Value);
                         MainForm.objCP_Location.PbLocationSName = Convert.ToString(grdGodownList.SelectedRows[0].Cells["Short Name"].Value);

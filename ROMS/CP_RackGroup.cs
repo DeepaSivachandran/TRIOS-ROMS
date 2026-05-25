@@ -566,6 +566,8 @@ namespace ROMS
                     {
                         cmbConcern.SelectedValue = objDS.Tables[0].Rows[0]["RKG_COMID"].ToString().Replace("''", "'");
                         txtRackGroupName.Text = objDS.Tables[0].Rows[0]["RKG_Name"].ToString().Replace("''", "'");
+                        txtPGBMins.Text = objDS.Tables[0].Rows[0]["PickupGBMins"].ToString().Replace("''", "'");
+                        txtPOBMins.Text = objDS.Tables[0].Rows[0]["PickupOBMins"].ToString().Replace("''", "'");
                     }
                     cmbStockLocation.SelectedValue = varStockId;
                     udfnList();
@@ -673,7 +675,7 @@ namespace ROMS
                     }
                 }
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbRGOrderNo.SelectedValue), null);
+                varResult = objDser.udfnRackGroup(varViewType, varId, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToString(txtRackGroupName.Text).Trim(), varRackID, varUserID, varStatusid, varOriginator, MainForm.pbUserID, 0, Convert.ToInt32(cmbRGOrderNo.SelectedValue), null, int.TryParse(txtPGBMins.Text, out int pgbMins) ? pgbMins : 0, int.TryParse(txtPOBMins.Text, out int pobMins) ? pobMins : 0);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
@@ -713,6 +715,8 @@ namespace ROMS
             try
             {
                 txtRackGroupName.Text = "";
+                txtPGBMins.Text = "";
+                txtPOBMins.Text = "";
                 //cmbConcern.SelectedValue = -1;
                 //grdRack.DataSource = null;
                 grdSelectedRack.Rows.Clear();
@@ -2763,7 +2767,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStockLocation.Focus();
+                    txtPGBMins.Focus();
                 }
             }
             catch (Exception ex)
@@ -2798,12 +2802,121 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void pnlStatus_Paint(object sender, PaintEventArgs e)
+        private void txtPGBMins_Enter(object sender, EventArgs e)
         {
-
+            try
+            {
+                txtPGBMins.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-         
+
+        private void txtPGBMins_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtPOBMins.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPGBMins_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPGBMins_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPGBMins.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPOBMins.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStockLocation.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPOBMins.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void DGV_SearchGridRight_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             try

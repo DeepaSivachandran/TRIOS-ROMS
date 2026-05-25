@@ -1101,7 +1101,7 @@ namespace ROMS
             return ds;
         }
         //Created BY:-Sathish
-        public string udfnStockLocation(int paraviewType, int paraStockId, int paraConcern, int paraLocationType, string paraLocationNameEnglish, string paraLocationNameTamil, string paraShortName, int paraGodownType, int paraStockApplicable, int paraStockStatusId, string paraOriginator, string paraUserID, int paraRKCreation, int paraRKGCreation, int paraDeleteFlag)
+        public string udfnStockLocation(int paraviewType, int paraStockId, int paraConcern, int paraLocationType, string paraLocationNameEnglish, string paraLocationNameTamil, string paraShortName, int paraGodownType, int paraStockApplicable, int paraStockStatusId, string paraOriginator, string paraUserID, int paraRKCreation, int paraRKGCreation, int paraDeleteFlag,int paraPickupGBMins,int paraPickupOBMins)
         {
             string varResult = "";
             try
@@ -1125,6 +1125,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraRKCreation", paraRKCreation);
                 varSqlCommand.Parameters.AddWithValue("@paraRKGCreation", paraRKGCreation);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraPickupGBMins", paraPickupGBMins);
+                varSqlCommand.Parameters.AddWithValue("@paraPickupOBMins", paraPickupOBMins);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
@@ -1911,7 +1913,7 @@ namespace ROMS
         }
 
         // Sivabharathi    Create date: 24/08/2023    Description:Rack Group SP
-        public string udfnRackGroup(int ViewType, int paraRKGID, int paraRKG_COMID, string paraRKG_Name, string paraRKGR_RKID, string paraRKGU_UID, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, int paraRKGOrderNo,DataTable paraRKGProduct)
+        public string udfnRackGroup(int ViewType, int paraRKGID, int paraRKG_COMID, string paraRKG_Name, string paraRKGR_RKID, string paraRKGU_UID, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, int paraRKGOrderNo,DataTable paraRKGProduct,int paraPickupGBMins, int paraPickupOBMins)
         {
             string varResult = "";
             try
@@ -1932,6 +1934,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraOriginator", paraOriginator);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraRKGOrderNo", paraRKGOrderNo);
+                varSqlCommand.Parameters.AddWithValue("@paraPickupGBMins", paraPickupGBMins);
+                varSqlCommand.Parameters.AddWithValue("@paraPickupOBMins", paraPickupOBMins);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();

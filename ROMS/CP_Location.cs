@@ -32,6 +32,8 @@ namespace ROMS
         public string PbLocationTName = "";
         public string PbLocationSName = "";
         public string PbStockApplicable = "";
+        public string pbPickupGBMins = "";
+        public string pbPickupOBMins = "";
         public string varUserID = "";
         public int PbConcernID = 0;
         public int PbLocationTypeID=0;
@@ -72,6 +74,8 @@ namespace ROMS
                 txtLocationNameInEnglish.Text = "";
                 txtLocationNameInTamil.Text = "";
                 txtShortName.Text = "";
+                txtPGBMins.Text = "";
+                txtPOBMins.Text = "";
                 cmbLocationType.SelectedIndex = 0;
                 cmbStockApplicable.SelectedIndex = 2;
                 cmbLocationType.Focus();
@@ -230,6 +234,8 @@ namespace ROMS
                 txtLocationNameInEnglish.Text = PbLocationEName;
                 txtLocationNameInTamil.Text = PbLocationTName;
                 txtShortName.Text = PbLocationSName;
+                txtPGBMins.Text = pbPickupGBMins;
+                txtPOBMins.Text = pbPickupOBMins;
                 cmbConcern.SelectedValue = PbConcernID;
                 cmbLocationType.SelectedValue = PbLocationTypeID;
                 cmbStockApplicable.SelectedValue = PbStockApplicableID;
@@ -400,7 +406,7 @@ namespace ROMS
                 }
                 if (saveflag == 0)
                 {
-                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID,RKCheck,RKGCheck,0);
+                    varResult = objspservice.udfnStockLocation(varType, varlocationcode, Convert.ToInt16(cmbConcern.SelectedValue), Convert.ToInt16(cmbLocationType.SelectedValue), (txtLocationNameInEnglish.Text).Trim(), (txtLocationNameInTamil.Text).Trim(), (txtShortName.Text).Trim(), varGodownType, Convert.ToInt16(cmbStockApplicable.SelectedValue), varstatus, varoriginator, MainForm.pbUserID, RKCheck, RKGCheck, 0, int.TryParse(txtPGBMins.Text, out int pgbMins) ? pgbMins : 0, int.TryParse(txtPOBMins.Text, out int pobMins) ? pobMins : 0);
                     objspservice.CloseConnection();
                     string[] varvalue = varResult.Split('~');
                     if (varvalue[0] == "3")
@@ -562,14 +568,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (chkRKCreation.Enabled == true)
-                    {
-                        chkRKCreation.Focus();
-                    }
-                    else
-                    {
-                        btnSave.Focus();
-                    }
+                    txtPGBMins.Focus();
                 }
             }
             catch (Exception ex)
@@ -584,7 +583,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    chkRKCreation.Focus();
+                    txtPGBMins.Focus();
                 }
             }
             catch (Exception ex)
@@ -898,7 +897,7 @@ namespace ROMS
                             rbInactive.Focus();
                         }
                     }
-                    else { chkRKCreation.Focus(); }
+                    else { txtPGBMins.Focus(); }
                 }
             }
             catch (Exception ex)
@@ -1232,6 +1231,129 @@ namespace ROMS
             try
             {
                 chkRKGCreation.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPGBMins_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPGBMins.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPGBMins_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    txtPOBMins.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPGBMins_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPGBMins_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPGBMins.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPOBMins.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (chkRKCreation.Enabled == true)
+                    {
+                        chkRKCreation.Focus();
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtPOBMins_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPOBMins.BackColor = Color.White;
             }
             catch (Exception ex)
             {
