@@ -158,8 +158,8 @@ namespace ROMS
         {
             try
             {
-                string varSupplierName = "-All-",varlocationName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-", varDelay = ""; int varDelayMin = 0;
-                int varSupplierCode = 0, varScheduleCode = 0, varProductCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+                string varSupplierName = "-All-",varLocationName= "-All-",varGroupName= "-All-",varSubgroupName= "-All-",varBrandName= "-All-";
+                int varSupplierCode = 0, varScheduleCode = 0, varLocationCode = 0, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
 
                 if(txtSupplier.Text.Trim()!="")
                 {
@@ -182,6 +182,11 @@ namespace ROMS
                     varBrandName = txtBrand.Text.Trim();
                     varBrandCode = Convert.ToInt32(lblBrandCode.Text);
                 }
+                if(txtLocation.Text.Trim()!="")
+                {
+                    varLocationName = txtLocation.Text.Trim();
+                    varLocationCode = Convert.ToInt32(lblLocationCode.Text);
+                }
 
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -192,17 +197,25 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 //**** To call the function from SP ***************
-                MR_Supplier objMR_Supplier = new MR_Supplier();
-                objMR_Supplier.ViewType = 41;
-                objMR_Supplier.paraSupplierid = varSupplierCode;
-                objMR_Supplier.paraSupplierScheduleid = varScheduleCode;
-                objMR_Supplier.paraProductCode = varProductCode;
-                objMR_Supplier.paraGroupCode = varGroupCode;
-                objMR_Supplier.paraSubgroupCode = varSubgroupCode;
-                objMR_Supplier.paraBrandCode = varBrandCode;
-                SPDataService objspdservice = new SPDataService();
-                objDs = objspdservice.udfnSupplierList(objMR_Supplier);
-                objspdservice.CloseConnection();
+
+                MR_Product objMR_ProductReport = new MR_Product();
+                objMR_ProductReport.paraViewType = 5;
+                objMR_ProductReport.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                objMR_ProductReport.paraRKGId = Convert.ToInt32(cmbRackGroup.SelectedValue);
+                objMR_ProductReport.paraProductCategory = Convert.ToInt32(cmbProductCategory.SelectedValue);
+                objMR_ProductReport.paraSubgroupType = Convert.ToInt32(cmbSubgroupType.SelectedValue);
+                objMR_ProductReport.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
+                objMR_ProductReport.paraGroup = varGroupCode;
+                objMR_ProductReport.paraSubgroup = varSubgroupCode;
+                objMR_ProductReport.paraBrandID = varBrandCode;
+                objMR_ProductReport.paraLocationId = varLocationCode;
+                objMR_ProductReport.ParaSupplierId = varSupplierCode;
+                objMR_ProductReport.ParaScheduleid = Convert.ToString(varScheduleCode);
+                objMR_ProductReport.ParaProductCode = 0;
+                objMR_ProductReport.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                SPDataService objspservice = new SPDataService();
+                objDs = objspservice.udfnproductmasterReport(objMR_ProductReport);
+                objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -213,20 +226,46 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SupplierWise_Products.rpt");
-                    objBillreport.SetParameterValue("paraSupplierid", varSupplierCode);
-                    objBillreport.SetParameterValue("paraSupplierScheduleid", varScheduleCode);
-                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("paraProductCode", varProductCode);
-                    objBillreport.SetParameterValue("paraProductName", varlocationName);
-                    objBillreport.SetParameterValue("paraGroupCode", varGroupCode);
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 572)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_LocationWise.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 573)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_GodownWise.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 574)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_RackDetails.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_RackSummary.rpt");
+                    }
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraRKGId", Convert.ToInt32(cmbRackGroup.SelectedValue));
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
+                    objBillreport.SetParameterValue("paraLocationType", Convert.ToInt32(cmbLocationType.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroup", varGroupCode);
+                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupCode);
+                    objBillreport.SetParameterValue("paraBrandID", varBrandCode);
+                    objBillreport.SetParameterValue("paraLocationId", varLocationCode);
+                    objBillreport.SetParameterValue("ParaSupplierId", varSupplierCode);
+                    objBillreport.SetParameterValue("ParaScheduleid", varScheduleCode);
+                    objBillreport.SetParameterValue("ParaProductCode", 0);
+                    objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
+
+                    objBillreport.SetParameterValue("paraCompanyName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraRKGName", Convert.ToString(cmbRackGroup.Text));
+                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbProductCategory.Text));
+                    objBillreport.SetParameterValue("paraSubgroupTypeName", Convert.ToString(cmbSubgroupType.Text));
                     objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupCode", varSubgroupCode);
                     objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
-                    objBillreport.SetParameterValue("paraBrandCode", varBrandCode);
                     objBillreport.SetParameterValue("paraBrandName", varBrandName);
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
@@ -240,7 +279,7 @@ namespace ROMS
                     else
                     {
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        string varReportName = "SupplierWise_Products";
+                        string varReportName = "Products Count";
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
@@ -342,6 +381,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID<>-1 ", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID IN (0,16,369)", "MST_DisplayText,MSTID", cmbProductCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (144)", "MST_DisplayText,MSTID", cmbLocationType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
@@ -386,7 +426,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterSupplier.Visible == false)
                 {
-                    btnView.Focus();
+                    cmbLocationType.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -459,7 +499,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbLocationType.Focus();
                     }
                 }
             }
@@ -568,7 +608,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }finally
             {
-                btnView.Focus();
+                cmbLocationType.Focus();
             }
         }
         private void TxtGroup_Enter(object sender, EventArgs e)
@@ -1234,7 +1274,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        btnView.Focus();
+                        cmbLocationType.Focus();
                     }
                 }
             }
@@ -2083,6 +2123,62 @@ namespace ROMS
             try
             {
                 cmbReportType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbLocationType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbLocationType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbLocationType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

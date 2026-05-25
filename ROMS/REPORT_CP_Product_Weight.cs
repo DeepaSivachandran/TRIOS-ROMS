@@ -141,7 +141,7 @@ namespace ROMS
                 picLoader.BringToFront();
                  Application.DoEvents();
                 int varPrint = 0;
-                 MR_ProductReport objMR_ProductReport = new MR_ProductReport();
+                 MR_Product objMR_ProductReport = new MR_Product();
                 objMR_ProductReport.paraViewType = 1;
                 objMR_ProductReport.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_ProductReport.ParaDate = Convert.ToString(dpFromDate.Text);

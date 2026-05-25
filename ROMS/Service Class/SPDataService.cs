@@ -1800,7 +1800,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnproductmasterReport(MR_ProductReport objMR_ProductReport)
+        public DataSet udfnproductmasterReport(MR_Product objMR_ProductReport)
         {
             DataSet ds = new DataSet();
             try
@@ -1813,9 +1813,18 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_ProductReport.paraBrandID);
                 varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_ProductReport.ParaCompanycode);
                 varSqlCommand.Parameters.AddWithValue("@paraLocationId", objMR_ProductReport.paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationType", objMR_ProductReport.paraLocationType);
                 varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_ProductReport.paraProductCategory);
                 varSqlCommand.Parameters.AddWithValue("@paraProductType", objMR_ProductReport.paraProductType);
-                varSqlCommand.Parameters.AddWithValue("@ParaDate", objMR_ProductReport.ParaDate); 
+                varSqlCommand.Parameters.AddWithValue("@ParaDate", objMR_ProductReport.ParaDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaProductCode", objMR_ProductReport.ParaProductCode);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", objMR_ProductReport.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@ParaSupplierId", objMR_ProductReport.ParaSupplierId);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", objMR_ProductReport.ParaScheduleid);
+                varSqlCommand.Parameters.AddWithValue("@paraRKGId", objMR_ProductReport.paraRKGId);
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", objMR_ProductReport.paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", objMR_ProductReport.paraSubgroupType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objMR_ProductReport.paraUserLocations);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);  
                 varSqlCommand.CommandTimeout = 0;
