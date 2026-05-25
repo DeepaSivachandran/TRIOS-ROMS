@@ -1469,7 +1469,7 @@ namespace ROMS
             try
             {
                 SPDataService objspservice = new SPDataService();
-                varResult = objspservice.udfnUser(5, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType);
+                varResult = objspservice.udfnUser(5, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType, 0);
                 objspservice.CloseConnection();
                 return varResult;
             }

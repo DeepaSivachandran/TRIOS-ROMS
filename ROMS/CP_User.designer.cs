@@ -47,13 +47,13 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.btnUserRoleMapped = new System.Windows.Forms.Button();
             this.cmbPasskey = new System.Windows.Forms.ComboBox();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
             this.txtDUserRole = new System.Windows.Forms.TextBox();
             this.txtDPassKey = new System.Windows.Forms.TextBox();
             this.epUser = new System.Windows.Forms.ErrorProvider(this.components);
             this.grdLocation = new System.Windows.Forms.DataGridView();
-            this.btnUserRoleMapped = new System.Windows.Forms.Button();
             this.pnlStatus.SuspendLayout();
             this.grbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUser)).BeginInit();
@@ -270,6 +270,18 @@
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
             // 
+            // btnUserRoleMapped
+            // 
+            this.btnUserRoleMapped.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUserRoleMapped.Image = global::ROMS.Properties.Resources.Convertion;
+            this.btnUserRoleMapped.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUserRoleMapped.Location = new System.Drawing.Point(465, 78);
+            this.btnUserRoleMapped.Name = "btnUserRoleMapped";
+            this.btnUserRoleMapped.Size = new System.Drawing.Size(27, 27);
+            this.btnUserRoleMapped.TabIndex = 21;
+            this.btnUserRoleMapped.UseVisualStyleBackColor = true;
+            this.btnUserRoleMapped.Click += new System.EventHandler(this.btnUserRoleMapped_Click);
+            // 
             // cmbPasskey
             // 
             this.cmbPasskey.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -293,7 +305,7 @@
             this.cmbUserRole.FormattingEnabled = true;
             this.cmbUserRole.Location = new System.Drawing.Point(204, 78);
             this.cmbUserRole.Name = "cmbUserRole";
-            this.cmbUserRole.Size = new System.Drawing.Size(288, 27);
+            this.cmbUserRole.Size = new System.Drawing.Size(255, 27);
             this.cmbUserRole.TabIndex = 3;
             this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.CmbUserRole_SelectedIndexChanged);
             this.cmbUserRole.Enter += new System.EventHandler(this.CmbUserRole_Enter);
@@ -360,20 +372,6 @@
             this.grdLocation.Size = new System.Drawing.Size(264, 186);
             this.grdLocation.StandardTab = true;
             this.grdLocation.TabIndex = 9;
-            // 
-            // btnUserRoleMapped
-            // 
-            this.btnUserRoleMapped.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnUserRoleMapped.Image = global::ROMS.Properties.Resources.save;
-            this.btnUserRoleMapped.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUserRoleMapped.Location = new System.Drawing.Point(507, 223);
-            this.btnUserRoleMapped.Name = "btnUserRoleMapped";
-            this.btnUserRoleMapped.Size = new System.Drawing.Size(84, 29);
-            this.btnUserRoleMapped.TabIndex = 21;
-            this.btnUserRoleMapped.Text = "Save";
-            this.btnUserRoleMapped.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUserRoleMapped.UseVisualStyleBackColor = true;
-            this.btnUserRoleMapped.Click += new System.EventHandler(this.btnUserRoleMapped_Click);
             // 
             // CP_User
             // 

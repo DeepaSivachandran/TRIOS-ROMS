@@ -386,7 +386,10 @@ namespace ROMS
                             udfnclose();
                         }
                     }
-
+                    if (varFormFlag == 1)
+                    {
+                        MainForm.objCP_User.pbVarUserRoleID = Convert.ToInt32(varvalue[2]);
+                    }
                     tbFirst.SelectedIndex = 1;
                 }
                 else

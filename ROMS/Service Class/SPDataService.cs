@@ -1387,7 +1387,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish Created On:-22/08/2023
-        public string udfnUser(int paraviewType, int paraUId, string paraNameoftheUser, string paraLoginId, int paraUserCategory, int paraUserRole, string paraPassword, int paraPassKey, int paraStatusId, string paraPasskeyValue, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable ParaUserLocation, int paraLogType)
+        public string udfnUser(int paraviewType, int paraUId, string paraNameoftheUser, string paraLoginId, int paraUserCategory, int paraUserRole, string paraPassword, int paraPassKey, int paraStatusId, string paraPasskeyValue, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable ParaUserLocation, int paraLogType,int paraCloneUserRoleID)
         {
             string varResult = "";
             try
@@ -1412,6 +1412,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@ParaUserLocation", ParaUserLocation);
                 varSqlCommand.Parameters.AddWithValue("@paraLogType", paraLogType);
+                varSqlCommand.Parameters.AddWithValue("@paraCloneUserRoleID", paraCloneUserRoleID);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
