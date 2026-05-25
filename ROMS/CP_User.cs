@@ -656,6 +656,7 @@ namespace ROMS
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
+                    btnUserRoleMapped.Enabled = false;
                 }
                 else
                 {
