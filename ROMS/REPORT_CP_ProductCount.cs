@@ -234,6 +234,14 @@ namespace ROMS
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_GodownWise.rpt");
                     }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 574)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_RackDetails.rpt");
+                    }
+                    else
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Pro_Count_RGWise_RackSummary.rpt");
+                    }
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraRKGId", Convert.ToInt32(cmbRackGroup.SelectedValue));
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbProductCategory.SelectedValue));
