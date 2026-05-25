@@ -932,7 +932,7 @@ namespace ROMS
 
                 string varResult = "";
                 SPDataService objDser = new SPDataService();
-                varResult = objDser.udfnRackGroup(3, 0, 0, "", "", "", 0, "Rackgroup Product Mapping", MainForm.pbUserID, 0, 0, dtRackgroupProduct);
+                varResult = objDser.udfnRackGroup(3, 0, 0, "", "", "", 0, "Rackgroup Product Mapping", MainForm.pbUserID, 0, 0, dtRackgroupProduct, 0, 0);
                 objDser.CloseConnection();
                 btnSave.Enabled = true;
                 if (varResult.Split('~')[0] == "3")
