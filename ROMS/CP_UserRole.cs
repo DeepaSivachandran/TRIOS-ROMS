@@ -31,7 +31,7 @@ namespace ROMS
         public DataTable objDtSplPermissionFilterTable = new DataTable();
         public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
 
-        public int varFormFlag = 0, varCurrentUserId = 0;
+        public int varFormFlag = 0, varCurrentUserId = 0, varUsersCount = 0;
         public MainForm MainObj { get; set; }
         public CP_UserRole()
         {
@@ -75,6 +75,13 @@ namespace ROMS
                     pnlUserRole.Visible = false;
                     tbFirst.Location=new Point(12, 29);
                     tbFirst.Size = new Size(1330, 566);
+                }
+                llUserCount.Text = Convert.ToString(varUsersCount);
+                lblUsersCount.Text = Convert.ToString(varUsersCount);
+                if (varUsersCount == 0)
+                {
+                    llUserCount.Enabled = false;
+                    btnMappedUser.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -1376,6 +1383,37 @@ namespace ROMS
             //    e.DrawDefault = true;
             //}
         }
+
+        private void llUserCount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_MappedUserList = new CP_MappedUserList();
+                MainForm.objCP_MappedUserList.pbvarUserRoleID = varUserRoleID;
+                MainForm.objCP_MappedUserList.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnMappedUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.objCP_MappedUserList = new CP_MappedUserList();
+                MainForm.objCP_MappedUserList.pbvarUserRoleID = varUserRoleID;
+                MainForm.objCP_MappedUserList.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void tvSubmenu_AfterCheck(object sender, TreeViewEventArgs e)
         {
             try

@@ -47,6 +47,7 @@ namespace ROMS
         public int varCategoryCode;
         public int pbVarUserRoleID = 0;
 
+        public int varMappedUserFlag = 0;
         public CP_User()
         {
             InitializeComponent();
@@ -675,8 +676,11 @@ namespace ROMS
             }
             finally
             {
-                MainForm.objCP_Userlist.picLoader.Visible = false;
-                MainForm.objCP_Userlist.picLoader.SendToBack();
+                if (varMappedUserFlag == 0)
+                {
+                    MainForm.objCP_Userlist.picLoader.Visible = false;
+                    MainForm.objCP_Userlist.picLoader.SendToBack();
+                }
             }
         }
         public void udfnLocationBind()

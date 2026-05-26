@@ -283,6 +283,7 @@ namespace ROMS
                         MainForm.objCP_UserRole.btnSave.Text = "Update";
                         MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
                         MainForm.objCP_UserRole.varUserRoleName = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
+                        MainForm.objCP_UserRole.varUsersCount = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["Total User"].Value);
                         MainForm.objCP_UserRole.varCLone = 0;
                         MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_UserRole.MdiParent = this.ParentForm;
@@ -1122,6 +1123,7 @@ namespace ROMS
                             MainForm.objCP_UserRole = new CP_UserRole();
                             MainForm.objCP_UserRole.btnSave.Text = "Save";
                             MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
+                            MainForm.objCP_UserRole.varUsersCount = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["Total User"].Value);
                             MainForm.objCP_UserRole.varCLone = 1; 
                             MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
                             //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
