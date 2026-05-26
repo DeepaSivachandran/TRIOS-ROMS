@@ -6319,6 +6319,49 @@ namespace ROMS
             }
             return ds;
         }
+
+        //Margin List
+        public DataSet udfnmarginlist(MR_MarginEntry objMR_MarginEntry)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNG_Margin", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_MarginEntry.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_MarginEntry.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", objMR_MarginEntry.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_MarginEntry.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_MarginEntry.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplier", objMR_MarginEntry.paraSupplier);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objMR_MarginEntry.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", objMR_MarginEntry.ParaScheduleid);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objMR_MarginEntry.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_MarginEntry.paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objMR_MarginEntry.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitId", objMR_MarginEntry.paraUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraPicode", objMR_MarginEntry.paraPicode);
+                varSqlCommand.Parameters.AddWithValue("@paraProductName", objMR_MarginEntry.paraProductName);
+                varSqlCommand.Parameters.AddWithValue("@paraRateCategory", objMR_MarginEntry.paraRateCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraMValue", objMR_MarginEntry.paraMValue);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
     }
 
 }
