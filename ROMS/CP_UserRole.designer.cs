@@ -29,18 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsBrandList = new System.Windows.Forms.ToolStrip();
+            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
             this.pnlCompany = new System.Windows.Forms.Panel();
             this.pnlUserRole = new System.Windows.Forms.Panel();
+            this.btnMappedUser = new System.Windows.Forms.Button();
+            this.lblUsersCount = new System.Windows.Forms.Label();
+            this.llUserCount = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.txtUserRole = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.tbFirst = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -65,19 +72,14 @@
             this.clmParentFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrivilegeCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmsplflag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.llUserCount = new System.Windows.Forms.LinkLabel();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.Action = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tspHeader = new System.Windows.Forms.ToolStripLabel();
+            this.epCompany = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lblUsersCount = new System.Windows.Forms.Label();
-            this.btnMappedUser = new System.Windows.Forms.Button();
+            this.txtMenuName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tsBrandList.SuspendLayout();
             this.pnlCompany.SuspendLayout();
             this.pnlUserRole.SuspendLayout();
@@ -106,6 +108,16 @@
             this.tsBrandList.TabIndex = 35;
             this.tsBrandList.Text = "Brand";
             // 
+            // tspHeader
+            // 
+            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
+            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.tspHeader.Name = "tspHeader";
+            this.tspHeader.Size = new System.Drawing.Size(76, 22);
+            this.tspHeader.Text = "User Role";
+            // 
             // pnlCompany
             // 
             this.pnlCompany.BackColor = System.Drawing.Color.White;
@@ -120,6 +132,8 @@
             // 
             // pnlUserRole
             // 
+            this.pnlUserRole.Controls.Add(this.label4);
+            this.pnlUserRole.Controls.Add(this.txtMenuName);
             this.pnlUserRole.Controls.Add(this.btnMappedUser);
             this.pnlUserRole.Controls.Add(this.lblUsersCount);
             this.pnlUserRole.Controls.Add(this.llUserCount);
@@ -132,6 +146,48 @@
             this.pnlUserRole.Name = "pnlUserRole";
             this.pnlUserRole.Size = new System.Drawing.Size(1330, 53);
             this.pnlUserRole.TabIndex = 4;
+            // 
+            // btnMappedUser
+            // 
+            this.btnMappedUser.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnMappedUser.Image = global::ROMS.Properties.Resources.view;
+            this.btnMappedUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMappedUser.Location = new System.Drawing.Point(1294, 11);
+            this.btnMappedUser.Name = "btnMappedUser";
+            this.btnMappedUser.Size = new System.Drawing.Size(32, 31);
+            this.btnMappedUser.TabIndex = 22;
+            this.btnMappedUser.UseVisualStyleBackColor = true;
+            this.btnMappedUser.Click += new System.EventHandler(this.btnMappedUser_Click);
+            // 
+            // lblUsersCount
+            // 
+            this.lblUsersCount.AutoSize = true;
+            this.lblUsersCount.Location = new System.Drawing.Point(1272, 16);
+            this.lblUsersCount.Name = "lblUsersCount";
+            this.lblUsersCount.Size = new System.Drawing.Size(23, 20);
+            this.lblUsersCount.TabIndex = 21;
+            this.lblUsersCount.Text = "99";
+            // 
+            // llUserCount
+            // 
+            this.llUserCount.AutoSize = true;
+            this.llUserCount.Location = new System.Drawing.Point(1144, 0);
+            this.llUserCount.Name = "llUserCount";
+            this.llUserCount.Size = new System.Drawing.Size(23, 20);
+            this.llUserCount.TabIndex = 0;
+            this.llUserCount.TabStop = true;
+            this.llUserCount.Text = "99";
+            this.llUserCount.Visible = false;
+            this.llUserCount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llUserCount_LinkClicked);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1144, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(128, 20);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "No. of Mapped Users : ";
             // 
             // label2
             // 
@@ -196,6 +252,34 @@
             this.label1.Size = new System.Drawing.Size(60, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "User Role";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnSave.Image = global::ROMS.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1175, 605);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(78, 29);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnClose.Image = global::ROMS.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(1260, 605);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(78, 29);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.Text = "Close";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // tbFirst
             // 
@@ -313,14 +397,14 @@
             this.grdUserPermission.AllowUserToResizeRows = false;
             this.grdUserPermission.BackgroundColor = System.Drawing.Color.White;
             this.grdUserPermission.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdUserPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grdUserPermission.ColumnHeadersHeight = 30;
             this.grdUserPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdUserPermission.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -338,23 +422,23 @@
             this.clmPrivilegeCode,
             this.clmsplflag,
             this.Action});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdUserPermission.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdUserPermission.EnableHeadersVisualStyles = false;
             this.grdUserPermission.GridColor = System.Drawing.Color.White;
             this.grdUserPermission.Location = new System.Drawing.Point(6, 20);
             this.grdUserPermission.Name = "grdUserPermission";
             this.grdUserPermission.RowHeadersVisible = false;
             this.grdUserPermission.RowHeadersWidth = 51;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            this.grdUserPermission.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdUserPermission.RowTemplate.Height = 25;
             this.grdUserPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdUserPermission.ShowRowErrors = false;
@@ -442,30 +526,19 @@
             this.clmsplflag.Name = "clmsplflag";
             this.clmsplflag.Visible = false;
             // 
+            // Action
+            // 
+            this.Action.HeaderText = "Special Permission";
+            this.Action.Image = global::ROMS.Properties.Resources.padlock;
+            this.Action.MinimumWidth = 6;
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Action.Width = 120;
+            // 
             // epCompany
             // 
             this.epCompany.ContainerControl = this;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1066, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 20);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "No. of Mapped Users : ";
-            // 
-            // llUserCount
-            // 
-            this.llUserCount.AutoSize = true;
-            this.llUserCount.Location = new System.Drawing.Point(1297, 16);
-            this.llUserCount.Name = "llUserCount";
-            this.llUserCount.Size = new System.Drawing.Size(23, 20);
-            this.llUserCount.TabIndex = 0;
-            this.llUserCount.TabStop = true;
-            this.llUserCount.Text = "99";
-            this.llUserCount.Visible = false;
-            this.llUserCount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llUserCount_LinkClicked);
             // 
             // dataGridViewImageColumn1
             // 
@@ -477,54 +550,6 @@
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn1.Width = 120;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnSave.Image = global::ROMS.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(1175, 605);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(78, 29);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnClose.Image = global::ROMS.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1260, 605);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(78, 29);
-            this.btnClose.TabIndex = 8;
-            this.btnClose.Text = "Close";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // Action
-            // 
-            this.Action.HeaderText = "Special Permission";
-            this.Action.Image = global::ROMS.Properties.Resources.padlock;
-            this.Action.MinimumWidth = 6;
-            this.Action.Name = "Action";
-            this.Action.ReadOnly = true;
-            this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Action.Width = 120;
-            // 
-            // tspHeader
-            // 
-            this.tspHeader.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tspHeader.Image = global::ROMS.Properties.Resources.bread_crumb;
-            this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(76, 22);
-            this.tspHeader.Text = "User Role";
             // 
             // dataGridViewImageColumn2
             // 
@@ -546,26 +571,25 @@
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // lblUsersCount
+            // txtMenuName
             // 
-            this.lblUsersCount.AutoSize = true;
-            this.lblUsersCount.Location = new System.Drawing.Point(1194, 16);
-            this.lblUsersCount.Name = "lblUsersCount";
-            this.lblUsersCount.Size = new System.Drawing.Size(23, 20);
-            this.lblUsersCount.TabIndex = 21;
-            this.lblUsersCount.Text = "99";
+            this.txtMenuName.BackColor = System.Drawing.Color.White;
+            this.txtMenuName.Location = new System.Drawing.Point(920, 13);
+            this.txtMenuName.Name = "txtMenuName";
+            this.txtMenuName.Size = new System.Drawing.Size(218, 27);
+            this.txtMenuName.TabIndex = 23;
+            this.txtMenuName.TextChanged += new System.EventHandler(this.txtMenuName_TextChanged);
+            this.txtMenuName.Enter += new System.EventHandler(this.txtMenuName_Enter);
+            this.txtMenuName.Leave += new System.EventHandler(this.txtMenuName_Leave);
             // 
-            // btnMappedUser
+            // label4
             // 
-            this.btnMappedUser.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.btnMappedUser.Image = global::ROMS.Properties.Resources.view;
-            this.btnMappedUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMappedUser.Location = new System.Drawing.Point(1216, 11);
-            this.btnMappedUser.Name = "btnMappedUser";
-            this.btnMappedUser.Size = new System.Drawing.Size(32, 31);
-            this.btnMappedUser.TabIndex = 22;
-            this.btnMappedUser.UseVisualStyleBackColor = true;
-            this.btnMappedUser.Click += new System.EventHandler(this.btnMappedUser_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(842, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 20);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Menu Name";
             // 
             // CP_UserRole
             // 
@@ -653,5 +677,7 @@
         private System.Windows.Forms.LinkLabel llUserCount;
         private System.Windows.Forms.Label lblUsersCount;
         public System.Windows.Forms.Button btnMappedUser;
+        private System.Windows.Forms.TextBox txtMenuName;
+        private System.Windows.Forms.Label label4;
     }
 }

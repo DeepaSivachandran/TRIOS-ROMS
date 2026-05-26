@@ -658,7 +658,6 @@ namespace ROMS
 
                                     }
                                 }
-
                             }
                             grdUserPermission_DataBindingComplete(grdUserPermission, new DataGridViewBindingCompleteEventArgs(ListChangedType.Reset));
                         }
@@ -1406,6 +1405,65 @@ namespace ROMS
                 MainForm.objCP_MappedUserList = new CP_MappedUserList();
                 MainForm.objCP_MappedUserList.pbvarUserRoleID = varUserRoleID;
                 MainForm.objCP_MappedUserList.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtMenuName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    string searchText = txtMenuName.Text.Trim().ToLower();
+
+                    foreach (DataGridViewRow row in grdUserPermission.Rows)
+                    {
+                        if (row.Cells["clmMenuname"].Value != null)
+                        {
+                            string menuName = row.Cells["clmMenuname"].Value
+                                .ToString()
+                                .ToLower();
+
+                            row.Visible = menuName.Contains(searchText);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    objError = new DataError();
+                    objError.WriteFile(ex);
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtMenuName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtMenuName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtMenuName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                 txtMenuName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
