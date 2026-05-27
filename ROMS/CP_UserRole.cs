@@ -650,12 +650,10 @@ namespace ROMS
                                         {
                                             for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                             {
-                                                grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
+                                                grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
 
                                             }
                                         }
-
-
                                     }
                                 }
                             }
@@ -721,7 +719,7 @@ namespace ROMS
                 {
                     // Define the names of the columns to enable/disable
                     var permissionColumns = new[] {
-
+                        "clmFullAccess",
             "clmViewchk",
             "clmCreatechk",
             "clmEditchk",
@@ -837,7 +835,7 @@ namespace ROMS
                         string PrivilegeCode = row.Cells["clmPrivilegeCode"].Value?.ToString() ?? "";
                         string splFlag = row.Cells["clmsplflag"].Value?.ToString() ?? "";
                         int privilegeNo = 0;
-                        var chkCols = new[] { "clmViewchk", "clmCreatechk", "clmEditchk", "clmDeletechk", "clmPrintchk", "clmExcelchk", "clmNotificationchk" };
+                        var chkCols = new[] { "clmFullAccess", "clmViewchk", "clmCreatechk", "clmEditchk", "clmDeletechk", "clmPrintchk", "clmExcelchk", "clmNotificationchk" };
                         // Split allowed privileges like "1,2,5"
                         var allowed = PrivilegeCode.Split(',')
                                                    .Select(s => s.Trim())
@@ -890,8 +888,35 @@ namespace ROMS
                             //    row.Cells[colIndex].ReadOnly = true;
                             //}
                         }
+                        /*
 
-                        string imgCol = "Action";
+                    // Hide FullAccess checkbox if all permission columns are hidden
+                    bool allHidden = true;
+
+                    foreach (var colName in chkCols)
+                    {
+                        if (row.Cells[colName] is DataGridViewCheckBoxCell)
+                        {
+                            allHidden = false;
+                            break;
+                        }
+                    }
+
+                    if (allHidden)
+                    {
+                        int fullAccessColIndex = grdUserPermission.Columns["clmFullAccess"].Index;
+
+                        var blankCell = new DataGridViewTextBoxCell()
+                        {
+                            Value = ""
+                        };
+
+                        row.Cells[fullAccessColIndex] = blankCell;
+                        row.Cells[fullAccessColIndex].ReadOnly = true;
+                    }
+                    */
+
+                    string imgCol = "Action";
                     if (splFlag == "0")
                     {
                         var imgCell = row.Cells[imgCol];
@@ -1083,6 +1108,7 @@ namespace ROMS
                 {
                     // Define the names of the columns to enable/disable
                     var permissionColumns = new[] {
+            "clmFullAccess",
             "clmViewchk",
             "clmCreatechk",
             "clmEditchk",
@@ -1754,12 +1780,9 @@ namespace ROMS
                                 {
                                     for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                     {
-                                        grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
-
+                                        grdUserPermission.Rows.Add(Convert.ToString(objDs.Tables[0].Rows[i]["MU_NAME"]), 0, 1, 0, 0, 0, 0, 0, 0, Convert.ToString(objDs.Tables[0].Rows[i]["Menu Code"]), Convert.ToString(objDs.Tables[0].Rows[i]["URM_Access_Level"]), Convert.ToString(objDs.Tables[0].Rows[i]["IsParentFlag"]), Convert.ToString(objDs.Tables[0].Rows[i]["PrivilegeCode"]), Convert.ToString(objDs.Tables[0].Rows[i]["SplFlag"]));
                                     }
                                 }
-
-
                             }
                         }
 
