@@ -22,10 +22,11 @@ namespace ROMS.Model
         public string paraAlpha = "";
         public int paraProductCategory = 0;
         public int paraType = 0;
-        public int paraUnitId = 0;
+        public string paraUnitId = "";
         public string paraPicode = "";
         public string paraProductName = "";
         public string paraRateCategory = "0";
         public int paraMValue = 0;
+        public DataTable ParaMargin { get; set; } = null;
     }
 }

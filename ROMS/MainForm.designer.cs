@@ -2035,12 +2035,13 @@ namespace ROMS
             this.tsmMs.Size = new System.Drawing.Size(35, 24);
             this.tsmMs.Text = "&MS";
             this.tsmMs.Visible = false;
+            this.tsmMs.Click += new System.EventHandler(this.TsmMs_Click);
             // 
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
             this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
-            this.tsmMarginEntry.Text = "M.Entry";
+            this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
             // 
