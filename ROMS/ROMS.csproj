@@ -714,6 +714,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_CP_Pro_Count_GodownWise.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_CP_Pro_Count_RGWise_RackSummary.cs">
       <DependentUpon>RPT_CP_Pro_Count_RGWise_RackSummary.rpt</DependentUpon>
@@ -881,6 +882,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\RPT_REPORT_Product_RC.cs">
       <AutoGen>True</AutoGen>
@@ -5276,6 +5278,7 @@
     <EmbeddedResource Include="Reports\RPT_CP_Pro_Count_GodownWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Pro_Count_GodownWise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Reports\RPT_CP_Pro_Count_RGWise_RackDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -5465,6 +5468,7 @@
     <EmbeddedResource Include="Reports\RPT_Purchase_Summary_Portrait.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Purchase_Summary_Portrait.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_DET_Batch_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
