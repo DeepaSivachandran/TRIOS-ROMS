@@ -793,28 +793,30 @@ namespace ROMS
                                                .ToList();
                     }
 
-                    // =========================
-                    // HANDLE PERMISSION CELLS
-                    // =========================
-
+                    // =========================================
+                    // HANDLE PERMISSION CELLS (FIXED TO PRESERVE VALUES)
+                    // =========================================
                     foreach (var item in permissionMap)
                     {
                         string colName = item.Key;
                         int privilegeNo = item.Value;
-
                         int colIndex = grdUserPermission.Columns[colName].Index;
 
                         if (allowed.Contains(privilegeNo))
                         {
+                            // FIX: ONLY create a new cell if it isn't already a checkbox cell
                             if (!(row.Cells[colIndex] is DataGridViewCheckBoxCell))
                             {
                                 row.Cells[colIndex] = new DataGridViewCheckBoxCell();
                             }
 
                             row.Cells[colIndex].ReadOnly = false;
+                            // Reset styling to default grid color in case it was grayed out previously
+                            row.Cells[colIndex].Style.BackColor = grdUserPermission.DefaultCellStyle.BackColor;
                         }
                         else
                         {
+                            // If it's not allowed, turn it into a disabled text cell
                             row.Cells[colIndex] = new DataGridViewTextBoxCell()
                             {
                                 Value = ""
@@ -825,10 +827,9 @@ namespace ROMS
                         }
                     }
 
-                    // =========================
+                    // =========================================
                     // HANDLE FULL ACCESS
-                    // =========================
-
+                    // =========================================
                     bool allPermissionsHidden = permissionMap.Keys
                         .Where(c => c != "clmViewchk")
                         .All(c => row.Cells[c] is DataGridViewTextBoxCell);
@@ -851,36 +852,40 @@ namespace ROMS
                         }
 
                         row.Cells["clmFullAccess"].ReadOnly = false;
+                        row.Cells["clmFullAccess"].Style.BackColor = grdUserPermission.DefaultCellStyle.BackColor;
                     }
 
-                    // =========================
+                    // =========================================
                     // HANDLE ACTION IMAGE
-                    // =========================
-
+                    // =========================================
                     if (splFlag == "0" || !allowed.Contains(8))
                     {
                         row.Cells["Action"].Value = new Bitmap(1, 1);
                         row.Cells["Action"].ReadOnly = true;
-
-                        // IMPORTANT FIX
                         row.Cells["Action"].Style.BackColor = Color.LightGray;
                     }
                     else
                     {
                         row.Cells["Action"].ReadOnly = false;
-
-                        // Reset normal color
-                        row.Cells["Action"].Style.BackColor =
-                            grdUserPermission.DefaultCellStyle.BackColor;
+                        row.Cells["Action"].Style.BackColor = grdUserPermission.DefaultCellStyle.BackColor;
                     }
 
-                    // =========================
+                    // =========================================
                     // APPLY SAVED CHECK VALUES
-                    // =========================
-
+                    // =========================================
                     if (!string.IsNullOrWhiteSpace(values))
                     {
                         string[] indexes = values.Split(',');
+
+                        // First, reset all active checkboxes to false before applying data values 
+                        // so old selections from previous loads don't linger around
+                        foreach (string colName in permissionMap.Keys)
+                        {
+                            if (row.Cells[colName] is DataGridViewCheckBoxCell cbCell)
+                            {
+                                cbCell.Value = false;
+                            }
+                        }
 
                         foreach (string index in indexes)
                         {
@@ -925,6 +930,43 @@ namespace ROMS
                                 }
                             }
                         }
+                    }
+                    else
+                    {
+                        // If URM_Access_Level is completely empty, make sure to explicitly uncheck everything
+                        foreach (string colName in permissionMap.Keys)
+                        {
+                            if (row.Cells[colName] is DataGridViewCheckBoxCell cbCell)
+                            {
+                                cbCell.Value = false;
+                            }
+                        }
+                    }
+
+                    // =============================================
+                    // NEW: UPDATE FULL ACCESS BASED ON ACTIVE CELLS
+                    // =============================================
+                    if (row.Cells["clmFullAccess"] is DataGridViewCheckBoxCell fullAccessCell)
+                    {
+                        bool allChecked = true;
+                        bool hasActiveCheckboxes = false;
+
+                        foreach (string colName in permissionMap.Keys)
+                        {
+                            if (row.Cells[colName] is DataGridViewCheckBoxCell cbCell)
+                            {
+                                hasActiveCheckboxes = true;
+                                bool isChecked = cbCell.Value != null && Convert.ToBoolean(cbCell.Value);
+
+                                if (!isChecked)
+                                {
+                                    allChecked = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                        fullAccessCell.Value = hasActiveCheckboxes && allChecked;
                     }
                 }
             }
