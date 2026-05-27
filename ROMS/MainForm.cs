@@ -110,6 +110,7 @@ namespace ROMS
         public static CP_RackList objCP_RackList;
         public static CP_UserList objCP_Userlist;
         public static CP_User objCP_User;
+        public static CP_MappedUserList objCP_MappedUserList;
         public static CP_User_ResetPassword objCP_User_ResetPassword;
         public static CP_PurchaseList objCP_PurchaseList;
         public static CP_SupplierMappinglist objCP_SupplierMappinglist;
@@ -1469,7 +1470,7 @@ namespace ROMS
             try
             {
                 SPDataService objspservice = new SPDataService();
-                varResult = objspservice.udfnUser(5, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType);
+                varResult = objspservice.udfnUser(5, varUserID, "", "", 0, 0, "", 0, 0, "", "", Convert.ToString(varUserID), 0, null, varType, 0);
                 objspservice.CloseConnection();
                 return varResult;
             }

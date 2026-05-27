@@ -45,7 +45,9 @@ namespace ROMS
         public int PbStatus=0;
         public int varUpdate = 0;
         public int varCategoryCode;
+        public int pbVarUserRoleID = 0;
 
+        public int varMappedUserFlag = 0;
         public CP_User()
         {
             InitializeComponent();
@@ -364,7 +366,7 @@ namespace ROMS
                         }
                     }
                 }
-                varResult = objspservice.udfnUser(varType, Convert.ToInt32(varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, "", varoriginator, MainForm.pbUserID, 0, dtCheckedLocations, 0);
+                varResult = objspservice.udfnUser(varType, Convert.ToInt32(varUserID), (txtUserName.Text).Trim(), (txtLoginID.Text).Trim(), 0, Convert.ToInt16(cmbUserRole.SelectedValue), varpassword, Convert.ToInt16(cmbPasskey.SelectedValue), varstatus, "", varoriginator, MainForm.pbUserID, 0, dtCheckedLocations, 0, pbVarUserRoleID);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -648,13 +650,14 @@ namespace ROMS
                 txtUserName.Focus();
                 this.ActiveControl = txtUserName;
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("MR_UserRole", "UR_STSID=1 and URID !=0 Order by URID", "UR_Name,URID", cmbUserRole, "", "UR_Name", "URID");
+                objDataBind.BindComboBoxListSelected("MR_UserRole", "UR_STSID=1 AND URID !=0 AND COALESCE(UR_CloneRole,0)=0 Order by URID", "UR_Name,URID", cmbUserRole, "", "UR_Name", "URID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", " MST_TransactionID in (0,7) and MSTID !=0 Order by MSTID", "MST_DisplayText,MSTID", cmbPasskey, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
                 if (btnSave.Text == "Save")
                 {
                     pnlStatus.Enabled = false;
+                    btnUserRoleMapped.Enabled = false;
                 }
                 else
                 {
@@ -673,8 +676,11 @@ namespace ROMS
             }
             finally
             {
-                MainForm.objCP_Userlist.picLoader.Visible = false;
-                MainForm.objCP_Userlist.picLoader.SendToBack();
+                if (varMappedUserFlag == 0)
+                {
+                    MainForm.objCP_Userlist.picLoader.Visible = false;
+                    MainForm.objCP_Userlist.picLoader.SendToBack();
+                }
             }
         }
         public void udfnLocationBind()
@@ -763,6 +769,7 @@ namespace ROMS
                             txtLoginID.Enabled = false;
                             txtPassword.Enabled = false;
                             txtCPassword.Enabled = false;
+                            pbVarUserRoleID = Convert.ToInt32(objDs.Tables[0].Rows[0]["UserRoleID"].ToString());
                         }
                         if (objDs.Tables[1].Rows.Count > 0)
                         {
@@ -921,6 +928,7 @@ namespace ROMS
                 {
                     udfnLocationBind();
                 }
+                pbVarUserRoleID = Convert.ToInt32(cmbUserRole.SelectedValue);
             }
             catch (Exception ex)
             {
@@ -1018,6 +1026,40 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void btnUserRoleMapped_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Application.DoEvents();
+
+                CP_UserRole role = new CP_UserRole();
+
+                role.MainObj = this.ParentForm as MainForm;
+
+                role.btnSave.Text = "Update";
+
+                role.varUserRoleID = pbVarUserRoleID;
+
+                role.varUserRoleName =
+                    Convert.ToString(cmbUserRole.Text);
+
+                role.varCLone = 0;
+                role.varFormFlag = 1;
+                role.varCurrentUserId = Convert.ToInt32(varUserID);
+
+                role.varstatusid =
+                    Convert.ToString(1);
+
+                role.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void CmbPasskey_Enter(object sender, EventArgs e)
         {
             try
