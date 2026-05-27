@@ -2789,6 +2789,28 @@ namespace ROMS
             }
             return varstr;
         }
+        private int GetRackCount(int locationId, int prid)
+        {
+            DataSet objds;
+            int rackCount = 0;
+            objds = null;
+            DataService objdservice = new DataService();
+            DataTable objDt = new DataTable(); 
+            objds = objdservice.GetDataset("SELECT RKID,RK_Name FROM MR_Rack WHERE RKID NOT IN (-1,0) AND RK_STSID=1 AND RK_SLID= " + locationId);
+            objdservice.CloseConnection();
+            if (objds != null)
+            {
+                if (objds.Tables.Count > 0)
+                {
+                    if (objds.Tables[0].Rows.Count > 0)
+                    {
+                        rackCount = 1;
+                    }
+                }
+            }
+
+            return rackCount;
+        }
         public AutoCompleteStringCollection AutoCompleteRmPro()
         {
             AutoCompleteStringCollection varstr = new AutoCompleteStringCollection();
@@ -3468,6 +3490,88 @@ namespace ROMS
             try
             {
                 cmbCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void grdLoction_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grdLoction.Columns[e.ColumnIndex].Name == "Pur.Stock Location-New")
+                {
+                    int rowIndex = e.RowIndex;
+
+                    string varSLName = "";
+
+                    int varPRID =
+                        Convert.ToInt32(grdLoction.Rows[rowIndex]
+                        .Cells["PRID"].Value);
+                    int varSLID = 0;
+
+                    varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-New"].Value);
+                    if (varSLName == "") { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Pur.Stock Location-Current"].Value); }
+                    var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("SLID") into g select g.Key;
+                    if (varPurStockLocation.Count() > 0)
+                    { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); }
+
+                    int rackCount = GetRackCount(varSLID, varPRID);
+
+                    DataGridViewCell rackCell =
+                        grdLoction.Rows[rowIndex].Cells["Pur.Rack-New"];
+
+                    if (rackCount == 0)
+                    {
+                        rackCell.Value = "";
+                        rackCell.ReadOnly = true;
+                        rackCell.Style.BackColor = Color.LightGray;
+                    }
+                    else
+                    {
+                        rackCell.ReadOnly = false;
+                        rackCell.Style.BackColor = Color.PaleGreen;
+                    }
+                }
+                else if (grdLoction.Columns[e.ColumnIndex].Name == "Sales Location-New")
+                {
+                    int rowIndex = e.RowIndex;
+
+                    string varSLName = "";
+
+                    int varPRID =
+                        Convert.ToInt32(grdLoction.Rows[rowIndex]
+                        .Cells["PRID"].Value);
+                    int varSLID = 0;
+                      
+                    varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-New"].Value); 
+                    if (varSLName == "") { varSLName = Convert.ToString(grdLoction.CurrentRow.Cells["Sales Location-Current"].Value); }
+                    var varPurStockLocation = from r in objDSLocation.Tables[0].AsEnumerable() where (r.Field<string>("SL_EName").ToUpper().Equals(varSLName.ToUpper())) group r by r.Field<int>("SLID") into g select g.Key;
+                    if (varPurStockLocation.Count() > 0)
+                    { varSLID = Convert.ToInt32(varPurStockLocation.ToList()[0]); } 
+                     
+
+                    int rackCount = GetRackCount(varSLID, varPRID);
+
+                    DataGridViewCell rackCell =
+                        grdLoction.Rows[rowIndex].Cells["Sales Rack-New"];
+
+                    if (rackCount == 0)
+                    {
+                        rackCell.Value = "";
+                        rackCell.ReadOnly = true;
+                        rackCell.Style.BackColor = Color.LightGray;
+                    }
+                    else
+                    {
+                        rackCell.ReadOnly = false;
+                        rackCell.Style.BackColor = Color.PaleGreen;
+                    }
+                }
+                
+                    
             }
             catch (Exception ex)
             {

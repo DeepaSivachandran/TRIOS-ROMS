@@ -149,6 +149,7 @@ namespace ROMS
             this.tsmSupplierReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductsReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProductCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmProductCount = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTaxChanges = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInactiveProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSupplierWiseProducts = new System.Windows.Forms.ToolStripMenuItem();
@@ -240,7 +241,6 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmProductCount = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -989,14 +989,14 @@ namespace ROMS
             // tsmDLPSingleProduct
             // 
             this.tsmDLPSingleProduct.Name = "tsmDLPSingleProduct";
-            this.tsmDLPSingleProduct.Size = new System.Drawing.Size(160, 22);
+            this.tsmDLPSingleProduct.Size = new System.Drawing.Size(180, 22);
             this.tsmDLPSingleProduct.Text = "Single Product";
             this.tsmDLPSingleProduct.Click += new System.EventHandler(this.tsmDLPSingleProduct_Click);
             // 
             // tsmDLPMultipleProducts
             // 
             this.tsmDLPMultipleProducts.Name = "tsmDLPMultipleProducts";
-            this.tsmDLPMultipleProducts.Size = new System.Drawing.Size(160, 22);
+            this.tsmDLPMultipleProducts.Size = new System.Drawing.Size(180, 22);
             this.tsmDLPMultipleProducts.Text = "Multiple Products";
             this.tsmDLPMultipleProducts.Click += new System.EventHandler(this.tsmDLPMultipleProducts_Click);
             // 
@@ -1333,6 +1333,14 @@ namespace ROMS
             this.tsmProductCategory.Text = "Product Category";
             this.tsmProductCategory.Visible = false;
             this.tsmProductCategory.Click += new System.EventHandler(this.tsmProductCategory_Click);
+            // 
+            // tsmProductCount
+            // 
+            this.tsmProductCount.Name = "tsmProductCount";
+            this.tsmProductCount.Size = new System.Drawing.Size(225, 22);
+            this.tsmProductCount.Text = "Product Count";
+            this.tsmProductCount.Visible = false;
+            this.tsmProductCount.Click += new System.EventHandler(this.tsmProductCount_Click);
             // 
             // tsmTaxChanges
             // 
@@ -2002,9 +2010,9 @@ namespace ROMS
             this.tsmControlPanel,
             this.tsmTally,
             this.tsmReports,
-            this.tsmMyProfile,
             this.tsmFYSettings,
             this.tsmSalesMasters,
+            this.tsmMyProfile,
             this.tsmGif});
             this.ms.Location = new System.Drawing.Point(0, 0);
             this.ms.Name = "ms";
@@ -2143,14 +2151,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmProductCount
-            // 
-            this.tsmProductCount.Name = "tsmProductCount";
-            this.tsmProductCount.Size = new System.Drawing.Size(225, 22);
-            this.tsmProductCount.Text = "Product Count";
-            this.tsmProductCount.Visible = false;
-            this.tsmProductCount.Click += new System.EventHandler(this.tsmProductCount_Click);
             // 
             // MainForm
             // 
