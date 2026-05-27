@@ -47,6 +47,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.grbForm = new System.Windows.Forms.GroupBox();
+            this.btnUserRoleMapped = new System.Windows.Forms.Button();
             this.cmbPasskey = new System.Windows.Forms.ComboBox();
             this.cmbUserRole = new System.Windows.Forms.ComboBox();
             this.txtDUserRole = new System.Windows.Forms.TextBox();
@@ -246,6 +247,7 @@
             // 
             // grbForm
             // 
+            this.grbForm.Controls.Add(this.btnUserRoleMapped);
             this.grbForm.Controls.Add(this.cmbPasskey);
             this.grbForm.Controls.Add(this.cmbUserRole);
             this.grbForm.Controls.Add(this.txtDUserRole);
@@ -267,6 +269,18 @@
             this.grbForm.Size = new System.Drawing.Size(779, 261);
             this.grbForm.TabIndex = 0;
             this.grbForm.TabStop = false;
+            // 
+            // btnUserRoleMapped
+            // 
+            this.btnUserRoleMapped.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            this.btnUserRoleMapped.Image = global::ROMS.Properties.Resources.Convertion;
+            this.btnUserRoleMapped.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUserRoleMapped.Location = new System.Drawing.Point(465, 78);
+            this.btnUserRoleMapped.Name = "btnUserRoleMapped";
+            this.btnUserRoleMapped.Size = new System.Drawing.Size(27, 27);
+            this.btnUserRoleMapped.TabIndex = 21;
+            this.btnUserRoleMapped.UseVisualStyleBackColor = true;
+            this.btnUserRoleMapped.Click += new System.EventHandler(this.btnUserRoleMapped_Click);
             // 
             // cmbPasskey
             // 
@@ -291,7 +305,7 @@
             this.cmbUserRole.FormattingEnabled = true;
             this.cmbUserRole.Location = new System.Drawing.Point(204, 78);
             this.cmbUserRole.Name = "cmbUserRole";
-            this.cmbUserRole.Size = new System.Drawing.Size(288, 27);
+            this.cmbUserRole.Size = new System.Drawing.Size(255, 27);
             this.cmbUserRole.TabIndex = 3;
             this.cmbUserRole.SelectedIndexChanged += new System.EventHandler(this.CmbUserRole_SelectedIndexChanged);
             this.cmbUserRole.Enter += new System.EventHandler(this.CmbUserRole_Enter);
@@ -414,5 +428,6 @@
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.TextBox txtUserName;
         public System.Windows.Forms.DataGridView grdLocation;
+        public System.Windows.Forms.Button btnUserRoleMapped;
     }
 }

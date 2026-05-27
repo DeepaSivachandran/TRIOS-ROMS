@@ -1387,7 +1387,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish Created On:-22/08/2023
-        public string udfnUser(int paraviewType, int paraUId, string paraNameoftheUser, string paraLoginId, int paraUserCategory, int paraUserRole, string paraPassword, int paraPassKey, int paraStatusId, string paraPasskeyValue, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable ParaUserLocation, int paraLogType)
+        public string udfnUser(int paraviewType, int paraUId, string paraNameoftheUser, string paraLoginId, int paraUserCategory, int paraUserRole, string paraPassword, int paraPassKey, int paraStatusId, string paraPasskeyValue, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable ParaUserLocation, int paraLogType,int paraCloneUserRoleID)
         {
             string varResult = "";
             try
@@ -1412,6 +1412,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
                 varSqlCommand.Parameters.AddWithValue("@ParaUserLocation", ParaUserLocation);
                 varSqlCommand.Parameters.AddWithValue("@paraLogType", paraLogType);
+                varSqlCommand.Parameters.AddWithValue("@paraCloneUserRoleID", paraCloneUserRoleID);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }
@@ -4738,7 +4739,7 @@ namespace ROMS
         }
 
         //Created By:- venkat Created On:-22/08/2023
-        public string udfnUserRole(int paraviewType, int paraUserRoleID, string paraNameoftheUser, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable paraUserRoleDetails, DataTable paraUserRole_Menu_Access, DataTable paraUserRole_Menu_SPL_Access)
+        public string udfnUserRole(int paraviewType, int paraUserRoleID, string paraNameoftheUser, int paraStatusId, string paraOriginator, string paraUserID, int paraDeleteFlag, DataTable paraUserRoleDetails, DataTable paraUserRole_Menu_Access, DataTable paraUserRole_Menu_SPL_Access,int paraFlag,int paraCurrentUserId)
         {
             string varResult = "";
             try
@@ -4758,9 +4759,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraUserRoleDetails", paraUserRoleDetails);
                 varSqlCommand.Parameters.AddWithValue("@paraUserRole_Menu_Access", paraUserRole_Menu_Access);
                 varSqlCommand.Parameters.AddWithValue("@paraUserRole_Menu_SPL_Access", paraUserRole_Menu_SPL_Access);
-
-
-
+                varSqlCommand.Parameters.AddWithValue("@paraFlag", paraFlag);
+                varSqlCommand.Parameters.AddWithValue("@paraCurrentUserId", paraCurrentUserId);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

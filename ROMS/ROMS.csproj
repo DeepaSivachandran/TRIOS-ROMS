@@ -389,6 +389,12 @@
     <Compile Include="CP_DeliveryPerson.designer.cs">
       <DependentUpon>CP_DeliveryPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_MappedUserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_MappedUserList.designer.cs">
+      <DependentUpon>CP_MappedUserList.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Vehiclelist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4388,6 +4394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DeliveryPerson.resx">
       <DependentUpon>CP_DeliveryPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_MappedUserList.resx">
+      <DependentUpon>CP_MappedUserList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Vehiclelist.resx">
       <DependentUpon>CP_Vehiclelist.cs</DependentUpon>

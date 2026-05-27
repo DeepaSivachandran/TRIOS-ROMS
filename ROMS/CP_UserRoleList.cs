@@ -163,10 +163,16 @@ namespace ROMS
                             grdUserList.Columns["StatusID"].Visible = false;
                             grdUserList.Columns["S.No."].Width = 50; 
                             grdUserList.Columns["Status"].Width = 80;
-                            grdUserList.Columns["Created On"].Width = 120;
-                            grdUserList.Columns["Updated On"].Width = 120;
+                            grdUserList.Columns["Created On"].Width = 180;
+                            grdUserList.Columns["Updated On"].Width = 180;
+                            grdUserList.Columns["MainMenu Count"].Width = 110;
                             grdUserList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUserList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUserList.Columns["Total User"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdUserList.Columns["MainMenu Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdUserList.Columns["Level1 Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdUserList.Columns["Level2 Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdUserList.Columns["Level2 Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         }
                         else
                         {
@@ -240,7 +246,8 @@ namespace ROMS
                             SPDataService objspservice = new SPDataService();
                             DataService objDs = new DataService();
 
-                            varResult = objspservice.udfnUserRole(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value), "", 0, "User Role Delete", MainForm.pbUserID, 0, null, null, null); objspservice.CloseConnection();
+                            varResult = objspservice.udfnUserRole(2, Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value), "", 0, "User Role Delete", MainForm.pbUserID, 0, null, null, null, 0, 0);
+                            objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
                                 MessageBox.Show(varResult.Split('~')[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -276,6 +283,7 @@ namespace ROMS
                         MainForm.objCP_UserRole.btnSave.Text = "Update";
                         MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
                         MainForm.objCP_UserRole.varUserRoleName = Convert.ToString(grdUserList.SelectedRows[0].Cells["User Role"].Value);
+                        MainForm.objCP_UserRole.varUsersCount = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["Total User"].Value);
                         MainForm.objCP_UserRole.varCLone = 0;
                         MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objCP_UserRole.MdiParent = this.ParentForm;
@@ -1115,6 +1123,7 @@ namespace ROMS
                             MainForm.objCP_UserRole = new CP_UserRole();
                             MainForm.objCP_UserRole.btnSave.Text = "Save";
                             MainForm.objCP_UserRole.varUserRoleID = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["UserRoleID"].Value);
+                            MainForm.objCP_UserRole.varUsersCount = Convert.ToInt32(grdUserList.SelectedRows[0].Cells["Total User"].Value);
                             MainForm.objCP_UserRole.varCLone = 1; 
                             MainForm.objCP_UserRole.varstatusid = Convert.ToString(grdUserList.SelectedRows[0].Cells["StatusID"].Value);
                             //MainForm.objCP_UserRole.MdiParent = this.ParentForm;
