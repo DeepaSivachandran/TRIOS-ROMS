@@ -31,7 +31,7 @@ namespace ROMS
         public DataTable objDtSplPermissionFilterTable = new DataTable();
         public DataTable objdtMR_UserRole_Menu_SPL_Access = new DataTable();
 
-        public int varFormFlag = 0, varCurrentUserId = 0, varUsersCount = 0;
+        public int varFormFlag = 0, varCurrentUserId = 0, varUsersCount = 0, varCloneUserRoleID = 0;
         public MainForm MainObj { get; set; }
         public CP_UserRole()
         {
@@ -75,6 +75,7 @@ namespace ROMS
                     pnlUserRole.Visible = false;
                     tbFirst.Location=new Point(12, 29);
                     tbFirst.Size = new Size(1330, 566);
+                    varCloneUserRoleID = varUserRoleID;
                 }
                 llUserCount.Text = Convert.ToString(varUsersCount);
                 lblUsersCount.Text = Convert.ToString(varUsersCount);
@@ -327,7 +328,7 @@ namespace ROMS
         {
             try
             {
-                string varUserRoleName = "";
+                string varUserRoleName1 = "";
                 udfntooltiphide();
                 if (rbActive.Checked == true) { varstatus = 1; }
                 else { varstatus = 2; }
@@ -349,11 +350,11 @@ namespace ROMS
                 {
                     varoriginator = "UserRole Duplicate Creation";
                     varType = 0;
-                    varUserRoleName = txtUserRole.Text.Trim() + "_" + "1";
+                    varUserRoleName1 = txtUserRole.Text.Trim() + "_" + varUserRoleName;
                 }
                 else
                 {
-                    varUserRoleName = txtUserRole.Text.Trim();
+                    varUserRoleName1 = txtUserRole.Text.Trim();
                 }
                 DataTable objdtUserRole_Menu_Access = new DataTable();
                 objdtUserRole_Menu_Access.TableName = "MR_UserRole_Menu_Access";
@@ -387,7 +388,7 @@ namespace ROMS
 
                 DataTable saveobjDtSplPermission = objDtSplPermission.DefaultView.ToTable(false, "MUP_MU_Code", "ViewAccess", "EditAccess", "MUP_CODE" );
 
-                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), varUserRoleName, varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access, saveobjDtSplPermission, varFormFlag, varCurrentUserId);
+                varResult = objspservice.udfnUserRole(varType, Convert.ToInt32(varUserRoleID), varUserRoleName1, varstatus, varoriginator, MainForm.pbUserID, 0, objDtUserMenuDetails, objdtUserRole_Menu_Access, saveobjDtSplPermission, varFormFlag, varCurrentUserId);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -418,6 +419,7 @@ namespace ROMS
                     if (varFormFlag == 1)
                     {
                         MainForm.objCP_User.pbVarUserRoleID = Convert.ToInt32(varvalue[2]);
+                        varCloneUserRoleID = Convert.ToInt32(varvalue[2]);
                     }
                     tbFirst.SelectedIndex = 1;
                 }
@@ -658,11 +660,20 @@ namespace ROMS
                             }
                             else
                             {
+                                int UserRoleID = 0;
+                                if (varFormFlag == 0)
+                                {
+                                    UserRoleID = varUserRoleID;
+                                }
+                                else
+                                {
+                                    UserRoleID = varCloneUserRoleID;
+                                }
                                 DataSet objDs = new DataSet();
                                 //**** To call the function from SP ***************
                                 SPDataService objspservice = new SPDataService();
                                 grdUserPermission.Rows.Clear();
-                                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(varUserRoleID), 0, 0,"", 0, 0);
+                                objDs = objspservice.udfnUserRoleList(2, Convert.ToInt32(UserRoleID), 0, 0,"", 0, 0);
                                 objspservice.CloseConnection();
                                 if (objDs != null)
                                 {
