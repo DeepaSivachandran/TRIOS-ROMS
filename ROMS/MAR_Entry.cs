@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms; 
@@ -15,9 +16,8 @@ namespace ROMS
     {
         MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
-        ToolTip tpSupplier = new ToolTip();
         DataValidation objValidation = new DataValidation();
-        public int varUpDownKeySupplier = 0, varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0, varClose = 0;
+        public int varUpDownKeySupplier = 0, varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0;
         private List<ComboItem> unit;
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -110,7 +110,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47)", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
@@ -1717,6 +1717,7 @@ namespace ROMS
             {
                 epReport.Clear();
                 udfnProductCategoryReport(0);
+                lblFilterCount.Text = Convert.ToString(grdMarginList.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -1735,7 +1736,7 @@ namespace ROMS
                 picLoader.Visible = true;
                 picLoader.BringToFront();
                 grdMarginList.DataSource = null;
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "";
+                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "", varFilterType = "";
                 int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0;
                 if (txtGroup.Text.Trim() != "")
                 {
@@ -1752,9 +1753,9 @@ namespace ROMS
                     varBrandName = txtBrand.Text;
                     varBrandId = Convert.ToInt32(lblBrandCode.Text);
                 }
-                if (txtAlpha.Text!="")
+                if (txtAlpha.Text != "")
                 {
-                    varAlpha=txtAlpha.Text;
+                    varAlpha = txtAlpha.Text;
                 }
                 int varTypeId = 0;
                 if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
@@ -1770,6 +1771,14 @@ namespace ROMS
                 var selIds = cmbMultiUnit.CheckedIds;
                 var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
                 varUnit = string.Join(", ", selItems.Select(x => x.Id));
+                if (Convert.ToInt32(cmbFilterType.SelectedValue) == 0)
+                {
+                    varFilterType = "";
+                }
+                else
+                {
+                    varFilterType = cmbFilterType.Text;
+                }
                 btnView.Enabled = false;
                 Application.DoEvents();
                 MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
@@ -1781,15 +1790,17 @@ namespace ROMS
                 objMR_MarginEntry.paraSupplier = varSupplierName;
                 objMR_MarginEntry.paraSupplierID = varSupplierId;
                 objMR_MarginEntry.ParaScheduleid = varScheduleId;
-                objMR_MarginEntry.paraAlpha= varAlpha;
+                objMR_MarginEntry.paraAlpha = varAlpha;
                 objMR_MarginEntry.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 objMR_MarginEntry.paraType = varTypeId;
                 objMR_MarginEntry.paraUnitId = varUnit;
+                objMR_MarginEntry.paraFilterType = varFilterType;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnmarginlist(objMR_MarginEntry);
                 objspservice.CloseConnection();
-                if (objDs != null) {
+                if (objDs != null)
+                {
                     if (objDs.Tables.Count != 0)
                     {
                         lblNoRecordsFound.Visible = false;
@@ -1807,8 +1818,7 @@ namespace ROMS
                             grdMarginList.Columns["ESubGroup"].Visible = false;
                             grdMarginList.Columns["GroupCode"].Visible = false;
                             grdMarginList.Columns["EGroup"].Visible = false;
-                            grdMarginList.Columns["SupplierID"].Visible = false;
-                            grdMarginList.Columns["SupScheduleID"].Visible = false;
+                            grdMarginList.Columns["FilterType"].Visible = false;
                             grdMarginList.Columns["S.No."].Width = 50;
                             grdMarginList.Columns["PI Code"].Width = 100;
                             grdMarginList.Columns["Product"].Width = 500;
@@ -1827,6 +1837,10 @@ namespace ROMS
                             grdMarginList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                             grdMarginList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
                             grdMarginList.Columns["M.Value"].DefaultCellStyle.Format = "0.00";
+
+                            tsbTotalProducts.Text= objDs.Tables[1].Rows[0]["ProuctCount"].ToString().Trim();
+                            tsbMppedCount.Text = objDs.Tables[2].Rows[0]["MappedCount"].ToString().Trim();
+                            tsbUnmappedCount.Text = objDs.Tables[3].Rows[0]["UnmappedCount"].ToString().Trim();
                         }
                         else
                         {
@@ -1885,8 +1899,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["ESubGroup"].Visible = false;
                 DGV_SearchGrid.Columns["GroupCode"].Visible = false;
                 DGV_SearchGrid.Columns["EGroup"].Visible = false;
-                DGV_SearchGrid.Columns["SupplierID"].Visible = false;
-                DGV_SearchGrid.Columns["SupScheduleID"].Visible = false;
+                DGV_SearchGrid.Columns["FilterType"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["PI Code"].Width = 100;
                 DGV_SearchGrid.Columns["Product"].Width = 480;
@@ -2167,8 +2180,11 @@ namespace ROMS
         {
             try
             {
-                string MarginValue = objValidation.udfnDecimal(Convert.ToString(grdMarginList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value), 2);
-                grdMarginList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = MarginValue;
+                string MarginValue = Convert.ToString(grdMarginList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                if (MarginValue != "")
+                {
+                    grdMarginList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = objValidation.udfnDecimal(MarginValue,2);
+                }
             }
             catch (Exception ex)
             {
@@ -2390,10 +2406,14 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 DataTable objMarginEntries = new DataTable();
                 string varResult = "", margin="";
+                for (int i = 1; i < DGV_SearchGrid.ColumnCount; i++)
+                {
+                    DGV_SearchGrid.Rows[0].Cells[i].Value = "";
+                }
+                udfnProductCategoryReport(0);
                 for (int i = 0; i < grdMarginList.Rows.Count; i++)
                 {
                     margin = Convert.ToString(grdMarginList.Rows[i].Cells["M.Value"].Value.ToString());
-                    //double.TryParse(Convert.ToString(grdMarginList.Rows[i].Cells["M.Value"].Value),out marginvalue);
                     if (margin != "")
                     {
                         if (objMarginEntries.Rows.Count == 0)
@@ -2420,6 +2440,7 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                lblFilterCount.Text = Convert.ToString(grdMarginList.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -2466,6 +2487,15 @@ namespace ROMS
                     if (dialogResult == DialogResult.Yes)
                     {
                         epReport.Clear();
+                        cmbConcern.SelectedValue = "1";
+                        txtGroup.Text = "";
+                        txtSubGroup.Text = "";
+                        txtBrand.Text = "";
+                        txtSupplier.Text = "";
+                        txtAlpha.Text = "";
+                        cmbCategory.SelectedIndex = 0;
+                        cmbType.SelectedIndex = 0;
+                        cmbFilterType.SelectedIndex = 0;
                         udfnProductCategoryReport(0);
                     }
                 }
@@ -2476,6 +2506,7 @@ namespace ROMS
                     objDServ.CloseConnection();
                     DialogResult dialogResult = MessageBox.Show(varMessage, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                lblFilterCount.Text = Convert.ToString(grdMarginList.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -2543,17 +2574,10 @@ namespace ROMS
         {
             try
             {
-                if (varClose == 0)
+                DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Do you want to exit ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    this.Close();
+                    windowControl?.TriggerClose();
                 }
             }
             catch (Exception ex)
