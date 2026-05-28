@@ -410,6 +410,7 @@ namespace ROMS
         public static PrintFormat objReportFormat;
         public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
         public static MAR_Entry objMAR_Entry;
+        public static SAL_Entry objSAL_Entry;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2344,6 +2345,19 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objMAR_Entry, "MAR_Entry", 80125);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSalesEntry_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objSAL_Entry, "SAL_Entry", 80125);
             }
             catch (Exception ex)
             {
