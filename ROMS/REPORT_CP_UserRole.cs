@@ -119,15 +119,46 @@ namespace ROMS
                 {
                     reportType = 2;
                 }
-
-                if (txtUserRole.Text == "") {
-                    lblUserRoleId.Text = "0";
-                }
-                if (txtDUserList.Text == "")
+                int varUserRoleId = 0, varUserId = 0, varViewType = 5;
+                string varUserRoleName="-All-",varFilterUserName="-All-";
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 576)
                 {
-                    lblUserId.Text = "0";
+                    varViewType = 0;
                 }
-                objDs = objspservice.udfnUserRoleList(5, Convert.ToInt32(lblUserRoleId.Text), 0, 0, "", reportType, Convert.ToInt32(lblUserId.Text));
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 577)
+                {
+                    varViewType = 7;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 578)
+                {
+                    varViewType = 8;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 579)
+                {
+                    varViewType = 9;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 580)
+                {
+                    varViewType = 9;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 581)
+                {
+                    varViewType = 10;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 582)
+                {
+                    varViewType = 11;
+                }
+                if (txtUserRole.Text.Trim() != "") {
+                    varUserRoleId=Convert.ToInt32(lblUserRoleId.Text);
+                    varUserRoleName = txtUserRole.Text.Trim();
+                }
+                if (txtDUserList.Text.Trim() != "")
+                {
+                    varUserId=Convert.ToInt32(lblUserId.Text);
+                    varFilterUserName = txtDUserList.Text.Trim();
+                }
+                objDs = objspservice.udfnUserRoleList(varViewType, varUserRoleId, 0, 0, "", reportType, varUserId);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 string varReportName = "";
@@ -152,7 +183,48 @@ namespace ROMS
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_UserNamewise.rpt");
                         varReportName = "UserDetails";
                     }
-                    objBillreport.SetParameterValue("paraUserRoleId", Convert.ToInt32(lblUserRoleId.Text));
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 576)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Summary.rpt");
+                        varReportName = "UserRoleSummary";
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 577)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Details.rpt");
+                        varReportName = "UserRoleDetails";
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 578)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Users.rpt");
+                        varReportName = "UserRoleUsers";
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 579)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Details.rpt");
+                        varReportName = "UserRoleDetails";
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 580)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_RoleWise_Menu.rpt");
+                        varReportName = "UserRoleWiseMenu";
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 581)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_RoleWise_SubMenu.rpt");
+                        varReportName = "UserRoleWiseSubMenu";
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 582)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_RoleWise_UserPermission.rpt");
+                        varReportName = "UserRoleWiseUserPermission";
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) != 413 && Convert.ToInt32(cmbReportType.SelectedValue) != 414)
+                    {
+                        objBillreport.SetParameterValue("paraUId", varUserId);
+                        objBillreport.SetParameterValue("paraUserRoleName", varUserRoleName);
+                        objBillreport.SetParameterValue("paraFilterUserName", varFilterUserName);
+                    }
+                    objBillreport.SetParameterValue("paraUserRoleId", varUserRoleId);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
                     objValidation.CrySqlConnection(objBillreport);
