@@ -2394,6 +2394,53 @@ namespace ROMS
             }
         }
 
+        public BindingSource udfnGridSearchFilterMargin(DataGridView DGV_SearchGrid, DataGridView grdOutwardList)
+        {
+            DataValidation objValidation = new DataValidation();
+            int i = 0;
+            BindingSource bs = new BindingSource();
+            if (DGV_SearchGrid.ColumnCount > 0)
+            {
+                bs.DataSource = grdOutwardList.DataSource;
+                string filter = "";
+                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+                {
+                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image")
+                    {
+                        if (filter != "") filter += "And ";
+                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+                        {
+                            filter += "Convert([" + DGV_SearchGrid.Columns[j].DataPropertyName.ToString() + "]" + ", System.String) LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                        }
+                        else
+                        {
+                            if (Convert.ToInt32(cmbType.SelectedValue) == 18)
+                            {
+                                if (DGV_SearchGrid.Rows[i].Cells[j].OwningColumn.Name == "Group")
+                                {
+                                    filter += "[" + DGV_SearchGrid.Columns[j + 1].DataPropertyName.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                                }
+                            }
+                            else if (Convert.ToInt32(cmbType.SelectedValue) == 19)
+                            {
+                                if (DGV_SearchGrid.Rows[i].Cells[j].OwningColumn.Name == "Raw Material")
+                                {
+                                    filter += "[" + DGV_SearchGrid.Columns[j - 3].DataPropertyName.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                                }
+                            }
+                            else
+                            {
+                                filter += "[" + DGV_SearchGrid.Columns[j].DataPropertyName.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                            }
+                        }
+                    }
+                }
+                bs.Filter = filter;
+                grdOutwardList.DataSource = bs;
+            }
+            return bs;
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -2407,7 +2454,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                udfnGridSearchHeading(grdSalesList,DGV_SearchGrid);
+                grdSalesList.DataSource = udfnGridSearchFilterMargin(DGV_SearchGrid, grdSalesList);
                 grdSalesList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 grdSalesList.DataBindingComplete += grdSalesList_DataBindingComplete;
                 for (int i = 0; i < grdSalesList.Rows.Count; i++)

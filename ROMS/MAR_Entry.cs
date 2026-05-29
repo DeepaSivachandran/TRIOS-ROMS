@@ -1732,12 +1732,11 @@ namespace ROMS
             {
                 epReport.Clear();
                 dtDefaultGrid = null;
-                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
-                grdMarginList.DataSource = null;
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "", varFilterType = "";
+                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "", varFilterType = "", varReportName = "" ;
                 int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0;
+                string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-";
                 if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text;
@@ -1756,11 +1755,13 @@ namespace ROMS
                 if (txtAlpha.Text != "")
                 {
                     varAlpha = txtAlpha.Text;
+                    varAlphaName = txtAlpha.Text;
                 }
                 int varTypeId = 0;
                 if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
                 {
                     varTypeId = Convert.ToInt32(cmbType.SelectedValue);
+                    varTypeName = cmbType.SelectedItem.ToString();
                 }
                 if (txtSupplier.Text.Trim() != "")
                 {
@@ -1771,15 +1772,21 @@ namespace ROMS
                 var selIds = cmbMultiUnit.CheckedIds;
                 var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
                 varUnit = string.Join(", ", selItems.Select(x => x.Id));
+                if (selIds.Count > 0)
+                {
+                    varUnitName = varUnit;
+                }
                 if (Convert.ToInt32(cmbFilterType.SelectedValue) == 0)
                 {
                     varFilterType = "";
+                    VarFilterName = "-All-";
                 }
                 else
                 {
                     varFilterType = cmbFilterType.Text;
+                    VarFilterName=cmbFilterType.Text;
                 }
-                btnView.Enabled = false;
+                
                 Application.DoEvents();
                 MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
                 objMR_MarginEntry.paraViewType = 1;
@@ -1799,71 +1806,118 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnmarginlist(objMR_MarginEntry);
                 objspservice.CloseConnection();
-                if (objDs != null)
+                if (varFlag == 0)
                 {
-                    if (objDs.Tables.Count != 0)
+                    DGV_SearchGrid.DataSource = null;
+                    grdMarginList.DataSource = null;
+                    btnView.Enabled = false;
+                    RPTViewer.Visible = false;
+                    if (objDs != null)
                     {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
+                        if (objDs.Tables.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdMarginList.DataSource = objDs.Tables[0];
-                            grdMarginList.Columns["ProuctID"].Visible = false;
-                            grdMarginList.Columns["EProduct"].Visible = false;
-                            grdMarginList.Columns["UnitCode"].Visible = false;
-                            grdMarginList.Columns["BrandCode"].Visible = false;
-                            grdMarginList.Columns["EBrnad"].Visible = false;
-                            grdMarginList.Columns["SubGroupCode"].Visible = false;
-                            grdMarginList.Columns["ESubGroup"].Visible = false;
-                            grdMarginList.Columns["GroupCode"].Visible = false;
-                            grdMarginList.Columns["EGroup"].Visible = false;
-                            grdMarginList.Columns["FilterType"].Visible = false;
-                            grdMarginList.Columns["S.No."].Width = 50;
-                            grdMarginList.Columns["PI Code"].Width = 100;
-                            grdMarginList.Columns["Product"].Width = 500;
-                            grdMarginList.Columns["Unit"].Width = 50;
-                            grdMarginList.Columns["S.Rate"].Width = 80;
-                            grdMarginList.Columns["M.Value"].Width = 80;
-                            grdMarginList.Columns["Brand"].Width = 120;
-                            grdMarginList.Columns["Sub Group"].Width = 120;
-                            grdMarginList.Columns["Group"].Width = 120;
-                            grdMarginList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdMarginList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdMarginList.Columns["M.Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdMarginList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdMarginList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdMarginList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdMarginList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdMarginList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
-                            grdMarginList.Columns["M.Value"].DefaultCellStyle.Format = "0.00";
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                lblNoRecordsFound.Visible = false;
+                                lblNoRecordsFound.SendToBack();
+                                grdMarginList.DataSource = objDs.Tables[0];
+                                grdMarginList.Columns["ProuctID"].Visible = false;
+                                grdMarginList.Columns["EProduct"].Visible = false;
+                                grdMarginList.Columns["UnitCode"].Visible = false;
+                                grdMarginList.Columns["BrandCode"].Visible = false;
+                                grdMarginList.Columns["EBrnad"].Visible = false;
+                                grdMarginList.Columns["SubGroupCode"].Visible = false;
+                                grdMarginList.Columns["ESubGroup"].Visible = false;
+                                grdMarginList.Columns["GroupCode"].Visible = false;
+                                grdMarginList.Columns["EGroup"].Visible = false;
+                                grdMarginList.Columns["FilterType"].Visible = false;
+                                grdMarginList.Columns["S.No."].Width = 50;
+                                grdMarginList.Columns["PI Code"].Width = 100;
+                                grdMarginList.Columns["Product"].Width = 500;
+                                grdMarginList.Columns["Unit"].Width = 50;
+                                grdMarginList.Columns["S.Rate"].Width = 80;
+                                grdMarginList.Columns["M.Value"].Width = 80;
+                                grdMarginList.Columns["Brand"].Width = 120;
+                                grdMarginList.Columns["Sub Group"].Width = 120;
+                                grdMarginList.Columns["Group"].Width = 120;
+                                grdMarginList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdMarginList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMarginList.Columns["M.Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdMarginList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdMarginList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdMarginList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdMarginList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdMarginList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
+                                grdMarginList.Columns["M.Value"].DefaultCellStyle.Format = "0.00";
 
-                            tsbTotalProducts.Text= objDs.Tables[1].Rows[0]["ProuctCount"].ToString().Trim();
-                            tsbMppedCount.Text = objDs.Tables[2].Rows[0]["MappedCount"].ToString().Trim();
-                            tsbUnmappedCount.Text = objDs.Tables[3].Rows[0]["UnmappedCount"].ToString().Trim();
+                                tsbTotalProducts.Text = objDs.Tables[1].Rows[0]["ProuctCount"].ToString().Trim();
+                                tsbMppedCount.Text = objDs.Tables[2].Rows[0]["MappedCount"].ToString().Trim();
+                                tsbUnmappedCount.Text = objDs.Tables[3].Rows[0]["UnmappedCount"].ToString().Trim();
+                            }
+                            else
+                            {
+                                lblNoRecordsFound.Visible = true;
+                                lblNoRecordsFound.BringToFront();
+                            }
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
+                        objspservice.CloseConnection();
+                    }
+                    udfnSearchGridHead();
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
                     }
                     else
                     {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
+                        DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                     }
-                    objspservice.CloseConnection();
-                }
-                udfnSearchGridHead();
-                if (lblNoRecordsFound.Visible == true)
-                {
-                    dtDefaultGrid = objDs.Tables[0];
-                    udfnDefaultSearchGrid();
                 }
                 else
                 {
-                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
+                    btnView.Enabled = true;
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MAR_Entry.rpt");
+                    objBillreport.SetParameterValue("varHeader", "M.Entry Report");
+                    varReportName = "M.Entry";
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroup", varGroupId);
+                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
+                    objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                    objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
+                    objBillreport.SetParameterValue("ParaScheduleid", varScheduleId);
+                    objBillreport.SetParameterValue("paraAlpha ", varAlpha);
+                    objBillreport.SetParameterValue("paraProductCategory ", Convert.ToInt32(cmbCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraType", varTypeId);
+                    objBillreport.SetParameterValue("paraUnitId", varUnit);
+                    objBillreport.SetParameterValue("paraFilterType", varFilterType);
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("varConcern", cmbConcern.SelectedItem);
+                    objBillreport.SetParameterValue("VarGroup", varGroupName);
+                    objBillreport.SetParameterValue("VarSubGroup", varSubgroupName);
+                    objBillreport.SetParameterValue("varBrandName", varBrandName);
+                    objBillreport.SetParameterValue("varSupplierName", varSupplierName);
+                    objBillreport.SetParameterValue("varAlphaName", varAlphaName);
+                    objBillreport.SetParameterValue("VarCategory", cmbCategory.SelectedItem);
+                    objBillreport.SetParameterValue("varTypeName", varTypeName);
+                    objBillreport.SetParameterValue("varUnitName", varUnitName);
+                    objBillreport.SetParameterValue("VarFilterName", VarFilterName);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
                 }
                 tsbTotal.Visible = true; tsbTotal.Enabled = true;
                 tsbMapped.Visible = true; tsbMapped.Enabled = true;
@@ -2035,15 +2089,11 @@ namespace ROMS
                 grdMarginList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdMarginList);
                 objDser.CloseConnection();
                 grdMarginList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                udfnMarginEntryGridFilter();
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
-            }
-            finally
-            {
             }
         }
 
@@ -2055,7 +2105,6 @@ namespace ROMS
                 grdMarginList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdMarginList);
                 objDser.CloseConnection();
                 grdMarginList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                udfnMarginEntryGridFilter();
             }
             catch (Exception ex)
             { 
@@ -2111,14 +2160,19 @@ namespace ROMS
                     {
                         direction = ListSortDirection.Ascending;
                     }
-                    grdMarginList.Sort(newColumn, direction);
-                    newColumn.HeaderCell.SortGlyphDirection =
-                        direction == ListSortDirection.Ascending ?
-                        SortOrder.Ascending : SortOrder.Descending;
-                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdMarginList.HorizontalScrollingOffset;
-                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                    {
+                        grdMarginList.Sort(newColumn, direction);
+                        newColumn.HeaderCell.SortGlyphDirection =
+                            direction == ListSortDirection.Ascending ?
+                            SortOrder.Ascending : SortOrder.Descending;
+
+                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdMarginList.HorizontalScrollingOffset;
+                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2395,6 +2449,53 @@ namespace ROMS
             }
         }
 
+        public BindingSource udfnGridSearchFilterMargin(DataGridView DGV_SearchGrid, DataGridView grdOutwardList)
+        {
+            DataValidation objValidation = new DataValidation();
+            int i = 0;
+            BindingSource bs = new BindingSource();
+            if (DGV_SearchGrid.ColumnCount > 0)
+            {
+                bs.DataSource = grdOutwardList.DataSource;
+                string filter = "";
+                for (int j = 1; j < DGV_SearchGrid.ColumnCount; j++)
+                {
+                    if (Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) != "" && DGV_SearchGrid.Rows[i].Cells[j].ValueType.Name != "Image")
+                    {
+                        if (filter != "") filter += "And ";
+                        if (objValidation.FormatNumeric(Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value)))
+                        {
+                            filter += "Convert([" + DGV_SearchGrid.Columns[j].DataPropertyName.ToString() + "]" + ", System.String) LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                        }
+                        else
+                        {
+                            if (Convert.ToInt32(cmbType.SelectedValue) == 18)
+                            {
+                                if (DGV_SearchGrid.Rows[i].Cells[j].OwningColumn.Name == "Group")
+                                {
+                                    filter += "[" + DGV_SearchGrid.Columns[j + 1].DataPropertyName.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                                }
+                            }
+                            else if (Convert.ToInt32(cmbType.SelectedValue) == 19)
+                            {
+                                if (DGV_SearchGrid.Rows[i].Cells[j].OwningColumn.Name == "Raw Material")
+                                {
+                                    filter += "[" + DGV_SearchGrid.Columns[j - 3].DataPropertyName.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                                }
+                            }
+                            else
+                            {
+                                filter += "[" + DGV_SearchGrid.Columns[j].DataPropertyName.ToString() + "]" + " LIKE '%" + Convert.ToString(DGV_SearchGrid.Rows[i].Cells[j].Value) + "%'";
+                            }
+                        }
+                    }
+                }
+                bs.Filter = filter;
+                grdOutwardList.DataSource = bs;
+            }
+            return bs;
+        }
+       
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -2408,8 +2509,7 @@ namespace ROMS
                 {
                     DGV_SearchGrid.Rows[0].Cells[i].Value = "";
                 }
-                //udfnProductCategoryReport(0);
-                udfnGridSearchHeading(grdMarginList, DGV_SearchGrid);
+                grdMarginList.DataSource = udfnGridSearchFilterMargin(DGV_SearchGrid, grdMarginList);
                 grdMarginList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 grdMarginList.DataBindingComplete += grdMarginList_DataBindingComplete;
                 for (int i = 0; i < grdMarginList.Rows.Count; i++)
@@ -2580,6 +2680,19 @@ namespace ROMS
                 {
                     windowControl?.TriggerClose();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tspEmpty_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnProductCategoryReport(1);
             }
             catch (Exception ex)
             {
