@@ -1734,7 +1734,7 @@ namespace ROMS
                 dtDefaultGrid = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "", varFilterType = "", varReportName = "" ;
+                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "", varFilterType = "";
                 int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0;
                 string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-";
                 if (txtGroup.Text.Trim() != "")
@@ -1888,8 +1888,6 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MAR_Entry.rpt");
-                    objBillreport.SetParameterValue("varHeader", "M.Entry Report");
-                    varReportName = "M.Entry";
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
@@ -1901,6 +1899,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraType", varTypeId);
                     objBillreport.SetParameterValue("paraUnitId", varUnit);
                     objBillreport.SetParameterValue("paraFilterType", varFilterType);
+
+                    objBillreport.SetParameterValue("varHeader", "M.Entry Report");
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
