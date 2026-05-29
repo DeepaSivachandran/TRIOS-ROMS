@@ -2041,9 +2041,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-            finally
-            {
-            }
         }
 
         private void DGV_SearchGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -2054,7 +2051,6 @@ namespace ROMS
                 grdSalesList.DataSource = objDser.udfnGridSearchFilter(DGV_SearchGrid, grdSalesList);
                 objDser.CloseConnection();
                 grdSalesList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
-                udfnSalesEntryGridFilter();
             }
             catch (Exception ex)
             { 
@@ -2110,14 +2106,19 @@ namespace ROMS
                     {
                         direction = ListSortDirection.Ascending;
                     }
-                    grdSalesList.Sort(newColumn, direction);
-                    newColumn.HeaderCell.SortGlyphDirection =
-                        direction == ListSortDirection.Ascending ?
-                        SortOrder.Ascending : SortOrder.Descending;
-                    DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
-                    DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
-                    DGV_SearchGrid.HorizontalScrollingOffset = grdSalesList.HorizontalScrollingOffset;
-                    DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    if (newColumn.GetType() != typeof(DataGridViewImageColumn))
+                    {
+                        grdSalesList.Sort(newColumn, direction);
+                        newColumn.HeaderCell.SortGlyphDirection =
+                            direction == ListSortDirection.Ascending ?
+                            SortOrder.Ascending : SortOrder.Descending;
+
+                        DataGridViewColumn DGV = DGV_SearchGrid.Columns[e.ColumnIndex];
+                        DGV.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+                        DGV_SearchGrid.HorizontalScrollingOffset = grdSalesList.HorizontalScrollingOffset;
+                        DGV_SearchGrid.FirstDisplayedScrollingRowIndex = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2543,6 +2544,7 @@ namespace ROMS
                         cmbCategory.SelectedIndex = 0;
                         cmbType.SelectedIndex = 0;
                         cmbFilterType.SelectedIndex = 0;
+                        cmbMultiUnit.ClearAll();
                         udfnProductCategoryReport(0);
                     }
                 }

@@ -189,7 +189,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle20;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(104, 68);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(250,49);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
@@ -233,7 +233,7 @@
             this.DGV_FilterBrand.DefaultCellStyle = dataGridViewCellStyle23;
             this.DGV_FilterBrand.EnableHeadersVisualStyles = false;
             this.DGV_FilterBrand.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterBrand.Location = new System.Drawing.Point(517, 68);
+            this.DGV_FilterBrand.Location = new System.Drawing.Point(779,49);
             this.DGV_FilterBrand.Name = "DGV_FilterBrand";
             this.DGV_FilterBrand.ReadOnly = true;
             this.DGV_FilterBrand.RowHeadersVisible = false;
@@ -277,7 +277,7 @@
             this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle26;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(302, 68);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(514,49);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
@@ -298,7 +298,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Image = global::ROMS.Properties.Resources.save16x16;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(1126, 606);
+            this.btnUpdate.Location = new System.Drawing.Point(1164, 606);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(74, 29);
@@ -316,7 +316,7 @@
             this.btnClose.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ROMS.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(1214, 606);
+            this.btnClose.Location = new System.Drawing.Point(1251, 606);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
@@ -356,7 +356,7 @@
             this.DGV_SearchGrid.DefaultCellStyle = dataGridViewCellStyle29;
             this.DGV_SearchGrid.EnableHeadersVisualStyles = false;
             this.DGV_SearchGrid.GridColor = System.Drawing.Color.White;
-            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 151);
+            this.DGV_SearchGrid.Location = new System.Drawing.Point(3, 109);
             this.DGV_SearchGrid.Name = "DGV_SearchGrid";
             this.DGV_SearchGrid.RowHeadersVisible = false;
             this.DGV_SearchGrid.RowHeadersWidth = 70;
@@ -367,7 +367,7 @@
             this.DGV_SearchGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DGV_SearchGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_SearchGrid.ShowRowErrors = false;
-            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 57);
+            this.DGV_SearchGrid.Size = new System.Drawing.Size(1348, 56);
             this.DGV_SearchGrid.TabIndex = 111111228;
             this.DGV_SearchGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SearchGrid_CellEndEdit);
             this.DGV_SearchGrid.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGV_SearchGrid_CellPainting);
@@ -404,7 +404,7 @@
             this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle32;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSupplier.Location = new System.Drawing.Point(701, 66);
+            this.DGV_FilterSupplier.Location = new System.Drawing.Point(1029,49);
             this.DGV_FilterSupplier.Name = "DGV_FilterSupplier";
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
@@ -450,9 +450,11 @@
             this.grpfilter.Controls.Add(this.txtSubGroup);
             this.grpfilter.Controls.Add(this.txtGroup);
             this.grpfilter.Controls.Add(this.btnView);
-            this.grpfilter.Location = new System.Drawing.Point(3, -4);
+            this.grpfilter.Location = new System.Drawing.Point(3, 2);
+            this.grpfilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpfilter.Name = "grpfilter";
-            this.grpfilter.Size = new System.Drawing.Size(1348, 145);
+            this.grpfilter.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpfilter.Size = new System.Drawing.Size(1348, 100);
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
@@ -461,7 +463,7 @@
             // 
             this.lblSchedleCode.AutoSize = true;
             this.lblSchedleCode.BackColor = System.Drawing.Color.Green;
-            this.lblSchedleCode.Location = new System.Drawing.Point(635, 5);
+            this.lblSchedleCode.Location = new System.Drawing.Point(635, 6);
             this.lblSchedleCode.Name = "lblSchedleCode";
             this.lblSchedleCode.Size = new System.Drawing.Size(16, 20);
             this.lblSchedleCode.TabIndex = 111111228;
@@ -472,7 +474,7 @@
             // 
             this.lblSupplierCode.AutoSize = true;
             this.lblSupplierCode.BackColor = System.Drawing.Color.Green;
-            this.lblSupplierCode.Location = new System.Drawing.Point(666, 5);
+            this.lblSupplierCode.Location = new System.Drawing.Point(666, 6);
             this.lblSupplierCode.Name = "lblSupplierCode";
             this.lblSupplierCode.Size = new System.Drawing.Size(16, 20);
             this.lblSupplierCode.TabIndex = 111111227;
@@ -484,7 +486,7 @@
             this.btnReset.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Image = global::ROMS.Properties.Resources.reset;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(1214, 90);
+            this.btnReset.Location = new System.Drawing.Point(1251, 62);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(87, 29);
@@ -498,7 +500,7 @@
             // 
             this.cmbType.DropDownWidth = 86;
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(10, 106);
+            this.cmbType.Location = new System.Drawing.Point(513,64);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(86, 27);
             this.cmbType.TabIndex = 7;
@@ -510,7 +512,7 @@
             // cmbFilterType
             // 
             this.cmbFilterType.FormattingEnabled = true;
-            this.cmbFilterType.Location = new System.Drawing.Point(234, 106);
+            this.cmbFilterType.Location = new System.Drawing.Point(1029, 64);
             this.cmbFilterType.Name = "cmbFilterType";
             this.cmbFilterType.Size = new System.Drawing.Size(118, 27);
             this.cmbFilterType.TabIndex = 9;
@@ -522,7 +524,7 @@
             // lblFilterType
             // 
             this.lblFilterType.AutoSize = true;
-            this.lblFilterType.Location = new System.Drawing.Point(233, 81);
+            this.lblFilterType.Location = new System.Drawing.Point(960, 67);
             this.lblFilterType.Name = "lblFilterType";
             this.lblFilterType.Size = new System.Drawing.Size(65, 20);
             this.lblFilterType.TabIndex = 111111224;
@@ -533,7 +535,7 @@
             this.cmbMultiUnit.DropDownHeight = 1;
             this.cmbMultiUnit.FormattingEnabled = true;
             this.cmbMultiUnit.IntegralHeight = false;
-            this.cmbMultiUnit.Location = new System.Drawing.Point(104, 106);
+            this.cmbMultiUnit.Location = new System.Drawing.Point(778, 64);
             this.cmbMultiUnit.Name = "cmbMultiUnit";
             this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
             this.cmbMultiUnit.TabIndex = 8;
@@ -546,7 +548,7 @@
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnit.Location = new System.Drawing.Point(104, 81);
+            this.lblUnit.Location = new System.Drawing.Point(730, 67);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(32, 20);
             this.lblUnit.TabIndex = 111111218;
@@ -556,7 +558,7 @@
             // 
             this.lblAlpha.AutoSize = true;
             this.lblAlpha.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlpha.Location = new System.Drawing.Point(1026, 22);
+            this.lblAlpha.Location = new System.Drawing.Point(10, 67);
             this.lblAlpha.Name = "lblAlpha";
             this.lblAlpha.Size = new System.Drawing.Size(39, 20);
             this.lblAlpha.TabIndex = 111111216;
@@ -565,10 +567,10 @@
             // txtAlpha
             // 
             this.txtAlpha.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtAlpha.Location = new System.Drawing.Point(1029, 45);
+            this.txtAlpha.Location = new System.Drawing.Point(69, 64);
             this.txtAlpha.MaxLength = 100;
             this.txtAlpha.Name = "txtAlpha";
-            this.txtAlpha.Size = new System.Drawing.Size(140, 27);
+            this.txtAlpha.Size = new System.Drawing.Size(120, 27);
             this.txtAlpha.TabIndex = 5;
             this.txtAlpha.Enter += new System.EventHandler(this.txtAlpha_Enter);
             this.txtAlpha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAlpha_KeyDown);
@@ -578,7 +580,7 @@
             // 
             this.lblSupplier.AutoSize = true;
             this.lblSupplier.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupplier.Location = new System.Drawing.Point(692, 22);
+            this.lblSupplier.Location = new System.Drawing.Point(960, 23);
             this.lblSupplier.Name = "lblSupplier";
             this.lblSupplier.Size = new System.Drawing.Size(54, 20);
             this.lblSupplier.TabIndex = 111111214;
@@ -587,7 +589,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSupplier.Location = new System.Drawing.Point(699, 45);
+            this.txtSupplier.Location = new System.Drawing.Point(1029, 22);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(317, 27);
@@ -601,7 +603,7 @@
             // 
             this.lblBrand.AutoSize = true;
             this.lblBrand.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrand.Location = new System.Drawing.Point(517, 22);
+            this.lblBrand.Location = new System.Drawing.Point(730, 23);
             this.lblBrand.Name = "lblBrand";
             this.lblBrand.Size = new System.Drawing.Size(42, 20);
             this.lblBrand.TabIndex = 111111150;
@@ -610,7 +612,7 @@
             // lblAlphaCode
             // 
             this.lblAlphaCode.AutoSize = true;
-            this.lblAlphaCode.Location = new System.Drawing.Point(1092, 4);
+            this.lblAlphaCode.Location = new System.Drawing.Point(1092, 5);
             this.lblAlphaCode.Name = "lblAlphaCode";
             this.lblAlphaCode.Size = new System.Drawing.Size(16, 20);
             this.lblAlphaCode.TabIndex = 111111212;
@@ -620,7 +622,7 @@
             // txtBrand
             // 
             this.txtBrand.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtBrand.Location = new System.Drawing.Point(517, 45);
+            this.txtBrand.Location = new System.Drawing.Point(778, 22);
             this.txtBrand.MaxLength = 100;
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(169, 27);
@@ -634,7 +636,7 @@
             // 
             this.lblSubGroup.AutoSize = true;
             this.lblSubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubGroup.Location = new System.Drawing.Point(299, 22);
+            this.lblSubGroup.Location = new System.Drawing.Point(447, 23);
             this.lblSubGroup.Name = "lblSubGroup";
             this.lblSubGroup.Size = new System.Drawing.Size(62, 20);
             this.lblSubGroup.TabIndex = 1111234;
@@ -643,7 +645,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(10, 81);
+            this.lblType.Location = new System.Drawing.Point(447, 67);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 20);
             this.lblType.TabIndex = 111111207;
@@ -652,7 +654,7 @@
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(1183, 45);
+            this.cmbCategory.Location = new System.Drawing.Point(317, 64);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(118, 27);
             this.cmbCategory.TabIndex = 6;
@@ -665,7 +667,7 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(1181, 22);
+            this.lblCategory.Location = new System.Drawing.Point(201, 67);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(104, 20);
             this.lblCategory.TabIndex = 111111205;
@@ -675,7 +677,7 @@
             // 
             this.lblConcern.AutoSize = true;
             this.lblConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConcern.Location = new System.Drawing.Point(10, 22);
+            this.lblConcern.Location = new System.Drawing.Point(10, 23);
             this.lblConcern.Name = "lblConcern";
             this.lblConcern.Size = new System.Drawing.Size(54, 20);
             this.lblConcern.TabIndex = 111111203;
@@ -684,9 +686,9 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(10, 45);
+            this.cmbConcern.Location = new System.Drawing.Point(70, 22);
             this.cmbConcern.Name = "cmbConcern";
-            this.cmbConcern.Size = new System.Drawing.Size(86, 27);
+            this.cmbConcern.Size = new System.Drawing.Size(120, 27);
             this.cmbConcern.TabIndex = 0;
             this.cmbConcern.Enter += new System.EventHandler(this.CmbConcern_Enter);
             this.cmbConcern.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbConcern_KeyDown);
@@ -696,7 +698,7 @@
             // lblBrandCode
             // 
             this.lblBrandCode.AutoSize = true;
-            this.lblBrandCode.Location = new System.Drawing.Point(1047, 4);
+            this.lblBrandCode.Location = new System.Drawing.Point(1047, 5);
             this.lblBrandCode.Name = "lblBrandCode";
             this.lblBrandCode.Size = new System.Drawing.Size(16, 20);
             this.lblBrandCode.TabIndex = 111111150;
@@ -706,7 +708,7 @@
             // lblGroupCode
             // 
             this.lblGroupCode.AutoSize = true;
-            this.lblGroupCode.Location = new System.Drawing.Point(703, 4);
+            this.lblGroupCode.Location = new System.Drawing.Point(703, 5);
             this.lblGroupCode.Name = "lblGroupCode";
             this.lblGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblGroupCode.TabIndex = 111111146;
@@ -716,7 +718,7 @@
             // lblSubGroupCode
             // 
             this.lblSubGroupCode.AutoSize = true;
-            this.lblSubGroupCode.Location = new System.Drawing.Point(785, 4);
+            this.lblSubGroupCode.Location = new System.Drawing.Point(785, 5);
             this.lblSubGroupCode.Name = "lblSubGroupCode";
             this.lblSubGroupCode.Size = new System.Drawing.Size(16, 20);
             this.lblSubGroupCode.TabIndex = 111111147;
@@ -727,7 +729,7 @@
             // 
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroup.Location = new System.Drawing.Point(104, 22);
+            this.lblGroup.Location = new System.Drawing.Point(201, 23);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(42, 20);
             this.lblGroup.TabIndex = 1111233;
@@ -736,7 +738,7 @@
             // txtSubGroup
             // 
             this.txtSubGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtSubGroup.Location = new System.Drawing.Point(300, 45);
+            this.txtSubGroup.Location = new System.Drawing.Point(513, 22);
             this.txtSubGroup.MaxLength = 100;
             this.txtSubGroup.Name = "txtSubGroup";
             this.txtSubGroup.Size = new System.Drawing.Size(204, 27);
@@ -749,7 +751,7 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(104, 45);
+            this.txtGroup.Location = new System.Drawing.Point(249, 22);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(186, 27);
@@ -764,7 +766,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1126, 90);
+            this.btnView.Location = new System.Drawing.Point(1164, 62);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(74, 29);
@@ -781,7 +783,7 @@
             this.lblNoRecordsFound.AutoSize = true;
             this.lblNoRecordsFound.BackColor = System.Drawing.Color.White;
             this.lblNoRecordsFound.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoRecordsFound.Location = new System.Drawing.Point(625, 356);
+            this.lblNoRecordsFound.Location = new System.Drawing.Point(624, 375);
             this.lblNoRecordsFound.Name = "lblNoRecordsFound";
             this.lblNoRecordsFound.Size = new System.Drawing.Size(106, 20);
             this.lblNoRecordsFound.TabIndex = 958789;
@@ -817,7 +819,7 @@
             this.grdSalesList.DefaultCellStyle = dataGridViewCellStyle35;
             this.grdSalesList.EnableHeadersVisualStyles = false;
             this.grdSalesList.GridColor = System.Drawing.Color.White;
-            this.grdSalesList.Location = new System.Drawing.Point(3, 208);
+            this.grdSalesList.Location = new System.Drawing.Point(3, 163);
             this.grdSalesList.Name = "grdSalesList";
             this.grdSalesList.RowHeadersVisible = false;
             this.grdSalesList.RowHeadersWidth = 100;
@@ -827,7 +829,7 @@
             this.grdSalesList.RowTemplate.Height = 25;
             this.grdSalesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdSalesList.ShowRowErrors = false;
-            this.grdSalesList.Size = new System.Drawing.Size(1348, 388);
+            this.grdSalesList.Size = new System.Drawing.Size(1348, 431);
             this.grdSalesList.TabIndex = 15;
             this.grdSalesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSalesList_CellEndEdit);
             this.grdSalesList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.grdSalesList_CellPainting);
@@ -842,9 +844,9 @@
             this.picLoader.ErrorImage = null;
             this.picLoader.Image = global::ROMS.Properties.Resources.Iphone_spinner_2;
             this.picLoader.InitialImage = null;
-            this.picLoader.Location = new System.Drawing.Point(3, 228);
+            this.picLoader.Location = new System.Drawing.Point(3, 109);
             this.picLoader.Name = "picLoader";
-            this.picLoader.Size = new System.Drawing.Size(1348, 368);
+            this.picLoader.Size = new System.Drawing.Size(1348, 485);
             this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLoader.TabIndex = 958790;
             this.picLoader.TabStop = false;

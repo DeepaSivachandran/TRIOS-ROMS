@@ -14,7 +14,6 @@ namespace ROMS
 {
     public partial class MAR_Entry : Form
     {
-        MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
         public int varUpDownKeySupplier = 0, varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0;
@@ -2597,6 +2596,7 @@ namespace ROMS
                         cmbCategory.SelectedIndex = 0;
                         cmbType.SelectedIndex = 0;
                         cmbFilterType.SelectedIndex = 0;
+                        cmbMultiUnit.ClearAll();
                         udfnProductCategoryReport(0);
                     }
                 }
