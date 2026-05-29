@@ -135,7 +135,7 @@ namespace ROMS
                 }
                 else if (Convert.ToInt32(cmbReportType.SelectedValue) == 579)
                 {
-                    varViewType = 9;
+                    varViewType = 12;
                 }
                 else if (Convert.ToInt32(cmbReportType.SelectedValue) == 580)
                 {
@@ -200,8 +200,8 @@ namespace ROMS
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 579)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_User_Role_Details.rpt");
-                        varReportName = "UserRoleDetails";
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_UserWise_User_Role.rpt");
+                        varReportName = "UserWiseUserRole";
                     }
                     else if (Convert.ToInt32(cmbReportType.SelectedValue) == 580)
                     {
