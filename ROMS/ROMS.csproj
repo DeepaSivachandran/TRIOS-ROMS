@@ -800,6 +800,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_ProductWise_DayWisePurchase.cs">
+      <DependentUpon>RPT_PUR_ProductWise_DayWisePurchase.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_ProductWise_MonthWisePurchase.cs">
       <DependentUpon>RPT_PUR_ProductWise_MonthWisePurchase.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5364,6 +5371,11 @@
     <EmbeddedResource Include="Reports\RPT_CP_UserNamewise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_UserNamewise.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_ProductWise_DayWisePurchase.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_ProductWise_DayWisePurchase.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_ProductWise_MonthWisePurchase.rpt">
