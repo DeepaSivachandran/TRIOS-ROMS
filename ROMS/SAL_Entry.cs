@@ -105,6 +105,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                lblUnits.Text = "";
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
@@ -1731,12 +1732,12 @@ namespace ROMS
             {
                 epReport.Clear();
                 dtDefaultGrid = null;
-                DGV_SearchGrid.DataSource = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
-                grdSalesList.DataSource = null;
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "", varFilterType = "";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0;
+                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "-All-", varUnit = "", varFilterType = "";
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0, varTypeId = 0;
+                string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-", varConcern = "-All-";
+                lblAlphaCode.Text = varAlpha;
                 if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text;
@@ -1755,11 +1756,12 @@ namespace ROMS
                 if (txtAlpha.Text != "")
                 {
                     varAlpha = txtAlpha.Text;
+                    varAlphaName = txtAlpha.Text;
                 }
-                int varTypeId = 0;
                 if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
                 {
                     varTypeId = Convert.ToInt32(cmbType.SelectedValue);
+                    varTypeName = cmbType.Text;
                 }
                 if (txtSupplier.Text.Trim() != "")
                 {
@@ -1770,16 +1772,28 @@ namespace ROMS
                 var selIds = cmbMultiUnit.CheckedIds;
                 var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
                 varUnit = string.Join(", ", selItems.Select(x => x.Id));
+                if (selIds.Count > 0)
+                {
+                    varUnitName = string.Join(", ", selItems.Select(x => x.Text));
+                    lblUnits.Text = varUnitName;
+                }
+                else
+                {
+                    lblUnits.Text = "";
+                }
                 if (Convert.ToInt32(cmbFilterType.SelectedValue) == 0)
                 {
                     varFilterType = "";
+                    VarFilterName = "-All-";
                 }
                 else
                 {
                     varFilterType = cmbFilterType.Text;
+                    VarFilterName = cmbFilterType.Text;
                 }
-                btnView.Enabled = false;
+                varConcern = cmbConcern.Text;
                 Application.DoEvents();
+                int varPrint = 0;
                 MR_SalesEntry objMR_SalesEntry = new MR_SalesEntry();
                 objMR_SalesEntry.paraViewType = 1;
                 objMR_SalesEntry.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -1800,75 +1814,133 @@ namespace ROMS
                 objspservice.CloseConnection();
                 if (objDs != null)
                 {
-                    if (objDs.Tables.Count != 0)
+                    if (objDs.Tables.Count > 0)
                     {
-                        lblNoRecordsFound.Visible = false;
-                        if (objDs.Tables[0].Rows.Count != 0)
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            varPrint = varFlag;
+                        }
+                    }
+                }
+                if (varFlag == 0)
+                {
+                    DGV_SearchGrid.DataSource = null;
+                    grdSalesList.DataSource = null;
+                    btnView.Enabled = false;
+                    RPTViewer.Visible = false;
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count != 0)
                         {
                             lblNoRecordsFound.Visible = false;
-                            lblNoRecordsFound.SendToBack();
-                            grdSalesList.DataSource = objDs.Tables[0];
-                            grdSalesList.Columns["ProuctID"].Visible = false;
-                            grdSalesList.Columns["EProduct"].Visible = false;
-                            grdSalesList.Columns["UnitCode"].Visible = false;
-                            grdSalesList.Columns["BrandCode"].Visible = false;
-                            grdSalesList.Columns["EBrnad"].Visible = false;
-                            grdSalesList.Columns["SubGroupCode"].Visible = false;
-                            grdSalesList.Columns["ESubGroup"].Visible = false;
-                            grdSalesList.Columns["GroupCode"].Visible = false;
-                            grdSalesList.Columns["EGroup"].Visible = false;
-                            grdSalesList.Columns["FilterType"].Visible = false;
-                            grdSalesList.Columns["S.No."].Width = 50;
-                            grdSalesList.Columns["PI Code"].Width = 100;
-                            grdSalesList.Columns["Product"].Width = 500;
-                            grdSalesList.Columns["Unit"].Width = 50;
-                            grdSalesList.Columns["S.Rate"].Width = 80;
-                            grdSalesList.Columns["S.Qty"].Width = 80;
-                            grdSalesList.Columns["Brand"].Width = 120;
-                            grdSalesList.Columns["Sub Group"].Width = 120;
-                            grdSalesList.Columns["Group"].Width = 120;
-                            grdSalesList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdSalesList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSalesList.Columns["S.Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdSalesList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdSalesList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdSalesList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdSalesList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
-                            grdSalesList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
-                            grdSalesList.Columns["S.Qty"].DefaultCellStyle.Format = "0.00";
+                            if (objDs.Tables[0].Rows.Count != 0)
+                            {
+                                lblNoRecordsFound.Visible = false;
+                                lblNoRecordsFound.SendToBack();
+                                grdSalesList.DataSource = objDs.Tables[0];
+                                grdSalesList.Columns["ProuctID"].Visible = false;
+                                grdSalesList.Columns["EProduct"].Visible = false;
+                                grdSalesList.Columns["UnitCode"].Visible = false;
+                                grdSalesList.Columns["BrandCode"].Visible = false;
+                                grdSalesList.Columns["EBrnad"].Visible = false;
+                                grdSalesList.Columns["SubGroupCode"].Visible = false;
+                                grdSalesList.Columns["ESubGroup"].Visible = false;
+                                grdSalesList.Columns["GroupCode"].Visible = false;
+                                grdSalesList.Columns["EGroup"].Visible = false;
+                                grdSalesList.Columns["FilterType"].Visible = false;
+                                grdSalesList.Columns["S.No."].Width = 50;
+                                grdSalesList.Columns["PI Code"].Width = 100;
+                                grdSalesList.Columns["Product"].Width = 500;
+                                grdSalesList.Columns["Unit"].Width = 50;
+                                grdSalesList.Columns["S.Rate"].Width = 80;
+                                grdSalesList.Columns["S.Qty"].Width = 80;
+                                grdSalesList.Columns["Brand"].Width = 120;
+                                grdSalesList.Columns["Sub Group"].Width = 120;
+                                grdSalesList.Columns["Group"].Width = 120;
+                                grdSalesList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                                grdSalesList.Columns["S.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSalesList.Columns["S.Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                grdSalesList.Columns["Product"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdSalesList.Columns["Brand"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdSalesList.Columns["Sub Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdSalesList.Columns["Group"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
+                                grdSalesList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
+                                grdSalesList.Columns["S.Qty"].DefaultCellStyle.Format = "0.00";
 
-                            tsbTotalProducts.Text= objDs.Tables[1].Rows[0]["ProuctCount"].ToString().Trim();
-                            tsbMppedCount.Text = objDs.Tables[2].Rows[0]["MappedCount"].ToString().Trim();
-                            tsbUnmappedCount.Text = objDs.Tables[3].Rows[0]["UnmappedCount"].ToString().Trim();
+                                tsbTotalProducts.Text = objDs.Tables[1].Rows[0]["ProuctCount"].ToString().Trim();
+                                tsbMppedCount.Text = objDs.Tables[2].Rows[0]["MappedCount"].ToString().Trim();
+                                tsbUnmappedCount.Text = objDs.Tables[3].Rows[0]["UnmappedCount"].ToString().Trim();
+                            }
+                            else
+                            {
+                                lblNoRecordsFound.Visible = true;
+                                lblNoRecordsFound.BringToFront();
+                            }
                         }
                         else
                         {
                             lblNoRecordsFound.Visible = true;
                             lblNoRecordsFound.BringToFront();
                         }
+                        objspservice.CloseConnection();
+                    }
+                    udfnSearchGridHead();
+                    if (lblNoRecordsFound.Visible == true)
+                    {
+                        dtDefaultGrid = objDs.Tables[0];
+                        udfnDefaultSearchGrid();
                     }
                     else
                     {
-                        lblNoRecordsFound.Visible = true;
-                        lblNoRecordsFound.BringToFront();
+                        DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                     }
-                    objspservice.CloseConnection();
+                    tsbTotal.Visible = true; tsbTotal.Enabled = true;
+                    tsbMapped.Visible = true; tsbMapped.Enabled = true;
+                    tsbUnmapped.Visible = true; tsbUnmapped.Enabled = true;
+                    tsbTotalProducts.Visible = true; tsbUnmappedCount.Visible = true; tsbMppedCount.Visible = true;
+                    tss1.Visible = true; tss2.Visible = true; tss3.Visible = true;
                 }
-                udfnSearchGridHead();
-                if (lblNoRecordsFound.Visible == true)
+                if (varPrint != 0)
                 {
-                    dtDefaultGrid = objDs.Tables[0];
-                    udfnDefaultSearchGrid();
+                    btnView.Enabled = true;
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_Entry.rpt");
+                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroup", varGroupId);
+                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
+                    objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                    objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
+                    objBillreport.SetParameterValue("ParaScheduleid", varScheduleId);
+                    objBillreport.SetParameterValue("paraAlpha", varAlpha);
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraType", varTypeId);
+                    objBillreport.SetParameterValue("paraUnitId", varUnit);
+                    objBillreport.SetParameterValue("paraFilterType", varFilterType);
+
+                    objBillreport.SetParameterValue("varHeader", "S.Entry Report");
+                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("varConcern", varConcern);
+                    objBillreport.SetParameterValue("VarGroup", varGroupName);
+                    objBillreport.SetParameterValue("VarSubGroup", varSubgroupName);
+                    objBillreport.SetParameterValue("varBrandName", varBrandName);
+                    objBillreport.SetParameterValue("varSupplierName", varSupplierName);
+                    objBillreport.SetParameterValue("varAlphaName", varAlphaName);
+                    objBillreport.SetParameterValue("VarCategory", cmbCategory.Text);
+                    objBillreport.SetParameterValue("varTypeName", varTypeName);
+                    objBillreport.SetParameterValue("varUnitName", varUnitName);
+                    objBillreport.SetParameterValue("VarFilterName", VarFilterName);
+                    objBillreport.SetParameterValue("varFlag", varFlag);
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
                 }
-                else
-                {
-                    DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
-                }
-                tsbTotal.Visible = true; tsbTotal.Enabled = true;
-                tsbMapped.Visible = true; tsbMapped.Enabled = true;
-                tsbUnmapped.Visible = true; tsbUnmapped.Enabled = true;
-                tsbTotalProducts.Visible = true; tsbUnmappedCount.Visible = true; tsbMppedCount.Visible = true;
-                tss1.Visible = true; tss2.Visible = true; tss3.Visible = true;
             }
             catch (Exception ex)
             {
@@ -2628,6 +2700,32 @@ namespace ROMS
                 {
                     windowControl?.TriggerClose();
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tspEmpty_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnProductCategoryReport(1);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tspFilled_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnProductCategoryReport(2);
             }
             catch (Exception ex)
             {

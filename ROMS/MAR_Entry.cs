@@ -105,6 +105,7 @@ namespace ROMS
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
                 lblNoRecordsFound.Visible = true;
                 lblNoRecordsFound.BringToFront();
+                lblUnits.Text = "";
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
@@ -1733,9 +1734,10 @@ namespace ROMS
                 dtDefaultGrid = null;
                 picLoader.Visible = true;
                 picLoader.BringToFront();
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "", varUnit = "", varFilterType = "";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0;
-                string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-";
+                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "-All-", varUnit = "", varFilterType = "";
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0, varTypeId = 0;
+                string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-", varConcern = "-All-";
+                lblAlphaCode.Text = varAlpha;
                 if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text;
@@ -1756,11 +1758,10 @@ namespace ROMS
                     varAlpha = txtAlpha.Text;
                     varAlphaName = txtAlpha.Text;
                 }
-                int varTypeId = 0;
                 if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
                 {
                     varTypeId = Convert.ToInt32(cmbType.SelectedValue);
-                    varTypeName = cmbType.SelectedItem.ToString();
+                    varTypeName = cmbType.Text;
                 }
                 if (txtSupplier.Text.Trim() != "")
                 {
@@ -1773,7 +1774,12 @@ namespace ROMS
                 varUnit = string.Join(", ", selItems.Select(x => x.Id));
                 if (selIds.Count > 0)
                 {
-                    varUnitName = varUnit;
+                    varUnitName = string.Join(", ", selItems.Select(x => x.Text));
+                    lblUnits.Text = varUnitName;
+                }
+                else
+                {
+                    lblUnits.Text = "";
                 }
                 if (Convert.ToInt32(cmbFilterType.SelectedValue) == 0)
                 {
@@ -1783,10 +1789,11 @@ namespace ROMS
                 else
                 {
                     varFilterType = cmbFilterType.Text;
-                    VarFilterName=cmbFilterType.Text;
+                    VarFilterName = cmbFilterType.Text;
                 }
-                
+                varConcern = cmbConcern.Text;
                 Application.DoEvents();
+                int varPrint = 0;
                 MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
                 objMR_MarginEntry.paraViewType = 1;
                 objMR_MarginEntry.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
@@ -1805,6 +1812,16 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnmarginlist(objMR_MarginEntry);
                 objspservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count > 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count > 0)
+                        {
+                            varPrint = varFlag;
+                        }
+                    }
+                }
                 if (varFlag == 0)
                 {
                     DGV_SearchGrid.DataSource = null;
@@ -1877,8 +1894,13 @@ namespace ROMS
                     {
                         DGV_SearchGrid.ScrollBars = ScrollBars.Vertical;
                     }
+                    tsbTotal.Visible = true; tsbTotal.Enabled = true;
+                    tsbMapped.Visible = true; tsbMapped.Enabled = true;
+                    tsbUnmapped.Visible = true; tsbUnmapped.Enabled = true;
+                    tsbTotalProducts.Visible = true; tsbUnmappedCount.Visible = true; tsbMppedCount.Visible = true;
+                    tss1.Visible = true; tss2.Visible = true; tss3.Visible = true;
                 }
-                else
+                if(varPrint != 0)
                 {
                     btnView.Enabled = true;
                     RPTViewer.Visible = true;
@@ -1893,8 +1915,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraBrandID", varBrandId);
                     objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
                     objBillreport.SetParameterValue("ParaScheduleid", varScheduleId);
-                    objBillreport.SetParameterValue("paraAlpha ", varAlpha);
-                    objBillreport.SetParameterValue("paraProductCategory ", Convert.ToInt32(cmbCategory.SelectedValue));
+                    objBillreport.SetParameterValue("paraAlpha", varAlpha);
+                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
                     objBillreport.SetParameterValue("paraType", varTypeId);
                     objBillreport.SetParameterValue("paraUnitId", varUnit);
                     objBillreport.SetParameterValue("paraFilterType", varFilterType);
@@ -1904,25 +1926,21 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objBillreport.SetParameterValue("varConcern", cmbConcern.SelectedItem);
+                    objBillreport.SetParameterValue("varConcern", varConcern);
                     objBillreport.SetParameterValue("VarGroup", varGroupName);
                     objBillreport.SetParameterValue("VarSubGroup", varSubgroupName);
                     objBillreport.SetParameterValue("varBrandName", varBrandName);
                     objBillreport.SetParameterValue("varSupplierName", varSupplierName);
                     objBillreport.SetParameterValue("varAlphaName", varAlphaName);
-                    objBillreport.SetParameterValue("VarCategory", cmbCategory.SelectedItem);
+                    objBillreport.SetParameterValue("VarCategory", cmbCategory.Text);
                     objBillreport.SetParameterValue("varTypeName", varTypeName);
                     objBillreport.SetParameterValue("varUnitName", varUnitName);
                     objBillreport.SetParameterValue("VarFilterName", VarFilterName);
+                    objBillreport.SetParameterValue("varFlag", varFlag);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
                 }
-                tsbTotal.Visible = true; tsbTotal.Enabled = true;
-                tsbMapped.Visible = true; tsbMapped.Enabled = true;
-                tsbUnmapped.Visible = true; tsbUnmapped.Enabled = true;
-                tsbTotalProducts.Visible = true; tsbUnmappedCount.Visible = true; tsbMppedCount.Visible = true;
-                tss1.Visible = true; tss2.Visible = true; tss3.Visible = true;
             }
             catch (Exception ex)
             {
@@ -2693,6 +2711,19 @@ namespace ROMS
             try
             {
                 udfnProductCategoryReport(1);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tspFilled_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnProductCategoryReport(2);
             }
             catch (Exception ex)
             {

@@ -16,14 +16,14 @@ namespace ROMS.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RPT_MAR_Entry : ReportClass {
+    public class RPT_SAL_Entry : ReportClass {
         
-        public RPT_MAR_Entry() {
+        public RPT_SAL_Entry() {
         }
         
         public override string ResourceName {
             get {
-                return "RPT_MAR_Entry.rpt";
+                return "RPT_SAL_Entry.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ROMS.Reports {
         
         public override string FullResourceName {
             get {
-                return "ROMS.Reports.RPT_MAR_Entry.rpt";
+                return "ROMS.Reports.RPT_SAL_Entry.rpt";
             }
             set {
                 // Do nothing
@@ -394,9 +394,9 @@ namespace ROMS.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRPT_MAR_Entry : Component, ICachedReport {
+    public class CachedRPT_SAL_Entry : Component, ICachedReport {
         
-        public CachedRPT_MAR_Entry() {
+        public CachedRPT_SAL_Entry() {
         }
         
         [Browsable(false)]
@@ -433,7 +433,7 @@ namespace ROMS.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RPT_MAR_Entry rpt = new RPT_MAR_Entry();
+            RPT_SAL_Entry rpt = new RPT_SAL_Entry();
             rpt.Site = this.Site;
             return rpt;
         }
