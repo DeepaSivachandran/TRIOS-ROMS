@@ -800,6 +800,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_ProductWise_MonthWisePurchase.cs">
+      <DependentUpon>RPT_PUR_ProductWise_MonthWisePurchase.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_User_RoleWise_UserPermission.cs">
       <DependentUpon>RPT_CP_User_RoleWise_UserPermission.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -932,6 +939,11 @@
       <DependentUpon>RPT_Purchase_Summary_Portrait.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_PUR_ProductWise_MonthWisePurchase1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_PUR_ProductWise_MonthWisePurchase.rpt</DependentUpon>
     </Compile>
     <Compile Include="Reports\RPT_REPORT_Product_RC.cs">
       <AutoGen>True</AutoGen>
@@ -5358,6 +5370,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_UserNamewise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_PUR_ProductWise_MonthWisePurchase.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_PUR_ProductWise_MonthWisePurchase1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_User_RoleWise_UserPermission.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
