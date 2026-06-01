@@ -944,6 +944,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_PUR_ProductWise_MonthWisePurchase.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RPT_REPORT_Product_RC.cs">
       <AutoGen>True</AutoGen>
