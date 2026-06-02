@@ -600,8 +600,16 @@
     <Compile Include="INV_StockRequestQueueList.designer.cs">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
     </Compile>
+    <Compile Include="MAR_Entry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAR_Entry.designer.cs">
+      <DependentUpon>MAR_Entry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\MR_Basket.cs" />
+    <Compile Include="Model\MR_MarginEntry.cs" />
     <Compile Include="Model\MR_ProductReport.cs" />
+    <Compile Include="Model\MR_SalesEntry.cs" />
     <Compile Include="PrintFormat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -800,6 +808,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_MAR_Entry.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MAR_Entry.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_ProductWise_DayWisePurchaseValue.cs">
       <DependentUpon>RPT_PUR_ProductWise_DayWisePurchaseValue.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -965,6 +980,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RPT_REPORT_Product_RC.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_SAL_Entry.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_SAL_Entry.rpt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
@@ -1454,6 +1476,12 @@
     </Compile>
     <Compile Include="REPORT_ZeroVsPOGenerated.designer.cs">
       <DependentUpon>REPORT_ZeroVsPOGenerated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SAL_Entry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SAL_Entry.designer.cs">
+      <DependentUpon>SAL_Entry.cs</DependentUpon>
     </Compile>
     <Compile Include="Service Class\UserAccessHelper.cs" />
     <Compile Include="User Controls\DynamicToolStripLabelControl.cs" />
@@ -4579,6 +4607,9 @@
     <EmbeddedResource Include="INV_StockRequestQueueList.resx">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MAR_Entry.resx">
+      <DependentUpon>MAR_Entry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintFormat.resx">
       <DependentUpon>PrintFormat.cs</DependentUpon>
     </EmbeddedResource>
@@ -5387,6 +5418,11 @@
       <LastGenOutput>RPT_CP_UserNamewise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_MAR_Entry.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MAR_Entry.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_ProductWise_DayWisePurchaseValue.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_ProductWise_DayWisePurchaseValue.cs</LastGenOutput>
@@ -5620,6 +5656,11 @@
     <EmbeddedResource Include="Reports\RPT_REPORT_Product_RC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_REPORT_Product_RC.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_SAL_Entry.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SAL_Entry.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_Sticker_Print_Basket_100x70.rpt">
@@ -6907,6 +6948,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Stock.resx">
       <DependentUpon>REPORT_Stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SAL_Entry.resx">
+      <DependentUpon>SAL_Entry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerSettings.resx">
       <DependentUpon>ServerSettings.cs</DependentUpon>
