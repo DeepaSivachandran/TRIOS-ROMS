@@ -94,7 +94,7 @@ namespace ROMS
             {
                 MainForm objMainForm = new MainForm(); 
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80119; 
+                int currentMUCode = 1202; 
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
