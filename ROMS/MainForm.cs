@@ -411,6 +411,7 @@ namespace ROMS
         public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
         public static MAR_Entry objMAR_Entry;
         public static SAL_Entry objSAL_Entry;
+        public static REPORT_EntryReport objREPORT_EntryReport;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2358,6 +2359,32 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objSAL_Entry, "SAL_Entry", 80125);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmEntryReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80125);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmMValueReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80125);
             }
             catch (Exception ex)
             {
