@@ -6332,6 +6332,142 @@ namespace ROMS
             }
             return ds;
         }
+
+        //Margin List
+        public DataSet udfnmarginlist(MR_MarginEntry objMR_MarginEntry)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNG_Margin", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_MarginEntry.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_MarginEntry.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", objMR_MarginEntry.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_MarginEntry.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_MarginEntry.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplier", objMR_MarginEntry.paraSupplier);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objMR_MarginEntry.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", objMR_MarginEntry.ParaScheduleid);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objMR_MarginEntry.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_MarginEntry.paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objMR_MarginEntry.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitId", objMR_MarginEntry.paraUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraFilterType", objMR_MarginEntry.paraFilterType);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+        //Margin Save
+        public string udfnMargin(MR_MarginEntry objMR_MarginEntry)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_Margin]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_MarginEntry.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaMargin", objMR_MarginEntry.ParaMargin);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+
+        //Sales Entry List
+        public DataSet udfnsaleslist(MR_SalesEntry objMR_SalesEntry)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("TRNG_SalesEntry", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_SalesEntry.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaCompanycode", objMR_SalesEntry.ParaCompanycode);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", objMR_SalesEntry.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objMR_SalesEntry.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objMR_SalesEntry.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplier", objMR_SalesEntry.paraSupplier);
+                varSqlCommand.Parameters.AddWithValue("@paraSupplierID", objMR_SalesEntry.paraSupplierID);
+                varSqlCommand.Parameters.AddWithValue("@ParaScheduleid", objMR_SalesEntry.ParaScheduleid);
+                varSqlCommand.Parameters.AddWithValue("@paraAlpha", objMR_SalesEntry.paraAlpha);
+                varSqlCommand.Parameters.AddWithValue("@paraProductCategory", objMR_SalesEntry.paraProductCategory);
+                varSqlCommand.Parameters.AddWithValue("@paraType", objMR_SalesEntry.paraType);
+                varSqlCommand.Parameters.AddWithValue("@paraUnitId", objMR_SalesEntry.paraUnitId);
+                varSqlCommand.Parameters.AddWithValue("@paraFilterType", objMR_SalesEntry.paraFilterType);
+                varSqlCommand.CommandTimeout = 0;
+                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+        //Sales Entry Save
+        public string udfnSalesEntry(MR_SalesEntry objMR_SalesEntry)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand varSqlCommand = new SqlCommand("[TRNS_SalesEntry]", tmpspcall.objConn);
+                varSqlCommand.CommandType = CommandType.StoredProcedure;
+                varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_SalesEntry.paraViewType);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                varSqlCommand.Parameters.AddWithValue("@ParaSalesEntry", objMR_SalesEntry.ParaSalesEntry);
+                varSqlCommand.CommandTimeout = 0;
+                varResult = varSqlCommand.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
     }
 
 }

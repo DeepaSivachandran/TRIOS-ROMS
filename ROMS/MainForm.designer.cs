@@ -225,6 +225,8 @@ namespace ROMS
             this.tsmClearMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFinancialYearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.ms = new System.Windows.Forms.MenuStrip();
+            this.tsmMs = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMarginEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalesMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRoute = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmArea = new System.Windows.Forms.ToolStripMenuItem();
@@ -241,6 +243,7 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.tsmSalesEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2009,6 +2012,7 @@ namespace ROMS
             this.lblTime,
             this.tsmControlPanel,
             this.tsmTally,
+            this.tsmMs,
             this.tsmReports,
             this.tsmFYSettings,
             this.tsmSalesMasters,
@@ -2021,6 +2025,27 @@ namespace ROMS
             this.ms.TabIndex = 112;
             this.ms.Text = "ms";
             this.ms.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Ms_ItemClicked);
+            // 
+            // tsmMs
+            // 
+            this.tsmMs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmMarginEntry,
+            this.tsmSalesEntry});
+            this.tsmMs.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
+            this.tsmMs.Name = "tsmMs";
+            this.tsmMs.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
+            this.tsmMs.Size = new System.Drawing.Size(35, 24);
+            this.tsmMs.Text = "&MS";
+            this.tsmMs.Visible = false;
+            this.tsmMs.Click += new System.EventHandler(this.TsmMs_Click);
+            // 
+            // tsmMarginEntry
+            // 
+            this.tsmMarginEntry.Name = "tsmMarginEntry";
+            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
+            this.tsmMarginEntry.Text = "M. Entry";
+            this.tsmMarginEntry.Visible = false;
+            this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
             // 
             // tsmSalesMasters
             // 
@@ -2151,6 +2176,14 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
+            // 
+            // tsmSalesEntry
+            // 
+            this.tsmSalesEntry.Name = "tsmSalesEntry";
+            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
+            this.tsmSalesEntry.Text = "S. Entry";
+            this.tsmSalesEntry.Visible = false;
+            this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
             // 
             // MainForm
             // 
@@ -2395,5 +2428,8 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockReqQueue;
         private System.Windows.Forms.ToolStripMenuItem tsmBasket;
         private System.Windows.Forms.ToolStripMenuItem tsmProductCount;
+        private System.Windows.Forms.ToolStripMenuItem tsmMs;
+        private System.Windows.Forms.ToolStripMenuItem tsmMarginEntry;
+        private System.Windows.Forms.ToolStripMenuItem tsmSalesEntry;
     }
 }
