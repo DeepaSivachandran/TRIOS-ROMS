@@ -81,7 +81,7 @@ namespace ROMS
         private void BtnListPrint_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     epReport.SetError(cmbReportType, "Please select report type.");
@@ -91,10 +91,12 @@ namespace ROMS
                     cmbReportType.Focus();
                     return;
                 }
-                epReport.Clear();
-                cmbReportType.BackColor = Color.White;
-
-                udfnProductCategoryReport(0);
+                else
+                {
+                    epReport.Clear();
+                    cmbReportType.BackColor = Color.White;
+                    udfnProductReport(0);
+                }
             }
             catch (Exception ex)
             {
@@ -102,13 +104,13 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        public void udfnProductCategoryReport(int varFlag)
+        public void udfnProductReport(int varFlag)
         {
             try
             {
                 epReport.Clear();
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0;
+                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varSupplierName = "-All-";
+                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierCode = 0, varScheduleCode = 0, varViewType = 35, varParaFlag = 0;
                 if(txtGroup.Text.Trim()!="")
                 {
                     varGroupName = txtGroup.Text;
@@ -124,10 +126,44 @@ namespace ROMS
                     varBrandName = txtBrand.Text;
                     varBrandId = Convert.ToInt32(lblBrandCode.Text);
                 }
+                if (txtSupplier.Text.Trim() != "")
+                {
+                    varSupplierName = txtSupplier.Text;
+                    varSupplierCode = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleCode = Convert.ToInt32(lblScheduleCode.Text);
+                }
                 int varTypeId = 0;
                 if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
                 {
                     varTypeId = Convert.ToInt32(cmbType.SelectedValue);
+                }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 588)
+                {
+                    varViewType= 33;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 589)
+                {
+                    varViewType = 34;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 590)
+                {
+                    varParaFlag= 33;
+                    varParaFlag = 1;
+                }
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 591)
+                {
+                    varViewType = 34;
+                    varParaFlag = 1;
+                }
+                string varMonthIds = "", varMonthName = "";
+                var selIds = cmbMultiMonths.CheckedIds;
+                var selItems = months.Where(m => selIds.Contains(m.Id)).ToList();
+                varMonthName = lblMonths.Text;
+                varMonthIds = string.Join(", ", selItems.Select(x => x.Id));
+                if (varMonthIds.Trim() == "")
+                {
+                    varMonthIds = "0";
+                    varMonthName = "-All-";
                 }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
@@ -136,18 +172,10 @@ namespace ROMS
                 picLoader.BringToFront();
                 Application.DoEvents();
                 int varPrint = 0;
-                MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 78;
-                objMR_Product.paraGroup = varGroupId;
-                objMR_Product.paraSubgroup = varSubgroupId;
-                objMR_Product.paraBrandID = varBrandId;
-                objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
-                objMR_Product.paraType = varTypeId;
                 DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnproductmasterlist(objMR_Product);
-                objspservice.CloseConnection();
+                SPDataService objdserv = new SPDataService();
+                objDs = objdserv.udfnPurHsnReport(34, 0, "", 0, dpFromDate.Text, dpToDate.Text, 0, varGroupId, varSubgroupId, varParaFlag, varBrandId, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierCode, varScheduleCode, 0, 0, 0, 0, 0, "", varMonthIds, 0, Convert.ToInt32(cmbCategory.SelectedValue), Convert.ToInt32(cmbType.SelectedValue), Convert.ToInt32(cmbSubgroupType.SelectedValue), Convert.ToInt32(cmbDay.SelectedValue));
+                objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
                 {
@@ -160,27 +188,66 @@ namespace ROMS
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
 
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 433) //detail report
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 586)  
                     {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_ProductWise_PurchaseConsolidated.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 587)  
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_QtyWise_PurchaseConsolidated.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 588) 
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_ProductWise_MonthWisePurchase.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 589) 
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_ProductWise_DayWisePurchase.rpt");
+                        objBillreport.SetParameterValue("paraDayFilter", Convert.ToInt32(cmbDay.SelectedValue));
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 590) 
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_ProductWise_MonthWisePurchaseValue.rpt");
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 591)  
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_PUR_ProductWise_DayWisePurchaseValue.rpt");
+                        objBillreport.SetParameterValue("paraDayFilter", Convert.ToInt32(cmbDay.SelectedValue));
+                    }
 
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Category.rpt");
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) != 586 && Convert.ToInt32(cmbReportType.SelectedValue) != 587)
+                    {
+                        objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
                     }
-                    else { 
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_Product_Category_Location.rpt");
-                    }
-                    objBillreport.SetParameterValue("paraGroupId", varGroupId);
-                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
-                    objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
-                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    // ID Parameters
                     objBillreport.SetParameterValue("paraBrandID", varBrandId);
-                    objBillreport.SetParameterValue("paraStatusId", Convert.ToInt32(cmbSubgroupType.SelectedValue));
-                    objBillreport.SetParameterValue("paraType", varTypeId);
-                    objBillreport.SetParameterValue("paraTypeName", Convert.ToString(cmbType.Text));
-                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
+                    objBillreport.SetParameterValue("paraCompanyId", Convert.ToInt32(cmbConcern.SelectedValue));
+                    objBillreport.SetParameterValue("paraGroupId", varGroupId);
+                    objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
+                    objBillreport.SetParameterValue("paraSupplierID", varSupplierCode);
+                    objBillreport.SetParameterValue("paraScheduleID", varScheduleCode);
+
                     objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
-                    objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbCategory.Text));
-                    //objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbSubgroupType.Text));
+
+                    objBillreport.SetParameterValue("paraSubgroupType", Convert.ToInt32(cmbSubgroupType.SelectedValue));
+
+                    // Date Parameters
+                    objBillreport.SetParameterValue("paraFromDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraToDate", dpToDate.Text);
+
+                    // Month Parameter
+                    objBillreport.SetParameterValue("paraMonth", varMonthIds);
+                    objBillreport.SetParameterValue("paraFlag", varParaFlag);
+
+                    // Name Parameters
+                    objBillreport.SetParameterValue("paraConcernName", cmbConcern.Text);
+                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                    objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                    objBillreport.SetParameterValue("paraCategoryName", cmbCategory.Text);
+                    objBillreport.SetParameterValue("paraTypeName", cmbType.Text);
+                    objBillreport.SetParameterValue("paraSubgroupTypeName", cmbSubgroupType.Text);
 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
@@ -195,7 +262,7 @@ namespace ROMS
                     else
                     {
                         MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-                        string varReportName = "Product_Category";
+                        string varReportName = "Purchase Consolidated";
                         string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
                         if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
                         objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
@@ -262,10 +329,11 @@ namespace ROMS
                 lblNoRecordsFound.BringToFront();
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (5,0) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbCategory, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Status", "STS_ModuleID IN (0,1,16) AND STSID NOT IN (120,-1)", "STS_Name,STSID", cmbSubgroupType, "", "STS_Name", "STSID");
-                 
+                objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
+                objDataBind.BindComboBoxListSelected("DEF_Days", " DYID!=-1 Order BY DYID", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,99) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (180)", "MST_DisplayText,MSTID", cmbPurchaseType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 udfnLoadMonths();
                 objDataBind = null;
@@ -874,7 +942,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterBrand.Visible == false)
                 {
-                    //txtProductName.Focus();
+                    txtSupplier.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -947,7 +1015,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        //txtProductName.Focus();
+                        txtSupplier.Focus();
                     }
                 }
             }
@@ -1256,7 +1324,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbReportType.Focus();
+                    txtGroup.Focus();
                 }
             }
             catch (Exception ex)
@@ -1359,6 +1427,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 cmbType.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1374,7 +1443,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtGroup.Focus();   
+                    cmbSubgroupType.Focus();   
                 }
             }
             catch (Exception ex)
@@ -1510,6 +1579,7 @@ namespace ROMS
         {
             try
             {
+                udfnGridNull((Control)sender);
                 btnTelegram.BackColor = Color.LemonChiffon;
             }
             catch (Exception ex)
@@ -1534,7 +1604,7 @@ namespace ROMS
 
         private void btnTelegram_Click(object sender, EventArgs e)
         {
-            udfnProductCategoryReport(1);
+            udfnProductReport(1);
         }
 
 
@@ -1584,7 +1654,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbCategory.Focus();
+                    cmbConcern.Focus();
                 }
             }
             catch (Exception ex)
@@ -1594,7 +1664,7 @@ namespace ROMS
             }
         }
 
-        private void TxtSupplier_Enter(object sender, EventArgs e)
+        private void txtSupplier_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -1608,7 +1678,7 @@ namespace ROMS
             }
         }
 
-        private void TxtSupplier_KeyDown(object sender, KeyEventArgs e)
+        private void txtSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -1703,7 +1773,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-        private void TxtSupplier_Leave(object sender, EventArgs e)
+        private void txtSupplier_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -1716,7 +1786,7 @@ namespace ROMS
             }
         }
 
-        private void TxtSupplier_TextChanged(object sender, EventArgs e)
+        private void txtSupplier_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -1818,6 +1888,261 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+
+        private void cmbMultiMonths_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbMultiMonths.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiMonths_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbDay.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiMonths_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbMultiMonths_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbMultiMonths.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDay_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbDay.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDay_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    cmbPurchaseType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDay_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbDay.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPurchaseType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbPurchaseType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPurchaseType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    dpFromDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPurchaseType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbPurchaseType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                                cmbPurchaseType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpFromDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                dpFromDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpFromDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    dpToDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpFromDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpFromDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpToDate_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                dpToDate.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpToDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode==Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void dpToDate_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dpToDate.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
         private void DGV_FilterSupplier_KeyDown(object sender, KeyEventArgs e)
         {
             try
