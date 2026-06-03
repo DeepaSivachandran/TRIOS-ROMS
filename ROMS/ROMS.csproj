@@ -1389,6 +1389,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="REPORT_PUR_Product_Consolidated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_PUR_Product_Consolidated.designer.cs">
+      <DependentUpon>REPORT_PUR_Product_Consolidated.cs</DependentUpon>
+    </Compile>
     <Compile Include="REPORT_CP_Product_RC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6712,6 +6718,9 @@
       <LastGenOutput>RPT_Zero_Rate_AlphaWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="REPORT_PUR_Product_Consolidated.resx">
+      <DependentUpon>REPORT_PUR_Product_Consolidated.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="REPORT_CP_Product_RC.resx">
       <DependentUpon>REPORT_CP_Product_RC.cs</DependentUpon>
     </EmbeddedResource>

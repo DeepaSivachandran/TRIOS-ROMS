@@ -227,6 +227,7 @@ namespace ROMS
             this.ms = new System.Windows.Forms.MenuStrip();
             this.tsmMs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarginEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalesMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRoute = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmArea = new System.Windows.Forms.ToolStripMenuItem();
@@ -243,7 +244,7 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmSalesEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseConsolidated = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -992,14 +993,14 @@ namespace ROMS
             // tsmDLPSingleProduct
             // 
             this.tsmDLPSingleProduct.Name = "tsmDLPSingleProduct";
-            this.tsmDLPSingleProduct.Size = new System.Drawing.Size(180, 22);
+            this.tsmDLPSingleProduct.Size = new System.Drawing.Size(160, 22);
             this.tsmDLPSingleProduct.Text = "Single Product";
             this.tsmDLPSingleProduct.Click += new System.EventHandler(this.tsmDLPSingleProduct_Click);
             // 
             // tsmDLPMultipleProducts
             // 
             this.tsmDLPMultipleProducts.Name = "tsmDLPMultipleProducts";
-            this.tsmDLPMultipleProducts.Size = new System.Drawing.Size(180, 22);
+            this.tsmDLPMultipleProducts.Size = new System.Drawing.Size(160, 22);
             this.tsmDLPMultipleProducts.Text = "Multiple Products";
             this.tsmDLPMultipleProducts.Click += new System.EventHandler(this.tsmDLPMultipleProducts_Click);
             // 
@@ -1530,7 +1531,8 @@ namespace ROMS
             this.tsmPriceList,
             this.tsmPurchaseAdditionValue,
             this.tsmPurchaseDiscountValue,
-            this.tsmRcPriceList});
+            this.tsmRcPriceList,
+            this.tsmPurchaseConsolidated});
             this.tsmPurchaseReport.Name = "tsmPurchaseReport";
             this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseReport.Text = "Purchase";
@@ -2042,10 +2044,18 @@ namespace ROMS
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
-            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
+            this.tsmMarginEntry.Size = new System.Drawing.Size(114, 22);
             this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
+            // 
+            // tsmSalesEntry
+            // 
+            this.tsmSalesEntry.Name = "tsmSalesEntry";
+            this.tsmSalesEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmSalesEntry.Text = "S. Entry";
+            this.tsmSalesEntry.Visible = false;
+            this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
             // 
             // tsmSalesMasters
             // 
@@ -2177,13 +2187,12 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmSalesEntry
+            // tsmPurchaseConsolidated
             // 
-            this.tsmSalesEntry.Name = "tsmSalesEntry";
-            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
-            this.tsmSalesEntry.Text = "S. Entry";
-            this.tsmSalesEntry.Visible = false;
-            this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
+            this.tsmPurchaseConsolidated.Name = "tsmPurchaseConsolidated";
+            this.tsmPurchaseConsolidated.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseConsolidated.Text = "Purchase Consolidated";
+            this.tsmPurchaseConsolidated.Click += new System.EventHandler(this.tsmPurchaseConsolidated_Click);
             // 
             // MainForm
             // 
@@ -2431,5 +2440,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmMs;
         private System.Windows.Forms.ToolStripMenuItem tsmMarginEntry;
         private System.Windows.Forms.ToolStripMenuItem tsmSalesEntry;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseConsolidated;
     }
 }
