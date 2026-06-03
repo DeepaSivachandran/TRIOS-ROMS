@@ -215,6 +215,9 @@ namespace ROMS
             this.tsmPurchaseHSNWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseHSNNameWise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmItemMovementReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMSReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEntryReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMValueReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
@@ -244,9 +247,6 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmMSReports = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmEntryReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmMValueReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1813,7 +1813,7 @@ namespace ROMS
             // tsmSupplierLedgerReport
             // 
             this.tsmSupplierLedgerReport.Name = "tsmSupplierLedgerReport";
-            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(149, 22);
             this.tsmSupplierLedgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLedgerReport.Visible = false;
             this.tsmSupplierLedgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
@@ -1821,7 +1821,7 @@ namespace ROMS
             // tsmPaymentReport
             // 
             this.tsmPaymentReport.Name = "tsmPaymentReport";
-            this.tsmPaymentReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmPaymentReport.Size = new System.Drawing.Size(149, 22);
             this.tsmPaymentReport.Text = "Payment";
             this.tsmPaymentReport.Visible = false;
             this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
@@ -1913,6 +1913,29 @@ namespace ROMS
             this.tsmItemMovementReport.Text = "Item Movement Analysis";
             this.tsmItemMovementReport.Visible = false;
             this.tsmItemMovementReport.Click += new System.EventHandler(this.tsmItemMovementReport_Click);
+            // 
+            // tsmMSReports
+            // 
+            this.tsmMSReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmEntryReport,
+            this.tsmMValueReport});
+            this.tsmMSReports.Name = "tsmMSReports";
+            this.tsmMSReports.Size = new System.Drawing.Size(191, 22);
+            this.tsmMSReports.Text = "M.S.Reports";
+            // 
+            // tsmEntryReport
+            // 
+            this.tsmEntryReport.Name = "tsmEntryReport";
+            this.tsmEntryReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmEntryReport.Text = "Entry Report";
+            this.tsmEntryReport.Click += new System.EventHandler(this.tsmEntryReport_Click);
+            // 
+            // tsmMValueReport
+            // 
+            this.tsmMValueReport.Name = "tsmMValueReport";
+            this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmMValueReport.Text = "M. Value Report";
+            this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
             // 
             // tsmMyProfile
             // 
@@ -2188,29 +2211,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmMSReports
-            // 
-            this.tsmMSReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmEntryReport,
-            this.tsmMValueReport});
-            this.tsmMSReports.Name = "tsmMSReports";
-            this.tsmMSReports.Size = new System.Drawing.Size(191, 22);
-            this.tsmMSReports.Text = "M. S. Reports";
-            // 
-            // tsmEntryReport
-            // 
-            this.tsmEntryReport.Name = "tsmEntryReport";
-            this.tsmEntryReport.Size = new System.Drawing.Size(180, 22);
-            this.tsmEntryReport.Text = "Entry Report";
-            this.tsmEntryReport.Click += new System.EventHandler(this.tsmEntryReport_Click);
-            // 
-            // tsmMValueReport
-            // 
-            this.tsmMValueReport.Name = "tsmMValueReport";
-            this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
-            this.tsmMValueReport.Text = "M. Value Report";
-            this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
             // 
             // MainForm
             // 

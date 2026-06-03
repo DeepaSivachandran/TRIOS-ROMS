@@ -25,5 +25,7 @@ namespace ROMS.Model
         public string paraUnitId = "";
         public string paraFilterType = "";
         public DataTable ParaMargin { get; set; } = null;
+        public string ParaFromDate = "";
+        public string ParaToDate = "";
     }
 }

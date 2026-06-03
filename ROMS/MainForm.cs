@@ -2371,7 +2371,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80125);
+                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80801);
             }
             catch (Exception ex)
             {
