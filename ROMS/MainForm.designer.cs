@@ -1813,7 +1813,7 @@ namespace ROMS
             // tsmSupplierLedgerReport
             // 
             this.tsmSupplierLedgerReport.Name = "tsmSupplierLedgerReport";
-            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(149, 22);
+            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(180, 22);
             this.tsmSupplierLedgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLedgerReport.Visible = false;
             this.tsmSupplierLedgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
@@ -1821,7 +1821,7 @@ namespace ROMS
             // tsmPaymentReport
             // 
             this.tsmPaymentReport.Name = "tsmPaymentReport";
-            this.tsmPaymentReport.Size = new System.Drawing.Size(149, 22);
+            this.tsmPaymentReport.Size = new System.Drawing.Size(180, 22);
             this.tsmPaymentReport.Text = "Payment";
             this.tsmPaymentReport.Visible = false;
             this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
