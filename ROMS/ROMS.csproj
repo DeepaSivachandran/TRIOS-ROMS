@@ -1074,6 +1074,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_TP_Stock_Taking.cs">
+      <DependentUpon>RPT_TP_Stock_Taking.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_TP_INV_Shop_Stock_Request_Queue.cs">
       <DependentUpon>RPT_TP_INV_Shop_Stock_Request_Queue.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5750,6 +5757,11 @@
       <LastGenOutput>RPT_CP_Pro_Count_RGWise_LocationWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_TP_Stock_Taking.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_TP_Stock_Taking.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TP_INV_Shop_Stock_Request_Queue.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_INV_Shop_Stock_Request_Queue.cs</LastGenOutput>
