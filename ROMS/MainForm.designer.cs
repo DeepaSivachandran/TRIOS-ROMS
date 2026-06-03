@@ -227,6 +227,7 @@ namespace ROMS
             this.ms = new System.Windows.Forms.MenuStrip();
             this.tsmMs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarginEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSalesEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSalesMasters = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRoute = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmArea = new System.Windows.Forms.ToolStripMenuItem();
@@ -243,7 +244,9 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmSalesEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMSReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEntryReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmMValueReport = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1183,7 +1186,8 @@ namespace ROMS
             this.tsmInwardStockReport,
             this.tsmFinanceReport,
             this.tsmPurchaseTaxReports,
-            this.tsmItemMovementReport});
+            this.tsmItemMovementReport,
+            this.tsmMSReports});
             this.tsmReports.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmReports.Name = "tsmReports";
             this.tsmReports.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
@@ -1809,7 +1813,7 @@ namespace ROMS
             // tsmSupplierLedgerReport
             // 
             this.tsmSupplierLedgerReport.Name = "tsmSupplierLedgerReport";
-            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(149, 22);
+            this.tsmSupplierLedgerReport.Size = new System.Drawing.Size(180, 22);
             this.tsmSupplierLedgerReport.Text = "Supplier Ledger";
             this.tsmSupplierLedgerReport.Visible = false;
             this.tsmSupplierLedgerReport.Click += new System.EventHandler(this.tsmSupplierLEdgerReport_Click);
@@ -1817,7 +1821,7 @@ namespace ROMS
             // tsmPaymentReport
             // 
             this.tsmPaymentReport.Name = "tsmPaymentReport";
-            this.tsmPaymentReport.Size = new System.Drawing.Size(149, 22);
+            this.tsmPaymentReport.Size = new System.Drawing.Size(180, 22);
             this.tsmPaymentReport.Text = "Payment";
             this.tsmPaymentReport.Visible = false;
             this.tsmPaymentReport.Click += new System.EventHandler(this.TsmPaymentReport_Click);
@@ -2042,10 +2046,18 @@ namespace ROMS
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
-            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
+            this.tsmMarginEntry.Size = new System.Drawing.Size(114, 22);
             this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
+            // 
+            // tsmSalesEntry
+            // 
+            this.tsmSalesEntry.Name = "tsmSalesEntry";
+            this.tsmSalesEntry.Size = new System.Drawing.Size(114, 22);
+            this.tsmSalesEntry.Text = "S. Entry";
+            this.tsmSalesEntry.Visible = false;
+            this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
             // 
             // tsmSalesMasters
             // 
@@ -2177,13 +2189,28 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmSalesEntry
+            // tsmMSReports
             // 
-            this.tsmSalesEntry.Name = "tsmSalesEntry";
-            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
-            this.tsmSalesEntry.Text = "S. Entry";
-            this.tsmSalesEntry.Visible = false;
-            this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);
+            this.tsmMSReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmEntryReport,
+            this.tsmMValueReport});
+            this.tsmMSReports.Name = "tsmMSReports";
+            this.tsmMSReports.Size = new System.Drawing.Size(191, 22);
+            this.tsmMSReports.Text = "M. S. Reports";
+            // 
+            // tsmEntryReport
+            // 
+            this.tsmEntryReport.Name = "tsmEntryReport";
+            this.tsmEntryReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmEntryReport.Text = "Entry Report";
+            this.tsmEntryReport.Click += new System.EventHandler(this.tsmEntryReport_Click);
+            // 
+            // tsmMValueReport
+            // 
+            this.tsmMValueReport.Name = "tsmMValueReport";
+            this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
+            this.tsmMValueReport.Text = "M. Value Report";
+            this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
             // 
             // MainForm
             // 
@@ -2431,5 +2458,8 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmMs;
         private System.Windows.Forms.ToolStripMenuItem tsmMarginEntry;
         private System.Windows.Forms.ToolStripMenuItem tsmSalesEntry;
+        private System.Windows.Forms.ToolStripMenuItem tsmMSReports;
+        private System.Windows.Forms.ToolStripMenuItem tsmEntryReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmMValueReport;
     }
 }

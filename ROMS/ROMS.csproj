@@ -955,6 +955,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_MAR_Entry.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MAR_Entry.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\RPT_PriceList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1405,6 +1412,12 @@
     </Compile>
     <Compile Include="REPORT_Damage_Entry.designer.cs">
       <DependentUpon>REPORT_Damage_Entry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_EntryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REPORT_EntryReport.designer.cs">
+      <DependentUpon>REPORT_EntryReport.cs</DependentUpon>
     </Compile>
     <Compile Include="REPORT_RC_PriceList.cs">
       <SubType>Form</SubType>
@@ -5520,6 +5533,11 @@
       <LastGenOutput>RPT_Inward_Sticker_Print_100x70.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_MAR_Entry.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MAR_Entry.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PAY_PayReceipt-SubReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PAY_PayReceipt-SubReport.cs</LastGenOutput>
@@ -6711,6 +6729,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_Damage_Entry.resx">
       <DependentUpon>REPORT_Damage_Entry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REPORT_EntryReport.resx">
+      <DependentUpon>REPORT_EntryReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPORT_RC_PriceList.resx">
       <DependentUpon>REPORT_RC_PriceList.cs</DependentUpon>
