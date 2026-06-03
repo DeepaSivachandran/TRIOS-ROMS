@@ -808,6 +808,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_PUR_QtyWise_PurchaseConsolidated.cs">
+      <DependentUpon>RPT_PUR_QtyWise_PurchaseConsolidated.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_PUR_ProductWise_PurchaseConsolidated.cs">
       <DependentUpon>RPT_PUR_ProductWise_PurchaseConsolidated.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5663,6 +5670,11 @@
     <Content Include="Reports\RPT_Purchase_PO_Blocked_Products.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_Purchase_PO_Blocked_Products.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_PUR_QtyWise_PurchaseConsolidated.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_PUR_QtyWise_PurchaseConsolidated.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_REPORT_Product_RC.rpt">
