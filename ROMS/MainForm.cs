@@ -412,6 +412,10 @@ namespace ROMS
         public static MAR_Entry objMAR_Entry;
         public static SAL_Entry objSAL_Entry;
         public static REPORT_EntryReport objREPORT_EntryReport;
+        public static REPORT_MValue_ProductWiseReport objREPORT_MValue_ProductWiseReport;
+        public static REPORT_MValue_SubgroupWiseReport objREPORT_MValue_SubgroupWiseReport;
+        public static REPORT_MValue_GroupWiseReport objREPORT_MValue_GroupWiseReport;
+        public static REPORT_MValue_BrandWiseReport objREPORT_MValue_BrandWiseReport;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2345,7 +2349,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objMAR_Entry, "MAR_Entry", 80125);
+                OpenReportForm(ref MainForm.objMAR_Entry, "MAR_Entry", 1201);
             }
             catch (Exception ex)
             {
@@ -2358,7 +2362,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objSAL_Entry, "SAL_Entry", 80125);
+                OpenReportForm(ref MainForm.objSAL_Entry, "SAL_Entry", 1202);
             }
             catch (Exception ex)
             {
@@ -2380,11 +2384,50 @@ namespace ROMS
             }
         }
 
-        private void tsmMValueReport_Click(object sender, EventArgs e)
+        private void tsmMValueProductWiseReport_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80125);
+                OpenReportForm(ref MainForm.objREPORT_MValue_ProductWiseReport, "REPORT_MValue_ProductWiseReport", 80802);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmSubgroupWiseReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_MValue_SubgroupWiseReport, "REPORT_MValue_SubgroupWiseReport", 80125);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmGroupWiseReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_MValue_GroupWiseReport, "REPORT_MValue_GroupWiseReport", 80125);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmBrandWiseReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_MValue_BrandWiseReport, "REPORT_MValue_BrandWiseReport", 80125);
             }
             catch (Exception ex)
             {

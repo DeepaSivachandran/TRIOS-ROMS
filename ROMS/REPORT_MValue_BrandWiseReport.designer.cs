@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_EntryReport
+    partial class REPORT_MValue_BrandWiseReport
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_EntryReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_MValue_BrandWiseReport));
             this.pnlEntryReport = new System.Windows.Forms.Panel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_FilterBrand = new System.Windows.Forms.DataGridView();
@@ -91,7 +91,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsEntryReport = new System.Windows.Forms.ToolStrip();
+            this.tsMValue_BrandWise_Report = new System.Windows.Forms.ToolStrip();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -104,7 +104,7 @@
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
-            this.tsEntryReport.SuspendLayout();
+            this.tsMValue_BrandWise_Report.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEntryReport
@@ -832,21 +832,21 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // tsEntryReport
+            // tsMValue_BrandWise_Report
             // 
-            this.tsEntryReport.BackColor = System.Drawing.Color.White;
-            this.tsEntryReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsEntryReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsEntryReport.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsEntryReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsMValue_BrandWise_Report.BackColor = System.Drawing.Color.White;
+            this.tsMValue_BrandWise_Report.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsMValue_BrandWise_Report.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsMValue_BrandWise_Report.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsMValue_BrandWise_Report.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsLabelPlaceholder,
             this.tsbPrintFormat,
             this.tsbFormat});
-            this.tsEntryReport.Location = new System.Drawing.Point(0, 0);
-            this.tsEntryReport.Name = "tsEntryReport";
-            this.tsEntryReport.Size = new System.Drawing.Size(1354, 27);
-            this.tsEntryReport.TabIndex = 35;
-            this.tsEntryReport.Text = "GRN Summary Report";
+            this.tsMValue_BrandWise_Report.Location = new System.Drawing.Point(0, 0);
+            this.tsMValue_BrandWise_Report.Name = "tsMValue_BrandWise_Report";
+            this.tsMValue_BrandWise_Report.Size = new System.Drawing.Size(1354, 27);
+            this.tsMValue_BrandWise_Report.TabIndex = 35;
+            this.tsMValue_BrandWise_Report.Text = "GRN Summary Report";
             // 
             // tsLabelPlaceholder
             // 
@@ -888,23 +888,23 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // REPORT_EntryReport
+            // REPORT_MValue_BrandWiseReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlEntryReport);
-            this.Controls.Add(this.tsEntryReport);
+            this.Controls.Add(this.tsMValue_BrandWise_Report);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_EntryReport";
+            this.Name = "REPORT_MValue_BrandWiseReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entry Report";
-            this.Load += new System.EventHandler(this.REPORT_EntryReport_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_EntryReport_KeyDown);
+            this.Load += new System.EventHandler(this.REPORT_MValue_BrandWiseReport_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_MValue_BrandWiseReport_KeyDown);
             this.pnlEntryReport.ResumeLayout(false);
             this.pnlEntryReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).EndInit();
@@ -915,8 +915,8 @@
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
-            this.tsEntryReport.ResumeLayout(false);
-            this.tsEntryReport.PerformLayout();
+            this.tsMValue_BrandWise_Report.ResumeLayout(false);
+            this.tsMValue_BrandWise_Report.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -956,7 +956,7 @@
         private System.Windows.Forms.Label lblFilterType;
         public System.Windows.Forms.DataGridView DGV_FilterBrand;
         private System.Windows.Forms.Button btnTelegram;
-        private System.Windows.Forms.ToolStrip tsEntryReport;
+        private System.Windows.Forms.ToolStrip tsMValue_BrandWise_Report;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         public System.Windows.Forms.DataGridView DGV_FilterSupplier;
         public System.Windows.Forms.DataGridView DGV_FilterGroup;

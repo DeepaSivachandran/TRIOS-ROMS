@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace ROMS
 {
-    public partial class REPORT_EntryReport : Form
+    public partial class REPORT_MValue_ProductWiseReport : Form
     {
         MainForm objMainForm = new MainForm();
         DynamicWindowControl windowControl = new DynamicWindowControl();
@@ -25,11 +25,11 @@ namespace ROMS
         private ToolTip tpReportType = new ToolTip();
 
 
-        public REPORT_EntryReport()
+        public REPORT_MValue_ProductWiseReport()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            windowControl.Initialize(tsEntryReport, this);
+            windowControl.Initialize(tsMValue_ProductWise_Report, this);
         }
 
         public void udfnGridNull(Control skipControl)
@@ -68,7 +68,7 @@ namespace ROMS
             }
         }
 
-        private void REPORT_EntryReport_KeyDown(object sender, KeyEventArgs e)
+        private void REPORT_MValue_ProductWiseReport_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace ROMS
             }
         }
 
-        private void REPORT_EntryReport_Load(object sender, EventArgs e)
+        private void REPORT_MValue_ProductWiseReport_Load(object sender, EventArgs e)
         {
             try
             {
