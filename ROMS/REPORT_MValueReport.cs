@@ -22,6 +22,7 @@ namespace ROMS
         private List<ComboItem> unit;
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
+        private ToolTip tpReportType = new ToolTip();
 
         public REPORT_MValueReport()
         {
@@ -1684,7 +1685,7 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbPrintType.Focus();
+                        txtSupplier.Focus();
                     }
                 }
             }
@@ -1728,7 +1729,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbPrintType.Focus();
                 }
             }
             catch (Exception ex)
@@ -1784,7 +1785,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtSupplier.Focus();
+                    btnView.Focus();
                 }
             }
             catch (Exception ex)
@@ -2010,165 +2011,212 @@ namespace ROMS
         {
             try
             {
-                epReport.Clear();
-                dtDefaultGrid = null;
-                picLoader.Visible = true;
-                picLoader.BringToFront();
-                btnView.Enabled = false;
-                lblNoRecordsFound.Visible = false;
-                RPTViewer.Visible = false;
-                string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "-All-", varUnit = "";
-                int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0, varTypeId = 0, varPrint = 0;
-                string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", varConcern = "-All-", varPrintType = "-All-";
-                lblAlphaCode.Text = varAlpha;
-                if (txtGroup.Text.Trim() != "")
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
-                    varGroupName = txtGroup.Text;
-                    varGroupId = Convert.ToInt32(lblGroupCode.Text);
-                }
-                if (txtSubGroup.Text.Trim() != "")
-                {
-                    varSubgroupName = txtSubGroup.Text;
-                    varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
-                }
-                if (txtBrand.Text.Trim() != "")
-                {
-                    varBrandName = txtBrand.Text;
-                    varBrandId = Convert.ToInt32(lblBrandCode.Text);
-                }
-                if (txtAlpha.Text != "")
-                {
-                    varAlpha = txtAlpha.Text;
-                    varAlphaName = txtAlpha.Text;
-                }
-                if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
-                {
-                    varTypeId = Convert.ToInt32(cmbType.SelectedValue);
-                    varTypeName = cmbType.Text;
-                }
-                if (txtSupplier.Text.Trim() != "")
-                {
-                    varSupplierName = txtSupplier.Text;
-                    varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
-                    varScheduleId = Convert.ToInt32(lblSchedleCode.Text);
-                }
-                var selIds = cmbMultiUnit.CheckedIds;
-                var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
-                varUnit = string.Join(", ", selItems.Select(x => x.Id));
-                if (selIds.Count > 0)
-                {
-                    varUnitName = string.Join(", ", selItems.Select(x => x.Text));
-                    lblUnits.Text = varUnitName;
+                    epReport.SetError(cmbReportType, "Please select report type.");
+                    cmbReportType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpReportType.ShowAlways = true;
+                    tpReportType.Show("Please select report type.", cmbReportType, 5000);
+                    cmbReportType.Focus();
                 }
                 else
                 {
-                    lblUnits.Text = "";
-                }
-                if (Convert.ToInt32(cmbPrintType.SelectedValue) == 0)
-                {
-                    varPrintType = "-All-";
-                }
-                else
-                {
-                    varPrintType = cmbPrintType.Text;
-                }
-                varConcern = cmbConcern.Text;
-                Application.DoEvents();
-                MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
-                objMR_MarginEntry.paraViewType = 6;
-                objMR_MarginEntry.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
-                objMR_MarginEntry.paraGroup = varGroupId;
-                objMR_MarginEntry.paraSubgroup = varSubgroupId;
-                objMR_MarginEntry.paraBrandID = varBrandId;
-                objMR_MarginEntry.paraSupplier = varSupplierName;
-                objMR_MarginEntry.paraSupplierID = varSupplierId;
-                objMR_MarginEntry.ParaScheduleid = varScheduleId;
-                objMR_MarginEntry.paraAlpha = varAlpha;
-                objMR_MarginEntry.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
-                objMR_MarginEntry.paraType = varTypeId;
-                objMR_MarginEntry.paraUnitId = varUnit;
-                objMR_MarginEntry.ParaFromDate = dpFromDate.Text;
-                objMR_MarginEntry.ParaToDate = dpToDate.Text;
-                objMR_MarginEntry.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
-                DataSet objDs = new DataSet();
-                SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnmarginlist(objMR_MarginEntry);
-                objspservice.CloseConnection();
-                if (objDs != null)
-                {
-                    if (objDs.Tables.Count > 0)
+                    epReport.Clear();
+                    dtDefaultGrid = null;
+                    picLoader.Visible = true;
+                    picLoader.BringToFront();
+                    btnView.Enabled = false;
+                    lblNoRecordsFound.Visible = false;
+                    RPTViewer.Visible = false;
+                    string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "-All-", varUnit = "";
+                    int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0, varTypeId = 0, varPrint = 0;
+                    string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", varConcern = "-All-", varPrintType = "-All-";
+                    lblAlphaCode.Text = varAlpha;
+                    if (txtGroup.Text.Trim() != "")
                     {
-                        if (objDs.Tables[0].Rows.Count > 0)
-                        {
-                            varPrint = 1;
-                        }
+                        varGroupName = txtGroup.Text;
+                        varGroupId = Convert.ToInt32(lblGroupCode.Text);
                     }
-                }
-                if (varPrint == 1)
-                {
-                    btnView.Enabled = true;
-                    RPTViewer.Visible = true;
-                    RPTViewer.BringToFront();
-                    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                    string varReportName = "";
-                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_ProductWiseReport.rpt");
-                    varReportName = "M.Value Product Wise Report";
-                    objBillreport.SetParameterValue("VarFromDate", dpFromDate.Text);
-                    objBillreport.SetParameterValue("VarToDate", dpToDate.Text);
-                    objBillreport.SetParameterValue("VarEntryType", cmbEntryType.Text);
-                    objBillreport.SetParameterValue("paraEntryType", Convert.ToInt32(cmbEntryType.SelectedValue));
-                    objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
-                    objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
-                    objBillreport.SetParameterValue("varHeader", "M.Value Product Wise Report");
-                    objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
-                    objBillreport.SetParameterValue("paraGroup", varGroupId);
-                    objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
-                    objBillreport.SetParameterValue("paraBrandID", varBrandId);
-                    objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
-                    objBillreport.SetParameterValue("ParaScheduleid", varScheduleId);
-                    objBillreport.SetParameterValue("paraAlpha", varAlpha);
-                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
-                    objBillreport.SetParameterValue("paraType", varTypeId);
-                    objBillreport.SetParameterValue("paraUnitId", varUnit);
-
-                    objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
-                    objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
-                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
-                    objBillreport.SetParameterValue("varConcern", varConcern);
-                    objBillreport.SetParameterValue("VarGroup", varGroupName);
-                    objBillreport.SetParameterValue("VarSubGroup", varSubgroupName);
-                    objBillreport.SetParameterValue("varBrandName", varBrandName);
-                    objBillreport.SetParameterValue("varSupplierName", varSupplierName);
-                    objBillreport.SetParameterValue("varAlphaName", varAlphaName);
-                    objBillreport.SetParameterValue("VarCategory", cmbCategory.Text);
-                    objBillreport.SetParameterValue("varTypeName", varTypeName);
-                    objBillreport.SetParameterValue("varUnitName", varUnitName);
-                    objBillreport.SetParameterValue("varPrintType", varPrintType);
-                    objBillreport.SetParameterValue("varFlag", Convert.ToInt32(cmbPrintType.SelectedValue));
-                    objValidation.CrySqlConnection(objBillreport);
-                    if (varFlag == 0)
+                    if (txtSubGroup.Text.Trim() != "")
                     {
-                        RPTViewer.ReportSource = objBillreport;
-                        RPTViewer.Refresh();
+                        varSubgroupName = txtSubGroup.Text;
+                        varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
+                    }
+                    if (txtBrand.Text.Trim() != "")
+                    {
+                        varBrandName = txtBrand.Text;
+                        varBrandId = Convert.ToInt32(lblBrandCode.Text);
+                    }
+                    if (txtAlpha.Text != "")
+                    {
+                        varAlpha = txtAlpha.Text;
+                        varAlphaName = txtAlpha.Text;
+                    }
+                    if (Convert.ToInt32(cmbCategory.SelectedValue) != 13 && Convert.ToInt32(cmbCategory.SelectedValue) != 15)
+                    {
+                        varTypeId = Convert.ToInt32(cmbType.SelectedValue);
+                        varTypeName = cmbType.Text;
+                    }
+                    if (txtSupplier.Text.Trim() != "")
+                    {
+                        varSupplierName = txtSupplier.Text;
+                        varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                        varScheduleId = Convert.ToInt32(lblSchedleCode.Text);
+                    }
+                    var selIds = cmbMultiUnit.CheckedIds;
+                    var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
+                    varUnit = string.Join(", ", selItems.Select(x => x.Id));
+                    if (selIds.Count > 0)
+                    {
+                        varUnitName = string.Join(", ", selItems.Select(x => x.Text));
+                        lblUnits.Text = varUnitName;
                     }
                     else
                     {
-                        MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
-
-                        string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
-                        if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
-                        objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
-                        objMainForm.udfnSendToTelegram(varfilePath);
-                        btnTelegram.Enabled = true;
-                        MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblUnits.Text = "";
                     }
-                }
-                else
-                {
-                    lblNoRecordsFound.Visible = true;
+                    if (Convert.ToInt32(cmbPrintType.SelectedValue) == 0)
+                    {
+                        varPrintType = "-All-";
+                    }
+                    else
+                    {
+                        varPrintType = cmbPrintType.Text;
+                    }
+                    varConcern = cmbConcern.Text;
+                    Application.DoEvents();
+                    MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 583)
+                    {
+                        objMR_MarginEntry.paraViewType = 6;
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                    {
+                        objMR_MarginEntry.paraViewType = 7;
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                    {
+                        objMR_MarginEntry.paraViewType = 8;
+                    }
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                    {
+                        objMR_MarginEntry.paraViewType = 9;
+                    }
+                    objMR_MarginEntry.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
+                    objMR_MarginEntry.paraGroup = varGroupId;
+                    objMR_MarginEntry.paraSubgroup = varSubgroupId;
+                    objMR_MarginEntry.paraBrandID = varBrandId;
+                    objMR_MarginEntry.paraSupplier = varSupplierName;
+                    objMR_MarginEntry.paraSupplierID = varSupplierId;
+                    objMR_MarginEntry.ParaScheduleid = varScheduleId;
+                    objMR_MarginEntry.paraAlpha = varAlpha;
+                    objMR_MarginEntry.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
+                    objMR_MarginEntry.paraType = varTypeId;
+                    objMR_MarginEntry.paraUnitId = varUnit;
+                    objMR_MarginEntry.ParaFromDate = dpFromDate.Text;
+                    objMR_MarginEntry.ParaToDate = dpToDate.Text;
+                    objMR_MarginEntry.paraEntryType = Convert.ToInt32(cmbEntryType.SelectedValue);
+                    DataSet objDs = new DataSet();
+                    SPDataService objspservice = new SPDataService();
+                    objDs = objspservice.udfnmarginlist(objMR_MarginEntry);
+                    objspservice.CloseConnection();
+                    if (objDs != null)
+                    {
+                        if (objDs.Tables.Count > 0)
+                        {
+                            if (objDs.Tables[0].Rows.Count > 0)
+                            {
+                                varPrint = 1;
+                            }
+                        }
+                    }
+                    if (varPrint == 1)
+                    {
+                        btnView.Enabled = true;
+                        RPTViewer.Visible = true;
+                        RPTViewer.BringToFront();
+                        RPTViewer.ReuseParameterValuesOnRefresh = true;
+                        string varReportName = "";
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_ProductWiseReport.rpt");
+                            varReportName = "M.Value Product Wise Report";
+                            objBillreport.SetParameterValue("varHeader", "M.Value Product Wise Report");
+                        }
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_SubgroupWiseReport.rpt");
+                            varReportName = "M.Value Subgroup Wise Report";
+                            objBillreport.SetParameterValue("varHeader", "M.Value Subgroup Wise Report");
+                        }
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_GroupWiseReport.rpt");
+                            varReportName = "M.Value Group Wise Report";
+                            objBillreport.SetParameterValue("varHeader", "M.Value Group Wise Report");
+                        }
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        {
+                            objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_BrandWiseReport.rpt");
+                            varReportName = "M.Value Brand Wise Report";
+                            objBillreport.SetParameterValue("varHeader", "M.Value Brand Wise Report");
+                        }
+                        objBillreport.SetParameterValue("VarFromDate", dpFromDate.Text);
+                        objBillreport.SetParameterValue("VarToDate", dpToDate.Text);
+                        objBillreport.SetParameterValue("VarEntryType", cmbEntryType.Text);
+                        objBillreport.SetParameterValue("paraEntryType", Convert.ToInt32(cmbEntryType.SelectedValue));
+                        objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
+                        objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
+                        objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
+                        objBillreport.SetParameterValue("paraGroup", varGroupId);
+                        objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
+                        objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                        objBillreport.SetParameterValue("paraSupplierID", varSupplierId);
+                        objBillreport.SetParameterValue("ParaScheduleid", varScheduleId);
+                        objBillreport.SetParameterValue("paraAlpha", varAlpha);
+                        objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                        objBillreport.SetParameterValue("paraType", varTypeId);
+                        objBillreport.SetParameterValue("paraUnitId", varUnit);
+
+                        objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
+                        objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
+                        objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                        objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                        objBillreport.SetParameterValue("varConcern", varConcern);
+                        objBillreport.SetParameterValue("VarGroup", varGroupName);
+                        objBillreport.SetParameterValue("VarSubGroup", varSubgroupName);
+                        objBillreport.SetParameterValue("varBrandName", varBrandName);
+                        objBillreport.SetParameterValue("varSupplierName", varSupplierName);
+                        objBillreport.SetParameterValue("varAlphaName", varAlphaName);
+                        objBillreport.SetParameterValue("VarCategory", cmbCategory.Text);
+                        objBillreport.SetParameterValue("varTypeName", varTypeName);
+                        objBillreport.SetParameterValue("varUnitName", varUnitName);
+                        objBillreport.SetParameterValue("varPrintType", varPrintType);
+                        objBillreport.SetParameterValue("varFlag", Convert.ToInt32(cmbPrintType.SelectedValue));
+                        objValidation.CrySqlConnection(objBillreport);
+                        if (varFlag == 0)
+                        {
+                            RPTViewer.ReportSource = objBillreport;
+                            RPTViewer.Refresh();
+                        }
+                        else
+                        {
+                            MainForm.varcurrentdate = DateTime.Now.ToString("dd-MM-yyyy HH-mm tt");
+
+                            string varfilePath = MainForm.pbTelegramPath + "\\" + varReportName + "-" + MainForm.varcurrentdate + ".pdf";
+                            if (File.Exists(varfilePath)) { File.Delete(varfilePath); }
+                            objBillreport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, varfilePath);
+                            objMainForm.udfnSendToTelegram(varfilePath);
+                            btnTelegram.Enabled = true;
+                            MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
+                    }
                 }
             }
             catch (Exception ex)
