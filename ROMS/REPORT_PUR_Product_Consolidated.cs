@@ -2305,6 +2305,25 @@ namespace ROMS
                 {
                     cmbMultiMonths.Enabled = false;
                 }
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 586 || Convert.ToInt32(cmbReportType.SelectedValue) == 587)
+                {
+                    cmbPurchaseType.Enabled = true;
+
+                    cmbSubgroupType.Enabled = false;
+                    cmbMultiMonths.Enabled = false;
+                    cmbDay.Enabled = false;
+                }
+                else
+                {
+                    cmbPurchaseType.Enabled = false;
+
+                    cmbSubgroupType.Enabled = true;
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 588 || Convert.ToInt32(cmbReportType.SelectedValue) == 590)
+                    {
+                        cmbMultiMonths.Enabled = true;
+                    }
+                    cmbDay.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
