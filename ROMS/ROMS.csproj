@@ -808,6 +808,13 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Supplier_OtherProduct.cs">
+      <DependentUpon>RPT_CP_Supplier_OtherProduct.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_TakingSheet.cs">
       <DependentUpon>RPT_Stock_TakingSheet.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -824,11 +831,11 @@
     </Compile>
     <Compile Include="Reports\RPT_PUR_ProductWise_PurchaseConsolidated.cs">
       <DependentUpon>RPT_PUR_ProductWise_PurchaseConsolidated.rpt</DependentUpon>
-		<AutoGen>True</AutoGen>
-		<SubType>Component</SubType>
-		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		<DesignTime>True</DesignTime>
-	</Compile>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_MAR_Entry.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5474,6 +5481,11 @@
     <Content Include="Reports\RPT_PUR_ProductWise_PurchaseConsolidated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_PUR_ProductWise_PurchaseConsolidated.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\RPT_CP_Supplier_OtherProduct.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Supplier_OtherProduct.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\RPT_MAR_Entry.rpt">
