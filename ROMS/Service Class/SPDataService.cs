@@ -4092,7 +4092,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate, int paraProductId, int paraGroupId, int paraSubgroupId, int paraFlag, int paraBrandID, int paraCompanyId, int paraSupplierID, int paraScheduleID, int paraInvioceType, int paraPaymentType, int paraPurchaseType, int paraConditionType, int paraProductNameType, string paraAlpha, string paraMonth,int paraCityID,int paraProductCategory,int paraType,int paraSubgroupType,int paraDayFilter)
+        public DataSet udfnPurHsnReport(int paraViewType, int paraSupplierType, string paraHSNCode, int paraGST, string paraFromDate, string paraToDate, int paraProductId, int paraGroupId, int paraSubgroupId, int paraFlag, int paraBrandID, int paraCompanyId, int paraSupplierID, int paraScheduleID, int paraInvioceType, int paraPaymentType, int paraPurchaseType, int paraConditionType, int paraProductNameType, string paraAlpha, string paraMonth,int paraCityID,int paraProductCategory,int paraType,int paraSubgroupType,int paraDayFilter,int paraLocationId,string paraPicode)
         {
             DataSet ds = new DataSet();
             try
@@ -4126,6 +4126,8 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraType", paraType);
                 varSqlCommand.Parameters.AddWithValue("@paraSubgroupType", paraSubgroupType);
                 varSqlCommand.Parameters.AddWithValue("@paraDayFilter", paraDayFilter);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationId", paraLocationId);
+                varSqlCommand.Parameters.AddWithValue("@paraPicode", paraPicode);
                 varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.CommandTimeout = 0;

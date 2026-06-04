@@ -187,6 +187,7 @@ namespace ROMS
             this.tsmPurchaseAdditionValue = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseDiscountValue = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRcPriceList = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseConsolidated = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInwardStockReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockInwardReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockOutwardReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -244,7 +245,7 @@ namespace ROMS
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmPurchaseConsolidated = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockTaking = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1664,6 +1665,13 @@ namespace ROMS
             this.tsmRcPriceList.Text = "RC Price List";
             this.tsmRcPriceList.Click += new System.EventHandler(this.tsmRcPriceList_Click);
             // 
+            // tsmPurchaseConsolidated
+            // 
+            this.tsmPurchaseConsolidated.Name = "tsmPurchaseConsolidated";
+            this.tsmPurchaseConsolidated.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseConsolidated.Text = "Purchase Consolidated";
+            this.tsmPurchaseConsolidated.Click += new System.EventHandler(this.tsmPurchaseConsolidated_Click);
+            // 
             // tsmInwardStockReport
             // 
             this.tsmInwardStockReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1680,7 +1688,8 @@ namespace ROMS
             this.tsmNonMoving,
             this.tsmStockAdjustment,
             this.tsmStockConversionReport,
-            this.tsmStockJournalReport});
+            this.tsmStockJournalReport,
+            this.tsmStockTaking});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
@@ -2187,12 +2196,12 @@ namespace ROMS
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
             // 
-            // tsmPurchaseConsolidated
+            // tsmStockTaking
             // 
-            this.tsmPurchaseConsolidated.Name = "tsmPurchaseConsolidated";
-            this.tsmPurchaseConsolidated.Size = new System.Drawing.Size(280, 22);
-            this.tsmPurchaseConsolidated.Text = "Purchase Consolidated";
-            this.tsmPurchaseConsolidated.Click += new System.EventHandler(this.tsmPurchaseConsolidated_Click);
+            this.tsmStockTaking.Name = "tsmStockTaking";
+            this.tsmStockTaking.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockTaking.Text = "Stock Taking";
+            this.tsmStockTaking.Click += new System.EventHandler(this.tsmStockTaking_Click);
             // 
             // MainForm
             // 
@@ -2441,5 +2450,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmMarginEntry;
         private System.Windows.Forms.ToolStripMenuItem tsmSalesEntry;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseConsolidated;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockTaking;
     }
 }

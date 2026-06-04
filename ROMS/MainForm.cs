@@ -411,6 +411,7 @@ namespace ROMS
         public static PrintFormat objReportFormat;
         public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
         public static REPORT_PUR_Product_Consolidated objREPORT_PUR_Product_Consolidated;
+        public static REPORT_Stock_Taking objREPORT_Stock_Taking;
         public static MAR_Entry objMAR_Entry;
         public static SAL_Entry objSAL_Entry;
 
@@ -5018,6 +5019,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_PUR_Product_Consolidated, "REPORT_PUR_Product_Consolidated", 80316);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmStockTaking_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_Stock_Taking, "REPORT_Stock_Taking", 80415);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
