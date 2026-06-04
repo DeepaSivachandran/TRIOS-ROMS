@@ -115,7 +115,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (107,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (177) AND MST_ShortName IS NULL", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (179)", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
@@ -2176,6 +2176,7 @@ namespace ROMS
                     objMR_MarginEntry.paraFilterType = varFilterType;
                     objMR_MarginEntry.ParaFromDate = dpFromDate.Text;
                     objMR_MarginEntry.ParaToDate = dpToDate.Text;
+                    objMR_MarginEntry.paraEntryType= Convert.ToInt32(cmbEntryType.SelectedValue);
                     DataSet objDs = new DataSet();
                     SPDataService objspservice = new SPDataService();
                     objDs = objspservice.udfnmarginlist(objMR_MarginEntry);
@@ -2203,6 +2204,7 @@ namespace ROMS
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MarginEntryReport.rpt");
                             varReportName = "M.Entry Report";
+                            objBillreport.SetParameterValue("varHeader", "M.Entry Report");
                         }
                         else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
                         {
@@ -2210,7 +2212,11 @@ namespace ROMS
                             varReportName = "S.Entry Report";
                             objBillreport.SetParameterValue("VarFromDate", dpFromDate.Text);
                             objBillreport.SetParameterValue("VarToDate", dpToDate.Text);
+                            objBillreport.SetParameterValue("paraEntryType", Convert.ToInt32(cmbEntryType.SelectedValue));
                             objBillreport.SetParameterValue("VarEntryType", cmbEntryType.Text);
+                            objBillreport.SetParameterValue("ParaFromDate", dpFromDate.Text);
+                            objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
+                            objBillreport.SetParameterValue("varHeader", "S.Entry Report");
                         }
                         objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                         objBillreport.SetParameterValue("paraGroup", varGroupId);
@@ -2224,7 +2230,6 @@ namespace ROMS
                         objBillreport.SetParameterValue("paraUnitId", varUnit);
                         objBillreport.SetParameterValue("paraFilterType", varFilterType);
 
-                        objBillreport.SetParameterValue("varHeader", "M.Entry Report");
                         objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                         objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                         objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -2258,6 +2263,10 @@ namespace ROMS
                             btnTelegram.Enabled = true;
                             MessageBox.Show("Sent Successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
+                    }
+                    else
+                    {
+                        lblNoRecordsFound.Visible = true;
                     }
                 }                    
             }
