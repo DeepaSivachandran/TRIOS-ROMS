@@ -377,7 +377,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Days", " DYID!=-1 Order BY DYID", "DY_Name,DYID", cmbDay, "", "DY_Name", "DYID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,99) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,92) AND MSTID NOT IN (-1)", "MST_DisplayText,MSTID", cmbSubgroupType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (180)", "MST_DisplayText,MSTID", cmbPurchaseType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 udfnLoadMonths();
@@ -1431,7 +1431,14 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbSubgroupType.Focus();
+                        if (cmbSubgroupType.Enabled == true)
+                        {
+                            cmbSubgroupType.Focus();
+                        }
+                        else
+                        {
+                            cmbPurchaseType.Focus();
+                        }
                     }
                 }
             }
@@ -1543,7 +1550,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbMultiMonths.Focus();
+                    if (cmbMultiMonths.Enabled == true)
+                    {
+                        cmbMultiMonths.Focus();
+                    }
+                    else
+                    {
+                        cmbDay.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1954,7 +1968,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbDay.Focus();
+                    dpFromDate.Focus();
                 }
             }
             catch (Exception ex)
@@ -2010,7 +2024,14 @@ namespace ROMS
             {
                 if(e.KeyCode==Keys.Enter)
                 {
-                    cmbPurchaseType.Focus();
+                    if (cmbPurchaseType.Enabled == true)
+                    {
+                        cmbPurchaseType.Focus();
+                    }
+                    else
+                    {
+                        dpFromDate.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2300,10 +2321,14 @@ namespace ROMS
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 588 || Convert.ToInt32(cmbReportType.SelectedValue) == 590)
                 {
                     cmbMultiMonths.Enabled = true;
+                    cmbDay.SelectedValue = 0;
+                    cmbDay.Enabled = false;
                 }
                 else
                 {
                     cmbMultiMonths.Enabled = false;
+                    cmbDay.SelectedValue = 0;
+                    cmbDay.Enabled = true;
                 }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 586 || Convert.ToInt32(cmbReportType.SelectedValue) == 587)
                 {
@@ -2322,7 +2347,10 @@ namespace ROMS
                     {
                         cmbMultiMonths.Enabled = true;
                     }
-                    cmbDay.Enabled = true;
+                    else
+                    {
+                        cmbDay.Enabled = true;
+                    }
                 }
             }
             catch (Exception ex)
