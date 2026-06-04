@@ -188,7 +188,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                objDs = objspservice.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), txtHsnName.Text.Trim(), 0, dpFromDate.Text, dpToDate.Text, varProductId, varGroupId, varSubgroupId, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,"","");
+                objDs = objspservice.udfnPurHsnReport(varViewType, Convert.ToInt32(cmbSupplierType.SelectedValue), txtHsnName.Text.Trim(), 0, dpFromDate.Text, dpToDate.Text, varProductId, varGroupId, varSubgroupId, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", "", 0, 0, 0, 0, 0, 0, "");
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 string varReportName = "REPORT_Company";

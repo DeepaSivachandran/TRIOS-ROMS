@@ -187,6 +187,7 @@ namespace ROMS
             this.tsmPurchaseAdditionValue = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPurchaseDiscountValue = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRcPriceList = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPurchaseConsolidated = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmInwardStockReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockInwardReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStockOutwardReport = new System.Windows.Forms.ToolStripMenuItem();
@@ -247,6 +248,7 @@ namespace ROMS
             this.tsmMSReports = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEntryReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMValueReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStockTaking = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -995,14 +997,14 @@ namespace ROMS
             // tsmDLPSingleProduct
             // 
             this.tsmDLPSingleProduct.Name = "tsmDLPSingleProduct";
-            this.tsmDLPSingleProduct.Size = new System.Drawing.Size(180, 22);
+            this.tsmDLPSingleProduct.Size = new System.Drawing.Size(160, 22);
             this.tsmDLPSingleProduct.Text = "Single Product";
             this.tsmDLPSingleProduct.Click += new System.EventHandler(this.tsmDLPSingleProduct_Click);
             // 
             // tsmDLPMultipleProducts
             // 
             this.tsmDLPMultipleProducts.Name = "tsmDLPMultipleProducts";
-            this.tsmDLPMultipleProducts.Size = new System.Drawing.Size(180, 22);
+            this.tsmDLPMultipleProducts.Size = new System.Drawing.Size(160, 22);
             this.tsmDLPMultipleProducts.Text = "Multiple Products";
             this.tsmDLPMultipleProducts.Click += new System.EventHandler(this.tsmDLPMultipleProducts_Click);
             // 
@@ -1534,7 +1536,8 @@ namespace ROMS
             this.tsmPriceList,
             this.tsmPurchaseAdditionValue,
             this.tsmPurchaseDiscountValue,
-            this.tsmRcPriceList});
+            this.tsmRcPriceList,
+            this.tsmPurchaseConsolidated});
             this.tsmPurchaseReport.Name = "tsmPurchaseReport";
             this.tsmPurchaseReport.Size = new System.Drawing.Size(191, 22);
             this.tsmPurchaseReport.Text = "Purchase";
@@ -1666,6 +1669,13 @@ namespace ROMS
             this.tsmRcPriceList.Text = "RC Price List";
             this.tsmRcPriceList.Click += new System.EventHandler(this.tsmRcPriceList_Click);
             // 
+            // tsmPurchaseConsolidated
+            // 
+            this.tsmPurchaseConsolidated.Name = "tsmPurchaseConsolidated";
+            this.tsmPurchaseConsolidated.Size = new System.Drawing.Size(280, 22);
+            this.tsmPurchaseConsolidated.Text = "Purchase Consolidated";
+            this.tsmPurchaseConsolidated.Click += new System.EventHandler(this.tsmPurchaseConsolidated_Click);
+            // 
             // tsmInwardStockReport
             // 
             this.tsmInwardStockReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1682,7 +1692,8 @@ namespace ROMS
             this.tsmNonMoving,
             this.tsmStockAdjustment,
             this.tsmStockConversionReport,
-            this.tsmStockJournalReport});
+            this.tsmStockJournalReport,
+            this.tsmStockTaking});
             this.tsmInwardStockReport.Name = "tsmInwardStockReport";
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
@@ -2206,11 +2217,16 @@ namespace ROMS
             this.tsmEntryReport.Click += new System.EventHandler(this.tsmEntryReport_Click);
             // 
             // tsmMValueReport
+            // tsmStockTaking
             // 
             this.tsmMValueReport.Name = "tsmMValueReport";
             this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
             this.tsmMValueReport.Text = "M. Value Report";
             this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
+            this.tsmStockTaking.Name = "tsmStockTaking";
+            this.tsmStockTaking.Size = new System.Drawing.Size(204, 22);
+            this.tsmStockTaking.Text = "Stock Taking";
+            this.tsmStockTaking.Click += new System.EventHandler(this.tsmStockTaking_Click);
             // 
             // MainForm
             // 
@@ -2461,5 +2477,7 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmMSReports;
         private System.Windows.Forms.ToolStripMenuItem tsmEntryReport;
         private System.Windows.Forms.ToolStripMenuItem tsmMValueReport;
+        private System.Windows.Forms.ToolStripMenuItem tsmPurchaseConsolidated;
+        private System.Windows.Forms.ToolStripMenuItem tsmStockTaking;
     }
 }

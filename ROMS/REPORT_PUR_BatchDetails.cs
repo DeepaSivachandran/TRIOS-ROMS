@@ -132,7 +132,7 @@ namespace ROMS
                 int varPrint = 0;
                 DataSet objDs = new DataSet();
                 SPDataService objdserv = new SPDataService();
-                objDs = objdserv.udfnPurHsnReport(12, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierId, varScheduleId, 0, Convert.ToInt32(cmbPaymentType.SelectedValue), Convert.ToInt32(cmbPurchaseType.SelectedValue), Convert.ToInt32(cmbConditionType.SelectedValue), Convert.ToInt32(cmbProductName.SelectedValue), "","");
+                objDs = objdserv.udfnPurHsnReport(12, Convert.ToInt32(cmbSupplierType.SelectedValue), "", 0, dpFromDate.Text, dpToDate.Text, 0, 0, 0, 0, 0, Convert.ToInt32(cmbConcern.SelectedValue), varSupplierId, varScheduleId, 0, Convert.ToInt32(cmbPaymentType.SelectedValue), Convert.ToInt32(cmbPurchaseType.SelectedValue), Convert.ToInt32(cmbConditionType.SelectedValue), Convert.ToInt32(cmbProductName.SelectedValue), "","", 0, 0, 0, 0, 0, 0, "");
                 objdserv.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
                 if (varPrint == 1)
