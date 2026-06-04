@@ -218,10 +218,6 @@ namespace ROMS
             this.tsmMSReports = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEntryReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMValueReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmMValueProductWiseReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSubgroupWiseReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmGroupWiseReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmBrandWiseReport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMyProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmLock = new System.Windows.Forms.ToolStripMenuItem();
@@ -1936,42 +1932,10 @@ namespace ROMS
             // 
             // tsmMValueReport
             // 
-            this.tsmMValueReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmMValueProductWiseReport,
-            this.tsmSubgroupWiseReport,
-            this.tsmGroupWiseReport,
-            this.tsmBrandWiseReport});
             this.tsmMValueReport.Name = "tsmMValueReport";
             this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
             this.tsmMValueReport.Text = "M. Value Report";
-            // 
-            // tsmMValueProductWiseReport
-            // 
-            this.tsmMValueProductWiseReport.Name = "tsmMValueProductWiseReport";
-            this.tsmMValueProductWiseReport.Size = new System.Drawing.Size(182, 22);
-            this.tsmMValueProductWiseReport.Text = "Product Report";
-            this.tsmMValueProductWiseReport.Click += new System.EventHandler(this.tsmMValueProductWiseReport_Click);
-            // 
-            // tsmSubgroupWiseReport
-            // 
-            this.tsmSubgroupWiseReport.Name = "tsmSubgroupWiseReport";
-            this.tsmSubgroupWiseReport.Size = new System.Drawing.Size(182, 22);
-            this.tsmSubgroupWiseReport.Text = "Subgroup Wise Report";
-            this.tsmSubgroupWiseReport.Click += new System.EventHandler(this.tsmSubgroupWiseReport_Click);
-            // 
-            // tsmGroupWiseReport
-            // 
-            this.tsmGroupWiseReport.Name = "tsmGroupWiseReport";
-            this.tsmGroupWiseReport.Size = new System.Drawing.Size(182, 22);
-            this.tsmGroupWiseReport.Text = "Group Wise Report";
-            this.tsmGroupWiseReport.Click += new System.EventHandler(this.tsmGroupWiseReport_Click);
-            // 
-            // tsmBrandWiseReport
-            // 
-            this.tsmBrandWiseReport.Name = "tsmBrandWiseReport";
-            this.tsmBrandWiseReport.Size = new System.Drawing.Size(182, 22);
-            this.tsmBrandWiseReport.Text = "Brand Wise Report";
-            this.tsmBrandWiseReport.Click += new System.EventHandler(this.tsmBrandWiseReport_Click);
+            this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
             // 
             // tsmMyProfile
             // 
@@ -2497,9 +2461,5 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmMSReports;
         private System.Windows.Forms.ToolStripMenuItem tsmEntryReport;
         private System.Windows.Forms.ToolStripMenuItem tsmMValueReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmMValueProductWiseReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmSubgroupWiseReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmGroupWiseReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmBrandWiseReport;
     }
 }
