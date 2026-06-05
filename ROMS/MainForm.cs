@@ -412,6 +412,7 @@ namespace ROMS
         public static REPORT_CP_Product_Weight objREPORT_CP_Product_Weight;
         public static REPORT_PUR_Product_Consolidated objREPORT_PUR_Product_Consolidated;
         public static REPORT_Stock_Taking objREPORT_Stock_Taking;
+        public static REPORT_PUR_Productwise_Batch objREPORT_PUR_Productwise_Batch;
         public static MAR_Entry objMAR_Entry;
         public static SAL_Entry objSAL_Entry;
         public static REPORT_EntryReport objREPORT_EntryReport;
@@ -5060,6 +5061,20 @@ namespace ROMS
             try
             {
                 OpenReportForm(ref MainForm.objREPORT_Stock_Taking, "REPORT_Stock_Taking", 80415);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmPurchaseProductwiseBatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objREPORT_PUR_Productwise_Batch, "REPORT_PUR_Productwise_Batch", 80317);
                 PbCurrentForm = "5.1";
             }
             catch (Exception ex)
