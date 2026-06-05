@@ -143,7 +143,7 @@ namespace ROMS
                     }
                 }
                 objdserv.CloseConnection();
-
+                udfnList(0);
             }
             catch (Exception ex)
             {
@@ -1716,7 +1716,7 @@ namespace ROMS
             try
             {
                 epReport.Clear();
-                udfnProductCategoryReport(0);
+                udfnList(0);
                 lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
             }
             catch (Exception ex)
@@ -1726,7 +1726,7 @@ namespace ROMS
             }
         }
 
-        public void udfnProductCategoryReport(int varFlag)
+        public void udfnList(int varFlag)
         {
             try
             {
@@ -2554,7 +2554,7 @@ namespace ROMS
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.ActiveControl = cmbConcern;
-                    udfnProductCategoryReport(0);
+                    udfnList(0);
                 }
                 else
                 {
@@ -2617,7 +2617,7 @@ namespace ROMS
                         cmbType.SelectedIndex = 0;
                         cmbFilterType.SelectedIndex = 0;
                         cmbMultiUnit.ClearAll();
-                        udfnProductCategoryReport(0);
+                        udfnList(0);
                     }
                 }
                 else
@@ -2712,7 +2712,7 @@ namespace ROMS
         {
             try
             {
-                udfnProductCategoryReport(1);
+                udfnList(1);
             }
             catch (Exception ex)
             {
@@ -2725,7 +2725,7 @@ namespace ROMS
         {
             try
             {
-                udfnProductCategoryReport(2);
+                udfnList(2);
             }
             catch (Exception ex)
             {

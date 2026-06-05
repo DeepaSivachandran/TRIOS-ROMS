@@ -1783,7 +1783,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbType.Enabled == true)
+                    if (cmbEntryType.Enabled == true)
                     {
                         cmbEntryType.Focus();
                     }

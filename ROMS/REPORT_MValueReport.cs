@@ -95,7 +95,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 80801; 
+                int currentMUCode = 80802; 
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
@@ -1679,7 +1679,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbType.Enabled == true)
+                    if (cmbEntryType.Enabled == true)
                     {
                         cmbEntryType.Focus();
                     }
@@ -1841,7 +1841,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbPrintType.Focus();
+                    txtSupplier.Focus();
                 }
             }
             catch (Exception ex)
@@ -2086,19 +2086,19 @@ namespace ROMS
                     varConcern = cmbConcern.Text;
                     Application.DoEvents();
                     MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 583)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 597)
                     {
                         objMR_MarginEntry.paraViewType = 6;
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 598)
                     {
                         objMR_MarginEntry.paraViewType = 7;
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 599)
                     {
                         objMR_MarginEntry.paraViewType = 8;
                     }
-                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                    else if (Convert.ToInt32(cmbReportType.SelectedValue) == 600)
                     {
                         objMR_MarginEntry.paraViewType = 9;
                     }
@@ -2139,25 +2139,25 @@ namespace ROMS
                         string varReportName = "";
                         CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                         objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        if (Convert.ToInt32(cmbReportType.SelectedValue) == 597)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_ProductWiseReport.rpt");
                             varReportName = "M.Value Product Wise Report";
                             objBillreport.SetParameterValue("varHeader", "M.Value Product Wise Report");
                         }
-                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 598)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_SubgroupWiseReport.rpt");
                             varReportName = "M.Value Subgroup Wise Report";
                             objBillreport.SetParameterValue("varHeader", "M.Value Subgroup Wise Report");
                         }
-                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 599)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_GroupWiseReport.rpt");
                             varReportName = "M.Value Group Wise Report";
                             objBillreport.SetParameterValue("varHeader", "M.Value Group Wise Report");
                         }
-                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 584)
+                        else if (Convert.ToInt32(cmbReportType.SelectedValue) == 600)
                         {
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MValue_BrandWiseReport.rpt");
                             varReportName = "M.Value Brand Wise Report";
