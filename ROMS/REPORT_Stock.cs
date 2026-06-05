@@ -83,28 +83,44 @@ namespace ROMS
                 cmbReportType.BackColor = Color.White;
 
                 lvProduct.Visible = false;
-                if (txtProductName.Text == "")
+                string varProductName="-All-",varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varSupplierName = "-All-", varLocationName = "-All-", varPICodeName = "-All-";
+                int varProductId = 0, varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierCode = 0, varScheduleCode = 0, varLocationCode = 0;
+                if (txtProductName.Text.Trim() != "")
                 {
-                    lblProduct.Text = "0";
+                    varProductName = txtProductName.Text;
+                    varProductId = Convert.ToInt32(lblProduct.Text);
                 }
-                if (txtGroup.Text == "")
+                if (txtGroup.Text.Trim() != "")
                 {
-                    lblGroupCode.Text = "0";
+                    varGroupName = txtGroup.Text;
+                    varGroupId = Convert.ToInt32(lblGroupCode.Text);
                 }
-                if (txtSubGroup.Text == "")
+                if (txtSubGroup.Text.Trim() != "")
                 {
-                    lblSubGroupCode.Text = "0";
+                    varSubgroupName = txtSubGroup.Text;
+                    varSubgroupId = Convert.ToInt32(lblSubGroupCode.Text);
                 }
-                if (txtBrand.Text == "")
+                if (txtBrand.Text.Trim() != "")
                 {
-                    lblBrandCode.Text = "0";
+                    varBrandName = txtBrand.Text;
+                    varBrandId = Convert.ToInt32(lblBrandCode.Text);
                 }
-               
-                if (txtSupplier.Text == "")
+                if (txtLocation.Text.Trim() != "")
                 {
-                    lblSupplierCode.Text = "0";
-                } 
-                if(Convert.ToInt32(cmbStockLocation.SelectedValue)!=0)
+                    varLocationName = txtLocation.Text;
+                    varLocationCode = Convert.ToInt32(lblLocationCode.Text);
+                }
+                if (txtSupplier.Text.Trim() != "")
+                {
+                    varSupplierName = txtSupplier.Text;
+                    varSupplierCode = Convert.ToInt32(lblSupplierCode.Text);
+                    varScheduleCode = Convert.ToInt32(lblScheduleCode.Text);
+                }
+                if (txtSearchByPICode.Text.Trim() != "")
+                {
+                    varPICodeName = txtSearchByPICode.Text.Trim();
+                }
+                if (Convert.ToInt32(cmbStockLocation.SelectedValue)!=0)
                 {
                     locationcode = Convert.ToString(cmbStockLocation.SelectedValue);
                 }
@@ -119,7 +135,15 @@ namespace ROMS
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 Model.TRN_Stock objTRNG_Stock = new Model.TRN_Stock();
-                objTRNG_Stock.ViewType = 7;
+                if (Convert.ToInt32(cmbReportType.SelectedValue) != 601)
+                {
+                    objTRNG_Stock.ViewType = 7;
+                }
+                else
+                {
+                    objTRNG_Stock.ViewType = 10;
+                    objTRNG_Stock.paraUnitId = Convert.ToInt32(cmbUnit.SelectedValue);
+                }
 
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == 415)
                 {
@@ -138,13 +162,13 @@ namespace ROMS
                     objTRNG_Stock.paraReportType = 4;
                 }
 
-                objTRNG_Stock.paraPRID = Convert.ToInt32(lblProduct.Text.Trim());
+                objTRNG_Stock.paraPRID = varProductId;
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
                 //objTRNG_Stock.paraSLID = Convert.ToInt32(locationcode);
-                objTRNG_Stock.paraGroupID = Convert.ToInt32(lblGroupCode.Text);
-                objTRNG_Stock.paraSubGroupID = Convert.ToInt32(lblSubGroupCode.Text);
-                objTRNG_Stock.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
-                objTRNG_Stock.paraSupplierId = Convert.ToInt32(lblSupplierCode.Text);
+                objTRNG_Stock.paraGroupID = varGroupId;
+                objTRNG_Stock.paraSubGroupID = varSubgroupId;
+                objTRNG_Stock.paraBrandID = varBrandId;
+                objTRNG_Stock.paraSupplierId = varSupplierCode;
                 objTRNG_Stock.paraType = Convert.ToInt32(cmbType.SelectedValue); 
                 objTRNG_Stock.paraCategoryID = Convert.ToInt32(cmbCategory.SelectedValue);
                 objTRNG_Stock.paraStockType = Convert.ToInt32(cmbStockType.SelectedValue);
@@ -205,42 +229,85 @@ namespace ROMS
                             objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Max.rpt");
                             varReportName = "Max_Stock_Report";
                         }
-                    }   
-                    objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue)); 
-                    objBillreport.SetParameterValue("paraSLID",Convert.ToInt32(cmbStockLocation.SelectedValue));
-                    objBillreport.SetParameterValue("paraPRID", lblProduct.Text);
-                    objBillreport.SetParameterValue("paraPRGID", lblGroupCode.Text);
-                    objBillreport.SetParameterValue("paraPRSGID", lblSubGroupCode.Text);
-                    objBillreport.SetParameterValue("paraBrandID", lblBrandCode.Text);
-                    objBillreport.SetParameterValue("ParaSupplierId", lblSupplierCode.Text); 
-                    objBillreport.SetParameterValue("paraEntryTypeID", Convert.ToInt32(cmbType.SelectedValue));
-                    objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
-                    objBillreport.SetParameterValue("paraStockType", Convert.ToInt32(cmbStockType.SelectedValue));
-                    objBillreport.SetParameterValue("paraBlockedFlag", Convert.ToInt32(cmbProductType.SelectedValue));
-                    objBillreport.SetParameterValue("paraUserLocations", Convert.ToString(locationcode));
-                    objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text);
-                    if (Convert.ToInt32(cmbLanuguage.SelectedValue) == 270)
+                    }
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 601)    // As on Stock With Requirement/Excess
                     {
-                        objBillreport.SetParameterValue("paraNameType", 2);
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_AsOnStockWithRequirement_Excess.rpt");
+                        varReportName = "AsOnStock_WithRequirement_Excess";
+
+                        objBillreport.SetParameterValue("paraType", Convert.ToInt32(cmbType.SelectedValue));
+                        objBillreport.SetParameterValue("paraTypeName", cmbType.Text);
+                        objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                        objBillreport.SetParameterValue("paraCOMID", Convert.ToInt32(cmbConcern.SelectedValue));
+                        objBillreport.SetParameterValue("paraGroupId", varGroupId);
+                        objBillreport.SetParameterValue("paraSubgroupId", varSubgroupId);
+                        objBillreport.SetParameterValue("paraSLID", Convert.ToInt32(cmbStockLocation.SelectedValue));
+                        objBillreport.SetParameterValue("paraSupplierID", varSupplierCode);
+                        objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                        if (Convert.ToInt32(cmbReportFormat.SelectedValue) == 357)
+                        {
+                            objBillreport.SetParameterValue("paraFlag", 1);
+                        }
+                        else
+                        {
+                            objBillreport.SetParameterValue("paraFlag", 0);
+                        }
+                        objBillreport.SetParameterValue("paraStockType", Convert.ToInt32(cmbStockType.SelectedValue));
+                        objBillreport.SetParameterValue("paraUnitId", Convert.ToInt32(cmbUnit.SelectedValue));
+                        objBillreport.SetParameterValue("paraPRID", varProductId);
+
+                        // Name Parameters
+                        objBillreport.SetParameterValue("paraProductName", varProductName);
+                        objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                        objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                        objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                        objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                        objBillreport.SetParameterValue("paraSupplierName", varSupplierName);
+                        objBillreport.SetParameterValue("paraPICodeName", varPICodeName);
+                        objBillreport.SetParameterValue("paraPicode", txtSearchByPICode.Text.Trim());
+                        objBillreport.SetParameterValue("paraCategoryName", cmbCategory.Text);
+                        objBillreport.SetParameterValue("paraConcernName", cmbConcern.Text);
+                        objBillreport.SetParameterValue("paraUnitName", cmbUnit.Text);
+                        objBillreport.SetParameterValue("paraStockTypeName", cmbStockType.Text);
                     }
                     else
                     {
-                        objBillreport.SetParameterValue("paraNameType", 1);
-                    }
-                    if (Convert.ToInt32(cmbProductType.SelectedValue) == 418)
-                    {
-                        objBillreport.SetParameterValue("paraBlockedFlag",1);
-                    } 
-                    objBillreport.SetParameterValue("alphaName", string.IsNullOrWhiteSpace(txtSearchByPICode.Text) ? "-All-" : txtSearchByPICode.Text.Trim());
-                    objBillreport.SetParameterValue("paraLocationName", string.IsNullOrWhiteSpace(cmbStockLocation.Text) ? "-All-" : cmbStockLocation.Text.Trim());
-                    objBillreport.SetParameterValue("supplierName", string.IsNullOrWhiteSpace(txtSupplier.Text) ? "-All-" : txtSupplier.Text.Trim());
-                    objBillreport.SetParameterValue("ProductName", string.IsNullOrWhiteSpace(txtProductName.Text) ? "-All-" : txtProductName.Text.Trim());
-                    objBillreport.SetParameterValue("productCategory", cmbCategory.Text);
-                    objBillreport.SetParameterValue("Companyname", cmbConcern.Text);
-                    objBillreport.SetParameterValue("GroupName", string.IsNullOrWhiteSpace(txtGroup.Text) ? "-All-" : txtGroup.Text.Trim());
-                    objBillreport.SetParameterValue("SubGroupName", string.IsNullOrWhiteSpace(txtSubGroup.Text) ? "-All-" : txtSubGroup.Text.Trim());
-                    objBillreport.SetParameterValue("BrandName", string.IsNullOrWhiteSpace(txtBrand.Text) ? "-All-" : txtBrand.Text.Trim());
+                        objBillreport.SetParameterValue("paraCompanyCode", Convert.ToInt32(cmbConcern.SelectedValue));
+                        objBillreport.SetParameterValue("paraSLID", Convert.ToInt32(cmbStockLocation.SelectedValue));
+                        objBillreport.SetParameterValue("paraPRID", varProductId);
+                        objBillreport.SetParameterValue("paraPRGID", varGroupId);
+                        objBillreport.SetParameterValue("paraPRSGID", varSubgroupId);
+                        objBillreport.SetParameterValue("paraBrandID", varBrandId);
+                        objBillreport.SetParameterValue("ParaSupplierId", varSupplierCode);
+                        objBillreport.SetParameterValue("paraEntryTypeID", Convert.ToInt32(cmbType.SelectedValue));
+                        objBillreport.SetParameterValue("paraProductCategory", Convert.ToInt32(cmbCategory.SelectedValue));
+                        objBillreport.SetParameterValue("paraStockType", Convert.ToInt32(cmbStockType.SelectedValue));
+                        objBillreport.SetParameterValue("paraBlockedFlag", Convert.ToInt32(cmbProductType.SelectedValue));
+                        objBillreport.SetParameterValue("paraUserLocations", Convert.ToString(locationcode));
+                        objBillreport.SetParameterValue("paraAlpha", txtSearchByPICode.Text);
 
+                        if (Convert.ToInt32(cmbLanuguage.SelectedValue) == 270)
+                        {
+                            objBillreport.SetParameterValue("paraNameType", 2);
+                        }
+                        else
+                        {
+                            objBillreport.SetParameterValue("paraNameType", 1);
+                        }
+                        if (Convert.ToInt32(cmbProductType.SelectedValue) == 418)
+                        {
+                            objBillreport.SetParameterValue("paraBlockedFlag", 1);
+                        }
+                        objBillreport.SetParameterValue("alphaName", string.IsNullOrWhiteSpace(txtSearchByPICode.Text) ? "-All-" : txtSearchByPICode.Text.Trim());
+                        objBillreport.SetParameterValue("paraLocationName", string.IsNullOrWhiteSpace(cmbStockLocation.Text) ? "-All-" : cmbStockLocation.Text.Trim());
+                        objBillreport.SetParameterValue("supplierName", string.IsNullOrWhiteSpace(txtSupplier.Text) ? "-All-" : txtSupplier.Text.Trim());
+                        objBillreport.SetParameterValue("ProductName", string.IsNullOrWhiteSpace(txtProductName.Text) ? "-All-" : txtProductName.Text.Trim());
+                        objBillreport.SetParameterValue("productCategory", cmbCategory.Text);
+                        objBillreport.SetParameterValue("Companyname", cmbConcern.Text);
+                        objBillreport.SetParameterValue("GroupName", string.IsNullOrWhiteSpace(txtGroup.Text) ? "-All-" : txtGroup.Text.Trim());
+                        objBillreport.SetParameterValue("SubGroupName", string.IsNullOrWhiteSpace(txtSubGroup.Text) ? "-All-" : txtSubGroup.Text.Trim());
+                        objBillreport.SetParameterValue("BrandName", string.IsNullOrWhiteSpace(txtBrand.Text) ? "-All-" : txtBrand.Text.Trim());
+                    }
                      
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName); 
@@ -330,6 +397,24 @@ namespace ROMS
                     }
                 }
 
+                DataSet objDT = new DataSet();
+                DataSet objDTBulkUnit = new DataSet();
+                SPDataService objdServ = new SPDataService();
+                objDT = objdServ.udfnUnitList(3, 0, 0);
+                objdServ.CloseConnection();
+                cmbUnit.DataSource = null;
+                if (objDT != null)
+                {
+                    if (objDT.Tables.Count > 0)
+                    {
+                        if (objDT.Tables[0].Rows.Count > 0)
+                        {
+                            cmbUnit.ValueMember = "UTID";
+                            cmbUnit.DisplayMember = "UT_Symbol";
+                            cmbUnit.DataSource = objDT.Tables[0];
+                        }
+                    }
+                }
 
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
@@ -352,11 +437,14 @@ namespace ROMS
                 //Transaction id -128
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
 
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=107 ", "MST_DisplayText,MSTID", cmbReportFormat, "", "MST_DisplayText", "MSTID");
+
                 objDataBind = null;
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId; 
                 cmbType.SelectedValue = 0;
                 cmbReportType.SelectedValue = -1; 
                 cmbCategory.SelectedValue = 0; 
+                cmbUnit.SelectedValue = 0; 
                 cmbLanuguage.SelectedValue = 271; 
                 cmbStockType.SelectedValue = 419; ////in stock
                 //udfnList();
@@ -855,12 +943,18 @@ namespace ROMS
 
         private void cmbCategory_KeyDown(object sender, KeyEventArgs e)
         {
-           
             try
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbType.Focus();
+                    if (cmbType.Enabled == true)
+                    {
+                        cmbType.Focus();
+                    }
+                    else
+                    {
+                        txtGroup.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2520,7 +2614,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnListPrint.Focus();
+                    if (cmbUnit.Enabled == true)
+                    {
+                        cmbUnit.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2642,17 +2743,6 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbStockLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void cmbStockLocation_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2697,14 +2787,44 @@ namespace ROMS
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                DataBind objDataBind = new DataBind();
+                if (Convert.ToInt32(cmbCategory.SelectedValue) == 13)   //Trading
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID=13 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    cmbType.Enabled = false;
+                }
+                else if (Convert.ToInt32(cmbCategory.SelectedValue) == 14)  //Conversion
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbType.Enabled = true;
+                }
+                else if (Convert.ToInt32(cmbCategory.SelectedValue) == 15)  //Free
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MSTID=15 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    cmbType.Enabled = false;
+                }
+                else if (Convert.ToInt32(cmbCategory.SelectedValue) == 16)  //Production
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,76) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbType.Enabled = true;
+                }
+                else
+                {
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                    objDataBind = null;
+                    cmbType.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
-
-        private void DGV_FilterLocation_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void cmbReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -2720,6 +2840,118 @@ namespace ROMS
                     objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,130) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockType, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbUnit_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbUnit.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbUnit_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    cmbReportFormat.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbUnit_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbUnit.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbReportFormat.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnListPrint.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbReportFormat_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbReportFormat.BackColor = Color.White;
             }
             catch (Exception ex)
             {

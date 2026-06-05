@@ -66,6 +66,8 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbUnit = new System.Windows.Forms.ComboBox();
             this.cmbStockLocation = new System.Windows.Forms.ComboBox();
             this.btnTelegram = new System.Windows.Forms.Button();
             this.cmbLanuguage = new System.Windows.Forms.ComboBox();
@@ -108,6 +110,8 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbReportFormat = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsStockReport.SuspendLayout();
             this.pnlReportProduct.SuspendLayout();
@@ -220,7 +224,7 @@
             this.DGV_FilterBrand.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterBrand.EnableHeadersVisualStyles = false;
             this.DGV_FilterBrand.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterBrand.Location = new System.Drawing.Point(980, 82);
+            this.DGV_FilterBrand.Location = new System.Drawing.Point(980, 76);
             this.DGV_FilterBrand.Name = "DGV_FilterBrand";
             this.DGV_FilterBrand.ReadOnly = true;
             this.DGV_FilterBrand.RowHeadersVisible = false;
@@ -264,7 +268,7 @@
             this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSupplier.Location = new System.Drawing.Point(784, 134);
+            this.DGV_FilterSupplier.Location = new System.Drawing.Point(784, 135);
             this.DGV_FilterSupplier.Name = "DGV_FilterSupplier";
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
@@ -321,7 +325,6 @@
             this.DGV_FilterLocation.Size = new System.Drawing.Size(244, 226);
             this.DGV_FilterLocation.TabIndex = 111111214;
             this.DGV_FilterLocation.Visible = false;
-            this.DGV_FilterLocation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterLocation_CellContentClick);
             this.DGV_FilterLocation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterLocation_CellDoubleClick);
             this.DGV_FilterLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterLocation_KeyDown);
             // 
@@ -353,7 +356,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(575, 78);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(575, 76);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
@@ -363,7 +366,7 @@
             this.DGV_FilterGroup.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_FilterGroup.RowTemplate.Height = 25;
             this.DGV_FilterGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterGroup.Size = new System.Drawing.Size(273, 98);
+            this.DGV_FilterGroup.Size = new System.Drawing.Size(273, 191);
             this.DGV_FilterGroup.TabIndex = 111111169;
             this.DGV_FilterGroup.Visible = false;
             this.DGV_FilterGroup.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterGroup_CellDoubleClick);
@@ -397,7 +400,7 @@
             this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle14;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(782, 78);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(782, 76);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
@@ -492,6 +495,10 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.label13);
+            this.grpfilter.Controls.Add(this.cmbReportFormat);
+            this.grpfilter.Controls.Add(this.label11);
+            this.grpfilter.Controls.Add(this.cmbUnit);
             this.grpfilter.Controls.Add(this.cmbStockLocation);
             this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.cmbLanuguage);
@@ -537,6 +544,28 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(1056, 77);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 20);
+            this.label11.TabIndex = 111111229;
+            this.label11.Text = "Unit";
+            // 
+            // cmbUnit
+            // 
+            this.cmbUnit.FormattingEnabled = true;
+            this.cmbUnit.Location = new System.Drawing.Point(1056, 100);
+            this.cmbUnit.Name = "cmbUnit";
+            this.cmbUnit.Size = new System.Drawing.Size(58, 27);
+            this.cmbUnit.TabIndex = 14;
+            this.cmbUnit.Enter += new System.EventHandler(this.cmbUnit_Enter);
+            this.cmbUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbUnit_KeyDown);
+            this.cmbUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbUnit_KeyPress);
+            this.cmbUnit.Leave += new System.EventHandler(this.cmbUnit_Leave);
+            // 
             // cmbStockLocation
             // 
             this.cmbStockLocation.FormattingEnabled = true;
@@ -544,7 +573,6 @@
             this.cmbStockLocation.Name = "cmbStockLocation";
             this.cmbStockLocation.Size = new System.Drawing.Size(242, 27);
             this.cmbStockLocation.TabIndex = 10;
-            this.cmbStockLocation.SelectedIndexChanged += new System.EventHandler(this.cmbStockLocation_SelectedIndexChanged);
             this.cmbStockLocation.Enter += new System.EventHandler(this.cmbStockLocation_Enter);
             this.cmbStockLocation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStockLocation_KeyDown);
             this.cmbStockLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbStockLocation_KeyPress);
@@ -554,11 +582,11 @@
             // 
             this.btnTelegram.Image = ((System.Drawing.Image)(resources.GetObject("btnTelegram.Image")));
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1205, 100);
+            this.btnTelegram.Location = new System.Drawing.Point(1283, 98);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTelegram.Name = "btnTelegram";
             this.btnTelegram.Size = new System.Drawing.Size(33, 29);
-            this.btnTelegram.TabIndex = 15;
+            this.btnTelegram.TabIndex = 17;
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -592,7 +620,7 @@
             this.cmbStockType.FormattingEnabled = true;
             this.cmbStockType.Location = new System.Drawing.Point(977, 100);
             this.cmbStockType.Name = "cmbStockType";
-            this.cmbStockType.Size = new System.Drawing.Size(137, 27);
+            this.cmbStockType.Size = new System.Drawing.Size(73, 27);
             this.cmbStockType.TabIndex = 13;
             this.cmbStockType.Enter += new System.EventHandler(this.cmbStockType_Enter);
             this.cmbStockType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbStockType_KeyDown);
@@ -805,7 +833,6 @@
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(118, 27);
             this.cmbType.TabIndex = 3;
-            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             this.cmbType.Enter += new System.EventHandler(this.cmbType_Enter);
             this.cmbType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbType_KeyDown);
             this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
@@ -961,12 +988,11 @@
             this.btnListPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListPrint.Image = global::ROMS.Properties.Resources.view;
             this.btnListPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnListPrint.Location = new System.Drawing.Point(1120, 98);
+            this.btnListPrint.Location = new System.Drawing.Point(1244, 98);
             this.btnListPrint.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnListPrint.Name = "btnListPrint";
-            this.btnListPrint.Size = new System.Drawing.Size(75, 29);
-            this.btnListPrint.TabIndex = 14;
-            this.btnListPrint.Text = "View";
+            this.btnListPrint.Size = new System.Drawing.Size(33, 29);
+            this.btnListPrint.TabIndex = 16;
             this.btnListPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListPrint.UseVisualStyleBackColor = true;
             this.btnListPrint.Click += new System.EventHandler(this.BtnListPrint_Click);
@@ -1016,6 +1042,28 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
+            // 
+            // cmbReportFormat
+            // 
+            this.cmbReportFormat.FormattingEnabled = true;
+            this.cmbReportFormat.Location = new System.Drawing.Point(1120, 100);
+            this.cmbReportFormat.Name = "cmbReportFormat";
+            this.cmbReportFormat.Size = new System.Drawing.Size(118, 27);
+            this.cmbReportFormat.TabIndex = 15;
+            this.cmbReportFormat.Enter += new System.EventHandler(this.cmbReportFormat_Enter);
+            this.cmbReportFormat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReportFormat_KeyDown);
+            this.cmbReportFormat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReportFormat_KeyPress);
+            this.cmbReportFormat.Leave += new System.EventHandler(this.cmbReportFormat_Leave);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(1120, 77);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(64, 20);
+            this.label13.TabIndex = 111111230;
+            this.label13.Text = "Print Type";
             // 
             // dynamicLabelControl
             // 
@@ -1120,5 +1168,9 @@
         private System.Windows.Forms.ErrorProvider epReport;
         private System.Windows.Forms.Button btnTelegram;
         private System.Windows.Forms.ComboBox cmbStockLocation;
+        private System.Windows.Forms.ComboBox cmbUnit;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cmbReportFormat;
+        private System.Windows.Forms.Label label13;
     }
 }

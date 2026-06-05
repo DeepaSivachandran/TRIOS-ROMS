@@ -32,6 +32,7 @@ namespace ROMS.Model
         public int paraCategoryID { get; set; } = 0;
         public string paraDate { get; set; } = "";
         public int paraFlag { get; set; } = 0;
+        public int paraUnitId { get; set; } = 0;
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
     }      

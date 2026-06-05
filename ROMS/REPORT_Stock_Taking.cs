@@ -1811,7 +1811,7 @@ namespace ROMS
         {
             try
             {
-                                cmbReportFormat.BackColor = Color.White;
+                cmbReportFormat.BackColor = Color.White;
             }
             catch (Exception ex)
             {
