@@ -808,7 +808,7 @@ namespace ROMS
                 if(Sizecode=="")
                 {
                     DataBind objDataBind = new DataBind(); 
-                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79,93) AND MSTID NOT IN (0) ORDER BY MSTID", "MST_DisplayText,MSTID", Cmb_PaperSize, "", "MST_DisplayText", "MSTID");
+                    objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,79,93) AND MSTID NOT IN (0) OR MSTID=468 ORDER BY MSTID", "MST_DisplayText,MSTID", Cmb_PaperSize, "", "MST_DisplayText", "MSTID");
                     objDataBind = null;
                 } 
                 else
