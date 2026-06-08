@@ -28,5 +28,6 @@ namespace ROMS.Model
         public string ParaFromDate = "";
         public string ParaToDate = "";
         public int paraEntryType = 0;
+        public int paraProductNameID = 0;
     }
 }

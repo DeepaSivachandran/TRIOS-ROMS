@@ -21,6 +21,7 @@ namespace ROMS.Model
         public int ParaScheduleid = 0;
         public string paraAlpha = "";
         public int paraProductCategory = 0;
+        public int paraProductNameID = 0;
         public int paraType = 0;
         public string paraUnitId = "";
         public string paraFilterType = "";
