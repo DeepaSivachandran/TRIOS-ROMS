@@ -1941,19 +1941,19 @@ namespace ROMS
             this.tsmMValueReport});
             this.tsmMSReports.Name = "tsmMSReports";
             this.tsmMSReports.Size = new System.Drawing.Size(191, 22);
-            this.tsmMSReports.Text = "M. S. Reports";
+            this.tsmMSReports.Text = "M.S.Reports";
             // 
             // tsmEntryReport
             // 
             this.tsmEntryReport.Name = "tsmEntryReport";
-            this.tsmEntryReport.Size = new System.Drawing.Size(152, 22);
+            this.tsmEntryReport.Size = new System.Drawing.Size(180, 22);
             this.tsmEntryReport.Text = "Entry Report";
             this.tsmEntryReport.Click += new System.EventHandler(this.tsmEntryReport_Click);
             // 
             // tsmMValueReport
             // 
             this.tsmMValueReport.Name = "tsmMValueReport";
-            this.tsmMValueReport.Size = new System.Drawing.Size(152, 22);
+            this.tsmMValueReport.Size = new System.Drawing.Size(180, 22);
             this.tsmMValueReport.Text = "M. Value Report";
             this.tsmMValueReport.Click += new System.EventHandler(this.tsmMValueReport_Click);
             // 
@@ -2048,6 +2048,7 @@ namespace ROMS
             this.ms.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbLogo,
+            this.tsmMyProfile,
             this.tsmpurchase,
             this.tsmAccounts,
             this.tsmInventory,

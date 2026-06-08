@@ -6365,6 +6365,9 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraType", objMR_MarginEntry.paraType);
                 varSqlCommand.Parameters.AddWithValue("@paraUnitId", objMR_MarginEntry.paraUnitId);
                 varSqlCommand.Parameters.AddWithValue("@paraFilterType", objMR_MarginEntry.paraFilterType);
+                varSqlCommand.Parameters.AddWithValue("@ParaFromDate", objMR_MarginEntry.ParaFromDate);
+                varSqlCommand.Parameters.AddWithValue("@ParaToDate", objMR_MarginEntry.ParaToDate);
+                varSqlCommand.Parameters.AddWithValue("@paraEntryType", objMR_MarginEntry.paraEntryType);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

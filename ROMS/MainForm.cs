@@ -416,6 +416,7 @@ namespace ROMS
         public static MAR_Entry objMAR_Entry;
         public static SAL_Entry objSAL_Entry;
         public static REPORT_EntryReport objREPORT_EntryReport;
+        public static REPORT_MValueReport objREPORT_MValueReport;
 
 
         public static Financial_Year_Process objFinancial_Year_Process;
@@ -2349,7 +2350,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objMAR_Entry, "MAR_Entry", 80125);
+                OpenReportForm(ref MainForm.objMAR_Entry, "MAR_Entry", 1201);
             }
             catch (Exception ex)
             {
@@ -2362,7 +2363,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objSAL_Entry, "SAL_Entry", 80125);
+                OpenReportForm(ref MainForm.objSAL_Entry, "SAL_Entry", 1202);
             }
             catch (Exception ex)
             {
@@ -2375,7 +2376,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80125);
+                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80801);
             }
             catch (Exception ex)
             {
@@ -2388,7 +2389,7 @@ namespace ROMS
         {
             try
             {
-                OpenReportForm(ref MainForm.objREPORT_EntryReport, "REPORT_EntryReport", 80125);
+                OpenReportForm(ref MainForm.objREPORT_MValueReport, "REPORT_MValueReport", 80802);
             }
             catch (Exception ex)
             {

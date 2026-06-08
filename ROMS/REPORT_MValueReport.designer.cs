@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class REPORT_EntryReport
+    partial class REPORT_MValueReport
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_EntryReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(REPORT_MValueReport));
             this.pnlEntryReport = new System.Windows.Forms.Panel();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.DGV_FilterBrand = new System.Windows.Forms.DataGridView();
@@ -50,6 +50,8 @@
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.lblReportType = new System.Windows.Forms.Label();
+            this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblEntryType = new System.Windows.Forms.Label();
             this.cmbEntryType = new System.Windows.Forms.ComboBox();
             this.dpToDate = new System.Windows.Forms.DateTimePicker();
@@ -58,15 +60,11 @@
             this.dpFromDate = new System.Windows.Forms.DateTimePicker();
             this.cmbPrintType = new System.Windows.Forms.ComboBox();
             this.lblPrintType = new System.Windows.Forms.Label();
-            this.lblReportType = new System.Windows.Forms.Label();
-            this.cmbReportType = new System.Windows.Forms.ComboBox();
             this.lblUnits = new System.Windows.Forms.Label();
             this.lblSchedleCode = new System.Windows.Forms.Label();
             this.lblSupplierCode = new System.Windows.Forms.Label();
             this.btnTelegram = new System.Windows.Forms.Button();
             this.cmbType = new System.Windows.Forms.ComboBox();
-            this.cmbFilterType = new System.Windows.Forms.ComboBox();
-            this.lblFilterType = new System.Windows.Forms.Label();
             this.cmbMultiUnit = new MultiSelectComboBox();
             this.lblUnit = new System.Windows.Forms.Label();
             this.lblAlpha = new System.Windows.Forms.Label();
@@ -91,7 +89,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tsEntryReport = new System.Windows.Forms.ToolStrip();
+            this.tsMValue_Report = new System.Windows.Forms.ToolStrip();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrintFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
@@ -104,7 +102,7 @@
             this.grpfilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
-            this.tsEntryReport.SuspendLayout();
+            this.tsMValue_Report.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEntryReport
@@ -163,7 +161,7 @@
             this.DGV_FilterBrand.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterBrand.EnableHeadersVisualStyles = false;
             this.DGV_FilterBrand.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterBrand.Location = new System.Drawing.Point(925, 79);
+            this.DGV_FilterBrand.Location = new System.Drawing.Point(923, 79);
             this.DGV_FilterBrand.Name = "DGV_FilterBrand";
             this.DGV_FilterBrand.ReadOnly = true;
             this.DGV_FilterBrand.RowHeadersVisible = false;
@@ -207,7 +205,7 @@
             this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(710, 79);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(708, 79);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
@@ -251,7 +249,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(513, 79);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(531, 79);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
@@ -305,7 +303,7 @@
             this.DGV_FilterSupplier.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_FilterSupplier.RowTemplate.Height = 25;
             this.DGV_FilterSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_FilterSupplier.Size = new System.Drawing.Size(355, 226);
+            this.DGV_FilterSupplier.Size = new System.Drawing.Size(349, 226);
             this.DGV_FilterSupplier.TabIndex = 111111225;
             this.DGV_FilterSupplier.Visible = false;
             this.DGV_FilterSupplier.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterSupplier_CellDoubleClick);
@@ -326,6 +324,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.lblReportType);
+            this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblEntryType);
             this.grpfilter.Controls.Add(this.cmbEntryType);
             this.grpfilter.Controls.Add(this.dpToDate);
@@ -334,15 +334,11 @@
             this.grpfilter.Controls.Add(this.dpFromDate);
             this.grpfilter.Controls.Add(this.cmbPrintType);
             this.grpfilter.Controls.Add(this.lblPrintType);
-            this.grpfilter.Controls.Add(this.lblReportType);
-            this.grpfilter.Controls.Add(this.cmbReportType);
             this.grpfilter.Controls.Add(this.lblUnits);
             this.grpfilter.Controls.Add(this.lblSchedleCode);
             this.grpfilter.Controls.Add(this.lblSupplierCode);
             this.grpfilter.Controls.Add(this.btnTelegram);
             this.grpfilter.Controls.Add(this.cmbType);
-            this.grpfilter.Controls.Add(this.cmbFilterType);
-            this.grpfilter.Controls.Add(this.lblFilterType);
             this.grpfilter.Controls.Add(this.cmbMultiUnit);
             this.grpfilter.Controls.Add(this.lblUnit);
             this.grpfilter.Controls.Add(this.lblAlpha);
@@ -374,6 +370,29 @@
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
             // 
+            // lblReportType
+            // 
+            this.lblReportType.AutoSize = true;
+            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportType.Location = new System.Drawing.Point(10, 24);
+            this.lblReportType.Name = "lblReportType";
+            this.lblReportType.Size = new System.Drawing.Size(74, 20);
+            this.lblReportType.TabIndex = 111111241;
+            this.lblReportType.Text = "Report Type";
+            // 
+            // cmbReportType
+            // 
+            this.cmbReportType.FormattingEnabled = true;
+            this.cmbReportType.Location = new System.Drawing.Point(14, 51);
+            this.cmbReportType.Name = "cmbReportType";
+            this.cmbReportType.Size = new System.Drawing.Size(140, 27);
+            this.cmbReportType.TabIndex = 0;
+            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.cmbReportType_SelectedIndexChanged);
+            this.cmbReportType.Enter += new System.EventHandler(this.cmbReportType_Enter);
+            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReportType_KeyDown);
+            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReportType_KeyPress);
+            this.cmbReportType.Leave += new System.EventHandler(this.cmbReportType_Leave);
+            // 
             // lblEntryType
             // 
             this.lblEntryType.AutoSize = true;
@@ -400,7 +419,7 @@
             // 
             this.dpToDate.CustomFormat = "dd/MM/yyyy";
             this.dpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpToDate.Location = new System.Drawing.Point(263, 50);
+            this.dpToDate.Location = new System.Drawing.Point(283, 50);
             this.dpToDate.Name = "dpToDate";
             this.dpToDate.Size = new System.Drawing.Size(103, 27);
             this.dpToDate.TabIndex = 2;
@@ -412,7 +431,7 @@
             // 
             this.lblToDate.AutoSize = true;
             this.lblToDate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToDate.Location = new System.Drawing.Point(259, 23);
+            this.lblToDate.Location = new System.Drawing.Point(279, 23);
             this.lblToDate.Name = "lblToDate";
             this.lblToDate.Size = new System.Drawing.Size(49, 20);
             this.lblToDate.TabIndex = 111111237;
@@ -422,7 +441,7 @@
             // 
             this.lblFromDate.AutoSize = true;
             this.lblFromDate.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFromDate.Location = new System.Drawing.Point(141, 23);
+            this.lblFromDate.Location = new System.Drawing.Point(161, 23);
             this.lblFromDate.Name = "lblFromDate";
             this.lblFromDate.Size = new System.Drawing.Size(64, 20);
             this.lblFromDate.TabIndex = 111111236;
@@ -432,7 +451,7 @@
             // 
             this.dpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFromDate.Location = new System.Drawing.Point(145, 50);
+            this.dpFromDate.Location = new System.Drawing.Point(165, 50);
             this.dpFromDate.Name = "dpFromDate";
             this.dpFromDate.Size = new System.Drawing.Size(107, 27);
             this.dpFromDate.TabIndex = 1;
@@ -462,34 +481,11 @@
             this.lblPrintType.TabIndex = 111111232;
             this.lblPrintType.Text = "Print Type";
             // 
-            // lblReportType
-            // 
-            this.lblReportType.AutoSize = true;
-            this.lblReportType.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportType.Location = new System.Drawing.Point(10, 23);
-            this.lblReportType.Name = "lblReportType";
-            this.lblReportType.Size = new System.Drawing.Size(74, 20);
-            this.lblReportType.TabIndex = 111111231;
-            this.lblReportType.Text = "Report Type";
-            // 
-            // cmbReportType
-            // 
-            this.cmbReportType.FormattingEnabled = true;
-            this.cmbReportType.Location = new System.Drawing.Point(14, 50);
-            this.cmbReportType.Name = "cmbReportType";
-            this.cmbReportType.Size = new System.Drawing.Size(120, 27);
-            this.cmbReportType.TabIndex = 0;
-            this.cmbReportType.SelectedIndexChanged += new System.EventHandler(this.cmbReportType_SelectedIndexChanged);
-            this.cmbReportType.Enter += new System.EventHandler(this.cmbReportType_Enter);
-            this.cmbReportType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbReportType_KeyDown);
-            this.cmbReportType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbReportType_KeyPress);
-            this.cmbReportType.Leave += new System.EventHandler(this.cmbReportType_Leave);
-            // 
             // lblUnits
             // 
             this.lblUnits.AutoSize = true;
             this.lblUnits.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.lblUnits.Location = new System.Drawing.Point(701, 145);
+            this.lblUnits.Location = new System.Drawing.Point(699, 145);
             this.lblUnits.Name = "lblUnits";
             this.lblUnits.Size = new System.Drawing.Size(412, 17);
             this.lblUnits.TabIndex = 111111229;
@@ -523,11 +519,12 @@
             this.btnTelegram.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTelegram.Image = global::ROMS.Properties.Resources.Telegram;
             this.btnTelegram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTelegram.Location = new System.Drawing.Point(1311, 110);
+            this.btnTelegram.Location = new System.Drawing.Point(1245, 110);
             this.btnTelegram.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnTelegram.Name = "btnTelegram";
-            this.btnTelegram.Size = new System.Drawing.Size(35, 29);
-            this.btnTelegram.TabIndex = 200000;
+            this.btnTelegram.Size = new System.Drawing.Size(90, 29);
+            this.btnTelegram.TabIndex = 15;
+            this.btnTelegram.Text = "Telegram";
             this.btnTelegram.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTelegram.UseVisualStyleBackColor = true;
             this.btnTelegram.Click += new System.EventHandler(this.btnTelegram_Click);
@@ -536,7 +533,7 @@
             // 
             this.cmbType.DropDownWidth = 86;
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(508, 111);
+            this.cmbType.Location = new System.Drawing.Point(528, 111);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(120, 27);
             this.cmbType.TabIndex = 11;
@@ -544,27 +541,6 @@
             this.cmbType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbType_KeyDown);
             this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
             this.cmbType.Leave += new System.EventHandler(this.cmbType_Leave);
-            // 
-            // cmbFilterType
-            // 
-            this.cmbFilterType.FormattingEnabled = true;
-            this.cmbFilterType.Location = new System.Drawing.Point(1100, 111);
-            this.cmbFilterType.Name = "cmbFilterType";
-            this.cmbFilterType.Size = new System.Drawing.Size(120, 27);
-            this.cmbFilterType.TabIndex = 14;
-            this.cmbFilterType.Enter += new System.EventHandler(this.cmbFilterType_Enter);
-            this.cmbFilterType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFilterType_KeyDown);
-            this.cmbFilterType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFilterType_KeyPress);
-            this.cmbFilterType.Leave += new System.EventHandler(this.cmbFilterType_Leave);
-            // 
-            // lblFilterType
-            // 
-            this.lblFilterType.AutoSize = true;
-            this.lblFilterType.Location = new System.Drawing.Point(1096, 84);
-            this.lblFilterType.Name = "lblFilterType";
-            this.lblFilterType.Size = new System.Drawing.Size(65, 20);
-            this.lblFilterType.TabIndex = 111111224;
-            this.lblFilterType.Text = "Filter Type";
             // 
             // cmbMultiUnit
             // 
@@ -584,7 +560,7 @@
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnit.Location = new System.Drawing.Point(701, 84);
+            this.lblUnit.Location = new System.Drawing.Point(699, 84);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(32, 20);
             this.lblUnit.TabIndex = 111111218;
@@ -628,7 +604,7 @@
             this.txtSupplier.Location = new System.Drawing.Point(14, 111);
             this.txtSupplier.MaxLength = 100;
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(355, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(372, 27);
             this.txtSupplier.TabIndex = 9;
             this.txtSupplier.TextChanged += new System.EventHandler(this.TxtSupplier_TextChanged);
             this.txtSupplier.Enter += new System.EventHandler(this.txtSupplier_Enter);
@@ -672,7 +648,7 @@
             // 
             this.lblSubGroup.AutoSize = true;
             this.lblSubGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubGroup.Location = new System.Drawing.Point(701, 23);
+            this.lblSubGroup.Location = new System.Drawing.Point(699, 23);
             this.lblSubGroup.Name = "lblSubGroup";
             this.lblSubGroup.Size = new System.Drawing.Size(62, 20);
             this.lblSubGroup.TabIndex = 1111234;
@@ -681,7 +657,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(504, 84);
+            this.lblType.Location = new System.Drawing.Point(524, 84);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 20);
             this.lblType.TabIndex = 111111207;
@@ -690,7 +666,7 @@
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(377, 111);
+            this.cmbCategory.Location = new System.Drawing.Point(397, 111);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(120, 27);
             this.cmbCategory.TabIndex = 10;
@@ -703,7 +679,7 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(373, 84);
+            this.lblCategory.Location = new System.Drawing.Point(394, 84);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(104, 20);
             this.lblCategory.TabIndex = 111111205;
@@ -713,7 +689,7 @@
             // 
             this.lblConcern.AutoSize = true;
             this.lblConcern.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConcern.Location = new System.Drawing.Point(373, 23);
+            this.lblConcern.Location = new System.Drawing.Point(394, 23);
             this.lblConcern.Name = "lblConcern";
             this.lblConcern.Size = new System.Drawing.Size(54, 20);
             this.lblConcern.TabIndex = 111111203;
@@ -722,7 +698,7 @@
             // cmbConcern
             // 
             this.cmbConcern.FormattingEnabled = true;
-            this.cmbConcern.Location = new System.Drawing.Point(377, 50);
+            this.cmbConcern.Location = new System.Drawing.Point(397, 50);
             this.cmbConcern.Name = "cmbConcern";
             this.cmbConcern.Size = new System.Drawing.Size(120, 27);
             this.cmbConcern.TabIndex = 3;
@@ -765,7 +741,7 @@
             // 
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGroup.Location = new System.Drawing.Point(504, 23);
+            this.lblGroup.Location = new System.Drawing.Point(524, 23);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(42, 20);
             this.lblGroup.TabIndex = 1111233;
@@ -787,10 +763,10 @@
             // txtGroup
             // 
             this.txtGroup.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            this.txtGroup.Location = new System.Drawing.Point(508, 50);
+            this.txtGroup.Location = new System.Drawing.Point(528, 50);
             this.txtGroup.MaxLength = 100;
             this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(186, 27);
+            this.txtGroup.Size = new System.Drawing.Size(166, 27);
             this.txtGroup.TabIndex = 4;
             this.txtGroup.TextChanged += new System.EventHandler(this.TxtGroup_TextChanged);
             this.txtGroup.Enter += new System.EventHandler(this.TxtGroup_Enter);
@@ -802,11 +778,12 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1265, 110);
+            this.btnView.Location = new System.Drawing.Point(1164, 110);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(35, 29);
-            this.btnView.TabIndex = 10;
+            this.btnView.Size = new System.Drawing.Size(70, 29);
+            this.btnView.TabIndex = 14;
+            this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -832,21 +809,21 @@
             // 
             this.epReport.ContainerControl = this;
             // 
-            // tsEntryReport
+            // tsMValue_Report
             // 
-            this.tsEntryReport.BackColor = System.Drawing.Color.White;
-            this.tsEntryReport.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsEntryReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsEntryReport.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.tsEntryReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsMValue_Report.BackColor = System.Drawing.Color.White;
+            this.tsMValue_Report.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsMValue_Report.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsMValue_Report.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tsMValue_Report.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsLabelPlaceholder,
             this.tsbPrintFormat,
             this.tsbFormat});
-            this.tsEntryReport.Location = new System.Drawing.Point(0, 0);
-            this.tsEntryReport.Name = "tsEntryReport";
-            this.tsEntryReport.Size = new System.Drawing.Size(1354, 27);
-            this.tsEntryReport.TabIndex = 35;
-            this.tsEntryReport.Text = "GRN Summary Report";
+            this.tsMValue_Report.Location = new System.Drawing.Point(0, 0);
+            this.tsMValue_Report.Name = "tsMValue_Report";
+            this.tsMValue_Report.Size = new System.Drawing.Size(1354, 27);
+            this.tsMValue_Report.TabIndex = 35;
+            this.tsMValue_Report.Text = "GRN Summary Report";
             // 
             // tsLabelPlaceholder
             // 
@@ -888,23 +865,23 @@
             // 
             this.dynamicLabelControl.PlaceholderLabel = null;
             // 
-            // REPORT_EntryReport
+            // REPORT_MValueReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 675);
             this.Controls.Add(this.pnlEntryReport);
-            this.Controls.Add(this.tsEntryReport);
+            this.Controls.Add(this.tsMValue_Report);
             this.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "REPORT_EntryReport";
+            this.Name = "REPORT_MValueReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entry Report";
-            this.Load += new System.EventHandler(this.REPORT_EntryReport_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_EntryReport_KeyDown);
+            this.Load += new System.EventHandler(this.REPORT_MValueReport_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.REPORT_MValueReport_KeyDown);
             this.pnlEntryReport.ResumeLayout(false);
             this.pnlEntryReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).EndInit();
@@ -915,8 +892,8 @@
             this.grpfilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
-            this.tsEntryReport.ResumeLayout(false);
-            this.tsEntryReport.PerformLayout();
+            this.tsMValue_Report.ResumeLayout(false);
+            this.tsMValue_Report.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -952,11 +929,9 @@
         private System.Windows.Forms.TextBox txtAlpha;
         private MultiSelectComboBox cmbMultiUnit;
         private System.Windows.Forms.Label lblUnit;
-        private System.Windows.Forms.ComboBox cmbFilterType;
-        private System.Windows.Forms.Label lblFilterType;
         public System.Windows.Forms.DataGridView DGV_FilterBrand;
         private System.Windows.Forms.Button btnTelegram;
-        private System.Windows.Forms.ToolStrip tsEntryReport;
+        private System.Windows.Forms.ToolStrip tsMValue_Report;
         private System.Windows.Forms.ToolStripLabel tsLabelPlaceholder;
         public System.Windows.Forms.DataGridView DGV_FilterSupplier;
         public System.Windows.Forms.DataGridView DGV_FilterGroup;
@@ -967,8 +942,6 @@
         public System.Windows.Forms.ToolStripButton tsbFormat;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer RPTViewer;
         private System.Windows.Forms.Label lblUnits;
-        private System.Windows.Forms.Label lblReportType;
-        private System.Windows.Forms.ComboBox cmbReportType;
         private System.Windows.Forms.ComboBox cmbPrintType;
         private System.Windows.Forms.Label lblPrintType;
         private System.Windows.Forms.DateTimePicker dpToDate;
@@ -977,5 +950,7 @@
         private System.Windows.Forms.DateTimePicker dpFromDate;
         private System.Windows.Forms.Label lblEntryType;
         private System.Windows.Forms.ComboBox cmbEntryType;
+        private System.Windows.Forms.Label lblReportType;
+        private System.Windows.Forms.ComboBox cmbReportType;
     }
 }
