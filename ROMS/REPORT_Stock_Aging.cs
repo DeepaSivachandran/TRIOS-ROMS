@@ -123,8 +123,8 @@ namespace ROMS
         {
             try
             {
-                string varLocationName = "-All-", varMonthsName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-";
-                int varLocationId = 0, varMonths = 0, varViewType = 4, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0;
+                string varLocationName = "-All-", varMonthsName = "-All-", varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-",varReportName = "";
+                int varLocationId = 0, varMonths = 0, varViewType = 4, varGroupCode = 0, varSubgroupCode = 0, varBrandCode = 0,varReportType=0;
 
                 if (txtLocation.Text.Trim() != "")
                 {
@@ -136,11 +136,18 @@ namespace ROMS
                     varMonths = Convert.ToInt32(txtMonths.Text);
                     varMonthsName = txtMonths.Text;
                 }
-                if (Convert.ToInt32(cmbReportType.SelectedValue) == 311)
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 311 )
                 {
                     varViewType = 5;
                 }
-
+                if (Convert.ToInt32(cmbReportType.SelectedValue) == 604) //Product wise aging report
+                {
+                    varReportType = 1; varReportName = "Stock Aging Report(Productwise)";
+                } 
+                else if (Convert.ToInt32(cmbReportType.SelectedValue) == 310) //Batch wise aging report
+                {
+                    varReportName = "Stock Aging Report(Datewise)";
+                }
                 if (txtGroup.Text.Trim() != "")
                 {
                     varGroupName = txtGroup.Text.Trim();
@@ -174,10 +181,11 @@ namespace ROMS
                 objTRNG_Stock.paraDays = varMonths;
                 objTRNG_Stock.paraOrder = Convert.ToInt32(cmbOrderBy.SelectedValue);
                 objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
+                objTRNG_Stock.paraReportType = varReportType; 
                 objDs = objspservice.udfnStock(objTRNG_Stock);
                 objspservice.CloseConnection();
                 if (objDs != null) { if (objDs.Tables.Count > 0) { if (objDs.Tables[0].Rows.Count > 0) { varPrint = 1; } } }
-                string varReportName = "";
+                
                 if (varPrint == 1)
                 {
                     RPTViewer.Visible = true;
@@ -187,11 +195,11 @@ namespace ROMS
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
 
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 310)
+                    if (Convert.ToInt32(cmbReportType.SelectedValue) == 310 || Convert.ToInt32(cmbReportType.SelectedValue) == 604)
                     {
                         objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Aging.rpt");
                         //objBillreport.SetParameterValue("paraMonthsName", varMonthsName);
-                        varReportName = "Stock_Aging";
+                        objBillreport.SetParameterValue("paraReportName", varReportName);
                     }
                     else
                     {
