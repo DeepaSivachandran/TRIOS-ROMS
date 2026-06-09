@@ -25,6 +25,7 @@ namespace ROMS.Model
         public int paraType = 0;
         public string paraUnitId = "";
         public string paraFilterType = "";
+        public string paraRateCategoryIDs = "";
         public DataTable ParaSalesEntry { get; set; } = null;
     }
 }

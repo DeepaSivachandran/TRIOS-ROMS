@@ -19,7 +19,7 @@ namespace ROMS
         private List<ComboItem> unit;
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
-
+        public string pbRateCategoryIDs = "";
         public SAL_Entry()
         {
             InitializeComponent();
@@ -55,6 +55,7 @@ namespace ROMS
                     DGV_FilterSupplier.DataSource = null;
                     DGV_FilterSupplier.Visible = false;
                 }
+                pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
@@ -113,6 +114,33 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 32;
+                DataSet objDTable = new DataSet();
+                SPDataService objdSer = new SPDataService();
+                objDTable = objdSer.udfnMaster(objMR_Master);
+                objdSer.CloseConnection();
+                if (objDTable != null)
+                {
+                    if (objDTable.Tables.Count > 0)
+                    {
+                        if (objDTable.Tables[0].Rows.Count > 0)
+                        {
+                            chkboxRatelist.DrawMode = DrawMode.Normal;
+                            chkboxRatelist.FormattingEnabled = true;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";
+                            chkboxRatelist.ValueMember = "MSTID";
+                            chkboxRatelist.DataSource = objDTable.Tables[0];
+                            DataView dv = objDTable.Tables[0].DefaultView;
+                            dv.RowFilter = "MSTID <> 0";
+                            DataTable dt = dv.ToTable();
+                            dt = objDTable.Tables[0];
+                            chkboxRatelist.DataSource = dt;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";   // text
+                            chkboxRatelist.ValueMember = "MSTID";       // value 
+                        }
+                    }
+                }
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbProductName.SelectedValue = 271;
                 cmbType.SelectedValue = 0;
@@ -1721,8 +1749,7 @@ namespace ROMS
             try
             {
                 epReport.Clear();
-                udfnList(0);
-                lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
+                udfnList(0); 
             }
             catch (Exception ex)
             {
@@ -1741,7 +1768,7 @@ namespace ROMS
                 picLoader.BringToFront();
                 string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "-All-", varUnit = "", varFilterType = "";
                 int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0, varTypeId = 0;
-                string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-", varConcern = "-All-";
+                string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-", varConcern = "-All-", varRateCategoryType = "--All--";
                 lblAlphaCode.Text = varAlpha;
                 if (txtGroup.Text.Trim() != "")
                 {
@@ -1773,6 +1800,10 @@ namespace ROMS
                     varSupplierName = txtSupplier.Text;
                     varSupplierId = Convert.ToInt32(lblSupplierCode.Text);
                     varScheduleId = Convert.ToInt32(lblSchedleCode.Text);
+                }
+                if (txtRateCategory.Text.Trim() != "")
+                {
+                    varRateCategoryType = txtRateCategory.Text;
                 }
                 var selIds = cmbMultiUnit.CheckedIds;
                 var selItems = unit.Where(m => selIds.Contains(m.Id)).ToList();
@@ -1814,6 +1845,7 @@ namespace ROMS
                 objMR_SalesEntry.paraUnitId = varUnit;
                 objMR_SalesEntry.paraFilterType = varFilterType;
                 objMR_SalesEntry.paraProductNameID = Convert.ToInt32(cmbProductName.SelectedValue);
+                objMR_SalesEntry.paraRateCategoryIDs = pbRateCategoryIDs;
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnsaleslist(objMR_SalesEntry);
@@ -1873,12 +1905,13 @@ namespace ROMS
                                 grdSalesList.Columns["S.Rate"].DefaultCellStyle.Format = "0.00";
                                 grdSalesList.Columns["S.Qty"].DefaultCellStyle.Format = "0.00";
 
-                                tsbTotalProducts.Text = objDs.Tables[1].Rows[0]["ProuctCount"].ToString().Trim();
+                                tsbOriginalProducts.Text = objDs.Tables[1].Rows[0]["OriginalProCount"].ToString().Trim();
                                 tsbMppedCount.Text = objDs.Tables[2].Rows[0]["MappedCount"].ToString().Trim();
                                 tsbUnmappedCount.Text = objDs.Tables[3].Rows[0]["UnmappedCount"].ToString().Trim();
                                 lblGroupCount.Text = objDs.Tables[4].Rows[0]["GroupCount"].ToString().Trim();
                                 lblSubGroupCount.Text = objDs.Tables[5].Rows[0]["SubGroupCount"].ToString().Trim();
                                 lblBrandCount.Text = objDs.Tables[6].Rows[0]["BrandCount"].ToString().Trim();
+                                tsbTotalProducts.Text = objDs.Tables[7].Rows[0]["TotalProCount"].ToString().Trim();
                             }
                             else
                             {
@@ -1930,6 +1963,8 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraUnitId", varUnit);
                     objBillreport.SetParameterValue("paraFilterType", varFilterType);
                     objBillreport.SetParameterValue("paraProductNameID", Convert.ToInt32(cmbProductName.SelectedValue));
+                    objBillreport.SetParameterValue("paraRateCategoryIDs", pbRateCategoryIDs);
+                    objBillreport.SetParameterValue("paraRateCategoryType", varRateCategoryType);
 
                     objBillreport.SetParameterValue("varHeader", "S.Entry Report");
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
@@ -1959,6 +1994,7 @@ namespace ROMS
             }
             finally
             {
+                lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
                 picLoader.Visible = false;
                 picLoader.SendToBack();
                 btnView.Enabled = true;
@@ -2117,6 +2153,7 @@ namespace ROMS
                 objDser.CloseConnection();
                 grdSalesList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
                 udfnSalesEntryGridFilter();
+                lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
             }
             catch (Exception ex)
             {
@@ -2550,8 +2587,10 @@ namespace ROMS
                             objSalesEntries.TableName = "TRN_SalesEntry_Details";
                             objSalesEntries.Columns.Add("SE_PRID", typeof(int));
                             objSalesEntries.Columns.Add("SE_SQty", typeof(float));
+                            objSalesEntries.Columns.Add("SE_RCYID", typeof(int));
                         }
-                        objSalesEntries.Rows.Add(Convert.ToInt32(grdSalesList.Rows[i].Cells["ProuctID"].Value), Convert.ToDouble(grdSalesList.Rows[i].Cells["S.Qty"].Value));
+                        objSalesEntries.Rows.Add(Convert.ToInt32(grdSalesList.Rows[i].Cells["ProuctID"].Value), Convert.ToDouble(grdSalesList.Rows[i].Cells["S.Qty"].Value),
+                            Convert.ToInt16(grdSalesList.Rows[i].Cells["RCYID"].Value));
                     }
                 }
                 Model.MR_SalesEntry objSalesEntry = new Model.MR_SalesEntry();
@@ -2604,7 +2643,40 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
+        private void UpdateSelectedValues()
+        {
+            try
+            {
+                List<string> texts = new List<string>();
+                List<string> ids = new List<string>();
 
+                foreach (DataRowView row in chkboxRatelist.CheckedItems)
+                {
+                    int id = Convert.ToInt32(row["MSTID"]);
+
+                    // ignore -All- in textbox
+                    if (id == 0) continue;
+
+                    texts.Add(row["MST_DisplayText"].ToString());
+                    ids.Add(id.ToString());
+                }
+
+                // TextBox (RR, WR)
+                txtRateCategory.Text = texts.Count > 0
+                    ? string.Join(", ", texts)
+                    : "";
+
+                // Label (447,448)
+                pbRateCategoryIDs = ids.Count > 0
+                    ? string.Join(",", ids)
+                    : "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         private void btnReset_Click(object sender, EventArgs e)
         {
             try
@@ -2755,6 +2827,141 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void lblUnit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpfilter_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRateCategory_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUnits_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlRateCategory_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlRateCategory.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFilterType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void txtRateCategory_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                //pnlRateCategory.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                BeginInvoke((MethodInvoker)UpdateSelectedValues);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_KeyDown(object sender, KeyEventArgs e)
+        {  
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFilterType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            } 
+        }
+
+        private void btnConditionClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                {
+                    chkboxRatelist.SetItemChecked(i, false);
+                }
+
+                txtRateCategory.Text = "";
+                pbRateCategoryIDs = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsSalesEntry_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void tsbTotalProducts_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
         }
 
         public void udfnclose()

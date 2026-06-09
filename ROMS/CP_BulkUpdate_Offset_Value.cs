@@ -2693,6 +2693,31 @@ namespace ROMS
             //}
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DGV_FilterProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pnlRateCategory_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void chkboxRatelist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public void udfnClear()
         {
             try

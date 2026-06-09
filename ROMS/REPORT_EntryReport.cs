@@ -23,6 +23,7 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         private ToolTip tpReportType = new ToolTip();
+        public string pbRateCategoryIDs = "";
 
 
         public REPORT_EntryReport()
@@ -116,7 +117,35 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (107,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (179)", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
+                MR_Master objMR_Master = new MR_Master();
+                objMR_Master.ViewType = 32;
+                DataSet objDTable = new DataSet();
+                SPDataService objdSer = new SPDataService();
+                objDTable = objdSer.udfnMaster(objMR_Master);
+                objdSer.CloseConnection();
+                if (objDTable != null)
+                {
+                    if (objDTable.Tables.Count > 0)
+                    {
+                        if (objDTable.Tables[0].Rows.Count > 0)
+                        {
+                            chkboxRatelist.DrawMode = DrawMode.Normal;
+                            chkboxRatelist.FormattingEnabled = true;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";
+                            chkboxRatelist.ValueMember = "MSTID";
+                            chkboxRatelist.DataSource = objDTable.Tables[0];
+                            DataView dv = objDTable.Tables[0].DefaultView;
+                            dv.RowFilter = "MSTID <> 0";
+                            DataTable dt = dv.ToTable();
+                            dt = objDTable.Tables[0];
+                            chkboxRatelist.DataSource = dt;
+                            chkboxRatelist.DisplayMember = "MST_DisplayText";   // text
+                            chkboxRatelist.ValueMember = "MSTID";       // value 
+                        }
+                    }
+                }
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 cmbType.SelectedValue = 0;
                 cmbCategory.SelectedValue = 0;
@@ -2057,6 +2086,220 @@ namespace ROMS
             {
                 epReport.Clear();
                 udfnList(0);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lblType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblProductName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPrintType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUnits_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRateCategory_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RPTViewer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbPrintType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbProductName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbProductName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbProductName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbMultiUnit.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlRateCategory.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFilterType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                BeginInvoke((MethodInvoker)UpdateSelectedValues);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void UpdateSelectedValues()
+        {
+            try
+            {
+                List<string> texts = new List<string>();
+                List<string> ids = new List<string>();
+
+                foreach (DataRowView row in chkboxRatelist.CheckedItems)
+                {
+                    int id = Convert.ToInt32(row["MSTID"]);
+
+                    // ignore -All- in textbox
+                    if (id == 0) continue;
+
+                    texts.Add(row["MST_DisplayText"].ToString());
+                    ids.Add(id.ToString());
+                }
+
+                // TextBox (RR, WR)
+                txtRateCategory.Text = texts.Count > 0
+                    ? string.Join(", ", texts)
+                    : "";
+
+                // Label (447,448)
+                pbRateCategoryIDs = ids.Count > 0
+                    ? string.Join(",", ids)
+                    : "0";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkboxRatelist_KeyDown(object sender, KeyEventArgs e)
+        { 
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbFilterType.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+
+        }
+
+        private void btnConditionClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                {
+                    chkboxRatelist.SetItemChecked(i, false);
+                }
+
+                txtRateCategory.Text = "";
+                pbRateCategoryIDs = "";
             }
             catch (Exception ex)
             {

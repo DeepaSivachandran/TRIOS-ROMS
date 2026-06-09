@@ -72,7 +72,6 @@
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.cmbFilterType = new System.Windows.Forms.ComboBox();
             this.lblFilterType = new System.Windows.Forms.Label();
-            this.cmbMultiUnit = new MultiSelectComboBox();
             this.lblUnit = new System.Windows.Forms.Label();
             this.lblAlpha = new System.Windows.Forms.Label();
             this.txtAlpha = new System.Windows.Forms.TextBox();
@@ -113,8 +112,17 @@
             this.tsbTotalProducts = new System.Windows.Forms.ToolStripButton();
             this.tsbTotal = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkboxRatelist = new System.Windows.Forms.CheckedListBox();
+            this.btnConditionClear = new System.Windows.Forms.Button();
+            this.pnlRateCategory = new System.Windows.Forms.Panel();
+            this.txtRateCategory = new System.Windows.Forms.TextBox();
+            this.cmbMultiUnit = new MultiSelectComboBox();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbOriginalProducts = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.pnlSalesEntry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).BeginInit();
@@ -126,11 +134,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             this.tsSalesEntry.SuspendLayout();
+            this.pnlRateCategory.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSalesEntry
             // 
             this.pnlSalesEntry.BackColor = System.Drawing.Color.White;
+            this.pnlSalesEntry.Controls.Add(this.pnlRateCategory);
             this.pnlSalesEntry.Controls.Add(this.DGV_FilterSupplier);
             this.pnlSalesEntry.Controls.Add(this.DGV_FilterBrand);
             this.pnlSalesEntry.Controls.Add(this.DGV_FilterSubgroup);
@@ -445,6 +455,8 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.txtRateCategory);
+            this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.cmbProductName);
             this.grpfilter.Controls.Add(this.lblProductName);
             this.grpfilter.Controls.Add(this.lblBrandCount);
@@ -487,15 +499,16 @@
             this.grpfilter.TabIndex = 0;
             this.grpfilter.TabStop = false;
             this.grpfilter.Text = "Filter By";
+            this.grpfilter.Enter += new System.EventHandler(this.grpfilter_Enter);
             // 
             // cmbProductName
             // 
             this.cmbProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductName.FormattingEnabled = true;
-            this.cmbProductName.Location = new System.Drawing.Point(677, 64);
+            this.cmbProductName.Location = new System.Drawing.Point(651, 64);
             this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbProductName.Name = "cmbProductName";
-            this.cmbProductName.Size = new System.Drawing.Size(119, 28);
+            this.cmbProductName.Size = new System.Drawing.Size(87, 28);
             this.cmbProductName.TabIndex = 111111234;
             this.cmbProductName.Enter += new System.EventHandler(this.cmbProductName_Enter);
             this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbProductName_KeyDown);
@@ -506,7 +519,7 @@
             // 
             this.lblProductName.AutoSize = true;
             this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(584, 67);
+            this.lblProductName.Location = new System.Drawing.Point(558, 67);
             this.lblProductName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(85, 20);
@@ -550,12 +563,13 @@
             // 
             this.lblUnits.AutoSize = true;
             this.lblUnits.Font = new System.Drawing.Font("Oswald Regular", 9.25F);
-            this.lblUnits.Location = new System.Drawing.Point(851, 94);
+            this.lblUnits.Location = new System.Drawing.Point(785, 94);
             this.lblUnits.Name = "lblUnits";
             this.lblUnits.Size = new System.Drawing.Size(412, 17);
             this.lblUnits.TabIndex = 111111230;
             this.lblUnits.Text = "Pkt,Kg,Nos,Ltrs,Box.,Box,Bag,Bot,Doz,SET,Bag.,Jar,Tin,ml,Can,gm,Chp,Chp.,kg.,Pcs," +
     "C,test";
+            this.lblUnits.Click += new System.EventHandler(this.lblUnits_Click);
             // 
             // lblSchedleCode
             // 
@@ -584,12 +598,11 @@
             this.btnReset.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Image = global::ROMS.Properties.Resources.reset;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(1265, 64);
+            this.btnReset.Location = new System.Drawing.Point(1306, 64);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 29);
+            this.btnReset.Size = new System.Drawing.Size(34, 29);
             this.btnReset.TabIndex = 200000;
-            this.btnReset.Text = "Reset";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -598,7 +611,7 @@
             // 
             this.cmbType.DropDownWidth = 86;
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(502, 64);
+            this.cmbType.Location = new System.Drawing.Point(474, 64);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(76, 27);
             this.cmbType.TabIndex = 7;
@@ -610,9 +623,9 @@
             // cmbFilterType
             // 
             this.cmbFilterType.FormattingEnabled = true;
-            this.cmbFilterType.Location = new System.Drawing.Point(1057, 64);
+            this.cmbFilterType.Location = new System.Drawing.Point(1168, 64);
             this.cmbFilterType.Name = "cmbFilterType";
-            this.cmbFilterType.Size = new System.Drawing.Size(118, 27);
+            this.cmbFilterType.Size = new System.Drawing.Size(85, 27);
             this.cmbFilterType.TabIndex = 9;
             this.cmbFilterType.Enter += new System.EventHandler(this.cmbFilterType_Enter);
             this.cmbFilterType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFilterType_KeyDown);
@@ -622,35 +635,22 @@
             // lblFilterType
             // 
             this.lblFilterType.AutoSize = true;
-            this.lblFilterType.Location = new System.Drawing.Point(985, 67);
+            this.lblFilterType.Location = new System.Drawing.Point(1096, 67);
             this.lblFilterType.Name = "lblFilterType";
             this.lblFilterType.Size = new System.Drawing.Size(65, 20);
             this.lblFilterType.TabIndex = 111111224;
             this.lblFilterType.Text = "Filter Type";
             // 
-            // cmbMultiUnit
-            // 
-            this.cmbMultiUnit.DropDownHeight = 1;
-            this.cmbMultiUnit.FormattingEnabled = true;
-            this.cmbMultiUnit.IntegralHeight = false;
-            this.cmbMultiUnit.Location = new System.Drawing.Point(851, 64);
-            this.cmbMultiUnit.Name = "cmbMultiUnit";
-            this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
-            this.cmbMultiUnit.TabIndex = 8;
-            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
-            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
-            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
-            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
-            // 
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnit.Location = new System.Drawing.Point(809, 67);
+            this.lblUnit.Location = new System.Drawing.Point(743, 67);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(32, 20);
             this.lblUnit.TabIndex = 111111218;
             this.lblUnit.Text = "Unit";
+            this.lblUnit.Click += new System.EventHandler(this.lblUnit_Click);
             // 
             // lblAlpha
             // 
@@ -743,7 +743,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(464, 67);
+            this.lblType.Location = new System.Drawing.Point(436, 67);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 20);
             this.lblType.TabIndex = 111111207;
@@ -754,7 +754,7 @@
             this.cmbCategory.FormattingEnabled = true;
             this.cmbCategory.Location = new System.Drawing.Point(322, 64);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(140, 27);
+            this.cmbCategory.Size = new System.Drawing.Size(111, 27);
             this.cmbCategory.TabIndex = 6;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             this.cmbCategory.Enter += new System.EventHandler(this.cmbCategory_Enter);
@@ -864,12 +864,11 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1185, 64);
+            this.btnView.Location = new System.Drawing.Point(1266, 64);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(74, 29);
+            this.btnView.Size = new System.Drawing.Size(34, 29);
             this.btnView.TabIndex = 10;
-            this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -974,12 +973,16 @@
             this.tss1,
             this.tsbTotalProducts,
             this.tsbTotal,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripSeparator2,
+            this.tsbOriginalProducts,
+            this.toolStripButton2});
             this.tsSalesEntry.Location = new System.Drawing.Point(0, 0);
             this.tsSalesEntry.Name = "tsSalesEntry";
             this.tsSalesEntry.Size = new System.Drawing.Size(1354, 28);
             this.tsSalesEntry.TabIndex = 35;
             this.tsSalesEntry.Text = "GRN Summary Report";
+            this.tsSalesEntry.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsSalesEntry_ItemClicked);
             // 
             // tsLabelPlaceholder
             // 
@@ -1016,7 +1019,7 @@
             this.tspEmpty.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
             this.tspEmpty.Image = global::ROMS.Properties.Resources.printing;
             this.tspEmpty.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tspEmpty.Margin = new System.Windows.Forms.Padding(80, 1, 5, 2);
+            this.tspEmpty.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tspEmpty.Name = "tspEmpty";
             this.tspEmpty.Size = new System.Drawing.Size(67, 25);
             this.tspEmpty.Text = "&Empty";
@@ -1112,6 +1115,7 @@
             this.tsbTotalProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbTotalProducts.Size = new System.Drawing.Size(23, 25);
             this.tsbTotalProducts.Text = "0";
+            this.tsbTotalProducts.Click += new System.EventHandler(this.tsbTotalProducts_Click);
             // 
             // tsbTotal
             // 
@@ -1131,14 +1135,121 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
-            // dynamicLabelControl
-            // 
-            this.dynamicLabelControl.PlaceholderLabel = null;
-            // 
             // tsbFormat
             // 
             this.tsbFormat.Name = "tsbFormat";
             this.tsbFormat.Size = new System.Drawing.Size(23, 25);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(910, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 20);
+            this.label1.TabIndex = 111111237;
+            this.label1.Text = "Rate Category";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // chkboxRatelist
+            // 
+            this.chkboxRatelist.FormattingEnabled = true;
+            this.chkboxRatelist.Location = new System.Drawing.Point(3, 3);
+            this.chkboxRatelist.Name = "chkboxRatelist";
+            this.chkboxRatelist.Size = new System.Drawing.Size(120, 114);
+            this.chkboxRatelist.TabIndex = 111111221;
+            this.chkboxRatelist.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkboxRatelist_ItemCheck);
+            this.chkboxRatelist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkboxRatelist_KeyDown);
+            // 
+            // btnConditionClear
+            // 
+            this.btnConditionClear.Image = global::ROMS.Properties.Resources.Cleared;
+            this.btnConditionClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConditionClear.Location = new System.Drawing.Point(3, 119);
+            this.btnConditionClear.Name = "btnConditionClear";
+            this.btnConditionClear.Size = new System.Drawing.Size(57, 24);
+            this.btnConditionClear.TabIndex = 111111224;
+            this.btnConditionClear.Text = "Clear";
+            this.btnConditionClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnConditionClear.UseVisualStyleBackColor = true;
+            this.btnConditionClear.Click += new System.EventHandler(this.btnConditionClear_Click);
+            // 
+            // pnlRateCategory
+            // 
+            this.pnlRateCategory.Controls.Add(this.btnConditionClear);
+            this.pnlRateCategory.Controls.Add(this.chkboxRatelist);
+            this.pnlRateCategory.Location = new System.Drawing.Point(998, 94);
+            this.pnlRateCategory.Name = "pnlRateCategory";
+            this.pnlRateCategory.Size = new System.Drawing.Size(125, 147);
+            this.pnlRateCategory.TabIndex = 111111237;
+            this.pnlRateCategory.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRateCategory_Paint);
+            // 
+            // txtRateCategory
+            // 
+            this.txtRateCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRateCategory.Location = new System.Drawing.Point(998, 64);
+            this.txtRateCategory.MaxLength = 50;
+            this.txtRateCategory.Name = "txtRateCategory";
+            this.txtRateCategory.ReadOnly = true;
+            this.txtRateCategory.Size = new System.Drawing.Size(98, 27);
+            this.txtRateCategory.TabIndex = 111111238;
+            this.txtRateCategory.TextChanged += new System.EventHandler(this.txtRateCategory_TextChanged);
+            this.txtRateCategory.Enter += new System.EventHandler(this.txtRateCategory_Enter);
+            this.txtRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRateCategory_KeyDown);
+            this.txtRateCategory.Leave += new System.EventHandler(this.txtRateCategory_Leave);
+            // 
+            // cmbMultiUnit
+            // 
+            this.cmbMultiUnit.DropDownHeight = 1;
+            this.cmbMultiUnit.FormattingEnabled = true;
+            this.cmbMultiUnit.IntegralHeight = false;
+            this.cmbMultiUnit.Location = new System.Drawing.Point(785, 64);
+            this.cmbMultiUnit.Name = "cmbMultiUnit";
+            this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
+            this.cmbMultiUnit.TabIndex = 8;
+            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
+            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
+            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
+            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // tsbOriginalProducts
+            // 
+            this.tsbOriginalProducts.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbOriginalProducts.BackColor = System.Drawing.Color.White;
+            this.tsbOriginalProducts.Font = new System.Drawing.Font("Oswald Regular", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbOriginalProducts.ForeColor = System.Drawing.Color.DarkGreen;
+            this.tsbOriginalProducts.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbOriginalProducts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOriginalProducts.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.tsbOriginalProducts.Name = "tsbOriginalProducts";
+            this.tsbOriginalProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsbOriginalProducts.Size = new System.Drawing.Size(23, 25);
+            this.tsbOriginalProducts.Text = "0";
+            this.tsbOriginalProducts.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton2.BackColor = System.Drawing.Color.White;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton2.Size = new System.Drawing.Size(107, 25);
+            this.toolStripButton2.Text = "&Original Product :";
+            this.toolStripButton2.ToolTipText = "  ";
             // 
             // SAL_Entry
             // 
@@ -1171,6 +1282,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
             this.tsSalesEntry.ResumeLayout(false);
             this.tsSalesEntry.PerformLayout();
+            this.pnlRateCategory.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1244,5 +1356,13 @@
         public System.Windows.Forms.Label lblBrandCount;
         public System.Windows.Forms.ComboBox cmbProductName;
         public System.Windows.Forms.Label lblProductName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlRateCategory;
+        private System.Windows.Forms.Button btnConditionClear;
+        private System.Windows.Forms.CheckedListBox chkboxRatelist;
+        private System.Windows.Forms.TextBox txtRateCategory;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        public System.Windows.Forms.ToolStripButton tsbOriginalProducts;
+        public System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
