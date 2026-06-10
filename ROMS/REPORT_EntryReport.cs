@@ -2258,7 +2258,7 @@ namespace ROMS
                 // Label (447,448)
                 pbRateCategoryIDs = ids.Count > 0
                     ? string.Join(",", ids)
-                    : "0";
+                    : "";
             }
             catch (Exception ex)
             {
@@ -2308,6 +2308,11 @@ namespace ROMS
             }
         }
 
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public void udfnList(int varFlag)
         {
             try
@@ -2331,7 +2336,7 @@ namespace ROMS
                     RPTViewer.Visible = false;
                     string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "-All-", varUnit = "", varFilterType = "";
                     int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0, varTypeId = 0, varPrint = 0;
-                    string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-", varConcern = "-All-", varPrintType = "-All-";
+                    string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", VarFilterName = "-All-", varConcern = "-All-", varPrintType = "-All-", varRateCategoryType="--All--";
                     lblAlphaCode.Text = varAlpha;
                     if (txtGroup.Text.Trim() != "")
                     {
@@ -2405,6 +2410,10 @@ namespace ROMS
                     {
                         objMR_MarginEntry.paraViewType = 4;
                     }
+                    if (txtRateCategory.Text.Trim() != "")
+                    {
+                        varRateCategoryType = txtRateCategory.Text;
+                    }
                     objMR_MarginEntry.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                     objMR_MarginEntry.paraGroup = varGroupId;
                     objMR_MarginEntry.paraSubgroup = varSubgroupId;
@@ -2461,6 +2470,10 @@ namespace ROMS
                             objBillreport.SetParameterValue("ParaToDate", dpToDate.Text);
                             objBillreport.SetParameterValue("varHeader", "S.Entry Report");
                         }
+                        objBillreport.SetParameterValue("paraProductNameID", Convert.ToInt32(cmbProductName.SelectedValue));
+                        objBillreport.SetParameterValue("paraRateCategoryIDs", pbRateCategoryIDs);
+                        objBillreport.SetParameterValue("paraRateCategoryType", varRateCategoryType);
+
                         objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                         objBillreport.SetParameterValue("paraGroup", varGroupId);
                         objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);

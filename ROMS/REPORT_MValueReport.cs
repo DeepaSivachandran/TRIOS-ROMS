@@ -23,7 +23,7 @@ namespace ROMS
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
         private ToolTip tpReportType = new ToolTip();
-
+        public string pbRateCategoryIDs = "";
         public REPORT_MValueReport()
         {
             InitializeComponent();
@@ -2005,8 +2005,171 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        } 
+        private void cmbProductName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnGridNull((Control)sender);
+                cmbProductName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
+        private void cmbProductName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbMultiUnit.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlRateCategory.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtRateCategory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void UpdateSelectedValues()
+        {
+            try
+            {
+                List<string> texts = new List<string>();
+                List<string> ids = new List<string>();
+
+                foreach (DataRowView row in chkboxRatelist.CheckedItems)
+                {
+                    int id = Convert.ToInt32(row["MSTID"]);
+
+                    // ignore -All- in textbox
+                    if (id == 0) continue;
+
+                    texts.Add(row["MST_DisplayText"].ToString());
+                    ids.Add(id.ToString());
+                }
+
+                // TextBox (RR, WR)
+                txtRateCategory.Text = texts.Count > 0
+                    ? string.Join(", ", texts)
+                    : "";
+
+                // Label (447,448)
+                pbRateCategoryIDs = ids.Count > 0
+                    ? string.Join(",", ids)
+                    : "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        private void chkboxRatelist_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                BeginInvoke((MethodInvoker)UpdateSelectedValues);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void chkboxRatelist_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnConditionClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < chkboxRatelist.Items.Count; i++)
+                {
+                    chkboxRatelist.SetItemChecked(i, false);
+                } 
+                txtRateCategory.Text = "";
+                pbRateCategoryIDs = "";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        } 
         public void udfnList(int varFlag)
         {
             try
@@ -2030,7 +2193,7 @@ namespace ROMS
                     RPTViewer.Visible = false;
                     string varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varAlpha = "", varSupplierName = "-All-", varUnit = "";
                     int varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierId = 0, varScheduleId = 0, varTypeId = 0, varPrint = 0;
-                    string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", varConcern = "-All-", varPrintType = "-All-";
+                    string varAlphaName = "-All-", varTypeName = "-All-", varUnitName = "-All-", varConcern = "-All-", varPrintType = "-All-", varRateCategoryType = "--All--"; 
                     lblAlphaCode.Text = varAlpha;
                     if (txtGroup.Text.Trim() != "")
                     {
@@ -2163,6 +2326,12 @@ namespace ROMS
                             varReportName = "M.Value Brand Wise Report";
                             objBillreport.SetParameterValue("varHeader", "M.Value Brand Wise Report");
                         }
+
+                        objBillreport.SetParameterValue("paraProductNameID", Convert.ToInt32(cmbProductName.SelectedValue));
+                        objBillreport.SetParameterValue("paraRateCategoryIDs", pbRateCategoryIDs);
+                        objBillreport.SetParameterValue("paraRateCategoryType", varRateCategoryType);
+
+
                         objBillreport.SetParameterValue("VarFromDate", dpFromDate.Text);
                         objBillreport.SetParameterValue("VarToDate", dpToDate.Text);
                         objBillreport.SetParameterValue("VarEntryType", cmbEntryType.Text);

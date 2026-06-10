@@ -815,6 +815,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\RPT_MarginEntryReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MarginEntryReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_MValue_ProductWiseReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MValue_ProductWiseReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\RPT_SalesEntryReport.cs">
+      <DependentUpon>RPT_SalesEntryReport.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RPT_Stock_AsOnStockWithRequirement_Excess.cs">
       <DependentUpon>RPT_Stock_AsOnStockWithRequirement_Excess.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5514,9 +5535,19 @@
       <LastGenOutput>RPT_CP_Supplier_OtherProduct.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_MarginEntryReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MarginEntryReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_MAR_Entry.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_MAR_Entry.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_MValue_ProductWiseReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MValue_ProductWiseReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_PUR_ProductWise_DayWisePurchaseValue.rpt">
@@ -5762,6 +5793,11 @@
     <EmbeddedResource Include="Reports\RPT_REPORT_Product_RC.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_REPORT_Product_RC.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_SalesEntryReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SalesEntryReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_SAL_Entry.rpt">
