@@ -2246,6 +2246,10 @@ namespace ROMS
                     {
                         varPrintType = cmbPrintType.Text;
                     }
+                    if(txtRateCategory.Text.Trim()!="")
+                    {
+                        varRateCategoryType=txtRateCategory.Text;
+                    }
                     varConcern = cmbConcern.Text;
                     Application.DoEvents();
                     MR_MarginEntry objMR_MarginEntry = new MR_MarginEntry();

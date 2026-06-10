@@ -69,14 +69,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    if (pnlMarginEntry.Visible == true)
-                    {
-                        pnlMarginEntry.Visible = false;
-                    }
-                    else
-                    {
-                        udfnclose();
-                    }
+                    udfnclose();
                 }
                 if (e.KeyCode == Keys.F5)
                 {
