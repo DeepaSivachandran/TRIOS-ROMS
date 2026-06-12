@@ -16,7 +16,7 @@ namespace ROMS
     {
         DynamicWindowControl windowControl = new DynamicWindowControl();
         DataValidation objValidation = new DataValidation();
-        public int varUpDownKeySupplier = 0, varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0;
+        public int varUpDownKeySupplier = 0, varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0, varUserID=0; 
         private List<ComboItem> unit;
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
@@ -167,6 +167,7 @@ namespace ROMS
                 }
                 objdserv.CloseConnection();
                 udfnList(0);
+                btnUpdate.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -1880,6 +1881,7 @@ namespace ROMS
                                 grdMarginList.Columns["GroupCode"].Visible = false;
                                 grdMarginList.Columns["EGroup"].Visible = false;
                                 grdMarginList.Columns["FilterType"].Visible = false;
+                                grdMarginList.Columns["RCYID"].Visible = false; 
                                 grdMarginList.Columns["S.No."].Width = 50;
                                 grdMarginList.Columns["P.I Code"].Width = 100;
                                 grdMarginList.Columns["Product"].Width = 500;
@@ -1937,15 +1939,31 @@ namespace ROMS
                     tsbOriginalProducts.Visible = true; tsbUnmappedCount.Visible = true; tsbMppedCount.Visible = true;
                     tss1.Visible = true; tss2.Visible = true; tss3.Visible = true;
                 }
-                if(varPrint != 0)
+                if (varPrint != 0)
                 {
+                    int varEmptyFilledFlag = 1;
                     btnView.Enabled = true;
                     RPTViewer.Visible = true;
                     RPTViewer.BringToFront();
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MAR_Entry.rpt");
+                    if (varPrint == 1 || varPrint==2)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MAR_Entry.rpt");
+                    }
+                    else if (varPrint == 3 || varPrint == 4)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MAR_Print.rpt");
+                    }
+                    if (varFlag == 2 || varFlag == 3)
+                    {
+                        varEmptyFilledFlag = 2; //Filled
+                    }
+                    else
+                    {
+                        varEmptyFilledFlag = 1; //Empty
+                    }
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
@@ -2294,7 +2312,8 @@ namespace ROMS
                 if (MarginValue != "")
                 {
                     grdMarginList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = objValidation.udfnDecimal(MarginValue,2);
-                }
+                } 
+                btnUpdate.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -2585,20 +2604,27 @@ namespace ROMS
                         objMarginEntries.Rows.Add(Convert.ToInt32(grdMarginList.Rows[i].Cells["ProductID"].Value), Convert.ToDouble(grdMarginList.Rows[i].Cells["M.Value"].Value), Convert.ToInt32(grdMarginList.Rows[i].Cells["RCYID"].Value));
                     }
                 }
-                Model.MR_MarginEntry objMarginEntry = new Model.MR_MarginEntry();
-                objMarginEntry.paraViewType = 1;
-                objMarginEntry.ParaMargin = objMarginEntries;
-                varResult = objspservice.udfnMargin(objMarginEntry);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "1")
+                MainForm.objCP_Verify = new CP_Verify();
+                MainForm.objCP_Verify.ShowDialog();
+                varUserID = Convert.ToInt16(MainForm.objCP_Verify.varUserId);
+                if (MainForm.objCP_Verify.flag == 1)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.ActiveControl = cmbConcern;
-                }
-                else
-                {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Model.MR_MarginEntry objMarginEntry = new Model.MR_MarginEntry();
+                    objMarginEntry.paraViewType = 1;
+                    objMarginEntry.ParaMargin = objMarginEntries;
+                    objMarginEntry.paraUserID = varUserID;
+                    varResult = objspservice.udfnMargin(objMarginEntry);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "1")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.ActiveControl = cmbConcern;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 lblFilterCount.Text = Convert.ToString(grdMarginList.Rows.Count);
             }
@@ -2931,9 +2957,101 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        } 
+
+        private void tsbEmptyPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(4);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string varResult = "";
+                    SPDataService objspservice = new SPDataService();
+                    Model.MR_MarginEntry objMarginEntry = new Model.MR_MarginEntry();
+                    objMarginEntry.paraViewType = 2;
+                    varResult = objspservice.udfnMargin(objMarginEntry);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "1")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        udfnList(0);
+                        this.ActiveControl = cmbConcern;
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                lblFilterCount.Text = Convert.ToString(grdMarginList.Rows.Count);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUnit_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRateCategory_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlRateCategory_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblFilterType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbFilterType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblProductName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbProductName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -2942,6 +3060,33 @@ namespace ROMS
         {
 
         }
+
+        private void tspEmpty_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(1);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsbFilledPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnList(3);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+         
 
         public void udfnclose()
         {
@@ -2959,19 +3104,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void tspEmpty_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                udfnList(1);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
+         
 
         private void tspFilled_Click(object sender, EventArgs e)
         {

@@ -17,7 +17,7 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         public int varUpDownKeySupplier = 0, varUpDownKeyGroup = 0, varUpDownKeySubgroup = 0, varUpDownKeyBrand = 0;
         private List<ComboItem> unit;
-        DataError objError;
+        DataError objError; public int varUserID = 0;
         DataTable dtDefaultGrid = new DataTable();
         public string pbRateCategoryIDs = "";
         public SAL_Entry()
@@ -167,6 +167,7 @@ namespace ROMS
                 }
                 objdserv.CloseConnection();
                 udfnList(0);
+                btnUpdate.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -1879,6 +1880,9 @@ namespace ROMS
                                 grdSalesList.Columns["GroupCode"].Visible = false;
                                 grdSalesList.Columns["EGroup"].Visible = false;
                                 grdSalesList.Columns["FilterType"].Visible = false;
+
+                                grdSalesList.Columns["RCYID"].Visible = false;
+                                grdSalesList.Columns["NoofDecimal"].Visible = false;
                                 grdSalesList.Columns["S.No."].Width = 50;
                                 grdSalesList.Columns["PI Code"].Width = 100;
                                 grdSalesList.Columns["Product"].Width = 500;
@@ -1943,7 +1947,25 @@ namespace ROMS
                     RPTViewer.ReuseParameterValuesOnRefresh = true;
                     CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                     objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_Entry.rpt");
+                    int varEmptyFilledFlag = 0;
+                    if (varFlag == 1 || varFlag == 2)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_Entry.rpt");
+                       
+                    }
+                    else if(varFlag==3  || varFlag==4)
+                    {
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_Print.rpt");
+                    }
+                    if (varFlag == 2 || varFlag==3)
+                    {
+                        varEmptyFilledFlag = 2; //Filled
+                    }
+                    else
+                    { 
+                        varEmptyFilledFlag = 1; //Empty
+                                                   }
+                    
                     objBillreport.SetParameterValue("ParaCompanycode", Convert.ToInt32(cmbConcern.SelectedValue));
                     objBillreport.SetParameterValue("paraGroup", varGroupId);
                     objBillreport.SetParameterValue("paraSubgroup", varSubgroupId);
@@ -2293,8 +2315,10 @@ namespace ROMS
                 string MarginValue = Convert.ToString(grdSalesList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                 if (MarginValue != "")
                 {
-                    grdSalesList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = objValidation.udfnDecimal(MarginValue,2);
+                    int nooddecimal =Convert.ToInt16(grdSalesList.Rows[e.RowIndex].Cells["NoofDecimal"].Value);
+                    grdSalesList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = objValidation.udfnDecimal(MarginValue,nooddecimal);
                 }
+                btnUpdate.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -2586,21 +2610,28 @@ namespace ROMS
                             Convert.ToInt16(grdSalesList.Rows[i].Cells["RCYID"].Value));
                     }
                 }
-                Model.MR_SalesEntry objSalesEntry = new Model.MR_SalesEntry();
-                objSalesEntry.paraViewType = 1;
-                objSalesEntry.ParaSalesEntry = objSalesEntries;
-                varResult = objspservice.udfnSalesEntry(objSalesEntry);
-                objspservice.CloseConnection();
-                string[] varvalue = varResult.Split('~');
-                if (varvalue[0] == "1")
+                MainForm.objCP_Verify = new CP_Verify();
+                MainForm.objCP_Verify.ShowDialog();
+                varUserID =Convert.ToInt16(MainForm.objCP_Verify.varUserId);
+                if (MainForm.objCP_Verify.flag == 1)
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.ActiveControl = cmbConcern;
-                    udfnList(0);
-                }
-                else
-                {
-                    MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Model.MR_SalesEntry objSalesEntry = new Model.MR_SalesEntry();
+                    objSalesEntry.paraViewType = 1;
+                    objSalesEntry.ParaSalesEntry = objSalesEntries;
+                    objSalesEntry.paraUserID = varUserID;
+                    varResult = objspservice.udfnSalesEntry(objSalesEntry);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "1")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.ActiveControl = cmbConcern;
+                        udfnList(0);
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
             }
@@ -2940,19 +2971,68 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
-
-        private void tsSalesEntry_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        } 
+        private void tsbFilledPrint_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnList(3);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void tsbTotalProducts_Click(object sender, EventArgs e)
+        private void tsbEmptyPrint_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                udfnList(4);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                DialogResult dialogResult = MessageBox.Show("Are you sure want to clear all the products ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string varResult = "";
+                    SPDataService objspservice = new SPDataService();
+                    Model.MR_SalesEntry objSalesEntry = new Model.MR_SalesEntry();
+                    objSalesEntry.paraViewType = 2;  
+                    varResult = objspservice.udfnSalesEntry(objSalesEntry);
+                    objspservice.CloseConnection();
+                    string[] varvalue = varResult.Split('~');
+                    if (varvalue[0] == "1")
+                    {
+                        MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.ActiveControl = cmbConcern;
+                        udfnList(0);
+                    }
+                    else
+                    {
+                        MessageBox.Show(varvalue[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                lblFilterCount.Text = Convert.ToString(grdSalesList.Rows.Count);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void DGV_FilterBrand_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

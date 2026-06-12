@@ -6394,7 +6394,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNS_Margin]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_MarginEntry.paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objMR_MarginEntry.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@ParaMargin", objMR_MarginEntry.ParaMargin);
                 varSqlCommand.CommandTimeout = 0;
@@ -6463,7 +6463,7 @@ namespace ROMS
                 SqlCommand varSqlCommand = new SqlCommand("[TRNS_SalesEntry]", tmpspcall.objConn);
                 varSqlCommand.CommandType = CommandType.StoredProcedure;
                 varSqlCommand.Parameters.AddWithValue("@paraViewType", objMR_SalesEntry.paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                varSqlCommand.Parameters.AddWithValue("@paraUserID", objMR_SalesEntry.paraUserID);
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 varSqlCommand.Parameters.AddWithValue("@ParaSalesEntry", objMR_SalesEntry.ParaSalesEntry);
                 varSqlCommand.CommandTimeout = 0;

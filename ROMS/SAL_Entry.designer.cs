@@ -49,17 +49,22 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SAL_Entry));
             this.pnlSalesEntry = new System.Windows.Forms.Panel();
+            this.pnlRateCategory = new System.Windows.Forms.Panel();
+            this.btnConditionClear = new System.Windows.Forms.Button();
+            this.chkboxRatelist = new System.Windows.Forms.CheckedListBox();
             this.DGV_FilterSupplier = new System.Windows.Forms.DataGridView();
             this.DGV_FilterBrand = new System.Windows.Forms.DataGridView();
             this.DGV_FilterSubgroup = new System.Windows.Forms.DataGridView();
             this.DGV_FilterGroup = new System.Windows.Forms.DataGridView();
-            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.lblFilterCount = new System.Windows.Forms.Label();
             this.lblFilterProduct = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.DGV_SearchGrid = new System.Windows.Forms.DataGridView();
             this.grpfilter = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.txtRateCategory = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmbProductName = new System.Windows.Forms.ComboBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblBrandCount = new System.Windows.Forms.Label();
@@ -72,6 +77,7 @@
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.cmbFilterType = new System.Windows.Forms.ComboBox();
             this.lblFilterType = new System.Windows.Forms.Label();
+            this.cmbMultiUnit = new MultiSelectComboBox();
             this.lblUnit = new System.Windows.Forms.Label();
             this.lblAlpha = new System.Windows.Forms.Label();
             this.txtAlpha = new System.Windows.Forms.TextBox();
@@ -96,12 +102,16 @@
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdSalesList = new System.Windows.Forms.DataGridView();
             this.picLoader = new System.Windows.Forms.PictureBox();
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsSalesEntry = new System.Windows.Forms.ToolStrip();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.tspFilled = new System.Windows.Forms.ToolStripButton();
-            this.tss4 = new System.Windows.Forms.ToolStripSeparator();
             this.tspEmpty = new System.Windows.Forms.ToolStripButton();
+            this.tss4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbFilledPrint = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbEmptyPrint = new System.Windows.Forms.ToolStripButton();
             this.tss3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbUnmappedCount = new System.Windows.Forms.ToolStripButton();
             this.tsbUnmapped = new System.Windows.Forms.ToolStripButton();
@@ -112,18 +122,13 @@
             this.tsbTotalProducts = new System.Windows.Forms.ToolStripButton();
             this.tsbTotal = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chkboxRatelist = new System.Windows.Forms.CheckedListBox();
-            this.btnConditionClear = new System.Windows.Forms.Button();
-            this.pnlRateCategory = new System.Windows.Forms.Panel();
-            this.txtRateCategory = new System.Windows.Forms.TextBox();
-            this.cmbMultiUnit = new MultiSelectComboBox();
-            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbOriginalProducts = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.pnlSalesEntry.SuspendLayout();
+            this.pnlRateCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).BeginInit();
@@ -134,7 +139,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).BeginInit();
             this.tsSalesEntry.SuspendLayout();
-            this.pnlRateCategory.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlSalesEntry
@@ -145,7 +149,6 @@
             this.pnlSalesEntry.Controls.Add(this.DGV_FilterBrand);
             this.pnlSalesEntry.Controls.Add(this.DGV_FilterSubgroup);
             this.pnlSalesEntry.Controls.Add(this.DGV_FilterGroup);
-            this.pnlSalesEntry.Controls.Add(this.RPTViewer);
             this.pnlSalesEntry.Controls.Add(this.lblFilterCount);
             this.pnlSalesEntry.Controls.Add(this.lblFilterProduct);
             this.pnlSalesEntry.Controls.Add(this.btnUpdate);
@@ -155,10 +158,44 @@
             this.pnlSalesEntry.Controls.Add(this.lblNoRecordsFound);
             this.pnlSalesEntry.Controls.Add(this.grdSalesList);
             this.pnlSalesEntry.Controls.Add(this.picLoader);
+            this.pnlSalesEntry.Controls.Add(this.RPTViewer);
             this.pnlSalesEntry.Location = new System.Drawing.Point(0, 29);
             this.pnlSalesEntry.Name = "pnlSalesEntry";
             this.pnlSalesEntry.Size = new System.Drawing.Size(1354, 643);
             this.pnlSalesEntry.TabIndex = 0;
+            // 
+            // pnlRateCategory
+            // 
+            this.pnlRateCategory.Controls.Add(this.btnConditionClear);
+            this.pnlRateCategory.Controls.Add(this.chkboxRatelist);
+            this.pnlRateCategory.Location = new System.Drawing.Point(970, 94);
+            this.pnlRateCategory.Name = "pnlRateCategory";
+            this.pnlRateCategory.Size = new System.Drawing.Size(125, 147);
+            this.pnlRateCategory.TabIndex = 111111237;
+            this.pnlRateCategory.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRateCategory_Paint);
+            // 
+            // btnConditionClear
+            // 
+            this.btnConditionClear.Image = global::ROMS.Properties.Resources.Cleared;
+            this.btnConditionClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConditionClear.Location = new System.Drawing.Point(3, 119);
+            this.btnConditionClear.Name = "btnConditionClear";
+            this.btnConditionClear.Size = new System.Drawing.Size(57, 24);
+            this.btnConditionClear.TabIndex = 111111224;
+            this.btnConditionClear.Text = "Clear";
+            this.btnConditionClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnConditionClear.UseVisualStyleBackColor = true;
+            this.btnConditionClear.Click += new System.EventHandler(this.btnConditionClear_Click);
+            // 
+            // chkboxRatelist
+            // 
+            this.chkboxRatelist.FormattingEnabled = true;
+            this.chkboxRatelist.Location = new System.Drawing.Point(3, 3);
+            this.chkboxRatelist.Name = "chkboxRatelist";
+            this.chkboxRatelist.Size = new System.Drawing.Size(120, 114);
+            this.chkboxRatelist.TabIndex = 111111221;
+            this.chkboxRatelist.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkboxRatelist_ItemCheck);
+            this.chkboxRatelist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkboxRatelist_KeyDown);
             // 
             // DGV_FilterSupplier
             // 
@@ -188,7 +225,7 @@
             this.DGV_FilterSupplier.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_FilterSupplier.EnableHeadersVisualStyles = false;
             this.DGV_FilterSupplier.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSupplier.Location = new System.Drawing.Point(1032, 172);
+            this.DGV_FilterSupplier.Location = new System.Drawing.Point(1026, 52);
             this.DGV_FilterSupplier.Name = "DGV_FilterSupplier";
             this.DGV_FilterSupplier.ReadOnly = true;
             this.DGV_FilterSupplier.RowHeadersVisible = false;
@@ -232,7 +269,7 @@
             this.DGV_FilterBrand.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FilterBrand.EnableHeadersVisualStyles = false;
             this.DGV_FilterBrand.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterBrand.Location = new System.Drawing.Point(779, 172);
+            this.DGV_FilterBrand.Location = new System.Drawing.Point(767, 52);
             this.DGV_FilterBrand.Name = "DGV_FilterBrand";
             this.DGV_FilterBrand.ReadOnly = true;
             this.DGV_FilterBrand.RowHeadersVisible = false;
@@ -245,6 +282,7 @@
             this.DGV_FilterBrand.Size = new System.Drawing.Size(408, 226);
             this.DGV_FilterBrand.TabIndex = 111111176;
             this.DGV_FilterBrand.Visible = false;
+            this.DGV_FilterBrand.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterBrand_CellContentClick);
             this.DGV_FilterBrand.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterBrand_CellDoubleClick);
             this.DGV_FilterBrand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterBrand_KeyDown);
             // 
@@ -276,7 +314,7 @@
             this.DGV_FilterSubgroup.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_FilterSubgroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterSubgroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(514, 172);
+            this.DGV_FilterSubgroup.Location = new System.Drawing.Point(502, 52);
             this.DGV_FilterSubgroup.Name = "DGV_FilterSubgroup";
             this.DGV_FilterSubgroup.ReadOnly = true;
             this.DGV_FilterSubgroup.RowHeadersVisible = false;
@@ -320,7 +358,7 @@
             this.DGV_FilterGroup.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_FilterGroup.EnableHeadersVisualStyles = false;
             this.DGV_FilterGroup.GridColor = System.Drawing.Color.White;
-            this.DGV_FilterGroup.Location = new System.Drawing.Point(250, 172);
+            this.DGV_FilterGroup.Location = new System.Drawing.Point(225, 52);
             this.DGV_FilterGroup.Name = "DGV_FilterGroup";
             this.DGV_FilterGroup.ReadOnly = true;
             this.DGV_FilterGroup.RowHeadersVisible = false;
@@ -335,19 +373,6 @@
             this.DGV_FilterGroup.Visible = false;
             this.DGV_FilterGroup.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FilterGroup_CellContentClick);
             this.DGV_FilterGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DGV_FilterGroup_KeyDown);
-            // 
-            // RPTViewer
-            // 
-            this.RPTViewer.ActiveViewIndex = -1;
-            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(3, 124);
-            this.RPTViewer.Name = "RPTViewer";
-            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1348, 479);
-            this.RPTViewer.TabIndex = 111111231;
-            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.RPTViewer.Visible = false;
             // 
             // lblFilterCount
             // 
@@ -455,6 +480,7 @@
             // 
             // grpfilter
             // 
+            this.grpfilter.Controls.Add(this.btnClear);
             this.grpfilter.Controls.Add(this.txtRateCategory);
             this.grpfilter.Controls.Add(this.label1);
             this.grpfilter.Controls.Add(this.cmbProductName);
@@ -501,11 +527,50 @@
             this.grpfilter.Text = "Filter By";
             this.grpfilter.Enter += new System.EventHandler(this.grpfilter_Enter);
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Image = global::ROMS.Properties.Resources.refresh;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(1307, 64);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(34, 29);
+            this.btnClear.TabIndex = 111111239;
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // txtRateCategory
+            // 
+            this.txtRateCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRateCategory.Location = new System.Drawing.Point(959, 64);
+            this.txtRateCategory.MaxLength = 50;
+            this.txtRateCategory.Name = "txtRateCategory";
+            this.txtRateCategory.ReadOnly = true;
+            this.txtRateCategory.Size = new System.Drawing.Size(98, 27);
+            this.txtRateCategory.TabIndex = 111111238;
+            this.txtRateCategory.TextChanged += new System.EventHandler(this.txtRateCategory_TextChanged);
+            this.txtRateCategory.Enter += new System.EventHandler(this.txtRateCategory_Enter);
+            this.txtRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRateCategory_KeyDown);
+            this.txtRateCategory.Leave += new System.EventHandler(this.txtRateCategory_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(871, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 20);
+            this.label1.TabIndex = 111111237;
+            this.label1.Text = "Rate Category";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // cmbProductName
             // 
             this.cmbProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductName.FormattingEnabled = true;
-            this.cmbProductName.Location = new System.Drawing.Point(651, 64);
+            this.cmbProductName.Location = new System.Drawing.Point(612, 64);
             this.cmbProductName.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.cmbProductName.Name = "cmbProductName";
             this.cmbProductName.Size = new System.Drawing.Size(87, 28);
@@ -519,7 +584,7 @@
             // 
             this.lblProductName.AutoSize = true;
             this.lblProductName.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(558, 67);
+            this.lblProductName.Location = new System.Drawing.Point(519, 67);
             this.lblProductName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(85, 20);
@@ -598,7 +663,7 @@
             this.btnReset.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Image = global::ROMS.Properties.Resources.reset;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(1306, 64);
+            this.btnReset.Location = new System.Drawing.Point(1267, 64);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(34, 29);
@@ -611,7 +676,7 @@
             // 
             this.cmbType.DropDownWidth = 86;
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(474, 64);
+            this.cmbType.Location = new System.Drawing.Point(442, 64);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(76, 27);
             this.cmbType.TabIndex = 7;
@@ -623,7 +688,7 @@
             // cmbFilterType
             // 
             this.cmbFilterType.FormattingEnabled = true;
-            this.cmbFilterType.Location = new System.Drawing.Point(1168, 64);
+            this.cmbFilterType.Location = new System.Drawing.Point(1129, 64);
             this.cmbFilterType.Name = "cmbFilterType";
             this.cmbFilterType.Size = new System.Drawing.Size(85, 27);
             this.cmbFilterType.TabIndex = 9;
@@ -635,17 +700,31 @@
             // lblFilterType
             // 
             this.lblFilterType.AutoSize = true;
-            this.lblFilterType.Location = new System.Drawing.Point(1096, 67);
+            this.lblFilterType.Location = new System.Drawing.Point(1057, 67);
             this.lblFilterType.Name = "lblFilterType";
             this.lblFilterType.Size = new System.Drawing.Size(65, 20);
             this.lblFilterType.TabIndex = 111111224;
             this.lblFilterType.Text = "Filter Type";
             // 
+            // cmbMultiUnit
+            // 
+            this.cmbMultiUnit.DropDownHeight = 1;
+            this.cmbMultiUnit.FormattingEnabled = true;
+            this.cmbMultiUnit.IntegralHeight = false;
+            this.cmbMultiUnit.Location = new System.Drawing.Point(746, 64);
+            this.cmbMultiUnit.Name = "cmbMultiUnit";
+            this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
+            this.cmbMultiUnit.TabIndex = 8;
+            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
+            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
+            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
+            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
+            // 
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnit.Location = new System.Drawing.Point(743, 67);
+            this.lblUnit.Location = new System.Drawing.Point(704, 67);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(32, 20);
             this.lblUnit.TabIndex = 111111218;
@@ -668,7 +747,7 @@
             this.txtAlpha.Location = new System.Drawing.Point(128, 64);
             this.txtAlpha.MaxLength = 100;
             this.txtAlpha.Name = "txtAlpha";
-            this.txtAlpha.Size = new System.Drawing.Size(84, 27);
+            this.txtAlpha.Size = new System.Drawing.Size(72, 27);
             this.txtAlpha.TabIndex = 5;
             this.txtAlpha.Enter += new System.EventHandler(this.txtAlpha_Enter);
             this.txtAlpha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAlpha_KeyDown);
@@ -743,7 +822,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(436, 67);
+            this.lblType.Location = new System.Drawing.Point(404, 67);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 20);
             this.lblType.TabIndex = 111111207;
@@ -752,7 +831,7 @@
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(322, 64);
+            this.cmbCategory.Location = new System.Drawing.Point(287, 64);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(111, 27);
             this.cmbCategory.TabIndex = 6;
@@ -765,7 +844,7 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(214, 67);
+            this.lblCategory.Location = new System.Drawing.Point(182, 67);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(104, 20);
             this.lblCategory.TabIndex = 111111205;
@@ -864,7 +943,7 @@
             this.btnView.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(1266, 64);
+            this.btnView.Location = new System.Drawing.Point(1227, 64);
             this.btnView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(34, 29);
@@ -949,6 +1028,19 @@
             this.picLoader.TabStop = false;
             this.picLoader.Visible = false;
             // 
+            // RPTViewer
+            // 
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(3, 124);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1348, 479);
+            this.RPTViewer.TabIndex = 111111231;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
+            // 
             // epReport
             // 
             this.epReport.ContainerControl = this;
@@ -962,8 +1054,11 @@
             this.tsSalesEntry.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsLabelPlaceholder,
             this.tspFilled,
-            this.tss4,
             this.tspEmpty,
+            this.tss4,
+            this.tsbFilledPrint,
+            this.toolStripSeparator3,
+            this.tsbEmptyPrint,
             this.tss3,
             this.tsbUnmappedCount,
             this.tsbUnmapped,
@@ -981,8 +1076,7 @@
             this.tsSalesEntry.Name = "tsSalesEntry";
             this.tsSalesEntry.Size = new System.Drawing.Size(1354, 28);
             this.tsSalesEntry.TabIndex = 35;
-            this.tsSalesEntry.Text = "GRN Summary Report";
-            this.tsSalesEntry.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsSalesEntry_ItemClicked);
+            this.tsSalesEntry.Text = "GRN Summary Report"; 
             // 
             // tsLabelPlaceholder
             // 
@@ -1006,13 +1100,6 @@
             this.tspFilled.Text = "&Filled";
             this.tspFilled.Click += new System.EventHandler(this.tspFilled_Click);
             // 
-            // tss4
-            // 
-            this.tss4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tss4.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.tss4.Name = "tss4";
-            this.tss4.Size = new System.Drawing.Size(6, 28);
-            // 
             // tspEmpty
             // 
             this.tspEmpty.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -1025,6 +1112,45 @@
             this.tspEmpty.Text = "&Empty";
             this.tspEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tspEmpty.Click += new System.EventHandler(this.tspEmpty_Click);
+            // 
+            // tss4
+            // 
+            this.tss4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tss4.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.tss4.Name = "tss4";
+            this.tss4.Size = new System.Drawing.Size(6, 28);
+            // 
+            // tsbFilledPrint
+            // 
+            this.tsbFilledPrint.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbFilledPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.tsbFilledPrint.Image = global::ROMS.Properties.Resources.print_label;
+            this.tsbFilledPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFilledPrint.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.tsbFilledPrint.Name = "tsbFilledPrint";
+            this.tsbFilledPrint.Size = new System.Drawing.Size(91, 25);
+            this.tsbFilledPrint.Text = "&Filled Print";
+            this.tsbFilledPrint.Click += new System.EventHandler(this.tsbFilledPrint_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
+            // 
+            // tsbEmptyPrint
+            // 
+            this.tsbEmptyPrint.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbEmptyPrint.Font = new System.Drawing.Font("Oswald Regular", 11.25F);
+            this.tsbEmptyPrint.Image = global::ROMS.Properties.Resources.printing;
+            this.tsbEmptyPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEmptyPrint.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
+            this.tsbEmptyPrint.Name = "tsbEmptyPrint";
+            this.tsbEmptyPrint.Size = new System.Drawing.Size(97, 25);
+            this.tsbEmptyPrint.Text = "&Empty Print";
+            this.tsbEmptyPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tsbEmptyPrint.Click += new System.EventHandler(this.tsbEmptyPrint_Click);
             // 
             // tss3
             // 
@@ -1114,8 +1240,7 @@
             this.tsbTotalProducts.Name = "tsbTotalProducts";
             this.tsbTotalProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbTotalProducts.Size = new System.Drawing.Size(23, 25);
-            this.tsbTotalProducts.Text = "0";
-            this.tsbTotalProducts.Click += new System.EventHandler(this.tsbTotalProducts_Click);
+            this.tsbTotalProducts.Text = "0"; 
             // 
             // tsbTotal
             // 
@@ -1134,87 +1259,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
-            // 
-            // tsbFormat
-            // 
-            this.tsbFormat.Name = "tsbFormat";
-            this.tsbFormat.Size = new System.Drawing.Size(23, 25);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(910, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 20);
-            this.label1.TabIndex = 111111237;
-            this.label1.Text = "Rate Category";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // chkboxRatelist
-            // 
-            this.chkboxRatelist.FormattingEnabled = true;
-            this.chkboxRatelist.Location = new System.Drawing.Point(3, 3);
-            this.chkboxRatelist.Name = "chkboxRatelist";
-            this.chkboxRatelist.Size = new System.Drawing.Size(120, 114);
-            this.chkboxRatelist.TabIndex = 111111221;
-            this.chkboxRatelist.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkboxRatelist_ItemCheck);
-            this.chkboxRatelist.KeyDown += new System.Windows.Forms.KeyEventHandler(this.chkboxRatelist_KeyDown);
-            // 
-            // btnConditionClear
-            // 
-            this.btnConditionClear.Image = global::ROMS.Properties.Resources.Cleared;
-            this.btnConditionClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConditionClear.Location = new System.Drawing.Point(3, 119);
-            this.btnConditionClear.Name = "btnConditionClear";
-            this.btnConditionClear.Size = new System.Drawing.Size(57, 24);
-            this.btnConditionClear.TabIndex = 111111224;
-            this.btnConditionClear.Text = "Clear";
-            this.btnConditionClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConditionClear.UseVisualStyleBackColor = true;
-            this.btnConditionClear.Click += new System.EventHandler(this.btnConditionClear_Click);
-            // 
-            // pnlRateCategory
-            // 
-            this.pnlRateCategory.Controls.Add(this.btnConditionClear);
-            this.pnlRateCategory.Controls.Add(this.chkboxRatelist);
-            this.pnlRateCategory.Location = new System.Drawing.Point(998, 94);
-            this.pnlRateCategory.Name = "pnlRateCategory";
-            this.pnlRateCategory.Size = new System.Drawing.Size(125, 147);
-            this.pnlRateCategory.TabIndex = 111111237;
-            this.pnlRateCategory.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRateCategory_Paint);
-            // 
-            // txtRateCategory
-            // 
-            this.txtRateCategory.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRateCategory.Location = new System.Drawing.Point(998, 64);
-            this.txtRateCategory.MaxLength = 50;
-            this.txtRateCategory.Name = "txtRateCategory";
-            this.txtRateCategory.ReadOnly = true;
-            this.txtRateCategory.Size = new System.Drawing.Size(98, 27);
-            this.txtRateCategory.TabIndex = 111111238;
-            this.txtRateCategory.TextChanged += new System.EventHandler(this.txtRateCategory_TextChanged);
-            this.txtRateCategory.Enter += new System.EventHandler(this.txtRateCategory_Enter);
-            this.txtRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRateCategory_KeyDown);
-            this.txtRateCategory.Leave += new System.EventHandler(this.txtRateCategory_Leave);
-            // 
-            // cmbMultiUnit
-            // 
-            this.cmbMultiUnit.DropDownHeight = 1;
-            this.cmbMultiUnit.FormattingEnabled = true;
-            this.cmbMultiUnit.IntegralHeight = false;
-            this.cmbMultiUnit.Location = new System.Drawing.Point(785, 64);
-            this.cmbMultiUnit.Name = "cmbMultiUnit";
-            this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
-            this.cmbMultiUnit.TabIndex = 8;
-            this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
-            this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
-            this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
-            this.cmbMultiUnit.Leave += new System.EventHandler(this.cmbMultiUnit_Leave);
-            // 
-            // dynamicLabelControl
-            // 
-            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // toolStripSeparator2
             // 
@@ -1235,8 +1279,7 @@
             this.tsbOriginalProducts.Name = "tsbOriginalProducts";
             this.tsbOriginalProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbOriginalProducts.Size = new System.Drawing.Size(23, 25);
-            this.tsbOriginalProducts.Text = "0";
-            this.tsbOriginalProducts.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.tsbOriginalProducts.Text = "0"; 
             // 
             // toolStripButton2
             // 
@@ -1250,6 +1293,15 @@
             this.toolStripButton2.Size = new System.Drawing.Size(107, 25);
             this.toolStripButton2.Text = "&Original Product :";
             this.toolStripButton2.ToolTipText = "  ";
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.Size = new System.Drawing.Size(23, 25);
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // SAL_Entry
             // 
@@ -1270,6 +1322,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SAL_Entry_KeyDown);
             this.pnlSalesEntry.ResumeLayout(false);
             this.pnlSalesEntry.PerformLayout();
+            this.pnlRateCategory.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterBrand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSubgroup)).EndInit();
@@ -1282,7 +1335,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.epReport)).EndInit();
             this.tsSalesEntry.ResumeLayout(false);
             this.tsSalesEntry.PerformLayout();
-            this.pnlRateCategory.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1364,5 +1416,9 @@
         public System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         public System.Windows.Forms.ToolStripButton tsbOriginalProducts;
         public System.Windows.Forms.ToolStripButton toolStripButton2;
+        public System.Windows.Forms.ToolStripButton tsbFilledPrint;
+        public System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        public System.Windows.Forms.ToolStripButton tsbEmptyPrint;
+        private System.Windows.Forms.Button btnClear;
     }
 }

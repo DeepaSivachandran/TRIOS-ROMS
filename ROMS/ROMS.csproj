@@ -215,6 +215,12 @@
     <Compile Include="CP_CostPrice_Update_Bulk_Approval_List.designer.cs">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_Product_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_Product_Supplier.designer.cs">
+      <DependentUpon>CP_Product_Supplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_Rackgroup_Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -822,6 +828,20 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_MAR_Print.cs">
+      <DependentUpon>RPT_MAR_Print.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_MValue_BrandWiseReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MValue_BrandWiseReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\RPT_MValue_GroupWiseReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -849,6 +869,13 @@
       <AutoGen>True</AutoGen>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RPT_SAL_Print.cs">
+      <DependentUpon>RPT_SAL_Print.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_Stock_AsOnStockWithRequirement_Excess.cs">
       <DependentUpon>RPT_Stock_AsOnStockWithRequirement_Excess.rpt</DependentUpon>
@@ -4536,6 +4563,9 @@
     <EmbeddedResource Include="CP_CostPrice_Update_Bulk_Approval_List.resx">
       <DependentUpon>CP_CostPrice_Update_Bulk_Approval_List.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_Product_Supplier.resx">
+      <DependentUpon>CP_Product_Supplier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_Rackgroup_Product.resx">
       <DependentUpon>CP_Rackgroup_Product.cs</DependentUpon>
     </EmbeddedResource>
@@ -5554,9 +5584,19 @@
       <LastGenOutput>RPT_MarginEntryReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_MAR_Print.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MAR_Print.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_MAR_Entry.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_MAR_Entry.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>RPT_MAR_Entry1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_MValue_BrandWiseReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_MValue_BrandWiseReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_MValue_GroupWiseReport.rpt">
@@ -5822,6 +5862,11 @@
     <EmbeddedResource Include="Reports\RPT_SalesEntryReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_SalesEntryReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RPT_SAL_Print.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_SAL_Print.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_SAL_Entry.rpt">

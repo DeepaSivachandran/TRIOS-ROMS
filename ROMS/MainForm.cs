@@ -442,6 +442,7 @@ namespace ROMS
         public static INV_StockRequestQueueList objINV_StockRequestQueueList;
         public static CP_Basketlist objCP_Basketlist;
         public static CP_Basket objCP_Basket;
+        public static CP_Product_Supplier objCP_Product_Supplier;
 
         public MainForm()
         {
@@ -4438,6 +4439,12 @@ namespace ROMS
                     MainForm.objCP_Product_Popup = new CP_Product_Popup();
                     MainForm.objCP_Product_Popup.MdiParent = this.ParentForm;
                     MainForm.objCP_Product_Popup.ShowDialog();
+                }
+                if (e.KeyCode == Keys.F9) //Supplier products
+                {
+                    MainForm.objCP_Product_Supplier = new CP_Product_Supplier();
+                    MainForm.objCP_Product_Supplier.MdiParent = this.ParentForm;
+                    MainForm.objCP_Product_Supplier.ShowDialog();
                 }
             }
             catch (Exception ex)
