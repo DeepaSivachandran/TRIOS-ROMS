@@ -124,13 +124,13 @@
   <data name="tsLabelPlaceholder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        dgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFPSURBVDhPY6AY
-        LNr9yH3V/lc8UC5WsGjXY69Vxx5zQrmoYNHux88W7350ZO6R17xQIRTw//9/RqCaj0CLdmM1ZOHux91A
-        Bf+BthzFZQhQ83SQmsV7Hh9ctPMFN1QYAhbsfaQMlPyHz5DFO57og+VxGQKU2A9TgMsQoNxpmBoMQxbv
-        ehQJNwCkAEuYAMVTkdWAwmTmmWdcYMlJ226zAwVfIytoXXbrEDAEGcEKgAAUU0DxTyhqltzcA5ZEN6Bn
-        1Z1f5TOvXsBnQNfKOz/KZl89ApYECkTBJHpW3f5VNvva5bK5N1C8sHjPkzSE5ts/ymZdOV+y6CIkHICC
-        4EDEpRkEgPLgQMTQDItGfJph0YihGQRACQmfZhAAJSSsmkGgffmtN6Wzr+LUHLrqP3Pr0lsfy2ddPVXY
-        dwwzKRdPv+KeNfUq3sxUNOOaF1bNlAMGBgA0YWPekNq2DQAAAABJRU5ErkJggg==
+        cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFOSURBVDhPrZPL
+        SsNQEIZTXIi3p/ABfIxC9y50rwt33tInKIKKC0FqGwo68YJ5ANFMpCixCxVUbIomXWVKEeumrkoXHjnR
+        2NxONvovz/zfzzkzcyTprwJ0s1r1bTx6HhTolNNqNBI99wRIbRVds2J2JqI1LsZYBpC6gC4mhuwjbQAS
+        A52uRSGAbpF7VIMu4fx1LFTcu3AnAekzLUQ9a015dVEIIFV9gygEkG6FIaruzvwGcENCTwBpLujhPSnd
+        tUe94vapMwxInaChcGRfSYxl/AA+KUD6CHkOXozEgE2t2c+XrIe0gPWTZk9WLNO/3uwAdvqy0niSK8+h
+        J6hGa34AOz25XL9fgcfvPvhNFME/Hq+JMdgfYxrsjzEGc/FFSoO5+CIlwlxrx/b7qmIJ4WmNDRUO7W6+
+        bN0sbtXiq7xcrGcXdqzUz7S028glwv+hLzRhY95zMpROAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="btnTelegram.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -149,7 +149,7 @@
 </value>
   </data>
   <metadata name="dynamicLabelControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>366, 4</value>
+    <value>367, 5</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>

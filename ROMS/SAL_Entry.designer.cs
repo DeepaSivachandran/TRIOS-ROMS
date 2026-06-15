@@ -1076,7 +1076,7 @@
             this.tsSalesEntry.Name = "tsSalesEntry";
             this.tsSalesEntry.Size = new System.Drawing.Size(1354, 28);
             this.tsSalesEntry.TabIndex = 35;
-            this.tsSalesEntry.Text = "GRN Summary Report"; 
+            this.tsSalesEntry.Text = "GRN Summary Report";
             // 
             // tsLabelPlaceholder
             // 
@@ -1128,8 +1128,8 @@
             this.tsbFilledPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFilledPrint.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbFilledPrint.Name = "tsbFilledPrint";
-            this.tsbFilledPrint.Size = new System.Drawing.Size(91, 25);
-            this.tsbFilledPrint.Text = "&Filled Print";
+            this.tsbFilledPrint.Size = new System.Drawing.Size(120, 25);
+            this.tsbFilledPrint.Text = "&Filled(Summary)";
             this.tsbFilledPrint.Click += new System.EventHandler(this.tsbFilledPrint_Click);
             // 
             // toolStripSeparator3
@@ -1147,8 +1147,8 @@
             this.tsbEmptyPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEmptyPrint.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbEmptyPrint.Name = "tsbEmptyPrint";
-            this.tsbEmptyPrint.Size = new System.Drawing.Size(97, 25);
-            this.tsbEmptyPrint.Text = "&Empty Print";
+            this.tsbEmptyPrint.Size = new System.Drawing.Size(126, 25);
+            this.tsbEmptyPrint.Text = "&Empty(Summary)";
             this.tsbEmptyPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsbEmptyPrint.Click += new System.EventHandler(this.tsbEmptyPrint_Click);
             // 
@@ -1240,7 +1240,7 @@
             this.tsbTotalProducts.Name = "tsbTotalProducts";
             this.tsbTotalProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbTotalProducts.Size = new System.Drawing.Size(23, 25);
-            this.tsbTotalProducts.Text = "0"; 
+            this.tsbTotalProducts.Text = "0";
             // 
             // tsbTotal
             // 
@@ -1279,7 +1279,7 @@
             this.tsbOriginalProducts.Name = "tsbOriginalProducts";
             this.tsbOriginalProducts.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tsbOriginalProducts.Size = new System.Drawing.Size(23, 25);
-            this.tsbOriginalProducts.Text = "0"; 
+            this.tsbOriginalProducts.Text = "0";
             // 
             // toolStripButton2
             // 

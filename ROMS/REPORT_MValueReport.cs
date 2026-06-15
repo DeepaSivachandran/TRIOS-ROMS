@@ -59,6 +59,7 @@ namespace ROMS
                     DGV_FilterSupplier.DataSource = null;
                     DGV_FilterSupplier.Visible = false;
                 }
+                pnlRateCategory.Visible = false;
             }
             catch (Exception ex)
             {
@@ -73,14 +74,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Escape)
                 {
-                    if (pnlEntryReport.Visible == true)
-                    {
-                        pnlEntryReport.Visible = false;
-                    }
-                    else
-                    {
-                        udfnclose();
-                    }
+                    udfnclose();
                 }
             }
             catch (Exception ex)

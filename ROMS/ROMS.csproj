@@ -828,8 +828,8 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_MAR_Print.cs">
-      <DependentUpon>RPT_MAR_Print.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_MAR_Summary.cs">
+      <DependentUpon>RPT_MAR_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -5584,9 +5584,9 @@
       <LastGenOutput>RPT_MarginEntryReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_MAR_Print.rpt">
+    <EmbeddedResource Include="Reports\RPT_MAR_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_MAR_Print.cs</LastGenOutput>
+      <LastGenOutput>RPT_MAR_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_MAR_Entry.rpt">

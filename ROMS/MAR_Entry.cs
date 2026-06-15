@@ -1871,6 +1871,16 @@ namespace ROMS
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
                                 grdMarginList.DataSource = objDs.Tables[0];
+
+                                grdMarginList.Columns["S.No."].ReadOnly = true;
+                                grdMarginList.Columns["P.I Code"].ReadOnly = true;
+                                grdMarginList.Columns["Product"].ReadOnly = true;
+                                grdMarginList.Columns["Unit"].ReadOnly = true;
+                                grdMarginList.Columns["S.Rate"].ReadOnly = true;
+                                grdMarginList.Columns["Brand"].ReadOnly = true;
+                                grdMarginList.Columns["Sub Group"].ReadOnly = true;
+                                grdMarginList.Columns["Group"].ReadOnly = true;
+
                                 grdMarginList.Columns["ProductID"].Visible = false;
                                 grdMarginList.Columns["EProduct"].Visible = false;
                                 grdMarginList.Columns["UnitCode"].Visible = false;
@@ -1954,7 +1964,7 @@ namespace ROMS
                     }
                     else if (varPrint == 3 || varPrint == 4)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MAR_Print.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_MAR_Summary.rpt");
                     }
                     if (varFlag == 2 || varFlag == 3)
                     {
@@ -1993,7 +2003,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("varTypeName", varTypeName);
                     objBillreport.SetParameterValue("varUnitName", varUnitName);
                     objBillreport.SetParameterValue("VarFilterName", VarFilterName);
-                    objBillreport.SetParameterValue("varFlag", varFlag);
+                    objBillreport.SetParameterValue("varFlag", varEmptyFilledFlag);
                     objValidation.CrySqlConnection(objBillreport);
                     RPTViewer.ReportSource = objBillreport;
                     RPTViewer.Refresh();
@@ -3005,62 +3015,7 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblType_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblUnit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtRateCategory_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlRateCategory_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblFilterType_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbFilterType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblProductName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbProductName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbMultiUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+         
         private void tspEmpty_Click(object sender, EventArgs e)
         {
             try

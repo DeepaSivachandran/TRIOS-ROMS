@@ -1869,7 +1869,17 @@ namespace ROMS
                             {
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
-                                grdSalesList.DataSource = objDs.Tables[0];
+                                grdSalesList.DataSource = objDs.Tables[0]; 
+                                grdSalesList.Columns["S.No."].ReadOnly = true;
+                                grdSalesList.Columns["PI Code"].ReadOnly = true;
+                                grdSalesList.Columns["Product"].ReadOnly = true;
+                                grdSalesList.Columns["Unit"].ReadOnly = true;
+                                grdSalesList.Columns["S.Rate"].ReadOnly = true;
+                                grdSalesList.Columns["Brand"].ReadOnly = true;
+                                grdSalesList.Columns["Sub Group"].ReadOnly = true;
+                                grdSalesList.Columns["Group"].ReadOnly = true;
+
+
                                 grdSalesList.Columns["ProuctID"].Visible = false;
                                 grdSalesList.Columns["EProduct"].Visible = false;
                                 grdSalesList.Columns["UnitCode"].Visible = false;
@@ -1888,7 +1898,7 @@ namespace ROMS
                                 grdSalesList.Columns["Product"].Width = 500;
                                 grdSalesList.Columns["Unit"].Width = 50;
                                 grdSalesList.Columns["S.Rate"].Width = 80;
-                                grdSalesList.Columns["S.Qty"].Width = 80;
+                                grdSalesList.Columns["S.Qty"].Width = 80; 
                                 grdSalesList.Columns["Brand"].Width = 120;
                                 grdSalesList.Columns["Sub Group"].Width = 120;
                                 grdSalesList.Columns["Group"].Width = 120;

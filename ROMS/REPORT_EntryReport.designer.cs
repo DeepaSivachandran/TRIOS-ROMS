@@ -639,8 +639,7 @@
             this.cmbType.Location = new System.Drawing.Point(508, 111);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(89, 27);
-            this.cmbType.TabIndex = 11;
-            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
+            this.cmbType.TabIndex = 11; 
             this.cmbType.Enter += new System.EventHandler(this.cmbType_Enter);
             this.cmbType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbType_KeyDown);
             this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
@@ -809,7 +808,7 @@
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(104, 20);
             this.lblCategory.TabIndex = 111111205;
-            this.lblCategory.Text = "Product Category";
+            this.lblCategory.Text = "Product Category"; 
             // 
             // lblConcern
             // 

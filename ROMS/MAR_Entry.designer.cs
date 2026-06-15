@@ -104,7 +104,6 @@
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.epReport = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.tsLabelPlaceholder = new System.Windows.Forms.ToolStripLabel();
             this.tspFilled = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -126,6 +125,7 @@
             this.tsbOriginalProducts = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tsMarginEntry = new System.Windows.Forms.ToolStrip();
+            this.dynamicLabelControl = new ROMS.DynamicToolStripLabelControl();
             this.pnlMarginEntry.SuspendLayout();
             this.pnlRateCategory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterSupplier)).BeginInit();
@@ -171,7 +171,6 @@
             this.pnlRateCategory.Name = "pnlRateCategory";
             this.pnlRateCategory.Size = new System.Drawing.Size(125, 147);
             this.pnlRateCategory.TabIndex = 111111236;
-            this.pnlRateCategory.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRateCategory_Paint);
             // 
             // btnConditionClear
             // 
@@ -549,7 +548,6 @@
             this.txtRateCategory.ReadOnly = true;
             this.txtRateCategory.Size = new System.Drawing.Size(98, 27);
             this.txtRateCategory.TabIndex = 111111236;
-            this.txtRateCategory.TextChanged += new System.EventHandler(this.txtRateCategory_TextChanged);
             this.txtRateCategory.Enter += new System.EventHandler(this.txtRateCategory_Enter);
             this.txtRateCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRateCategory_KeyDown);
             this.txtRateCategory.Leave += new System.EventHandler(this.txtRateCategory_Leave);
@@ -563,7 +561,6 @@
             this.label1.Size = new System.Drawing.Size(86, 20);
             this.label1.TabIndex = 111111235;
             this.label1.Text = "Rate Category";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cmbProductName
             // 
@@ -574,7 +571,6 @@
             this.cmbProductName.Name = "cmbProductName";
             this.cmbProductName.Size = new System.Drawing.Size(87, 28);
             this.cmbProductName.TabIndex = 8;
-            this.cmbProductName.SelectedIndexChanged += new System.EventHandler(this.cmbProductName_SelectedIndexChanged);
             this.cmbProductName.Enter += new System.EventHandler(this.cmbProductName_Enter);
             this.cmbProductName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbProductName_KeyDown);
             this.cmbProductName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbProductName_KeyPress);
@@ -590,7 +586,6 @@
             this.lblProductName.Size = new System.Drawing.Size(85, 20);
             this.lblProductName.TabIndex = 111111233;
             this.lblProductName.Text = "Product Name";
-            this.lblProductName.Click += new System.EventHandler(this.lblProductName_Click);
             // 
             // lblBrandCount
             // 
@@ -680,7 +675,6 @@
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(76, 27);
             this.cmbType.TabIndex = 7;
-            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             this.cmbType.Enter += new System.EventHandler(this.cmbType_Enter);
             this.cmbType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbType_KeyDown);
             this.cmbType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbType_KeyPress);
@@ -693,7 +687,6 @@
             this.cmbFilterType.Name = "cmbFilterType";
             this.cmbFilterType.Size = new System.Drawing.Size(76, 27);
             this.cmbFilterType.TabIndex = 10;
-            this.cmbFilterType.SelectedIndexChanged += new System.EventHandler(this.cmbFilterType_SelectedIndexChanged);
             this.cmbFilterType.Enter += new System.EventHandler(this.cmbFilterType_Enter);
             this.cmbFilterType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFilterType_KeyDown);
             this.cmbFilterType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbFilterType_KeyPress);
@@ -707,7 +700,6 @@
             this.lblFilterType.Size = new System.Drawing.Size(65, 20);
             this.lblFilterType.TabIndex = 111111224;
             this.lblFilterType.Text = "Filter Type";
-            this.lblFilterType.Click += new System.EventHandler(this.lblFilterType_Click);
             // 
             // cmbMultiUnit
             // 
@@ -718,7 +710,6 @@
             this.cmbMultiUnit.Name = "cmbMultiUnit";
             this.cmbMultiUnit.Size = new System.Drawing.Size(121, 27);
             this.cmbMultiUnit.TabIndex = 9;
-            this.cmbMultiUnit.SelectedIndexChanged += new System.EventHandler(this.cmbMultiUnit_SelectedIndexChanged);
             this.cmbMultiUnit.Enter += new System.EventHandler(this.cmbMultiUnit_Enter);
             this.cmbMultiUnit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMultiUnit_KeyDown);
             this.cmbMultiUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMultiUnit_KeyPress);
@@ -733,7 +724,6 @@
             this.lblUnit.Size = new System.Drawing.Size(32, 20);
             this.lblUnit.TabIndex = 111111218;
             this.lblUnit.Text = "Unit";
-            this.lblUnit.Click += new System.EventHandler(this.lblUnit_Click);
             // 
             // lblAlpha
             // 
@@ -831,7 +821,6 @@
             this.lblType.Size = new System.Drawing.Size(34, 20);
             this.lblType.TabIndex = 111111207;
             this.lblType.Text = "Type";
-            this.lblType.Click += new System.EventHandler(this.lblType_Click);
             // 
             // cmbCategory
             // 
@@ -1000,7 +989,7 @@
             this.grdMarginList.DefaultCellStyle = dataGridViewCellStyle17;
             this.grdMarginList.EnableHeadersVisualStyles = false;
             this.grdMarginList.GridColor = System.Drawing.Color.White;
-            this.grdMarginList.Location = new System.Drawing.Point(3, 179);
+            this.grdMarginList.Location = new System.Drawing.Point(3, 180);
             this.grdMarginList.Name = "grdMarginList";
             this.grdMarginList.RowHeadersVisible = false;
             this.grdMarginList.RowHeadersWidth = 100;
@@ -1049,10 +1038,6 @@
             // epReport
             // 
             this.epReport.ContainerControl = this;
-            // 
-            // dynamicLabelControl
-            // 
-            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // tsLabelPlaceholder
             // 
@@ -1111,8 +1096,8 @@
             this.tsbFilledPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFilledPrint.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbFilledPrint.Name = "tsbFilledPrint";
-            this.tsbFilledPrint.Size = new System.Drawing.Size(91, 25);
-            this.tsbFilledPrint.Text = "&Filled Print";
+            this.tsbFilledPrint.Size = new System.Drawing.Size(120, 25);
+            this.tsbFilledPrint.Text = "&Filled(Summary)";
             this.tsbFilledPrint.Click += new System.EventHandler(this.tsbFilledPrint_Click);
             // 
             // toolStripSeparator4
@@ -1129,8 +1114,8 @@
             this.tsbEmptyPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEmptyPrint.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.tsbEmptyPrint.Name = "tsbEmptyPrint";
-            this.tsbEmptyPrint.Size = new System.Drawing.Size(97, 25);
-            this.tsbEmptyPrint.Text = "&Empty Print";
+            this.tsbEmptyPrint.Size = new System.Drawing.Size(126, 25);
+            this.tsbEmptyPrint.Text = "&Empty(Summary)";
             this.tsbEmptyPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsbEmptyPrint.Click += new System.EventHandler(this.tsbEmptyPrint_Click);
             // 
@@ -1302,6 +1287,10 @@
             this.tsMarginEntry.Size = new System.Drawing.Size(1354, 28);
             this.tsMarginEntry.TabIndex = 35;
             this.tsMarginEntry.Text = "GRN Summary Report";
+            // 
+            // dynamicLabelControl
+            // 
+            this.dynamicLabelControl.PlaceholderLabel = null;
             // 
             // MAR_Entry
             // 
