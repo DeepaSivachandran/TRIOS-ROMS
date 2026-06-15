@@ -828,6 +828,11 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Reports\RPT_MAR_Entry1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_MAR_Entry.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RPT_MAR_Summary.cs">
       <DependentUpon>RPT_MAR_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
