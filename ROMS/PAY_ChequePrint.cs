@@ -851,12 +851,59 @@ namespace ROMS
                 txtAmount.Text = "";
                 RPTViewer.Visible = false;
                 dpDate.Value = MainForm.pbCurrentDate;
+                if(Convert.ToInt16(cmbType.SelectedValue)== 607)//Direct
+                {
+                    txtNameText.Visible = false;
+                    txtsuppliername.Visible = true;
+                    txtOthersType.Visible = false;
+                }
+                else if(Convert.ToInt16(cmbType.SelectedValue)== 566)//Others
+                {
+                    txtOthersType.Visible = true;
+                }
+                else
+                {
+                    txtsuppliername.Visible = true;
+                    txtNameText.Visible = true;
+                    txtOthersType.Visible = false;
+                }
             }
             catch (Exception ex)
             {
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void txtNameText_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtNameText.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtNameText_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtNameText.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

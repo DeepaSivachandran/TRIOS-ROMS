@@ -66,6 +66,8 @@
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblChequeDate = new System.Windows.Forms.Label();
             this.epCheque = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtNameText = new System.Windows.Forms.TextBox();
+            this.txtOthersType = new System.Windows.Forms.TextBox();
             this.tsDirectCheque.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -318,6 +320,8 @@
             // 
             // grbgodown
             // 
+            this.grbgodown.Controls.Add(this.txtOthersType);
+            this.grbgodown.Controls.Add(this.txtNameText);
             this.grbgodown.Controls.Add(this.cmbType);
             this.grbgodown.Controls.Add(this.label1);
             this.grbgodown.Controls.Add(this.btnClear);
@@ -471,6 +475,23 @@
             // 
             this.epCheque.ContainerControl = this;
             // 
+            // txtNameText
+            // 
+            this.txtNameText.Location = new System.Drawing.Point(125, 36);
+            this.txtNameText.Name = "txtNameText";
+            this.txtNameText.Size = new System.Drawing.Size(250, 27);
+            this.txtNameText.TabIndex = 93;
+            this.txtNameText.Enter += new System.EventHandler(this.txtNameText_Enter);
+            this.txtNameText.Leave += new System.EventHandler(this.txtNameText_Leave);
+            // 
+            // txtOthersType
+            // 
+            this.txtOthersType.Location = new System.Drawing.Point(499, 36);
+            this.txtOthersType.Name = "txtOthersType";
+            this.txtOthersType.Size = new System.Drawing.Size(205, 27);
+            this.txtOthersType.TabIndex = 95;
+            this.txtOthersType.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // PAY_ChequePrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -544,5 +565,7 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.TextBox txtNameText;
+        private System.Windows.Forms.TextBox txtOthersType;
     }
 }
