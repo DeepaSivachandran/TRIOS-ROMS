@@ -5097,6 +5097,11 @@ namespace ROMS
 
         }
 
+        private void tsmInwardStockReport_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsmLock_Click(object sender, EventArgs e)
         {
 

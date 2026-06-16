@@ -828,11 +828,6 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\RPT_MAR_Entry1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RPT_MAR_Entry.rpt</DependentUpon>
-    </Compile>
     <Compile Include="Reports\RPT_MAR_Summary.cs">
       <DependentUpon>RPT_MAR_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -875,8 +870,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RPT_SAL_Print.cs">
-      <DependentUpon>RPT_SAL_Print.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_SAL_Summary.cs">
+      <DependentUpon>RPT_SAL_Summary.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -5869,9 +5864,9 @@
       <LastGenOutput>RPT_SalesEntryReport.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RPT_SAL_Print.rpt">
+    <EmbeddedResource Include="Reports\RPT_SAL_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_SAL_Print.cs</LastGenOutput>
+      <LastGenOutput>RPT_SAL_Summary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_SAL_Entry.rpt">

@@ -1965,7 +1965,7 @@ namespace ROMS
                     }
                     else if(varFlag==3  || varFlag==4)
                     {
-                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_Print.rpt");
+                        objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_SAL_Summary.rpt");
                     }
                     if (varFlag == 2 || varFlag==3)
                     {

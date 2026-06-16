@@ -320,6 +320,7 @@ namespace ROMS
                 objMR_Product.paraLocationId = Convert.ToInt32(lblLocationCode.Text);
                 objMR_Product.paraLocationType = Convert.ToInt32(cmbLocationType.SelectedValue);
                 objMR_Product.paraGodownType = Convert.ToInt32(cmbGodownType.SelectedValue);
+                objMR_Product.paraPicode = txtAlpha.Text.Trim();
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();                
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -343,6 +344,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraStatusName", Convert.ToString(cmbStatus.Text));
                     objBillreport.SetParameterValue("paraLTName", Convert.ToString(cmbLocationType.Text));
                     objBillreport.SetParameterValue("paraGTName", Convert.ToString(cmbGodownType.Text));
+                    objBillreport.SetParameterValue("paraPicode", Convert.ToString(txtAlpha.Text.Trim()));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -439,6 +441,7 @@ namespace ROMS
                 objMR_Product.paraSubgroup = Convert.ToInt32(lblSubGroupId.Text);
                 objMR_Product.ParaCompanycode = Convert.ToInt32(cmbConcern.SelectedValue);
                 objMR_Product.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
+                objMR_Product.paraPicode = txtAlpha.Text.Trim();
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
                 objDs = objspservice.udfnproductmasterlist(objMR_Product);
@@ -464,6 +467,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraGroupName", Convert.ToString(varGroup));
                     objBillreport.SetParameterValue("paraSubgroupName", Convert.ToString(varSubgroup));
                     objBillreport.SetParameterValue("paraProduct", Convert.ToString(varProduct));
+                    objBillreport.SetParameterValue("paraPicode", Convert.ToString(txtAlpha.Text.Trim()));
                     objBillreport.SetParameterValue("paraUserID", MainForm.pbUserID);
                     objBillreport.SetParameterValue("paraIPAddress", MainForm.pbIpAddress);
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -1023,7 +1027,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    cmbStatus.Focus();
+                    txtAlpha.Focus();
                 }
             }
             catch (Exception ex)
@@ -1058,7 +1062,7 @@ namespace ROMS
                     }
                     else
                     {
-                        cmbStatus.Focus();
+                        txtAlpha.Focus();
                     }
                     if(pnlLocation.Visible==true)
                     {
@@ -1392,8 +1396,7 @@ namespace ROMS
         private void TxtProduct_Enter(object sender, EventArgs e)
         {
             try
-            {
-                lvSubGroup.Visible = false;
+            { 
                 txtProduct.BackColor = Color.LemonChiffon;
                 udfnGroupValid();
                 udfnSubgroupValid();
@@ -1441,7 +1444,7 @@ namespace ROMS
                 }
                 if (e.KeyCode == Keys.Enter && DGV_FilterProduct.Visible == false)
                 {
-                    cmbStatus.Focus();
+                    txtAlpha.Focus();
                 }
                 if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter)
                 {
@@ -1514,7 +1517,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        txtAlpha.Focus();
                     }
                 }
             }
@@ -1639,7 +1642,7 @@ namespace ROMS
             }
             finally
             {
-                lvSubGroup.Visible = false;
+                 
             }
         }
         private void LvProduct_DoubleClick(object sender, EventArgs e)
@@ -1647,7 +1650,7 @@ namespace ROMS
             try
             {
                 udfnProductEvent();
-                cmbStatus.Focus();
+                txtAlpha.Focus();
             }
             catch (Exception ex)
             {
@@ -1663,7 +1666,7 @@ namespace ROMS
                 if (e.KeyCode == Keys.Enter)
                 {
                     udfnProductEvent();
-                    cmbStatus.Focus();
+                    txtAlpha.Focus();
                 }
             }
             catch (Exception ex)
@@ -1689,7 +1692,7 @@ namespace ROMS
             }
             finally
             {
-                lvProduct.Visible = false;
+                
             }
         }
 
@@ -1700,7 +1703,7 @@ namespace ROMS
                 varUpDownKeyLocation = 1;
                 udfnSLocationEvent();
                 cmbLocationType.Focus();
-            }
+            }                                                                                                                   
             catch (Exception ex)
             {
                 objError = new DataError();
@@ -1959,7 +1962,7 @@ namespace ROMS
             {
                 varUpDownKeyProduct = 1;
                 udfnProductEvent();
-                cmbStatus.Focus();
+                txtAlpha.Focus();
             }
             catch (Exception ex)
             {
@@ -2029,7 +2032,7 @@ namespace ROMS
                     }
                     if (e.KeyCode == Keys.Enter)
                     {
-                        cmbStatus.Focus();
+                        txtAlpha.Focus();
                     }
                 }
             }
@@ -2070,10 +2073,48 @@ namespace ROMS
         {
             udfnList(1);
         }
-
-        private void lblLocationName_Click(object sender, EventArgs e)
+         
+        private void txtAlpha_Enter(object sender, EventArgs e)
         {
+            try
+            {
+                udfnGridNull((Control)sender);
+                txtAlpha.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
 
+        private void txtAlpha_KeyDown(object sender, KeyEventArgs e)
+        { 
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbStatus.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtAlpha_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtAlpha.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void TxtGroup_TextChanged(object sender, EventArgs e)

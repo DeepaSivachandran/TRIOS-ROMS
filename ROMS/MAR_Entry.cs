@@ -3015,7 +3015,17 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void lblAlpha_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAlpha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void tspEmpty_Click(object sender, EventArgs e)
         {
             try

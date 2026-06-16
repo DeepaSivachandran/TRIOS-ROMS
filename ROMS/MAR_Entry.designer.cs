@@ -734,6 +734,7 @@
             this.lblAlpha.Size = new System.Drawing.Size(113, 20);
             this.lblAlpha.TabIndex = 111111216;
             this.lblAlpha.Text = "Filter by Alphabetic";
+            this.lblAlpha.Click += new System.EventHandler(this.lblAlpha_Click);
             // 
             // txtAlpha
             // 
@@ -743,6 +744,7 @@
             this.txtAlpha.Name = "txtAlpha";
             this.txtAlpha.Size = new System.Drawing.Size(68, 27);
             this.txtAlpha.TabIndex = 5;
+            this.txtAlpha.TextChanged += new System.EventHandler(this.txtAlpha_TextChanged);
             this.txtAlpha.Enter += new System.EventHandler(this.txtAlpha_Enter);
             this.txtAlpha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAlpha_KeyDown);
             this.txtAlpha.Leave += new System.EventHandler(this.txtAlpha_Leave);
