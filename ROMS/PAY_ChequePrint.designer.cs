@@ -39,6 +39,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.lblAmount = new System.Windows.Forms.Label();
             this.lblschedule = new System.Windows.Forms.Label();
@@ -53,6 +54,8 @@
             this.lblsupplierGST = new System.Windows.Forms.Label();
             this.lblsupplierpayment = new System.Windows.Forms.Label();
             this.grbgodown = new System.Windows.Forms.GroupBox();
+            this.txtOthersText = new System.Windows.Forms.TextBox();
+            this.txtNameText = new System.Windows.Forms.TextBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
@@ -66,8 +69,6 @@
             this.lblSupplier = new System.Windows.Forms.Label();
             this.lblChequeDate = new System.Windows.Forms.Label();
             this.epCheque = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtNameText = new System.Windows.Forms.TextBox();
-            this.txtOthersType = new System.Windows.Forms.TextBox();
             this.tsDirectCheque.SuspendLayout();
             this.pnlSupplierMapping.SuspendLayout();
             this.grpSupplierMapping.SuspendLayout();
@@ -145,10 +146,11 @@
             this.columnHeader5,
             this.columnHeader8,
             this.columnHeader9,
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader2});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(131, 76);
+            this.LV_Supplier.Location = new System.Drawing.Point(131, 147);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(374, 164);
             this.LV_Supplier.TabIndex = 1111223;
@@ -320,7 +322,7 @@
             // 
             // grbgodown
             // 
-            this.grbgodown.Controls.Add(this.txtOthersType);
+            this.grbgodown.Controls.Add(this.txtOthersText);
             this.grbgodown.Controls.Add(this.txtNameText);
             this.grbgodown.Controls.Add(this.cmbType);
             this.grbgodown.Controls.Add(this.label1);
@@ -341,6 +343,27 @@
             this.grbgodown.Size = new System.Drawing.Size(718, 122);
             this.grbgodown.TabIndex = 958806;
             this.grbgodown.TabStop = false;
+            // 
+            // txtOthersText
+            // 
+            this.txtOthersText.Location = new System.Drawing.Point(499, 36);
+            this.txtOthersText.Name = "txtOthersText";
+            this.txtOthersText.Size = new System.Drawing.Size(205, 27);
+            this.txtOthersText.TabIndex = 3; 
+            this.txtOthersText.Enter += new System.EventHandler(this.txtOthersText_Enter);
+            this.txtOthersText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOthersText_KeyDown);
+            this.txtOthersText.Leave += new System.EventHandler(this.txtOthersText_Leave);
+            // 
+            // txtNameText
+            // 
+            this.txtNameText.Location = new System.Drawing.Point(125, 36);
+            this.txtNameText.Name = "txtNameText";
+            this.txtNameText.Size = new System.Drawing.Size(250, 27);
+            this.txtNameText.TabIndex = 93;
+            this.txtNameText.TextChanged += new System.EventHandler(this.txtNameText_TextChanged);
+            this.txtNameText.Enter += new System.EventHandler(this.txtNameText_Enter);
+            this.txtNameText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNameText_KeyDown);
+            this.txtNameText.Leave += new System.EventHandler(this.txtNameText_Leave);
             // 
             // cmbType
             // 
@@ -370,7 +393,7 @@
             this.btnClear.Location = new System.Drawing.Point(299, 89);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(34, 29);
-            this.btnClear.TabIndex = 6;
+            this.btnClear.TabIndex = 7;
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
@@ -380,7 +403,7 @@
             this.cmbBank.Location = new System.Drawing.Point(381, 36);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(107, 27);
-            this.cmbBank.TabIndex = 2;
+            this.cmbBank.TabIndex = 2; 
             this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
             this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
             this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
@@ -393,7 +416,7 @@
             this.btnPreview.Location = new System.Drawing.Point(259, 89);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(34, 29);
-            this.btnPreview.TabIndex = 5;
+            this.btnPreview.TabIndex = 6;
             this.btnPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPreview.UseVisualStyleBackColor = true;
             this.btnPreview.Click += new System.EventHandler(this.BtnPreview_Click);
@@ -404,7 +427,7 @@
             this.txtAmount.MaxLength = 10;
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(128, 27);
-            this.txtAmount.TabIndex = 4;
+            this.txtAmount.TabIndex = 5;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.TextChanged += new System.EventHandler(this.TxtAmount_TextChanged);
             this.txtAmount.Enter += new System.EventHandler(this.TxtAmount_Enter);
@@ -437,7 +460,7 @@
             this.dpDate.Location = new System.Drawing.Point(11, 90);
             this.dpDate.Name = "dpDate";
             this.dpDate.Size = new System.Drawing.Size(108, 27);
-            this.dpDate.TabIndex = 3;
+            this.dpDate.TabIndex = 4;
             this.dpDate.Enter += new System.EventHandler(this.DpDate_Enter);
             this.dpDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DpDate_KeyDown);
             this.dpDate.Leave += new System.EventHandler(this.DpDate_Leave);
@@ -474,23 +497,6 @@
             // epCheque
             // 
             this.epCheque.ContainerControl = this;
-            // 
-            // txtNameText
-            // 
-            this.txtNameText.Location = new System.Drawing.Point(125, 36);
-            this.txtNameText.Name = "txtNameText";
-            this.txtNameText.Size = new System.Drawing.Size(250, 27);
-            this.txtNameText.TabIndex = 93;
-            this.txtNameText.Enter += new System.EventHandler(this.txtNameText_Enter);
-            this.txtNameText.Leave += new System.EventHandler(this.txtNameText_Leave);
-            // 
-            // txtOthersType
-            // 
-            this.txtOthersType.Location = new System.Drawing.Point(499, 36);
-            this.txtOthersType.Name = "txtOthersType";
-            this.txtOthersType.Size = new System.Drawing.Size(205, 27);
-            this.txtOthersType.TabIndex = 95;
-            this.txtOthersType.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // PAY_ChequePrint
             // 
@@ -566,6 +572,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.TextBox txtNameText;
-        private System.Windows.Forms.TextBox txtOthersType;
+        private System.Windows.Forms.TextBox txtOthersText;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

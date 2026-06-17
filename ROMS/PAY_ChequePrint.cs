@@ -56,7 +56,7 @@ namespace ROMS
                             {
                                 for (int i = 0; i < objDs.Tables[0].Rows.Count; i++)
                                 {
-                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() };
+                                    string[] row = { objDs.Tables[0].Rows[i]["SP_Name"].ToString(), objDs.Tables[0].Rows[i]["SPID"].ToString(), objDs.Tables[0].Rows[i]["SPSCID"].ToString(), objDs.Tables[0].Rows[i]["SupplierName"].ToString() , objDs.Tables[0].Rows[i]["Customer"].ToString() };
                                     ListViewItem objList = new ListViewItem(row);
                                     LV_Supplier.Items.Add(objList);
                                 }
@@ -65,6 +65,7 @@ namespace ROMS
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
                                 LV_Supplier.Columns[3].Width = 0;
+                                LV_Supplier.Columns[4].Width = 100;
                             }
                         }
                     }
@@ -155,38 +156,16 @@ namespace ROMS
         {
             try
             {
-                if (txtsuppliername.Text != "")
+                if (txtsuppliername.Text != "" )
                 {
                     ListViewItem selectedItem = LV_Supplier.SelectedItems[0];
                     txtsuppliername.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
-                    //varSuppliervalue = selectedItem.SubItems[3].Text;
-                    //if (Convert.ToInt32(grdSupplierPayment.Rows.Count) != 0)
-                    //{
-                    //    if (Convert.ToString(lblSupplierCode.Text.Trim()) != Convert.ToString(varSupplierID))
-                    //    {
-                    //        SPDataService objDServ = new SPDataService();
-                    //        string varMessage = objDServ.udfnGetMessages(78);
-                    //        objDServ.CloseConnection();
-
-                    //        DialogResult dialogResult = MessageBox.Show(varMessage, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    //        if (dialogResult == DialogResult.Yes)
-                    //        {
-                    //            //grdSupplierPayment.Rows.Clear();
-                    //            //grdReurnDC.Rows.Clear();
-                    //            //grdSupplierPayment.DataSource = null;
-                    //            //grdReurnDC.DataSource = null;
-                    //        }
-                    //        else
-                    //        {
-                    //            //grdSupplierPayment.Refresh();
-                    //            txtsuppliername.Text = varSupplierName;
-                    //            lblSupplierCode.Text = varSupplierID;
-                    //            lblschedule.Text = varSupplierScheduleID;
-                    //        }
-                    //    }
-                    //}
+                    if (Convert.ToInt16(cmbType.SelectedValue) == 566)
+                    {
+                        txtOthersText.Text = selectedItem.SubItems[4].Text;
+                    } 
                     if (Convert.ToInt32(cmbType.SelectedValue) == 565)
                     {
                         udfnsupplierLoad();
@@ -195,16 +174,7 @@ namespace ROMS
                     {
                         udfnOthersLoad();
                     }
-                }
-                //if (Convert.ToString(cmbConcern.SelectedValue) == "" || Convert.ToString(cmbConcern.SelectedValue) == "-1")
-                //{
-                //    cmbConcern.Focus();
-                //    cmbConcern.BackColor = Color.LemonChiffon;
-                //}
-                //else
-                //{
-                //    //cmbReason.Focus();
-                //}
+                } 
             }
             catch (Exception ex)
             {
@@ -338,11 +308,7 @@ namespace ROMS
         {
             try
             {
-                dpDate.MinDate = MainForm.pbCurrentDate;
-                //dpDate.MaxDate = MainForm.pbCurrentDate;
-                //DataBind objDataBind = new DataBind();
-                //objDataBind.BindComboBoxListSelected("DEF_Master", " MST_TransactionID IN (0,72) AND MSTID IN (-1,224,225)", "MST_DisplayText,MSTID", cmbBank, "", "MST_DisplayText", "MSTID");
-                //objDataBind = null;
+                dpDate.MinDate = MainForm.pbCurrentDate; 
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (173) AND MSTID<>564 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -457,7 +423,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    dpDate.Focus();
+                    if (txtOthersText.Visible == true)
+                    {
+                        txtOthersText.Focus();
+                    }
+                    else
+                    {
+                        dpDate.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -496,17 +469,14 @@ namespace ROMS
                     epCheque.Clear();
                     txtAmount.BackColor = Color.White;
                 }
-                txtAmount.BackColor = Color.White;
-                //txtAmount.Text = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero));
-                //udfnCheckAmt();
+                txtAmount.BackColor = Color.White; 
                 if (txtAmount.Text.Trim() != "")
                 {
                     decimal varMRP = Math.Round(Convert.ToDecimal(txtAmount.Text.Trim()), 2, MidpointRounding.AwayFromZero);
                     string varAmt = string.Format("{0:0}", varMRP);
                     int varAmount = Convert.ToInt32(varAmt);
                     lblAmount.Visible = true;
-                    lblAmount.Text = Currency.NumbersToWords(varAmount);
-                    //lblAmount.MaximumSize = new Size(300, 0);
+                    lblAmount.Text = Currency.NumbersToWords(varAmount); 
                 }
 
             }
@@ -584,21 +554,24 @@ namespace ROMS
             try
             {
                 bool varErrFlag = false;
-                if (txtsuppliername.Text.Trim() == "")
+                if ((Convert.ToInt16(cmbType.SelectedValue) == 565 || Convert.ToInt16(cmbType.SelectedValue) == 566))
                 {
-                    epCheque.SetError(txtsuppliername, "Please enter supplier name");
-                    txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSuppliername.ShowAlways = true;
-                    tpSuppliername.Show("Please enter supplier name", txtsuppliername, 5000);
-                    varErrFlag = true;
-                }
-                if (lblSupplierCode.Text == "0" || lblSupplierCode.Text == "")
-                {
-                    epCheque.SetError(txtsuppliername, "Please enter valid supplier name");
-                    txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
-                    tpSuppliername.ShowAlways = true;
-                    tpSuppliername.Show("Please enter valid supplier name", txtsuppliername, 5000);
-                    varErrFlag = true;
+                    if (txtsuppliername.Text.Trim() == "")
+                    {
+                        epCheque.SetError(txtsuppliername, "Please enter supplier name");
+                        txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSuppliername.ShowAlways = true;
+                        tpSuppliername.Show("Please enter supplier name", txtsuppliername, 5000);
+                        varErrFlag = true;
+                    }
+                    if (lblSupplierCode.Text == "0" || lblSupplierCode.Text == "")
+                    {
+                        epCheque.SetError(txtsuppliername, "Please enter valid supplier name");
+                        txtsuppliername.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpSuppliername.ShowAlways = true;
+                        tpSuppliername.Show("Please enter valid supplier name", txtsuppliername, 5000);
+                        varErrFlag = true;
+                    }
                 }
                 if (txtAmount.Text.Trim() == "")
                 {
@@ -648,12 +621,25 @@ namespace ROMS
                 RPTViewer.Visible = true;
                 RPTViewer.BringToFront();
                 RPTViewer.ReuseParameterValuesOnRefresh = true;
-                /////RPTViewer.RefreshReport();
-                string[] supplierName = txtsuppliername.Text.Split('-');
+                string varName = "";
+
+                if (Convert.ToInt16(cmbType.SelectedValue) == 565) //Supplier
+                {
+                    string[] supplierName = txtsuppliername.Text.Split('-');
+                    varName = supplierName[0];
+                }
+                else if (Convert.ToInt16(cmbType.SelectedValue) == 566) //Others
+                {
+                    varName = txtOthersText.Text.Trim();
+                }
+                else if (Convert.ToInt16(cmbType.SelectedValue) == 607) //Direct
+                {
+                    varName = txtNameText.Text.Trim();
+                }
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport.Load(Application.StartupPath + "\\Reports\\" + varRPTName);
-                objBillreport.SetParameterValue("paraSupplierName", supplierName[0]);
+                objBillreport.SetParameterValue("paraSupplierName", varName);
                 objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
                 objBillreport.SetParameterValue("paraAmount", totalAmt);
                 objBillreport.SetParameterValue("paraChequeDate", chequeDate);
@@ -661,47 +647,7 @@ namespace ROMS
                 RPTViewer.ReportSource = objBillreport;
                 RPTViewer.Refresh();
                 MainForm.objReportLoad = new ReportLoad();
-                MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                //if (Convert.ToInt32(cmbBank.SelectedValue) == 224)
-                //{
-                //    RPTViewer.Visible = true;
-                //    RPTViewer.BringToFront();
-                //    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                //    /////RPTViewer.RefreshReport();
-                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_TMB.rpt");
-                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                //    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
-                //    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
-                //    objValidation.CrySqlConnection(objBillreport);
-                //    RPTViewer.ReportSource = objBillreport;
-                //    RPTViewer.Refresh();
-                //    MainForm.objReportLoad = new ReportLoad();
-                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                //    //MainForm.objReportLoad.Text = varHeader;
-                //    //MainForm.objReportLoad.ShowDialog();
-                //}
-                //else if(Convert.ToInt32(cmbBank.SelectedValue) == 225)
-                //{
-                //    RPTViewer.Visible = true;
-                //    RPTViewer.BringToFront();
-                //    RPTViewer.ReuseParameterValuesOnRefresh = true;
-                //    /////RPTViewer.RefreshReport();
-                //    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                //    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-                //    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_HDFC.rpt");
-                //    objBillreport.SetParameterValue("paraSupplierName", txtsuppliername.Text);
-                //    objBillreport.SetParameterValue("paraAmountInWords", lblAmount.Text);
-                //    objBillreport.SetParameterValue("paraAmount", FinalAmnt);
-                //    objBillreport.SetParameterValue("paraChequeDate", chequeDate);
-                //    objValidation.CrySqlConnection(objBillreport);
-                //    RPTViewer.ReportSource = objBillreport;
-                //    RPTViewer.Refresh();
-                //    MainForm.objReportLoad = new ReportLoad();
-                //    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
-                //}
+                MainForm.objReportLoad.cryptview.ReportSource = objBillreport; 
             }
             catch (Exception ex)
             {
@@ -750,11 +696,7 @@ namespace ROMS
             try
             {
                 if (e.KeyCode == Keys.Escape)
-                {
-                    //MainForm.objStart = new DEF_Start();
-                    //MainForm.objStart.MdiParent = this.ParentForm;
-                    //MainForm.objStart.Show();
-                    //this.Close();
+                { 
                     windowControl?.TriggerClose();
                 }
             }
@@ -849,23 +791,30 @@ namespace ROMS
                 lblReturn.Text = "";
                 lblAmount.Text = "";
                 txtAmount.Text = "";
+                txtNameText.Text = "";
+                txtOthersText.Text = "";
                 RPTViewer.Visible = false;
                 dpDate.Value = MainForm.pbCurrentDate;
                 if(Convert.ToInt16(cmbType.SelectedValue)== 607)//Direct
                 {
-                    txtNameText.Visible = false;
-                    txtsuppliername.Visible = true;
-                    txtOthersType.Visible = false;
+                    txtNameText.Visible = true;
+                    txtsuppliername.Visible = false;
+                    txtOthersText.Visible = false;
+                    lblSupplier.Text = "Name";
                 }
                 else if(Convert.ToInt16(cmbType.SelectedValue)== 566)//Others
                 {
-                    txtOthersType.Visible = true;
+                    txtNameText.Visible = false;
+                    txtOthersText.Visible = true; 
+                    txtsuppliername.Visible = true;
+                    lblSupplier.Text = "Others";
                 }
-                else
+                else if (Convert.ToInt16(cmbType.SelectedValue) == 565)//Supplier
                 {
                     txtsuppliername.Visible = true;
-                    txtNameText.Visible = true;
-                    txtOthersType.Visible = false;
+                    txtNameText.Visible = false; 
+                    txtOthersText.Visible = false;
+                    lblSupplier.Text = "Supplier";
                 }
             }
             catch (Exception ex)
@@ -899,11 +848,69 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        } 
+
+        private void txtOthersText_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                txtOthersText.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtOthersText_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtOthersText.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtNameText_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtNameText_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    cmbBank.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtOthersText_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dpDate.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
     }
 }
