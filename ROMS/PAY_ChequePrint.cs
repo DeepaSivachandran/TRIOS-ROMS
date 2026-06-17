@@ -671,6 +671,8 @@ namespace ROMS
                 lblsupplierpayment.Text = "";
                 lblSupplierOrderpolicy.Text = "";
                 lblReturn.Text = "";
+                txtNameText.Text = "";
+                txtOthersText.Text = "";
                 udfnTooltipHide();
             }
             catch (Exception ex)
@@ -739,7 +741,14 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    txtsuppliername.Focus();
+                    if(Convert.ToInt16(cmbType.SelectedValue) == 607)//Direct
+                    {
+                        txtNameText.Focus();
+                    }
+                    else
+                    {
+                        txtsuppliername.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -911,6 +920,6 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        }
+        } 
     }
 }

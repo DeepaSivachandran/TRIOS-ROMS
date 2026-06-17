@@ -183,7 +183,7 @@
             this.RPTViewer.Size = new System.Drawing.Size(1331, 493);
             this.RPTViewer.TabIndex = 1110000993;
             this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.RPTViewer.Visible = false;
+            this.RPTViewer.Visible = false; 
             // 
             // lblAmount
             // 
@@ -323,7 +323,6 @@
             // grbgodown
             // 
             this.grbgodown.Controls.Add(this.txtOthersText);
-            this.grbgodown.Controls.Add(this.txtNameText);
             this.grbgodown.Controls.Add(this.cmbType);
             this.grbgodown.Controls.Add(this.label1);
             this.grbgodown.Controls.Add(this.btnClear);
@@ -333,16 +332,17 @@
             this.grbgodown.Controls.Add(this.lblDAmount);
             this.grbgodown.Controls.Add(this.lblDBank);
             this.grbgodown.Controls.Add(this.dpDate);
-            this.grbgodown.Controls.Add(this.txtsuppliername);
             this.grbgodown.Controls.Add(this.lblSupplier);
             this.grbgodown.Controls.Add(this.lblChequeDate);
+            this.grbgodown.Controls.Add(this.txtNameText);
+            this.grbgodown.Controls.Add(this.txtsuppliername);
             this.grbgodown.Location = new System.Drawing.Point(6, 13);
             this.grbgodown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbgodown.Name = "grbgodown";
             this.grbgodown.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grbgodown.Size = new System.Drawing.Size(718, 122);
             this.grbgodown.TabIndex = 958806;
-            this.grbgodown.TabStop = false;
+            this.grbgodown.TabStop = false; 
             // 
             // txtOthersText
             // 
@@ -359,7 +359,7 @@
             this.txtNameText.Location = new System.Drawing.Point(125, 36);
             this.txtNameText.Name = "txtNameText";
             this.txtNameText.Size = new System.Drawing.Size(250, 27);
-            this.txtNameText.TabIndex = 93;
+            this.txtNameText.TabIndex = 1;
             this.txtNameText.TextChanged += new System.EventHandler(this.txtNameText_TextChanged);
             this.txtNameText.Enter += new System.EventHandler(this.txtNameText_Enter);
             this.txtNameText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNameText_KeyDown);
@@ -403,7 +403,7 @@
             this.cmbBank.Location = new System.Drawing.Point(381, 36);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(107, 27);
-            this.cmbBank.TabIndex = 2;
+            this.cmbBank.TabIndex = 2; 
             this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
             this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
             this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);
