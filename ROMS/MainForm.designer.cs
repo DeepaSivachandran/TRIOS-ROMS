@@ -749,6 +749,7 @@ namespace ROMS
             this.tsmProductMenu.Size = new System.Drawing.Size(225, 22);
             this.tsmProductMenu.Text = "Product";
             this.tsmProductMenu.Visible = false;
+            this.tsmProductMenu.Click += new System.EventHandler(this.tsmProductMenu_Click);
             // 
             // tsmHSN
             // 
@@ -1707,7 +1708,6 @@ namespace ROMS
             this.tsmInwardStockReport.Size = new System.Drawing.Size(191, 22);
             this.tsmInwardStockReport.Text = "Inventory/Stock Report";
             this.tsmInwardStockReport.Visible = false;
-            this.tsmInwardStockReport.Click += new System.EventHandler(this.tsmInwardStockReport_Click);
             // 
             // tsmStockInwardReport
             // 
@@ -1950,7 +1950,6 @@ namespace ROMS
             this.tsmMSReports.Name = "tsmMSReports";
             this.tsmMSReports.Size = new System.Drawing.Size(191, 22);
             this.tsmMSReports.Text = "M.S.Reports";
-            this.tsmMSReports.Click += new System.EventHandler(this.tsmMSReports_Click);
             // 
             // tsmEntryReport
             // 
@@ -2098,7 +2097,7 @@ namespace ROMS
             // tsmMarginEntry
             // 
             this.tsmMarginEntry.Name = "tsmMarginEntry";
-            this.tsmMarginEntry.Size = new System.Drawing.Size(180, 22);
+            this.tsmMarginEntry.Size = new System.Drawing.Size(114, 22);
             this.tsmMarginEntry.Text = "M. Entry";
             this.tsmMarginEntry.Visible = false;
             this.tsmMarginEntry.Click += new System.EventHandler(this.tsmMarginEntry_Click);
@@ -2106,7 +2105,7 @@ namespace ROMS
             // tsmSalesEntry
             // 
             this.tsmSalesEntry.Name = "tsmSalesEntry";
-            this.tsmSalesEntry.Size = new System.Drawing.Size(180, 22);
+            this.tsmSalesEntry.Size = new System.Drawing.Size(114, 22);
             this.tsmSalesEntry.Text = "S. Entry";
             this.tsmSalesEntry.Visible = false;
             this.tsmSalesEntry.Click += new System.EventHandler(this.tsmSalesEntry_Click);

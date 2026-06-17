@@ -513,7 +513,7 @@ namespace ROMS
             return ds;
         }
         //Created By:-Sathish
-        public string udfnUnit(int paraviewType, int paraUnitId, string paraUnitName, string paraUnitSymbol, int paraUnitDecimal, int paraUnitStatusId, string paraOriginator, string paraInvoiceUnit, string paraUserID, int paraBulkUnit, int paraDeleteFlag,int paraUnitValueType,int paraUnitValue)
+        public string udfnUnit(int paraviewType, int paraUnitId, string paraUnitName, string paraUnitSymbol, int paraUnitDecimal, int paraUnitStatusId, string paraOriginator, string paraInvoiceUnit, string paraUserID, int paraBulkUnit, int paraDeleteFlag,int paraUnitValueType,int paraUnitValue,int paraStickerPrint)
         {
             string varResult = "";
             try
@@ -536,6 +536,7 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraBulkUnit", paraBulkUnit);
                 varSqlCommand.Parameters.AddWithValue("@paraDeleteFlag", paraDeleteFlag);
                 varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                varSqlCommand.Parameters.AddWithValue("@paraStickerPrint", paraStickerPrint);
                 varSqlCommand.CommandTimeout = 0;
                 varResult = varSqlCommand.ExecuteScalar().ToString();
             }

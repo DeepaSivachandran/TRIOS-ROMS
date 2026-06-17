@@ -30,7 +30,7 @@ using System.Windows.Forms;
         public string PbNoOfDecimals = "", pbInvoiceUnit = "";
         public int PbStatus = 0;
         public int pbDecimalId = 0;
-        public int varUpdate = 0, varBulkUnitId = 0;
+        public int varUpdate = 0, varBulkUnitId = 0,varStickerPrint=0;
         public CP_Unit()
         {
             InitializeComponent();
@@ -121,6 +121,7 @@ using System.Windows.Forms;
                 txtUnitValue.Text = Convert.ToString(pbUnitValue);
                 if (PbStatus == 1) { rbActive.Checked = true; } else { rbInActive.Checked = true; }
                 if (varBulkUnitId == 1) { chkBulkUnit.Checked = true; } else { chkBulkUnit.Checked = false; }
+                if (varStickerPrint == 1) { chkStickerPrint.Checked = true; } else { chkStickerPrint.Checked = false; }
                 MainForm.objCP_Unitlist.picLoader.Visible = false;
                 MainForm.objCP_Unitlist.picLoader.SendToBack();
                 if (PbStatus == 2)
@@ -151,7 +152,7 @@ using System.Windows.Forms;
                 else { varstatus = 2; }
                 SPDataService objspservice = new SPDataService();
                 string varResult = "",
-                varoriginator = ""; int varType = 0, varBulkUnit = 0;
+                varoriginator = ""; int varType = 0, varBulkUnit = 0 ;
                 if (btnSave.Text == "Save")
                 {
                     varoriginator = "Unit Creation";
@@ -163,12 +164,14 @@ using System.Windows.Forms;
                 }
                 else
                 {
-                    varoriginator = "Unit Updation";
+                    varoriginator = "Unit Updation"; 
                     varType = 1;
                 }
                 if (chkBulkUnit.Checked) { varBulkUnit = 1; }
-                varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim(), MainForm.pbUserID, varBulkUnit, 0, Convert.ToInt16(cmbUnitValue.SelectedValue),
-                    string.IsNullOrEmpty(txtUnitValue.Text) ? 0 : Convert.ToInt32(txtUnitValue.Text));
+                if (chkStickerPrint.Checked) { varStickerPrint = 1; }
+                else { varStickerPrint = 0; }
+                    varResult = objspservice.udfnUnit(varType, varUnitCode, (txtEUnitName.Text).Trim(), txtSymbol.Text.Trim(), Convert.ToInt16(cmbNoOfDecimals.SelectedValue), varstatus, varoriginator, (txtInvoiceUnit.Text).Trim(), MainForm.pbUserID, varBulkUnit, 0, Convert.ToInt16(cmbUnitValue.SelectedValue),
+                        string.IsNullOrEmpty(txtUnitValue.Text) ? 0 : Convert.ToInt32(txtUnitValue.Text), varStickerPrint);
                 objspservice.CloseConnection();
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
@@ -814,7 +817,13 @@ using System.Windows.Forms;
                 objError.WriteFile(ex);
             }
         }
-         private void cmbUnitValue_Enter(object sender, EventArgs e)
+
+        private void grbform_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbUnitValue_Enter(object sender, EventArgs e)
         {
             try
             {

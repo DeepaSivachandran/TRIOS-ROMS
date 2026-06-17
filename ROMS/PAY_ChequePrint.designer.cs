@@ -150,7 +150,7 @@
             this.columnHeader2});
             this.LV_Supplier.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.LV_Supplier.HideSelection = false;
-            this.LV_Supplier.Location = new System.Drawing.Point(131, 147);
+            this.LV_Supplier.Location = new System.Drawing.Point(131, 77);
             this.LV_Supplier.Name = "LV_Supplier";
             this.LV_Supplier.Size = new System.Drawing.Size(374, 164);
             this.LV_Supplier.TabIndex = 1111223;
@@ -349,7 +349,7 @@
             this.txtOthersText.Location = new System.Drawing.Point(499, 36);
             this.txtOthersText.Name = "txtOthersText";
             this.txtOthersText.Size = new System.Drawing.Size(205, 27);
-            this.txtOthersText.TabIndex = 3; 
+            this.txtOthersText.TabIndex = 3;
             this.txtOthersText.Enter += new System.EventHandler(this.txtOthersText_Enter);
             this.txtOthersText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOthersText_KeyDown);
             this.txtOthersText.Leave += new System.EventHandler(this.txtOthersText_Leave);
@@ -403,7 +403,7 @@
             this.cmbBank.Location = new System.Drawing.Point(381, 36);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(107, 27);
-            this.cmbBank.TabIndex = 2; 
+            this.cmbBank.TabIndex = 2;
             this.cmbBank.Enter += new System.EventHandler(this.CmbBank_Enter);
             this.cmbBank.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbBank_KeyDown);
             this.cmbBank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbBank_KeyPress);

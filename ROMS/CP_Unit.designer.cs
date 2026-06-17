@@ -50,6 +50,7 @@
             this.rbInActive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.epUnit = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chkStickerPrint = new System.Windows.Forms.CheckBox();
             this.grbform.SuspendLayout();
             this.pnlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epUnit)).BeginInit();
@@ -83,6 +84,7 @@
             // 
             // grbform
             // 
+            this.grbform.Controls.Add(this.chkStickerPrint);
             this.grbform.Controls.Add(this.cmbUnitValue);
             this.grbform.Controls.Add(this.txtUnitValue);
             this.grbform.Controls.Add(this.textBox2);
@@ -106,6 +108,7 @@
             this.grbform.Size = new System.Drawing.Size(558, 314);
             this.grbform.TabIndex = 28;
             this.grbform.TabStop = false;
+            this.grbform.Enter += new System.EventHandler(this.grbform_Enter);
             // 
             // cmbUnitValue
             // 
@@ -249,7 +252,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 33);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -266,7 +269,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 9;
+            this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -333,6 +336,16 @@
             // 
             this.epUnit.ContainerControl = this;
             // 
+            // chkStickerPrint
+            // 
+            this.chkStickerPrint.AutoSize = true;
+            this.chkStickerPrint.Location = new System.Drawing.Point(266, 201);
+            this.chkStickerPrint.Name = "chkStickerPrint";
+            this.chkStickerPrint.Size = new System.Drawing.Size(96, 24);
+            this.chkStickerPrint.TabIndex = 9;
+            this.chkStickerPrint.Text = "Sticker Print";
+            this.chkStickerPrint.UseVisualStyleBackColor = true;
+            // 
             // CP_Unit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
@@ -384,5 +397,6 @@
         private System.Windows.Forms.ComboBox cmbUnitValue;
         private System.Windows.Forms.TextBox txtUnitValue;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox chkStickerPrint;
     }
 }

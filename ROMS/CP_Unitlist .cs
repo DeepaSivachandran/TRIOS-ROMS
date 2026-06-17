@@ -82,7 +82,7 @@ namespace ROMS
                         if (dialogResult == DialogResult.Yes)
                         {
                             SPDataService objspservice = new SPDataService();
-                            varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 0,0,0);
+                            varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 0,0,0,0);
                             objspservice.CloseConnection();
                             if (varResult.Split('~')[0] == "3")
                             {
@@ -94,7 +94,7 @@ namespace ROMS
                                     if (MainForm.objCP_Verify.flag == 1)
                                     {
                                         objspservice = new SPDataService();
-                                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 1,0,0);
+                                        varResult = objspservice.udfnUnit(2, Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["ID"].Value), "", "", 0, 0, "Unit Delete", "", varUserID, 0, 1,0,0,0);
                                         objspservice.CloseConnection();
                                         if (varResult.Split('~')[0] == "3")
                                         {
@@ -146,6 +146,7 @@ namespace ROMS
                         MainForm.objCP_Unit.varBulkUnitId = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["BulkUnitId"].Value);
                         MainForm.objCP_Unit.pbUnitValue = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["UT_Value"].Value);
                         MainForm.objCP_Unit.pbUnitValueType = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["UT_ValueType"].Value);
+                        MainForm.objCP_Unit.varStickerPrint = Convert.ToInt32(grdUnitList.SelectedRows[0].Cells["StickerPrint"].Value);
                         MainForm.objCP_Unit.ShowDialog();
                     }
                 }
@@ -192,11 +193,13 @@ namespace ROMS
                             grdUnitList.Columns["Bulk Unit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUnitList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUnitList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            grdUnitList.Columns["Sticker Print"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdUnitList.Columns["No.of Decimals"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             grdUnitList.Columns["Total Products"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                             grdUnitList.Columns["UT_Value"].Visible = false;
                             grdUnitList.Columns["UT_ValueType"].Visible = false;
+                            grdUnitList.Columns["StickerPrint"].Visible = false;
 
                         }
                         else
@@ -241,6 +244,7 @@ namespace ROMS
                 DGV_SearchGrid.Columns["DecimalID"].Visible = false;
                 DGV_SearchGrid.Columns["StatusID"].Visible = false;
                 DGV_SearchGrid.Columns["BulkUnitId"].Visible = false;
+                DGV_SearchGrid.Columns["StickerPrint"].Visible = false;
                 DGV_SearchGrid.Columns["S.No."].Width = 50;
                 DGV_SearchGrid.Columns["Status"].Width = 80;
                 DGV_SearchGrid.Columns["Bulk Unit"].Width = 100; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
@@ -671,6 +675,11 @@ namespace ROMS
                 //grdUnitList.HorizontalScrollingOffset = DGV_SearchGrid.HorizontalScrollingOffset;
             }
             catch (Exception ex) { objError = new DataError(); objError.WriteFile(ex); }
+        }
+
+        private void grdUnitList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -5092,12 +5092,7 @@ namespace ROMS
             }
         }
 
-        private void tsmMSReports_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsmInwardStockReport_Click(object sender, EventArgs e)
+        private void tsmProductMenu_Click(object sender, EventArgs e)
         {
 
         }

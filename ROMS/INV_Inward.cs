@@ -44,6 +44,7 @@ namespace ROMS
         public int varDateEnable = 0;
         public int varAutocompleteProduct = 0;
         public string varEditPRID = "0";
+        public int varStickerPrintFlag=0;
         public INV_Inward()
         {
             InitializeComponent();
@@ -1873,6 +1874,15 @@ namespace ROMS
                             cell.Style.ForeColor = Color.Black;
                             cell.ReadOnly = true;
                         }
+                        if (varStickerPrintFlag==0)
+                        {
+                            DataGridView dataGridView = grdInward; 
+                            grdInward.Rows[dataGridView.Rows.Count - 1].Cells["clmStickerPrint"].ReadOnly = true;
+                            DataGridViewTextBoxCell print = new DataGridViewTextBoxCell();
+                            print.Value = "";
+                            grdInward.Rows[dataGridView.Rows.Count - 1].Cells["clmStickerPrint"] = print;
+                            print.ReadOnly = true;
+                        }
                         udfnProductClear();
                         txtProductName.Focus();
                         //txtProductName.Text = "";
@@ -1917,6 +1927,7 @@ namespace ROMS
                 varShelflife = 0;
                 varBatchNo = "";
                 varBatchNoGeneration = "";
+                varStickerPrintFlag=0;
             }
             catch (Exception ex)
             {
@@ -4226,6 +4237,7 @@ namespace ROMS
                             ProductShelflifeType = Convert.ToString(objDS.Tables[0].Rows[0]["SHELF LIFE TYPE"].ToString());
                             varDecimal = Convert.ToInt32(objDS.Tables[0].Rows[0]["UT_Decimal"].ToString());
                             txtunit.Text = Convert.ToString(objDS.Tables[0].Rows[0]["UT_Symbol"].ToString());
+                            varStickerPrintFlag = Convert.ToInt32(objDS.Tables[0].Rows[0]["StickerPrint"].ToString());
 
                             if (varAutocompleteProduct == 1)
                             {
