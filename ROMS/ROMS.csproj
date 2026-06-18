@@ -185,6 +185,18 @@
     <Compile Include="CP_Basketlist.designer.cs">
       <DependentUpon>CP_Basketlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_CustomerGrouplist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_CustomerGrouplist.designer.cs">
+      <DependentUpon>CP_CustomerGrouplist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_CustomerGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_CustomerGroup.designer.cs">
+      <DependentUpon>CP_CustomerGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_DLP_MultipleProducts_List.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4547,6 +4559,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Basketlist.resx">
       <DependentUpon>CP_Basketlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_CustomerGrouplist.resx">
+      <DependentUpon>CP_CustomerGrouplist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_CustomerGroup.resx">
+      <DependentUpon>CP_CustomerGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DLP_MultipleProducts_List.resx">
       <DependentUpon>CP_DLP_MultipleProducts_List.cs</DependentUpon>
