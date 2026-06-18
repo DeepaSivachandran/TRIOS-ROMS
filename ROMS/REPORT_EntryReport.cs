@@ -22,7 +22,8 @@ namespace ROMS
         private List<ComboItem> unit;
         DataError objError;
         DataTable dtDefaultGrid = new DataTable();
-        private ToolTip tpReportType = new ToolTip();
+        private ToolTip tpReportType = new ToolTip(); 
+        private ToolTip tpPrintType = new ToolTip();
         public string pbRateCategoryIDs = "";
 
 
@@ -109,7 +110,7 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,102) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (47,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbFilterType, "", "MST_DisplayText", "MSTID");
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (107,0) AND MSTID!=-1", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (107,0) AND MSTID<>0", "MST_DisplayText,MSTID", cmbPrintType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (179)", "MST_DisplayText,MSTID", cmbEntryType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
@@ -2077,7 +2078,7 @@ namespace ROMS
         private void btnView_Click(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 epReport.Clear();
                 udfnList(0);
             }
@@ -2188,6 +2189,8 @@ namespace ROMS
         {
             try
             {
+                if(RPTViewer.Visible ==true)
+                {   RPTViewer.SendToBack(); }
                 pnlRateCategory.Visible = true;
             }
             catch (Exception ex)
@@ -2301,11 +2304,34 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-         
+
+        private void grpfilter_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         public void udfnList(int varFlag)
         {
             try
             {
+                if (Convert.ToInt32(cmbPrintType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbPrintType, "Please select print type.");
+                    cmbPrintType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPrintType.ShowAlways = true;
+                    tpPrintType.Show("Please select print type.", cmbPrintType, 5000);
+                    cmbPrintType.Focus();
+                    return;
+                }
+                if (Convert.ToInt32(cmbPrintType.SelectedValue) == -1)
+                {
+                    epReport.SetError(cmbPrintType, "Please select print type.");
+                    cmbPrintType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpPrintType.ShowAlways = true;
+                    tpPrintType.Show("Please select print type.", cmbPrintType, 5000);
+                    cmbPrintType.Focus();
+                    return;
+                }
                 if (Convert.ToInt32(cmbReportType.SelectedValue) == -1)
                 {
                     epReport.SetError(cmbReportType, "Please select report type.");

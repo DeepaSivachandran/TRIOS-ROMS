@@ -1869,17 +1869,7 @@ namespace ROMS
                             {
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
-                                grdSalesList.DataSource = objDs.Tables[0]; 
-                                grdSalesList.Columns["S.No."].ReadOnly = true;
-                                grdSalesList.Columns["PI Code"].ReadOnly = true;
-                                grdSalesList.Columns["Product"].ReadOnly = true;
-                                grdSalesList.Columns["Unit"].ReadOnly = true;
-                                grdSalesList.Columns["S.Rate"].ReadOnly = true;
-                                grdSalesList.Columns["Brand"].ReadOnly = true;
-                                grdSalesList.Columns["Sub Group"].ReadOnly = true;
-                                grdSalesList.Columns["Group"].ReadOnly = true;
-
-
+                                grdSalesList.DataSource = objDs.Tables[0];  
                                 grdSalesList.Columns["ProuctID"].Visible = false;
                                 grdSalesList.Columns["EProduct"].Visible = false;
                                 grdSalesList.Columns["UnitCode"].Visible = false;
@@ -1890,6 +1880,7 @@ namespace ROMS
                                 grdSalesList.Columns["GroupCode"].Visible = false;
                                 grdSalesList.Columns["EGroup"].Visible = false;
                                 grdSalesList.Columns["FilterType"].Visible = false;
+                                grdSalesList.Columns["PR_PICode"].Visible = false;
 
                                 grdSalesList.Columns["RCYID"].Visible = false;
                                 grdSalesList.Columns["NoofDecimal"].Visible = false;
@@ -1934,6 +1925,14 @@ namespace ROMS
                         objspservice.CloseConnection();
                     }
                     udfnSearchGridHead();
+                    grdSalesList.Columns["S.No."].ReadOnly = true;
+                    grdSalesList.Columns["PI Code"].ReadOnly = true;
+                    grdSalesList.Columns["Product"].ReadOnly = true;
+                    grdSalesList.Columns["Unit"].ReadOnly = true;
+                    grdSalesList.Columns["S.Rate"].ReadOnly = true;
+                    grdSalesList.Columns["Brand"].ReadOnly = true;
+                    grdSalesList.Columns["Sub Group"].ReadOnly = true;
+                    grdSalesList.Columns["Group"].ReadOnly = true;
                     if (lblNoRecordsFound.Visible == true)
                     {
                         dtDefaultGrid = objDs.Tables[0];

@@ -1870,17 +1870,7 @@ namespace ROMS
                             {
                                 lblNoRecordsFound.Visible = false;
                                 lblNoRecordsFound.SendToBack();
-                                grdMarginList.DataSource = objDs.Tables[0];
-
-                                grdMarginList.Columns["S.No."].ReadOnly = true;
-                                grdMarginList.Columns["P.I Code"].ReadOnly = true;
-                                grdMarginList.Columns["Product"].ReadOnly = true;
-                                grdMarginList.Columns["Unit"].ReadOnly = true;
-                                grdMarginList.Columns["S.Rate"].ReadOnly = true;
-                                grdMarginList.Columns["Brand"].ReadOnly = true;
-                                grdMarginList.Columns["Sub Group"].ReadOnly = true;
-                                grdMarginList.Columns["Group"].ReadOnly = true;
-
+                                grdMarginList.DataSource = objDs.Tables[0];  
                                 grdMarginList.Columns["ProductID"].Visible = false;
                                 grdMarginList.Columns["EProduct"].Visible = false;
                                 grdMarginList.Columns["UnitCode"].Visible = false;
@@ -1891,7 +1881,8 @@ namespace ROMS
                                 grdMarginList.Columns["GroupCode"].Visible = false;
                                 grdMarginList.Columns["EGroup"].Visible = false;
                                 grdMarginList.Columns["FilterType"].Visible = false;
-                                grdMarginList.Columns["RCYID"].Visible = false; 
+                                grdMarginList.Columns["RCYID"].Visible = false;
+                                grdMarginList.Columns["PR_PICode"].Visible = false;
                                 grdMarginList.Columns["S.No."].Width = 50;
                                 grdMarginList.Columns["P.I Code"].Width = 100;
                                 grdMarginList.Columns["Product"].Width = 500;
@@ -1919,6 +1910,7 @@ namespace ROMS
                                 lblSubGroupCount.Text = objDs.Tables[5].Rows[0]["SubGroupCount"].ToString().Trim();
                                 lblBrandCount.Text = objDs.Tables[6].Rows[0]["BrandCount"].ToString().Trim();
                                 tsbTotalProducts.Text = objDs.Tables[7].Rows[0]["TotalProCount"].ToString().Trim(); 
+                                DGV_SearchGrid.ReadOnly=false;
                             }
                             else
                             {
@@ -1934,6 +1926,14 @@ namespace ROMS
                         objspservice.CloseConnection();
                     }
                     udfnSearchGridHead();
+                    grdMarginList.Columns["S.No."].ReadOnly = true;
+                    grdMarginList.Columns["P.I Code"].ReadOnly = true;
+                    grdMarginList.Columns["Product"].ReadOnly = true;
+                    grdMarginList.Columns["Unit"].ReadOnly = true;
+                    grdMarginList.Columns["S.Rate"].ReadOnly = true;
+                    grdMarginList.Columns["Brand"].ReadOnly = true;
+                    grdMarginList.Columns["Sub Group"].ReadOnly = true;
+                    grdMarginList.Columns["Group"].ReadOnly = true;
                     if (lblNoRecordsFound.Visible == true)
                     {
                         dtDefaultGrid = objDs.Tables[0];
