@@ -667,6 +667,13 @@
     <Compile Include="INV_GoodsOutward_AutoConversion.designer.cs">
       <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RPT_CP_Company_Details.cs">
+      <DependentUpon>RPT_CP_Company_Details.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\RPT_CP_ProductWeight_LocationWiseProductDetail.cs">
       <DependentUpon>RPT_CP_ProductWeight_LocationWiseProductDetail.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5514,6 +5521,11 @@
       <LastGenOutput>RPT_CP_ProductWeight_LocationWiseProductDetail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_CP_Company_Details.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_CP_Company_Details.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Product_RateCategory_Enable.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_CP_Product_RateCategory_Enable.cs</LastGenOutput>
