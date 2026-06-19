@@ -5369,8 +5369,7 @@ namespace ROMS
                 tmpspcall.CloseConnection();
             }
             return varResult;
-        }
-
+        } 
         //Created By : Sathish, Created On :-11-11-2025
         public DataSet udfnCustomerTypeList(MR_Sales obj)
         {
@@ -5403,7 +5402,154 @@ namespace ROMS
             }
             return ds;
         }
+        //Created By : Sivabharathi, Created On :19-06-2026
+        public DataSet udfnContactGroupList(MR_Sales obj)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand cmd = new SqlCommand("MRG_ConatactGroup", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@paraViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraContactGroupId", obj.paraContactGroupId);
+                cmd.Parameters.AddWithValue("@paraStatus", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(cmd);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+        public string udfnContactGroup(MR_Sales obj)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand cmd = new SqlCommand("[MRS_ContactGroup]", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ViewType", obj.paraViewType);
+                cmd.Parameters.AddWithValue("@paraContactGroupId", obj.paraContactGroupId);
+                cmd.Parameters.AddWithValue("@paraCONGroupEName", obj.paraCONGroupEName);
+                cmd.Parameters.AddWithValue("@paraCONGroupTName", obj.paraCONGroupTName);
+                cmd.Parameters.AddWithValue("@paraStatusId", obj.paraStatusId);
+                cmd.Parameters.AddWithValue("@paraOriginator", obj.paraOriginator);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                cmd.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                cmd.CommandTimeout = 0;
+                varResult = cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
+        public DataSet udfnAddressBookList(MR_AddressBook objMR_AddressBook)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand cmd = new SqlCommand("MRG_AddressBook", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@ViewType", objMR_AddressBook.ViewType);
+                cmd.Parameters.AddWithValue("@paraABID", objMR_AddressBook.paraABID);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+
+                cmd.CommandTimeout = 0;
+
+                SqlDataAdapter sa = new SqlDataAdapter(cmd);
+                sa.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return ds;
+        }
+
+        public string udfnAddressBook(MR_AddressBook objMR_AddressBook)
+        {
+            string varResult = "";
+            try
+            {
+                tmpspcall = new SPCall();
+                SqlCommand cmd = new SqlCommand("[MRS_AddressBook]", tmpspcall.objConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ViewType", objMR_AddressBook.ViewType);
+                cmd.Parameters.AddWithValue("@paraCompanyName", objMR_AddressBook.paraCompanyName);
+                cmd.Parameters.AddWithValue("@paraABID", objMR_AddressBook.paraABID);
+                cmd.Parameters.AddWithValue("@paraCustomerName", objMR_AddressBook.paraCustomerName);
+                cmd.Parameters.AddWithValue("@paraAddress1", objMR_AddressBook.paraAddress1);
+                cmd.Parameters.AddWithValue("@paraAddress2", objMR_AddressBook.paraAddress2);
+                cmd.Parameters.AddWithValue("@paraCTYID", objMR_AddressBook.paraCTYID);
+                cmd.Parameters.AddWithValue("@paraSTID", objMR_AddressBook.paraSTID);
+                cmd.Parameters.AddWithValue("@paraPincode", objMR_AddressBook.paraPincode);
+                cmd.Parameters.AddWithValue("@paraMobileNo", objMR_AddressBook.paraMobileNo);
+                cmd.Parameters.AddWithValue("@paraStatusID", objMR_AddressBook.paraStatusID);
+                cmd.Parameters.AddWithValue("@paraMobileNo1", objMR_AddressBook.paraMobileNo1);
+                cmd.Parameters.AddWithValue("@paraEmail", objMR_AddressBook.paraEmail);
+                cmd.Parameters.AddWithValue("@paraCPName", objMR_AddressBook.paraCPName);
+                cmd.Parameters.AddWithValue("@paraCPAddressLine1", objMR_AddressBook.paraCPAddressLine1);
+                cmd.Parameters.AddWithValue("@paraCPAddressLine2", objMR_AddressBook.paraCPAddressLine2);
+                cmd.Parameters.AddWithValue("@paraCPCTYID", objMR_AddressBook.paraCPCTYID);
+                cmd.Parameters.AddWithValue("@paraCPSTID", objMR_AddressBook.paraCPSTID);
+                cmd.Parameters.AddWithValue("@paraCPPincode", objMR_AddressBook.paraCPPincode);
+                cmd.Parameters.AddWithValue("@paraCPMobileNo1", objMR_AddressBook.paraCPMobileNo1);
+                cmd.Parameters.AddWithValue("@paraCPMobileNo2", objMR_AddressBook.paraCPMobileNo2);
+                cmd.Parameters.AddWithValue("@paraCPPhoneNo", objMR_AddressBook.paraCPPhoneNo);
+                cmd.Parameters.AddWithValue("@paraCPEmail", objMR_AddressBook.paraCPEmail);
+                cmd.Parameters.AddWithValue("@paraBNKID", objMR_AddressBook.paraBNKID);
+                cmd.Parameters.AddWithValue("@paraAccNo", objMR_AddressBook.paraAccNo);
+                cmd.Parameters.AddWithValue("@paraIFSC", objMR_AddressBook.paraIFSC);
+                cmd.Parameters.AddWithValue("@paraBranchName", objMR_AddressBook.paraBranchName);
+                cmd.Parameters.AddWithValue("@paraRemarks", objMR_AddressBook.paraRemarks);
+                cmd.Parameters.AddWithValue("@paraPhoneNo", objMR_AddressBook.paraPhoneNo);
+                cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
+                cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
+                cmd.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
+                cmd.CommandTimeout = 0;
+                varResult = cmd.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                tmpspcall.CloseConnection();
+            }
+            return varResult;
+        }
         //Created By : Sathish, Created On :-27-11-2025
         public string udfnVehicle(MR_Sales obj)
         {
@@ -6311,36 +6457,7 @@ namespace ROMS
             }
             return ds;
         }
-        public DataSet udfnAddresBookList(MR_Sales objMR_Sales)
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                tmpspcall = new SPCall();
-                SqlCommand varSqlCommand = new SqlCommand("[MRG_AddressBook]", tmpspcall.objConn);
-                varSqlCommand.CommandType = CommandType.StoredProcedure;
-                varSqlCommand.Parameters.AddWithValue("@ViewType", objMR_Sales.paraViewType);
-                varSqlCommand.Parameters.AddWithValue("@paraABID", objMR_Sales.paraABID);
-                varSqlCommand.Parameters.AddWithValue("@paraType", objMR_Sales.paraType);
-                varSqlCommand.Parameters.AddWithValue("@paraCTYID", objMR_Sales.paraCTYID);
-                varSqlCommand.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
-                varSqlCommand.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
-                varSqlCommand.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
-                varSqlCommand.CommandTimeout = 0;
-                SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
-                sa.Fill(ds);
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-            finally
-            {
-                tmpspcall.CloseConnection();
-            }
-            return ds;
-        }
+        
 
         //Margin List
         public DataSet udfnmarginlist(MR_MarginEntry objMR_MarginEntry)

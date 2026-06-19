@@ -92,9 +92,9 @@ namespace ROMS.Model
         public int paraCTYID { get; set; } = 0;
 
         // -------------------- Customer Group --------------------
-        public int paraCUSGroupId { get; set; } = 0;
-        public string paraCUSGroupEName { get; set; } = "";
-        public string paraCUSGroupTName { get; set; } = "";
+        public int paraContactGroupId { get; set; } = 0;
+        public string paraCONGroupEName { get; set; } = "";
+        public string paraCONGroupTName { get; set; } = "";
 
         // -------------------- Vehicle --------------------
 

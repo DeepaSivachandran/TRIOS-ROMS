@@ -1,6 +1,6 @@
 ﻿namespace ROMS
 {
-    partial class CP_CustomerGroup
+    partial class CP_ContactGroup
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_CustomerGroup));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CP_ContactGroup));
             this.txtCustomerGroup = new System.Windows.Forms.TextBox();
             this.epCustomerType = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtStatus = new System.Windows.Forms.TextBox();
@@ -132,7 +132,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(189, 28);
             this.textBox1.TabIndex = 12;
-            this.textBox1.Text = "Customer Group Name in English";
+            this.textBox1.Text = "Contact Group Name in English";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // grbForm
@@ -176,7 +176,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(189, 28);
             this.textBox2.TabIndex = 13;
-            this.textBox2.Text = "Customer Group Name in Tamil";
+            this.textBox2.Text = "Contact Group Name in Tamil";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // btnClose
@@ -211,7 +211,7 @@
             this.btnSave.Enter += new System.EventHandler(this.btnSave_Enter);
             this.btnSave.Leave += new System.EventHandler(this.btnSave_Leave);
             // 
-            // CP_CustomerGroup
+            // CP_ContactGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -225,7 +225,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CP_CustomerGroup";
+            this.Name = "CP_ContactGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Group";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CP_CustomerType_FormClosing);

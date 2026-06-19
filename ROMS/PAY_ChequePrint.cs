@@ -236,10 +236,10 @@ namespace ROMS
             {
                 DataSet objDs = new DataSet();
                 SPDataService objspservice = new SPDataService();
-                MR_Sales objMR_Sales = new MR_Sales();
-                objMR_Sales.paraViewType = 3;
-                objMR_Sales.paraABID = Convert.ToInt32(lblSupplierCode.Text);
-                objDs = objspservice.udfnAddresBookList(objMR_Sales);
+                MR_AddressBook objMR_AddressBook = new MR_AddressBook();
+                objMR_AddressBook.ViewType = 3;
+                objMR_AddressBook.paraABID = Convert.ToInt32(lblSupplierCode.Text);
+                objDs = objspservice.udfnAddressBookList(objMR_AddressBook);
                 if (objDs != null)
                 {
                     if (objDs.Tables.Count != 0)

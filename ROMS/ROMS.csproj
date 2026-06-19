@@ -185,17 +185,23 @@
     <Compile Include="CP_Basketlist.designer.cs">
       <DependentUpon>CP_Basketlist.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_CustomerGrouplist.cs">
+    <Compile Include="CP_AddressBook.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_CustomerGrouplist.designer.cs">
-      <DependentUpon>CP_CustomerGrouplist.cs</DependentUpon>
+    <Compile Include="CP_AddressBook.designer.cs">
+      <DependentUpon>CP_AddressBook.cs</DependentUpon>
     </Compile>
-    <Compile Include="CP_CustomerGroup.cs">
+    <Compile Include="CP_ContactGrouplist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CP_CustomerGroup.designer.cs">
-      <DependentUpon>CP_CustomerGroup.cs</DependentUpon>
+    <Compile Include="CP_ContactGrouplist.designer.cs">
+      <DependentUpon>CP_ContactGrouplist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ContactGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ContactGroup.designer.cs">
+      <DependentUpon>CP_ContactGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_DLP_MultipleProducts_List.cs">
       <SubType>Form</SubType>
@@ -304,6 +310,12 @@
     </Compile>
     <Compile Include="CP_Sales_UserRole_SPL.designer.cs">
       <DependentUpon>CP_Sales_UserRole_SPL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_AddressBookList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_AddressBookList.designer.cs">
+      <DependentUpon>CP_AddressBookList.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_UPI.cs">
       <SubType>Form</SubType>
@@ -626,6 +638,7 @@
     </Compile>
     <Compile Include="Model\MR_Basket.cs" />
     <Compile Include="Model\MR_MarginEntry.cs" />
+    <Compile Include="Model\MR_AddressBook.cs" />
     <Compile Include="Model\MR_ProductReport.cs" />
     <Compile Include="Model\MR_SalesEntry.cs" />
     <Compile Include="PrintFormat.cs">
@@ -4560,11 +4573,14 @@
     <EmbeddedResource Include="CP_Basketlist.resx">
       <DependentUpon>CP_Basketlist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_CustomerGrouplist.resx">
-      <DependentUpon>CP_CustomerGrouplist.cs</DependentUpon>
+    <EmbeddedResource Include="CP_AddressBook.resx">
+      <DependentUpon>CP_AddressBook.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CP_CustomerGroup.resx">
-      <DependentUpon>CP_CustomerGroup.cs</DependentUpon>
+    <EmbeddedResource Include="CP_ContactGrouplist.resx">
+      <DependentUpon>CP_ContactGrouplist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ContactGroup.resx">
+      <DependentUpon>CP_ContactGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_DLP_MultipleProducts_List.resx">
       <DependentUpon>CP_DLP_MultipleProducts_List.cs</DependentUpon>
@@ -4619,6 +4635,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Sales_UserRole_SPL.resx">
       <DependentUpon>CP_Sales_UserRole_SPL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_AddressBookList.resx">
+      <DependentUpon>CP_AddressBookList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UPI.resx">
       <DependentUpon>CP_UPI.cs</DependentUpon>

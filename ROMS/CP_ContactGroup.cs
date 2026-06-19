@@ -12,13 +12,13 @@ using System.Windows.Forms;
 namespace ROMS
 {
     //Created By:Sathish ; Created On:-26/11/2025
-    public partial class CP_CustomerGroup : Form
+    public partial class CP_ContactGroup : Form
     {
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpCustomerType = new ToolTip();
-        public int pbCusTypeId = 0, PbStatus = 0, varUpdate = 0;
-        public CP_CustomerGroup()
+        public int pbContactGroupID = 0, PbStatus = 0, varUpdate = 0;
+        public CP_ContactGroup()
         {
             InitializeComponent();
         }
@@ -43,20 +43,19 @@ namespace ROMS
                 }
                 MR_Sales obj = new MR_Sales();
                 obj.paraViewType = varType;
-                obj.paraCusTypeId = pbCusTypeId;
-                obj.paraCusTypeEName = txtCustomerGroup.Text.Trim();
-                obj.paraCusTypeTName = txtCustomerGroupTName.Text.Trim();
+                obj.paraContactGroupId = pbContactGroupID;
+                obj.paraCONGroupEName = txtCustomerGroup.Text.Trim();
+                obj.paraCONGroupTName = txtCustomerGroupTName.Text.Trim();
                 obj.paraStatusId = PbStatus;
-                obj.paraOriginator = varoriginator;
-
-                varResult = objspservice.udfnCustomerType(obj);
+                obj.paraOriginator = varoriginator; 
+                varResult = objspservice.udfnContactGroup(obj);
                 objspservice.CloseConnection();
 
                 string[] varvalue = varResult.Split('~');
                 if (varvalue[0] == "3")
                 {
                     MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainForm.objCP_CustomerTypelist.udfnList();
+                    MainForm.objCP_ContactGrouplist.udfnList();
                     if (btnSave.Text == "Save")
                     {
                         txtCustomerGroup.Text = "";
@@ -169,9 +168,9 @@ namespace ROMS
         {
             try
             {
-                MainForm.objCP_CustomerTypelist.picLoader.Visible = false;
-                MainForm.objCP_CustomerTypelist.picLoader.SendToBack();
-                if (pbCusTypeId == 0)
+                MainForm.objCP_ContactGrouplist.picLoader.Visible = false;
+                MainForm.objCP_ContactGrouplist.picLoader.SendToBack();
+                if (pbContactGroupID == 0)
                 {
                     this.ActiveControl = txtCustomerGroup;
                     pnlStatus.Enabled = false;
@@ -205,22 +204,21 @@ namespace ROMS
         {
             try
             {
-                if (pbCusTypeId != 0)
+                if (pbContactGroupID != 0)
                 {
                     DataSet objDs = new DataSet();
-                    SPDataService objspservice = new SPDataService();
-
+                    SPDataService objspservice = new SPDataService(); 
                     MR_Sales obj = new MR_Sales();
                     obj.paraViewType = 1;
-                    obj.paraCusTypeId = pbCusTypeId;
+                    obj.paraContactGroupId = pbContactGroupID;
                     obj.paraStatusId = 0;
-                    objDs = objspservice.udfnCustomerTypeList(obj);
+                    objDs = objspservice.udfnContactGroupList(obj);
                     if (objDs != null)
                     {
                         if (objDs.Tables.Count != 0)
                         {
-                            txtCustomerGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_Name"]);
-                            txtCustomerGroupTName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CusType_TName"]);
+                            txtCustomerGroup.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CONG_EName"]);
+                            txtCustomerGroupTName.Text = Convert.ToString(objDs.Tables[0].Rows[0]["CONG_TName"]);
                             txtCustomerGroup.Focus();
                         }
                     }

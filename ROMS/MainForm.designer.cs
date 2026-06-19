@@ -247,10 +247,11 @@ namespace ROMS
             this.tsmTransport = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmMarriageHall = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmBasket = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCustomerGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAddressBook = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGif = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.tsmCustomerGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.ms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -2126,7 +2127,8 @@ namespace ROMS
             this.tsmTransport,
             this.tsmMarriageHall,
             this.tsmBasket,
-            this.tsmCustomerGroup});
+            this.tsmCustomerGroup,
+            this.tsmAddressBook});
             this.tsmSalesMasters.Font = new System.Drawing.Font("Oswald Regular", 9.75F);
             this.tsmSalesMasters.Name = "tsmSalesMasters";
             this.tsmSalesMasters.Size = new System.Drawing.Size(68, 24);
@@ -2217,6 +2219,20 @@ namespace ROMS
             this.tsmBasket.Text = "Basket";
             this.tsmBasket.Click += new System.EventHandler(this.tsmBasket_Click);
             // 
+            // tsmCustomerGroup
+            // 
+            this.tsmCustomerGroup.Name = "tsmCustomerGroup";
+            this.tsmCustomerGroup.Size = new System.Drawing.Size(180, 22);
+            this.tsmCustomerGroup.Text = "Contact Group";
+            this.tsmCustomerGroup.Click += new System.EventHandler(this.tsmCustomerGroup_Click);
+            // 
+            // tsmAddressBook
+            // 
+            this.tsmAddressBook.Name = "tsmAddressBook";
+            this.tsmAddressBook.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddressBook.Text = "Address Book";
+            this.tsmAddressBook.Click += new System.EventHandler(this.tsmAddressBook_Click);
+            // 
             // tsmGif
             // 
             this.tsmGif.Font = new System.Drawing.Font("Oswald Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2241,13 +2257,6 @@ namespace ROMS
             this.statusBar.Size = new System.Drawing.Size(1275, 22);
             this.statusBar.TabIndex = 115;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // tsmCustomerGroup
-            // 
-            this.tsmCustomerGroup.Name = "tsmCustomerGroup";
-            this.tsmCustomerGroup.Size = new System.Drawing.Size(180, 22);
-            this.tsmCustomerGroup.Text = "Customer Group";
-            this.tsmCustomerGroup.Click += new System.EventHandler(this.tsmCustomerGroup_Click);
             // 
             // MainForm
             // 
@@ -2502,5 +2511,6 @@ namespace ROMS
         private System.Windows.Forms.ToolStripMenuItem tsmStockTaking;
         private System.Windows.Forms.ToolStripMenuItem tsmPurchaseProductwiseBatch;
         private System.Windows.Forms.ToolStripMenuItem tsmCustomerGroup;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddressBook;
     }
 }
