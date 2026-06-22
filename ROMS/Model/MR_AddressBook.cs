@@ -38,11 +38,18 @@ namespace ROMS.Model
         public string paraRemarks = "";
         public string paraPhoneNo = "";
         public string paraCompanyName = "";
+        public string paraAccountName = "";
+        public int paraContactGroupID = 0;
          
         public int paraUserID = 0;
         public string paraIPAddress = "";
         public string paraOriginator = "";
         public string paraHostName = "";
+        public string paraSupplierIds = "";
+        public string paraAddressBookIds = "";
+        public int paraDetailFlag = 0;
+        public int paraStickerCount = 0;
+        public int paraType = 0;
          
     }
 }

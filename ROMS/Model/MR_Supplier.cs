@@ -37,6 +37,6 @@ namespace ROMS.Model
         public int paraStickerCount = 0;
         public int paraPayID = 0;
         public int paraProductCategory = 0;
-        public string paraReportFlag = "";
+        public string paraReportFlag = ""; 
     }
 }

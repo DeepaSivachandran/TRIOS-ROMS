@@ -46,6 +46,10 @@ namespace ROMS
         private ToolTip tpcpmobileno2 = new ToolTip(); 
         private ToolTip tpcpMobileNo1 = new ToolTip();
         private ToolTip tpCPEmail = new ToolTip();
+        private ToolTip tpContactGroup = new ToolTip();
+        private ToolTip tpCPState = new ToolTip();
+        private ToolTip tpCPMobileNo1 = new ToolTip();
+        private ToolTip tpCPCity = new ToolTip();  
          
         private ToolTip tpBankShortName = new ToolTip();
         private ToolTip tpBranchName = new ToolTip();
@@ -70,8 +74,7 @@ namespace ROMS
         public void udfntooltiphide()
         {
             try
-            {
-                
+            { 
                 tpCompanyName.Active = false;
                 tpCompanyName.Active = false; 
                 tpShortName.Active = false; 
@@ -98,7 +101,16 @@ namespace ROMS
                 tpOperator.Active = false;
                 tpStaffName.Active = false;
                 tpMobileBrand.Active = false;
-
+                 
+                tpCPName.Active = false;
+                tpcpmobileno2.Active = false;
+                tpcpMobileNo1.Active = false;
+                tpCPEmail.Active = false;
+                tpContactGroup.Active = false;
+                tpCPState.Active = false;
+                tpCPMobileNo1.Active = false;
+                tpCPCity.Active = false;
+                  
                 tpBankName.Active = false;
                 tpBankShortName.Active = false;
                 tpBranchName.Active = false;
@@ -220,10 +232,12 @@ namespace ROMS
                 SPDataService objspdservice = new SPDataService();
                 string result = "";
                 string varStatus = "1";
-                int varABID = 0,viewType=0;
-                if(varABID==0)
+                int viewType=0;
+                if(pbABID == 0)
                 { viewType = 0; }
                 else { viewType = 1; }
+                if (rbActive.Checked == true) { varstatus = "1"; }
+                if (rbInactive.Checked == true) { varstatus = "2"; }
                 MR_AddressBook objMR_AddressBook = new MR_AddressBook();
                 objMR_AddressBook.ViewType = viewType;
                 objMR_AddressBook.paraCompanyName = txtCompanyName.Text.Trim();
@@ -251,8 +265,12 @@ namespace ROMS
                 objMR_AddressBook.paraIFSC = txtIFScode.Text.Trim();
                 objMR_AddressBook.paraBranchName = txtbranchname.Text.Trim();
                 objMR_AddressBook.paraRemarks = txtRemarks.Text.Trim();
-                objMR_AddressBook.paraSTID = 1;
-                 
+                objMR_AddressBook.paraSTID =Convert.ToInt32(varStatus);
+                objMR_AddressBook.paraContactGroupID = Convert.ToInt16(cmbContactGroup.SelectedValue);
+                objMR_AddressBook.paraAccountName = txtAccName.Text.Trim();
+                objMR_AddressBook.paraABID = pbABID;
+
+
                 objMR_AddressBook.paraOriginator = varoriginator;
                 varResult = objspdservice.udfnAddressBook(objMR_AddressBook);
                 objspdservice.CloseConnection();
@@ -268,7 +286,7 @@ namespace ROMS
                     }
                     if (btnSave.Text == "Update")
                     {
-                        //varUpdate = 1;
+                        varupdate = "1";
                         udfnclose();
                     }
                 }
@@ -322,17 +340,40 @@ namespace ROMS
         {
             try
             {
+                cmbContactGroup.SelectedValue = -1;
                 txtCompanyName.Text = ""; 
                 txtAddressLine1.Text = "";
                 txtAddressLine2.Text = "";
                 txtCompanyName.Text = "";
-                cmbState.SelectedValue=-1;
+                cmbState.SelectedValue=27;
+                cmbCPState.SelectedValue=27;
                 txtCity.Text = "";
                 txtPincode.Text = "";
                 txtPhoneNo.Text = ""; 
                 txtmobileNo.Text = "";
-                txtAlterMobileno.Text = ""; 
-                txtEmail.Text = ""; 
+                txtAlterMobileno.Text = "";
+                txtEmail.Text = "";
+                pbCityID = 0;
+
+                pbCPCityid = 0;
+                txtCPName.Text = "";
+                txtCPAddessLine1.Text = "";
+                txtCPAddressLine2.Text = "";
+                cmbState.SelectedValue = -1;
+                txtCPCity.Text = "";
+                txtCPPincode.Text = "";
+                txtCPPhoneNo.Text = "";
+                txtCPMobileNo1.Text = "";
+                txtCPMobileNo2.Text = "";
+                txtCPEmail.Text = "";
+                txtAccName.Text = "";
+                cmbBankName.SelectedValue = -1;
+                txtAccno.Text = "" ;
+                txtIFScode.Text = "" ;
+                txtbranchname.Text = "";
+                txtRemarks.Text = "";
+                rbActive.Checked = true;
+                rbInactive.Checked = false;
             }
             catch (Exception ex)
             {
@@ -355,6 +396,14 @@ namespace ROMS
                 udfntextboxcolor();
                 epCompany.Clear();
                 bool blnErrorFlag = false;
+                if (Convert.ToInt16(cmbContactGroup.SelectedValue) == 0 || Convert.ToInt16(cmbContactGroup.SelectedValue) == -1)
+                {
+                    epCompany.SetError(cmbContactGroup, "Please select contact group");
+                    cmbContactGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpContactGroup.ShowAlways = true;
+                    tpContactGroup.Show("Please select contact group", cmbContactGroup, 5000);
+                    blnErrorFlag = true;
+                }
                 if (Convert.ToString(txtCompanyName.Text).Trim() == "")
                 {
                     epCompany.SetError(txtCompanyName, "Please enter company name");
@@ -362,8 +411,24 @@ namespace ROMS
                     tpCompanyName.ShowAlways = true;
                     tpCompanyName.Show("Please enter company name", txtCompanyName, 5000);
                     blnErrorFlag = true;
-                } 
-                if (Convert.ToString(txtPincode.Text)!="")
+                }
+                if (Convert.ToString(txtCity.Text).Trim() == "" && pbCityID==0)
+                {
+                    epCompany.SetError(txtCity, "Please select city name");
+                    txtCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCity.ShowAlways = true;
+                    tpCity.Show("Please select city name", txtCity, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToInt16(cmbState.SelectedValue)==0 || Convert.ToInt16(cmbState.SelectedValue) == -1)
+                {
+                    epCompany.SetError(cmbState, "Please select state");
+                    cmbState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpState.ShowAlways = true;
+                    tpState.Show("Please select state", cmbState, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtPincode.Text) != "")
                 {
                     if (Convert.ToString(txtPincode.Text).Length != 6)
                     {
@@ -384,7 +449,7 @@ namespace ROMS
                         tpEmail.Show("Please enter valid email", txtEmail, 5000);
                         blnErrorFlag = true;
                     }
-                } 
+                }
                 if (Convert.ToString(txtmobileNo.Text) != "")
                 {
                     if (Convert.ToString(txtmobileNo.Text).Length != 10)
@@ -395,22 +460,89 @@ namespace ROMS
                         tpMobileNo.Show("Please enter valid mobile number", txtmobileNo, 5000);
                         blnErrorFlag = true;
                     }
-                } 
+                }
                 if (Convert.ToString(txtAlterMobileno.Text) != "")
                 {
                     if (Convert.ToString(txtAlterMobileno.Text).Length != 10)
                     {
-                        epCompany.SetError(txtAlterMobileno,  "Please enter valid alter mobile no.");
+                        epCompany.SetError(txtAlterMobileno, "Please enter valid alter mobile no.");
                         txtAlterMobileno.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                         tpPhoneNo.ShowAlways = true;
                         tpPhoneNo.Show("Please enter valid alter mobile no.", txtAlterMobileno, 5000);
                         blnErrorFlag = true;
                     }
-                }      
+                }
+
+                if (Convert.ToString(txtCPName.Text).Trim() == "")
+                {
+                    epCompany.SetError(txtCPName, "Please enter contact person name");
+                    txtCPName.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCPName.ShowAlways = true;
+                    tpCPName.Show("Please enter contact person name", txtCPName, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtCPCity.Text).Trim() == "" && pbCPCityid == 0)
+                {
+                    epCompany.SetError(txtCPCity, "Please select city name");
+                    txtCPCity.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCPCity.ShowAlways = true;
+                    tpCPCity.Show("Please select city name", txtCity, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToInt16(cmbCPState.SelectedValue) == 0 || Convert.ToInt16(cmbCPState.SelectedValue) == -1)
+                {
+                    epCompany.SetError(cmbCPState, "Please select state");
+                    cmbCPState.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCPState.ShowAlways = true;
+                    tpCPState.Show("Please select state", cmbCPState, 5000);
+                    blnErrorFlag = true;
+                }
+                if (Convert.ToString(txtCPPincode.Text) != "")
+                {
+                    if (Convert.ToString(txtCPPincode.Text).Length != 6)
+                    {
+                        epCompany.SetError(txtCPPincode, "Please enter valid pincode");
+                        txtCPPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCPPincode.ShowAlways = true;
+                        tpCPPincode.Show("Please enter valid pincode", txtCPPincode, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                else
+                {
+                    epCompany.SetError(txtCPPincode, "Please enter pincode");
+                    txtCPPincode.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpCPPincode.ShowAlways = true;
+                    tpCPPincode.Show("Please enter  pincode", txtCPPincode, 5000);
+                    blnErrorFlag = true;
+                }
+
+                if (Convert.ToString(txtCPEmail.Text) != "")
+                {
+                    if (objValidation.FormatEMail(txtCPEmail.Text) == false)
+                    {
+                        epCompany.SetError(txtCPEmail, "Please enter valid email");
+                        txtCPEmail.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCPEmail.ShowAlways = true;
+                        tpCPEmail.Show("Please enter valid email", txtCPEmail, 5000);
+                        blnErrorFlag = true;
+                    }
+                }
+                if (Convert.ToString(txtCPMobileNo1.Text) != "")
+                {
+                    if (Convert.ToString(txtCPMobileNo1.Text).Length != 10)
+                    {
+                        epCompany.SetError(txtCPMobileNo1, "Please enter valid mobile number");
+                        txtCPMobileNo1.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                        tpCPMobileNo1.ShowAlways = true;
+                        tpCPMobileNo1.Show("Please enter valid mobile number", txtCPMobileNo1, 5000);
+                        blnErrorFlag = true;
+                    }
+                } 
                 if (blnErrorFlag == false)
                 {
                     udfnSave(sender, e);
-                    udfnBankclear();
+                    udfnClear();
                 }
             }
             catch (Exception ex)
@@ -437,17 +569,17 @@ namespace ROMS
                 DataBind objDataBind = new DataBind();
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbState, "", "ST_Name", "STID"); 
                 objDataBind.BindComboBoxListSelected("DEF_STATE", "ST_STSID=1 AND STID<>0 ORDER BY STID", "ST_Name,STID", cmbCPState, "", "ST_Name", "STID"); 
+                objDataBind.BindComboBoxListSelected("MR_ContactGroup", "CONG_STSID=1  AND CONGID<>0 ORDER BY CONGID", "CONG_EName,CONGID", cmbContactGroup, "", "CONG_EName", "CONGID"); 
                 objDataBind = null;
                 DataService objdservice = new DataService(); 
-                varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1"); 
+                varstatusid = objdservice.displaydata("select STS_Name as name from DEF_Status where STS_ModuleID=1 AND STSID=1");
                 udfnBankDropDownLoad();
+                cmbCPState.SelectedValue = 27;
+                cmbState.SelectedValue = 27;
                 udfnEdit();
-                this.ActiveControl = txtCompanyName;
+                this.ActiveControl = cmbContactGroup;
                 objdservice.CloseConnection();
-                DataSet objDS = new DataSet();
-                SPDataService objDserv = new SPDataService();
-                objDS = objDserv.udfnCompanyList(6,Convert.ToInt32(varcompanyid),MainForm.pbUserID,MainForm.pbIpAddress,0);
-                 
+                
                
             }
             catch (Exception ex)
@@ -2136,6 +2268,94 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        } 
+        private void cmbContactGroup_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbContactGroup.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbContactGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtCompanyName.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void txtCompanyName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbContactGroup_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbContactGroup_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Convert.ToString(cmbContactGroup.SelectedValue) == "" || Convert.ToString(cmbContactGroup.SelectedValue) == "-1")
+                {
+                    epCompany.SetError(cmbContactGroup, "Please select contact group");
+                    cmbContactGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpContactGroup.ShowAlways = true;
+                    tpContactGroup.Show("Please select contact group", cmbContactGroup, 5000);
+                }
+                else
+                {
+                    epCompany.Clear();
+                    cmbContactGroup.BackColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void lvCPCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    udfnCPCity();
+                    txtCPPincode.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void txtAccName_Enter(object sender, EventArgs e)
@@ -2149,6 +2369,25 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
+        }
+
+        private void lvCPCity_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                udfnCPCity();
+                txtCPCity.Focus();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            udfnclose();
         }
 
         private void txtAccName_KeyDown(object sender, KeyEventArgs e)
@@ -2283,12 +2522,12 @@ namespace ROMS
         {
             try
             {
-                if (varcompanyid != "")
+                if (pbABID != 0)
                 {
                     SPDataService objspservice = new SPDataService();
                     DataSet objDS;
                     MR_AddressBook objMR_AddressBook = new MR_AddressBook();
-                    objMR_AddressBook.ViewType = 4;
+                    objMR_AddressBook.ViewType = 6;
                     objMR_AddressBook.paraABID = pbABID;
                     objDS = objspservice.udfnAddressBookList(objMR_AddressBook);
                     objspservice.CloseConnection();
@@ -2323,6 +2562,10 @@ namespace ROMS
                             txtAccno.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Account Name"]);
                             txtIFScode.Text = Convert.ToString(objDS.Tables[0].Rows[0]["IFSCode"]);
                             txtbranchname.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Branch Name"]);
+                            cmbContactGroup.SelectedValue = Convert.ToString(objDS.Tables[0].Rows[0]["AB_CONGID"]);
+                            txtRemarks.Text = Convert.ToString(objDS.Tables[0].Rows[0]["AB_Remarks"]);
+                            txtCPMobileNo2.Text = Convert.ToString(objDS.Tables[0].Rows[0]["Mobile No2"]);
+                            lvCPCity.Visible = false;
                         }
                     }
                 } 
@@ -2382,18 +2625,36 @@ namespace ROMS
 
             }
         }
-         
-         
+        public void udfnCPCity()
+        {
+            try
+            {
+                if (txtCPCity.Text != "")
+                {
+                    ListViewItem selectedItem = lvCPCity.SelectedItems[0];
+                    txtCPCity.Text = selectedItem.SubItems[0].Text;
+                    pbCPCityid = Convert.ToInt16(selectedItem.SubItems[2].Text);
+                    lvCPCity.Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
         public void udfnGrdevent()
         {
             try
             {
-                    if (txtCity.Text != "")
-                    {
+                if (txtCity.Text != "")
+                {
                     ListViewItem selectedItem = lvCity.SelectedItems[0];
-                    txtCity.Text = selectedItem.SubItems[0].Text;  
-                    lvCity.Visible = false;  
-                    }
+                    txtCity.Text = selectedItem.SubItems[0].Text;
+                   pbCityID =Convert.ToInt16(selectedItem.SubItems[2].Text);
+                    lvCity.Visible = false;
+                }
                 
             }
             catch (Exception ex)

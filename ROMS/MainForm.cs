@@ -154,6 +154,7 @@ namespace ROMS
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
+        public static PrintDetails objPrintDetails;
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_Rate_ChangeApproval objCP_Rate_ChangeApproval;

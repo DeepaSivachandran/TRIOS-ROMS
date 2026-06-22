@@ -36,14 +36,15 @@ namespace ROMS
                 if (txtsuppliername.Text.Length > 0)
                 {
                     int varTypeId = 0;
-                    if (Convert.ToInt32(cmbType.SelectedValue) == 566)
+                    if (Convert.ToInt32(cmbType.SelectedValue) != 565  &&   Convert.ToInt32(cmbType.SelectedValue) != 607  )
                     {
-                        varTypeId = 1;
+                        varTypeId = Convert.ToInt32(cmbType.SelectedValue);
                     }
                     Model.MR_Supplier objMR_Supplier = new Model.MR_Supplier();
                     objMR_Supplier.ViewType = 43;
                     objMR_Supplier.paraSupplierName = txtsuppliername.Text;
                     objMR_Supplier.paraordertype = varTypeId;
+                    objMR_Supplier.paraReportFlag = Convert.ToString(cmbDetail.SelectedValue); 
                     DataSet objDs = new DataSet();
                     SPDataService objspdservice = new SPDataService();
                     objDs = objspdservice.udfnSupplierList(objMR_Supplier);
@@ -65,7 +66,7 @@ namespace ROMS
                                 LV_Supplier.Columns[2].Width = 0;
                                 LV_Supplier.Columns[0].Width = 300;
                                 LV_Supplier.Columns[3].Width = 0;
-                                LV_Supplier.Columns[4].Width = 100;
+                                LV_Supplier.Columns[4].Width = 0;
                             }
                         }
                     }
@@ -162,7 +163,7 @@ namespace ROMS
                     txtsuppliername.Text = selectedItem.SubItems[0].Text;
                     lblSupplierCode.Text = selectedItem.SubItems[1].Text;
                     lblschedule.Text = selectedItem.SubItems[2].Text;
-                    if (Convert.ToInt16(cmbType.SelectedValue) == 566)
+                    if (Convert.ToInt32(cmbType.SelectedValue) != 565 && Convert.ToInt32(cmbType.SelectedValue) != 607)
                     {
                         txtOthersText.Text = selectedItem.SubItems[4].Text;
                     } 
@@ -239,6 +240,7 @@ namespace ROMS
                 MR_AddressBook objMR_AddressBook = new MR_AddressBook();
                 objMR_AddressBook.ViewType = 3;
                 objMR_AddressBook.paraABID = Convert.ToInt32(lblSupplierCode.Text);
+                objMR_AddressBook.paraDetailFlag = Convert.ToInt32(cmbDetail.SelectedValue);
                 objDs = objspservice.udfnAddressBookList(objMR_AddressBook);
                 if (objDs != null)
                 {
@@ -310,7 +312,9 @@ namespace ROMS
             {
                 dpDate.MinDate = MainForm.pbCurrentDate; 
                 DataBind objDataBind = new DataBind();
-                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID in (173) AND MSTID<>564 ORDER BY MSTID ASC", "MST_DisplayText,MSTID", cmbType, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("(SELECT MSTID AS ID,MST_DisplayText AS [Value] FROM DEF_Master WHERE MST_TransactionID IN (173) AND MSTID  IN (565,607) UNION ALL SELECT CONGID AS ID,CONG_EName AS [Value] FROM MR_ContactGroup WHERE CONGID NOT IN (-1,0)) AS DIV"
+                    , "1=1", "ID, Value", cmbType, "", "Value", "ID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=184", "MST_DisplayText,MSTID", cmbDetail, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 udfnBankDropDown();
                 this.ActiveControl = cmbType;
@@ -627,14 +631,14 @@ namespace ROMS
                 {
                     string[] supplierName = txtsuppliername.Text.Split('-');
                     varName = supplierName[0];
-                }
-                else if (Convert.ToInt16(cmbType.SelectedValue) == 566) //Others
-                {
-                    varName = txtOthersText.Text.Trim();
-                }
+                } 
                 else if (Convert.ToInt16(cmbType.SelectedValue) == 607) //Direct
                 {
                     varName = txtNameText.Text.Trim();
+                }
+                else  //Others
+                {
+                    varName = txtOthersText.Text.Trim();
                 }
                 CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -745,6 +749,10 @@ namespace ROMS
                     {
                         txtNameText.Focus();
                     }
+                    if (Convert.ToInt32(cmbType.SelectedValue) != 565 && Convert.ToInt32(cmbType.SelectedValue) != 607)
+                    {
+                        cmbDetail.Focus();
+                    }
                     else
                     {
                         txtsuppliername.Focus();
@@ -810,20 +818,23 @@ namespace ROMS
                     txtsuppliername.Visible = false;
                     txtOthersText.Visible = false;
                     lblSupplier.Text = "Name";
-                }
-                else if(Convert.ToInt16(cmbType.SelectedValue)== 566)//Others
-                {
-                    txtNameText.Visible = false;
-                    txtOthersText.Visible = true; 
-                    txtsuppliername.Visible = true;
-                    lblSupplier.Text = "Others";
-                }
+                    cmbDetail.Enabled = false;
+                } 
                 else if (Convert.ToInt16(cmbType.SelectedValue) == 565)//Supplier
                 {
                     txtsuppliername.Visible = true;
                     txtNameText.Visible = false; 
                     txtOthersText.Visible = false;
+                    cmbDetail.Enabled = false;
                     lblSupplier.Text = "Supplier";
+                }
+                else //Others
+                {
+                    txtNameText.Visible = false;
+                    txtOthersText.Visible = true;
+                    txtsuppliername.Visible = true;
+                    cmbDetail.Enabled = true;
+                    lblSupplier.Text = "Others";
                 }
             }
             catch (Exception ex)
@@ -920,6 +931,61 @@ namespace ROMS
                 objError = new DataError();
                 objError.WriteFile(ex);
             }
-        } 
+        }
+         
+        private void cmbDetail_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtsuppliername.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDetail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbDetail_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbType.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
     }
 }

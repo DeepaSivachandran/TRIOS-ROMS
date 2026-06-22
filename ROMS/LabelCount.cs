@@ -16,8 +16,8 @@ namespace ROMS
         DataValidation objValidation = new DataValidation();
         DataError objError;
         private ToolTip tpCancel = new ToolTip();
-        public string varSupplierIds, varGIId="0";
-        public int varPrid=0,varFlag=0;
+        public string varSupplierIds, varGIId="0",varAddressBookIds="0";
+        public int varPrid=0,varFlag=0,varDetailFlag=0;
         public LabelCount()
         {
             InitializeComponent();
@@ -50,11 +50,20 @@ namespace ROMS
                 {
                     udfnStickerPrint();
                 }
-                if (varFlag == 2) ///inward sticker print count
+                else if (varFlag == 2) ///inward sticker print count
                 {
                     udfnStickerFormPurchasePrint();
                 }
-                else { 
+                else if (varFlag == 3)
+                {
+                    udfnAddressBookEnvelopePrint();
+                }
+                else if (varFlag == 4)
+                {
+                    udfnAddressBookPrint();
+                }
+                else
+                { 
                     udfnPrint();
                 }
             }
@@ -83,6 +92,92 @@ namespace ROMS
                 {
                     objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Supplier_Envelope.rpt");
                     objBillreport.SetParameterValue("paraSupplierIds", varSupplierIds);
+                    objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
+                    objValidation.CrySqlConnection(objBillreport);
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
+        public void udfnAddressBookPrint()
+        {
+            try
+            {
+                errBrand.Clear();
+                SPDataService objSPdataservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                MR_AddressBook objMR_AddressBook = new MR_AddressBook();
+                objMR_AddressBook.ViewType = 4; 
+                objMR_AddressBook.paraAddressBookIds = varAddressBookIds;
+                objMR_AddressBook.paraDetailFlag = varDetailFlag;
+                objMR_AddressBook.paraStickerCount = Convert.ToInt32(txtCount.Text.Trim());
+                objDs = objSPdataservice.udfnAddressBookList(objMR_AddressBook);
+                objSPdataservice.CloseConnection();
+                if (objDs != null)
+                {
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_CP_AddressBook_Details.rpt"); 
+                    objBillreport.SetParameterValue("paraAddressBookIds", varAddressBookIds);
+                    objBillreport.SetParameterValue("paraDetailFlag", varDetailFlag);
+                    objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
+                    objValidation.CrySqlConnection(objBillreport);
+                    MainForm.objReportLoad = new ReportLoad();
+                    MainForm.objReportLoad.cryptview.ReportSource = objBillreport;
+                    MainForm.objReportLoad.ShowDialog();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
+        public void udfnAddressBookEnvelopePrint()
+        {
+            try
+            {
+                errBrand.Clear();
+                SPDataService objSPdataservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                MR_AddressBook objMR_AddressBook = new MR_AddressBook();
+                objMR_AddressBook.ViewType = 5;
+                objMR_AddressBook.paraSupplierIds = varSupplierIds;
+                objMR_AddressBook.paraAddressBookIds = varAddressBookIds;
+                objMR_AddressBook.paraDetailFlag = varDetailFlag;
+                objMR_AddressBook.paraStickerCount = Convert.ToInt32(txtCount.Text.Trim());
+                objDs = objSPdataservice.udfnAddressBookList(objMR_AddressBook);
+                objSPdataservice.CloseConnection();
+                if (objDs != null)
+                {
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_AddressBook_Envelope.rpt");
+                    objBillreport.SetParameterValue("paraSupplierIds", varSupplierIds);
+                    objBillreport.SetParameterValue("paraAddressBookIds", varAddressBookIds);
+                    objBillreport.SetParameterValue("paraDetailFlag", varDetailFlag);
                     objBillreport.SetParameterValue("paraStickerCount", Convert.ToInt32(txtCount.Text.Trim()));
                     objValidation.CrySqlConnection(objBillreport);
                     MainForm.objReportLoad = new ReportLoad();
@@ -250,7 +345,15 @@ namespace ROMS
                 this.Text = "Supplier Envelope Label";
                 if (varFlag == 1) ///inward sticker print count
                 {
-                    this.Text = "Inward Label print";
+                    this.Text = "Inward Label print"; 
+                }
+                else if (varFlag == 3) ///inward sticker print count
+                {
+                    this.Text = "Label print";
+                }
+                else if (varFlag == 4) ///inward sticker print count
+                {
+                    this.Text = "Form count";
                 }
 
                 txtCount.Focus();

@@ -5475,7 +5475,13 @@ namespace ROMS
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@ViewType", objMR_AddressBook.ViewType);
+                cmd.Parameters.AddWithValue("@paraDetailFlag", objMR_AddressBook.paraDetailFlag);
+                cmd.Parameters.AddWithValue("@paraAddressBookIds", objMR_AddressBook.paraAddressBookIds);
+                cmd.Parameters.AddWithValue("@paraSupplierIds", objMR_AddressBook.paraSupplierIds);
+                cmd.Parameters.AddWithValue("@paraStickerCount", objMR_AddressBook.paraStickerCount);
                 cmd.Parameters.AddWithValue("@paraABID", objMR_AddressBook.paraABID);
+                cmd.Parameters.AddWithValue("@paraType", objMR_AddressBook.paraType);
+                cmd.Parameters.AddWithValue("@paraStatusID", objMR_AddressBook.paraStatusID);
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
 
@@ -5532,7 +5538,9 @@ namespace ROMS
                 cmd.Parameters.AddWithValue("@paraIFSC", objMR_AddressBook.paraIFSC);
                 cmd.Parameters.AddWithValue("@paraBranchName", objMR_AddressBook.paraBranchName);
                 cmd.Parameters.AddWithValue("@paraRemarks", objMR_AddressBook.paraRemarks);
-                cmd.Parameters.AddWithValue("@paraPhoneNo", objMR_AddressBook.paraPhoneNo);
+                cmd.Parameters.AddWithValue("@paraPhoneNo", objMR_AddressBook.paraPhoneNo); 
+                cmd.Parameters.AddWithValue("@paraContactGroupID", objMR_AddressBook.paraContactGroupID);
+                cmd.Parameters.AddWithValue("@paraAccountName", objMR_AddressBook.paraAccountName);
                 cmd.Parameters.AddWithValue("@paraUserID", MainForm.pbUserID);
                 cmd.Parameters.AddWithValue("@paraIPAddress", MainForm.pbIpAddress);
                 cmd.Parameters.AddWithValue("@paraHostName", MainForm.pbHostName);
