@@ -91,5 +91,12 @@ namespace ROMS.Model
         public int paraType { get; set; } = 0;
         public int paraCTYID { get; set; } = 0;
 
+        // -------------------- Customer Group --------------------
+        public int paraContactGroupId { get; set; } = 0;
+        public string paraCONGroupEName { get; set; } = "";
+        public string paraCONGroupTName { get; set; } = "";
+
+        // -------------------- Vehicle --------------------
+
     }
 }

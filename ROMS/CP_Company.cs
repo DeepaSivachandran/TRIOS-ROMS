@@ -4586,6 +4586,11 @@ namespace ROMS
             }
         }
 
+        private void txtEmail_Layout(object sender, LayoutEventArgs e)
+        {
+
+        }
+
         private void RbInactiveContact_KeyDown(object sender, KeyEventArgs e)
         {
             try

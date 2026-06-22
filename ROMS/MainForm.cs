@@ -154,6 +154,7 @@ namespace ROMS
         public static CP_ProductApproval objCP_ProductApproval;
         public static CP_Tally objCP_Tally;
         public static LabelCount objLabelCount;
+        public static PrintDetails objPrintDetails;
         public static CP_Rate_ChangeList objCP_Rate_ChangeList;
         public static CP_Rate_Change objCP_Rate_Change;
         public static CP_Rate_ChangeApproval objCP_Rate_ChangeApproval;
@@ -188,7 +189,11 @@ namespace ROMS
         public static CP_Route objCP_Route;
         public static CP_Routelist objCP_Routelist;
         public static CP_CustomerType objCP_CustomerType;
-        public static CP_CustomerTypelist objCP_CustomerTypelist;
+        public static CP_CustomerTypelist objCP_CustomerTypelist; 
+        public static CP_ContactGrouplist objCP_ContactGrouplist;
+        public static CP_AddressBookList objCP_AddressBookList;
+        public static CP_AddressBook objCP_AddressBook;
+        public static CP_ContactGroup objCP_ContactGroup;
         public static CP_Customer objCP_Customer;
         public static CP_Customerlist objCP_Customerlist;
         public static CP_Vehicle objCP_Vehicle;
@@ -5095,6 +5100,34 @@ namespace ROMS
         private void tsmProductMenu_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tsmCustomerGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_ContactGrouplist, "CP_ContactGrouplist", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void tsmAddressBook_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenReportForm(ref MainForm.objCP_AddressBookList, "CP_AddressBookList", 501);
+                PbCurrentForm = "5.1";
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
         }
 
         private void tsmLock_Click(object sender, EventArgs e)

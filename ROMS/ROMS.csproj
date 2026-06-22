@@ -185,6 +185,24 @@
     <Compile Include="CP_Basketlist.designer.cs">
       <DependentUpon>CP_Basketlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="CP_AddressBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_AddressBook.designer.cs">
+      <DependentUpon>CP_AddressBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ContactGrouplist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ContactGrouplist.designer.cs">
+      <DependentUpon>CP_ContactGrouplist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_ContactGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_ContactGroup.designer.cs">
+      <DependentUpon>CP_ContactGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="CP_DLP_MultipleProducts_List.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +310,12 @@
     </Compile>
     <Compile Include="CP_Sales_UserRole_SPL.designer.cs">
       <DependentUpon>CP_Sales_UserRole_SPL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CP_AddressBookList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CP_AddressBookList.designer.cs">
+      <DependentUpon>CP_AddressBookList.cs</DependentUpon>
     </Compile>
     <Compile Include="CP_UPI.cs">
       <SubType>Form</SubType>
@@ -606,6 +630,12 @@
     <Compile Include="INV_StockRequestQueueList.designer.cs">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintDetails.designer.cs">
+      <DependentUpon>PrintDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="MAR_Entry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -614,6 +644,7 @@
     </Compile>
     <Compile Include="Model\MR_Basket.cs" />
     <Compile Include="Model\MR_MarginEntry.cs" />
+    <Compile Include="Model\MR_AddressBook.cs" />
     <Compile Include="Model\MR_ProductReport.cs" />
     <Compile Include="Model\MR_SalesEntry.cs" />
     <Compile Include="PrintFormat.cs">
@@ -667,12 +698,12 @@
     <Compile Include="INV_GoodsOutward_AutoConversion.designer.cs">
       <DependentUpon>INV_GoodsOutward_AutoConversion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RPT_CP_Company_Details.cs">
-      <DependentUpon>RPT_CP_Company_Details.rpt</DependentUpon>
+    <Compile Include="Reports\RPT_CP_AddressBook_Details.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPT_CP_AddressBook_Details.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\RPT_CP_ProductWeight_LocationWiseProductDetail.cs">
       <DependentUpon>RPT_CP_ProductWeight_LocationWiseProductDetail.rpt</DependentUpon>
@@ -1166,6 +1197,13 @@
     </Compile>
     <Compile Include="Reports\RPT_Stock_Valuation_Groupwise_Subgroup.cs">
       <DependentUpon>RPT_Stock_Valuation_Groupwise_Subgroup.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\RPT_AddressBook_Envelope.cs">
+      <DependentUpon>RPT_AddressBook_Envelope.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -4555,6 +4593,15 @@
     <EmbeddedResource Include="CP_Basketlist.resx">
       <DependentUpon>CP_Basketlist.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CP_AddressBook.resx">
+      <DependentUpon>CP_AddressBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ContactGrouplist.resx">
+      <DependentUpon>CP_ContactGrouplist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_ContactGroup.resx">
+      <DependentUpon>CP_ContactGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CP_DLP_MultipleProducts_List.resx">
       <DependentUpon>CP_DLP_MultipleProducts_List.cs</DependentUpon>
     </EmbeddedResource>
@@ -4608,6 +4655,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CP_Sales_UserRole_SPL.resx">
       <DependentUpon>CP_Sales_UserRole_SPL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CP_AddressBookList.resx">
+      <DependentUpon>CP_AddressBookList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CP_UPI.resx">
       <DependentUpon>CP_UPI.cs</DependentUpon>
@@ -4764,6 +4814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV_StockRequestQueueList.resx">
       <DependentUpon>INV_StockRequestQueueList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintDetails.resx">
+      <DependentUpon>PrintDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MAR_Entry.resx">
       <DependentUpon>MAR_Entry.cs</DependentUpon>
@@ -5521,9 +5574,9 @@
       <LastGenOutput>RPT_CP_ProductWeight_LocationWiseProductDetail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Reports\RPT_CP_Company_Details.rpt">
+    <EmbeddedResource Include="Reports\RPT_CP_AddressBook_Details.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPT_CP_Company_Details.cs</LastGenOutput>
+      <LastGenOutput>RPT_CP_AddressBook_Details.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_CP_Product_RateCategory_Enable.rpt">
@@ -5941,6 +5994,11 @@
       <LastGenOutput>RPT_PUR_ProductWise_Batch.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Reports\RPT_AddressBook_Envelope.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RPT_AddressBook_Envelope.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RPT_TP_Stock_Taking.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RPT_TP_Stock_Taking.cs</LastGenOutput>
