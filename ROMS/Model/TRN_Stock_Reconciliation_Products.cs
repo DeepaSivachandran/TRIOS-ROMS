@@ -29,5 +29,12 @@ namespace ROMS.Model
         public DataTable paraStockReconciliation { get; set; } = null; 
         public DataTable paraStockTransfer { get; set; } = null;
         public string paraUserLocations { get; set; } = "";
+
+        public string paraProductName { get; set; } = "";
+        public string paraPicode { get; set; } = "";
+        public int paraGroup { get; set; } = 0;
+        public int paraSubgroup { get; set; } = 0;
+        public int paraBrandID { get; set; } = 0;
+        public int paraLocationId { get; set; } = 0; 
     }
 }

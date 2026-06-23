@@ -4650,6 +4650,12 @@ namespace ROMS
                 varSqlCommand.Parameters.AddWithValue("@paraIPAddress", objTRNG_Stock_Reconciliation_Products.paraIPAddress);
                 varSqlCommand.Parameters.AddWithValue("@paraTransType", objTRNG_Stock_Reconciliation_Products.paraTransType);
                 varSqlCommand.Parameters.AddWithValue("@paraUserLocations", objTRNG_Stock_Reconciliation_Products.paraUserLocations);
+                varSqlCommand.Parameters.AddWithValue("@paraProductName", objTRNG_Stock_Reconciliation_Products.paraProductName);
+                varSqlCommand.Parameters.AddWithValue("@paraPicode", objTRNG_Stock_Reconciliation_Products.paraPicode);
+                varSqlCommand.Parameters.AddWithValue("@paraGroup", objTRNG_Stock_Reconciliation_Products.paraGroup);
+                varSqlCommand.Parameters.AddWithValue("@paraSubgroup", objTRNG_Stock_Reconciliation_Products.paraSubgroup);
+                varSqlCommand.Parameters.AddWithValue("@paraBrandID", objTRNG_Stock_Reconciliation_Products.paraBrandID);
+                varSqlCommand.Parameters.AddWithValue("@paraLocationId", objTRNG_Stock_Reconciliation_Products.paraLocationId);
                 varSqlCommand.CommandTimeout = 0;
                 SqlDataAdapter sa = new SqlDataAdapter(varSqlCommand);
                 sa.Fill(ds);

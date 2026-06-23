@@ -2676,6 +2676,7 @@ namespace ROMS
         {
             try
             {
+                RPTViewer.Visible = false;
                 if (Convert.ToInt32(varStockLocationId) == 0)
                 {
                     epStockReconciliation.SetError(txtStockLocation, "Please select loaction");
@@ -2687,6 +2688,68 @@ namespace ROMS
                 epStockReconciliation.Clear(); 
                 txtStockLocation.BackColor = Color.White;
                 udfnProBind();
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnPrint()
+        {
+            try
+            {
+                int varPrint = 0;
+                string varLocationName="--All--", varCompanyName="--All--", varGroupName="--All--", varSubgroupName="--All--", varBrandName="--All--";
+                SPDataService objspdservice = new SPDataService();
+                DataSet objDs = new DataSet();
+                TRN_Stock_Reconciliation_Products objTRNG_Stock_Reconciliation_Products = new TRN_Stock_Reconciliation_Products();
+                objTRNG_Stock_Reconciliation_Products.ViewType = 2; 
+                objTRNG_Stock_Reconciliation_Products.paraLocationId = Convert.ToInt32(varStockLocationId);
+                objTRNG_Stock_Reconciliation_Products.paraSubgroup = Convert.ToInt32(lblSubGroupCode.Text);
+                objTRNG_Stock_Reconciliation_Products.paraGroup = Convert.ToInt32(lblGroupCode.Text);
+                objTRNG_Stock_Reconciliation_Products.paraBrandID = Convert.ToInt32(lblBrandCode.Text);   
+                objDs = objspdservice.udfnStockConciliationList(objTRNG_Stock_Reconciliation_Products); 
+                objspdservice.CloseConnection();
+                if (objDs != null)
+                {
+                    if (objDs.Tables.Count != 0)
+                    {
+                        if (objDs.Tables[0].Rows.Count!=0)
+                        {
+                            varPrint = 1;
+                        }
+                    }
+                }
+                if (varPrint != 0)
+                {
+                    if (Convert.ToInt32(lblGroupCode.Text) != 0) { varGroupName= txtGroup.Text.Trim(); }
+                    if (Convert.ToInt32(lblSubGroupCode.Text) != 0) { varSubgroupName= txtSubGroup.Text.Trim(); }
+                    if (Convert.ToInt32(lblBrandCode.Text) != 0) { varBrandName= txtBrand.Text.Trim(); }
+                    if (Convert.ToInt32(varStockLocationId) != 0) { varLocationName= txtStockLocation.Text.Trim(); }
+
+                    btnView.Enabled = true;
+                    RPTViewer.Visible = true;
+                    RPTViewer.BringToFront();
+                    RPTViewer.ReuseParameterValuesOnRefresh = true;
+                    CrystalDecisions.CrystalReports.Engine.ReportDocument objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                    objBillreport.Load(Application.StartupPath + "\\Reports\\RPT_Stock_Adjustment_EmptyPrint.rpt");   
+                    objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName);
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraLocationName", varLocationName);
+                    objBillreport.SetParameterValue("paraCompanyName", varCompanyName);
+                    objBillreport.SetParameterValue("paraGroupName", varGroupName);
+                    objBillreport.SetParameterValue("paraSubgroupName", varSubgroupName);
+                    objBillreport.SetParameterValue("paraBrandName", varBrandName);
+                    objBillreport.SetParameterValue("paraGroup", Convert.ToInt32(lblGroupCode.Text));
+                    objBillreport.SetParameterValue("paraLocationId", Convert.ToInt32(varStockLocationId));
+                    objBillreport.SetParameterValue("paraSubgroup", Convert.ToInt32(lblSubGroupCode.Text));
+                    objBillreport.SetParameterValue("paraBrandID", Convert.ToInt32(lblBrandCode.Text));
+                    objValidation.CrySqlConnection(objBillreport);
+                    RPTViewer.ReportSource = objBillreport;
+                    RPTViewer.Refresh();
+                }
             }
             catch (Exception ex)
             {
@@ -3309,11 +3372,11 @@ namespace ROMS
                 objError.WriteFile(ex);
             }
         }
-
-        private void DGV_FilterProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+         
+        private void btnEmptyPrint_Click(object sender, EventArgs e)
         {
-
-        }
+            udfnPrint();
+        } 
 
         private void txtGroup_Enter(object sender, EventArgs e)
         {
@@ -3331,7 +3394,9 @@ namespace ROMS
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            try {
+            try 
+            {
+                RPTViewer.Visible = false;
                 if (editflag == 1)
                 {
                     SPDataService objDServ = new SPDataService();
@@ -4659,7 +4724,7 @@ namespace ROMS
                 objMR_Product.paraGroup = Convert.ToInt32(lblGroupCode.Text);
                 objMR_Product.paraBrandID = Convert.ToInt32(lblBrandCode.Text);
                 objMR_Product.paraId = varEntry;
-                objMR_Product.paraProductName = " ";
+                objMR_Product.paraProductName = "";
                 objDs = objspdservice.udfnproductmasterlist(objMR_Product);
                 objspdservice.CloseConnection();
                 if (objDs != null)
