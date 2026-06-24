@@ -161,7 +161,7 @@ namespace ROMS
                         MainForm.objINV_StockRequest.varStockRequestID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SRQID"].Value);
                         MainForm.objINV_StockRequest.varStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
                         MainForm.objINV_StockRequest.varMainStatus = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["StatusID"].Value);
-                        MainForm.objINV_StockRequest.pbID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SREQID"].Value);
+                        MainForm.objINV_StockRequest.pbID = Convert.ToInt32(grdStockRequestList.SelectedRows[0].Cells["SREQID"].Value); 
                         MainForm.objINV_StockRequest.pbscreenflag = 1;
                         //objMainForm.CenterEntryForm(this, MainForm.objINV_StockRequest);
                         MainForm main = (MainForm)this.MdiParent;

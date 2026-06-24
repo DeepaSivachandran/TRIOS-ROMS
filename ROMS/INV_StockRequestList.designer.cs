@@ -78,11 +78,11 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lblNoRecordsFound = new System.Windows.Forms.Label();
             this.grdStockRequestList = new System.Windows.Forms.DataGridView();
+            this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.DGV_SearchGridPro = new System.Windows.Forms.DataGridView();
             this.grdProDetails = new System.Windows.Forms.DataGridView();
-            this.clmprint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.clmDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.tsStockRequestList.SuspendLayout();
             this.pnlStockRequestList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FilterProduct)).BeginInit();
@@ -539,6 +539,7 @@
             // 
             // btnView
             // 
+            this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.Image = global::ROMS.Properties.Resources.view;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnView.Location = new System.Drawing.Point(1003, 46);
@@ -547,7 +548,7 @@
             this.btnView.TabIndex = 6;
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             this.btnView.Enter += new System.EventHandler(this.BtnView_Enter);
             this.btnView.Leave += new System.EventHandler(this.BtnView_Leave);
@@ -614,6 +615,25 @@
             this.grdStockRequestList.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdStockRequestList_Scroll);
             this.grdStockRequestList.SelectionChanged += new System.EventHandler(this.GrdStockRequestList_SelectionChanged);
             this.grdStockRequestList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdStockRequestList_KeyDown);
+            // 
+            // clmprint
+            // 
+            this.clmprint.HeaderText = "Print";
+            this.clmprint.Image = global::ROMS.Properties.Resources.print16x16__2_;
+            this.clmprint.Name = "clmprint";
+            this.clmprint.ReadOnly = true;
+            this.clmprint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.clmprint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmprint.Visible = false;
+            this.clmprint.Width = 70;
+            // 
+            // clmDelete
+            // 
+            this.clmDelete.HeaderText = "";
+            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
+            this.clmDelete.Name = "clmDelete";
+            this.clmDelete.ReadOnly = true;
+            this.clmDelete.Width = 50;
             // 
             // picLoader
             // 
@@ -711,25 +731,6 @@
             this.grdProDetails.TabIndex = 111111145;
             this.grdProDetails.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GrdProDetails_DataBindingComplete);
             this.grdProDetails.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GrdProDetails_Scroll);
-            // 
-            // clmprint
-            // 
-            this.clmprint.HeaderText = "Print";
-            this.clmprint.Image = global::ROMS.Properties.Resources.print16x16__2_;
-            this.clmprint.Name = "clmprint";
-            this.clmprint.ReadOnly = true;
-            this.clmprint.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.clmprint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clmprint.Visible = false;
-            this.clmprint.Width = 70;
-            // 
-            // clmDelete
-            // 
-            this.clmDelete.HeaderText = "";
-            this.clmDelete.Image = global::ROMS.Properties.Resources.Delete;
-            this.clmDelete.Name = "clmDelete";
-            this.clmDelete.ReadOnly = true;
-            this.clmDelete.Width = 50;
             // 
             // INV_StockRequestList
             // 

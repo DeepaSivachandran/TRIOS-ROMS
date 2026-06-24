@@ -56,6 +56,7 @@
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.pnlGoodsOutward = new System.Windows.Forms.Panel();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
+            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.DGV_FilterSubgroup = new System.Windows.Forms.DataGridView();
             this.DGV_FilterGroup = new System.Windows.Forms.DataGridView();
             this.DGV_FilterBrand = new System.Windows.Forms.DataGridView();
@@ -135,7 +136,6 @@
             this.lblMRP = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
-            this.RPTViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.epStockReconciliation)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -250,6 +250,19 @@
             this.grpGoodsOutward.Size = new System.Drawing.Size(1331, 638);
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
+            // 
+            // RPTViewer
+            // 
+            this.RPTViewer.ActiveViewIndex = -1;
+            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.RPTViewer.Location = new System.Drawing.Point(11, 88);
+            this.RPTViewer.Name = "RPTViewer";
+            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
+            this.RPTViewer.Size = new System.Drawing.Size(1313, 540);
+            this.RPTViewer.TabIndex = 111111232;
+            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.RPTViewer.Visible = false;
             // 
             // DGV_FilterSubgroup
             // 
@@ -829,7 +842,7 @@
             this.btnEmptyPrint.Location = new System.Drawing.Point(1148, 35);
             this.btnEmptyPrint.Name = "btnEmptyPrint";
             this.btnEmptyPrint.Size = new System.Drawing.Size(34, 29);
-            this.btnEmptyPrint.TabIndex = 111111192;
+            this.btnEmptyPrint.TabIndex = 9;
             this.btnEmptyPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEmptyPrint.UseVisualStyleBackColor = true;
             this.btnEmptyPrint.Click += new System.EventHandler(this.btnEmptyPrint_Click);
@@ -887,7 +900,7 @@
             this.btnReset.Location = new System.Drawing.Point(1188, 35);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(34, 29);
-            this.btnReset.TabIndex = 111111187;
+            this.btnReset.TabIndex = 10;
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -899,7 +912,7 @@
             this.btnView.Location = new System.Drawing.Point(1111, 35);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(34, 29);
-            this.btnView.TabIndex = 111111186;
+            this.btnView.TabIndex = 8;
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -1321,19 +1334,6 @@
             this.lblProductName.Size = new System.Drawing.Size(139, 20);
             this.lblProductName.TabIndex = 28;
             this.lblProductName.Text = "Search by P.I Code (F11)";
-            // 
-            // RPTViewer
-            // 
-            this.RPTViewer.ActiveViewIndex = -1;
-            this.RPTViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RPTViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.RPTViewer.Location = new System.Drawing.Point(11, 88);
-            this.RPTViewer.Name = "RPTViewer";
-            this.RPTViewer.ReuseParameterValuesOnRefresh = true;
-            this.RPTViewer.Size = new System.Drawing.Size(1313, 540);
-            this.RPTViewer.TabIndex = 111111232;
-            this.RPTViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.RPTViewer.Visible = false;
             // 
             // INV_Reconciliation
             // 

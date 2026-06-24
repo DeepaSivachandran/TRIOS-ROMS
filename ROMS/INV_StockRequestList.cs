@@ -23,7 +23,8 @@ namespace ROMS
         public string varUserID = "";
         public int varUpDownKey = 0;
         Boolean BlnSearchImageYN = false;
-        public int MenuCode = 0;
+        public int MenuCode = 0,pbFlag=0;
+        DateTime varmaxdate;
         string privilege = "";
         List<(int MUP_Code, string EditAccess)> SpecialPermissions = new List<(int, string)>();
         public INV_StockRequestList()
@@ -764,28 +765,46 @@ namespace ROMS
                 cmbConcern.SelectedValue = MainForm.pbDefaultComId;
                 DataBind objDTBind = new DataBind();
                 objDTBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (63) AND MSTID !=0 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbShow, "", "MST_DisplayText", "MSTID");
-                objDTBind = null;
-                //DataSet objDs = new DataSet();
-                //SPDataService objspservice = new SPDataService();
-                //objDs = objspservice.udfnMaster(9, 0, 0, "", "", 0, "", 5);
-                //if (objDs.Tables[0].Rows.Count > 0)
-                //{
-                //    DateTime varDate = DateTime.ParseExact(objDs.Tables[0].Rows[0]["DATE"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                //    dpEntryToDate.MinDate = varDate;
-                //    dpFromDate.Text = Convert.ToString(objDs.Tables[0].Rows[0]["DATE1"]);
-                //}
-                //objspservice.CloseConnection();
+                objDTBind = null; 
                 dpFromDate.Text = Convert.ToString(MainForm.pbCurrentDate);
                 dpFromDate.MinDate = MainForm.pbFYStartDate;
                 dpFromDate.MaxDate = MainForm.pbCurrentDate;
                 dpEntryToDate.MaxDate = MainForm.pbCurrentDate;
                 tsbDelete.Visible = true;
+                //First time load past date pending and current date all status records
+                pbFlag = 28;//Pending
                 udfnList();
+                udfnDate();
                 if (Convert.ToInt32(MainForm.pbUserRoleId) != 1)
                 {
                     udfnFieldAccess();
                 }
 
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+        public void udfnDate()
+        {
+            try
+            {
+                MR_Master objMR_Master = new MR_Master(); 
+                SPDataService objDServ = new SPDataService();
+                DataSet objd = new DataSet();  
+                objMR_Master.ViewType = 9; 
+                objMR_Master.paraFlag = 22;
+                objd = null;
+                objd = objDServ.udfnMaster(objMR_Master);
+                objDServ.CloseConnection();
+                if (objd.Tables[0].Rows.Count != 0)
+                {
+                    DateTime varmindate = MainForm.pbFYStartDate;
+                    dpFromDate.MinDate = varmindate;
+                    dpFromDate.Text = Convert.ToString(objd.Tables[0].Rows[0]["DATE1"]);
+                } 
             }
             catch (Exception ex)
             {
@@ -868,6 +887,7 @@ namespace ROMS
                 //objTRNG_StockRequest.paraStatusId = Convert.ToInt32(lblProduct.Text);
                 objTRNG_StockRequest.ParaSTFromDate = Convert.ToString(dpFromDate.Text);
                 objTRNG_StockRequest.ParaSTToDate = Convert.ToString(dpEntryToDate.Text);
+                objTRNG_StockRequest.paraFlag = pbFlag;
                 objTRNG_StockRequest.paraStatusId = Convert.ToInt32(cmbStatus.SelectedValue);
                 objDs = objspservice.udfnStockRequestList(objTRNG_StockRequest);
                 objspservice.CloseConnection();
@@ -885,6 +905,7 @@ namespace ROMS
                             grdStockRequestList.Columns["ConcernID"].Visible = false;
                             grdStockRequestList.Columns["StatusID"].Visible = false;
                             grdStockRequestList.Columns["SRQID"].Visible = false;
+                            grdStockRequestList.Columns["DeleteFlag"].Visible = false;
                             grdStockRequestList.Columns["Received Qty"].Visible = false;
                             grdStockRequestList.Columns["S.No."].Width = 50;
                             grdStockRequestList.Columns["Status"].Width = 120;
@@ -892,6 +913,15 @@ namespace ROMS
                             grdStockRequestList.Columns["Created By"].Width = 220;
                             grdStockRequestList.Columns["Verified By"].Width = 220;
                             grdStockRequestList.Columns["Issued By"].Width = 220;
+                            grdStockRequestList.Columns["Deleted By"].Width = 220;
+                            grdStockRequestList.Columns["Concern"].Width = 60;
+                            grdStockRequestList.Columns["Request No."].Width = 80;
+                            grdStockRequestList.Columns["S.No."].Frozen = true;
+                            grdStockRequestList.Columns[0].Frozen = true;
+                            grdStockRequestList.Columns["Concern"].Frozen = true;
+                            grdStockRequestList.Columns["Request Date"].Frozen = true;
+                            grdStockRequestList.Columns["Request No."].Frozen = true;
+
                             grdStockRequestList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdStockRequestList.Columns["Request Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -943,6 +973,7 @@ namespace ROMS
                 picLoader.SendToBack();
                 btnView.Enabled = true;
                 btnView.Focus();
+                pbFlag = 0;
             }
         }
         public void udfnProList()
@@ -1621,6 +1652,7 @@ namespace ROMS
                         grdStockRequestList.Rows[i].Cells["Status"].Style.BackColor = Color.LimeGreen;
                         grdStockRequestList.Rows[i].Cells["Status"].Style.ForeColor = Color.White;
                     }
+
                     if(Convert.ToString(grdStockRequestList.Rows[i].Cells["StatusID"].Value) != "48")
                     {
                         grdStockRequestList.Rows[i].Cells["clmDelete"].ReadOnly = true;
@@ -1628,6 +1660,11 @@ namespace ROMS
                         print.Value = "";
                         grdStockRequestList.Rows[i].Cells["clmDelete"] = print;
                         print.ReadOnly = true;
+                    }
+                    if (Convert.ToString(grdStockRequestList.Rows[i].Cells["DeleteFlag"].Value) == "1")
+                    {
+                        grdStockRequestList.Rows[i].DefaultCellStyle.BackColor = Color.Crimson;
+                        grdStockRequestList.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                     }
                 }
                 grdStockRequestList.Columns["clmprint"].Resizable = DataGridViewTriState.False;
