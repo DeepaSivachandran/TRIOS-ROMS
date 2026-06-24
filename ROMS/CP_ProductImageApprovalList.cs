@@ -153,6 +153,7 @@ namespace ROMS
                     {
                         MainForm.objCP_ProductImageApproval = new CP_ProductImageApproval();
                         MainForm.objCP_ProductImageApproval.varproductcode = Convert.ToInt32(grdItemList.SelectedRows[0].Cells["ID"].Value.ToString());
+                        MainForm.objCP_ProductImageApproval.varproductname = grdItemList.SelectedRows[0].Cells["Product Name in English"].Value.ToString();
                         MainForm.objCP_ProductImageApproval.MdiParent = this.ParentForm;
                         //objMainForm.CenterEntryForm(this, MainForm.objCP_ProductApproval);
                         MainForm main = (MainForm)this.MdiParent;
@@ -236,7 +237,7 @@ namespace ROMS
                     }
                 }
                 MR_Product objMR_Product = new MR_Product();
-                objMR_Product.paraViewType = 0;
+                objMR_Product.paraViewType = 103;
                 objMR_Product.paraProductCategory = Convert.ToInt32(cmbCategory.SelectedValue);
                 objMR_Product.paraGroup = varGroupId;
                 objMR_Product.paraSubgroup = varSubGroupId;
@@ -257,10 +258,7 @@ namespace ROMS
                             lblNoRecordsFound.SendToBack();
                             grdItemList.DataSource = objDs.Tables[0];
                             grdItemList.Columns["S.No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdItemList.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            grdItemList.Columns["W.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdItemList.Columns["R.Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            grdItemList.Columns["GST %"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                            grdItemList.Columns["Image Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             grdItemList.Columns["S.No."].Frozen = true;
                             grdItemList.Columns["Product Name in Tamil"].Frozen = true;
                             grdItemList.Columns["P.I Code"].Frozen = true;
@@ -268,26 +266,7 @@ namespace ROMS
                             grdItemList.Columns["Product Name in English"].Width = 300;
                             grdItemList.Columns["P.I Code"].Width = 100;
                             grdItemList.Columns["Product Name in Tamil"].Width = 300;
-                            grdItemList.Columns["Product Subgroup"].Width = 150;
-                            grdItemList.Columns["Product Group"].Width = 150;
-                            grdItemList.Columns["Purchase Location"].Width = 150;
-                            grdItemList.Columns["Batch No."].Width = 80;
-                            grdItemList.Columns["Shelf Life"].Width = 80;
-                            grdItemList.Columns["HSN Name"].Width = 230;
                             grdItemList.Columns["ID"].Visible = false;
-                            grdItemList.Columns["STSID"].Visible = false;
-                            grdItemList.Columns["PRGID"].Visible = false;
-                            grdItemList.Columns["PR_PRSGID"].Visible = false;
-                            grdItemList.Columns["PR_HSNID"].Visible = false;
-                            grdItemList.Columns["PR_UTID"].Visible = false;
-                            grdItemList.Columns["PR_COMID"].Visible = false;
-                            grdItemList.Columns["PR_BDID"].Visible = false;
-                            grdItemList.Columns["PR_SALE_RKID"].Visible = false;
-                            grdItemList.Columns["PR_SALE_SLID"].Visible = false;
-                            grdItemList.Columns["PR_PUR_RKID"].Visible = false;
-                            grdItemList.Columns["PR_PUR_SLID"].Visible = false;
-                            grdItemList.Columns["Rate"].Visible = false;
-                            grdItemList.Columns["Old Price"].Visible = false;
                             grdItemList.Columns["Product Name in Tamil"].DefaultCellStyle.Font = new System.Drawing.Font("Uni Ila.Sundaram-03", 11.75F);
                         }
                         else
@@ -336,23 +315,8 @@ namespace ROMS
                 DGV_SearchGrid.Columns["Product Name in English"].Width = 300;
                 DGV_SearchGrid.Columns["P.I Code"].Width = 100;
                 DGV_SearchGrid.Columns["Product Name in Tamil"].Width = 300;
-                DGV_SearchGrid.Columns["Product Subgroup"].Width = 150;
-                DGV_SearchGrid.Columns["Product Group"].Width = 150;
-                DGV_SearchGrid.Columns["Batch No."].Width = 80;
-                DGV_SearchGrid.Columns["Shelf Life"].Width = 80;
-                DGV_SearchGrid.Columns["HSN Name"].Width = 230;
                 DGV_SearchGrid.Columns["ID"].Visible = false;
-                DGV_SearchGrid.Columns["STSID"].Visible = false;
-                DGV_SearchGrid.Columns["PRGID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_PRSGID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_HSNID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_UTID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_COMID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_BDID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_SALE_RKID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_SALE_SLID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_PUR_RKID"].Visible = false;
-                DGV_SearchGrid.Columns["PR_PUR_SLID"].Visible = false; DGV_SearchGrid.ScrollBars = ScrollBars.Both;
+                DGV_SearchGrid.ScrollBars = ScrollBars.Both;
             }
             catch (Exception ex)
             {
@@ -970,7 +934,7 @@ namespace ROMS
             try
             {
                 dynamicLabelControl.PlaceholderLabel = tsLabelPlaceholder;
-                int currentMUCode = 50508;
+                int currentMUCode = 50512;
                 string ReportTypeIDs = string.Join(",",
                  MainForm.objDtMenuDetailsUser?.AsEnumerable()
                   .Where(r => r.Field<int?>("MU_ParentMenuCode") == currentMUCode)
@@ -979,7 +943,7 @@ namespace ROMS
                   .Select(q => q.Value.ToString())
                   ?? Enumerable.Empty<string>());
                 dynamicLabelControl.BindMenuHierarchy(currentMUCode);
-                MenuCode = 50508;
+                MenuCode = 50512;
                 this.ActiveControl = cmbConcern;
                 BeginInvoke(new Action(() => cmbConcern.Select(int.MaxValue, 0)));
                 udfnDropdownbind();

@@ -43,6 +43,7 @@ namespace ROMS
         DataTable dtPurHSN = new DataTable();
         DataTable dtSalesHSN = new DataTable();
         public int varproductcode = 0;
+        public string varproductname = "";
 
         public CP_ProductImageApproval()
         {
@@ -115,7 +116,7 @@ namespace ROMS
                 dtSalesHSN.Columns.Add("HSN_EffectiveTo", typeof(string));
                 dtSalesHSN.Columns.Add("PRHSN_ChangedDate", typeof(string));
                 dtSalesHSN.Columns.Add("PRHSN_MakerID", typeof(int));
-
+                lblProductName.Text=varproductname;
                 udfnEdit();
             }
             catch (Exception ex)
@@ -1052,19 +1053,41 @@ namespace ROMS
                     else
                         varImagePath += "," + imageName;
                 }
-
-                string result = objspdservice.udfnProductMaster(16, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
+                string result = "";
+                result = objspdservice.udfnProductMaster(20, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", MainForm.pbUserID, MainForm.pbIpAddress, "", 0, null, 0, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
 
                 string[] varvalue = result.Split('~');
-                if (varvalue[0] == "3")
+                if (varvalue[0] == "3" && varvalue[1] == "1")
                 {
-                    MessageBox.Show(varvalue[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnImageUpdate.Enabled = true;
-                    if (btnImageUpdate.Text == "Update")
+                Verify:
+                    MainForm.objCP_Verify = new CP_Verify();
+                    MainForm.objCP_Verify.ShowDialog();
+
+                    if (MainForm.objCP_Verify.flag == 1)
                     {
-                        this.Close();
+                        string ApproverID = MainForm.objCP_Verify.varUserId;
+
+                        result = objspdservice.udfnProductMaster(20, varproductcode, "", "", "", 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 0, 0, 0, 0, "", ApproverID, MainForm.pbIpAddress, "", 0, null, 1, "", 0, 0, 0, 0, 0, null, "", "", "", 0, "", varImagePath, 0, 0, 0, null, 0, 0, 0, 0, null, 0, "", "", "", "", "", 0, 0);
+
+                        string[] value = result.Split('~');
+
+                        if (value[0] == "3")
+                        {
+                            MessageBox.Show(value[1], "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            MainForm.objCP_ProductImageApprovalList.udfnList();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(value[1], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            if (value[0] == "5")
+                                goto Verify;
+                        }
+
                     }
-                    MainForm.objCP_ProductApprovalList.udfnList();
+
                 }
                 else
                 {

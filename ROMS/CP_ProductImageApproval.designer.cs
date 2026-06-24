@@ -66,6 +66,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColour = new System.Windows.Forms.ToolStripButton();
             this.grpGoodsOutward = new System.Windows.Forms.GroupBox();
+            this.lblProductName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.epProductApproval)).BeginInit();
             this.tsStockTransferList.SuspendLayout();
             this.pnlGoodsOutward.SuspendLayout();
@@ -105,8 +106,8 @@
             this.tspHeader.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tspHeader.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
             this.tspHeader.Name = "tspHeader";
-            this.tspHeader.Size = new System.Drawing.Size(118, 22);
-            this.tspHeader.Text = "Product Approval";
+            this.tspHeader.Size = new System.Drawing.Size(154, 22);
+            this.tspHeader.Text = "Product Image Approval";
             // 
             // pnlGoodsOutward
             // 
@@ -129,6 +130,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lblProductName);
             this.tabPage3.Controls.Add(this.btnImgClose);
             this.tabPage3.Controls.Add(this.btnImageUpdate);
             this.tabPage3.Controls.Add(this.pnlImageContainer);
@@ -466,6 +468,15 @@
             this.grpGoodsOutward.TabIndex = 958819;
             this.grpGoodsOutward.TabStop = false;
             // 
+            // lblProductName
+            // 
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Location = new System.Drawing.Point(213, 9);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(41, 20);
+            this.lblProductName.TabIndex = 43;
+            this.lblProductName.Text = "label1";
+            // 
             // CP_ProductImageApproval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
@@ -544,5 +555,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnImageUpdate;
         private System.Windows.Forms.Button btnImgClose;
+        private System.Windows.Forms.Label lblProductName;
     }
 }
