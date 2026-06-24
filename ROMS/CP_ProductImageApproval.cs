@@ -48,7 +48,7 @@ namespace ROMS
         {
             InitializeComponent();
             flowLayoutPanel1.AutoScroll = true;
-            MainForm.objCP_ProductApprovalList.picLoader.Visible = false;
+            MainForm.objCP_ProductImageApprovalList.picLoader.Visible = false;
         }
         public void udfnclose()
         {
@@ -79,22 +79,6 @@ namespace ROMS
                         objError = new DataError();
                         objError.WriteFile(ex);
                     }
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                objError = new DataError();
-                objError.WriteFile(ex);
-            }
-        }
-        public void udfnDiscard()
-        {
-            try
-            {
-                DialogResult dialogResult = MessageBox.Show("Do you want to discard changes ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
                     this.Close();
                 }
             }
@@ -551,6 +535,7 @@ namespace ROMS
 
                 panel.Controls.Add(pictureBox);
                 panel.Controls.Add(btnRemove);
+                btnRemove.BringToFront();
                 btnRemove.Location = new Point(100, 0);
                 flowLayoutPanel1.Controls.Add(panel);
 

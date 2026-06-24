@@ -161,7 +161,6 @@ namespace ROMS
                         main.CurrentParentListForm = this;
                         MainForm.objCP_ProductImageApproval.Show();
                     }
-
                 }
                 catch (Exception ex)
                 {
