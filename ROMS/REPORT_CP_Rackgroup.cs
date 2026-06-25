@@ -769,6 +769,7 @@ namespace ROMS
                     objBillreport.PrintOptions.NoPrinter = true;
                     objBillreport.SetParameterValue("paraEMPID", EMPCode);
                     objBillreport.SetParameterValue("paraRKID", RKCode);
+                    objBillreport.SetParameterValue("paraRKGId", RKGCode);
                     objBillreport.SetParameterValue("paraRKGName", RKGName);
                     objBillreport.SetParameterValue("paraRKInchargeName", RKInchargeName);
                     objBillreport.SetParameterValue("paraRKName", RKName);
