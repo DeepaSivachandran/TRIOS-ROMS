@@ -100,7 +100,7 @@ namespace ROMS
             try
             {
                 string varGroupName = "-All-", varSubgroupName = "-All-";
-                int varFlag = 0, varGroupCode = 0, varSubgroupCode = 0;
+                int varFlag = 0, varGroupCode = 0, varSubgroupCode = 0 ,varNameType = 0;
 
                 if (txtGroup.Text.Trim() != "")
                 {
@@ -124,6 +124,14 @@ namespace ROMS
                 {
                     varFlag = 3;
                 }
+                if (Convert.ToInt32(cmbProductName.SelectedValue) == 270)
+                {
+                    varNameType = 2;
+                }
+                else
+                {
+                    varNameType = 1;
+                }
                 btnView.Enabled = false;
                 lblNoRecordsFound.Visible = false;
                 picLoader.Visible = true;
@@ -135,6 +143,7 @@ namespace ROMS
                 SPDataService objspservice = new SPDataService();
                 TRN_Stock objTRNG_Stock = new TRN_Stock();
                 objTRNG_Stock.ViewType = 8;
+                objTRNG_Stock.paraNameType = varNameType;
                 objTRNG_Stock.paraCOMID = Convert.ToInt32(cmbConcern.SelectedValue);
                 objTRNG_Stock.paraUserLocations = MainForm.pbUserMappedLocationIds;
                 objTRNG_Stock.paraGroupID = varGroupCode;
@@ -183,6 +192,7 @@ namespace ROMS
                     objBillreport.SetParameterValue("paraCategoryName", Convert.ToString(cmbRateCategory.Text));
                     objBillreport.SetParameterValue("paraConcernName", Convert.ToString(cmbConcern.Text));
                     objBillreport.SetParameterValue("paraDate", dpFromDate.Text);
+                    objBillreport.SetParameterValue("paraNameType", varNameType);
                     objBillreport.SetParameterValue("paraUserLocations", MainForm.pbUserMappedLocationIds);
 
                     objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
@@ -279,8 +289,10 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ") ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
                 objDataBind.BindComboBoxListSelected("MR_Company", "COM_STSID in(1,2) and COMID !=-1 Order by COMID", "COM_ShortName,COMID", cmbConcern, "", "COM_ShortName", "COMID");
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID=139", "MST_DisplayText,MSTID", cmbRateCategory, "", "MST_DisplayText", "MSTID");
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID=80 ORDER BY MSTID", "MST_DisplayText,MSTID", cmbProductName, "", "MST_DisplayText", "MSTID");
                 objDataBind = null;
                 cmbReportType.SelectedValue = -1;
+                cmbProductName.SelectedValue = 271;
             }
             catch (Exception ex)
             {
@@ -1034,7 +1046,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnView.Focus();
+                    cmbProductName.Focus();
                 }
             }
             catch (Exception ex)
@@ -1062,6 +1074,60 @@ namespace ROMS
             try
             {
                 cmbRateCategory.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnView.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbProductName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbProductName.BackColor = Color.White;
             }
             catch (Exception ex)
             {
