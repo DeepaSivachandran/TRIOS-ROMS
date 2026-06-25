@@ -29,17 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsGeneralSettings = new System.Windows.Forms.ToolStrip();
             this.tsSettings = new System.Windows.Forms.ToolStripLabel();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.grpGeneralsettings = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtRCToleranceValue = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtRCTolerancePer = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.cmbFormat = new System.Windows.Forms.ComboBox();
             this.grpUserInfo = new System.Windows.Forms.GroupBox();
             this.chkSameUserMultipleSystem = new System.Windows.Forms.CheckBox();
@@ -106,11 +110,13 @@
             this.clmReportText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTransactionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRemove = new System.Windows.Forms.DataGridViewImageColumn();
+            this.label22 = new System.Windows.Forms.Label();
             this.picLoader = new System.Windows.Forms.PictureBox();
             this.epGeneralSettings = new System.Windows.Forms.ErrorProvider(this.components);
             this.tsGeneralSettings.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.grpGeneralsettings.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.grpUserInfo.SuspendLayout();
             this.grbShelflife.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -156,6 +162,7 @@
             // 
             // grpGeneralsettings
             // 
+            this.grpGeneralsettings.Controls.Add(this.groupBox3);
             this.grpGeneralsettings.Controls.Add(this.cmbFormat);
             this.grpGeneralsettings.Controls.Add(this.grpUserInfo);
             this.grpGeneralsettings.Controls.Add(this.mtbTime);
@@ -209,16 +216,62 @@
             this.grpGeneralsettings.TabStop = false;
             this.grpGeneralsettings.Enter += new System.EventHandler(this.grpGeneralsettings_Enter);
             // 
-            // label22
+            // groupBox3
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(15, 516);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(85, 20);
-            this.label22.TabIndex = 1111224;
-            this.label22.Text = "Auto logout at";
-            this.label22.Click += new System.EventHandler(this.label22_Click);
+            this.groupBox3.Controls.Add(this.txtRCToleranceValue);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.txtRCTolerancePer);
+            this.groupBox3.Controls.Add(this.label23);
+            this.groupBox3.Location = new System.Drawing.Point(9, 531);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(275, 67);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Rate Change Tolerance";
+            // 
+            // txtRCToleranceValue
+            // 
+            this.txtRCToleranceValue.Location = new System.Drawing.Point(209, 27);
+            this.txtRCToleranceValue.MaxLength = 3;
+            this.txtRCToleranceValue.Name = "txtRCToleranceValue";
+            this.txtRCToleranceValue.Size = new System.Drawing.Size(50, 27);
+            this.txtRCToleranceValue.TabIndex = 18;
+            this.txtRCToleranceValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRCToleranceValue.Enter += new System.EventHandler(this.txtRCToleranceValue_Enter);
+            this.txtRCToleranceValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRCToleranceValue_KeyDown);
+            this.txtRCToleranceValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRCToleranceValue_KeyPress);
+            this.txtRCToleranceValue.Leave += new System.EventHandler(this.txtRCToleranceValue_Leave);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(153, 30);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(51, 20);
+            this.label24.TabIndex = 1111227;
+            this.label24.Text = "Value   :";
+            // 
+            // txtRCTolerancePer
+            // 
+            this.txtRCTolerancePer.Location = new System.Drawing.Point(118, 27);
+            this.txtRCTolerancePer.MaxLength = 2;
+            this.txtRCTolerancePer.Name = "txtRCTolerancePer";
+            this.txtRCTolerancePer.Size = new System.Drawing.Size(29, 27);
+            this.txtRCTolerancePer.TabIndex = 17;
+            this.txtRCTolerancePer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRCTolerancePer.Enter += new System.EventHandler(this.txtRCTolerancePer_Enter);
+            this.txtRCTolerancePer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRCTolerancePer_KeyDown);
+            this.txtRCTolerancePer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRCTolerancePer_KeyPress);
+            this.txtRCTolerancePer.Leave += new System.EventHandler(this.txtRCTolerancePer_Leave);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 30);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(106, 20);
+            this.label23.TabIndex = 1;
+            this.label23.Text = "Percentage (%)   :";
             // 
             // cmbFormat
             // 
@@ -226,7 +279,7 @@
             this.cmbFormat.Items.AddRange(new object[] {
             "AM",
             "PM"});
-            this.cmbFormat.Location = new System.Drawing.Point(322, 516);
+            this.cmbFormat.Location = new System.Drawing.Point(322, 498);
             this.cmbFormat.Name = "cmbFormat";
             this.cmbFormat.Size = new System.Drawing.Size(41, 27);
             this.cmbFormat.TabIndex = 18;
@@ -357,7 +410,7 @@
             // 
             // mtbTime
             // 
-            this.mtbTime.Location = new System.Drawing.Point(280, 516);
+            this.mtbTime.Location = new System.Drawing.Point(280, 498);
             this.mtbTime.Mask = "90:00";
             this.mtbTime.Name = "mtbTime";
             this.mtbTime.Size = new System.Drawing.Size(42, 27);
@@ -463,7 +516,7 @@
             // txtMonths
             // 
             this.txtMonths.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMonths.Location = new System.Drawing.Point(280, 552);
+            this.txtMonths.Location = new System.Drawing.Point(803, 591);
             this.txtMonths.MaxLength = 2;
             this.txtMonths.Name = "txtMonths";
             this.txtMonths.Size = new System.Drawing.Size(64, 27);
@@ -479,7 +532,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(15, 559);
+            this.label15.Location = new System.Drawing.Point(538, 594);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(84, 20);
             this.label15.TabIndex = 1111216;
@@ -491,7 +544,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(347, 485);
+            this.label14.Location = new System.Drawing.Point(347, 468);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(34, 20);
             this.label14.TabIndex = 1111215;
@@ -500,7 +553,7 @@
             // txtVerificationDays
             // 
             this.txtVerificationDays.Font = new System.Drawing.Font("Oswald Regular", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVerificationDays.Location = new System.Drawing.Point(280, 482);
+            this.txtVerificationDays.Location = new System.Drawing.Point(280, 465);
             this.txtVerificationDays.MaxLength = 3;
             this.txtVerificationDays.Name = "txtVerificationDays";
             this.txtVerificationDays.Size = new System.Drawing.Size(64, 27);
@@ -515,7 +568,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(15, 485);
+            this.label13.Location = new System.Drawing.Point(15, 468);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(259, 20);
             this.label13.TabIndex = 1111213;
@@ -529,7 +582,7 @@
             this.grbShelflife.Controls.Add(this.txtPerLevel1);
             this.grbShelflife.Controls.Add(this.label10);
             this.grbShelflife.Controls.Add(this.label9);
-            this.grbShelflife.Location = new System.Drawing.Point(15, 381);
+            this.grbShelflife.Location = new System.Drawing.Point(15, 365);
             this.grbShelflife.Name = "grbShelflife";
             this.grbShelflife.Size = new System.Drawing.Size(139, 100);
             this.grbShelflife.TabIndex = 13;
@@ -601,7 +654,7 @@
             // chkDCPrint
             // 
             this.chkDCPrint.AutoSize = true;
-            this.chkDCPrint.Location = new System.Drawing.Point(15, 350);
+            this.chkDCPrint.Location = new System.Drawing.Point(15, 334);
             this.chkDCPrint.Name = "chkDCPrint";
             this.chkDCPrint.Size = new System.Drawing.Size(74, 24);
             this.chkDCPrint.TabIndex = 12;
@@ -611,7 +664,7 @@
             // chkGRNPrint
             // 
             this.chkGRNPrint.AutoSize = true;
-            this.chkGRNPrint.Location = new System.Drawing.Point(15, 313);
+            this.chkGRNPrint.Location = new System.Drawing.Point(15, 297);
             this.chkGRNPrint.Name = "chkGRNPrint";
             this.chkGRNPrint.Size = new System.Drawing.Size(82, 24);
             this.chkGRNPrint.TabIndex = 11;
@@ -620,7 +673,7 @@
             // 
             // txtbackuppath
             // 
-            this.txtbackuppath.Location = new System.Drawing.Point(152, 274);
+            this.txtbackuppath.Location = new System.Drawing.Point(152, 259);
             this.txtbackuppath.MaxLength = 500;
             this.txtbackuppath.Name = "txtbackuppath";
             this.txtbackuppath.Size = new System.Drawing.Size(402, 27);
@@ -631,7 +684,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 277);
+            this.label8.Location = new System.Drawing.Point(15, 262);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(95, 20);
             this.label8.TabIndex = 1111212;
@@ -896,32 +949,32 @@
             this.grdOrderType.AllowUserToResizeRows = false;
             this.grdOrderType.BackgroundColor = System.Drawing.Color.White;
             this.grdOrderType.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle85.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle85.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle85.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle85.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle85.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle85.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle91.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle91.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle91.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOrderType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle91;
             this.grdOrderType.ColumnHeadersHeight = 30;
             this.grdOrderType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle86.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle86.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle86.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle86.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle86.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle86.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle92.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle92.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle92.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle92.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle92.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle92.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOrderType.DefaultCellStyle = dataGridViewCellStyle92;
             this.grdOrderType.EnableHeadersVisualStyles = false;
             this.grdOrderType.GridColor = System.Drawing.Color.White;
             this.grdOrderType.Location = new System.Drawing.Point(6, 26);
             this.grdOrderType.Name = "grdOrderType";
             this.grdOrderType.RowHeadersVisible = false;
-            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle87.SelectionForeColor = System.Drawing.Color.White;
-            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle93.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle93.SelectionForeColor = System.Drawing.Color.White;
+            this.grdOrderType.RowsDefaultCellStyle = dataGridViewCellStyle93;
             this.grdOrderType.RowTemplate.Height = 25;
             this.grdOrderType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdOrderType.Size = new System.Drawing.Size(157, 188);
@@ -981,14 +1034,14 @@
             this.grdReport.AllowUserToResizeRows = false;
             this.grdReport.BackgroundColor = System.Drawing.Color.White;
             this.grdReport.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle88.BackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle88.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle88.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle88.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle88.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle88.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdReport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle94.BackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle94.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle94.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle94.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle94.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle94.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdReport.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle94;
             this.grdReport.ColumnHeadersHeight = 30;
             this.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -996,23 +1049,23 @@
             this.clmReportText,
             this.clmTransactionID,
             this.clmRemove});
-            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle89.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle89.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
-            dataGridViewCellStyle89.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle89.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle89.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle89.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdReport.DefaultCellStyle = dataGridViewCellStyle89;
+            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle95.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle95.Font = new System.Drawing.Font("Oswald Regular", 10.75F);
+            dataGridViewCellStyle95.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle95.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle95.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle95.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdReport.DefaultCellStyle = dataGridViewCellStyle95;
             this.grdReport.EnableHeadersVisualStyles = false;
             this.grdReport.GridColor = System.Drawing.Color.White;
             this.grdReport.Location = new System.Drawing.Point(11, 26);
             this.grdReport.Name = "grdReport";
             this.grdReport.ReadOnly = true;
             this.grdReport.RowHeadersVisible = false;
-            dataGridViewCellStyle90.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle90.SelectionForeColor = System.Drawing.Color.White;
-            this.grdReport.RowsDefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle96.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle96.SelectionForeColor = System.Drawing.Color.White;
+            this.grdReport.RowsDefaultCellStyle = dataGridViewCellStyle96;
             this.grdReport.RowTemplate.Height = 25;
             this.grdReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdReport.Size = new System.Drawing.Size(689, 188);
@@ -1050,6 +1103,17 @@
             this.clmRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmRemove.Width = 60;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Oswald Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(15, 498);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(85, 20);
+            this.label22.TabIndex = 1111224;
+            this.label22.Text = "Auto logout at";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // picLoader
             // 
@@ -1093,6 +1157,8 @@
             this.pnlSettings.ResumeLayout(false);
             this.grpGeneralsettings.ResumeLayout(false);
             this.grpGeneralsettings.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.grpUserInfo.ResumeLayout(false);
             this.grpUserInfo.PerformLayout();
             this.grbShelflife.ResumeLayout(false);
@@ -1183,5 +1249,10 @@
         private System.Windows.Forms.Label label22;
         public System.Windows.Forms.ComboBox cmbFormat;
         public System.Windows.Forms.MaskedTextBox mtbTime;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtRCTolerancePer;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtRCToleranceValue;
     }
 }
