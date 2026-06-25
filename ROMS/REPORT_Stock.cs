@@ -80,10 +80,8 @@ namespace ROMS
                     return;
                 }
                 epReport.Clear();
-                cmbReportType.BackColor = Color.White;
-
-                lvProduct.Visible = false;
-                string varProductName="-All-",varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varSupplierName = "-All-", varLocationName = "-All-", varPICodeName = "-All-";
+                cmbReportType.BackColor = Color.White; 
+                string varProductName="-All-",varGroupName = "-All-", varSubgroupName = "-All-", varBrandName = "-All-", varSupplierName = "-All-", varLocationName = "-All-", varPICodeName = "-All-",varRateTypeName="--All--";
                 int varProductId = 0, varGroupId = 0, varSubgroupId = 0, varBrandId = 0, varSupplierCode = 0, varScheduleCode = 0, varLocationCode = 0;
                 if (txtProductName.Text.Trim() != "")
                 {
@@ -123,6 +121,10 @@ namespace ROMS
                 if (Convert.ToInt32(cmbStockLocation.SelectedValue)!=0)
                 {
                     locationcode = Convert.ToString(cmbStockLocation.SelectedValue);
+                }
+                if (Convert.ToInt32(cmbRateType.SelectedValue)!=0)
+                {
+                    varRateTypeName = Convert.ToString(cmbRateType.SelectedValue);
                 }
                 btnListPrint.Enabled = false;
                 lblConcern.Focus();
@@ -174,6 +176,7 @@ namespace ROMS
                 objTRNG_Stock.paraStockType = Convert.ToInt32(cmbStockType.SelectedValue);
                 objTRNG_Stock.paraBlockedFlag = Convert.ToInt32(cmbProductType.SelectedValue);
                 objTRNG_Stock.paraUserLocations = locationcode;
+                objTRNG_Stock.paraRateType = Convert.ToInt32(cmbRateType.SelectedValue);
                 if (Convert.ToInt32(cmbProductType.SelectedValue) == 418)
                 { 
                     objTRNG_Stock.paraBlockedFlag = 1;
@@ -309,7 +312,9 @@ namespace ROMS
                         objBillreport.SetParameterValue("BrandName", string.IsNullOrWhiteSpace(txtBrand.Text) ? "-All-" : txtBrand.Text.Trim());
                     }
                      
-                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName);
+                    objBillreport.SetParameterValue("paraRateType",Convert.ToInt16(cmbRateType.SelectedValue));
+                    objBillreport.SetParameterValue("paraRateTypeName",varRateTypeName); 
+                    objBillreport.SetParameterValue("paraHostName", MainForm.pbHostName); 
                     objBillreport.SetParameterValue("paraUserName", MainForm.pbUserName); 
                     objValidation.CrySqlConnection(objBillreport);
                     /* 0 - from view, 1- from telegram*/
@@ -360,8 +365,7 @@ namespace ROMS
                 DataSet objDs = new DataSet(); 
                 SPDataService objdserv = new SPDataService();
                 int varViewType = 2;
-                objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0);
-                
+                objDs = objdserv.udfnCompanyList(varViewType, 0, MainForm.pbUserID, MainForm.pbIpAddress, 0); 
                 cmbConcern.DataSource = null;
                 if (objDs != null)
                 {
@@ -433,6 +437,8 @@ namespace ROMS
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,80) AND  MSTID NOT IN (0,-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbLanuguage, "", "MST_DisplayText", "MSTID");
 
                 objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,130) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbStockType, "", "MST_DisplayText", "MSTID");
+
+                objDataBind.BindComboBoxListSelected("DEF_Master", "MST_TransactionID IN (0,185) AND MSTID NOT IN (-1) ORDER BY MSTID", "MST_DisplayText,MSTID", cmbRateType, "", "MST_DisplayText", "MSTID");
 
                 //Transaction id -128
                 objDataBind.BindComboBoxListSelected("DEF_MASTER", "MST_TransactionID IN (0) AND MSTID<>0 OR MSTID IN (" + ReportTypeIDs + ")  ORDER BY MST_OrderID ASC", "MST_DisplayText,MSTID,MST_ShortName", cmbReportType, "", "MST_DisplayText", "MSTID");
@@ -783,7 +789,7 @@ namespace ROMS
             }
             finally
             {
-                lvProduct.Visible = false;
+                 
             }
         }
 
@@ -2614,14 +2620,7 @@ namespace ROMS
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (cmbUnit.Enabled == true)
-                    {
-                        cmbUnit.Focus();
-                    }
-                    else
-                    {
-                        btnListPrint.Focus();
-                    }
+                   cmbRateType.Focus();
                 }
             }
             catch (Exception ex)
@@ -2952,6 +2951,68 @@ namespace ROMS
             try
             {
                 cmbReportFormat.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateType.BackColor = Color.LemonChiffon;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (cmbUnit.Enabled == true)
+                    {
+                        cmbUnit.Focus();
+                    }
+                    else
+                    {
+                        btnListPrint.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                objError = new DataError();
+                objError.WriteFile(ex);
+            }
+        }
+
+        private void cmbRateType_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                cmbRateType.BackColor = Color.White;
             }
             catch (Exception ex)
             {

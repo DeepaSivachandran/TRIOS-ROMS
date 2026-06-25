@@ -26,6 +26,7 @@ namespace ROMS
         private ToolTip tpStockQty = new ToolTip();
         private ToolTip tpRequiredQty = new ToolTip();
         private ToolTip tpType = new ToolTip();
+        private ToolTip tpProductType = new ToolTip();
         private ToolTip tpBillNo = new ToolTip();
 
         public string VarAdd = "0";
@@ -2962,6 +2963,13 @@ namespace ROMS
                     cmbRackGroup.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
                     tpType.ShowAlways = true;
                     tpType.Show("Please select type", cmbRackGroup, 5000);
+                }
+                if (Convert.ToInt16(cmbProductType.SelectedValue) == -1 || Convert.ToInt16(cmbProductType.SelectedValue) == 0)
+                {
+                    errStockRequest.SetError(cmbProductType, "Please select product type");
+                    cmbProductType.BackColor = System.Drawing.ColorTranslator.FromHtml("#fabdbd");
+                    tpProductType.ShowAlways = true;
+                    tpProductType.Show("Please select type", cmbProductType, 5000);
                 }
                 DataSet objDs = new DataSet();
                 TRN_StockRequest objTRN_StockRequest = new TRN_StockRequest();

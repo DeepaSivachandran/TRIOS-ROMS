@@ -35,5 +35,6 @@ namespace ROMS.Model
         public int paraUnitId { get; set; } = 0;
         public string paraFromDate { get; set; } = "";
         public string paraToDate { get; set; } = "";
+        public int paraRateType { get; set; } = 0;
     }      
 }
